@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "returncode": 0,
+  "seconds": 461.18280696868896,
+  "tests": 151,
+  "failed": 0,
+  "warning_tests": 0,
+  "frozen_inputs": 9128,
+  "changed_inputs": [],
+  "old_save_changes": [],
+  "new_saves": [
+    "User/Saved/SaveGames/probe_ch1.sav",
+    "User/Saved/SaveGames/probe_ch2.sav",
+    "User/Saved/SaveGames/probe_ch3.sav",
+    "User/Saved/SaveGames/probe_ch4.sav",
+    "User/Saved/SaveGames/probe_ch5.sav",
+    "User/Saved/SaveGames/probe_ch6.sav",
+    "User/Saved/SaveGames/probe_ch7.sav",
+    "User/Saved/SaveGames/probe_ch8.sav",
+    "User/Saved/SaveGames/probe_ch9.sav",
+    "User/Saved/SaveGames/probe_ch10.sav"
+  ],
+  "scope": "Merged PR16 camera and PR15/17 source plus reviewed PhotorealBasketV1 native assets/two mesh references; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded."
+}

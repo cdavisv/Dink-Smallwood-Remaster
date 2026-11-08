@@ -1,0 +1,81 @@
+{
+  "pid": 232554,
+  "start": "<Struct 'Vector' (0x7f9f5b9d7da0) {x: -183265.705741, y: 392484.832613, z: 98.150001}>",
+  "end": "<Struct 'Vector' (0x7f9f5b9d5190) {x: -182965.705741, y: 392484.832613, z: 98.150001}>",
+  "radius": 28.0,
+  "half_height": 96.0,
+  "traces": [
+    {
+      "trace_complex": false,
+      "hit_text": "(FaceIndex=18657,Time=0.000090,Distance=0.027128,Location=(X=-183265.678613,Y=392484.832613,Z=98.150001),ImpactPoint=(X=-183238.409422,Y=392478.477197,Z=58.823273),Normal=(X=-0.973900,Y=0.226979,Z=0.000000),ImpactNormal=(X=-0.984531,Y=0.175174,Z=0.003437),TraceStart=(X=-183265.705741,Y=392484.832613,Z=98.150001),TraceEnd=(X=-182965.705741,Y=392484.832613,Z=98.150001),PenetrationDepth=0.000000,MyItem=-1,Item=-1,ElementIndex=0,bBlockingHit=True,bStartPenetrating=False,PhysMaterial=\"/Script/PhysicsCore.PhysicalMaterial'/Engine/EngineMaterials/DefaultPhysicalMaterial.DefaultPhysicalMaterial'\",HitObjectHandle=(ReferenceObject=\"/Script/Engine.StaticMeshComponent'/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_278.StaticMeshComponent0'\"),Component=\"/Script/Engine.StaticMeshComponent'/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_278.StaticMeshComponent0'\",BoneName=\"\",MyBoneName=\"\")",
+      "properties": {
+        "time": {
+          "unavailable": "HitResult: Property 'Time' for attribute 'time' on 'HitResult' is protected and cannot be read"
+        },
+        "distance": {
+          "unavailable": "HitResult: Property 'Distance' for attribute 'distance' on 'HitResult' is protected and cannot be read"
+        },
+        "location": {
+          "unavailable": "HitResult: Property 'Location' for attribute 'location' on 'HitResult' is protected and cannot be read"
+        },
+        "impact_point": {
+          "unavailable": "HitResult: Failed to find property 'impact_point' for attribute 'impact_point' on 'HitResult'"
+        },
+        "normal": {
+          "unavailable": "HitResult: Property 'Normal' for attribute 'normal' on 'HitResult' is protected and cannot be read"
+        },
+        "impact_normal": {
+          "unavailable": "HitResult: Failed to find property 'impact_normal' for attribute 'impact_normal' on 'HitResult'"
+        },
+        "component": {
+          "unavailable": "HitResult: Property 'Component' for attribute 'component' on 'HitResult' is protected and cannot be read"
+        },
+        "hit_object_handle": {
+          "unavailable": "HitResult: Failed to find property 'hit_object_handle' for attribute 'hit_object_handle' on 'HitResult'"
+        },
+        "blocking_hit": {
+          "unavailable": "HitResult: Failed to find property 'blocking_hit' for attribute 'blocking_hit' on 'HitResult'"
+        },
+        "start_penetrating": {
+          "unavailable": "HitResult: Failed to find property 'start_penetrating' for attribute 'start_penetrating' on 'HitResult'"
+        }
+      }
+    },
+    {
+      "trace_complex": true,
+      "hit_text": "(FaceIndex=18657,Time=0.000090,Distance=0.027128,Location=(X=-183265.678613,Y=392484.832613,Z=98.150001),ImpactPoint=(X=-183238.409422,Y=392478.477197,Z=58.823273),Normal=(X=-0.973900,Y=0.226979,Z=0.000000),ImpactNormal=(X=-0.984531,Y=0.175174,Z=0.003437),TraceStart=(X=-183265.705741,Y=392484.832613,Z=98.150001),TraceEnd=(X=-182965.705741,Y=392484.832613,Z=98.150001),PenetrationDepth=0.000000,MyItem=-1,Item=-1,ElementIndex=0,bBlockingHit=True,bStartPenetrating=False,PhysMaterial=\"/Script/PhysicsCore.PhysicalMaterial'/Engine/EngineMaterials/DefaultPhysicalMaterial.DefaultPhysicalMaterial'\",HitObjectHandle=(ReferenceObject=\"/Script/Engine.StaticMeshComponent'/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_278.StaticMeshComponent0'\"),Component=\"/Script/Engine.StaticMeshComponent'/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_278.StaticMeshComponent0'\",BoneName=\"\",MyBoneName=\"\")",
+      "properties": {
+        "time": {
+          "unavailable": "HitResult: Property 'Time' for attribute 'time' on 'HitResult' is protected and cannot be read"
+        },
+        "distance": {
+          "unavailable": "HitResult: Property 'Distance' for attribute 'distance' on 'HitResult' is protected and cannot be read"
+        },
+        "location": {
+          "unavailable": "HitResult: Property 'Location' for attribute 'location' on 'HitResult' is protected and cannot be read"
+        },
+        "impact_point": {
+          "unavailable": "HitResult: Failed to find property 'impact_point' for attribute 'impact_point' on 'HitResult'"
+        },
+        "normal": {
+          "unavailable": "HitResult: Property 'Normal' for attribute 'normal' on 'HitResult' is protected and cannot be read"
+        },
+        "impact_normal": {
+          "unavailable": "HitResult: Failed to find property 'impact_normal' for attribute 'impact_normal' on 'HitResult'"
+        },
+        "component": {
+          "unavailable": "HitResult: Property 'Component' for attribute 'component' on 'HitResult' is protected and cannot be read"
+        },
+        "hit_object_handle": {
+          "unavailable": "HitResult: Failed to find property 'hit_object_handle' for attribute 'hit_object_handle' on 'HitResult'"
+        },
+        "blocking_hit": {
+          "unavailable": "HitResult: Failed to find property 'blocking_hit' for attribute 'blocking_hit' on 'HitResult'"
+        },
+        "start_penetrating": {
+          "unavailable": "HitResult: Failed to find property 'start_penetrating' for attribute 'start_penetrating' on 'HitResult'"
+        }
+      }
+    }
+  ]
+}

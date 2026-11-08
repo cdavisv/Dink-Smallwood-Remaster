@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "full_test_inputs": 9128,
+  "changed_files_after_full_run": [
+    "AGENTS.md"
+  ],
+  "qualified_non_execution_docs_only": true,
+  "runtime_native_source_tools_art_ledger_modules_still_match_full_run": true
+}
