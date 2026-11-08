@@ -1,0 +1,79 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/FeedSack/PhotorealFeedSackV1_Source.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 2
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_FeedSack_Jute_01",
+      "class": "prop",
+      "collection": "SM_FeedSack_Jute_01",
+      "tris_per_lod": {
+        "LOD0": 19644
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -36.141,
+          -27.734,
+          0.0
+        ],
+        "blender_max_cm": [
+          36.141,
+          27.734,
+          75.0
+        ],
+        "size_cm": [
+          72.283,
+          55.469,
+          75.0
+        ],
+        "unreal_min_cm": [
+          -36.141,
+          -27.734,
+          0.0
+        ],
+        "unreal_max_cm": [
+          36.141,
+          27.734,
+          75.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_FeedSack_Jute_01",
+          "message": "LOD0 has 19644 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_FeedSack_Jute_01",
+          "data": {
+            "tris": 19644,
+            "target": 6000
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_FeedSack_Jute_01",
+          "message": "texel density 1188 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_FeedSack_Jute_01",
+          "data": {
+            "density_px_per_m": 1187.9,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

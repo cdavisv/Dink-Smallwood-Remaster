@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "base": "fbfe083e00a52e4342a3dc379d762dbd76ae2a0e",
+  "scope": [
+    "DinkRemasterUE/AGENTS.md",
+    "DinkRemasterUE/HANDOFF.md",
+    "DinkRemasterUE/SourceAssets/asset_ledger.csv",
+    "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/",
+    "DinkRemasterUE/Docs/Verification/PhotorealFeedSackSource/"
+  ],
+  "no_Content_Plugins_Source_Config_Scripts_changes": true,
+  "prior_ledger_raw_bytes_preserved": true,
+  "native_imported": false
+}

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "Inputs/KIT_Stonebrook_Input.blend": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+    "Inputs/Original_422_12.png": "21bdca5ffa60b2fd3012ff5bd3df4166eabb60c57fe796a7eb39ab036d07c1b6",
+    "Inputs/s1-sack.c": "56876babed7a1f2965b0a53e691d828c000dc75b49914178e9e1312df073876f",
+    "Inputs/original_placement.json": "1fd140ddf5e52cefe09233338f6a88bf15f9eb214837c77df7539efcb07c1d5a",
+    "Inputs/Textures/T_Stonebrook_Linen_BC.png": "7dd5874caf4471b716caa55f867a4f482b498b13d082940cbffc5e34e03aff65",
+    "Inputs/Textures/T_Stonebrook_Linen_N.png": "ac7b0da0e8ad6fd9b7e3689fd99ef06ef4d388f29cc185854ca30082894e33bb",
+    "Inputs/Textures/T_Stonebrook_Linen_ORM.png": "5b2f9414647e5577aeb91f7194cd5a5e2f8b0d2d2c5b3e70e4fef3dda4aef13e",
+    "Inputs/Textures/T_Stonebrook_Wicker_BC.png": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3",
+    "Inputs/Textures/T_Stonebrook_Wicker_N.png": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243",
+    "Inputs/Textures/T_Stonebrook_Wicker_ORM.png": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48"
+  },
+  "reference": "Existing original sprite422_12 and original s1-sack.c; extraction reused, not freshly archive-verified",
+  "identity": "S001_P52; script s1-sack; sack of grain/pig feed",
+  "inventory_label_note": "Legacy basket_wicker class/name is not used as sole art identity authority",
+  "runtime_modified": false
+}
