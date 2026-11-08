@@ -1,0 +1,57 @@
+{
+  "status": "No blocking findings for exact corrected frozen context screen_set packet",
+  "findings": [],
+  "patch_sha256": "4bdffbc56eabe9cee9ef036a622ffd30f82234b0850cf1d4a119b2d5cdb62467",
+  "delivery_sha256": "5ea39a5db244c54a87fa0c28bd555931d2a60ade295c4469ed4743aaf8972c40",
+  "input_pins_sha256": "8003dec337f5af37f92508efa896c50637b26632f256772ee4b1900055503bf7",
+  "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+  "prerequisite_camera_posture_patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
+  "review_scope": "Read-only exact3filepatch, source/pin and raw focused-report inspection. No build/native/GPU or repository changes.",
+  "source_files_verified": {
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h": "3259f4358d0326adfce1a80216d6a643c0569ffcc54e96e4c5fb295ad4eb87f4",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp": "e380b0ce288a1832be7a1e623d793a65f552b85b43e86de713070a0278b85daa",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp": "92472390f29ecbceafe69c609452340779d1d20fe5fde748d71fa062579707f9"
+  },
+  "all_combined_input_pins_checked": 8942,
+  "input_pin_mismatches": [],
+  "reverse_patch_check": "git apply --check --reverse exited0 for corrected exactpacket",
+  "prior_P2_resolved": {
+    "issue": "Oldowner-onlypointerparity was lost when bothcached/physical volumes sharedownerID butdifferentActor identity",
+    "fix": "UpdateVisibility emptyVisibleScreens branch now requires Physical==Screen and ScreenNumber==OwnerScreenNumber. Shared nonemptyset still calls independent membership checks, without requiringcached/physical equality.",
+    "native_regression": "ActualPIEfixture spawns a second439volume with displacedcorners, provescachedYard!=physicalDuplicate despite sameID, checks owner-onlycontext hides, thenrefreshescacheandchecksvisibility resumes. Existing cross-screen-set cachelag tests retained.",
+    "superseded_patch_sha256": "e05d6bb4a9c7430241879150e680dc83b7a9cf838926b02f6655b9756c6ca694"
+  },
+  "native_focused_evidence": {
+    "report": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/shared_context_focus_v2/index.json",
+    "sha256": "16ff0a45b9b993192ba4c66b111a9d9ef346513a9ea8660e7081bfda8ce9dc97",
+    "tests": 2,
+    "actual_states": {
+      "Success": 2
+    },
+    "paths": [
+      "Dink.Art.Context.OwnerScreenVisibility",
+      "Dink.Art.Context.SharedOutdoorVisibility"
+    ],
+    "failed": 0,
+    "warning_tests": 0,
+    "warning_events": 0,
+    "error_events": 0,
+    "duration_seconds_author_receipt": 23
+  },
+  "positive_checks": [
+    "Strict setfactory requires1..32numericfiniteinteger IDs1..768, uniqueness andowner membership before spawn.",
+    "Owner-only manifests reject a screensfield; original top-levelreplacement/warp/hide/collision/light/postprocessownership fields remain rejected.",
+    "ConfigureScreenSet builds a temporary preparedset before replacingvalid policy. ConfigureOwnerScreen resets groupmembership and updates visibility.",
+    "Group visibility independently requirescached andphysical IDs in the same declared set; crossmembercache lag preservesoneworldcontext without movingthe actor.",
+    "No pawn/cachedvolume/physicalvolume means hidden; existingpawn/controllercallbacks,boundedrefreshandteardowndelegate/timercleanup are retained.",
+    "Render-only mesh flags/collision/nav/hiddenlighting unchanged; no asset/geometrydeduplication or ownershippolicy imported via screen_set.",
+    "Exact corrected3fileSHA andall8942combinedprerunpins matchedcurrent disk, includingmodules; camera/posture prerequisite remains exactc4b66fe8v5."
+  ],
+  "coverage_limits": [
+    "No actual shared-world composition assets are published; collision/worldcoordinate/dedup/finalrender acceptance ofnew authoredassets remains separate.",
+    "Declaredmembership itself is not an outdoor-type filter: an interior is excludedwhen not listed. Currenttestedgroup439/471 excludes1.",
+    "Focused2passdoesnot substitute for finalcombinedfullsuite. Authorfullcombined_v2was stillrunning at taskdispatch; this review makes no fullsuite completion claim.",
+    "No independentnewnativeexecution by reviewer; supplied focusedrawreports were parsed andsource/pins verified.",
+    "Parserguardcode includes33item/nonfinite rejection; focusedfixturedoesnot enumerate everypossible invalidJSON/input edge."
+  ]
+}

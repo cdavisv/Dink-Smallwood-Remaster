@@ -55,6 +55,7 @@ public:
   {
    Story->SkipDialogue(); if (Story->GetActiveMenu() || Story->GetDirector()->GetDink().bFrozen || PC->IsMoveInputIgnored()) return false;
    if (!Test->TestNotNull(TEXT("actual character camera policy"),Camera)) return true;
+   Camera->bEnableWallCutaway=true; // explicit historical comparison, before leaving the room
    auto* Local=PC->GetLocalPlayer(); auto* Viewport=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
    if (!Test->TestNotNull(TEXT("real PIE local viewport"),Viewport)) return true;
    if (Viewport->GetSizeXY()==FIntPoint::ZeroValue) Viewport->SetInitialSize(FIntPoint(1280,720));

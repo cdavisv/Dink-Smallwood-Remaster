@@ -23,6 +23,9 @@ class DINKCORE_API ADinkArtContextActor : public AActor
                                                     const TMap<FString, UStaticMesh *> &Meshes, int32 OwnerScreen);
     /** Call after all components are prepared, so an incomplete manifest remains hidden. */
     void ConfigureOwnerScreen(int32 ScreenNumber);
+    /** Optional shared exterior group; owner must be included. No visibility outside this set. */
+    bool ConfigureScreenSet(const TArray<int32>& ScreenNumbers);
+    bool IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const;
     UStaticMeshComponent *AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &WorldTransform);
     int32 GetOwnerScreenNumber() const
     {
@@ -38,6 +41,7 @@ class DINKCORE_API ADinkArtContextActor : public AActor
     void ScreenChanged(ADinkScreenVolume *Screen);
     void PawnChanged(APawn *Pawn);
     int32 OwnerScreenNumber = 0;
+    TSet<int32> VisibleScreens;
     TWeakObjectPtr<UDinkGreyboxSubsystem> Greybox;
     TWeakObjectPtr<APlayerController> BoundController;
     FDelegateHandle ScreenHandle, PawnHandle;

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "game_pid": 208615,
+  "display_pid": 208609,
+  "normal_game_exit": true,
+  "display_stopped": true,
+  "pinned_inputs": 6920,
+  "changed_inputs": 0,
+  "photo_fixtures": [
+    "screen1 map178/120 yaw180 pitch-25",
+    "screen1 map303/350 yaw270 pitch-18"
+  ],
+  "native_policy": "cutaway False; managed0; fading0; springarmcollision True",
+  "door_scope": "actual held W exit and return from prior303/350 photo fixture, no route teleports",
+  "visual_review": "solid wall/window frame; no exposed outside-floor blue strip at exact corner; current merged barrels visible; old hero and dark room remain unfinished",
+  "failed_diagnostic": "First Python reader could not access protected enable_wall_cutaway; no capture/readback success claimed for that attempt. Corrected driver uses native getall. Raw game log retained under Saved/ContinuityIntegration/Render/game.log."
+}

@@ -1,0 +1,247 @@
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
+index 23133cf..255c74f 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
+@@ -36,9 +36,34 @@ void ADinkArtContextActor::BeginPlay()
+ void ADinkArtContextActor::ConfigureOwnerScreen(int32 ScreenNumber)
+ {
+     OwnerScreenNumber = ScreenNumber > 0 ? ScreenNumber : 0;
++    VisibleScreens.Reset();
+     if (HasActorBegunPlay())
+         UpdateVisibility();
+ }
++bool ADinkArtContextActor::ConfigureScreenSet(const TArray<int32>& ScreenNumbers)
++{
++    if (OwnerScreenNumber<=0 || ScreenNumbers.IsEmpty() || ScreenNumbers.Num()>32) return false;
++    TSet<int32> Prepared;
++    for (const int32 Screen : ScreenNumbers)
++    {
++        if (Screen<1 || Screen>768 || Prepared.Contains(Screen)) return false;
++        Prepared.Add(Screen);
++    }
++    if (!Prepared.Contains(OwnerScreenNumber)) return false;
++    VisibleScreens=MoveTemp(Prepared);
++    if (HasActorBegunPlay()) UpdateVisibility();
++    return true;
++}
++
++bool ADinkArtContextActor::IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const
++{
++    if (VisibleScreens.IsEmpty())
++        return OwnerScreenNumber>0 && CachedScreen==OwnerScreenNumber && PhysicalScreen==OwnerScreenNumber;
++    // The screen cache intentionally lags slightly. Crossing between two covered screens
++    // must retain the SAME world dressing while both locations remain within the group.
++    return VisibleScreens.Contains(CachedScreen) && VisibleScreens.Contains(PhysicalScreen);
++}
++
+ UStaticMeshComponent *ADinkArtContextActor::AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &Transform)
+ {
+     if (!IsValid(Mesh) || Transform.ContainsNaN())
+@@ -83,8 +108,10 @@ void ADinkArtContextActor::UpdateVisibility()
+     const ADinkScreenVolume *Screen = Greybox.IsValid() ? Greybox->GetCurrentScreen() : nullptr;
+     // The screen subsystem deliberately updates at0.25s intervals. The exact pawn
+     // location prevents showing stale context during possession/load transitions.
+-    const bool Visible = OwnerScreenNumber > 0 && Pawn && Screen && Screen->ScreenNumber == OwnerScreenNumber &&
+-                         Greybox->FindScreenAt(Pawn->GetActorLocation()) == Screen;
++    const ADinkScreenVolume* Physical=Pawn && Greybox.IsValid() ? Greybox->FindScreenAt(Pawn->GetActorLocation()) : nullptr;
++    const bool Visible=Pawn && Screen && Physical &&
++        (VisibleScreens.IsEmpty() ? Physical==Screen && Screen->ScreenNumber==OwnerScreenNumber :
++                                   IncludesScreenPair(Screen->ScreenNumber,Physical->ScreenNumber));
+     SetActorHiddenInGame(!Visible);
+ }
+ void ADinkArtContextActor::EndPlay(const EEndPlayReason::Type Reason)
+@@ -113,9 +140,26 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
+     if (OwnerScreen <= 0 || !Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-art/1") ||
+         !Manifest->TryGetNumberField(TEXT("screen"), ExplicitScreen) || ExplicitScreen != OwnerScreen ||
+         !Manifest->TryGetObjectField(TEXT("context"), Context) ||
+-        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) || Visibility != TEXT("owner_screen_only") ||
++        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) ||
++        (Visibility != TEXT("owner_screen_only") && Visibility != TEXT("screen_set")) ||
+         !(*Context)->TryGetBoolField(TEXT("render_only"), RenderOnly) || !RenderOnly)
+         return nullptr;
++    TArray<int32> ScreenSet;
++    if (Visibility==TEXT("screen_set"))
++    {
++        const TArray<TSharedPtr<FJsonValue>>* Screens=nullptr;
++        if (!(*Context)->TryGetArrayField(TEXT("screens"),Screens) || Screens->IsEmpty() || Screens->Num()>32) return nullptr;
++        TSet<int32> Seen;
++        for (const auto& Value:*Screens)
++        {
++            double Number=0;
++            if (Value->Type!=EJson::Number || !Value->TryGetNumber(Number) || !FMath::IsFinite(Number) ||
++                Number<1 || Number>768 || Number!=FMath::FloorToDouble(Number) || Seen.Contains(int32(Number))) return nullptr;
++            Seen.Add(int32(Number)); ScreenSet.Add(int32(Number));
++        }
++        if (!Seen.Contains(OwnerScreen)) return nullptr;
++    }
++    else if ((*Context)->HasField(TEXT("screens"))) return nullptr;
+     for (const TCHAR *Key : {TEXT("replacements"), TEXT("warp_overrides"), TEXT("hide_origins"),
+                              TEXT("hide_screen_visuals"), TEXT("authored_collision_screens"),
+                              TEXT("preserve_low_collision_screens"), TEXT("lights"), TEXT("postprocess")})
+@@ -169,5 +213,9 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
+             return nullptr;
+         }
+     Actor->ConfigureOwnerScreen(OwnerScreen);
++    if (!ScreenSet.IsEmpty() && !Actor->ConfigureScreenSet(ScreenSet))
++    {
++        Actor->Destroy(); return nullptr;
++    }
+     return Actor;
+ }
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
+index f9b9968..3c57672 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
+@@ -23,6 +23,9 @@ class DINKCORE_API ADinkArtContextActor : public AActor
+                                                     const TMap<FString, UStaticMesh *> &Meshes, int32 OwnerScreen);
+     /** Call after all components are prepared, so an incomplete manifest remains hidden. */
+     void ConfigureOwnerScreen(int32 ScreenNumber);
++    /** Optional shared exterior group; owner must be included. No visibility outside this set. */
++    bool ConfigureScreenSet(const TArray<int32>& ScreenNumbers);
++    bool IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const;
+     UStaticMeshComponent *AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &WorldTransform);
+     int32 GetOwnerScreenNumber() const
+     {
+@@ -38,6 +41,7 @@ class DINKCORE_API ADinkArtContextActor : public AActor
+     void ScreenChanged(ADinkScreenVolume *Screen);
+     void PawnChanged(APawn *Pawn);
+     int32 OwnerScreenNumber = 0;
++    TSet<int32> VisibleScreens;
+     TWeakObjectPtr<UDinkGreyboxSubsystem> Greybox;
+     TWeakObjectPtr<APlayerController> BoundController;
+     FDelegateHandle ScreenHandle, PawnHandle;
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp
+new file mode 100644
+index 0000000..c9dd8da
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp
+@@ -0,0 +1,129 @@
++#include "DinkTestHelpers.h"
++#include "DinkArtContextActor.h"
++#include "DinkStorySubsystem.h"
++#include "Greybox/DinkGreyboxCharacter.h"
++#include "Greybox/DinkGreyboxSubsystem.h"
++#include "Greybox/DinkScreenVolume.h"
++#include "Components/StaticMeshComponent.h"
++#include "Components/BoxComponent.h"
++#include "Dom/JsonObject.h"
++#include "Editor.h"
++#include "Engine/StaticMesh.h"
++#include "Engine/World.h"
++#include "FileHelpers.h"
++#include "GameFramework/CharacterMovementComponent.h"
++#include "GameFramework/PlayerController.h"
++#include "Misc/PackageName.h"
++#include "Tests/AutomationEditorCommon.h"
++namespace
++{
++TSharedPtr<FJsonObject> GroupSpec(const TArray<TSharedPtr<FJsonValue>>& Screens)
++{
++    auto Spec=MakeShared<FJsonObject>(),Context=MakeShared<FJsonObject>(),Row=MakeShared<FJsonObject>();
++    Spec->SetStringField(TEXT("schema"),TEXT("dink-art/1")); Spec->SetNumberField(TEXT("screen"),439);
++    Context->SetStringField(TEXT("visibility"),TEXT("screen_set")); Context->SetBoolField(TEXT("render_only"),true);
++    Context->SetArrayField(TEXT("screens"),Screens); Spec->SetObjectField(TEXT("context"),Context);
++    Row->SetStringField(TEXT("mesh"),TEXT("/Engine/BasicShapes/Cube.Cube"));
++    Row->SetBoolField(TEXT("collision"),false); Row->SetBoolField(TEXT("camera_occluder"),false);
++    for (const TCHAR* Key:{TEXT("world_cm"),TEXT("rotation_deg"),TEXT("scale")})
++    {
++        const double V=FCString::Strcmp(Key,TEXT("scale"))==0 ? 1. : 0.;
++        Row->SetArrayField(Key,{MakeShared<FJsonValueNumber>(V),MakeShared<FJsonValueNumber>(V),MakeShared<FJsonValueNumber>(V)});
++    }
++    Spec->SetArrayField(TEXT("elements"),{MakeShared<FJsonValueObject>(Row)});
++    return Spec;
++}
++class FContextGroupCheck : public IAutomationLatentCommand
++{
++public:
++    explicit FContextGroupCheck(FAutomationTestBase* T):Test(T) {}
++    bool Update() override
++    {
++        if (!Start) Start=FPlatformTime::Seconds();
++        if (FPlatformTime::Seconds()-Start>90) { Test->AddError(TEXT("shared context fixture timed out")); return true; }
++        UWorld* W=GEditor ? GEditor->PlayWorld.Get() : nullptr;
++        auto* PC=W ? W->GetFirstPlayerController() : nullptr;
++        auto* H=PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
++        auto* Story=W && W->GetGameInstance() ? W->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>() : nullptr;
++        if (!H || !Story || Story->bNewGamePending) return false;
++        auto* G=W->GetSubsystem<UDinkGreyboxSubsystem>();
++        if (!Phase)
++        {
++            Story->SkipDialogue(); if (PC->IsMoveInputIgnored()) return false;
++            Story->bRunScreenScripts=false;
++            UStaticMesh* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));
++            TMap<FString,UStaticMesh*> Meshes; Meshes.Add(Cube->GetPathName(),Cube);
++            auto Number=[](double N){return MakeShared<FJsonValueNumber>(N);};
++            for (const auto& Invalid:TArray<TArray<TSharedPtr<FJsonValue>>>{{},{Number(439),Number(439)},
++                {Number(439),Number(471.5)},{Number(439),Number(769)},{Number(439),Number(0)},
++                {Number(471)},{Number(439),MakeShared<FJsonValueString>(TEXT("471"))}})
++                Test->TestNull(TEXT("invalid shared visibility set rejected before spawn"),ADinkArtContextActor::CreateFromManifest(*W,GroupSpec(Invalid),Meshes,439));
++            auto Spec=GroupSpec({Number(439),Number(471)});
++            Context=ADinkArtContextActor::CreateFromManifest(*W,Spec,Meshes,439);
++            if (!Test->TestNotNull(TEXT("strict shared context factory accepts bounded set"),Context)) return true;
++            Test->TestTrue(TEXT("cached439 physical471 retains shared scenery"),Context->IncludesScreenPair(439,471));
++            Test->TestTrue(TEXT("cached471 physical439 retains shared scenery"),Context->IncludesScreenPair(471,439));
++            Test->TestFalse(TEXT("physical uncovered screen disables shared scenery"),Context->IncludesScreenPair(439,1));
++            Test->TestFalse(TEXT("missing cached screen disables shared scenery"),Context->IncludesScreenPair(0,439));
++            const auto* Yard=G->FindScreen(439);
++            H->SetActorLocation(Yard->MapPixelToWorld(450,350)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++            H->GetCharacterMovement()->StopMovementImmediately(); G->RefreshCurrentScreen();
++            Context->ConfigureScreenSet({439,471});
++            Test->TestFalse(TEXT("real covered yard makes context visible"),Context->IsHidden());
++            Before=Context->GetActorTransform();
++            ++Phase; return false;
++        }
++        if (Phase==1)
++        {
++            const auto* Neighbor=G->FindScreen(471);
++            H->SetActorLocation(Neighbor->MapPixelToWorld(300,200)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++            Context->ConfigureScreenSet({439,471});
++            Test->TestFalse(TEXT("real cross-screen move does not hide shared scenery during cache lag"),Context->IsHidden());
++            G->RefreshCurrentScreen(); Context->ConfigureScreenSet({439,471});
++            Test->TestFalse(TEXT("updated cache still displays same context"),Context->IsHidden());
++            Test->TestTrue(TEXT("context never relocates to another coordinate frame while walking"),Context->GetActorTransform().Equals(Before));
++            PC->UnPossess(); Context->ConfigureScreenSet({439,471});
++            Test->TestTrue(TEXT("missing pawn hides shared scenery"),Context->IsHidden()); PC->Possess(H);
++            const auto* Yard=G->FindScreen(439);
++            H->SetActorLocation(Yard->MapPixelToWorld(300,200)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++            G->RefreshCurrentScreen();
++            auto* Duplicate=W->SpawnActor<ADinkScreenVolume>();
++            Duplicate->ScreenNumber=439; Duplicate->Corners=Yard->Corners;
++            const FVector2D Offset(100000,100000);
++            Duplicate->Corners.NW+=Offset; Duplicate->Corners.NE+=Offset;
++            Duplicate->Corners.SW+=Offset; Duplicate->Corners.SE+=Offset;
++            const FVector DuplicateCenter=Duplicate->MapPixelToWorld(300,200);
++            Duplicate->SetActorLocation(DuplicateCenter);
++            Duplicate->Bounds->SetBoxExtent(FVector(10000,10000,1000));
++            H->SetActorLocation(DuplicateCenter+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++            Test->TestTrue(TEXT("fixture physical volume differs from cached volume despite same ID"),G->FindScreenAt(H->GetActorLocation())==Duplicate && G->GetCurrentScreen()==Yard);
++            Context->ConfigureOwnerScreen(439);
++            Test->TestTrue(TEXT("owner-only context preserves strict volume identity during duplicate-ID cache lag"),Context->IsHidden());
++            G->RefreshCurrentScreen(); Context->ConfigureOwnerScreen(439);
++            Test->TestFalse(TEXT("owner-only context resumes when actual cached volume matches"),Context->IsHidden());
++            Duplicate->Destroy();
++            const auto* Home=G->FindScreen(1);
++            H->SetActorLocation(Home->MapPixelToWorld(370,161)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++            G->RefreshCurrentScreen(); Context->ConfigureScreenSet({439,471});
++            Test->TestTrue(TEXT("separate interior never displays exterior-world context"),Context->IsHidden());
++            Context->ConfigureOwnerScreen(439);
++            Test->TestFalse(TEXT("restoring old owner-only policy removes shared screen membership"),Context->IncludesScreenPair(439,471));
++            Context->Destroy(); return true;
++        }
++        return false;
++    }
++private:
++    FAutomationTestBase* Test;
++    ADinkArtContextActor* Context=nullptr;
++    FTransform Before;
++    double Start=0;
++    int32 Phase=0;
++};
++}
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkContextGroupTest,"Dink.Art.Context.SharedOutdoorVisibility",DINK_TEST_FLAGS)
++bool FDinkContextGroupTest::RunTest(const FString&)
++{
++    const FString File=FPackageName::LongPackageNameToFilename(TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World"),FPackageName::GetMapPackageExtension());
++    if (!TestNotNull(TEXT("real world loads"),UEditorLoadingAndSavingUtils::LoadMap(File))) return false;
++    AddCommand(new FStartPIECommand(false)); AddCommand(new FContextGroupCheck(this)); AddCommand(new FEndPlayMapCommand()); return true;
++}

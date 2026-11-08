@@ -1,0 +1,84 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BCCC8449765D8F6EE9A4C26DF260",
+			"instanceName": "omarchy-191857",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-20.15.05",
+	"succeeded": 2,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 10.868066787719727,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "OwnerScreenVisibility",
+			"fullTestPath": "Dink.Art.Context.OwnerScreenVisibility",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCCC8449765D8F6EE9A4C26DF260"
+			],
+			"duration": 7.0761981010437012,
+			"dateTime": "2026.11.08-20.14.54",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase0 hero0 story0 pending-1 tickable-1 commandlet0 paused-1 worldtime-1.000 menu-1 frozen-1 ignored-1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.14.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase6 hero1 story1 pending0 tickable1 commandlet0 paused0 worldtime4.298 menu0 frozen0 ignored0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.15.01"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SharedOutdoorVisibility",
+			"fullTestPath": "Dink.Art.Context.SharedOutdoorVisibility",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCCC8449765D8F6EE9A4C26DF260"
+			],
+			"duration": 3.7918691635131836,
+			"dateTime": "2026.11.08-20.15.01",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}
