@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "base": "0c94a181a1f8604248dd72298efdf6181de8fb6a",
+  "allowed_paths": [
+    "DinkRemasterUE/AGENTS.md",
+    "DinkRemasterUE/HANDOFF.md",
+    "DinkRemasterUE/SourceAssets/asset_ledger.csv",
+    "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/",
+    "DinkRemasterUE/Docs/Verification/PhotorealCandleSource/"
+  ],
+  "no_Content_Plugins_Source_Config_Scripts_changes": true,
+  "native_imported": false
+}

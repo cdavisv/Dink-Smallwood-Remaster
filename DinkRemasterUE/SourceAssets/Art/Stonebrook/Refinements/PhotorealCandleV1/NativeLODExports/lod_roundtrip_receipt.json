@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "export_sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c",
+  "LODs": [
+    {
+      "LOD": 0,
+      "FBX_sha256": "7309e735b730758b3384bad44046efdff581baf1346fe236891f6f963b89bf93",
+      "single_render_mesh": true,
+      "triangles": 4870,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.999999752630174,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "slots": 2
+    },
+    {
+      "LOD": 1,
+      "FBX_sha256": "614c2a402e17bbd4829cf74d3bea3afb9f2ac901134029e114fb1f803a297d8a",
+      "single_render_mesh": true,
+      "triangles": 2434,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997615814209,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "slots": 2
+    },
+    {
+      "LOD": 2,
+      "FBX_sha256": "065a9c3467a004f4750da0b8fb696d3e0c42c40fc8cb0f9ac1a37b9c36e9908b",
+      "single_render_mesh": true,
+      "triangles": 1218,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997905506461,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "slots": 2
+    }
+  ],
+  "authored_UCX_count": 0,
+  "baked_Blender_material_optics": {
+    "MI_Candle_IronChar_PhotoBaked": {
+      "IOR": 1.5,
+      "Specular IOR Level": 0.5,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    },
+    "MI_Candle_Wax_PhotoBaked": {
+      "IOR": 1.440000057220459,
+      "Specular IOR Level": 0.30000001192092896,
+      "Subsurface Weight": 0.11999999731779099,
+      "Subsurface Scale": 0.00800000037997961,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    }
+  },
+  "limits": "Actual Blender FBX geometry/UV/normal/materialID roundtrip. Wax SSS retained in baked Blender shader; FBX/native SSS/flame/LOD-distance acceptance still unproven. LOD2 small sourceUVoverlap remains qualified."
+}

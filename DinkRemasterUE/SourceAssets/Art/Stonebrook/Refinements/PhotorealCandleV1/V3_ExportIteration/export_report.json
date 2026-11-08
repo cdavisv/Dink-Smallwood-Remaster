@@ -1,0 +1,21 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/davisc/Work/DinkQA/PhotorealSessions/Candle/V3_ExportIteration/Export",
+  "manifest": "/home/davisc/Work/DinkQA/PhotorealSessions/Candle/V3_ExportIteration/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Candle_Iron_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.glb"
+      },
+      "tris": {
+        "LOD0": 4870,
+        "LOD1": 2434,
+        "LOD2": 1218
+      }
+    }
+  ],
+  "rejected": []
+}

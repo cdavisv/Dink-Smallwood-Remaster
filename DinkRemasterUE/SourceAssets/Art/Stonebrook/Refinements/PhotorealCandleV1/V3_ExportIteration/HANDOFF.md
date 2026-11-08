@@ -1,0 +1,11 @@
+# Candle V3 fresh bake/export iteration
+
+Owned QA-only /home/davisc/Work/DinkQA/PhotorealSessions/Candle/V3_ExportIteration, outside Git. Coordinating root independently approved V3 sourcefront/wax/holder for fresh source/exportiteration. Sourcea6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42 preserved unchanged; frozen V3_Finish38filebundle unchanged. No root/native/ledger/pointlight/flame/GPU changes.
+
+Fresh2048BC/N/ORM baked fromLOD0; ALLTHREErealLOD meshes retained, triangulated and exported. ActualFBX threeLOD4870/2434/1218orientedface/UV/cornernormal/materialID checks pass,2slots each; authoredUCX0 retained. Three sharedmapbytes matchbakes, manifestLODcount3/Nanitefalse, BCsRGB/NlinearwithUEgreenflip/ORMR255. Ironmetallic variablewithchar0, waxdielectric. Packedexport reopens with imagepathsnonexistent. ExportallLOD UV checkedcomplete/untruncated: LOD0zerooverlap,lowestLOD4tinyoverlaps0.0057% retainedwithinclass.2% threshold, nodegenerate/outofrange. Do notclaimallLODzerooverlap or universalvisualapproval.
+
+BakedBlender keeps separate sourceoptics includingwaxIOR1.44/specIOR.30/SSS.12/scale.008m. BC/N/ORM defaultLit alone does not reproduce nativewaxSSS; nativewaxSSS/flameVFX andLODswitchdistance/renderreview remainrequired. Ironchar differ throughbakedmetallic, notthirdmaterial. Recipe guards exactapprovedsource and refusesexistingexport; re-runningrequiresnewownedcopy. Nonfatal Blenderthumbnailcachedenial outsideworkdir doesnotpreventpackedblend save.
+
+MatchedactualFBX render_roundtrip.py uses explicitlylinked2bakedmaterials andsourcecameras/studio; main4views currentlyrendering underRoundtrip. Inspectterminalhandle/logs beforetreatingcomplete. Pixelcomparison/independentexportappearance review pending. No source/nativepromotion until reviewed. Largerassetgoal remainsunfinished.
+
+AllfouractualFBXmatchedrenders completedterminal0; wax/holder inspected, materialdetail retained. Fullframe meanRGBdifference source→export front.0304,wax.0736,holder.0969,distance.00395/255; foregroundROI results separately in pixel_comparison.json, nouniversalapprovalthresholds. Frozen38sourcepins verified unchanged. Source/exporthandoff below is readyforindependentappearance review, no nativeapproval.

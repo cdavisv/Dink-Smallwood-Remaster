@@ -1,0 +1,18 @@
+{
+  "schema": "dink-candle-independent-source-audit/1",
+  "passed": true,
+  "source_sha256": "a6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42",
+  "input_sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+  "max_bounds_delta_m": 0.0,
+  "ground_center_pivot_preserved": true,
+  "collider_local_vertices_and_relative_transform_exact": true,
+  "collider_count": 0,
+  "source_triangles": 4870,
+  "finite_positions": true,
+  "native_imported": false,
+  "limits": [
+    "No universal intersection-free or native game acceptance claim.",
+    "Wax/holder/wick contacts intentionally meet or overlap.",
+    "Wax subsurface/iron/char shaders need native material review; no flame or pointlight changes."
+  ]
+}
