@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "payloads": [
+    {
+      "file": "Textures/T_Bed_Oak_01_Photo_BC.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "7d607d32acabb1ee30ef53bc1e5d9403a546c733764a1b2e82144912ba763c46",
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        151,
+        143,
+        116
+      ]
+    },
+    {
+      "file": "Textures/T_Bed_Oak_01_Photo_N.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "b6bb4f2f9eecb022a18570a16511c7f7eb4e17888de2b0b986f6d12abc3057f9",
+      "channel_min": [
+        87,
+        84,
+        247
+      ],
+      "channel_max": [
+        165,
+        165,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Bed_Oak_01_Photo_ORM.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "5039015eba9fed2d15cc16777a92928ade0dd94843315172f25754ff3cf85974",
+      "channel_min": [
+        255,
+        0,
+        0
+      ],
+      "channel_max": [
+        255,
+        227,
+        0
+      ],
+      "neutral_AO_R255_and_nonmetal_B0": true
+    },
+    {
+      "file": "Textures/T_Chair_Oak_01_Photo_BC.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "ff33f35b1185ed04d5092a035e8572e823f10497dbe937469b9e1c860984bf69",
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        116,
+        94,
+        72
+      ]
+    },
+    {
+      "file": "Textures/T_Chair_Oak_01_Photo_N.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "912ca10739e1eb2d3a2e2c35432d2478b6e3e5c5c871b7cc913708aa8d900611",
+      "channel_min": [
+        116,
+        116,
+        254
+      ],
+      "channel_max": [
+        138,
+        135,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Chair_Oak_01_Photo_ORM.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "889e1c8285f77e1f0a26c4d38ef21b06ae6c94969600316e89cfd7277e7a441e",
+      "channel_min": [
+        255,
+        0,
+        0
+      ],
+      "channel_max": [
+        255,
+        174,
+        0
+      ],
+      "neutral_AO_R255_and_nonmetal_B0": true
+    },
+    {
+      "file": "Textures/T_Table_Oak_01_Photo_BC.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "d7ed5088111c3af7cb3597dbd7581492f1d28c21837ed465f0c3b7c2f483c1e0",
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        115,
+        98,
+        78
+      ]
+    },
+    {
+      "file": "Textures/T_Table_Oak_01_Photo_N.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "a8eee7459383c89233d15b22ee6283a5bc9aaae9f7cdd6ca69ba7aca497b2755",
+      "channel_min": [
+        120,
+        121,
+        255
+      ],
+      "channel_max": [
+        136,
+        134,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Table_Oak_01_Photo_ORM.png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "sha256": "285651f0e198d27af591e678042d7b1f6bf728145939955473dac8f63396af3a",
+      "channel_min": [
+        255,
+        0,
+        0
+      ],
+      "channel_max": [
+        255,
+        176,
+        0
+      ],
+      "neutral_AO_R255_and_nonmetal_B0": true
+    }
+  ],
+  "color_contract": "BC sRGB; N/ORM Non-Color; OpenGL tangent N requires Unreal green flip; ORM R1 Grough B0"
+}

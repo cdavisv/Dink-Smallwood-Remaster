@@ -1,0 +1,13 @@
+{
+  "base_commit": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "prior_ledger_rows": 1240,
+  "new_candidate_rows": 82,
+  "prior_raw_ledger_prefix_bytes_preserved": 1085268,
+  "prior_raw_ledger_sha256": "974e3deaa50d4720a30213d5c7953090c964e32dd4d60b50578378998d124d02",
+  "frozen_manifest_files_verified": 80,
+  "unchanged_blender_source_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+  "unchanged_export_blend_sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+  "runtime_source_content_changes": false,
+  "standalone_diagnostic_relative_paths_fixed": true,
+  "native_validation": "Pending; source-only candidate delivery."
+}

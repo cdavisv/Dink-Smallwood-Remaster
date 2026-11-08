@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "PhotorealPropsV1.blend",
+      "sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+      "packed_images": 17,
+      "buffers_reopened_with_all_paths_absent": 17,
+      "passed": true
+    },
+    {
+      "file": "PhotorealPropsV1_Export.blend",
+      "sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+      "packed_images": 29,
+      "buffers_reopened_with_all_paths_absent": 29,
+      "passed": true
+    },
+    {
+      "file": "Inputs/Original_OakFurnitureV1.blend",
+      "sha256": "e833a3e4bcab107b3da1764ae6fd007abce581b133c26ce7f4a7fc73dcab32ea",
+      "packed_images": 23,
+      "buffers_reopened_with_all_paths_absent": 23,
+      "passed": true
+    }
+  ],
+  "test": "Disposable copies set every image path to a nonexistent oldWork directory; all image data reopened from packed payloads. Original files hash unchanged."
+}

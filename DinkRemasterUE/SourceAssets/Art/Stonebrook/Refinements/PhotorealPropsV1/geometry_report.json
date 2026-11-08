@@ -1,0 +1,256 @@
+{
+  "assets": {
+    "SM_Table_Oak_01": {
+      "original_vertices": 1200,
+      "candidate_vertices": 4680,
+      "candidate_triangles": 9232,
+      "collision_hulls": 18,
+      "candidate_bounds_m": [
+        [
+          -1.3250000476837158,
+          -0.7489999532699585,
+          0.0
+        ],
+        [
+          1.3250000476837158,
+          0.7489999532699585,
+          0.8999999761581421
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -1.3250000476837158,
+          -0.7489999532699585,
+          0.0
+        ],
+        [
+          1.3250000476837158,
+          0.7489999532699585,
+          0.906000018119812
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_S001_P22",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -0.109375
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              7.393750190734863
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "corner_chamfer_m": 0.22
+    },
+    "SM_Chair_Oak_01": {
+      "original_vertices": 896,
+      "candidate_vertices": 3072,
+      "candidate_triangles": 6064,
+      "collision_hulls": 16,
+      "candidate_bounds_m": [
+        [
+          -0.32499998807907104,
+          -0.26875001192092896,
+          0.0
+        ],
+        [
+          0.32499998807907104,
+          0.26874998211860657,
+          1.0049999952316284
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -0.32499998807907104,
+          -0.26875001192092896,
+          0.0
+        ],
+        [
+          0.32499998807907104,
+          0.26875001192092896,
+          1.0049999952316284
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_Chair1",
+          "matrix_world": [
+            [
+              -1.0,
+              -8.742277657347586e-08,
+              0.0,
+              -0.10941249877214432
+            ],
+            [
+              8.742277657347586e-08,
+              -1.0,
+              0.0,
+              8.44363784790039
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "name": "Reference_Chair2",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -0.10941249877214432
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              6.256137371063232
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    },
+    "SM_Bed_Oak_01": {
+      "original_vertices": 3930,
+      "candidate_vertices": 9860,
+      "candidate_triangles": 19588,
+      "collision_hulls": 13,
+      "candidate_bounds_m": [
+        [
+          -1.2549998760223389,
+          -0.6850000619888306,
+          0.0
+        ],
+        [
+          1.2549998760223389,
+          0.6850000619888306,
+          1.119999885559082
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -1.2549998760223389,
+          -0.6850000619888306,
+          0.0
+        ],
+        [
+          1.2549998760223389,
+          0.6850000619888306,
+          1.119999885559082
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_S001_P23",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -4.768750190734863
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              4.921875
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "name": "Reference_S001_P24",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              4.550000190734863
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              4.965624809265137
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "immutable_source": "Inputs/Original_OakFurnitureV1.blend",
+  "immutable_source_sha256": "e833a3e4bcab107b3da1764ae6fd007abce581b133c26ce7f4a7fc73dcab32ea",
+  "CPU_threads": 4,
+  "native_imported": false,
+  "final_review_corrections": [
+    "Chair localY-1.25mm to restore exact original bounds",
+    "Explicit woven warp/weft bump in linen materials",
+    "Original87_09 broad22cm tabletop/breadboard chamfers with clipped matching convex hulls and inboard dowels",
+    "Chair localY aligned to exact original bounds"
+  ]
+}
