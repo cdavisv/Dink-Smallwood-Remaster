@@ -1,0 +1,11 @@
+# Feed sack V3 fresh export iteration
+
+QA-only directory /home/artist/Work/DinkQA/PhotorealSessions/FeedSack/V3_ExportIteration, outside Git. Coordinating root approved V3 source appearance for this bounded CPU bake/export iteration. No native/runtime/ledger/root checkout changes, no GPU use, no publication/commit/push.
+
+Approved source SHA 4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94 unchanged. Export SHA f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6; actual FBX SHA 03a2b2ffe6bdf881be8306bad9027c80093bfc31c0ea932c5339c33ba7a8df3c. All 19644 cyclic oriented faces, UVs, stored normals, two material slots/every triangle material assignment and original authored UCX vertex cloud survive actual FBX roundtrip. Jute IOR1.46 and cord1.5; both Specular IOR Level.22 preserved. Do not flatten or blindly reuse barrel nativeSpecular.35.
+
+Fresh 2048 RGB BC/N/ORM maps; exported bytes match baked maps. BC sRGB; N linear with manifest UE green flip; ORM R255/Grough/B0. Packed export reopens with all image paths nonexistent. Source and triangulated export full UV checks untruncated at10M pair budget: zero overlap, degenerate and out-of-range triangles. Guide0errors/2retainedwarnings: soft triangle target, declared texel density. No universal visual/native acceptance.
+
+Frozen 42file V3 source checkpoint and62file V2 export checkpoint verified byte-identical; see frozen_packet_verification.json. Historical parent Export/Textures/Roundtrip remain V2; only this child contains freshV3 outputs. Render helper uses actualFBX with both baked materials in matched source studio; render completion, pixel comparison and independent appearance review still required before source packet publication/native integration. Original sprite/provenance and source-builder evidence remain in parent and frozen V3 checkpoint. Pickup/feed/save/reach/collision/camera runtime acceptance remains outstanding.
+
+All four actualFBX matched renders completed terminal0. Tie/weave views inspected: coarse cloth and outside tie ends remain readable. Pixel ROI meanRGB errors versus frozen V3 source: front0.124,tie0.880,weave0.576,distance0.084 on255scale; not universal approval thresholds. Independent export appearance review remains pending.

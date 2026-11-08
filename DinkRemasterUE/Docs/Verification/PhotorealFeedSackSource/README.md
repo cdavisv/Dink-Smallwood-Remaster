@@ -1,0 +1,7 @@
+# Reviewed photoreal grain/feed sack source
+
+Worktree /home/artist/Work/DinkFeedSackSourceDelivery, branch art/photoreal-feedsack-source, basefbfe083 (merged basketPR15). This source-only packet preserves approved immutable V3source and fresh export in SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1. SourceCheckpoint and ExportIteration are separate exact author packets; historical pending-review strings are qualified by the packet README. Root independently approved source/export appearance and all75 pinned payloads, actualFBX geometry and fullUV before delivery. Localcommit only; no push/PR until independent rootreview.
+
+Original S001_P52/422_12/s1-sack is grain/pig feed; originalsprite/script/placement guide included. Legacy basket_wicker inventory name does not identify a decorative basket. NoContent/runtime edits or nativegame approval. Allpriorledger/audio rawbytes retained,88candidate rows appended. Sourceguide0errors/two documentedwarnings; all19644actualFBXfaces/UV/normals/materialIDs/UCX preserved; packed source/export reopen from copies with missing external paths. FullUV check untruncatedzerooverlap. SourceIOR1.46jute/1.5cord/specularIORlevel.22; nativeF0mapping requires separate review, not barrel.35.
+
+Full source audit, Gitcoverage and scopediff are recorded after final staging. Pickup/feed/save/reach/collision/camera and final scene lighting remain pending. No engine/cache/referenceManny delivered.
