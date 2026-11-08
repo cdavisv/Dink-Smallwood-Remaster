@@ -1029,6 +1029,39 @@ NOT verified:
    screen's monsters, until its game-time timeout; a chapter report that says "did not complete in N s" may be a Dink that died at 70 s. Grep the trace for `dink died`.
    Monsters' blows hit every sprite in the box, other monsters too: three knights around a dead Dink killed each other (80-240 s).
 
+53. **`sp_script` runs `main` at once** (parity bug, FIXED 7 Nov 2026; test `Dink.Narrative.Director.SpScriptRunsMainAtOnce`). `dink.cpp:8155-8175` does `kill_scripts_owned_by`,
+   `load_script`, then `locate(script, "MAIN"); run_script(script)` on the spot, unless `g_dglos.no_running_main` is set (`dink.cpp:8163, 8169`); the remake only started `main`
+   (`StartProcedure`), which ran after the caller yielded, so `s3-camps.c:108-113` (`sp_script(.., "s3-dorks")`, whose main sets 100 hp, then `sp_hitpoints(.., 40)`) left the knights
+   with 100 hp, not 40. `DinkDirector.cpp` `sp_script` now calls `Story->RunNow(MainId)` after the `StartProcedure`: the new instance runs in the caller's turn until it blocks
+   (a main that waits or `say_stop`s stays Blocked and the tick continues it; the caller goes on at once, as `run_script` returns at the first block). `no_running_main` is true only
+   in `BuildScreenBackground` while a screen's base script (`g_smallMap.script`) runs its main (`dink.cpp:6805-6814`); `init_scripts` (`dink.cpp:11690`) runs the mains of the sprites
+   it attached once the screen is built. Here: `UDinkStorySubsystem::bNoRunningMain` is set around the base script's first `StepInstance` in `EnterScreen`, and `sp_script` then
+   keeps the old deferred start (which is `init_scripts`' order). Unit test: a stand-in for script A runs `sp_hitpoints 7; sp_script s3-dorks; sp_hitpoints 40` (reads 100, defense 6, strength 12,
+   touch 5 after the `sp_script`, 40 after the last line, and 40 after `RunUntilIdle`/`Advance`; B's main started once), a blocking main (`s1-bul`: `sp_speed 2` is set, the instance is
+   Blocked on the wait, the caller's next line runs, `Advance(0.25)` takes it to its `say_stop`), `bNoRunningMain` (attached, main not run on the spot, run at the next `Advance`), and a
+   replaced script (one live instance). Do not read a stat with `SpriteProperty(.., -1)` in a test: for `touch_damage` it WRITES -1 (`AlwaysWrite`). Every chapter hash moved (section "The probe, in chapters");
+   nothing needed re-tuning. `spawn` and `external` have the same gap: pitfall 56.
+54. **The probe's wall-clock limits counted from the command's construction**: a test that queues two runs (`RepeatableChapter`) built both commands up front, so a first run
+   slowed by a loaded machine (load average 22 from other agents' renders and editors: 96 s instead of 26 s) used up the second run's 60 s start-up limit ("the new game did not
+   start"). `FProbeCommand` now counts from its first `Update`. Game time and traces are unaffected by load (fixed step); only the wall times in tables are, so they are unloaded figures.
+55. **A dead Dink does not stop a probe step.** After `dinfo` runs (the death menu answers "Quit to Windows", `kill_game` is recorded and ignored) the step goes on, with the
+   screen's monsters, until its game-time timeout; a chapter report that says "did not complete in N s" may be a Dink that died at 70 s. Grep the trace for `dink died`.
+   Monsters' blows hit every sprite in the box, other monsters too: three knights around a dead Dink killed each other (80-240 s).
+56. **`external` and `spawn` do not run their script at once either** (parity gap, NOT fixed; found by the ducks of Windemere). `dink.cpp:11326-11360` (`external`: `load_script`, `locate`, `run_script(child)`, the
+   parent resumes when the child ends) and `dink.cpp:8181-8203` (`spawn`: `locate(.., "MAIN")`, `run_script`) run the child on the spot; `DinkDirector.cpp` starts it and, for `external`, blocks the parent
+   on it, so the child's first line runs on the next story step. Invisible while nothing removes the sprite in between; fatal for `s4-duck.c`'s `duckdie`: `UDinkGameplay` runs it with `RunProc` and then
+   `DeactivateSprite(H, 0, true)`, which ends the parent and the child ("its sprite was removed") before `external("make", "foodduck")` has run, so the check after it, `get_sprite_with_this_brain(3, ..) == 0` then
+   `spawn("s4-end")` (`&s4-duck 2`, `&story 11`), never happens: the 27th duck dies and nothing follows. The fix is `RunNow(Child)` in both commands (with the same `bNoRunningMain` rule for `spawn`),
+   a unit test like pitfall 53's, and every chapter's hash moves again (each `die` runs `external("emake", "large")`).
+57. **Monsters' blows hit each other, so a Dink who is never hit wins a fight with several of them** (the knights, 40 hp each, 7 Nov 2026 night: `SquadFight`, 39 s, one blow taken). Do not tune a fight against several
+   chasers on damage output: strength 9 against defense 6 does 1.4 a punch. Model each monster's blow box (pending and potential), stay out of every box, and stay where they come together to swing.
+58. **A probe step's `P->Mark` must be reset by the step that set it.** `Mark` is one value for the whole run; the Pete step of chapter 9 left the gold it noted (239) in it, and the next step, which notes `strength` only
+   `if (Mark < 0)`, waited 40 s for strength 240 while Dink punched the ducks. Steps that note a value end with `Mark = -1` (as `Reached` in chapter 3 does).
+59. **`package.sh` refuses to run while ANY bash command line contains the words `UnrealEditor-Cmd`/`RunUAT`/`AutomationTool`** (pitfall 51, again: another agent's wait loop with a never-matching `pgrep` sat in the process list
+   for 20 minutes). Check `ps` for a real editor/UBT/UAT, then `DINK_ALLOW_CONCURRENT=1 Scripts/package.sh`. The first package run of the night hung at "Reading oplog from Zen..." for 10 minutes while another agent's full
+   suite started in this project (pitfall 50); killed and rerun after it ended: 28 s.
+
+
 ## Decisions and deviations from bible 05 section A
 
 - **AI is plain C++, not State Trees (yet).** The plan's "four State Trees" would need `.uasset` State Tree

@@ -17,8 +17,8 @@ Rebuild from the Unreal project root:
 ```bash
 blender -b --factory-startup -P SourceAssets/Art/tools/build_exterior.py
 blender -b --factory-startup -P SourceAssets/Art/tools/validate_exterior_geometry.py
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py validate --blend SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend --report SourceAssets/Art/StonebrookExterior/validation.json
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py export_ue --blend SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend --out SourceAssets/Art/StonebrookExterior/Export --formats fbx,gltf --source-root SourceAssets/Art
+python3 ../tools/blender/dink.py validate --blend SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend --report SourceAssets/Art/StonebrookExterior/validation.json
+python3 ../tools/blender/dink.py export_ue --blend SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend --out SourceAssets/Art/StonebrookExterior/Export --formats fbx,gltf --source-root SourceAssets/Art
 blender -b --factory-startup -P SourceAssets/Art/tools/export_foliage_lods.py
 python3 SourceAssets/Art/tools/validate_exterior_layout.py
 python3 SourceAssets/Art/tools/record_stonebrook.py --exterior

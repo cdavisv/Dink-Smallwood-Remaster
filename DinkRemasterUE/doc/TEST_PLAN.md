@@ -19,7 +19,7 @@ play through with the editor or the packaged game, ticking boxes and noting the 
 |---|---|---|---|
 | Build | `Scripts/build.sh` | editor target compiles | 0 warnings |
 | Full suite | `Scripts/test.sh` | Core 35, Gameplay 35, Art 19, Narrative 15, AI 12, Import 12, Audio 2 | all pass, 0 warnings except the offline HTTP check |
-| Converter | `cd ../Dink-Smallwood-Remaster/tools/dinkink && python3 -m unittest discover -s tests` | DinkC to Ink | 25 pass, inklecate 0 errors |
+| Converter | `cd ../tools/dinkink && python3 -m unittest discover -s tests` | DinkC to Ink | 25 pass, inklecate 0 errors |
 | Story smoke run | `dink.SmokeRun` or `Dink.Narrative.Smoke.AllEntryPoints` | every entry point runs | 930 entries, 0 errors, only the 27 known idle loops capped |
 | Play-through probe | `Dink.Gameplay.Probe.Stonebrook` | new game to the cult ambush with real interactions | 47 of 47 steps, identical trace each run |
 | Re-import drift | `Scripts/import_greybox.sh --region all` twice | generated world is deterministic | second run: drift 0 |
@@ -85,4 +85,4 @@ guessed constant (move speed 60 px/s per speed point, fade 600 ms, talk range 3.
 
 | Date | Build | Suite | Notes |
 |---|---|---|---|
-| 7 Nov 2026 | see below | see below | run after the screen-name re-import |
+| 7 Nov 2026 | BUILD OK, 0 warnings | 133/133 passed, 0 failed, 0 warnings, 763 s (slow: ran beside another session's editors) | after the screen-name re-import; suite then had Core 35, Gameplay 35, Art 19, Narrative 15, AI 12, Import 12, Audio 2 plus newer tests |

@@ -12,12 +12,11 @@ This candidate measures approximately250×112×300cm. The hearth rises18cm; the 
 
 `preview_contract.json` pairs the current production blend SHA with all three studio previews. These are CPU Cycles renders, not game screenshots. The close view remains deliberately dark in the firebox; wood/stone finish, neutral in-room exposure and ember readability still need visual review. There is no animated flame or house-fire/ruin variant here.
 
-Rebuild from the Unreal project directory (`DinkRemasterUE/` in the consolidated repository):
+Rebuild from the repository root:
 
 ```sh
 ALSOFT_DRIVERS=null blender -b -noaudio --factory-startup -t 6 -P SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/build_fireplace_v2.py
-DATA_REPO="$(python3 Scripts/remaster_paths.py)"
-python3 "$DATA_REPO/tools/blender/dink.py" validate --blend SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend --report /tmp/fireplace-validation.json
+python3 ../tools/blender/dink.py validate --blend SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend --report /tmp/fireplace-validation.json
 ```
 
 The per-process OpenAL null-driver hint prevents the sandbox's audio-cleanup stall; it does not edit desktop audio configuration. The wrapper used during generation stays in Work QA, not the repository. `build_fireplace_v2.py` writes only beside itself. `verify_export_lods.py` exports the explicit single-LOD FBXs with original-scale geometry; the normal companion exporter supplies the combined FBX/GLB and manifest. For future UE import, use the separate LOD files, preserve centimetre conversion and verify the actual chain, custom collision, material channels and dimensions before publishing any runtime replacement.
