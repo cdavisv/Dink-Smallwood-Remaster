@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "role": "BC",
+      "bake": "EMIT",
+      "source_socket": "Base Color",
+      "seconds": 2.2466917037963867,
+      "sha256": "5894fdb201206ab7afa8d314833105e425e4f0714521bc29aaf2138e596bb5c3"
+    },
+    {
+      "role": "Rough",
+      "bake": "EMIT",
+      "source_socket": "Roughness",
+      "seconds": 1.7760648727416992,
+      "sha256": "00be41ac34ae3cc5d13fa379e72f0463fe0cd4fb20c590f39e52c471525d13ee"
+    },
+    {
+      "role": "Metal",
+      "bake": "EMIT",
+      "source_socket": "Metallic",
+      "seconds": 1.577413558959961,
+      "sha256": "22ee2ed4d7130e4e9ee83330ea11ca9a00c23c0c4fca686f605459122c16a6c3"
+    },
+    {
+      "role": "N",
+      "bake": "NORMAL",
+      "source_socket": null,
+      "seconds": 1.1483633518218994,
+      "sha256": "6aa26300c2396b5bf67cb8e40f2869c537b641656fc5d3f404061712e41da957"
+    }
+  ],
+  "source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "source_unchanged": true,
+  "triangles": 16648,
+  "metallic_linear_range": [
+    0.0,
+    0.9411765336990356
+  ],
+  "metallic_nonzero_texels": 409608,
+  "R_AO": "neutral1",
+  "BC": "Emission of authored basecolor retains bare metal color unlike diffuse-only bake",
+  "normal": "tangent-space authored bump bake",
+  "ORM_sha256": "6171ae465dec57cde321cd849a144f2a02eee2a91d2a656895dab7ceed76fc47"
+}

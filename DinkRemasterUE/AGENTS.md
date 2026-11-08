@@ -5,6 +5,10 @@ project. Read this file before doing any work here, and keep it accurate: when y
 fact, a pitfall or a decision, write it down here and remove anything that has become wrong.
 Label uncertain or temporary information as such.
 
+## Photoreal barrel source candidate (8 Nov 2026 UTC)
+
+Source-only branch `art/photoreal-barrel-source`, base64d57e8f, adds the reviewed packed Blender barrel/triangulated export and2048BC/N/ORM payloads under SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1. No Content/runtime references change; native/game acceptance remains pending. Guide retains0errors2sourcewarnings/1exportwarning; exact original bounds/pivot and75x75x100cmUCX retained.56new ledger rows remain candidate; prior1353rows/483audio rows preserve rawbytes. The copied payload audit removes an author-only duplicate archival-file dependency, retaining approved source SHA; original handoff and correction are recorded in Docs/Verification/PhotorealBarrelSource.
+
 ## Native photoreal furniture integration (8 Nov 2026 UTC)
 
 Merged controls and house fixes (PR10/PR11, base f31d2434) plus the new table/bed/chair packages passed the complete native suite147/147 with zero warnings in432s. All8,884 source/tools/art/ledger/Content/ImportData/config/custom-module inputs stayed unchanged; the old-save inventory was empty (so its zero-change check is vacuous), and ten new probe slots are isolated. All184Python tests pass. See Docs/Verification/PhotorealPropsNative for precise historical/current scope and raw reports.

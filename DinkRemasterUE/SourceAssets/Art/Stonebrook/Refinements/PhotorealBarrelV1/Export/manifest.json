@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T19:22:59Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Barrel_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealBarrelV1_Export.blend",
+        "sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+        "collection": "SM_Barrel_Oak_01",
+        "note": "Original Blender coopered geometry; natural Dink173_01 guide; unchanged approved oak source reference, sampler derivative declared; first visual gate pending"
+      },
+      "tris": {
+        "LOD0": 16648
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "blender_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ],
+        "size_cm": [
+          83.947,
+          84.46,
+          100.75
+        ],
+        "unreal_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "unreal_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Barrel_Oak_01_01"
+      ],
+      "material_slots": [
+        "MI_Barrel_Oak_01_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Barrel_Oak_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Barrel_Oak_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Barrel_Oak_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}
