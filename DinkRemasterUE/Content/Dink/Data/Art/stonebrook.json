@@ -43,7 +43,7 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
       "expected_size_cm": [
         72.28283882141113,
         55.468541383743286,
@@ -214,7 +214,7 @@
     },
     {
       "origin": "S001_P52",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
       "offset_cm": [
         0.0,
         0.0,
