@@ -5,8 +5,24 @@
 #include "DinkMaterialArtLibrary.generated.h"
 
 class UMaterial;
+class UStaticMesh;
 
-/** Read-only editor inspection for reviewed art material recipes. */
+/** Detached read-only snapshot; modifying this value cannot mutate its source body. */
+USTRUCT(BlueprintType)
+struct DINKIMPORT_API FDinkConvexArtSnapshot
+{
+	GENERATED_BODY()
+	UPROPERTY(BlueprintReadOnly, Category = "Dink|Art")
+	FTransform LocalToMesh = FTransform::Identity;
+	UPROPERTY(BlueprintReadOnly, Category = "Dink|Art")
+	TArray<FVector> LocalVertices;
+	UPROPERTY(BlueprintReadOnly, Category = "Dink|Art")
+	TArray<FVector> MeshVertices;
+	UPROPERTY(BlueprintReadOnly, Category = "Dink|Art")
+	TArray<int32> Indices;
+};
+
+/** Read-only editor inspection for reviewed material recipes and authored hulls. */
 UCLASS()
 class DINKIMPORT_API UDinkMaterialArtLibrary : public UBlueprintFunctionLibrary
 {
@@ -15,4 +31,8 @@ public:
 	/** All connected property IDs, including pins hidden from Python's enum. Never edits the graph. */
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static TArray<int32> GetConnectedMaterialProperties(UMaterial* Material);
+
+	/** Uses public GetTransform; never cooks, rebuilds, saves or modifies the mesh/body. */
+	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+	static TArray<FDinkConvexArtSnapshot> InspectStaticMeshConvexCollision(UStaticMesh* Mesh);
 };

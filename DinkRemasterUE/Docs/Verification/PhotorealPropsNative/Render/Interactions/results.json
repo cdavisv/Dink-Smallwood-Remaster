@@ -1,0 +1,1530 @@
+{
+  "input_backend": "private Xvfb:189/XTest",
+  "log_path": "Saved/NativeProps/Render/game.log",
+  "phase": "photoreal-native-props",
+  "fixture_setup": "Teleport to exact positions; real F/E/W actions; no expected script called directly.",
+  "cases": [
+    {
+      "id": "table_far",
+      "player": {
+        "screen": 1,
+        "map": [
+          370.0,
+          231.0
+        ],
+        "world": [
+          -183515.16,
+          392856.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "f",
+      "target_script": "s1-h1-4",
+      "procedure": "hit",
+      "expected_target_called": false,
+      "observed_target_called": false,
+      "input_verified": true,
+      "attack_input_verified": true,
+      "action_log": "[2026.11.08-08.45.46:412][293]LogDink: Display: Player cosmetic action seq=104 clip=/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist\n[2026.11.08-08.45.46:413][293]LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display: time 726924 ms, 10 instances\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 23\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #19 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "arm",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 17
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "main",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display: time 725668 ms, 10 instances\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #3 item-fst.arm sprite 1000 screen 1 state 0 block 0 lines 17\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #19 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.45:999][267]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 23
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "main",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display: time 726924 ms, 10 instances\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 23\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #19 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.47:255][346]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/table_far.png",
+      "result": "PASS"
+    },
+    {
+      "id": "table_near",
+      "player": {
+        "screen": 1,
+        "map": [
+          350.0,
+          231.0
+        ],
+        "world": [
+          -183602.66,
+          392856.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "f",
+      "target_script": "s1-h1-4",
+      "procedure": "hit",
+      "expected_target_called": true,
+      "observed_target_called": true,
+      "input_verified": true,
+      "attack_input_verified": true,
+      "action_log": "[2026.11.08-08.45.53:948][768]LogDink: Display: Player cosmetic action seq=104 clip=/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist\n[2026.11.08-08.45.53:951][768]LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:117][779]LogDinkAudio: audio cue sound:9 speed=22050 hit\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display: time 734463 ms, 10 instances\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 29\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   text 19 by 1: Why must I attack furniture?\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 23
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "main",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display: time 733212 ms, 10 instances\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 23\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #19 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.53:543][742]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 29
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display: time 734463 ms, 10 instances\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 29\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   text 19 by 1: Why must I attack furniture?\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.45.54:793][821]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/table_near.png",
+      "result": "PASS"
+    },
+    {
+      "id": "table_away",
+      "player": {
+        "screen": 1,
+        "map": [
+          350.0,
+          231.0
+        ],
+        "world": [
+          -183602.66,
+          392856.605,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "f",
+      "target_script": "s1-h1-4",
+      "procedure": "hit",
+      "expected_target_called": false,
+      "observed_target_called": false,
+      "input_verified": true,
+      "attack_input_verified": true,
+      "action_log": "[2026.11.08-08.46.01:417][238]LogDink: Display: Player cosmetic action seq=106 clip=/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist\n[2026.11.08-08.46.01:418][238]LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display: time 741935 ms, 10 instances\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 35\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 29
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display: time 740692 ms, 10 instances\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 29\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.01:023][213]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 35
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display: time 741935 ms, 10 instances\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 35\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.02:266][291]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/table_away.png",
+      "result": "PASS"
+    },
+    {
+      "id": "bed_far_hit",
+      "player": {
+        "screen": 1,
+        "map": [
+          280.0,
+          287.0
+        ],
+        "world": [
+          -183908.91,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "f",
+      "target_script": "s1-h1-1",
+      "procedure": "hit",
+      "expected_target_called": false,
+      "observed_target_called": false,
+      "input_verified": true,
+      "attack_input_verified": true,
+      "action_log": "[2026.11.08-08.46.08:929][713]LogDink: Display: Player cosmetic action seq=104 clip=/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist\n[2026.11.08-08.46.08:930][713]LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display: time 749441 ms, 10 instances\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 35
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display: time 748194 ms, 10 instances\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 35\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.08:524][687]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 41
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display: time 749441 ms, 10 instances\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.09:772][766]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/bed_far_hit.png",
+      "result": "PASS"
+    },
+    {
+      "id": "bed_far_talk",
+      "player": {
+        "screen": 1,
+        "map": [
+          280.0,
+          287.0
+        ],
+        "world": [
+          -183908.91,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "e",
+      "target_script": "s1-h1-1",
+      "procedure": "talk",
+      "expected_target_called": false,
+      "observed_target_called": false,
+      "input_verified": true,
+      "attack_input_verified": null,
+      "action_log": "[2026.11.08-08.46.16:448][185]LogDinkNarrative: talk: no sprite by the original rule from Dink at 300,287 dir 4 on screen 1; nearest actor in front\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display: time 756973 ms, 10 instances\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 41
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display: time 755725 ms, 10 instances\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.16:055][160]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 41
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display: time 756973 ms, 10 instances\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.17:303][239]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/bed_far_talk.png",
+      "result": "PASS"
+    },
+    {
+      "id": "bed_near_hit",
+      "player": {
+        "screen": 1,
+        "map": [
+          245.0,
+          287.0
+        ],
+        "world": [
+          -184062.035,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "f",
+      "target_script": "s1-h1-1",
+      "procedure": "hit",
+      "expected_target_called": true,
+      "observed_target_called": true,
+      "input_verified": true,
+      "attack_input_verified": true,
+      "action_log": "[2026.11.08-08.46.23:960][660]LogDink: Display: Player cosmetic action seq=104 clip=/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist\n[2026.11.08-08.46.23:963][660]LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:132][671]LogDinkAudio: audio cue sound:9 speed=22050 hit\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display: time 764486 ms, 10 instances\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 47\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #20 s1-h1-1.hit sprite 13 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   text 19 by 1: Die, stupid bed!\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 41
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "main",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display: time 763243 ms, 10 instances\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 41\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #20 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.23:573][635]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 47
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "hit",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.24:132][671]LogDinkAudio: audio cue sound:9 speed=22050 hit\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display: time 764486 ms, 10 instances\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 47\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #20 s1-h1-1.hit sprite 13 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   text 19 by 1: Die, stupid bed!\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.24:817][715]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/bed_near_hit.png",
+      "result": "PASS"
+    },
+    {
+      "id": "bed_near_talk",
+      "player": {
+        "screen": 1,
+        "map": [
+          245.0,
+          287.0
+        ],
+        "world": [
+          -184062.035,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "key": "e",
+      "target_script": "s1-h1-1",
+      "procedure": "talk",
+      "expected_target_called": true,
+      "observed_target_called": true,
+      "input_verified": true,
+      "attack_input_verified": null,
+      "action_log": "[2026.11.08-08.46.31:485][138]LogDinkNarrative: talk: sprite 13 (s1-h1-1, S001_P23) from Dink at 265,287 dir 4 on screen 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display: time 772010 ms, 10 instances\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 47\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #20 s1-h1-1.talk sprite 13 screen 1 state 0 block 0 lines 3\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   text 19 by 1: This is my bed.  So clean and neat!  Mom must have made it.\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n",
+      "before": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 47
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "hit",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display: time 770765 ms, 10 instances\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 47\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #20 s1-h1-1.hit sprite 13 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.31:096][112]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n"
+      },
+      "after": {
+        "instances": {
+          "item-fst": {
+            "id": 3,
+            "procedure": "use",
+            "sprite": 1000,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 47
+          },
+          "s1-h1-s": {
+            "id": 16,
+            "procedure": "main",
+            "sprite": 0,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-2": {
+            "id": 18,
+            "procedure": "main",
+            "sprite": 11,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-4": {
+            "id": 19,
+            "procedure": "hit",
+            "sprite": 12,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-h1-1": {
+            "id": 20,
+            "procedure": "talk",
+            "sprite": 13,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 3
+          },
+          "s1-h1-3": {
+            "id": 21,
+            "procedure": "main",
+            "sprite": 14,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "s1-h1-m": {
+            "id": 22,
+            "procedure": "main",
+            "sprite": 15,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          },
+          "sfood": {
+            "id": 23,
+            "procedure": "main",
+            "sprite": 17,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 2
+          },
+          "s1-sack": {
+            "id": 24,
+            "procedure": "main",
+            "sprite": 18,
+            "screen": 1,
+            "state": 0,
+            "block": 0,
+            "lines": 1
+          }
+        },
+        "log": "[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display: time 772010 ms, 10 instances\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #3 item-fst.use sprite 1000 screen 1 state 0 block 0 lines 47\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #16 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #17 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #18 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #19 s1-h1-4.hit sprite 12 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #20 s1-h1-1.talk sprite 13 screen 1 state 0 block 0 lines 3\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #21 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #22 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #23 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   #24 s1-sack.main sprite 18 screen 1 state 0 block 0 lines 1\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   text 19 by 1: This is my bed.  So clean and neat!  Mom must have made it.\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:8 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-08.46.32:340][192]LogDinkNarrative: Display:   audio sound:9 speed=22050 hit\n"
+      },
+      "screenshot": "Saved/NativeProps/Render/Interactions/bed_near_talk.png",
+      "result": "PASS"
+    },
+    {
+      "id": "sack_far",
+      "player": {
+        "screen": 1,
+        "map": [
+          423.0,
+          130.0
+        ],
+        "world": [
+          -183283.285,
+          392414.73,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "expected_collected": false,
+      "observed_collected": false,
+      "inventory_log": "[2026.11.08-08.46.38:658][591]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-08.46.38:658][591]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+      "result": "PASS"
+    },
+    {
+      "id": "sack_near",
+      "player": {
+        "screen": 1,
+        "map": [
+          432.326,
+          130.0
+        ],
+        "world": [
+          -183242.482,
+          392414.73,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "expected_collected": true,
+      "observed_collected": true,
+      "inventory_log": "[2026.11.08-08.46.41:519][773]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-08.46.41:519][773]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-08.46.41:519][773]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+      "result": "PASS"
+    },
+    {
+      "id": "collected_sack_space_walk",
+      "player": {
+        "screen": 1,
+        "map": [
+          455.475,
+          127.522
+        ],
+        "world": [
+          -183141.205,
+          392403.889,
+          98.15
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "expected": "walk past the removed sack without an invisible collider; one feed item",
+      "inventory_log": "[2026.11.08-08.46.44:539][969]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-08.46.44:539][969]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-08.46.44:539][969]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+      "result": "PASS"
+    },
+    {
+      "id": "pie_far",
+      "player": {
+        "screen": 1,
+        "map": [
+          302.0,
+          176.708
+        ],
+        "world": [
+          -183812.66,
+          392619.077,
+          98.0
+        ],
+        "yaw": 90.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "expected_health": 5,
+      "observed_health": 5,
+      "inventory_log": "[2026.11.08-08.46.53:733][549]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-08.46.53:733][549]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-08.46.53:733][549]LogDinkNarrative: Display:   life 5/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+      "result": "PASS"
+    },
+    {
+      "id": "pie_near",
+      "player": {
+        "screen": 1,
+        "map": [
+          302.0,
+          194.434
+        ],
+        "world": [
+          -183812.66,
+          392696.63,
+          98.0
+        ],
+        "yaw": 90.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "expected_health": 8,
+      "observed_health": 8,
+      "inventory_log": "[2026.11.08-08.46.56:854][745]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-08.46.56:854][745]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-08.46.56:854][745]LogDinkNarrative: Display:   life 8/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS"
+}
