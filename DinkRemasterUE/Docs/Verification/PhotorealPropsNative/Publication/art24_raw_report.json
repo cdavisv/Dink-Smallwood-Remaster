@@ -1,0 +1,1257 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BA4178C07D5292D5DD951FFE2629",
+			"instanceName": "omarchy-17",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-08.24.28",
+	"succeeded": 21,
+	"succeededWithWarnings": 3,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 38.6451416015625,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "OwnerScreenVisibility",
+			"fullTestPath": "Dink.Art.Context.OwnerScreenVisibility",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 10.123495101928711,
+			"dateTime": "2026.11.08-08.23.49",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: Retry 1 on https://www.google.com/generate_204",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.51"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: HTTP request timed out after 3.00 seconds URL=https://www.google.com/generate_204",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.51"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: 0x81af4022a00: request failed, libcurl error: 6 (Could not resolve hostname)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.52"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase0 hero0 story0 pending-1 tickable-1 commandlet0 paused-1 worldtime-1.000 menu-1 frozen-1 ignored-1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.53"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: HttpRetry: Resetting log verbosity to Display due to requests being retried",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.53"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.53"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.53"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b4de19600: invalid HTTP response code received. URL: https://api.epicgames.dev/sdk/v1/default?platformId=LNX, HTTP code: 0, content length: 0, actual payload size: 0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b4de19600: request failed, libcurl error: 6 (Couldn't resolve host name)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b4de19600: libcurl info message cache 0 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b4de19600: libcurl info message cache 1 (Closing connection)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: Retry exhausted on https://api.epicgames.dev/sdk/v1/default?platformId=LNX",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: Failed to connect to the backend. ServiceName=[SDKConfig], OperationName=[GetPlatformConfigRoute], Url=[<Redacted>]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: SDK Config Platform Update Request Failed, Result Code: EOS_NoConnection, Retrying after 13.299212 seconds",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOSAnalytics: Unable to get the client auth token. Last result: EOS_NoConnection.",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.55"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase3 hero1 story1 pending0 tickable1 commandlet0 paused0 worldtime3.068 menu0 frozen0 ignored0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.23.58"
+				}
+			],
+			"warnings": 14,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorLocomotionAndPhysicalFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.ActorLocomotionAndPhysicalFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.012259871698915958,
+			"dateTime": "2026.11.08-08.23.59",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPigActorsAndDeathPersistence",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPigActorsAndDeathPersistence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.15762278437614441,
+			"dateTime": "2026.11.08-08.23.59",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPillbugVisionTouchDeathAndMixedFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPillbugVisionTouchDeathAndMixedFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.16388018429279327,
+			"dateTime": "2026.11.08-08.23.59",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisibleGroundGrainOcclusion",
+			"fullTestPath": "Dink.Art.CreaturePresentation.VisibleGroundGrainOcclusion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.010987886227667332,
+			"dateTime": "2026.11.08-08.24.00",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AuthoredSuppressesGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 3.2448770999908447,
+			"dateTime": "2026.11.08-08.24.00",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GreyboxRetainsGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 3.081341028213501,
+			"dateTime": "2026.11.08-08.24.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorOwnedLocomotion",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.ActorOwnedLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.016275197267532349,
+			"dateTime": "2026.11.08-08.24.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BrainTurnsHumanoidButNotFurniture",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.BrainTurnsHumanoidButNotFurniture",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.17875748872756958,
+			"dateTime": "2026.11.08-08.24.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0098722074180841446,
+			"dateTime": "2026.11.08-08.24.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FadesAndRestoresPhysicalHouse",
+			"fullTestPath": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 9.7365636825561523,
+			"dateTime": "2026.11.08-08.24.06",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Real PIE viewport prior0x0 initialized1280x720 LocalPlayerSizeX=1.000 Y=1.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81af48a8a00: invalid HTTP response code received. URL: https://api.epicgames.dev/sdk/v1/default?platformId=LNX, HTTP code: 0, content length: 0, actual payload size: 0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81af48a8a00: request failed, libcurl error: 6 (Couldn't resolve host name)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81af48a8a00: libcurl info message cache 0 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81af48a8a00: libcurl info message cache 1 (Closing connection)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: Retry exhausted on https://api.epicgames.dev/sdk/v1/default?platformId=LNX",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: Failed to connect to the backend. ServiceName=[SDKConfig], OperationName=[GetPlatformConfigRoute], Url=[<Redacted>]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: SDK Config Platform Update Request Failed, Result Code: EOS_NoConnection, Retrying after 2.807697 seconds",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.09"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Clear-aperture fixture pawnV(X=-183806.10, Y=393355.35, Z=98.00) eyeV(X=-183761.10, Y=393595.35, Z=150.00) insideDoorBounds1 geometricSphereClear1 opacity1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.11"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b3a491200: invalid HTTP response code received. URL: https://api.epicgames.dev/sdk/v1/default?platformId=LNX, HTTP code: 0, content length: 0, actual payload size: 0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b3a491200: request failed, libcurl error: 6 (Couldn't resolve host name)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b3a491200: libcurl info message cache 0 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b3a491200: libcurl info message cache 1 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b3a491200: libcurl info message cache 2 (Closing connection)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: Retry exhausted on https://api.epicgames.dev/sdk/v1/default?platformId=LNX",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: Failed to connect to the backend. ServiceName=[SDKConfig], OperationName=[GetPlatformConfigRoute], Url=[<Redacted>]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: SDK Config Platform Update Request Failed, Result Code: EOS_NoConnection, Retrying after 7.061503 seconds",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Actual-return foreground pawnV(X=-183808.48, Y=393536.18, Z=98.00) eyeV(X=-183763.48, Y=393764.44, Z=224.16) controlR(P=-18.00, Y=-90.00) independentPixelHits9 endDepth228.069",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase2 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.0 floorHitV(X=-183967.54, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.5 floorHitV(X=-183805.18, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction1.0 floorHitV(X=-183642.82, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw225.0 shoulder45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183612.88, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.0 floorHitV(X=-183969.37, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.5 floorHitV(X=-183807.02, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction1.0 floorHitV(X=-183644.66, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw315.0 shoulder-45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183999.32, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase4 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.16"
+				}
+			],
+			"warnings": 17,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ForegroundProjection",
+			"fullTestPath": "Dink.Art.InteriorCamera.ForegroundProjection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0056453910656273365,
+			"dateTime": "2026.11.08-08.24.16",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MinimumTranslation",
+			"fullTestPath": "Dink.Art.InteriorCamera.MinimumTranslation",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0080534843727946281,
+			"dateTime": "2026.11.08-08.24.16",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ClassicBrainAcrossRenderCadences",
+			"fullTestPath": "Dink.Art.MotionEstimate.ClassicBrainAcrossRenderCadences",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.89856761693954468,
+			"dateTime": "2026.11.08-08.24.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "30Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "60Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "120Hz actual601.81 presented600.00 intermittent165 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "144Hz actual602.12 presented600.10 intermittent231 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "240Hz actual602.72 presented600.00 intermittent495 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.17"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReadableExitAndOwnership",
+			"fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 9.5208768844604492,
+			"dateTime": "2026.11.08-08.24.17",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: 0x81b3798ee00: request failed, libcurl error: 6 (Could not resolve hostname)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.19"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: 0x81b3798ee00: libcurl info message cache 0 (Could not resolve host: www.google.com)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.19"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: 0x81b3798ee00: libcurl info message cache 1 (shutting down connection #2)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.19"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: 0x81b3798ee00 GET https://www.google.com/generate_204 completed with reason 'ConnectionError' after 0.00s",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.19"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b35eb2400: invalid HTTP response code received. URL: https://api.epicgames.dev/sdk/v1/default?platformId=LNX, HTTP code: 0, content length: 0, actual payload size: 0",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b35eb2400: request failed, libcurl error: 6 (Couldn't resolve host name)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b35eb2400: libcurl info message cache 0 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b35eb2400: libcurl info message cache 1 (Could not resolve host: api.epicgames.dev)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: 0x81b35eb2400: libcurl info message cache 2 (Closing connection)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogHttp: Retry exhausted on https://api.epicgames.dev/sdk/v1/default?platformId=LNX",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: Failed to connect to the backend. ServiceName=[SDKConfig], OperationName=[GetPlatformConfigRoute], Url=[<Redacted>]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOS: SDK Config Platform Update Request Failed, Result Code: EOS_NoConnection, Retrying after 15.516941 seconds",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogEOSSDK: LogEOSAnalytics: Unable to get the client auth token. Last result: EOS_NoConnection.",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.20"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "actual outdoor exit pawnV(X=97729.07, Y=37504.15, Z=98.35) eyeV(X=97729.07, Y=37123.73, Z=221.96) distance400.000 requested400.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.22"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase2 actualP=-18.000000 Y=90.000000 R=0.000000 expectedP=-18.000000 Y=90.000000 R=0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.22"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Post-Possess fixture baseline: controlP=0.000000 Y=90.000000 R=-0.000000 actorP=0.000000 Y=90.000000 R=-0.000000 inputPawnInputComponent0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.25"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase6 actualP=0.000000 Y=90.000000 R=-0.000000 expectedP=0.000000 Y=90.000000 R=-0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.24.26"
+				}
+			],
+			"warnings": 15,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ApprovedFistTimingSaveAndLocomotion",
+			"fullTestPath": "Dink.Art.PlayerAction.ApprovedFistTimingSaveAndLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 1.1361335515975952,
+			"dateTime": "2026.11.08-08.24.27",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MarkerScaleSizeAndSavedFacing",
+			"fullTestPath": "Dink.Art.ScriptCharacter.MarkerScaleSizeAndSavedFacing",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.23169763386249542,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CharacterBindPoseAndMaterials",
+			"fullTestPath": "Dink.Art.CharacterBindPoseAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.061049848794937134,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ConvexTransformInspection",
+			"fullTestPath": "Dink.Art.ConvexTransformInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0083706174045801163,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CreatureRigMaterialsAndMotion",
+			"fullTestPath": "Dink.Art.CreatureRigMaterialsAndMotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0083333859220147133,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExteriorAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ExteriorAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0060257529839873314,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ImportedAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ImportedAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0083138979971408844,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MaterialPropertyInspection",
+			"fullTestPath": "Dink.Art.MaterialPropertyInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0084202606230974197,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PigPenFeedScatterLODAndMaterial",
+			"fullTestPath": "Dink.Art.PigPenFeedScatterLODAndMaterial",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA4178C07D5292D5DD951FFE2629"
+			],
+			"duration": 0.0077215638011693954,
+			"dateTime": "2026.11.08-08.24.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}
