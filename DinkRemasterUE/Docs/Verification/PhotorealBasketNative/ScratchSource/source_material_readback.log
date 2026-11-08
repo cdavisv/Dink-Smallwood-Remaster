@@ -1,0 +1,6 @@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+[ALSOFT] (EE) Failed to connect PipeWire event context (errno: 1)
+00:00.213  blend            | Read blend: "/home/artist/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Source.blend"
+/home/artist/Work/DinkQA/BasketImportDevelopment/inspect_materials.py:11: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  for n in mat.node_tree.nodes if mat and mat.use_nodes else []:
+MATERIAL_READBACK PhotorealBasketV1_Source 1

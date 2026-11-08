@@ -1,0 +1,88 @@
+{
+  "status": "No blocking findings in completed native receipt and publication chain; full native suite/render remain pending",
+  "runner": [
+    {
+      "mode": "preflight",
+      "returncode": 0,
+      "seconds": 19.2527756690979,
+      "passed": true
+    },
+    {
+      "mode": "import",
+      "returncode": 0,
+      "seconds": 47.88818907737732,
+      "passed": true
+    },
+    {
+      "mode": "verify",
+      "returncode": 0,
+      "seconds": 39.65377426147461,
+      "passed": true
+    }
+  ],
+  "import_receipt_sha256": "6f4cc4aa984f704ded01f156110244a68a6612391df56af8b9f5b637807852c1",
+  "verify_receipt_sha256": "0c4b4eab86ebb87131d5973a402bc874410ab44081d0551e04deaacb9e86eb90",
+  "plan_sha256": "8193b849a7b931d413359b363408656b1c6dfdb99956793aaa577baaaf8b53d4",
+  "checks": {
+    "actual_tool_module_and_source_binding": true,
+    "import_verify_native_reports_and_package_hashes_equal": true,
+    "all5saved_packages_match_current_disk": true,
+    "all_current_Content_matches_verified_protected_plus_candidates_and_exact_house_change": true,
+    "four_native_source_paths_selected_owned_bundle": true,
+    "source_hidden_graph_and_pixel_proofs_present": true,
+    "full_semantic_reverse_matches_house_baseline": true,
+    "exact_two_refs_publication": true,
+    "ledger_raw_HEAD_prefix_preserved": true,
+    "five_new_candidate_rows_match_packages": true
+  },
+  "geometry": {
+    "triangles": 19680,
+    "oriented_source_match": {
+      "checked_triangles": 19680,
+      "bijective_source_coverage": true,
+      "cyclic_only": true,
+      "position_tolerance_cm": 0.01,
+      "UV_tolerance": 0.0001,
+      "max_position_delta_cm": 3.814697265625e-06,
+      "max_UV_delta": 2.9802322387695312e-08,
+      "minimum_geometric_front_dot": 0.9999999999195519
+    },
+    "convex_source_match": {
+      "checked_hulls": 1,
+      "checked_vertices": 8,
+      "bijective_hulls_and_vertices": true,
+      "position_tolerance_cm": 0.01,
+      "max_vertex_delta_cm": 1.430511474609375e-06
+    },
+    "native_front_normal_evidence": {
+      "checked_triangles": 19680,
+      "minimum_dot_authored_source": 0.9344501549191333,
+      "minimum_dot_source_geometric_front": 0.9999999999195519,
+      "clockwise_geometric_front_sha256": "bae2ca8a78c30e867e9c926fecf3c7f21dc090ff6eda65304fa9d005e4dd70c7",
+      "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+      "native_shading_normal_values_read": false
+    }
+  },
+  "actual_material_recipe": {
+    "direct_BC_N_ORM": true,
+    "specular": 0.21853724122047424,
+    "expected_specular": 0.21853724634807323,
+    "all_native_material_property_ids_checked": [
+      5,
+      6,
+      7,
+      8,
+      10,
+      18
+    ]
+  },
+  "ledger": {
+    "prior_rows": 1559,
+    "new_rows": 5,
+    "total_rows": 1564,
+    "prior_audio_rows": 483
+  },
+  "full_native_suite": "pending terminal receipt",
+  "render": "pending",
+  "fresh_published_clone_native_verification": "not yet executed"
+}

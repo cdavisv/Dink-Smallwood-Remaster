@@ -1,0 +1,21 @@
+{
+  "status": "Independent raw native full-suite proof review PASS",
+  "151_raw_Success": true,
+  "raw_warning_events": 0,
+  "raw_error_events": 0,
+  "returncode": 0,
+  "runner_seconds": 461.18280696868896,
+  "engine_test_duration_seconds": 441.4540100097656,
+  "9128_before_after_equal": true,
+  "old_save_count": 30,
+  "old_save_scopes": {
+    "ContinuityIntegration/Full151/User/Saved/SaveGames": 10,
+    "BarrelReviewed/Full147/User/Saved/SaveGames": 10,
+    "NativeProps/CombinedFull/User/Saved/SaveGames": 10
+  },
+  "all30_old_scoped_save_hashes_currently_match": true,
+  "new_isolated_slots": 10,
+  "save_scope_qualification": "Inventoried Saved-root prior probe slots only, not exhaustive owner-save coverage",
+  "full_pin_scope": "Merged PR16 camera and PR15/17 source plus reviewed PhotorealBasketV1 native assets/two mesh references; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded.",
+  "raw_report_sha256": "3bc974ce86d78d0a30adccdaa98364a90f9518501ae4f993e188e275e3a1c63b"
+}

@@ -23,6 +23,14 @@ A private45FPS render shows both barrels and realW contact atmap164.017/120, dep
 
 The immutable source bake recipe has a later-discovered stale Blender NodeLink restoration risk. Approved baked payloads passed independent pixel checks; preserve their hashes. A corrected successor recipe is being developed work-only and must not silently mutate the frozen bundle or relabel earlier receipts. HANDOFF.md records current branches, process ownership and remaining gates for cross-account continuity.
 
+## Native photoreal basket checkpoint (8 November 2026 UTC)
+
+PhotorealBasketV1 preserves the original decorative basket dimensions114.4×94.2×67.2cm, placement and complex-as-simple policy while replacing only its asset row and WickerBasket element. Original S001_P52 grain/feed pickup, scripts and transforms remain unchanged. Five unique packages contain19,680triangles, one retained88×88×60cmUCX and2048BC/N/ORM; the UCX is verified but does not become the active query source. Native actual specular.21853724122047424 matches intended source normal-incidence F0 target.21853724634807323; sourceIOR1.46/IORLevel.25 is not copied directly. Other material-layer types need their own contracts.
+
+Reviewed5tool/6test packet13e0386f passes97basket guards and364aggregatePython tests. Preflight/import/savedverify and fresh published verify pass; the latter needs no private author import receipt. Publisher default/--apply are zero-write in published state across8,887declared files. Full native151/151passes0warnings with9,128inputs unchanged and30inventoried old probe saves retained. Exact source filenames, actual oriented geometry/UV/fronts/retained hull, saved hidden material pins andTexture.Source pixels are checked.
+
+Private game232554/display232548 closed normally;6,925runtime inputs unchanged. Real100msW samples reach the identified basket component atmap427.018/146.023 with0.027128cmremaining capsule sweep; actualWdeparture and door exit/return pass. A long-hold straight-X assertion failed because the curved basket permits sliding; a later approach-only PASS was rejected as contact proof. Both are preserved separately. These are bounded probes, not universal collision/reach or final house art acceptance. See Docs/Verification/PhotorealBasketNative; Hero, canonical exterior and lighting remain unfinished.
+
 ## Native photoreal furniture integration (8 Nov 2026 UTC)
 
 Merged controls and house fixes (PR10/PR11, base f31d2434) plus the new table/bed/chair packages passed the complete native suite147/147 with zero warnings in432s. All8,884 source/tools/art/ledger/Content/ImportData/config/custom-module inputs stayed unchanged; the old-save inventory was empty (so its zero-change check is vacuous), and ten new probe slots are isolated. All184Python tests pass. See Docs/Verification/PhotorealPropsNative for precise historical/current scope and raw reports.
