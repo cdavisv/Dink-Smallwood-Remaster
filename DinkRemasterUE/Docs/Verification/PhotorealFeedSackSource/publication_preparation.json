@@ -1,0 +1,258 @@
+{
+  "status": "Approved source/export packet prepared; waiting for Basket15 merged master before requested isolated source delivery worktree",
+  "worktree_created": false,
+  "source_payload_files": 75,
+  "all_approved_copies_unchanged": true,
+  "standalone_copied_checks": {
+    "uv_verification.json": {
+      "passed": true,
+      "files": {
+        "Source": {
+          "sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+          "uv": {
+            "uv_area": 0.5431461717292567,
+            "area_3d": 1.6145234045872803,
+            "overlap_area": 0.0,
+            "overlap_ratio": 0.0,
+            "overlapping_tris": 0,
+            "degenerate_tris": 0,
+            "tris_out_of_range": 0,
+            "truncated": false,
+            "tris": 19644
+          }
+        },
+        "Export": {
+          "sha256": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+          "uv": {
+            "uv_area": 0.5431461717292583,
+            "area_3d": 1.6145234045872807,
+            "overlap_area": 0.0,
+            "overlap_ratio": 0.0,
+            "overlapping_tris": 0,
+            "degenerate_tris": 0,
+            "tris_out_of_range": 0,
+            "truncated": false,
+            "tris": 19644
+          }
+        }
+      }
+    },
+    "roundtrip_receipt.json": {
+      "passed": true,
+      "source_export_sha256": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+      "FBX_sha256": "03a2b2ffe6bdf881be8306bad9027c80093bfc31c0ea932c5339c33ba7a8df3c",
+      "triangles": 19644,
+      "cyclic_oriented_bijective_face_match": true,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_geometric_front_dot": 0.9999997541308403,
+      "max_stored_normal_angle_radians": 0,
+      "source_and_roundtrip_material_slots": 2,
+      "collision_hulls": 1,
+      "actual_roundtrip_collision_bounds_m": [
+        [
+          -0.32047051191329956,
+          -0.25527223944664,
+          -0.015000004321336746
+        ],
+        [
+          0.32952946424484253,
+          0.26472774147987366,
+          0.7350000143051147
+        ]
+      ],
+      "render_scope": "Geometry/UV/fronts/corner normals and exact UCX through actual Blender FBX roundtrip. Native Unreal and final render acceptance pending.",
+      "max_collision_vertex_delta_m": 0.0,
+      "all_matched_triangle_material_ids_preserved": true,
+      "source_materials": [
+        "MI_FeedSack_Jute_PhotoBaked",
+        "MI_FeedSack_Cord_PhotoBaked"
+      ],
+      "material_IOR_and_specular": {
+        "MI_FeedSack_Jute_PhotoBaked": {
+          "IOR": 1.4600000381469727,
+          "Specular IOR Level": 0.2199999988079071
+        },
+        "MI_FeedSack_Cord_PhotoBaked": {
+          "IOR": 1.5,
+          "Specular IOR Level": 0.2199999988079071
+        }
+      }
+    },
+    "portable_receipt.json": {
+      "passed": true,
+      "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+      "source_unchanged": true,
+      "packed_images_reopened": [
+        {
+          "image": "T_Stonebrook_Linen_BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 802223,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Linen_N",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 2777429,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Linen_ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1248754,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1435537,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_N",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 2898185,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1302556,
+          "pixels_reopened": 4194304
+        }
+      ],
+      "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+      "native_imported": false
+    },
+    "portable_export_receipt.json": {
+      "passed": true,
+      "source_sha256": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+      "source_unchanged": true,
+      "packed_images_reopened": [
+        {
+          "image": "T_FeedSack_Jute_01_Photo_BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed_bytes": 2835063,
+          "pixels_reopened": 16777216
+        },
+        {
+          "image": "T_FeedSack_Jute_01_Photo_Metal",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed_bytes": 55235,
+          "pixels_reopened": 16777216
+        },
+        {
+          "image": "T_FeedSack_Jute_01_Photo_N",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed_bytes": 4597951,
+          "pixels_reopened": 16777216
+        },
+        {
+          "image": "T_FeedSack_Jute_01_Photo_ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed_bytes": 1178498,
+          "pixels_reopened": 16777216
+        },
+        {
+          "image": "T_FeedSack_Jute_01_Photo_Rough",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed_bytes": 1218744,
+          "pixels_reopened": 16777216
+        },
+        {
+          "image": "T_Stonebrook_Linen_BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 802223,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Linen_N",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 2777429,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Linen_ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1248754,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1435537,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_N",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 2898185,
+          "pixels_reopened": 4194304
+        },
+        {
+          "image": "T_Stonebrook_Wicker_ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed_bytes": 1302556,
+          "pixels_reopened": 4194304
+        }
+      ],
+      "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+      "native_imported": false
+    }
+  },
+  "native_modified": false,
+  "root_modified": false,
+  "committed": false,
+  "pushed": false
+}
