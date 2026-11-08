@@ -1,6 +1,8 @@
 #include "DinkInteriorCameraComponent.h"
 #include "DinkCoreModule.h"
 #include "DinkCameraFraming.h"
+#include "DinkCameraOcclusion.h"
+#include "Components/CapsuleComponent.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Camera/CameraComponent.h"
@@ -90,23 +92,41 @@ void UDinkInteriorCameraComponent::RestoreOccluders()
     for (FDinkCameraOccluder& Entry : Occluders)
     {
         if (!IsValid(Entry.Component)) continue;
-        bool bStillOwned=true;
-        for (int32 I=0; I<Entry.OriginalMaterials.Num(); ++I)
-            bStillOwned &= Entry.Component->GetMaterial(I)==Entry.FadeMaterials[I];
+        const bool bStillOwned=Entry.Component->OverrideMaterials==Entry.ManagedOverrides;
         if (bStillOwned)
         {
             Entry.Component->OverrideMaterials=Entry.OriginalOverrides;
             Entry.Component->MarkRenderStateDirty();
         }
-        else for (int32 I=0; I<Entry.OriginalMaterials.Num(); ++I)
+        else
         {
-            if (Entry.Component->GetMaterial(I)==Entry.FadeMaterials[I]) Entry.Component->SetMaterial(I,Entry.OriginalMaterials[I]);
+            bool bRestoredSlot=false;
+            for (int32 I=0; I<Entry.OriginalMaterials.Num(); ++I)
+            {
+                if (Entry.Component->GetMaterial(I)!=Entry.FadeMaterials[I] || !Entry.Component->OverrideMaterials.IsValidIndex(I)) continue;
+                Entry.Component->OverrideMaterials[I]=Entry.OriginalOverrides.IsValidIndex(I) ? Entry.OriginalOverrides[I] : nullptr;
+                bRestoredSlot=true;
+            }
+            if (bRestoredSlot) Entry.Component->MarkRenderStateDirty();
         }
         FCollisionResponseContainer Expected=Entry.CollisionResponses;
         Expected.SetResponse(ECC_Camera,ECR_Ignore);
-        if (Entry.Component->GetCollisionResponseToChannels()==Expected)
-            Entry.Component->SetCollisionProfileName(Entry.CollisionProfile);
-        Entry.Component->SetCollisionResponseToChannel(ECC_Camera,Entry.CameraResponse);
+        // A different named profile owns its complete policy, including Camera.
+        if (Entry.Component->GetCollisionProfileName()==Entry.ManagedCollisionProfile)
+        {
+            const bool bPhysicalPolicyOwned=Entry.Component->GetCollisionEnabled()==Entry.CollisionEnabled &&
+                Entry.Component->GetCollisionObjectType()==Entry.CollisionObjectType;
+            if (bPhysicalPolicyOwned && Entry.Component->GetCollisionResponseToChannels()==Expected)
+            {
+                Entry.Component->SetCollisionProfileName(Entry.CollisionProfile);
+                Entry.Component->SetCollisionResponseToChannel(ECC_Camera,Entry.CameraResponse);
+            }
+            else if (Entry.Component->GetCollisionResponseToChannel(ECC_Camera)==ECR_Ignore)
+            {
+                // Release only our channel; preserve external enabled/type/response changes.
+                Entry.Component->SetCollisionResponseToChannel(ECC_Camera,Entry.CameraResponse);
+            }
+        }
     }
     Occluders.Reset(); FadingOccluderCount=0; ManagedOccluderCount=0;
 }
@@ -144,6 +164,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
             FDinkCameraOccluder Entry; Entry.Component=Mesh;
             Entry.CameraResponse=Mesh->GetCollisionResponseToChannel(ECC_Camera);
             Entry.CollisionProfile=Mesh->GetCollisionProfileName(); Entry.CollisionResponses=Mesh->GetCollisionResponseToChannels();
+            Entry.CollisionEnabled=Mesh->GetCollisionEnabled(); Entry.CollisionObjectType=Mesh->GetCollisionObjectType();
             Entry.OriginalOverrides=Mesh->OverrideMaterials;
             for (int32 I=0; I<Variants.Num(); ++I)
             {
@@ -154,6 +175,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
             }
             // Only the camera probe ignores these walls. Pawn/projectile/visibility responses are unchanged.
             Mesh->SetCollisionResponseToChannel(ECC_Camera,ECR_Ignore);
+            Entry.ManagedCollisionProfile=Mesh->GetCollisionProfileName(); Entry.ManagedOverrides=Mesh->OverrideMaterials;
             Occluders.Add(MoveTemp(Entry));
         }
     }
@@ -275,6 +297,26 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     const FVector Body=GetOwner()->GetActorLocation();
     const FVector Side=Rotation.RotateVector(FVector(0,22,0));
     const FVector Targets[]={Body+FVector(0,0,60),Body,Body-FVector(0,0,60),Body+Side,Body-Side};
+    // Cover foreground geometry off the body silhouette using the actual player
+    // projection. Inscribed complex-component sweeps leave real apertures clear.
+    TArray<DinkCameraOcclusion::FSweep> ForegroundSweeps;
+    APlayerController* PC=Cast<APlayerController>(Pawn->GetController());
+    int32 Width=0,Height=0; if (PC) PC->GetViewportSize(Width,Height);
+    const UCapsuleComponent* Capsule=GetOwner()->FindComponentByClass<UCapsuleComponent>();
+    if (Width>0 && Height>0 && Capsule)
+    {
+        FMinimalViewInfo View; Camera->GetCameraView(0.f,View);
+        View.Location=Eye; View.Rotation=Rotation;
+        const FIntRect Rect(0,0,Width,Height);
+        FSceneViewProjectionData Projection; Projection.SetViewRectangle(Rect);
+        TEnumAsByte<EAspectRatioAxisConstraint> Axis=AspectRatio_MaintainXFOV;
+        if (PC->GetLocalPlayer()) Axis=PC->GetLocalPlayer()->AspectRatioAxisConstraint;
+        if (Camera->bOverrideAspectRatioAxisConstraint) Axis=Camera->AspectRatioAxisConstraint;
+        FMinimalViewInfo::CalculateProjectionMatrixGivenViewRectangle(View,Axis,Rect,Projection);
+        const double FarDepth=FVector::DotProduct(Body-Eye,Rotation.Vector())-Capsule->GetScaledCapsuleRadius();
+        DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,Projection.ProjectionMatrix,
+            View.GetFinalPerspectiveNearClipPlane(),FarDepth,ForegroundSweeps);
+    }
     FCollisionQueryParams Params(TEXT("DinkCameraOcclusion"),true,GetOwner());
     FadingOccluderCount=0;
     for (FDinkCameraOccluder& Entry : Occluders)
@@ -298,6 +340,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
             FHitResult Hit;
             bBlocks=Entry.Component->LineTraceComponent(Hit,Eye,Target,Params);
         }
+        if (!bBlocks) bBlocks=DinkCameraOcclusion::Intersects(Entry.Component,ForegroundSweeps);
         Entry.Opacity=FMath::FInterpConstantTo(Entry.Opacity,bBlocks ? 0.f : 1.f,DeltaTime,bBlocks ? 5.f : 3.f);
         if (Entry.Opacity<.999f) ++FadingOccluderCount;
         for (UMaterialInstanceDynamic* MID : Entry.FadeMaterials) if (MID) MID->SetScalarParameterValue(OpacityParameter,Entry.Opacity);

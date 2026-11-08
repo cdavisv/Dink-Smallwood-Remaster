@@ -47,6 +47,9 @@ for name, row in pack_files.items():
             missing.append(name)
         continue
     data = p.read_bytes()
+    if data.startswith(b'version https://git-lfs.github.com/spec/'):
+        metadata_binary += 1  # Git LFS pointer (checkout without LFS): the binary is not here to verify
+        continue
     if hashlib.sha256(data).hexdigest() != row['sha256'] or len(data) != row['size']:
         bad.append(name)
     else:
@@ -59,7 +62,10 @@ for row in rows:
         if not args.metadata_only or expected is None or expected['sha256'] != row['sha256']:
             missing.append(row['asset_path'])
         continue
-    if hashlib.sha256(p.read_bytes()).hexdigest() != row['sha256']:
+    data = p.read_bytes()
+    if data.startswith(b'version https://git-lfs.github.com/spec/'):
+        continue  # LFS pointer; the pack check above covers pinned hashes
+    if hashlib.sha256(data).hexdigest() != row['sha256']:
         bad.append(row['asset_path'])
 errors.extend([{'missing_asset': x} for x in sorted(set(missing))])
 errors.extend([{'asset_hash_mismatch': x} for x in sorted(set(bad))])

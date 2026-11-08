@@ -1,19 +1,21 @@
 """Validate the new immutable fireplace packages; optionally publish the art layer.
 Run with import_fireplace_refinement.sh. No original asset package is changed.
 """
-import hashlib,json,math,os
+import hashlib,json,math,os,sys
 from pathlib import Path
 import unreal
 assert '-game' not in unreal.SystemLibrary.get_command_line().split(),'Use an editor commandlet'
 ROOT=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve()
 SOURCE=ROOT/'SourceAssets/Art/Stonebrook/Refinements/FireplaceV2'
-plan=json.loads((SOURCE/'placement_plan.json').read_text());assert plan['schema']=='dink-fireplace-refinement/1'
+sys.path.insert(0,str(ROOT/'Scripts'))
+from fireplace_source import validate_source_inputs,validate_render_policy
+plan,validated_spec,validated_source_hashes=validate_source_inputs(ROOT)
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 assert sha(ROOT/plan['source_blend'])==plan['source_blend_sha256'],'Source candidate changed: review a new revision'
 assert json.loads((ROOT/plan['source_export']).read_text())['assets'][0]['source']['sha256']==plan['source_blend_sha256']
 DEST=plan['destination'];LIB=unreal.EditorAssetLibrary;EDIT=unreal.MaterialEditingLibrary
-mode=os.environ.get('DINK_FIREPLACE_MODE','import');assert mode in ['import','check','publish']
-report={'passed':False,'mode':mode,'source_blend_sha256':plan['source_blend_sha256'],'original_packages_changed':False,'runtime_published':False}
+mode=os.environ.get('DINK_FIREPLACE_MODE','import');assert mode in ['import','check','publish','resume']
+report={'validated_source_sha256':validated_source_hashes,'passed':False,'mode':mode,'source_blend_sha256':plan['source_blend_sha256'],'original_packages_changed':False,'runtime_published':False}
 protected={p:sha(p) for branch in ['Kits','Materials'] for p in (ROOT/'Content/Dink'/branch).rglob('*.uasset')}
 def atom(path,data):
  path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(data,indent=2)+'\n');tmp.replace(path)
@@ -28,6 +30,8 @@ try:
  assert mesh.get_editor_property('body_setup').get_editor_property('collision_trace_flag')==unreal.CollisionTraceFlag.CTF_USE_SIMPLE_AS_COMPLEX
  assert mesh.get_editor_property('nanite_settings').get_editor_property('enabled')
  assert mesh.get_editor_property('nanite_settings').get_editor_property('fallback_target')==unreal.NaniteFallbackTarget.PERCENT_TRIANGLES
+ settings=mesh.get_editor_property('nanite_settings')
+ validate_render_policy(settings.get_editor_property('fallback_percent_triangles'),settings.get_editor_property('fallback_relative_error'),plan['render_policy'])
  assert plan['render_policy']['nanite'] is True
  assert json.loads((ROOT/plan['source_export']).read_text())['assets'][0]['nanite'] is True
  # GetBounds includes Nanite's coarse-LOD culling envelope, not just source vertices.
@@ -38,7 +42,7 @@ try:
   vertex=unreal.VertexID(id_value=i);assert description.is_vertex_valid(vertex)
   v=description.get_vertex_position(vertex);points.append([v.x,v.y,v.z])
  low=[min(p[i] for p in points) for i in range(3)];high=[max(p[i] for p in points) for i in range(3)];size=[b-a for a,b in zip(low,high)]
- spec=json.loads((SOURCE/'candidate_manifest.json').read_text());expected_size=[v*100 for v in spec['dimensions_m']]
+ spec=validated_spec;expected_size=[v*100 for v in spec['dimensions_m']]
  report.update(source_size_cm=size,render_culling_size_cm=render_size,source_vertices=len(points),source_triangles=description.get_triangle_count(),nanite_triangles=mesh.get_num_nanite_triangles())
  assert description.get_triangle_count()==15484 and mesh.get_num_nanite_triangles()==15484
  assert all(abs(a-b)<.05 for a,b in zip(size,expected_size)),(size,expected_size)

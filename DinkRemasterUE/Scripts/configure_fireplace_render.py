@@ -1,9 +1,12 @@
 """Explicit pre-release candidate render configuration; original kit is untouched."""
-import unreal,json,hashlib,shutil
+import unreal,json,hashlib,shutil,sys
 from pathlib import Path
 assert '-game' not in unreal.SystemLibrary.get_command_line().split()
 ROOT=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();source=ROOT/'SourceAssets/Art/Stonebrook/Refinements/FireplaceV2'
-plan=json.loads((source/'placement_plan.json').read_text());assert plan['destination']=='/Game/Dink/Refinements/FireplaceV2'
+sys.path.insert(0,str(ROOT/'Scripts'))
+from fireplace_source import validate_source_inputs
+plan,_,_=validate_source_inputs(ROOT)
+assert plan['destination']=='/Game/Dink/Refinements/FireplaceV2'
 assert hashlib.sha256((ROOT/plan['source_blend']).read_bytes()).hexdigest()==plan['source_blend_sha256']
 export=json.loads((ROOT/plan['source_export']).read_text())['assets'][0];assert export['nanite'] is True and plan['render_policy']['nanite'] is True
 LIB=unreal.EditorAssetLibrary;EDIT=unreal.MaterialEditingLibrary
