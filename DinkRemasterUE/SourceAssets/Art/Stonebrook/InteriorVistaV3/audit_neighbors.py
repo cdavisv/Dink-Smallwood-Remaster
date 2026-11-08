@@ -1,0 +1,20 @@
+from pathlib import Path
+import json,math,hashlib
+R=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');W=Path(__file__).resolve().parent
+P=W/'placement_proposal.json';p=json.loads(P.read_text());old=p['interior_anchor_world_cm'];anchor=[-183806.0975,393595.98,0.]
+p['generation_float32_anchor_cm']=old;p['interior_anchor_world_cm']=anchor;p['reference_exterior_door_world_cm']=[97661.61092968748,37370.324198125,0.];p['coordinate_precision_note']='Scene is rebased to metres. Authoritative UE placement anchor remains double precision; original Blender Vector anchor rounded less than0.012cm, recorded above.'
+for row in p['instances']:
+ x,y,z=row['local_blender_m'];row['world_cm_proposal']=[anchor[0]+100*x,anchor[1]-100*y,100*z]
+for asset in p['new_meshes']:
+ m=asset['material'];folder='StonebrookExterior' if m=='MI_Stonebrook_Meadow' else 'Stonebrook';asset['existing_UE_material']='/Game/Dink/Materials/'+folder+'/'+m+'.'+m
+p['visibility_ownership']={'owner_gameplay_screen':1,'runtime_implementation_required':True,'existing_DinkArtScreen_tag_is_visibility_controller':False,'default_hidden_until_owner_screen_selected':True,'visible_only_when_current_screen_equals':1,'hide_on_screen_exit_or_no_current_screen':True,'cast_hidden_shadow':False,'must_not_reuse_original439_actor_instances':True,'publish_as':'dedicated screen1 vista actor/level/context with explicit current-screen visibility; asset meshes can be shared','must_verify_before_staging':['screen1 shows vista','screen2/439/other screens hide all vista geometry and its shadows','all vista components NoCollision; original scripts/warps untouched','fresh actor-coordinate bounds audit of nearby generated rooms']}
+P.write_text(json.dumps(p,indent=2)+'\n')
+g=json.loads((W/'scene_geometry_checks.json').read_text());boxes=g['instance_bounds'];lo=[min(b['min_scene_m'][k] for b in boxes) for k in range(3)];hi=[max(b['max_scene_m'][k] for b in boxes) for k in range(3)];wl=[anchor[0]+100*lo[0],anchor[1]-100*hi[1],100*lo[2]];wh=[anchor[0]+100*hi[0],anchor[1]-100*lo[1],100*hi[2]]
+f=R/'ImportData/screens.json';screens=json.loads(f.read_text())['screens'];rows=[]
+for s in screens:
+ if s['screen']==1:continue
+ pts=list(s['corners'].values());a=min(q[0] for q in pts)*100;b=min(q[1] for q in pts)*100;c=max(q[0] for q in pts)*100;d=max(q[1] for q in pts)*100
+ dx=max(0,a-wh[0],wl[0]-c);dy=max(0,b-wh[1],wl[1]-d)
+ rows.append({'screen':s['screen'],'name':s['name'],'group':s['group'],'indoor':s.get('indoor'),'room_AABB_cm':[a,b,c,d],'minimum_AABB_gap_cm':math.hypot(dx,dy),'overlaps_vista_aggregate_AABB':dx==0 and dy==0,'reached':s.get('reached')})
+rows.sort(key=lambda x:x['minimum_AABB_gap_cm']);overlap=[x for x in rows if x['overlaps_vista_aggregate_AABB']];assert not overlap,overlap
+j={'scope':'Conservative metadata-coordinate audit against every generated screen footprint; actual saved Blender instance bounds, not proposed terrain dimensions alone','source_screens':str(f),'source_screens_sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'screens_checked':len(rows),'scene_local_min_m':lo,'scene_local_max_m':hi,'terrain_design_bounds_blender_m':[-32,-32,32,24],'actual_vista_world_min_cm':wl,'actual_vista_world_max_cm':wh,'other_screen_overlap_count':len(overlap),'closest_screens':rows[:12],'visibility_ownership':p['visibility_ownership'],'limits':['Generated corners are authoritative importer input, not a fresh running-UE actor-bounds readback','No direct physical-room overlap does not prevent views/shadows appearing from neighboring rooms if all actors remain visible','Runtime staging must implement explicit per-screen visibility/ownership; DinkArtScreen_1 alone does not do this','Vista remains render-only and contains no geometry in the authored interior footprint']};(W/'nearby_screen_audit.json').write_text(json.dumps(j,indent=2)+'\n');print(json.dumps({k:j[k] for k in ['screens_checked','actual_vista_world_min_cm','actual_vista_world_max_cm','other_screen_overlap_count']},indent=2));print('Nearest:',rows[0]['screen'],rows[0]['name'],rows[0]['minimum_AABB_gap_cm']/100,'metres')
