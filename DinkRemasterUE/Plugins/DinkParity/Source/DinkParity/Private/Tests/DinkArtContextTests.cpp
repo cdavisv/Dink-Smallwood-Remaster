@@ -1,6 +1,11 @@
 #include "AssetCompilingManager.h"
 #include "Components/StaticMeshComponent.h"
 #include "DinkArtContextActor.h"
+#include "DinkOriginComponent.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
 #include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
 #include "DinkTestHelpers.h"
@@ -75,6 +80,10 @@ class FContextPIE : public IAutomationLatentCommand
     TMap<FString, UStaticMesh *> Meshes;
     TArray<FOriginal> Originals;
     FVector ExpectedContextPosition;
+    ADinkArtContextActor* RuntimeContext=nullptr;
+    TArray<TSharedPtr<FJsonValue>> RuntimeRows;
+    int32 BaselineContextCount=0;
+    bool HasRuntimeManifest=false;
     void Move(ADinkGreyboxCharacter *H, UDinkGreyboxSubsystem *G, ADinkScreenVolume *S)
     {
         H->GetCharacterMovement()->StopMovementImmediately();
@@ -146,6 +155,46 @@ class FContextPIE : public IAutomationLatentCommand
             T->TestTrue(TEXT("actual world trace ignores render-only context"), Hit.GetActor() != C);
         }
     }
+    void CheckRuntime(bool ExpectedVisible)
+    {
+        if (!HasRuntimeManifest) return;
+        if (!T->TestNotNull(TEXT("published private real-manifest context exists"),RuntimeContext)) return;
+        T->TestEqual(TEXT("real context owner screen remains1"),RuntimeContext->GetOwnerScreenNumber(),1);
+        T->TestEqual(TEXT("real316 context visibility follows current owner"),RuntimeContext->IsHidden(),!ExpectedVisible);
+        T->TestFalse(TEXT("real context never ticks"),RuntimeContext->PrimaryActorTick.bCanEverTick);
+        T->TestFalse(TEXT("real context actor has no collision"),RuntimeContext->GetActorEnableCollision());
+        T->TestNull(TEXT("cosmetic context has no original save/script identity"),RuntimeContext->FindComponentByClass<UDinkOriginComponent>());
+        T->TestFalse(TEXT("real context never joins camera occluders"),RuntimeContext->ActorHasTag(TEXT("DinkCameraOccluder")));
+        TInlineComponentArray<UStaticMeshComponent*> Components(RuntimeContext);
+        T->TestEqual(TEXT("actual manifest creates316 components"),Components.Num(),316);
+        T->TestEqual(TEXT("actual fixture has316 source rows"),RuntimeRows.Num(),316);
+        TSet<UStaticMesh*> Assets;TArray<bool> Matched;Matched.Init(false,RuntimeRows.Num());
+        for (auto M:Components)
+        {
+            Assets.Add(M->GetStaticMesh());
+            T->TestFalse(TEXT("all316 components have no ticks"),M->PrimaryComponentTick.bCanEverTick);
+            T->TestEqual(TEXT("all316 components are NoCollision"),M->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
+            T->TestFalse(TEXT("all316 have no overlap events"),M->GetGenerateOverlapEvents());
+            T->TestFalse(TEXT("all316 have no navigation influence"),M->CanEverAffectNavigation());
+            T->TestFalse(TEXT("all316 cast no hidden shadow"),M->bCastHiddenShadow);
+            T->TestFalse(TEXT("all316 contribute no hidden GI"),M->bAffectIndirectLightingWhileHidden);
+            bool Found=false;
+            for (int32 I=0;I<RuntimeRows.Num();++I)
+            {
+                if (Matched[I]) continue;
+                const auto R=RuntimeRows[I]->AsObject();
+                if (!M->GetStaticMesh() || !M->GetStaticMesh()->GetPathName().Equals(R->GetStringField(TEXT("mesh")),ESearchCase::IgnoreCase)) continue;
+                const auto Vec=[&](const TCHAR* Key){const auto& A=R->GetArrayField(Key);return FVector(A[0]->AsNumber(),A[1]->AsNumber(),A[2]->AsNumber());};
+                const FVector Position=Vec(TEXT("world_cm")),Scale=Vec(TEXT("scale")),Rotation=Vec(TEXT("rotation_deg"));
+                if (!M->GetComponentLocation().Equals(Position,.01) || !M->GetComponentScale().Equals(Scale,.0001) || !M->GetComponentRotation().Equals(FRotator(Rotation.X,Rotation.Y,Rotation.Z),.01))continue;
+                Matched[I]=true;Found=true;break;
+            }
+            T->TestTrue(TEXT("every actual component matches a unique source mesh/world transform"),Found);
+            FHitResult Hit;RuntimeContext->GetWorld()->LineTraceSingleByChannel(Hit,M->Bounds.Origin+FVector(0,0,100),M->Bounds.Origin-FVector(0,0,100),ECC_Visibility);
+            T->TestTrue(TEXT("world trace never hits any actual render-only vista component"),Hit.GetActor()!=RuntimeContext);
+        }
+        T->TestEqual(TEXT("actual316 component set references62 meshes"),Assets.Num(),62);
+    }
     void CheckOriginals()
     {
         for (const auto &B : Originals)
@@ -214,6 +263,19 @@ class FContextPIE : public IAutomationLatentCommand
             return false;
         if (Phase == 1)
         {
+            const FString ManifestPath=FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/stonebrook_vista_v3.json");
+            FString Text;HasRuntimeManifest=FFileHelper::LoadFileToString(Text,*ManifestPath);
+            if (HasRuntimeManifest)
+            {
+                TSharedPtr<FJsonObject> Json;
+                if (!T->TestTrue(TEXT("private actual manifest parses"),FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Json)))return true;
+                RuntimeRows=Json->GetArrayField(TEXT("elements"));
+                for(TActorIterator<ADinkArtContextActor> I(W);I;++I)
+                    if(I->ActorHasTag(TEXT("DinkArtManifest_stonebrook_vista_v3.json")))
+                    {T->TestNull(TEXT("only one real-manifest context root"),RuntimeContext);RuntimeContext=*I;}
+                CheckRuntime(false);
+            }
+            BaselineContextCount=Count(*W);
             for (TActorIterator<AStaticMeshActor> I(W); I; ++I)
                 if (I->ActorHasTag(TEXT("DinkArtScreen_439")))
                     Originals.Emplace(I->GetStaticMeshComponent());
@@ -242,6 +304,7 @@ class FContextPIE : public IAutomationLatentCommand
         if (Phase == 2)
         {
             T->TestFalse(TEXT("screen1 visible"), C->IsHidden());
+            CheckRuntime(true);
             T->TestTrue(TEXT("screen2 context hidden"), C2->IsHidden());
             CheckOriginals();
             Early =
@@ -254,6 +317,7 @@ class FContextPIE : public IAutomationLatentCommand
             PC->UnPossess();
             T->TestEqual(TEXT("actual stale screen on unpossess"), G->GetCurrentScreen(), Home);
             T->TestTrue(TEXT("unpossess hides immediately without tick"), C->IsHidden());
+            CheckRuntime(false);
             T->TestTrue(TEXT("early actor also hides without tick"), Early->IsHidden());
             H->SetActorLocation(Yard->MapPixelToWorld(300, 200) + FVector(0, 0, 98), false, nullptr,
                                 ETeleportType::TeleportPhysics);
@@ -268,6 +332,7 @@ class FContextPIE : public IAutomationLatentCommand
         if (Phase == 3)
         {
             T->TestTrue(TEXT("screen2 hides1"), C->IsHidden());
+            CheckRuntime(false);
             T->TestFalse(TEXT("screen2 shows2"), C2->IsHidden());
             Physical();
             CheckOriginals();
@@ -277,6 +342,7 @@ class FContextPIE : public IAutomationLatentCommand
             T->TestNull(TEXT("outside is no screen"), G->GetCurrentScreen());
             T->TestTrue(TEXT("no screen hides1"), C->IsHidden());
             T->TestTrue(TEXT("no screen hides2"), C2->IsHidden());
+            CheckRuntime(false);
             Move(H, G, Home);
             Phase = 4;
             At = FPlatformTime::Seconds();
@@ -285,6 +351,7 @@ class FContextPIE : public IAutomationLatentCommand
         if (Phase == 4)
         {
             T->TestFalse(TEXT("return shows1"), C->IsHidden());
+            CheckRuntime(true);
             Physical();
             CheckOriginals();
             UClass* ControllerClass=PC->GetClass();
@@ -305,6 +372,7 @@ class FContextPIE : public IAutomationLatentCommand
             T->TestEqual(TEXT("same room remains selected after controller replacement"),G->GetCurrentScreen(),Home);
             T->TestFalse(TEXT("context recovers from first-controller replacement without screen event"),C->IsHidden());
             T->TestFalse(TEXT("preconfigured context also rebinds replacement controller"),Early->IsHidden());
+            CheckRuntime(true);
             CheckOriginals();
             TInlineComponentArray<UStaticMeshComponent *> Ms(C);
             C->Destroy();
@@ -324,7 +392,8 @@ class FContextPIE : public IAutomationLatentCommand
         {
             // Advance beyond the refresh period after destruction: no stale work.
             CheckOriginals();
-            T->TestEqual(TEXT("all context actors removed after timer period"),Count(*W),0);
+            T->TestEqual(TEXT("only original runtime contexts remain after fixture destruction"),Count(*W),BaselineContextCount);
+            CheckRuntime(false);
             T->TestTrue(TEXT("world remains healthy after context timer cleanup"),IsValid(H));
             Ordinary->Destroy();
             return true;
