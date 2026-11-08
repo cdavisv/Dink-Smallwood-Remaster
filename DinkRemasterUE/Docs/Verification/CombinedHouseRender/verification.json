@@ -1,0 +1,19 @@
+{
+  "result": "PASS for bounded combined door route and input freeze",
+  "runtime_head": "7a22c2f608e4d848d823eb7870442eadf8c3618a",
+  "game_pid": 148811,
+  "display_pid": 146588,
+  "input_files": 6909,
+  "input_changes": [],
+  "exit": "actual heldW PASS",
+  "return": "actual heldW PASS",
+  "quit": "normal console quit; owned display stopped",
+  "first_driver": "Interrupted after first steps; resumed same game,currentposition,no teleport or restart",
+  "lighting_acceptance": false,
+  "limits": [
+    "Hero/center remain dark; old hero still loaded.",
+    "Lumen visualization diagnostic separately crashed RADV compute pipeline; frozen console image is invalid coverage.",
+    "No SDF/card coverage or engine/driver fix established.",
+    "Original user-visible SurfaceDelivery and movement host session untouched."
+  ]
+}

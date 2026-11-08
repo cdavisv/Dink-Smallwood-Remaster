@@ -1,0 +1,13 @@
+{
+  "head": "7a22c2f608e4d848d823eb7870442eadf8c3618a",
+  "project": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE",
+  "normal_git_lfs_checkout": true,
+  "source_content_files_checked": 3040,
+  "independent_inode_check": true,
+  "author_receipts_absent": true,
+  "DLLs_copied": false,
+  "ImportData_copied": false,
+  "engine_read_only_policy": "Installed UE5.8.4 unchanged; normal UBT cache/log writes permitted by existing project guide",
+  "build_command": "nice -n 10 taskset -c 10,11 Scripts/build.sh -MaxParallelActions=2 -NoUBA",
+  "native_verification_requires_ImportData": false
+}
