@@ -1,0 +1,145 @@
+command,category,args,blocking,lines,external_calls,comments,fix_intent,var_writes,scripts,note
+(line) say_stop,dialogue,text #spk/#x #y #col,1,1702,0,0,0,0,118,spoken line
+wait,timing,ms,1,1549,0,0,1,0,149,pause the script
+unfreeze,control,sprite,0,377,0,0,1,0,105,undo freeze
+create_sprite,sprites,"x, y, brain, seq, frame",0,0,342,0,0,0,0,"spawn an actor at screen pixels (statement form, handle unused)"
+(line) say,dialogue,text #spk/#x #y #col,0,339,0,0,0,0,161,spoken line
+playsound,audio,"sound, speed_hz, random_hz, sprite, repeat",0,298,0,0,0,0,136,sprite 0 = not positional
+init,animation,dink.ini line,0,289,0,0,0,0,17,redefine a sequence at run time (weapon animation sets)
+freeze,control,sprite,0,269,0,0,1,0,116,stop the sprite's brain / player control (1 = Dink)
+sp_brain,sprites,"sprite, value",0,251,12,0,0,0,160,set the property (-1 = leave unchanged)
+sp_dir,sprites,"sprite, value",0,152,65,0,0,0,44,set the property (-1 = leave unchanged)
+move_stop,movement,"sprite, dir, stop_coord, ignore_hardness",1,216,0,0,0,0,53,"as move, but the script waits until the sprite arrives"
+sp_seq,sprites,"sprite, value",0,212,0,0,0,0,94,set the property (-1 = leave unchanged)
+sp_speed,sprites,"sprite, value",0,212,0,0,0,0,126,set the property (-1 = leave unchanged)
+random,other,"int, int",0,0,178,0,0,0,0,
+sp_timing,sprites,"sprite, value",0,172,0,0,0,0,115,set the property (-1 = leave unchanged)
+sp_base_walk,sprites,"sprite, value",0,162,0,0,0,0,108,set the property (-1 = leave unchanged)
+sp_script,sprites,"sprite, script",0,153,0,0,0,0,67,attach a script to a sprite and run its main
+sp_pframe,sprites,"sprite, value",0,141,4,0,0,0,63,set the property (-1 = leave unchanged)
+sp_pseq,sprites,"sprite, value",0,140,4,0,0,0,69,set the property (-1 = leave unchanged)
+sp_y,sprites,"sprite, value",0,41,97,0,0,0,27,set the property (-1 = leave unchanged)
+sp_x,sprites,"sprite, value",0,39,90,0,0,0,25,set the property (-1 = leave unchanged)
+kill_this_task,scripts,,1,118,0,0,0,0,74,end this script instance
+choice_start,ui,"set_y, title_color",1,115,0,0,0,0,61,a menu follows (Ink choices)
+sp_touch_damage,sprites,"sprite, value",0,110,0,0,0,0,78,set the property (-1 = leave unchanged)
+sp_editor_num,sprites,"sprite, value",0,0,93,0,0,0,0,set the property (-1 = leave unchanged)
+sp_target,sprites,"sprite, value",0,86,7,0,0,0,47,set the property (-1 = leave unchanged)
+editor_type,world,"editor_sprite, type",0,92,0,0,0,0,92,"persistent per-screen override (1 kill, 2-5 draw-only/hard, 6-8 respawn)"
+sp_active,sprites,"sprite, 0/1",0,79,0,0,1,0,47,0 removes the actor
+sp_hitpoints,sprites,"sprite, value",0,76,2,0,0,0,72,set the property (-1 = leave unchanged)
+sp_nohit,sprites,"sprite, value",0,69,0,0,0,0,58,set the property (-1 = leave unchanged)
+move,movement,"sprite, dir, stop_coord, ignore_hardness",0,61,0,0,0,0,17,"walk in numpad dir until x (dirs 4,6,1,3,7,9) or y (dirs 2,8) passes stop_coord"
+external,scripts,"script, procedure, args...",1,52,0,0,0,0,52,run another script's procedure and wait for it (base game: drop tables)
+savegameinfo,other,,0,0,50,0,0,0,0,
+sp_brain_parm,sprites,"sprite, value",0,50,0,0,0,0,33,set the property (-1 = leave unchanged)
+sp_exp,sprites,"sprite, value",0,43,0,0,0,0,42,set the property (-1 = leave unchanged)
+sp_strength,sprites,"sprite, value",0,42,0,0,0,0,36,set the property (-1 = leave unchanged)
+(line) say_stop_npc,dialogue,text #spk/#x #y #col,1,42,0,0,0,0,4,spoken line
+=gold,fact-write,op value,0,0,0,0,0,40,25,engine-bound stat write
+sp,sprites,editor_sprite,0,0,39,0,0,0,0,query used as a statement
+sp_frame,sprites,"sprite, value",0,38,0,0,0,0,31,set the property (-1 = leave unchanged)
+sp_frame_delay,sprites,"sprite, value",0,37,0,0,0,0,21,set the property (-1 = leave unchanged)
+(line) say_stop_xy,dialogue,text #spk/#x #y #col,1,37,0,0,0,0,4,spoken line
+get_sprite_with_this_brain,other,"int, int",0,0,36,0,0,0,0,
+sp_distance,sprites,"sprite, value",0,36,0,0,0,0,30,set the property (-1 = leave unchanged)
+sp_base_attack,sprites,"sprite, value",0,35,0,0,0,0,31,set the property (-1 = leave unchanged)
+=vision,fact-write,op value,0,0,0,0,0,33,22,engine-bound stat write
+screenlock,world,0/1,0,32,0,0,0,0,20,lock the screen exits (locked fight)
+playmidi,audio,file,0,30,0,0,0,0,25,start music track
+sp_attack_wait,sprites,"sprite, value",0,29,0,0,0,0,29,set the property (-1 = leave unchanged)
+sp_defense,sprites,"sprite, value",0,28,0,0,0,0,26,set the property (-1 = leave unchanged)
+sp_range,sprites,"sprite, value",0,28,0,0,0,0,25,set the property (-1 = leave unchanged)
+sp_hard,sprites,"sprite, value",0,27,0,0,1,0,23,set the property (-1 = leave unchanged)
+script_attach,sprites,sprite,0,26,0,0,0,0,25,re-own the running script (1000 = survive screen change)
+editor_frame,world,"editor_sprite, frame",0,25,0,0,0,0,25,persistent override of the frame
+editor_seq,world,"editor_sprite, seq",0,25,0,0,0,0,25,persistent override of the placement's seq
+draw_hard_sprite,world,sprite,0,24,0,0,1,0,21,add a sprite's hardbox to collision
+sp_base_death,sprites,"sprite, value",0,23,0,0,0,0,23,set the property (-1 = leave unchanged)
+sp_notouch,sprites,"sprite, value",0,23,0,0,0,0,23,set the property (-1 = leave unchanged)
+sp_nodraw,sprites,"sprite, value",0,20,0,0,0,0,10,set the property (-1 = leave unchanged)
+sp_que,sprites,"sprite, value",0,20,0,0,0,0,16,set the property (-1 = leave unchanged)
+=life,fact-write,op value,0,0,0,0,0,19,15,engine-bound stat write
+=player_map,fact-write,op value,0,0,0,0,0,19,18,engine-bound stat write
+draw_screen,world,,1,19,0,0,0,0,18,show the loaded screen; yields one frame
+load_screen,world,,0,19,0,0,0,0,18,load the screen in &player_map (warp)
+add_item,inventory,"script, seq, frame",0,18,0,0,0,0,13,give an item
+draw_status,ui,,0,18,0,0,0,0,17,redraw the status bar
+fade_down,screen,,1,17,0,0,0,0,16,fade to black; waits
+fade_up,screen,,1,17,0,0,0,0,16,fade back in; waits
+free_items,inventory,,0,0,15,0,0,0,0,query used as a statement (free slots)
+sp_nocontrol,sprites,"sprite, value",0,14,0,0,0,0,14,set the property (-1 = leave unchanged)
+=strength,fact-write,op value,0,0,0,0,0,13,8,engine-bound stat write
+sp_noclip,sprites,"sprite, value",0,13,0,0,0,0,6,set the property (-1 = leave unchanged)
+sp_mx,sprites,"sprite, value",0,12,0,0,0,0,3,set the property (-1 = leave unchanged)
+sp_my,sprites,"sprite, value",0,12,0,0,0,0,3,set the property (-1 = leave unchanged)
+sp_reverse,sprites,"sprite, value",0,12,0,0,0,0,5,set the property (-1 = leave unchanged)
+sp_flying,sprites,"sprite, value",0,11,0,0,0,0,10,set the property (-1 = leave unchanged)
+buttoninfo,other,,0,0,10,0,0,0,0,
+sp_kill_wait,sprites,"sprite, value",0,10,0,0,0,0,10,set the property (-1 = leave unchanged)
+count_item,other,str,0,0,9,0,0,0,0,
+set_callback_random,scripts,"procedure, min_ms, random_ms",0,9,0,0,0,0,9,repeating timer into a procedure
+sp_attack_hit_sound,sprites,"sprite, value",0,9,0,0,0,0,6,set the property (-1 = leave unchanged)
+sp_size,sprites,"sprite, value",0,9,0,0,0,0,5,set the property (-1 = leave unchanged)
+=magic_cost,fact-write,op value,0,0,0,0,0,8,4,engine-bound stat write
+hurt,combat,"sprite, damage",0,8,0,0,0,0,5,apply damage
+add_magic,inventory,"script, seq, frame",0,7,0,0,0,0,6,give a spell
+get_version,other,,0,0,7,0,0,0,0,
+kill_shadow,other,int,0,7,0,0,0,0,4,
+sp_brain_parm2,sprites,"sprite, value",0,7,0,0,0,0,7,set the property (-1 = leave unchanged)
+sp_kill,sprites,"sprite, value",0,7,0,0,0,0,5,set the property (-1 = leave unchanged)
+spawn,scripts,script,0,7,0,0,0,0,7,start another script's main in parallel
+draw_hard_map,world,,0,6,0,0,0,0,4,rebuild collision
+fill_screen,screen,palette_index,0,6,0,0,0,0,5,fill the screen with a colour
+kill_this_item,inventory,script,0,6,0,0,0,0,2,remove an item
+(line) say_xy,dialogue,text #spk/#x #y #col,0,5,0,0,0,0,5,spoken line
+=exp,fact-write,op value,0,0,0,0,0,4,4,engine-bound stat write
+=magic,fact-write,op value,0,0,0,0,0,4,4,engine-bound stat write
+=magic_level,fact-write,op value,0,0,0,0,0,4,4,engine-bound stat write
+compare_weapon,other,str,0,0,4,0,0,0,0,
+kill_game,system,,1,4,0,0,0,0,4,quit; ends the script
+sp_attack_hit_sound_speed,sprites,"sprite, value",0,4,0,0,0,0,4,set the property (-1 = leave unchanged)
+sp_follow,sprites,"sprite, value",0,4,0,0,0,0,2,set the property (-1 = leave unchanged)
+=defense,fact-write,op value,0,0,0,0,0,3,3,engine-bound stat write
+=update_status,fact-write,op value,0,0,0,0,0,3,3,engine-bound stat write
+activate_bow,combat,,1,3,0,0,0,0,3,start the bow charge; yields
+compare_sprite_script,other,"int, str",0,0,3,0,0,0,0,
+game_exist,other,int,0,0,3,0,0,0,0,
+get_last_bow_power,other,,0,0,3,0,0,0,0,
+get_rand_sprite_with_this_brain,other,"int, int",0,0,3,0,0,0,0,
+kill_cur_item,inventory,,1,3,0,0,0,0,3,remove the armed item; ends the item script
+load_game,system,slot,1,3,0,0,0,0,3,ends the script
+set_dink_speed,stats,speed,0,3,0,0,0,0,2,Dink's walk speed
+set_mode,system,mode,0,3,0,0,0,0,3,engine mode switch (title screen)
+sp_disabled,sprites,"sprite, value",0,3,0,0,0,0,2,set the property (-1 = leave unchanged)
+stopmidi,audio,,0,3,0,0,0,0,3,stop music
+=cur_weapon,fact-write,op value,0,0,0,0,0,2,2,engine-bound stat write
+=lifemax,fact-write,op value,0,0,0,0,0,2,2,engine-bound stat write
+add_exp,stats,"amount, sprite",0,2,0,0,0,0,2,experience with floating number at the sprite
+arm_weapon,inventory,,0,2,0,0,0,0,2,arm &cur_weapon
+dink_can_walk_off_screen,world,0/1,0,2,0,0,0,0,1,
+force_vision,world,vision,0,2,0,0,0,0,2,reload the screen in another &vision
+get_burn,other,,0,0,2,0,0,0,0,
+inside_box,other,"int, int, int, int, int, int",0,0,2,0,0,0,0,
+is_script_attached,other,int,0,0,2,0,0,0,0,
+reset_timer,system,,0,2,0,0,0,0,2,
+restart_game,system,,1,2,0,0,0,0,2,ends the script
+run_script_by_number,scripts,"script_instance, procedure",0,2,0,0,0,0,2,
+save_game,system,slot,0,2,0,0,0,0,2,
+show_popup,ui,"text, ms",0,2,0,0,0,0,2,
+sp_sound,sprites,"sprite, value",0,2,0,0,0,0,2,set the property (-1 = leave unchanged)
+=level,fact-write,op value,0,0,0,0,0,1,1,engine-bound stat write
+count_magic,other,str,0,0,1,0,0,0,0,
+free_magic,inventory,,0,0,1,0,0,0,0,query used as a statement
+is_base_game,other,,0,0,1,0,0,0,0,
+scripts_used,other,,0,0,1,0,0,0,0,
+set_button,ui,"button, action",0,1,0,0,0,0,1,key binding (escape menu)
+show_bmp,screen,"file, show_map_dot, unused",1,1,0,0,0,0,1,full-screen picture until a key
+sp_base_idle,sprites,"sprite, value",0,1,0,0,0,0,1,set the property (-1 = leave unchanged)
+stop_entire_game,system,0/1,0,1,0,0,0,0,1,pause everything but this script
+stopcd,audio,,0,1,0,0,0,0,1,legacy CD audio stop
+debug,other,str,0,0,0,59,0,0,32,
+load_sound,other,"str, int",0,0,0,49,0,0,1,
+make_global_int,other,"str, int",0,0,0,63,0,0,1,
+preload_seq,other,int,0,0,0,681,0,0,142,
+sp_prop,unknown-command,,0,0,0,0,2,0,2,"not an engine command: dink.cpp has no such name, so the engine logs it and skips the line; recorded only as a switched-off intent (see the unknown_call rows of review_queue.csv); the director need not run it"

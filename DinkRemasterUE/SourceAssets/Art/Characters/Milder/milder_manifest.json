@@ -1,0 +1,165 @@
+{
+  "schema": "dink-character-art/1",
+  "assets": {
+    "SK_Milder": {
+      "class": "character_humanoid",
+      "fbx": "Milder/Export/SK_Milder_LOD0.fbx",
+      "lod_fbx": [
+        "Milder/Export/SK_Milder_LOD0.fbx",
+        "Milder/Export/SK_Milder_LOD1.fbx",
+        "Milder/Export/SK_Milder_LOD2.fbx",
+        "Milder/Export/SK_Milder_LOD3.fbx"
+      ],
+      "dimensions_m": [
+        1.1192829608917236,
+        0.49385011196136475,
+        1.8293490409851074
+      ],
+      "lod_union_dimensions_m": [
+        1.1205005645751953,
+        0.49494224786758423,
+        1.8325749635696411
+      ],
+      "materials": [
+        "MI_Milder_Skin",
+        "MI_Milder_Eyes",
+        "MI_Milder_Hair",
+        "MI_Milder_BrowLash",
+        "MI_Milder_Wardrobe"
+      ],
+      "content_folder": "/Game/Dink/NPC/Milder",
+      "reference_skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+      "source_credits": "CC0 MakeHuman anatomical body/eyes/hair; original project-authored plate armor,blue cloth and leather equipment. Epic skeletal reference transforms are separate UE project content, not CC0 geometry.",
+      "source_blend": "Milder/SK_Milder.blend"
+    }
+  },
+  "materials": {
+    "MI_Milder_Skin": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.08,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Eyes": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Hair": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_BrowLash": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Wardrobe": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    }
+  },
+  "replacements": [],
+  "placements": [],
+  "script_profiles": {
+    "s1-bul": {
+      "mesh": "SK_Milder",
+      "offset_cm": [
+        0,
+        0,
+        -60
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "capsule_radius_cm": 28,
+      "capsule_halfheight_cm": 92
+    }
+  },
+  "source_credits": "CC0 MakeHuman anatomical base/skin/eyes/hair plus original project-authored plate armor,blue cloth and leather equipment. Epic reference skeleton data is separate project content, not CC0 geometry.",
+  "paths_relative_to": "SourceAssets/Art/Characters",
+  "status": "candidate"
+}

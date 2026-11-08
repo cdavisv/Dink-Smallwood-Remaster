@@ -1,0 +1,197 @@
+{
+  "status": "source-layout candidate; not yet imported or physically verified",
+  "schema": "dink-art/1",
+  "fences": [
+    {
+      "name": "OuterWest",
+      "a_pixel": [
+        23.5,
+        99
+      ],
+      "b_pixel": [
+        23.5,
+        400
+      ],
+      "length_m": 29.834538732242713,
+      "modules": 8
+    },
+    {
+      "name": "OuterNW",
+      "a_pixel": [
+        23.5,
+        99
+      ],
+      "b_pixel": [
+        110,
+        57.5
+      ],
+      "length_m": 9.412573224756233,
+      "modules": 3
+    },
+    {
+      "name": "OuterNorth",
+      "a_pixel": [
+        110,
+        57.5
+      ],
+      "b_pixel": [
+        432,
+        57.5
+      ],
+      "length_m": 31.66710500572693,
+      "modules": 8
+    },
+    {
+      "name": "OuterNE",
+      "a_pixel": [
+        432,
+        57.5
+      ],
+      "b_pixel": [
+        516,
+        106
+      ],
+      "length_m": 9.613534892697691,
+      "modules": 3
+    },
+    {
+      "name": "OuterEastTop",
+      "a_pixel": [
+        516,
+        106
+      ],
+      "b_pixel": [
+        600,
+        111.5
+      ],
+      "length_m": 8.288234157869633,
+      "modules": 3
+    },
+    {
+      "name": "PenNorth",
+      "a_pixel": [
+        136.5,
+        147.5
+      ],
+      "b_pixel": [
+        476,
+        147.5
+      ],
+      "length_m": 33.40404169079298,
+      "modules": 9
+    },
+    {
+      "name": "PenEast",
+      "a_pixel": [
+        476,
+        147.5
+      ],
+      "b_pixel": [
+        476,
+        366.5
+      ],
+      "length_m": 21.740659489234886,
+      "modules": 6
+    },
+    {
+      "name": "PenSouth",
+      "a_pixel": [
+        136.5,
+        366.5
+      ],
+      "b_pixel": [
+        476,
+        366.5
+      ],
+      "length_m": 33.44274083383689,
+      "modules": 9
+    },
+    {
+      "name": "PenWestUpper",
+      "a_pixel": [
+        136.5,
+        147.5
+      ],
+      "b_pixel": [
+        136.5,
+        230
+      ],
+      "length_m": 8.180416352340371,
+      "modules": 3
+    },
+    {
+      "name": "PenWestLower",
+      "a_pixel": [
+        136.5,
+        286
+      ],
+      "b_pixel": [
+        136.5,
+        366.5
+      ],
+      "length_m": 7.982103228647242,
+      "modules": 2
+    }
+  ],
+  "gate": {
+    "west_x_pixel": 136.5,
+    "north_pixel": 230,
+    "south_pixel": 286,
+    "width_m": 5.552767463406842,
+    "capsule_diameter_m": 0.56,
+    "clearance_m": 4.992767463406842,
+    "route_center_pixel": [
+      136.5,
+      258
+    ]
+  },
+  "feeding_scatter_box": [
+    200,
+    180,
+    400,
+    306
+  ],
+  "feeding_player_fixture": [
+    300,
+    250
+  ],
+  "milder_corridor": {
+    "from_pixel": [
+      680,
+      200
+    ],
+    "to_pixel": [
+      542,
+      338
+    ],
+    "coordinate_space": "original DinkC engine pixels; x includes20px margin",
+    "canonical_from_pixel": [
+      660,
+      200
+    ],
+    "canonical_to_pixel": [
+      522,
+      338
+    ],
+    "keep_clear_x_min": 500,
+    "keep_clear_coordinate_space": "canonical source screen pixels",
+    "direction": 1
+  },
+  "retired_visual_only_fences": [
+    "S407_P18",
+    "S407_P23"
+  ],
+  "source_type2_overlapping_hardness": [
+    "S407_P60",
+    "S407_P62"
+  ],
+  "original_scripts_preserved": true,
+  "new_environment_colliders": "ground and fence only",
+  "asset_dependencies": {
+    "new": "art_manifest.json",
+    "existing": "../StonebrookExterior/exterior_manifest.json"
+  },
+  "element_count": 135,
+  "grain_bottom_cm": 0.6,
+  "max_soil_surface_cm": 0.496
+}

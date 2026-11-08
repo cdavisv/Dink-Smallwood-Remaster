@@ -1,0 +1,17 @@
+{
+  "compared_to": "source_delivery_before_lodfix.json",
+  "changed_fbx_files": [
+    "Export/Game/Dink/Foliage/StonebrookFields/SM_Pine_Stonebrook_01_LOD1.fbx",
+    "Export/Game/Dink/Foliage/StonebrookFields/SM_Pine_Stonebrook_01_LOD2.fbx"
+  ],
+  "unchanged_fbx_count": 193,
+  "lod0_and_ucx_fbx_unchanged": true,
+  "terrain_fbx_unchanged": true,
+  "aquatic_roots_cm": -80,
+  "new_lod_triangles": [
+    22444,
+    9004,
+    6764
+  ],
+  "validator_unexpected_errors": 0
+}

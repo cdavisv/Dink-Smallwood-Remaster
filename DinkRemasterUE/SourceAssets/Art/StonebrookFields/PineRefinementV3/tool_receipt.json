@@ -1,0 +1,21 @@
+{
+  "tool": "Sapling Tree Gen",
+  "version": "0.4.0",
+  "blender_version_min": "5.2.0",
+  "license": "GPL-3.0-or-later",
+  "official_listing": "https://extensions.blender.org/add-ons/sapling-tree-gen/",
+  "official_source": "https://projects.blender.org/extensions/add_curve_sapling",
+  "maintainer_source_mirror": "https://github.com/meet-brad-ch/add_curve_sapling",
+  "download": "https://github.com/meet-brad-ch/add_curve_sapling/releases/download/v0.4.0/sapling_tree_gen-0.4.0.zip",
+  "published_sha256": "3022b572ab0000754cf9b77740b8161b86bb85380c959b321702fa9347cadb4e",
+  "actual_sha256": "3022b572ab0000754cf9b77740b8161b86bb85380c959b321702fa9347cadb4e",
+  "preset": "small_pine",
+  "preset_sha256": "dacded93fbf3b01704c50f0ff21a866db95f81724a9391dd73fec570731ddfd9",
+  "primary_guides": [
+    "https://projects.blender.org/extensions/add_curve_sapling/src/branch/main/docs/presets.md",
+    "https://github.com/meet-brad-ch/add_curve_sapling/blob/main/README.md"
+  ],
+  "installation": "isolated /tmp/dink-qa-tools/sapling; per-processPythonimport; no global Blenderaddon preferences or desktopconfig changed",
+  "access_note": "Official Blenderhost archive denied403; maintainerGitHubrelease linked by BlenderProjects downloaded and matched publishedSHA256SUMS",
+  "geometry": "Project parameter-generated branching; originalproject-modeled pairedneedlePBR; no downloadedprebuilttree mesh orphoto texture."
+}

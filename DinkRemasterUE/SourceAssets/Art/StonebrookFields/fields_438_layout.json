@@ -1,0 +1,3145 @@
+{
+  "schema": "dink-art/1",
+  "screen": 438,
+  "hide_screen_visuals": [
+    438
+  ],
+  "authored_collision_screens": [
+    438
+  ],
+  "preserve_low_collision_screens": [
+    438
+  ],
+  "hide_origins": [
+    "S438_P01"
+  ],
+  "replacements": [],
+  "elements": [
+    {
+      "name": "SM_Fields_438_Land_00_00_00",
+      "mesh": "SM_Fields_438_Land_00_00_00",
+      "source_pixel": [
+        -1.3524611,
+        61.7845916
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_01_00",
+      "mesh": "SM_Fields_438_Land_00_01_00",
+      "source_pixel": [
+        -1.3537654,
+        123.5642796
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_02_00",
+      "mesh": "SM_Fields_438_Land_00_02_00",
+      "source_pixel": [
+        -1.3550721,
+        185.3439727
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_03_00",
+      "mesh": "SM_Fields_438_Land_00_03_00",
+      "source_pixel": [
+        -1.3563814,
+        247.123671
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_04_00",
+      "mesh": "SM_Fields_438_Land_00_04_00",
+      "source_pixel": [
+        -1.3576932,
+        308.9033745
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_05_00",
+      "mesh": "SM_Fields_438_Land_00_05_00",
+      "source_pixel": [
+        -1.3590076,
+        370.6830832
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_06_00",
+      "mesh": "SM_Fields_438_Land_00_06_00",
+      "source_pixel": [
+        -0.664514,
+        400.8658212
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_00_00",
+      "mesh": "SM_Fields_438_Land_01_00_00",
+      "source_pixel": [
+        59.347667,
+        61.4452255
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_01_00",
+      "mesh": "SM_Fields_438_Land_01_01_00",
+      "source_pixel": [
+        58.0510412,
+        123.1154225
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_02_00",
+      "mesh": "SM_Fields_438_Land_01_02_00",
+      "source_pixel": [
+        56.7519212,
+        184.7907296
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_03_00",
+      "mesh": "SM_Fields_438_Land_01_03_00",
+      "source_pixel": [
+        55.4502994,
+        246.4711622
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_04_00",
+      "mesh": "SM_Fields_438_Land_01_04_00",
+      "source_pixel": [
+        54.1461683,
+        308.1567359
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_05_00",
+      "mesh": "SM_Fields_438_Land_01_05_00",
+      "source_pixel": [
+        52.8395204,
+        369.847466
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_06_00",
+      "mesh": "SM_Fields_438_Land_01_06_00",
+      "source_pixel": [
+        52.1788213,
+        400.9977371
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_00_00",
+      "mesh": "SM_Fields_438_Land_02_00_00",
+      "source_pixel": [
+        120.0471551,
+        61.1071707
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_01_00",
+      "mesh": "SM_Fields_438_Land_02_01_00",
+      "source_pixel": [
+        118.808746,
+        122.6580941
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_02_00",
+      "mesh": "SM_Fields_438_Land_02_02_00",
+      "source_pixel": [
+        117.5679639,
+        184.2138792
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_03_00",
+      "mesh": "SM_Fields_438_Land_02_03_00",
+      "source_pixel": [
+        116.3248017,
+        245.7745407
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_04_00",
+      "mesh": "SM_Fields_438_Land_02_04_00",
+      "source_pixel": [
+        115.0792522,
+        307.3400931
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_05_00",
+      "mesh": "SM_Fields_438_Land_02_05_00",
+      "source_pixel": [
+        113.8313083,
+        368.9105512
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_06_00",
+      "mesh": "SM_Fields_438_Land_02_06_00",
+      "source_pixel": [
+        113.1800753,
+        400.9957893
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_00_00",
+      "mesh": "SM_Fields_438_Land_03_00_00",
+      "source_pixel": [
+        180.746007,
+        60.7704196
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_01_00",
+      "mesh": "SM_Fields_438_Land_03_01_00",
+      "source_pixel": [
+        179.5655884,
+        122.2025327
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_02_00",
+      "mesh": "SM_Fields_438_Land_03_02_00",
+      "source_pixel": [
+        178.3829166,
+        183.6392621
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_03_00",
+      "mesh": "SM_Fields_438_Land_03_03_00",
+      "source_pixel": [
+        177.1979851,
+        245.0806213
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_04_00",
+      "mesh": "SM_Fields_438_Land_03_04_00",
+      "source_pixel": [
+        176.010787,
+        306.5266243
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_05_00",
+      "mesh": "SM_Fields_438_Land_03_05_00",
+      "source_pixel": [
+        174.8213155,
+        367.9772848
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_06_00",
+      "mesh": "SM_Fields_438_Land_03_06_00",
+      "source_pixel": [
+        174.1813256,
+        400.9938491
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_00_00",
+      "mesh": "SM_Fields_438_Land_04_00_00",
+      "source_pixel": [
+        241.4442262,
+        60.4349646
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_01_00",
+      "mesh": "SM_Fields_438_Land_04_01_00",
+      "source_pixel": [
+        240.3215732,
+        121.7487282
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_02_00",
+      "mesh": "SM_Fields_438_Land_04_02_00",
+      "source_pixel": [
+        239.1967857,
+        183.0668651
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_03_00",
+      "mesh": "SM_Fields_438_Land_04_03_00",
+      "source_pixel": [
+        238.0698573,
+        244.3893883
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_04_00",
+      "mesh": "SM_Fields_438_Land_04_04_00",
+      "source_pixel": [
+        236.9407816,
+        305.7163108
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_05_00",
+      "mesh": "SM_Fields_438_Land_04_05_00",
+      "source_pixel": [
+        235.8095523,
+        367.0476456
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_06_00",
+      "mesh": "SM_Fields_438_Land_04_06_00",
+      "source_pixel": [
+        235.1825722,
+        400.9919165
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_00_00",
+      "mesh": "SM_Fields_438_Land_05_00_00",
+      "source_pixel": [
+        302.1418164,
+        60.1007981
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_01_00",
+      "mesh": "SM_Fields_438_Land_05_01_00",
+      "source_pixel": [
+        301.0767056,
+        121.2966702
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_02_00",
+      "mesh": "SM_Fields_438_Land_05_02_00",
+      "source_pixel": [
+        300.0095774,
+        182.4966755
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_03_00",
+      "mesh": "SM_Fields_438_Land_05_03_00",
+      "source_pixel": [
+        298.9404259,
+        243.7008261
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_04_00",
+      "mesh": "SM_Fields_438_Land_05_04_00",
+      "source_pixel": [
+        297.8692451,
+        304.9091342
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_05_00",
+      "mesh": "SM_Fields_438_Land_05_05_00",
+      "source_pixel": [
+        296.7960291,
+        366.1216121
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_06_00",
+      "mesh": "SM_Fields_438_Land_05_06_00",
+      "source_pixel": [
+        296.1838152,
+        400.9899913
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_00_00",
+      "mesh": "SM_Fields_438_Land_06_00_00",
+      "source_pixel": [
+        362.8387813,
+        59.7679129
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_01_00",
+      "mesh": "SM_Fields_438_Land_06_01_00",
+      "source_pixel": [
+        361.8309903,
+        120.8463488
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_02_00",
+      "mesh": "SM_Fields_438_Land_06_02_00",
+      "source_pixel": [
+        360.8212979,
+        181.9286804
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_03_00",
+      "mesh": "SM_Fields_438_Land_06_03_00",
+      "source_pixel": [
+        360.3629693,
+        209.6190268
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_05_00",
+      "mesh": "SM_Fields_438_Land_06_05_00",
+      "source_pixel": [
+        357.7807562,
+        365.1991634
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_06_00",
+      "mesh": "SM_Fields_438_Land_06_06_00",
+      "source_pixel": [
+        357.1850545,
+        400.9880736
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_00_00",
+      "mesh": "SM_Fields_438_Land_07_00_00",
+      "source_pixel": [
+        423.5351244,
+        59.4363015
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_01_00",
+      "mesh": "SM_Fields_438_Land_07_01_00",
+      "source_pixel": [
+        422.5844324,
+        120.3977538
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_02_00",
+      "mesh": "SM_Fields_438_Land_07_02_00",
+      "source_pixel": [
+        421.6319536,
+        181.3628671
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_03_00",
+      "mesh": "SM_Fields_438_Land_07_03_00",
+      "source_pixel": [
+        420.6776827,
+        242.3316518
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_04_00",
+      "mesh": "SM_Fields_438_Land_07_04_00",
+      "source_pixel": [
+        479.136813,
+        300.0200845
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_04_01",
+      "mesh": "SM_Fields_438_Land_07_04_01",
+      "source_pixel": [
+        479.9775884,
+        302.5149747
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_05_00",
+      "mesh": "SM_Fields_438_Land_07_05_00",
+      "source_pixel": [
+        479.3540273,
+        346.1526171
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_05_01",
+      "mesh": "SM_Fields_438_Land_07_05_01",
+      "source_pixel": [
+        469.0061431,
+        363.5258751
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_06_00",
+      "mesh": "SM_Fields_438_Land_07_06_00",
+      "source_pixel": [
+        418.1862902,
+        400.9861633
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_00_00",
+      "mesh": "SM_Fields_438_Land_08_00_00",
+      "source_pixel": [
+        484.2308494,
+        59.1059565
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_01_00",
+      "mesh": "SM_Fields_438_Land_08_01_00",
+      "source_pixel": [
+        483.3370367,
+        119.9508754
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_02_00",
+      "mesh": "SM_Fields_438_Land_08_02_00",
+      "source_pixel": [
+        482.4415504,
+        180.799223
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_03_00",
+      "mesh": "SM_Fields_438_Land_08_03_00",
+      "source_pixel": [
+        481.5443858,
+        241.651009
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_04_00",
+      "mesh": "SM_Fields_438_Land_08_04_00",
+      "source_pixel": [
+        480.645538,
+        302.5062436
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_05_00",
+      "mesh": "SM_Fields_438_Land_08_05_00",
+      "source_pixel": [
+        479.7450022,
+        363.3649367
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_06_00",
+      "mesh": "SM_Fields_438_Land_08_06_00",
+      "source_pixel": [
+        479.1875223,
+        400.9842604
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_00_00",
+      "mesh": "SM_Fields_438_Land_09_00_00",
+      "source_pixel": [
+        544.9259598,
+        58.7768708
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_01_00",
+      "mesh": "SM_Fields_438_Land_09_01_00",
+      "source_pixel": [
+        544.0888079,
+        119.5057037
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_02_00",
+      "mesh": "SM_Fields_438_Land_09_02_00",
+      "source_pixel": [
+        543.2500946,
+        180.2377356
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_03_00",
+      "mesh": "SM_Fields_438_Land_09_03_00",
+      "source_pixel": [
+        542.4098154,
+        240.9729756
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_04_00",
+      "mesh": "SM_Fields_438_Land_09_04_00",
+      "source_pixel": [
+        541.5679658,
+        301.7114331
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_05_00",
+      "mesh": "SM_Fields_438_Land_09_05_00",
+      "source_pixel": [
+        540.7245412,
+        362.4531173
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_06_00",
+      "mesh": "SM_Fields_438_Land_09_06_00",
+      "source_pixel": [
+        540.1890203,
+        400.9629959
+      ],
+      "height_cm": 0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_03_00",
+      "mesh": "SM_Fields_438_Bank_05_03_00",
+      "source_pixel": [
+        323.753255,
+        243.4209041
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_04_00",
+      "mesh": "SM_Fields_438_Bank_05_04_00",
+      "source_pixel": [
+        322.9525883,
+        304.577733
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_05_00",
+      "mesh": "SM_Fields_438_Bank_05_05_00",
+      "source_pixel": [
+        323.0481737,
+        360.0960454
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_03_00",
+      "mesh": "SM_Fields_438_Bank_06_03_00",
+      "source_pixel": [
+        359.8096985,
+        243.014919
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_04_00",
+      "mesh": "SM_Fields_438_Bank_06_04_00",
+      "source_pixel": [
+        359.2951226,
+        274.0452854
+      ],
+      "height_cm": -58.4303,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_05_00",
+      "mesh": "SM_Fields_438_Bank_06_05_00",
+      "source_pixel": [
+        357.7807562,
+        365.1991634
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_06_00",
+      "mesh": "SM_Fields_438_Bank_06_06_00",
+      "source_pixel": [
+        363.1101419,
+        376.8561412
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_03_00",
+      "mesh": "SM_Fields_438_Bank_07_03_00",
+      "source_pixel": [
+        420.6776827,
+        242.3316518
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_04_00",
+      "mesh": "SM_Fields_438_Bank_07_04_00",
+      "source_pixel": [
+        419.7216145,
+        303.3041187
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_05_00",
+      "mesh": "SM_Fields_438_Bank_07_05_00",
+      "source_pixel": [
+        418.7637439,
+        364.2802785
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_06_00",
+      "mesh": "SM_Fields_438_Bank_07_06_00",
+      "source_pixel": [
+        418.5718228,
+        376.4842325
+      ],
+      "height_cm": -0.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_05_04_00",
+      "mesh": "SM_Fields_438_Water_05_04_00",
+      "source_pixel": [
+        345.8777973,
+        304.2753033
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_05_05_00",
+      "mesh": "SM_Fields_438_Water_05_05_00",
+      "source_pixel": [
+        342.8615826,
+        344.2137961
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_06_04_00",
+      "mesh": "SM_Fields_438_Water_06_04_00",
+      "source_pixel": [
+        358.7961865,
+        304.1050762
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_06_05_00",
+      "mesh": "SM_Fields_438_Water_06_05_00",
+      "source_pixel": [
+        358.0108352,
+        351.3660765
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_07_04_00",
+      "mesh": "SM_Fields_438_Water_07_04_00",
+      "source_pixel": [
+        419.7216145,
+        303.3041187
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_07_05_00",
+      "mesh": "SM_Fields_438_Water_07_05_00",
+      "source_pixel": [
+        418.9882259,
+        350.0001718
+      ],
+      "height_cm": -80.0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "S438_P01_Tree",
+      "mesh": "SM_Oak_Stonebrook_01",
+      "source_pixel": [
+        236,
+        197
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        74.90061849681344,
+        0
+      ],
+      "scale": [
+        1.1,
+        1.1,
+        1.1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SourceLowRock_0",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        107.9383204,
+        191.9655418
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.7777339104202055,
+        1.3922122700932398,
+        0.9800810599666352
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_1",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        85.067553,
+        217.5652905
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.9746331764461604,
+        2.0307042728115534,
+        1.0886334367999917
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_5",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        236.4909076,
+        332.0186283
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        3.049059345947241,
+        2.133236818251644,
+        1.15
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_7",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        530.4904653,
+        234.4394335
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.7973029918601542,
+        1.7917835776093152,
+        0.9908696746000283
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_001",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        437.06726235628656,
+        120.5823610677325
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        17.350259833609222,
+        0
+      ],
+      "scale": [
+        0.8459080988066103,
+        0.8459080988066103,
+        0.8459080988066103
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_002",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        17.29183262994,
+        156.44604614078725
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        21.090427417578326,
+        0
+      ],
+      "scale": [
+        0.6646484618527828,
+        0.6646484618527828,
+        0.6646484618527828
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_003",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        517.7030606458343,
+        67.73612878314492
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        308.53229580970833,
+        0
+      ],
+      "scale": [
+        0.7902178391185257,
+        0.7902178391185257,
+        0.7902178391185257
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_004",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        207.95746641981452,
+        220.4717092267908
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        24.764387449200527,
+        0
+      ],
+      "scale": [
+        0.6846300990412562,
+        0.6846300990412562,
+        0.6846300990412562
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_005",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        511.2289131666845,
+        108.57566216565576
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        128.62790562359982,
+        0
+      ],
+      "scale": [
+        0.6255450449206126,
+        0.6255450449206126,
+        0.6255450449206126
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_006",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        136.1167671334287,
+        151.51951258262395
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        206.21285531700934,
+        0
+      ],
+      "scale": [
+        0.9475981211607095,
+        0.9475981211607095,
+        0.9475981211607095
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_007",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        384.41076980961094,
+        135.9206834848299
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        102.30478900996519,
+        0
+      ],
+      "scale": [
+        0.8308067836390337,
+        0.8308067836390337,
+        0.8308067836390337
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_008",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        279.9535435466834,
+        364.4137461787655
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        26.446035585930794,
+        0
+      ],
+      "scale": [
+        0.9328107779825932,
+        0.9328107779825932,
+        0.9328107779825932
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_009",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        553.2888300732789,
+        369.307285396029
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        144.54490267873808,
+        0
+      ],
+      "scale": [
+        0.9304179378819251,
+        0.9304179378819251,
+        0.9304179378819251
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_010",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        420.96838610720374,
+        133.8465490670007
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        136.67286988066965,
+        0
+      ],
+      "scale": [
+        0.9690016902253087,
+        0.9690016902253087,
+        0.9690016902253087
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_011",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        189.10494047649382,
+        244.36188526771826
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        328.10259603217247,
+        0
+      ],
+      "scale": [
+        0.9728799344515837,
+        0.9728799344515837,
+        0.9728799344515837
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_013",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        113.91085516252858,
+        32.46721957983435
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        177.05968042044555,
+        0
+      ],
+      "scale": [
+        0.6560087182696659,
+        0.6560087182696659,
+        0.6560087182696659
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_015",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        221.00778889029837,
+        304.82900743273154
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        345.56185065650834,
+        0
+      ],
+      "scale": [
+        0.9335869531690646,
+        0.9335869531690646,
+        0.9335869531690646
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_016",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        112.25874882707676,
+        316.4894078503476
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        213.65719024367434,
+        0
+      ],
+      "scale": [
+        0.977094331035042,
+        0.977094331035042,
+        0.977094331035042
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_017",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        408.8803430427173,
+        85.6093799184356
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        327.606800109904,
+        0
+      ],
+      "scale": [
+        0.7242485504689243,
+        0.7242485504689243,
+        0.7242485504689243
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_018",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        170.2656849069288,
+        264.2904395760787
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        230.24857141682585,
+        0
+      ],
+      "scale": [
+        0.677947430831238,
+        0.677947430831238,
+        0.677947430831238
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_019",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        91.86146823123129,
+        99.65063096274075
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        82.45590676906164,
+        0
+      ],
+      "scale": [
+        0.7635309172129385,
+        0.7635309172129385,
+        0.7635309172129385
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_020",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        196.43036792773293,
+        327.85270006830416
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        72.27056777436364,
+        0
+      ],
+      "scale": [
+        0.8723426821475155,
+        0.8723426821475155,
+        0.8723426821475155
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_021",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        499.7971934715016,
+        193.7750949492499
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        307.88059881784164,
+        0
+      ],
+      "scale": [
+        0.6884122569552416,
+        0.6884122569552416,
+        0.6884122569552416
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_022",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        386.03290942961377,
+        34.3131600310754
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        122.1722685442042,
+        0
+      ],
+      "scale": [
+        0.871822060743717,
+        0.871822060743717,
+        0.871822060743717
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_023",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        118.88625141459241,
+        352.9951566116756
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        350.62696156812433,
+        0
+      ],
+      "scale": [
+        0.9231996751652145,
+        0.9231996751652145,
+        0.9231996751652145
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_024",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        548.7538286277371,
+        341.8077846270927
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        283.50128323715467,
+        0
+      ],
+      "scale": [
+        0.62479692695884,
+        0.62479692695884,
+        0.62479692695884
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_025",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        197.8729479097999,
+        55.801680031791484
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        83.53026101691442,
+        0
+      ],
+      "scale": [
+        1.0067550687848825,
+        1.0067550687848825,
+        1.0067550687848825
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_026",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        53.07476086176985,
+        278.5888945402368
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        270.2383518414293,
+        0
+      ],
+      "scale": [
+        0.5825490910364979,
+        0.5825490910364979,
+        0.5825490910364979
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_027",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        213.01628311406918,
+        230.3181904448378
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        159.55463227807257,
+        0
+      ],
+      "scale": [
+        0.976577121366496,
+        0.976577121366496,
+        0.976577121366496
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_028",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        202.7197683116473,
+        118.27841184563293
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        142.71921869531286,
+        0
+      ],
+      "scale": [
+        0.6118208213511738,
+        0.6118208213511738,
+        0.6118208213511738
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_029",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        111.66904757159844,
+        237.76117817212844
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        152.25033719752017,
+        0
+      ],
+      "scale": [
+        0.910773661320406,
+        0.910773661320406,
+        0.910773661320406
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_030",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        492.6576911568981,
+        131.1132928387634
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        85.17055746164453,
+        0
+      ],
+      "scale": [
+        0.8289960276683288,
+        0.8289960276683288,
+        0.8289960276683288
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_031",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        296.05307983262,
+        339.4945082749881
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        134.69557114826276,
+        0
+      ],
+      "scale": [
+        1.04559549904952,
+        1.04559549904952,
+        1.04559549904952
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_032",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        168.87583587948785,
+        244.17934329529376
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        36.54577135911599,
+        0
+      ],
+      "scale": [
+        0.9861461633031834,
+        0.9861461633031834,
+        0.9861461633031834
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_034",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        78.09114186473093,
+        294.60765970384017
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        130.50154270696956,
+        0
+      ],
+      "scale": [
+        0.9454326677098608,
+        0.9454326677098608,
+        0.9454326677098608
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_035",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        80.86579683492288,
+        268.3536207703802
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        96.61621500400162,
+        0
+      ],
+      "scale": [
+        0.7795326887217082,
+        0.7795326887217082,
+        0.7795326887217082
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_036",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        299.5768059083775,
+        32.344138887971866
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        250.74824168463195,
+        0
+      ],
+      "scale": [
+        0.8205667044490621,
+        0.8205667044490621,
+        0.8205667044490621
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_037",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        257.7163083257585,
+        239.50033514805187
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        223.58696787913314,
+        0
+      ],
+      "scale": [
+        0.685538974455918,
+        0.685538974455918,
+        0.685538974455918
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_038",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        172.81660988561117,
+        339.387240201148
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        319.75341309345555,
+        0
+      ],
+      "scale": [
+        0.7927741843069287,
+        0.7927741843069287,
+        0.7927741843069287
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_039",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        46.90836548112877,
+        28.836446582293743
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        158.9956737110917,
+        0
+      ],
+      "scale": [
+        0.9506510792243554,
+        0.9506510792243554,
+        0.9506510792243554
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_040",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        330.61125994496257,
+        151.6655545923149
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        304.9798959993511,
+        0
+      ],
+      "scale": [
+        0.6613124803613275,
+        0.6613124803613275,
+        0.6613124803613275
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_041",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        265.9732610515285,
+        221.844289969804
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        149.29875628764478,
+        0
+      ],
+      "scale": [
+        0.7531121758104058,
+        0.7531121758104058,
+        0.7531121758104058
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_042",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        319.0859062848307,
+        203.42533536236382
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        110.95675916426889,
+        0
+      ],
+      "scale": [
+        0.8669863704115375,
+        0.8669863704115375,
+        0.8669863704115375
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_043",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        36.77555391569945,
+        46.62733399487473
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        190.69110521547182,
+        0
+      ],
+      "scale": [
+        0.7302388908952927,
+        0.7302388908952927,
+        0.7302388908952927
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_044",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        235.16139121383517,
+        55.660502334401876
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        49.544943543664154,
+        0
+      ],
+      "scale": [
+        0.7700048170997996,
+        0.7700048170997996,
+        0.7700048170997996
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_045",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        101.01355722385748,
+        307.0242049583641
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        33.83716918020901,
+        0
+      ],
+      "scale": [
+        0.7069425242336418,
+        0.7069425242336418,
+        0.7069425242336418
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_046",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        287.3634464062352,
+        262.60493432117045
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        243.60841613553907,
+        0
+      ],
+      "scale": [
+        0.7632107113506059,
+        0.7632107113506059,
+        0.7632107113506059
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_047",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        267.58983624013337,
+        203.27556290040246
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        280.09810139951077,
+        0
+      ],
+      "scale": [
+        1.0208474507287093,
+        1.0208474507287093,
+        1.0208474507287093
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_048",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        346.6002204061441,
+        30.238736649654037
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90.16417139758828,
+        0
+      ],
+      "scale": [
+        0.7672424757931552,
+        0.7672424757931552,
+        0.7672424757931552
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_049",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        531.5428860486763,
+        132.67909371656668
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        352.6146946871497,
+        0
+      ],
+      "scale": [
+        1.0114913014542548,
+        1.0114913014542548,
+        1.0114913014542548
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_050",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        279.5099716253704,
+        227.81144434605807
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        251.41133792874882,
+        0
+      ],
+      "scale": [
+        0.6156399437630494,
+        0.6156399437630494,
+        0.6156399437630494
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_052",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        463.72841661311185,
+        177.66590835993054
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        115.64071319258821,
+        0
+      ],
+      "scale": [
+        0.7235643825096632,
+        0.7235643825096632,
+        0.7235643825096632
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_053",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        68.01719515569336,
+        356.1382207614149
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        315.5586932030755,
+        0
+      ],
+      "scale": [
+        0.9124453778922509,
+        0.9124453778922509,
+        0.9124453778922509
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_054",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        345.31077081361747,
+        174.4756834741774
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        205.37357251243623,
+        0
+      ],
+      "scale": [
+        0.9130799608949912,
+        0.9130799608949912,
+        0.9130799608949912
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_055",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        250.3057048363,
+        168.8799204961316
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        46.72456676893677,
+        0
+      ],
+      "scale": [
+        0.8618964638220366,
+        0.8618964638220366,
+        0.8618964638220366
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_056",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        417.0851867258728,
+        102.02757322205744
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        265.051037973388,
+        0
+      ],
+      "scale": [
+        0.6765900054857903,
+        0.6765900054857903,
+        0.6765900054857903
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_058",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        301.2029367473392,
+        298.1654013925114
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        203.30431579607935,
+        0
+      ],
+      "scale": [
+        0.7456951755192199,
+        0.7456951755192199,
+        0.7456951755192199
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_059",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        131.7631614074935,
+        131.85392745524797
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        341.75448142736775,
+        0
+      ],
+      "scale": [
+        0.7274440586467632,
+        0.7274440586467632,
+        0.7274440586467632
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_060",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        559.5255899873794,
+        64.1714113843752
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        5.926789567989443,
+        0
+      ],
+      "scale": [
+        0.7735150894550359,
+        0.7735150894550359,
+        0.7735150894550359
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_061",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        122.20806370903301,
+        281.95337869921076
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        220.34697361968873,
+        0
+      ],
+      "scale": [
+        0.8268321643521603,
+        0.8268321643521603,
+        0.8268321643521603
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_062",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        575.9550374226922,
+        212.60473116635504
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        17.819707089004815,
+        0
+      ],
+      "scale": [
+        0.5690092901726436,
+        0.5690092901726436,
+        0.5690092901726436
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_063",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        133.8370902863321,
+        123.00283167272521
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        247.82411006617846,
+        0
+      ],
+      "scale": [
+        0.672684993820978,
+        0.672684993820978,
+        0.672684993820978
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_064",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        376.6948029431903,
+        72.11584410978807
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        273.58380208220484,
+        0
+      ],
+      "scale": [
+        0.8823433786698212,
+        0.8823433786698212,
+        0.8823433786698212
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_065",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        48.72532038755627,
+        380.6240169061785
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        170.71218060274083,
+        0
+      ],
+      "scale": [
+        0.9347187101913179,
+        0.9347187101913179,
+        0.9347187101913179
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_066",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        131.37903727663414,
+        360.0128298485965
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        177.0439125310061,
+        0
+      ],
+      "scale": [
+        0.8948921443800912,
+        0.8948921443800912,
+        0.8948921443800912
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_068",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        341.690336100363,
+        101.54014298256362
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        102.21431851108794,
+        0
+      ],
+      "scale": [
+        0.9601602804166895,
+        0.9601602804166895,
+        0.9601602804166895
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_069",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        294.3213275596035,
+        296.56609418105813
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        82.54434937376955,
+        0
+      ],
+      "scale": [
+        0.8536586469876895,
+        0.8536586469876895,
+        0.8536586469876895
+      ],
+      "collision": false
+    }
+  ],
+  "lights": [],
+  "asset_paths": {
+    "SM_Oak_Stonebrook_01": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+    "SM_Boulder_Fieldstone_01": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+    "SM_Grass_Meadow_01": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01"
+  }
+}

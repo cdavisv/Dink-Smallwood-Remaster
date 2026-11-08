@@ -1,0 +1,285 @@
+{
+  "fixture_method": "Teleport only to clear inspection positions; normal console view rotation. Fixture photos are separate from actual-exit/actual-return route records, which use real W movement. Native code controls arm/fade; no material/camera setters.",
+  "records": [
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-00.41.36:062][675]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-00.41.36:062][675]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    },
+    {
+      "command": "fov 0",
+      "response": ""
+    },
+    {
+      "command": "dink.ScreenInfo 0",
+      "response": "[2026.11.08-00.41.38:002][742]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='NativeCameraV3'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-00.41.41:021][899]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "dink.Goto 1 370 161",
+      "response": ""
+    },
+    {
+      "command": "dink.View 0 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-0')",
+      "response": "[2026.11.08-00.41.46:524][250]LogPython: QA_NATIVE_CAMERA_READ north-aisle-0\n"
+    },
+    {
+      "command": "dink.View 45 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-45')",
+      "response": "[2026.11.08-00.41.50:262][484]LogPython: QA_NATIVE_CAMERA_READ north-aisle-45\n"
+    },
+    {
+      "command": "dink.View 90 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-90')",
+      "response": "[2026.11.08-00.41.53:956][718]LogPython: QA_NATIVE_CAMERA_READ north-aisle-90\n"
+    },
+    {
+      "command": "dink.View 135 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-135')",
+      "response": "[2026.11.08-00.41.57:724][955]LogPython: QA_NATIVE_CAMERA_READ north-aisle-135\n"
+    },
+    {
+      "command": "dink.View 180 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-180')",
+      "response": "[2026.11.08-00.42.01:502][194]LogPython: QA_NATIVE_CAMERA_READ north-aisle-180\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-225')",
+      "response": "[2026.11.08-00.42.05:281][437]LogPython: QA_NATIVE_CAMERA_READ north-aisle-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-270')",
+      "response": "[2026.11.08-00.42.09:069][681]LogPython: QA_NATIVE_CAMERA_READ north-aisle-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('north-aisle-315')",
+      "response": "[2026.11.08-00.42.12:876][920]LogPython: QA_NATIVE_CAMERA_READ north-aisle-315\n"
+    },
+    {
+      "command": "dink.Goto 1 303.5 382",
+      "response": ""
+    },
+    {
+      "command": "dink.View 0 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-0')",
+      "response": "[2026.11.08-00.42.18:559][280]LogPython: QA_NATIVE_CAMERA_READ door-0\n"
+    },
+    {
+      "command": "dink.View 45 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-45')",
+      "response": "[2026.11.08-00.42.22:146][517]LogPython: QA_NATIVE_CAMERA_READ door-45\n"
+    },
+    {
+      "command": "dink.View 90 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-90')",
+      "response": "[2026.11.08-00.42.25:728][753]LogPython: QA_NATIVE_CAMERA_READ door-90\n"
+    },
+    {
+      "command": "dink.View 135 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-135')",
+      "response": "[2026.11.08-00.42.29:369][999]LogPython: QA_NATIVE_CAMERA_READ door-135\n"
+    },
+    {
+      "command": "dink.View 180 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-180')",
+      "response": "[2026.11.08-00.42.32:997][244]LogPython: QA_NATIVE_CAMERA_READ door-180\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-225')",
+      "response": "[2026.11.08-00.42.36:624][475]LogPython: QA_NATIVE_CAMERA_READ door-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-270')",
+      "response": "[2026.11.08-00.42.40:253][706]LogPython: QA_NATIVE_CAMERA_READ door-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('door-315')",
+      "response": "[2026.11.08-00.42.43:845][930]LogPython: QA_NATIVE_CAMERA_READ door-315\n"
+    },
+    {
+      "command": "dink.Goto 1 170 170",
+      "response": ""
+    },
+    {
+      "command": "dink.View 0 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-0')",
+      "response": "[2026.11.08-00.42.49:500][267]LogPython: QA_NATIVE_CAMERA_READ west-0\n"
+    },
+    {
+      "command": "dink.View 45 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-45')",
+      "response": "[2026.11.08-00.42.53:108][492]LogPython: QA_NATIVE_CAMERA_READ west-45\n"
+    },
+    {
+      "command": "dink.View 90 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-90')",
+      "response": "[2026.11.08-00.42.56:704][718]LogPython: QA_NATIVE_CAMERA_READ west-90\n"
+    },
+    {
+      "command": "dink.View 135 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-135')",
+      "response": "[2026.11.08-00.43.00:360][951]LogPython: QA_NATIVE_CAMERA_READ west-135\n"
+    },
+    {
+      "command": "dink.View 180 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-180')",
+      "response": "[2026.11.08-00.43.03:972][187]LogPython: QA_NATIVE_CAMERA_READ west-180\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-225')",
+      "response": "[2026.11.08-00.43.07:606][418]LogPython: QA_NATIVE_CAMERA_READ west-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-270')",
+      "response": "[2026.11.08-00.43.11:249][653]LogPython: QA_NATIVE_CAMERA_READ west-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('west-315')",
+      "response": "[2026.11.08-00.43.14:907][878]LogPython: QA_NATIVE_CAMERA_READ west-315\n"
+    },
+    {
+      "command": "dink.Goto 1 370 161",
+      "response": ""
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-225')",
+      "response": "[2026.11.08-00.45.40:356][388]LogPython: QA_NATIVE_CAMERA_READ actual-return-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-270')",
+      "response": "[2026.11.08-00.45.44:196][590]LogPython: QA_NATIVE_CAMERA_READ actual-return-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-315')",
+      "response": "[2026.11.08-00.45.47:990][787]LogPython: QA_NATIVE_CAMERA_READ actual-return-315\n"
+    },
+    {
+      "command": "dink.View 180 0",
+      "response": ""
+    },
+    {
+      "command": "dink.ScreenInfo 1",
+      "response": "[2026.11.08-00.45.50:427][923]dink.ScreenInfo = \"1\"\n"
+    },
+    {
+      "command": "dink.Goto 439 450 350",
+      "response": "[2026.11.08-00.45.51:768][997]LogDink: Entered SCR_439  Stonebrook / Stonebrook village  [settlement]  music 104  visions: 1 2\n"
+    },
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-00.45.52:626][ 43]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-00.45.52:626][ 43]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    }
+  ],
+  "final": {
+    "screen": 439,
+    "map": [
+      450.0,
+      350.0
+    ],
+    "world": [
+      98767.355,
+      37937.533,
+      98.35
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  }
+}

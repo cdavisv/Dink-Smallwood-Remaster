@@ -1,0 +1,52 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 9
+  },
+  "normals": [
+    {
+      "mesh": "SK_Mother_LOD0",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Mother_LOD1",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Mother_LOD2",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Mother_LOD3",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    }
+  ],
+  "lods": [
+    {
+      "name": "SK_Mother_LOD0",
+      "triangles": 32164,
+      "vertices": 17337
+    },
+    {
+      "name": "SK_Mother_LOD1",
+      "triangles": 16082,
+      "vertices": 9104
+    },
+    {
+      "name": "SK_Mother_LOD2",
+      "triangles": 8040,
+      "vertices": 4818
+    },
+    {
+      "name": "SK_Mother_LOD3",
+      "triangles": 3859,
+      "vertices": 2503
+    }
+  ]
+}

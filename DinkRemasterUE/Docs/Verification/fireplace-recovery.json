@@ -1,0 +1,47 @@
+{
+  "normal_partial_import": "Expected failure with actionable resume guidance; original single material unchanged",
+  "first_resume": {
+    "passed": true,
+    "material_only_partial_recovered": true
+  },
+  "subsequent_runs": [
+    {
+      "mode": "resume",
+      "exit": 0,
+      "passed": true,
+      "published": false,
+      "convex_hulls": 6,
+      "triangles": [
+        15484,
+        8050,
+        4180
+      ],
+      "protected_original_packages": 257,
+      "package_bytes_unchanged": false
+    },
+    {
+      "mode": "check",
+      "exit": 0,
+      "passed": true,
+      "published": false,
+      "convex_hulls": 6,
+      "triangles": [
+        15484,
+        8050,
+        4180
+      ],
+      "protected_original_packages": 257,
+      "package_bytes_unchanged": true
+    }
+  ],
+  "backup_package_counts": [
+    1,
+    6
+  ],
+  "initial_backup_hash_matches": true,
+  "runtime_data_unchanged": 665,
+  "shared_packages_unchanged": 257,
+  "runtime_published": false,
+  "python_regressions_passed": 8,
+  "source_guard_before_asset_writes": true
+}

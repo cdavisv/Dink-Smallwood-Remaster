@@ -1,0 +1,390 @@
+{
+  "schema": "dink-stonebrook-art/1",
+  "units": "metres; exported FBX declares UnitScaleFactor=100 (Unreal converts to cm)",
+  "seed": 1997,
+  "source": "KIT_Stonebrook.blend",
+  "assets": {
+    "SM_Table_Oak_01": {
+      "class": "prop",
+      "dimensions_m": [
+        2.6500000953674316,
+        1.497999906539917,
+        0.906000018119812
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Table_Oak_01.fbx",
+      "blend_collection": "SM_Table_Oak_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Bed_Oak_01": {
+      "class": "prop",
+      "dimensions_m": [
+        2.5099997520446777,
+        1.3700001239776611,
+        1.119999885559082
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_Linen"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Bed_Oak_01.fbx",
+      "blend_collection": "SM_Bed_Oak_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Chair_Oak_01": {
+      "class": "prop",
+      "dimensions_m": [
+        0.6499999761581421,
+        0.5375000238418579,
+        1.0049999952316284
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Chair_Oak_01.fbx",
+      "blend_collection": "SM_Chair_Oak_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Fireplace_Fieldstone_01": {
+      "class": "prop_large",
+      "dimensions_m": [
+        4.019999980926514,
+        1.540000081062317,
+        4.144999980926514
+      ],
+      "materials": [
+        "MI_Stonebrook_Fieldstone",
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_Soot",
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Fireplace_Fieldstone_01.fbx",
+      "blend_collection": "SM_Fireplace_Fieldstone_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Basket_Wicker_01": {
+      "class": "prop",
+      "dimensions_m": [
+        1.1440000534057617,
+        0.9419999718666077,
+        0.671999990940094
+      ],
+      "materials": [
+        "MI_Stonebrook_Wicker"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Basket_Wicker_01.fbx",
+      "blend_collection": "SM_Basket_Wicker_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_FeedSack_Jute_01": {
+      "class": "prop",
+      "dimensions_m": [
+        0.7228283882141113,
+        0.5546854138374329,
+        0.75
+      ],
+      "materials": [
+        "MI_Stonebrook_Linen",
+        "MI_Stonebrook_Wicker"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_FeedSack_Jute_01.fbx",
+      "blend_collection": "SM_FeedSack_Jute_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Floor_Oak_2m_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.99399995803833,
+        1.9920001029968262,
+        0.10999999940395355
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "fbx": "Export/Game/Dink/Kits/Stonebrook/SM_Floor_Oak_2m_01.fbx",
+      "blend_collection": "SM_Floor_Oak_2m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Wall_Limewash_2m_01": {
+      "class": "kit_wall",
+      "dimensions_m": [
+        2.0,
+        0.3800000250339508,
+        3.5
+      ],
+      "materials": [
+        "MI_Stonebrook_Limewash",
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.fbx",
+      "blend_collection": "SM_Wall_Limewash_2m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Doorway_Limewash_4m_01": {
+      "class": "kit_piece",
+      "dimensions_m": [
+        4.0,
+        0.3199999928474426,
+        3.5
+      ],
+      "materials": [
+        "MI_Stonebrook_Limewash",
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01.fbx",
+      "blend_collection": "SM_Doorway_Limewash_4m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Ceiling_Oak_2m_01": {
+      "class": "kit_ceiling",
+      "dimensions_m": [
+        1.996999979019165,
+        2.0,
+        0.20000000298023224
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.fbx",
+      "blend_collection": "SM_Ceiling_Oak_2m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Window_Limewash_2m_01": {
+      "class": "kit_wall",
+      "dimensions_m": [
+        2.0,
+        0.41999998688697815,
+        3.5
+      ],
+      "materials": [
+        "MI_Stonebrook_Limewash",
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.fbx",
+      "blend_collection": "SM_Window_Limewash_2m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Barrel_Oak_01": {
+      "class": "prop",
+      "dimensions_m": [
+        0.8394664525985718,
+        0.8445988893508911,
+        1.0075000524520874
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Barrel_Oak_01.fbx",
+      "blend_collection": "SM_Barrel_Oak_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Candle_Iron_01": {
+      "class": "prop_small",
+      "dimensions_m": [
+        0.20000000298023224,
+        0.20000000298023224,
+        0.4504999816417694
+      ],
+      "materials": [
+        "MI_Stonebrook_WroughtIron",
+        "MI_Stonebrook_Limewash"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Candle_Iron_01.fbx",
+      "blend_collection": "SM_Candle_Iron_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Pie_Rustic_01": {
+      "class": "prop_small",
+      "dimensions_m": [
+        0.49000000953674316,
+        0.49000000953674316,
+        0.11900001019239426
+      ],
+      "materials": [
+        "MI_Stonebrook_WroughtIron",
+        "MI_Stonebrook_Wicker"
+      ],
+      "fbx": "Export/Game/Dink/Props/Stonebrook/SM_Pie_Rustic_01.fbx",
+      "blend_collection": "SM_Pie_Rustic_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    }
+  },
+  "materials": {
+    "MI_Stonebrook_Oak": {
+      "name": "MI_Stonebrook_Oak",
+      "base_color": [
+        0.265,
+        0.1625,
+        0.074
+      ],
+      "roughness": 0.72,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Oak_BC.png",
+        "N": "Textures/T_Stonebrook_Oak_N.png",
+        "ORM": "Textures/T_Stonebrook_Oak_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Limewash": {
+      "name": "MI_Stonebrook_Limewash",
+      "base_color": [
+        0.625,
+        0.565,
+        0.44
+      ],
+      "roughness": 0.89,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Limewash_BC.png",
+        "N": "Textures/T_Stonebrook_Limewash_N.png",
+        "ORM": "Textures/T_Stonebrook_Limewash_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Fieldstone": {
+      "name": "MI_Stonebrook_Fieldstone",
+      "base_color": [
+        0.33,
+        0.29,
+        0.23
+      ],
+      "roughness": 0.87,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Fieldstone_BC.png",
+        "N": "Textures/T_Stonebrook_Fieldstone_N.png",
+        "ORM": "Textures/T_Stonebrook_Fieldstone_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Linen": {
+      "name": "MI_Stonebrook_Linen",
+      "base_color": [
+        0.455,
+        0.45,
+        0.31
+      ],
+      "roughness": 0.94,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Linen_BC.png",
+        "N": "Textures/T_Stonebrook_Linen_N.png",
+        "ORM": "Textures/T_Stonebrook_Linen_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_WroughtIron": {
+      "name": "MI_Stonebrook_WroughtIron",
+      "base_color": [
+        0.0925,
+        0.078,
+        0.060000000000000005
+      ],
+      "roughness": 0.58,
+      "metallic": 0.82,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_WroughtIron_BC.png",
+        "N": "Textures/T_Stonebrook_WroughtIron_N.png",
+        "ORM": "Textures/T_Stonebrook_WroughtIron_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Wicker": {
+      "name": "MI_Stonebrook_Wicker",
+      "base_color": [
+        0.35000000000000003,
+        0.22,
+        0.0715
+      ],
+      "roughness": 0.83,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Wicker_BC.png",
+        "N": "Textures/T_Stonebrook_Wicker_N.png",
+        "ORM": "Textures/T_Stonebrook_Wicker_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Soot": {
+      "name": "MI_Stonebrook_Soot",
+      "base_color": [
+        0.0435,
+        0.032,
+        0.0195
+      ],
+      "roughness": 0.98,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Soot_BC.png",
+        "N": "Textures/T_Stonebrook_Soot_N.png",
+        "ORM": "Textures/T_Stonebrook_Soot_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    }
+  },
+  "placements": [
+    {
+      "origin": "S001_P22",
+      "mesh": "SM_Table_Oak_01",
+      "source_pixel": [
+        299,
+        243
+      ],
+      "yaw": 0
+    },
+    {
+      "origin": "S001_P23",
+      "mesh": "SM_Bed_Oak_01",
+      "source_pixel": [
+        215,
+        298
+      ],
+      "yaw": 0
+    },
+    {
+      "origin": "S001_P24",
+      "mesh": "SM_Bed_Oak_01",
+      "source_pixel": [
+        428,
+        297
+      ],
+      "yaw": 0
+    },
+    {
+      "origin": "S001_P19",
+      "mesh": "SM_Fireplace_Fieldstone_01",
+      "source_pixel": [
+        288,
+        120
+      ],
+      "yaw": 0
+    },
+    {
+      "origin": "S001_P52",
+      "mesh": "SM_FeedSack_Jute_01",
+      "source_pixel": [
+        448,
+        130
+      ],
+      "yaw": 0
+    }
+  ],
+  "notes": [
+    "Assets are original procedural candidates for local playtest review, not a completed whole-game art pass.",
+    "Keep art components NoCollision until measured against gameplay hardness. FBX includes separate UCX hulls for future replacement.",
+    "No scale based on billboard pixel dimensions: intended furniture dimensions are explicitly recorded."
+  ]
+}

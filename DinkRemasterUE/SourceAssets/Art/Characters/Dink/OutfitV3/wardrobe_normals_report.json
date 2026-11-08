@@ -1,0 +1,25 @@
+{
+  "scope": "Restore smooth wardrobe shading across UV chart vertex splits; protected current normals retained exactly; no geometry/UV/weights/material changes",
+  "lods": [
+    {
+      "lod": 0,
+      "wardrobe_normal_weld_positions": 9014,
+      "protected_corner_normals_preserved": 39336
+    },
+    {
+      "lod": 1,
+      "wardrobe_normal_weld_positions": 7328,
+      "protected_corner_normals_preserved": 20820
+    },
+    {
+      "lod": 2,
+      "wardrobe_normal_weld_positions": 6237,
+      "protected_corner_normals_preserved": 9390
+    },
+    {
+      "lod": 3,
+      "wardrobe_normal_weld_positions": 5341,
+      "protected_corner_normals_preserved": 4386
+    }
+  ]
+}

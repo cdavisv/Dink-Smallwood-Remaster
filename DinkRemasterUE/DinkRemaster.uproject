@@ -1,0 +1,76 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.8",
+	"Category": "",
+	"Description": "Dink Smallwood Remaster: free fan remaster of the 1997 game Dink Smallwood.",
+	"Modules": [
+		{
+			"Name": "DinkRemaster",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"CoreUObject"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "DinkCore",
+			"Enabled": true
+		},
+		{
+			"Name": "Inkpot",
+			"Enabled": true
+		},
+		{
+			"Name": "DinkNarrative",
+			"Enabled": true
+		},
+		{
+			"Name": "DinkImport",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "DinkParity",
+			"Enabled": true
+		},
+		{
+			"Name": "DinkExpanded",
+			"Enabled": false
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "StateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AndroidFileServer",
+			"Enabled": false
+		}
+	]
+}
