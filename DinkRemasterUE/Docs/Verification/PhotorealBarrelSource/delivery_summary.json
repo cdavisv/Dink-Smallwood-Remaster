@@ -1,0 +1,39 @@
+{
+  "status": "source-only local delivery prepared; native/game acceptance pending",
+  "branch": "art/photoreal-barrel-source",
+  "worktree": "/home/davisc/Work/DinkPhotorealBarrelSources",
+  "base": "64d57e8f3a1ce36a2d687ac44be311e5cc4e4a1b",
+  "source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "export_source_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+  "published_final_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+  "original_final_handoff_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
+  "published_tool_sha256": "49742c9f05f453084c630a4e481826a0ebf2101c705bd6f7bfb9a6f91395c8b7",
+  "frozen_payload_files": 55,
+  "source_rows_added": 56,
+  "ledger_prior_rows_byte_preserved": 1353,
+  "prior_audio_rows_byte_preserved": 483,
+  "full_source_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 1988,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 252,
+    "shell_syntax_files": 22,
+    "ledger_rows": 1409,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "payload_test": "PASS from own relocated publication copy; no author ApprovedSource archive required",
+  "copy_verification": "publication_copy_verification.json",
+  "no_runtime_or_native_changes": true,
+  "no_push_PR_or_merge": true,
+  "remaining": [
+    "Root review and authorized source PR delivery",
+    "Guarded unique native import and independent saved verification",
+    "Game camera/lighting/collision/door acceptance"
+  ]
+}

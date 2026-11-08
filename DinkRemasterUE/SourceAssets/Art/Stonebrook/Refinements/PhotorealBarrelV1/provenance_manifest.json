@@ -1,0 +1,81 @@
+{
+  "geometry_materials": "Project-authored coopered oak/forgediron Blender geometry and material graphs. Source-only candidate derived using original Dink barrel silhouette/palette inspiration; original rights retained. No thirdparty mesh replacement.",
+  "original_Dink_guides": [
+    {
+      "sequence": 174,
+      "frame": 1,
+      "name": "bar-01.bmp",
+      "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+      "raw_bmp_sha256": "3c14a87eb514fc841dc614bdfb98461e813001c1183a78050dc067d9bae3fcd3",
+      "png": "bar-01.bmp.png",
+      "size": [
+        56,
+        54
+      ],
+      "palette_unchanged": true
+    },
+    {
+      "sequence": 174,
+      "frame": 2,
+      "name": "bar-02.bmp",
+      "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+      "raw_bmp_sha256": "4b59c7d275e20fb2804240863266cc65dac85f85c60de5d3e976f0636af65614",
+      "png": "bar-02.bmp.png",
+      "size": [
+        27,
+        38
+      ],
+      "palette_unchanged": true
+    },
+    {
+      "sequence": 173,
+      "frame": 1,
+      "name": "barel-01.bmp",
+      "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+      "raw_bmp_sha256": "60367e6fde38abf421c051ac80c3846cfb74a09499e21b87dc0a956aa55792ff",
+      "png": "barel-01.bmp.png",
+      "size": [
+        56,
+        55
+      ],
+      "palette_unchanged": true
+    }
+  ],
+  "inherited_input": {
+    "file": "Inputs/PhotorealPropsV1_Input.blend",
+    "sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+    "role": "Immutable prior project-authored source scene; old barrel bounds/pivot and retained source context"
+  },
+  "oak_reference": {
+    "mode": "Built-in image_gen tool; no CLI/API fallback",
+    "purpose": "Work-only original oak albedo candidate; not a normal/roughness/height map",
+    "prompt": "Use case: photorealistic-natural. Asset type: seamless PBR base-color/albedo texture for a realistic medieval cottage's worn oak floor in a Blender-to-Unreal game. Generate a square, edge-to-edge orthographic material scan of natural quarter-sawn warm oak wood, unvarnished and gently worn. One continuous wood surface with long grain running vertically: thin irregular fibres, fine open pores, subtle medullary rays, small natural deviations and occasional restrained tiny knots, believable mottled warm tan/brown color variation. Natural photographic detail instead of regular sine-wave stripes. Even diffuse cross-polarized neutral illumination: no cast shadows, no directional lighting, no ambient occlusion, no highlights or baked gloss. This is an albedo texture, not a photograph of a floor scene. No plank borders, seams, nails, objects, text, border or watermark. Avoid giant dark wavy ink lines, broad zebra stripes, orange saturation, painted plastic or perfectly parallel uniform lines. Aim for a tileable original texture with compatible opposite edges; dense fine detail suitable for repeating over oak boards at game scale. Opaque background.",
+    "source_file": "/home/davisc/.local/state/omarchy/agents/accounts/codex/nrcodex/generated_images/01a1b489-6b5b-7d03-a461-8e4363b7c168/exec-697818b8-e979-4c93-ae3e-d60ed93ad81d.png",
+    "workspace_file": "/home/davisc/Work/DinkQA/OakAlbedoCandidate/GeneratedOak_Albedo_V1.png",
+    "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+    "image": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    "initial_blender_mapping_proposal": {
+      "texture_coverage_m": [
+        1,
+        1
+      ],
+      "grain_direction": "image+V vertically; align with board length",
+      "native_UV_density": 0.245,
+      "initial_UV_scale": [
+        4.081632653061225,
+        4.081632653061225
+      ],
+      "status": "Visual calibration required; do not treat coverage as measured physical scan data"
+    },
+    "native_imported": false
+  },
+  "sampler_derivative": "Packed2048px resample of immutable1254pxsource; same source hash retained; fine pores/growthrings/roughness authored independently in Blender.",
+  "new_texture_maps": "Baked from project-authored source material graphs; normal/roughness/metallic not inferred from albedo alone.",
+  "licence": "Project-authored geometry/materials; inherited original Dink and generated oak provenance retained; not relabeled CC0"
+}

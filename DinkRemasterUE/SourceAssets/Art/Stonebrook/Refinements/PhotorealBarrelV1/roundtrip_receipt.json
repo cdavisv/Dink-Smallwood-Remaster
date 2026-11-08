@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "source_export_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+  "FBX_sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
+  "triangles": 16648,
+  "cyclic_oriented_bijective_face_match": true,
+  "max_position_delta_m": 0,
+  "max_UV_delta": 0,
+  "minimum_geometric_front_dot": 0.9999997615814209,
+  "max_stored_normal_angle_radians": 0,
+  "source_and_roundtrip_material_slots": 1,
+  "collision_hulls": 1,
+  "actual_roundtrip_collision_bounds_m": [
+    [
+      -0.375,
+      -0.375,
+      0.0
+    ],
+    [
+      0.375,
+      0.375,
+      1.0
+    ]
+  ],
+  "render_scope": "Actual FBX geometry with explicit same baked BC/N/ORM material; neutral original studio. Not native UE."
+}
