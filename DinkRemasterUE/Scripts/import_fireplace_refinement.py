@@ -1,5 +1,5 @@
 """Private new-package import. Does not publish runtime placement or touch originals."""
-import json,hashlib,os
+import json,hashlib,os,sys,shutil,time
 from pathlib import Path
 import unreal
 assert '-game' not in unreal.SystemLibrary.get_command_line().split()
@@ -7,18 +7,31 @@ ROOT=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())
 SOURCE=ROOT/'SourceAssets/Art/Stonebrook/Refinements/FireplaceV2'
 DEST='/Game/Dink/Refinements/FireplaceV2'
 LIB=unreal.EditorAssetLibrary;EDIT=unreal.MaterialEditingLibrary;TOOLS=unreal.AssetToolsHelpers.get_asset_tools()
-SPEC=json.loads((SOURCE/'candidate_manifest.json').read_text())
+sys.path.insert(0,str(ROOT/'Scripts'))
+from fireplace_source import validate_source_inputs,import_action
+PLAN,SPEC,SOURCE_HASHES=validate_source_inputs(ROOT)
+assert PLAN['destination']==DEST
 report={'passed':False,'source_blend_sha256':hashlib.sha256((SOURCE/'SM_Fireplace_Stonebrook_V2.blend').read_bytes()).hexdigest(),'destination':DEST,'runtime_manifest_changed':False}
-assert report['source_blend_sha256']=='49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02'
-mode=os.environ.get('DINK_FIREPLACE_MODE','import');assert mode in ['import','check','publish']
-if not LIB.does_directory_exist(DEST):
- assert mode=='import','Import the candidate packages before checking or publishing'
+assert report['source_blend_sha256']==PLAN['source_blend_sha256']
+report['validated_source_sha256']=SOURCE_HASHES
+mode=os.environ.get('DINK_FIREPLACE_MODE','import')
+action=import_action(mode,LIB.does_directory_exist(DEST),(ROOT/'Content/Dink/Data/Art'/PLAN['runtime_file']).exists())
+if action in ['create','resume']:
+ if action=='resume':
+  # Resume is explicit, unpublished-only, and restricted to the six unique candidate packages.
+  backup=ROOT/'Saved/Art/FireplaceResumeBackups'/str(time.time_ns());backup.mkdir(parents=True)
+  names=[PLAN['mesh'],'M_FireplaceV2_Atlas']+['T_FireplaceV2_Atlas_'+k for k in ['BC','N','ORM','E']]
+  for name in names:
+   for suffix in ['.uasset','.uexp','.ubulk']:
+    path=ROOT/'Content/Dink/Refinements/FireplaceV2'/(name+suffix)
+    if path.is_file():shutil.copy2(path,backup/path.name)
+  report['resume_backup']=str(backup)
  # Protect every shared kit/material package, not just one assumed filename.
  protected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for branch in ['Kits','Materials'] for p in (ROOT/'Content/Dink'/branch).rglob('*.uasset')}
  data={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'Content/Dink/Data').rglob('*') if p.is_file()}
  def save(a):assert LIB.save_loaded_asset(a,only_if_is_dirty=False),a.get_path_name()
  def imp(file,name,options=None,factory=None):
-  task=unreal.AssetImportTask();task.filename=str(file.resolve());task.destination_path=DEST;task.destination_name=name;task.automated=True;task.replace_existing=False;task.save=True
+  task=unreal.AssetImportTask();task.filename=str(file.resolve());task.destination_path=DEST;task.destination_name=name;task.automated=True;task.replace_existing=action=='resume';task.replace_existing_settings=action=='resume';task.save=True
   if options is not None:task.options=options
   if factory is not None:task.factory=factory
   TOOLS.import_asset_tasks([task]);a=LIB.load_asset(DEST+'/'+name);assert a is not None,str(file);return a
@@ -31,7 +44,11 @@ if not LIB.does_directory_exist(DEST):
   world=unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
   unreal.SystemLibrary.execute_console_command(world,'Interchange.FeatureFlags.Import.FBX 0')
   assert unreal.SystemLibrary.get_console_variable_int_value('Interchange.FeatureFlags.Import.FBX')==0
-  mat=TOOLS.create_asset('M_FireplaceV2_Atlas',DEST,unreal.Material,unreal.MaterialFactoryNew());assert mat
+  mat=LIB.load_asset(DEST+'/M_FireplaceV2_Atlas') if action=='resume' else None
+  if mat is not None:
+   assert isinstance(mat,unreal.Material);EDIT.delete_all_material_expressions(mat)
+  else:mat=TOOLS.create_asset('M_FireplaceV2_Atlas',DEST,unreal.Material,unreal.MaterialFactoryNew())
+  assert mat
   tex={};texture_checks=[]
   for i,(kind,file) in enumerate(SPEC['textures'].items()):
    a=imp(SOURCE/file,Path(file).stem);a.set_editor_property('srgb',kind in ['BC','E'])
@@ -79,4 +96,8 @@ if not LIB.does_directory_exist(DEST):
  finally:
   out=ROOT/'Saved/Art/fireplace_refinement_import.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2)+'\n')
 
-exec((ROOT/'Scripts/inspect_fireplace_refinement.py').read_text())
+try:
+ exec((ROOT/'Scripts/inspect_fireplace_refinement.py').read_text())
+except Exception as error:
+ if action=='check' and mode=='import':raise RuntimeError('Existing candidate failed verification. An unpublished partial import can be retried with DINK_FIREPLACE_MODE=resume; published packages require a reviewed new revision.') from error
+ raise

@@ -1,5 +1,7 @@
 #include "DinkTestHelpers.h"
+#include <limits>
 #include "DinkInteriorCameraComponent.h"
+#include "DinkCameraOcclusion.h"
 #include "DinkStorySubsystem.h"
 #include "DinkDirector.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -37,10 +39,11 @@ struct FMeshBefore
     ECollisionEnabled::Type Enabled=ECollisionEnabled::NoCollision;
     FName Profile;
     FCollisionResponseContainer Responses;
+    ECollisionChannel ObjectType=ECC_WorldStatic;
     TArray<TObjectPtr<UMaterialInterface>> Materials, Overrides;
     explicit FMeshBefore(UStaticMeshComponent* M) : Mesh(M), Asset(M->GetStaticMesh()), Transform(M->GetComponentTransform()),
         Extent(M->Bounds.BoxExtent), BoundsOrigin(M->Bounds.Origin), Enabled(M->GetCollisionEnabled()),
-        Profile(M->GetCollisionProfileName()), Responses(M->GetCollisionResponseToChannels()), Overrides(M->OverrideMaterials)
+        Profile(M->GetCollisionProfileName()), Responses(M->GetCollisionResponseToChannels()), ObjectType(M->GetCollisionObjectType()), Overrides(M->OverrideMaterials)
     { for (int32 I=0; I<M->GetNumMaterials(); ++I) Materials.Add(M->GetMaterial(I)); }
 };
 class FInteriorCameraPIE : public IAutomationLatentCommand
@@ -148,6 +151,18 @@ public:
                 { Test->TestTrue(TEXT("portal fade parameter exists"),MID->GetScalarParameterValue(FMaterialParameterInfo(TEXT("DinkCameraOpacity")),Opacity)); Test->TestEqual(TEXT("clear aperture retains opaque frame"),Opacity,1.f); }
             }
             Test->AddInfo(FString::Printf(TEXT("Clear-aperture fixture pawn%s eye%s insideDoorBounds1 geometricSphereClear1 opacity1"),*Hero->GetActorLocation().ToCompactString(),*Eye.ToCompactString()));
+            ExpectedControl=FRotator(-18,270,0); PC->SetControlRotation(ExpectedControl);
+            // A static camera inspection at the live return pose overlaps the exit warp.
+            // Hold only the existing reentrant-warp guard until this fixture is inspected.
+            Test->TestTrue(TEXT("return camera fixture acquires scoped warp guard"),Grey->BeginWarp(Hero));
+            Move(Hero,Grey,Home,302.956,386.332); Phase=8; At=FPlatformTime::Seconds(); return false;
+        }
+        if (Phase==8)
+        {
+            CheckInput(Hero,PC);
+            Test->TestEqual(TEXT("static actual-return camera fixture stays in screen1"),Grey->GetCurrentScreen(),Home);
+            CheckForegroundReturn(Hero,PC);
+            Grey->EndWarp(Hero);
             ExpectedControl=FRotator(-18,225,0); PC->SetControlRotation(ExpectedControl);
             Move(Hero,Grey,Home,303.5,370); Phase=2; At=FPlatformTime::Seconds(); return false;
         }
@@ -182,7 +197,24 @@ public:
             {
                 ExpectedControl=FRotator(-18,315,0); PC->SetControlRotation(ExpectedControl); Phase=7; At=FPlatformTime::Seconds(); return false;
             }
-            Move(Hero,Grey,Yard,300,200); Phase=3; At=FPlatformTime::Seconds(); return false;
+            const FVector Pivot=Hero->CameraBoom->GetComponentLocation()+Hero->CameraBoom->TargetOffset;
+            UnknownActor->SetActorLocation(FMath::Lerp(Pivot,Hero->CameraBoom->GetUnfixedCameraPosition(),.55));
+            Phase=9;At=FPlatformTime::Seconds();return false;
+        }
+        if (Phase==9)
+        {
+            const FVector Pivot=Hero->CameraBoom->GetComponentLocation()+Hero->CameraBoom->TargetOffset;
+            const FVector Unfixed=Hero->CameraBoom->GetUnfixedCameraPosition();
+            FCollisionQueryParams Q(TEXT("UnsupportedBoomBlocker"),false,Hero);FHitResult Hit;
+            const bool Blocked=W->SweepSingleByChannel(Hit,Pivot,Unfixed,FQuat::Identity,ECC_Camera,FCollisionShape::MakeSphere(Hero->CameraBoom->ProbeSize),Q);
+            Test->TestTrue(TEXT("unsupported material provides actual camera sweep blocker"),Blocked && Hit.GetComponent()==Unknown);
+            Test->TestTrue(TEXT("unsupported material retains actual spring-arm retraction"),Hero->CameraBoom->IsCollisionFixApplied());
+            Test->TestTrue(TEXT("retained blocker shortens actual camera distance"),FVector::Dist(Pivot,Hero->FollowCamera->GetComponentLocation())+1<FVector::Dist(Pivot,Unfixed));
+            Test->TestEqual(TEXT("unsupported blocker material remains original while retracting"),Unknown->GetMaterial(0),UnknownMaterial);
+            Test->TestEqual(TEXT("unsupported blocker keeps camera response while retracting"),Unknown->GetCollisionResponseToChannel(ECC_Camera),ECR_Block);
+            CheckInput(Hero,PC);
+            UnknownActor->SetActorLocation(Home->MapPixelToWorld(100,100)+FVector(0,0,5000));
+            Move(Hero,Grey,Yard,300,200);Phase=3;At=FPlatformTime::Seconds();return false;
         }
         if (Phase==2 || Phase==4)
         {
@@ -220,7 +252,41 @@ public:
             Test->TestEqual(TEXT("unmapped material keeps Camera blocker"),Unknown->GetCollisionResponseToChannel(ECC_Camera),ECR_Block);
             Test->TestEqual(TEXT("unmapped material keeps BlockAll profile"),Unknown->GetCollisionProfileName(),FName(TEXT("BlockAll")));
             if (Phase==2) { Move(Hero,Grey,Home,303.5,382); Phase=6; At=FPlatformTime::Seconds(); return false; }
+            Test->TestTrue(TEXT("external ownership fixture has six supported meshes"),Before.Num()>=6);
+            if (Before.Num()<6) return true;
+            Before[0].Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            Before[1].Mesh->SetCollisionObjectType(ECC_WorldDynamic);
+            Before[2].Mesh->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+            const FName ExternalProfile=Before[2].Mesh->GetCollisionProfileName();
+            const FCollisionResponseContainer ExternalResponses=Before[2].Mesh->GetCollisionResponseToChannels();
+            const ECollisionEnabled::Type ExternalEnabled=Before[2].Mesh->GetCollisionEnabled();
+            const ECollisionChannel ExternalObjectType=Before[2].Mesh->GetCollisionObjectType();
+            Before[3].Mesh->SetCollisionResponseToChannel(ECC_Pawn,ECR_Overlap);
+            Before[4].Mesh->SetCollisionResponseToChannel(ECC_Camera,ECR_Overlap);
+            const int32 ExtraSlot=Before[5].Mesh->GetNumMaterials()+2;
+            Before[5].Mesh->SetMaterial(ExtraSlot,UnknownMaterial);
+            auto ExpectedOverrides=Before[5].Mesh->OverrideMaterials;
+            for (int32 I=0;I<Before[5].Materials.Num();++I)
+                ExpectedOverrides[I]=Before[5].Overrides.IsValidIndex(I) ? Before[5].Overrides[I] : nullptr;
             C->DestroyComponent();
+            Test->TestEqual(TEXT("external NoCollision survives manager destruction"),Before[0].Mesh->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
+            Test->TestEqual(TEXT("external object type survives manager destruction"),Before[1].Mesh->GetCollisionObjectType(),ECC_WorldDynamic);
+            Test->TestEqual(TEXT("external named profile survives manager destruction"),Before[2].Mesh->GetCollisionProfileName(),ExternalProfile);
+            Test->TestTrue(TEXT("external named profile responses survive manager destruction"),Before[2].Mesh->GetCollisionResponseToChannels()==ExternalResponses);
+            Test->TestEqual(TEXT("external named profile enabled state survives"),Before[2].Mesh->GetCollisionEnabled(),ExternalEnabled);
+            Test->TestEqual(TEXT("external named profile object type survives"),Before[2].Mesh->GetCollisionObjectType(),ExternalObjectType);
+            Test->TestEqual(TEXT("external Pawn response survives manager destruction"),Before[3].Mesh->GetCollisionResponseToChannel(ECC_Pawn),ECR_Overlap);
+            Test->TestEqual(TEXT("owned Camera response restores beside external Pawn change"),Before[3].Mesh->GetCollisionResponseToChannel(ECC_Camera),Before[3].Responses.GetResponse(ECC_Camera));
+            Test->TestEqual(TEXT("external Camera response survives manager destruction"),Before[4].Mesh->GetCollisionResponseToChannel(ECC_Camera),ECR_Overlap);
+            Test->TestEqual(TEXT("foreign appended material survives manager destruction"),Before[5].Mesh->GetMaterial(ExtraSlot),UnknownMaterial);
+            Test->TestTrue(TEXT("only owned material slots restore beside foreign appended override"),Before[5].Mesh->OverrideMaterials==ExpectedOverrides);
+            // Restore the test's deliberate external changes before the original85-mesh invariants.
+            for (int32 I=0;I<6;++I)
+            {
+                const FMeshBefore& B=Before[I]; B.Mesh->SetCollisionEnabled(B.Enabled);
+                B.Mesh->SetCollisionObjectType(B.ObjectType);B.Mesh->SetCollisionResponseToChannels(B.Responses);B.Mesh->SetCollisionProfileName(B.Profile);
+                B.Mesh->OverrideMaterials=B.Overrides;B.Mesh->MarkRenderStateDirty();
+            }
             CheckRestored(); CheckCamera(Hero,false); CheckInput(Hero,PC);
             Test->TestEqual(TEXT("unsupported component remains blocking after destruction"),Unknown->GetCollisionResponseToChannel(ECC_Camera),ECR_Block);
             if (OverrideFixture) { OverrideFixture->OverrideMaterials=FixtureOverrides; OverrideFixture->MarkRenderStateDirty(); }
@@ -302,6 +368,72 @@ private:
             Test->AddInfo(FString::Printf(TEXT("Floor-frustum yaw%.1f viewport%dx%d fraction%.1f floorHit%s insideUnionMargin3=%d"),ExpectedControl.Yaw,Rect.Width(),Rect.Height(),Fraction,*Hit.ToCompactString(),Inside));
         }
     }
+    void CheckForegroundReturn(ADinkGreyboxCharacter* Hero,APlayerController* PC)
+    {
+        UStaticMeshComponent* Portal=nullptr;
+        for (const FMeshBefore& B : Before) if (B.Asset && B.Asset->GetName().Contains(TEXT("Doorway"))) Portal=B.Mesh;
+        if (!Test->TestNotNull(TEXT("foreground fixture uses actual authored doorway"),Portal)) return;
+        const FVector Eye=Hero->FollowCamera->GetComponentLocation(), Body=Hero->GetActorLocation();
+        const FRotator Rotation=Hero->FollowCamera->GetComponentRotation();
+        const FVector Forward=Rotation.Vector(), Side=Rotation.RotateVector(FVector(0,22,0));
+        const double EndDepth=FVector::DotProduct(Body-Eye,Forward)-Hero->GetCapsuleComponent()->GetScaledCapsuleRadius();
+        FCollisionQueryParams Q(TEXT("IndependentForegroundRegression"),true,Hero);
+        FHitResult Near;
+        Test->TestFalse(TEXT("returned peripheral jamb misses legacy near-eye sphere"),Portal->SweepComponent(Near,Eye,Eye+FVector(.01,0,0),FQuat::Identity,FCollisionShape::MakeSphere(Hero->CameraBoom->ProbeSize+6.f),true));
+        for (const FVector& Target : {Body+FVector(0,0,60),Body,Body-FVector(0,0,60),Body+Side,Body-Side})
+        { FHitResult Hit; Test->TestFalse(TEXT("returned peripheral jamb misses all legacy body rays"),Portal->LineTraceComponent(Hit,Eye,Target,Q)); }
+        ULocalPlayer* Local=PC->GetLocalPlayer();
+        FViewport* Viewport=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
+        FSceneViewProjectionData Projection;
+        if (!Test->TestTrue(TEXT("actual viewport projects peripheral foreground fixture"),Viewport && Local->GetProjectionData(Viewport,Projection))) return;
+        const FIntRect Rect=Projection.GetConstrainedViewRect();
+        const FMatrix Inverse=Projection.ComputeViewProjectionMatrix().InverseFast();
+        int32 ActualForegroundHits=0;
+        for (double X : {.75,.85,.95}) for (double Y : {.3,.5,.7})
+        {
+            FVector Origin,Direction;
+            FSceneView::DeprojectScreenToWorld(FVector2D(Rect.Min.X+X*Rect.Width(),Rect.Min.Y+Y*Rect.Height()),Rect,Inverse,Origin,Direction);
+            const double Rate=FVector::DotProduct(Direction,Forward);
+            if (Rate<=0) continue;
+            const double StartDepth=FVector::DotProduct(Origin-Eye,Forward);
+            FHitResult Hit;
+            if (Portal->LineTraceComponent(Hit,Origin,Origin+Direction*((EndDepth-StartDepth)/Rate),Q))
+            {
+                const double Depth=FVector::DotProduct(Hit.ImpactPoint-Eye,Forward);
+                Test->TestTrue(TEXT("independently projected jamb hit is visible foreground before pawn"),Depth>0 && Depth<EndDepth);
+                ++ActualForegroundHits;
+            }
+        }
+        Test->TestTrue(TEXT("several independent right-third viewport rays hit actual foreground jamb"),ActualForegroundHits>=3);
+        TArray<DinkCameraOcclusion::FSweep> Sweeps;
+        FMinimalViewInfo View; Hero->FollowCamera->GetCameraView(0,View);
+        Test->TestTrue(TEXT("actual-projection foreground sweeps build"),DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,Projection.ProjectionMatrix,View.GetFinalPerspectiveNearClipPlane(),EndDepth,Sweeps));
+        Test->TestTrue(TEXT("inscribed component sweep detects genuine foreground jamb"),DinkCameraOcclusion::Intersects(Portal,Sweeps));
+        for (int32 I=0; I<Portal->GetNumMaterials(); ++I)
+        {
+            UMaterialInstanceDynamic* MID=Cast<UMaterialInstanceDynamic>(Portal->GetMaterial(I)); float Opacity=1;
+            if (Test->TestNotNull(TEXT("foreground jamb owns fade material"),MID))
+            { Test->TestTrue(TEXT("foreground fade parameter exists"),MID->GetScalarParameterValue(FMaterialParameterInfo(TEXT("DinkCameraOpacity")),Opacity)); Test->TestEqual(TEXT("actual-return peripheral jamb fades despite clear body rays"),Opacity,0.f); }
+        }
+        // Real collision-backed negative controls using the same component query path.
+        AActor* Fixture=Hero->GetWorld()->SpawnActor<AActor>();
+        UStaticMeshComponent* Cube=NewObject<UStaticMeshComponent>(Fixture);
+        Fixture->SetRootComponent(Cube); Fixture->AddInstanceComponent(Cube);
+        Cube->SetStaticMesh(LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube")));
+        Cube->SetMobility(EComponentMobility::Movable); Cube->SetCollisionProfileName(TEXT("BlockAll"));
+        Cube->SetWorldScale3D(FVector(.2)); Cube->RegisterComponent();
+        const FVector Right=Rotation.RotateVector(FVector(0,1,0));
+        Fixture->SetActorLocation(Eye+Forward*80+Right*30);
+        Test->TestTrue(TEXT("solid off-axis foreground mesh intersects projection volume"),DinkCameraOcclusion::Intersects(Cube,Sweeps));
+        Fixture->SetActorLocation(Eye-Forward*80);
+        Test->TestFalse(TEXT("mesh behind eye never intersects foreground volume"),DinkCameraOcclusion::Intersects(Cube,Sweeps));
+        Fixture->SetActorLocation(Eye+Forward*(EndDepth+150));
+        Test->TestFalse(TEXT("mesh beyond pawn never intersects foreground volume"),DinkCameraOcclusion::Intersects(Cube,Sweeps));
+        Fixture->SetActorLocation(Eye+Forward*80+Right*300);
+        Test->TestFalse(TEXT("mesh outside projected view never intersects foreground volume"),DinkCameraOcclusion::Intersects(Cube,Sweeps));
+        Fixture->Destroy();
+        Test->AddInfo(FString::Printf(TEXT("Actual-return foreground pawn%s eye%s control%s independentPixelHits%d endDepth%.3f"),*Body.ToCompactString(),*Eye.ToCompactString(),*Rotation.ToCompactString(),ActualForegroundHits,EndDepth));
+    }
     void CheckCamera(ADinkGreyboxCharacter* H,bool Indoors)
     {
         Test->TestEqual(TEXT("camera arm preset"),H->CameraBoom->TargetArmLength,Indoors ? 240.f : 400.f);
@@ -339,4 +471,38 @@ bool FDinkInteriorCameraTest::RunTest(const FString&)
     FAssetCompilingManager::Get().FinishAllCompilation();
     IConsoleVariable* Art=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.ArtEnabled")); const int32 Prior=Art->GetInt(); Art->Set(1,ECVF_SetByCode);
     AddCommand(new FStartPIECommand(false)); AddCommand(new FInteriorCameraPIE(this)); AddCommand(new FEndPlayMapCommand()); AddCommand(new FRestoreCameraArtSetting(Prior)); return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkForegroundProjectionTest,"Dink.Art.InteriorCamera.ForegroundProjection",DINK_TEST_FLAGS)
+bool FDinkForegroundProjectionTest::RunTest(const FString&)
+{
+    const FVector Eye(1234,-5678,224); const FRotator Rotation(-18,315,0);
+    const FVector Forward=Rotation.Vector(),Right=Rotation.RotateVector(FVector(0,1,0)),Up=Rotation.RotateVector(FVector(0,0,1));
+    TArray<DinkCameraOcclusion::FSweep> Sweeps;
+    for (const FVector4& Values : {FVector4(1.428148,2.53893,0,0),FVector4(2.,1.,.3,-.2)})
+    {
+        FMatrix Projection=FMatrix::Identity;
+        Projection.M[0][0]=Values.X; Projection.M[1][1]=Values.Y;
+        Projection.M[2][0]=Values.Z; Projection.M[2][1]=Values.W;
+        Projection.M[2][3]=1.; Projection.M[3][3]=0.;
+        TestTrue(TEXT("perspective and off-axis portrait projections build foreground volumes"),DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,Projection,10,212,Sweeps));
+        TestEqual(TEXT("bounded twelve-sweep foreground approximation"),Sweeps.Num(),12);
+        for (const DinkCameraOcclusion::FSweep& Sweep : Sweeps)
+            for (const FVector& Centre : {Sweep.Start,Sweep.End})
+                for (double X : {-1.,1.}) for (double Y : {-1.,1.}) for (double Z : {-1.,1.})
+                {
+                    const FVector Corner=Centre+Rotation.RotateVector(Sweep.HalfExtent*FVector(X,Y,Z))-Eye;
+                    const double Depth=FVector::DotProduct(Corner,Forward);
+                    const double NDCX=FVector::DotProduct(Corner,Right)*Values.X/Depth+Values.Z;
+                    const double NDCY=FVector::DotProduct(Corner,Up)*Values.Y/Depth+Values.W;
+                    const bool Inside=FMath::Abs(NDCX)<=1.000001 && FMath::Abs(NDCY)<=1.000001 && Depth>=9.9999 && Depth<=212.0001;
+                    if (!Inside) AddError(FString::Printf(TEXT("swept corner escapes projection: NDC %.12f %.12f depth%.12f slopes%s local%s"),NDCX,NDCY,Depth,*Values.ToString(),*(Sweep.HalfExtent*FVector(X,Y,Z)).ToString()));
+                }
+    }
+    TestFalse(TEXT("orthographic matrices are rejected rather than treated as perspective"),DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,FMatrix::Identity,10,212,Sweeps));
+    TestTrue(TEXT("invalid projection clears prior sweep output"),Sweeps.IsEmpty());
+    FMatrix Projection=FMatrix::Identity; Projection.M[2][3]=1; Projection.M[3][3]=0;
+    TestFalse(TEXT("foreground ending before near plane is rejected"),DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,Projection,10,5,Sweeps));
+    TestFalse(TEXT("nonfinite far depth is rejected"),DinkCameraOcclusion::BuildForegroundSweeps(Eye,Rotation,Projection,10,std::numeric_limits<double>::infinity(),Sweeps));
+    return true;
 }

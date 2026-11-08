@@ -18,7 +18,11 @@ struct FDinkCameraOccluder
     UPROPERTY() TArray<TObjectPtr<UMaterialInterface>> OriginalMaterials;
     UPROPERTY() TArray<TObjectPtr<UMaterialInterface>> OriginalOverrides;
     FName CollisionProfile;
+    FName ManagedCollisionProfile;
     FCollisionResponseContainer CollisionResponses;
+    ECollisionEnabled::Type CollisionEnabled = ECollisionEnabled::NoCollision;
+    ECollisionChannel CollisionObjectType = ECC_WorldStatic;
+    UPROPERTY() TArray<TObjectPtr<UMaterialInterface>> ManagedOverrides;
     UPROPERTY() TArray<TObjectPtr<UMaterialInstanceDynamic>> FadeMaterials;
     ECollisionResponse CameraResponse = ECR_Block;
     float Opacity = 1.f;
