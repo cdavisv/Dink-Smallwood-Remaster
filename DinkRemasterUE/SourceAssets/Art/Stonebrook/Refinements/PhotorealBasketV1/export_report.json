@@ -1,0 +1,19 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/artist/Work/DinkQA/PhotorealSessions/Basket/UVRefinement/Export",
+  "manifest": "/home/artist/Work/DinkQA/PhotorealSessions/Basket/UVRefinement/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Basket_Wicker_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.glb"
+      },
+      "tris": {
+        "LOD0": 19680
+      }
+    }
+  ],
+  "rejected": []
+}

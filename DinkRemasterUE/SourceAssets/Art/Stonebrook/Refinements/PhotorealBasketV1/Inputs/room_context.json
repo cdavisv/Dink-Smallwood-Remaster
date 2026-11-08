@@ -1,0 +1,64 @@
+{
+  "context_sprites": [
+    {
+      "file": "Inputs/OriginalRoomContext/87_09.png",
+      "seq": 87,
+      "frame": 9,
+      "sha256": "7144c69f408c29065a33605ea0ae6d7f61b00058d45276cf3268eece74079147",
+      "role": "original table room palette"
+    },
+    {
+      "file": "Inputs/OriginalRoomContext/64_03.png",
+      "seq": 64,
+      "frame": 3,
+      "sha256": "70aaf133f609b610374fe45895624b52e854ead9ba4456282eff56c00246ed09",
+      "role": "original bed room palette"
+    },
+    {
+      "file": "Inputs/OriginalRoomContext/422_12.png",
+      "seq": 422,
+      "frame": 12,
+      "sha256": "21bdca5ffa60b2fd3012ff5bd3df4166eabb60c57fe796a7eb39ab036d07c1b6",
+      "role": "neighbor grain sack, NOT this decorative basket"
+    }
+  ],
+  "direct_original_sprite_replacement": false,
+  "reference_identity": "Added decorative WickerBasket, distinct from original S001_P52 grain sack",
+  "extraction_scope": "Existing bundled original PNGs reused; raw archive BMPs not freshly extracted",
+  "native_current_references": {
+    "assets": [
+      {
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+        "expected_size_cm": [
+          114.40000534057617,
+          94.19999718666077,
+          67.1999990940094
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "name": "WickerBasket",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+        "world_cm": [
+          -183182.65999999997,
+          392484.73,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "collision": true
+      }
+    ],
+    "replacements": []
+  },
+  "native_approval": false
+}

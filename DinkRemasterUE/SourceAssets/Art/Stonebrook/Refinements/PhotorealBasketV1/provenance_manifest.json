@@ -1,0 +1,20 @@
+{
+  "new_geometry_materials": "Original project-authored deterministic Blender construction and procedural reed materials; no third-party/generated bitmap inputs",
+  "original_kit": "Original project asset; no third-party source material (unchanged existing ledger attribution)",
+  "original_context_images": "Original Dink sprite PNGs, room context only; existing original game licensing and authorship retained, not CC0 or generated art",
+  "reference_identity": "Added decorative WickerBasket, not grain sack",
+  "reviewed_source_sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+  "export_source_sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+  "input_files": {
+    "Inputs/V4_Source.blend": "f550ff60db5c41b6e43157f978734322918e1b2738cf5bfe62989c96164ac020",
+    "Inputs/KIT_Stonebrook_Input.blend": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+    "Inputs/room_context.json": "e649fe6a1e37c23fab775bdb7a1e73fb193422c309d8b23b61e6c28978f4263c",
+    "Inputs/Textures/T_Stonebrook_Wicker_BC.png": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3",
+    "Inputs/Textures/T_Stonebrook_Wicker_N.png": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243",
+    "Inputs/Textures/T_Stonebrook_Wicker_ORM.png": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48",
+    "Inputs/OriginalRoomContext/87_09.png": "7144c69f408c29065a33605ea0ae6d7f61b00058d45276cf3268eece74079147",
+    "Inputs/OriginalRoomContext/64_03.png": "70aaf133f609b610374fe45895624b52e854ead9ba4456282eff56c00246ed09",
+    "Inputs/OriginalRoomContext/422_12.png": "21bdca5ffa60b2fd3012ff5bd3df4166eabb60c57fe796a7eb39ab036d07c1b6"
+  },
+  "native_approved": false
+}

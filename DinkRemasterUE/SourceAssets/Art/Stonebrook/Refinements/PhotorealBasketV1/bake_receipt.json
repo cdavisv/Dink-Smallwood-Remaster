@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "role": "BC",
+      "bake": "EMIT",
+      "source_socket": "Base Color",
+      "seconds": 4.9704389572143555,
+      "sha256": "e4a926f9768036dacfeb1ac09b149cd4aba56423c5368414a091fdffe926b91f"
+    },
+    {
+      "role": "Rough",
+      "bake": "EMIT",
+      "source_socket": "Roughness",
+      "seconds": 4.045758485794067,
+      "sha256": "6e44573ce06094e93b12aa7369aa89a60927cabf53f18ec7de8f2354b8b5a421"
+    },
+    {
+      "role": "Metal",
+      "bake": "EMIT",
+      "source_socket": "Metallic",
+      "seconds": 2.5528481006622314,
+      "sha256": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37"
+    },
+    {
+      "role": "N",
+      "bake": "NORMAL",
+      "source_socket": null,
+      "seconds": 17.024264574050903,
+      "sha256": "f69ac1782bfa0f3c695f5e5faac68edd9a2c5fd36ae966ed3c975af148bed51a"
+    }
+  ],
+  "source_sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+  "source_unchanged": true,
+  "triangles": 19680,
+  "metallic_linear_range": [
+    0.0,
+    0.0
+  ],
+  "metallic_nonzero_texels": 0,
+  "R_AO": "neutral1",
+  "BC": "Emission bake of authored procedural dry willow colour",
+  "normal": "tangent-space authored bump bake",
+  "ORM_sha256": "9bc62cbae9e82abdd9ec345622c400e679d32825ee118b9f83e29739608bff56"
+}
