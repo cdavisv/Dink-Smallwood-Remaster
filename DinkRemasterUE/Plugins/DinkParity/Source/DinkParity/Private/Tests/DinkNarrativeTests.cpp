@@ -7,6 +7,7 @@
 
 #include "DinkTestHelpers.h"
 #include "DinkDirector.h"
+#include "DinkGameplay.h"
 #include "DinkInkStory.h"
 #include "DinkNarrativeTypes.h"
 #include "DinkSaveGame.h"
@@ -105,7 +106,12 @@ namespace DinkNarrativeTest
 	/** When the data repo is next to the project: every expected string occurs verbatim in the original script. */
 	void CheckOriginal(FAutomationTestBase& Test, const TCHAR* Script, const TArray<FString>& Strings)
 	{
-		const FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../Dink-Smallwood-Remaster/bin/dink/story") / (FString(Script) + TEXT(".c")));
+		// The data repo is the fork's root since 8 Nov 2026 (the project is DinkRemasterUE/ inside it); the old sibling layout is tried second.
+		FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../bin/dink/story") / (FString(Script) + TEXT(".c")));
+		if (!IFileManager::Get().FileExists(*Path))
+		{
+			Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../Dink-Smallwood-Remaster/bin/dink/story") / (FString(Script) + TEXT(".c")));
+		}
 		FString Source;
 		if (!FFileHelper::LoadFileToString(Source, *Path))
 		{
@@ -1072,5 +1078,140 @@ bool FDinkNarrativeSpScriptRunsMainTest::RunTest(const FString& Parameters)
 	}
 	TestEqual(TEXT("re-attaching leaves exactly one live script on the sprite (the old one was replaced)"), Alive, 1);
 	TestEqual(TEXT("and its main ran at once again: 100"), Read(TEXT("hitpoints"), Knight), 100);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkNarrativeExternalSpawnRunAtOnceTest, "Dink.Narrative.Director.ExternalAndSpawnRunAtOnce", DINK_TEST_FLAGS)
+bool FDinkNarrativeExternalSpawnRunAtOnceTest::RunTest(const FString& Parameters)
+{
+	// dink.cpp:11326-11360 (`external`: load_script, locate(child, proc), proc_return = script, run_script(child)) and dink.cpp:8181-8203
+	// (`spawn`: load_script(name, 1000), locate(.., "MAIN"), run_script) run the child ON THE SPOT, in the caller's turn. The remake used to
+	// start it and let it run on the next story step; the duck brain's `duckdie` (s4-duck.c: external("make", "foodduck"), then
+	// `if (get_sprite_with_this_brain(3, ..) == 0) spawn("s4-end")`) then removed the sprite, ending parent and child before the child ran a
+	// line, so the 27th duck of Windemere never ended the enclosure (&story 11). Pitfall 56.
+	FEnv Env = Make(*this);
+	if (!Env.IsValid())
+	{
+		return false;
+	}
+	UDinkStorySubsystem* S = Env.Story;
+	UDinkDirector* D = S->GetDirector();
+	const int32 Caller = D->CreateVirtualSprite(12, 100, 100);
+	const int32 CallerId = S->StartProcedure(TEXT("s1-brg2"), TEXT("hit"), Caller, {}, 12);
+	S->RunUntilIdle();
+	FDinkScriptInstance* A = S->FindInstance(CallerId);
+	if (!TestNotNull(TEXT("the caller's instance (a stand-in for the parent script)"), A))
+	{
+		return false;
+	}
+	auto Run = [&](const FString& Text)
+	{
+		const FDinkStoryLine L = FDinkStoryLine::Parse(FString(TEXT(">> ")) + Text, { TEXT("cmd"), TEXT("src:1") });
+		return D->Execute(*A, L);
+	};
+	auto Fact = [&](const TCHAR* Name) { return Env.Facts->GetFact(FName(Name)); };
+	auto Count = [&](int32 Brain, int32 PSeq)
+	{
+		int32 N = 0;
+		for (const TPair<int32, FDinkSprite>& P : D->GetSprites())
+		{
+			N += (P.Value.bActive && P.Value.GetProp(TEXT("brain")) == Brain && P.Value.GetProp(TEXT("pseq")) == PSeq) ? 1 : 0;
+		}
+		return N;
+	};
+	auto EndedCount = [&](const FString& Entry)
+	{
+		return Events(S, TEXT("end")).FilterByPredicate([&Entry](const FDinkNarrativeEvent& E) { return E.Text == Entry; }).Num();
+	};
+
+	// 1. external, a child that ends without blocking: its effect is there when the command returns, the caller is not blocked and its
+	// next line comes AFTER the child's (make.c sheart: `&save_y += 1; create_sprite(..); sp_script(&crap, "sheart")`).
+	Env.Facts->SetFact(TEXT("save_x"), 200);
+	Env.Facts->SetFact(TEXT("save_y"), 100);
+	const FDinkCommandResult R1 = Run(TEXT("external \"make\" \"sheart\""));
+	TestEqual(TEXT("external: the child ran in the caller's turn (&save_y += 1)"), Fact(TEXT("save_y")), 101);
+	TestEqual(TEXT("external: the child's sprite exists (create_sprite + sp_script ran: brain 6, seq 54)"), Count(6, 54), 1);
+	TestEqual(TEXT("external: the child ended without blocking, so the caller is not blocked"), static_cast<int32>(R1.Block), 0);
+	TestEqual(TEXT("external: the child ended (\"external returned\")"), EndedCount(TEXT("make.sheart")), 1);
+	Env.Facts->SetFact(TEXT("save_y"), 55); // the caller's own next line
+	S->RunUntilIdle();
+	S->Advance(0.5);
+	TestEqual(TEXT("external: the caller's value stays (the old deferred child ran later and made it 56)"), Fact(TEXT("save_y")), 55);
+	TestEqual(TEXT("external: the child ran once"), Events(S, TEXT("start")).FilterByPredicate([](const FDinkNarrativeEvent& E) { return E.Text == DinkNarrative::EntryPath(TEXT("make"), TEXT("sheart")); }).Num(), 1);
+
+	// 2. spawn: the spawned main has run when the command returns (s4-end main: &s4-duck = 2; &story = 11; freeze(1); ...), owned by 1000,
+	// and runs until it blocks (it walks a man in with move_stop).
+	Env.Facts->SetFact(TEXT("story"), 10);
+	Env.Facts->SetFact(TEXT("s4-duck"), 1);
+	Run(TEXT("spawn \"s4-end\""));
+	TestEqual(TEXT("spawn: the caller's next line sees the spawned main's &s4-duck = 2"), Fact(TEXT("s4-duck")), 2);
+	TestEqual(TEXT("spawn: ... and &story = 11"), Fact(TEXT("story")), 11);
+	const FDinkScriptInstance* Spawned = nullptr;
+	for (const TUniquePtr<FDinkScriptInstance>& I : S->GetInstances())
+	{
+		if (I->IsAlive() && I->Script == TEXT("s4-end"))
+		{
+			Spawned = I.Get();
+		}
+	}
+	TestTrue(TEXT("spawn: the new instance is owned by 1000 and Blocked at its first move_stop (it ran up to there)"),
+		Spawned && Spawned->AttachedTo == UDinkDirector::HandleNoSprite && Spawned->State == EDinkInstanceState::Blocked && Spawned->Block == EDinkBlock::Move);
+	TestEqual(TEXT("spawn: main started once"), Events(S, TEXT("start")).FilterByPredicate([](const FDinkNarrativeEvent& E) { return E.Text == DinkNarrative::EntryPath(TEXT("s4-end"), TEXT("main")); }).Num(), 1);
+
+	// 3. The duck case, through the duck brain (UDinkGameplay::ProcessDamage: RunProc(duckdie), then the sprite is removed): two headless
+	// ducks of s4-duck. The first one's death runs external("make", "foodduck") (a food sprite, seq 421) and finds the second alive; the second
+	// one's death does the same and then spawn("s4-end"). Both children must have run although the duck's sprite and instances are removed
+	// right after duckdie returns.
+	Env.Facts->SetFact(TEXT("story"), 10);
+	Env.Facts->SetFact(TEXT("s4-duck"), 1);
+	const int32 FoodBefore = Count(6, 421);
+	TArray<int32> Ducks;
+	for (int32 K = 0; K < 2; ++K)
+	{
+		const int32 Duck = D->CreateVirtualSprite(536, 300 + 40 * K, 300);
+		Ducks.Add(Duck);
+		FDinkSprite* Sprite = D->FindSprite(Duck);
+		Sprite->Props.Add(TEXT("brain"), 3);
+		Sprite->bHeadless = true; // the body that runs on after the head flew off: its death is `duckdie`
+		Run(FString::Printf(TEXT("sp_script %d \"s4-duck\""), Duck)); // main: sp_hitpoints 5
+	}
+	auto Kill = [&](int32 Duck)
+	{
+		D->FindSprite(Duck)->Damage = 5;
+		S->GetGameplay()->ProcessDamage();
+	};
+	const int32 SpawnsBefore = Events(S, TEXT("start")).FilterByPredicate([](const FDinkNarrativeEvent& E) { return E.Text == DinkNarrative::EntryPath(TEXT("s4-end"), TEXT("main")); }).Num();
+	const int32 FoodEndsBefore = EndedCount(TEXT("make.foodduck"));
+	Kill(Ducks[0]);
+	TestFalse(TEXT("duck 1: the body is removed"), D->FindSprite(Ducks[0]) && D->FindSprite(Ducks[0])->bActive);
+	TestEqual(TEXT("duck 1: external(\"make\", \"foodduck\") ran although the sprite was removed right after (a food sprite exists)"), Count(6, 421), FoodBefore + 1);
+	TestEqual(TEXT("duck 1: the child ended before its parent's next line"), EndedCount(TEXT("make.foodduck")), FoodEndsBefore + 1);
+	TestEqual(TEXT("duck 1: another duck is alive, so no spawn(\"s4-end\"): &s4-duck stays 1"), Fact(TEXT("s4-duck")), 1);
+	Kill(Ducks[1]);
+	TestFalse(TEXT("duck 2: the body is removed"), D->FindSprite(Ducks[1]) && D->FindSprite(Ducks[1])->bActive);
+	TestEqual(TEXT("duck 2: its food sprite exists too"), Count(6, 421), FoodBefore + 2);
+	TestEqual(TEXT("duck 2: the last duck's duckdie reached its last line: spawn(\"s4-end\") ran (&s4-duck 2)"), Fact(TEXT("s4-duck")), 2);
+	TestEqual(TEXT("duck 2: ... &story 11"), Fact(TEXT("story")), 11);
+	TestEqual(TEXT("duck 2: s4-end's main started exactly once more"),
+		Events(S, TEXT("start")).FilterByPredicate([](const FDinkNarrativeEvent& E) { return E.Text == DinkNarrative::EntryPath(TEXT("s4-end"), TEXT("main")); }).Num(), SpawnsBefore + 1);
+
+	// 4. external, a child that blocks: the parent must wait for it (run_script returns at the child's first block and `external` leaves the
+	// parent's script); it goes on when the child ends. s4-end main stands in for a child that blocks (move_stop).
+	Env.Facts->SetFact(TEXT("story"), 10);
+	Env.Facts->SetFact(TEXT("s4-duck"), 1);
+	const FDinkCommandResult R4 = Run(TEXT("external \"s4-end\" \"main\""));
+	TestEqual(TEXT("blocking child: it ran up to its first block in the caller's turn (&story 11)"), Fact(TEXT("story")), 11);
+	TestEqual(TEXT("blocking child: the caller is blocked on the child"), static_cast<int32>(R4.Block), static_cast<int32>(EDinkBlock::Child));
+	const FDinkScriptInstance* Child = S->FindInstance(R4.BlockRef);
+	TestTrue(TEXT("blocking child: it is alive, Blocked, and the caller's child"), Child && Child->IsAlive() && Child->State == EDinkInstanceState::Blocked && Child->ParentId == A->Id && Child->bEndWithProcedure);
+	A->State = EDinkInstanceState::Blocked; // what StepInstance does with the result
+	A->Block = EDinkBlock::Child;
+	A->BlockRef = R4.BlockRef;
+	S->Advance(0.1);
+	TestEqual(TEXT("blocking child: the caller still waits while the child lives"), static_cast<int32>(A->State), static_cast<int32>(EDinkInstanceState::Blocked));
+	S->bInstantMode = true; // the moves and says finish at once
+	S->RunUntilIdle();
+	TestTrue(TEXT("blocking child: the child ended (end of the procedure: \"external returned\")"), !S->FindInstance(R4.BlockRef) || !S->FindInstance(R4.BlockRef)->IsAlive());
+	TestTrue(TEXT("blocking child: the caller went on when it ended"), A->State != EDinkInstanceState::Blocked);
 	return true;
 }
