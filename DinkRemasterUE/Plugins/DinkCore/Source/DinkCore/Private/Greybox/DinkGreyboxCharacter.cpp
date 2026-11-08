@@ -32,19 +32,19 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 
 	UCharacterMovementComponent* Move = GetCharacterMovement();
 	Move->bOrientRotationToMovement = true;
-	Move->RotationRate = FRotator(0.f, 420.f, 0.f);
-	Move->MaxAcceleration = 1400.f;
+	Move->RotationRate = FRotator(0.f, 360.f, 0.f);
+	Move->MaxAcceleration = 1100.f;
 	Move->GroundFriction = 6.f;
 	Move->MaxWalkSpeed = RunSpeed;
 	Move->MinAnalogWalkSpeed = 20.f;
-	Move->BrakingDecelerationWalking = 1200.f;
-	Move->JumpZVelocity = 420.f;
-	Move->GravityScale = 1.35f;
-	Move->AirControl = .3f;
+	Move->BrakingDecelerationWalking = 950.f;
+	Move->JumpZVelocity = 280.f;
+	Move->GravityScale = 1.45f;
+	Move->AirControl = .2f;
 	Move->BrakingDecelerationFalling = 150.f;
 	Move->MaxStepHeight = 35.f;
 	Move->GetNavAgentPropertiesRef().bCanJump = true;
-	JumpMaxHoldTime = .16f;
+	JumpMaxHoldTime = .08f;
 	JumpMaxCount = 1;
 
 	ThirdPersonMapping = CreateDefaultSubobject<UInputMappingContext>(TEXT("ThirdPersonControls"));
@@ -185,6 +185,14 @@ void ADinkGreyboxCharacter::Jump()
 	if (Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead()) Super::Jump();
 }
 
+void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
+{
+	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
+	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds, LandingStumbleChance);
+	AirSeconds = 0.f;
+	Super::Landed(Hit);
+}
+
 void ADinkGreyboxCharacter::Zoom(const FInputActionValue& Value)
 {
 	ZoomCamera(Value.Get<float>());
@@ -207,10 +215,23 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 			(!PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
 	}
 	Super::Tick(DeltaSeconds);
+	const FVector Location = GetActorLocation();
+	const bool Teleported = !bBodyLocationReady || FVector::DistSquared(Location, PreviousBodyLocation) >= FMath::Square(200.);
+	if (Teleported) { HeroPhysicality.Cancel(); AirSeconds = 0.f; }
+	const bool Grounded = GetCharacterMovement()->IsMovingOnGround();
+	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
+	if (!Allowed) AirSeconds = 0.f;
+	else if (!Grounded) AirSeconds += DeltaSeconds;
+	else AirSeconds = 0.f;
+	HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported);
+	PreviousBodyLocation = Location; bBodyLocationReady = true;
 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
 	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
-		GetCharacterMovement()->IsMovingOnGround()).Quaternion();
+		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
+	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
+	AppliedBodyOffset = HeroPhysicality.GetOffset();
+	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
 }
 
 void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)

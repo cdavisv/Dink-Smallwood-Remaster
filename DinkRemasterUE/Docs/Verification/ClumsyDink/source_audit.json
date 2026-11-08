@@ -1,0 +1,16 @@
+{
+  "verification_mode": "full",
+  "binary_files_verified": 1929,
+  "binary_files_metadata_only": 0,
+  "python_syntax_files": 210,
+  "shell_syntax_files": 22,
+  "ledger_rows": 1322,
+  "missing_assets": 0,
+  "hash_errors": 0,
+  "secret_flags": [],
+  "errors": [],
+  "layout_cases_passed": 3,
+  "approved_audio_runtime_matches": true,
+  "passed": true,
+  "scope_note": "Fullsourceaudit afterstaging clumsycode/receipts;thisreceiptitselfaddedafterward. Raw144nativeSuccessstates/zero warnings and5integrationfilepins independentlychecked."
+}
