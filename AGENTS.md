@@ -541,10 +541,10 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 133 automation tests (verified 7 Nov
-  2026 night: 133/133 in 463 s; the probe runs as nine save-slot chapters,
-  Ch1..Ch9, deterministic across runs and identical packaged; PIE tests run
-  on a fixed 60 Hz step).
+  rows, 111 implemented, 35 recorded. 136 automation tests (verified 8 Nov
+  2026: 136/136 in 508 s; the probe runs as ten save-slot chapters,
+  Ch1..Ch9 and ChAJoppa, deterministic across runs and identical packaged;
+  PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
   `DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
   `stonebrook_probe_trace.txt`): a scripted play-through from a new game with
@@ -626,6 +626,18 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `duckdie` is removed before `external("make","foodduck")` runs and
   `spawn("s4-end")` never fires (UE AGENTS.md pitfall 56; next fix). Nine
   chapters, hashes in the UE AGENTS.md, packaged md5s identical to PIE.
+- Probe progress, 8 Nov 2026: second engine fix, `external` and `spawn` run
+  their child script on the spot (`dink.cpp:11326-11360`, `8181-8203`; test
+  `Dink.Narrative.Director.ExternalAndSpawnRunAtOnce`), so the 27th duck's
+  `duckdie` reaches `spawn("s4-end")`: `&s4-duck 2`, `&story 11`, the Kelly
+  and guard scene. Chapter 10 (`ChAJoppa`): the Windemere healer, the three
+  pickups of step 32, Joppa, the basement (`&s5-jop 2`), the return with the
+  family and both dragons. Stops at route step 36, the dragons: a punch makes
+  a dragon cast `harm` for 16 at once and Dink (strength 13: this run put its
+  level-ups into defense) is dead in 1.4 s; the route's kit needs strength
+  20+, i.e. level-ups into strength from chapter 7 on and the longsword
+  (400 gold; Dink has 205), which re-tunes chapters 7-10. Ten chapters,
+  packaged md5s identical to PIE; hashes in the UE AGENTS.md.
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.

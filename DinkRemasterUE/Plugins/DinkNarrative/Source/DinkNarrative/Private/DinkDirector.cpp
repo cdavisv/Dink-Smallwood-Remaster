@@ -210,7 +210,7 @@ void UDinkDirector::RegisterCommands()
 		Ctx.Instance.AttachedTo = Ctx.Int(0);
 		return FDinkCommandResult();
 	});
-	Register(TEXT("external"), S::Implemented, TEXT("runs another script's procedure in a new instance for the same sprite and waits for it"), [this, Block](FDinkCommandContext& Ctx)
+	Register(TEXT("external"), S::Implemented, TEXT("runs another script's procedure in a new instance for the same sprite at once (dink.cpp:11326-11360); the caller waits only if the child blocks"), [this, Block](FDinkCommandContext& Ctx)
 	{
 		TArray<int32> Args;
 		for (int32 A = 2; A < Ctx.Num(); ++A)
@@ -229,9 +229,25 @@ void UDinkDirector::RegisterCommands()
 		FDinkScriptInstance* ChildInstance = Story->FindInstance(Child);
 		ChildInstance->ParentId = Ctx.Instance.Id;
 		ChildInstance->bEndWithProcedure = true;
+		// dink.cpp:11326-11360: `load_script`, `locate(child, proc)`, `proc_return = script; run_script(child)` ON THE SPOT, in the caller's turn
+		// (and unconditionally: no_running_main does not apply to external). run_script runs the child until it ends or blocks. If it ends
+		// (end of the procedure: dink.cpp:11588-11590 `run_script(proc_return)`) the caller goes on at once, the very next line, in the same
+		// turn; if it blocks (wait, say_stop, a menu) run_script returns, `external` returns 2 and the caller is not run again until the
+		// child ends. RunNow does the first part; the Child block below is the second (UpdateBlocks resumes the caller when the child is gone).
+		// Before 7 Nov 2026 the child only started and the caller blocked on it, so the child's first line ran on the next story step: a
+		// caller whose sprite was removed in between (s4-duck.c `duckdie`: the duck brain runs the proc and then removes the sprite, which
+		// ends the caller and the child) never ran the child at all (pitfall 56).
+		Story->RunNow(Child);
+		const FDinkScriptInstance* After = Story->FindInstance(Child);
+		if (!After || !After->IsAlive() || !Ctx.Instance.IsAlive())
+		{
+			// The child ended (the caller continues in this turn), or the child ended the caller (sp_script on its sprite, kill_this_task
+			// of an instance it owns...): nothing to wait for.
+			return FDinkCommandResult();
+		}
 		return Block(EDinkBlock::Child, 0.0, Child);
 	});
-	Register(TEXT("spawn"), S::Implemented, TEXT("starts another script's main in a new instance owned by 1000"), [this](FDinkCommandContext& Ctx)
+	Register(TEXT("spawn"), S::Implemented, TEXT("starts another script's main in a new instance owned by 1000 and runs it at once (dink.cpp:8181-8203)"), [this](FDinkCommandContext& Ctx)
 	{
 		const int32 Child = Story->StartProcedure(FName(*Ctx.Str(0)), TEXT("main"), HandleNoSprite, {}, Ctx.Instance.Screen, /*bNewInstance*/ true);
 		if (Child == 0)
@@ -241,6 +257,14 @@ void UDinkDirector::RegisterCommands()
 		if (FDinkScriptInstance* ChildInstance = Story->FindInstance(Child))
 		{
 			ChildInstance->AttachedTo = HandleNoSprite;
+		}
+		// dink.cpp:8181-8203: `load_script(name, 1000, true); locate(mysc, "MAIN"); run_script(mysc)` ON THE SPOT, until the script blocks;
+		// then the caller goes on. Unlike sp_script (dink.cpp:8163, 8169) spawn does not look at no_running_main, so there is no
+		// bNoRunningMain check here (pitfall 56). Before 7 Nov 2026 only the start ran, so s4-duck.c `duckdie` -> spawn("s4-end") (and Mog,
+		// the dragons' ending, the bombs' damage scripts) ran their first line a step late.
+		if (Child)
+		{
+			Story->RunNow(Child);
 		}
 		return FDinkCommandResult();
 	});

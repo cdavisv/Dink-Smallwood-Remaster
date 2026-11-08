@@ -19,6 +19,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "HAL/FileManager.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 
@@ -153,7 +154,12 @@ namespace DinkGameplayTest
 
 	void CheckOriginal(FAutomationTestBase& Test, const TCHAR* Script, const TArray<FString>& Strings)
 	{
-		const FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../Dink-Smallwood-Remaster/bin/dink/story") / (FString(Script) + TEXT(".c")));
+		// The data repo is the fork's root since 8 Nov 2026 (the project is DinkRemasterUE/ inside it); the old sibling layout is tried second.
+		FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../bin/dink/story") / (FString(Script) + TEXT(".c")));
+		if (!IFileManager::Get().FileExists(*Path))
+		{
+			Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir() / TEXT("../Dink-Smallwood-Remaster/bin/dink/story") / (FString(Script) + TEXT(".c")));
+		}
 		FString Source;
 		if (!FFileHelper::LoadFileToString(Source, *Path))
 		{
