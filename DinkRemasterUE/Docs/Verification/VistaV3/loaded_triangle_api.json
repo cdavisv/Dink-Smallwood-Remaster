@@ -1,0 +1,41 @@
+{
+  "path": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN32.SM_VistaGround_8m_XN32_YN32",
+  "triangle_valid": true,
+  "array_type": "<class 'Array'>",
+  "array_repr": "<Array object at 0x7f8ca7d3ac30>",
+  "array_length": 6,
+  "array_doc": "x.get_triangle_vertices(triangle_id) -> Array[VertexID]\nReturns the vertices which define this triangle\n\nArgs:\n    triangle_id (TriangleID): \n\nReturns:\n    Array[VertexID]: \n\n    out_vertex_i_ds (Array[VertexID]):",
+  "indexed": [
+    {
+      "index": 0,
+      "instance_repr": "<Struct 'VertexInstanceID' (0x8e34e35b510) {id_value: 0}>",
+      "vertex_repr": "<Struct 'VertexID' (0x8e34e35b518) {id_value: 1}>",
+      "position_cm": [
+        100.0,
+        -0.0,
+        -51.66212844848633
+      ]
+    },
+    {
+      "index": 1,
+      "instance_repr": "<Struct 'VertexInstanceID' (0x8e34e35b558) {id_value: 1}>",
+      "vertex_repr": "<Struct 'VertexID' (0x8e34e35b568) {id_value: 9}>",
+      "position_cm": [
+        0.0,
+        -100.0,
+        -54.193687438964844
+      ]
+    },
+    {
+      "index": 2,
+      "instance_repr": "<Struct 'VertexInstanceID' (0x8e34e35b580) {id_value: 2}>",
+      "vertex_repr": "<Struct 'VertexID' (0x8e34e35b5a8) {id_value: 0}>",
+      "position_cm": [
+        0.0,
+        -0.0,
+        -52.53934860229492
+      ]
+    }
+  ],
+  "package_bytes_unchanged": true
+}

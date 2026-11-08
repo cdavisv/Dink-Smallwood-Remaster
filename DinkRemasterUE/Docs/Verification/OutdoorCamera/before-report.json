@@ -1,0 +1,3753 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1B930201C74038906A753610E0C71",
+			"instanceName": "omarchy-282404",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-03.25.24",
+	"succeeded": 0,
+	"succeededWithWarnings": 0,
+	"failed": 1,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 9.5084228515625,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "ReadableExitAndOwnership",
+			"fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A1B930201C74038906A753610E0C71"
+			],
+			"duration": 9.5084228515625,
+			"dateTime": "2026.11.08-03.25.14",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: FlushAsyncLoading(497): 1 QueuedPackages, 0 AsyncPackages",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_Darklands) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_Fragments) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_Joppa) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_Mainland) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: ULevelStreaming::RequestLevel(/Game/Dink/_Generated/Maps/L_Greybox_World_SnowIsle) is flushing async loading",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: FlushAsyncLoading(504): 1 QueuedPackages, 0 AsyncPackages",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 0 placements replaced, 135 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: Art exposure: bias -2.0, bounds contain centre yes",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 6 placements replaced, 148 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 3 placements replaced, 126 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 0 placements replaced, 156 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 0 placements replaced, 130 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK ART OK: 1 placements replaced, 0 authored elements; original scripts retained, authored collision active",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK CHARACTER ART OK: 1 animated original actors",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.17"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogSkinnedAsset: Waiting for skinned assets to be ready 0/1 (SK_Pillbug) ...",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK CREATURE ART OK: 11 original actors animated",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogSkinnedAsset: Waiting for skinned assets to be ready 0/1 (SKM_Manny_Simple) ...",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogSkinnedAsset: Waiting for skinned assets to be ready 0/1 (SK_Dink_Hands) ...",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogDink: DINK PLAYER ART OK: /Game/Dink/Hero/Refinements/SK_Dink_Hands.SK_Dink_Hands; existing locomotion and collision retained",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Ground_Meadow_20m_01.SM_Ground_Meadow_20m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01.SM_Pie_Rustic_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Table_Oak_01.SM_Table_Oak_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01.SM_Doorway_Limewash_4m_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_00_00.SM_Fields_438_Land_00_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_01_00.SM_Fields_438_Land_00_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_02_00.SM_Fields_438_Land_00_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_03_00.SM_Fields_438_Land_00_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_04_00.SM_Fields_438_Land_00_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_05_00.SM_Fields_438_Land_00_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_06_00.SM_Fields_438_Land_00_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_00_00.SM_Fields_438_Land_01_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_01_00.SM_Fields_438_Land_01_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_02_00.SM_Fields_438_Land_01_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_03_00.SM_Fields_438_Land_01_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_04_00.SM_Fields_438_Land_01_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_05_00.SM_Fields_438_Land_01_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_06_00.SM_Fields_438_Land_01_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_00_00.SM_Fields_438_Land_02_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_01_00.SM_Fields_438_Land_02_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_02_00.SM_Fields_438_Land_02_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_03_00.SM_Fields_438_Land_02_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_04_00.SM_Fields_438_Land_02_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_05_00.SM_Fields_438_Land_02_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_06_00.SM_Fields_438_Land_02_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_00_00.SM_Fields_438_Land_03_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_01_00.SM_Fields_438_Land_03_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_02_00.SM_Fields_438_Land_03_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_03_00.SM_Fields_438_Land_03_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_04_00.SM_Fields_438_Land_03_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_05_00.SM_Fields_438_Land_03_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_06_00.SM_Fields_438_Land_03_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_00_00.SM_Fields_438_Land_04_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_01_00.SM_Fields_438_Land_04_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_02_00.SM_Fields_438_Land_04_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_03_00.SM_Fields_438_Land_04_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_04_00.SM_Fields_438_Land_04_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_05_00.SM_Fields_438_Land_04_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_06_00.SM_Fields_438_Land_04_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_00_00.SM_Fields_438_Land_05_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_01_00.SM_Fields_438_Land_05_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_02_00.SM_Fields_438_Land_05_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_03_00.SM_Fields_438_Land_05_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_04_00.SM_Fields_438_Land_05_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_05_00.SM_Fields_438_Land_05_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_06_00.SM_Fields_438_Land_05_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_00_00.SM_Fields_438_Land_06_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_01_00.SM_Fields_438_Land_06_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_02_00.SM_Fields_438_Land_06_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_03_00.SM_Fields_438_Land_06_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_05_00.SM_Fields_438_Land_06_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_06_00.SM_Fields_438_Land_06_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_00_00.SM_Fields_438_Land_07_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_01_00.SM_Fields_438_Land_07_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_02_00.SM_Fields_438_Land_07_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_03_00.SM_Fields_438_Land_07_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_00.SM_Fields_438_Land_07_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_01.SM_Fields_438_Land_07_04_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_00.SM_Fields_438_Land_07_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_01.SM_Fields_438_Land_07_05_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_06_00.SM_Fields_438_Land_07_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_00_00.SM_Fields_438_Land_08_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_01_00.SM_Fields_438_Land_08_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_02_00.SM_Fields_438_Land_08_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_03_00.SM_Fields_438_Land_08_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_04_00.SM_Fields_438_Land_08_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_05_00.SM_Fields_438_Land_08_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_06_00.SM_Fields_438_Land_08_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_00_00.SM_Fields_438_Land_09_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_01_00.SM_Fields_438_Land_09_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_02_00.SM_Fields_438_Land_09_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_03_00.SM_Fields_438_Land_09_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_04_00.SM_Fields_438_Land_09_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_05_00.SM_Fields_438_Land_09_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_06_00.SM_Fields_438_Land_09_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_03_00.SM_Fields_438_Bank_05_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_04_00.SM_Fields_438_Bank_05_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_05_00.SM_Fields_438_Bank_05_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_03_00.SM_Fields_438_Bank_06_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_04_00.SM_Fields_438_Bank_06_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_05_00.SM_Fields_438_Bank_06_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_06_00.SM_Fields_438_Bank_06_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_03_00.SM_Fields_438_Bank_07_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_04_00.SM_Fields_438_Bank_07_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_05_00.SM_Fields_438_Bank_07_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_06_00.SM_Fields_438_Bank_07_06_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_04_00.SM_Fields_438_Water_05_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_05_00.SM_Fields_438_Water_05_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_04_00.SM_Fields_438_Water_06_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_05_00.SM_Fields_438_Water_06_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_04_00.SM_Fields_438_Water_07_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_05_00.SM_Fields_438_Water_07_05_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_00_00.SM_Fields_471_Land_00_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_01_00.SM_Fields_471_Land_00_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_02_00.SM_Fields_471_Land_00_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_00_00.SM_Fields_471_Land_01_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_01_00.SM_Fields_471_Land_01_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_02_00.SM_Fields_471_Land_01_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_04_00.SM_Fields_471_Land_01_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_00_00.SM_Fields_471_Land_02_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_01_00.SM_Fields_471_Land_02_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_02_00.SM_Fields_471_Land_02_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_04_00.SM_Fields_471_Land_02_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_00_00.SM_Fields_471_Land_03_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_01_00.SM_Fields_471_Land_03_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_02_00.SM_Fields_471_Land_03_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_04_00.SM_Fields_471_Land_03_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_00_00.SM_Fields_471_Land_04_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_01_00.SM_Fields_471_Land_04_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_02_00.SM_Fields_471_Land_04_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_03_00.SM_Fields_471_Land_04_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_04_00.SM_Fields_471_Land_04_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_00_00.SM_Fields_471_Land_05_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_03_00.SM_Fields_471_Land_05_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_04_00.SM_Fields_471_Land_05_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_00_00.SM_Fields_471_Land_06_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_02_00.SM_Fields_471_Land_06_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_03_00.SM_Fields_471_Land_06_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_04_00.SM_Fields_471_Land_06_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_00_00.SM_Fields_471_Land_07_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_02_00.SM_Fields_471_Land_07_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_03_00.SM_Fields_471_Land_07_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_04_00.SM_Fields_471_Land_07_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_00_00.SM_Fields_471_Land_08_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_02_00.SM_Fields_471_Land_08_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_03_00.SM_Fields_471_Land_08_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_04_00.SM_Fields_471_Land_08_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_00_00.SM_Fields_471_Land_09_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_02_00.SM_Fields_471_Land_09_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_03_00.SM_Fields_471_Land_09_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_04_00.SM_Fields_471_Land_09_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_02_00.SM_Fields_471_Land_10_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_03_00.SM_Fields_471_Land_10_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_04_00.SM_Fields_471_Land_10_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_00_02_00.SM_Fields_471_Bank_00_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_02_00.SM_Fields_471_Bank_01_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_03_00.SM_Fields_471_Bank_01_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_04_00.SM_Fields_471_Bank_01_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_02_00.SM_Fields_471_Bank_02_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_03_00.SM_Fields_471_Bank_02_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_04_00.SM_Fields_471_Bank_02_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_00_00.SM_Fields_471_Bank_03_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_01_00.SM_Fields_471_Bank_03_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_02_00.SM_Fields_471_Bank_03_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_03_00.SM_Fields_471_Bank_03_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_04_00.SM_Fields_471_Bank_03_04_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_00_00.SM_Fields_471_Bank_04_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_01_00.SM_Fields_471_Bank_04_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_02_00.SM_Fields_471_Bank_04_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_03_00.SM_Fields_471_Bank_04_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_00_00.SM_Fields_471_Bank_05_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_01_00.SM_Fields_471_Bank_05_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_03_00.SM_Fields_471_Bank_05_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_00_00.SM_Fields_471_Bank_06_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_01_00.SM_Fields_471_Bank_06_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_02_00.SM_Fields_471_Bank_06_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_03_00.SM_Fields_471_Bank_06_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_00_00.SM_Fields_471_Bank_07_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_01_00.SM_Fields_471_Bank_07_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_02_00.SM_Fields_471_Bank_07_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_02_02.SM_Fields_471_Bank_07_02_02 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_03_00.SM_Fields_471_Bank_07_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_00_00.SM_Fields_471_Bank_08_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_01_00.SM_Fields_471_Bank_08_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_02_00.SM_Fields_471_Bank_08_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_00_00.SM_Fields_471_Bank_09_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_01_00.SM_Fields_471_Bank_09_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_02_00.SM_Fields_471_Bank_09_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_00_00.SM_Fields_471_Bank_10_00_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_01_00.SM_Fields_471_Bank_10_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_02_00.SM_Fields_471_Bank_10_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_00_02_00.SM_Fields_471_Water_00_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_00_03_00.SM_Fields_471_Water_00_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_01_02_00.SM_Fields_471_Water_01_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_01_03_00.SM_Fields_471_Water_01_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_02_02_00.SM_Fields_471_Water_02_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_02_03_00.SM_Fields_471_Water_02_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_03_02_00.SM_Fields_471_Water_03_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_03_03_00.SM_Fields_471_Water_03_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_01_00.SM_Fields_471_Water_04_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_02_00.SM_Fields_471_Water_04_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_03_00.SM_Fields_471_Water_04_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_01_00.SM_Fields_471_Water_05_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_02_00.SM_Fields_471_Water_05_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_03_00.SM_Fields_471_Water_05_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_01_00.SM_Fields_471_Water_06_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_02_00.SM_Fields_471_Water_06_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_03_00.SM_Fields_471_Water_06_03_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_07_01_00.SM_Fields_471_Water_07_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_07_02_00.SM_Fields_471_Water_07_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_08_01_00.SM_Fields_471_Water_08_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_08_02_00.SM_Fields_471_Water_08_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_09_01_00.SM_Fields_471_Water_09_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_09_02_00.SM_Fields_471_Water_09_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_10_01_00.SM_Fields_471_Water_10_01_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_10_02_00.SM_Fields_471_Water_10_02_00 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.SM_Fireplace_Stonebrook_V2 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN32.SM_VistaGround_8m_XN32_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN24.SM_VistaGround_8m_XN32_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN16.SM_VistaGround_8m_XN32_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN8.SM_VistaGround_8m_XN32_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP0.SM_VistaGround_8m_XN32_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP8.SM_VistaGround_8m_XN32_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP16.SM_VistaGround_8m_XN32_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN32.SM_VistaGround_8m_XN24_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN24.SM_VistaGround_8m_XN24_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN16.SM_VistaGround_8m_XN24_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN8.SM_VistaGround_8m_XN24_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP0.SM_VistaGround_8m_XN24_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP8.SM_VistaGround_8m_XN24_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP16.SM_VistaGround_8m_XN24_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN32.SM_VistaGround_8m_XN16_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN24.SM_VistaGround_8m_XN16_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN16.SM_VistaGround_8m_XN16_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN8.SM_VistaGround_8m_XN16_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP0.SM_VistaGround_8m_XN16_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP8.SM_VistaGround_8m_XN16_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP16.SM_VistaGround_8m_XN16_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN32.SM_VistaGround_8m_XN8_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN24.SM_VistaGround_8m_XN8_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN16.SM_VistaGround_8m_XN8_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN8.SM_VistaGround_8m_XN8_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP16.SM_VistaGround_8m_XN8_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN32.SM_VistaGround_8m_XP0_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN24.SM_VistaGround_8m_XP0_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN16.SM_VistaGround_8m_XP0_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN8.SM_VistaGround_8m_XP0_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP16.SM_VistaGround_8m_XP0_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN32.SM_VistaGround_8m_XP8_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN24.SM_VistaGround_8m_XP8_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN16.SM_VistaGround_8m_XP8_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN8.SM_VistaGround_8m_XP8_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP0.SM_VistaGround_8m_XP8_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP8.SM_VistaGround_8m_XP8_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP16.SM_VistaGround_8m_XP8_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN32.SM_VistaGround_8m_XP16_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN24.SM_VistaGround_8m_XP16_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN16.SM_VistaGround_8m_XP16_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN8.SM_VistaGround_8m_XP16_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP0.SM_VistaGround_8m_XP16_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP8.SM_VistaGround_8m_XP16_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP16.SM_VistaGround_8m_XP16_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN32.SM_VistaGround_8m_XP24_YN32 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN24.SM_VistaGround_8m_XP24_YN24 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN16.SM_VistaGround_8m_XP24_YN16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN8.SM_VistaGround_8m_XP24_YN8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP0.SM_VistaGround_8m_XP24_YP0 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP8.SM_VistaGround_8m_XP24_YP8 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP16.SM_VistaGround_8m_XP24_YP16 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP13R.SM_VistaGround_8m_XN8_YP13R being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP13R.SM_VistaGround_8m_XP0_YP13R being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStaticMesh: Waiting on static mesh StaticMesh /Game/Dink/Props/Stonebrook/InteriorVista/SM_Doorstep_StonebrookVista_01.SM_Doorstep_StonebrookVista_01 being ready before playing",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.18"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogStreaming: FlushAsyncLoading(788): 1 QueuedPackages, 0 AsyncPackages",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.19"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'only explicitly qualified exterior cottage managed' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 83,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "actual outdoor exit pawnV(X=97729.07, Y=37504.15, Z=98.35) eyeV(X=97729.07, Y=37409.81, Z=129.00) distance99.200 requested400.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'stationary immediate exterior exit has readable full400cm camera' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 87,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'qualified cottage actually fades at obstructed exit' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'every cottage slot uses owned masked fade material' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 93,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all cottage slots visibly fade, preserving opaque shadows' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'every cottage slot uses owned masked fade material' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 93,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all cottage slots visibly fade, preserving opaque shadows' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'every cottage slot uses owned masked fade material' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 93,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all cottage slots visibly fade, preserving opaque shadows' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'every cottage slot uses owned masked fade material' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 93,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all cottage slots visibly fade, preserving opaque shadows' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'every cottage slot uses owned masked fade material' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 93,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all cottage slots visibly fade, preserving opaque shadows' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 88,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'all nonCamera cottage collisionresponses unchanged' to be true.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 144,
+					"timestamp": "2026.11.08-03.25.21"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'exterior reacquires only qualified cottage' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "/home/davisc/Work/DinkVistaStage/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+					"lineNumber": 120,
+					"timestamp": "2026.11.08-03.25.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "LogPlayLevel: Shutting down PIE online subsystems",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-03.25.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 15,
+			"artifacts": []
+		}
+	]
+}

@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "game_target_build": {
+    "exit": 0,
+    "actions": 82,
+    "seconds": 44.98,
+    "warnings": 0
+  },
+  "package": {
+    "exit": 0,
+    "elapsed_seconds_including_global_mutex_wait": 803,
+    "cook_seconds": 16.58,
+    "warnings": 0,
+    "cook_storage": "filesystem via engine-supported -SkipZenStore; no shared cache data-directory switch"
+  },
+  "container": {
+    "passed": true,
+    "container_rows": 7779,
+    "expected_vista_meshes": 62,
+    "expected_fade_materials": 5,
+    "missing": [],
+    "doorstep_entries": [
+      {
+        "OrderInContainer": "5878",
+        "ChunkId": "8e8e1a440a56c9ab00000001",
+        "PackageId": "0xABC9560A441A8E8E",
+        "PackageName": "",
+        "Filename": "../../../DinkRemaster/Content/Dink/Props/Stonebrook/InteriorVista/SM_Doorstep_StonebrookVista_01.uasset",
+        "ContainerName": "DinkRemaster-Linux",
+        "Offset": "752484352",
+        "OffsetOnDisk": "225729184",
+        "Size": "63795",
+        "CompressedSize": "19712",
+        "Hash": "0xd8f2f303baf7c003147ca745aceb16ba6d307da3",
+        "ChunkType": "ExportBundleData",
+        "ClassType": "",
+        "PakChunk": "DinkRemaster",
+        "Platform": "Linux",
+        "InstallType": "Base",
+        "DeliveryType": "Installed",
+        "PartitionIndex": "0",
+        "OffsetInPartition": "225729184"
+      }
+    ],
+    "container_files": [
+      "/home/davisc/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/global.utoc",
+      "/home/davisc/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/DinkRemaster-Linux.utoc"
+    ],
+    "source": "Actual staged IoStore directory index; no inference from cook arguments"
+  },
+  "packaged_headless_smoke": {
+    "exit": 0,
+    "runtime_context_actor_rows": [
+      "[2026.11.08-04.22.14:356][  0]               DinkArtContextActor /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkArtContextActor_2147480464      3.55       3.66       0.00            0.00            0.00            0.00"
+    ],
+    "loaded_doorstep_rows": [
+      "[2026.11.08-04.22.14:360][  0]                          StaticMesh /Game/Dink/Props/Stonebrook/InteriorVista/SM_Doorstep_StonebrookVista_01.SM_Doorstep_StonebrookVista_01      2.49       2.52       0.00            0.00            0.00            0.00"
+    ],
+    "warnings": 0,
+    "log_sha256": "e20b75110da1784f63c559b9ecbf63bb3524cbec269d25a421a736a5fcc614c4",
+    "scope": "Actual packaged actor/asset loading under NullRHI, not packaged GPU rendering",
+    "fixture_note": "Initial semicolon command list did not request Quit; only owned headless fixture was stopped and retried using documented comma-separated ExecCmds."
+  },
+  "native_full_runtime_input_count": 6874,
+  "runtime_changes_after_packaging": [],
+  "remote_lfs": {
+    "passed": true,
+    "head": "48683e04d48cee6aad298c87593abba906459dfa",
+    "objects_verified": 13,
+    "objects": [
+      {
+        "path": "DinkRemasterUE/Content/Dink/Camera/Stonebrook/M_CameraFade_Fieldstone_v1.uasset",
+        "oid": "5133aedb907246b110e3e11e9cca7140a1291d15e7eb25fc322a818d15207645",
+        "size": 12760
+      },
+      {
+        "path": "DinkRemasterUE/Content/Dink/Camera/Stonebrook/M_CameraFade_Thatch_v1.uasset",
+        "oid": "d8b8e4a9f760980c85dd1cde01ab993cdf767ac4fbca842f9573617f217e256b",
+        "size": 12716
+      },
+      {
+        "path": "DinkRemasterUE/Content/Dink/Camera/Stonebrook/M_CameraFade_WroughtIron_v1.uasset",
+        "oid": "f5e5303e593be5e23923ec7838bdd67d470cd56b61706c0a2da9c6b698453365",
+        "size": 12771
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/actual-return-225.png",
+        "oid": "673da5a155e2a479c6ea695b76fdbee08d12ec6c7baa20546b6dbde8964dc5e3",
+        "size": 1120824
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/actual-return-270.png",
+        "oid": "7ecfc36e8860b114c0f462d2740eb3e25e22f87be56f4d6159486434ae372ff9",
+        "size": 1414680
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/actual-return-315.png",
+        "oid": "d6085fc9b3e109efc437de484b28bff2c8d36e09f1e4c771ac63836c8e7636b8",
+        "size": 1131900
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/door-looking-out.png",
+        "oid": "65089a0bc5a5b994b7ca9f3f94c8fbfa9b447f35359ee5eb91d5379604c9b19f",
+        "size": 1038372
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/fresh-house.png",
+        "oid": "b61c82bec7eff77113007b9630034b0fc5edcbe28405853c6492e44c7ac733bb",
+        "size": 997109
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/outdoor-immediate.png",
+        "oid": "b2510fb077770393dfd8dc6df8569a341dbeaca95d1231348d2c42c553476899",
+        "size": 1055814
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/outdoor-settled.png",
+        "oid": "c01e237d89470782df4dfb3dcf08057285b2a0ed5ac927c6aea78e99c411a5e1",
+        "size": 1059231
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/window-east.png",
+        "oid": "f0ee7e98eda9ab724c14cd14aba7393570d328886d90dd04d42f3fadd3d9743a",
+        "size": 1093469
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/window-north.png",
+        "oid": "6f0115c4c8f426c3f72ab3dd10dced17130be5ff1fba1392b3ab6b636917b0db",
+        "size": 964753
+      },
+      {
+        "path": "DinkRemasterUE/Docs/Verification/VistaFinal/Rendered/window-west.png",
+        "oid": "b815bd5d8a1eac983a9149500df93f5e206901eac2d69f70dbdd95dd29e86d73",
+        "size": 1028944
+      }
+    ],
+    "source": "Fresh GitHub LFS fetch in separate verification clone"
+  }
+}

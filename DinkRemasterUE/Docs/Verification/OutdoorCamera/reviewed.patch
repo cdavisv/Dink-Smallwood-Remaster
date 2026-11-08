@@ -1,0 +1,440 @@
+--- a/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
++++ b/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+@@ -135,10 +135,16 @@
+ {
+     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
+     bInteriorMode = Screen && Screen->bIndoor;
+-    if (!bInteriorMode) { RestoreCamera(); return; }
+-    Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
+-    Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
+-    ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
++    if (bInteriorMode)
++    {
++        Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
++        Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
++        ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
++    }
++    else RestoreCamera();
++    // Outdoor meshes participate only through the same explicit tag and complete
++    // authored material mapping. Their physical collision and outdoor camera stay intact.
++    if (!Screen) return;
+     const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"),Screen->ScreenNumber));
+     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+     {
+@@ -283,14 +289,14 @@
+     const APawn* Pawn=Cast<APawn>(GetOwner());
+     if (!Pawn || !Pawn->IsLocallyControlled() || Pawn->GetController()!=GetWorld()->GetFirstPlayerController())
+     {
+-        if (bInteriorMode) SelectScreen(nullptr);
++        if (bInteriorMode || !Occluders.IsEmpty()) SelectScreen(nullptr);
+         return;
+     }
+     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
+     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
+     if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
+-    if (!bInteriorMode) return;
+-    UpdateFraming(DeltaTime);
++    if (bInteriorMode) UpdateFraming(DeltaTime);
++    if (Occluders.IsEmpty()) return;
+     const FRotator Rotation=Arm->GetTargetRotation();
+     const FVector Pivot=Arm->GetComponentLocation()+Arm->TargetOffset;
+     const FVector Eye=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
+--- a/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
++++ b/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+@@ -296,7 +296,7 @@
+         {
+             Test->TestEqual(TEXT("exit selects outdoor439"),Grey->GetCurrentScreen(),Yard);
+             Test->TestFalse(TEXT("exiting clears interior mode"),C->bInteriorMode);
+-            Test->TestEqual(TEXT("exiting releases occluder ownership"),C->ManagedOccluderCount,0);
++            Test->TestEqual(TEXT("exiting restores all indoor surfaces and manages only qualified exterior cottage"),C->ManagedOccluderCount,1);
+             CheckRestored(); CheckCamera(Hero,false); CheckInput(Hero,PC);
+             ExpectedControl=FRotator(-18,225,0); PC->SetControlRotation(ExpectedControl);
+             Move(Hero,Grey,Home,303.5,370); Phase=4; At=FPlatformTime::Seconds(); return false;
+--- a/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
++++ b/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
+@@ -1,3 +1,5 @@
++#include "DinkInteriorCameraComponent.h"
++#include "Materials/MaterialInstanceDynamic.h"
+ #include "AssetCompilingManager.h"
+ #include "Components/StaticMeshComponent.h"
+ #include "DinkArtContextActor.h"
+@@ -205,10 +207,29 @@
+             T->TestEqual(TEXT("exterior parent unchanged"), B.M->GetAttachParent(), B.Parent);
+             T->TestTrue(TEXT("exterior transform unchanged"), B.M->GetComponentTransform().Equals(B.Transform, .001));
+             T->TestEqual(TEXT("exterior collision unchanged"), B.M->GetCollisionEnabled(), B.Enabled);
+-            T->TestTrue(TEXT("exterior responses unchanged"), B.M->GetCollisionResponseToChannels() == B.Responses);
+-            T->TestTrue(TEXT("exterior overrides unchanged"), B.M->OverrideMaterials == B.Overrides);
+-            for (int I = 0; I < B.Materials.Num(); ++I)
+-                T->TestEqual(TEXT("exterior material unchanged"), B.M->GetMaterial(I), B.Materials[I].Get());
++            auto W=B.M->GetWorld(); auto PC=W->GetFirstPlayerController(); auto H=PC ? PC->GetPawn() : nullptr;
++            auto Camera=H ? H->FindComponentByClass<UDinkInteriorCameraComponent>() : nullptr;
++            auto Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
++            const bool ManagedCottage=B.M->GetStaticMesh() && B.M->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01") &&
++                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && !Camera->bInteriorMode;
++            if (ManagedCottage)
++            {
++                auto Expected=B.Responses;Expected.SetResponse(ECC_Camera,ECR_Ignore);
++                T->TestTrue(TEXT("qualified cottage changes only Camera response"),B.M->GetCollisionResponseToChannels()==Expected);
++                T->TestEqual(TEXT("qualified cottage has exactly five managed material overrides"),B.M->OverrideMaterials.Num(),B.Materials.Num());
++                for(int I=0;I<B.Materials.Num();++I)
++                {
++                    auto MID=Cast<UMaterialInstanceDynamic>(B.M->GetMaterial(I));
++                    T->TestTrue(TEXT("cottage material changes belong solely to native camera policy"),MID && MID->GetOuter()==Camera && MID->GetBlendMode()==BLEND_Masked);
++                }
++            }
++            else
++            {
++                T->TestTrue(TEXT("foreign exterior responses unchanged / cottage restores when unmanaged"), B.M->GetCollisionResponseToChannels() == B.Responses);
++                T->TestTrue(TEXT("foreign exterior overrides unchanged / cottage restores when unmanaged"), B.M->OverrideMaterials == B.Overrides);
++                for (int I = 0; I < B.Materials.Num(); ++I)
++                    T->TestEqual(TEXT("foreign exterior material unchanged / cottage restores when unmanaged"), B.M->GetMaterial(I), B.Materials[I].Get());
++            }
+         }
+         T->TestFalse(TEXT("ordinary screen-tagged art never globally hidden"), Ordinary->IsHidden());
+     }
+@@ -253,6 +274,10 @@
+             if (!T->TestNotNull(TEXT("real cube loads"), Cube))
+                 return true;
+             Meshes.Add(Cube->GetPathName(), Cube);
++            for (TActorIterator<AStaticMeshActor> I(W); I; ++I)
++                if (I->ActorHasTag(TEXT("DinkArtScreen_439")))
++                    Originals.Emplace(I->GetStaticMeshComponent());
++            T->TestTrue(TEXT("real persistent exterior captured"), Originals.Num() > 10);
+             Move(H, G, Yard);
+             Phase = 1;
+             At = FPlatformTime::Seconds();
+@@ -276,10 +301,7 @@
+                 CheckRuntime(false);
+             }
+             BaselineContextCount=Count(*W);
+-            for (TActorIterator<AStaticMeshActor> I(W); I; ++I)
+-                if (I->ActorHasTag(TEXT("DinkArtScreen_439")))
+-                    Originals.Emplace(I->GetStaticMeshComponent());
+-            T->TestTrue(TEXT("real persistent exterior captured"), Originals.Num() > 10);
++
+             Ordinary = W->SpawnActor<AStaticMeshActor>();
+             Ordinary->GetStaticMeshComponent()->SetMobility(EComponentMobility::Movable);
+             Ordinary->GetStaticMeshComponent()->SetStaticMesh(Cube);
+--- /dev/null
++++ b/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
+@@ -0,0 +1,192 @@
++#include "DinkTestHelpers.h"
++#include "DinkInteriorCameraComponent.h"
++#include "DinkStorySubsystem.h"
++#include "DinkDirector.h"
++#include "Greybox/DinkGreyboxSubsystem.h"
++#include "Greybox/DinkGreyboxCharacter.h"
++#include "Greybox/DinkScreenVolume.h"
++#include "AssetCompilingManager.h"
++#include "Camera/CameraComponent.h"
++#include "Components/StaticMeshComponent.h"
++#include "Components/CapsuleComponent.h"
++#include "Editor.h"
++#include "Engine/StaticMesh.h"
++#include "Engine/LocalPlayer.h"
++#include "Engine/GameViewportClient.h"
++#include "Engine/World.h"
++#include "EngineUtils.h"
++#include "FileHelpers.h"
++#include "GameFramework/CharacterMovementComponent.h"
++#include "GameFramework/PlayerController.h"
++#include "GameFramework/SpringArmComponent.h"
++#include "HAL/IConsoleManager.h"
++#include "Materials/MaterialInstanceDynamic.h"
++#include "Misc/PackageName.h"
++#include "Tests/AutomationEditorCommon.h"
++namespace
++{
++class FOutdoorCameraPIE : public IAutomationLatentCommand
++{
++public:
++ explicit FOutdoorCameraPIE(FAutomationTestBase* T):Test(T){}
++ bool Update() override
++ {
++  if (!Began) Began=FPlatformTime::Seconds();
++  if (FPlatformTime::Seconds()-Began>150) { Test->AddError(FString::Printf(TEXT("outdoor camera regression timed out phase%d"),Phase)); return true; }
++  UWorld* W=GEditor ? GEditor->PlayWorld.Get() : nullptr;
++  APlayerController* PC=W ? W->GetFirstPlayerController() : nullptr;
++  auto* Hero=PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
++  auto* Story=W && W->GetGameInstance() ? W->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>() : nullptr;
++  if (Phase==7)
++  {
++   if (FPlatformTime::Seconds()-At<.7) return false;
++   Test->TestEqual(TEXT("unpossess preserves external named collision profile"),Cottage->GetCollisionProfileName(),FName(TEXT("OverlapAllDynamic")));
++   Test->TestTrue(TEXT("unpossess preserves every externally owned collision response"),Cottage->GetCollisionResponseToChannels()==ForeignResponses);
++   Test->TestEqual(TEXT("unpossess preserves foreign material slot"),Cottage->GetMaterial(0),Materials[1].Get());
++   for(int32 I=1;I<Materials.Num();++I)Test->TestEqual(TEXT("unpossess releases all camera-owned material slots"),Cottage->GetMaterial(I),Materials[I].Get());
++   // Restore only changes deliberately made by this ownership fixture.
++   Cottage->OverrideMaterials=Overrides;Cottage->MarkRenderStateDirty();Cottage->SetCollisionProfileName(Profile);
++   CheckRestored();PC->Possess(SavedHero);Phase=8;At=FPlatformTime::Seconds();return false;
++  }
++  if (!Hero || !Story || Story->bNewGamePending) return false;
++  auto* Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
++  auto* Camera=Hero->FindComponentByClass<UDinkInteriorCameraComponent>();
++  if (Phase==0)
++  {
++   Story->SkipDialogue(); if (Story->GetActiveMenu() || Story->GetDirector()->GetDink().bFrozen || PC->IsMoveInputIgnored()) return false;
++   if (!Test->TestNotNull(TEXT("actual character camera policy"),Camera)) return true;
++   auto* Local=PC->GetLocalPlayer(); auto* Viewport=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
++   if (!Test->TestNotNull(TEXT("real PIE local viewport"),Viewport)) return true;
++   if (Viewport->GetSizeXY()==FIntPoint::ZeroValue) Viewport->SetInitialSize(FIntPoint(1280,720));
++   Home=Grey->FindScreen(1); Yard=Grey->FindScreen(439);
++   if (!Test->TestNotNull(TEXT("house1 exists"),Home) || !Test->TestNotNull(TEXT("yard439 exists"),Yard)) return true;
++   for (TActorIterator<AActor> It(W); It; ++It)
++   {
++    if (!It->ActorHasTag(TEXT("DinkArtScreen_439"))) continue;
++    TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
++    for (auto* Mesh:Meshes) if (Mesh->GetStaticMesh() && Mesh->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01")) Cottage=Mesh;
++   }
++   if (!Test->TestNotNull(TEXT("actual original exterior cottage exists"),Cottage)) return true;
++   Responses=Cottage->GetCollisionResponseToChannels(); Profile=Cottage->GetCollisionProfileName(); Enabled=Cottage->GetCollisionEnabled(); ObjectType=Cottage->GetCollisionObjectType();
++   Overrides=Cottage->OverrideMaterials; Transform=Cottage->GetComponentTransform(); Extent=Cottage->Bounds.BoxExtent; Asset=Cottage->GetStaticMesh();
++   for(int32 I=0;I<Cottage->GetNumMaterials();++I) Materials.Add(Cottage->GetMaterial(I));
++   Test->TestEqual(TEXT("actual cottage five material slots"),Materials.Num(),5);
++   CapsuleResponses=Hero->GetCapsuleComponent()->GetCollisionResponseToChannels(); CapsuleEnabled=Hero->GetCapsuleComponent()->GetCollisionEnabled(); Input=Hero->InputComponent;
++   PC->SetControlRotation(ExpectedControl);
++   Hero->GetCharacterMovement()->StopMovementImmediately(); Hero->SetActorLocation(Home->MapPixelToWorld(303.5,370)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics); Grey->RefreshCurrentScreen();
++   Phase=1;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==1)
++  {
++   if (Grey->GetCurrentScreen()==Yard)
++   {
++    Hero->GetCharacterMovement()->StopMovementImmediately(); ExitPosition=Hero->GetActorLocation(); Phase=2;At=FPlatformTime::Seconds();return false;
++   }
++   // Fixture establishes an interior approach only; normal movement activates the real door warp.
++   Hero->AddMovementInput(FVector(0,1,0)); return false;
++  }
++  if (FPlatformTime::Seconds()-At<.7) return false;
++  if (Phase==2)
++  {
++   Test->TestEqual(TEXT("real movement triggered original outdoor439 exit"),Grey->GetCurrentScreen(),Yard);
++   Test->TestTrue(TEXT("stationary exit camera readback does not walk away to evade jamb"),Hero->GetActorLocation().Equals(ExitPosition,2));
++   Test->TestFalse(TEXT("exit retains outdoor camera mode"),Camera->bInteriorMode);
++   Test->TestEqual(TEXT("only explicitly qualified exterior cottage managed"),Camera->ManagedOccluderCount,1);
++   const double Distance=FVector::Dist(Hero->GetActorLocation(),Hero->FollowCamera->GetComponentLocation());
++   Test->AddInfo(FString::Printf(TEXT("actual outdoor exit pawn%s eye%s distance%.3f requested%.3f"),*Hero->GetActorLocation().ToCompactString(),*Hero->FollowCamera->GetComponentLocation().ToCompactString(),Distance,Hero->CameraBoom->TargetArmLength));
++   Test->TestTrue(TEXT("stationary immediate exterior exit has readable full400cm camera"),FMath::Abs(Distance-400.)<1.);
++   Test->TestTrue(TEXT("qualified cottage actually fades at obstructed exit"),Camera->FadingOccluderCount>0);
++   for(int32 I=0;I<Materials.Num();++I)
++   {
++    auto* MID=Cast<UMaterialInstanceDynamic>(Cottage->GetMaterial(I)); float Opacity=1;
++    Test->TestTrue(TEXT("every cottage slot uses owned masked fade material"),MID && MID->GetOuter()==Camera && MID->GetBlendMode()==BLEND_Masked);
++    if (MID) MID->GetScalarParameterValue(FMaterialParameterInfo(TEXT("DinkCameraOpacity")),Opacity);
++    Test->TestTrue(TEXT("all cottage slots visibly fade, preserving opaque shadows"),Opacity<.1f);
++   }
++   CheckPhysical(Hero,PC,true); CheckOutdoorPreset(Hero,Camera);
++   Blocker=W->SpawnActor<AActor>(); Blocker->Tags.Add(TEXT("DinkArtScreen_439"));
++   auto* M=NewObject<UStaticMeshComponent>(Blocker); Blocker->SetRootComponent(M);Blocker->AddInstanceComponent(M);
++   M->SetStaticMesh(LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube")));M->SetMaterial(0,Materials[2]);M->SetWorldScale3D(FVector(.4));M->SetCollisionProfileName(TEXT("BlockAll"));M->RegisterComponent();
++   Blocker->SetActorLocation(Hero->GetActorLocation()-PC->GetControlRotation().Vector()*200.); Ordinary=M;
++   Phase=3;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==3)
++  {
++   Test->TestFalse(TEXT("ordinary outdoor blocker has no opt-in occluder tag"),Blocker->ActorHasTag(TEXT("DinkCameraOccluder")));
++   Test->TestEqual(TEXT("ordinary supported-material blocker keeps original material"),Ordinary->GetMaterial(0),Materials[2].Get());
++   Test->TestEqual(TEXT("ordinary outdoor blocker still blocksCamera"),Ordinary->GetCollisionResponseToChannel(ECC_Camera),ECR_Block);
++   Test->TestTrue(TEXT("ordinary outdoor physical surface retracts camera"),FVector::Dist(Hero->GetActorLocation(),Hero->FollowCamera->GetComponentLocation())<220.);
++   Blocker->Destroy(); Blocker=nullptr;
++   Hero->SetActorLocation(Home->MapPixelToWorld(303.5,370)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);Grey->RefreshCurrentScreen();
++   Phase=4;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==4)
++  {
++   CheckRestored();
++   Hero->SetActorLocation(ExitPosition,false,nullptr,ETeleportType::TeleportPhysics);Grey->RefreshCurrentScreen();Phase=5;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==5)
++  {
++   Test->TestEqual(TEXT("exterior reacquires only qualified cottage"),Camera->ManagedOccluderCount,1);
++   Cottage->SetMaterial(0,Materials[1]);Cottage->SetCollisionProfileName(TEXT("OverlapAllDynamic"));ForeignResponses=Cottage->GetCollisionResponseToChannels();
++   SavedHero=Hero;PC->UnPossess();Phase=7;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==8)
++  {
++   Test->TestEqual(TEXT("repossess reacquires exterior cottage after ownership release"),Camera->ManagedOccluderCount,1);
++   // Possession is this fixture's deliberate input lifecycle; capture its resulting input component.
++   Input=Hero->InputComponent;ExpectedControl=PC->GetControlRotation();
++   Test->AddInfo(FString::Printf(TEXT("Post-Possess fixture baseline: control%s actor%s input%s"),*ExpectedControl.ToString(),*Hero->GetActorRotation().ToString(),*GetNameSafe(Input)));
++   Test->TestTrue(TEXT("deliberate Possess fixture adopts pawn rotation per PlayerController lifecycle"),ExpectedControl.Equals(Hero->GetActorRotation(),.001));
++   Camera->DestroyComponent();Phase=6;At=FPlatformTime::Seconds();return false;
++  }
++  if (Phase==6)
++  {
++   CheckRestored();Test->TestTrue(TEXT("destroy restores outdoor400cm arm"),FMath::IsNearlyEqual(Hero->CameraBoom->TargetArmLength,400.f));
++   Test->TestTrue(TEXT("destroy restores outdoorFOV90"),FMath::IsNearlyEqual(Hero->FollowCamera->FieldOfView,90.f));CheckPhysical(Hero,PC,false);return true;
++  }
++  return false;
++ }
++private:
++ void CheckOutdoorPreset(ADinkGreyboxCharacter* H,UDinkInteriorCameraComponent* C)
++ {
++  Test->TestTrue(TEXT("outdoor arm remains400"),FMath::IsNearlyEqual(H->CameraBoom->TargetArmLength,400.f));
++  Test->TestTrue(TEXT("outdoor FOV remains90"),FMath::IsNearlyEqual(H->FollowCamera->FieldOfView,90.f));
++  Test->TestTrue(TEXT("outdoor target/socket offsets stayoriginal"),H->CameraBoom->TargetOffset.IsZero() && H->CameraBoom->SocketOffset.IsZero());
++  Test->TestFalse(TEXT("outdoor never enables interior floor framing"),C->bFloorFramingAvailable);Test->TestTrue(TEXT("outdoor floor shift stayszero"),C->FloorFramingShift.IsZero());
++ }
++ void CheckPhysical(ADinkGreyboxCharacter* H,APlayerController* PC,bool Managed)
++ {
++  Test->TestEqual(TEXT("original cottage geometry asset retained"),Cottage->GetStaticMesh().Get(),Asset);
++  Test->TestTrue(TEXT("original cottage transform/extents retained"),Cottage->GetComponentTransform().Equals(Transform,.001) && Cottage->Bounds.BoxExtent.Equals(Extent,.001));
++  Test->TestEqual(TEXT("original collisionenabled preserved"),Cottage->GetCollisionEnabled(),Enabled);Test->TestEqual(TEXT("original objecttype preserved"),Cottage->GetCollisionObjectType(),ObjectType);
++  auto Expected=Responses;if(Managed)Expected.SetResponse(ECC_Camera,ECR_Ignore);
++  Test->TestTrue(TEXT("qualified cottage changes only Camera response"),Cottage->GetCollisionResponseToChannels()==Expected);
++  Test->TestTrue(TEXT("original pawn collision remainsunchanged"),H->GetCapsuleComponent()->GetCollisionResponseToChannels()==CapsuleResponses && H->GetCapsuleComponent()->GetCollisionEnabled()==CapsuleEnabled);
++  Test->AddInfo(FString::Printf(TEXT("Input/control phase%d actual%s expected%s inputmatches%d"),Phase,*PC->GetControlRotation().ToString(),*ExpectedControl.ToString(),H->InputComponent==Input));
++  Test->TestTrue(TEXT("inputcomponent/controlrotation remainoriginal"),H->InputComponent==Input && PC->GetControlRotation().Equals(ExpectedControl,.001));
++  Test->TestFalse(TEXT("movement/look stayenabled"),PC->IsMoveInputIgnored() || PC->IsLookInputIgnored());
++ }
++ void CheckRestored()
++ {
++  Test->TestEqual(TEXT("leaving/destroy restores exact cottage profile"),Cottage->GetCollisionProfileName(),Profile);
++  Test->TestTrue(TEXT("leaving/destroy restores every cottage response"),Cottage->GetCollisionResponseToChannels()==Responses);
++  Test->TestTrue(TEXT("leaving/destroy restores exact override array"),Cottage->OverrideMaterials==Overrides);
++  for(int32 I=0;I<Materials.Num();++I)Test->TestEqual(TEXT("leaving/destroy restores original effective material"),Cottage->GetMaterial(I),Materials[I].Get());
++ }
++ FAutomationTestBase* Test;int32 Phase=0;double Began=0,At=0;ADinkScreenVolume *Home=nullptr,*Yard=nullptr;
++ UStaticMeshComponent *Cottage=nullptr,*Ordinary=nullptr;AActor* Blocker=nullptr;UStaticMesh* Asset=nullptr;UInputComponent* Input=nullptr;
++ FRotator ExpectedControl=FRotator(-18,90,0);ADinkGreyboxCharacter* SavedHero=nullptr;FVector ExitPosition,Extent;FTransform Transform;FCollisionResponseContainer Responses,CapsuleResponses,ForeignResponses;ECollisionEnabled::Type Enabled,CapsuleEnabled;ECollisionChannel ObjectType;FName Profile;
++ TArray<TObjectPtr<UMaterialInterface>> Materials,Overrides;
++};
++class FRestoreOutdoorArt : public IAutomationLatentCommand
++{public:explicit FRestoreOutdoorArt(int32 V):Value(V){}bool Update()override{IConsoleManager::Get().FindConsoleVariable(TEXT("dink.ArtEnabled"))->Set(Value,ECVF_SetByCode);return true;}private:int32 Value;};
++}
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkOutdoorCameraTest,"Dink.Art.OutdoorCamera.ReadableExitAndOwnership",DINK_TEST_FLAGS)
++bool FDinkOutdoorCameraTest::RunTest(const FString&)
++{
++ const auto File=FPackageName::LongPackageNameToFilename(TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World"),FPackageName::GetMapPackageExtension());
++ if (!TestNotNull(TEXT("actual gameplay map loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
++ FAssetCompilingManager::Get().FinishAllCompilation();auto* Art=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.ArtEnabled"));const int32 Prior=Art->GetInt();Art->Set(1,ECVF_SetByCode);
++ AddCommand(new FStartPIECommand(false));AddCommand(new FOutdoorCameraPIE(this));AddCommand(new FEndPlayMapCommand());AddCommand(new FRestoreOutdoorArt(Prior));return true;
++}
+--- a/Scripts/import_camera_materials.py
++++ b/Scripts/import_camera_materials.py
+@@ -1,6 +1,7 @@
+ """Build/check immutable camera-fade material variants from the existing Blender kit.
+ DINK_CAMERA_CHECK=1 performs a read-only check. DINK_CAMERA_REVISION selects a new
+ asset revision; existing material packages are validated and never overwritten.
++DINK_CAMERA_MATERIALS_ONLY=1 adds/checks variants without touching floor framing or room art.
+ """
+ import hashlib,json,math,os,re
+ from pathlib import Path
+@@ -9,6 +10,7 @@
+ ROOT=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve()
+ LIB=unreal.EditorAssetLibrary; EDIT=unreal.MaterialEditingLibrary
+ CHECK=os.environ.get('DINK_CAMERA_CHECK')=='1'
++MATERIALS_ONLY=os.environ.get('DINK_CAMERA_MATERIALS_ONLY')=='1'
+ REVISION=os.environ.get('DINK_CAMERA_REVISION','v1')
+ assert re.fullmatch(r'[A-Za-z0-9_]+',REVISION),'Invalid revision'
+ REPORT=ROOT/'Saved/Art/camera_materials_report.json'
+@@ -46,9 +48,9 @@
+ try:
+  runtime_path=ROOT/'Content/Dink/Data/Art/stonebrook.json'
+  runtime=json.loads(runtime_path.read_text());require(runtime.get('schema')=='dink-art/1' and runtime.get('screen')==1,'Expected authored starting house')
+- source_spec=json.loads((ROOT/runtime['source']).read_text())
++ source_spec=None if MATERIALS_ONLY else json.loads((ROOT/runtime['source']).read_text())
+  variants={};originals={}
+- for kind in ['Oak','Limewash']:
++ for kind in ['Oak','Limewash','Fieldstone','WroughtIron','Thatch']:
+   source='/Game/Dink/Materials/Stonebrook/MI_Stonebrook_'+kind
+   package=ROOT/'Content/Dink/Materials/Stonebrook'/('MI_Stonebrook_'+kind+'.uasset')
+   originals[package]=sha(package)
+@@ -69,27 +71,29 @@
+    EDIT.recompile_material(mat);graph(mat);require(LIB.save_loaded_asset(mat,only_if_is_dirty=False),'Cannot save new material')
+   graph(mat);variants[source+'.MI_Stonebrook_'+kind]=mat.get_path_name()
+   report['materials'].append({'original':source,'original_package_sha256':originals[package],'variant':mat.get_path_name(),'existing_package_kept':existing,'default_opacity':1,'shadow_opacity':1,'clip':.5})
+- points=[];heights=[];floor_count=0;occluders=0
+- for row in runtime['elements']:
+-  name=row['mesh'].split('.')[-1];category=source_spec['assets'].get(name,{}).get('class')
+-  occlude=row.get('camera_occluder',category in ('kit_wall','kit_ceiling','kit_piece'))
+-  if occlude:
+-   occluders+=1
+-   if not CHECK:row['camera_occluder']=True
+-   else:require(row.get('camera_occluder') is True,'Missing authored occluder tag '+row['name'])
+-  if category!='kit_floor':continue
+-  mesh=unreal.load_asset(row['mesh']);require(isinstance(mesh,unreal.StaticMesh),'Missing floor mesh')
+-  bound=mesh.get_bounds();o,e=bound.origin,bound.box_extent
+-  rotation=row.get('rotation_deg',[0,0,0]);location=row['world_cm'];scale=row.get('scale',[1,1,1])
+-  transform=unreal.Transform(location=unreal.Vector(*location),rotation=unreal.Rotator(pitch=rotation[0],yaw=rotation[1],roll=rotation[2]),scale=unreal.Vector(*scale))
+-  for x in [o.x-e.x,o.x+e.x]:
+-   for y in [o.y-e.y,o.y+e.y]:
+-    p=unreal.MathLibrary.transform_location(transform,unreal.Vector(x,y,o.z+e.z));points.append((float(p.x),float(p.y)));heights.append(float(p.z))
+-  floor_count+=1
+- require(floor_count>0,'No actual floor meshes')
+- points=[(round(x,5),round(y,5)) for x,y in points];polygon=hull(points);report['observed_hull']=polygon;require(len(polygon)==4,'Current camera framing requires an authored convex quadrilateral room')
+- require(max(heights)-min(heights)<.5,'Floor is not horizontal; author a separate framing policy')
+- floor_z=sum(heights)/len(heights)
++ floor_count=0;occluders=0;polygon=None;floor_z=None
++ if not MATERIALS_ONLY:
++  points=[];heights=[];floor_count=0;occluders=0
++  for row in runtime['elements']:
++   name=row['mesh'].split('.')[-1];category=source_spec['assets'].get(name,{}).get('class')
++   occlude=row.get('camera_occluder',category in ('kit_wall','kit_ceiling','kit_piece'))
++   if occlude:
++    occluders+=1
++    if not CHECK:row['camera_occluder']=True
++    else:require(row.get('camera_occluder') is True,'Missing authored occluder tag '+row['name'])
++   if category!='kit_floor':continue
++   mesh=unreal.load_asset(row['mesh']);require(isinstance(mesh,unreal.StaticMesh),'Missing floor mesh')
++   bound=mesh.get_bounds();o,e=bound.origin,bound.box_extent
++   rotation=row.get('rotation_deg',[0,0,0]);location=row['world_cm'];scale=row.get('scale',[1,1,1])
++   transform=unreal.Transform(location=unreal.Vector(*location),rotation=unreal.Rotator(pitch=rotation[0],yaw=rotation[1],roll=rotation[2]),scale=unreal.Vector(*scale))
++   for x in [o.x-e.x,o.x+e.x]:
++    for y in [o.y-e.y,o.y+e.y]:
++     p=unreal.MathLibrary.transform_location(transform,unreal.Vector(x,y,o.z+e.z));points.append((float(p.x),float(p.y)));heights.append(float(p.z))
++   floor_count+=1
++  require(floor_count>0,'No actual floor meshes')
++  points=[(round(x,5),round(y,5)) for x,y in points];polygon=hull(points);report['observed_hull']=polygon;require(len(polygon)==4,'Current camera framing requires an authored convex quadrilateral room')
++  require(max(heights)-min(heights)<.5,'Floor is not horizontal; author a separate framing policy')
++  floor_z=sum(heights)/len(heights)
+  config_path=ROOT/'Content/Dink/Data/Art/camera_materials.json'
+  config=json.loads(config_path.read_text()) if config_path.exists() else {'schema':'dink-camera/1'}
+  expected={'polygon_cm':polygon,'floor_z_cm':floor_z}
+@@ -99,17 +103,17 @@
+  require(config.get('schema')=='dink-camera/1','Unsupported camera schema')
+  if CHECK:
+   require(config.get('material_variants')==variants,'Runtime fade mapping differs from approved variants')
+-  require(same_polygon(current.get('polygon_cm',[]),polygon) and abs(current.get('floor_z_cm',1e9)-floor_z)<.02,'Framing footprint differs from actual floor meshes')
++  if not MATERIALS_ONLY:require(same_polygon(current.get('polygon_cm',[]),polygon) and abs(current.get('floor_z_cm',1e9)-floor_z)<.02,'Framing footprint differs from actual floor meshes')
+  else:
+   config['material_variants']=variants
+-  if not same_polygon(current.get('polygon_cm',[]),polygon) or abs(current.get('floor_z_cm',1e9)-floor_z)>=.02:
++  if not MATERIALS_ONLY and (not same_polygon(current.get('polygon_cm',[]),polygon) or abs(current.get('floor_z_cm',1e9)-floor_z)>=.02):
+    config.setdefault('floor_framing',{})['1']=expected
+   # Leave byte-identical files alone on repeat runs.
+   old=json.loads(config_path.read_text()) if config_path.exists() else None
+   if old!=config:atom(config_path,config)
+   if json.loads(runtime_path.read_text())!=runtime:atom(runtime_path,runtime)
+  require(all(sha(p)==h for p,h in originals.items()),'An original material package changed')
+- report.update(passed=True,floor_mesh_count=floor_count,floor_polygon_cm=polygon,floor_z_cm=floor_z,occluder_count=occluders,existing_variants_overwritten=0)
++ report.update(passed=True,materials_only=MATERIALS_ONLY,floor_policy_unchanged=MATERIALS_ONLY,floor_mesh_count=floor_count,floor_polygon_cm=polygon,floor_z_cm=floor_z,occluder_count=occluders,existing_variants_overwritten=0)
+  atom(REPORT,report);unreal.log('DINK CAMERA MATERIALS CHECK PASS' if CHECK else 'DINK CAMERA MATERIALS READY')
+ except Exception as error:
+  report['error']=str(error);atom(REPORT,report);raise
+--- a/Content/Dink/Data/Art/camera_materials.json
++++ b/Content/Dink/Data/Art/camera_materials.json
+@@ -2,7 +2,10 @@
+   "schema": "dink-camera/1",
+   "material_variants": {
+     "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Oak.MI_Stonebrook_Oak": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Oak_v1.M_CameraFade_Oak_v1",
+-    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Limewash_v1.M_CameraFade_Limewash_v1"
++    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Limewash_v1.M_CameraFade_Limewash_v1",
++    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.MI_Stonebrook_Fieldstone": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Fieldstone_v1.M_CameraFade_Fieldstone_v1",
++    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron": "/Game/Dink/Camera/Stonebrook/M_CameraFade_WroughtIron_v1.M_CameraFade_WroughtIron_v1",
++    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Thatch.MI_Stonebrook_Thatch": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Thatch_v1.M_CameraFade_Thatch_v1"
+   },
+   "floor_framing": {
+     "1": {
+--- a/Content/Dink/Data/Art/stonebrook_exterior.json
++++ b/Content/Dink/Data/Art/stonebrook_exterior.json
+@@ -272,7 +272,8 @@
+         1,
+         1
+       ],
+-      "collision": true
++      "collision": true,
++      "camera_occluder": true
+     },
+     {
+       "name": "DirtPath0",

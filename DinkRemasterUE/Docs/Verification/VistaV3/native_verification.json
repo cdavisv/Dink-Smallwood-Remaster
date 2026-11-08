@@ -1,0 +1,45 @@
+{
+  "groups": [
+    {
+      "filter": "Dink.Art",
+      "requested_category": "Dink.Art",
+      "exit": 0,
+      "seconds": 57.614198446273804,
+      "tests": 21,
+      "passed": 21,
+      "failed": 0,
+      "warned": 0,
+      "report": "/home/davisc/Work/DinkVistaStage/Saved/Automation/vista_runtime_art_20261108/index.json"
+    },
+    {
+      "filter": "Dink.Import",
+      "requested_category": "Dink.Import",
+      "exit": 0,
+      "seconds": 30.183823347091675,
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "warned": 8,
+      "report": "/home/davisc/Work/DinkVistaStage/Saved/Automation/vista_runtime_import_20261108/index.json"
+    },
+    {
+      "filter": "Dink.Gameplay.AuthoredGeometry",
+      "requested_category": "Dink.Geometry",
+      "exit": 0,
+      "seconds": 19.009397506713867,
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "warned": 0,
+      "report": "/home/davisc/Work/DinkVistaStage/Saved/Automation/vista_runtime_geometry_20261108/index.json"
+    }
+  ],
+  "tracked_inputs": 5654,
+  "scope_changes": [],
+  "Data_count": 667,
+  "manifest_sha256": "c69b050323916c8a388bac1172e30d5bee68824ce4dc48122c7f10a5f6fc7cfe",
+  "isolated_UserDir": "/home/davisc/Work/DinkQA/VistaRuntimeCandidateUser",
+  "passed": true,
+  "geometry_mapping": "No registered Dink.Geometry prefix; ran real Dink.Gameplay.AuthoredGeometry plus Dink.Import.Layout as part of Import",
+  "runtime_layer_scope": "Private visual candidate ONLY; Main/Public/Delivery unchanged"
+}

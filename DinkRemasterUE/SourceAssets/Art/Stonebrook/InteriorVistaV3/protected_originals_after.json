@@ -1,0 +1,22 @@
+{
+  "task_wrote_only_Work": true,
+  "protected_file_count": 1577,
+  "missing_files": [],
+  "changed_input_files": [
+    "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/README.md",
+    "/home/davisc/Work/DinkPlaytestStage/Content/Dink/Data/Art/stonebrook.json"
+  ],
+  "root_source_art_and_audio_unchanged": false,
+  "ledger_before_rows": 1038,
+  "ledger_now_rows": 1038,
+  "ledger_sha256_unchanged": true,
+  "all_prior_ledger_row_fingerprints_retained": true,
+  "changes_not_reverted": "Parent is concurrently importing/testing FireplaceV2 in Stage; no input files were overwritten or restored by this task.",
+  "original_blends_unchanged": true,
+  "original_textures_unchanged": true,
+  "audio_files_unchanged": true,
+  "concurrent_changes_preserved": {
+    "SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/README.md": "Parent documentation work",
+    "Stage Content/Dink/Data/Art/stonebrook.json": "Parent FireplaceV2 integration; explicitly reported by parent"
+  }
+}

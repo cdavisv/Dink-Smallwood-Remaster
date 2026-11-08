@@ -1,0 +1,70 @@
+{
+  "SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend": {
+    "objects": [
+      "SM_Window_Limewash_2m_01",
+      "SM_Wall_Limewash_2m_01",
+      "SM_Table_Oak_01",
+      "SM_Pie_Rustic_01",
+      "SM_Floor_Oak_2m_01",
+      "SM_Fireplace_Fieldstone_01",
+      "SM_FeedSack_Jute_01",
+      "SM_Doorway_Limewash_4m_01",
+      "SM_Chair_Oak_01",
+      "SM_Ceiling_Oak_2m_01",
+      "SM_Candle_Iron_01",
+      "SM_Bed_Oak_01",
+      "SM_Basket_Wicker_01",
+      "SM_Barrel_Oak_01"
+    ],
+    "collections": [
+      "SM_Window_Limewash_2m_01",
+      "SM_Wall_Limewash_2m_01",
+      "SM_Table_Oak_01",
+      "SM_Pie_Rustic_01",
+      "SM_Floor_Oak_2m_01",
+      "SM_Fireplace_Fieldstone_01",
+      "SM_FeedSack_Jute_01",
+      "SM_Doorway_Limewash_4m_01",
+      "SM_Chair_Oak_01",
+      "SM_Ceiling_Oak_2m_01",
+      "SM_Candle_Iron_01",
+      "SM_Bed_Oak_01",
+      "SM_Basket_Wicker_01",
+      "SM_Barrel_Oak_01"
+    ]
+  },
+  "SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend": {
+    "objects": [
+      "SM_Path_Earth_8m_01",
+      "SM_Oak_Stonebrook_01_LOD2",
+      "SM_Oak_Stonebrook_01_LOD1",
+      "SM_Oak_Stonebrook_01_LOD0",
+      "SM_Ground_Meadow_20m_01",
+      "SM_Grass_Meadow_01_LOD2",
+      "SM_Grass_Meadow_01_LOD1",
+      "SM_Grass_Meadow_01_LOD0",
+      "SM_Fence_SplitRail_4m_01",
+      "SM_Cottage_Stonebrook_01",
+      "SM_Boulder_Fieldstone_01"
+    ],
+    "collections": [
+      "SM_Path_Earth_8m_01",
+      "SM_Oak_Stonebrook_01",
+      "SM_Ground_Meadow_20m_01",
+      "SM_Grass_Meadow_01",
+      "SM_Fence_SplitRail_4m_01",
+      "SM_Cottage_Stonebrook_01",
+      "SM_Boulder_Fieldstone_01"
+    ]
+  },
+  "SourceAssets/Art/StonebrookFields/PineRefinementV3/PineRefinementV3.blend": {
+    "objects": [
+      "SM_Pine_Stonebrook_V3_LOD2",
+      "SM_Pine_Stonebrook_V3_LOD1",
+      "SM_Pine_Stonebrook_V3_LOD0"
+    ],
+    "collections": [
+      "SM_Pine_Stonebrook_V3"
+    ]
+  }
+}

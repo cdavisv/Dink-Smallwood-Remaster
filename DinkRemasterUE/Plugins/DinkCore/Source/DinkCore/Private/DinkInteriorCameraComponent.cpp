@@ -135,10 +135,16 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
 {
     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
     bInteriorMode = Screen && Screen->bIndoor;
-    if (!bInteriorMode) { RestoreCamera(); return; }
-    Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
-    Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
-    ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
+    if (bInteriorMode)
+    {
+        Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
+        Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
+        ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
+    }
+    else RestoreCamera();
+    // Outdoor meshes participate only through the same explicit tag and complete
+    // authored material mapping. Their physical collision and outdoor camera stay intact.
+    if (!Screen) return;
     const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"),Screen->ScreenNumber));
     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
     {
@@ -283,14 +289,14 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     const APawn* Pawn=Cast<APawn>(GetOwner());
     if (!Pawn || !Pawn->IsLocallyControlled() || Pawn->GetController()!=GetWorld()->GetFirstPlayerController())
     {
-        if (bInteriorMode) SelectScreen(nullptr);
+        if (bInteriorMode || !Occluders.IsEmpty()) SelectScreen(nullptr);
         return;
     }
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
     if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
-    if (!bInteriorMode) return;
-    UpdateFraming(DeltaTime);
+    if (bInteriorMode) UpdateFraming(DeltaTime);
+    if (Occluders.IsEmpty()) return;
     const FRotator Rotation=Arm->GetTargetRotation();
     const FVector Pivot=Arm->GetComponentLocation()+Arm->TargetOffset;
     const FVector Eye=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
