@@ -4,7 +4,7 @@
 Usage:
     python3 Scripts/regen_globals.py [path/to/Dink-Smallwood-Remaster]
 
-The data repo defaults to .. (the fork that contains this project).
+The data repo defaults to ../Dink-Smallwood-Remaster (sibling of this project).
 It must already contain tools/dinkc/out/globals.json and facts.csv; build them with
     cd <data repo>/tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story \
         --map ../../bin/dink/map.dat --dat ../../bin/dink/dink.dat --out out
@@ -12,6 +12,8 @@ This script only reads the data repo. The UE project never reads it at runtime.
 """
 import csv
 import json
+from remaster_paths import default_data_repo
+
 import pathlib
 import subprocess
 import sys
@@ -21,7 +23,7 @@ OUT = HERE / "Content" / "Dink" / "Data" / "Facts" / "dink_globals.csv"
 
 
 def main() -> int:
-    data_repo = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else HERE.parent
+    data_repo = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else default_data_repo(HERE)
     out_dir = data_repo / "tools" / "dinkc" / "out"
     globals_json = out_dir / "globals.json"
     facts_csv = out_dir / "facts.csv"

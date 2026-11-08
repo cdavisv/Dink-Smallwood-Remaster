@@ -24,7 +24,7 @@ REGION="stonebrook"
 EXPORT=0
 DRYRUN=""
 RUNTESTS=1
-DATA="$PROJECT_DIR/.."
+DATA="$(python3 "$PROJECT_DIR/Scripts/remaster_paths.py")"
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		--region) REGION="$2"; shift 2 ;;

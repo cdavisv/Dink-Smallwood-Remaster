@@ -1,0 +1,90 @@
+{
+  "method": "Fresh real game; Space only if opening dialogue needed it; actual W-key exit/return, no fixture teleports, material setters, camera-component setters, pawn transforms or fact changes. View rotation is normal console control rotation. Silent renderer; this does not prove audible playback.",
+  "initial": {
+    "screen": 1,
+    "map": [
+      314.0,
+      161.0
+    ],
+    "world": [
+      -183760.16,
+      392550.355,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "final": {
+    "screen": 1,
+    "map": [
+      302.923,
+      383.52
+    ],
+    "world": [
+      -183808.623,
+      393523.88,
+      98.0
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "records": [
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-02.18.40:208][849]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-02.18.40:210][849]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    },
+    {
+      "command": "dink.ScreenInfo 0",
+      "response": "[2026.11.08-02.18.41:282][904]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "fov 0",
+      "response": ""
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='Delivery134'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-02.18.45:110][ 77]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-225')",
+      "response": "[2026.11.08-02.21.24:763][276]LogPython: QA_NATIVE_CAMERA_READ actual-return-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-270')",
+      "response": "[2026.11.08-02.21.28:632][472]LogPython: QA_NATIVE_CAMERA_READ actual-return-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-315')",
+      "response": "[2026.11.08-02.21.32:418][664]LogPython: QA_NATIVE_CAMERA_READ actual-return-315\n"
+    },
+    {
+      "command": "dink.View 180 0",
+      "response": ""
+    },
+    {
+      "command": "dink.ScreenInfo 1",
+      "response": "[2026.11.08-02.21.34:865][806]dink.ScreenInfo = \"1\"\n"
+    },
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-02.21.36:874][927]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-02.21.36:874][927]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    }
+  ],
+  "source": "Native runtime/data/assets match the merged PR2 and LFS-restoration payloads; current storage changes do not alter runtime bytes."
+}

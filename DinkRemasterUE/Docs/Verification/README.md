@@ -11,3 +11,5 @@ Rendered captures from real W-key house exit/return are included in the asset pa
 The clothing and exterior-context candidates remain unfinished; these images do not establish complete realistic art for the wider game.
 
 `delivery-full134.json` records134/134 zero-warning tests and the unchanged input freeze. `delivery-input-pins.json` matches1,314 public runtime/source files to that run. `asset-pack.json` records the actual full-pack hydration and independent bootstrap review. `fireplace-recovery.json` records real partial-import recovery, repeated mesh reimport and byte-stable check mode.
+
+`lfs-restoration.json` records the owner-selected LFS workflow, independent audit fix and actual fresh GitHub LFS checkout. `Delivery134/` contains a new real-rendered traversal from a fresh game: W-only exit/return without fixture teleports, full health,28cm capsule and unfrozen input; native returned-camera captures confirm the jamb is clear.
