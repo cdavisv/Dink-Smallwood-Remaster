@@ -91,7 +91,7 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
       "expected_size_cm": [
         83.94664525985718,
         84.45988893508911,
@@ -3200,7 +3200,7 @@
     },
     {
       "name": "Barrel1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
       "world_cm": [
         -184486.41,
         392370.98,
@@ -3220,7 +3220,7 @@
     },
     {
       "name": "Barrel2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
       "world_cm": [
         -184482.035,
         392467.23000000004,

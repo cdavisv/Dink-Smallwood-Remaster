@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "comparison": "Current house vs tracked HEAD house; exact JSON leaf differences",
+  "changes": [
+    {
+      "path": [
+        "assets",
+        11,
+        "mesh"
+      ],
+      "before": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "after": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"
+    },
+    {
+      "path": [
+        "elements",
+        144,
+        "mesh"
+      ],
+      "before": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "after": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"
+    },
+    {
+      "path": [
+        "elements",
+        145,
+        "mesh"
+      ],
+      "before": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "after": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"
+    }
+  ],
+  "all_other_json_values_identical": true,
+  "native_candidate_file_hashes_match_reviewed_verify": true,
+  "candidate_package_count": 5
+}

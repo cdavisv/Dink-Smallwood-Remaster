@@ -1,0 +1,82 @@
+{
+  "status": "No blocking findings in reviewed portable barrel tools; native preflight/import/verify pending",
+  "findings": [],
+  "reviewed_tool_sha256": {
+    "barrel_contract.py": "0eb325564c1ee3429cf0892b2bd47fefa125df72cf11f0d965e08b5717980943",
+    "import_photoreal_barrel.py": "cb769652acec47d20420d00067a5a74cd9df677139c172e46d91869b5eda31e3",
+    "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
+    "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "handoff_sha256": "2b662c9bc62383da792e18f7fd1a44bf5d9c66790cf98f8a5f100d3491cfc5c5",
+  "base_tool_hashes": {
+    "props_contract.py": "41d03f91aa9bf34199df817220f7ce7b2ae4716738ed5bdec6445b1793796de2",
+    "import_photoreal_props.py": "f87d3074128a7d81a76eecce54009f2a9ae6dba128f9216b704cc92725a3dd03",
+    "publish_photoreal_props.py": "6a32131de837b74bf344d38da2247e536f5daefcd7f991bf8b6b7f0ac99ce630",
+    "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s . -p 'test_*.py' -v",
+    "passed": 83,
+    "failed": 0,
+    "log_sha256": "6293c2f1a2877701025dfb301feaad5fe87aea83f1ad6b0dcd4575d199ac1a4b",
+    "all_scratch_python_AST_passed": true
+  },
+  "actual_source_checks": {
+    "publication_bundle": "/home/artist/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "selected_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+    "load_plan_with_real_pngs_and_FBX": "PASS",
+    "source_triangles": 16648,
+    "self_oriented_bijective_match": "PASS0cm0UVdelta",
+    "minimum_geometric_front_dot": 0.9999999999999996,
+    "minimum_source_front_authored_normal_dot": 0.9630852492428607,
+    "source_hull_exact_cm": [
+      75,
+      75,
+      100
+    ],
+    "runtime_query_policy": "complex-as-simple retained; UCX not active query claim"
+  },
+  "actual_house_check": {
+    "schema": "dink-art/1",
+    "screen": 1,
+    "changes": [
+      [
+        "assets",
+        11
+      ],
+      [
+        "elements",
+        144,
+        "Barrel1"
+      ],
+      [
+        "elements",
+        145,
+        "Barrel2"
+      ]
+    ],
+    "reverse_semantic_equality": true,
+    "all_nonmesh_values_preserved": true
+  },
+  "reviewed_guards": [
+    "Exact three all-old or all-new references; no fragile index-based write; mixed/duplicate/renamed/extra replacement refs rejected.",
+    "Importer preflight/import require empty five candidate package families and all-old state; no replace_existing or implicit recovery/reimport.",
+    "ORM neutralR255 with real metallicB0..240, including dielectric wood and bareiron; native Texture.Source full RGB equality ensures exact source pattern, not only aggregate metal range.",
+    "Actual old native baseline expects10472triangles,2Oak/WroughtIron slots,original bounds andcomplex-as-simple; original package bytes preserved.",
+    "Full loaded triangle/UV cyclic bijection and front checks; sparse/invalid native vertex/triangle/corner IDs and nonfinite values rejected before indexed getters.",
+    "One actual transformed native convex snapshot matched bijectively to exact frozen75x75x100box; closed/manifold/convex indices checked.",
+    "Native source filename getter requires own selected exact FBX/3PNG resolved absolute paths andhashes; no basename/CWD/otherclone substitutions.",
+    "Material directBC/N/ORM channels+UV0+specular.35 and all native material property IDs; extra expressions/hidden inputs rejected.",
+    "Source/tool/custommodule/Data/protectedContent/candidate package set and bytes retained through guards; verify never saves; unpublished verify binds matching successful import receipt.",
+    "Publisher checks module set/bytes and guards after temporary output concrete beforeatomic3-string write.",
+    "Freshpublished clone pins candidate entry bytes before load, retains exact set through exit, reads no private author receipts, publisherdefault/--apply no lock/temp/target/receipt writes and no scene-data approval."
+  ],
+  "coverage_limits": [
+    "Pure fixtures are synthetic; actual code/API/native asset behavior still requires root own-stage preflight/import/fresh verify.",
+    "Module pins inventory expected project Linux.so/.modules/.target files; external process loaded-module path proof remains root runner responsibility.",
+    "Native stored per-corner shading normals are not Python-readable; saved import/build flags and actual geometry fronts are separate checks.",
+    "No native old baseline triangle/material/UCX verification or actual barrel Texture.Source export executed by this review.",
+    "No native collision, door route, camera, lighting, final art or relocated published-clone approval established."
+  ],
+  "writes": "Only /tmp pure-test output and this review JSON; scratch pure tests create/remove their synthetic fixtures and __pycache__. No rootstage, frozenbundle, Unreal, GPU, repository or native asset writes."
+}

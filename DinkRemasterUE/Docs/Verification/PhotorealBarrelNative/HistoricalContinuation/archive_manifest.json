@@ -1,0 +1,14 @@
+{
+  "reason": "Other author handoff explicitly permits preserving exact unpublished candidates and reimporting with reviewed framework. No runtime Data/ledger publication occurred.",
+  "files": {
+    "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset": "2ba95ddd8ea1aef2b35748099a8b5a478b937143360f39f4879444d8e8d5e27e",
+    "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset": "6775f11730c4aa119112215cd585348aa76b37a8eaaa3496e2326c357eaea954",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset": "b20b1f08828134352c6ac0e1ad915f1cf2e761d6d9c461f50541e1c37a2acce2",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset": "95ac781bd8199923fa32d1e0ace067ab9ffcc99b22ccdbe190ca757d64ebe7e0",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset": "33b9db820b2dac0facd0270b3d02fb5fb11ab850f5b15d02d0d9074f4ecc5e66",
+    "Scripts/barrel_contract.py": "ed38de7451067ce28830995ff556c55b32e10f60765d93456c8be69aec2edd95",
+    "Scripts/import_photoreal_barrel.py": "4d8965fc5f254b1218aa8d27a5eae3e66a8dd5446cf24e3c03b64fdfe0cc3157",
+    "Scripts/publish_photoreal_barrel.py": "a183b2991b7e752a19c95fa633b7dfdc61a1adbb725926e3772b64b4cb151b87",
+    "Scripts/tests/test_photoreal_barrel_guards.py": "26efef3a1338218d74bcdac93d496f670276be7f4dcb221ab90715fefb5e1054"
+  }
+}
