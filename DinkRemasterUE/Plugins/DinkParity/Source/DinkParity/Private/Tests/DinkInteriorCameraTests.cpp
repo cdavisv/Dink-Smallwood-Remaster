@@ -63,6 +63,9 @@ public:
         UDinkInteriorCameraComponent* C=Hero->FindComponentByClass<UDinkInteriorCameraComponent>();
         if (Phase==0)
         {
+            // Retain historical cutaway ownership/restore coverage explicitly; default play
+            // uses opaque architecture and is tested by WallsRemainSolid below.
+            if (C) C->bEnableWallCutaway=true;
             if (!ViewportReady)
             {
                 ULocalPlayer* Local=PC->GetLocalPlayer(); FViewport* V=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;

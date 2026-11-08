@@ -1,0 +1,15 @@
+{
+  "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+  "files": [
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp"
+  ],
+  "patch_sha256": "4bdffbc56eabe9cee9ef036a622ffd30f82234b0850cf1d4a119b2d5cdb62467",
+  "frozen_inputs": 8942,
+  "prerequisite_patch": "../Delivery/camera-posture.patch",
+  "status": "FINAL: build0warnings;focused2/2PASS0warnings;combinedfull151/151PASS0warnings444s;8942inputsunchanged",
+  "scope": "Strict optional screen_set context visibility; no authored-world composition assets published. Existing owner-only behavior retained.",
+  "focused_report": "Saved/Automation/shared_context_focus_v2/index.json",
+  "review_correction": "Owner-only visibility additionally requires identical cached and physical volume pointers; screen_set retains independent ID membership. Actual duplicate439volume regression passes."
+}

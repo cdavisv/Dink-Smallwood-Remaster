@@ -1,0 +1,26 @@
+{
+  "build": "BUILD OK;0compilerwarnings",
+  "full_suite": "TESTS PASSED150/150;0failed;1testwithwarnings;452s",
+  "report": "Saved/Automation/opaque_posture_full_v5/index.html",
+  "warnings": [
+    {
+      "test": "Dink.Narrative.Smoke.AllEntryPoints",
+      "message": "LogHttp: HTTP request timed out after 3.00 seconds URL=https://www.google.com/generate_204"
+    }
+  ],
+  "frozen_inputs": 8941,
+  "input_mismatches": [],
+  "patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
+  "visual_evidence": [
+    "Saved/Continuity/cottage-east.png",
+    "Saved/Continuity/interior-east.png",
+    "Saved/Continuity/north-corner-opaque-v5.png",
+    "Saved/Continuity/native-readback.json",
+    "Saved/Continuity/corner-v5-readback.json"
+  ],
+  "actual_keyboard_routes": {
+    "exit": "PASS",
+    "return": "PASS"
+  },
+  "scope": "Default walls opaque and optional native posture policy/ownership validated; actual new additive clip/model/garment/shared-yard assets remain pending separate source/native acceptance."
+}

@@ -151,6 +151,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
     const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
     const float PreviousArm = Arm->TargetArmLength;
     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
+    bAppliedCutaway=bEnableWallCutaway;
     bInteriorMode = Screen && Screen->bIndoor;
     if (bInteriorMode)
     {
@@ -163,7 +164,9 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
     if (SameMode) Arm->TargetArmLength=PreviousArm;
     // Outdoor meshes participate only through the same explicit tag and complete
     // authored material mapping. Their physical collision and outdoor camera stay intact.
-    if (!Screen) return;
+    // Normal play retracts the camera against solid architecture instead of removing it.
+    // This also prevents a single exterior-cottage component from fading the whole house.
+    if (!Screen || !bEnableWallCutaway) return;
     const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"),Screen->ScreenNumber));
     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
     {
@@ -313,7 +316,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     }
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
-    if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
+    if (!bSelectedScreen || Screen!=CurrentScreen.Get() || bAppliedCutaway!=bEnableWallCutaway) SelectScreen(Screen);
     Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
     if (bInteriorMode) UpdateFraming(DeltaTime);
     if (Occluders.IsEmpty()) return;
