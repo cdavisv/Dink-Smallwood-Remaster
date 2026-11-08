@@ -1,0 +1,207 @@
+{
+  "status": "PLAN_ONLY awaiting coordinating root review before implementation",
+  "native_execution": false,
+  "cpp_or_repository_writes": false,
+  "source": {
+    "root": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1",
+    "layout": "immutable SourceCheckpoint plus ExportIteration; not basket final-handoff layout",
+    "selected_handoff": "ExportIteration/source_export_handoff.json",
+    "handoff_sha256": "51d42faa53a00e286d12412df1feb7b264eced6828b661a7749375a524ceb84d",
+    "verified_handoff_files": 33,
+    "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+    "manifest": "ExportIteration/Export/manifest.json",
+    "all_source_files_to_pin": {
+      "ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.fbx": "03a2b2ffe6bdf881be8306bad9027c80093bfc31c0ea932c5339c33ba7a8df3c",
+      "ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.glb": "c53c38d003ff074dd704449f3ccf46afdbf69b5ebe3e072ab7d027e1362df71e",
+      "ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/Textures/T_FeedSack_Jute_01_Photo_BC.png": "ef48c8d5d784f4696f4247fe078e2dff93ac41bbc126eff900f499c9ad372f0d",
+      "ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/Textures/T_FeedSack_Jute_01_Photo_N.png": "4c9a18d659e3ff8ad09e14b1fb0465002d55f49a18df5f3d50d7150d19500771",
+      "ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/Textures/T_FeedSack_Jute_01_Photo_ORM.png": "e348c500874177f070e2a7d5ed1a204715a2489d391d33079df648e2b07b8748",
+      "ExportIteration/Export/manifest.json": "94ad18c655d267f52a560d99b1e014658969d7ef654ffb912fd6941c4c4aa93f",
+      "ExportIteration/HANDOFF.md": "892f9edce63499331a4a84f3e3016be7d7fd578eac4c7079a9bf871a25b96b0f",
+      "ExportIteration/ITERATION.json": "1634125ac4554295172bfe222cf873a808ffdb314e1f43d1651f9feea06d0f58",
+      "ExportIteration/PhotorealFeedSackV1_Export.blend": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+      "ExportIteration/PhotorealFeedSackV1_Source.blend": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+      "ExportIteration/Pipeline/dinkasset/__init__.py": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "ExportIteration/Pipeline/dinkasset/common.py": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "ExportIteration/Pipeline/dinkasset/conventions.py": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "ExportIteration/Pipeline/dinkasset/export_ue.py": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "ExportIteration/Pipeline/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "ExportIteration/Pipeline/dinkasset/fix.py": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "ExportIteration/Pipeline/dinkasset/import_generated.py": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "ExportIteration/Pipeline/dinkasset/make_lods.py": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "ExportIteration/Pipeline/dinkasset/validate.py": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "ExportIteration/Roundtrip/front.png": "0e29783197be7b5852cec71742e143e6de5ddf3be8e320855a0e6993217c2db5",
+      "ExportIteration/Roundtrip/game-distance.png": "31dc2f9fa06c7e91dc6237a69d4ee316f1364a6b242d0ac4f5287c39c3cead33",
+      "ExportIteration/Roundtrip/tie.png": "caddb8f2f520ab4c499e06f67e1eeafa04fd01f5e9f14b8af9926d273c8889a7",
+      "ExportIteration/Roundtrip/weave.png": "f1182dc528c86eb3b7286ba350c8352b55bf55a2573c608c937d378596872c2c",
+      "ExportIteration/Textures/T_FeedSack_Jute_01_Photo_BC.png": "ef48c8d5d784f4696f4247fe078e2dff93ac41bbc126eff900f499c9ad372f0d",
+      "ExportIteration/Textures/T_FeedSack_Jute_01_Photo_Metal.png": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37",
+      "ExportIteration/Textures/T_FeedSack_Jute_01_Photo_N.png": "4c9a18d659e3ff8ad09e14b1fb0465002d55f49a18df5f3d50d7150d19500771",
+      "ExportIteration/Textures/T_FeedSack_Jute_01_Photo_ORM.png": "e348c500874177f070e2a7d5ed1a204715a2489d391d33079df648e2b07b8748",
+      "ExportIteration/Textures/T_FeedSack_Jute_01_Photo_Rough.png": "80f5a2d16f53b1aa6c5c036f122362d2bb64e27a39f2d31b020bfe2f0185d3ff",
+      "ExportIteration/bake_receipt.json": "dfad7cce0bd195fc5901fb27ab67bc95295696edb17b34bdddcc5cbccd19ca08",
+      "ExportIteration/bake_sack.py": "a09923a1a371e278089d193be0f3c2d49815c979255f07abd1f7310ca1518a1b",
+      "ExportIteration/check_portable.py": "be05537a6836d069f3352a40bbf3f1285527c65182bde9e5986fec017da1a656",
+      "ExportIteration/export_report.json": "4d88322d4ec0c4d024fc08c7e4c1ff62e93d11d0270ca94a179f6d52db298065",
+      "ExportIteration/export_sack.py": "8d206d65cd788d3ee01fe29ed99bd7c87e8cebac5d2405f0fd4bc5f4c77173d0",
+      "ExportIteration/frozen_packet_verification.json": "59cfcc780d2ad0e9b7151aee05d26b67c656177b147ccc4b226ac9e3ec7c1528",
+      "ExportIteration/pixel_comparison.json": "ded5bafd5a9f55babb2c3be70dd67ed9c4a760385119391244f4c2969a4394eb",
+      "ExportIteration/portable_export_receipt.json": "c840c9ac5b3c18425c29240a9776f872984c2b4ade0db2230b4609746a387359",
+      "ExportIteration/render_detail.py": "6ff1499a4838184e1fa2701bc0aad5f596781084aa912e38edfbcae77bc09cde",
+      "ExportIteration/roundtrip_receipt.json": "f555a41bfb28fe8065b51a1c96643240e2eeb9c7088dc20da2298425a9823ea4",
+      "ExportIteration/roundtrip_sack.py": "ea6cebbba61904fa694ad7c3f31cb33efa456c214dc18793b5d900b58c747e74",
+      "ExportIteration/source_export_handoff.json": "51d42faa53a00e286d12412df1feb7b264eced6828b661a7749375a524ceb84d",
+      "ExportIteration/texture_payload_validation.json": "a23b03b38c5248be0933b42efc9e61fcc74a81104d959241939974685fdc1776",
+      "ExportIteration/uv_verification.json": "fab5c9aaf2ea17230a4e9d0a0a82f0c702bccee8fc22f4150eef035665ee0f6f",
+      "ExportIteration/verify_uv.py": "c9c387f85b2c9bb5ad79e5eebf5ac3ab8797a2372650b00ff1bb06f36733a309",
+      "README.md": "5aac62da2ec738312ddab68b2097e30c260ebf5d90e5e39ddca68c4cd01b076a",
+      "SourceCheckpoint/CURRENT_STATE.json": "86626ce58208f4f9ae40ef8e4da6b63559fee0994b151e41039aedbd86bdaf1d",
+      "SourceCheckpoint/DetailReview/front.png": "142604eb423e7fa0e54f2bf7d6c217dab3de33b1ab2b4122fa1d470fd12591e7",
+      "SourceCheckpoint/DetailReview/game-distance.png": "dbda84ee671fde27987bc0c863f45d195551d731059854010c94a6d1fd1c95fe",
+      "SourceCheckpoint/DetailReview/tie.png": "5a509722ff2ac6de794c28406addb2b2c247c169d63ec97046cf7fec11129262",
+      "SourceCheckpoint/DetailReview/weave.png": "59fd8ebd3ab80534bc57cd80f3eb4e0b23348c0c8d5d55f3632e5cdeaa385b92",
+      "SourceCheckpoint/Inputs/KIT_Stonebrook_Input.blend": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "SourceCheckpoint/Inputs/Original_422_12.png": "21bdca5ffa60b2fd3012ff5bd3df4166eabb60c57fe796a7eb39ab036d07c1b6",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Linen_BC.png": "7dd5874caf4471b716caa55f867a4f482b498b13d082940cbffc5e34e03aff65",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Linen_N.png": "ac7b0da0e8ad6fd9b7e3689fd99ef06ef4d388f29cc185854ca30082894e33bb",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Linen_ORM.png": "5b2f9414647e5577aeb91f7194cd5a5e2f8b0d2d2c5b3e70e4fef3dda4aef13e",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Wicker_BC.png": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Wicker_N.png": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243",
+      "SourceCheckpoint/Inputs/Textures/T_Stonebrook_Wicker_ORM.png": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48",
+      "SourceCheckpoint/Inputs/V2_Source.blend": "f70195091b4f43fe89d80a885017e849e5ec2c045c59a15f0341854be0c88c6d",
+      "SourceCheckpoint/Inputs/original_placement.json": "1fd140ddf5e52cefe09233338f6a88bf15f9eb214837c77df7539efcb07c1d5a",
+      "SourceCheckpoint/Inputs/s1-sack.c": "56876babed7a1f2965b0a53e691d828c000dc75b49914178e9e1312df073876f",
+      "SourceCheckpoint/PhotorealFeedSackV1_Source.blend": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+      "SourceCheckpoint/Pipeline/dinkasset/__init__.py": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "SourceCheckpoint/Pipeline/dinkasset/common.py": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "SourceCheckpoint/Pipeline/dinkasset/conventions.py": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "SourceCheckpoint/Pipeline/dinkasset/export_ue.py": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "SourceCheckpoint/Pipeline/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "SourceCheckpoint/Pipeline/dinkasset/fix.py": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "SourceCheckpoint/Pipeline/dinkasset/import_generated.py": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "SourceCheckpoint/Pipeline/dinkasset/make_lods.py": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "SourceCheckpoint/Pipeline/dinkasset/validate.py": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "SourceCheckpoint/Previews/SackReference-front.png": "2b4289d9e61b749c459d9b9b9b025dcb65e73420e5fc6e61964db0c39ebcdcf6",
+      "SourceCheckpoint/Previews/SackReference-inside.png": "9ea629793d7f21d4db56b4a469e16902a85c09f487f8b71b54077aada6e4bed4",
+      "SourceCheckpoint/Previews/SackSource-front.png": "4ecb94010d250572ceaa244d00d4e964cda2c2509111074e1976562f47ed0687",
+      "SourceCheckpoint/Previews/SackSource-inside.png": "cbd52a5e7ef289cfefc2f5026eef8b2fd5d5046d82bc1772eb0b47c6057f5f32",
+      "SourceCheckpoint/audit_source.py": "bd191e2aa380015f12306284d12a4d048afa37e096c8d13675b13fd90eb366e4",
+      "SourceCheckpoint/build_sack.py": "3355e87d838502f8c20bd5b4ea7dcf24e3b9edd84ae3b98b6b143658b43b9f92",
+      "SourceCheckpoint/check_portable.py": "be05537a6836d069f3352a40bbf3f1285527c65182bde9e5986fec017da1a656",
+      "SourceCheckpoint/finish_handoff.json": "1ab366d8b8651faf12dc47be6aa5c7f2c9c41cfa62053aec2e07a0c40b586a96",
+      "SourceCheckpoint/finish_verification.json": "fe267e603806c7dac0924bfca41632ef40c9b2f7dc8b2db9f963e81dd68e9e48",
+      "SourceCheckpoint/guide_validation.json": "3925cf77b67f4e780a6c9392b8fa9ae8986b6437f9f261e8718a8153d80cf179",
+      "SourceCheckpoint/independent_audit.json": "416e5e965d2ca313e32c017d6d6bbc3731fc8b19f37f050a8d6725b5e2c5938e",
+      "SourceCheckpoint/input_provenance.json": "4190b30406a44c4f87675b6051089b56d3af4cb644ba04ffb5afb5355204aa52",
+      "SourceCheckpoint/portable_receipt.json": "f524fc00e004411fc3b3b9bf12d8315da65645e3fcbf533e1d53ad022f02baf0",
+      "SourceCheckpoint/render_detail.py": "6ff1499a4838184e1fa2701bc0aad5f596781084aa912e38edfbcae77bc09cde",
+      "SourceCheckpoint/review_sack.py": "f28d43cf1854cbef4dc304ddf1d12bcd7c344a8409ea209827c7e76fb329a6f1",
+      "SourceCheckpoint/source_report.json": "fd81434ff4515b29a9c39102a6246a56dadbd1f9de2a2a2ddf0af851f616919f",
+      "SourceCheckpoint/verify_finish.py": "d83d14fd4948e3965fbf16c4b8e2c31e4c8d7f7c470c6ecb5561ec7a3c37e3bd",
+      "copy_verification.json": "c86f7662bd1d901726f4a76f06cd191fddde036b2af46f80cee4efc925d6de7c"
+    },
+    "historical_frozen_source_field": "Do not resolve ../Versions author path as an executable dependency; validate actual SourceCheckpoint source SHA and retained receipts explicitly."
+  },
+  "native_baseline": {
+    "name": "SM_FeedSack_Jute_01",
+    "package_sha256": "4d5597a242fb8df320ca65b03266ee2dc0da2373a29760c6c7223a1b4e048849",
+    "triangles": 2588,
+    "vertices": 1296,
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Linen.MI_Stonebrook_Linen",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Wicker.MI_Stonebrook_Wicker"
+    ],
+    "bounds_cm": [
+      72.2828369140625,
+      55.46854019165039,
+      75.0
+    ],
+    "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>",
+    "aggregate_geometry": "(SphereElems=,BoxElems=,SphylElems=,ConvexElems=((VertexData=((X=-32.047050,Y=25.527224,Z=-1.500000),(X=-32.047050,Y=25.527224,Z=73.500000),(X=-32.047050,Y=-26.472775,Z=-1.500000),(X=-32.047050,Y=-26.472775,Z=73.500000),(X=32.952946,Y=25.527224,Z=-1.500000),(X=32.952946,Y=25.527224,Z=73.500000),(X=32.952946,Y=-26.472775,Z=-1.500000),(X=32.952946,Y=-26.472775,Z=73.500000)),IndexData=(3,1,2,0,6,2,0,2,1,4,0,1,7,3,6,3,2,6,7,1,3,5,4,1,4,6,0,4,7,6,5,7,4,5,1,7),ElemBox=(Min=(X=-32.047050,Y=-26.472775,Z=-1.500000),Max=(X=32.952946,Y=25.527224,Z=73.500000),IsValid=True))),TaperedCapsuleElems=,LevelSetElems=,SkinnedLevelSetElems=,MLLevelSetElems=,SkinnedTriangleMeshElems=)"
+  },
+  "scope": {
+    "manifest": "Content/Dink/Data/Art/stonebrook.json",
+    "asset_row_index_observed": 5,
+    "replacement_index_observed": 5,
+    "semantic_selector": "unique original SM_FeedSack_Jute_01 asset + unique S001_P52 replacement",
+    "edits": "exactly two mesh strings; all other JSON semantics pinned",
+    "script": "s1-sack unchanged",
+    "protected_wicker_basket": {
+      "name": "WickerBasket",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+      "world_cm": [
+        -183182.65999999997,
+        392484.73,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    "preserve": [
+      "origin",
+      "pickup script and flags",
+      "offset_cm",
+      "rotation_deg",
+      "scale",
+      "original gameplay placements",
+      "all other assets/elements/replacements",
+      "quests/feed/inventory/save state",
+      "authored collision policy",
+      "all other Content/Data"
+    ]
+  },
+  "new_assets": {
+    "mesh": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01",
+    "triangles": 19644,
+    "lods": 1,
+    "material_slots_order": [
+      "MI_FeedSack_Jute_PhotoBaked",
+      "MI_FeedSack_Cord_PhotoBaked"
+    ],
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked",
+      "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked"
+    ],
+    "shared_textures": {
+      "BC": "/Game/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_BC",
+      "N": "/Game/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_N",
+      "ORM": "/Game/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_ORM"
+    },
+    "packages": 6,
+    "map_dimensions": [
+      2048,
+      2048
+    ],
+    "specular_per_material": {
+      "jute": 0.19231277678630443,
+      "cord": 0.22
+    },
+    "specular_formula": "((IOR-1)/(IOR+1))^2 * (2*.22)/.08; juteIOR1.46 cordIOR1.5; tolerance1e-6",
+    "collision": "preserve CTF_USE_COMPLEX_AS_SIMPLE; retained authored UCX must be verified but not become active query source"
+  },
+  "implementation_after_approval": [
+    "Derive five feedsack-named tools from exact pinned reviewed basket versions; keep pure FBX parser byte-identical or document necessity before changes.",
+    "Replace scalar single-material model end-to-end with exactly two ordered material IDs and per-material native assignments/specular assertions; shared 3 texture packages must count once.",
+    "Validate actual nested source dependencies, complete oriented triangles/UV/normal/material-ID bijections, authored UCX and float32-transformed bounds from actual payload, not rounded manifest constants.",
+    "Require owned stopped native project and custom modules; empty destinations; protect old packages and all nonowned Data/Content; importer default preflight, import refuses overwrites, verify saves nothing.",
+    "Fresh receipts bind tool/source/module/import bytes; cold published-clone verification works without author Saved receipts; direct BC/N/ORM graph/material input and Texture.Source pixels enforced for both materials.",
+    "Atomic publisher checks source/receipts/scope before/at mutation; only exact two approved mesh strings; already-published check/apply is zero-write.",
+    "Retain all97 guards as applicable, adapting one-to-two materials; add nested layout, duplicate shared texture, swapped slots/face IDs, independent specular mismatch, WickerBasket preservation, S001_P52 script/transform/race and six-package guards."
+  ],
+  "root_native_acceptance_after_tool_review": [
+    "preflight/import/freshverify/coldpublishedverify",
+    "all required full regression and module/input/save pins",
+    "actual rendered cloth/tie and contact/leave/camera/doorloop",
+    "original grain pickup/feed/inventory/save/reach behavior; this is a gameplay replacement unlike decorative basket",
+    "no claim native acceptance from source or pure tests"
+  ]
+}

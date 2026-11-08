@@ -1,0 +1,53 @@
+{
+  "status": "FINAL FROZEN SUCCESSOR: dedicated DINK_FEEDSACK_* env names and ORM wording corrected; no other production behavior changes",
+  "production_tools": {
+    "feedsack_contract.py": "ac5c7b28d6f5bc37beb08cc83907dadfaffa077b0f0be5e01e40fe374f314e17",
+    "feedsack_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "prepare_photoreal_feedsack_plan.py": "32ef508315efee6965348e45e17a7afbd9c5a3f1173e23e6f539c73df8bf202a",
+    "import_photoreal_feedsack.py": "f6dd1b6991a8f65319e0fd4fd3c282489a20e60e49dc6cc66ad018340aae686e",
+    "publish_photoreal_feedsack.py": "2bc5435647971ecec885d225b169d780360ab21ceb4aa4b840820205582a693d"
+  },
+  "tests": {
+    "test_feedsack_import_guards.py": "4a2db119d25b49919abb64df0508f5d7049f70a5a7045756195b0546a1a7b03c",
+    "test_feedsack_material_contract.py": "bfaeb3bbfb2aca2fbb59febec0befa0e5b956c24d6acd8691276bbb8dd8dbec3",
+    "test_feedsack_publication.py": "6e5729007fae2ffa96ca3136294140ae0c403e963de99844663baa3a48aa1f2e",
+    "test_feedsack_published_clone.py": "a468621fb3ed2a53aad8c824effed713fd67df5b723e9a3c80b31c8541c1a447",
+    "test_feedsack_scope_guards.py": "01c292358029339415ec6f3f0e5ae42352a78676a7645080da0d55e4c5508b14",
+    "test_feedsack_specific.py": "6bc403d9ad97226c1baa233c5fd15ef9363c32af65d7d0215ddbd6ee5eeab1b8",
+    "test_feedsack_tolerant_matching.py": "3bf45f7c668369732572009aa18fa7de4e420774b033b08b6068b61e75e93684"
+  },
+  "validation": "126/126 pure tests PASS; py_compile PASS; actual33export+checkpoint/all88dependencies; 19644sourcefaces14852jute4792cord checked with source-to-self geometry/UV/normal/material-ID bijection",
+  "evidence": {
+    "actual_source_plan.json": "f59d7ec02df7d5a5b5bfa9b321c99ac100399af0770f666ead33c48fb3827beb",
+    "source_self_consistency.json": "e91b98d1877ce9c9db740da63c16ef6703891525597ab3c75c8d3d5865f50d6d",
+    "tests_final.log": "142b385ffb697513ba7df468c329a7f016a7fc9ba3732961a53c207b826a7f85",
+    "native_bridge_review.json": "32002bb6b7417fac76717e3bdca6da02e97e6570515f1b2d781f4543e8b63acd",
+    "native_bridge_review.diff": "ff4c989b3d827f501a38d9fffc69f8567bc92c137052c2aea7e514858f6fea11",
+    "PLAN.json": "0b73652af4c776c7c29b4d273ee650f0e488f596c2f673a96af310df491d8930",
+    "reviewed_base_pins.json": "a99cfae6bcf9d82e42b02962a875cdfe951a2fa1e4d287152c730d1946ade64e",
+    "README.md": "4a828a5981c48415f778c25e9c15c86c4d11836869cbe78b5a637b4a790b2e9d"
+  },
+  "native_bridge_evidence": {
+    "NativeBridgeEvidence/native_bindings.json": "70490fa931ffe867175981d4e7d6d319304119a43efdcddbea7734a806b4c77c",
+    "NativeBridgeEvidence/native_runner.json": "de33961e949b034b578d16af6ccab32fad2dae8d0cada0737a79b3137f193884",
+    "NativeBridgeEvidence/native_verification.json": "f9f710a30dc32dd6ce20a7c165598bc8854fe16c79cf16be7a7ee3dc264239f0",
+    "NativeBridgeEvidence/verification.json": "56d96d2947422e1cfb5c86d814053ca4b7bfb2e8588c7f779d850feb35908d98"
+  },
+  "scope": {
+    "six_native_packages": true,
+    "ordered_materials": 2,
+    "shared_textures": 3,
+    "mesh_references_changed_by_later_guarded_publisher": 2,
+    "grain_origin": "S001_P52",
+    "script": "s1-sack unchanged",
+    "preserved": "WickerBasket / all other scene semantics; no collision-policy changes"
+  },
+  "native_execution_by_this_task": false,
+  "cpp_or_root_writes": false,
+  "remaining": "Root reviews/copies exact five tools/seven test files; native preflight/import/freshverify/publish/coldclone/full tests and actual grain pickup/feed/inventory/save/reach/contact/render/camera acceptance. This packet grants no scene-data approval.",
+  "supersedes": "Frozen126Original/handoff.json",
+  "successor_delta": {
+    "import_photoreal_feedsack.py": "DINK_BASKET_* renamed DINK_FEEDSACK_* only",
+    "feedsack_contract.py": "stale willow ORM error wording corrected only"
+  }
+}
