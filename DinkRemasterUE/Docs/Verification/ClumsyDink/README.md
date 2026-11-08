@@ -1,0 +1,11 @@
+# Dink's awkward movement and landing recovery
+
+The owner requested a more clumsy Dink, a lower jump, and occasional landing stumbles. This player-only layer adds an uneven shuffle, mild hunch and shoulder sway, slower starts/stops/turns, and a short cosmetic catch-step. It preserves the capsule, input, combat/story randomness, and shared NPC motion.
+
+The hop uses 280 cm/s launch, 80 ms hold and gravity1.45. A qualifying landing needs at least220 cm/s impact and180 ms airtime. Its configured30% chance uses a private cosmetic stream; recovery lasts700 ms with a1.6 s cooldown. It neither locks input nor forces the gameplay root to move. Freeze/teleport cancellation is bounded by the observed actor motion policy; teleport detection uses a200 cm displacement threshold. Actor-level cancellation and low-frame-rate rendered behavior remain review limitations.
+
+The raw native reports show **144/144 full checks passing with zero warnings** in458 s elapsed and5/5 focused checks with zero warnings. The full suite's8,902 pre-run input hashes remain unchanged afterward. All five integration source files match the frozen patch on basee53cae9; source/input details are retained in the delivery and verification receipts.
+
+Actual private input captures contain1,126 frames, a45.2 cm hop (previously about107.6 cm), one explicitly forced landing stumble and one observed example at the normal0.3 chance. The sample does not establish the statistical frequency. `root_drift_review.json` independently checks the55 grounded, zero-velocity samples within those two recovery segments:3D actor-root drift is0 cm. A subsequent actual Space jump occurs during the second recovery, raising the root36.89 cm; whole-segment zero displacement is not claimed. That motion also confirms recovery does not lock input. Only the initial outdoor fixture uses console travel. The observer's first property-alias error was corrected using the verified native reflected field before these final captures. Own game and display ended normally.
+
+Screenshots show the published character model; the separate photoreal wardrobe candidate is not yet imported. Wider-world jump/ledge traversal, packaged behavior, and general moving-stumble visual acceptance remain outside these checks.

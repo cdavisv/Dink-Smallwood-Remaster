@@ -1,0 +1,37 @@
+{
+  "samples": 1126,
+  "stumble_events": [
+    {
+      "at": 8.354841082999883,
+      "chance": 1.0,
+      "location": [
+        99623.0748335623,
+        37937.533125,
+        98.34999743921668
+      ]
+    },
+    {
+      "at": 16.243750495999848,
+      "chance": 0.30000001192092896,
+      "location": [
+        99623.0748335623,
+        37937.533125,
+        98.34999847556462
+      ]
+    }
+  ],
+  "normal_chance_stumbles": 1,
+  "forced_stumbles": 1,
+  "jump_height_cm": 45.19445961962445,
+  "root_x_drift_during_stumble_cm": 0.0,
+  "body_pitch_range": [
+    -3.781404460848848,
+    3.96297037770132
+  ],
+  "fixture": "first landing forced chance1; eight further actual Space jumps at default0.3; observer window25s may end before final recovery. Only initial fixture console travel; no pose/root setters during movement.",
+  "result": "PASS",
+  "body_relative_roll_range": [
+    0.7141519358460949,
+    12.390820302775825
+  ]
+}

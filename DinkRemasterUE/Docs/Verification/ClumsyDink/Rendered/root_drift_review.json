@@ -1,0 +1,20 @@
+{
+  "computed_from": "motion.json contiguous stumble segments, with grounded zero-velocity subset explicitly selected",
+  "segments": [
+    {
+      "all_frames": 31,
+      "grounded_stationary_frames": 31,
+      "chance": 1.0,
+      "max_grounded_stationary_root_displacement_cm": 0.0,
+      "max_root_displacement_all_frames_cm": 0.0
+    },
+    {
+      "all_frames": 31,
+      "grounded_stationary_frames": 24,
+      "chance": 0.30000001192092896,
+      "max_grounded_stationary_root_displacement_cm": 0.0,
+      "max_root_displacement_all_frames_cm": 36.8896090080661
+    }
+  ],
+  "qualification": "Second segment includes a subsequent actual Space jump during cosmetic recovery, so its root rises36.89cm legitimately. This verifies input remains usable; whole-segment3Dzero displacement is not claimed. Stationary grounded samples show0cm3D root drift."
+}

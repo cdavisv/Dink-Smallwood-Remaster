@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "DinkBodyDynamics.h"
+#include "DinkHeroPhysicality.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/GameModeBase.h"
 #include "DinkGreyboxCharacter.generated.h"
@@ -67,6 +68,11 @@ public:
 	static constexpr float WalkSpeed = 200.f;
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Jump() override;
+	virtual void Landed(const FHitResult& Hit) override;
+	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
+	float LandingStumbleChance = .3f;
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	bool IsStumbling() const { return HeroPhysicality.IsStumbling(); }
 	void SetWalking(bool bWalking);
 	void ZoomCamera(float Steps);
 
@@ -81,6 +87,11 @@ private:
 	TWeakObjectPtr<UEnhancedInputLocalPlayerSubsystem> BoundInputSubsystem;
 	bool bWalkingHeld = false;
 	FDinkBodyDynamics BodyDynamics;
+	FDinkHeroPhysicality HeroPhysicality;
+	FVector PreviousBodyLocation = FVector::ZeroVector;
+	FVector AppliedBodyOffset = FVector::ZeroVector;
+	float AirSeconds = 0.f;
+	bool bBodyLocationReady = false;
 	FQuat AppliedBodyRotation = FQuat::Identity;
 
 protected:
