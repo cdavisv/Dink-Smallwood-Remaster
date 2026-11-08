@@ -1,0 +1,116 @@
+{
+  "result": "PASS",
+  "pid": 171912,
+  "method": "Explicit photo/collision setup teleports; real W capsule sweeps toward barrel and away, no forced target script calls. Actual door loop is separate evidence.",
+  "views": [
+    {
+      "label": "barrels-game-distance",
+      "player": {
+        "screen": 1,
+        "map": [
+          205.0,
+          120.0
+        ],
+        "world": [
+          -184237.035,
+          392370.98,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "photo_fixture": true
+    },
+    {
+      "label": "barrels-close",
+      "player": {
+        "screen": 1,
+        "map": [
+          178.0,
+          120.0
+        ],
+        "world": [
+          -184355.16,
+          392370.98,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -25.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "photo_fixture": true
+    },
+    {
+      "label": "barrels-top",
+      "player": {
+        "screen": 1,
+        "map": [
+          178.0,
+          135.0
+        ],
+        "world": [
+          -184355.16,
+          392436.605,
+          98.0
+        ],
+        "yaw": 205.0,
+        "pitch": -40.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "photo_fixture": true
+    }
+  ],
+  "collision_before": {
+    "screen": 1,
+    "map": [
+      200.0,
+      120.0
+    ],
+    "world": [
+      -184258.91,
+      392370.98,
+      98.0
+    ],
+    "yaw": 180.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "collision_contact": {
+    "screen": 1,
+    "map": [
+      164.017,
+      120.0
+    ],
+    "world": [
+      -184416.336,
+      392370.98,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "collision_away": {
+    "screen": 1,
+    "map": [
+      254.506,
+      120.0
+    ],
+    "world": [
+      -184020.448,
+      392370.98,
+      98.15
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "threshold_note": "Bounded axis approach: contact between mapX158and174, can leave byactualW morethan25mapPixels. Not universal all-directions collision proof."
+}
