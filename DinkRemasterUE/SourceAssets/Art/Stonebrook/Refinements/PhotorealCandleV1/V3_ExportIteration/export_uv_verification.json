@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "source_sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c",
+  "LODs": [
+    {
+      "object": "SM_Candle_Iron_01_LOD0",
+      "triangles": 4870,
+      "uv": {
+        "uv_area": 0.55326112464969,
+        "area_3d": 0.19874987192024776,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 4870
+      },
+      "wax_IOR": 1.440000057220459,
+      "wax_SSS": 0.11999999731779099
+    },
+    {
+      "object": "SM_Candle_Iron_01_LOD1",
+      "triangles": 2434,
+      "uv": {
+        "uv_area": 0.5532040843174341,
+        "area_3d": 0.19873053462322343,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 2434
+      },
+      "wax_IOR": 1.440000057220459,
+      "wax_SSS": 0.11999999731779099
+    },
+    {
+      "object": "SM_Candle_Iron_01_LOD2",
+      "triangles": 1218,
+      "uv": {
+        "uv_area": 0.5493408845143108,
+        "area_3d": 0.1985641048855363,
+        "overlap_area": 3.131697487590568e-05,
+        "overlap_ratio": 5.700827256575665e-05,
+        "overlapping_tris": 4,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 1218
+      },
+      "wax_IOR": 1.440000057220459,
+      "wax_SSS": 0.11999999731779099
+    }
+  ],
+  "limits": "LOD0 requires zero overlap; decimated LODs use class threshold 0.2 percent and retain actual measured overlap. UV/material checks only; deliberate wax/drip contact is not universal intersection-free or native approval."
+}
