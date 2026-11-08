@@ -108,7 +108,7 @@ The original damage formula is ported into one function and the original numbers
 
 ## 6. Art direction and pipeline
 
-**Look:** stylised realism at Fable/Gothic distance, not photoreal faces. Photoreal heads delivering 2,125 unvoiced lines look dead and fight the comedy. Dink keeps his silhouette and colours (red-brown hair, grey-blue sleeves, brown jerkin and backpack, olive trousers, red bracers); buildings keep their 1997 shapes.
+**Look (owner update,8Nov2026 UTC):** photorealistic art authored in Blender, using the original sprites as guide and inspiration. Preserve Dink’s recognisable silhouette and colours (red-brown hair, grey-blue sleeves, brown jerkin/backpack, olive trousers and red bracers), the original buildings’ character and gameplay identities. Improve believable construction, materials, cloth, skin, wear and lighting. This owner request supersedes the earlier stylised-realism preference; use the original art as a design reference rather than copying its low-resolution rendering.
 
 **Tools (free):** Blender 5.2 LTS, MPFB2 for base human bodies, Material Maker/ArmorPaint, Krita, UE for materials, lighting and VFX.
 
