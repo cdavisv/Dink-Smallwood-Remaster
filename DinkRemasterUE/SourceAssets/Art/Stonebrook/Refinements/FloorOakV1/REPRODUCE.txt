@@ -1,0 +1,15 @@
+FLOOR OAK V5 — APPROVED WORK-ONLY SOURCE/BAKES
+
+Authoritative payload: this directory. No native import/publication/ledger write was performed. Parent /root approved close, room and bakedroundtrip views.
+
+Portable rebuild (Blender5.2.2, CPU):
+ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 4 --python-exit-code 1 -P rebake_from_clean_source.py -- --source WornOakFloorV5_Source.blend --output /ABSOLUTE/NEW_EMPTY_DIRECTORY
+The outputdirectory must not exist. Inputsource is never saved. The clean source is an assetlibrary: select FloorOakV1_SourceAsset scene when opening inBlender. Its embedded procedural master and packed images suffice; no sibling project/preview/albedo files are required. A relocated fixture containing ONLY clean.blend and manifest reproduced all3PNG files byte-for-byte (portable_rebuild_receipt.json).
+
+Native importer must use BC gain1 and normalStrength1: accepted0.25linearBC calibration and separate microrelief are ALREADY baked. BC is sRGB; N is linear tangent OpenGL/Y+ (flipgreen onUnreal import); ORM is linear R255/AO1,Groughness201..217,B0/metal0. Specular.35; opaque; no coat.
+
+Only materialslot0 changes. Original1408vertices/2624triangles, UV0, every polygonmaterialindex, slot1WroughtIron shader/320nailpolygons and oneoriginalUCX remain identical. Native duplicates existing mesh without reimport.
+
+The rendered QA scene/roundtrip PNGs are unchanged evidence. Its unused transient bakebuffers need not be copied or loaded for rebuilding. bake_floor.py/fix_portable_preview.py are historicalbootstrap/failedcleanup logs, not portable entrypoints. Use rebake_from_clean_source.py.
+
+Do not modify this approvedpayload to solve blue floorseams: originalphysical plank/module gaps require a SEPARATE underfloor source/layer.

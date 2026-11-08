@@ -1,0 +1,43 @@
+{
+  "method": "Read-only RGB count in same floor ROI x580:710,y360:720; B>1.25R,B>1.1G,B>70; paired numeric cameras checked separately. No image edits.",
+  "rows": [
+    {
+      "view": "door-room",
+      "blue_pixel_counts": {
+        "Before": 380,
+        "AfterOakOnly": 341,
+        "AfterFinal": 0
+      },
+      "camera_contract_differences": {},
+      "witness_before": [
+        122,
+        164,
+        200
+      ],
+      "witness_after": [
+        7,
+        1,
+        1
+      ]
+    },
+    {
+      "view": "floor-close",
+      "blue_pixel_counts": {
+        "Before": 726,
+        "AfterOakOnly": 762,
+        "AfterFinal": 0
+      },
+      "camera_contract_differences": {},
+      "witness_before": [
+        19,
+        4,
+        1
+      ],
+      "witness_after": [
+        46,
+        16,
+        3
+      ]
+    }
+  ]
+}

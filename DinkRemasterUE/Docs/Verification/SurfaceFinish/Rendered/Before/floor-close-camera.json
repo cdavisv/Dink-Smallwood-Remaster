@@ -1,0 +1,37 @@
+{
+  "pawn_cm": [
+    -183580.785,
+    393311.605,
+    98.0
+  ],
+  "camera_cm": [
+    -183535.785,
+    393495.45566470583,
+    304.2690263247694
+  ],
+  "camera_rotation": "<Struct 'Rotator' (0x7f2cecfb73a0) {pitch: -40.000000, yaw: -90.000000, roll: -0.000000}>",
+  "control_rotation": "<Struct 'Rotator' (0x7f2cecfb73a0) {pitch: -40.000000, yaw: 270.000000, roll: 0.000000}>",
+  "field_of_view": 70.0,
+  "arm_cm": 240.0,
+  "target_offset": [
+    0.0,
+    0.0,
+    52.0
+  ],
+  "socket_offset": [
+    0.0,
+    45.0,
+    0.0
+  ],
+  "interior_mode": true,
+  "managed_occluders": 85,
+  "fading_occluders": 0,
+  "floor_framing_shift": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "floor_framing_available": true,
+  "floor_framing_feasible": true,
+  "fading_materials": []
+}

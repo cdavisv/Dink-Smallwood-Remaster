@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "single_mesh": true,
+    "closed_manifold": true,
+    "outward_normals": true,
+    "finite_UV0": true,
+    "one_material": true,
+    "no_UCX": true,
+    "source_hashes_match": true
+  },
+  "fbx_sha256": "daa4801ccb0c360ab362395d6754183069585cb45b001ccf24855d9d9d65a197",
+  "vertices": 24,
+  "triangles": 44,
+  "actual_roundtrip_dimensions_m": [
+    14.86942195892334,
+    13.117500305175781,
+    0.019999999552965164
+  ],
+  "dimension_tolerance_cm": 0.05,
+  "actual_exported_triangle_gap_ray": {
+    "matching_camera_sha256": "4962a7ec13a45b0b3e1eecbccd2d69088cc882f052a3f5fa4d65062ec374b619",
+    "pixel": [
+      660,
+      600
+    ],
+    "intersections_world_cm": [
+      [
+        -183751.390625,
+        393207.0,
+        -18.000015258789062
+      ],
+      [
+        -183751.46875,
+        393210.125,
+        -16.0
+      ]
+    ],
+    "expected_top_hit_world_cm": [
+      -183751.46603929487,
+      393210.1141071002,
+      -16.00000000000003
+    ],
+    "nearest_error_cm": 0.01122511420229163
+  },
+  "native_import_tested": false,
+  "runtime_published": false
+}
