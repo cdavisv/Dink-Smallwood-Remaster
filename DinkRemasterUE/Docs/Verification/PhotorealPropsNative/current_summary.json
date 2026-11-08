@@ -138,5 +138,20 @@
     "tests": 184,
     "result": "PASS",
     "log": "RootChecks/python184.log"
+  },
+  "relocated_clone": {
+    "result": "PASS for saved-asset portability",
+    "evidence": "RelocatedClone/verification.json",
+    "source_filename_roles": 12,
+    "candidate_packages": 15,
+    "unchanged_recorded_inputs": 3422,
+    "publisher_zero_write_files": 3815,
+    "limits": "Outer runner exitcode/time missing; nativepassedreceipt/internalguards/normalshutdown and closeoutpins prove boundedverification. No renderedlightingapproval."
+  },
+  "combined_render": {
+    "result": "ActualW door exit and return PASS",
+    "evidence": "../CombinedHouseRender/verification.json",
+    "unchanged_inputs": 6909,
+    "qualifier": "Interrupted firstdriver, resumedsamegame noGOTO/restart. Darkhero remains; failedLumenvisualizationnotcoverageproof."
   }
 }

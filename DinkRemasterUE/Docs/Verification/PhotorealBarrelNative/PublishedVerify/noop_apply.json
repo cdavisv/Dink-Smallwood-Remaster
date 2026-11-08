@@ -1,0 +1,27 @@
+{
+  "schema": "dink-photoreal-barrel/1",
+  "passed": true,
+  "applied": false,
+  "apply_requested": true,
+  "already_published": true,
+  "verification_basis": "published_entry_state",
+  "writer_scope": "none",
+  "scene_data_approval": false,
+  "changed_mesh_references": 0,
+  "only_mesh_references_changed": true,
+  "asset_rows": 1,
+  "instance_rows": 2,
+  "before_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
+  "after_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
+  "proposed_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
+  "verified_baseline_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
+  "verified_baseline_semantic_sha256": "af0d2c4d79132e2acc15a74a4cd1345e9d97fc34581ed5271214862b044ef9ca",
+  "verification_sha256": "153212c7edc96d02b76f2439b16aa3befd31f8a36faabf50f633f35b0c923648",
+  "tool_sha256": {
+    "barrel_contract.py": "0eb325564c1ee3429cf0892b2bd47fefa125df72cf11f0d965e08b5717980943",
+    "import_photoreal_barrel.py": "cb769652acec47d20420d00067a5a74cd9df677139c172e46d91869b5eda31e3",
+    "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
+    "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "plan_sha256": "f6bb485b533c32bc69604ec5036585ef2aba4fede4378d42d548a6029bb12cb7"
+}
