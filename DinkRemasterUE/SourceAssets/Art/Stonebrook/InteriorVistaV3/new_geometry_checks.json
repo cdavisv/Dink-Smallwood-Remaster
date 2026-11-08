@@ -1,0 +1,1056 @@
+{
+  "new_assets": [
+    {
+      "name": "SM_VistaGround_8m_XN32_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.8389503955841064
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.481309175491333
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.161752462387085
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.794196367263794
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.9193042516708374
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.8231271505355835
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.8074756860733032
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.372987985610962
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.0495740175247192
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.9301998615264893
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.0643794536590576
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.1935292482376099
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.2178759574890137
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.254399299621582
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.4540423154830933
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.29600000381469727
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.293584406375885
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2759884297847748
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2759884297847748
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.38503482937812805
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.7809292078018188
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.2182528972625732
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.722743034362793
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2953135073184967
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2803771495819092
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.087752103805542
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.672992467880249
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.1593198776245117
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.27964136004447937
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.27557745575904846
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.4413657188415527
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.8277709484100342
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.1713759899139404
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.27358338236808777
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2759884297847748
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2759884297847748
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.42532768845558167
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.436037540435791
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.856288194656372
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.091668725013733
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.8612225651741028
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.8510391712188721
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.2849999964237213
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.8916197419166565
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -2.347424030303955
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN32",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.3110804557800293
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN24",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.6473561525344849
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.4262330532073975
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.3885656595230103
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP0",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.3399871587753296
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP8",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.7151674032211304
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP16",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -1.2381629943847656
+      ],
+      "max_local_m": [
+        8.0,
+        8.0,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP13R",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.4179263114929199
+      ],
+      "max_local_m": [
+        8.0,
+        2.5,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP13R",
+      "class": "kit_floor",
+      "triangles": 320,
+      "min_local_m": [
+        0.0,
+        0.0,
+        -0.43812981247901917
+      ],
+      "max_local_m": [
+        8.0,
+        2.5,
+        0.0
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "uv_layers": 1
+    },
+    {
+      "name": "SM_Doorstep_StonebrookVista_01",
+      "class": "prop",
+      "triangles": 324,
+      "min_local_m": [
+        -1.0,
+        -0.75,
+        0.0
+      ],
+      "max_local_m": [
+        1.0,
+        0.75,
+        0.10000000149011612
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Fieldstone"
+      ],
+      "uv_layers": 1
+    }
+  ],
+  "new_asset_count": 55,
+  "total_new_render_triangles": 17604,
+  "all_future_instances_render_only": true,
+  "original_room_footprint_unchanged": true,
+  "room_exclusion_from_generation": "explicit transformed source-mesh AABBs; no vista mesh intersects open room rectangle",
+  "source_units": "metres, applied rotation/scale, Zup/-Yfront; UE conversion documented in proposal",
+  "reused_assets_not_reexported": true
+}

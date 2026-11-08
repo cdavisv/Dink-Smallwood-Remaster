@@ -2,7 +2,10 @@
   "schema": "dink-camera/1",
   "material_variants": {
     "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Oak.MI_Stonebrook_Oak": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Oak_v1.M_CameraFade_Oak_v1",
-    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Limewash_v1.M_CameraFade_Limewash_v1"
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Limewash_v1.M_CameraFade_Limewash_v1",
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.MI_Stonebrook_Fieldstone": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Fieldstone_v1.M_CameraFade_Fieldstone_v1",
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron": "/Game/Dink/Camera/Stonebrook/M_CameraFade_WroughtIron_v1.M_CameraFade_WroughtIron_v1",
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Thatch.MI_Stonebrook_Thatch": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Thatch_v1.M_CameraFade_Thatch_v1"
   },
   "floor_framing": {
     "1": {

@@ -1,0 +1,13 @@
+import bpy,json,hashlib,math
+from pathlib import Path
+from mathutils import Vector
+W=Path(__file__).resolve().parent;P=W/'Stonebrook_InteriorVista_Candidate_V3.blend';before=hashlib.sha256(P.read_bytes()).hexdigest();bpy.ops.wm.open_mainfile(filepath=str(P));s=bpy.context.scene
+s.render.engine='CYCLES';s.cycles.device='CPU';s.cycles.samples=32;s.cycles.use_denoising=True;s.render.resolution_x=1280;s.render.resolution_y=720;s.render.resolution_percentage=100;s.view_settings.view_transform='AgX';s.view_settings.look='AgX - Medium High Contrast';s.view_settings.exposure=.8
+world=s.world;world.use_nodes=True;bg=world.node_tree.nodes.get('Background');bg.inputs['Color'].default_value=(.40,.55,.80,1);bg.inputs['Strength'].default_value=.45
+preview=bpy.data.collections.new('Preview_CamerasAndDaylight');s.collection.children.link(preview)
+ld=bpy.data.lights.new('Preview_Daylight','SUN');sun=bpy.data.objects.new('Preview_Daylight',ld);preview.objects.link(sun);ld.energy=2.2;ld.angle=math.radians(4);sun.rotation_euler=(math.radians(-35),math.radians(-25),0)
+folder=W/'PreviewV3';folder.mkdir(exist_ok=True);poses=json.loads((W/'preview_poses.json').read_text());hashes={}
+for pose in poses:
+ name=pose['label'];data=bpy.data.cameras.new('Preview_'+name);cam=bpy.data.objects.new('Preview_'+name,data);preview.objects.link(cam);cam.location=pose['camera_blender_m'];cam.rotation_euler=(Vector(pose['target_blender_m'])-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.lens=25.7;cam.data.sensor_width=36;cam.data.clip_end=200;s.camera=cam;s.render.filepath=str(folder/(name+'.png'));bpy.ops.render.render(write_still=True);hashes[name+'.png']=hashlib.sha256((folder/(name+'.png')).read_bytes()).hexdigest()
+assert before==hashlib.sha256(P.read_bytes()).hexdigest();bpy.ops.wm.save_as_mainfile(filepath=str(W/'Stonebrook_InteriorVista_PreviewV3.blend'))
+contract={'candidate_scene_sha256':before,'new_assets_blend_sha256':hashlib.sha256((W/'Stonebrook_VistaAssets.blend').read_bytes()).hexdigest(),'renderer':'Blender5.2.2 CyclesCPU32samples AgX MediumHigh Contrast exposure+.8; source previews only, not game screenshots','resolution':[1280,720],'images':hashes,'poses':poses,'geometry_unchanged_by_render':True,'preview_recipe':'render_v3.py','publication':'None; Work-only source preview gate pending','known_limits':['Borrowed oak trunk/root seams and finite horizon remain candidate art limitations','Original shaders/materials reused; no claim final realistic material finish']};(folder/'preview_contract.json').write_text(json.dumps(contract,indent=2)+'\n');print('VISTA_V3_PAIRED_PREVIEWS_COMPLETE')

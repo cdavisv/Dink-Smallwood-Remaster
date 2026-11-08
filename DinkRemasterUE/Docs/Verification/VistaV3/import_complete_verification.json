@@ -1,0 +1,15 @@
+{
+  "exit": 0,
+  "tests": 12,
+  "passed": 12,
+  "warned": 0,
+  "failed": 0,
+  "seconds": 67.74022626876831,
+  "runtime_scope_changes": [],
+  "fixture_changes": false,
+  "fixture_files": 1209,
+  "manifest_sha256": "c69b050323916c8a388bac1172e30d5bee68824ce4dc48122c7f10a5f6fc7cfe",
+  "report": "/home/artist/Work/DinkVistaStage/Saved/Automation/vista_runtime_import_complete_20261108/index.json",
+  "first_import_run": "Preserved; 8 tests warned/skipped due missing ImportData fixtures. This run supplies exact Delivery fixtures.",
+  "verified": true
+}

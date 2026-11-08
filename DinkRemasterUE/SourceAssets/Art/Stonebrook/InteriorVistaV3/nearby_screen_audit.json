@@ -1,0 +1,238 @@
+{
+  "scope": "Conservative metadata-coordinate audit against every generated screen footprint; actual saved Blender instance bounds, not proposed terrain dimensions alone",
+  "source_screens": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/ImportData/screens.json",
+  "source_screens_sha256": "3ff7d14ab3d6a5d664c5b31b98f5154c4d583c8379972d0c71ae5270d2278fba",
+  "screens_checked": 643,
+  "scene_local_min_m": [
+    -32.0,
+    -33.36193084716797,
+    -0.3099175691604614
+  ],
+  "scene_local_max_m": [
+    32.102867126464844,
+    28.645872116088867,
+    13.796297073364258
+  ],
+  "terrain_design_bounds_blender_m": [
+    -32,
+    -32,
+    32,
+    24
+  ],
+  "actual_vista_world_min_cm": [
+    -187006.0975,
+    390731.3927883911,
+    -30.991756916046143
+  ],
+  "actual_vista_world_max_cm": [
+    -180595.81078735352,
+    396932.1730847168,
+    1379.6297073364258
+  ],
+  "other_screen_overlap_count": 0,
+  "closest_screens": [
+    {
+      "screen": 2,
+      "name": "Ethel's house",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -178508.91,
+        391845.98,
+        -175883.91,
+        393595.98
+      ],
+      "minimum_AABB_gap_cm": 2086.9007873535156,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 3,
+      "name": "2 rooms (s1-h3-s)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -171883.91,
+        391845.98,
+        -169258.91,
+        393595.98
+      ],
+      "minimum_AABB_gap_cm": 8711.900787353516,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 85,
+      "name": "Hellfire cave",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -185133.91,
+        407095.98,
+        -181758.91,
+        409345.98
+      ],
+      "minimum_AABB_gap_cm": 10163.806915283203,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 86,
+      "name": "Hellfire cave",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -181758.91,
+        407095.98,
+        -178383.91,
+        409345.98
+      ],
+      "minimum_AABB_gap_cm": 10163.806915283203,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 4,
+      "name": "2 rooms (s1-h3-s)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -169258.91,
+        391845.98,
+        -166633.9,
+        393595.98
+      ],
+      "minimum_AABB_gap_cm": 11336.900787353516,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 97,
+      "name": "1 room (s3-st2)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -174383.91,
+        407095.98,
+        -171758.91,
+        408845.98
+      ],
+      "minimum_AABB_gap_cm": 11911.787540209147,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 98,
+      "name": "4 rooms (s1-cave, s1-caves)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -167758.91,
+        407095.98,
+        -164383.91,
+        409345.98
+      ],
+      "minimum_AABB_gap_cm": 16373.42336945808,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 5,
+      "name": "1 room (s2-h1-s)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -162633.9,
+        391845.98,
+        -160008.9,
+        393595.98
+      ],
+      "minimum_AABB_gap_cm": 17961.910787353525,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 99,
+      "name": "4 rooms (s1-cave, s1-caves)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -164383.91,
+        407095.98,
+        -161008.9,
+        409345.98
+      ],
+      "minimum_AABB_gap_cm": 19134.489754110306,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 131,
+      "name": "4 rooms (s1-cave, s1-caves)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -164383.91,
+        409345.98,
+        -161008.9,
+        411595.98
+      ],
+      "minimum_AABB_gap_cm": 20418.822915852095,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 100,
+      "name": "4 rooms (s1-cave, s1-caves)",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -161008.9,
+        407095.98,
+        -157633.9,
+        409345.98
+      ],
+      "minimum_AABB_gap_cm": 22066.944627720997,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    },
+    {
+      "screen": 6,
+      "name": "Martridge's house",
+      "group": "interiors",
+      "indoor": true,
+      "room_AABB_cm": [
+        -156008.9,
+        391845.98,
+        -153383.9,
+        393595.98
+      ],
+      "minimum_AABB_gap_cm": 24586.910787353525,
+      "overlaps_vista_aggregate_AABB": false,
+      "reached": true
+    }
+  ],
+  "visibility_ownership": {
+    "owner_gameplay_screen": 1,
+    "runtime_implementation_required": true,
+    "existing_DinkArtScreen_tag_is_visibility_controller": false,
+    "default_hidden_until_owner_screen_selected": true,
+    "visible_only_when_current_screen_equals": 1,
+    "hide_on_screen_exit_or_no_current_screen": true,
+    "cast_hidden_shadow": false,
+    "must_not_reuse_original439_actor_instances": true,
+    "publish_as": "dedicated screen1 vista actor/level/context with explicit current-screen visibility; asset meshes can be shared",
+    "must_verify_before_staging": [
+      "screen1 shows vista",
+      "screen2/439/other screens hide all vista geometry and its shadows",
+      "all vista components NoCollision; original scripts/warps untouched",
+      "fresh actor-coordinate bounds audit of nearby generated rooms"
+    ]
+  },
+  "limits": [
+    "Generated corners are authoritative importer input, not a fresh running-UE actor-bounds readback",
+    "No direct physical-room overlap does not prevent views/shadows appearing from neighboring rooms if all actors remain visible",
+    "Runtime staging must implement explicit per-screen visibility/ownership; DinkArtScreen_1 alone does not do this",
+    "Vista remains render-only and contains no geometry in the authored interior footprint"
+  ]
+}

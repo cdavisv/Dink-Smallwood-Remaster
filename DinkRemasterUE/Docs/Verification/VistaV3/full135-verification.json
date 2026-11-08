@@ -1,0 +1,24 @@
+{
+  "scope": "Isolated DinkVistaDelivery source/native/imported candidate, local uncommitted runtime context c69; predecessor master a790d37 before concurrent PR5 integration. This is not a final visual acceptance receipt.",
+  "command": "UE_ROOT=<private NoZen wrapper> DINK_TEST_RUN=vista_delivery_full135 Scripts/test.sh",
+  "build": {
+    "result": "BUILD OK",
+    "seconds": 61,
+    "warnings": 0,
+    "actions": 137
+  },
+  "tests": {
+    "total": 135,
+    "passed": 135,
+    "failed": 0,
+    "with_warnings": 0,
+    "seconds": 490,
+    "editor_exit": 0,
+    "report_sha256": "b62facf2fa7813ac2a1ae2731f704dcc135b8023b4ae5d30cc29a5e7af092d8a"
+  },
+  "input_count": 3230,
+  "changed_inputs": [],
+  "input_pins_sha256": "580feebd996281c501e5363568b15a759d5c653fa9216e2c9e7b39ea6aaf73b3",
+  "runtime_manifest_sha256": "c69b050323916c8a388bac1172e30d5bee68824ce4dc48122c7f10a5f6fc7cfe",
+  "runtime_layer_status": "Local test candidate only; withheld from public activation pending horizon and outdoor-camera fixes."
+}
