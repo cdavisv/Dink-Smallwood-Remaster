@@ -1,0 +1,29 @@
+{
+  "scope": "Continuous leather termination joins cut edge to vest surface with interpolated vest weights; unique atlas charts reuse only previously unused brown texture pixels; no texture changes or new slots",
+  "lods": [
+    {
+      "lod": 0,
+      "continuous_leather_join_quads": 2,
+      "new_join_vertices": 4,
+      "new_unique_atlas_charts": 2
+    },
+    {
+      "lod": 1,
+      "continuous_leather_join_quads": 2,
+      "new_join_vertices": 4,
+      "new_unique_atlas_charts": 2
+    },
+    {
+      "lod": 2,
+      "continuous_leather_join_quads": 1,
+      "new_join_vertices": 2,
+      "new_unique_atlas_charts": 1
+    },
+    {
+      "lod": 3,
+      "continuous_leather_join_quads": 1,
+      "new_join_vertices": 2,
+      "new_unique_atlas_charts": 1
+    }
+  ]
+}

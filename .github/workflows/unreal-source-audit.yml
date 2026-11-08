@@ -1,0 +1,27 @@
+name: Unreal source and asset metadata
+on:
+  pull_request:
+    paths:
+      - 'DinkRemasterUE/**'
+      - '.github/workflows/unreal-source-audit.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'DinkRemasterUE/**'
+      - '.github/workflows/unreal-source-audit.yml'
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check syntax, approved audio and pinned asset metadata
+        run: python3 DinkRemasterUE/Scripts/verify_sources.py --metadata-only
+      - name: Exercise asset bootstrap and import protections
+        run: python3 -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'

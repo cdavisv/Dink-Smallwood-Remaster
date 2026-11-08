@@ -1,0 +1,51 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 1
+  },
+  "normals": [
+    {
+      "mesh": "SK_Pillbug_LOD0",
+      "removed_degenerate_faces": 0,
+      "removed_wire_edges": 0,
+      "removed_loose_vertices": 0,
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Pillbug_LOD1",
+      "removed_degenerate_faces": 0,
+      "removed_wire_edges": 0,
+      "removed_loose_vertices": 0,
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Pillbug_LOD2",
+      "removed_degenerate_faces": 0,
+      "removed_wire_edges": 0,
+      "removed_loose_vertices": 0,
+      "flat_faces_for_cancelled_normals": 68,
+      "remaining_zero_normals": 0
+    }
+  ],
+  "lods": [
+    {
+      "name": "SK_Pillbug_LOD0",
+      "triangles": 24000,
+      "vertices": 12506
+    },
+    {
+      "name": "SK_Pillbug_LOD1",
+      "triangles": 12000,
+      "vertices": 6506
+    },
+    {
+      "name": "SK_Pillbug_LOD2",
+      "triangles": 6000,
+      "vertices": 3506
+    }
+  ]
+}

@@ -1,0 +1,1226 @@
+{
+  "schema": "dink-audio-selection/1",
+  "review_sha256": "4257c9edb8edcd77b01065519688454b0979165a17d3348fbae5eb45a3dcbea3",
+  "counts": {
+    "sfx": 44,
+    "music": 28,
+    "rejected": 4
+  },
+  "assets": [
+    {
+      "name": "SFX_01_quack",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/01_quack_a.wav",
+      "sha256": "1276fb3e95c4a42b0cda8fa422ad2b262a9754992a07696622e3e05fa5029e76",
+      "loop": false,
+      "duration_s": 1.08
+    },
+    {
+      "name": "SFX_02_pig1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/02_pig1_b.wav",
+      "sha256": "2c3426cd0e4fba5c8daa539b7260007c8b3f3de9602c64c73d9321dbba6a0274",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_03_pig2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/03_pig2_b.wav",
+      "sha256": "9b9b08c0d269748ab678c38320400b43d23b545059620c1579da497d543d9ed6",
+      "loop": false,
+      "duration_s": 0.8363945578231292
+    },
+    {
+      "name": "SFX_04_pig3",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/04_pig3_a.wav",
+      "sha256": "e1636cbd3c45d3eae2b33906d5b53cb969d19243034db9e208b23c63adc0eb6b",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_05_pig4",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/05_pig4_a.wav",
+      "sha256": "fc8b5b1ed100e6163e75df0c913898462a92bf3cc1d1dd0b87a2509cd7350784",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_06_burn",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/06_burn_a.wav",
+      "sha256": "4cdc5207ef775b6a50c4c0864cdd9d66a2e14f7aa7148e3153f8d843eedd49f3",
+      "loop": false,
+      "duration_s": 2.553219954648526
+    },
+    {
+      "name": "SFX_07_open",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/07_open_b.wav",
+      "sha256": "6c9322fe39d0acb64b69c85a028fd9a65673f010f7d1d639a2cd7126150319cb",
+      "loop": false,
+      "duration_s": 1.48
+    },
+    {
+      "name": "SFX_08_swing",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/08_swing_a.wav",
+      "sha256": "3790f6b04667e94ce662675dfba2482866643cd61c87aec28035aee6d5a59ee5",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_10_sword2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/10_sword2_b.wav",
+      "sha256": "50d0b4578d6ecace1fd3e5de8673ea05987b40c192eafd3e55bde8375b0c312b",
+      "loop": false,
+      "duration_s": 0.6
+    },
+    {
+      "name": "SFX_11_select",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/11_select_b.wav",
+      "sha256": "b390d2ffc25c11c9278221a53c438d65911c184038e8f8754d86dee5e8705f7b",
+      "loop": false,
+      "duration_s": 0.6
+    },
+    {
+      "name": "SFX_12_wscream",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/12_wscream_b.wav",
+      "sha256": "dded69fc62acf20744cc9a188f1a06239826fed8ddd9abce09482966eadbeecf",
+      "loop": false,
+      "duration_s": 1.0
+    },
+    {
+      "name": "SFX_13_picker",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/13_picker_b.wav",
+      "sha256": "44753ce2a1e74c0b08b409ecc63a9fd8d37a7a1bc7b34fc61dc3c58441bb42e0",
+      "loop": false,
+      "duration_s": 0.4717233560090703
+    },
+    {
+      "name": "SFX_14_gold",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/14_gold_b.wav",
+      "sha256": "fab760245c9b1effbdd745451175b54e5a6b0fe4a4acf4a0ef2c68fb96c990dd",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_15_grunt1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/15_grunt1_a.wav",
+      "sha256": "3bf032598e2b6f9b6e648e53d1c7deac418d79a41f76aa626e15e49996d003b5",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_16_grunt2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/16_grunt2_a.wav",
+      "sha256": "2a126244cdd1f1d4e475bbcfd3d5ecd833a7e3619594c0fd21a95dfd8ee9d99b",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_17_sel1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/17_sel1_a.wav",
+      "sha256": "ae31b10a1cc280cee50dfbb5df6edf3e4ecb1439da4077899eb71f9fdc0f804e",
+      "loop": false,
+      "duration_s": 1.0
+    },
+    {
+      "name": "SFX_18_escape",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/18_escape_a.wav",
+      "sha256": "5b788df7b1c9b174527be565447a29fde17cd88be936a01f8a8fb6de3f1d8b43",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_19_nono",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/19_nono_a.wav",
+      "sha256": "99d1b3b1829582e33364bf946ba39c614f5dbfda9aa11ab6622f3616c26ccff7",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_20_sel2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/20_sel2_b.wav",
+      "sha256": "17a2c853ef198dc5a3582a348a9ffe3156035309074af5b5e1674f88ccb6f307",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_21_sel3",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/21_sel3_b.wav",
+      "sha256": "21a7c744a42ba32f954167d8c1cd7c65f436a68b9e698763763ff87b56664ad9",
+      "loop": false,
+      "duration_s": 0.88
+    },
+    {
+      "name": "SFX_22_high2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/22_high2_b.wav",
+      "sha256": "824d0b939536f1a47c887985545223e49e1e609b0f31512ce7cb1fa0ca7d2e41",
+      "loop": false,
+      "duration_s": 3.202199546485261
+    },
+    {
+      "name": "SFX_23_fire",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/23_fire_b.wav",
+      "sha256": "f929b25fafd5e3b5872ab462c1d23f1dd9c7ca9c7cc2f96b8903a504d1ceaa5a",
+      "loop": true,
+      "duration_s": 7.0
+    },
+    {
+      "name": "SFX_24_spell1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/24_spell1_b.wav",
+      "sha256": "a1d86533ea022da176a5eeaf3e8c340983a21a093edf96a9eb17119fe1b3fdbd",
+      "loop": false,
+      "duration_s": 1.6
+    },
+    {
+      "name": "SFX_26_snarl1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/26_snarl1_b.wav",
+      "sha256": "6004b61900de55dcc457f359f263a4ce477eb784fb78a73e0904bf90ef5246b4",
+      "loop": false,
+      "duration_s": 1.6
+    },
+    {
+      "name": "SFX_27_snarl2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/27_snarl2_a.wav",
+      "sha256": "8c256dbe919d847927cc10be0f59fa439a3d218936b0650f2c23f6bd7d5ea776",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_28_snarl3",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/28_snarl3_a.wav",
+      "sha256": "0d807ea88ef6564a05045660028067a1db84c39148bb9e620e312f11bb375349",
+      "loop": false,
+      "duration_s": 2.0
+    },
+    {
+      "name": "SFX_29_hurt1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/29_hurt1_b.wav",
+      "sha256": "f3b921990ee7f948ac1b32b350c8bc0e4026d0a5ac1931ea3c1a7770dd56e0d7",
+      "loop": false,
+      "duration_s": 2.4
+    },
+    {
+      "name": "SFX_30_hurt2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/30_hurt2_a.wav",
+      "sha256": "324cc3ea3de4dd8de656a5bc303b49ba1ad59df521571dd997dfccc5f3378f3e",
+      "loop": false,
+      "duration_s": 1.28
+    },
+    {
+      "name": "SFX_31_attack1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/31_attack1_b.wav",
+      "sha256": "52f04c0a1f22e2d75cfe7d3d260276a6ea777050dc7683a0dec0bc6380b3be38",
+      "loop": false,
+      "duration_s": 1.28
+    },
+    {
+      "name": "SFX_32_caveent",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/32_caveent_b.wav",
+      "sha256": "27110d43457421342afabe2cfd71c55f41cb06112b0225dced014a6f4e292c44",
+      "loop": false,
+      "duration_s": 6.56
+    },
+    {
+      "name": "SFX_33_level",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/33_level_a.wav",
+      "sha256": "fb4565373c075982a2f7baa7a8bdf3162cd1e2fe60624aec99960a782d770225",
+      "loop": false,
+      "duration_s": 1.68
+    },
+    {
+      "name": "SFX_34_save",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/34_save_b.wav",
+      "sha256": "8686609d0cb596ce4a174c08ab45de35b8a6521586af5417e6ffb3936987a465",
+      "loop": true,
+      "duration_s": 3.0
+    },
+    {
+      "name": "SFX_35_splash",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/35_splash_b.wav",
+      "sha256": "5cca31728e81a1cde9cf0c82113543c98791a547c457209c0376c1ced38820e8",
+      "loop": false,
+      "duration_s": 2.6687981859410432
+    },
+    {
+      "name": "SFX_36_sword1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/36_sword1_a.wav",
+      "sha256": "ecd7ac634b73cfdf844b51395bb963afc5d0b3e789e30a8f20032adb50c0b3ca",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_37_bhit",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/37_bhit_a.wav",
+      "sha256": "1a1de7397cb0ceadaac20e29db4a49c6a1aa93d668c765b0dda54fcab0204e47",
+      "loop": false,
+      "duration_s": 0.6802494331065759
+    },
+    {
+      "name": "SFX_38_squish",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/38_squish_a.wav",
+      "sha256": "836ce05d2dcc4f1fc5f6a1b6a81958bc1f01ba115aa0ebef6c4f4f6d8e9b7853",
+      "loop": false,
+      "duration_s": 0.48
+    },
+    {
+      "name": "SFX_39_stairs",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/39_stairs_b.wav",
+      "sha256": "508ecb997232aad44fd978111d76e56ab39e91c8a083cc990ea02c1e520fa935",
+      "loop": false,
+      "duration_s": 0.8
+    },
+    {
+      "name": "SFX_40_steps",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/40_steps_b.wav",
+      "sha256": "7206e0474d722e21cf250430932c59f0ab993cc04dc6ba690bdae1dbfae1adb3",
+      "loop": false,
+      "duration_s": 1.76
+    },
+    {
+      "name": "SFX_41_arrow",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/41_arrow_a.wav",
+      "sha256": "c5c911d97d305000fc5003028422727184d3fffd2e0ca6a2b66e39f251067c99",
+      "loop": false,
+      "duration_s": 0.6802494331065759
+    },
+    {
+      "name": "SFX_42_flyby",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/42_flyby_b.wav",
+      "sha256": "2d5a2721ac1c547bd6ec901116827245f3baf5c14b19eda39cf87f8ccb62273f",
+      "loop": false,
+      "duration_s": 0.6
+    },
+    {
+      "name": "SFX_43_secret",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/43_secret_b.wav",
+      "sha256": "10d58f754637f0707366399b4d38cf77a778ab05ab6e8f9d008e5f5b24f64d05",
+      "loop": false,
+      "duration_s": 1.36
+    },
+    {
+      "name": "SFX_45_knock",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/45_knock_a.wav",
+      "sha256": "45e7a2a0788f1928bbcf6ab5de619995edf6f18399bbb00b39a916d69b0c6740",
+      "loop": false,
+      "duration_s": 0.6802494331065759
+    },
+    {
+      "name": "SFX_46_drag1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/46_drag1_b.wav",
+      "sha256": "a3affe6e89d63af3c37eb609afb9d71f4616b6d1258e7be9a84af9ee56bf8d98",
+      "loop": false,
+      "duration_s": 1.28
+    },
+    {
+      "name": "SFX_47_drag2",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/47_drag2_a.wav",
+      "sha256": "24360ed0f445c9b6b0d4982a429695d6c21d37c97088abe4c01b835477d9b8bc",
+      "loop": false,
+      "duration_s": 3.08
+    },
+    {
+      "name": "MUS_01_title",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/01_title.wav",
+      "sha256": "742b7ecbc9b695c2c428f843d25e7a6b5b376aae84657b28d81b4786917815c7",
+      "loop": false,
+      "duration_s": 90.0
+    },
+    {
+      "name": "MUS_02_stonebrook_village",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/02_stonebrook_village_loop.wav",
+      "sha256": "7f17ac44e75621269eae961355b526c5e0527c8c4a7e397afd51da4defa0d7de",
+      "loop": true,
+      "duration_s": 57.50092970521542
+    },
+    {
+      "name": "MUS_03_home_interior",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/03_home_interior_loop.wav",
+      "sha256": "aa197c9994f4cc58f5fb684e6e9caac2dab99e73cec135044a23ff1bae8f0451",
+      "loop": true,
+      "duration_s": 56.669931972789115
+    },
+    {
+      "name": "MUS_04_terris_town",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/04_terris_town_loop.wav",
+      "sha256": "67c6dc6cde1fd05f8af94208561c902f9fb4fd42b471e0ae7eb479c131384768",
+      "loop": true,
+      "duration_s": 45.71251700680272
+    },
+    {
+      "name": "MUS_05_overworld_wilds",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/05_overworld_wilds_loop.wav",
+      "sha256": "2008635a2769ed2bb18918464293ed7ff3c65b1be7fd874fdf5e490df64aecd2",
+      "loop": true,
+      "duration_s": 48.0021768707483
+    },
+    {
+      "name": "MUS_06_wonder",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/06_wonder_loop.wav",
+      "sha256": "82b54a9271fc3cffe857a80e156d92a48f4757bd8346b19ddcba9f951832458b",
+      "loop": true,
+      "duration_s": 43.0378231292517
+    },
+    {
+      "name": "MUS_07_battle",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/07_battle_loop.wav",
+      "sha256": "7389c005a91c879d94b5e964a51b10b6e86c4436ab435e4e3273f990d234e571",
+      "loop": true,
+      "duration_s": 51.431179138321994
+    },
+    {
+      "name": "MUS_08_cave",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/08_cave_loop.wav",
+      "sha256": "408a2e8222a42ccdb8432badcda1c0b34e349386fddbfa6079409676a5097b4b",
+      "loop": true,
+      "duration_s": 56.44113378684807
+    },
+    {
+      "name": "MUS_09_villain",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/09_villain_loop.wav",
+      "sha256": "097b1ce1b5352339a8040bdefd26dd8549dcd7e0376daad5a4f662251f383c74",
+      "loop": true,
+      "duration_s": 53.70371882086168
+    },
+    {
+      "name": "MUS_10_love",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/10_love_loop.wav",
+      "sha256": "59d3954865404ca199f7a2280cc6d7b68a0ef9c82d967653c8ccb1a716e305ef",
+      "loop": true,
+      "duration_s": 47.49240362811791
+    },
+    {
+      "name": "MUS_11_sorrow_resolve",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/11_sorrow_resolve.wav",
+      "sha256": "fb5c797b8964d0ea20f58819fbc894a7ebecca89faafc87f34ca207175175fef",
+      "loop": false,
+      "duration_s": 90.0
+    },
+    {
+      "name": "MUS_12_murkwood",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/12_murkwood_loop.wav",
+      "sha256": "d01ffafb64305786390b02e5c3323af7620a0cea0ba8e337298e11afeae141b1",
+      "loop": true,
+      "duration_s": 46.20367346938775
+    },
+    {
+      "name": "MUS_13_windemere_port",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/13_windemere_port_loop.wav",
+      "sha256": "4f4b2249c6b66579c79db0c9f9b1710b4c6d934d236fa4990fba73b3fa73f711",
+      "loop": true,
+      "duration_s": 44.34297052154195
+    },
+    {
+      "name": "MUS_14_royal_court",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/14_royal_court_loop.wav",
+      "sha256": "870c7283b9f9d01b2c4b49a9141100e7806a039532b5c33e7e929d4af8749da4",
+      "loop": true,
+      "duration_s": 50.011383219954645
+    },
+    {
+      "name": "MUS_15_goblin_lands",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/15_goblin_lands_loop.wav",
+      "sha256": "eb9564422ff17f4a795ee0b47a96c51a6852d6124b61aff9555a91b5cf7bb14f",
+      "loop": true,
+      "duration_s": 55.999410430839
+    },
+    {
+      "name": "MUS_16_darklands",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/16_darklands_loop.wav",
+      "sha256": "85107b66fcd9826019ddad22f078b287cd3557d74999e4bbdf6afc8af07f946b",
+      "loop": true,
+      "duration_s": 47.121156462585034
+    },
+    {
+      "name": "MUS_17_koka_isle",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/17_koka_isle_loop.wav",
+      "sha256": "5cbd17321d268dfa3dcc858348cb87f35005c2a429148d61a1b63c37dead07c2",
+      "loop": true,
+      "duration_s": 45.45095238095238
+    },
+    {
+      "name": "MUS_18_snow_castle",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/18_snow_castle_loop.wav",
+      "sha256": "46a02fc782dd322a29d638823f0e78e862b867f559fe4457f475712c201beda6",
+      "loop": true,
+      "duration_s": 53.32702947845805
+    },
+    {
+      "name": "MUS_19_edge_of_the_world",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/19_edge_of_the_world_loop.wav",
+      "sha256": "5d94811625927fe9a4202a84cd50a717cd348d4d91b7ef2b573eb32f6b5fde6c",
+      "loop": true,
+      "duration_s": 56.84424036281179
+    },
+    {
+      "name": "MUS_20_joppa_isle",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/20_joppa_isle_loop.wav",
+      "sha256": "2a1e661559dbbee0143df202b2b00b9c10f383e15d884f5a5fd68550a2b82a87",
+      "loop": true,
+      "duration_s": 46.69353741496599
+    },
+    {
+      "name": "MUS_21_final_approach",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/loops/21_final_approach_loop.wav",
+      "sha256": "3c02def818c4c84ace3a570a0490d6bd2ba840aa28b235a9e589f50ed6008e97",
+      "loop": true,
+      "duration_s": 59.97834467120182
+    },
+    {
+      "name": "MUS_22_waltz",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/22_waltz.wav",
+      "sha256": "f55499cc844aa3bd4c0cb6512f634681521f96fc16c32e45612a6f317f5068b2",
+      "loop": false,
+      "duration_s": 60.0
+    },
+    {
+      "name": "MUS_23_stinger_creepy",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/23_stinger_creepy.wav",
+      "sha256": "9d14dd8318745319a9d8da0cd7fe5d69a8d828716c3f49849a1f76bb8496ba26",
+      "loop": false,
+      "duration_s": 12.0
+    },
+    {
+      "name": "MUS_24_stinger_sneaky",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/24_stinger_sneaky.wav",
+      "sha256": "fb06a54abebdbeab1f43f4a36b2f879ce44ca8835fba86a04b7d7b27cd04fb6c",
+      "loop": false,
+      "duration_s": 15.0
+    },
+    {
+      "name": "MUS_25_stinger_urgent",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/25_stinger_urgent.wav",
+      "sha256": "f085543ba4e288c3de488b9db638732082cbe1afbd73285a9928f03f5b6c851c",
+      "loop": false,
+      "duration_s": 15.0
+    },
+    {
+      "name": "MUS_26_stinger_planning",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/26_stinger_planning.wav",
+      "sha256": "97816a96f5aa778c0c3f8afe6dd459d2cc52cbb2464c0516978525e697a6b3e0",
+      "loop": false,
+      "duration_s": 20.0
+    },
+    {
+      "name": "MUS_27_stinger_mystery_x",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/27_stinger_mystery_x.wav",
+      "sha256": "65e7d68ddd31e19fee67b10ba8554b4095fe83c1cc8bf70720d5fc6fbb2fe291",
+      "loop": false,
+      "duration_s": 15.0
+    },
+    {
+      "name": "MUS_28_story",
+      "folder": "/Game/Dink/Audio/Music",
+      "source": "SourceAssets/Audio/Music/28_story.wav",
+      "sha256": "8e8b7768a4a17142df027480a6de8130f45d2d941b90491d9afe1f439707a14a",
+      "loop": false,
+      "duration_s": 60.0
+    }
+  ],
+  "runtime": {
+    "schema": "dink-audio/1",
+    "sounds": {
+      "1": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_01_quack.SFX_01_quack",
+        "loop": false
+      },
+      "2": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_02_pig1.SFX_02_pig1",
+        "loop": false
+      },
+      "3": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_03_pig2.SFX_03_pig2",
+        "loop": false
+      },
+      "4": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_04_pig3.SFX_04_pig3",
+        "loop": false
+      },
+      "5": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_05_pig4.SFX_05_pig4",
+        "loop": false
+      },
+      "6": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_06_burn.SFX_06_burn",
+        "loop": false
+      },
+      "7": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_07_open.SFX_07_open",
+        "loop": false
+      },
+      "8": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_08_swing.SFX_08_swing",
+        "loop": false
+      },
+      "10": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_10_sword2.SFX_10_sword2",
+        "loop": false
+      },
+      "11": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_11_select.SFX_11_select",
+        "loop": false
+      },
+      "12": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_12_wscream.SFX_12_wscream",
+        "loop": false
+      },
+      "13": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_13_picker.SFX_13_picker",
+        "loop": false
+      },
+      "14": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_14_gold.SFX_14_gold",
+        "loop": false
+      },
+      "15": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_15_grunt1.SFX_15_grunt1",
+        "loop": false
+      },
+      "16": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_16_grunt2.SFX_16_grunt2",
+        "loop": false
+      },
+      "17": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_17_sel1.SFX_17_sel1",
+        "loop": false
+      },
+      "18": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_18_escape.SFX_18_escape",
+        "loop": false
+      },
+      "19": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_19_nono.SFX_19_nono",
+        "loop": false
+      },
+      "20": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_20_sel2.SFX_20_sel2",
+        "loop": false
+      },
+      "21": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_21_sel3.SFX_21_sel3",
+        "loop": false
+      },
+      "22": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_22_high2.SFX_22_high2",
+        "loop": false
+      },
+      "23": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_23_fire.SFX_23_fire",
+        "loop": true
+      },
+      "24": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_24_spell1.SFX_24_spell1",
+        "loop": false
+      },
+      "26": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_26_snarl1.SFX_26_snarl1",
+        "loop": false
+      },
+      "27": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_27_snarl2.SFX_27_snarl2",
+        "loop": false
+      },
+      "28": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_28_snarl3.SFX_28_snarl3",
+        "loop": false
+      },
+      "29": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_29_hurt1.SFX_29_hurt1",
+        "loop": false
+      },
+      "30": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_30_hurt2.SFX_30_hurt2",
+        "loop": false
+      },
+      "31": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_31_attack1.SFX_31_attack1",
+        "loop": false
+      },
+      "32": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_32_caveent.SFX_32_caveent",
+        "loop": false
+      },
+      "33": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_33_level.SFX_33_level",
+        "loop": false
+      },
+      "34": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_34_save.SFX_34_save",
+        "loop": true
+      },
+      "35": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_35_splash.SFX_35_splash",
+        "loop": false
+      },
+      "36": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_36_sword1.SFX_36_sword1",
+        "loop": false
+      },
+      "37": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_37_bhit.SFX_37_bhit",
+        "loop": false
+      },
+      "38": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_38_squish.SFX_38_squish",
+        "loop": false
+      },
+      "39": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_39_stairs.SFX_39_stairs",
+        "loop": false
+      },
+      "40": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_40_steps.SFX_40_steps",
+        "loop": false
+      },
+      "41": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_41_arrow.SFX_41_arrow",
+        "loop": false
+      },
+      "42": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_42_flyby.SFX_42_flyby",
+        "loop": false
+      },
+      "43": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_43_secret.SFX_43_secret",
+        "loop": false
+      },
+      "45": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_45_knock.SFX_45_knock",
+        "loop": false
+      },
+      "46": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_46_drag1.SFX_46_drag1",
+        "loop": false
+      },
+      "47": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_47_drag2.SFX_47_drag2",
+        "loop": false
+      }
+    },
+    "music": {
+      "01_title": {
+        "asset": "/Game/Dink/Audio/Music/MUS_01_title.MUS_01_title",
+        "loop": false
+      },
+      "1003": {
+        "asset": "/Game/Dink/Audio/Music/MUS_01_title.MUS_01_title",
+        "loop": false
+      },
+      "1003.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_01_title.MUS_01_title",
+        "loop": false
+      },
+      "02_stonebrook_village": {
+        "asset": "/Game/Dink/Audio/Music/MUS_02_stonebrook_village.MUS_02_stonebrook_village",
+        "loop": true
+      },
+      "104": {
+        "asset": "/Game/Dink/Audio/Music/MUS_02_stonebrook_village.MUS_02_stonebrook_village",
+        "loop": true
+      },
+      "104.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_02_stonebrook_village.MUS_02_stonebrook_village",
+        "loop": true
+      },
+      "03_home_interior": {
+        "asset": "/Game/Dink/Audio/Music/MUS_03_home_interior.MUS_03_home_interior",
+        "loop": true
+      },
+      "105": {
+        "asset": "/Game/Dink/Audio/Music/MUS_03_home_interior.MUS_03_home_interior",
+        "loop": true
+      },
+      "105.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_03_home_interior.MUS_03_home_interior",
+        "loop": true
+      },
+      "04_terris_town": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "1": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "1.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "1005": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "1005.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "102": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "102.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "103": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "103.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "05_overworld_wilds": {
+        "asset": "/Game/Dink/Audio/Music/MUS_05_overworld_wilds.MUS_05_overworld_wilds",
+        "loop": true
+      },
+      "100": {
+        "asset": "/Game/Dink/Audio/Music/MUS_05_overworld_wilds.MUS_05_overworld_wilds",
+        "loop": true
+      },
+      "100.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_05_overworld_wilds.MUS_05_overworld_wilds",
+        "loop": true
+      },
+      "06_wonder": {
+        "asset": "/Game/Dink/Audio/Music/MUS_06_wonder.MUS_06_wonder",
+        "loop": true
+      },
+      "wanderer.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_06_wonder.MUS_06_wonder",
+        "loop": true
+      },
+      "mystery.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_06_wonder.MUS_06_wonder",
+        "loop": true
+      },
+      "07_battle": {
+        "asset": "/Game/Dink/Audio/Music/MUS_07_battle.MUS_07_battle",
+        "loop": true
+      },
+      "battle.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_07_battle.MUS_07_battle",
+        "loop": true
+      },
+      "08_cave": {
+        "asset": "/Game/Dink/Audio/Music/MUS_08_cave.MUS_08_cave",
+        "loop": true
+      },
+      "caveexpl.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_08_cave.MUS_08_cave",
+        "loop": true
+      },
+      "1010": {
+        "asset": "/Game/Dink/Audio/Music/MUS_08_cave.MUS_08_cave",
+        "loop": true
+      },
+      "1010.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_08_cave.MUS_08_cave",
+        "loop": true
+      },
+      "09_villain": {
+        "asset": "/Game/Dink/Audio/Music/MUS_09_villain.MUS_09_villain",
+        "loop": true
+      },
+      "bullythe.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_09_villain.MUS_09_villain",
+        "loop": true
+      },
+      "10_love": {
+        "asset": "/Game/Dink/Audio/Music/MUS_10_love.MUS_10_love",
+        "loop": true
+      },
+      "love.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_10_love.MUS_10_love",
+        "loop": true
+      },
+      "lovin.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_10_love.MUS_10_love",
+        "loop": true
+      },
+      "11_sorrow_resolve": {
+        "asset": "/Game/Dink/Audio/Music/MUS_11_sorrow_resolve.MUS_11_sorrow_resolve",
+        "loop": false
+      },
+      "insper.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_11_sorrow_resolve.MUS_11_sorrow_resolve",
+        "loop": false
+      },
+      "12_murkwood": {
+        "asset": "/Game/Dink/Audio/Music/MUS_12_murkwood.MUS_12_murkwood",
+        "loop": true
+      },
+      "1002": {
+        "asset": "/Game/Dink/Audio/Music/MUS_12_murkwood.MUS_12_murkwood",
+        "loop": true
+      },
+      "1002.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_12_murkwood.MUS_12_murkwood",
+        "loop": true
+      },
+      "13_windemere_port": {
+        "asset": "/Game/Dink/Audio/Music/MUS_13_windemere_port.MUS_13_windemere_port",
+        "loop": true
+      },
+      "106": {
+        "asset": "/Game/Dink/Audio/Music/MUS_13_windemere_port.MUS_13_windemere_port",
+        "loop": true
+      },
+      "106.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_13_windemere_port.MUS_13_windemere_port",
+        "loop": true
+      },
+      "14_royal_court": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "1011": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "1011.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "1012": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "1012.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "15_goblin_lands": {
+        "asset": "/Game/Dink/Audio/Music/MUS_15_goblin_lands.MUS_15_goblin_lands",
+        "loop": true
+      },
+      "1004": {
+        "asset": "/Game/Dink/Audio/Music/MUS_15_goblin_lands.MUS_15_goblin_lands",
+        "loop": true
+      },
+      "1004.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_15_goblin_lands.MUS_15_goblin_lands",
+        "loop": true
+      },
+      "1009": {
+        "asset": "/Game/Dink/Audio/Music/MUS_15_goblin_lands.MUS_15_goblin_lands",
+        "loop": true
+      },
+      "1009.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_15_goblin_lands.MUS_15_goblin_lands",
+        "loop": true
+      },
+      "16_darklands": {
+        "asset": "/Game/Dink/Audio/Music/MUS_16_darklands.MUS_16_darklands",
+        "loop": true
+      },
+      "1007": {
+        "asset": "/Game/Dink/Audio/Music/MUS_16_darklands.MUS_16_darklands",
+        "loop": true
+      },
+      "1007.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_16_darklands.MUS_16_darklands",
+        "loop": true
+      },
+      "17_koka_isle": {
+        "asset": "/Game/Dink/Audio/Music/MUS_17_koka_isle.MUS_17_koka_isle",
+        "loop": true
+      },
+      "1016": {
+        "asset": "/Game/Dink/Audio/Music/MUS_17_koka_isle.MUS_17_koka_isle",
+        "loop": true
+      },
+      "1016.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_17_koka_isle.MUS_17_koka_isle",
+        "loop": true
+      },
+      "18_snow_castle": {
+        "asset": "/Game/Dink/Audio/Music/MUS_18_snow_castle.MUS_18_snow_castle",
+        "loop": true
+      },
+      "107": {
+        "asset": "/Game/Dink/Audio/Music/MUS_18_snow_castle.MUS_18_snow_castle",
+        "loop": true
+      },
+      "107.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_18_snow_castle.MUS_18_snow_castle",
+        "loop": true
+      },
+      "101": {
+        "asset": "/Game/Dink/Audio/Music/MUS_18_snow_castle.MUS_18_snow_castle",
+        "loop": true
+      },
+      "101.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_18_snow_castle.MUS_18_snow_castle",
+        "loop": true
+      },
+      "19_edge_of_the_world": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "1013": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "1013.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "20_joppa_isle": {
+        "asset": "/Game/Dink/Audio/Music/MUS_20_joppa_isle.MUS_20_joppa_isle",
+        "loop": true
+      },
+      "1008": {
+        "asset": "/Game/Dink/Audio/Music/MUS_20_joppa_isle.MUS_20_joppa_isle",
+        "loop": true
+      },
+      "1008.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_20_joppa_isle.MUS_20_joppa_isle",
+        "loop": true
+      },
+      "21_final_approach": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1015": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1015.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1006": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1006.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1018": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "1018.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_21_final_approach.MUS_21_final_approach",
+        "loop": true
+      },
+      "22_waltz": {
+        "asset": "/Game/Dink/Audio/Music/MUS_22_waltz.MUS_22_waltz",
+        "loop": false
+      },
+      "denube.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_22_waltz.MUS_22_waltz",
+        "loop": false
+      },
+      "23_stinger_creepy": {
+        "asset": "/Game/Dink/Audio/Music/MUS_23_stinger_creepy.MUS_23_stinger_creepy",
+        "loop": false
+      },
+      "creepy.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_23_stinger_creepy.MUS_23_stinger_creepy",
+        "loop": false
+      },
+      "24_stinger_sneaky": {
+        "asset": "/Game/Dink/Audio/Music/MUS_24_stinger_sneaky.MUS_24_stinger_sneaky",
+        "loop": false
+      },
+      "sneaky.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_24_stinger_sneaky.MUS_24_stinger_sneaky",
+        "loop": false
+      },
+      "25_stinger_urgent": {
+        "asset": "/Game/Dink/Audio/Music/MUS_25_stinger_urgent.MUS_25_stinger_urgent",
+        "loop": false
+      },
+      "urgent.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_25_stinger_urgent.MUS_25_stinger_urgent",
+        "loop": false
+      },
+      "26_stinger_planning": {
+        "asset": "/Game/Dink/Audio/Music/MUS_26_stinger_planning.MUS_26_stinger_planning",
+        "loop": false
+      },
+      "planning.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_26_stinger_planning.MUS_26_stinger_planning",
+        "loop": false
+      },
+      "27_stinger_mystery_x": {
+        "asset": "/Game/Dink/Audio/Music/MUS_27_stinger_mystery_x.MUS_27_stinger_mystery_x",
+        "loop": false
+      },
+      "xfiles.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_27_stinger_mystery_x.MUS_27_stinger_mystery_x",
+        "loop": false
+      },
+      "28_story": {
+        "asset": "/Game/Dink/Audio/Music/MUS_28_story.MUS_28_story",
+        "loop": false
+      },
+      "story.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_28_story.MUS_28_story",
+        "loop": false
+      },
+      "5.mid": {
+        "asset": "/Game/Dink/Audio/Music/MUS_28_story.MUS_28_story",
+        "loop": false
+      },
+      "7.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_16_darklands.MUS_16_darklands",
+        "loop": true
+      },
+      "5.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_04_terris_town.MUS_04_terris_town",
+        "loop": true
+      },
+      "12.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_14_royal_court.MUS_14_royal_court",
+        "loop": true
+      },
+      "2.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_12_murkwood.MUS_12_murkwood",
+        "loop": true
+      },
+      "10.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_08_cave.MUS_08_cave",
+        "loop": true
+      },
+      "13.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "16.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_17_koka_isle.MUS_17_koka_isle",
+        "loop": true
+      },
+      "8.ogg": {
+        "asset": "/Game/Dink/Audio/Music/MUS_20_joppa_isle.MUS_20_joppa_isle",
+        "loop": true
+      }
+    },
+    "screen_music": {
+      "144": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "182": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "184": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "186": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "213": {
+        "asset": "/Game/Dink/Audio/Music/MUS_19_edge_of_the_world.MUS_19_edge_of_the_world",
+        "loop": true
+      },
+      "1": {
+        "asset": "/Game/Dink/Audio/Music/MUS_03_home_interior.MUS_03_home_interior",
+        "loop": true
+      }
+    },
+    "volumes": {
+      "music": 0.35,
+      "sfx": 0.8
+    },
+    "rejected": [
+      {
+        "kind": "sfx",
+        "id": "09_punch",
+        "choice": "neither",
+        "note": "no sound"
+      },
+      {
+        "kind": "sfx",
+        "id": "44_bow1",
+        "choice": "neither",
+        "note": "i can't really hear it"
+      },
+      {
+        "kind": "sfx",
+        "id": "48_axe",
+        "choice": "neither",
+        "note": "can't hear b, and a needs work"
+      },
+      {
+        "kind": "sfx",
+        "id": "49_bird1",
+        "choice": "neither",
+        "note": "both have issues"
+      }
+    ]
+  }
+}

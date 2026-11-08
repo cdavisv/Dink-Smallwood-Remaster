@@ -1,0 +1,25 @@
+{
+  "scope": "Restore exact pre-integration wardrobe face winding by geometry+UV identity; protected anatomical faces never selected. New integrated yoke faces retained.",
+  "lods": [
+    {
+      "lod": 0,
+      "existing_wardrobe_faces_matched_by_exact_geometry_UV": 17749,
+      "global_recalc_winding_regressions_restored": 8088
+    },
+    {
+      "lod": 1,
+      "existing_wardrobe_faces_matched_by_exact_geometry_UV": 9473,
+      "global_recalc_winding_regressions_restored": 4143
+    },
+    {
+      "lod": 2,
+      "existing_wardrobe_faces_matched_by_exact_geometry_UV": 5952,
+      "global_recalc_winding_regressions_restored": 2498
+    },
+    {
+      "lod": 3,
+      "existing_wardrobe_faces_matched_by_exact_geometry_UV": 3946,
+      "global_recalc_winding_regressions_restored": 1952
+    }
+  ]
+}

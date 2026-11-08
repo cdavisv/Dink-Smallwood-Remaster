@@ -1,0 +1,29 @@
+{
+  "scope": "Small sewn-cloth compression folds, maximum2.2mm, only on new shirt. Existing cuff/neck boundaries, leather bands, all protected anatomy/weights/UV/materials and rig unchanged.",
+  "lods": [
+    {
+      "lod": 0,
+      "new_cloth_vertices_with_small_elbow_collar_folds": 793,
+      "maximum_displacement_m": 0.001039055671936217,
+      "contact_and_neck_boundary_vertices_unchanged": 197
+    },
+    {
+      "lod": 1,
+      "new_cloth_vertices_with_small_elbow_collar_folds": 793,
+      "maximum_displacement_m": 0.001039055671936217,
+      "contact_and_neck_boundary_vertices_unchanged": 197
+    },
+    {
+      "lod": 2,
+      "new_cloth_vertices_with_small_elbow_collar_folds": 793,
+      "maximum_displacement_m": 0.001039055671936217,
+      "contact_and_neck_boundary_vertices_unchanged": 197
+    },
+    {
+      "lod": 3,
+      "new_cloth_vertices_with_small_elbow_collar_folds": 793,
+      "maximum_displacement_m": 0.001039055671936217,
+      "contact_and_neck_boundary_vertices_unchanged": 197
+    }
+  ]
+}

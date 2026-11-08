@@ -1,0 +1,25 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "DinkImport",
+	"Description": "Editor-only importer: the import bundle (ImportData/) to the greybox under /Game/Dink/_Generated (commandlet DinkImportGreybox).",
+	"Category": "Dink",
+	"CreatedBy": "Dink Smallwood Remaster team",
+	"CanContainContent": false,
+	"EnabledByDefault": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "DinkImport",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "DinkCore",
+			"Enabled": true
+		}
+	]
+}

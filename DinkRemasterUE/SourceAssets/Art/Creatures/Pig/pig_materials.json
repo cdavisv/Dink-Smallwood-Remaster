@@ -1,0 +1,80 @@
+{
+  "MI_Pig_Skin": {
+    "base_color": [
+      0.234,
+      0.166,
+      0.157
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.055,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pig_Atlas_BC.png",
+      "N": "Textures/T_Pig_Atlas_N.png",
+      "ORM": "Textures/T_Pig_Atlas_ORM.png"
+    },
+    "appearance_revision": "skin-muzzle-linear-half-v2"
+  },
+  "MI_Pig_Muzzle": {
+    "base_color": [
+      0.2395,
+      0.125,
+      0.119
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.07,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pig_Atlas_BC.png",
+      "N": "Textures/T_Pig_Atlas_N.png",
+      "ORM": "Textures/T_Pig_Atlas_ORM.png"
+    },
+    "appearance_revision": "skin-muzzle-linear-half-v2"
+  },
+  "MI_Pig_HornBristle": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pig_Atlas_BC.png",
+      "N": "Textures/T_Pig_Atlas_N.png",
+      "ORM": "Textures/T_Pig_Atlas_ORM.png"
+    }
+  },
+  "MI_Pig_Eye": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pig_Atlas_BC.png",
+      "N": "Textures/T_Pig_Atlas_N.png",
+      "ORM": "Textures/T_Pig_Atlas_ORM.png"
+    }
+  }
+}

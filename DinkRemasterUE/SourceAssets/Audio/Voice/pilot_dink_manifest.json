@@ -1,0 +1,133 @@
+{
+ "flow_id": "ug1xeCDvw83o4iJCeXeX",
+ "voice_id": "TU37Ff3IUgsCPWFKXNG7",
+ "voice": "dink",
+ "model": "eleven_v4",
+ "generated_on": "2026-11-07",
+ "takes_per_line": 1,
+ "lines": [
+  {
+   "id": "s1-bul.main.006",
+   "text": "I'm NOT a pig farmer.",
+   "tts_text": "I'm NOT a pig farmer.",
+   "generation_id": "mbAdcIgCHbrWPITkurX6",
+   "node_id": "ggeoq6rcYvRzokZYsJos",
+   "credits": 21,
+   "file": "dink/s1-bul.main.006.mp3",
+   "sha256": "aafd47a48e84afe117c5990ca73097cee160a501938795758df8b5901970948b",
+   "duration_s": "1.680000",
+   "bytes": 45172
+  },
+  {
+   "id": "s1-gg.talk.008",
+   "text": "Boy?  Please refer to me as warrior from now on.",
+   "tts_text": "Boy? Please refer to me as warrior from now on.",
+   "generation_id": "1g5tvFFFNHmswayQiXoQ",
+   "node_id": "IYg6VvizOJmu4gQNDMJm",
+   "credits": 47,
+   "file": "dink/s1-gg.talk.008.mp3",
+   "sha256": "bab611c0fdec9f14c96bda89037d7e50181b938be66072a64b92b3c94228d15e",
+   "duration_s": "3.680000",
+   "bytes": 76937
+  },
+  {
+   "id": "s1-h1-4.hit.002",
+   "text": "Why must I attack furniture?",
+   "tts_text": "Why must I attack furniture?",
+   "generation_id": "2pRpwCOAh8HYsyBdNsai",
+   "node_id": "yJyYO0appgQTuU77o3oe",
+   "credits": 28,
+   "file": "dink/s1-h1-4.hit.002.mp3",
+   "sha256": "e2d21b67481b11e774f4e5c65bdb18cbb539b83b388d2fb83ec5a974fcd72604",
+   "duration_s": "2.080000",
+   "bytes": 51441
+  },
+  {
+   "id": "s1-fount.hit.001",
+   "text": "WATER MUST DIE!",
+   "tts_text": "WATER MUST DIE!",
+   "generation_id": "BNfz3QNl1EsfbS41vOf3",
+   "node_id": "sYUdgIUDl8UJP8pSH8bH",
+   "credits": 15,
+   "file": "dink/s1-fount.hit.001.mp3",
+   "sha256": "0ee2b2ec368cace7e1674f0fc5b05215c1b0f2e5b64793f8829b3ff482437162",
+   "duration_s": "2.000000",
+   "bytes": 50187
+  },
+  {
+   "id": "s1-bul.main.011",
+   "text": "I *HATE* that guy!",
+   "tts_text": "I HATE that guy!",
+   "generation_id": "FzOL2Te5FQYbbCCslAqx",
+   "node_id": "tRtoUoqljEu2dKwLygKN",
+   "credits": 16,
+   "file": "dink/s1-bul.main.011.mp3",
+   "sha256": "20cb3105c398d023eb257843f03e166df457c3d0bd0409e9428a205a3e7dbaa5",
+   "duration_s": "1.680000",
+   "bytes": 45172
+  },
+  {
+   "id": "s1-cave.noise.004",
+   "text": "This cave sucks, let's leave...",
+   "tts_text": "This cave sucks, let's leave...",
+   "generation_id": "rCoCz4c4DHD9TAPssSKI",
+   "node_id": "A37s8kVA59uuJWMlDBuN",
+   "credits": 31,
+   "also_id": "s1-caves.noise.004",
+   "file": "dink/s1-cave.noise.004.mp3",
+   "sha256": "1c7b996448fe06abc042bd3696b156e27bd038e4cfc5d5d24661d51fd9473bba",
+   "duration_s": "2.640000",
+   "bytes": 60636
+  },
+  {
+   "id": "s1-cave.main.001",
+   "text": "Smells damp in here.",
+   "tts_text": "Smells damp in here.",
+   "generation_id": "vB84T0ZLqx7wq0TRnpTy",
+   "node_id": "uHkPAGHV6iiY8SIFhqZH",
+   "credits": 20,
+   "also_id": "s1-caves.main.001",
+   "file": "dink/s1-cave.main.001.mp3",
+   "sha256": "a7717fab1e28279a88b2c77c4f933891e90f26d855e0c3b8738df467e35d2e2f",
+   "duration_s": "1.760000",
+   "bytes": 46426
+  },
+  {
+   "id": "s1-bul.main.001",
+   "text": "Here, piggie piggies.",
+   "tts_text": "Here, piggie piggies.",
+   "generation_id": "xNscJYNTnj6jgw71Cqc6",
+   "node_id": "0zF1wDuxqiG8tSr8lgx9",
+   "credits": 21,
+   "file": "dink/s1-bul.main.001.mp3",
+   "sha256": "164db7cb55ab033e871fa594032ea5153f07f7825d179f1ad60ad70ec4b15d71",
+   "duration_s": "1.760000",
+   "bytes": 46426
+  },
+  {
+   "id": "s1-gg.talk.006",
+   "text": "Hey, guard Renton.  I need to go do something, please let me out.",
+   "tts_text": "Hey, guard Renton. I need to go do something, please let me out.",
+   "generation_id": "2PEuuVB0DxVAZZzYFgTK",
+   "node_id": "aom27G54c0n3VBICMnOS",
+   "credits": 64,
+   "file": "dink/s1-gg.talk.006.mp3",
+   "sha256": "a333aba3d20e926e57098088a53a938ac5f160a9f4f94ae1394a281726aeee89",
+   "duration_s": "4.480000",
+   "bytes": 89893
+  },
+  {
+   "id": "s1-bul.main.003",
+   "text": "What do you want, Milder?",
+   "tts_text": "What do you want, Milder?",
+   "generation_id": "Zw3q2jXPwQmQodiFygxd",
+   "node_id": "EQiPENQ4i1ghPVDZS0UC",
+   "credits": 25,
+   "file": "dink/s1-bul.main.003.mp3",
+   "sha256": "243984d2e80c8be9b8e3a418d2a3851318a5535a8214c469915f6b9210bad819",
+   "duration_s": "1.520000",
+   "bytes": 42664
+  }
+ ],
+ "credits_total": 288
+}

@@ -1,0 +1,829 @@
+{
+  "schema": "dink-creatures/1",
+  "assets": [
+    {
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "skeleton": "/Game/Dink/Creatures/Pig/SK_Pig_Skeleton.SK_Pig_Skeleton",
+      "expected_size_cm": [
+        172.23998308181763,
+        78.60804796218872,
+        97.34090566635132
+      ],
+      "bone_count": 26,
+      "expected_lods": 3,
+      "animation_reports": {
+        "Idle": {
+          "animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Idle.AN_Pig_Idle",
+          "skeleton": "/Game/Dink/Creatures/Pig/SK_Pig_Skeleton.SK_Pig_Skeleton",
+          "duration_s": 2,
+          "finite_poses": true,
+          "bone_count": 26,
+          "max_scale_error": 4.76837158203125e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 0.18640814359241256,
+          "loop_seam_rotation_rad": 0,
+          "loop_seam_translation_cm": 2.5322465616425117e-18
+        },
+        "Walk": {
+          "animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Walk.AN_Pig_Walk",
+          "skeleton": "/Game/Dink/Creatures/Pig/SK_Pig_Skeleton.SK_Pig_Skeleton",
+          "duration_s": 0.6000000238418579,
+          "finite_poses": true,
+          "bone_count": 26,
+          "max_scale_error": 4.76837158203125e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 1.317696279068099,
+          "loop_seam_rotation_rad": 0,
+          "loop_seam_translation_cm": 0
+        },
+        "Run": {
+          "animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Run.AN_Pig_Run",
+          "skeleton": "/Game/Dink/Creatures/Pig/SK_Pig_Skeleton.SK_Pig_Skeleton",
+          "duration_s": 0.4000000059604645,
+          "finite_poses": true,
+          "bone_count": 26,
+          "max_scale_error": 5.960464477539062e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 2.9004838674538496,
+          "loop_seam_rotation_rad": 3.3052374441651903e-07,
+          "loop_seam_translation_cm": 0
+        },
+        "Feed": {
+          "animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+          "skeleton": "/Game/Dink/Creatures/Pig/SK_Pig_Skeleton.SK_Pig_Skeleton",
+          "duration_s": 0.4000000059604645,
+          "finite_poses": true,
+          "bone_count": 26,
+          "max_scale_error": 4.76837158203125e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 0.2964782409549753,
+          "loop_seam_rotation_rad": 0,
+          "loop_seam_translation_cm": 0
+        }
+      },
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion"
+    },
+    {
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "skeleton": "/Game/Dink/Creatures/Pillbug/SK_Pillbug_Skeleton.SK_Pillbug_Skeleton",
+      "expected_size_cm": [
+        177.63556241989136,
+        112.68119812011719,
+        50.561392307281494
+      ],
+      "bone_count": 43,
+      "expected_lods": 3,
+      "animation_reports": {
+        "Idle": {
+          "animation": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Idle.AN_Pillbug_Idle",
+          "skeleton": "/Game/Dink/Creatures/Pillbug/SK_Pillbug_Skeleton.SK_Pillbug_Skeleton",
+          "duration_s": 2,
+          "finite_poses": true,
+          "bone_count": 43,
+          "max_scale_error": 7.152557373046875e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 0.13738001182105494,
+          "loop_seam_rotation_rad": 2.9802322387695312e-08,
+          "loop_seam_translation_cm": 0
+        },
+        "Walk": {
+          "animation": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Walk.AN_Pillbug_Walk",
+          "skeleton": "/Game/Dink/Creatures/Pillbug/SK_Pillbug_Skeleton.SK_Pillbug_Skeleton",
+          "duration_s": 0.375,
+          "finite_poses": true,
+          "bone_count": 43,
+          "max_scale_error": 5.960464477539062e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 0.7037406156163979,
+          "loop_seam_rotation_rad": 2.9802322387695312e-08,
+          "loop_seam_translation_cm": 0
+        },
+        "Run": {
+          "animation": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Run.AN_Pillbug_Run",
+          "skeleton": "/Game/Dink/Creatures/Pillbug/SK_Pillbug_Skeleton.SK_Pillbug_Skeleton",
+          "duration_s": 0.375,
+          "finite_poses": true,
+          "bone_count": 43,
+          "max_scale_error": 3.5762786865234375e-07,
+          "root_motion_cm": 0,
+          "max_pose_rotation_rad": 2.0614561041590216,
+          "loop_seam_rotation_rad": 4.2146848510894035e-08,
+          "loop_seam_translation_cm": 0
+        }
+      },
+      "animation_loops": {
+        "Idle": true,
+        "Walk": true,
+        "Run": true
+      },
+      "class": "creature",
+      "material_budget": 6,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion"
+    }
+  ],
+  "placements": [
+    {
+      "origin": "S407_P02",
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion",
+      "feed_animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "food_sequences": [
+        430,
+        431
+      ],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+      "food_mesh_offset_cm": [
+        0,
+        0,
+        -59.4
+      ]
+    },
+    {
+      "origin": "S407_P05",
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion",
+      "feed_animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "food_sequences": [
+        430,
+        431
+      ],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+      "food_mesh_offset_cm": [
+        0,
+        0,
+        -59.4
+      ]
+    },
+    {
+      "origin": "S407_P06",
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion",
+      "feed_animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "food_sequences": [
+        430,
+        431
+      ],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+      "food_mesh_offset_cm": [
+        0,
+        0,
+        -59.4
+      ]
+    },
+    {
+      "origin": "S407_P07",
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion",
+      "feed_animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "food_sequences": [
+        430,
+        431
+      ],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+      "food_mesh_offset_cm": [
+        0,
+        0,
+        -59.4
+      ]
+    },
+    {
+      "origin": "S407_P11",
+      "mesh": "/Game/Dink/Creatures/Pig/SK_Pig.SK_Pig",
+      "locomotion": "/Game/Dink/Creatures/Pig/BS_Pig_Locomotion.BS_Pig_Locomotion",
+      "feed_animation": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Feed.AN_Pig_Feed",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -4.578626721605213e-06,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "food_sequences": [
+        430,
+        431
+      ],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0,
+      "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+      "food_mesh_offset_cm": [
+        0,
+        0,
+        -59.4
+      ]
+    },
+    {
+      "origin": "S438_P02",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    },
+    {
+      "origin": "S438_P03",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    },
+    {
+      "origin": "S438_P04",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    },
+    {
+      "origin": "S438_P05",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    },
+    {
+      "origin": "S438_P06",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    },
+    {
+      "origin": "S438_P07",
+      "mesh": "/Game/Dink/Creatures/Pillbug/SK_Pillbug.SK_Pillbug",
+      "locomotion": "/Game/Dink/Creatures/Pillbug/BS_Pillbug_Locomotion.BS_Pillbug_Locomotion",
+      "feed_animation": "",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -7.26983927191661e-15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "food_sequences": [],
+      "food_bone": "head",
+      "food_radius_cm": 70,
+      "food_forward_dot": 0.5,
+      "stationary_speed_cm_s": 5,
+      "nominal_walk_speed_cm_s": 80.0,
+      "nominal_run_speed_cm_s": 400.0
+    }
+  ]
+}

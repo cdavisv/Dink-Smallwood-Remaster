@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "mode": "read-only Python/schema/files/binaryFBX/material-presence preflight; no UE invocation/import/runtime writes",
+  "manifest": "SourceAssets/Art/Characters/Dink/HandBindingV2/hand_manifest.json",
+  "wrapper": "Scripts/import_dink_hand_art.sh",
+  "wrapper_bash_syntax": true,
+  "importer_python_ast": true,
+  "mesh_files": [
+    {
+      "path": "Dink/HandBindingV2/Export/SK_Dink_Hands_LOD0.fbx",
+      "sha256": "a454d0ab8ab369854d7913505a09e3e0a9408b8d0cbe5ac2d173f97529e3ee73"
+    },
+    {
+      "path": "Dink/HandBindingV2/Export/SK_Dink_Hands_LOD1.fbx",
+      "sha256": "2e92b77af4454d80eddc5c0d5a1b9c3aa506da4a9e67efec0328864847e9d243"
+    },
+    {
+      "path": "Dink/HandBindingV2/Export/SK_Dink_Hands_LOD2.fbx",
+      "sha256": "a0a19af2669c439bbb13e26ef95673c2296ba8c56bfa1bc07c30630222cac8e7"
+    },
+    {
+      "path": "Dink/HandBindingV2/Export/SK_Dink_Hands_LOD3.fbx",
+      "sha256": "3ad2f09ccb920cfbf8f358043da9c15d1f7d594f7682fe00a9c16acfc0b0254d"
+    }
+  ],
+  "existing_material_files": [
+    {
+      "asset": "/Game/Dink/Materials/Characters/MI_Dink_Skin.MI_Dink_Skin",
+      "sha256": "d190f6b0339f95285ff0abb70384056d972dacc97c0fb6d049713f6a8c2344cc"
+    },
+    {
+      "asset": "/Game/Dink/Materials/Characters/MI_Dink_Eyes.MI_Dink_Eyes",
+      "sha256": "fa428e86cb633f22f4974bd6ea95f8a50eb599a8ce270f021ddb34796ce4b6c7"
+    },
+    {
+      "asset": "/Game/Dink/Materials/Characters/MI_Dink_Hair.MI_Dink_Hair",
+      "sha256": "43d3914b982bde1e4cb32352e9ab1a57c5107ae48e831935f8acaaaa3ad4d62c"
+    },
+    {
+      "asset": "/Game/Dink/Materials/Characters/MI_Dink_BrowLash.MI_Dink_BrowLash",
+      "sha256": "6bc530c0639f9c3f0d63ba46f2693718e8a7b258cbf2897897f873f2a13a2044"
+    },
+    {
+      "asset": "/Game/Dink/Materials/Characters/MI_Dink_Wardrobe.MI_Dink_Wardrobe",
+      "sha256": "58b2d1e6f804dcc3545d0ca07b9314db699f688ddd4ae8f786fe89bbbda6f0e7"
+    }
+  ],
+  "material_rebuild_count": 0,
+  "runtime_write_count": 0
+}

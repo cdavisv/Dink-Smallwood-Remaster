@@ -1,0 +1,39 @@
+{
+  "name": "authored house exit using only normal keyboard movement",
+  "expected_screen": 439,
+  "waypoints": [
+    {
+      "screen": 1,
+      "map": [
+        370,
+        161
+      ],
+      "tolerance_cm": 6
+    },
+    {
+      "screen": 1,
+      "map": [
+        370,
+        274
+      ],
+      "tolerance_cm": 6
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        274
+      ],
+      "tolerance_cm": 6
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        390
+      ],
+      "warp_to": 439,
+      "tolerance_cm": 3
+    }
+  ]
+}

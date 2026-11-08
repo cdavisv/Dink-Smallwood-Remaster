@@ -1,0 +1,175 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/SK_Mother.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 9
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Mother",
+      "class": "character_humanoid",
+      "collection": "SK_Mother",
+      "tris_per_lod": {
+        "LOD0": 32164,
+        "LOD1": 16082,
+        "LOD2": 8040,
+        "LOD3": 3859
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.389,
+          -42.819,
+          -0.0
+        ],
+        "blender_max_cm": [
+          55.389,
+          40.287,
+          180.537
+        ],
+        "size_cm": [
+          110.779,
+          83.106,
+          180.537
+        ],
+        "unreal_min_cm": [
+          -55.389,
+          -40.287,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          55.389,
+          42.819,
+          180.537
+        ]
+      },
+      "errors": 0,
+      "warnings": 9,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Mother",
+          "message": "mesh data 'SK_Mother_LOD0_Mesh' differs from object name 'SK_Mother_LOD0'",
+          "object": "SK_Mother_LOD0"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "LOD0 has 32164 triangles, target for character_humanoid is 20000 (hard max 35000)",
+          "object": "SK_Mother_LOD0",
+          "data": {
+            "tris": 32164,
+            "target": 20000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "46 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Mother_LOD0",
+          "data": {
+            "vertices": 46
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "2382 non-manifold edges (2382 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Mother_LOD0",
+          "data": {
+            "boundary": 2382,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Mother_LOD1",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "1998 non-manifold edges (1998 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Mother_LOD1",
+          "data": {
+            "boundary": 1998,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "0 loose vertices, 10 loose (wire) edges",
+          "object": "SK_Mother_LOD2",
+          "data": {
+            "vertices": 0,
+            "edges": 10
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "1458 non-manifold edges (1448 open boundary, 0 >2 faces, 10 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Mother_LOD2",
+          "data": {
+            "boundary": 1448,
+            "multi_face": 0,
+            "wire": 10
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "0 loose vertices, 83 loose (wire) edges",
+          "object": "SK_Mother_LOD3",
+          "data": {
+            "vertices": 0,
+            "edges": 83
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Mother",
+          "message": "936 non-manifold edges (853 open boundary, 0 >2 faces, 83 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Mother_LOD3",
+          "data": {
+            "boundary": 853,
+            "multi_face": 0,
+            "wire": 83
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Mother",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Mother_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

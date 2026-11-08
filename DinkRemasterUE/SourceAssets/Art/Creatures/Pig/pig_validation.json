@@ -1,0 +1,120 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Creatures/Pig/SK_Pig.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "1 mesh objects are outside any asset collection and will not be exported: Preview ground"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SK_Pig",
+      "class": "creature_quadruped",
+      "collection": "SK_Pig",
+      "tris_per_lod": {
+        "LOD0": 19266,
+        "LOD1": 9633,
+        "LOD2": 4815
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -77.0,
+          -39.304,
+          -0.0
+        ],
+        "blender_max_cm": [
+          95.24,
+          39.304,
+          97.341
+        ],
+        "size_cm": [
+          172.24,
+          78.608,
+          97.341
+        ],
+        "unreal_min_cm": [
+          -77.0,
+          -39.304,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          95.24,
+          39.304,
+          97.341
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "LOD0 has 19266 triangles, target for creature_quadruped is 15000 (hard max 30000)",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "tris": 19266,
+            "target": 15000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "570 non-manifold edges (570 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "boundary": 570,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "147 non-manifold edges (147 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD1",
+          "data": {
+            "boundary": 147,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "105 non-manifold edges (105 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD2",
+          "data": {
+            "boundary": 105,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Pig",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Pig_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "Wardrobe-only old trim fragment cleanup and shirt opening relaxation; protected anatomy untouched, unique UVs retained",
+  "lods": [
+    {
+      "lod": 0,
+      "removed_collar_fragment_faces": 123,
+      "smoothed_shirt_opening_vertices": 404
+    },
+    {
+      "lod": 1,
+      "removed_collar_fragment_faces": 243,
+      "smoothed_shirt_opening_vertices": 332
+    },
+    {
+      "lod": 2,
+      "removed_collar_fragment_faces": 237,
+      "smoothed_shirt_opening_vertices": 198
+    },
+    {
+      "lod": 3,
+      "removed_collar_fragment_faces": 224,
+      "smoothed_shirt_opening_vertices": 119
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "schema": "dink-creature-art/1",
+  "assets": {
+    "SK_Pillbug": {
+      "fbx": "Export/SK_Pillbug_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SK_Pillbug_LOD0.fbx",
+        "Export/SK_Pillbug_LOD1.fbx",
+        "Export/SK_Pillbug_LOD2.fbx"
+      ],
+      "dimensions_m": [
+        1.7763556241989136,
+        1.1268119812011719,
+        0.5056139230728149
+      ],
+      "lod_union_dimensions_m": [
+        1.7767508029937744,
+        1.1268119812011719,
+        0.5061589479446411
+      ],
+      "bounds_min_m": [
+        -0.7706905603408813,
+        -0.5634059906005859,
+        -0.00036540659493766725
+      ],
+      "bounds_max_m": [
+        1.0056650638580322,
+        0.5634060502052307,
+        0.505248486995697
+      ],
+      "materials": [
+        "MI_Pillbug_Carapace",
+        "MI_Pillbug_Ochre",
+        "MI_Pillbug_Joints",
+        "MI_Pillbug_Eyes"
+      ],
+      "root_bone": "root",
+      "bones": [
+        "root",
+        "pelvis",
+        "tergite_01",
+        "leg_01_upper_l",
+        "leg_01_lower_l",
+        "leg_01_upper_r",
+        "leg_01_lower_r",
+        "tergite_02",
+        "leg_02_upper_l",
+        "leg_02_lower_l",
+        "leg_02_upper_r",
+        "leg_02_lower_r",
+        "tergite_03",
+        "leg_03_upper_l",
+        "leg_03_lower_l",
+        "leg_03_upper_r",
+        "leg_03_lower_r",
+        "tergite_04",
+        "leg_04_upper_l",
+        "leg_04_lower_l",
+        "leg_04_upper_r",
+        "leg_04_lower_r",
+        "tergite_05",
+        "leg_05_upper_l",
+        "leg_05_lower_l",
+        "leg_05_upper_r",
+        "leg_05_lower_r",
+        "tergite_06",
+        "leg_06_upper_l",
+        "leg_06_lower_l",
+        "leg_06_upper_r",
+        "leg_06_lower_r",
+        "tergite_07",
+        "leg_07_upper_l",
+        "leg_07_lower_l",
+        "leg_07_upper_r",
+        "leg_07_lower_r",
+        "tail",
+        "head",
+        "antenna_01_l",
+        "antenna_02_l",
+        "antenna_01_r",
+        "antenna_02_r"
+      ],
+      "head_bone": "head",
+      "pelvis_bone": "pelvis",
+      "class": "creature",
+      "content_folder": "/Game/Dink/Creatures/Pillbug",
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "forward": "+X",
+      "source_blend": "SK_Pillbug.blend",
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -11.534523963928223,
+            0.004354119300842285,
+            29.512420654296875
+          ],
+          "extent_cm": [
+            66.0345230102539,
+            39.17717361450195,
+            21.512420654296875
+          ]
+        },
+        {
+          "offset_cm": [
+            55.515377044677734,
+            -0.0,
+            28.0
+          ],
+          "extent_cm": [
+            17.015380859375,
+            22.0,
+            16.0
+          ]
+        }
+      ],
+      "body_boxes_note": "Rest-cuticle surfaces grouped by rigid body/tergite/head bones; excludes leg and antenna reach; .5cm padding in actor-forward Unrealcm."
+    }
+  },
+  "materials": {
+    "MI_Pillbug_Carapace": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 0.65,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pillbug_Atlas_BC.png",
+        "N": "Textures/T_Pillbug_Atlas_N.png",
+        "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+      }
+    },
+    "MI_Pillbug_Ochre": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 0.65,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pillbug_Atlas_BC.png",
+        "N": "Textures/T_Pillbug_Atlas_N.png",
+        "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+      }
+    },
+    "MI_Pillbug_Joints": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 0.65,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pillbug_Atlas_BC.png",
+        "N": "Textures/T_Pillbug_Atlas_N.png",
+        "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+      }
+    },
+    "MI_Pillbug_Eyes": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 0.65,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pillbug_Atlas_BC.png",
+        "N": "Textures/T_Pillbug_Atlas_N.png",
+        "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+      }
+    }
+  },
+  "animations": {
+    "Idle": {
+      "fbx": "Export/A_Pillbug_Idle.fbx",
+      "loop": true,
+      "fps": 40,
+      "duration_s": 2.0,
+      "frames": [
+        1,
+        81
+      ],
+      "root_motion": false
+    },
+    "Walk": {
+      "fbx": "Export/A_Pillbug_Walk.fbx",
+      "loop": true,
+      "fps": 40,
+      "duration_s": 0.375,
+      "frames": [
+        1,
+        16
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 80
+    },
+    "Run": {
+      "fbx": "Export/A_Pillbug_Run.fbx",
+      "loop": true,
+      "fps": 40,
+      "duration_s": 0.375,
+      "frames": [
+        1,
+        16
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 400
+    }
+  },
+  "source": "Original project-authored segmented terrestrial-isopod anatomy, rig, procedural materials and metachronal actions; no third-party mesh or texture assets.",
+  "export_units": "Editable sources metres; temporary geometry, edit-bone and animated location coordinates100x; scene.01/FBXheader1cm; identityroot along+Y; noleafbones.",
+  "origins": [
+    "S438_P02",
+    "S438_P03",
+    "S438_P04",
+    "S438_P05",
+    "S438_P06",
+    "S438_P07"
+  ],
+  "status": "candidate",
+  "behavior_contract": "Existing actors/scripts/vision/HP/contact damage/saves unchanged. No attack/feed/hit/death presentation cue invented; original native death hides immediately. Fast original speed preserved; Run400cm/s drives runtimeplayrate~2.1 for835cm/s."
+}

@@ -1,0 +1,78 @@
+{
+  "MI_Pillbug_Carapace": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 0.65,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pillbug_Atlas_BC.png",
+      "N": "Textures/T_Pillbug_Atlas_N.png",
+      "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+    }
+  },
+  "MI_Pillbug_Ochre": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 0.65,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pillbug_Atlas_BC.png",
+      "N": "Textures/T_Pillbug_Atlas_N.png",
+      "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+    }
+  },
+  "MI_Pillbug_Joints": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 0.65,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pillbug_Atlas_BC.png",
+      "N": "Textures/T_Pillbug_Atlas_N.png",
+      "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+    }
+  },
+  "MI_Pillbug_Eyes": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 0.65,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Pillbug_Atlas_BC.png",
+      "N": "Textures/T_Pillbug_Atlas_N.png",
+      "ORM": "Textures/T_Pillbug_Atlas_ORM.png"
+    }
+  }
+}

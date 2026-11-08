@@ -1,0 +1,103 @@
+{
+  "schema": "dink-characters/1",
+  "assets": [
+    {
+      "mesh": "/Game/Dink/NPC/Mother/SK_Mother.SK_Mother",
+      "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "expected_size_cm": [
+        110.77864170074463,
+        83.10590386390686,
+        180.53745031356812
+      ],
+      "bone_count": 89,
+      "expected_lods": 4,
+      "bind_pose_differences": []
+    },
+    {
+      "mesh": "/Game/Dink/Hero/SK_Dink.SK_Dink",
+      "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "expected_size_cm": [
+        112.26370334625244,
+        48.64029884338379,
+        180.1380753517151
+      ],
+      "bone_count": 89,
+      "expected_lods": 4,
+      "bind_pose_differences": []
+    },
+    {
+      "mesh": "/Game/Dink/NPC/Milder/SK_Milder.SK_Milder",
+      "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "expected_size_cm": [
+        111.92829608917236,
+        49.385011196136475,
+        182.93490409851074
+      ],
+      "bone_count": 89,
+      "expected_lods": 4,
+      "bind_pose_differences": []
+    },
+    {
+      "mesh": "/Game/Dink/Hero/Refinements/SK_Dink_Hands.SK_Dink_Hands",
+      "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+      "expected_size_cm": [
+        110.03458499908447,
+        43.511563539505005,
+        180.1380753517151
+      ],
+      "bone_count": 89,
+      "expected_lods": 4,
+      "bind_pose_differences": []
+    }
+  ],
+  "placements": [
+    {
+      "origin": "S001_P26",
+      "mesh": "/Game/Dink/NPC/Mother/SK_Mother.SK_Mother",
+      "locomotion": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+      "offset_cm": [
+        0,
+        0,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "capsule_radius_cm": 25,
+      "capsule_halfheight_cm": 82
+    }
+  ],
+  "player": {
+    "mesh": "/Game/Dink/Hero/Refinements/SK_Dink_Hands.SK_Dink_Hands"
+  },
+  "script_profiles": {
+    "s1-bul": {
+      "mesh": "/Game/Dink/NPC/Milder/SK_Milder.SK_Milder",
+      "locomotion": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+      "offset_cm": [
+        0,
+        0,
+        -60
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "capsule_radius_cm": 28,
+      "capsule_halfheight_cm": 92
+    }
+  }
+}
