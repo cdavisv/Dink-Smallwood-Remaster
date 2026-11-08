@@ -1,0 +1,28 @@
+{
+  "candidate": true,
+  "triangles": 4870,
+  "materials": 2,
+  "original_bounds_m": [
+    [
+      -0.10000000149011612,
+      -0.10000000149011612,
+      0.0
+    ],
+    [
+      0.10000000149011612,
+      0.10000000149011612,
+      0.4504999816417694
+    ]
+  ],
+  "original_reference": "Existing added candle table/mantel prop; no directoriginalsprite claimed",
+  "source_input_sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+  "wax_subsurface_weight": 0.12,
+  "wax_subsurface_scale_m": 0.008,
+  "charredwick_metallic": 0,
+  "native_imported": false,
+  "limits": [
+    "No flame exported or pointlights changed; nativeflame VFX remains required",
+    "Wax subsurface is source shader evidence; defaultLitBC/N/ORM alone cannot establish nativewax appearance",
+    "No universal cross-part intersection-free claim"
+  ]
+}

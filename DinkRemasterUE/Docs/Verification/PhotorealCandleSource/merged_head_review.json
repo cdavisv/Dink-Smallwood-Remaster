@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "status": "No blocking findings for source-only publication at merged head; native acceptance pending",
+  "head": "91b1d4aa4aae0d7765f3a838a8a90c99ca4c781b",
+  "base": "bdc653739ea68de6ffafb214f968c38fd6f4298f",
+  "prior_reviewed_head": "a35f2486a0d3736cceaebff42fae2796cede8982",
+  "immutable_source_files_verified": 94,
+  "changed_files": 109,
+  "prior_master_raw_ledger_prefix_preserved": true,
+  "prior_rows": 1564,
+  "new_rows": 94,
+  "total_rows": 1658,
+  "all_new_ledger_paths_tracked_SHA256_match": true,
+  "runtime_content_code_config_unchanged": true,
+  "prior_independent_review": "CandleIndependentReview/review.json",
+  "qualifications": [
+    "3separateLOD FBXs, actual roundtrip reproduced in prior review",
+    "LOD2tinyUVoverlaps/closeup degradation retained",
+    "NativewaxSSS/flame/collision/LODdistance not accepted"
+  ]
+}

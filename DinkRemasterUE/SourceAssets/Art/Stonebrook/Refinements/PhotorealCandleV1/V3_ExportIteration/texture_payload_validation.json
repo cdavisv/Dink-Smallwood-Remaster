@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "actual_LOD_count": 3,
+  "textures": {
+    "BC": {
+      "name": "T_Candle_Iron_01_Photo_BC",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_BC.png",
+      "role": "BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": true,
+      "normal_green_flip": false,
+      "range": [
+        [
+          0,
+          186
+        ],
+        [
+          0,
+          163
+        ],
+        [
+          0,
+          127
+        ]
+      ],
+      "sha256": "2f8aedbe2175593559cf5bdc717be7f4ef6200cdc549a814226d940e9094e01f",
+      "export_bytes_identical_to_bake": true
+    },
+    "N": {
+      "name": "T_Candle_Iron_01_Photo_N",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_N.png",
+      "role": "N",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": false,
+      "normal_green_flip": true,
+      "range": [
+        [
+          116,
+          140
+        ],
+        [
+          113,
+          138
+        ],
+        [
+          254,
+          255
+        ]
+      ],
+      "sha256": "6fdf11a68ca5bbbe9d2a16e5f9ac8ff42a4baecc10ede8f8f6370809a9e19d42",
+      "export_bytes_identical_to_bake": true
+    },
+    "ORM": {
+      "name": "T_Candle_Iron_01_Photo_ORM",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_ORM.png",
+      "role": "ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": false,
+      "normal_green_flip": false,
+      "range": [
+        [
+          255,
+          255
+        ],
+        [
+          0,
+          245
+        ],
+        [
+          0,
+          237
+        ]
+      ],
+      "sha256": "1b7f839fe8a37206439dcf5f9e983d378c801eb86b3bbad232c60fb392570781",
+      "export_bytes_identical_to_bake": true
+    }
+  },
+  "native_verified": false
+}

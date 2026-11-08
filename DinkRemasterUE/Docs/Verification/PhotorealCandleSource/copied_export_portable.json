@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "source_sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_Candle_Iron_01_Photo_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 593432,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Candle_Iron_01_Photo_Metal",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 98224,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Candle_Iron_01_Photo_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 297884,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Candle_Iron_01_Photo_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 468917,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Candle_Iron_01_Photo_Rough",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 481384,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Stonebrook_Limewash_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1527597,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Limewash_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2906752,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Limewash_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1337373,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1185324,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2914121,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1341944,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}
