@@ -315,3 +315,358 @@ cmd /c ".\BuildAndPackageWindows.bat < nul"
 Normal interactive shells are unaffected.
 
 
+## 3D remaster project (started November 2026)
+
+This fork also hosts the planning and data pipeline for a free fan remaster of
+the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
+
+- Plan: `doc/remaster/REMASTER_PLAN.md`. Read it before any remaster work.
+- Content bible (story, quests, bestiary, items, file formats):
+  `doc/remaster/bible/README.md`, which also lists corrections to the reports.
+- Reference images rendered from the original data: `doc/remaster/reference/`.
+- Pipeline tools live under `tools/`. They read `bin/dink/` and must never
+  modify `bin/` or `source/`. Generated output goes in each tool's `out/`
+  directory, which is not tracked.
+- The Unreal project lives beside this repo at `../DinkRemasterUE` (its own
+  git repo, initialised 5 Nov 2026, first commit 7 Nov 2026). It has its own `AGENTS.md`.
+- Dev machine facts (5 Nov 2026): Arch-based Linux, Python 3.14 with numpy and
+  Pillow, Blender 5.2 LTS, dotnet 10, cmake/clang, uv, node. No pytest
+  (use stdlib `unittest`). git-lfs 3.8.1 is installed per-user through mise
+  (`mise use -g git-lfs`; sudo needs a password, so pacman was not used) and
+  `git lfs install --skip-repo` has set the global filters.
+- The Git rules above apply to remaster work too: never commit or push unless
+  told, and no AI co-author lines.
+- `tools/dinkex` (built 5 Nov 2026) extracts all original data to JSON/PNG:
+  `cd tools/dinkex && python3 -m dinkex extract --data ../../bin/dink --out out`
+  (about 7 s, 71 MB); tests: `python3 -m unittest discover -s tests` (38 pass).
+  IDs: screens `SCR_nnn`, placements `Snnn_Pnn`, tiles `Snnn_Tnn`, where nnn is
+  the screen number, not the map.dat record. Hardness PNG codes: 0 walkable,
+  1 solid, 2 low, 3 other, 100 sprite hardbox, 200 warp trigger. Placement
+  `hard` is inverted (0 = has hardness). `dink.ini` is read in two passes
+  (all load_sequence lines first). Its schema is in `tools/dinkex/README.md`.
+- `tools/data` (built 5 Nov 2026) holds the hand classification of every used
+  tile (1,450 tile nums) and every placed sprite frame (559): `tile_classes.csv`
+  and `sprite_classes.csv`. Both are generated: edit the label files in
+  `tools/data/scripts/` and run `cd tools/data && python3 scripts/build_tables.py`;
+  tests: `python3 -m unittest discover -s tests` (12 pass).
+- Map facts found while classifying: tile source rects always use a 12-column
+  grid even when the tileset bitmap is narrower than 600 px; tile hardness is
+  drawn as outlines only (open water and forest canopy interiors have
+  hardness 0, so reachability needs a flood fill plus the terrain class);
+  active placements only use slots 1-96; 14 background placements carry
+  scripts that never run; the upper storeys of the big town buildings are
+  painted into tilesets ts34/35, not placed as sprites.
+- `tools/dinkc` (built 5 Nov 2026, stdlib only) parses all 380 DinkC scripts to
+  JSON ASTs plus tables (dialog_lines.csv, choices.json, facts.csv,
+  script_kinds.csv, enemies/items/shops.json, calls.csv, diagnostics.json):
+  `cd tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story --map ../../bin/dink/map.dat --dat ../../bin/dink/dink.dat --out out`
+  (under 1 s); tests: `python3 -m unittest discover -s tests` (40 pass).
+- DinkC engine semantics worth knowing: one statement per line (the rest of
+  the line is ignored); a procedure runs until the next `void` line; labels
+  are file-wide; in `if (func() <op> x)` the operators `!=`, `<=`, `>=` act as
+  `==` and `>`/`<` compare against 0; assignments need spaces around the
+  operator; `sp_prop` is not a built-in; the engine prefers `.d` over `.c`
+  (all 380 `.c` match their `.d`).
+- inklecate 1.2.1 (official inkle release, the Ink compiler) is installed at
+  `~/.local/share/inklecate/v1.2.1/` with a symlink in `~/.local/bin`:
+  `inklecate -o out.json in.ink`.
+- `tools/blender` (built 5 Nov 2026) is the Blender-to-Unreal asset pipeline:
+  conventions in `tools/blender/CONVENTIONS.md`, scripts in `dinkasset/`
+  (validate, fix, make_lods, export_ue, import_generated), run through
+  `python3 dink.py <script> ...`. Self-test: `cd tools/blender && python3 run_tests.py`
+  (16 tests, about 25 s, needs `blender` on PATH). Verified in Blender only;
+  the items to confirm in the Unreal editor are listed in CONVENTIONS.md
+  section 14. FBX export must use `FBX_SCALE_ALL` with `apply_unit_scale=True`
+  (the default puts scale 100 on every node); a Blender round trip does not
+  catch unit or axis mistakes, the byte-level FBX check in the tests does.
+- Git remotes (set 5 Nov 2026): `origin` is the fork
+  `cdavisv/Dink-Smallwood-Remaster` (master tracks origin/master); `upstream`
+  is `SethRobinson/RTDink`, fetch-only (its push URL is set to DISABLED on
+  purpose). `gh` is installed and authenticated as cdavisv.
+- `tools/analyse` (built 5 Nov 2026) is pipeline stages 3 and 4: true
+  connectivity, warp graph, interiors, regions and the 2D-to-3D world layout.
+  `cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out`
+  (about 24 s); tests: `python3 -m unittest discover -s tests` (49 pass).
+  It reads `tools/data/tile_classes.csv` and `tools/dinkc/out/calls.csv`.
+  `tools/analyse/regions.toml` is the hand-tuned region and scale table: edit
+  it and rebuild. World position of any original point is the bilinear blend
+  of its screen's four corners in `out/world_layout.json` (u = map_x/600,
+  v = y/400, map_x = placement x minus 20; metres, x east, y south).
+  Base scale 0.025 m per original pixel; settlements x4, wilderness x2.75,
+  dungeons x2.25, interiors x1.75. Component IDs `SCR_nnn#k`, interiors `INT_nnn`.
+- Map connectivity facts from that analysis: Koka Isle joins the mainland by a
+  walkable bridge (SCR_727 to SCR_759); Joppa is reached through a tunnel
+  from a Windemere door (SCR_537) to SCR_483; the Darklands only by the
+  `s6-warp` machine (SCR_253 to SCR_154); the Edge of the World plateau only
+  by pits and caves; the snow isle only by the hole on SCR_144. The toll
+  bridge is SCR_404 (base script `s1-brg`); the `s1-nopas` barrier is on
+  SCR_346. East Wilds (cols 27-31, rows 8-20, 56 screens), checked 7 Nov 2026
+  against the data and `dink.cpp`: no designed way in (no warp or script
+  targets it except the booth door S289_P19; the river along cols 25/26, a
+  channel at rows 11/12 and the cliff foot are closed outlines). The engine
+  has two sequence-break routes, listed in `out/engine_reach.json`: push the
+  rock S277_P03 (`s1-roc`, strength 4), walk the hardness-0 cliff face east to
+  SCR_288, leave its right edge (the row wrap loads SCR_289, the booth's black
+  void), take the booth door to SCR_350 (23 of the 56 screens); and wade
+  through sea reached by screen-edge leaks (24 more; 9 stay closed). A cut
+  must close the rock, the wrap and the leaks; a reconnection can use the
+  booth door and the river at SCR_443/444.
+- Unreal Engine 5.8.4 (Epic's prebuilt Linux build, CL 58902052) is installed
+  at `~/UnrealEngine/UE_5.8.4` (73 GB) with Epic's Fab plugin for Linux
+  unpacked into `Engine/Plugins/Fab`. The editor MCP plugins ship with it under
+  `Engine/Plugins/Experimental/` (`ModelContextProtocol`, `ToolsetRegistry`,
+  `Toolsets/AllToolsets`); the bundled toolchain is
+  `Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8`.
+  Verified 5 Nov 2026: no missing shared libraries, and a headless editor run
+  in a blank project executes Python and exits 0:
+  `~/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd <abs path>.uproject -run=pythonscript -script=<abs path>.py -nullrhi -unattended -nosplash -nopause -stdout`
+  (about 20 s; a minimal `.uproject` needs `"EngineAssociation": "5.8"` and the
+  PythonScriptPlugin enabled). C++ compiles against this install (see below).
+  NOT yet verified: the interactive editor on Hyprland/Wayland, the MCP
+  server, Fab login, cooking and packaging. `-run=SmokeTest` without a project asserts on `GEditor`;
+  that is the commandlet, not a broken install. With `-nullrhi` the log
+  reports the integrated GPU; check the editor picks the Radeon RX 6800 when
+  run with a display.
+- `tools/dinkink` (built 5 Nov 2026, stdlib only) is pipeline stage 5: it
+  converts the DinkC ASTs to Ink drafts. `cd tools/dinkink && python3 -m dinkink build --ast ../dinkc/out --out out`
+  (about 7 s); tests: `python3 -m unittest discover -s tests` (39 pass, 12-27 s).
+  Output: 377 `.ink` files plus root `dink.ink` (all compile with inklecate,
+  0 errors, 0 warnings), `names.csv`, `line_ids.csv`, `director_commands.csv`,
+  `director_vocabulary.csv`, 103 shot lists, `review_queue.csv` (65 items,
+  11 high) and `coverage.csv` (all 380 scripts). Design in `tools/dinkink/DESIGN.md`.
+  Runs in Unreal since 6 Nov 2026 (see the `DinkNarrative` entry below).
+- Ink conversion conventions: script -> knot `d_<script>`, procedure entry
+  `on_<proc>` with body `p_<proc>` called as a tunnel; globals are Ink
+  variables (`&s2-nad` -> `s2_nad`, table in `names.csv`); script locals are
+  `<script>__<name>`; director commands are output lines `>> name args #cmd #src:N`;
+  spoken lines carry `#id`, `#say`, `#spk`, `#col`, `#src` tags. Engine bugs keep
+  the engine's behaviour live and put the author's intent behind
+  `CONST fix_<script>_l<line> = false`. Spoken text is verbatim: spaces Ink
+  would collapse are written as U+00A0 and the display must turn them back
+  into spaces. The fix-switch rule (all switches `false` by default): the
+  engine's behaviour is live, the author's intent sits behind
+  `fix_<script>_l<line>`, nothing is softened; a tag cannot be switched, so a
+  wrong speaker or a stray character switches the whole line (`{ fix_..: intent
+  - else: engine }`, same `#id` twice); a defect with no distinct intent (`goto
+  mainloop` with no label) gets a review row but no constant. Argument lists
+  follow `get_parms` (a short list gets zeros, a missing comma after a string
+  cuts it short). Never-spoken lines have review category `never-spoken`.
+- Ink gotchas found: knots, stitches and variables share one namespace; the
+  comment stripper runs before escapes (`\//` is still a comment); empty
+  conditional branches and tag-only lines are rejected; `inklecate -p` is
+  quadratic on long output, so run it in chunks of about 200 lines.
+- `../DinkRemasterUE` (scaffolded 5 Nov 2026): C++ project `DinkRemaster` with
+  plugins `DinkCore` (facts, world-state overrides, origin IDs, stats and the
+  original combat maths, inventory, save), `DinkParity` (31 automation tests,
+  `Dink.Core.*`), and empty shells `DinkNarrative`, `DinkImport`,
+  `DinkExpanded`. `Scripts/build.sh` (about 28 s clean, seconds incremental)
+  and `Scripts/test.sh` (about 15 s, 31/31 pass) both run headless and exit
+  non-zero on failure.
+- Unreal-on-this-machine facts: use `-ExecCmds="Automation RunTests <filter>; Quit"`
+  (`-TestExit` always exits 1 on Linux); unset `WAYLAND_DISPLAY` and `DISPLAY`
+  for headless runs or every frame logs a warning; the AndroidFileServer
+  plugin must stay disabled or the editor writes a security token into
+  `Config/DefaultEngine.ini`; do NOT run `GenerateProjectFiles.sh` (it writes
+  about 6,000 files into the engine tree; the build does not need it); the
+  build tool caches under `Engine/Saved/UnrealBuildTool` and listens on port
+  1345 while building.
+- Greybox import (stage 6, built 6 Nov 2026) lives in `../DinkRemasterUE`:
+  `Scripts/export_import_bundle.py` gathers the `tools/*/out/` data into
+  `ImportData/`, and `Scripts/import_greybox.sh --region stonebrook|all` runs
+  the `DinkImportGreybox` commandlet headless (whole world in about 45 s;
+  re-runs are no-ops with zero drift). Result: maps `L_Greybox_Stonebrook`
+  and `L_Greybox_World` under `Content/Dink/_Generated/` (git-ignored,
+  regenerable, 175 MB): 643 screens, all 5,846 placements, 116 warps, and a
+  third-person test character. 41 automation tests pass. NOT yet seen by
+  anyone: headless image capture does not draw on this machine, so scale,
+  readability and performance still need a person at the editor.
+- Facts found by the importer: a new game starts on SCR_001 at map pixel
+  (314, 161) facing west, and SCR_001 is Dink's house in its normal state
+  (the burning and burnt versions are its vision 1 and 2). The 20 `screenlock`
+  scripts run on 35 screens. Pipeline-data defects found by the importer, fixed
+  in `tools/analyse` on 7 Nov 2026 (the exporter's workarounds can go): no two
+  screens overlap in `world_layout.json` (unreached SCR_298/299 are parked on the
+  `fragments` sheet with a `displaced` flag; a reached overlap stops the build);
+  script warps are `cutscene` when `main`, `die` or a combat procedure starts
+  them (`SW_s2-cave2_L154`, `s1-ltr`, `s2-bar`, `en-gmog`), with `triggers`
+  and `player_triggered`; every warp has `dst_in_bounds` and `dst_engine`
+  (`SW_s2-culg_L42` is off-map by design: `dink_can_walk_off_screen(1)` and the
+  script walks Dink in); `vision_variants.json` searches spawned scripts too and
+  lists `never_set`: 16 screens (17 values) have vision-gated placements that no
+  script sets, so the shipped game never draws them; SCR_001 is "Dink's house"
+  with `vision_states` in `regions.csv`.
+- Dialogue runtime (built 6 Nov 2026) is `../DinkRemasterUE/Plugins/DinkNarrative`:
+  the compiled story (`tools/dinkink/out/json/dink.json`) runs on Inkpot's C++
+  Ink runtime (`Plugins/Inkpot`, trimmed to the `InkPlusPlus` module, commit
+  34a2e9e, MIT), one Ink flow per script instance, with `DinkCore`'s fact store
+  as the single source of truth for variables. A director executes the
+  `>> command` lines: of 134 vocabulary rows 82 are implemented and 52 are
+  recorded for later layers (table in `Plugins/DinkNarrative/Docs/director_status.csv`).
+  `Scripts/sync_story.py [--rebuild]` copies the story into
+  `Content/Dink/Data/Story/` (last synced 7 Nov 2026 after the seven verbatim-review
+  converter rules: 377 knots, 930 entry points, 16 fix switches all false).
+  Smoke run of all 597 entry points: 571 complete, 26 are the original's
+  endless idle loops, 0 runtime errors (`Saved/Narrative/smoke_report.txt`).
+  Entering a screen now runs its scripts' `main`, so a new game opens with
+  the mother's scene. Console: `dink.Run <script> <proc>`, `dink.Say`,
+  `dink.Fact <name> [value]`, `dink.Choose`, `dink.Skip`, `dink.Story`,
+  `dink.SmokeRun`; talk key is E.
+- Gameplay layer (built 6 Nov 2026): `DinkGameplay.*` in `DinkNarrative`
+  fires `hit`, `touch`, `push`, `talk`, `die` and the item procedures by the
+  original engine's rules (line references to `dink.cpp` are in the project
+  `AGENTS.md`), with drops, pickups, respawn, level-up and death. The
+  converter now converts every script that has an executable statement
+  (377 `.ink` files, 930 entry points, 25 converter tests); `random()` is an
+  external with a seedable stand-in for C `rand()`. Only `ranstuff` is
+  absent (the original has no such script). Smoke run: 930 entry points, 903 complete, 27 idle
+  loops, 0 errors. Keys: F attack, Q cast, E talk; `dink.Arm <slot>`,
+  `dink.ArmMagic`, `dink.Inventory`.
+- Brains and fights (built 6 Nov 2026): `DinkBrains.cpp` in `DinkNarrative`
+  ports every brain the shipped data uses from `dink.cpp` (0, 2, 3 duck,
+  4 pig, 5/7, 6, 9 monster, 10 dragon, 11/17 missile, 12, 15, 16 people;
+  line references in the project `AGENTS.md`), thinking on the original's
+  60 Hz frame in screen pixels against per-screen hardness
+  (`Content/Dink/Data/Gameplay/Hardness/SCR_nnn.txt`). Monster attacks hurt
+  Dink by the original formula; missiles stop at walls. `screenlock` holds
+  Dink on the screen (grey placeholder barriers in the greybox) until the
+  script unlocks it; warps still work while locked, as in the original, and
+  the Bonca cave of Martridge's trial (`s1-cavem`) is NOT a locked fight.
+  A switchable 3D layer (`Content/Dink/Data/AI/adaptation.ini`: 450 ms
+  wind-up, at most 2 attackers) is on for play and off in parity tests.
+  Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
+  headless; a State Tree task can call them later. Director status: 146
+  rows, 111 implemented, 35 recorded. 127 automation tests (verified 7 Nov
+  2026: 126/127 in 380 s, the one failure a Codex creature-art test waiting on
+  un-imported pillbug art; the probe runs as six save-slot chapters, Ch1..Ch6,
+  deterministic across runs; PIE tests run on a fixed 60 Hz step).
+- Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
+  `../DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
+  `stonebrook_probe_trace.txt`): a scripted play-through from a new game with
+  real interactions plays Martridge's trial, pays the toll (`&story` 7),
+  kills Jack with seven fireballs, picks up three magic potions (SCR_273,
+  597, 352: `&magic` 5), learns Acid Rain, frees the prisoner and plays the
+  cult ambush: 47 of 47 steps, 238 s of game time, about 50 s wall. Fixed
+  (7 Nov 2026): the old flakiness was frame timing (real-time stepping drew
+  the shared `rand()` stream in a different order each run); the editor now
+  runs a fixed 60 Hz step in PIE tests and the probe is deterministic (trace
+  md5 `23da76f5dc`, 5,127 events, identical in 8 verified runs). The
+  "stuck wait" was a snapshot artifact of a timeout that was a whole number
+  of casts. Real bug found and fixed: script instances kept the screen they
+  were created on, so a spell armed on one screen did not fly on another.
+  The run ends where the probe ends (next scene SCR_625), not where the game
+  refuses; the route onward is `Plugins/DinkParity/Docs/probe_route.md`.
+- Placeholder or missing: no animation (cards slide), no corpses, debug
+  sphere for the attack telegraph, no inventory screen or escape menu; the
+  dragon and Seth are untested; scripted `move`/`move_stop` ignore hardness.
+  NOT yet seen on a display: text, menu, fade, keys, and how fights feel in
+  3D; the packaged game has only run headless (`-nullrhi`, no window, no
+  input). Move speed (60 px/s per
+  `sp_speed` point), the 600 ms fade and the 3.5 m talk range are guesses.
+- Audio generation: since 6 Nov 2026 the owner has ElevenLabs connectors
+  available to agents and wants them used for the new sound effects, music
+  and voice. The workspace can run sound effects (`eleven_text_to_sound_v2`,
+  0.5-30 s, loopable), music (`eleven_music_v2_5`, up to 600 s), speech
+  (`eleven_v4`) and voice design. Every generated file must go in the asset
+  ledger (`../DinkRemasterUE/SourceAssets/asset_ledger.csv`) with tool, model
+  and licence; the ElevenLabs plan's licence for free redistribution is NOT
+  yet confirmed by the owner.
+- Sound effects (generated 6 Nov 2026): the scripts load 48 distinct effects
+  (`start.c`, slots 1-49; slot 25 repeats CAVEENT), not 58. Two candidates
+  (`a`, `b`) per effect are in `../DinkRemasterUE/SourceAssets/Audio/SFX/`:
+  `delivered/<slot>_<cue>_<a|b>.mp3` as returned (128 kbps) and engine-ready
+  WAVs (44.1 kHz, 16-bit, mono; loops 23 and 34 stereo; peak -3 dBFS) rebuilt
+  by `SourceAssets/Audio/tools/prepare_sfx.py`. ElevenLabs flow id
+  `5qYnooqvYY0wzSgUxf2K`. NOT yet chosen by ear, NOT imported into Unreal;
+  the director's audio is still a stub that logs cue names. 29 of 96 files
+  have clipped samples in the source (`quality_report.csv`); the worst are
+  both takes of 29 hurt1 and 31 attack1. Seven files in `bin/dink/sound`
+  (click, pop, intro, ocean1, high1, bird2, sword2_item) are not loaded by
+  the scripts and were not regenerated.
+- Music drafts (generated 7 Nov 2026, owner approved the spend): 28 original
+  instrumental cues, one take each, in `../DinkRemasterUE/SourceAssets/Audio/Music/`
+  (`delivered/<nn>_<cue>.mp3` as returned, 48 kHz ~194 kbps; engine-ready
+  stereo WAVs beside them; `README.md` there is the cue map: which `playmidi`
+  names and `dink.dat` music values each cue replaces). ElevenLabs
+  `eleven_music_v2_5`, flow `M1M41vE6pzKeEkQYmpi5`, 23,200 credits in total
+  (about 900 credits per minute; the connector's pre-run estimate overstates
+  the charge by about 1.8x). Prompts describe mood and instruments only,
+  never existing music. NOT listened to, NOT imported, licence unconfirmed.
+  The 19 loop cues have technically seamless derived loops in
+  `Audio/Music/loops/` (beat-aligned cut plus a 1 s equal-power crossfade,
+  `prepare_music.py --loops-only`, `loop_report.csv`); musical continuity
+  at the seam is still unchecked by ear (weakest: 02, 05, 09, 10, 18-21).
+- Probe progress (7 Nov 2026): the bot plays route steps 1-12, the roads and the
+  Mayor's errand, a gold loop (the Bong/Boncd pairs of SCR_583/480/632 kill each
+  other and still drop loot; 724 -> 1072 gold), the bow (step 15), arms it, the
+  goblin gate (step 20) and one goblin of SCR_680 (step 21). It stops at the other
+  three goblins: a 600x100 px corridor where the two `s3-gs` cannot be kited and a
+  fireball does 4-8; needs a longsword melee tactic or elixirs (the healer loops
+  on "You don't have enough gold.", s2-healp.c:135-139). Engine fix found on the
+  way: an expiring text no longer deletes the sprite that reused its handle
+  (dink.cpp keeps a kill timer per slot). Six chapters, hashes in the UE AGENTS.md.
+  Chapter 6 later gained the Terris healer (s2-healp, 1 gold per missing life),
+  so it is three steps.
+- Packaged build (first cook 7 Nov 2026): the probe moved into a new
+  `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
+  type, the uproject allow-list is gone), so it exists in a game target.
+  `Scripts/package.sh` cooks and packages Linux Development (22 s cook from
+  empty, 1.5 GB staged, pak 575 MB, `Dink/Data` staged as UFS);
+  `Scripts/run_packaged_tests.sh` runs each chapter in its own packaged game
+  process (`-nullrhi`, fixed 60 Hz) and compares trace md5s with the editor's:
+  all six chapters match PIE (Ch1 50091fcc80, Ch2 103b0331f1, Ch3 e0b643193a,
+  Ch4 230f594539, Ch5 6c709d1069, Ch6 7471375e32), repeatably after a clean
+  cook. Three plumbing fixes were needed for parity: FName display case does
+  not survive cooking (event texts lower-cased), the automation controller
+  delays tests by 300 frames in a game (`; Now;` in the exec), and the game
+  ticks the story and greybox subsystems in the reverse order from PIE
+  (`-DinkProbeHold` pauses the world until the probe starts). Details and
+  pitfalls 47-52 in the UE AGENTS.md and `packaged_probe.md`. Only
+  `L_Greybox_World` is cooked; Windows and Shipping were not attempted.
+- Voice lines (started 7 Nov 2026): `../DinkRemasterUE/SourceAssets/Audio/Voice/`
+  (README there). The 1997 lines, verbatim, tagged in the Ink data with speaker
+  expressions (`spk:1` Dink, `current_sprite`, script sprite variables): 2,125
+  unique lines, 68,486 characters, mapped to 29 voice archetypes
+  (`voice_cast.csv`, `voices.csv`, `voice_lines.csv` with a `tts_text` column
+  that turns `<shiver>`-style stage directions into ElevenLabs v4 tags; system
+  lines such as gold pickups are never voiced). Voices are designed from text
+  (`eleven_ttv_v3`), never cloned, chosen by the owner from three previews, and
+  saved in the owner's ElevenLabs library (`voices_saved.csv`: Dink, Martridge,
+  Milder, Mother, King Daniel, Seth, Mog). Generated with `eleven_v4` at 1
+  credit per character: 359 lines on disk (Dink's Stonebrook dialogue 244/245,
+  all lines of the six others), 11,362 credits, every file in the asset ledger
+  as `candidate` until the owner confirms the plan's redistribution terms.
+  Lines that are only a stage direction (`<groan>`) cannot be generated.
+  Import into the game is the audio pipeline's job (Codex's
+  `import_approved_audio.py`); nothing is wired to play them yet.
+- Probe route (written 7 Nov 2026, script-verified):
+  `../DinkRemasterUE/Plugins/DinkParity/Docs/probe_route.md`, 56 steps from
+  &story 7 to 16 with `file.c:line` for every fact (the &story setters:
+  s1-brg2.c:47, s2-culg.c:79, s3-1st.c:93, s3-tc.c:285, s4-end.c:7,
+  s5-end.c:36, king.c:134, king.c:189, s7-boss.c:304, king.c:102; spot-checked).
+  Findings that shape the alpha bot: only ~3,700 exp lies on the path
+  (level 5), so every locked fight must be won by kiting or ranged play, the
+  Joppa dragons need the 400-gold longsword, and Seth (300 hp, defense 25,
+  s7-boss.c:22-23) is unbeatable at natural stats: the bow kit needs about
+  6,500 gold and 25,500 exp (about 30 sweeps of the four slayers on SCR_157).
+  Plan: run the bot to step 51 unattended and treat the Seth fight as its own
+  long test. Jack is optional (nothing later reads &s2-aunt == 4). The route
+  skips probe steps 38-41, Koka Isle, the snow castle and Hellfire.
+  Kiting geometry, bomb self-damage and the cadence model are unverified.
+- Verbatim review pre-check (7 Nov 2026): `doc/remaster/verbatim_review.md`
+  classes all 66 `review_queue.csv` items: 49 already correct, 3 converter
+  bugs (R0015/R0016: the intent branch of `freeeze`/`unfreeeze` must emit the
+  corrected command; R0044: `s3-chick.c:42` has no comma before
+  `&current_sprite`, so `get_parms` returns early (dink.cpp 4206-4225) and the
+  1997 game never spoke the line; DESIGN.md says the opposite and must be
+  corrected), 12 author-intent switches (4 lacked their `fix_` CONST: R0001,
+  R0002 for the mistyped `{` at `s1-h3-8.c:13`, R0004, R0035; the five
+  `goto mainloop` constants R0007-R0011 were empty), and 2 owner
+  decisions (whether to give the non-existent `sp_prop` a meaning; whether to
+  ship with every `fix_` switch false, which leaves three written lines silent
+  as in 1997). The converter now does rules C1-C7 of that review (new
+  constants `fix_s2_man2_l25`, `fix_s1_h3_8_l13`, `fix_s1_wand2_l187`,
+  `fix_s3_chick_l42`; the five empty ones are gone; `freeeze`/`unfreeeze` emit
+  `freeze`/`unfreeze`; `sp_prop` is still a no-op and every switch false, so
+  OD1 and OD2 stay open). Review-queue IDs were renumbered by that change, so
+  the R-numbers in `verbatim_review.md` are the pre-fix ones (match by
+  script and line). `../DinkRemasterUE` has not been synced with the new story.
