@@ -26,3 +26,5 @@ Three phases are retained in `Rendered/Before`, `Rendered/AfterOakOnly` and `Ren
 The source workflow and reproducible Blender/native commands are in [the floor guide](../../../Scripts/FLOOR_SURFACE_PIPELINE.md). Both source handoffs are immutable snapshots of authoring; imported/runtime acceptance is recorded here. The underfloor source guide has one explicit collision-missing exception because collision must remain absent, with zero other source errors/warnings.
 
 `RecordedTools` archives the exact machine-local QA drivers. The canonical reusable movement routes remain under `Scripts/Playtest`. Tests and editor-game GPU rendering prove the listed scope; packaged GPU rendering and wider-world/clothing/furniture art are not claimed. New source/art remains candidate status. All earlier art/audio ledger bytes are preserved.
+
+The isolated editor run stores narrative traces under its own UserDir. The initial packaged-test wrapper looked in the default project Saved path and printed PARITY ?. The explicit parity pass used Full/User/Saved/Narrative; all ten actual files then matched the packaged traces byte-for-byte. See packaged-parity.json and packaged-parity.txt.
