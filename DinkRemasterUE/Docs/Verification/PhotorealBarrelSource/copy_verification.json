@@ -1,0 +1,289 @@
+{
+  "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel",
+  "destination": "/home/davisc/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+  "files": [
+    {
+      "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
+      "sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
+      "independent_inode": true
+    },
+    {
+      "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.glb",
+      "sha256": "ead2d462f580f8c179e0f88b90c8484ca661c007e974b1e0b01257d7113f7841",
+      "independent_inode": true
+    },
+    {
+      "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_BC.png",
+      "sha256": "5894fdb201206ab7afa8d314833105e425e4f0714521bc29aaf2138e596bb5c3",
+      "independent_inode": true
+    },
+    {
+      "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_N.png",
+      "sha256": "6aa26300c2396b5bf67cb8e40f2869c537b641656fc5d3f404061712e41da957",
+      "independent_inode": true
+    },
+    {
+      "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_ORM.png",
+      "sha256": "6171ae465dec57cde321cd849a144f2a02eee2a91d2a656895dab7ceed76fc47",
+      "independent_inode": true
+    },
+    {
+      "path": "Export/manifest.json",
+      "sha256": "069ca7d728ba9bee42cdfa6fc36211dff3eeea08aad34e7e422e80d272269de8",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/GeneratedOak_Albedo_V1.png",
+      "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/PhotorealPropsV1_Input.blend",
+      "sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/bar-01.bmp.png",
+      "sha256": "6b06c948331cbd65eefd5fc3759197016226a263f3cfb95ebcd1d2a00acdf52f",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/bar-02.bmp.png",
+      "sha256": "3654742769de3f3d13e9bf32c9a59d07cc5e60416b7c623678983cd8f0606a0f",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/barel-01.bmp.png",
+      "sha256": "2f1ab1200c47f6df03f085dacdba53e1842385b7ce5824c6d31574bee09f344c",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/generation.json",
+      "sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9",
+      "independent_inode": true
+    },
+    {
+      "path": "Inputs/reference_extraction.json",
+      "sha256": "94c3bea3a53e3024f7c60884150675c7f521ac3d560406e99447fc0ddddb0846",
+      "independent_inode": true
+    },
+    {
+      "path": "PhotorealBarrelV1_Export.blend",
+      "sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+      "independent_inode": true
+    },
+    {
+      "path": "PhotorealBarrelV1_Source.blend",
+      "sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/import_generated.py",
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/make_lods.py",
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "independent_inode": true
+    },
+    {
+      "path": "Pipeline/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "independent_inode": true
+    },
+    {
+      "path": "Previews/back.png",
+      "sha256": "9a47101a1df90651c982b18e780af00223f1c1e4b8c0d704ca467eb83ee3e156",
+      "independent_inode": true
+    },
+    {
+      "path": "Previews/front.png",
+      "sha256": "f18948c08a7acbb23e509c2256a45178cf20aac858f99eb45129c9ee917fc524",
+      "independent_inode": true
+    },
+    {
+      "path": "Previews/game-distance.png",
+      "sha256": "68cf46b33a7dbd94b8503c9d86b773945c17157398d32e5c7d8664a5cac79963",
+      "independent_inode": true
+    },
+    {
+      "path": "Previews/head.png",
+      "sha256": "15d0f5b0afb32c1509986b0d98465b192345ed91148eef5ebf3f37eb0e02fe56",
+      "independent_inode": true
+    },
+    {
+      "path": "REPRODUCE.txt",
+      "sha256": "dedbcb4fb3a3d3c3ed168a877a2635da93d936f795f12aec0276bf609e139a93",
+      "independent_inode": true
+    },
+    {
+      "path": "Roundtrip/front.png",
+      "sha256": "5437ec3c7ea0d5b5a980add1105b78a19a3d07e60ea2e69ec3a265cd183965bc",
+      "independent_inode": true
+    },
+    {
+      "path": "Roundtrip/game-distance.png",
+      "sha256": "341af1036843905b4a26adbc27d7a2e85983ca713e2578213b3d90b794d024b9",
+      "independent_inode": true
+    },
+    {
+      "path": "Roundtrip/head.png",
+      "sha256": "8410259919bd17ac916612da4a78373aba33e4d1778057ee1ef7fa7a59b16604",
+      "independent_inode": true
+    },
+    {
+      "path": "Textures/T_Barrel_Oak_01_Photo_BC.png",
+      "sha256": "5894fdb201206ab7afa8d314833105e425e4f0714521bc29aaf2138e596bb5c3",
+      "independent_inode": true
+    },
+    {
+      "path": "Textures/T_Barrel_Oak_01_Photo_Metal.png",
+      "sha256": "22ee2ed4d7130e4e9ee83330ea11ca9a00c23c0c4fca686f605459122c16a6c3",
+      "independent_inode": true
+    },
+    {
+      "path": "Textures/T_Barrel_Oak_01_Photo_N.png",
+      "sha256": "6aa26300c2396b5bf67cb8e40f2869c537b641656fc5d3f404061712e41da957",
+      "independent_inode": true
+    },
+    {
+      "path": "Textures/T_Barrel_Oak_01_Photo_ORM.png",
+      "sha256": "6171ae465dec57cde321cd849a144f2a02eee2a91d2a656895dab7ceed76fc47",
+      "independent_inode": true
+    },
+    {
+      "path": "Textures/T_Barrel_Oak_01_Photo_Rough.png",
+      "sha256": "00be41ac34ae3cc5d13fa379e72f0463fe0cd4fb20c590f39e52c471525d13ee",
+      "independent_inode": true
+    },
+    {
+      "path": "bake_barrel.py",
+      "sha256": "977b1f499f59e74cd04d8a0a85b6e0e768b41ba024ade5d1cf7b0190efc7c0a2",
+      "independent_inode": true
+    },
+    {
+      "path": "bake_receipt.json",
+      "sha256": "6817a0174739e7ffc9d18fb9f811b9025b630a3d6d026fb22c2d2f22a5666c32",
+      "independent_inode": true
+    },
+    {
+      "path": "build_barrel.py",
+      "sha256": "18e657db4582a47136331551024dee9c138fd4d0a66705b11aff9a989220c18b",
+      "independent_inode": true
+    },
+    {
+      "path": "check_portable.py",
+      "sha256": "8c041a7e79c19c6b2267481d982205546063388bbc818035df34451cd4a3782c",
+      "independent_inode": true
+    },
+    {
+      "path": "export_barrel.py",
+      "sha256": "1efcdd3bea58b21dc88cac2d843154e72551154f25e049a0998707b222607807",
+      "independent_inode": true
+    },
+    {
+      "path": "export_report.json",
+      "sha256": "46f9ef1ee6ae656feda654daa6dc7442489479a330880f63fd37f5cbdd1b5949",
+      "independent_inode": true
+    },
+    {
+      "path": "guide_validation_source_scene.json",
+      "sha256": "5c00b81d773d6d2fb867ea9af9988381b5e2d1860f8633b9e413e7546f4fc4fe",
+      "independent_inode": true
+    },
+    {
+      "path": "inspect_payload.py",
+      "sha256": "37f2790d0f5bfb0a5d14218b12c7716e04a2a61986cb235a4ad3dcad440c96c1",
+      "independent_inode": true
+    },
+    {
+      "path": "portable_reopen_receipt.json",
+      "sha256": "b800846c6fff756d805ec67297dc1d6accdc7a183bf23443395243060d386693",
+      "independent_inode": true
+    },
+    {
+      "path": "preview_audit.json",
+      "sha256": "1d06de01f745aeb77fedcce3e0b9f1ba87134e01fdef986a3df6136a8d71c71a",
+      "independent_inode": true
+    },
+    {
+      "path": "provenance_manifest.json",
+      "sha256": "329dfdbb1f26f5cf9d8f78d1231eb83cb399ed43d98242cfbe8901c0be51ff8c",
+      "independent_inode": true
+    },
+    {
+      "path": "render_previews.py",
+      "sha256": "7f5e1c83dc0e10b001b91669b4028bb9950ea519f1a4d35915dc85480bffa7dc",
+      "independent_inode": true
+    },
+    {
+      "path": "roundtrip_barrel.py",
+      "sha256": "a541dbf992dec3be3943c817965de721335c811497c02e76144193c70242931e",
+      "independent_inode": true
+    },
+    {
+      "path": "roundtrip_pixel_comparison.json",
+      "sha256": "5caf46fc24b450caa0754091469cc10e6bb5594022a79bfa161425d44c9b5c1d",
+      "independent_inode": true
+    },
+    {
+      "path": "roundtrip_receipt.json",
+      "sha256": "e173455f1893427a5d872286d9cd1e000ae7b7869992cd99e66793c7d86f80ff",
+      "independent_inode": true
+    },
+    {
+      "path": "source_report.json",
+      "sha256": "04a30e4b34f0d0dbde247c010353fa37fe612a7079df97b7005e54ed75aba91f",
+      "independent_inode": true
+    },
+    {
+      "path": "texture_payload_validation.json",
+      "sha256": "0173be54c5cca8f17f154242f9c85c0f8645425866f82660855f0a7ebc94b3a7",
+      "independent_inode": true
+    },
+    {
+      "path": "validate_source.py",
+      "sha256": "ad911ee76374b03c37d28e8bef36b75ee49d13152ac9350b4f46e38c26819c9c",
+      "independent_inode": true
+    },
+    {
+      "path": "final_handoff.json",
+      "sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
+      "independent_inode": true
+    }
+  ],
+  "count": 56,
+  "all_independent_inodes": true,
+  "all_bytes_identical": true
+}

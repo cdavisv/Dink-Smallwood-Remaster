@@ -1,0 +1,19 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel/Export",
+  "manifest": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Barrel_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.glb"
+      },
+      "tris": {
+        "LOD0": 16648
+      }
+    }
+  ],
+  "rejected": []
+}
