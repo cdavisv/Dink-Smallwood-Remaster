@@ -1,0 +1,7 @@
+{
+  "status": "DIAGNOSTIC_CONVENTION_ERROR",
+  "error": "Initial native-front check used right-handed cross as outward normal after FBX-to-UE Y reflection; UE CW front uses negative RH cross. No geometry/material/camera change.",
+  "preserved_script": "/home/davisc/Work/DinkQA/OwnerScreenExposure/check_skirt_pixels_rays_RH_CONVENTION_FAILURE.py",
+  "sha256": "dd9268dd10b15acd6312392be15d303c34ed7c7b8eb7bcc73fddcab94ee3923c",
+  "stored_normal_api": "UStaticMeshDescription only exposes C++ attribute normals; no Python UFUNCTION getter in installed wrapper. Unexecuted getter draft preserved, not used as evidence."
+}

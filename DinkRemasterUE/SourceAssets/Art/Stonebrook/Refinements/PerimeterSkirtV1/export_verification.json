@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "fbx_sha256": "11b4652c6f65b694d630d475219d79c5439b92c67bf483a9c296af6ec8a940c6",
+  "vertices": 48,
+  "triangles": 96,
+  "closed_manifold": true,
+  "signed_volume_m3": 0.06969823945960045,
+  "finite_nonmissing_UV0": true,
+  "materials": 1,
+  "UCX": 0,
+  "roundtrip_dimensions_m": [
+    14.867422103881836,
+    13.115500450134277,
+    0.17800000309944153
+  ],
+  "dimension_tolerance_cm": 0.001,
+  "actual_native_gap_rays_replayed": 7,
+  "ray_results": [
+    {
+      "pixel": [
+        656,
+        471
+      ],
+      "original_RGB": [
+        169,
+        203,
+        225
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.40459826944,
+        392285.02996871946,
+        -5.524724006652832
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9064931273460388
+    },
+    {
+      "pixel": [
+        656,
+        472
+      ],
+      "original_RGB": [
+        155,
+        192,
+        219
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.40098622796,
+        392285.02996871946,
+        -6.172268867492676
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9060379266738892
+    },
+    {
+      "pixel": [
+        656,
+        473
+      ],
+      "original_RGB": [
+        153,
+        191,
+        216
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.39736226556,
+        392285.02996871946,
+        -6.820314407348633
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9055818319320679
+    },
+    {
+      "pixel": [
+        656,
+        474
+      ],
+      "original_RGB": [
+        152,
+        189,
+        215
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.3937502241,
+        392285.0300164032,
+        -7.468836784362793
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9051247835159302
+    },
+    {
+      "pixel": [
+        656,
+        475
+      ],
+      "original_RGB": [
+        156,
+        193,
+        218
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.3901262617,
+        392285.02996871946,
+        -8.117835998535156
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9046667814254761
+    },
+    {
+      "pixel": [
+        656,
+        476
+      ],
+      "original_RGB": [
+        131,
+        170,
+        201
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.38650229928,
+        392285.02996871946,
+        -8.767335891723633
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.9042078852653503
+    },
+    {
+      "pixel": [
+        656,
+        477
+      ],
+      "original_RGB": [
+        122,
+        160,
+        197
+      ],
+      "new_skirt_hit_world_cm": [
+        -183705.38287833688,
+        392285.02996871946,
+        -9.417288780212402
+      ],
+      "intersections": 2,
+      "nearest_front_facing_normal_dot_ray": -0.903748095035553
+    }
+  ],
+  "native_imported": false,
+  "native_rendered": false,
+  "qualification": "Only the seven measured source-geometry misses are proven. Residual0.2cm upper clearance, Nanite, additional angles and lighting require native review."
+}

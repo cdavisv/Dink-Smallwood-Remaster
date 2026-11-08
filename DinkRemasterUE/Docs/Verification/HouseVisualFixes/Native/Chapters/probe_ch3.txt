@@ -1,0 +1,15 @@
+Dink.Gameplay.Probe chapter 3 (The roads: gold heart, three chests, strength potions, the Mayor): 11 of 11 steps in 430.1 s of game time (8.6 s wall); trace md5 e9fce770bc, 430 events; final greybox screen 67, Dink sprite screen 67, pawn at V(X=-98966.39, Y=393040.35, Z=98.00); wizard_see 4, wizard_again 1, s2-aunt 4, caveguy 6, strength 8, defense 0, magic 5, level 2, spell charge 100/100, story 8, pig_story 1, old_womans_duck 4, nuttree 1, letter 2, gold 724, life 13/23, exp 360, player_map 67, vision 0, Dink free at 344,273, menu none; scripts:; game time 430050 ms, update_status 1, status ticks 533; last lines: "But I need proof before I can go calling them in." / "Ok, so if I get proof you'll help?" / "Yes, without it my hands are tied." / "Allright, then I'm off."
+  last gameplay events: 379750 touch 5 (gheart) | 380767 attack with item-fst facing 6 | 380950 hit 20 by 1 strength 4 damage 0 | 380983 touch 2 (papgold) | 382000 attack with item-fst facing 6 | 382183 hit 6 by 1 strength 4 damage 0 | 382217 touch 7 (papgold) | 383233 attack with item-fst facing 6 | 383417 hit 2 by 1 strength 4 damage 0 | 383450 touch 3 (papgold) | 386483 touch 18 (rpotion) | 386800 vanished 18 | 389483 touch 17 (rpotion) | 389800 vanished 17 | 392483 touch 16 (rpotion) | 392800 vanished 16 | 395483 touch 15 (rpotion)
+
+OK    1 the road to KernSin: a gold heart (SCR_524, S524_P04 gheart touch: &lifemax + 10) (3.0 s game time, done at 379.750 s)
+OK    2 open the chest S005_P28 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 380.950 s)
+OK    3 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 380.983 s)
+OK    4 open the chest S557_P05 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 382.183 s)
+OK    5 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 382.217 s)
+OK    6 open the chest S747_P01 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 383.417 s)
+OK    7 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 383.450 s)
+OK    8 four strength potions beside the goblin camp (SCR_681, S681_P14-17 rpotion touch: &strength + 4) (12.0 s game time, done at 395.483 s)
+OK    9 Christina at the fountain (SCR_586, s3-chick talk: tell her about the planned assault, &mayor 1) (15.1 s game time, done at 410.533 s)
+OK   10 into the bookstore street: the girl leads him on (SCR_587, s3-st1o main: &mayor 2) (12.0 s game time, done at 422.533 s)
+OK   11 the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk: tell him about the planned assault, &mayor 3) (7.5 s game time, done at 430.033 s)
+DONE every step done

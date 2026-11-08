@@ -1,0 +1,62 @@
+{
+  "owned_game_pid": 83428,
+  "normal_console_quit": true,
+  "process_absent_host_confirmed": true,
+  "pins": 6890,
+  "changes": [],
+  "real_W_exit_return": "PASS; no teleports during routes",
+  "eight_angle_owner_states": [
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-000.json",
+      "eye_distance_cm": 0.0,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-045.json",
+      "eye_distance_cm": 0.0,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-090.json",
+      "eye_distance_cm": 0.0,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-135.json",
+      "eye_distance_cm": 0.0,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-180.json",
+      "eye_distance_cm": 0.0,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-225.json",
+      "eye_distance_cm": 1.1931501076905988,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-270.json",
+      "eye_distance_cm": 128.20079333189642,
+      "enabled": true,
+      "unbound": true
+    },
+    {
+      "path": "Saved/VisualQA/Runtime/exposure-returned-315.json",
+      "eye_distance_cm": 1.1931642170529813,
+      "enabled": true,
+      "unbound": true
+    }
+  ],
+  "outdoor_provider_off": true,
+  "settings_light_material_overrides_used": false,
+  "matched_fixture": "INVALID: direct teleport to archived arrival point retriggered authentic exit warp. Preserved FailedMatchedFixture; excluded from successful evidence.",
+  "lighting_status": "Owner activation bug fixed. Indoor hero/center remain dark; lighting calibration unfinished. GI quality3 and flags enabled do not prove surface-cache/SDF coverage."
+}
