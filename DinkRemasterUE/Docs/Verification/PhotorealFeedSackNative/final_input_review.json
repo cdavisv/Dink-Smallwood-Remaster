@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "full_run_pins": 9240,
+  "current_differences": [
+    "AGENTS.md",
+    "Scripts/playtest_desktop.py"
+  ],
+  "qualification": "Only post-run status documentation and Python route-driver budget differ. All C++/import tools/source art/Content/Data/ledger/config/modules match full152. Route helper matches actual tested Saved driver after owned-data path normalization; all490Python tests rerunPASS."
+}

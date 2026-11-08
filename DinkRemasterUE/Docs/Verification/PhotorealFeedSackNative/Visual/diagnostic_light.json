@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "pid": 293200,
+  "before": {
+    "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_3",
+    "location_cm": [
+      -183252.66,
+      392786.605,
+      260.0
+    ],
+    "lumens": 450.0,
+    "radius_cm": 440.0
+  },
+  "diagnostic_location_cm": [
+    -183290,
+    392480,
+    140
+  ],
+  "diagnostic_lumens": 3000.0,
+  "diagnostic_radius_cm": 400.0,
+  "scope": "Temporary QA relocation/brightness of one existing authored5000Klight; not default-game lighting or production fix; no assets saved"
+}

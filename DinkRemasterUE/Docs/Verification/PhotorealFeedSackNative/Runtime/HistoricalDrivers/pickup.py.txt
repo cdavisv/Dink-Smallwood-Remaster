@@ -1,0 +1,26 @@
+from pathlib import Path
+import sys,json,time
+sys.path.insert(0,str(Path('Scripts').resolve()));import playtest_desktop as d;import playtest_interactions as q
+out=Path('Saved/FeedSackReviewed/Render').resolve();log=out/'game.log';pid=282208
+d.use_private_display(':189');w=d.window();assert int(w['pid'])==pid;d.focus(w)
+for _ in range(15):
+ state=d.player(log)
+ if not state['move_ignored']:break
+ d.run('wtype','-k','space','-s','650')
+else:raise RuntimeError('Openingdialoguestillfrozen')
+d.console('DisableAllScreenMessages')
+initial=q.command_output('dink.Inventory',log);assert ': item-pig'not in initial
+origin_before=q.command_output('dink.Origin S001_P52',log)
+far=q.setup([423,130],0,log);inv_far=q.command_output('dink.Inventory',log);q.capture(out/'sack-far.png');assert ': item-pig'not in inv_far,inv_far
+offset=log.stat().st_size;d.run('wtype','-P','w','-s','200','-p','w');time.sleep(.4)
+near=d.player(log);inv_near=q.command_output('dink.Inventory',log);q.capture(out/'sack-collected.png');assert inv_near.count(': item-pig')==1,inv_near
+story=q.story(log);origin_after=q.command_output('dink.Origin S001_P52',log)
+steps=[near]
+for n in range(15):
+ if steps[-1]['map'][0]>450:break
+ d.run('wtype','-P','w','-s','100','-p','w');time.sleep(.25);steps.append(d.player(log))
+passed=steps[-1];inv_after=q.command_output('dink.Inventory',log);q.capture(out/'removed-sack-space.png')
+assert passed['map'][0]>449 and inv_after.count(': item-pig')==1 and not passed['move_ignored'],(passed,inv_after)
+with log.open()as f:f.seek(offset);action=f.read()
+result={'passed':True,'pid':pid,'baseline':'new19644triangle PhotorealFeedSackV1 plus merged wovenbasket18','scope':'Explicitphoto/interactionsetup at423/130, thenreal200msWtouchpickup+adaptive100msWwalkthroughremovedspace; no directscript/item/fact calls, no save','initial_inventory':initial,'origin_before':origin_before,'far':far,'far_inventory':inv_far,'near':near,'near_inventory':inv_near,'after_pickup_story':story,'origin_after':origin_after,'passed_removed_space':passed,'traverse_steps':steps,'final_inventory':inv_after,'action_log':action}
+(out/'pickup.json').write_text(json.dumps(result,indent=2)+'\n');print('NEW_SACK_PICKUP_PASS',flush=True)

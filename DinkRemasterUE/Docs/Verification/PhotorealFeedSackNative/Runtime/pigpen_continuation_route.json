@@ -1,0 +1,71 @@
+{
+  "name": "Continue same realW route after original35attempt budget exhausted under acceleration",
+  "expected_screen": 407,
+  "waypoints": [
+    {
+      "screen": 439,
+      "map": [
+        420,
+        50
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 439,
+      "map": [
+        420,
+        -10
+      ],
+      "warp_to": 407,
+      "tolerance_cm": 6
+    },
+    {
+      "screen": 407,
+      "map": [
+        420,
+        390
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 407,
+      "map": [
+        250,
+        390
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 407,
+      "map": [
+        90,
+        390
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 407,
+      "map": [
+        90,
+        260
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 407,
+      "map": [
+        200,
+        260
+      ],
+      "tolerance_cm": 10
+    },
+    {
+      "screen": 407,
+      "map": [
+        300,
+        250
+      ],
+      "tolerance_cm": 10
+    }
+  ]
+}

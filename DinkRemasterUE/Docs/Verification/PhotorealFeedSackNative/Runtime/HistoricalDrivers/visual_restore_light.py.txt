@@ -1,0 +1,7 @@
+import unreal,json,os
+from pathlib import Path
+r=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();o=r/'Saved/FeedSackReviewed/Visual';assert os.getpid()==293200
+v=json.loads((o/'diagnostic_light_before.json').read_text());a=next(a for a in unreal.ObjectIterator(unreal.PointLight)if a.get_path_name()==v['actor']);c=a.get_component_by_class(unreal.PointLightComponent)
+a.set_actor_location(unreal.Vector(*v['location_cm']),False,False);c.set_intensity(v['lumens']);c.set_attenuation_radius(v['radius_cm']);loc=a.get_actor_location()
+assert all(abs(x-y)<1e-6 for x,y in zip([loc.x,loc.y,loc.z],v['location_cm'])) and c.get_editor_property('intensity')==v['lumens'] and c.get_editor_property('attenuation_radius')==v['radius_cm']
+(o/'diagnostic_light_restored.json').write_text(json.dumps(dict(passed=True,pid=os.getpid(),actor=v['actor'],restored=v,scope='Actual original authored light transform/intensity/radius restored; no assets saved'),indent=2)+'\n')
