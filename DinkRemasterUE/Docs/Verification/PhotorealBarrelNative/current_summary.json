@@ -1,0 +1,219 @@
+{
+  "status": "Reviewed native barrel import, saved verification, three-reference publication and full147/267Python pass; actual rendered barrel acceptance pending",
+  "project": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+  "branch": "art/photoreal-barrel-native",
+  "historical_continuation": "HistoricalContinuation/receipt_paths.json",
+  "reviewed_tools": {
+    "barrel_contract.py": "0eb325564c1ee3429cf0892b2bd47fefa125df72cf11f0d965e08b5717980943",
+    "import_photoreal_barrel.py": "cb769652acec47d20420d00067a5a74cd9df677139c172e46d91869b5eda31e3",
+    "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
+    "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "source_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+  "source": "SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+  "preflight": {
+    "passed": true,
+    "seconds": 20.196085691452026
+  },
+  "import": {
+    "passed": true,
+    "seconds": 54.742189168930054,
+    "only_new_packages": 5,
+    "protected_input_changes": []
+  },
+  "fresh_verify": {
+    "passed": true,
+    "seconds": 42.565171241760254,
+    "all_scope_changes": [],
+    "receipt_sha256": "ab9b95b0e6710cfaac85943415064b6b9446b17f51ff8449de5f0d231561b0b3",
+    "candidate_bytes_identical_to_import": true
+  },
+  "geometry": {
+    "triangles": 16648,
+    "bounds_min_cm": [
+      -41.973323822021484,
+      -42.22994613647461,
+      0.0
+    ],
+    "bounds_max_cm": [
+      41.973323822021484,
+      42.22994613647461,
+      100.75000762939453
+    ],
+    "oriented_source_match": {
+      "checked_triangles": 16648,
+      "bijective_source_coverage": true,
+      "cyclic_only": true,
+      "position_tolerance_cm": 0.01,
+      "UV_tolerance": 0.0001,
+      "max_position_delta_cm": 3.814697265625e-06,
+      "max_UV_delta": 2.9802322387695312e-08,
+      "minimum_geometric_front_dot": 0.9999999865725082
+    },
+    "front_evidence": {
+      "checked_triangles": 16648,
+      "minimum_dot_authored_source": 0.9630999026532152,
+      "minimum_dot_source_geometric_front": 0.9999999865725082,
+      "clockwise_geometric_front_sha256": "698595e5ff02940c86415c697304d200ab99ec9f422ad91b112e0d4f51a627e1",
+      "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+      "native_shading_normal_values_read": false
+    },
+    "convex_source_match": {
+      "checked_hulls": 1,
+      "checked_vertices": 8,
+      "bijective_hulls_and_vertices": true,
+      "position_tolerance_cm": 0.01,
+      "max_vertex_delta_cm": 0.0
+    },
+    "original_native_baseline": {
+      "triangles": 10472,
+      "body": "(SphereElems=,BoxElems=,SphylElems=,ConvexElems=((VertexData=((X=-37.500000,Y=37.500000,Z=0.000000),(X=-37.500000,Y=37.500000,Z=100.000000),(X=-37.500000,Y=-37.500000,Z=0.000000),(X=-37.500000,Y=-37.500000,Z=100.000000),(X=37.500000,Y=37.500000,Z=0.000000),(X=37.500000,Y=37.500000,Z=100.000000),(X=37.500000,Y=-37.500000,Z=0.000000),(X=37.500000,Y=-37.500000,Z=100.000000)),IndexData=(3,1,2,0,6,2,0,2,1,4,0,1,7,3,6,3,2,6,7,1,3,5,4,1,4,6,0,4,7,6,5,7,4,5,1,7),ElemBox=(Min=(X=-37.500000,Y=-37.500000,Z=0.000000),Max=(X=37.500000,Y=37.500000,Z=100.000000),IsValid=True))),TaperedCapsuleElems=,LevelSetElems=,SkinnedLevelSetElems=,MLLevelSetElems=,SkinnedTriangleMeshElems=)",
+      "bounds": [
+        83.94664764404297,
+        84.45989227294922,
+        100.75000762939453
+      ]
+    },
+    "collision_policy": "complex-as-simple retained; one authored UCX box verified, not active query source"
+  },
+  "materials": {
+    "direct_graph": {
+      "direct_BC_N_ORM": true,
+      "specular": 0.35,
+      "all_native_material_property_ids_checked": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        18
+      ]
+    },
+    "three_native_TextureSource_RGB_pixel_hashes": {
+      "SM_Barrel_Oak_01/BC": "9da47e8b36dee88a4f8ea193fa6fd6058add08717479f05e4b488cb7953a917d",
+      "SM_Barrel_Oak_01/N": "9682ebbc578ecf3bd19b7a040698a6ee0a64961b4eeb3c52fcac4edaef84179c",
+      "SM_Barrel_Oak_01/ORM": "d1b6bcf0a3afc281c5aa3de9658c57f02c52bf02015cd413c57e0e6d8e0bd662"
+    },
+    "metallic_contract": "ORM R255; B0..240, frozen wood dielectric and bare-iron variation retained; native Source pixels equal frozen RGB"
+  },
+  "source_filename_roles": {
+    "SM_Barrel_Oak_01/FBX": {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
+      "resolved_filename": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
+      "sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
+      "native_getter_resolved_selected_source": true
+    },
+    "SM_Barrel_Oak_01/BC": {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_BC.png",
+      "resolved_filename": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_BC.png",
+      "sha256": "5894fdb201206ab7afa8d314833105e425e4f0714521bc29aaf2138e596bb5c3",
+      "native_getter_resolved_selected_source": true
+    },
+    "SM_Barrel_Oak_01/N": {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_N.png",
+      "resolved_filename": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_N.png",
+      "sha256": "6aa26300c2396b5bf67cb8e40f2869c537b641656fc5d3f404061712e41da957",
+      "native_getter_resolved_selected_source": true
+    },
+    "SM_Barrel_Oak_01/ORM": {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_ORM.png",
+      "resolved_filename": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/Textures/T_Barrel_Oak_01_Photo_ORM.png",
+      "sha256": "6171ae465dec57cde321cd849a144f2a02eee2a91d2a656895dab7ceed76fc47",
+      "native_getter_resolved_selected_source": true
+    }
+  },
+  "packages": {
+    "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset": "16d882748dc3c0ca2613503eb45cc6498872a10be88b8a62545d0425968fa5d2",
+    "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset": "7265f0036eceadfd26d1342a1e6f9fa0eb265221d5f7ca5db9381f0d3e646b00",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset": "47b41a06a40ca3361ef0be3fa49a6fedd6b57b909153b25f10eda381368b2349",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset": "e47170383f04c979e90b1a8b218637b451b7123603809877bcb95326095819f7",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset": "be1a2566e3cc61a5b3385efa2b217345df9507cf60577d32cc1b9bf90692e3cd"
+  },
+  "pure_tests": 83,
+  "runtime_publication": {
+    "status": "applied",
+    "receipt": "Publication/applied.json",
+    "changed_mesh_references": 3,
+    "asset_rows": 1,
+    "decorative_instances": 2,
+    "before_house_sha256": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853",
+    "after_house_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
+    "verification_sha256": "ab9b95b0e6710cfaac85943415064b6b9446b17f51ff8449de5f0d231561b0b3",
+    "all_non_mesh_semantics_preserved": true,
+    "writer_scope": "three_mesh_paths",
+    "scene_data_approval": false
+  },
+  "not_yet_run": [
+    "Actual game lighting/collision/door/camera screenshots",
+    "Final photoreal visual acceptance",
+    "Native asset commit/LFS/PR review and merge"
+  ],
+  "qualification": "Historical 7barrel/191combined tests and historical importer receipts belong to another tool version. Reviewed source tooling has83pure tests, module pins, safe indexed mesh getter guards and its own fresh import/verify chain; receipts are never relabeled.",
+  "aggregate_python_tests": {
+    "passed": 267,
+    "failed": 0,
+    "log": "PostPublication/python267.log"
+  },
+  "source_audit": {
+    "passed": true,
+    "binary_files_verified": 1990,
+    "python_syntax_files": 262,
+    "shell_syntax_files": 22,
+    "ledger_rows": 1414,
+    "errors": [],
+    "secret_flags": [],
+    "report": "PostPublication/source_audit.json",
+    "qualified_prior_failure": "PostPublication/parallel_audit_false_failure.json",
+    "reason": "The first audit ran concurrently with synthetic publisher tests; it saw four temporary fake tool bytes inside Scripts/tests/tmpezbhrh3o/tools. The sequential audit after test cleanup passes without product source changes."
+  },
+  "native_ledger": {
+    "candidate_rows_added": 5,
+    "prior_rows": 1409,
+    "total_rows": 1414,
+    "prior_raw_bytes_preserved": true,
+    "audio_rows_preserved": 483,
+    "receipt": "ledger_append_receipt.json"
+  },
+  "postpublication_full_native": {
+    "passed": true,
+    "tests": 147,
+    "failed": 0,
+    "warning_tests": 0,
+    "warning_events": 0,
+    "error_events": 0,
+    "seconds": 545.1900522708893,
+    "frozen_inputs": 8956,
+    "changed_inputs": [],
+    "old_save_inventory_count": 10,
+    "old_save_inventory_scope": "Ten earlier native probe slots under Saved/NativeProps/CombinedFull/User, not an exhaustive owner-save inventory",
+    "old_save_changes": [],
+    "new_isolated_probe_slots": 10,
+    "report": "Full147/raw_report.json",
+    "verification": "Full147/verification.json",
+    "independent_check": "Full147/independent_check.json",
+    "scope": "Merged PR10+PR11+PR12+PR13 plus staged native photoreal barrel; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded."
+  },
+  "published_verify": {
+    "passed": true,
+    "seconds": 44.17323970794678,
+    "receipt": "PublishedVerify/receipt.json",
+    "terminal": "PublishedVerify/terminal.json",
+    "protected_changes": [],
+    "scope": "Fresh published entry-state verification; no private author receipt required. Four native source roles and all five package entry bytes retained."
+  },
+  "render_probe": {
+    "passed": true,
+    "evidence": "Render/verification.json",
+    "input_files": 6914,
+    "input_changes": [],
+    "collision_contact_map": [
+      164.017,
+      120
+    ],
+    "collision_away_map": [
+      254.506,
+      120
+    ],
+    "limits": "Explicit setup fixtures then real W; not universal collision or final room lighting/hero/vista acceptance."
+  }
+}

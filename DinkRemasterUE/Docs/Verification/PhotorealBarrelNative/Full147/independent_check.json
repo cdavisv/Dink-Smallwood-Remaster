@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "tests": 147,
+  "actual_state_counts": {
+    "Success": 147
+  },
+  "warning_events": 0,
+  "error_events": 0,
+  "same_before_after_inputs": 8956,
+  "old_save_inventory_count": 10,
+  "old_save_inventory_scope": "Ten earlier native probe slots under Saved/NativeProps/CombinedFull/User, not an exhaustive owner-save inventory",
+  "old_saves_still_match_recorded_hashes": true,
+  "new_isolated_probe_save_slots": 10,
+  "native_scope": "Merged PR10+PR11+PR12+PR13 plus staged native photoreal barrel; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded.",
+  "limits": "NullRHI tests do not establish rendered barrel lighting, visibility, game-camera or current/future art quality; root private render check remains pending."
+}

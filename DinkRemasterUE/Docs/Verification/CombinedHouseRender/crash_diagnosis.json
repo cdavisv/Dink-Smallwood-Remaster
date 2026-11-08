@@ -1,0 +1,18 @@
+{
+  "status": "diagnostic renderer crash, not lighting acceptance",
+  "game_pid": 146595,
+  "trigger": "r.Lumen.Visualize 1",
+  "signal": "SIGSEGV",
+  "crashing_thread": "RenderThread0",
+  "stack": "libvulkan_radeon.so -> FVulkanPipelineStateCacheManager::CreateComputePipeline -> FVisualizeLumenSceneCS",
+  "breadcrumb": "VisualizeLumenScene",
+  "input_files": 6909,
+  "input_changes": 0,
+  "query_values": "query_values.json",
+  "invalid_captures": [
+    "lumen-overview.png"
+  ],
+  "coverage_established": false,
+  "resource_check": "30GiB RAM total, 21GiB available; journal window contains no OOM kill",
+  "limits": "Driver function symbols unresolved; no engine or driver fix established. Normal Lit screenshot before trigger is valid; diagnostic screenshot frozen with console is not valid Lumen coverage."
+}

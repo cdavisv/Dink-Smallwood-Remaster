@@ -1,0 +1,22 @@
+{
+  "result": "PASS for rendered barrel iteration and bounded collision probe",
+  "pid": 171912,
+  "display_pid": 171906,
+  "quit": "normal console quit; owned private Xvfb stopped",
+  "input_files": 6914,
+  "input_changes": [],
+  "collision_contact_map": [
+    164.017,
+    120.0
+  ],
+  "collision_away_map": [
+    254.506,
+    120.0
+  ],
+  "limits": [
+    "Photo/collision fixtures use setupteleports; actualmovementto/away usesW.",
+    "No universal alldirection/cornercollision proof.",
+    "Oldhero/oldwallcutaway stillloaded; northcornerwallvanish+outsidefloorbluestrip remainsseparatecameraissue handledinotherisolatedcodecheckout.",
+    "Actualbarrelwood/metal/headjoinery inspected; finalroomlighting/hero/vista approval remainspending."
+  ]
+}

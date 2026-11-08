@@ -1,0 +1,33 @@
+{
+  "command": [
+    "nice",
+    "-n",
+    "10",
+    "taskset",
+    "-c",
+    "10,11",
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/DinkRemaster.uproject",
+    "-run=pythonscript",
+    "-script=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Scripts/import_photoreal_props.py",
+    "-nullrhi",
+    "-notraceserver",
+    "-unattended",
+    "-nosplash",
+    "-nopause",
+    "-nosound",
+    "-stdout",
+    "-FullStdOutLogOutput",
+    "-ddc=InstalledNoZenLocalFallback",
+    "-LocalDataCachePath=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/DDC",
+    "-UserDir=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/User",
+    "-abslog=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/unreal.log"
+  ],
+  "env_overrides": {
+    "DINK_PROPS_MODE": "verify",
+    "DINK_PROPS_SOURCE": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1",
+    "DINK_PROPS_REPORT": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/receipt.json",
+    "DINK_PROPS_IMPORT_RECEIPT": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/NONEXISTENT_AUTHOR_IMPORT_RECEIPT.json"
+  },
+  "ImportData_present": false
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "seconds": 135,
+  "warnings": 0,
+  "actions": 143,
+  "copied_DLLs": false,
+  "module_sha256": {
+    "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "6066866c6fb0c6e7ff55a49a22b682f1083c972b161739e51d2203c3f5246151",
+    "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "5e5b538515403557cfb55a42881b3bf758072f77b34666be3ca06b5577da0934",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "048f43538266d76d2ae498e1dc435a6d793dc0e7d2e3de0c51b4a9b4b8738ca5",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "77dc620a3bb51c39c4dd5e29fefdcd258c8b6d1a7f9964b090eec413b8b48e7a",
+    "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "03fd93318ebeab68c419f70bfbfc327a32b68e342d21d07dd29e438fb4b4a067",
+    "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "5f03c98a0d7037d36c9741336754f7e01013b92bcbecf4db9fe91606d8fa7685",
+    "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "795ffcc49d828bd38de61b2fa79487ec12db427dc2ac108568052367b9a472ff"
+  },
+  "foreign_Work_dependencies": [],
+  "log_sha256": "431dbbb370d2d143b362b93bd0d709ae42a3600eb6f19911f42120ea88db77f3"
+}

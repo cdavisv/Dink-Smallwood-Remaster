@@ -1,0 +1,206 @@
+{
+  "status": "No blocking findings for source candidate; native acceptance pending",
+  "findings": [],
+  "bundle": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel",
+  "source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "export_source_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+  "final_handoff_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
+  "frozen_files_verified": 55,
+  "independent_binary_FBX": {
+    "version": 7400,
+    "up_axis": [
+      2,
+      1
+    ],
+    "front_axis": [
+      1,
+      -1
+    ],
+    "coord_axis": [
+      0,
+      1
+    ],
+    "unit_scale_factor": 100.0,
+    "original_unit_scale_factor": 100.0,
+    "models": {
+      "SM_Barrel_Oak_01": {
+        "name": "SM_Barrel_Oak_01",
+        "type": "Mesh",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scaling": [
+          1,
+          1,
+          1
+        ],
+        "parent": null,
+        "min": [
+          -0.4197332262992859,
+          -0.42229944467544556,
+          0.0
+        ],
+        "max": [
+          0.4197332262992859,
+          0.42229944467544556,
+          1.0075000524520874
+        ],
+        "size": [
+          0.8394664525985718,
+          0.8445988893508911,
+          1.0075000524520874
+        ],
+        "size_cm": [
+          83.94664525985718,
+          84.45988893508911,
+          100.75000524520874
+        ],
+        "min_cm": [
+          -41.97332262992859,
+          -42.229944467544556,
+          0.0
+        ],
+        "max_cm": [
+          41.97332262992859,
+          42.229944467544556,
+          100.75000524520874
+        ],
+        "tris": 16648
+      },
+      "UCX_SM_Barrel_Oak_01_01": {
+        "name": "UCX_SM_Barrel_Oak_01_01",
+        "type": "Mesh",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scaling": [
+          1,
+          1,
+          1
+        ],
+        "parent": null,
+        "min": [
+          -0.375,
+          -0.375,
+          0.0
+        ],
+        "max": [
+          0.375,
+          0.375,
+          1.0
+        ],
+        "size": [
+          0.75,
+          0.75,
+          1.0
+        ],
+        "size_cm": [
+          75.0,
+          75.0,
+          100.0
+        ],
+        "min_cm": [
+          -37.5,
+          -37.5,
+          0.0
+        ],
+        "max_cm": [
+          37.5,
+          37.5,
+          100.0
+        ],
+        "tris": 12
+      }
+    }
+  },
+  "independent_FBX_array_checks": [
+    {
+      "geometry": "SM_Barrel_Oak_01_PhotorealSource.001\u0000\u0001Geometry",
+      "vertices": 8396,
+      "triangles": 16648,
+      "minimum_area_m2": 5.937232452485301e-08,
+      "nonmanifold_edges": 0,
+      "UV_range": [
+        [
+          0.005152636673301458,
+          0.005152634344995022
+        ],
+        [
+          0.9948474168777466,
+          0.9946642518043518
+        ]
+      ],
+      "finite_unit_normals": true
+    },
+    {
+      "geometry": "Cube.001\u0000\u0001Geometry",
+      "vertices": 8,
+      "triangles": 12,
+      "minimum_area_m2": 0.28125,
+      "nonmanifold_edges": 0,
+      "UV_range": [
+        [
+          0.125,
+          0.0
+        ],
+        [
+          0.875,
+          1.0
+        ]
+      ],
+      "finite_unit_normals": true
+    }
+  ],
+  "pure_payload_audit": "inspect_payload.py completed BARREL_PAYLOAD_PASS read-only",
+  "guide_reports": {
+    "source_errors": 0,
+    "source_warnings": 2,
+    "export_errors": 0,
+    "export_warnings": 1,
+    "default_scene_NO_ASSETS_failure_retained": true,
+    "rejected_nonmanifold_preview_retained": true
+  },
+  "texture_checks": {
+    "all_RGB2048": true,
+    "export_pixels_identical_bakes": true,
+    "AO_R_all255": true,
+    "metallic_range": [
+      0,
+      240
+    ]
+  },
+  "visual_review": {
+    "images": [
+      "Previews/front.png",
+      "Roundtrip/front.png",
+      "Previews/head.png",
+      "Roundtrip/head.png",
+      "Roundtrip/game-distance.png"
+    ],
+    "assessment": "Recognizable curved barrel silhouette, fitted flat iron bands/rivets and head-board joins retained. Bake softens fine wood grain and rim crosscut detail but preserves form, metal contrast and restrained palette. No visible blocking bake artifact in inspected views; final game-distance lighting remains unproven."
+  },
+  "provenance": "Original Dink173_01 and174variants retained as references; project-authored geometry/materials and inherited generated oak provenance explicit, not mislabeled CC0. Production tools bundle-relative; historical build_before_material_review.py contains original Work path and is not in frozen publication files.",
+  "qualifications": [
+    "No new Blender/native execution; raw authored Blender corner-normal comparison retained as receipt, while binary FBX finite unit normals/topology checked independently.",
+    "Roundtrip uses actual FBX geometry with explicit same baked material, not FBX embedded material or Unreal validation.",
+    "Source_report first visual gate pending/baked false is an earlier authoring checkpoint; final_handoff records later reviewed/exported state.",
+    "UCX is exactly75x75x100cm; original runtime policy remains complex-as-simple, so UCX is not active query-source evidence.",
+    "Soft6000triangle target warning retained, candidate16648 remains below20000hardmax.",
+    "Native import, saved geometry/material/Texture.Source and filename ownership, game lighting/collision/door checks, ledger/commit/PR remain root work."
+  ],
+  "writes": "Only this review JSON outside frozen source bundle; repository, native assets and source payload unchanged."
+}
