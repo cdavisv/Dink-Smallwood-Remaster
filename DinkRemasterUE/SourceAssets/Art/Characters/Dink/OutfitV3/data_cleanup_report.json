@@ -1,0 +1,21 @@
+{
+  "scope": "Remove only unused wardrobe geometry, keep inherited protected wires; normalize new texture names only",
+  "lods": [
+    {
+      "lod": 0,
+      "removed_unused_wardrobe_vertices": 0
+    },
+    {
+      "lod": 1,
+      "removed_unused_wardrobe_vertices": 0
+    },
+    {
+      "lod": 2,
+      "removed_unused_wardrobe_vertices": 0
+    },
+    {
+      "lod": 3,
+      "removed_unused_wardrobe_vertices": 0
+    }
+  ]
+}

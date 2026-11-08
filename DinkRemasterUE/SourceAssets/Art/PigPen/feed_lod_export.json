@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD0.fbx",
+      "render_nodes": [
+        "SM_FeedScatter_Wheat_01_LOD0"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 1269
+    },
+    {
+      "file": "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD1.fbx",
+      "render_nodes": [
+        "SM_FeedScatter_Wheat_01_LOD1"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 661
+    },
+    {
+      "file": "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD2.fbx",
+      "render_nodes": [
+        "SM_FeedScatter_Wheat_01_LOD2"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 200
+    }
+  ]
+}

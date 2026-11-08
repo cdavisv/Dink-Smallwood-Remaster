@@ -1,0 +1,66 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/PigPen/KIT_PigPen.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 0
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_FeedScatter_Wheat_01",
+      "class": "prop_small",
+      "collection": "SM_FeedScatter_Wheat_01",
+      "tris_per_lod": {
+        "LOD0": 1280,
+        "LOD1": 672,
+        "LOD2": 208
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -12.5,
+          -9.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          12.5,
+          9.0,
+          0.309
+        ],
+        "size_cm": [
+          25.0,
+          18.0,
+          0.309
+        ],
+        "unreal_min_cm": [
+          -12.5,
+          -9.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          12.5,
+          9.0,
+          0.309
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_FeedScatter_Wheat_01",
+          "message": "mesh data 'SM_FeedScatter_Wheat_01' differs from object name 'SM_FeedScatter_Wheat_01_LOD0'",
+          "object": "SM_FeedScatter_Wheat_01_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

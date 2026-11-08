@@ -1,0 +1,32 @@
+{
+  "tool": "MPFB2",
+  "commit": "6ff1eb358f6c1959ced77e79e6dd2406d9a71f49",
+  "source_url": "https://github.com/makehumancommunity/mpfb2",
+  "asset_pack_url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+  "asset_pack_sha256": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+  "licence": "CC0 1.0 for bundled basemesh,targets and system asset data; GPLv3 for separate authoring tool code",
+  "licence_primary": "https://github.com/makehumancommunity/mpfb2/blob/6ff1eb358f6c1959ced77e79e6dd2406d9a71f49/LICENSE.md",
+  "asset_licence_primary": "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+  "selected_data": "ThirdParty/MakeHuman; each MHCLO/MHMAT contains explicit2020CC0 release notice",
+  "reference_only": "Epic Manny geometry remains under/tmp and is excluded from delivered character meshes.",
+  "character_profiles": {
+    "Mother": {
+      "gender": 0,
+      "age": 0.7,
+      "muscle": 0.45,
+      "weight": 0.6,
+      "height": 0.44,
+      "skin": "middleage_caucasian_female",
+      "hair": "ponytail01"
+    },
+    "Dink": {
+      "gender": 1,
+      "age": 0.46,
+      "muscle": 0.62,
+      "weight": 0.48,
+      "height": 0.5,
+      "skin": "young_caucasian_male",
+      "hair": "short02"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Creatures/Pillbug/SK_Pillbug.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 1
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "1 mesh objects are outside any asset collection and will not be exported: Review ground"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SK_Pillbug",
+      "class": "creature",
+      "collection": "SK_Pillbug",
+      "tris_per_lod": {
+        "LOD0": 24000,
+        "LOD1": 12000,
+        "LOD2": 6000
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -77.069,
+          -56.341,
+          -0.037
+        ],
+        "blender_max_cm": [
+          100.567,
+          56.341,
+          50.525
+        ],
+        "size_cm": [
+          177.636,
+          112.681,
+          50.561
+        ],
+        "unreal_min_cm": [
+          -77.069,
+          -56.341,
+          -0.037
+        ],
+        "unreal_max_cm": [
+          100.567,
+          56.341,
+          50.525
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pillbug",
+          "message": "mesh data 'Continuous ventral abdomen' differs from object name 'SK_Pillbug_LOD0'",
+          "object": "SK_Pillbug_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "removed_zero_area_faces": 0,
+  "normals": [
+    {
+      "mesh": "SK_Milder_LOD0",
+      "removed_wire_edges": 0,
+      "removed_loose_vertices": 0,
+      "multi_face_edges": [
+        {
+          "midpoint_m": [
+            -0.05388961732387543,
+            -0.16140493750572205,
+            0.9888733625411987
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        },
+        {
+          "midpoint_m": [
+            0.07869211584329605,
+            0.049282681196928024,
+            1.0341832637786865
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        }
+      ],
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Milder_LOD1",
+      "removed_wire_edges": 1,
+      "removed_loose_vertices": 0,
+      "multi_face_edges": [
+        {
+          "midpoint_m": [
+            -0.05388961732387543,
+            -0.16140493750572205,
+            0.9888733625411987
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        },
+        {
+          "midpoint_m": [
+            0.07869211584329605,
+            0.049282681196928024,
+            1.0341832637786865
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        }
+      ],
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Milder_LOD2",
+      "removed_wire_edges": 3,
+      "removed_loose_vertices": 0,
+      "multi_face_edges": [
+        {
+          "midpoint_m": [
+            -0.05388961732387543,
+            -0.16140493750572205,
+            0.9888733625411987
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        },
+        {
+          "midpoint_m": [
+            0.07869211584329605,
+            0.049282681196928024,
+            1.0341832637786865
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        }
+      ],
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Milder_LOD3",
+      "removed_wire_edges": 16,
+      "removed_loose_vertices": 0,
+      "multi_face_edges": [
+        {
+          "midpoint_m": [
+            -0.05388961732387543,
+            -0.16140493750572205,
+            0.9888733625411987
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        },
+        {
+          "midpoint_m": [
+            0.07869211584329605,
+            0.049282681196928024,
+            1.0341832637786865
+          ],
+          "face_count": 3,
+          "materials": [
+            "MI_Milder_Wardrobe"
+          ]
+        }
+      ],
+      "flat_faces_for_cancelled_normals": 24,
+      "remaining_zero_normals": 0
+    }
+  ],
+  "lods": [
+    {
+      "name": "SK_Milder_LOD0",
+      "triangles": 32674,
+      "vertices": 17098
+    },
+    {
+      "name": "SK_Milder_LOD1",
+      "triangles": 16337,
+      "vertices": 8867
+    },
+    {
+      "name": "SK_Milder_LOD2",
+      "triangles": 8168,
+      "vertices": 4668
+    },
+    {
+      "name": "SK_Milder_LOD3",
+      "triangles": 3921,
+      "vertices": 2404
+    }
+  ]
+}

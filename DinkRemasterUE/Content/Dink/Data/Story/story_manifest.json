@@ -1,0 +1,14 @@
+{
+  "generated_by": "Scripts/sync_story.py (do not hand-edit anything in this directory)",
+  "data_repo_commit": "b1bf75d+dirty",
+  "inklecate": "v1.2.1",
+  "ink_version": 21,
+  "knots": 377,
+  "entry_points": 930,
+  "fix_switches_all_false": 16,
+  "files": {
+    "dink.json": "dcac20c678da46e05a92013daf4bb2d85d7a8b1eb28b3544deaf78f233381a4d",
+    "director_vocabulary.csv": "c7216215a442f83c7765e895c6179ceedecc6507ac0d4677857a9d53c744a193",
+    "names.csv": "c08bb45d9d54e641ec37f8fb11e6b1dc711296ab1b14aa19420e647eff2c4363"
+  }
+}

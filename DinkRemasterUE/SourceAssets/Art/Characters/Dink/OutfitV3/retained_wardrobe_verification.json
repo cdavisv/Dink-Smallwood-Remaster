@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "candidate_sha256": "59445d2de287a82ea980d5dca4d10cbfc7a8c02808eb180a0b38855bc5d98743",
+  "scope": "Independent reload proves all four LODs have byte-exact same verified Wardrobe face ordering/winding, positions, named weights, smooth flags and per-corner UVs. Four anatomical LODs independently frozen by scope_verification.json.",
+  "lods": [
+    {
+      "lod": 0,
+      "faces": 15241,
+      "wardrobe_position_weight_face_uv_hash": "57e6197e20784c2109f69fe78951efae07238c20b778ed15f67ab45cc7ca255d"
+    },
+    {
+      "lod": 1,
+      "faces": 15241,
+      "wardrobe_position_weight_face_uv_hash": "57e6197e20784c2109f69fe78951efae07238c20b778ed15f67ab45cc7ca255d"
+    },
+    {
+      "lod": 2,
+      "faces": 15241,
+      "wardrobe_position_weight_face_uv_hash": "57e6197e20784c2109f69fe78951efae07238c20b778ed15f67ab45cc7ca255d"
+    },
+    {
+      "lod": 3,
+      "faces": 15241,
+      "wardrobe_position_weight_face_uv_hash": "57e6197e20784c2109f69fe78951efae07238c20b778ed15f67ab45cc7ca255d"
+    }
+  ]
+}

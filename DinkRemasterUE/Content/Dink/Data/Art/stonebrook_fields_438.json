@@ -1,0 +1,4112 @@
+{
+  "schema": "dink-art/1",
+  "screen": 438,
+  "assets": [
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_00_00.SM_Fields_438_Land_00_00_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_01_00.SM_Fields_438_Land_00_01_00",
+      "expected_size_cm": [
+        586.6314888000488,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_02_00.SM_Fields_438_Land_00_02_00",
+      "expected_size_cm": [
+        573.262882232666,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_03_00.SM_Fields_438_Land_00_03_00",
+      "expected_size_cm": [
+        559.8944187164307,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_04_00.SM_Fields_438_Land_00_04_00",
+      "expected_size_cm": [
+        546.5258121490479,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_05_00.SM_Fields_438_Land_00_05_00",
+      "expected_size_cm": [
+        533.1573009490967,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_06_00.SM_Fields_438_Land_00_06_00",
+      "expected_size_cm": [
+        519.7886943817139,
+        293.24328899383545,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_00_00.SM_Fields_438_Land_01_00_00",
+      "expected_size_cm": [
+        600.0,
+        597.8604793548584,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_01_00.SM_Fields_438_Land_01_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_02_00.SM_Fields_438_Land_01_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_03_00.SM_Fields_438_Land_01_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_04_00.SM_Fields_438_Land_01_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_05_00.SM_Fields_438_Land_01_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_06_00.SM_Fields_438_Land_01_06_00",
+      "expected_size_cm": [
+        600.0,
+        302.946400642395,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_00_00.SM_Fields_438_Land_02_00_00",
+      "expected_size_cm": [
+        600.0,
+        595.7210063934326,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_01_00.SM_Fields_438_Land_02_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_02_00.SM_Fields_438_Land_02_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_03_00.SM_Fields_438_Land_02_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_04_00.SM_Fields_438_Land_02_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_05_00.SM_Fields_438_Land_02_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_06_00.SM_Fields_438_Land_02_06_00",
+      "expected_size_cm": [
+        600.0,
+        312.6494884490967,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_00_00.SM_Fields_438_Land_03_00_00",
+      "expected_size_cm": [
+        600.0,
+        593.5815811157227,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_01_00.SM_Fields_438_Land_03_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_02_00.SM_Fields_438_Land_03_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_03_00.SM_Fields_438_Land_03_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_04_00.SM_Fields_438_Land_03_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_05_00.SM_Fields_438_Land_03_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_06_00.SM_Fields_438_Land_03_06_00",
+      "expected_size_cm": [
+        600.0,
+        322.35260009765625,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_00_00.SM_Fields_438_Land_04_00_00",
+      "expected_size_cm": [
+        600.0,
+        591.4421081542969,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_01_00.SM_Fields_438_Land_04_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_02_00.SM_Fields_438_Land_04_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_03_00.SM_Fields_438_Land_04_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_04_00.SM_Fields_438_Land_04_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_05_00.SM_Fields_438_Land_04_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_06_00.SM_Fields_438_Land_04_06_00",
+      "expected_size_cm": [
+        600.0,
+        332.0557117462158,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_00_00.SM_Fields_438_Land_05_00_00",
+      "expected_size_cm": [
+        600.0,
+        589.3025875091553,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_01_00.SM_Fields_438_Land_05_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_02_00.SM_Fields_438_Land_05_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_03_00.SM_Fields_438_Land_05_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_04_00.SM_Fields_438_Land_05_04_00",
+      "expected_size_cm": [
+        257.33020305633545,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_05_00.SM_Fields_438_Land_05_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_06_00.SM_Fields_438_Land_05_06_00",
+      "expected_size_cm": [
+        600.0,
+        341.7588949203491,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_00_00.SM_Fields_438_Land_06_00_00",
+      "expected_size_cm": [
+        600.0,
+        587.1631145477295,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_01_00.SM_Fields_438_Land_06_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_02_00.SM_Fields_438_Land_06_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_03_00.SM_Fields_438_Land_06_03_00",
+      "expected_size_cm": [
+        600.0,
+        271.98429107666016,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_05_00.SM_Fields_438_Land_06_05_00",
+      "expected_size_cm": [
+        54.34650182723999,
+        55.22419810295105,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_06_00.SM_Fields_438_Land_06_06_00",
+      "expected_size_cm": [
+        600.0,
+        351.4620065689087,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_00_00.SM_Fields_438_Land_07_00_00",
+      "expected_size_cm": [
+        600.0,
+        585.0235939025879,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_01_00.SM_Fields_438_Land_07_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_02_00.SM_Fields_438_Land_07_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_03_00.SM_Fields_438_Land_07_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_00.SM_Fields_438_Land_07_04_00",
+      "expected_size_cm": [
+        15.224100649356842,
+        575.2904891967773,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_01.SM_Fields_438_Land_07_04_01",
+      "expected_size_cm": [
+        6.5783001482486725,
+        14.93609994649887,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_00.SM_Fields_438_Land_07_05_00",
+      "expected_size_cm": [
+        6.3575997948646545,
+        430.2168846130371,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_01.SM_Fields_438_Land_07_05_01",
+      "expected_size_cm": [
+        105.66179752349854,
+        102.3144006729126,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_06_00.SM_Fields_438_Land_07_06_00",
+      "expected_size_cm": [
+        600.0,
+        361.16509437561035,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_00_00.SM_Fields_438_Land_08_00_00",
+      "expected_size_cm": [
+        600.0,
+        582.8841209411621,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_01_00.SM_Fields_438_Land_08_01_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_02_00.SM_Fields_438_Land_08_02_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_03_00.SM_Fields_438_Land_08_03_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_04_00.SM_Fields_438_Land_08_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_05_00.SM_Fields_438_Land_08_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_06_00.SM_Fields_438_Land_08_06_00",
+      "expected_size_cm": [
+        600.0,
+        370.8682060241699,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_00_00.SM_Fields_438_Land_09_00_00",
+      "expected_size_cm": [
+        544.4383144378662,
+        580.7446956634521,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_01_00.SM_Fields_438_Land_09_01_00",
+      "expected_size_cm": [
+        552.2004127502441,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_02_00.SM_Fields_438_Land_09_02_00",
+      "expected_size_cm": [
+        559.9626064300537,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_03_00.SM_Fields_438_Land_09_03_00",
+      "expected_size_cm": [
+        567.7247047424316,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_04_00.SM_Fields_438_Land_09_04_00",
+      "expected_size_cm": [
+        575.4868984222412,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_05_00.SM_Fields_438_Land_09_05_00",
+      "expected_size_cm": [
+        583.2490921020508,
+        600.0,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_06_00.SM_Fields_438_Land_09_06_00",
+      "expected_size_cm": [
+        588.1700038909912,
+        380.3800106048584,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_03_00.SM_Fields_438_Bank_05_03_00",
+      "expected_size_cm": [
+        355.41679859161377,
+        335.7326030731201,
+        71.43030166625977
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_04_00.SM_Fields_438_Bank_05_04_00",
+      "expected_size_cm": [
+        352.9845952987671,
+        600.0,
+        98.00000190734863
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_05_00.SM_Fields_438_Bank_05_05_00",
+      "expected_size_cm": [
+        342.66979694366455,
+        544.7758197784424,
+        98.00000190734863
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_03_00.SM_Fields_438_Bank_06_03_00",
+      "expected_size_cm": [
+        600.0,
+        334.0959072113037,
+        77.59770154953003
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_04_00.SM_Fields_438_Bank_06_04_00",
+      "expected_size_cm": [
+        600.0,
+        304.771089553833,
+        39.56969976425171
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_05_00.SM_Fields_438_Bank_06_05_00",
+      "expected_size_cm": [
+        600.0,
+        208.25629234313965,
+        98.00000190734863
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_06_00.SM_Fields_438_Bank_06_06_00",
+      "expected_size_cm": [
+        545.653486251831,
+        115.31679630279541,
+        51.31189823150635
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_03_00.SM_Fields_438_Bank_07_03_00",
+      "expected_size_cm": [
+        584.7758769989014,
+        328.01570892333984,
+        77.59770154953003
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_04_00.SM_Fields_438_Bank_07_04_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        98.00000190734863
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_05_00.SM_Fields_438_Bank_07_05_00",
+      "expected_size_cm": [
+        600.0,
+        600.0,
+        98.00000190734863
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_06_00.SM_Fields_438_Bank_07_06_00",
+      "expected_size_cm": [
+        494.33817863464355,
+        120.08140087127686,
+        51.31189823150635
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_04_00.SM_Fields_438_Water_05_04_00",
+      "expected_size_cm": [
+        127.21970081329346,
+        350.60040950775146,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_05_00.SM_Fields_438_Water_05_05_00",
+      "expected_size_cm": [
+        150.30349493026733,
+        391.74370765686035,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_04_00.SM_Fields_438_Water_06_04_00",
+      "expected_size_cm": [
+        600.0,
+        507.4076175689697,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_05_00.SM_Fields_438_Water_06_05_00",
+      "expected_size_cm": [
+        600.0,
+        464.149808883667,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_04_00.SM_Fields_438_Water_07_04_00",
+      "expected_size_cm": [
+        366.85800552368164,
+        491.5536880493164,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_05_00.SM_Fields_438_Water_07_05_00",
+      "expected_size_cm": [
+        362.00110912323,
+        459.48829650878906,
+        12.999999523162842
+      ],
+      "expected_lods": 1,
+      "bounds_tolerance_cm": 1.0,
+      "collision_mode": "complex"
+    }
+  ],
+  "source": "SourceAssets/Art/StonebrookFields/art_manifest.json",
+  "replacements": [],
+  "elements": [
+    {
+      "name": "SM_Fields_438_Land_00_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_00_00.SM_Fields_438_Land_00_00_00",
+      "world_cm": [
+        88357.30000013788,
+        35022.66000016322,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_01_00.SM_Fields_438_Land_00_01_00",
+      "world_cm": [
+        88370.66854583131,
+        35622.66000034122,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_02_00.SM_Fields_438_Land_00_02_00",
+      "world_cm": [
+        88384.03709267768,
+        36222.65999995589,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_03_00.SM_Fields_438_Land_00_03_00",
+      "world_cm": [
+        88397.40563879244,
+        36822.65999981842,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_04_00.SM_Fields_438_Land_00_04_00",
+      "world_cm": [
+        88410.77418523152,
+        37422.65999979277,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_05_00.SM_Fields_438_Land_00_05_00",
+      "world_cm": [
+        88424.1427310791,
+        38022.65999972053,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_00_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_06_00.SM_Fields_438_Land_00_06_00",
+      "world_cm": [
+        88437.51127764878,
+        38315.90327845794,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_00_00.SM_Fields_438_Land_01_00_00",
+      "world_cm": [
+        88957.29999974168,
+        35022.659999686235,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_01_00.SM_Fields_438_Land_01_01_00",
+      "world_cm": [
+        88957.29999993743,
+        35622.65999999869,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_02_00.SM_Fields_438_Land_01_02_00",
+      "world_cm": [
+        88957.30000037349,
+        36222.65999996791,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_03_00.SM_Fields_438_Land_01_03_00",
+      "world_cm": [
+        88957.30000021844,
+        36822.65999960492,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_04_00.SM_Fields_438_Land_01_04_00",
+      "world_cm": [
+        88957.29999996666,
+        37422.660000250835,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_05_00.SM_Fields_438_Land_01_05_00",
+      "world_cm": [
+        88957.30000034584,
+        38022.65999970637,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_01_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_06_00.SM_Fields_438_Land_01_06_00",
+      "world_cm": [
+        88957.30000031744,
+        38325.60639372961,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_00_00.SM_Fields_438_Land_02_00_00",
+      "world_cm": [
+        89557.29999951507,
+        35022.659999629956,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_01_00.SM_Fields_438_Land_02_01_00",
+      "world_cm": [
+        89557.29999970185,
+        35622.66000003823,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_02_00.SM_Fields_438_Land_02_02_00",
+      "world_cm": [
+        89557.29999985354,
+        36222.65999979716,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_03_00.SM_Fields_438_Land_02_03_00",
+      "world_cm": [
+        89557.30000009449,
+        36822.660000207215,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_04_00.SM_Fields_438_Land_02_04_00",
+      "world_cm": [
+        89557.29999980262,
+        37422.66000002106,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_05_00.SM_Fields_438_Land_02_05_00",
+      "world_cm": [
+        89557.29999968188,
+        38022.6600003379,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_02_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_06_00.SM_Fields_438_Land_02_06_00",
+      "world_cm": [
+        89557.30000019835,
+        38335.30950855865,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_00_00.SM_Fields_438_Land_03_00_00",
+      "world_cm": [
+        90157.3000003256,
+        35022.66000005605,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_01_00.SM_Fields_438_Land_03_01_00",
+      "world_cm": [
+        90157.30000030866,
+        35622.65999959101,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_02_00.SM_Fields_438_Land_03_02_00",
+      "world_cm": [
+        90157.29999955077,
+        36222.66000041404,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_03_00.SM_Fields_438_Land_03_03_00",
+      "world_cm": [
+        90157.30000010162,
+        36822.660000077085,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_04_00.SM_Fields_438_Land_03_04_00",
+      "world_cm": [
+        90157.30000042006,
+        37422.66000042986,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_05_00.SM_Fields_438_Land_03_05_00",
+      "world_cm": [
+        90157.3000001606,
+        38022.65999984219,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_03_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_06_00.SM_Fields_438_Land_03_06_00",
+      "world_cm": [
+        90157.30000012825,
+        38345.01262348291,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_00_00.SM_Fields_438_Land_04_00_00",
+      "world_cm": [
+        90757.30000034823,
+        35022.66000043583,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_01_00.SM_Fields_438_Land_04_01_00",
+      "world_cm": [
+        90757.29999974051,
+        35622.660000193944,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_02_00.SM_Fields_438_Land_04_02_00",
+      "world_cm": [
+        90757.29999995432,
+        36222.65999989838,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_03_00.SM_Fields_438_Land_04_03_00",
+      "world_cm": [
+        90757.30000024081,
+        36822.65999998184,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_04_00.SM_Fields_438_Land_04_04_00",
+      "world_cm": [
+        90757.30000009915,
+        37422.660000355725,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_05_00.SM_Fields_438_Land_04_05_00",
+      "world_cm": [
+        90757.30000026076,
+        38022.660000424774,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_04_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_06_00.SM_Fields_438_Land_04_06_00",
+      "world_cm": [
+        90757.2999999023,
+        38354.71573893283,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_00_00.SM_Fields_438_Land_05_00_00",
+      "world_cm": [
+        91357.30000000822,
+        35022.65999967742,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_01_00.SM_Fields_438_Land_05_01_00",
+      "world_cm": [
+        91357.30000024331,
+        35622.659999706404,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_02_00.SM_Fields_438_Land_05_02_00",
+      "world_cm": [
+        91357.30000014289,
+        36222.660000211545,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_03_00.SM_Fields_438_Land_05_03_00",
+      "world_cm": [
+        91357.30000011346,
+        36822.66000046203,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_04_00.SM_Fields_438_Land_05_04_00",
+      "world_cm": [
+        91357.29999982152,
+        37422.66000021603,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_05_00.SM_Fields_438_Land_05_05_00",
+      "world_cm": [
+        91357.30000016642,
+        38022.65999974059,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_05_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_06_00.SM_Fields_438_Land_05_06_00",
+      "world_cm": [
+        91357.30000026475,
+        38364.418853393945,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_00_00.SM_Fields_438_Land_06_00_00",
+      "world_cm": [
+        91957.30000006918,
+        35022.66000004467,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_01_00.SM_Fields_438_Land_06_01_00",
+      "world_cm": [
+        91957.2999995809,
+        35622.66000007572,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_02_00.SM_Fields_438_Land_06_02_00",
+      "world_cm": [
+        91957.29999962161,
+        36222.6600003853,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_03_00.SM_Fields_438_Land_06_03_00",
+      "world_cm": [
+        91957.30000020869,
+        36494.64431460973,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_05_00.SM_Fields_438_Land_06_05_00",
+      "world_cm": [
+        91957.29999995933,
+        38022.659999676696,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_06_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_06_00.SM_Fields_438_Land_06_06_00",
+      "world_cm": [
+        91957.30000004897,
+        38374.121968251675,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_00_00.SM_Fields_438_Land_07_00_00",
+      "world_cm": [
+        92557.29999953018,
+        35022.66000029378,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_01_00.SM_Fields_438_Land_07_01_00",
+      "world_cm": [
+        92557.2999997784,
+        35622.65999957543,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_02_00.SM_Fields_438_Land_07_02_00",
+      "world_cm": [
+        92557.30000036633,
+        36222.660000458476,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_03_00.SM_Fields_438_Land_07_03_00",
+      "world_cm": [
+        92557.30000030759,
+        36822.66000035336,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_00.SM_Fields_438_Land_07_04_00",
+      "world_cm": [
+        93142.07589711914,
+        37397.95045344247,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_04_01",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_01.SM_Fields_438_Land_07_04_01",
+      "world_cm": [
+        93150.72171953104,
+        37422.66000003411,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_00.SM_Fields_438_Land_07_05_00",
+      "world_cm": [
+        93150.94243918534,
+        37852.876891890955,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_05_01",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_01.SM_Fields_438_Land_07_05_01",
+      "world_cm": [
+        93051.63818484987,
+        38022.66000044633,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_07_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_06_00.SM_Fields_438_Land_07_06_00",
+      "world_cm": [
+        92557.30000002094,
+        38383.825082962554,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_00_00.SM_Fields_438_Land_08_00_00",
+      "world_cm": [
+        93157.29999965141,
+        35022.65999961142,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_01_00.SM_Fields_438_Land_08_01_00",
+      "world_cm": [
+        93157.3000003237,
+        35622.659999629504,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_02_00.SM_Fields_438_Land_08_02_00",
+      "world_cm": [
+        93157.29999989239,
+        36222.66000044566,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_03_00.SM_Fields_438_Land_08_03_00",
+      "world_cm": [
+        93157.29999977219,
+        36822.65999980562,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_04_00.SM_Fields_438_Land_08_04_00",
+      "world_cm": [
+        93157.29999965924,
+        37422.65999998437,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_05_00.SM_Fields_438_Land_08_05_00",
+      "world_cm": [
+        93157.3000003762,
+        38022.65999992221,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_08_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_06_00.SM_Fields_438_Land_08_06_00",
+      "world_cm": [
+        93157.29999998129,
+        38393.528197945656,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_00_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_00_00.SM_Fields_438_Land_09_00_00",
+      "world_cm": [
+        93757.30000002278,
+        35022.659999578944,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_01_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_01_00.SM_Fields_438_Land_09_01_00",
+      "world_cm": [
+        93757.30000005632,
+        35622.65999992433,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_02_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_02_00.SM_Fields_438_Land_09_02_00",
+      "world_cm": [
+        93757.30000013135,
+        36222.66000042909,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_03_00.SM_Fields_438_Land_09_03_00",
+      "world_cm": [
+        93757.30000019798,
+        36822.659999982876,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_04_00.SM_Fields_438_Land_09_04_00",
+      "world_cm": [
+        93757.30000041712,
+        37422.66000008219,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_05_00.SM_Fields_438_Land_09_05_00",
+      "world_cm": [
+        93757.30000010828,
+        38022.65999987538,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Land_09_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_06_00.SM_Fields_438_Land_09_06_00",
+      "world_cm": [
+        93757.29999971161,
+        38403.04000022517,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_03_00.SM_Fields_438_Bank_05_03_00",
+      "world_cm": [
+        91601.8832387813,
+        36822.66000022655,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_04_00.SM_Fields_438_Bank_05_04_00",
+      "world_cm": [
+        91604.31544631219,
+        37422.66000017121,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_05_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_05_00.SM_Fields_438_Bank_05_05_00",
+      "world_cm": [
+        91614.63018984848,
+        37967.435826380904,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_03_00.SM_Fields_438_Bank_06_03_00",
+      "world_cm": [
+        91957.29999987013,
+        36822.659999887444,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_04_00.SM_Fields_438_Bank_06_04_00",
+      "world_cm": [
+        91957.30000008462,
+        37127.431094701504,
+        -58.4303
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_05_00.SM_Fields_438_Bank_06_05_00",
+      "world_cm": [
+        91957.29999995933,
+        38022.659999676696,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_06_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_06_00.SM_Fields_438_Bank_06_06_00",
+      "world_cm": [
+        92011.64653163063,
+        38137.97684627629,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_03_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_03_00.SM_Fields_438_Bank_07_03_00",
+      "world_cm": [
+        92557.30000030759,
+        36822.66000035336,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_04_00.SM_Fields_438_Bank_07_04_00",
+      "world_cm": [
+        92557.29999986474,
+        37422.66000019586,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_05_00.SM_Fields_438_Bank_07_05_00",
+      "world_cm": [
+        92557.30000046764,
+        38022.659999534844,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Bank_07_06_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_06_00.SM_Fields_438_Bank_07_06_00",
+      "world_cm": [
+        92557.30000046731,
+        38142.74145010339,
+        -0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_05_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_04_00.SM_Fields_438_Water_05_04_00",
+      "world_cm": [
+        91830.08026171324,
+        37422.65999971858,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_05_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_05_00.SM_Fields_438_Water_05_05_00",
+      "world_cm": [
+        91806.99654911089,
+        37814.403718744754,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_06_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_04_00.SM_Fields_438_Water_06_04_00",
+      "world_cm": [
+        91957.3000002691,
+        37422.6599999918,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_06_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_05_00.SM_Fields_438_Water_06_05_00",
+      "world_cm": [
+        91957.30000001793,
+        37886.80977830726,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_07_04_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_04_00.SM_Fields_438_Water_07_04_00",
+      "world_cm": [
+        92557.29999986474,
+        37422.66000019586,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "SM_Fields_438_Water_07_05_00",
+      "mesh": "/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_05_00.SM_Fields_438_Water_07_05_00",
+      "world_cm": [
+        92557.30000048083,
+        37882.14828142004,
+        -80.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "S438_P01_Tree",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        90728.28518633332,
+        36358.7071535,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        74.90061849681344,
+        0
+      ],
+      "scale": [
+        1.1,
+        1.1,
+        1.1
+      ],
+      "collision": true
+    },
+    {
+      "name": "SourceLowRock_0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        89463.83094422493,
+        36297.317065897216,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.7777339104202055,
+        1.3922122700932398,
+        0.9800810599666352
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        89243.3922111083,
+        36544.45909251944,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.9746331764461604,
+        2.0307042728115534,
+        1.0886334367999917
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        90757.64467459201,
+        37679.98379064967,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        3.049059345947241,
+        2.133236818251644,
+        1.15
+      ],
+      "collision": false
+    },
+    {
+      "name": "SourceLowRock_7",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        93638.87846907125,
+        36756.821982024056,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.7973029918601542,
+        1.7917835776093152,
+        0.9908696746000283
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_001",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92700.37770346932,
+        35625.52854393651,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        17.350259833609222,
+        0
+      ],
+      "scale": [
+        0.8459080988066103,
+        0.8459080988066103,
+        0.8459080988066103
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_002",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        88561.85782085208,
+        35943.5660284345,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        21.090427417578326,
+        0
+      ],
+      "scale": [
+        0.6646484618527828,
+        0.6646484618527828,
+        0.6646484618527828
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_003",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93489.42309606264,
+        35109.65511767754,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        308.53229580970833,
+        0
+      ],
+      "scale": [
+        0.7902178391185257,
+        0.7902178391185257,
+        0.7902178391185257
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_004",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90455.98065163135,
+        36585.48411178365,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        24.764387449200527,
+        0
+      ],
+      "scale": [
+        0.6846300990412562,
+        0.6846300990412562,
+        0.6846300990412562
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_005",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93431.18985830163,
+        35512.399801793465,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        128.62790562359982,
+        0
+      ],
+      "scale": [
+        0.6255450449206126,
+        0.6255450449206126,
+        0.6255450449206126
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_006",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89733.91595526475,
+        35905.45556710323,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        206.21285531700934,
+        0
+      ],
+      "scale": [
+        0.9475981211607095,
+        0.9475981211607095,
+        0.9475981211607095
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_007",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92182.73204853575,
+        35772.501547944594,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        102.30478900996519,
+        0
+      ],
+      "scale": [
+        0.8308067836390337,
+        0.8308067836390337,
+        0.8308067836390337
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_008",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91191.25383270036,
+        38003.4221467096,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        26.446035585930794,
+        0
+      ],
+      "scale": [
+        0.9328107779825932,
+        0.9328107779825932,
+        0.9328107779825932
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_009",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93881.87684073977,
+        38092.25622156048,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        144.54490267873808,
+        0
+      ],
+      "scale": [
+        0.9304179378819251,
+        0.9304179378819251,
+        0.9304179378819251
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_010",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92543.41466739382,
+        35754.91417980408,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        136.67286988066965,
+        0
+      ],
+      "scale": [
+        0.9690016902253087,
+        0.9690016902253087,
+        0.9690016902253087
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_011",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90274.55311088593,
+        36816.96049091969,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        328.10259603217247,
+        0
+      ],
+      "scale": [
+        0.9728799344515837,
+        0.9728799344515837,
+        0.9728799344515837
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_013",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89490.91974078103,
+        34743.15664578772,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        177.05968042044555,
+        0
+      ],
+      "scale": [
+        0.6560087182696659,
+        0.6560087182696659,
+        0.6560087182696659
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_015",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90600.19847958238,
+        37411.91198129139,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        345.56185065650834,
+        0
+      ],
+      "scale": [
+        0.9335869531690646,
+        0.9335869531690646,
+        0.9335869531690646
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_016",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89531.34767080426,
+        37511.47141700672,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        213.65719024367434,
+        0
+      ],
+      "scale": [
+        0.977094331035042,
+        0.977094331035042,
+        0.977094331035042
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_017",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92416.50845294553,
+        35279.38719970674,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        327.606800109904,
+        0
+      ],
+      "scale": [
+        0.7242485504689243,
+        0.7242485504689243,
+        0.7242485504689243
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_018",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90092.63102444488,
+        37009.47429069286,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        230.24857141682585,
+        0
+      ],
+      "scale": [
+        0.677947430831238,
+        0.677947430831238,
+        0.677947430831238
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_019",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89286.47803522194,
+        35396.57578250337,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        82.45590676906164,
+        0
+      ],
+      "scale": [
+        0.7635309172129385,
+        0.7635309172129385,
+        0.7635309172129385
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_020",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90362.42651239016,
+        37633.74007641592,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        72.27056777436364,
+        0
+      ],
+      "scale": [
+        0.8723426821475155,
+        0.8723426821475155,
+        0.8723426821475155
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_021",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93330.42360557207,
+        36352.27655201097,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        307.88059881784164,
+        0
+      ],
+      "scale": [
+        0.6884122569552416,
+        0.6884122569552416,
+        0.6884122569552416
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_022",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92182.5383624026,
+        34773.641035516855,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        122.1722685442042,
+        0
+      ],
+      "scale": [
+        0.871822060743717,
+        0.871822060743717,
+        0.871822060743717
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_023",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89603.87816905504,
+        37868.25402481522,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        350.62696156812433,
+        0
+      ],
+      "scale": [
+        0.9231996751652145,
+        0.9231996751652145,
+        0.9231996751652145
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_024",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93833.52117271749,
+        37819.82328420938,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        283.50128323715467,
+        0
+      ],
+      "scale": [
+        0.62479692695884,
+        0.62479692695884,
+        0.62479692695884
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_025",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90325.68593179315,
+        34975.02399265273,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        83.53026101691442,
+        0
+      ],
+      "scale": [
+        1.0067550687848825,
+        1.0067550687848825,
+        1.0067550687848825
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_026",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        88940.57972837266,
+        37134.86116733902,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        270.2383518414293,
+        0
+      ],
+      "scale": [
+        0.5825490910364979,
+        0.5825490910364979,
+        0.5825490910364979
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_027",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90507.6949169331,
+        36682.28929920408,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        159.55463227807257,
+        0
+      ],
+      "scale": [
+        0.976577121366496,
+        0.976577121366496,
+        0.976577121366496
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_028",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90385.25999438995,
+        35585.99396010038,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        142.71921869531286,
+        0
+      ],
+      "scale": [
+        0.6118208213511738,
+        0.6118208213511738,
+        0.6118208213511738
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_029",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89509.79786832792,
+        36744.036128430846,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        152.25033719752017,
+        0
+      ],
+      "scale": [
+        0.910773661320406,
+        0.910773661320406,
+        0.910773661320406
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_030",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93250.96825336407,
+        35733.44993819759,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        85.17055746164453,
+        0
+      ],
+      "scale": [
+        0.8289960276683288,
+        0.8289960276683288,
+        0.8289960276683288
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_031",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91345.38730431593,
+        37761.498387273445,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        134.69557114826276,
+        0
+      ],
+      "scale": [
+        1.04559549904952,
+        1.04559549904952,
+        1.04559549904952
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_032",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90075.08073329923,
+        36812.93456821978,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        36.54577135911599,
+        0
+      ],
+      "scale": [
+        0.9861461633031834,
+        0.9861461633031834,
+        0.9861461633031834
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_034",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89190.37076861753,
+        37293.86749484542,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        130.50154270696956,
+        0
+      ],
+      "scale": [
+        0.9454326677098608,
+        0.9454326677098608,
+        0.9454326677098608
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_035",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89212.33662672408,
+        37038.57294415353,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        96.61621500400162,
+        0
+      ],
+      "scale": [
+        0.7795326887217082,
+        0.7795326887217082,
+        0.7795326887217082
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_036",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91327.16001458524,
+        34750.366178805634,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        250.74824168463195,
+        0
+      ],
+      "scale": [
+        0.8205667044490621,
+        0.8205667044490621,
+        0.8205667044490621
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_037",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90950.12053435891,
+        36776.96491120589,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        223.58696787913314,
+        0
+      ],
+      "scale": [
+        0.685538974455918,
+        0.685538974455918,
+        0.685538974455918
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_038",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90132.11288168878,
+        37743.15548193049,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        319.75341309345555,
+        0
+      ],
+      "scale": [
+        0.7927741843069287,
+        0.7927741843069287,
+        0.7927741843069287
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_039",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        88827.49539370349,
+        34704.80334064076,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        158.9956737110917,
+        0
+      ],
+      "scale": [
+        0.9506510792243554,
+        0.9506510792243554,
+        0.9506510792243554
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_040",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91654.10783265201,
+        35922.870981427994,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        304.9798959993511,
+        0
+      ],
+      "scale": [
+        0.6613124803613275,
+        0.6613124803613275,
+        0.6613124803613275
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_041",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91028.401923414,
+        36604.93329333116,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        149.29875628764478,
+        0
+      ],
+      "scale": [
+        0.7531121758104058,
+        0.7531121758104058,
+        0.7531121758104058
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_042",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91549.09167407743,
+        36429.743459455,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        110.95675916426889,
+        0
+      ],
+      "scale": [
+        0.8669863704115375,
+        0.8669863704115375,
+        0.8669863704115375
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_043",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        88731.02870008915,
+        34877.34919390261,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        190.69110521547182,
+        0
+      ],
+      "scale": [
+        0.7302388908952927,
+        0.7302388908952927,
+        0.7302388908952927
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_044",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90694.31991711199,
+        34975.602119977935,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        49.544943543664154,
+        0
+      ],
+      "scale": [
+        0.7700048170997996,
+        0.7700048170997996,
+        0.7700048170997996
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_045",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89418.69401524164,
+        37417.74805120088,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        33.83716918020901,
+        0
+      ],
+      "scale": [
+        0.7069425242336418,
+        0.7069425242336418,
+        0.7069425242336418
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_046",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91246.45312758962,
+        37006.66284657863,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        243.60841613553907,
+        0
+      ],
+      "scale": [
+        0.7632107113506059,
+        0.7632107113506059,
+        0.7632107113506059
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_047",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91041.05837587165,
+        36423.21769817298,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        280.09810139951077,
+        0
+      ],
+      "scale": [
+        1.0208474507287093,
+        1.0208474507287093,
+        1.0208474507287093
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_048",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91791.88066933012,
+        34731.82176129899,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90.16417139758828,
+        0
+      ],
+      "scale": [
+        0.7672424757931552,
+        0.7672424757931552,
+        0.7672424757931552
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_049",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93635.19956656062,
+        35751.86483464878,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        352.6146946871497,
+        0
+      ],
+      "scale": [
+        1.0114913014542548,
+        1.0114913014542548,
+        1.0114913014542548
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_050",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91162.95004555858,
+        36664.81146086633,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        251.41133792874882,
+        0
+      ],
+      "scale": [
+        0.6156399437630494,
+        0.6156399437630494,
+        0.6156399437630494
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_052",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92972.16920037413,
+        36190.07124854478,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        115.64071319258821,
+        0
+      ],
+      "scale": [
+        0.7235643825096632,
+        0.7235643825096632,
+        0.7235643825096632
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_053",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89103.82587519704,
+        37891.49509279414,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        315.5586932030755,
+        0
+      ],
+      "scale": [
+        0.9124453778922509,
+        0.9124453778922509,
+        0.9124453778922509
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_054",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91803.00627220975,
+        36148.056968059165,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        205.37357251243623,
+        0
+      ],
+      "scale": [
+        0.9130799608949912,
+        0.9130799608949912,
+        0.9130799608949912
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_055",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        90864.37521113265,
+        36084.7938166639,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        46.72456676893677,
+        0
+      ],
+      "scale": [
+        0.8618964638220366,
+        0.8618964638220366,
+        0.8618964638220366
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_056",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92500.13582800551,
+        35441.47240499179,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        265.051037973388,
+        0
+      ],
+      "scale": [
+        0.6765900054857903,
+        0.6765900054857903,
+        0.6765900054857903
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_058",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91388.97668036113,
+        37356.96610497937,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        203.30431579607935,
+        0
+      ],
+      "scale": [
+        0.7456951755192199,
+        0.7456951755192199,
+        0.7456951755192199
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_059",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89687.06044531458,
+        35713.29690722529,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        341.75448142736775,
+        0
+      ],
+      "scale": [
+        0.7274440586467632,
+        0.7274440586467632,
+        0.7274440586467632
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_060",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        93902.35868744766,
+        35076.76840593393,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        5.926789567989443,
+        0
+      ],
+      "scale": [
+        0.7735150894550359,
+        0.7735150894550359,
+        0.7735150894550359
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_061",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89622.4795277613,
+        37176.06480396635,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        220.34697361968873,
+        0
+      ],
+      "scale": [
+        0.8268321643521603,
+        0.8268321643521603,
+        0.8268321643521603
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_062",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        94084.30388759077,
+        36545.766584243254,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        17.819707089004815,
+        0
+      ],
+      "scale": [
+        0.5690092901726436,
+        0.5690092901726436,
+        0.5690092901726436
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_063",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89705.80058834114,
+        35627.1231795014,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        247.82411006617846,
+        0
+      ],
+      "scale": [
+        0.672684993820978,
+        0.672684993820978,
+        0.672684993820978
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_064",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        92096.26940857689,
+        35144.772007845044,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        273.58380208220484,
+        0
+      ],
+      "scale": [
+        0.8823433786698212,
+        0.8823433786698212,
+        0.8823433786698212
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_065",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        88919.06911954907,
+        38126.87208497801,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        170.71218060274083,
+        0
+      ],
+      "scale": [
+        0.9347187101913179,
+        0.9347187101913179,
+        0.9347187101913179
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_066",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        89728.22675101174,
+        37938.502901607724,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        177.0439125310061,
+        0
+      ],
+      "scale": [
+        0.8948921443800912,
+        0.8948921443800912,
+        0.8948921443800912
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_068",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91755.16180765769,
+        35431.646126973275,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        102.21431851108794,
+        0
+      ],
+      "scale": [
+        0.9601602804166895,
+        0.9601602804166895,
+        0.9601602804166895
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_069",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        91320.90908897147,
+        37340.40963778829,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        82.54434937376955,
+        0
+      ],
+      "scale": [
+        0.8536586469876895,
+        0.8536586469876895,
+        0.8536586469876895
+      ],
+      "collision": false
+    }
+  ],
+  "hide_origins": [
+    "S438_P01"
+  ],
+  "hide_screen_visuals": [
+    438
+  ],
+  "authored_collision_screens": [
+    438
+  ],
+  "preserve_low_collision_screens": [
+    438
+  ],
+  "lights": [],
+  "warp_overrides": []
+}

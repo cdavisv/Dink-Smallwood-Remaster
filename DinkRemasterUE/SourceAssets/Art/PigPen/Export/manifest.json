@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-07T08:11:09Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_FeedScatter_Wheat_01",
+      "class": "prop_small",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01",
+      "files": {
+        "fbx": "Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01.fbx",
+        "glb": "Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01.glb"
+      },
+      "source": {
+        "blend": "PigPen/KIT_PigPen.blend",
+        "sha256": "6ef4dabb17bd50d413d5a59eb0728c045c6f4c4e4addc3d6cc29313a05ef892a",
+        "collection": "SM_FeedScatter_Wheat_01",
+        "note": "Original project wheat kernels; procedural source seed407431, CC0 project-authored."
+      },
+      "tris": {
+        "LOD0": 1280,
+        "LOD1": 672,
+        "LOD2": 208
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -12.5,
+          -9.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          12.5,
+          9.0,
+          0.309
+        ],
+        "size_cm": [
+          25.0,
+          18.0,
+          0.309
+        ],
+        "unreal_min_cm": [
+          -12.5,
+          -9.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          12.5,
+          9.0,
+          0.309
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_PigPen_Wheat"
+      ],
+      "textures": [],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

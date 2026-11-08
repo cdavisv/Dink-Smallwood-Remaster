@@ -1,0 +1,145 @@
+command,category,uses,form,status,note
+(line) say_stop,dialogue,1702,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+wait,timing,1550,command,implemented,suspends this script instance for ms of game time (others keep running)
+unfreeze,control,378,command,implemented,undoes freeze
+create_sprite,sprites,342,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+(line) say,dialogue,339,spoken line,implemented,floating text over the speaker in its colour; does not block
+playsound,audio,298,command,implemented,"audio stub: logs the sound cue (number, speed, sprite, repeat)"
+init,animation,289,command,recorded,dink.ini line that redefines a 2D sequence: recorded for the animation layer
+freeze,control,270,command,implemented,sprite frozen; for Dink (1) player movement input is ignored
+sp_brain,sprites,263,command,implemented,"the sprite's brain, run every 60 Hz engine frame (DinkBrains.cpp): 0 none/follow, 2 bounce, 3 duck, 4 pig, 5/6/7 play once/repeat/play and vanish, 9 monster (wander, chase, melee), 10 dragon (script ATTACK), 11/17 missile (hardness), 12 scale and vanish, 15 shadow, 16 people; 13/14 (title mouse/buttons) are recorded only; also bound as EXTERNAL (value form)"
+sp_dir,sprites,217,command,implemented,sprite property: moves/turns the actor through the screen-to-world transform; also bound as EXTERNAL (value form)
+move_stop,movement,216,command,implemented,"as move, and the script waits until the sprite arrives"
+sp_seq,sprites,212,command,implemented,"animation sequence: the frame stepper (dink.ini delays, loops, ends -> seq_orig) drives every sprite but Dink and lands a melee hit on a special frame; Dink's attack lands at the hit frame's time; nothing is drawn yet"
+sp_speed,sprites,212,command,implemented,"pixels per think for brains (changedir, D:5596, sets a new mx/my at once) and move/move_stop (60 px/s per point = speed px per 60 Hz frame at timing 0)"
+random,other,178,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_timing,sprites,172,command,implemented,"think interval: the brain runs at most once per timing ms (ThinkSprite's timer, D:16830); the animation runs every frame"
+sp_base_walk,sprites,162,command,implemented,walk sequence base: changedir picks base+dir (with the engine fallbacks); 110 marks a headless duck
+sp_script,sprites,153,command,implemented,attaches a script to the sprite (ending its old one) and runs its main at once (dink.cpp:8155-8175)
+sp_pframe,sprites,145,command,implemented,picture frame: its hardbox is the sprite's box (getpic); nothing is drawn yet; also bound as EXTERNAL (value form)
+sp_pseq,sprites,144,command,implemented,picture sequence: its hardbox is the sprite's box for hit/touch/talk/missile tests (getpic); nothing is drawn yet; also bound as EXTERNAL (value form)
+sp_y,sprites,138,command,implemented,sprite property: moves/turns the actor through the screen-to-world transform; also bound as EXTERNAL (value form)
+sp_x,sprites,129,command,implemented,sprite property: moves/turns the actor through the screen-to-world transform; also bound as EXTERNAL (value form)
+kill_this_task,scripts,118,command,implemented,ends this script instance; the sprite keeps no script
+choice_start,ui,115,command,implemented,"menu arguments (set_y, title colour); the options are the Ink choices that follow"
+sp_touch_damage,sprites,110,command,implemented,touch damage of the actor's UDinkStatsComponent (recorded when it has none)
+sp_editor_num,sprites,93,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_target,sprites,93,command,implemented,"sprite a brain-9 monster chases and attacks, a brain-10 one casts at (process_target, D:12588); also bound as EXTERNAL (value form)"
+editor_type,world,92,command,implemented,"persistent per-placement override in UDinkWorldStateSubsystem (types 1-8, the original's spmap)"
+sp_active,sprites,80,command,implemented,"0 removes the sprite: actor hidden (spawned ones destroyed), its scripts end"
+sp_hitpoints,sprites,78,command,implemented,life of the actor's UDinkStatsComponent (recorded when it has none); also bound as EXTERNAL (value form)
+sp_nohit,sprites,69,command,implemented,"no hit damage: melee only runs `hit` (if scripted), missiles pass (D:15467, 14316)"
+move,movement,61,command,implemented,walks the sprite in a numpad direction until it passes the stop coordinate; does not wait
+external,scripts,52,command,implemented,runs another script's procedure in a new instance for the same sprite and waits for it
+savegameinfo,other,50,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_brain_parm,sprites,50,command,implemented,"brain parameter: target size of brain 12 (pickup vanish), the sprite a missile must not hit; other uses recorded for the AI layer"
+sp_exp,sprites,43,command,implemented,"experience the player gets when he dealt the killing blow (add_exp in add_kill_sprite, D:12359)"
+sp_strength,sprites,42,command,implemented,strength of the actor's UDinkStatsComponent (recorded when it has none)
+(line) say_stop_npc,dialogue,42,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+=gold,fact-write,40,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+sp,sprites,39,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_frame,sprites,38,command,implemented,animation frame of the frame stepper (0 restarts the sequence)
+sp_frame_delay,sprites,37,command,implemented,fixed delay per frame for the frame stepper instead of dink.ini's
+(line) say_stop_xy,dialogue,37,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+get_sprite_with_this_brain,other,36,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_distance,sprites,36,command,implemented,a monster attacks (and stops closing in) when its target is nearer than this on the larger axis (5 if 0)
+sp_base_attack,sprites,35,command,implemented,attack sequence base: a brain-9 monster attacks with base_attack+dir; -1 = never melees; also decides whether a hit makes it target the attacker
+=vision,fact-write,33,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+screenlock,world,32,command,implemented,"locked fight (D:10083): Dink cannot leave the screen; the greybox raises a barrier on the screen's open edges until screenlock(0) or the next screen load (load_map clears it, D:1016); sprite warps are not refused, as in the original"
+playmidi,audio,30,command,implemented,audio stub: logs the music cue
+sp_attack_wait,sprites,29,command,implemented,no attack before game time + ms (D:9335)
+sp_defense,sprites,28,command,implemented,defense of the actor's UDinkStatsComponent (recorded when it has none)
+sp_range,sprites,28,command,implemented,"melee reach of the sprite's attack (sword: 40 px instead of 28) and a missile's hit margin (D:15476, 14322)"
+sp_hard,sprites,28,command,recorded,"hardbox in the hardness map, recorded (greybox collision is baked per screen)"
+script_attach,sprites,26,command,implemented,re-owns the instance (1000 = survives screen changes)
+editor_frame,world,25,command,implemented,"stored as the override's Variant (""frame<N>"") when the placement has an override"
+editor_seq,world,25,command,implemented,"stored as the override's Variant (""seq<N>"") when the placement has an override"
+draw_hard_sprite,world,25,command,recorded,collision is baked into the screen meshes; nothing to rebuild
+sp_base_death,sprites,23,command,recorded,"2D death sequence base, recorded for the animation layer"
+sp_notouch,sprites,23,command,implemented,touch/missile immunity flag; as in the engine it clears on the next tick unless a hit set its timer
+sp_nodraw,sprites,20,command,implemented,hides / shows the actor
+sp_que,sprites,20,command,recorded,"2D draw order, recorded (no meaning for depth-sorted 3D)"
+=life,fact-write,19,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+=player_map,fact-write,19,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+draw_screen,world,19,command,implemented,yields one frame (the screen is already drawn in 3D)
+load_screen,world,19,command,implemented,warps Dink to &player_map (greybox dink.Goto) keeping his screen pixel
+add_item,inventory,18,command,implemented,"UDinkInventoryComponent::AddItem(script name), then the item script's `pickup` in a new instance (D:6915)"
+draw_status,ui,18,command,recorded,status bar redraw; no status UI yet (stats are facts)
+fade_down,screen,17,command,implemented,"fades the view to black and waits (600 ms, assumed)"
+fade_up,screen,17,command,implemented,"fades back in and waits (600 ms, assumed)"
+free_items,inventory,15,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_nocontrol,sprites,14,command,recorded,"player control lock while moving, recorded"
+=strength,fact-write,13,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+sp_noclip,sprites,13,command,recorded,"2D screen clipping, recorded (no meaning in 3D)"
+sp_mx,sprites,12,command,implemented,"x pixels per think of the sprite's brain movement (missiles, bounce; changedir sets it from speed and dir)"
+sp_my,sprites,12,command,implemented,"y pixels per think of the sprite's brain movement (missiles, bounce; changedir sets it from speed and dir)"
+sp_reverse,sprites,12,command,recorded,"2D animation reversed, recorded for the animation layer"
+sp_flying,sprites,11,command,implemented,"crosses low hardness (2): missiles fly over water and fences, walls still stop them (check_if_move_is_legal, D:13428)"
+buttoninfo,other,10,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+sp_kill_wait,sprites,10,command,recorded,"AI delay, recorded for the AI layer"
+count_item,other,9,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+set_callback_random,scripts,9,command,implemented,repeating timer that runs a procedure of this instance when it is idle
+sp_attack_hit_sound,sprites,9,command,recorded,"sound of the sprite's hits, recorded for the audio layer (the audio stub logs a hit cue)"
+sp_size,sprites,9,command,implemented,actor scale = size / 100
+=magic_cost,fact-write,8,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+hurt,combat,8,command,implemented,"hurt_thing (defense rule; the target's brain applies it next tick, a death runs `die`), then the target's `hit` unless nohit, with &enemy_sprite/&missle_source = the caller's sprite (D:9937)"
+add_magic,inventory,7,command,implemented,"UDinkInventoryComponent::AddMagic(script name), then the spell script's `pickup` (D:6940)"
+get_version,other,7,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+kill_shadow,other,7,command,implemented,removes the brain-15 shadow sprites whose brain_parm is the sprite (D:9020)
+sp_brain_parm2,sprites,7,command,implemented,second sprite a missile must not hit (missile_brain D:14318); other uses recorded
+sp_kill,sprites,7,command,implemented,removes the sprite after ms (sp_kill timer)
+spawn,scripts,7,command,implemented,starts another script's main in a new instance owned by 1000
+draw_hard_map,world,6,command,recorded,collision is baked into the screen meshes; nothing to rebuild
+fill_screen,screen,6,command,recorded,palette fill of the 2D back buffer; the 3D view has nothing to fill
+kill_this_item,inventory,6,command,implemented,"removes that item: `holdingdrop` and `disarm` if armed, then `drop` (kill_cur_item_script, D:1505)"
+(line) say_xy,dialogue,5,spoken line,implemented,floating text over the speaker in its colour; does not block
+=exp,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+=magic,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+=magic_level,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+compare_weapon,other,4,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+kill_game,system,4,command,recorded,quits the game in the original; logged and the script ends (not wired to quitting)
+sp_attack_hit_sound_speed,sprites,4,command,recorded,"speed of that sound, recorded for the audio layer"
+sp_follow,sprites,4,command,implemented,"sprite to walk after until within 40 px (process_follow, D:12560)"
+=defense,fact-write,3,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+=update_status,fact-write,3,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+activate_bow,combat,3,command,recorded,bow charge (combat layer not built): yields one frame
+compare_sprite_script,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+game_exist,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+get_last_bow_power,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+get_rand_sprite_with_this_brain,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+kill_cur_item,inventory,3,command,implemented,"removes the armed item: its `disarm`, then `holdingdrop` and `drop`; the calling script stops (D:1480, D:7801)"
+load_game,system,3,command,implemented,"UDinkSaveSubsystem::LoadFromSlot(""dink_save<N>""); ends the script"
+set_dink_speed,stats,3,command,recorded,Dink's 2D walk speed (main.c sets 3); the greybox character walks at a fixed 6 m/s; recorded on Dink's sprite
+set_mode,system,3,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
+sp_disabled,sprites,3,command,recorded,"sprite disabled flag, recorded"
+stopmidi,audio,3,command,implemented,audio stub: logs the music stop
+=cur_weapon,fact-write,2,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+=lifemax,fact-write,2,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+add_exp,stats,2,command,implemented,"experience for the player whoever dealt the last hit (add_exp(num, sprite, true), D:615), capped at 99,999"
+arm_weapon,inventory,2,command,implemented,"`disarm` of the armed item, then `arm` of the item in slot &cur_weapon (1-based) in a new instance (D:7850)"
+dink_can_walk_off_screen,world,2,command,recorded,flag kept; screen edges are not walls in 3D
+force_vision,world,2,command,implemented,sets &vision; the greybox shows that vision's placements
+get_burn,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+inside_box,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+is_script_attached,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+reset_timer,system,2,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
+restart_game,system,2,command,implemented,"deferred fresh-game world reload; initial facts, placements and scripts restored; ends the script"
+run_script_by_number,scripts,2,command,implemented,"runs a procedure of the script instance with that number (&current_script), relocating it like run_script (D:8204)"
+save_game,system,2,command,implemented,"UDinkSaveSubsystem::SaveToSlot(""dink_save<N>"") when a game instance and player exist"
+show_popup,ui,2,command,recorded,HD-engine mobile quick-tip image; not part of the remaster UI
+sp_sound,sprites,2,command,recorded,"looping sprite sound, recorded for the audio layer"
+=level,fact-write,1,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
+count_magic,other,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+free_magic,inventory,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+is_base_game,other,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+scripts_used,other,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
+set_button,ui,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
+show_bmp,screen,1,command,recorded,full-screen picture: not shown yet; waits for the skip key like the original
+sp_base_idle,sprites,1,command,recorded,"2D idle sequence base, recorded for the animation layer"
+stop_entire_game,system,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
+stopcd,audio,1,command,implemented,audio stub: logs the (legacy CD) music stop
+debug,other,59,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"
+load_sound,other,49,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"
+make_global_int,other,63,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"
+preload_seq,other,681,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"
+sp_prop,unknown-command,2,fix intent only,recorded,not a DinkC built-in (the engine ignores it); only behind a fix switch
