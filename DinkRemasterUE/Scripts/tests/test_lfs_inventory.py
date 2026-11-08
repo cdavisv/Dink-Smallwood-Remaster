@@ -1,4 +1,6 @@
 import hashlib
+import os
+from unittest import mock
 from pathlib import Path
 import subprocess
 import sys
@@ -14,6 +16,11 @@ class InventoryTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        excluded = {'GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_COMMON_DIR', 'GIT_NAMESPACE'}
+        isolated = {k: v for k, v in os.environ.items() if k not in excluded}
+        patcher = mock.patch.dict(os.environ, isolated, clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
         subprocess.run(['git', 'init', '-q', str(self.root)], check=True)
 
     def stage(self, name, data):

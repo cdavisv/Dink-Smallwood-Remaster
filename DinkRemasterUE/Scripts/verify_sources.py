@@ -61,7 +61,9 @@ for row in rows:
         continue
     data = p.read_bytes()
     pointer = pointer_metadata(data)
-    if args.metadata_only and pointer is not None and pointer['sha256'] == row['sha256']:
+    expected = pack_files.get(row['asset_path'])
+    if (args.metadata_only and pointer is not None and pointer == expected
+            and pointer['sha256'] == row['sha256']):
         continue
     if hashlib.sha256(data).hexdigest() != row['sha256']:
         bad.append(row['asset_path'])
