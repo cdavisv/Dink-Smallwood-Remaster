@@ -1,0 +1,194 @@
+{
+  "source": "props-return.json",
+  "runtime_rows": [
+    {
+      "actor": "StaticMeshActor_276",
+      "class": "StaticMeshActor",
+      "tags": [
+        "DinkAuthoredArt",
+        "DinkArtScreen_1"
+      ],
+      "component": "StaticMeshComponent0",
+      "component_tags": [],
+      "original": null,
+      "instance_origins": [],
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "actor_hidden": false,
+      "visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "profile": "BlockAll",
+      "render_bounds_center_cm": [
+        -183817.035,
+        392751.6049980927,
+        50.25
+      ],
+      "render_bounds_extent_cm": [
+        32.5,
+        26.875000000000004,
+        50.25
+      ],
+      "transform": "<Struct 'Transform' (0x7f9401e404e0) {rotation: {x: 0.000000, y: -0.000000, z: 1.000000, w: 0.000000}, translation: {x: -183817.035000, y: 392751.605000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Chair_Oak_01_PhotoBaked.MI_Chair_Oak_01_PhotoBaked"
+      ]
+    },
+    {
+      "actor": "StaticMeshActor_277",
+      "class": "StaticMeshActor",
+      "tags": [
+        "DinkAuthoredArt",
+        "DinkArtScreen_1"
+      ],
+      "component": "StaticMeshComponent0",
+      "component_tags": [],
+      "original": null,
+      "instance_origins": [],
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "actor_hidden": false,
+      "visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "profile": "BlockAll",
+      "render_bounds_center_cm": [
+        -183817.03499999997,
+        392970.3550019074,
+        50.25
+      ],
+      "render_bounds_extent_cm": [
+        32.5,
+        26.875,
+        50.25
+      ],
+      "transform": "<Struct 'Transform' (0x7f9401e404e0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183817.035000, y: 392970.355000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Chair_Oak_01_PhotoBaked.MI_Chair_Oak_01_PhotoBaked"
+      ]
+    },
+    {
+      "actor": "DinkPlaceholderActor_13",
+      "class": "DinkPlaceholderActor",
+      "tags": [
+        "DinkGenerated",
+        "DinkKey=S001_P22",
+        "DinkHash=d7e232587e86f01240989c0a53afe4fb",
+        "DinkAuthoredArt"
+      ],
+      "component": "Card",
+      "component_tags": [],
+      "original": {
+        "origin": "S001_P22",
+        "class_id": "table_round",
+        "category": "furniture",
+        "sequence": 87,
+        "frame": 9,
+        "script": "s1-h1-4"
+      },
+      "instance_origins": [],
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.SM_Table_Oak_01",
+      "actor_hidden": false,
+      "visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "profile": "BlockAll",
+      "render_bounds_center_cm": [
+        -183817.035,
+        392856.6049999999,
+        45.0
+      ],
+      "render_bounds_extent_cm": [
+        132.5,
+        74.89999389648438,
+        45.0
+      ],
+      "transform": "<Struct 'Transform' (0x7f9401e407b0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183817.035000, y: 392856.605000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Table_Oak_01_PhotoBaked.MI_Table_Oak_01_PhotoBaked"
+      ]
+    },
+    {
+      "actor": "DinkPlaceholderActor_14",
+      "class": "DinkPlaceholderActor",
+      "tags": [
+        "DinkGenerated",
+        "DinkKey=S001_P23",
+        "DinkHash=e9925cfb3e859c6876a7620341671d4b",
+        "DinkAuthoredArt"
+      ],
+      "component": "Card",
+      "component_tags": [],
+      "original": {
+        "origin": "S001_P23",
+        "class_id": "bed",
+        "category": "furniture",
+        "sequence": 64,
+        "frame": 3,
+        "script": "s1-h1-1"
+      },
+      "instance_origins": [],
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "actor_hidden": false,
+      "visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "profile": "BlockAll",
+      "render_bounds_center_cm": [
+        -184282.9725,
+        393103.7925,
+        55.99999237060547
+      ],
+      "render_bounds_extent_cm": [
+        125.49998474121094,
+        68.50000762939453,
+        55.99999237060547
+      ],
+      "transform": "<Struct 'Transform' (0x7f9401e407b0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184282.972500, y: 393103.792500, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Bed_Oak_01_PhotoBaked.MI_Bed_Oak_01_PhotoBaked"
+      ]
+    },
+    {
+      "actor": "DinkPlaceholderActor_15",
+      "class": "DinkPlaceholderActor",
+      "tags": [
+        "DinkGenerated",
+        "DinkKey=S001_P24",
+        "DinkHash=597edfd18ef915f93c670635d7859d99",
+        "DinkAuthoredArt"
+      ],
+      "component": "Card",
+      "component_tags": [],
+      "original": {
+        "origin": "S001_P24",
+        "class_id": "bed",
+        "category": "furniture",
+        "sequence": 64,
+        "frame": 3,
+        "script": "s1-h1-3"
+      },
+      "instance_origins": [],
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "actor_hidden": false,
+      "visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "profile": "BlockAll",
+      "render_bounds_center_cm": [
+        -183351.0975,
+        393099.41750000004,
+        55.99999237060547
+      ],
+      "render_bounds_extent_cm": [
+        125.49998474121094,
+        68.50000762939453,
+        55.99999237060547
+      ],
+      "transform": "<Struct 'Transform' (0x7f9401e407b0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183351.097500, y: 393099.417500, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Bed_Oak_01_PhotoBaked.MI_Bed_Oak_01_PhotoBaked"
+      ]
+    }
+  ],
+  "original_origins": [
+    "S001_P22",
+    "S001_P23",
+    "S001_P24"
+  ],
+  "decorative_chairs": 2,
+  "limits": "Original identity/script readback, not a save/load roundtrip proof. Render bounds are not independent collision measurements."
+}

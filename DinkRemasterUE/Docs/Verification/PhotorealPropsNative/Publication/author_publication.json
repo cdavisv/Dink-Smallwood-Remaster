@@ -1,0 +1,22 @@
+{
+  "schema": "dink-photoreal-props/1",
+  "passed": true,
+  "applied": true,
+  "already_published": false,
+  "only_mesh_references_changed": true,
+  "asset_rows": 3,
+  "instance_rows": 5,
+  "before_sha256": "6801953f1e37d70271fcdf9b89fd36ebe31f9b77497c775bfbbcc0026d9543e5",
+  "after_sha256": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853",
+  "proposed_sha256": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853",
+  "verified_baseline_sha256": "6801953f1e37d70271fcdf9b89fd36ebe31f9b77497c775bfbbcc0026d9543e5",
+  "verified_baseline_semantic_sha256": "781f1c66982e1f59f0bef32af5b1c02947f184671f617405c47755308334147a",
+  "verification_sha256": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
+  "tool_sha256": {
+    "props_contract.py": "e60f42d511e3752beacd9b25b6fcf7f57e16f30bbefb80e4e866bb9e8f6ca29c",
+    "import_photoreal_props.py": "6e4f549598f79223d33ead085e111ddbbb1188bd5c213bf9663755ebfc5bc7a3",
+    "publish_photoreal_props.py": "08212f9da3fbdec7c3863211e36851774fc97e5fa2f5ffa4b28865066a6a4951",
+    "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "plan_sha256": "f823cdaf9de97faadb227e8076cf7315b008e8047c80f0e04ae303b9c670583d"
+}

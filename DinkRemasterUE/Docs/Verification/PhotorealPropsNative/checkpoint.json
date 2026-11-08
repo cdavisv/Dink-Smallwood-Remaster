@@ -1,0 +1,234 @@
+{
+  "status": "Fresh native import and independent-process read-only verify PASS; runtime publication NOT performed",
+  "project": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+  "import_receipt": "Saved/NativeProps/approved_import_receipt.json",
+  "import_receipt_sha256": "3faa0be8b8a09d2ab39a8ba7d85eeaca7bb9760ac1ba30473efa1a228df4192b",
+  "verify_receipt": "Saved/NativeProps/Attempt07_verify/receipt.json",
+  "verify_receipt_sha256": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
+  "import_seconds": 109.85445737838745,
+  "verify_seconds": 83.87790489196777,
+  "all15_saved_package_hashes_exact_import_baseline": true,
+  "saved_package_sha256": {
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Bed_Oak_01_PhotoBaked.uasset": "d51793bd88d5c98d3baac245f962b10d4d5e5588d0b4ff2b6e3a5c57caf9c411",
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Chair_Oak_01_PhotoBaked.uasset": "87ec485313938aeb688a452714c900843314b3ad16713f581605773edf24f3ae",
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Table_Oak_01_PhotoBaked.uasset": "8554b8fdccc95d80d379b526ebac25e910795894b538abddf3b2af0e87d27697",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.uasset": "f535e1442be40dda7f7227dc1a39fdcc2ef5388e508cf8f460a3df63f5225379",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.uasset": "6cef01ac4bf85e5515d97c5d04a5d111b75fbf249b4cced3803640f85d9700f3",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.uasset": "e040ffde7adeeb5ef83dc7d4a0c51b444df89a58c48598db5d4eddb89b9c13fa",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_BC.uasset": "20a2821847516829dac1cf6acafc84b1bebc0b5ab20de6601efea88d5d669ca5",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_N.uasset": "c8df49c35a07cc1cf5b1862678c5559efabf47618d21d2a099762bfa1477095d",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_ORM.uasset": "4c27c2842527eafac3b2c2bd31f624f0c752d6b211ba16c40634b4df8e8fa199",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_BC.uasset": "f0f870c662d675c9b03d7fab708e18b683aa069967fc76cf189a050c6c86f9e6",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_N.uasset": "ad50680725833ea64ab16f802cf552e38b7d3dc4cc39a18b4505dcfa964ab80f",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_ORM.uasset": "018db3e24cfed79f5ec3835988988a6852d5946b86cb9f66312086a242d6550c",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_BC.uasset": "83641661e84f2ed7439d11f2afdb0209a11dd822f2761c66667f63ca08c725c6",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_N.uasset": "68c6e7a0d2d17e1aa7f73e6d2cae63b24c95073de8d830133428a5a530038fba",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_ORM.uasset": "0e33f3c3879252829ab445edc55d1b8aa2366bd230fcc483e93e8656e4f89ecb"
+  },
+  "source_art_runtimeData_originalContent_unchanged": true,
+  "runtimeData_files": 668,
+  "protectedContent_files": 5433,
+  "native_texture_source_pixels": {
+    "SM_Bed_Oak_01/BC": "94d103813fc757d2ec2841e32fedab48890f9897495b8ed27b2c3f03fb5a7ac4",
+    "SM_Bed_Oak_01/N": "325caf49332488aa60fa0146b3e477220ce8003e4f31456eb8f65df3feeb2b9f",
+    "SM_Bed_Oak_01/ORM": "31ba699669001c2638c0820746b182c76081e3043caa950202f6dd614213dfbf",
+    "SM_Chair_Oak_01/BC": "ad682b30a0ab781d53cecc41a40e1ca4a71e543f3b2772acda20ee9a49e8fb17",
+    "SM_Chair_Oak_01/N": "410e31b54557427dc9aeea1b772111834a0678d6d02f4104b80696e2f2145132",
+    "SM_Chair_Oak_01/ORM": "bd360ec2c28fef0cbd7702c879b0f1f8bca15c73bbf4bbda212c291ad669b33d",
+    "SM_Table_Oak_01/BC": "f4e27685601df57c14831f8355ff3696a36d349298f9d3b85844afa883fc4171",
+    "SM_Table_Oak_01/N": "aa0c4a89d0e27cba6eefdbeebad0a4dd5989e51a7b29eb67eeb6b3f4bd5b5292",
+    "SM_Table_Oak_01/ORM": "a4ba583f1e0625080310954586a975b3e7b4ae867b20281e1a09a718860e1b9a"
+  },
+  "material_recipes": {
+    "SM_Bed_Oak_01": {
+      "direct_BC_N_ORM": true,
+      "specular": 0.35,
+      "all_native_material_property_ids_checked": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        18
+      ]
+    },
+    "SM_Chair_Oak_01": {
+      "direct_BC_N_ORM": true,
+      "specular": 0.35,
+      "all_native_material_property_ids_checked": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        18
+      ]
+    },
+    "SM_Table_Oak_01": {
+      "direct_BC_N_ORM": true,
+      "specular": 0.35,
+      "all_native_material_property_ids_checked": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        18
+      ]
+    }
+  },
+  "native_geometry": {
+    "SM_Bed_Oak_01": {
+      "triangles": 19588,
+      "bounds_min_cm": [
+        -125.49998474121094,
+        -68.50000762939453,
+        0.0
+      ],
+      "bounds_max_cm": [
+        125.49998474121094,
+        68.50000762939453,
+        111.99998474121094
+      ],
+      "oriented_source_match": {
+        "checked_triangles": 19588,
+        "bijective_source_coverage": true,
+        "cyclic_only": true,
+        "position_tolerance_cm": 0.01,
+        "UV_tolerance": 0.0001,
+        "max_position_delta_cm": 3.814697265625e-06,
+        "max_UV_delta": 2.9802322387695312e-08,
+        "minimum_geometric_front_dot": 0.9999999779419941
+      },
+      "native_front_normal_evidence": {
+        "checked_triangles": 19588,
+        "minimum_dot_authored_source": 0.46795359915918744,
+        "minimum_dot_source_geometric_front": 0.9999999779419941,
+        "clockwise_geometric_front_sha256": "9affa9d50c1defb694be3c670e15aea3ced00d685631225666455ff3f218db04",
+        "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+        "native_shading_normal_values_read": false
+      },
+      "UCX_hulls": 13,
+      "convex_source_match": {
+        "checked_hulls": 13,
+        "checked_vertices": 104,
+        "bijective_hulls_and_vertices": true,
+        "position_tolerance_cm": 0.01,
+        "max_vertex_delta_cm": 3.814697265625e-06
+      },
+      "collision_policy": "complex-as-simple"
+    },
+    "SM_Chair_Oak_01": {
+      "triangles": 6064,
+      "bounds_min_cm": [
+        -32.5,
+        -26.874998092651367,
+        0.0
+      ],
+      "bounds_max_cm": [
+        32.5,
+        26.875001907348633,
+        100.5
+      ],
+      "oriented_source_match": {
+        "checked_triangles": 6064,
+        "bijective_source_coverage": true,
+        "cyclic_only": true,
+        "position_tolerance_cm": 0.01,
+        "UV_tolerance": 0.0001,
+        "max_position_delta_cm": 3.814697265625e-06,
+        "max_UV_delta": 2.9802322387695312e-08,
+        "minimum_geometric_front_dot": 0.9999999801171731
+      },
+      "native_front_normal_evidence": {
+        "checked_triangles": 6064,
+        "minimum_dot_authored_source": 0.9999999506726833,
+        "minimum_dot_source_geometric_front": 0.9999999801171731,
+        "clockwise_geometric_front_sha256": "9a08fbab9740c72b185bef0dd6237bbf2d0d8a5e4dfdbefe2c125ee8c31dddce",
+        "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+        "native_shading_normal_values_read": false
+      },
+      "UCX_hulls": 16,
+      "convex_source_match": {
+        "checked_hulls": 16,
+        "checked_vertices": 128,
+        "bijective_hulls_and_vertices": true,
+        "position_tolerance_cm": 0.01,
+        "max_vertex_delta_cm": 2.6226043701171875e-06
+      },
+      "collision_policy": "complex-as-simple"
+    },
+    "SM_Table_Oak_01": {
+      "triangles": 9232,
+      "bounds_min_cm": [
+        -132.5,
+        -74.89999389648438,
+        0.0
+      ],
+      "bounds_max_cm": [
+        132.5,
+        74.89999389648438,
+        90.0
+      ],
+      "oriented_source_match": {
+        "checked_triangles": 9232,
+        "bijective_source_coverage": true,
+        "cyclic_only": true,
+        "position_tolerance_cm": 0.01,
+        "UV_tolerance": 0.0001,
+        "max_position_delta_cm": 5.245208740234375e-06,
+        "max_UV_delta": 2.9802322387695312e-08,
+        "minimum_geometric_front_dot": 0.9999999713327459
+      },
+      "native_front_normal_evidence": {
+        "checked_triangles": 9232,
+        "minimum_dot_authored_source": 0.9999992937777659,
+        "minimum_dot_source_geometric_front": 0.9999999713327459,
+        "clockwise_geometric_front_sha256": "7c05a66cec92afec47a351671c40f5ff867990871e6ede8045c1e6d0e1a02d2e",
+        "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+        "native_shading_normal_values_read": false
+      },
+      "UCX_hulls": 18,
+      "convex_source_match": {
+        "checked_hulls": 18,
+        "checked_vertices": 152,
+        "bijective_hulls_and_vertices": true,
+        "position_tolerance_cm": 0.01,
+        "max_vertex_delta_cm": 4.76837158203125e-06
+      },
+      "collision_policy": "complex-as-simple"
+    }
+  },
+  "read_only_convex_bridge": {
+    "header": "Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h",
+    "cpp": "Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp",
+    "header_sha256": "ab111fbb7a112f2767bcd417abd217023592369ca48eee398cbcbe6a14656fa4",
+    "cpp_sha256": "730b6d72cfb88645bed30c3b3d72ea2c90e8068dec8b596c482e9049caef06cf",
+    "native_test": "Dink.Art.ConvexTransformInspection",
+    "art_tests": 24,
+    "art_failures": 0,
+    "art_warnings": 0,
+    "internal_NullRHI_PIE_in_existing_Art_suite": true
+  },
+  "pure_regression_tests": 47,
+  "failed_attempts_preserved": [
+    "Attempt02_import",
+    "Attempt03_import",
+    "Attempt04_import",
+    "Attempt05_import"
+  ],
+  "recovery_scope": "Only exact owned unpublished candidate package stems/sidecars;4/4/4/9files archived after terminal failures",
+  "source_art_changes": false,
+  "GPU_or_external_game_or_user_input": false,
+  "tool_sha256": {
+    "props_contract.py": "e60f42d511e3752beacd9b25b6fcf7f57e16f30bbefb80e4e866bb9e8f6ca29c",
+    "import_photoreal_props.py": "6e4f549598f79223d33ead085e111ddbbb1188bd5c213bf9663755ebfc5bc7a3",
+    "publish_photoreal_props.py": "08212f9da3fbdec7c3863211e36851774fc97e5fa2f5ffa4b28865066a6a4951",
+    "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "publication_review_required": true,
+  "remaining": [
+    "Root independent CPP/receipt review before guarded8-mesh-path publication",
+    "Native rendered camera/lighting/distance and capsule/reach/script-save checks after review"
+  ]
+}

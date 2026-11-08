@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "files_checked": 9040,
+  "changes": [],
+  "scope": "Exact prelaunch file set: all recorded runtime Content, ImportData, source, scripts, config, source art, custom binaries and tracked metadata. Saved-only drivers excluded.",
+  "actual_W_exit": "PASS",
+  "actual_W_return": "PASS",
+  "interaction_cases": 12,
+  "game_pid": 90612,
+  "quit": "Normal console quit verified by private session controller",
+  "limits": "Old exposure ownership and hero in this stage; furniture visible, but combined final lighting/cloth acceptance pending."
+}
