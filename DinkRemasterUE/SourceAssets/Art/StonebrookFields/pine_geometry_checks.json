@@ -1,0 +1,54 @@
+{
+  "collision_mode": "simple",
+  "simple_hull_count": 1,
+  "trunk_collision_bounds_blender_m": [
+    [
+      -0.11420904099941254,
+      -0.15600982308387756,
+      0.0
+    ],
+    [
+      0.3457909822463989,
+      0.2814761698246002,
+      2.0
+    ]
+  ],
+  "lowest_foliage_m": 1.0746300220489502,
+  "pine_source_roots": [
+    {
+      "origin": "S471_P02",
+      "source_pixel": [
+        220,
+        462
+      ],
+      "root_distance_outside_screen_m": 3.9352112631207117,
+      "conservative_trunk_to_screen_gap_m": 3.4852112631207115,
+      "player_diameter_m": 0.56,
+      "runtime_collision": false
+    },
+    {
+      "origin": "S471_P03",
+      "source_pixel": [
+        380,
+        481
+      ],
+      "root_distance_outside_screen_m": 5.104911450625266,
+      "conservative_trunk_to_screen_gap_m": 4.654911450625266,
+      "player_diameter_m": 0.56,
+      "runtime_collision": false
+    },
+    {
+      "origin": "S471_P04",
+      "source_pixel": [
+        27,
+        459
+      ],
+      "root_distance_outside_screen_m": 3.7766619768735197,
+      "conservative_trunk_to_screen_gap_m": 3.3266619768735195,
+      "player_diameter_m": 0.56,
+      "runtime_collision": false
+    }
+  ],
+  "normal_bank_walkway_collider_intrusion": false,
+  "note": "All source471 pine roots are offscreen. Layout explicitly disables their collision; trunk-only simple mode prevents crown blockers in future reuse."
+}

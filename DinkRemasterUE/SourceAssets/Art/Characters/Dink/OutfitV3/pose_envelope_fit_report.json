@@ -1,0 +1,48 @@
+{
+  "scope": "Only fitted cloth yoke rest positions and clipped-edge Skin barycentric weights adjusted; exact Armature deformation Jacobians measured forREST/idle/fist/bothactualwalks, least-squares enclosure against actual posed protectedSkin. Protected geometry/UV/weights/restbones/materialgraphs unchanged. No reference geometry or animation saved.",
+  "poses": [
+    "REST",
+    "ActualEpicIdle",
+    "OriginalFist8",
+    "ActualEpicWalk0",
+    "ActualEpicWalk1"
+  ],
+  "lods": [
+    {
+      "lod": 0,
+      "fitted_cloth_vertices": 336,
+      "target_offset_m": 0.01,
+      "initial_offset_m": 0.008,
+      "maximum_rest_adjustment_m": 0.0032897480171025562,
+      "maximum_pose_target_error_m": 0.003206184599353041,
+      "rms_pose_target_error_m": 0.00043003848134575567
+    },
+    {
+      "lod": 1,
+      "fitted_cloth_vertices": 245,
+      "target_offset_m": 0.01,
+      "initial_offset_m": 0.008,
+      "maximum_rest_adjustment_m": 0.0031567479446384574,
+      "maximum_pose_target_error_m": 0.003336684165777351,
+      "rms_pose_target_error_m": 0.0005083188657163803
+    },
+    {
+      "lod": 2,
+      "fitted_cloth_vertices": 147,
+      "target_offset_m": 0.01,
+      "initial_offset_m": 0.008,
+      "maximum_rest_adjustment_m": 0.00744112058445685,
+      "maximum_pose_target_error_m": 0.011599793190613552,
+      "rms_pose_target_error_m": 0.0009275892662436641
+    },
+    {
+      "lod": 3,
+      "fitted_cloth_vertices": 88,
+      "target_offset_m": 0.01,
+      "initial_offset_m": 0.008,
+      "maximum_rest_adjustment_m": 0.005159021412519107,
+      "maximum_pose_target_error_m": 0.0038172535687933397,
+      "rms_pose_target_error_m": 0.0006009142437534359
+    }
+  ]
+}

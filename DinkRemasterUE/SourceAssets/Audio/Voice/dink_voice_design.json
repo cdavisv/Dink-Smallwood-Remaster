@@ -1,0 +1,28 @@
+{
+ "character": "Dink",
+ "model": "eleven_ttv_v3",
+ "language": "en",
+ "guidance_scale": 10,
+ "designed_on": "2026-11-07",
+ "voice_description": "A young man, a pig farmer's son of about eighteen who insists he is a warrior: cocky, sarcastic, quick to sulk, with a plain small-town American accent. Energetic and a little nasal, comic timing, not heroic.",
+ "preview_text": "I'm NOT a pig farmer. Boy? Please refer to me as warrior from now on. Hey, that's Lyna with Milder Flatstomp! I HATE that guy! Why must I attack furniture? Smells damp in here. I don't like this one bit... This cave sucks, let's leave... WATER MUST DIE!",
+ "previews": [
+  {
+   "n": 1,
+   "generated_voice_id": "TU37Ff3IUgsCPWFKXNG7"
+  },
+  {
+   "n": 2,
+   "generated_voice_id": "b2Qxxmq2CGtqPUxYNPgl"
+  },
+  {
+   "n": 3,
+   "generated_voice_id": "ma0ruPjGTpvEmqnHUV4C"
+  }
+ ],
+ "view_state_id": "viewstate_01m6w1064bfj0avj4pebrvqmjk",
+ "chosen": 1,
+ "voice_id": "TU37Ff3IUgsCPWFKXNG7",
+ "voice_name": "Dink Smallwood (remaster)",
+ "chosen_on": "2026-11-07"
+}

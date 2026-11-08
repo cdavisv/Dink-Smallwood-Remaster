@@ -1,0 +1,55 @@
+{
+  "archive_sha256": "894c5f5055b219dfb5fe99cdd20ac92624d3e024876b64ade47b3ed9e7b0c3a0",
+  "archive_size": 1671920189,
+  "archive_files": 1651,
+  "actual_archive_hydration": {
+    "verified": 1651,
+    "installed": 1651,
+    "already_current": 0
+  },
+  "python_tests": {
+    "passed": 29,
+    "bootstrap_adversarial_and_hydration": 18,
+    "fireplace_pipeline": 8,
+    "existing_creature_manifest": 3
+  },
+  "source_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 1651,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 157,
+    "shell_syntax_files": 22,
+    "ledger_rows": 1058,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "storage_reason": "GitHub rejected new LFS objects in this public fork; binaries are hash-pinned release assets, not unresolvable LFS pointers.",
+  "independent_review": {
+    "reviewer": "house_walls; did not author bootstrap",
+    "kind": "automated read-only review; no human approval implied",
+    "helper_sha256": "1e91dad1db494c3b4e920bb170e2e4906efc81114b0346541eafcdbdde6d0921",
+    "blocking_findings": [],
+    "adversarial_tests_passed": 18
+  },
+  "independent_real_pack_verify_only": {
+    "passed": true,
+    "script_sha256": "1e91dad1db494c3b4e920bb170e2e4906efc81114b0346541eafcdbdde6d0921",
+    "manifest_sha256": "365db5af14b3325389a782c1f9d3f52fb1ed5f0b6d676ef59d852cd479c49e9d",
+    "archive_sha256": "894c5f5055b219dfb5fe99cdd20ac92624d3e024876b64ade47b3ed9e7b0c3a0",
+    "archive_size": 1671920189,
+    "result": {
+      "verified_files": 1651,
+      "installed_files": 0,
+      "already_current": 0,
+      "require_hydration": 1651,
+      "verify_only": true
+    },
+    "fixture_root": "/home/davisc/Work/DinkQA/AssetPackBootstrap/RealPackVerifyOnly",
+    "no_asset_directories_created": true
+  }
+}

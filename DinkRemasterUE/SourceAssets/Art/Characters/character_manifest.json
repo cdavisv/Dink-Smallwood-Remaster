@@ -1,0 +1,444 @@
+{
+  "schema": "dink-character-art/1",
+  "assets": {
+    "SK_Mother": {
+      "class": "character_humanoid",
+      "fbx": "Export/SK_Mother_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SK_Mother_LOD0.fbx",
+        "Export/SK_Mother_LOD1.fbx",
+        "Export/SK_Mother_LOD2.fbx",
+        "Export/SK_Mother_LOD3.fbx"
+      ],
+      "dimensions_m": [
+        1.1077864170074463,
+        0.8310590386390686,
+        1.8053745031356812
+      ],
+      "lod_union_dimensions_m": [
+        1.109224557876587,
+        0.8310590386390686,
+        1.8053745031356812
+      ],
+      "materials": [
+        "MI_Mother_Skin",
+        "MI_Mother_Eyes",
+        "MI_Mother_Hair",
+        "MI_Mother_BrowLash",
+        "MI_Mother_Wardrobe"
+      ],
+      "content_folder": "/Game/Dink/NPC/Mother",
+      "reference_skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+      "source_credits": "CC0 MakeHuman anatomical body/eyes/hair; original project-authored clothing. Epic skeletal reference transforms are separate UE project content, not CC0 geometry.",
+      "source_blend": "SK_Mother.blend"
+    },
+    "SK_Dink": {
+      "class": "character_hero",
+      "fbx": "Dink/Export/SK_Dink_LOD0.fbx",
+      "lod_fbx": [
+        "Dink/Export/SK_Dink_LOD0.fbx",
+        "Dink/Export/SK_Dink_LOD1.fbx",
+        "Dink/Export/SK_Dink_LOD2.fbx",
+        "Dink/Export/SK_Dink_LOD3.fbx"
+      ],
+      "dimensions_m": [
+        1.1226370334625244,
+        0.4864029884338379,
+        1.8013807535171509
+      ],
+      "lod_union_dimensions_m": [
+        1.1234434843063354,
+        0.48710334300994873,
+        1.8013807535171509
+      ],
+      "materials": [
+        "MI_Dink_Skin",
+        "MI_Dink_Eyes",
+        "MI_Dink_Hair",
+        "MI_Dink_BrowLash",
+        "MI_Dink_Wardrobe"
+      ],
+      "content_folder": "/Game/Dink/Hero",
+      "reference_skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+      "source_credits": "CC0 MakeHuman anatomical body/eyes/hair; original project-authored clothing. Epic skeletal reference transforms are separate UE project content, not CC0 geometry.",
+      "source_blend": "Dink/SK_Dink.blend"
+    },
+    "SK_Milder": {
+      "class": "character_humanoid",
+      "fbx": "Milder/Export/SK_Milder_LOD0.fbx",
+      "lod_fbx": [
+        "Milder/Export/SK_Milder_LOD0.fbx",
+        "Milder/Export/SK_Milder_LOD1.fbx",
+        "Milder/Export/SK_Milder_LOD2.fbx",
+        "Milder/Export/SK_Milder_LOD3.fbx"
+      ],
+      "dimensions_m": [
+        1.1192829608917236,
+        0.49385011196136475,
+        1.8293490409851074
+      ],
+      "lod_union_dimensions_m": [
+        1.1205005645751953,
+        0.49494224786758423,
+        1.8325749635696411
+      ],
+      "materials": [
+        "MI_Milder_Skin",
+        "MI_Milder_Eyes",
+        "MI_Milder_Hair",
+        "MI_Milder_BrowLash",
+        "MI_Milder_Wardrobe"
+      ],
+      "content_folder": "/Game/Dink/NPC/Milder",
+      "reference_skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+      "source_credits": "CC0 MakeHuman anatomical body/eyes/hair; original project-authored plate armor,blue cloth and leather equipment. Epic skeletal reference transforms are separate UE project content, not CC0 geometry.",
+      "source_blend": "Milder/SK_Milder.blend"
+    }
+  },
+  "materials": {
+    "MI_Mother_Skin": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.08,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Mother_Atlas_BC.png",
+        "N": "Textures/T_Mother_Atlas_N.png",
+        "ORM": "Textures/T_Mother_Atlas_ORM.png"
+      }
+    },
+    "MI_Mother_Eyes": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Mother_Atlas_BC.png",
+        "N": "Textures/T_Mother_Atlas_N.png",
+        "ORM": "Textures/T_Mother_Atlas_ORM.png"
+      }
+    },
+    "MI_Mother_Hair": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Mother_Atlas_BC.png",
+        "N": "Textures/T_Mother_Atlas_N.png",
+        "ORM": "Textures/T_Mother_Atlas_ORM.png"
+      }
+    },
+    "MI_Mother_BrowLash": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Mother_Atlas_BC.png",
+        "N": "Textures/T_Mother_Atlas_N.png",
+        "ORM": "Textures/T_Mother_Atlas_ORM.png"
+      }
+    },
+    "MI_Mother_Wardrobe": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Mother_Atlas_BC.png",
+        "N": "Textures/T_Mother_Atlas_N.png",
+        "ORM": "Textures/T_Mother_Atlas_ORM.png"
+      }
+    },
+    "MI_Dink_Skin": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.08,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Dink/Textures/T_Dink_Atlas_BC.png",
+        "N": "Dink/Textures/T_Dink_Atlas_N.png",
+        "ORM": "Dink/Textures/T_Dink_Atlas_ORM.png"
+      }
+    },
+    "MI_Dink_Eyes": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Dink/Textures/T_Dink_Atlas_BC.png",
+        "N": "Dink/Textures/T_Dink_Atlas_N.png",
+        "ORM": "Dink/Textures/T_Dink_Atlas_ORM.png"
+      }
+    },
+    "MI_Dink_Hair": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Dink/Textures/T_Dink_Atlas_BC.png",
+        "N": "Dink/Textures/T_Dink_Atlas_N.png",
+        "ORM": "Dink/Textures/T_Dink_Atlas_ORM.png"
+      }
+    },
+    "MI_Dink_BrowLash": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Dink/Textures/T_Dink_Atlas_BC.png",
+        "N": "Dink/Textures/T_Dink_Atlas_N.png",
+        "ORM": "Dink/Textures/T_Dink_Atlas_ORM.png"
+      }
+    },
+    "MI_Dink_Wardrobe": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Dink/Textures/T_Dink_Atlas_BC.png",
+        "N": "Dink/Textures/T_Dink_Atlas_N.png",
+        "ORM": "Dink/Textures/T_Dink_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Skin": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.08,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Eyes": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Hair": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_BrowLash": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": true,
+      "masked": true,
+      "two_sided": true,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    },
+    "MI_Milder_Wardrobe": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "alpha_mask": false,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Milder/Textures/T_Milder_Atlas_BC.png",
+        "N": "Milder/Textures/T_Milder_Atlas_N.png",
+        "ORM": "Milder/Textures/T_Milder_Atlas_ORM.png"
+      }
+    }
+  },
+  "replacements": [
+    {
+      "origin": "S001_P26",
+      "mesh": "SK_Mother",
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ]
+    }
+  ],
+  "export_units": "Centimetre FBX, header1; source Blender metres. Geometry/bone positions scaled100 only in temporary export scene.",
+  "bone_reference": "Epic Manny/SK_Mannequin; original89bone hierarchy and rest transforms, explicitidentityroot. Not a CC0 body asset.",
+  "licence": "CC0 for MakeHuman source geometry/textures; original project-authored wardrobe; see Provenance for full separation.",
+  "player": {
+    "mesh": "SK_Dink"
+  },
+  "script_profiles": {
+    "s1-bul": {
+      "mesh": "SK_Milder",
+      "offset_cm": [
+        0,
+        0,
+        -60
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "capsule_radius_cm": 28,
+      "capsule_halfheight_cm": 92
+    }
+  }
+}

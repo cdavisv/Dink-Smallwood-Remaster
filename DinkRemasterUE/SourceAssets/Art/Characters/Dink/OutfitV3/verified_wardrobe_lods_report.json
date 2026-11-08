@@ -1,0 +1,26 @@
+{
+  "scope": "Four original anatomical LODs preserved exactly. Lower wardrobe geometry retains verified LOD0 detail because the old decimated clothing had visible one-sided holes. All four total LOD counts remain below40k; no anatomy decimation or rig/material change. This favors source visual correctness over aggressive wardrobe LOD reduction.",
+  "lods": [
+    {
+      "lod": 1,
+      "wardrobe_geometry_source_lod": 0,
+      "wardrobe_triangles": 17101,
+      "total_triangles": 24041,
+      "protected_anatomical_geometry_unchanged": true
+    },
+    {
+      "lod": 2,
+      "wardrobe_geometry_source_lod": 0,
+      "wardrobe_triangles": 17101,
+      "total_triangles": 20231,
+      "protected_anatomical_geometry_unchanged": true
+    },
+    {
+      "lod": 3,
+      "wardrobe_geometry_source_lod": 0,
+      "wardrobe_triangles": 17101,
+      "total_triangles": 18563,
+      "protected_anatomical_geometry_unchanged": true
+    }
+  ]
+}

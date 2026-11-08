@@ -1,0 +1,31 @@
+{
+  "schema": "dink-camera/1",
+  "material_variants": {
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Oak.MI_Stonebrook_Oak": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Oak_v1.M_CameraFade_Oak_v1",
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash": "/Game/Dink/Camera/Stonebrook/M_CameraFade_Limewash_v1.M_CameraFade_Limewash_v1"
+  },
+  "floor_framing": {
+    "1": {
+      "polygon_cm": [
+        [
+          -184565.16,
+          392284.23
+        ],
+        [
+          -183078.2189,
+          392284.23
+        ],
+        [
+          -183078.2189,
+          393595.98
+        ],
+        [
+          -184565.16,
+          393595.98
+        ]
+      ],
+      "floor_z_cm": 0,
+      "provenance": "Actual 56 imported floor tiles, source local0..199.4x0..199.2cm and Y handedness; floor top0cm. Conservative convex room rectangle;5cm camera framing inset."
+    }
+  }
+}

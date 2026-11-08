@@ -1,0 +1,25 @@
+{
+  "scope": "Restore the deterministic generated torso faces removed by the earlier hidden-waist trim. Existing side boundary vertices are shared exactly; lower hidden interior vertices tuck inside the jerkin. New shirt only; protected anatomy/materials/rig unchanged.",
+  "lods": [
+    {
+      "lod": 0,
+      "restored_continuous_torso_faces": 897,
+      "exact_shared_side_boundary_vertices": 96
+    },
+    {
+      "lod": 1,
+      "restored_continuous_torso_faces": 897,
+      "exact_shared_side_boundary_vertices": 96
+    },
+    {
+      "lod": 2,
+      "restored_continuous_torso_faces": 897,
+      "exact_shared_side_boundary_vertices": 96
+    },
+    {
+      "lod": 3,
+      "restored_continuous_torso_faces": 897,
+      "exact_shared_side_boundary_vertices": 96
+    }
+  ]
+}

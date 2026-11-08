@@ -1,0 +1,49 @@
+{
+  "schema": "dink-stonebrook-art/1",
+  "units": "metres; FBX UnitScaleFactor100 imports centimetres",
+  "source": "KIT_PigPen.blend",
+  "seed": 407431,
+  "assets": {
+    "SM_FeedScatter_Wheat_01": {
+      "class": "prop_small",
+      "dimensions_m": [
+        0.25,
+        0.18000000715255737,
+        0.003093831706792116
+      ],
+      "materials": [
+        "MI_PigPen_Wheat"
+      ],
+      "fbx": "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD0.fbx",
+      "blend_collection": "SM_FeedScatter_Wheat_01",
+      "pivot": "base_center; groundZ0; centred25x18cm footprint",
+      "triangles": 1280,
+      "expected_lods": 3,
+      "collision": false,
+      "nanite": false,
+      "lod_fbx": [
+        "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD0.fbx",
+        "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD1.fbx",
+        "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01_LOD2.fbx"
+      ],
+      "full_fbx": "Export/Game/Dink/Props/PigPen/SM_FeedScatter_Wheat_01.fbx"
+    }
+  },
+  "materials": {
+    "MI_PigPen_Wheat": {
+      "base_color": [
+        0.48,
+        0.31,
+        0.12
+      ],
+      "roughness": 0.84,
+      "metallic": 0,
+      "textures": {}
+    }
+  },
+  "notes": [
+    "Original authored grain, informed by source431_04.png.",
+    "80individual7-9mm loose kernels; no opaque backing disc or collision geometry.",
+    "Uses one constant rough PBR material; no downloaded textures."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "contract": "Wardrobe1002 minus one equals unique nonoverlapping 0..1 charts; regular Texture2D repeat. Full UV_RANGE warning is intentional and retained. No global validator changes.",
+  "lods": [
+    {
+      "lod": 0,
+      "wardrobe_modulo_one_uv_stats": {
+        "uv_area": 0.2669494850129441,
+        "area_3d": 3.7957798123231927,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 17101
+      },
+      "zero_area_wardrobe_faces": []
+    },
+    {
+      "lod": 1,
+      "wardrobe_modulo_one_uv_stats": {
+        "uv_area": 0.2669494850129441,
+        "area_3d": 3.7957798123231927,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 17101
+      },
+      "zero_area_wardrobe_faces": []
+    },
+    {
+      "lod": 2,
+      "wardrobe_modulo_one_uv_stats": {
+        "uv_area": 0.2669494850129441,
+        "area_3d": 3.7957798123231927,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 17101
+      },
+      "zero_area_wardrobe_faces": []
+    },
+    {
+      "lod": 3,
+      "wardrobe_modulo_one_uv_stats": {
+        "uv_area": 0.2669494850129441,
+        "area_3d": 3.7957798123231927,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 17101
+      },
+      "zero_area_wardrobe_faces": []
+    }
+  ]
+}

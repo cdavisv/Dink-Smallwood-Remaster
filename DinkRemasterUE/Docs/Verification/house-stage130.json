@@ -1,0 +1,79 @@
+{
+  "utc": 1794098365.8307161,
+  "exit": 0,
+  "summary": "TESTS PASSED: 130/130 passed, 0 failed (0 with warnings) [filter 'Dink'] in 354s; report: /home/davisc/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html\n",
+  "counts": {
+    "tests": 130,
+    "passed": 130,
+    "failed": 0,
+    "warned": 0
+  },
+  "scope_counts": {
+    "data": 666,
+    "compiled_scope": 225,
+    "test_support": 1,
+    "binaries": 7,
+    "camera_assets": 2,
+    "fireplace_assets": 6,
+    "protected_original_assets": 651
+  },
+  "stage_scope_stable": true,
+  "scope_changes": {
+    "data": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "compiled_scope": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "test_support": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "binaries": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "camera_assets": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "fireplace_assets": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    },
+    "protected_original_assets": {
+      "added": [],
+      "missing": [],
+      "changed": []
+    }
+  },
+  "root_changes_during_tests": {
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  "foreign_saves_unchanged": true,
+  "strict_chapter_errors": [],
+  "full_verified": true,
+  "report": "/home/davisc/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html",
+  "limitations": [
+    "Chapter6 is limited to healer/one goblin/exit; remaining sanctuary/Mog untested",
+    "Graphics/camera/PP candidate acceptance remains separate",
+    "Stage-only foreground camera candidate; actual W-return GPU acceptance and Main integration remain separate"
+  ],
+  "pinned_inputs_sha256": "453b380578ab11fbd2004e923c9898e530568f786b146f8b6f9abb3c9ed9e4d1",
+  "gameplay_traces_identical_to_prior129": true,
+  "warnings_receipt": "warnings.json",
+  "baseline_evidence": "../nearfrustum_baseline_final_20261108",
+  "focused_after_evidence": "../nearfrustum_fixed_20261108",
+  "camera_approximation": "12 inscribed complex component box sweeps. Can miss thin geometry exactly along outer frustum boundary; actual GPU W return remains separate.",
+  "delivery_scope": "This is the exact staged house/camera/fireplace snapshot; consolidated delivery also retains the existing main Probe.Ch7 code and receives separate build/test verification."
+}

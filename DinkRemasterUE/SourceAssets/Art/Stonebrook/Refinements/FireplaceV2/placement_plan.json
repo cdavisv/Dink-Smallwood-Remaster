@@ -1,0 +1,53 @@
+{
+  "schema": "dink-fireplace-refinement/1",
+  "source_blend": "SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend",
+  "source_blend_sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02",
+  "source_export": "SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/Export/manifest.json",
+  "destination": "/Game/Dink/Refinements/FireplaceV2",
+  "mesh": "SM_Fireplace_Stonebrook_V2",
+  "screen": 1,
+  "placement": {
+    "origin": "S001_P19",
+    "offset_cm": [
+      6.5625,
+      -28.437499999941792,
+      0.0
+    ],
+    "rotation_deg": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "original_script": "s1-h1-2"
+  },
+  "local_light": {
+    "match_world_xy_cm": [
+      -183869.535,
+      392353.48000000004
+    ],
+    "original": {
+      "lumens": 150,
+      "kelvin": 2700,
+      "z_cm": 90
+    },
+    "candidate": {
+      "lumens": 40,
+      "kelvin": 2000,
+      "z_cm": 55
+    },
+    "radius_cm": 390
+  },
+  "runtime_file": "stonebrook_refinement_fireplace_v2.json",
+  "status": "staged candidate; material finish and real Mother/interaction/door gates remain",
+  "render_policy": {
+    "nanite": true,
+    "fallback_percent_triangles": 1.0,
+    "fallback_relative_error": 0.0,
+    "fallback_target": "PercentTriangles"
+  }
+}

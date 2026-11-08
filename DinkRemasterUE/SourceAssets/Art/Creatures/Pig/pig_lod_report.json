@@ -1,0 +1,45 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "normals": [
+    {
+      "mesh": "SK_Pig_LOD0",
+      "removed_zero_area_faces": 0,
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Pig_LOD1",
+      "removed_zero_area_faces": 0,
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Pig_LOD2",
+      "removed_zero_area_faces": 0,
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    }
+  ],
+  "lods": [
+    {
+      "name": "SK_Pig_LOD0",
+      "triangles": 19266,
+      "vertices": 10118
+    },
+    {
+      "name": "SK_Pig_LOD1",
+      "triangles": 9633,
+      "vertices": 4953
+    },
+    {
+      "name": "SK_Pig_LOD2",
+      "triangles": 4815,
+      "vertices": 2523
+    }
+  ]
+}

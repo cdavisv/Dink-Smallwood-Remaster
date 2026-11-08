@@ -1,0 +1,223 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3/SK_Dink_OutfitV3.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 12
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Dink_OutfitV3",
+      "class": "character_hero",
+      "collection": "SK_Dink_OutfitV3",
+      "tris_per_lod": {
+        "LOD0": 36769,
+        "LOD1": 24041,
+        "LOD2": 20231,
+        "LOD3": 18563
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.017,
+          -28.466,
+          -0.0
+        ],
+        "blender_max_cm": [
+          55.017,
+          24.544,
+          180.138
+        ],
+        "size_cm": [
+          110.035,
+          53.01,
+          180.138
+        ],
+        "unreal_min_cm": [
+          -55.017,
+          -24.544,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          55.017,
+          28.466,
+          180.138
+        ]
+      },
+      "errors": 0,
+      "warnings": 12,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "mesh data 'SK_Dink_OutfitV3_LOD0_Unique_Joined_SkinYoke_Connected_ContinuousShirt_ContinuousShirt_ContinuousShirt_ContinuousShirt_HardwareRestored_HardwareRestored_ClosedSides' differs from object name 'SK_Dink_OutfitV3_LOD0'",
+          "object": "SK_Dink_OutfitV3_LOD0"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "mesh data 'SK_Dink_OutfitV3_LOD1_Unique_Joined_SkinYoke_Connected_ContinuousShirt_ContinuousShirt_ContinuousShirt_ContinuousShirt_HardwareRestored_HardwareRestored_ClosedSides_VerifiedWardrobe' differs from object name 'SK_Dink_OutfitV3_LOD1'",
+          "object": "SK_Dink_OutfitV3_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "mesh data 'SK_Dink_OutfitV3_LOD2_Unique_Joined_SkinYoke_Connected_ContinuousShirt_ContinuousShirt_ContinuousShirt_ContinuousShirt_HardwareRestored_HardwareRestored_ClosedSides_VerifiedWardrobe' differs from object name 'SK_Dink_OutfitV3_LOD2'",
+          "object": "SK_Dink_OutfitV3_LOD2"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "mesh data 'SK_Dink_OutfitV3_LOD3_Unique_Joined_SkinYoke_Connected_ContinuousShirt_ContinuousShirt_ContinuousShirt_ContinuousShirt_HardwareRestored_HardwareRestored_ClosedSides_VerifiedWardrobe' differs from object name 'SK_Dink_OutfitV3_LOD3'",
+          "object": "SK_Dink_OutfitV3_LOD3"
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "4912 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_OutfitV3_LOD0",
+          "data": {
+            "vertices": 4912
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "8639 non-manifold edges (8639 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_OutfitV3_LOD0",
+          "data": {
+            "boundary": 8639,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "0 loose vertices, 1 loose (wire) edges",
+          "object": "SK_Dink_OutfitV3_LOD1",
+          "data": {
+            "vertices": 0,
+            "edges": 1
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "4912 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_OutfitV3_LOD1",
+          "data": {
+            "vertices": 4912
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "8572 non-manifold edges (8571 open boundary, 0 >2 faces, 1 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_OutfitV3_LOD1",
+          "data": {
+            "boundary": 8571,
+            "multi_face": 0,
+            "wire": 1
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "0 loose vertices, 3 loose (wire) edges",
+          "object": "SK_Dink_OutfitV3_LOD2",
+          "data": {
+            "vertices": 0,
+            "edges": 3
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "4912 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_OutfitV3_LOD2",
+          "data": {
+            "vertices": 4912
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "8456 non-manifold edges (8453 open boundary, 0 >2 faces, 3 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_OutfitV3_LOD2",
+          "data": {
+            "boundary": 8453,
+            "multi_face": 0,
+            "wire": 3
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "0 loose vertices, 7 loose (wire) edges",
+          "object": "SK_Dink_OutfitV3_LOD3",
+          "data": {
+            "vertices": 0,
+            "edges": 7
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "4912 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_OutfitV3_LOD3",
+          "data": {
+            "vertices": 4912
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "8364 non-manifold edges (8357 open boundary, 0 >2 faces, 7 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_OutfitV3_LOD3",
+          "data": {
+            "boundary": 8357,
+            "multi_face": 0,
+            "wire": 7
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "17101 triangles have UVs outside 0-1",
+          "object": "SK_Dink_OutfitV3_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Dink_OutfitV3",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Dink_OutfitV3_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

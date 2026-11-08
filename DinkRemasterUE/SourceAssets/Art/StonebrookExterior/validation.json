@@ -1,0 +1,504 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 7,
+    "assets_passed": 7,
+    "errors": 0,
+    "warnings": 15
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Cottage_Stonebrook_01",
+      "class": "building",
+      "collection": "SM_Cottage_Stonebrook_01",
+      "tris_per_lod": {
+        "LOD0": 113788
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -941.5,
+          -527.336,
+          0.0
+        ],
+        "blender_max_cm": [
+          941.5,
+          527.336,
+          793.0
+        ],
+        "size_cm": [
+          1883.0,
+          1054.672,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -527.336,
+          0.0
+        ],
+        "unreal_max_cm": [
+          941.5,
+          527.336,
+          793.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_01",
+          "message": "mesh data 'SM_Cottage_Stonebrook_01_Mesh' differs from object name 'SM_Cottage_Stonebrook_01'",
+          "object": "SM_Cottage_Stonebrook_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_01",
+          "message": "LOD0 has 113788 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_Cottage_Stonebrook_01",
+          "data": {
+            "tris": 113788,
+            "target": 60000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_01",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Cottage_Stonebrook_01",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_01",
+          "message": "14640 triangles are collapsed in UV space",
+          "object": "SM_Cottage_Stonebrook_01"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Cottage_Stonebrook_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Fence_SplitRail_4m_01",
+      "class": "prop_large",
+      "collection": "SM_Fence_SplitRail_4m_01",
+      "tris_per_lod": {
+        "LOD0": 1080
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -209.0,
+          -9.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          209.0,
+          9.5,
+          144.0
+        ],
+        "size_cm": [
+          418.0,
+          19.0,
+          144.0
+        ],
+        "unreal_min_cm": [
+          -209.0,
+          -9.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          209.0,
+          9.5,
+          144.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Fence_SplitRail_4m_01",
+          "message": "mesh data 'SM_Fence_SplitRail_4m_01_Mesh' differs from object name 'SM_Fence_SplitRail_4m_01'",
+          "object": "SM_Fence_SplitRail_4m_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Boulder_Fieldstone_01",
+      "class": "prop",
+      "collection": "SM_Boulder_Fieldstone_01",
+      "tris_per_lod": {
+        "LOD0": 1280
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -106.021,
+          -84.672,
+          0.0
+        ],
+        "blender_max_cm": [
+          106.021,
+          84.672,
+          118.508
+        ],
+        "size_cm": [
+          212.042,
+          169.344,
+          118.508
+        ],
+        "unreal_min_cm": [
+          -106.021,
+          -84.672,
+          0.0
+        ],
+        "unreal_max_cm": [
+          106.021,
+          84.672,
+          118.508
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Boulder_Fieldstone_01",
+          "message": "mesh data 'SM_Boulder_Fieldstone_01_Mesh' differs from object name 'SM_Boulder_Fieldstone_01'",
+          "object": "SM_Boulder_Fieldstone_01"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Boulder_Fieldstone_01",
+          "message": "reaching 512 px/m with this UV layout needs a 2145 px texture, above the 2048 px cap for prop: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Boulder_Fieldstone_01",
+          "data": {
+            "needed_px": 2145,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Oak_Stonebrook_01",
+      "class": "foliage",
+      "collection": "SM_Oak_Stonebrook_01",
+      "tris_per_lod": {
+        "LOD0": 19076,
+        "LOD1": 9538,
+        "LOD2": 4742
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -475.424,
+          -489.917,
+          0.0
+        ],
+        "blender_max_cm": [
+          475.424,
+          489.917,
+          908.969
+        ],
+        "size_cm": [
+          950.848,
+          979.834,
+          908.969
+        ],
+        "unreal_min_cm": [
+          -475.424,
+          -489.917,
+          0.0
+        ],
+        "unreal_max_cm": [
+          475.424,
+          489.917,
+          908.969
+        ]
+      },
+      "errors": 0,
+      "warnings": 6,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "LOD0 has 19076 triangles, target for foliage is 8000 (hard max 25000)",
+          "object": "SM_Oak_Stonebrook_01_LOD0",
+          "data": {
+            "tris": 19076,
+            "target": 8000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "24 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Oak_Stonebrook_01_LOD0",
+          "data": {
+            "vertices": 24
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "16720 non-manifold edges (16720 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Oak_Stonebrook_01_LOD0",
+          "data": {
+            "boundary": 16720,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "16720 non-manifold edges (16720 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Oak_Stonebrook_01_LOD1",
+          "data": {
+            "boundary": 16720,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "2838 loose vertices, 0 loose (wire) edges",
+          "object": "SM_Oak_Stonebrook_01_LOD2",
+          "data": {
+            "vertices": 2838,
+            "edges": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Oak_Stonebrook_01",
+          "message": "10084 non-manifold edges (10084 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Oak_Stonebrook_01_LOD2",
+          "data": {
+            "boundary": 10084,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Grass_Meadow_01",
+      "class": "foliage",
+      "collection": "SM_Grass_Meadow_01",
+      "tris_per_lod": {
+        "LOD0": 510,
+        "LOD1": 255,
+        "LOD2": 128
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -52.577,
+          -54.588,
+          0.0
+        ],
+        "blender_max_cm": [
+          52.577,
+          54.588,
+          54.999
+        ],
+        "size_cm": [
+          105.154,
+          109.175,
+          54.999
+        ],
+        "unreal_min_cm": [
+          -52.577,
+          -54.588,
+          0.0
+        ],
+        "unreal_max_cm": [
+          52.577,
+          54.588,
+          54.999
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Grass_Meadow_01",
+          "message": "850 non-manifold edges (850 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Grass_Meadow_01_LOD0",
+          "data": {
+            "boundary": 850,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Grass_Meadow_01",
+          "message": "595 non-manifold edges (595 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Grass_Meadow_01_LOD1",
+          "data": {
+            "boundary": 595,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SM_Grass_Meadow_01",
+          "message": "0 loose vertices, 42 loose (wire) edges",
+          "object": "SM_Grass_Meadow_01_LOD2",
+          "data": {
+            "vertices": 0,
+            "edges": 42
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Grass_Meadow_01",
+          "message": "426 non-manifold edges (384 open boundary, 0 >2 faces, 42 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Grass_Meadow_01_LOD2",
+          "data": {
+            "boundary": 384,
+            "multi_face": 0,
+            "wire": 42
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Ground_Meadow_20m_01",
+      "class": "building",
+      "collection": "SM_Ground_Meadow_20m_01",
+      "tris_per_lod": {
+        "LOD0": 12
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          10.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          10.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          10.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Ground_Meadow_20m_01",
+          "message": "mesh data 'SM_Ground_Meadow_20m_01_Mesh' differs from object name 'SM_Ground_Meadow_20m_01'",
+          "object": "SM_Ground_Meadow_20m_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Path_Earth_8m_01",
+      "class": "kit_floor",
+      "collection": "SM_Path_Earth_8m_01",
+      "tris_per_lod": {
+        "LOD0": 132
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.5
+        ],
+        "blender_max_cm": [
+          800.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          200.0,
+          2.5
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.5
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Path_Earth_8m_01",
+          "message": "mesh data 'SM_Path_Earth_8m_01_Mesh' differs from object name 'SM_Path_Earth_8m_01'",
+          "object": "SM_Path_Earth_8m_01"
+        },
+        {
+          "code": "COLLISION_BOUNDS",
+          "severity": "warning",
+          "asset": "SM_Path_Earth_8m_01",
+          "message": "collision extends 8 cm beyond the render mesh bounds",
+          "object": "UCX_SM_Path_Earth_8m_01_01"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

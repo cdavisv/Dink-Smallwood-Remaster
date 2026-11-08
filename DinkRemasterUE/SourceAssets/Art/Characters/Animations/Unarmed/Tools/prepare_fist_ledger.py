@@ -1,0 +1,13 @@
+"""Originalcombat/source-reference local receipts; no sharedledger writes."""
+import csv,json,hashlib
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];PROJECT=ROOT.parents[4]
+with (PROJECT/'SourceAssets/asset_ledger.csv').open(newline='') as f:fields=csv.DictReader(f).fieldnames
+files=[ROOT/'Dink_Fist.blend',ROOT/'Export/A_Dink_Fist.fbx',*[ROOT/n for n in ['animation_manifest.json','fist_source_report.json','fist_validation.json','fbx_inspection.json','idle_boundary_pose.json']]];rows=[]
+for p in files:
+ kind='animation' if p.suffix=='.fbx' else('animation_source' if p.suffix=='.blend' else('manifest' if p.name=='animation_manifest.json' else 'report'));derived='Content/Dink/Hero/Animations/AN_Dink_Fist.uasset' if p.suffix in ['.blend','.fbx'] else('Content/Dink/Data/Art/hero_actions.json' if kind=='manifest' else 'source validation/provenance evidence')
+ r={n:'' for n in fields};r.update(asset_path=str(p.relative_to(PROJECT)),derived_path=derived,kind=kind,replaces='item-fst cosmeticpresentation for originalseq102/104/106/108',source='Originalproject-handkeyed comicpunch layered over existingEpicMM_Idle boundarypose and compatible89rig; correctedDinkhandpreviewreference only',tool_model='Blender5.2.2LTS / handkeyedtorso/armIK/fingeropposition; exactsourceimpacttiming; armature-onlyFBX',prompt='Plantedforwardfist/comicshouldercross at original175ms impact and400ms completion, with idle-matched boundaries and no gameplay authority',parameters='40fps;17frames;duration.400s;impactframe8/.175s;89bones;root0/feet0;finite/unitposes;armature-onlyheader1cm',generation_id='dink-fist-forward-v1',generated_on='2026-11-07',credits='0',licence='Originalcombat keyframes plus existingEpicrig/idleboundary reference underEpicterms; CC0-basedDink and originalprojectclothes/correctedhand used onlyaspreview. SeeREADME.',sha256=hashlib.sha256(p.read_bytes()).hexdigest(),duration_s='.4' if p.suffix=='.fbx' else '',status='candidate',notes='All17framesfinite; root/feet0; exactidle endpoints; binaryFBX89bones/noMesh/17keys/.4sPASS. Tinyangularthumbwebfold remains closeviewpolish; closedfist requires isolatedHandBindingV2 correction. Nativegameplaypendinghit remains175ms independently; no damage/notifies/stat changes. UEimport/playbackreviewnotyetclaimed.')
+ rows.append(r)
+with (ROOT/'asset_ledger_rows.csv').open('w',newline='') as f:w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+assert all(hashlib.sha256((PROJECT/r['asset_path']).read_bytes()).hexdigest()==r['sha256'] for r in rows)
+print('FIST LOCAL LEDGER PASS',len(rows),'hashes; sharedledger untouched')

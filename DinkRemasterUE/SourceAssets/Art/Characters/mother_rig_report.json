@@ -1,0 +1,19 @@
+{
+  "bone_count": 89,
+  "root_bones": [
+    "root"
+  ],
+  "triangles": 32164,
+  "material_slots": [
+    "MI_Mother_Skin",
+    "MI_Mother_Eyes",
+    "MI_Mother_Hair",
+    "MI_Mother_BrowLash",
+    "MI_Mother_Wardrobe"
+  ],
+  "max_influences": 4,
+  "unweighted_before_fallback": 0,
+  "vertices": 17337,
+  "skirt_vertices": 2482,
+  "reference_geometry_present": false
+}

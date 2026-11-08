@@ -1,0 +1,86 @@
+{
+  "tool": "authored exterior floor and gateway layout check",
+  "screen": 439,
+  "passed": true,
+  "sample_count": 2501,
+  "uncovered_source_pixels": [],
+  "south_gateway_clear_for_56cm_capsule": true,
+  "ground_tiles": [
+    {
+      "name": "Meadow_0_0",
+      "min": [
+        942.9225,
+        344.4183
+      ],
+      "max": [
+        962.7845333333333,
+        364.43955
+      ],
+      "physical": true
+    },
+    {
+      "name": "Meadow_1_0",
+      "min": [
+        962.7845333333333,
+        344.41830000000004
+      ],
+      "max": [
+        982.6465666666667,
+        364.43955000000005
+      ],
+      "physical": true
+    },
+    {
+      "name": "Meadow_2_0",
+      "min": [
+        982.6465666666668,
+        344.41830000000004
+      ],
+      "max": [
+        1002.5086000000001,
+        364.43955000000005
+      ],
+      "physical": true
+    },
+    {
+      "name": "Meadow_0_1",
+      "min": [
+        942.9225,
+        364.43955
+      ],
+      "max": [
+        962.7845333333333,
+        384.4608
+      ],
+      "physical": true
+    },
+    {
+      "name": "Meadow_1_1",
+      "min": [
+        962.7845333333333,
+        364.43955000000005
+      ],
+      "max": [
+        982.6465666666667,
+        384.46080000000006
+      ],
+      "physical": true
+    },
+    {
+      "name": "Meadow_2_1",
+      "min": [
+        982.6465666666666,
+        364.43954999999994
+      ],
+      "max": [
+        1002.5085999999999,
+        384.46079999999995
+      ],
+      "physical": true
+    }
+  ],
+  "notes": [
+    "Floor tiles share a rectangular world grid covering all skewed screen corners with a2cm outer margin.",
+    "Exact triangle/capsule behavior is verified separately by the Unreal walking tests."
+  ]
+}

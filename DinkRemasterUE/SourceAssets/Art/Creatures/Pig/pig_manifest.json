@@ -1,0 +1,251 @@
+{
+  "schema": "dink-creature-art/1",
+  "assets": {
+    "SK_Pig": {
+      "fbx": "Export/SK_Pig_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SK_Pig_LOD0.fbx",
+        "Export/SK_Pig_LOD1.fbx",
+        "Export/SK_Pig_LOD2.fbx"
+      ],
+      "dimensions_m": [
+        1.7223998308181763,
+        0.7860804796218872,
+        0.9734090566635132
+      ],
+      "lod_union_dimensions_m": [
+        1.7230558395385742,
+        0.7875397205352783,
+        0.9742853045463562
+      ],
+      "bounds_min_m": [
+        -0.7699999213218689,
+        -0.3930399715900421,
+        -1.4901161193847656e-08
+      ],
+      "bounds_max_m": [
+        0.9523999094963074,
+        0.3930404782295227,
+        0.9734090566635132
+      ],
+      "materials": [
+        "MI_Pig_Skin",
+        "MI_Pig_Muzzle",
+        "MI_Pig_HornBristle",
+        "MI_Pig_Eye"
+      ],
+      "root_bone": "root",
+      "bones": [
+        "root",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "upperarm_l",
+        "lowerarm_l",
+        "hand_l",
+        "upperarm_r",
+        "lowerarm_r",
+        "hand_r",
+        "spine_03",
+        "neck_01",
+        "neck_02",
+        "head",
+        "jaw",
+        "ear_l",
+        "ear_r",
+        "thigh_l",
+        "calf_l",
+        "foot_l",
+        "thigh_r",
+        "calf_r",
+        "foot_r",
+        "tail_01",
+        "tail_02",
+        "tail_03"
+      ],
+      "head_bone": "head",
+      "pelvis_bone": "pelvis",
+      "class": "creature_quadruped",
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "forward": "+X",
+      "source_blend": "SK_Pig.blend",
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -14.963835716247559,
+            -2.5331974029541016e-05,
+            63.68118667602539
+          ],
+          "extent_cm": [
+            53.96299362182617,
+            40.30402374267578,
+            34.65971374511719
+          ]
+        },
+        {
+          "offset_cm": [
+            65.12362670898438,
+            0.3702983260154724,
+            62.926246643066406
+          ],
+          "extent_cm": [
+            31.116363525390625,
+            30.49131202697754,
+            19.875280380249023
+          ]
+        }
+      ],
+      "body_boxes_note": "Measured rest-surface AABBs of major trunk and head, excluding decorative tail/ears;1cm padding, actor-forward UEcm."
+    }
+  },
+  "materials": {
+    "MI_Pig_Skin": {
+      "base_color": [
+        0.234,
+        0.166,
+        0.157
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.055,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pig_Atlas_BC.png",
+        "N": "Textures/T_Pig_Atlas_N.png",
+        "ORM": "Textures/T_Pig_Atlas_ORM.png"
+      },
+      "appearance_revision": "skin-muzzle-linear-half-v2"
+    },
+    "MI_Pig_Muzzle": {
+      "base_color": [
+        0.2395,
+        0.125,
+        0.119
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.07,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pig_Atlas_BC.png",
+        "N": "Textures/T_Pig_Atlas_N.png",
+        "ORM": "Textures/T_Pig_Atlas_ORM.png"
+      },
+      "appearance_revision": "skin-muzzle-linear-half-v2"
+    },
+    "MI_Pig_HornBristle": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pig_Atlas_BC.png",
+        "N": "Textures/T_Pig_Atlas_N.png",
+        "ORM": "Textures/T_Pig_Atlas_ORM.png"
+      }
+    },
+    "MI_Pig_Eye": {
+      "base_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "roughness": 0.6,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Pig_Atlas_BC.png",
+        "N": "Textures/T_Pig_Atlas_N.png",
+        "ORM": "Textures/T_Pig_Atlas_ORM.png"
+      }
+    }
+  },
+  "animations": {
+    "Idle": {
+      "fbx": "Export/A_Pig_Idle.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 2.0,
+      "frames": [
+        1,
+        61
+      ],
+      "root_motion": false
+    },
+    "Walk": {
+      "fbx": "Export/A_Pig_Walk.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 0.6,
+      "frames": [
+        1,
+        19
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 80
+    },
+    "Run": {
+      "fbx": "Export/A_Pig_Run.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 0.4,
+      "frames": [
+        1,
+        13
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 400
+    },
+    "Feed": {
+      "fbx": "Export/A_Pig_Feed.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 0.4,
+      "frames": [
+        1,
+        13
+      ],
+      "root_motion": false
+    }
+  },
+  "source": "Original project-authored pig anatomy, procedural materials, quadruped rig and actions; no third-party geometry/textures.",
+  "export_units": "Source metres; temporary mesh/edit-bone/action-location coordinates100x, scene.01 and FBXheader1 centimetres; identityroot, noleafbones.",
+  "origins": [
+    "S407_P02",
+    "S407_P05",
+    "S407_P06",
+    "S407_P07",
+    "S407_P11"
+  ],
+  "status": "candidate",
+  "food_mesh": "/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01.SM_FeedScatter_Wheat_01",
+  "food_mesh_offset_cm": [
+    0,
+    0,
+    -59.4
+  ],
+  "appearance_revision": "skin-muzzle-linear-half-v2",
+  "appearance_notes": "Skin/Muzzle linear albedo0.5 vs originalv1; geometry,rig,UV,eye/horn colors,normal,roughness unchanged; noSSS change."
+}

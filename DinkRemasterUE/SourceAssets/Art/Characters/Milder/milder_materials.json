@@ -1,0 +1,102 @@
+{
+  "MI_Milder_Skin": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "alpha_mask": false,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.08,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Milder_Atlas_BC.png",
+      "N": "Textures/T_Milder_Atlas_N.png",
+      "ORM": "Textures/T_Milder_Atlas_ORM.png"
+    }
+  },
+  "MI_Milder_Eyes": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "alpha_mask": false,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Milder_Atlas_BC.png",
+      "N": "Textures/T_Milder_Atlas_N.png",
+      "ORM": "Textures/T_Milder_Atlas_ORM.png"
+    }
+  },
+  "MI_Milder_Hair": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "alpha_mask": true,
+    "masked": true,
+    "two_sided": true,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Milder_Atlas_BC.png",
+      "N": "Textures/T_Milder_Atlas_N.png",
+      "ORM": "Textures/T_Milder_Atlas_ORM.png"
+    }
+  },
+  "MI_Milder_BrowLash": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "alpha_mask": true,
+    "masked": true,
+    "two_sided": true,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Milder_Atlas_BC.png",
+      "N": "Textures/T_Milder_Atlas_N.png",
+      "ORM": "Textures/T_Milder_Atlas_ORM.png"
+    }
+  },
+  "MI_Milder_Wardrobe": {
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "alpha_mask": false,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Milder_Atlas_BC.png",
+      "N": "Textures/T_Milder_Atlas_N.png",
+      "ORM": "Textures/T_Milder_Atlas_ORM.png"
+    }
+  }
+}

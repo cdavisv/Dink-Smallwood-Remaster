@@ -1,0 +1,53 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 11
+  },
+  "removed_zero_area_faces": 1,
+  "normals": [
+    {
+      "mesh": "SK_Dink_LOD0",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD1",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD2",
+      "flat_faces_for_cancelled_normals": 0,
+      "remaining_zero_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD3",
+      "flat_faces_for_cancelled_normals": 8,
+      "remaining_zero_normals": 0
+    }
+  ],
+  "lods": [
+    {
+      "name": "SK_Dink_LOD0",
+      "triangles": 31688,
+      "vertices": 16545
+    },
+    {
+      "name": "SK_Dink_LOD1",
+      "triangles": 15844,
+      "vertices": 8570
+    },
+    {
+      "name": "SK_Dink_LOD2",
+      "triangles": 7921,
+      "vertices": 4538
+    },
+    {
+      "name": "SK_Dink_LOD3",
+      "triangles": 3803,
+      "vertices": 2413
+    }
+  ]
+}
