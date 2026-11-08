@@ -1,0 +1,82 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/Basket/UVRefinement/PhotorealBasketV1_Source.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 1
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Basket_Wicker_01",
+      "class": "prop",
+      "collection": "SM_Basket_Wicker_01",
+      "tris_per_lod": {
+        "LOD0": 19680
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "blender_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ],
+        "size_cm": [
+          114.4,
+          94.2,
+          67.2
+        ],
+        "unreal_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "unreal_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "mesh data 'SM_Basket_Wicker_01_PhotoMesh' differs from object name 'SM_Basket_Wicker_01'",
+          "object": "SM_Basket_Wicker_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "LOD0 has 19680 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Basket_Wicker_01",
+          "data": {
+            "tris": 19680,
+            "target": 6000
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Basket_Wicker_01"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

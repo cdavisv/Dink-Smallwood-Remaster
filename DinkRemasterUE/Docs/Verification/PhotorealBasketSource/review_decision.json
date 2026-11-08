@@ -1,0 +1,15 @@
+{
+  "reviewer": "coordinating project root session",
+  "source_thread": "01a1b489-6b5b-7d03-a461-8e4363b7c168",
+  "approved_scope": "Source/export iteration for independent source publication; not native",
+  "reviewed_views": [
+    "Roundtrip/front.png",
+    "Roundtrip/handle.png"
+  ],
+  "source_sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+  "export_sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+  "requested_branch": "art/photoreal-basket-source",
+  "requested_base": "7930e7b921ec6f52f4c44f31fb59e5b7c4c741a6",
+  "local_commit_requested": true,
+  "push_or_PR_authorized": false
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "source_export_sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+  "FBX_sha256": "4dcbb08777b83ee7d606cc677df7459e18cf161b753f8394fd373601ecec2e01",
+  "triangles": 19680,
+  "cyclic_oriented_bijective_face_match": true,
+  "max_position_delta_m": 0,
+  "max_UV_delta": 0,
+  "minimum_geometric_front_dot": 0.9999997623135434,
+  "max_stored_normal_angle_radians": 0,
+  "source_and_roundtrip_material_slots": 1,
+  "collision_hulls": 1,
+  "actual_roundtrip_collision_bounds_m": [
+    [
+      -0.4399999976158142,
+      -0.4399999976158142,
+      0.0
+    ],
+    [
+      0.4399999976158142,
+      0.4399999976158142,
+      0.6000000238418579
+    ]
+  ],
+  "render_scope": "Geometry/UV/fronts/corner normals and exact UCX through actual Blender FBX roundtrip. Native Unreal and final render acceptance pending.",
+  "max_collision_vertex_delta_m": 0.0
+}
