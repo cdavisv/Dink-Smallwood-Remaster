@@ -36,7 +36,24 @@ The earlier table (before the fix, kept for history; chapter 7 was not packaged 
 | 5 `Ch5Bow` | 6c709d1069 | 6c709d1069 |
 | 6 `Ch6Goblins` | 6d33d4a177 (7471375e32 after a healer step another agent added to chapter 6 at 13:05; PIE and packaged agree on that too) | 6d33d4a177 (7471375e32, same source) |
 
-(The gate itself, `&story 16`, still needs the remaining chapters authored: `probe_route.md`; the probe now stops at the ducks of Windemere, route step 31, AGENTS.md pitfall 56. This was the prerequisite.)
+**Update, 7 Nov 2026 late night (after the `external`/`spawn` parity fix, AGENTS.md pitfall 56): ten chapters, all `PARITY OK`.** `Scripts/package.sh` (51 s, incremental cook) then `Scripts/run_packaged_tests.sh` (its default chapter list now ends with `ChAJoppa`, the chapter 10 whose test name sorts after `Ch9Windemere`). Chapters 2, 4, 7, 8 and 9 moved with the fix (1, 3, 5, 6 did not), chapter 9 now includes the 27 ducks and chapter 10 is new; PIE and packaged agree on every one:
+
+| Chapter | PIE trace md5 | Packaged trace md5 | Events |
+|---|---|---|---|
+| 1 `Ch1Stonebrook` (47 steps) | b3760d52d7 | b3760d52d7 | 4338 |
+| 2 `Ch2Terris` | 253e6f7268 | 253e6f7268 | 3092 |
+| 3 `Ch3Roads` | e9fce770bc | e9fce770bc | 430 |
+| 4 `Ch4Gold` | d431e6780f | d431e6780f | 2121 |
+| 5 `Ch5Bow` | 6c709d1069 | 6c709d1069 | 120 |
+| 6 `Ch6Goblins` | 9e87080221 | 9e87080221 | 462 |
+| 7 `Ch7Sanctuary` | d50e5111f6 | d50e5111f6 | 2589 |
+| 8 `Ch8Knights` | 28406402c0 | 28406402c0 | 1443 |
+| 9 `Ch9Windemere` (6 steps: + the ducks) | 1db62e4adb | 1db62e4adb | 2323 |
+| 10 `ChAJoppa` (7 steps) | c532805f11 | c532805f11 | 442 |
+
+The first `package.sh` of the night **failed to compile** (`redefinition of 'Inside'`, `'NAME_Main'`): adaptive unity bundled DinkNarrative files differently once the project was committed in the fork. `Source/DinkRemaster.Target.cs` now switches unity builds off, like the editor target (pitfall 61); the staged build that run left behind was the old one (its parity lines were stale hashes, not a real difference).
+
+(The gate itself, `&story 16`, still needs the remaining chapters authored: `probe_route.md`; the probe now stops at the Joppa dragons, route step 36: a kit (strength 20+) the run does not have, AGENTS.md "Where the probe stops, and why".)
 
 ## 1. What was changed
 

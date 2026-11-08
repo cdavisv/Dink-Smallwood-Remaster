@@ -2845,6 +2845,7 @@ namespace DinkProbeTest
 			case 7: BuildChapter7(); break;
 			case 8: BuildChapter8(); break;
 			case 9: BuildChapter9(); break;
+			case 10: BuildChapter10(); break;
 			default: break;
 			}
 		}
@@ -3354,13 +3355,86 @@ namespace DinkProbeTest
 					if (R && FMath::Max(FMath::Abs(R->X - C.D->GetDink().X), FMath::Abs(R->Y - C.D->GetDink().Y)) < 90.0) { C.Goto(536, 413, 300); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 1 && C.Idle(); }, 30.0, {}, 0.5);
-			// NEXT (design-level stop, 7 Nov 2026): Act C step 31, the 27 ducks of the enclosure (&s4-duck 1 -> 2, &story 11). Played far enough to see the problem:
-			// `KiteAndPunch` on the nearest duck kills all 27 (die: head flies off, then duckdie: 27 each, 81 s of game time), but the last `duckdie` never reaches its
-			// `get_sprite_with_this_brain(3, ..) == 0` / `spawn("s4-end")`: duckdie's first line is `external("make", "foodduck")`, the original runs that child at once
-			// (dink.cpp:11326-11360: load_script, locate, run_script, then the parent goes on when it ends), the remake's `external` only starts the child and blocks the
-			// parent on it, and UDinkGameplay's duck_brain case (DinkGameplay.cpp, `RunProc(H, NAME_DuckDie)` then `DeactivateSprite(H, 0, true)`) ends both ("its sprite was
-			// removed", trace of probe_ch9 at 1127883) before the child has run a line. The same unfixed gap as pitfall 53 in `external` and `spawn` (dink.cpp:8181-8203
-			// runs the spawned script's main on the spot too). Not fixable by the probe: the bot cannot make the engine finish the script. Fixing it moves every hash again.
+			// Act C step 31: the 27 ducks (brain 3, s4-duck, 5 hp). The first hit makes `die` (the head flies off, the body runs on headless), the second `duckdie`:
+			// external("make", "foodduck") (a food sprite), and when no brain-3 sprite is left spawn("s4-end"): &s4-duck 2, &story 11, the scene of Kelly and the guard
+			// (s4-end.c, Dink frozen, about 25 s). Needs `external`/`spawn` to run their script at once (pitfall 56, fixed 7 Nov 2026 night): until then the last
+			// `duckdie` was cut short by the removal of the duck's sprite and the scene never started.
+			Add(TEXT("the 27 ducks of the enclosure (SCR_536, s4-duck: die, then duckdie each; the last one's duckdie reaches spawn(\"s4-end\")): &s4-duck 2, &story 11"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(536)) { C.Goto(536, 413, 300); return; }
+					if (!C.Idle()) { return; }
+					int32 Target = 0;
+					double Best = 1e18;
+					const FDinkSprite& Dk = C.D->GetDink();
+					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+					{
+						const FDinkSprite& O = Pair.Value;
+						if (Pair.Key != 1 && O.bActive && !O.bText && O.Screen == 536 && O.GetProp(TEXT("brain")) == 3)
+						{
+							const double Dist = FMath::Square(O.X - Dk.X) + FMath::Square(O.Y - Dk.Y);
+							if (Dist < Best) { Best = Dist; Target = Pair.Key; }
+						}
+					}
+					if (Target) { C.KiteAndPunch(Target, 30); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
+		}
+
+		// ---- Chapter 10 (test `ChAJoppa`, see the name rule in AGENTS.md): the rest of Windemere's errands and Joppa Isle (Acts C-D of Docs/probe_route.md, steps 28, 32-35) ----
+		void BuildChapter10()
+		{
+			// Step 28: the healer of Windemere (SCR_195, s4-healp: "Get healed", 1 gold per missing life). Dink left the ducks at 15/29.
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+			// Step 32 (optional): the three permanent pickups of the wilds and the sanctuary village: +1 strength (SCR_663 rpotion), +1 defense (SCR_603 bpotion),
+			// +1 strength (SCR_742 chest box2-sp, whose potion is make.spotion = rpotion). A pickup is touched by standing on it; the chest is opened by a punch.
+			auto Pickup = [this](const TCHAR* Name, int32 Screen, double X, double Y, const TCHAR* Script, const TCHAR* Fact, int32 ChestIndex)
+			{
+				Add(Name,
+					[=](FCtx& C)
+					{
+						if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); }
+						if (!C.OnScreen(Screen)) { C.Goto(Screen, X, Y); return; }
+						if (const int32 Potion = C.SpriteWithScript(Script)) { C.StandBy(Potion, 0, true); return; }
+						if (ChestIndex && C.Placement(Screen, ChestIndex)) { C.StandBy(C.Placement(Screen, ChestIndex), 12); C.G->PlayerAttack(); }
+					},
+					[=](FCtx& C) { const bool bOk = C.P->Mark >= 0 && C.Fact(Fact) >= C.P->Mark + 1 && C.Idle() && !C.SpriteWithScript(Script); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, {}, 0.5);
+			};
+			Pickup(TEXT("the strength potion of the Windemere wilds (SCR_663 S663_P06 rpotion: strength +1)"), 663, 352, 100, TEXT("rpotion"), TEXT("strength"), 0);
+			Pickup(TEXT("the defense potion of the marshes (SCR_603 S603_P02 bpotion: defense +1)"), 603, 80, 300, TEXT("bpotion"), TEXT("defense"), 0);
+			Pickup(TEXT("the chest of the sanctuary village (SCR_742 S742_P16 box2-sp: a punch, then the potion it makes: strength +1)"), 742, 460, 190, TEXT("rpotion"), TEXT("strength"), 16);
+			// Step 33: Joppa. The route walks the tunnel (SCR_537 door -> 163 -> 259 -> 258 -> 257 -> 483 -> 451 -> 419); the probe teleports to SCR_419, whose base
+			// script `s5-jops` says "Weird.  This town looks deserted." (&s5-jop 0 -> 1) after 900 ms. Needs &story > 10 (the stairs of SCR_163 only exist then).
+			Add(TEXT("Joppa (SCR_419, s5-jops: &s5-jop 0 -> 1, \"Weird.  This town looks deserted.\")"),
+				[](FCtx& C) { if (!C.OnScreen(419)) { C.Goto(419, 300, 300); } },
+				[](FCtx& C) { return C.OnScreen(419) && C.Fact(TEXT("s5-jop")) == 1 && C.Idle(); }, 30.0, {}, 0.5);
+			// Step 34: the basement (door S419_P02 -> SCR_228 -> stairs S228_P23 -> SCR_229, base `s5-base`: the hiding parents, `s5-guy` main, 12 s, Dink frozen): &s5-jop 2.
+			Add(TEXT("the basement (SCR_229, s5-base creates s5-guy and s5-mom, the scene of the hiding parents): &s5-jop 1 -> 2"),
+				[](FCtx& C) { if (!C.OnScreen(229) && C.Fact(TEXT("s5-jop")) == 1) { C.Goto(229, 466, 160); } },
+				[](FCtx& C) { return C.OnScreen(229) && C.Fact(TEXT("s5-jop")) == 2 && C.Idle() && !C.Busy(); }, 90.0, {}, 0.5);
+			// Step 35: back up (stairs S229_P01 -> SCR_228 -> door S228_P20 -> SCR_419 at 422,264): s5-jops makes the family, s5-fguy's scene (about 15 s), then the two
+			// dragons (en-drag, screenlock) and the fight begins. The chapter ends there; the fight is chapter 11.
+			Add(TEXT("back to Joppa (SCR_419, s5-jops with &s5-jop 2: s5-fguy's scene, two dragons en-drag, screenlock): the fight can begin"),
+				[](FCtx& C) { if (!C.OnScreen(419)) { C.Goto(419, 422, 264); } },
+				[](FCtx& C)
+				{
+					int32 Dragons = 0;
+					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites()) { Dragons += (Pair.Value.bActive && Pair.Value.Script == FName(TEXT("en-drag"))) ? 1 : 0; }
+					return C.OnScreen(419) && Dragons == 2 && C.D->bScreenLocked && C.Idle(); }, 120.0, {}, 0.5);
+			// NEXT (design-level stop, 7 Nov 2026 night): Act D step 36, the two dragons of Joppa (en-drag: 80 hp, defense 8, touch 10, `hit` makes a dragon target Dink and its
+			// first `attack` is already due, so one punch earns a `harm` of 20 - defense 4 = 16; `attack_wait` then 3-8 s; the family dies to the same casts: father 100 hp, mother and Gwen 50,
+			// any death sets &life 0). Tried once as a throw-away chapter from this chapter's slot (strength 13, defense 4, magic 7, life 29, gold 205, fists, `KiteAndPunch` from
+			// 44 px): Dink dead after 1.4 s (two casts of 16 and a touch of 6), his punches did 1-4 (net of defense 8), the family was dead after 12-26 s. Not a tactic problem: 160 hp
+			// at about 8 net damage a second needs melee strength 20+ (Docs/probe_route.md 2.5/2.6: the route's three level-ups go to Attack, the 400-gold longsword adds 4 armed).
+			// This run's level-ups went to Defense (chapters 7 and 8) and gold is 205, so the next chapter first has to change that (a Feud round of chapter 4 pays about 200 gold,
+			// Pete's longsword is "Longsword - $400"; strength 13 + 4 = 17 only) or re-spend the level-ups.
 		}
 
 		// ---- Chapter 3: preparation (Act B/C of Docs/probe_route.md): gold, strength and hearts on the roads, then the Mayor's errand ----
@@ -3610,7 +3684,15 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh9Test, "Dink.Gameplay.Probe
 bool FDinkGameplayProbeCh9Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(9, TEXT("Windemere: Pete's bomb, the two all-potion chests, the cracked rock")), 5, 0);
+	return RunChapterTest(*this, MakeChapter(9, TEXT("Windemere: Pete's bomb, the two all-potion chests, the cracked rock, the 27 ducks")), 6, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh10Test, "Dink.Gameplay.Probe.ChAJoppa", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh10Test::RunTest(const FString& Parameters)
+{
+	// Named ChA..: the runner sorts by path, so a chapter 10 called Ch10 would run before Ch2 (AGENTS.md pitfall 33). A chapter 11 would be ChB...
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(10, TEXT("Windemere's errands and Joppa: the healer, three pickups, the basement scene, the family and the dragons")), 7, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh4Test, "Dink.Gameplay.Probe.Ch4Gold", DINK_TEST_FLAGS)
