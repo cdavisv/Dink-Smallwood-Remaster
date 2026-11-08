@@ -328,7 +328,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   modify `bin/` or `source/`. Generated output goes in each tool's `out/`
   directory, which is not tracked.
 - The Unreal project lives beside this repo at `../DinkRemasterUE` (its own
-  git repo, initialised 5 Nov 2026, no commits yet). It has its own `AGENTS.md`.
+  git repo, initialised 5 Nov 2026, first commit 7 Nov 2026). It has its own `AGENTS.md`.
 - Dev machine facts (5 Nov 2026): Arch-based Linux, Python 3.14 with numpy and
   Pillow, Blender 5.2 LTS, dotnet 10, cmake/clang, uv, node. No pytest
   (use stdlib `unittest`). git-lfs 3.8.1 is installed per-user through mise
