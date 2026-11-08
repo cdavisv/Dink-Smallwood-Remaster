@@ -1,0 +1,23 @@
+{
+  "Pillbug_Idle": {
+    "max_joint_gap_m": 2.7314279645418166e-07,
+    "root_motion_m": 0,
+    "maximum_global_scale_error": 4.76837158203125e-07,
+    "finite": true,
+    "loop_pose_matrix_max_difference": 0.0
+  },
+  "Pillbug_Walk": {
+    "max_joint_gap_m": 1.4901161193847656e-07,
+    "root_motion_m": 0,
+    "maximum_global_scale_error": 5.960464477539062e-07,
+    "finite": true,
+    "loop_pose_matrix_max_difference": 0.0
+  },
+  "Pillbug_Run": {
+    "max_joint_gap_m": 1.6118070224511577e-07,
+    "root_motion_m": 0,
+    "maximum_global_scale_error": 5.960464477539062e-07,
+    "finite": true,
+    "loop_pose_matrix_max_difference": 0.0
+  }
+}

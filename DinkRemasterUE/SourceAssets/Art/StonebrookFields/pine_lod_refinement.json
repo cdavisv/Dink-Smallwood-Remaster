@@ -1,0 +1,41 @@
+{
+  "status": "source-only; rendered LOD check pending",
+  "lod0_geometry_unchanged": true,
+  "ucx_unchanged": true,
+  "levels": [
+    {
+      "lod": 1,
+      "triangles": 9004,
+      "source_whorls_retained": 16,
+      "source_branches_retained": 112,
+      "source_bough_cores_retained": 560,
+      "core_cross_section_sides": 6
+    },
+    {
+      "lod": 2,
+      "triangles": 6764,
+      "source_whorls_retained": 16,
+      "source_branches_retained": 112,
+      "source_bough_cores_retained": 560,
+      "core_cross_section_sides": 4
+    }
+  ],
+  "repairs": [
+    {
+      "mesh": "SM_Pine_Stonebrook_01_LOD1",
+      "removed_faces": 0,
+      "zero_corners_after": 0
+    },
+    {
+      "mesh": "SM_Pine_Stonebrook_01_LOD2",
+      "removed_faces": 0,
+      "zero_corners_after": 0
+    }
+  ],
+  "validation_summary": {
+    "assets": 193,
+    "assets_passed": 51,
+    "errors": 207,
+    "warnings": 4
+  }
+}

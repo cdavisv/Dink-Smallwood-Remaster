@@ -1,0 +1,1380 @@
+{
+  "screen": {
+    "id": "SCR_471",
+    "screen": 471,
+    "col": 22,
+    "row": 14,
+    "region": "stonebrook",
+    "region_name": "Stonebrook",
+    "name": "Stonebrook outskirts (farm, Martridge's woods, nut tree)",
+    "kind": "wilderness",
+    "sheet": "mainland",
+    "group": "mainland",
+    "indoor": false,
+    "music": {
+      "raw": 0,
+      "action": "none",
+      "file": null
+    },
+    "base_script": "",
+    "encounter": {
+      "screenlock": false,
+      "locking": false,
+      "scripts": [],
+      "provisional": false
+    },
+    "interior": null,
+    "vision": null,
+    "corners": {
+      "nw": [
+        943.4547,
+        384.0304
+      ],
+      "ne": [
+        1002.4886,
+        384.4408
+      ],
+      "sw": [
+        951.4996,
+        409.6297
+      ],
+      "se": [
+        1009.3189,
+        409.3743
+      ]
+    },
+    "center": [
+      976.6904,
+      396.8688
+    ],
+    "m_per_px_center": 0.0784,
+    "ground_image": "ground/SCR_471.png",
+    "ground_hash": "ad4286a58414fb53119c726450ec198e9863154f",
+    "collision_hash": "c09498f0f70aa6c54661875f3e4b41f2e67ea437",
+    "rect_counts": {
+      "solid": 0,
+      "low": 92,
+      "sprite": 0,
+      "warp": 0,
+      "fill_water": 69,
+      "fill_solid": 0
+    },
+    "reached": true,
+    "excluded": "",
+    "hash": "6d33dc8af6e96ba36213b986d98af961c161beab"
+  },
+  "placements": [
+    {
+      "id": "S471_P01",
+      "screen": 471,
+      "index": 1,
+      "map_x": 556,
+      "map_y": 467,
+      "world": [
+        1006.2378,
+        413.5775
+      ],
+      "m_per_px": 0.0775,
+      "scale_x": 0.096,
+      "scale_y": 0.0648,
+      "rot_deg": -0.3649,
+      "size_factor": 3.1004,
+      "seq": 32,
+      "frame": 2,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "tree_oak_large",
+      "category": "flora_tree",
+      "name": "Broadleaf (oak) tree",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "32_02",
+        "scale_mode": "layout",
+        "width_m": 19.584,
+        "height_m": 20.925,
+        "offset_x_m": -1.344,
+        "offset_z_m": -6.2,
+        "pixel_w": 204,
+        "pixel_h": 270
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "0af82f20df0aea82bcbc0d95b8937dfe7e973911"
+    },
+    {
+      "id": "S471_P02",
+      "screen": 471,
+      "index": 2,
+      "map_x": 220,
+      "map_y": 462,
+      "world": [
+        973.8779,
+        413.4661
+      ],
+      "m_per_px": 0.0781,
+      "scale_x": 0.0961,
+      "scale_y": 0.0662,
+      "rot_deg": -0.3565,
+      "size_factor": 3.1241,
+      "seq": 32,
+      "frame": 1,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "tree_pine_large",
+      "category": "flora_tree",
+      "name": "Pine tree",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "32_01",
+        "scale_mode": "layout",
+        "width_m": 12.3008,
+        "height_m": 14.6828,
+        "offset_x_m": -1.6337,
+        "offset_z_m": -2.343,
+        "pixel_w": 128,
+        "pixel_h": 188
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "2329d11829fa0a4ab6588418b66705f307cd7c5b"
+    },
+    {
+      "id": "S471_P03",
+      "screen": 471,
+      "index": 3,
+      "map_x": 380,
+      "map_y": 481,
+      "world": [
+        989.5918,
+        414.5664
+      ],
+      "m_per_px": 0.0778,
+      "scale_x": 0.096,
+      "scale_y": 0.0655,
+      "rot_deg": -0.3884,
+      "size_factor": 3.1117,
+      "seq": 32,
+      "frame": 1,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "tree_pine_large",
+      "category": "flora_tree",
+      "name": "Pine tree",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "32_01",
+        "scale_mode": "layout",
+        "width_m": 12.288,
+        "height_m": 14.6264,
+        "offset_x_m": -1.632,
+        "offset_z_m": -2.334,
+        "pixel_w": 128,
+        "pixel_h": 188
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "da9bbef345bbd1d447e24da0ee78fd84901953c5"
+    },
+    {
+      "id": "S471_P04",
+      "screen": 471,
+      "index": 4,
+      "map_x": 27,
+      "map_y": 459,
+      "world": [
+        955.28,
+        413.3897
+      ],
+      "m_per_px": 0.0784,
+      "scale_x": 0.0961,
+      "scale_y": 0.067,
+      "rot_deg": -0.3515,
+      "size_factor": 3.1376,
+      "seq": 32,
+      "frame": 1,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "tree_pine_large",
+      "category": "flora_tree",
+      "name": "Pine tree",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "32_01",
+        "scale_mode": "layout",
+        "width_m": 12.3008,
+        "height_m": 14.7392,
+        "offset_x_m": -1.6337,
+        "offset_z_m": -2.352,
+        "pixel_w": 128,
+        "pixel_h": 188
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "da45f1feeb2de4fe486cec7fa74bc305b445a000"
+    },
+    {
+      "id": "S471_P05",
+      "screen": 471,
+      "index": 5,
+      "map_x": 102,
+      "map_y": 258,
+      "world": [
+        958.5462,
+        400.5387
+      ],
+      "m_per_px": 0.0787,
+      "scale_x": 0.0971,
+      "scale_y": 0.0667,
+      "rot_deg": -0.0187,
+      "size_factor": 3.1461,
+      "seq": 65,
+      "frame": 5,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "weed_small",
+      "category": "flora_grass",
+      "name": "Small weed / seedling",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "65_05",
+        "scale_mode": "layout",
+        "width_m": 1.942,
+        "height_m": 1.7314,
+        "offset_x_m": -0.2913,
+        "offset_z_m": -0.3935,
+        "pixel_w": 20,
+        "pixel_h": 22
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "7027189e08ca43059cbcd0e4adaa6a238eff6e48"
+    },
+    {
+      "id": "S471_P06",
+      "screen": 471,
+      "index": 6,
+      "map_x": 177,
+      "map_y": 259,
+      "world": [
+        965.8468,
+        400.5998
+      ],
+      "m_per_px": 0.0785,
+      "scale_x": 0.0971,
+      "scale_y": 0.0664,
+      "rot_deg": -0.0204,
+      "size_factor": 3.1409,
+      "seq": 65,
+      "frame": 6,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "weed_small",
+      "category": "flora_grass",
+      "name": "Small weed / seedling",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "65_06",
+        "scale_mode": "layout",
+        "width_m": 1.7478,
+        "height_m": 1.8055,
+        "offset_x_m": -0.2913,
+        "offset_z_m": -0.3925,
+        "pixel_w": 18,
+        "pixel_h": 23
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "67bda779c3fc864d625b737899d29e90cc34cb97"
+    },
+    {
+      "id": "S471_P07",
+      "screen": 471,
+      "index": 7,
+      "map_x": 343,
+      "map_y": 112,
+      "world": [
+        979.2606,
+        391.3262
+      ],
+      "m_per_px": 0.0785,
+      "scale_x": 0.0978,
+      "scale_y": 0.0657,
+      "rot_deg": 0.2186,
+      "size_factor": 3.1396,
+      "seq": 65,
+      "frame": 1,
+      "type": 1,
+      "kind": "live",
+      "size_percent": 100,
+      "brain": 0,
+      "script": "",
+      "script_kind": "",
+      "vision": 0,
+      "vision_rule": null,
+      "hardness": null,
+      "is_warp": false,
+      "class_id": "grass_tall",
+      "category": "flora_grass",
+      "name": "Tall grass clump",
+      "treatment": "pcg_scatter",
+      "card": {
+        "sprite": "65_01",
+        "scale_mode": "layout",
+        "width_m": 4.9878,
+        "height_m": 3.0615,
+        "offset_x_m": -0.8313,
+        "offset_z_m": -0.785,
+        "pixel_w": 51,
+        "pixel_h": 39
+      },
+      "representation": "actor",
+      "group": "mainland",
+      "region": "stonebrook",
+      "excluded": "",
+      "hash": "2d7f729cd5b9859fd0cd8070da39ae321619eb7b"
+    }
+  ],
+  "collision_rectangles": {
+    "solid": [],
+    "low": [
+      [
+        244,
+        59,
+        600,
+        60
+      ],
+      [
+        243,
+        60,
+        600,
+        61
+      ],
+      [
+        242,
+        61,
+        245,
+        62
+      ],
+      [
+        241,
+        62,
+        244,
+        63
+      ],
+      [
+        240,
+        63,
+        243,
+        64
+      ],
+      [
+        239,
+        64,
+        242,
+        65
+      ],
+      [
+        238,
+        65,
+        241,
+        66
+      ],
+      [
+        237,
+        66,
+        240,
+        67
+      ],
+      [
+        236,
+        67,
+        239,
+        68
+      ],
+      [
+        235,
+        68,
+        238,
+        69
+      ],
+      [
+        59,
+        69,
+        100,
+        71
+      ],
+      [
+        234,
+        69,
+        237,
+        70
+      ],
+      [
+        233,
+        70,
+        236,
+        71
+      ],
+      [
+        59,
+        71,
+        61,
+        98
+      ],
+      [
+        98,
+        71,
+        100,
+        73
+      ],
+      [
+        232,
+        71,
+        235,
+        72
+      ],
+      [
+        231,
+        72,
+        234,
+        73
+      ],
+      [
+        98,
+        73,
+        101,
+        74
+      ],
+      [
+        230,
+        73,
+        233,
+        74
+      ],
+      [
+        98,
+        74,
+        140,
+        75
+      ],
+      [
+        229,
+        74,
+        232,
+        75
+      ],
+      [
+        100,
+        75,
+        140,
+        76
+      ],
+      [
+        228,
+        75,
+        231,
+        76
+      ],
+      [
+        138,
+        76,
+        140,
+        101
+      ],
+      [
+        227,
+        76,
+        230,
+        77
+      ],
+      [
+        226,
+        77,
+        229,
+        78
+      ],
+      [
+        220,
+        78,
+        221,
+        79
+      ],
+      [
+        225,
+        78,
+        228,
+        79
+      ],
+      [
+        224,
+        79,
+        227,
+        80
+      ],
+      [
+        224,
+        80,
+        226,
+        209
+      ],
+      [
+        59,
+        98,
+        75,
+        100
+      ],
+      [
+        74,
+        100,
+        76,
+        101
+      ],
+      [
+        232,
+        100,
+        233,
+        101
+      ],
+      [
+        74,
+        101,
+        140,
+        103
+      ],
+      [
+        77,
+        106,
+        78,
+        107
+      ],
+      [
+        100,
+        113,
+        145,
+        115
+      ],
+      [
+        100,
+        115,
+        102,
+        140
+      ],
+      [
+        143,
+        115,
+        145,
+        140
+      ],
+      [
+        121,
+        117,
+        122,
+        118
+      ],
+      [
+        100,
+        140,
+        145,
+        142
+      ],
+      [
+        0,
+        209,
+        226,
+        211
+      ],
+      [
+        395,
+        223,
+        401,
+        224
+      ],
+      [
+        500,
+        223,
+        501,
+        224
+      ],
+      [
+        394,
+        224,
+        600,
+        225
+      ],
+      [
+        393,
+        225,
+        600,
+        226
+      ],
+      [
+        392,
+        226,
+        395,
+        227
+      ],
+      [
+        391,
+        227,
+        394,
+        228
+      ],
+      [
+        390,
+        228,
+        393,
+        229
+      ],
+      [
+        389,
+        229,
+        392,
+        230
+      ],
+      [
+        388,
+        230,
+        391,
+        231
+      ],
+      [
+        387,
+        231,
+        390,
+        232
+      ],
+      [
+        386,
+        232,
+        389,
+        233
+      ],
+      [
+        385,
+        233,
+        388,
+        234
+      ],
+      [
+        384,
+        234,
+        387,
+        235
+      ],
+      [
+        383,
+        235,
+        386,
+        236
+      ],
+      [
+        382,
+        236,
+        385,
+        237
+      ],
+      [
+        381,
+        237,
+        384,
+        238
+      ],
+      [
+        380,
+        238,
+        383,
+        239
+      ],
+      [
+        379,
+        239,
+        382,
+        240
+      ],
+      [
+        379,
+        240,
+        381,
+        249
+      ],
+      [
+        378,
+        249,
+        381,
+        251
+      ],
+      [
+        378,
+        251,
+        380,
+        300
+      ],
+      [
+        378,
+        300,
+        381,
+        301
+      ],
+      [
+        378,
+        301,
+        380,
+        350
+      ],
+      [
+        377,
+        350,
+        380,
+        353
+      ],
+      [
+        376,
+        353,
+        379,
+        354
+      ],
+      [
+        375,
+        354,
+        379,
+        355
+      ],
+      [
+        374,
+        355,
+        377,
+        356
+      ],
+      [
+        373,
+        356,
+        376,
+        357
+      ],
+      [
+        372,
+        357,
+        375,
+        358
+      ],
+      [
+        371,
+        358,
+        374,
+        359
+      ],
+      [
+        370,
+        359,
+        373,
+        360
+      ],
+      [
+        369,
+        360,
+        372,
+        361
+      ],
+      [
+        368,
+        361,
+        371,
+        362
+      ],
+      [
+        367,
+        362,
+        370,
+        363
+      ],
+      [
+        366,
+        363,
+        369,
+        364
+      ],
+      [
+        365,
+        364,
+        368,
+        365
+      ],
+      [
+        364,
+        365,
+        367,
+        366
+      ],
+      [
+        363,
+        366,
+        366,
+        367
+      ],
+      [
+        300,
+        367,
+        301,
+        368
+      ],
+      [
+        362,
+        367,
+        365,
+        368
+      ],
+      [
+        361,
+        368,
+        364,
+        369
+      ],
+      [
+        360,
+        369,
+        363,
+        370
+      ],
+      [
+        359,
+        370,
+        362,
+        371
+      ],
+      [
+        358,
+        371,
+        361,
+        373
+      ],
+      [
+        0,
+        373,
+        1,
+        374
+      ],
+      [
+        100,
+        373,
+        101,
+        374
+      ],
+      [
+        200,
+        373,
+        201,
+        374
+      ],
+      [
+        300,
+        373,
+        301,
+        374
+      ],
+      [
+        349,
+        373,
+        360,
+        374
+      ],
+      [
+        0,
+        374,
+        359,
+        375
+      ],
+      [
+        0,
+        375,
+        350,
+        376
+      ]
+    ],
+    "sprite": [],
+    "warp": [],
+    "fill_water": [
+      [
+        245,
+        61,
+        600,
+        62
+      ],
+      [
+        244,
+        62,
+        600,
+        63
+      ],
+      [
+        243,
+        63,
+        600,
+        64
+      ],
+      [
+        242,
+        64,
+        600,
+        65
+      ],
+      [
+        241,
+        65,
+        600,
+        66
+      ],
+      [
+        240,
+        66,
+        600,
+        67
+      ],
+      [
+        239,
+        67,
+        600,
+        68
+      ],
+      [
+        238,
+        68,
+        600,
+        69
+      ],
+      [
+        237,
+        69,
+        600,
+        70
+      ],
+      [
+        236,
+        70,
+        600,
+        71
+      ],
+      [
+        235,
+        71,
+        600,
+        72
+      ],
+      [
+        234,
+        72,
+        600,
+        73
+      ],
+      [
+        233,
+        73,
+        600,
+        74
+      ],
+      [
+        232,
+        74,
+        600,
+        75
+      ],
+      [
+        231,
+        75,
+        600,
+        76
+      ],
+      [
+        230,
+        76,
+        600,
+        77
+      ],
+      [
+        229,
+        77,
+        600,
+        78
+      ],
+      [
+        228,
+        78,
+        600,
+        79
+      ],
+      [
+        227,
+        79,
+        600,
+        80
+      ],
+      [
+        226,
+        80,
+        600,
+        100
+      ],
+      [
+        226,
+        100,
+        232,
+        101
+      ],
+      [
+        233,
+        100,
+        600,
+        101
+      ],
+      [
+        226,
+        101,
+        600,
+        211
+      ],
+      [
+        0,
+        211,
+        600,
+        223
+      ],
+      [
+        0,
+        223,
+        395,
+        224
+      ],
+      [
+        401,
+        223,
+        500,
+        224
+      ],
+      [
+        501,
+        223,
+        600,
+        224
+      ],
+      [
+        0,
+        224,
+        394,
+        225
+      ],
+      [
+        0,
+        225,
+        393,
+        226
+      ],
+      [
+        0,
+        226,
+        392,
+        227
+      ],
+      [
+        0,
+        227,
+        391,
+        228
+      ],
+      [
+        0,
+        228,
+        390,
+        229
+      ],
+      [
+        0,
+        229,
+        389,
+        230
+      ],
+      [
+        0,
+        230,
+        388,
+        231
+      ],
+      [
+        0,
+        231,
+        387,
+        232
+      ],
+      [
+        0,
+        232,
+        386,
+        233
+      ],
+      [
+        0,
+        233,
+        385,
+        234
+      ],
+      [
+        0,
+        234,
+        384,
+        235
+      ],
+      [
+        0,
+        235,
+        383,
+        236
+      ],
+      [
+        0,
+        236,
+        382,
+        237
+      ],
+      [
+        0,
+        237,
+        381,
+        238
+      ],
+      [
+        0,
+        238,
+        380,
+        239
+      ],
+      [
+        0,
+        239,
+        379,
+        249
+      ],
+      [
+        0,
+        249,
+        378,
+        350
+      ],
+      [
+        0,
+        350,
+        377,
+        353
+      ],
+      [
+        0,
+        353,
+        376,
+        354
+      ],
+      [
+        0,
+        354,
+        375,
+        355
+      ],
+      [
+        0,
+        355,
+        374,
+        356
+      ],
+      [
+        0,
+        356,
+        373,
+        357
+      ],
+      [
+        0,
+        357,
+        372,
+        358
+      ],
+      [
+        0,
+        358,
+        371,
+        359
+      ],
+      [
+        0,
+        359,
+        370,
+        360
+      ],
+      [
+        0,
+        360,
+        369,
+        361
+      ],
+      [
+        0,
+        361,
+        368,
+        362
+      ],
+      [
+        0,
+        362,
+        367,
+        363
+      ],
+      [
+        0,
+        363,
+        366,
+        364
+      ],
+      [
+        0,
+        364,
+        365,
+        365
+      ],
+      [
+        0,
+        365,
+        364,
+        366
+      ],
+      [
+        0,
+        366,
+        363,
+        367
+      ],
+      [
+        0,
+        367,
+        300,
+        368
+      ],
+      [
+        301,
+        367,
+        362,
+        368
+      ],
+      [
+        0,
+        368,
+        361,
+        369
+      ],
+      [
+        0,
+        369,
+        360,
+        370
+      ],
+      [
+        0,
+        370,
+        359,
+        371
+      ],
+      [
+        0,
+        371,
+        358,
+        373
+      ],
+      [
+        1,
+        373,
+        100,
+        374
+      ],
+      [
+        101,
+        373,
+        200,
+        374
+      ],
+      [
+        201,
+        373,
+        300,
+        374
+      ],
+      [
+        301,
+        373,
+        349,
+        374
+      ]
+    ],
+    "fill_solid": []
+  },
+  "protected_actor_ids": [],
+  "source_hashes": {
+    "ImportData/screens.json": "3ff7d14ab3d6a5d664c5b31b98f5154c4d583c8379972d0c71ae5270d2278fba",
+    "ImportData/placements.json": "6d21ad33e3f494e3ff501ca692fe21655e9b8e5f172daecd409729f266707cca",
+    "ImportData/collision.json": "a64d5ce8e5fcf5e1663a885ba2539e714326be9ea036950e7eca82bb9bb839b5",
+    "ImportData/ground/SCR_471.png": "ee6edb56b61f2765d0593619b806ee1a9bc0838bd617dde7dc30d6dd8355e913"
+  }
+}

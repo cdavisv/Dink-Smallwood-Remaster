@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-07T22:32:49Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Fireplace_Stonebrook_V2",
+      "class": "prop_large",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/Refinements/SM_Fireplace_Stonebrook_V2",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/Refinements/SM_Fireplace_Stonebrook_V2.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/Refinements/SM_Fireplace_Stonebrook_V2.glb"
+      },
+      "source": {
+        "blend": "SM_Fireplace_Stonebrook_V2.blend",
+        "sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02",
+        "collection": "SM_Fireplace_Stonebrook_V2",
+        "note": "Original project procedural art; build_fireplace_v2.py seed87261; no external assets"
+      },
+      "tris": {
+        "LOD0": 15484,
+        "LOD1": 8050,
+        "LOD2": 4180
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -125.482,
+          -55.744,
+          -0.21
+        ],
+        "blender_max_cm": [
+          125.579,
+          55.78,
+          300.199
+        ],
+        "size_cm": [
+          251.061,
+          111.523,
+          300.409
+        ],
+        "unreal_min_cm": [
+          -125.482,
+          -55.78,
+          -0.21
+        ],
+        "unreal_max_cm": [
+          125.579,
+          55.744,
+          300.199
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_01",
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_02",
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_03",
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_04",
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_05",
+        "UCX_SM_Fireplace_Stonebrook_V2_LOD0_06"
+      ],
+      "material_slots": [
+        "MI_FireplaceV2_Atlas"
+      ],
+      "textures": [
+        {
+          "name": "T_FireplaceV2_Atlas_BC",
+          "file": "Game/Dink/Props/Stonebrook/Refinements/Textures/T_FireplaceV2_Atlas_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_FireplaceV2_Atlas_N",
+          "file": "Game/Dink/Props/Stonebrook/Refinements/Textures/T_FireplaceV2_Atlas_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_FireplaceV2_Atlas_ORM",
+          "file": "Game/Dink/Props/Stonebrook/Refinements/Textures/T_FireplaceV2_Atlas_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_FireplaceV2_Atlas_E",
+          "file": "Game/Dink/Props/Stonebrook/Refinements/Textures/T_FireplaceV2_Atlas_E.png",
+          "role": "E",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Only newly allocated wardrobe atlas cells changed: approved blue/brown palette, subtle grain, flat tangent normals and dielectric roughness eliminate donor-buckle metallic artifacts. Hidden shirt torso ends inside the leather jerkin. No protected material changes.",
+  "hidden_torso_faces_removed": [
+    897,
+    897,
+    897,
+    897
+  ],
+  "cloth_linear_rgb": [
+    0.0675,
+    0.105,
+    0.1375
+  ],
+  "strap_linear_rgb": [
+    0.07,
+    0.036,
+    0.016
+  ]
+}

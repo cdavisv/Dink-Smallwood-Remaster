@@ -1,0 +1,38 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "DinkParity",
+	"Description": "Developer-only parity checks: automation tests against the 1997 rules (DinkParity, editor only) and the play-through probe (DinkProbe, also in Development game builds).",
+	"Category": "Dink",
+	"CreatedBy": "Dink Smallwood Remaster team",
+	"CanContainContent": false,
+	"EnabledByDefault": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "DinkParity",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "DinkProbe",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "DinkCore",
+			"Enabled": true
+		},
+		{
+			"Name": "DinkNarrative",
+			"Enabled": true
+		},
+		{
+			"Name": "Inkpot",
+			"Enabled": true
+		}
+	]
+}

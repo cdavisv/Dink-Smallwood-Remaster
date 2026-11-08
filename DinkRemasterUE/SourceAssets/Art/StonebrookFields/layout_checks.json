@@ -1,0 +1,190 @@
+{
+  "schema": "dink-fields-source/1",
+  "status": "source-only candidate; UE import and physical QA pending",
+  "screens": {
+    "471": {
+      "corners": {
+        "nw": [
+          943.4547,
+          384.0304
+        ],
+        "ne": [
+          1002.4886,
+          384.4408
+        ],
+        "sw": [
+          951.4996,
+          409.6297
+        ],
+        "se": [
+          1009.3189,
+          409.3743
+        ]
+      },
+      "protected_actor_ids": [],
+      "hidden_origins": [
+        "S471_P01",
+        "S471_P02",
+        "S471_P03",
+        "S471_P04",
+        "S471_P05",
+        "S471_P06",
+        "S471_P07"
+      ],
+      "source_collision_counts": {
+        "solid": 0,
+        "low": 92,
+        "sprite": 0,
+        "warp": 0,
+        "fill_water": 69,
+        "fill_solid": 0
+      },
+      "original_low_and_fill_water_retained": true,
+      "land_m2": 718.4285874203924,
+      "bank_m2": 311.47389419186635,
+      "water_m2": 445.7509506277417,
+      "water_top_m": -0.8,
+      "max_chunk_xy_m": 6.0,
+      "chunks": 104,
+      "rock_groups": [
+        {
+          "pixel_bounds": [
+            59.0,
+            69.0,
+            140.0,
+            103.0
+          ],
+          "area_px": 441.0,
+          "new_collision": false
+        },
+        {
+          "pixel_bounds": [
+            100.0,
+            113.0,
+            145.0,
+            142.0
+          ],
+          "area_px": 280.0,
+          "new_collision": false
+        }
+      ],
+      "source_bridge": false,
+      "new_warp_or_fact_changes": false,
+      "terrain_partition_error_m2": 8.633094239485217e-13,
+      "dry_land_over_source_water_m2": 0.0,
+      "water_runtime_collision": false,
+      "bank_runtime_collision": false,
+      "land_runtime_collision": true,
+      "source_aquatic_accents": [
+        {
+          "name": "S471_P05_Grass",
+          "height_cm": -80
+        },
+        {
+          "name": "S471_P06_Grass",
+          "height_cm": -80
+        },
+        {
+          "name": "S471_P07_Grass",
+          "height_cm": -80
+        }
+      ]
+    },
+    "438": {
+      "corners": {
+        "nw": [
+          883.573,
+          344.2266
+        ],
+        "ne": [
+          942.9425,
+          344.4383
+        ],
+        "sw": [
+          884.4386,
+          383.076
+        ],
+        "se": [
+          943.4547,
+          384.0304
+        ]
+      },
+      "protected_actor_ids": [
+        "S438_P02",
+        "S438_P03",
+        "S438_P04",
+        "S438_P05",
+        "S438_P06",
+        "S438_P07"
+      ],
+      "hidden_origins": [
+        "S438_P01"
+      ],
+      "source_collision_counts": {
+        "solid": 0,
+        "low": 183,
+        "sprite": 1,
+        "warp": 0,
+        "fill_water": 0,
+        "fill_solid": 0
+      },
+      "original_low_and_fill_water_retained": true,
+      "land_m2": 2086.6770060682766,
+      "bank_m2": 144.2498651595718,
+      "water_m2": 90.25747622715204,
+      "water_top_m": -0.8,
+      "max_chunk_xy_m": 6.0,
+      "chunks": 88,
+      "rock_groups": [
+        {
+          "pixel_bounds": [
+            89.0,
+            180.0,
+            127.0,
+            204.0
+          ],
+          "area_px": 545.0,
+          "new_collision": false
+        },
+        {
+          "pixel_bounds": [
+            64.0,
+            200.0,
+            106.0,
+            235.0
+          ],
+          "area_px": 641.0,
+          "new_collision": false
+        },
+        {
+          "pixel_bounds": [
+            204.0,
+            314.0,
+            269.0,
+            350.0
+          ],
+          "area_px": 570.0,
+          "new_collision": false
+        },
+        {
+          "pixel_bounds": [
+            511.0,
+            219.0,
+            550.0,
+            250.0
+          ],
+          "area_px": 112.0,
+          "new_collision": false
+        }
+      ],
+      "source_bridge": false,
+      "new_warp_or_fact_changes": false,
+      "terrain_partition_error_m2": 0.0,
+      "dry_land_over_source_water_m2": 0.0,
+      "water_runtime_collision": false,
+      "bank_runtime_collision": false,
+      "land_runtime_collision": true,
+      "source_aquatic_accents": []
+    }
+  }
+}

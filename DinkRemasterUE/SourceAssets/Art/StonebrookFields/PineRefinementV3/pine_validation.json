@@ -1,0 +1,120 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookFields/PineRefinementV3/PineRefinementV3.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "1 mesh objects are outside any asset collection and will not be exported: Plane"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SM_Pine_Stonebrook_V3",
+      "class": "foliage",
+      "collection": "SM_Pine_Stonebrook_V3",
+      "tris_per_lod": {
+        "LOD0": 22270,
+        "LOD1": 10942,
+        "LOD2": 6784
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -289.005,
+          -293.299,
+          0.0
+        ],
+        "blender_max_cm": [
+          289.005,
+          293.299,
+          1300.0
+        ],
+        "size_cm": [
+          578.01,
+          586.598,
+          1300.0
+        ],
+        "unreal_min_cm": [
+          -289.005,
+          -293.299,
+          0.0
+        ],
+        "unreal_max_cm": [
+          289.005,
+          293.299,
+          1300.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Pine_Stonebrook_V3",
+          "message": "LOD0 has 22270 triangles, target for foliage is 8000 (hard max 25000)",
+          "object": "SM_Pine_Stonebrook_V3_LOD0",
+          "data": {
+            "tris": 22270,
+            "target": 8000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Pine_Stonebrook_V3",
+          "message": "11118 non-manifold edges (11118 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Pine_Stonebrook_V3_LOD0",
+          "data": {
+            "boundary": 11118,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Pine_Stonebrook_V3",
+          "message": "11118 non-manifold edges (11118 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Pine_Stonebrook_V3_LOD1",
+          "data": {
+            "boundary": 11118,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Pine_Stonebrook_V3",
+          "message": "7412 non-manifold edges (7412 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Pine_Stonebrook_V3_LOD2",
+          "data": {
+            "boundary": 7412,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Pine_Stonebrook_V3",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Pine_Stonebrook_V3_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Work/DinkQA/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 0
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Fireplace_Stonebrook_V2",
+      "class": "prop_large",
+      "collection": "SM_Fireplace_Stonebrook_V2",
+      "tris_per_lod": {
+        "LOD0": 15484,
+        "LOD1": 8050,
+        "LOD2": 4180
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.482,
+          -55.744,
+          -0.21
+        ],
+        "blender_max_cm": [
+          125.579,
+          55.78,
+          300.199
+        ],
+        "size_cm": [
+          251.061,
+          111.523,
+          300.409
+        ],
+        "unreal_min_cm": [
+          -125.482,
+          -55.78,
+          -0.21
+        ],
+        "unreal_max_cm": [
+          125.579,
+          55.744,
+          300.199
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Fireplace_Stonebrook_V2",
+          "message": "prop_large uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

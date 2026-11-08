@@ -1,0 +1,25 @@
+{
+  "scope": "Wardrobe-only armhole binding follows the original shirt rather than torso-filtered weights; smooth lower hem placed at1.055m just above original1.052m belt and follows its exact interpolated weights. Anatomy/UV/material graphs untouched.",
+  "lods": [
+    {
+      "lod": 0,
+      "jerkin_vertices_bound_to_actual_shirt_armhole_field": 370,
+      "hem_vertices_placed_above_belt_and_bound_to_belt_field": 521
+    },
+    {
+      "lod": 1,
+      "jerkin_vertices_bound_to_actual_shirt_armhole_field": 318,
+      "hem_vertices_placed_above_belt_and_bound_to_belt_field": 291
+    },
+    {
+      "lod": 2,
+      "jerkin_vertices_bound_to_actual_shirt_armhole_field": 83,
+      "hem_vertices_placed_above_belt_and_bound_to_belt_field": 151
+    },
+    {
+      "lod": 3,
+      "jerkin_vertices_bound_to_actual_shirt_armhole_field": 55,
+      "hem_vertices_placed_above_belt_and_bound_to_belt_field": 109
+    }
+  ]
+}

@@ -1,0 +1,467 @@
+{
+  "source": "/home/artist/Downloads/audio_choices.csv",
+  "sha256": "4257c9edb8edcd77b01065519688454b0979165a17d3348fbae5eb45a3dcbea3",
+  "counts": {
+    "sfx": 44,
+    "music": 28,
+    "rejected": 4
+  },
+  "choices": [
+    {
+      "kind": "sfx",
+      "id": "01_quack",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "02_pig1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "03_pig2",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "04_pig3",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "05_pig4",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "06_burn",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "07_open",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "08_swing",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "09_punch",
+      "choice": "neither",
+      "note": "no sound"
+    },
+    {
+      "kind": "sfx",
+      "id": "10_sword2",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "11_select",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "12_wscream",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "13_picker",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "14_gold",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "15_grunt1",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "16_grunt2",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "17_sel1",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "18_escape",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "19_nono",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "20_sel2",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "21_sel3",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "22_high2",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "23_fire",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "24_spell1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "26_snarl1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "27_snarl2",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "28_snarl3",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "29_hurt1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "30_hurt2",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "31_attack1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "32_caveent",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "33_level",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "34_save",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "35_splash",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "36_sword1",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "37_bhit",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "38_squish",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "39_stairs",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "40_steps",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "41_arrow",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "42_flyby",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "43_secret",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "44_bow1",
+      "choice": "neither",
+      "note": "i can't really hear it"
+    },
+    {
+      "kind": "sfx",
+      "id": "45_knock",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "46_drag1",
+      "choice": "b",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "47_drag2",
+      "choice": "a",
+      "note": ""
+    },
+    {
+      "kind": "sfx",
+      "id": "48_axe",
+      "choice": "neither",
+      "note": "can't hear b, and a needs work"
+    },
+    {
+      "kind": "sfx",
+      "id": "49_bird1",
+      "choice": "neither",
+      "note": "both have issues"
+    },
+    {
+      "kind": "music",
+      "id": "01_title",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "02_stonebrook_village",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "03_home_interior",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "04_terris_town",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "05_overworld_wilds",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "06_wonder",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "07_battle",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "08_cave",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "09_villain",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "10_love",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "11_sorrow_resolve",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "12_murkwood",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "13_windemere_port",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "14_royal_court",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "15_goblin_lands",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "16_darklands",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "17_koka_isle",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "18_snow_castle",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "19_edge_of_the_world",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "20_joppa_isle",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "21_final_approach",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "22_waltz",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "23_stinger_creepy",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "24_stinger_sneaky",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "25_stinger_urgent",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "26_stinger_planning",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "27_stinger_mystery_x",
+      "choice": "keep",
+      "note": ""
+    },
+    {
+      "kind": "music",
+      "id": "28_story",
+      "choice": "keep",
+      "note": ""
+    }
+  ]
+}

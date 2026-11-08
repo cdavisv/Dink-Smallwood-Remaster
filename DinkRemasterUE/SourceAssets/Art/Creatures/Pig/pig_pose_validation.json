@@ -1,0 +1,46 @@
+{
+  "Pig_Idle": {
+    "max_joint_gap_m": 2.1490760299348766e-07,
+    "root_motion_m": 0,
+    "start_end_pose_matrix_max_difference": 2.532244454916889e-20
+  },
+  "Pig_Walk": {
+    "max_joint_gap_m": 3.557603474352754e-07,
+    "root_motion_m": 0,
+    "start_end_pose_matrix_max_difference": 0.0
+  },
+  "Pig_Run": {
+    "max_joint_gap_m": 3.78442558622369e-07,
+    "root_motion_m": 0,
+    "start_end_pose_matrix_max_difference": 0.0
+  },
+  "Pig_Feed": {
+    "max_joint_gap_m": 2.5386698599756987e-07,
+    "root_motion_m": 0,
+    "start_end_pose_matrix_max_difference": 0.0
+  },
+  "standardization": {
+    "existing_bone_global_pose_max_difference": 4.76837158203125e-07,
+    "bone_count": 26,
+    "aliases": {
+      "spine": "spine_01",
+      "chest": "spine_02",
+      "neck": "neck_01",
+      "tail_00": "tail_01",
+      "tail_01": "tail_02",
+      "tail_02": "tail_03",
+      "fore_upper_l": "upperarm_l",
+      "fore_lower_l": "lowerarm_l",
+      "fore_foot_l": "hand_l",
+      "hind_upper_l": "thigh_l",
+      "hind_lower_l": "calf_l",
+      "hind_foot_l": "foot_l",
+      "fore_upper_r": "upperarm_r",
+      "fore_lower_r": "lowerarm_r",
+      "fore_foot_r": "hand_r",
+      "hind_upper_r": "thigh_r",
+      "hind_lower_r": "calf_r",
+      "hind_foot_r": "foot_r"
+    }
+  }
+}

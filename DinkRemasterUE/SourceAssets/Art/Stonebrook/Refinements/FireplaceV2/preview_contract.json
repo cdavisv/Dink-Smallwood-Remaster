@@ -1,0 +1,28 @@
+{
+  "production_blend_sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02",
+  "generator_sha256": "cc17ba11bd0da8eab25162ff26c882c8339b33deda19290e0903d99b86d6d48d",
+  "paired_previews_from_same_completed_generator_run": true,
+  "producer_exit": 0,
+  "preview_backend": "Blender5.2.2 CyclesCPU40samples AgX1100square studio; not game screenshots",
+  "previews": {
+    "preview-front.png": {
+      "sha256": "bc1326768dd3c564a67d820c50c6045882859cbc91606a903a29cc451c811596",
+      "after_source_save": true
+    },
+    "preview-threequarter.png": {
+      "sha256": "a9710f2751fd7313d04c6d0856237d434acfcdc58b74859704851d1e20c1e274",
+      "after_source_save": true
+    },
+    "preview-firebox.png": {
+      "sha256": "43f40351e2d2ff60935176c4bf5364ff2320cf1142b937d3599477dec35a8a0b",
+      "after_source_save": true
+    }
+  },
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 0
+  },
+  "candidate_only": true
+}

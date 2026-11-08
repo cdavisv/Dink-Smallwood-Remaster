@@ -1,0 +1,33 @@
+{
+  "scope": "Skin cut-edge skirt connected to actual shirt vertices at least5cm lower. LOD2/3 retain the proven LOD0 Skin-fitted yoke geometry/weights to avoid coarse clipped-edge inversion; all four protected anatomical LODs unchanged. New Wardrobe explicitly one-sided.",
+  "lods": [
+    {
+      "lod": 0,
+      "yoke_geometry_source_lod": 0,
+      "skin_yoke_faces": 284,
+      "connected_lower_shirt_seams": 56,
+      "minimum_anchor_drop_m": 0.05
+    },
+    {
+      "lod": 1,
+      "yoke_geometry_source_lod": 1,
+      "skin_yoke_faces": 340,
+      "connected_lower_shirt_seams": 54,
+      "minimum_anchor_drop_m": 0.05
+    },
+    {
+      "lod": 2,
+      "yoke_geometry_source_lod": 0,
+      "skin_yoke_faces": 284,
+      "connected_lower_shirt_seams": 56,
+      "minimum_anchor_drop_m": 0.05
+    },
+    {
+      "lod": 3,
+      "yoke_geometry_source_lod": 0,
+      "skin_yoke_faces": 284,
+      "connected_lower_shirt_seams": 56,
+      "minimum_anchor_drop_m": 0.05
+    }
+  ]
+}

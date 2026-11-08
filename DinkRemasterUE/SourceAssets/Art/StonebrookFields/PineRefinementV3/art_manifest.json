@@ -1,0 +1,109 @@
+{
+  "schema": "dink-art/1",
+  "assets": {
+    "SM_Pine_Stonebrook_V3": {
+      "class": "foliage",
+      "fbx": "Export/SM_Pine_Stonebrook_V3_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SM_Pine_Stonebrook_V3_LOD0.fbx",
+        "Export/SM_Pine_Stonebrook_V3_LOD1.fbx",
+        "Export/SM_Pine_Stonebrook_V3_LOD2.fbx"
+      ],
+      "dimensions_m": [
+        5.780095100402832,
+        5.865981578826904,
+        13.0
+      ],
+      "bounds_min_m": [
+        -2.890047550201416,
+        -2.932990789413452,
+        0.0
+      ],
+      "bounds_max_m": [
+        2.890047550201416,
+        2.932990789413452,
+        13.0
+      ],
+      "lod_union_dimensions_m": [
+        5.780095100402832,
+        5.865981578826904,
+        13.0
+      ],
+      "materials": [
+        "MI_PineV3_Bark",
+        "MI_PineV3_Sprays"
+      ],
+      "blend_collection": "SM_Pine_Stonebrook_V3",
+      "source_blend": "PineRefinementV3.blend",
+      "expected_lods": 3,
+      "triangles_per_lod": {
+        "SM_Pine_Stonebrook_V3_LOD0": 22270,
+        "SM_Pine_Stonebrook_V3_LOD1": 10942,
+        "SM_Pine_Stonebrook_V3_LOD2": 6784
+      },
+      "collision_mode": "simple",
+      "trunk_collision_bounds_m": [
+        [
+          -0.11420904099941254,
+          -0.15600982308387756,
+          0.0
+        ],
+        [
+          0.3457909822463989,
+          0.2814761698246002,
+          2.0
+        ]
+      ],
+      "trunk_collision_source_sha256": "4bfd84811693136a8b5cf3ce1a44c6b188f912cd43a0bc83032b395d0b871c07",
+      "content_folder": "/Game/Dink/Foliage/StonebrookFields/Refinements",
+      "replaces_asset": "/Game/Dink/Kits/StonebrookFields/SM_Pine_Stonebrook_01.SM_Pine_Stonebrook_01",
+      "lod_policy": "Allbranchsplines and allneedle-spray placements retained atall3LODs; woodcrosssections/curve sampling andspraybow simplified only.",
+      "budget_note": "All584sourcebranches and1853sprays retainedperLOD;22270/10942/6784tris below25k/12k/7k;2materials,2048PBR,nonNanite. Maskedtwo-sidedneedles with.12clip andpreservealphaCoverage required.",
+      "lowest_foliage_m": 1.0746300220489502
+    }
+  },
+  "materials": {
+    "MI_PineV3_Bark": {
+      "base_color": [
+        0.055,
+        0.029,
+        0.014
+      ],
+      "roughness": 0.86,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "normal_strength": 0.5,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_PineV3_Bark_BC.png",
+        "N": "Textures/T_PineV3_Bark_N.png",
+        "ORM": "Textures/T_PineV3_Bark_ORM.png"
+      }
+    },
+    "MI_PineV3_Sprays": {
+      "base_color": [
+        0.025,
+        0.055,
+        0.028
+      ],
+      "roughness": 0.79,
+      "metallic": 0,
+      "masked": true,
+      "two_sided": true,
+      "alpha_clip": 0.12,
+      "normal_strength": 0.5,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_PineV3_Sprays_BC.png",
+        "N": "Textures/T_PineV3_Sprays_N.png",
+        "ORM": "Textures/T_PineV3_Sprays_ORM.png"
+      },
+      "preserve_alpha_coverage": true
+    }
+  },
+  "status": "candidate",
+  "source_scope": "IsolatedPineRefinementV3 only. OriginalFields227artifacthashes/manifest/FBXs/ledger untouched; no runtime mapping or engine import here.",
+  "generator": "PinnedSapling0.4.0 small_pine Weber-Penn branches with originalprojectmodeledpairedneedlePBR; toolreceipt records sourceSHA/license.",
+  "render_review": "Fulltree equal-light3LOD comparison, lowercrown fill, closedneedleclusters anddistance thumbnail reviewed before export."
+}

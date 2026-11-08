@@ -1,0 +1,32 @@
+# FireplaceV2 — source candidate
+
+A separate original Blender refinement for Stonebrook's fireplace, imported as unique candidate packages in the main repo and isolated stage. **Main runtime remains unpromoted at this checkpoint; this is not accepted as finished game art.** The original kit and audio decisions remain unchanged.
+
+The current fireplace is 402×154×414.5cm with a roughly239cm opening, above a human's height. Actual runtime collision is enabled; proper editor readback confirms complex-as-simple, bypassing its three simple hulls. Mother uses ordinary brain16 collision checks and a50×164cm capsule, without an original nohard override. An open recess large enough to stand inside can admit her without a missing collision profile. Those readbacks are separate from this source candidate.
+
+This candidate measures approximately250×112×300cm. The hearth rises18cm; the opening is118cm wide and106cm high, with a continuous20cm firebrick backing, cheek walls, throat volume, soot, charred billets, small emissive coal fissures and a wrought-iron basket. Variable stone edges and staggered courses retain a deliberate masonry shape. It uses one unique2048² atlas: sRGB BC/E, linear OpenGL tangent normal and linear ORM (AO is a neutral source placeholder, not a baked occlusion claim). No downloaded models, paid services, image generators or external textures were used.
+
+`candidate_manifest.json` proposes the exact original P19 origin, offset `[6.5625,-28.437499999941792,0]`, rotation and scale, retaining `s1-h1-2` talk/hit behavior. It records the existing150lm light at90cm and a possible55cm height for review with the lower coals. Neither the actor nor the light has been changed in the game.
+
+`validation.json` passes the companion validator with zero errors and zero warnings, including unique UV and convex-hull checks. The Nanite class's three explicit fallback LODs produce one informational notice. `source_geometry_checks.json` and `fbx_inspection.json` record source units, pivots, UV ranges, triangle budgets, independent binary FBX header/model readback and six fitted convex hulls. The standing-capsule/lintel fixture is analytic source evidence; actual imported capsule sweeps and original scripted move endpoints still require staged testing. The hulls cover the visible hearth, piers, backing, lintel and chimney; none fills the walking floor outside the asset footprint.
+
+`preview_contract.json` pairs the current production blend SHA with all three studio previews. These are CPU Cycles renders, not game screenshots. The close view remains deliberately dark in the firebox; wood/stone finish, neutral in-room exposure and ember readability still need visual review. There is no animated flame or house-fire/ruin variant here.
+
+Rebuild from the repository root:
+
+```sh
+ALSOFT_DRIVERS=null blender -b -noaudio --factory-startup -t 6 -P SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/build_fireplace_v2.py
+python3 ../tools/blender/dink.py validate --blend SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend --report /tmp/fireplace-validation.json
+```
+
+The per-process OpenAL null-driver hint prevents the sandbox's audio-cleanup stall; it does not edit desktop audio configuration. The wrapper used during generation stays in Work QA, not the repository. `build_fireplace_v2.py` writes only beside itself. `verify_export_lods.py` exports the explicit single-LOD FBXs with original-scale geometry; the normal companion exporter supplies the combined FBX/GLB and manifest. For future UE import, use the separate LOD files, preserve centimetre conversion and verify the actual chain, custom collision, material channels and dimensions before publishing any runtime replacement.
+
+The local candidate ledger records these files. The initial source delivery did not extend the then679-row global ledger; the current verified candidate delivery adds its rows while preserving all preexisting records. Protected-original hashes and the source delivery receipt are kept separately in Work QA and repository Saved evidence.
+
+Earlier classic-render stage review (7 Nov2026): the unique candidate was first imported in `/home/artist/Work/DinkPlaytestStage/Content/Dink/Refinements/FireplaceV2`. Actual readback confirms251×111.5×300.4cm, three explicit LODs15484/8050/4180 and six fitted convex hulls, with257shared kit/material packages and665runtime Data files unchanged during the successful finish pass. Seven actual game-world capsule sweeps passed with a temporary off-map Card fixture and restoration. Earlier editor-fixture no-hit results were rejected as evidence.
+
+Matched rendered comparisons favor the smaller proportions but expose a blown-out firebox under the original150lm local light. A temporary40lm/2000K point at55cm revealed brick/coals, without global exposure changes. All original presentation was restored. This is still a candidate: closer finish, actual Mother wandering and original script endpoints, full candidate-manifest/door regression and production import/cook gates remain. Durable evidence: `Saved/ArtCandidateFireplaceV2/StageReview_20261107`. The main runtime and global ledger are unchanged by this candidate review.
+
+Current staged runtime checkpoint (7 Nov2026 local /8Nov UTC): the candidate loads through a separate sorted art layer, with the original P19 transform/script preserved and the existing local fire light changed to40lm/2000K at55cm. Real F/E checks pass; the original game retains two same-named fireplace script instances, both audited separately. The normal Mother observation sampled1,150 active poses at299 distinct positions without detected fireplace penetration. Real W house exit/return passed. These sampled observations do not prove every possible AI path. The complete classic-render stage snapshot passed129/129 with one engine HTTP timeout warning;832tracked inputs stayed unchanged and are zipped under Stage Saved/FireplaceV2Integration/Full129.
+
+The production renderer must honor this Blender source’s Nanite=yes policy. Classic rendering was an explicitly temporary LOD inspection setting. The pipeline now requires Nanite material usage and an explicit PercentTriangles full-detail fallback target (Auto reduced LOD0 despite a1.0 fraction). Production render checks are pending; original classic evidence and pre-change candidate packages are retained. No shared original kit/material package is modified. Stone/wood finish and wider game art still need work.

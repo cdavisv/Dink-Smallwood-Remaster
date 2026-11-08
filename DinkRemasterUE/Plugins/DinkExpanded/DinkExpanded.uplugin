@@ -1,0 +1,12 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "DinkExpanded",
+	"Description": "All non-original (expanded) content. Content-only; disabled for parity builds.",
+	"Category": "Dink",
+	"CreatedBy": "Dink Smallwood Remaster team",
+	"CanContainContent": true,
+	"EnabledByDefault": false,
+	"Installed": false
+}

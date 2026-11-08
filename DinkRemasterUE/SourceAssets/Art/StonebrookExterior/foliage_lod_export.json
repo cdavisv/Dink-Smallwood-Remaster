@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD0.fbx",
+      "render_nodes": [
+        "SM_Oak_Stonebrook_01_LOD0"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 18038
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD1.fbx",
+      "render_nodes": [
+        "SM_Oak_Stonebrook_01_LOD1"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 9203
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD2.fbx",
+      "render_nodes": [
+        "SM_Oak_Stonebrook_01_LOD2"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 4698
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD0.fbx",
+      "render_nodes": [
+        "SM_Grass_Meadow_01_LOD0"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 510
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD1.fbx",
+      "render_nodes": [
+        "SM_Grass_Meadow_01_LOD1"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 255
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD2.fbx",
+      "render_nodes": [
+        "SM_Grass_Meadow_01_LOD2"
+      ],
+      "unit_scale_factor": 100.0,
+      "zero_normals": 0,
+      "normal_count": 128
+    }
+  ]
+}

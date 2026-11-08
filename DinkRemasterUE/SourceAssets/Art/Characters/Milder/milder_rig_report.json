@@ -1,0 +1,19 @@
+{
+  "bone_count": 89,
+  "root_bones": [
+    "root"
+  ],
+  "triangles": 32674,
+  "material_slots": [
+    "MI_Milder_Skin",
+    "MI_Milder_Eyes",
+    "MI_Milder_Hair",
+    "MI_Milder_BrowLash",
+    "MI_Milder_Wardrobe"
+  ],
+  "max_influences": 4,
+  "unweighted_before_fallback": 0,
+  "vertices": 17098,
+  "skirt_vertices": 105,
+  "reference_geometry_present": false
+}

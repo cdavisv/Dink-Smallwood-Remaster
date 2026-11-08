@@ -1,0 +1,19 @@
+{
+  "schema": "dink-hero-actions/1",
+  "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+  "actions": [
+    {
+      "sequences": [
+        102,
+        104,
+        106,
+        108
+      ],
+      "animation": "/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist",
+      "duration_s": 0.4,
+      "impact_s": 0.175,
+      "loop": false
+    }
+  ],
+  "gameplay_authority": "Original sp_seq/pending-hit timing; animation is cosmetic only"
+}

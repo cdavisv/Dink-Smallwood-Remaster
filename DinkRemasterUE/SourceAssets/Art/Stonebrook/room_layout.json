@@ -1,0 +1,3014 @@
+{
+  "schema": "dink-art/1",
+  "screen": 1,
+  "hide_screen_visuals": [
+    1
+  ],
+  "hide_origins": [
+    "S001_P01",
+    "S001_P02",
+    "S001_P03",
+    "S001_P04",
+    "S001_P05",
+    "S001_P06",
+    "S001_P07",
+    "S001_P08",
+    "S001_P09",
+    "S001_P10",
+    "S001_P11",
+    "S001_P12",
+    "S001_P13",
+    "S001_P14",
+    "S001_P15",
+    "S001_P16",
+    "S001_P17",
+    "S001_P18",
+    "S001_P19",
+    "S001_P20",
+    "S001_P21",
+    "S001_P22",
+    "S001_P23",
+    "S001_P24",
+    "S001_P25",
+    "S001_P37",
+    "S001_P51",
+    "S001_P52"
+  ],
+  "replacements": [
+    {
+      "origin": "S001_P51",
+      "mesh": "SM_Pie_Rustic_01",
+      "source_pixel": [
+        302,
+        223
+      ],
+      "height_cm": 90,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P22",
+      "mesh": "SM_Table_Oak_01",
+      "source_pixel": [
+        301,
+        231
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P23",
+      "mesh": "SM_Bed_Oak_01",
+      "source_pixel": [
+        194.5,
+        287.5
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P24",
+      "mesh": "SM_Bed_Oak_01",
+      "source_pixel": [
+        407.5,
+        286.5
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P19",
+      "mesh": "SM_Fireplace_Fieldstone_01",
+      "source_pixel": [
+        289.5,
+        113.5
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P52",
+      "mesh": "SM_FeedSack_Jute_01",
+      "source_pixel": [
+        448,
+        130
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "name": "Floor_0_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_0",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_0",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        100.0
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_1",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_1",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        142.85714285714286
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_2",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_2",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        185.71428571428572
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_3",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_3",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        228.57142857142856
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_4",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_4",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        271.42857142857144
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_5",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_5",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        314.2857142857143
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_0_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_0_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        130.0,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_1_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_1_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        172.5,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_2_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_2_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        215.0,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_3_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_3_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        257.5,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_4_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_4_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        300.0,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_5_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_5_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        342.5,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_6_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_6_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        385.0,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Floor_7_6",
+      "mesh": "SM_Floor_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "Ceiling_7_6",
+      "mesh": "SM_Ceiling_Oak_2m_01",
+      "source_pixel": [
+        427.5,
+        357.1428571428571
+      ],
+      "height_cm": 350,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_0",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130.0,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_1",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        172.5,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_2",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        215.0,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_3",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        257.5,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_4",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        300.0,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_5",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        342.5,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_6",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        385.0,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "NorthWall_7",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        427.5,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_0",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_1",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_2",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_3",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_4",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_5",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WestWall_6",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_0",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        100.0
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_1",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        142.85714285714286
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_2",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        185.71428571428572
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_3",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        228.57142857142856
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_4",
+      "mesh": "SM_Window_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        271.42857142857144
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_5",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        314.2857142857143
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "EastWall_6",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        470,
+        357.1428571428571
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthDoor",
+      "mesh": "SM_Doorway_Limewash_4m_01",
+      "source_pixel": [
+        259.2857142857143,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Left0",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        130.0,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Left1",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        173.0952380952381,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Left2",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        216.1904761904762,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Right0",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        350.7142857142857,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Right1",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        390.4761904761905,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "SouthWall_Right2",
+      "mesh": "SM_Wall_Limewash_2m_01",
+      "source_pixel": [
+        430.23809523809524,
+        400
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Chair1",
+      "mesh": "SM_Chair_Oak_01",
+      "source_pixel": [
+        301,
+        207
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Chair2",
+      "mesh": "SM_Chair_Oak_01",
+      "source_pixel": [
+        301,
+        257
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "WickerBasket",
+      "mesh": "SM_Basket_Wicker_01",
+      "source_pixel": [
+        446,
+        146
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        15,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Barrel1",
+      "mesh": "SM_Barrel_Oak_01",
+      "source_pixel": [
+        148,
+        120
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Barrel2",
+      "mesh": "SM_Barrel_Oak_01",
+      "source_pixel": [
+        149,
+        142
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        14,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Candle1",
+      "mesh": "SM_Candle_Iron_01",
+      "source_pixel": [
+        300,
+        231
+      ],
+      "height_cm": 90,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Candle2",
+      "mesh": "SM_Candle_Iron_01",
+      "source_pixel": [
+        279,
+        116
+      ],
+      "height_cm": 258,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "lights": [
+    {
+      "source_pixel": [
+        300,
+        231
+      ],
+      "height_cm": 150,
+      "lumens": 50,
+      "kelvin": 2700,
+      "radius_cm": 520
+    },
+    {
+      "source_pixel": [
+        289,
+        116
+      ],
+      "height_cm": 90,
+      "lumens": 150,
+      "kelvin": 2700,
+      "radius_cm": 390
+    },
+    {
+      "source_pixel": [
+        170,
+        145
+      ],
+      "height_cm": 250,
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 420
+    },
+    {
+      "source_pixel": [
+        430,
+        215
+      ],
+      "height_cm": 260,
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 440
+    },
+    {
+      "source_pixel": [
+        300,
+        330
+      ],
+      "height_cm": 270,
+      "lumens": 120,
+      "kelvin": 4000,
+      "radius_cm": 480
+    }
+  ]
+}

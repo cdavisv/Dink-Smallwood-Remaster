@@ -1,0 +1,51 @@
+# Unreal build and editor output (project and every plugin)
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+Plugins/*/Saved/
+
+# Packaged builds and staging
+Build/Linux/
+Build/Windows/
+Packaged/
+/Logs/
+
+# Generated IDE / project files (re-create with GenerateProjectFiles.sh)
+.vs/
+.vscode/
+.idea/
+*.code-workspace
+*.sln
+*.suo
+*.xcworkspace
+*.xcodeproj
+Makefile
+CMakeLists.txt
+compile_commands.json
+.ignore
+.clangd/
+.cache/
+
+# Greybox import (pipeline stage 6), all regenerable: the import bundle exported from the data
+# repo, everything the importer generates (about 175 MB of .uasset/.umap for the whole world,
+# rebuilt in under a minute; never hand-edited, so not worth LFS churn), and the engine's
+# third-person template content the greybox character uses (Scripts/copy_template_content.sh).
+/ImportData/
+/Content/Dink/_Generated/
+/Content/Characters/
+/Content/Input/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local secrets and notes for AI agents (never commit)
+agents_secret.md
+
+# OS junk
+.DS_Store
+Thumbs.db
+*~

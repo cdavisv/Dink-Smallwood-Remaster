@@ -1,0 +1,29 @@
+{
+  "scope": "Wardrobe front strap ends cut to a clean1.40m seam and sewn jerkin rim raised smoothly to cover join; UVs/texture sampling preserved. Protected anatomy untouched.",
+  "lods": [
+    {
+      "lod": 0,
+      "strap_faces_before_cut": 833,
+      "front_faces_cleanly_trimmed": 411,
+      "jerkin_vertices_in_seam_region": 2706
+    },
+    {
+      "lod": 1,
+      "strap_faces_before_cut": 407,
+      "front_faces_cleanly_trimmed": 221,
+      "jerkin_vertices_in_seam_region": 1690
+    },
+    {
+      "lod": 2,
+      "strap_faces_before_cut": 227,
+      "front_faces_cleanly_trimmed": 138,
+      "jerkin_vertices_in_seam_region": 627
+    },
+    {
+      "lod": 3,
+      "strap_faces_before_cut": 80,
+      "front_faces_cleanly_trimmed": 36,
+      "jerkin_vertices_in_seam_region": 453
+    }
+  ]
+}

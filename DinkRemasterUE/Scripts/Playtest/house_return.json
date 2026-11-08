@@ -1,0 +1,23 @@
+{
+  "name": "return home using only normal keyboard movement",
+  "expected_screen": 1,
+  "waypoints": [
+    {
+      "screen": 439,
+      "map": [
+        345,
+        350
+      ],
+      "tolerance_cm": 3
+    },
+    {
+      "screen": 439,
+      "map": [
+        345,
+        280
+      ],
+      "warp_to": 1,
+      "tolerance_cm": 1
+    }
+  ]
+}
