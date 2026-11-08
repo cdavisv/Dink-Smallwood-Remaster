@@ -596,7 +596,9 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `eleven_music_v2_5`, flow `M1M41vE6pzKeEkQYmpi5`, 23,200 credits in total
   (about 900 credits per minute; the connector's pre-run estimate overstates
   the charge by about 1.8x). Prompts describe mood and instruments only,
-  never existing music. NOT listened to, NOT imported, licence unconfirmed.
+  never existing music. Current status: the owner selected all28music cues, which are
+  imported alongside44selectedSFX. Public redistribution rights are owner-confirmed;
+  voice candidates remain separate. See the Unreal audio README and verification receipts.
   The 19 loop cues have technically seamless derived loops in
   `Audio/Music/loops/` (beat-aligned cut plus a 1 s equal-power crossfade,
   `prepare_music.py --loops-only`, `loop_report.csv`); musical continuity
