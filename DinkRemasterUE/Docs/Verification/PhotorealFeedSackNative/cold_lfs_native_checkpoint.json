@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "base": "5bd2db1566c12c6145bed415b54e516be1368631",
+  "head": "5040e632d53125571b1769b715fc54cfa521126d",
+  "pointer_files": 6,
+  "unique_objects": 6,
+  "file_bytes": 8196840,
+  "cache": "/home/davisc/Work/DinkQA/PhotorealSessions/feedsack_native_cold_lfs",
+  "files": [
+    {
+      "path": "DinkRemasterUE/Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.uasset",
+      "oid": "0495c3df04c68fed58cba85d618e072e2e61c35da7ae39de6c81092da7581d63",
+      "size": 7293
+    },
+    {
+      "path": "DinkRemasterUE/Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.uasset",
+      "oid": "d06c41e9e3081a047804e31e7b9adfc5b3cb01280456554d8f561601b222afff",
+      "size": 7293
+    },
+    {
+      "path": "DinkRemasterUE/Content/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.uasset",
+      "oid": "8422c48e170994a5f30fc421342d9ef5b8c99e2124735f1c7e3e20e9649f6145",
+      "size": 635917
+    },
+    {
+      "path": "DinkRemasterUE/Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_BC.uasset",
+      "oid": "c336b06a265a3f4477186e6a3e5ad9b5cd3517e1c0f7b3310b6a22b6c39fd744",
+      "size": 2397926
+    },
+    {
+      "path": "DinkRemasterUE/Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_N.uasset",
+      "oid": "14e885c90e336dfe4eabebc531d7454d4fb009eba49d3bb3b17c00856b369a20",
+      "size": 4279137
+    },
+    {
+      "path": "DinkRemasterUE/Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_ORM.uasset",
+      "oid": "7d00969e976d526fd98df057f7bbe5d01a2d1f9e718fcecbf4a915055b3f3b7e",
+      "size": 869274
+    }
+  ]
+}

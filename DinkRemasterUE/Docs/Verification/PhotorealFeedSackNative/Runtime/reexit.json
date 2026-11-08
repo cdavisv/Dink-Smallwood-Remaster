@@ -1,0 +1,251 @@
+{
+  "route": "Saved/FeedSackReviewed/Render/short_reexit_route.json",
+  "input": "normal held W keys, camera yaw only; no teleports",
+  "steps": [
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          302.946,
+          385.546
+        ],
+        "world": [
+          -183808.52,
+          393532.742,
+          98.0
+        ],
+        "yaw": -90.705,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.237,
+          387.886
+        ],
+        "world": [
+          -183807.247,
+          393542.982,
+          98.0
+        ],
+        "yaw": 82.914,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.237,
+          387.886
+        ],
+        "world": [
+          -183807.247,
+          393542.982,
+          98.0
+        ],
+        "yaw": 82.914,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.35,
+          388.79
+        ],
+        "world": [
+          -183806.755,
+          393546.936,
+          98.0
+        ],
+        "yaw": 82.914,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.35,
+          388.79
+        ],
+        "world": [
+          -183806.755,
+          393546.936,
+          98.0
+        ],
+        "yaw": 82.914,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.405,
+          389.234
+        ],
+        "world": [
+          -183806.514,
+          393548.879,
+          98.0
+        ],
+        "yaw": 82.92,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.405,
+          389.234
+        ],
+        "world": [
+          -183806.514,
+          393548.879,
+          98.0
+        ],
+        "yaw": 82.92,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.46,
+          389.678
+        ],
+        "world": [
+          -183806.273,
+          393550.821,
+          98.0
+        ],
+        "yaw": 82.915,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.46,
+          389.678
+        ],
+        "world": [
+          -183806.273,
+          393550.821,
+          98.0
+        ],
+        "yaw": 82.915,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    }
+  ],
+  "result": "FAIL",
+  "error": "Expected screen439, got1"
+}
