@@ -39,5 +39,36 @@
     "after": "All6CLI regressions pass"
   },
   "runtime": "Compiled source and binary payloads unchanged from the134/134verified delivery",
-  "prior_release": "Optional historical recovery copy; not primary storage"
+  "prior_release": "Optional historical recovery copy; not primary storage",
+  "remote_github_clone": {
+    "head": "f3ace80e9ff481bb89b6a115fc94c1873457a86d",
+    "download_completed": true,
+    "git_lfs_fsck": "OK",
+    "full_binary_audit": {
+      "verification_mode": "full",
+      "binary_files_verified": 1651,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 160,
+      "shell_syntax_files": 22,
+      "ledger_rows": 1058,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    }
+  },
+  "fresh_rendered_exit_return": {
+    "receipt": "Delivery134/receipt.json",
+    "exit": "PASS",
+    "return": "PASS",
+    "final_screen": 1,
+    "radius_cm": 28,
+    "life": "10/10",
+    "move_ignored": false,
+    "fixture_teleports": false,
+    "camera_material_setters": false
+  }
 }
