@@ -3,8 +3,7 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 
-# Unreal binary assets: Git LFS, lockable (the plan's Forgejo server supports LFS file locking,
-# so two people cannot edit the same .uasset/.umap at once).
+# Unreal binary assets: Git LFS; lockable source/packages coordinate artist edits.
 *.uasset filter=lfs diff=lfs merge=lfs -text lockable
 *.umap   filter=lfs diff=lfs merge=lfs -text lockable
 

@@ -14,7 +14,7 @@ def validate_source_inputs(root):
         if not path.is_relative_to(root):raise ValueError(f'Source path escapes project: {path}')
         rel=path.relative_to(root).as_posix();expected=rows.get(rel,[])
         if len(expected)!=1:raise ValueError(f'Expected one trusted source-ledger record: {rel}')
-        if not path.is_file():raise ValueError(f'Missing source bytes: {rel}; materialize the approved asset pack first')
+        if not path.is_file():raise ValueError(f'Missing source bytes: {rel}; materialize the approved raw bytes (for example git lfs pull)')
         if hashlib.sha256(path.read_bytes()).hexdigest()!=expected[0]:raise ValueError(f'Source SHA256 mismatch: {rel}; materialize the approved raw bytes')
         return path
     plan=json.loads(checked(source/'placement_plan.json').read_text())
