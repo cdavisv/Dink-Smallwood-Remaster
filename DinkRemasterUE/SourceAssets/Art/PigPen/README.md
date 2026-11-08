@@ -16,8 +16,8 @@ The actual validator requires three LODs for this non-Nanite small prop. Loaded 
 
 ```bash
 blender -b --factory-startup -t 4 -P SourceAssets/Art/PigPen/build_feed_scatter.py
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py validate --blend SourceAssets/Art/PigPen/KIT_PigPen.blend --report SourceAssets/Art/PigPen/validation.json
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py export_ue --blend SourceAssets/Art/PigPen/KIT_PigPen.blend --out SourceAssets/Art/PigPen/Export --formats fbx,gltf --source-root SourceAssets/Art
+python3 ../tools/blender/dink.py validate --blend SourceAssets/Art/PigPen/KIT_PigPen.blend --report SourceAssets/Art/PigPen/validation.json
+python3 ../tools/blender/dink.py export_ue --blend SourceAssets/Art/PigPen/KIT_PigPen.blend --out SourceAssets/Art/PigPen/Export --formats fbx,gltf --source-root SourceAssets/Art
 blender -b --factory-startup -t 4 -P SourceAssets/Art/PigPen/export_feed_lods.py
 python3 SourceAssets/Art/PigPen/generate_layout.py
 ```

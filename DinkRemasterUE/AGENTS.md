@@ -1,3 +1,11 @@
+> **Repository move (8 Nov 2026).** This Unreal project is being moved INTO the fork
+> `https://github.com/cdavisv/Dink-Smallwood-Remaster` as `Dink-Smallwood-Remaster/DinkRemasterUE/`
+> (one repo for everything; binaries in Git LFS). A symlink stays at the old sibling path
+> `~/Repos/Dink-Smallwood/DinkRemasterUE` so absolute paths and the `~/Work` copies keep working.
+> After the move the relative paths change: `DinkRemasterUE` -> `DinkRemasterUE` and
+> `..` -> `..`. The nested `.git` here goes away; commit from the fork's root,
+> on a branch, through a pull request. "One editor at a time" and the file-ownership rules still apply.
+
 # AGENTS.md
 
 Operating instructions for AI agents and humans working on the Dink Smallwood Remaster Unreal
@@ -5,20 +13,29 @@ project. Read this file before doing any work here, and keep it accurate: when y
 fact, a pitfall or a decision, write it down here and remove anything that has become wrong.
 Label uncertain or temporary information as such.
 
-## Current delivery checkpoint (7Nov2026 local /8Nov UTC)
+## Current art/debug stage (7 Nov 2026)
 
-- This project is delivered under DinkRemasterUE/ in the owner-selected GitHub repository. Original-engine files remain at the root. Scripts discover extraction data in the parent repo or the original sibling layout. Binary assets are pinned by AssetPacks/house-v1.json and restored by Scripts/bootstrap_asset_pack.py; new Git LFS uploads are unavailable in this public fork. UE5.8.4 stays outside the repo and must never be edited.
-- The staged camera/fireplace snapshot passed130/130,0warnings,354s with666Data,225compiled files,7DLLs,8new material/mesh packages and651protected originals unchanged. All6 original gameplay traces and healer payment matched prior verification. See Docs/Verification/house-stage130.json. This is not a claim of full-world art or complete sanctuary/Mog gameplay.
-- Actual W house exit/return passed. Native projection-based component occlusion now fades the foreground door jamb while preserving empty-doorway, behind-eye and beyond-pawn controls, physical collision and shadow behavior. Before/fixed captures and routes are in Docs/Verification.
-- FireplaceV2 retains P19’s original transform/script, has251×111.5×300.4cm actual source dimensions,3authored fallback LODs15484/8050/4180 and6fitted hulls. Nanite follows the Blender source, with explicit PercentTriangles1.0 and material usage. Reported render bounds can include Nanite's coarse envelope; use source vertices and real hull queries for physical scale. Local firelight is40lm/2000K/55cm; global exposure is unchanged.
-- Seven real-game capsule fixtures, real F/E responses and1,150sampled ordinary-Mother poses passed; sampling does not prove all possible AI paths. Remaining graphics include window/door exterior context, surface finish and wider-world art. Work-only Vista/clothing repairs are not included as finished runtime assets.
-- Audio choices remain44SFX/28music; rejected9/44/48/49 stay excluded. The owner explicitly confirmed public redistribution rights for generated ElevenLabs audio; see SourceAssets/Audio/REDISTRIBUTION.md. Voice candidates remain candidates.
-- Initial implementation is imported from local checkpoint afb04b9, overlaid with the exact verified camera/data/fireplace snapshot. The consolidated native delivery passed134/134 with0warnings in920s;2,992pinned files/DLLs stayed unchanged. Public compiled sources/runtime Data/assets match that tested checkout. See Docs/Verification/delivery-full134.json and delivery-input-pins.json. Camera ownership and asset-bootstrap independent reviews passed; import recovery is verified separately. Local Saved verification artifacts and generated/template assets remain ignored.
+- Current continuation (8Nov UTC /7Nov local): Source ledger1058records; root appended20FireplaceV2 candidate source/plan rows while preserving all previous1038rows and all483Audio rows (including the original124SFX/music review records). Main unique fireplace packages and repeatable import/check/publish scripts are present, but main runtime still uses the original fireplace (665Data files). Stage has666Data with the new layer and40lm local light. Classic Stage full129/129 passed with one engine HTTP timeout warning;832tracked inputs stayed stable and are pinned in `Saved/FireplaceV2Integration/Full129/pinned_inputs.zip`. Actual F/E, normal-Mother sampling and W exit/return passed; durable main copy: `Saved/ArtCandidateFireplaceV2/IntegratedClassic_20261108`.
+- Production fireplace rendering now follows Blender Nanite=yes, explicit PercentTriangles1.0 fallback and Nanite material usage. Actual source vertices remain251×111.5×300.4cm and15484triangles; asset-reported culling bounds can be larger. Corrected recipe passes direct and fresh-empty import checks. Classic-render evidence is historical, not a production-render acceptance claim. Source/roughness/soot finish, production rendered views and packaged verification remain open.
+- Stage is currently owned by `/root/house_walls` for the near-frustum camera build/test. New true-projection component box sweeps address the actual-return gray jamb covering the right side while Dink stays clear. Baseline failed only the2expected opacity assertions; fixed focused3/3 pass0warnings. Full130 is running under `Saved/Automation/nearfrustum_full130_20261108`. Do not launch Stage GPU or write its Source/Data/assets until the owner releases; check live PID/maps, not just this note. Main camera code remains the previous verified version. VistaV3 and repaired clothing are still Work-only candidates.
+
+- Main runtime art integration is installed: all664 `Content/Dink/Data` files match the reviewed isolated stage, including HandsV2/fist animation, Pillbug bodies and fields438/471; the unique PineV3 mesh package is now present in main Content. Existing659 other Data files, audio and original art packages were preserved. Backup/scope: `Saved/MainIntegration/20261107T220751Z/promotion.json`. OutfitV3 and experimental transmission materials remain unpromoted.
+- Default `Scripts/build.sh` passes with0warnings. The first camera integration build read transient null bytes during a foreign Probe edit; its failed log is preserved in `~/Work/DinkQA/CameraFraming/MainVerification/build_first_concurrent_edit.log`. The next build passed after the source was intact; do not strip bytes from another workflow's in-progress source. `Source/DinkRemasterEditor.Target.cs` explicitly disables unity and adaptive unity; CLI-only disabling previously still generated unity translation units. Do not edit the shared engine or global build configuration.
+- Historical pre-camera main native run:127/127 passed,0warnings,357s; actual chapter steps47/6/11/12/3/3 and authentic healer Gold72→59/Life13→26 passed. **This is not a frozen-current-build claim:** a foreign workflow edited/relinked DinkProbe during the run. All664Data, other218compiled files,6otherDLLs and statusCSV stayed unchanged. Exact report, scope breach and save clarification: `Saved/MainIntegration/20261107T220751Z/FullRoot127/full_verification.json` (`full_verified=false`). The6preexisting root saves remain byte-identical; foreign work added a Ch7 slot. Our probe saves used a separate per-process `-UserDir`.
+- The earlier immutable stage run remains127/127,0warnings,323s with unchanged664Data/219compiled+statusCSV/7DLL and `full_verified=true`: `Saved/RecoveredStage/Integrated127_final`. Stage project is `/home/artist/Work/DinkPlaytestStage`; private tools persist under `~/Work/DinkQA/Tools`. Do not overwrite any loaded DLL or restart a process merely because observation timed out.
+- Foreign Probe work evolved independently; the latest loaded main Ch7 test passed in the frozen130-test suite. This alone is not a complete sanctuary/Mog playthrough claim. Historical inspection: Its new Ch7 was a one-additional-goblin experiment when inspected; a title mentioning sanctuary/Mog and minimum-step0 do not prove that quest complete. Preserve it, audit actual steps, and pin a new immutable snapshot before accepting current full-suite or packaged parity claims. DinkProbe is now a DeveloperTool module; DinkParity retains editor-only tests.
+- Fixed generated blue-checker house walls without changing physical edge collision/warps. Actual authored/greybox lifecycle tests pass, and fresh real-W house exit+return passed again. Real GameOver→Restart also now resets through a deferred fresh world and original startup; two actual death/menu/restart cycles passed. Historical evidence: `Saved/RecoveredStage/HouseWalls`, `WallFixedLive`, and `Restart`.
+- Native interior camera is integrated in main:240cm arm/+52cm pivot/automatic ±45cm shoulder/FOV70, actual component occluder tests, shadow-preserving dither variants, and viewport-derived lower-frustum floor constraints. The exact Stage snapshot passed129/129 (2engine HTTP timeout warnings), with unchanged inputs and gameplay traces: `Saved/InteriorCamera129/full_verification.json` in `/home/artist/Work/DinkPlaytestStage`. Actual W house exit/return passed; rendered diagonal views225/315 at the real return position remove the lower sky gaps and head push-in. Evidence: Stage `Saved/Playtest/NativeCameraV2` and `Saved/InteriorCamera129/rendered_acceptance.json`. Main promotion/backups: `Saved/MainIntegration/Camera_20261107T234107Z`; main build passes0warnings; main full suite130/130,0warnings,442s passed with795tracked source/Data/library/camera asset hashes unchanged. Receipt: `Saved/MainIntegration/Camera_20261107T234107Z/Verification/verification.json`. Main Data now has665 files. Graphics remain unfinished: blank exterior window/door views, fireplace/lighting and outfit polish. Always copy live Python Vector/Rotator values by value before restoration.
+- PineV3 readback confirms classic3LODs, Nanite disabled,1originalUCX,13m height, two-sided masked needles clip.12 and alpha-preserving mips. Equal-camera actual LOD0/1/2 and close captures exist. Two unique private-stage foliage transmission materials were compared and restored, but remain candidates; dark shade/pale highlights and broader world greybox remain. The Pine checkpoint had679source ledger records including124audio records; foreign source/voice work has since extended the ledger. Preserve those records and verify current counts rather than restoring a historical ledger.
+- The fireplace actually uses complex-as-simple collision and Pawn-blocking geometry, with3unused UCX hulls/1LOD. Its402×154×414.5cm model and239cm-wide/200cm-high cavity admit Mother's50cm-diameter/164cm capsule. Ordinary Mother wandering still checks authored collision; do not call the visible cavity entry a disabled-collision bug. FireplaceV2 remains a candidate: private Stage import measures251×111.5×300.4cm,3LODs15484/8050/4180tris and6fitted hulls. Seven actual-game off-map capsule sweeps pass (standing entry blocked, surrounding passages clear, recess open/backed); the Card mesh/location/collision state were restored afterward. Matched in-room renders show better proportions, but the original150lm local light blows out the recess. Temporary40lm/2000K at55cm reveals brick/coals; no global exposure change or main runtime replacement was made. Main evidence: `Saved/ArtCandidateFireplaceV2/StageReview_20261107`. Mother wandering/script endpoints, closer material polish and candidate-manifest/full-suite/door checks remain before promotion.
+- Renderer diagnosis remains open. Serial RHI alone also crashed in deferred Vulkan resource deletion; optional `--serial-vulkan-submit` adds startup `-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0` and both0values were queried. The private session survived rendered art/camera/door tests, but TaskGraph cleanup still runs: this is a diagnostic, not a proven engine fix. No engine files were changed. Never invoke editor-only asset-library/export APIs in `-game`; inspector/export scripts must guard that mode and use proper editor commandlets.
+- Desktop review64164 accepted actual movement and closed normally through SDL window-close at22:05:56UTC; it was not relaunched. All current rendering screenshots, rejected presets, actual collision readbacks and closure evidence are preserved under `Saved/RecoveredStage/RenderReview_20261107`. Private66131 was later closed normally; current owned rendered review is127631 on isolated Stage with NativeCameraV2. Revalidate exact PID/argv before using old handles.
+- `Scripts/package.sh` now includes Foliage, Camera and existing Refinements in its default cook list because PineV3 is referenced through JSON. Shell/source checks passed, but this turn did not cook/package or verify packaged parity. Audio decisions remain44selectedSFX/28music; rejected9/44/48/49 stay excluded, all72source hashes/assets/runtime mappings were reverified.
 
 ## What this is
 
 - Unreal Engine 5.8 C++ project `DinkRemaster` for a free fan remaster of Dink Smallwood (1997).
-- The companion **data repo** is the parent repository (`..`) in this layout, or `../Dink-Smallwood-Remaster` in a standalone sibling checkout (a fork of the Dink Smallwood HD
+- The companion **data repo** is `..` (a fork of the Dink Smallwood HD
   engine). It holds the plan (`doc/remaster/REMASTER_PLAN.md`), the content bible
   (`doc/remaster/bible/`), the original game data (`bin/dink/`), the original engine source
   (`source/dink/dink.cpp`) and the Python extraction pipeline (`tools/`). Treat it as read-only
@@ -33,14 +50,14 @@ Label uncertain or temporary information as such.
 | What | Command | Time |
 |---|---|---|
 | Build editor target | `Scripts/build.sh` | ~28 s from clean, 2-8 s incremental |
-| Run all tests headless | `Scripts/test.sh` | Consolidated delivery:134/134,0warnings,920s;2,992pinned files unchanged; see Docs/Verification/delivery-full134.json. Earlier Stage129/129 has2engine HTTP warnings and frozen inputs. |
+| Run all tests headless | `Scripts/test.sh` | 7 Nov 2026 night (after the `sp_script` fix, nine probe chapters): **133/133**, 0 warnings, 463 s (an earlier run by another agent on the same tree: 133/133, 746 s under load). Before: main suite 130/130, 442 s (Camera integration receipt above). |
 | Run a subset | `Scripts/test.sh Dink.Core.Combat` | ~13 s |
 | Regenerate the globals table | `python3 Scripts/regen_globals.py [data repo path]` | < 1 s |
 | Bring in the converted Ink story | `python3 Scripts/sync_story.py [--data <repo>] [--rebuild] [--check]` | < 1 s (`--rebuild` runs the converter first: ~9 s) |
 | Bring in map.dat/dink.ini gameplay data | `python3 Scripts/sync_gameplay_data.py [--data <repo>] [--check]` | < 1 s (reads the data repo's `tools/dinkex/out`) |
 | Build the game (non-editor) target | `$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh DinkRemaster Linux Development -Project=<abs>/DinkRemaster.uproject -WaitMutex` | ~32 s (verified 6 Nov 2026 in the project dir; writes `Binaries/Linux/DinkRemaster`) |
 | Cook and package the game (Linux, Development) | `Scripts/package.sh [stage dir]` | ~40 s from an empty `Saved/Cooked` (cook 22-42 s, 5,189 packages; shaders from the shared DDC), 30-65 s incremental; stage `Saved/StagedBuilds` 1.5 GB (`Content/Paks` 575 MB, binary 300 MB + 296 MB `.debug`/`.sym`); verified 7 Nov 2026 |
-| Run the probe in the packaged game | `Scripts/run_packaged_tests.sh [stage dir] [filter]` | 6 chapters, one process each: 7 + 6 + 3 + 7 + 1 + 1 s (the PIE chapters take 42 + 31 + 11 + 35 + 1 + 3 s); prints `PARITY OK` per chapter (trace md5 equals the editor's) |
+| Run the probe in the packaged game | `Scripts/run_packaged_tests.sh [stage dir] [filter]` | 9 chapters (Ch1-Ch9), one process each: 7 + 6 + 2 + 6 + 2 + 1 + 8 + 4 + 1 s (the PIE chapters take 39 + 25-32 + 9 + 28-35 + 1 + 2 + 31-33 + 10-12 + 2 s); prints `PARITY OK` per chapter (trace md5 equals the editor's) |
 | Export the import bundle | `python3 Scripts/export_import_bundle.py [--data <data repo>]` | ~30 s |
 | Greybox import, Stonebrook | `Scripts/import_greybox.sh --region stonebrook` | 8 s editor from a clean `_Generated/` (+ ~20 s import tests, + ~30 s export if no bundle); re-run 6 s |
 | Greybox import, whole world | `Scripts/import_greybox.sh --region all` | 25 s editor (+ ~20 s tests); re-run 7 s |
@@ -97,8 +114,8 @@ The probe runs in a packaged game and plays the same game as in PIE. Full accoun
   `Saved/Narrative` (`PARITY OK/DIFF`).
 - **Proven:** cook without errors; `Dink/Data` (644 hardness files, story, CSVs, Art/Audio JSON) staged in the pak and read through it; string-loaded
   art loads (`DINK ART OK`, character and creature art in the game log); `Automation RunTests` runs a `DeveloperTool` module's tests in the game,
-  exit code 0/255, `index.json` written; the six probe chapters (1-6; chapter 7 was not run packaged) give the editor's trace md5s (50091fcc80, 103b0331f1, e0b643193a, 230f594539,
-  6c709d1069 and, for the chapter 6 of 13:05 that another agent extended with a healer step, 7471375e32 on both sides), repeatedly and after a clean cook.
+  exit code 0/255, `index.json` written; the nine probe chapters (Ch1-Ch9, 7 Nov 2026 evening, after the `sp_script` fix) give the editor's trace md5s (b3760d52d7, a5cfdf70bc, e9fce770bc, cd1b3bf820,
+  6c709d1069, 9e87080221, 7cc6e2fe93, 6697a02e52, 0ea9677ee2 on both sides; one package run, 28 s with an incremental cook, then the nine processes). (Earlier the same day chapters 1-6 matched with their old hashes, 50091fcc80... 7471375e32; chapter 7 was packaged for the first time in this run.)
   The probe's chapter trace needs a PIE-identical start: the DinkProbe module's `-DinkProbeHold` (world paused until the probe starts, story ticked before the greybox)
   and lower-cased event texts: pitfalls 47-49.
 - Not proven / not done: Windows; a Shipping package (no tests by design); anything rendered (the run is `-nullrhi`); the packaged game with a window
@@ -181,8 +198,8 @@ never hand-edited).
 | `Private/DinkGreyboxAssets.*` | textures, materials, meshes, manifest hashes |
 
 Tests: `Plugins/DinkParity/Source/DinkParity/Private/Tests/*.cpp`, named `Dink.Core.*` (33),
-`Dink.Import.*` (10, `DinkImportTests.cpp`), `Dink.Narrative.*` (15, `DinkNarrativeTests.cpp`) and
-`Dink.Gameplay.*` (32 on 7 Nov 2026: headless in `DinkGameplayTests.cpp` and `DinkAuthoredInteractionTests.cpp`, the probe chapters `Probe.Ch1Stonebrook`..`Ch7Sanctuary` (PIE, or a packaged game) and their two editor-only repeat tests in `Plugins/DinkParity/Source/DinkProbe/Private/DinkProbeTests.cpp`, `Texts.ExpiredTextKeepsARecycledHandle`) and
+`Dink.Import.*` (10, `DinkImportTests.cpp`), `Dink.Narrative.*` (16, `DinkNarrativeTests.cpp`; `Director.SpScriptRunsMainAtOnce` is the `sp_script` parity test) and
+`Dink.Gameplay.*` (32 on 7 Nov 2026: headless in `DinkGameplayTests.cpp` and `DinkAuthoredInteractionTests.cpp`, the probe chapters `Probe.Ch1Stonebrook`..`Ch9Windemere` (PIE, or a packaged game) and their two editor-only repeat tests in `Plugins/DinkParity/Source/DinkProbe/Private/DinkProbeTests.cpp`, `Texts.ExpiredTextKeepsARecycledHandle`) and
 `Dink.AI.*` (12, `DinkAITests.cpp`).
 Shared helpers in `DinkTestHelpers.h`.
 
@@ -216,8 +233,9 @@ Shared helpers in `DinkTestHelpers.h`.
   (`DinkTest::MakeOuterGameInstance()`).
 - **Git:** never `git commit` or `git push` unless explicitly told to ("commit" means local only;
   it is not permission to push). Never add AI co-author lines (no `Co-Authored-By` for
-  Claude/Codex/OpenAI etc.) to commits. The owner explicitly requested commits, PRs, review and merge for this delivery; origin is cdavisv/Dink-Smallwood-Remaster.
-- **Binary assets:** this public fork rejected new Git LFS uploads. Binary art/audio and Unreal packages stay ignored locally and are versioned through GitHub Release packs with archive/per-file hashes in `AssetPacks/house-v1.json`. Bootstrap and fully verify assets before building/importing. CSV/JSON/INI/Ink and source code stay plain Git text. Preserve modified local art; publish reviewed new pack revisions rather than replacing published files.
+  Claude/Codex/OpenAI etc.) to commits. No remotes are configured yet.
+- **Git LFS** (`.gitattributes`): `.uasset`/`.umap` and binary art/audio go through LFS;
+  `.uasset`, `.umap`, `.blend`, `.psd`, `.kra` are `lockable`. CSV/JSON/INI/Ink stay plain text.
 - **Secrets:** never commit credentials or tokens; local notes go in `agents_secret.md`
   (git-ignored).
 
@@ -226,8 +244,8 @@ Shared helpers in `DinkTestHelpers.h`.
 `Content/Dink/Data/Facts/dink_globals.csv` is generated from the data repo:
 
 ```
-cd ../Dink-Smallwood-Remaster/tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story --map ../../bin/dink/map.dat --dat ../../bin/dink/dink.dat --out out
-cd ../../../DinkRemasterUE && python3 Scripts/regen_globals.py
+cd ../tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story --map ../../bin/dink/map.dat --dat ../../bin/dink/dink.dat --out out
+cd ../../DinkRemasterUE && python3 Scripts/regen_globals.py
 ```
 
 The first step writes only the data repo's git-ignored `tools/dinkc/out/`. The CSV header comment
@@ -410,6 +428,9 @@ choices after `choice_start` become `FDinkMenu` (title lines from `#title`); `Ch
 `bInstantMode` (tests, smoke run) completes every block at once and answers menus with
 `AutoChooser`; `RunUntilIdle` steps until nothing can progress.
 
+**`sp_script` runs the attached script's `main` in the caller's turn** (`dink.cpp:8155-8175`; `UDinkDirector` `sp_script`: `StartProcedure` then `RunNow`), except while a screen's base script runs
+its first segment (`UDinkStorySubsystem::bNoRunningMain`, the engine's `no_running_main`): then the main starts later. `spawn` and `external` still only start (pitfall 56).
+
 **Clock.** The story subsystem ticks inside its game world (`GetTickableGameObjectWorld` returns the world), so the
 story clock is the world's time: the delta `UWorld::Tick` hands out (clamped by WorldSettings to 1/8 s at most, so a 1 s
 editor hitch is 0.125 s of game time), times the time dilation (`slomo`), and nothing while the world is paused. It used
@@ -582,7 +603,7 @@ missile on 579 and the missile moves; failed before the `OnScreenEntered` fix); 
 chapter 1 in two sessions of one editor, event traces identical line by line; fails in about 160 s without the fixed step) and
 `Probe.RepeatableChapter` (chapter 2 twice from chapter 1's save slot: loading a save and a five-chaser fight, identical traces).
 
-**The probe, in chapters** (`Dink.Gameplay.Probe.Ch1Stonebrook` .. `Ch7Sanctuary`, PIE on `L_Greybox_World`, `Ch1` also on
+**The probe, in chapters** (`Dink.Gameplay.Probe.Ch1Stonebrook` .. `Ch9Windemere`, PIE on `L_Greybox_World`, `Ch1` also on
 `L_Greybox_Stonebrook` up to step 22; reports `Saved/Narrative/probe_chN.txt` (`stonebrook_probe.txt` for chapter 1), every event
 of the run in game time in `probe_chN_trace.txt` (`stonebrook_probe_trace.txt`), the trace md5 in the report's first line). It
 plays the game as `Docs/probe_route.md` describes it, using only teleports (for walking), `TryTalk`, `PlayerAttack` (one punch
@@ -590,56 +611,54 @@ per 450 ms of game time), `PlayerCastMagic`, standing on things, `ArmItemSlot`/`
 adaptation layer off; no fact, stat or item is ever written. **Chapters are tests that start from the save slot the previous
 test wrote** (`Saved/SaveGames/probe_ch<N>.sav`, written when the chapter reached its floor; a chapter that falls short deletes
 its slot, so the next one fails with "run chapter N first"). The automation runner sorts by path, which is why the tests are
-named `Ch1..Ch7` (at most `Ch9`: `Ch10` would sort before `Ch2`); `Probe.Repeatable` and `Probe.RepeatableChapter` sort after them. Each chapter's report says how many steps it
+named `Ch1..Ch9` (no `Ch10`: `Ch10` would sort before `Ch2`); `Probe.Repeatable` and `Probe.RepeatableChapter` sort after them. Each chapter's report says how many steps it
 completed; the floor in the test (second to last argument of `RunChapterTest`) makes a regression fail.
 
 | Chapter | Steps (floor) | Wall | Game (trace md5) | What it plays |
 |---|---|---|---|---|
-| 1 `Ch1Stonebrook` | 47 of 47 | 42 s | 231 s (50091fcc80) | new game, the pig, Ethel's duck, the nut, the fire, the letter (&story 6); Martridge's trial (cave Bonca with fists at 54 px, scroll: fireball); the toll (&story 7); Terris: Maria, Jack (fireballs, kited; `KiteAndCast`), the prisoner's cave, the bar, the teacher, three magic potions, Acid Rain, the idol, the cult's ambush; ends on SCR_625 (`s2-cave2`'s scripted warp) |
-| 2 `Ch2Terris` | 6 of 6 | 31 s | 377 s (103b0331f1) | Nadine twice (&s2-nad 2), the cult of the Dead Dragon Carcass on SCR_238 (menu "Say something to the effect that you are going to save her"), four girls and Bishop Nelson killed with `KiteFight` (no damage taken), Mary's talk and the scripted walk home (&story 8) |
-| 3 `Ch3Roads` | 11 of 11 | 11 s | 430 s (e0b643193a) | gold heart on the road (SCR_524, lifemax +10), three `papgold` chests (+600 gold; SCR_005, 557, 747), four strength potions (SCR_681, strength 8), Christina, the girl in the bookstore street, the Mayor (&mayor 3); gold 724 |
-| 4 `Ch4Gold` | 12 of 12 | 35 s | 845 s (230f594539) | gold for the bow, 724 -> 1072, no damage: the monsters of SCR_583 (Bong, Boncd), SCR_480 (two Bongs, fenced in by low hardness) and SCR_632 (two Bongs) kill each other or are shot over the fence (`Feud`), 5 minutes of waiting in Arturous's shop at 8x time dilation, a second round |
+| 1 `Ch1Stonebrook` | 47 of 47 | 39 s | 231 s (b3760d52d7) | new game, the pig, Ethel's duck, the nut, the fire, the letter (&story 6); Martridge's trial (cave Bonca with fists at 54 px, scroll: fireball); the toll (&story 7); Terris: Maria, Jack (fireballs, kited; `KiteAndCast`), the prisoner's cave, the bar, the teacher, three magic potions, Acid Rain, the idol, the cult's ambush; ends on SCR_625 (`s2-cave2`'s scripted warp) |
+| 2 `Ch2Terris` | 6 of 6 | 25-32 s | 377 s (a5cfdf70bc) | Nadine twice (&s2-nad 2), the cult of the Dead Dragon Carcass on SCR_238 (menu "Say something to the effect that you are going to save her"), four girls and Bishop Nelson killed with `KiteFight` (no damage taken), Mary's talk and the scripted walk home (&story 8) |
+| 3 `Ch3Roads` | 11 of 11 | 9 s | 430 s (e9fce770bc) | gold heart on the road (SCR_524, lifemax +10), three `papgold` chests (+600 gold; SCR_005, 557, 747), four strength potions (SCR_681, strength 8), Christina, the girl in the bookstore street, the Mayor (&mayor 3); gold 724 |
+| 4 `Ch4Gold` | 12 of 12 | 28-35 s | 845 s (cd1b3bf820) | gold for the bow, 724 -> 1072, no damage: the monsters of SCR_583 (Bong, Boncd), SCR_480 (two Bongs, fenced in by low hardness) and SCR_632 (two Bongs) kill each other or are shot over the fence (`Feud`), 5 minutes of waiting in Arturous's shop at 8x time dilation, a second round |
 | 5 `Ch5Bow` | 3 of 3 | 1 s | 852 s (6c709d1069) | Arturous (menu "Buy a Bow and some arrows for $1000", gold 72 left), arm `item-b1`, the goblin gate guard on SCR_712 ("Ask the Goblin guard to let you in": armed bow, &mayor 3: **&gobpass 1**, `compare_weapon` and `free_items` verified) |
-| 6 `Ch6Goblins` | 3 of 3 | 2 s | 864 s (7471375e32) | the healer in Terris (talk "Get healed", 1 gold per missing life; skipped at full life), goblin S680_P13 (`s3-gh`, 40 hp) pulled by a fireball from the east end of the strip and killed (the others stay peaceful), back out to SCR_712. The other three goblins are chapter 7 (they cannot be kited in that corridor) |
-| 7 `Ch7Sanctuary` | 8 of 8 | 44 s | 1038 s (ea73eea592, 2589 events) | goblin S680_P14 (`DuelFight`, 56 s), healer, S680_P11 (43 s), healer, S680_P12 (the last: its death `spawn`s Mog, 23 s), Mog (`DuelFight`, 25 s; his death warps to SCR_489, `&gobpass 5`), the Cast camp (SCR_489, `s3-camp.c`: Dink frozen, the scripted walk, `move(1, 2, 410, 1)` over the south edge to SCR_521 and `fade_down`; SCR_521's `s3-camps.c` `fade_up`, 18 s), the ambush scene to its first blow (dialogue skipped, `screenlock`, three knights, `&mayor 4`, Dink free at 300,280, 10 s): **the stop** (below). Ends with life 26/26, gold 59, exp 800, strength 9 |
+| 6 `Ch6Goblins` | 3 of 3 | 2 s | 864 s (9e87080221) | the healer in Terris (talk "Get healed", 1 gold per missing life; skipped at full life), goblin S680_P13 (`s3-gh`, 40 hp) pulled by a fireball from the east end of the strip and killed (the others stay peaceful), back out to SCR_712. The other three goblins are chapter 7 (they cannot be kited in that corridor) |
+| 7 `Ch7Sanctuary` | 8 of 8 | 31-33 s | 1038 s (7cc6e2fe93, 2589 events) | goblin S680_P14 (`DuelFight`, 56 s), healer, S680_P11 (43 s), healer, S680_P12 (the last: its death `spawn`s Mog, 23 s), Mog (`DuelFight`, 25 s; his death warps to SCR_489, `&gobpass 5`), the Cast camp (SCR_489, `s3-camp.c`: Dink frozen, the scripted walk, `move(1, 2, 410, 1)` over the south edge to SCR_521 and `fade_down`; SCR_521's `s3-camps.c` `fade_up`, 18 s), the ambush scene to its first blow (dialogue skipped, `screenlock`, three knights with 40 hp each, `&mayor 4`, Dink free at 300,280, 10 s): hands over to chapter 8. Ends with life 26/26, gold 59, exp 800, strength 9 |
+| 8 `Ch8Knights` | 3 of 3 | 10-12 s | 1095 s (6697a02e52, 1443 events) | the three knights (`SquadFight`, 39 s: Dink takes one blow of 11, deals 43 of the 120 hit points with 28 punches, the knights deal the other 77 to each other; level-up at 900 exp: Defense), their gold (+180: 59 -> 239), the Mayor in Hiram's Bookstore (SCR_067, "Show him the scroll with the plans": `&mayor 5`), the parade on SCR_586 (`s3-tc.c`, 16 s): **`&story 10`**, `&mayor 6`. Ends with life 15/29, gold 239, strength 9, defense 1 |
+| 9 `Ch9Windemere` | 5 of 5 | 2 s | 1106 s (0ea9677ee2, 344 events) | Pete's bomb (SCR_196, "See what's for sale", "Bomb - $20"), the two all-potion chests of the duck enclosure (SCR_536: strength 11, defense 3, magic 7), the bomb planted by the cracked rock and its explosion: `&s4-duck 1`. **The stop** (below): the ducks |
 
-**Chapter hashes of 7 Nov 2026, evening** (final code, run twice: once as `Dink.Gameplay.Probe`, once inside the full suite, 130/130): Ch1 50091fcc80 (4338 events), Ch2 103b0331f1
-(3092), Ch3 e0b643193a (430), Ch4 230f594539 (2121), Ch5 6c709d1069 (120), Ch6 7471375e32 (462; the healer step another agent added moved it from 6d33d4a177), Ch7 ea73eea592
-(2589); identical in both runs.
+**Chapter hashes of 7 Nov 2026, evening, after the `sp_script` fix** (final code; the whole probe run twice by me, then a third time inside another agent's full suite, 133/133,
+and once more in the full suite below: the same nine md5s every time): Ch1 b3760d52d7 (4338 events), Ch2 a5cfdf70bc (3092), Ch3 e9fce770bc (430), Ch4 cd1b3bf820 (2121), Ch5 6c709d1069 (120;
+unchanged: no `sp_script` runs in it), Ch6 9e87080221 (462), Ch7 7cc6e2fe93 (2589), Ch8 6697a02e52 (1443), Ch9 0ea9677ee2 (344). Before the fix: 50091fcc80, 103b0331f1, e0b643193a,
+230f594539, 6c709d1069, 7471375e32, ea73eea592. **All chapters 1-4, 6, 7 changed hash and none of them needed re-tuning**: the event counts are the same as before and every
+step completes (the fix runs the mains of `s2-cult`'s girls and Nelson, `dam-fire`, `papgold`, `s2-cbon`, `s3-dorks`... at once, which reorders `idle` lines and `rand()` draws
+in the traces but not the fights tuned to them). The old trial (pitfall 53: Ch3 stopped at step 1 of 11, Ch6 at 1 of 3) did not honour `no_running_main`; this fix does (the
+base script of a screen runs its first segment with `UDinkStorySubsystem::bNoRunningMain`, so a `sp_script` there still starts the main later, as `init_scripts` does). That is
+the likely difference; it was not re-run without the guard to prove it.
 
-**Determinism of the chapters** (7 Nov 2026): the whole probe (`Dink.Gameplay.Probe`) three times in a row on the final code (the third inside
-the full suite, `Scripts/test.sh`): the six trace md5s above were identical in all three runs (4338, 3092, 430, 2121, 120 and 440 events), and
-`RepeatableChapter` plays chapter 2 twice from the slot in two PIE sessions with identical traces. Every chapter's load compared with the
-previous chapter's end: 0 of 122-152 state lines differ. The hashes change whenever gameplay code, the probe or an earlier chapter changes
-(pitfall 33; this session's text-handle fix, pitfall 42, moved all of them): quote them with the tree they come from.
+**Determinism of the chapters** (7 Nov 2026): the whole probe (`Dink.Gameplay.Probe`, 11 tests) twice in a row by me (nine trace md5s and nine state dumps identical in both
+runs, `cmp`-equal), and the traces of a third run (another agent's full suite) and of the fourth (mine, below) equal them; `RepeatableChapter` plays chapter 2 twice from the
+slot in two PIE sessions with identical traces. Every chapter's load compared with the previous chapter's end: 0 of 122-168 state lines differ (the knights, created by script,
+are restored by the slot: chapter 8 starts with them alive). The hashes change whenever gameplay code, the probe or an earlier chapter changes (pitfall 33; the text-handle fix,
+pitfall 42, and the `sp_script` fix, pitfall 53, each moved all of them): quote them with the tree they come from.
 
-**Where the probe stops, and why** (7 Nov 2026, evening): route Act B step 24, the ambush of the three Cast knights on SCR_521 (`s3-camps.c`,
-`s3-dorks.c`). Steps 21-23 are played: the other three goblins of SCR_680, Mog (`spawn` of `s3-mog`, `screenlock`, his death, the warp to
-SCR_489, `&gobpass 5`) and the Cast camp scene (`s3-camp.c`: the scripted walk, `move(1, 2, 410, 1)` carrying Dink over SCR_489's south edge to
-SCR_521, `fade_down`, then `s3-camps.c`'s `fade_up`: all verified, 18 s of game time). What moved the probe from the old stop (the corridor goblins
-could not be kited: three variants ended in Dink touched to death) is the **`DuelFight` tactic** and **healer trips between the fights**:
-`DuelFight` plays one hostile monster in melee as a dance of reach boxes (it computes where the monster's blow lands and when, steps out of that
-box in time, and punches from the cells where the fist's box reaches the monster and the monster's blow does not, or cannot start yet because of
-its `attack_wait`; it never touches the touch box of any other sprite that hurts by touch, and it pulls a peaceful goblin with a fireball first);
-Dink goes to the Terris healer (SCR_033, `s2-healp`: 1 gold per missing life, paid from the reserve chapter 4 earns; the talk loops when he cannot
-pay, so the reserve matters) between the fights, and level-ups are taken at the menu as they come. Chapter 7 ends when the ambush scene has made its
-first blow possible: `&mayor 4`, the screen locked, the knights alive. **The knights are not played.**
+**Where the probe stops, and why** (7 Nov 2026, night): route Act C step 31, the 27 ducks of the Windemere enclosure (SCR_536, `s4-duck.c`, `s4-end.c`; `&story 10 -> 11`).
+Played since the ambush stop: step 24 the three knights (Ch8), 25 the Mayor's scroll and the parade (`&story 10`, Ch8), 26 Windemere (a teleport), 27 Pete's bomb, 29 the two
+all-potion chests, 30 the bomb and the cracked rock (`&s4-duck 1`, Ch9); 28 (save, heal) is skipped. **The stop is an engine gap, not a tactic:** `KiteAndPunch` on the nearest duck
+kills all 27 (27 `die` "head flies off" and 27 `duckdie`, 81 s of game time), but `s4-duck.c`'s `duckdie` begins with `external("make", "foodduck")` and ends with
+`if (get_sprite_with_this_brain(3, &current_sprite) == 0) spawn("s4-end")`, and in the remake the last `duckdie` never reaches that line: the original's `external` runs the child at
+once and the parent goes on when it ends (`dink.cpp:11326-11360`: `load_script`, `locate`, `run_script`; `proc_return`), the remake's `external` (`DinkDirector.cpp`) only starts the
+child and blocks the parent on it, and the duck brain (`DinkGameplay.cpp`, `RunProc(H, NAME_DuckDie)` then `DeactivateSprite(H, 0, true)`) ends both ("its sprite was removed") before
+the child has run a line, so `&story` stays 10 and the enclosure never ends. It is the same bug as `sp_script`'s, in `external` and in `spawn` (`dink.cpp:8181-8203` runs the spawned
+script's `main` on the spot as well); see pitfall 56. Fixing it moves every hash again (every `die` runs `external("emake", ...)`), so it was NOT done in this session. `// NEXT
+(design-level stop, 7 Nov 2026)` at the end of `BuildChapter9`. Beyond it: step 32 optional pickups, Act D (Joppa, dragons needing strength 20+: the 400-gold longsword, 239 gold now),
+Acts E-G; `activate_bow` is still not usable (no hold-the-key action).
 
-*Why (all numbers from the traces).* The remake's knights have **100 hit points, not 40**: `s3-camps.c` sets 40 after `sp_script(.., "s3-dorks")`,
-whose `main` sets 100, and the original runs that main at once (`dink.cpp:8164-8171`: `locate` + `run_script`), so the original's knights keep 40.
-`DinkDirector.cpp`'s `sp_script` only starts main (`StartProcedure`, no `RunNow`), so it runs after the caller (the trace shows `sp_hitpoints 3 40`
-and then, from instance 339, `sp_hitpoints 3 100`). Pitfall 53: fixing that moves every chapter's hash. The knights: defense 6, strength 12 (blows
-7-12 against Dink's defense 0 and 26 life, touch 5 every 0.4 s), speed 1 timing 0 (60 px/s, 85 px/s on a diagonal), `attack_wait` `random(4000)`;
-a fireball does 2-3 net. 3 x 100 hp is about 130 hits, 2.3 s of charge each, with no healer (screenlock). Tried: (1) `KiteFight` as the cult plays
-it: Dink backs into a corner and the three arrive together (three blows in 150 ms, dead at 25-90 s); (2) `OrbitFight` (kept in the probe, unused): Dink
-runs an ellipse at 180 px/s and fires along any row or column through a chaser. Three chasers steering at where he is stay about 0.7 x the track's
-half-height behind (simulated 105-135 px, measured 90-105 px: 17-30 px from a blow's reach), so every cast (0.25 s still) puts him in reach, and a
-row or column through a chaser comes up only every 3-5 s: 7-45 casts (all hit) before he died at 70-130 s, against 130 needed. The knights' blows
-hit each other too (the melee rule hits every sprite in the box): with a dead Dink standing still they killed each other in 80-240 s, which no
-living Dink can steer. What is missing, in order of cost: the original's 40 hp (pitfall 53); elixirs (25 gold, `s2-healp.c:68`) bought beforehand and
-drunk in the fight (Dink has 59 gold); strength 34 for toe to toe (probe_route.md 2.5). The bow is still not usable (no hold-the-key action for
-`activate_bow`; arrows do 5 at strength 9). Still UNVERIFIED: the ambush itself, the Mayor's scroll and the parade (`&story 10`), `activate_bow`.
-`// NEXT (design-level stop, 7 Nov 2026)` in `BuildChapter7`.
+*The knights* (Ch8; the stop of this morning, solved). With the fix the knights have the original's 40 hp (defense 6, strength 12, touch 5, range 50, distance 62, speed 1 timing 0
+= 60 px/s, base attack 740, `attack_wait` `random(4000)`; read off the trace: `sp_script 3 "s3-dorks"`, then main's `sp_hitpoints 3 100`, then `s3-camps.c`'s `sp_hitpoints 3 40`). Toe to
+toe is still hopeless (a punch at strength 9 does 0-3 net, 1.4 on average: 120 hp is 85 punches, each knight's blow is 7-12 against 26 life) and the orbit and the corner kite are
+not needed: **the knights' blows hit every sprite in the box, each other included** (strength 12 against defense 6: 1-6, 3.5 on average), so a Dink who is never in a blow's box
+lets them kill each other. `SquadFight` (below) plays that: in the traced run Dink took one blow of 11 (the first, at the scene's start), his 28 punches did 43, and the knights' 20
+blows on one another did the other 77; 39 s, no healer, no elixir. Elixirs (25 gold, `s2-healp.c:68`, +20 life) were not needed.
 
 *Chapter 4, the gold* (`Feud` in `BuildChapter4`): 276 gold were missing at the end of chapter 3 (724). The old plan kited SCR_583's Bong and
 Boncd and got Dink killed. They do not need to be fought: `en-bong.c` and `en-boncd.c` `main` target `get_sprite_with_this_brain(9)`, the other
@@ -671,7 +690,16 @@ start yet (`attack_wait` more than `GateMs` ahead: a punch + the step out + 60 m
 or of any other sprite with `touch_damage` (the goblins still walking about, run at 1.42 x their pace for a diagonal), and never from a cell whose punch would also
 reach a peaceful sprite (it turns hostile); (4) with nothing to hit from, waits 60 px (Chebyshev) from it. `AvoidX/Y/R` keeps Dink away from a point (Mog appears at
 317,301 when the last goblin dies and Dink stands frozen for his scene). A peaceful target is pulled first by a fireball (`bPull`). `OrbitFight`
-(`FOrbitOpts`) is the three-chaser variant that did not work (see "Where the probe stops").
+(`FOrbitOpts`) is the three-chaser variant that did not work against 100-hp knights; it is kept in the file, unused (`SquadFight` replaced it).
+
+*`SquadFight`* (`FSquadOpts`, `FCtx::SquadFight(opts)`): `DuelFight`'s model for several hostile brain-9 monsters at once (chapter 8's knights; it takes every hostile of the screen, no
+target argument). For each monster: the blow under way (`seq`/`frame` of `base_attack`, committed dir, `BlowInMs`), `attack_wait` and its gate, its heading and pace. Pending(q) = a
+blow under way that has not landed and whose box (`ReachBox`) holds q; Potential(q) = a monster that is not attacking, not gated by `attack_wait`, within `sp_distance` + 8 of q and
+whose box towards q would hold q. Each frame, in order: (1) fireball along a clear row or column when every monster is farther than `CastFrom`; (2) dodge a pending blow by the nearest
+cell with no pending and no potential blow (else no pending one); (3) sidestep a monster walking into him; (4) leave a cell in a potential box; (5) strike: the nearest cell where the
+fist's box reaches a monster and no blow, pending or potential, and no touch within 0.8 s reaches him, then a punch every 450 ms at the monster with the fewest hit points; (6)
+wait outside every box, `BaitCheb` (58 px) from the nearest, so they come together and swing at him. Walks at 180 px/s over the 6 px grid of the other tactics (cells in a monster's
+touch box are walls for the walk). The log line is `probe: squad <mode> Dink x,y life n; [handle x,y hp .. atk|gate|rdy wait .. blow ..] ... goal .. step ..`.
 
 **Save slots between chapters** are also the test of the save system. Each chapter ends with `UDinkSaveSubsystem::SaveToSlot` and
 a state dump (`probe_chN_state.txt`: screen, pawn, all 63 facts, stats, both inventories and what is armed, every override, the
@@ -831,9 +859,9 @@ Verified on this machine (Arch-based Linux, Hyprland/Wayland session, Ryzen 5 76
   runs (smoke run), conversations match the original text, save/load mid-conversation, and the
   new-game scene plus a talk in PIE on the generated Stonebrook map (see "Narrative runtime").
 - The gameplay rules headless (hit, touch, push, death, drops and their odds, pickups, respawn,
-  items, magic charge, level-up, Dink's death) and a deterministic PIE playthrough in seven chapters (89 steps) from the new game
-  through the cult of Terris (&story 8), the roads and the Mayor, a gold loop, the bow (bought, armed), the goblin gate, the four goblins of the sanctuary, Mog and the Cast camp to the start of the knights' ambush on the generated world map, with save/load between chapters (see "The probe, in chapters"). Chapter 7 has not been run in a packaged game (`run_packaged_tests.sh` still plays six).
-- Cook, package and run of the Linux Development game target; `Dink/Data` staged and read through the pak; the six probe chapters in the packaged game
+  items, magic charge, level-up, Dink's death) and a deterministic PIE playthrough in nine chapters (97 steps) from the new game
+  through the cult of Terris (&story 8), the roads and the Mayor, a gold loop, the bow (bought, armed), the goblin gate, the four goblins of the sanctuary, Mog, the Cast camp, the three knights, the Mayor's scroll and the parade (&story 10), Windemere's bomb, potions and cracked rock (`&s4-duck 1`) on the generated world map, with save/load between chapters (see "The probe, in chapters"); all nine also in the packaged game with identical trace md5s. It stops at the ducks (pitfall 56).
+- Cook, package and run of the Linux Development game target; `Dink/Data` staged and read through the pak; the nine probe chapters in the packaged game
   with trace md5s identical to PIE's (7 Nov 2026, see "Packaged build").
 
 NOT verified:
@@ -1016,18 +1044,37 @@ NOT verified:
 52. **Other agents write into this tree while you work** (another agent's `restart_game` sources and a chapter 6 extension of `DinkProbeTests.cpp` arrived during the packaging session). Never
    put back a file from your own backup copy: diff it against the live file and the other stage first (this session overwrote `DinkStorySubsystem.cpp` that way once and restored the
    other side's changes from its stage copy). When a chapter's hash moves, check the source mtime before blaming the packaging; compare PIE and packaged runs of the same source.
-53. **`sp_script` starts `main` instead of running it** (parity bug, NOT fixed): `dink.cpp:8164-8171` runs the new script's main at once, so lines the caller sets after
-   the `sp_script` override it; `DinkDirector.cpp` `sp_script` calls `StartProcedure` and the instance runs after the caller yields. Visible in `s3-camps.c:96-116`: the
-   knights end with 100 hp (main of `s3-dorks`) instead of 40. A trial `Story->RunNow(MainId)` after the `StartProcedure` moved the trace md5 of every chapter (Ch1 1fc1c41a7b,
-   Ch2 c444e7a247, Ch3 a6aa8e24c5, Ch4 9c441084c6, Ch5 ddfacf1458; Ch3 then stopped at step 1 of 11 and Ch6 at 1 of 3: the order of the mains of `dam-fire`, `papgold`,
-   `s2-cbon`... changes every later `rand()` draw and the fights tuned to them), and was reverted (hashes back, checked). A real fix needs the chapters re-tuned and the
-   packaged parity re-proved; it needs a unit test (a script that sets a stat after `sp_script` of a script that sets it too) and the `dink.cpp` citation above.
+53. **`sp_script` runs `main` at once** (parity bug, FIXED 7 Nov 2026; test `Dink.Narrative.Director.SpScriptRunsMainAtOnce`). `dink.cpp:8155-8175` does `kill_scripts_owned_by`,
+   `load_script`, then `locate(script, "MAIN"); run_script(script)` on the spot, unless `g_dglos.no_running_main` is set (`dink.cpp:8163, 8169`); the remake only started `main`
+   (`StartProcedure`), which ran after the caller yielded, so `s3-camps.c:108-113` (`sp_script(.., "s3-dorks")`, whose main sets 100 hp, then `sp_hitpoints(.., 40)`) left the knights
+   with 100 hp, not 40. `DinkDirector.cpp` `sp_script` now calls `Story->RunNow(MainId)` after the `StartProcedure`: the new instance runs in the caller's turn until it blocks
+   (a main that waits or `say_stop`s stays Blocked and the tick continues it; the caller goes on at once, as `run_script` returns at the first block). `no_running_main` is true only
+   in `BuildScreenBackground` while a screen's base script (`g_smallMap.script`) runs its main (`dink.cpp:6805-6814`); `init_scripts` (`dink.cpp:11690`) runs the mains of the sprites
+   it attached once the screen is built. Here: `UDinkStorySubsystem::bNoRunningMain` is set around the base script's first `StepInstance` in `EnterScreen`, and `sp_script` then
+   keeps the old deferred start (which is `init_scripts`' order). Unit test: a stand-in for script A runs `sp_hitpoints 7; sp_script s3-dorks; sp_hitpoints 40` (reads 100, defense 6, strength 12,
+   touch 5 after the `sp_script`, 40 after the last line, and 40 after `RunUntilIdle`/`Advance`; B's main started once), a blocking main (`s1-bul`: `sp_speed 2` is set, the instance is
+   Blocked on the wait, the caller's next line runs, `Advance(0.25)` takes it to its `say_stop`), `bNoRunningMain` (attached, main not run on the spot, run at the next `Advance`), and a
+   replaced script (one live instance). Do not read a stat with `SpriteProperty(.., -1)` in a test: for `touch_damage` it WRITES -1 (`AlwaysWrite`). Every chapter hash moved (section "The probe, in chapters");
+   nothing needed re-tuning. `spawn` and `external` have the same gap: pitfall 56.
 54. **The probe's wall-clock limits counted from the command's construction**: a test that queues two runs (`RepeatableChapter`) built both commands up front, so a first run
    slowed by a loaded machine (load average 22 from other agents' renders and editors: 96 s instead of 26 s) used up the second run's 60 s start-up limit ("the new game did not
    start"). `FProbeCommand` now counts from its first `Update`. Game time and traces are unaffected by load (fixed step); only the wall times in tables are, so they are unloaded figures.
 55. **A dead Dink does not stop a probe step.** After `dinfo` runs (the death menu answers "Quit to Windows", `kill_game` is recorded and ignored) the step goes on, with the
    screen's monsters, until its game-time timeout; a chapter report that says "did not complete in N s" may be a Dink that died at 70 s. Grep the trace for `dink died`.
    Monsters' blows hit every sprite in the box, other monsters too: three knights around a dead Dink killed each other (80-240 s).
+56. **`external` and `spawn` do not run their script at once either** (parity gap, NOT fixed; found by the ducks of Windemere). `dink.cpp:11326-11360` (`external`: `load_script`, `locate`, `run_script(child)`, the
+   parent resumes when the child ends) and `dink.cpp:8181-8203` (`spawn`: `locate(.., "MAIN")`, `run_script`) run the child on the spot; `DinkDirector.cpp` starts it and, for `external`, blocks the parent
+   on it, so the child's first line runs on the next story step. Invisible while nothing removes the sprite in between; fatal for `s4-duck.c`'s `duckdie`: `UDinkGameplay` runs it with `RunProc` and then
+   `DeactivateSprite(H, 0, true)`, which ends the parent and the child ("its sprite was removed") before `external("make", "foodduck")` has run, so the check after it, `get_sprite_with_this_brain(3, ..) == 0` then
+   `spawn("s4-end")` (`&s4-duck 2`, `&story 11`), never happens: the 27th duck dies and nothing follows. The fix is `RunNow(Child)` in both commands (with the same `bNoRunningMain` rule for `spawn`),
+   a unit test like pitfall 53's, and every chapter's hash moves again (each `die` runs `external("emake", "large")`).
+57. **Monsters' blows hit each other, so a Dink who is never hit wins a fight with several of them** (the knights, 40 hp each, 7 Nov 2026 night: `SquadFight`, 39 s, one blow taken). Do not tune a fight against several
+   chasers on damage output: strength 9 against defense 6 does 1.4 a punch. Model each monster's blow box (pending and potential), stay out of every box, and stay where they come together to swing.
+58. **A probe step's `P->Mark` must be reset by the step that set it.** `Mark` is one value for the whole run; the Pete step of chapter 9 left the gold it noted (239) in it, and the next step, which notes `strength` only
+   `if (Mark < 0)`, waited 40 s for strength 240 while Dink punched the ducks. Steps that note a value end with `Mark = -1` (as `Reached` in chapter 3 does).
+59. **`package.sh` refuses to run while ANY bash command line contains the words `UnrealEditor-Cmd`/`RunUAT`/`AutomationTool`** (pitfall 51, again: another agent's wait loop with a never-matching `pgrep` sat in the process list
+   for 20 minutes). Check `ps` for a real editor/UBT/UAT, then `DINK_ALLOW_CONCURRENT=1 Scripts/package.sh`. The first package run of the night hung at "Reading oplog from Zen..." for 10 minutes while another agent's full
+   suite started in this project (pitfall 50); killed and rerun after it ended: 28 s.
 
 ## Decisions and deviations from bible 05 section A
 
@@ -1111,7 +1158,7 @@ NOT verified:
   `ArmMagicSlot`.) Pause the charge while an inventory screen is open once there is one.
 - AI follow-ups (see "Brains..."): State Tree wrappers around `ThinkSprite` when assets can be authored;
   scripted moves with hardness and brain timing; sp_reverse; brains 13/14 (title screen); corpses
-  (add_kill_sprite pictures); a real telegraph and thorn barrier; probe: the three knights of the ambush and everything after them, see "Where the probe stops".
+  (add_kill_sprite pictures); a real telegraph and thorn barrier; probe: the 27 ducks (needs `external`/`spawn` to run their script at once, pitfall 56) and everything after them, see "Where the probe stops".
 - Gameplay follow-ups (see "Gameplay rules"): animation (the hit currently lands on the hit frame's time with
   nothing drawn; init() sequence redefinitions are recorded, not applied, so the sword's own hit
   timing is dink.ini's), missile pictures and the bow (

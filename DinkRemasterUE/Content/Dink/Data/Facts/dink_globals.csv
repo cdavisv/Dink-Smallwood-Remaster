@@ -2,7 +2,7 @@
 # from the make_global_int calls in story/main.c. Names are the DinkC names without '&'.
 # kind: engine = read/written by the original engine itself (stats, player_map, ...); story = script-only.
 # GENERATED - do not hand-edit. Regenerate with Scripts/regen_globals.py (see AGENTS.md).
-# source: Dink-Smallwood-Remaster tools/dinkc/out/globals.json (data repo commit b1bf75d)
+# source: Dink-Smallwood-Remaster tools/dinkc/out/globals.json (data repo commit bdc9e6b)
 name,initial,kind,script,line
 exp,0,engine,main,9
 strength,3,engine,main,10
