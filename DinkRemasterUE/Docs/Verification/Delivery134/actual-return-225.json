@@ -1,0 +1,46 @@
+{
+  "pawn_cm": [
+    -183808.62311138413,
+    393523.87999369117,
+    98.0
+  ],
+  "camera_cm": [
+    -183615.40366432734,
+    393620.9231501077,
+    224.16407864998737
+  ],
+  "camera_rotation": "<Struct 'Rotator' (0x7fab7a997bc0) {pitch: -18.000000, yaw: -135.000000, roll: 0.000000}>",
+  "control_rotation": "<Struct 'Rotator' (0x7fab7a997bc0) {pitch: -18.000000, yaw: 225.000000, roll: 0.000000}>",
+  "field_of_view": 70.0,
+  "arm_cm": 240.0,
+  "target_offset": [
+    0.0,
+    -32.53668033349095,
+    52.0
+  ],
+  "socket_offset": [
+    0.0,
+    45.0,
+    0.0
+  ],
+  "interior_mode": true,
+  "managed_occluders": 85,
+  "fading_occluders": 1,
+  "floor_framing_shift": [
+    -0.0,
+    -32.53668033349095,
+    0.0
+  ],
+  "floor_framing_available": true,
+  "floor_framing_feasible": true,
+  "fading_materials": [
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Oak_v1_163",
+      "opacity": 0.0
+    },
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Limewash_v1_51",
+      "opacity": 0.0
+    }
+  ]
+}

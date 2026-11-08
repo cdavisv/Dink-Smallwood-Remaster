@@ -4,7 +4,7 @@ Project operating instructions for AI assistants working in this repository.
 
 ## Unreal project delivery
 
-The owner chose this GitHub repository for the Unreal remaster on7Nov2026. `DinkRemasterUE/` contains the UE5.8.4 project, source art/audio and imported assets in hash-pinned release packs; read its AGENTS.md before changes. The original engine remains at the repository root and is not replaced. Unreal extraction defaults discover this parent repo; standalone sibling layouts also work. Never commit Engine, generated worlds, builds, caches or local credentials.
+The owner chose this GitHub repository for the Unreal remaster on7Nov2026. `DinkRemasterUE/` contains the UE5.8.4 project, source art/audio and imported assets in Git LFS; read its AGENTS.md before changes. The original engine remains at the repository root and is not replaced. Unreal extraction defaults discover this parent repo; standalone sibling layouts also work. Never commit Engine, generated worlds, builds, caches or local credentials.
 
 ## Shared Project Memory
 
@@ -574,8 +574,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   0.5-30 s, loopable), music (`eleven_music_v2_5`, up to 600 s), speech
   (`eleven_v4`) and voice design. Every generated file must go in the asset
   ledger (`DinkRemasterUE/SourceAssets/asset_ledger.csv`) with tool, model
-  and licence; the ElevenLabs plan's licence for free redistribution is NOT
-  yet confirmed by the owner.
+  and licence; the owner explicitly confirmed public redistribution rights on7Nov2026; see
+  `DinkRemasterUE/SourceAssets/Audio/REDISTRIBUTION.md`.
 - Sound effects (generated 6 Nov 2026): the scripts load 48 distinct effects
   (`start.c`, slots 1-49; slot 25 repeats CAVEENT), not 58. Two candidates
   (`a`, `b`) per effect are in `DinkRemasterUE/SourceAssets/Audio/SFX/`:
@@ -596,7 +596,9 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `eleven_music_v2_5`, flow `M1M41vE6pzKeEkQYmpi5`, 23,200 credits in total
   (about 900 credits per minute; the connector's pre-run estimate overstates
   the charge by about 1.8x). Prompts describe mood and instruments only,
-  never existing music. NOT listened to, NOT imported, licence unconfirmed.
+  never existing music. Current status: the owner selected all28music cues, which are
+  imported alongside44selectedSFX. Public redistribution rights are owner-confirmed;
+  voice candidates remain separate. See the Unreal audio README and verification receipts.
   The 19 loop cues have technically seamless derived loops in
   `Audio/Music/loops/` (beat-aligned cut plus a 1 s equal-power crossfade,
   `prepare_music.py --loops-only`, `loop_report.csv`); musical continuity

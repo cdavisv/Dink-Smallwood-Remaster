@@ -1,0 +1,74 @@
+{
+  "storage": "Git LFS (explicit owner choice)",
+  "tracked_binary_files": 1651,
+  "uploaded_unique_lfs_objects": 1569,
+  "uploaded_bytes_approx": "1.7GB",
+  "python_tests": 39,
+  "raw_binary_and_ledger_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 1651,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 159,
+    "shell_syntax_files": 22,
+    "ledger_rows": 1058,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "clean_clone_metadata": {
+    "files_checked": 1651,
+    "passed": true,
+    "binary_contents_claimed": false
+  },
+  "strict_clone_refusal": {
+    "exit": 1,
+    "binary_files_verified": 0,
+    "unhydrated_binary_hash_errors": 2567,
+    "passed": false,
+    "expected_refusal": true
+  },
+  "independent_review": {
+    "reviewer": "outfit_finish; automated read-only review",
+    "finding": "Ordinary JSON/text pointer-like contents could bypass ledger metadata checking",
+    "before": "Exactly2CLI regression failures",
+    "fix": "Require exact indexedLFS oid/size and matching ledgerSHA",
+    "after": "All6CLI regressions pass"
+  },
+  "runtime": "Compiled source and binary payloads unchanged from the134/134verified delivery",
+  "prior_release": "Optional historical recovery copy; not primary storage",
+  "remote_github_clone": {
+    "head": "f3ace80e9ff481bb89b6a115fc94c1873457a86d",
+    "download_completed": true,
+    "git_lfs_fsck": "OK",
+    "full_binary_audit": {
+      "verification_mode": "full",
+      "binary_files_verified": 1651,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 160,
+      "shell_syntax_files": 22,
+      "ledger_rows": 1058,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    }
+  },
+  "fresh_rendered_exit_return": {
+    "receipt": "Delivery134/receipt.json",
+    "exit": "PASS",
+    "return": "PASS",
+    "final_screen": 1,
+    "radius_cm": 28,
+    "life": "10/10",
+    "move_ignored": false,
+    "fixture_teleports": false,
+    "camera_material_setters": false
+  }
+}
