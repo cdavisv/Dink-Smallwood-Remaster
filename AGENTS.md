@@ -2,6 +2,10 @@
 
 Project operating instructions for AI assistants working in this repository.
 
+## Unreal project delivery
+
+The owner chose this GitHub repository for the Unreal remaster on7Nov2026. `DinkRemasterUE/` contains the UE5.8.4 project, source art/audio and imported assets in hash-pinned release packs; read its AGENTS.md before changes. The original engine remains at the repository root and is not replaced. Unreal extraction defaults discover this parent repo; standalone sibling layouts also work. Never commit Engine, generated worlds, builds, caches or local credentials.
+
 ## Shared Project Memory
 
 - Read this file before doing any work in this repository.
