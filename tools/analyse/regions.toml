@@ -1,0 +1,386 @@
+# Stage 4 layout table for the Dink Smallwood remaster (hand-edited, tracked).
+#
+# Read by `python3 -m analyse build`. Everything here is a tuning knob; the
+# build re-derives connectivity from the original data and checks the table
+# against it (see README.md, "Tuning regions.toml").
+#
+# Grid cells are written [col0, row0, col1, row1], inclusive, on the original
+# 32 x 24 screen grid (col 0..31 west->east, row 0..23 north->south).
+# World axes: x = east, y = south, metres. (Unreal: X = x*100, Y = y*100 cm.)
+
+[layout]
+# Base metres per original pixel ("sprite scale"). Evidence (computed and
+# echoed into world_layout.json): the hero idle frames are 96-97 px tall
+# (1.8 m -> 1.9 cm/px); the open door frame (seq 62) is 64 px tall
+# (2.2 m -> 3.4 cm/px). Dink's sprites are drawn with large heads, so the hero
+# overstates and doors understate; the geometric mean is 2.5 cm/px, which also
+# makes a 50 px tile 1.25 m and the narrowest original 2-tile path 2.5 m before
+# region scaling.
+base_m_per_px = 0.025
+# Minimum shared walkable run (px) for a screen edge to count as crossable.
+min_crossing_px = 4
+# Land pockets smaller than this (px) are not reported.
+min_pocket_px = 1500
+# Water components narrower than this (mean width, px) are labelled river.
+river_width_px = 70
+# Least-squares weight of a screen's size constraints, per kind. Settlements
+# hold their shape; wilderness absorbs the scale transitions.
+weight = { settlement = 4.0, wilderness = 1.0, sea = 0.5, dungeon = 1.0, interior = 1.0 }
+# Detached sheets keep at least this gap (m, bounding box to bounding box) to
+# every sheet placed before them. Sight lines in the greybox are about 500 m
+# with height fog (bible 05 section C); 1500 m is three times that, so a
+# detached region is below the fog horizon from anywhere on the mainland even
+# where relief does not hide it.
+min_gap_m = 1500.0
+# Interior sets are packed in rows south of everything, this far below the
+# lowest outdoor extent, with this spacing between sets.
+interior_offset_m = 3000.0
+interior_spacing_m = 40.0
+interior_row_width_m = 1200.0
+# Starting position of a new game (dink.ini starting_dink_*; newgame.c sp_x/sp_y).
+start = { screen = 1, x = 314, y = 161 }
+
+[scale]
+# Linear multiplier on base_m_per_px, per kind (REMASTER_PLAN section 3).
+settlement = 4.0
+wilderness = 2.75
+sea = 2.75
+dungeon = 2.25
+interior = 1.75
+
+# Sheets: landmasses laid out as one continuous rubber sheet each.
+# `anchor = "fixed"` keeps the grid position; `direction` pushes a detached
+# sheet away from the sheets placed before it until min_gap_m is met; `offset`
+# is added afterwards (metres) for hand tuning.
+[sheets.mainland]
+anchor = "fixed"
+
+[sheets.joppa]
+direction = [-1.0, 0.25]      # out into the West Seas
+offset = [0.0, 0.0]
+
+[sheets.darklands]
+direction = [0.6, -1.0]       # north-east, behind the northern escarpment
+offset = [0.0, 0.0]
+
+[sheets.snow_isle]
+direction = [-0.3, -1.0]      # north, over the sea
+offset = [0.0, 0.0]
+
+[sheets.fragments]
+direction = [-1.0, -1.0]      # unreachable orphan screens, parked out of sight
+offset = [0.0, 0.0]
+
+# Per-cell stretch on top of the kind scale (lengthens the Koka bridge).
+[[stretch]]
+cells = [[22, 22, 31, 22]]
+y = 2.0
+note = "Koka Isle channel: the walkable bridge 727->759 becomes a long causeway"
+
+# ---------------------------------------------------------------------------
+# Areas. First match wins: explicit `screens` lists are checked before any
+# `cells`, then areas in file order. `prefixes`, `music` and `signs` are the
+# evidence the build expects to see on these screens; agreement raises the
+# confidence written to regions.csv, contradiction lowers it.
+# Indoor screens are not assigned here: they inherit the region of the
+# outdoor door that leads to their interior set (see [[interior]] below).
+
+[[area]]
+region = "darklands"
+name = "Darklands"
+sub_area = "Darklands"
+kind = "wilderness"
+sheet = "darklands"
+screens = [189, 221]          # (28,5), (28,6): their walkable ground is Darklands, linked to 157 and 190
+cells = [[24, 0, 31, 3], [25, 4, 31, 4], [29, 5, 31, 7]]
+prefixes = ["s7"]
+music = [1007]
+
+[[area]]
+region = "snow_castle"
+name = "Snow castle isle"
+sub_area = "Snowfield"
+kind = "wilderness"
+sheet = "snow_isle"
+cells = [[12, 0, 17, 3], [12, 4, 14, 4]]
+prefixes = ["sc"]
+
+[[area]]
+region = "joppa_isle"
+name = "Joppa Isle"
+sub_area = "Joppa village"
+kind = "settlement"
+sheet = "joppa"
+cells = [[0, 12, 3, 15]]
+prefixes = ["s5"]
+music = [1008]
+signs = ["Joppa Isle"]
+
+[[area]]
+region = "fragments"
+name = "Orphan fragments"
+sub_area = "Orphan screen (no walkable link)"
+kind = "wilderness"
+sheet = "fragments"
+screens = [10]
+
+[[area]]
+region = "west_seas"
+name = "West Seas"
+sub_area = "Open sea"
+kind = "sea"
+sheet = "mainland"
+cells = [[0, 11, 6, 11], [4, 12, 6, 16], [2, 16, 4, 19]]
+
+[[area]]
+region = "west_seas"
+name = "West Seas"
+sub_area = "Islets"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[3, 10, 3, 10], [9, 9, 10, 9]]
+
+[[area]]
+region = "koka_isle"
+name = "Koka Isle"
+sub_area = "Koka beaches"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[22, 22, 31, 23], [31, 11, 31, 21], [27, 21, 30, 21]]
+prefixes = ["s8"]
+music = [1016]
+
+[[area]]
+region = "edge_of_the_world"
+name = "Edge of the World"
+sub_area = "Edge of the World village"
+kind = "settlement"
+sheet = "mainland"
+cells = [[25, 5, 28, 7]]
+prefixes = ["s6"]
+music = [105, -1]
+signs = ["please be careful when using this machine"]
+
+[[area]]
+region = "edge_of_the_world"
+name = "Edge of the World"
+sub_area = "Northern snow ledge (unreached)"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[18, 0, 24, 4]]
+
+[[area]]
+region = "edge_of_the_world"
+name = "Edge of the World"
+sub_area = "Plateau above the escarpment"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[15, 4, 24, 6]]
+prefixes = ["s6"]
+signs = ["To Edge Of The World Village"]
+
+[[area]]
+region = "edge_of_the_world"
+name = "Edge of the World"
+sub_area = "Escarpment (guards, pits and caves)"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[15, 7, 24, 7]]
+prefixes = ["s6"]
+signs = ["To Edge Of The World Village"]
+
+[[area]]
+region = "east_wilds"
+name = "East Wilds (no designed entrance)"
+sub_area = "Cobbler's meadows"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[27, 8, 30, 20], [31, 8, 31, 10]]
+
+[[area]]
+region = "stonebrook"
+name = "Stonebrook"
+sub_area = "Stonebrook village"
+kind = "settlement"
+sheet = "mainland"
+cells = [[21, 11, 25, 13]]
+prefixes = ["s1"]
+music = [104]
+
+[[area]]
+region = "stonebrook"
+name = "Stonebrook"
+sub_area = "Stonebrook outskirts (farm, Martridge's woods, nut tree)"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[19, 8, 26, 10], [20, 13, 26, 14], [26, 11, 30, 14], [20, 11, 20, 12]]
+prefixes = ["s1"]
+
+[[area]]
+region = "goodheart_castle"
+name = "Goodheart Castle"
+sub_area = "Castle and bridge"
+kind = "settlement"
+sheet = "mainland"
+cells = [[15, 10, 19, 12]]
+prefixes = ["s2", "s1"]
+signs = ["GoodHeart Castle"]
+
+[[area]]
+region = "terris"
+name = "Terris"
+sub_area = "Terris town"
+kind = "settlement"
+sheet = "mainland"
+cells = [[15, 14, 19, 16]]
+prefixes = ["s2"]
+music = [1]
+signs = ["Nadine's House"]
+
+[[area]]
+region = "windemere"
+name = "Windemere"
+sub_area = "Windemere village"
+kind = "settlement"
+sheet = "mainland"
+cells = [[20, 15, 25, 17]]
+prefixes = ["s4"]
+music = [106]
+signs = ["To Windemere Village", "Duck Worship Center", "Super-Fry Chicken"]
+
+[[area]]
+region = "kernsin"
+name = "KernSin"
+sub_area = "KernSin town"
+kind = "settlement"
+sheet = "mainland"
+cells = [[7, 17, 11, 19]]
+prefixes = ["s3"]
+music = [105]
+signs = ["Welcome to KernSin", "Hiram's Bookstore", "East to Terris"]
+
+[[area]]
+region = "kernsin"
+name = "KernSin"
+sub_area = "KernSin east gate"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[12, 17, 13, 19]]
+prefixes = ["s3"]
+signs = ["KernSin is closed", "KernSin city limits"]
+
+[[area]]
+region = "cast_camp"
+name = "Cast camp"
+sub_area = "Cast camp"
+kind = "settlement"
+sheet = "mainland"
+cells = [[7, 15, 9, 16]]
+prefixes = ["s3"]
+
+[[area]]
+region = "goblin_sanctuary"
+name = "Goblin Sanctuary"
+sub_area = "Goblin Sanctuary"
+kind = "settlement"
+sheet = "mainland"
+cells = [[5, 20, 8, 23]]
+prefixes = ["s3"]
+signs = ["Goblin Sanctuary"]
+
+[[area]]
+region = "murkwood"
+name = "Murkwood and the cult woods"
+sub_area = "Murkwood forest"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[10, 7, 14, 13]]
+prefixes = ["s2"]
+music = [1002]
+signs = ["Murkwood Forest"]
+
+[[area]]
+region = "terris_wilds"
+name = "Terris wilds"
+sub_area = "Fields between the castle, Terris and the cliff"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[15, 7, 18, 9], [15, 13, 20, 14], [14, 14, 14, 16]]
+prefixes = ["s2"]
+
+[[area]]
+region = "terris_wilds"
+name = "Terris wilds"
+sub_area = "Southern dam country"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[14, 17, 21, 21]]
+prefixes = ["s2"]
+music = [100]
+
+[[area]]
+region = "windemere_wilds"
+name = "Windemere wilds"
+sub_area = "Marshes south and east of Windemere"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[19, 15, 26, 21], [20, 22, 21, 23], [26, 15, 26, 21]]
+prefixes = ["s4"]
+
+[[area]]
+region = "south_coast"
+name = "South coast"
+sub_area = "Southern beaches"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[9, 20, 21, 23]]
+
+[[area]]
+region = "kernsin_wilds"
+name = "KernSin wilds"
+sub_area = "Western woods and coast"
+kind = "wilderness"
+sheet = "mainland"
+cells = [[4, 13, 14, 23]]
+prefixes = ["s3"]
+
+# ---------------------------------------------------------------------------
+# Optional names for interior sets (matched if the set contains any listed
+# screen). Unnamed sets are named from their scripts and entrance.
+[[interior]]
+screens = [1]
+name = "Dink's house"
+[[interior]]
+screens = [2]
+name = "Ethel's house"
+[[interior]]
+screens = [102]
+name = "Goodheart Castle hall"
+[[interior]]
+screens = [34]
+name = "Terris bar"
+[[interior]]
+screens = [67]
+name = "Hiram's Bookstore"
+[[interior]]
+screens = [163, 257, 258, 259]
+name = "Joppa tunnel (Windemere house cellar to Joppa)"
+kind = "dungeon"
+[[interior]]
+screens = [289]
+name = "Cobbler's booth, west room (door out to the East Wilds)"
+[[interior]]
+screens = [290]
+name = "Cobbler's booth (door from Koka Isle)"
+[[interior]]
+screens = [73]
+name = "Snow castle"
+kind = "dungeon"
+region = "snow_castle"
+[[interior]]
+screens = [85]
+name = "Hellfire cave"
+kind = "dungeon"
+[[interior]]
+screens = [6]
+name = "Martridge's house"
