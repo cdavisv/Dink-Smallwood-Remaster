@@ -1,0 +1,23 @@
+{
+  "seconds": 0.8241853713989258,
+  "match": {
+    "checked_triangles": 19588,
+    "bijective_source_coverage": true,
+    "cyclic_only": true,
+    "position_tolerance_cm": 0.01,
+    "UV_tolerance": 0.0001,
+    "max_position_delta_cm": 3.814697265625e-06,
+    "max_UV_delta": 2.9802322387695312e-08,
+    "minimum_geometric_front_dot": 0.9999999779419941
+  },
+  "actual_native_bed_front_normals": {
+    "checked_triangles": 19588,
+    "minimum_dot_authored_source": 0.46795359915918744,
+    "minimum_dot_source_geometric_front": 0.9999999779419941,
+    "clockwise_geometric_front_sha256": "9affa9d50c1defb694be3c670e15aea3ced00d685631225666455ff3f218db04",
+    "convention": "reflectY,keepFBXcornerorder,front=cross(C-A,B-A)",
+    "native_shading_normal_values_read": false
+  },
+  "from_failed_native_capture": true,
+  "no_source_or_tolerance_change": true
+}

@@ -5,9 +5,17 @@ project. Read this file before doing any work here, and keep it accurate: when y
 fact, a pitfall or a decision, write it down here and remove anything that has become wrong.
 Label uncertain or temporary information as such.
 
+## Native photoreal furniture integration (8 Nov 2026 UTC)
+
+Merged controls and house fixes (PR10/PR11, base f31d2434) plus the new table/bed/chair packages passed the complete native suite147/147 with zero warnings in432s. All8,884 source/tools/art/ledger/Content/ImportData/config/custom-module inputs stayed unchanged; the old-save inventory was empty (so its zero-change check is vacuous), and ten new probe slots are isolated. All184Python tests pass. See Docs/Verification/PhotorealPropsNative for precise historical/current scope and raw reports.
+
+Exactly8mesh strings change (3asset rows, originalS001_P22/P23/P24 and2decorativechairs), preserving placement/script identities and complex-as-simple query collision. New meshes total34,884triangles with47retained UCX hulls; those hulls are verified but are not the active query source. Actual held-W door exit/return and12real-input interaction fixtures pass. Initial furniture screenshots used the old exposure/hero; final combined lighting and clothing acceptance remain pending. The read-only editor convex bridge returns actual hull transforms and detached mesh/local vertices without cooking/saving assets.
+
+Fresh published-state furniture verification needs no private author receipt: it pins15entry packages and12native resolved source filenames, checks loaded geometry/UV/fronts/hulls/graphs/Texture.Source, and retains hashes through exit. Published publisher checks, including --apply, write nothing and explicitly give no scene-data approval. Prepublication import still refuses existing destinations and requires the original receipt chain. Never relax filename ownership or substitute another checkout's source. Relocated-clone execution must be recorded separately. The15new native ledger rows remain candidate and all1,338prior rows/483audio rows preserve raw bytes. Hero/center lighting, cloth filtering and wider-world old art remain unfinished.
+
 ## House visual fixes verified in an isolated stage (8 Nov 2026 UTC)
 
-On base `e53cae95`, the exposure coordinator and additive PerimeterSkirtV1 passed145/145 native checks with0warnings in450s and116/116 Python tests. All8,852 source/runtime/authoring/module inputs stayed unchanged during the full run; ten new probe slots stayed in a fresh isolated UserDir. This is local verification pending combined integration, not a claim that the older visible SurfaceDelivery session has these fixes. See `Docs/Verification/HouseVisualFixes`.
+On base `e53cae95`, the exposure coordinator and additive PerimeterSkirtV1 passed145/145 native checks with0warnings in450s and116/116 Python tests. All8,852 source/runtime/authoring/module inputs stayed unchanged during the full run; ten new probe slots stayed in a fresh isolated UserDir. These fixes are merged in PR11 and also pass the later combined147 suite; the older visible SurfaceDelivery session remains unchanged. See `Docs/Verification/HouseVisualFixes`.
 
 The real W exit/return and eight returned camera angles pass. Room bias−2 remains active even with the camera beyond the old bounds, and is disabled outdoors. Hero/center darkness and bright distant outdoor terrain remain unfinished lighting/material work; Epic GI quality3, Lumen and eye adaptation are enabled, but surface-cache/SDF coverage is not established. Query actual `r.DefaultFeature.AutoExposure.Bias` before calibration; installed engine default is+1, so absence of the authored−2 override does not imply a default bias0.
 

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests": 24,
+  "failed": 0,
+  "warnings": 0,
+  "helper_test": [
+    [
+      "Dink.Art.ConvexTransformInspection",
+      "Success"
+    ]
+  ],
+  "internal_NullRHI_PIE_cases_in_existing_suite": true,
+  "source_art_Data_original_Content_and_modules_unchanged": true
+}

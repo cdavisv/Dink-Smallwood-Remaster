@@ -3,7 +3,7 @@
   "screen": 1,
   "assets": [
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Table_Oak_01.SM_Table_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.SM_Table_Oak_01",
       "expected_size_cm": [
         265.00000953674316,
         149.7999906539917,
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
       "expected_size_cm": [
         250.99997520446777,
         137.0000123977661,
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
       "expected_size_cm": [
         64.99999761581421,
         53.75000238418579,
@@ -138,7 +138,7 @@
     },
     {
       "origin": "S001_P22",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Table_Oak_01.SM_Table_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.SM_Table_Oak_01",
       "offset_cm": [
         8.744999999995343,
         -52.49500000005355,
@@ -157,7 +157,7 @@
     },
     {
       "origin": "S001_P23",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
       "offset_cm": [
         -89.69250000000466,
         -45.9375,
@@ -176,7 +176,7 @@
     },
     {
       "origin": "S001_P24",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
       "offset_cm": [
         -89.6875,
         -45.93249999999534,
@@ -3140,7 +3140,7 @@
     },
     {
       "name": "Chair1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
       "world_cm": [
         -183817.035,
         392751.60500000004,
@@ -3160,7 +3160,7 @@
     },
     {
       "name": "Chair2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
       "world_cm": [
         -183817.03499999997,
         392970.35500000004,
