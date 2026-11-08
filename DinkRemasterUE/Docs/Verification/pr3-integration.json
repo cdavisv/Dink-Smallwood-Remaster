@@ -1,0 +1,25 @@
+{
+  "upstream_merge": "b42e9e3d3cd34f184c8f3ad08aa32cfa637a892c",
+  "preserved": "Tested six FireplaceV2 package bytes, camera source/tests, stronger LFS auditor, dual-layout extraction defaults and immutable historical archive manifest",
+  "accepted": "Parent-path guide corrections, PigPen README and corresponding ledger hash, documented nine-chapter packaged parity",
+  "runtime_pin_differences": {
+    "Content/Dink/Data/Facts/dink_globals.csv": {
+      "tested": "4926fb7fe5bc2253fd0b31540d38e0f2ac9fb2c4171be8b5d0e251bfa3c7988b",
+      "integrated": "6e4a4b7d15338d3c92c9d76d867869b67b904bfc8061db35e0c18207ec51de6d"
+    }
+  },
+  "fact_rows_identical": 63,
+  "all_other_runtime_source_assets_identical": 1313,
+  "chapter_trace_md5_matches_peer_packaged_documentation": {
+    "stonebrook_probe_trace.txt": "b3760d52d7",
+    "probe_ch2_trace.txt": "a5cfdf70bc",
+    "probe_ch3_trace.txt": "e9fce770bc",
+    "probe_ch4_trace.txt": "cd1b3bf820",
+    "probe_ch5_trace.txt": "6c709d1069",
+    "probe_ch6_trace.txt": "9e87080221",
+    "probe_ch7_trace.txt": "7cc6e2fe93",
+    "probe_ch8_trace.txt": "6697a02e52",
+    "probe_ch9_trace.txt": "0ea9677ee2"
+  },
+  "archive_manifest": "Preserved published archive/file digests; do not re-pin historical archive entries to different native package bytes"
+}
