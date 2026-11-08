@@ -22,7 +22,8 @@ dies, and an optional, data-driven 3D layer telegraphs attacks and limits attack
 ## Build and test (Linux, headless)
 
 ```
-python3 Scripts/bootstrap_asset_pack.py  # download and verify art/audio before building
+git lfs install --local
+git lfs pull                            # fetch the versioned art/audio before building
 python3 Scripts/verify_sources.py        # verify source syntax and every asset hash
 Scripts/build.sh    # compiles DinkRemasterEditor (Linux, Development), about 30 s from clean
 Scripts/test.sh     # runs the "Dink" automation tests with no display (see AGENTS.md for the count and time)
@@ -35,12 +36,9 @@ Both print one summary line and exit non-zero on failure. They expect the engine
 known Linux issues.
 
 
-Binary assets use a versioned [GitHub Release pack](https://github.com/cdavisv/Dink-Smallwood-Remaster/releases/tag/unreal-house-assets-20261108-v1),
-because this public fork cannot upload new LFS objects. [AssetPacks/house-v1.json](AssetPacks/house-v1.json) pins the archive and every file by SHA-256.
-The bootstrap verifies all bytes before installing, preserves modified local assets, and supports
-`--archive /path/to/unreal-house-assets-20261108-v1.tar.gz` for an offline copy.
-`verify_sources.py --metadata-only` checks the source and manifest without downloaded assets;
-it does not verify missing binary contents. The shared engine and generated/template content remain separate.
+Binary assets use **Git LFS**, as chosen by the owner. The source audit reads expected binary hashes from Git’s staged LFS pointers. `verify_sources.py --metadata-only` validates pointer metadata in a source-only checkout; the default requires and hashes the actual binary bytes.
+
+The existing [development release pack](https://github.com/cdavisv/Dink-Smallwood-Remaster/releases/tag/unreal-house-assets-20261108-v1) is a historical recovery copy of the starting-house revision. It is optional, and is not the primary asset storage. If recovering that exact revision offline, `python3 Scripts/bootstrap_asset_pack.py --archive /path/to/unreal-house-assets-20261108-v1.tar.gz` verifies all bytes and refuses to overwrite modified local art.
 
 ## Walk the greybox
 

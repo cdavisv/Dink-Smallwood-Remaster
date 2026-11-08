@@ -2,7 +2,7 @@
 from pathlib import Path
 import ast, csv, hashlib, json, re, subprocess, sys, tempfile, importlib.util, argparse
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--metadata-only', action='store_true', help='Check asset hashes against the pinned pack without requiring downloaded binaries; does not prove binary contents')
+parser.add_argument('--metadata-only', action='store_true', help='Check staged Git LFS pointer hashes without requiring downloaded binaries; does not prove binary contents')
 args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
 repo = root.parent
@@ -32,8 +32,8 @@ for p in root.rglob('*'):
                 secret_flags.append({'file': str(p.relative_to(repo)), 'line': b[:m.start()].count(b'\n') + 1, 'rule': label})
         if p.suffix in ['.cpp', '.h', '.cs', '.py', '.sh'] and b'\x00' in b:
             errors.append({'file': str(p.relative_to(repo)), 'error': 'Unexpected NUL byte in source'})
-pack = json.loads((root / 'AssetPacks/house-v1.json').read_text())
-pack_files = {row['path']: row for row in pack['files']}
+from lfs_inventory import inventory, pointer_metadata
+pack_files = inventory(root)
 missing = []
 bad = []
 verified_binary = 0
@@ -41,12 +41,12 @@ metadata_binary = 0
 for name, row in pack_files.items():
     p = root / name
     if not p.is_file():
-        if args.metadata_only:
-            metadata_binary += 1
-        else:
-            missing.append(name)
+        missing.append(name)
         continue
     data = p.read_bytes()
+    if args.metadata_only and pointer_metadata(data) == row:
+        metadata_binary += 1
+        continue
     if hashlib.sha256(data).hexdigest() != row['sha256'] or len(data) != row['size']:
         bad.append(name)
     else:
@@ -59,7 +59,11 @@ for row in rows:
         if not args.metadata_only or expected is None or expected['sha256'] != row['sha256']:
             missing.append(row['asset_path'])
         continue
-    if hashlib.sha256(p.read_bytes()).hexdigest() != row['sha256']:
+    data = p.read_bytes()
+    pointer = pointer_metadata(data)
+    if args.metadata_only and pointer is not None and pointer['sha256'] == row['sha256']:
+        continue
+    if hashlib.sha256(data).hexdigest() != row['sha256']:
         bad.append(row['asset_path'])
 errors.extend([{'missing_asset': x} for x in sorted(set(missing))])
 errors.extend([{'asset_hash_mismatch': x} for x in sorted(set(bad))])
