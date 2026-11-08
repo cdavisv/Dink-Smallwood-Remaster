@@ -1,0 +1,4442 @@
+{
+  "candidate_scene_sha256": "19ac165b8bd7b0e0bd02db4543f9c288ce47ea1c4380759f01a5edf41d940f5c",
+  "all_instance_count": 316,
+  "new_asset_count": 55,
+  "original_cottage_instance_omitted": true,
+  "room_intrusion_count": 0,
+  "actual_mesh_ground_samples": 781,
+  "uncovered_ground_samples": [],
+  "nine_independent_inside_room_samples_have_no_vista_ground": true,
+  "gate_clear_width_m": 3.7904884815216064,
+  "lane_starts_outside_door_and_spans_anchor": true,
+  "threshold_top_matches_room_z0": true,
+  "all_proposed_collisions_disabled": true,
+  "all_proposed_camera_occluders_disabled": true,
+  "instance_bounds": [
+    {
+      "name": "SM_VistaGround_8m_XN32_YN32",
+      "min_scene_m": [
+        -32.0,
+        -32.0,
+        0.57240891456604
+      ],
+      "max_scene_m": [
+        -24.0,
+        -24.0,
+        2.4113593101501465
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN24",
+      "min_scene_m": [
+        -32.0,
+        -24.0,
+        -0.2560000419616699
+      ],
+      "max_scene_m": [
+        -24.0,
+        -16.0,
+        2.225309133529663
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN16",
+      "min_scene_m": [
+        -32.0,
+        -16.0,
+        -0.19312405586242676
+      ],
+      "max_scene_m": [
+        -24.0,
+        -8.0,
+        1.9686284065246582
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN8",
+      "min_scene_m": [
+        -32.0,
+        -8.0,
+        0.43770384788513184
+      ],
+      "max_scene_m": [
+        -24.0,
+        0.0,
+        2.231900215148926
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP0",
+      "min_scene_m": [
+        -32.0,
+        0.0,
+        0.5758680105209351
+      ],
+      "max_scene_m": [
+        -24.0,
+        8.0,
+        2.4951722621917725
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP8",
+      "min_scene_m": [
+        -32.0,
+        8.0,
+        0.7140320539474487
+      ],
+      "max_scene_m": [
+        -24.0,
+        16.0,
+        2.5371592044830322
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP16",
+      "min_scene_m": [
+        -32.0,
+        16.0,
+        0.6909717321395874
+      ],
+      "max_scene_m": [
+        -24.0,
+        24.0,
+        2.4984474182128906
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN32",
+      "min_scene_m": [
+        -24.0,
+        -32.0,
+        -0.18000006675720215
+      ],
+      "max_scene_m": [
+        -16.0,
+        -24.0,
+        2.1929879188537598
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN24",
+      "min_scene_m": [
+        -24.0,
+        -24.0,
+        -0.2571650743484497
+      ],
+      "max_scene_m": [
+        -16.0,
+        -16.0,
+        0.7924089431762695
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN16",
+      "min_scene_m": [
+        -24.0,
+        -16.0,
+        -0.27249598503112793
+      ],
+      "max_scene_m": [
+        -16.0,
+        -8.0,
+        0.6577038764953613
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN8",
+      "min_scene_m": [
+        -24.0,
+        -8.0,
+        -0.26851147413253784
+      ],
+      "max_scene_m": [
+        -16.0,
+        0.0,
+        0.7958679795265198
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP0",
+      "min_scene_m": [
+        -24.0,
+        0.0,
+        -0.25949716567993164
+      ],
+      "max_scene_m": [
+        -16.0,
+        8.0,
+        0.9340320825576782
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP8",
+      "min_scene_m": [
+        -24.0,
+        8.0,
+        -0.2618092894554138
+      ],
+      "max_scene_m": [
+        -16.0,
+        16.0,
+        0.9560666680335999
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP16",
+      "min_scene_m": [
+        -24.0,
+        16.0,
+        -0.1448826789855957
+      ],
+      "max_scene_m": [
+        -16.0,
+        24.0,
+        2.1095166206359863
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN32",
+      "min_scene_m": [
+        -16.0,
+        -32.0,
+        -0.18000006675720215
+      ],
+      "max_scene_m": [
+        -8.0,
+        -24.0,
+        1.2740422487258911
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN24",
+      "min_scene_m": [
+        -16.0,
+        -24.0,
+        -0.25600001215934753
+      ],
+      "max_scene_m": [
+        -8.0,
+        -16.0,
+        0.03999999910593033
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN16",
+      "min_scene_m": [
+        -16.0,
+        -16.0,
+        -0.25366684794425964
+      ],
+      "max_scene_m": [
+        -8.0,
+        -8.0,
+        0.03991755098104477
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN8",
+      "min_scene_m": [
+        -16.0,
+        -8.0,
+        -0.24500000476837158
+      ],
+      "max_scene_m": [
+        -8.0,
+        0.0,
+        0.030988432466983795
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP0",
+      "min_scene_m": [
+        -16.0,
+        0.0,
+        -0.30098843574523926
+      ],
+      "max_scene_m": [
+        -8.0,
+        8.0,
+        -0.02500000037252903
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP8",
+      "min_scene_m": [
+        -16.0,
+        8.0,
+        -0.3099175691604614
+      ],
+      "max_scene_m": [
+        -8.0,
+        16.0,
+        0.07511727511882782
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP16",
+      "min_scene_m": [
+        -16.0,
+        16.0,
+        -0.19568145275115967
+      ],
+      "max_scene_m": [
+        -8.0,
+        24.0,
+        1.5852477550506592
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN32",
+      "min_scene_m": [
+        -8.0,
+        -32.0,
+        -0.25848913192749023
+      ],
+      "max_scene_m": [
+        0.0,
+        -24.0,
+        1.959763765335083
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN24",
+      "min_scene_m": [
+        -8.0,
+        -24.0,
+        -0.2584891617298126
+      ],
+      "max_scene_m": [
+        0.0,
+        -16.0,
+        0.46425387263298035
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN16",
+      "min_scene_m": [
+        -8.0,
+        -16.0,
+        -0.2558724582195282
+      ],
+      "max_scene_m": [
+        0.0,
+        -8.0,
+        0.03944103792309761
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN8",
+      "min_scene_m": [
+        -8.0,
+        -8.0,
+        -0.2497996836900711
+      ],
+      "max_scene_m": [
+        0.0,
+        0.0,
+        0.030577462166547775
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP16",
+      "min_scene_m": [
+        -8.0,
+        16.0,
+        -0.19398629665374756
+      ],
+      "max_scene_m": [
+        0.0,
+        24.0,
+        1.8937658071517944
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN32",
+      "min_scene_m": [
+        0.0,
+        -32.0,
+        -0.25848913192749023
+      ],
+      "max_scene_m": [
+        8.0,
+        -24.0,
+        2.414503335952759
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN24",
+      "min_scene_m": [
+        0.0,
+        -24.0,
+        -0.27876174449920654
+      ],
+      "max_scene_m": [
+        8.0,
+        -16.0,
+        0.8805581331253052
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN16",
+      "min_scene_m": [
+        0.0,
+        -16.0,
+        -0.3094410300254822
+      ],
+      "max_scene_m": [
+        8.0,
+        -8.0,
+        -0.029799677431583405
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN8",
+      "min_scene_m": [
+        0.0,
+        -8.0,
+        -0.30057746171951294
+      ],
+      "max_scene_m": [
+        8.0,
+        0.0,
+        -0.02500000037252903
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP16",
+      "min_scene_m": [
+        0.0,
+        16.0,
+        -0.1104280948638916
+      ],
+      "max_scene_m": [
+        8.0,
+        24.0,
+        2.330937623977661
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN32",
+      "min_scene_m": [
+        8.0,
+        -32.0,
+        0.6153345108032227
+      ],
+      "max_scene_m": [
+        16.0,
+        -24.0,
+        2.443105459213257
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN24",
+      "min_scene_m": [
+        8.0,
+        -24.0,
+        -0.2789936065673828
+      ],
+      "max_scene_m": [
+        16.0,
+        -16.0,
+        0.8923823833465576
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN16",
+      "min_scene_m": [
+        8.0,
+        -16.0,
+        -0.30991753935813904
+      ],
+      "max_scene_m": [
+        16.0,
+        -8.0,
+        -0.03633415699005127
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN8",
+      "min_scene_m": [
+        8.0,
+        -8.0,
+        -0.30098843574523926
+      ],
+      "max_scene_m": [
+        16.0,
+        0.0,
+        -0.02500000037252903
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP0",
+      "min_scene_m": [
+        8.0,
+        0.0,
+        -0.24500000476837158
+      ],
+      "max_scene_m": [
+        16.0,
+        8.0,
+        0.030988432466983795
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP8",
+      "min_scene_m": [
+        8.0,
+        8.0,
+        -0.23050275444984436
+      ],
+      "max_scene_m": [
+        16.0,
+        16.0,
+        0.1948249340057373
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP16",
+      "min_scene_m": [
+        8.0,
+        16.0,
+        -0.0759737491607666
+      ],
+      "max_scene_m": [
+        16.0,
+        24.0,
+        2.3600637912750244
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN32",
+      "min_scene_m": [
+        16.0,
+        -32.0,
+        0.41545891761779785
+      ],
+      "max_scene_m": [
+        24.0,
+        -24.0,
+        2.27174711227417
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN24",
+      "min_scene_m": [
+        16.0,
+        -24.0,
+        -0.25633418560028076
+      ],
+      "max_scene_m": [
+        24.0,
+        -16.0,
+        0.8353345394134521
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN16",
+      "min_scene_m": [
+        16.0,
+        -16.0,
+        -0.26180922985076904
+      ],
+      "max_scene_m": [
+        24.0,
+        -8.0,
+        0.5994133353233337
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN8",
+      "min_scene_m": [
+        16.0,
+        -8.0,
+        -0.2594972848892212
+      ],
+      "max_scene_m": [
+        24.0,
+        0.0,
+        0.5915418863296509
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP0",
+      "min_scene_m": [
+        16.0,
+        0.0,
+        -0.24500000476837158
+      ],
+      "max_scene_m": [
+        24.0,
+        8.0,
+        0.03999999910593033
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP8",
+      "min_scene_m": [
+        16.0,
+        8.0,
+        -0.2317677140235901
+      ],
+      "max_scene_m": [
+        24.0,
+        16.0,
+        0.6598520278930664
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP16",
+      "min_scene_m": [
+        16.0,
+        16.0,
+        -0.1451401710510254
+      ],
+      "max_scene_m": [
+        24.0,
+        24.0,
+        2.2022838592529297
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN32",
+      "min_scene_m": [
+        24.0,
+        -32.0,
+        0.41545915603637695
+      ],
+      "max_scene_m": [
+        32.0,
+        -24.0,
+        1.7265396118164062
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN24",
+      "min_scene_m": [
+        24.0,
+        -24.0,
+        -0.2560000419616699
+      ],
+      "max_scene_m": [
+        32.0,
+        -16.0,
+        1.391356110572815
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN16",
+      "min_scene_m": [
+        24.0,
+        -16.0,
+        -0.1980907917022705
+      ],
+      "max_scene_m": [
+        32.0,
+        -8.0,
+        1.228142261505127
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN8",
+      "min_scene_m": [
+        24.0,
+        -8.0,
+        -0.18000006675720215
+      ],
+      "max_scene_m": [
+        32.0,
+        0.0,
+        1.208565592765808
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP0",
+      "min_scene_m": [
+        24.0,
+        0.0,
+        -0.1799999475479126
+      ],
+      "max_scene_m": [
+        32.0,
+        8.0,
+        1.159987211227417
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP8",
+      "min_scene_m": [
+        24.0,
+        8.0,
+        -0.18000006675720215
+      ],
+      "max_scene_m": [
+        32.0,
+        16.0,
+        1.5351673364639282
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP16",
+      "min_scene_m": [
+        24.0,
+        16.0,
+        0.4398519992828369
+      ],
+      "max_scene_m": [
+        32.0,
+        24.0,
+        1.6780149936676025
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP13R",
+      "min_scene_m": [
+        -8.0,
+        13.5,
+        -0.30835455656051636
+      ],
+      "max_scene_m": [
+        0.0,
+        16.0,
+        0.10957175493240356
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP13R",
+      "min_scene_m": [
+        0.0,
+        13.5,
+        -0.24500000476837158
+      ],
+      "max_scene_m": [
+        8.0,
+        16.0,
+        0.19312980771064758
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_DirtPath0",
+      "min_scene_m": [
+        -0.9153199195861816,
+        -8.038810729980469,
+        -0.0464232861995697
+      ],
+      "max_scene_m": [
+        1.084680438041687,
+        -0.038810741156339645,
+        -0.021423285827040672
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_DirtPath1",
+      "min_scene_m": [
+        -0.820661187171936,
+        -16.052785873413086,
+        -0.05123166739940643
+      ],
+      "max_scene_m": [
+        1.1793391704559326,
+        -8.052785873413086,
+        -0.026231668889522552
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWest2",
+      "min_scene_m": [
+        -31.27043914794922,
+        16.769960403442383,
+        1.9950752258300781
+      ],
+      "max_scene_m": [
+        -31.080440521240234,
+        20.949960708618164,
+        3.435075283050537
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWest3",
+      "min_scene_m": [
+        -31.218900680541992,
+        12.760661125183105,
+        2.085238456726074
+      ],
+      "max_scene_m": [
+        -31.028902053833008,
+        16.940662384033203,
+        3.525238513946533
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWest4",
+      "min_scene_m": [
+        -31.167362213134766,
+        8.751362800598145,
+        2.115626811981201
+      ],
+      "max_scene_m": [
+        -30.97736358642578,
+        12.931363105773926,
+        3.55562686920166
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWest5",
+      "min_scene_m": [
+        -31.11582374572754,
+        4.742063522338867,
+        2.081167221069336
+      ],
+      "max_scene_m": [
+        -30.925825119018555,
+        8.922063827514648,
+        3.521167278289795
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWest6",
+      "min_scene_m": [
+        -31.064285278320312,
+        0.7327649593353271,
+        1.9941540956497192
+      ],
+      "max_scene_m": [
+        -30.874286651611328,
+        4.9127655029296875,
+        3.4341540336608887
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceWestCorner",
+      "min_scene_m": [
+        -30.054080963134766,
+        -0.35130712389945984,
+        2.172866106033325
+      ],
+      "max_scene_m": [
+        -26.521045684814453,
+        2.2018814086914062,
+        3.612866163253784
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceGarden0",
+      "min_scene_m": [
+        -25.70117950439453,
+        -3.0628228187561035,
+        1.3348711729049683
+      ],
+      "max_scene_m": [
+        -25.511180877685547,
+        1.1171774864196777,
+        2.774871349334717
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceGarden1",
+      "min_scene_m": [
+        -25.650365829467773,
+        -7.073468208312988,
+        1.2097350358963013
+      ],
+      "max_scene_m": [
+        -25.46036720275879,
+        -2.893467903137207,
+        2.6497349739074707
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth0",
+      "min_scene_m": [
+        -25.45482063293457,
+        -7.123135089874268,
+        0.4834330976009369
+      ],
+      "max_scene_m": [
+        -21.27482032775879,
+        -6.933135509490967,
+        1.9234331846237183
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth1",
+      "min_scene_m": [
+        -21.46957778930664,
+        -7.149989128112793,
+        -0.042535535991191864
+      ],
+      "max_scene_m": [
+        -17.28957748413086,
+        -6.959989547729492,
+        1.3974645137786865
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth2",
+      "min_scene_m": [
+        -17.484333038330078,
+        -7.176843166351318,
+        -0.006260719150304794
+      ],
+      "max_scene_m": [
+        -13.30433177947998,
+        -6.986843585968018,
+        1.4337393045425415
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth3",
+      "min_scene_m": [
+        -13.499088287353516,
+        -7.203697204589844,
+        0.020945828408002853
+      ],
+      "max_scene_m": [
+        -9.319087982177734,
+        -7.013697624206543,
+        1.4609458446502686
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth4",
+      "min_scene_m": [
+        -9.513843536376953,
+        -7.230551242828369,
+        0.025589121505618095
+      ],
+      "max_scene_m": [
+        -5.33384370803833,
+        -7.040551662445068,
+        1.465589165687561
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth5",
+      "min_scene_m": [
+        -5.528599739074707,
+        -7.2574052810668945,
+        0.005254589021205902
+      ],
+      "max_scene_m": [
+        -1.3485991954803467,
+        -7.067405700683594,
+        1.4452546834945679
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth7",
+      "min_scene_m": [
+        2.4418892860412598,
+        -7.311113357543945,
+        -0.06317262351512909
+      ],
+      "max_scene_m": [
+        6.621889591217041,
+        -7.1211137771606445,
+        1.3768274784088135
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth8",
+      "min_scene_m": [
+        6.427133560180664,
+        -7.337967395782471,
+        -0.0775146409869194
+      ],
+      "max_scene_m": [
+        10.607133865356445,
+        -7.14796781539917,
+        1.362485408782959
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth9",
+      "min_scene_m": [
+        10.412378311157227,
+        -7.364821434020996,
+        -0.06597878783941269
+      ],
+      "max_scene_m": [
+        14.592378616333008,
+        -7.174821853637695,
+        1.374021291732788
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth10",
+      "min_scene_m": [
+        14.397623062133789,
+        -7.3916754722595215,
+        -0.03413465991616249
+      ],
+      "max_scene_m": [
+        18.57762336730957,
+        -7.201675891876221,
+        1.4058654308319092
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth11",
+      "min_scene_m": [
+        18.38286781311035,
+        -7.418529033660889,
+        0.028019072487950325
+      ],
+      "max_scene_m": [
+        22.562868118286133,
+        -7.228529453277588,
+        1.4680191278457642
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_FenceSouth12",
+      "min_scene_m": [
+        22.36811065673828,
+        -7.445383071899414,
+        0.519443690776825
+      ],
+      "max_scene_m": [
+        26.548110961914062,
+        -7.255383491516113,
+        1.9594438076019287
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_OakWest",
+      "min_scene_m": [
+        -27.354005813598633,
+        3.600830078125,
+        0.4591236710548401
+      ],
+      "max_scene_m": [
+        -17.84552574157715,
+        13.399169921875,
+        9.54881477355957
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_OakEast",
+      "min_scene_m": [
+        11.482078552246094,
+        14.610912322998047,
+        1.7712242603302002
+      ],
+      "max_scene_m": [
+        21.94140625,
+        25.389087677001953,
+        11.76988410949707
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_OakNorth",
+      "min_scene_m": [
+        -20.163448333740234,
+        17.590747833251953,
+        1.5791921615600586
+      ],
+      "max_scene_m": [
+        -11.605818748474121,
+        26.409252166748047,
+        9.75991439819336
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Boulder0",
+      "min_scene_m": [
+        -24.681989669799805,
+        12.52776050567627,
+        0.8125082850456238
+      ],
+      "max_scene_m": [
+        -22.56157112121582,
+        14.221203804016113,
+        1.9975855350494385
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Boulder1",
+      "min_scene_m": [
+        16.611743927001953,
+        9.885154724121094,
+        0.025455530732870102
+      ],
+      "max_scene_m": [
+        18.90326690673828,
+        12.441381454467773,
+        1.210532784461975
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Boulder2",
+      "min_scene_m": [
+        12.327665328979492,
+        21.77835464477539,
+        1.9526032209396362
+      ],
+      "max_scene_m": [
+        15.041166305541992,
+        24.41826629638672,
+        3.1376805305480957
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Boulder3",
+      "min_scene_m": [
+        -20.3006534576416,
+        -7.255760669708252,
+        -0.037118688225746155
+      ],
+      "max_scene_m": [
+        -17.600004196166992,
+        -4.6806559562683105,
+        1.1479586362838745
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Boulder4",
+      "min_scene_m": [
+        7.994202136993408,
+        -5.403906345367432,
+        -0.05847349017858505
+      ],
+      "max_scene_m": [
+        10.150320053100586,
+        -2.9367918968200684,
+        1.1266038417816162
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass000",
+      "min_scene_m": [
+        -15.92406940460205,
+        5.605420112609863,
+        -0.041602954268455505
+      ],
+      "max_scene_m": [
+        -14.913044929504395,
+        6.611985206604004,
+        0.3270223140716553
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass001",
+      "min_scene_m": [
+        -3.1562657356262207,
+        -9.39004135131836,
+        -0.0024561197496950626
+      ],
+      "max_scene_m": [
+        -1.6256433725357056,
+        -7.833520889282227,
+        0.6111549735069275
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass002",
+      "min_scene_m": [
+        -23.163467407226562,
+        24.779661178588867,
+        1.4026185274124146
+      ],
+      "max_scene_m": [
+        -21.879085540771484,
+        26.07465171813965,
+        1.8817667961120605
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass003",
+      "min_scene_m": [
+        -14.377352714538574,
+        16.48976707458496,
+        0.28613901138305664
+      ],
+      "max_scene_m": [
+        -13.385750770568848,
+        17.48069953918457,
+        0.6459295749664307
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass004",
+      "min_scene_m": [
+        18.86857032775879,
+        -2.647455930709839,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        20.002981185913086,
+        -1.5392614603042603,
+        0.519457221031189
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass005",
+      "min_scene_m": [
+        -7.132242202758789,
+        23.624507904052734,
+        1.0837774276733398
+      ],
+      "max_scene_m": [
+        -5.523953437805176,
+        25.228618621826172,
+        1.6680691242218018
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass006",
+      "min_scene_m": [
+        15.763520240783691,
+        26.57199478149414,
+        1.4902806282043457
+      ],
+      "max_scene_m": [
+        17.30582046508789,
+        28.111370086669922,
+        2.050168037414551
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass007",
+      "min_scene_m": [
+        -16.68630599975586,
+        -9.231244087219238,
+        -0.010514860972762108
+      ],
+      "max_scene_m": [
+        -15.436121940612793,
+        -7.951165199279785,
+        0.5320556163787842
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass008",
+      "min_scene_m": [
+        -9.838574409484863,
+        14.526360511779785,
+        -0.08099926263093948
+      ],
+      "max_scene_m": [
+        -8.717373847961426,
+        15.63916301727295,
+        0.3324170708656311
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass009",
+      "min_scene_m": [
+        -20.7072696685791,
+        25.711753845214844,
+        1.2711808681488037
+      ],
+      "max_scene_m": [
+        -19.805227279663086,
+        26.641212463378906,
+        1.6963441371917725
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass011",
+      "min_scene_m": [
+        -17.087594985961914,
+        -4.512101173400879,
+        -0.02014392800629139
+      ],
+      "max_scene_m": [
+        -16.152502059936523,
+        -3.542989492416382,
+        0.4569588005542755
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass012",
+      "min_scene_m": [
+        13.105501174926758,
+        -1.2153024673461914,
+        -0.029638653621077538
+      ],
+      "max_scene_m": [
+        13.836153030395508,
+        -0.4590698480606079,
+        0.3364238142967224
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass013",
+      "min_scene_m": [
+        -17.96316909790039,
+        24.671981811523438,
+        1.148154377937317
+      ],
+      "max_scene_m": [
+        -16.310569763183594,
+        26.345474243164062,
+        1.784600853919983
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass014",
+      "min_scene_m": [
+        -18.548137664794922,
+        -6.188298225402832,
+        -0.027165399864315987
+      ],
+      "max_scene_m": [
+        -16.934654235839844,
+        -4.550174713134766,
+        0.609156608581543
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass015",
+      "min_scene_m": [
+        -7.377658843994141,
+        -3.302699089050293,
+        -0.006490030791610479
+      ],
+      "max_scene_m": [
+        -5.633868217468262,
+        -1.5325616598129272,
+        0.6801464557647705
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass016",
+      "min_scene_m": [
+        -22.82598304748535,
+        5.352914810180664,
+        0.3594900965690613
+      ],
+      "max_scene_m": [
+        -21.81086540222168,
+        6.360490798950195,
+        0.7336888313293457
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass017",
+      "min_scene_m": [
+        9.505248069763184,
+        20.305940628051758,
+        2.245330810546875
+      ],
+      "max_scene_m": [
+        10.826615333557129,
+        21.61726188659668,
+        2.7328150272369385
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass018",
+      "min_scene_m": [
+        -4.21834659576416,
+        26.531856536865234,
+        1.1358320713043213
+      ],
+      "max_scene_m": [
+        -2.738424062728882,
+        27.98474884033203,
+        1.7287421226501465
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass019",
+      "min_scene_m": [
+        18.365631103515625,
+        1.538219690322876,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        19.63294219970703,
+        2.789207696914673,
+        0.5234432220458984
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass020",
+      "min_scene_m": [
+        -20.941226959228516,
+        -9.256202697753906,
+        -0.04128430411219597
+      ],
+      "max_scene_m": [
+        -19.760604858398438,
+        -8.10287857055664,
+        0.45776495337486267
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass022",
+      "min_scene_m": [
+        -8.823731422424316,
+        24.461938858032227,
+        1.0301077365875244
+      ],
+      "max_scene_m": [
+        -7.13246488571167,
+        26.15751075744629,
+        1.6460620164871216
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass023",
+      "min_scene_m": [
+        11.54619312286377,
+        18.286218643188477,
+        1.4576631784439087
+      ],
+      "max_scene_m": [
+        12.81281566619873,
+        19.574922561645508,
+        1.9681382179260254
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass024",
+      "min_scene_m": [
+        14.806671142578125,
+        25.688676834106445,
+        1.5604519844055176
+      ],
+      "max_scene_m": [
+        15.782503128051758,
+        26.680505752563477,
+        1.9495604038238525
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass025",
+      "min_scene_m": [
+        -16.246797561645508,
+        -3.335003137588501,
+        -0.017878945916891098
+      ],
+      "max_scene_m": [
+        -15.20499324798584,
+        -2.2990987300872803,
+        0.36341503262519836
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass026",
+      "min_scene_m": [
+        -19.12781524658203,
+        -3.1573338508605957,
+        -0.029402850195765495
+      ],
+      "max_scene_m": [
+        -18.04454803466797,
+        -2.089695453643799,
+        0.3891294598579407
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass027",
+      "min_scene_m": [
+        17.582275390625,
+        -9.841626167297363,
+        -0.01667245477437973
+      ],
+      "max_scene_m": [
+        18.858539581298828,
+        -8.567090034484863,
+        0.4464728534221649
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass029",
+      "min_scene_m": [
+        22.41295623779297,
+        17.031192779541016,
+        0.6416482925415039
+      ],
+      "max_scene_m": [
+        24.081798553466797,
+        18.731231689453125,
+        1.3233442306518555
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass030",
+      "min_scene_m": [
+        -2.2934348583221436,
+        18.008066177368164,
+        0.9996185302734375
+      ],
+      "max_scene_m": [
+        -0.9583837985992432,
+        19.378751754760742,
+        1.5994696617126465
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass032",
+      "min_scene_m": [
+        14.837569236755371,
+        14.180550575256348,
+        -0.003671189770102501
+      ],
+      "max_scene_m": [
+        16.100297927856445,
+        15.409125328063965,
+        0.5562061667442322
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass033",
+      "min_scene_m": [
+        -5.920019626617432,
+        -7.147437572479248,
+        0.013852189294993877
+      ],
+      "max_scene_m": [
+        -4.49845552444458,
+        -5.701828479766846,
+        0.5837087631225586
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass034",
+      "min_scene_m": [
+        11.68211555480957,
+        -8.802290916442871,
+        -0.0711560994386673
+      ],
+      "max_scene_m": [
+        12.779655456542969,
+        -7.726424694061279,
+        0.3754574656486511
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass035",
+      "min_scene_m": [
+        -2.0594820976257324,
+        19.40447425842285,
+        1.4437552690505981
+      ],
+      "max_scene_m": [
+        -1.0198025703430176,
+        20.472257614135742,
+        1.9129153490066528
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass036",
+      "min_scene_m": [
+        21.587583541870117,
+        24.05266571044922,
+        1.303359031677246
+      ],
+      "max_scene_m": [
+        22.419572830200195,
+        24.90851593017578,
+        1.6868268251419067
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass037",
+      "min_scene_m": [
+        22.535503387451172,
+        27.019821166992188,
+        1.1939886808395386
+      ],
+      "max_scene_m": [
+        23.799888610839844,
+        28.32265853881836,
+        1.790035367012024
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass038",
+      "min_scene_m": [
+        -13.225516319274902,
+        20.559263229370117,
+        1.3959321975708008
+      ],
+      "max_scene_m": [
+        -12.257796287536621,
+        21.54754066467285,
+        1.8027493953704834
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass039",
+      "min_scene_m": [
+        11.54463005065918,
+        2.1115896701812744,
+        -0.007121395785361528
+      ],
+      "max_scene_m": [
+        12.488906860351562,
+        3.0869438648223877,
+        0.4529491066932678
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass040",
+      "min_scene_m": [
+        9.688267707824707,
+        4.963716506958008,
+        0.016315730288624763
+      ],
+      "max_scene_m": [
+        10.938477516174316,
+        6.17631721496582,
+        0.5925120115280151
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass041",
+      "min_scene_m": [
+        -16.177881240844727,
+        18.454349517822266,
+        1.016161322593689
+      ],
+      "max_scene_m": [
+        -14.887764930725098,
+        19.757648468017578,
+        1.5037097930908203
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass042",
+      "min_scene_m": [
+        -13.99217700958252,
+        -7.057764530181885,
+        0.00795008148998022
+      ],
+      "max_scene_m": [
+        -12.271454811096191,
+        -5.360855579376221,
+        0.669463038444519
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass043",
+      "min_scene_m": [
+        -27.201766967773438,
+        22.283512115478516,
+        1.9963973760604858
+      ],
+      "max_scene_m": [
+        -25.974071502685547,
+        23.513195037841797,
+        2.442704200744629
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass044",
+      "min_scene_m": [
+        -9.97712516784668,
+        25.938791275024414,
+        0.9908952713012695
+      ],
+      "max_scene_m": [
+        -8.336465835571289,
+        27.58878517150879,
+        1.5947728157043457
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass045",
+      "min_scene_m": [
+        -23.2086181640625,
+        -7.8049421310424805,
+        0.24162061512470245
+      ],
+      "max_scene_m": [
+        -21.585403442382812,
+        -6.146734237670898,
+        0.926496684551239
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass046",
+      "min_scene_m": [
+        -16.191118240356445,
+        7.278322219848633,
+        -0.04549609124660492
+      ],
+      "max_scene_m": [
+        -14.583226203918457,
+        8.885177612304688,
+        0.5379078984260559
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass048",
+      "min_scene_m": [
+        -9.833181381225586,
+        24.130535125732422,
+        1.0216261148452759
+      ],
+      "max_scene_m": [
+        -8.493738174438477,
+        25.43853759765625,
+        1.590155839920044
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass049",
+      "min_scene_m": [
+        -26.363636016845703,
+        20.719385147094727,
+        2.1561942100524902
+      ],
+      "max_scene_m": [
+        -25.416851043701172,
+        21.695505142211914,
+        2.6059041023254395
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass051",
+      "min_scene_m": [
+        -28.072229385375977,
+        26.003019332885742,
+        1.572472333908081
+      ],
+      "max_scene_m": [
+        -27.119783401489258,
+        26.920480728149414,
+        2.051645517349243
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass052",
+      "min_scene_m": [
+        17.96317481994629,
+        13.665006637573242,
+        0.023373449221253395
+      ],
+      "max_scene_m": [
+        19.5170841217041,
+        15.210500717163086,
+        0.5916217565536499
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass053",
+      "min_scene_m": [
+        -25.778512954711914,
+        -4.590446949005127,
+        1.0699139833450317
+      ],
+      "max_scene_m": [
+        -24.346330642700195,
+        -3.1881227493286133,
+        1.6597628593444824
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass054",
+      "min_scene_m": [
+        24.13344955444336,
+        7.074833393096924,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        25.204910278320312,
+        8.145184516906738,
+        0.42878058552742004
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass055",
+      "min_scene_m": [
+        -25.909542083740234,
+        13.652660369873047,
+        1.328503131866455
+      ],
+      "max_scene_m": [
+        -24.038589477539062,
+        15.530664443969727,
+        2.0121636390686035
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass056",
+      "min_scene_m": [
+        -4.991381645202637,
+        24.151464462280273,
+        1.1414945125579834
+      ],
+      "max_scene_m": [
+        -4.165504455566406,
+        24.953298568725586,
+        1.5173888206481934
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass057",
+      "min_scene_m": [
+        20.72111701965332,
+        7.942030429840088,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        22.044260025024414,
+        9.310704231262207,
+        0.6976369619369507
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass059",
+      "min_scene_m": [
+        20.393770217895508,
+        -8.70308780670166,
+        0.07296432554721832
+      ],
+      "max_scene_m": [
+        21.585874557495117,
+        -7.500761985778809,
+        0.5185412764549255
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass060",
+      "min_scene_m": [
+        1.849114179611206,
+        -6.341128826141357,
+        -0.03960246220231056
+      ],
+      "max_scene_m": [
+        2.8090193271636963,
+        -5.37146520614624,
+        0.3230167627334595
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass062",
+      "min_scene_m": [
+        -2.884037494659424,
+        -4.659996032714844,
+        -0.012413827702403069
+      ],
+      "max_scene_m": [
+        -1.8874826431274414,
+        -3.639230966567993,
+        0.4221114218235016
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass064",
+      "min_scene_m": [
+        16.203807830810547,
+        24.705291748046875,
+        1.5250258445739746
+      ],
+      "max_scene_m": [
+        17.562084197998047,
+        26.060230255126953,
+        2.0183961391448975
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass065",
+      "min_scene_m": [
+        22.75693130493164,
+        -2.465606689453125,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        24.548484802246094,
+        -0.6596459150314331,
+        0.7074774503707886
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass066",
+      "min_scene_m": [
+        23.623178482055664,
+        -8.246341705322266,
+        0.5409068465232849
+      ],
+      "max_scene_m": [
+        25.27821159362793,
+        -6.586308002471924,
+        1.1443700790405273
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass067",
+      "min_scene_m": [
+        11.113964080810547,
+        -0.021227344870567322,
+        -0.019956516101956367
+      ],
+      "max_scene_m": [
+        12.546516418457031,
+        1.43093740940094,
+        0.5367876291275024
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass068",
+      "min_scene_m": [
+        19.230854034423828,
+        -0.03294816613197327,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        20.727752685546875,
+        1.4710092544555664,
+        0.588769257068634
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass069",
+      "min_scene_m": [
+        -24.08446502685547,
+        15.705632209777832,
+        0.7054656147956848
+      ],
+      "max_scene_m": [
+        -22.668262481689453,
+        17.135324478149414,
+        1.2380836009979248
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass070",
+      "min_scene_m": [
+        -27.47541046142578,
+        24.34725570678711,
+        1.595182180404663
+      ],
+      "max_scene_m": [
+        -26.160900115966797,
+        25.678054809570312,
+        2.100367307662964
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass071",
+      "min_scene_m": [
+        -13.485625267028809,
+        10.005986213684082,
+        -0.07185916602611542
+      ],
+      "max_scene_m": [
+        -12.257111549377441,
+        11.209454536437988,
+        0.43153542280197144
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass072",
+      "min_scene_m": [
+        11.846436500549316,
+        -0.4851491153240204,
+        -0.023360181599855423
+      ],
+      "max_scene_m": [
+        13.276124000549316,
+        0.9885774254798889,
+        0.6541052460670471
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass074",
+      "min_scene_m": [
+        18.479040145874023,
+        -3.6605803966522217,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        20.087507247924805,
+        -2.052966356277466,
+        0.6236183047294617
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass075",
+      "min_scene_m": [
+        1.969142198562622,
+        19.528959274291992,
+        1.772581696510315
+      ],
+      "max_scene_m": [
+        3.322587728500366,
+        20.861093521118164,
+        2.3016815185546875
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass076",
+      "min_scene_m": [
+        -15.05771255493164,
+        24.707813262939453,
+        1.0534491539001465
+      ],
+      "max_scene_m": [
+        -13.557998657226562,
+        26.24700164794922,
+        1.7241227626800537
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass078",
+      "min_scene_m": [
+        17.786537170410156,
+        27.348045349121094,
+        1.4122916460037231
+      ],
+      "max_scene_m": [
+        18.766769409179688,
+        28.321521759033203,
+        1.772767186164856
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass079",
+      "min_scene_m": [
+        -21.36742401123047,
+        2.2230937480926514,
+        0.039982397109270096
+      ],
+      "max_scene_m": [
+        -20.194286346435547,
+        3.3806521892547607,
+        0.48893219232559204
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass080",
+      "min_scene_m": [
+        13.618171691894531,
+        25.45808219909668,
+        1.5898478031158447
+      ],
+      "max_scene_m": [
+        14.965980529785156,
+        26.805269241333008,
+        2.0788934230804443
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass081",
+      "min_scene_m": [
+        -22.754009246826172,
+        -7.099035263061523,
+        0.16932469606399536
+      ],
+      "max_scene_m": [
+        -21.298370361328125,
+        -5.637188911437988,
+        0.7020981311798096
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass082",
+      "min_scene_m": [
+        8.342511177062988,
+        -2.110447406768799,
+        -0.03914817050099373
+      ],
+      "max_scene_m": [
+        9.216439247131348,
+        -1.2654093503952026,
+        0.3796014189720154
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass083",
+      "min_scene_m": [
+        -18.257333755493164,
+        2.2720608711242676,
+        -0.024404745548963547
+      ],
+      "max_scene_m": [
+        -16.922685623168945,
+        3.594747543334961,
+        0.4714520573616028
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass084",
+      "min_scene_m": [
+        6.436873912811279,
+        24.253007888793945,
+        1.6342397928237915
+      ],
+      "max_scene_m": [
+        7.41671895980835,
+        25.26323127746582,
+        2.0997495651245117
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass085",
+      "min_scene_m": [
+        -25.33049774169922,
+        23.450931549072266,
+        1.542675256729126
+      ],
+      "max_scene_m": [
+        -24.00241470336914,
+        24.797321319580078,
+        2.059255599975586
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass086",
+      "min_scene_m": [
+        15.094470977783203,
+        17.1857852935791,
+        0.9202942252159119
+      ],
+      "max_scene_m": [
+        16.704511642456055,
+        18.795400619506836,
+        1.5045173168182373
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass087",
+      "min_scene_m": [
+        -20.750640869140625,
+        12.849137306213379,
+        0.002971554873511195
+      ],
+      "max_scene_m": [
+        -19.110057830810547,
+        14.4907808303833,
+        0.59862220287323
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass088",
+      "min_scene_m": [
+        10.29077434539795,
+        17.037796020507812,
+        0.747873067855835
+      ],
+      "max_scene_m": [
+        11.138875007629395,
+        17.864688873291016,
+        1.1145339012145996
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass089",
+      "min_scene_m": [
+        -16.21765899658203,
+        16.267019271850586,
+        0.313711017370224
+      ],
+      "max_scene_m": [
+        -14.7705078125,
+        17.710527420043945,
+        0.8394052982330322
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass090",
+      "min_scene_m": [
+        -0.29787713289260864,
+        24.257469177246094,
+        1.3592848777770996
+      ],
+      "max_scene_m": [
+        0.7966063618659973,
+        25.35568618774414,
+        1.7587871551513672
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass091",
+      "min_scene_m": [
+        5.178218364715576,
+        20.470657348632812,
+        2.128889560699463
+      ],
+      "max_scene_m": [
+        6.066535472869873,
+        21.386310577392578,
+        2.5496485233306885
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass093",
+      "min_scene_m": [
+        16.67644500732422,
+        26.9461727142334,
+        1.4433356523513794
+      ],
+      "max_scene_m": [
+        18.36892318725586,
+        28.645872116088867,
+        2.062798023223877
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Grass094",
+      "min_scene_m": [
+        18.958663940429688,
+        -0.36590316891670227,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        20.614673614501953,
+        1.314078450202942,
+        0.6882007718086243
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_0",
+      "min_scene_m": [
+        -24.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        -16.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_1",
+      "min_scene_m": [
+        -16.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        -8.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_2",
+      "min_scene_m": [
+        -8.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        0.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_3",
+      "min_scene_m": [
+        0.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        8.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_4",
+      "min_scene_m": [
+        8.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        16.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_5",
+      "min_scene_m": [
+        16.0,
+        -18.0,
+        -0.05300000309944153
+      ],
+      "max_scene_m": [
+        24.0,
+        -16.0,
+        -0.02800000086426735
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Street_6",
+      "min_scene_m": [
+        24.0,
+        -18.0,
+        1.188169002532959
+      ],
+      "max_scene_m": [
+        32.0,
+        -16.0,
+        1.213168978691101
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Neighbor_East",
+      "min_scene_m": [
+        18.726638793945312,
+        -5.414999008178711,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        29.273361206054688,
+        13.414999008178711,
+        7.970000267028809
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Neighbor_SouthWest",
+      "min_scene_m": [
+        -20.002750396728516,
+        -29.482357025146484,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        -3.9972500801086426,
+        -20.517642974853516,
+        6.780500411987305
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Neighbor_Access",
+      "min_scene_m": [
+        -17.5,
+        -21.5,
+        0.023000000044703484
+      ],
+      "max_scene_m": [
+        -15.5,
+        -17.5,
+        0.04800000041723251
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LayeredOak_0",
+      "min_scene_m": [
+        -6.708306789398193,
+        -17.521352767944336,
+        0.007644175551831722
+      ],
+      "max_scene_m": [
+        0.7083067893981934,
+        -9.878646850585938,
+        7.097602844238281
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LayeredOak_1",
+      "min_scene_m": [
+        2.2264811992645264,
+        -28.788379669189453,
+        0.5314885973930359
+      ],
+      "max_scene_m": [
+        13.773518562316895,
+        -17.211620330810547,
+        8.257726669311523
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_0",
+      "min_scene_m": [
+        -25.351665496826172,
+        -31.38542938232422,
+        2.12764310836792
+      ],
+      "max_scene_m": [
+        -20.648334503173828,
+        -26.61457061767578,
+        12.527643203735352
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_1",
+      "min_scene_m": [
+        -16.039363861083984,
+        -33.03096389770508,
+        0.14000460505485535
+      ],
+      "max_scene_m": [
+        -9.9606351852417,
+        -26.969036102294922,
+        9.89000415802002
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_2",
+      "min_scene_m": [
+        -5.9611334800720215,
+        -31.933292388916016,
+        0.4521771967411041
+      ],
+      "max_scene_m": [
+        -0.03886657953262329,
+        -26.066707611083984,
+        11.502177238464355
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_3",
+      "min_scene_m": [
+        0.7597340941429138,
+        -32.21327590942383,
+        2.1476776599884033
+      ],
+      "max_scene_m": [
+        5.240265846252441,
+        -27.786725997924805,
+        11.247676849365234
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_4",
+      "min_scene_m": [
+        10.916337966918945,
+        -32.06159591674805,
+        2.368086099624634
+      ],
+      "max_scene_m": [
+        17.083662033081055,
+        -25.938405990600586,
+        13.158085823059082
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_5",
+      "min_scene_m": [
+        22.442615509033203,
+        -29.534988403320312,
+        1.364073395729065
+      ],
+      "max_scene_m": [
+        27.557384490966797,
+        -24.465011596679688,
+        10.724074363708496
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_6",
+      "min_scene_m": [
+        -31.244789123535156,
+        3.7639389038085938,
+        2.3149685859680176
+      ],
+      "max_scene_m": [
+        -24.755210876464844,
+        10.236061096191406,
+        12.714969635009766
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_PineLayer_7",
+      "min_scene_m": [
+        -30.928939819335938,
+        12.03991413116455,
+        2.356297016143799
+      ],
+      "max_scene_m": [
+        -25.071060180664062,
+        17.960084915161133,
+        13.796297073364258
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_0",
+      "min_scene_m": [
+        1.7948133945465088,
+        -2.36611270904541,
+        -0.028852935880422592
+      ],
+      "max_scene_m": [
+        2.076035976409912,
+        -2.1148505210876465,
+        0.1020885705947876
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_1",
+      "min_scene_m": [
+        -1.7833166122436523,
+        -4.155129432678223,
+        -0.020897280424833298
+      ],
+      "max_scene_m": [
+        -1.6608505249023438,
+        -4.036900520324707,
+        0.03263772651553154
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_2",
+      "min_scene_m": [
+        1.6225907802581787,
+        -12.376419067382812,
+        -0.03524281457066536
+      ],
+      "max_scene_m": [
+        1.7334120273590088,
+        -12.281278610229492,
+        0.019484203308820724
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_3",
+      "min_scene_m": [
+        -1.790984869003296,
+        -11.794646263122559,
+        -0.017536954954266548
+      ],
+      "max_scene_m": [
+        -1.545536994934082,
+        -11.580779075622559,
+        0.10089586675167084
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_4",
+      "min_scene_m": [
+        -1.5447723865509033,
+        -6.5720391273498535,
+        -0.023673683404922485
+      ],
+      "max_scene_m": [
+        -1.2922155857086182,
+        -6.326213359832764,
+        0.08662410080432892
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_5",
+      "min_scene_m": [
+        -1.7008628845214844,
+        -10.54721450805664,
+        -0.019236693158745766
+      ],
+      "max_scene_m": [
+        -1.5107793807983398,
+        -10.387899398803711,
+        0.07843668758869171
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_6",
+      "min_scene_m": [
+        -1.4258677959442139,
+        -9.556978225708008,
+        -0.024069907143712044
+      ],
+      "max_scene_m": [
+        -1.3269414901733398,
+        -9.460994720458984,
+        0.019143106415867805
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_7",
+      "min_scene_m": [
+        1.4078792333602905,
+        -6.8348541259765625,
+        -0.030638204887509346
+      ],
+      "max_scene_m": [
+        1.5671707391738892,
+        -6.652103424072266,
+        0.05749640613794327
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_8",
+      "min_scene_m": [
+        -1.5612214803695679,
+        -9.874686241149902,
+        -0.021803317591547966
+      ],
+      "max_scene_m": [
+        -1.4290331602096558,
+        -9.754244804382324,
+        0.03830178827047348
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_9",
+      "min_scene_m": [
+        1.6746021509170532,
+        -4.287352561950684,
+        -0.030451921746134758
+      ],
+      "max_scene_m": [
+        1.8768845796585083,
+        -4.0933427810668945,
+        0.05812157690525055
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_10",
+      "min_scene_m": [
+        -1.1431337594985962,
+        -16.36823844909668,
+        -0.03587247058749199
+      ],
+      "max_scene_m": [
+        -0.9713113903999329,
+        -16.181894302368164,
+        0.04782385006546974
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_11",
+      "min_scene_m": [
+        -1.187088966369629,
+        -9.628303527832031,
+        -0.027606572955846786
+      ],
+      "max_scene_m": [
+        -1.0549139976501465,
+        -9.488874435424805,
+        0.033744048327207565
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_12",
+      "min_scene_m": [
+        1.365199089050293,
+        -7.603928089141846,
+        -0.03112531267106533
+      ],
+      "max_scene_m": [
+        1.6074926853179932,
+        -7.349198818206787,
+        0.08077400922775269
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_13",
+      "min_scene_m": [
+        1.9124635457992554,
+        -6.367075443267822,
+        -0.03535933792591095
+      ],
+      "max_scene_m": [
+        2.0850582122802734,
+        -6.2012200355529785,
+        0.040171556174755096
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_14",
+      "min_scene_m": [
+        -1.2017230987548828,
+        -15.437661170959473,
+        -0.03283432126045227
+      ],
+      "max_scene_m": [
+        -1.0492820739746094,
+        -15.260176658630371,
+        0.054747216403484344
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_15",
+      "min_scene_m": [
+        2.080753803253174,
+        -16.27351951599121,
+        -0.036158010363578796
+      ],
+      "max_scene_m": [
+        2.1961889266967773,
+        -16.172842025756836,
+        0.019463416188955307
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_16",
+      "min_scene_m": [
+        -1.280389666557312,
+        -5.131080627441406,
+        -0.026308348402380943
+      ],
+      "max_scene_m": [
+        -0.986380934715271,
+        -4.825592041015625,
+        0.1073254868388176
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_17",
+      "min_scene_m": [
+        -1.2368402481079102,
+        -6.944441318511963,
+        -0.02706989459693432
+      ],
+      "max_scene_m": [
+        -0.9462089538574219,
+        -6.679840564727783,
+        0.10518983006477356
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_18",
+      "min_scene_m": [
+        -1.7587769031524658,
+        -6.813876152038574,
+        -0.018789535388350487
+      ],
+      "max_scene_m": [
+        -1.6525771617889404,
+        -6.682675361633301,
+        0.05282314866781235
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_19",
+      "min_scene_m": [
+        1.4567911624908447,
+        -12.516175270080566,
+        -0.0343157984316349
+      ],
+      "max_scene_m": [
+        1.6655378341674805,
+        -12.339459419250488,
+        0.07115839421749115
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_20",
+      "min_scene_m": [
+        1.34758460521698,
+        -10.706790924072266,
+        -0.032581400126218796
+      ],
+      "max_scene_m": [
+        1.4864486455917358,
+        -10.568780899047852,
+        0.02827620506286621
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_21",
+      "min_scene_m": [
+        1.4369752407073975,
+        -10.817590713500977,
+        -0.03342394158244133
+      ],
+      "max_scene_m": [
+        1.6536619663238525,
+        -10.641279220581055,
+        0.08377251029014587
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_22",
+      "min_scene_m": [
+        1.4088363647460938,
+        -11.154709815979004,
+        -0.03303351253271103
+      ],
+      "max_scene_m": [
+        1.504263162612915,
+        -11.04468822479248,
+        0.020427901297807693
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_23",
+      "min_scene_m": [
+        1.5295511484146118,
+        -9.403291702270508,
+        -0.0331217497587204
+      ],
+      "max_scene_m": [
+        1.6706169843673706,
+        -9.283185958862305,
+        0.03748270124197006
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_24",
+      "min_scene_m": [
+        -1.0810637474060059,
+        -12.629631996154785,
+        -0.029727108776569366
+      ],
+      "max_scene_m": [
+        -0.9640031456947327,
+        -12.516228675842285,
+        0.021416213363409042
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_25",
+      "min_scene_m": [
+        1.7529631853103638,
+        -3.389089822769165,
+        -0.03007706068456173
+      ],
+      "max_scene_m": [
+        2.0115556716918945,
+        -3.139435052871704,
+        0.08296351134777069
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_26",
+      "min_scene_m": [
+        1.6522175073623657,
+        -7.608024597167969,
+        -0.033030636608600616
+      ],
+      "max_scene_m": [
+        1.776049256324768,
+        -7.467803955078125,
+        0.033306047320365906
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_27",
+      "min_scene_m": [
+        -1.1139651536941528,
+        -7.223885536193848,
+        -0.02738405205309391
+      ],
+      "max_scene_m": [
+        -1.0107394456863403,
+        -7.097893714904785,
+        0.039942629635334015
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_28",
+      "min_scene_m": [
+        -1.401642084121704,
+        -8.221667289733887,
+        -0.025222091004252434
+      ],
+      "max_scene_m": [
+        -1.192962408065796,
+        -8.035323143005371,
+        0.0720127746462822
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_29",
+      "min_scene_m": [
+        -1.1770203113555908,
+        -2.4803152084350586,
+        -0.02573503367602825
+      ],
+      "max_scene_m": [
+        -1.046168327331543,
+        -2.3588314056396484,
+        0.03267686069011688
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_30",
+      "min_scene_m": [
+        1.9522184133529663,
+        -8.36251163482666,
+        -0.03869121894240379
+      ],
+      "max_scene_m": [
+        2.1981027126312256,
+        -8.13321590423584,
+        0.07067275047302246
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_31",
+      "min_scene_m": [
+        1.4741218090057373,
+        -5.105384349822998,
+        -0.029677871614694595
+      ],
+      "max_scene_m": [
+        1.607102632522583,
+        -4.987952709197998,
+        0.03323912248015404
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_32",
+      "min_scene_m": [
+        -1.636181354522705,
+        -14.669622421264648,
+        -0.021699117496609688
+      ],
+      "max_scene_m": [
+        -1.4730796813964844,
+        -14.524871826171875,
+        0.0549330860376358
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_33",
+      "min_scene_m": [
+        1.767921805381775,
+        -13.224828720092773,
+        -0.037339288741350174
+      ],
+      "max_scene_m": [
+        1.926991581916809,
+        -13.031095504760742,
+        0.0657980889081955
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_34",
+      "min_scene_m": [
+        1.3573486804962158,
+        -9.619542121887207,
+        -0.032042548060417175
+      ],
+      "max_scene_m": [
+        1.50052809715271,
+        -9.457106590270996,
+        0.04501083493232727
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_35",
+      "min_scene_m": [
+        -1.489883542060852,
+        -15.341760635375977,
+        -0.029437091201543808
+      ],
+      "max_scene_m": [
+        -1.3633617162704468,
+        -15.219341278076172,
+        0.02584930509328842
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_36",
+      "min_scene_m": [
+        -1.2808420658111572,
+        -9.582261085510254,
+        -0.026953566819429398
+      ],
+      "max_scene_m": [
+        -1.0739505290985107,
+        -9.35867977142334,
+        0.07314054667949677
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_37",
+      "min_scene_m": [
+        -1.271532654762268,
+        -3.9483563899993896,
+        -0.025758501142263412
+      ],
+      "max_scene_m": [
+        -1.1108559370040894,
+        -3.8104054927825928,
+        0.05357931926846504
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_38",
+      "min_scene_m": [
+        1.4023020267486572,
+        -7.77849006652832,
+        -0.031605448573827744
+      ],
+      "max_scene_m": [
+        1.6855037212371826,
+        -7.471070289611816,
+        0.10659515857696533
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_39",
+      "min_scene_m": [
+        -1.3356432914733887,
+        -15.597868919372559,
+        -0.03302318602800369
+      ],
+      "max_scene_m": [
+        -1.2023096084594727,
+        -15.47179126739502,
+        0.025726206600666046
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_40",
+      "min_scene_m": [
+        2.0726492404937744,
+        -15.643804550170898,
+        -0.0376589298248291
+      ],
+      "max_scene_m": [
+        2.210080862045288,
+        -15.502119064331055,
+        0.024233482778072357
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_41",
+      "min_scene_m": [
+        2.0001468658447266,
+        -10.320850372314453,
+        -0.04064295440912247
+      ],
+      "max_scene_m": [
+        2.2044191360473633,
+        -10.152034759521484,
+        0.0668850839138031
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_42",
+      "min_scene_m": [
+        -1.7107998132705688,
+        -2.8908121585845947,
+        -0.022852564230561256
+      ],
+      "max_scene_m": [
+        -1.5753720998764038,
+        -2.7525250911712646,
+        0.03754881024360657
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_LanePebble_43",
+      "min_scene_m": [
+        1.4449154138565063,
+        -12.447230339050293,
+        -0.034260232001543045
+      ],
+      "max_scene_m": [
+        1.6743263006210327,
+        -12.194550514221191,
+        0.08108940720558167
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_0",
+      "min_scene_m": [
+        -30.96444320678711,
+        -30.963558197021484,
+        2.222660779953003
+      ],
+      "max_scene_m": [
+        -25.03555679321289,
+        -25.036441802978516,
+        11.582661628723145
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_1",
+      "min_scene_m": [
+        -21.370628356933594,
+        -33.36193084716797,
+        0.15752042829990387
+      ],
+      "max_scene_m": [
+        -14.629371643066406,
+        -26.63806915283203,
+        10.94752025604248
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_2",
+      "min_scene_m": [
+        -11.552818298339844,
+        -32.56797790527344,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        -4.447181224822998,
+        -25.432022094726562,
+        11.739999771118164
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_3",
+      "min_scene_m": [
+        5.102214813232422,
+        -32.92057418823242,
+        2.3858423233032227
+      ],
+      "max_scene_m": [
+        10.897785186767578,
+        -27.079425811767578,
+        12.785842895507812
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_4",
+      "min_scene_m": [
+        16.92351531982422,
+        -31.072185516357422,
+        1.8707555532455444
+      ],
+      "max_scene_m": [
+        23.07648468017578,
+        -24.927814483642578,
+        11.620755195617676
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_5",
+      "min_scene_m": [
+        25.897132873535156,
+        -22.132413864135742,
+        1.2762318849563599
+      ],
+      "max_scene_m": [
+        32.102867126464844,
+        -15.867585182189941,
+        12.976231575012207
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_6",
+      "min_scene_m": [
+        -31.028278350830078,
+        15.95293140411377,
+        2.265397071838379
+      ],
+      "max_scene_m": [
+        -24.971721649169922,
+        22.047067642211914,
+        12.665397644042969
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_7",
+      "min_scene_m": [
+        -10.262760162353516,
+        18.71167755126953,
+        1.486371636390686
+      ],
+      "max_scene_m": [
+        -3.7372395992279053,
+        25.28832244873047,
+        13.186371803283691
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_8",
+      "min_scene_m": [
+        1.543300747871399,
+        18.545455932617188,
+        2.2145395278930664
+      ],
+      "max_scene_m": [
+        8.45669937133789,
+        25.454544067382812,
+        13.134539604187012
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_Pine_9",
+      "min_scene_m": [
+        15.029263496398926,
+        19.015077590942383,
+        2.0842413902282715
+      ],
+      "max_scene_m": [
+        20.970735549926758,
+        24.984922409057617,
+        11.964241027832031
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_0",
+      "min_scene_m": [
+        -19.340770721435547,
+        -14.509490966796875,
+        -0.03812895342707634
+      ],
+      "max_scene_m": [
+        -17.882099151611328,
+        -13.036384582519531,
+        0.5154222249984741
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_1",
+      "min_scene_m": [
+        24.545148849487305,
+        -22.997447967529297,
+        0.8699609041213989
+      ],
+      "max_scene_m": [
+        25.70942497253418,
+        -21.79758071899414,
+        1.2540874481201172
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_2",
+      "min_scene_m": [
+        -27.140811920166016,
+        5.65295934677124,
+        1.8640820980072021
+      ],
+      "max_scene_m": [
+        -25.897483825683594,
+        6.862888813018799,
+        2.2264280319213867
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_3",
+      "min_scene_m": [
+        -21.526695251464844,
+        8.159621238708496,
+        0.06471099704504013
+      ],
+      "max_scene_m": [
+        -20.042598724365234,
+        9.631104469299316,
+        0.5516387224197388
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_5",
+      "min_scene_m": [
+        -26.522472381591797,
+        -18.6540584564209,
+        0.12799929082393646
+      ],
+      "max_scene_m": [
+        -25.409866333007812,
+        -17.503618240356445,
+        0.6523084044456482
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_6",
+      "min_scene_m": [
+        23.219398498535156,
+        -9.501524925231934,
+        0.5501018166542053
+      ],
+      "max_scene_m": [
+        24.282917022705078,
+        -8.398241996765137,
+        1.0427626371383667
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_7",
+      "min_scene_m": [
+        9.23085880279541,
+        7.586462020874023,
+        0.03098559007048607
+      ],
+      "max_scene_m": [
+        10.744112968444824,
+        9.095355987548828,
+        0.48174017667770386
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_8",
+      "min_scene_m": [
+        8.062103271484375,
+        6.220065593719482,
+        0.026141561567783356
+      ],
+      "max_scene_m": [
+        9.545452117919922,
+        7.714073657989502,
+        0.43606802821159363
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_9",
+      "min_scene_m": [
+        -17.993579864501953,
+        -3.732621908187866,
+        -0.02409934252500534
+      ],
+      "max_scene_m": [
+        -16.507404327392578,
+        -2.2586781978607178,
+        0.37798693776130676
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_10",
+      "min_scene_m": [
+        24.32225799560547,
+        -18.73493766784668,
+        0.06977666169404984
+      ],
+      "max_scene_m": [
+        25.640392303466797,
+        -17.4458065032959,
+        0.5418112277984619
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_11",
+      "min_scene_m": [
+        -14.623533248901367,
+        -5.428410053253174,
+        -0.002700389828532934
+      ],
+      "max_scene_m": [
+        -13.11923599243164,
+        -3.918180227279663,
+        0.5223585367202759
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_13",
+      "min_scene_m": [
+        -17.993465423583984,
+        0.589604914188385,
+        -0.025083979591727257
+      ],
+      "max_scene_m": [
+        -16.81749725341797,
+        1.7288684844970703,
+        0.5005125999450684
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_16",
+      "min_scene_m": [
+        11.881834030151367,
+        -21.867883682250977,
+        0.06248388811945915
+      ],
+      "max_scene_m": [
+        13.357156753540039,
+        -20.38054847717285,
+        0.5641742944717407
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_17",
+      "min_scene_m": [
+        -3.0500378608703613,
+        -19.74241828918457,
+        -0.0117005230858922
+      ],
+      "max_scene_m": [
+        -1.5353668928146362,
+        -18.22661781311035,
+        0.44506025314331055
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_18",
+      "min_scene_m": [
+        7.138434410095215,
+        -14.211198806762695,
+        -0.08814475685358047
+      ],
+      "max_scene_m": [
+        8.576555252075195,
+        -12.756122589111328,
+        0.3476758599281311
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_19",
+      "min_scene_m": [
+        -10.928522109985352,
+        -2.46437406539917,
+        -0.010153591632843018
+      ],
+      "max_scene_m": [
+        -9.661857604980469,
+        -1.2298312187194824,
+        0.4605538845062256
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_22",
+      "min_scene_m": [
+        15.677140235900879,
+        16.54754066467285,
+        0.5813978314399719
+      ],
+      "max_scene_m": [
+        17.127464294433594,
+        17.980314254760742,
+        1.1125233173370361
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_23",
+      "min_scene_m": [
+        23.868783950805664,
+        -9.696920394897461,
+        0.6849977374076843
+      ],
+      "max_scene_m": [
+        25.007753372192383,
+        -8.521234512329102,
+        1.1304957866668701
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_24",
+      "min_scene_m": [
+        24.09351348876953,
+        16.527408599853516,
+        0.8426734805107117
+      ],
+      "max_scene_m": [
+        25.27916717529297,
+        17.74765396118164,
+        1.2223889827728271
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_25",
+      "min_scene_m": [
+        -10.79194450378418,
+        -21.945417404174805,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        -9.644222259521484,
+        -20.761362075805664,
+        0.40482091903686523
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_26",
+      "min_scene_m": [
+        -0.8496699333190918,
+        -18.380084991455078,
+        -0.035986222326755524
+      ],
+      "max_scene_m": [
+        0.38154006004333496,
+        -17.182907104492188,
+        0.4080064594745636
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_27",
+      "min_scene_m": [
+        6.5473127365112305,
+        -5.970250606536865,
+        -0.06471773236989975
+      ],
+      "max_scene_m": [
+        7.89370059967041,
+        -4.598690509796143,
+        0.37924110889434814
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_28",
+      "min_scene_m": [
+        -15.988625526428223,
+        -9.745083808898926,
+        -0.002193652093410492
+      ],
+      "max_scene_m": [
+        -14.582018852233887,
+        -8.318278312683105,
+        0.35773488879203796
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_29",
+      "min_scene_m": [
+        15.818718910217285,
+        17.093896865844727,
+        0.7642245888710022
+      ],
+      "max_scene_m": [
+        16.953821182250977,
+        18.26588249206543,
+        1.334763765335083
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_30",
+      "min_scene_m": [
+        -24.613895416259766,
+        -25.443403244018555,
+        1.0250413417816162
+      ],
+      "max_scene_m": [
+        -23.12093734741211,
+        -23.941659927368164,
+        1.5834672451019287
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_31",
+      "min_scene_m": [
+        16.19521713256836,
+        8.31495189666748,
+        -0.0011802607914432883
+      ],
+      "max_scene_m": [
+        17.637542724609375,
+        9.738776206970215,
+        0.3998980224132538
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_33",
+      "min_scene_m": [
+        11.047657012939453,
+        -25.95406150817871,
+        1.4190657138824463
+      ],
+      "max_scene_m": [
+        12.151573181152344,
+        -24.811960220336914,
+        1.8562783002853394
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_34",
+      "min_scene_m": [
+        -19.302654266357422,
+        13.79940414428711,
+        -0.011315152049064636
+      ],
+      "max_scene_m": [
+        -18.076717376708984,
+        15.057918548583984,
+        0.4825902581214905
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_35",
+      "min_scene_m": [
+        9.078487396240234,
+        6.470089435577393,
+        0.026326989755034447
+      ],
+      "max_scene_m": [
+        10.4940185546875,
+        7.9049601554870605,
+        0.47816652059555054
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_36",
+      "min_scene_m": [
+        18.227392196655273,
+        -22.475811004638672,
+        0.1824008673429489
+      ],
+      "max_scene_m": [
+        19.640714645385742,
+        -21.084033966064453,
+        0.6096534132957458
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_37",
+      "min_scene_m": [
+        -18.12248420715332,
+        21.159290313720703,
+        1.6676794290542603
+      ],
+      "max_scene_m": [
+        -16.74672508239746,
+        22.510211944580078,
+        2.237109899520874
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_39",
+      "min_scene_m": [
+        -17.20438575744629,
+        -5.222440242767334,
+        -0.019382106140255928
+      ],
+      "max_scene_m": [
+        -16.002477645874023,
+        -4.056021213531494,
+        0.5126935839653015
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_40",
+      "min_scene_m": [
+        12.357654571533203,
+        -24.080171585083008,
+        0.7013640403747559
+      ],
+      "max_scene_m": [
+        13.55650520324707,
+        -22.916955947875977,
+        1.12379789352417
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_42",
+      "min_scene_m": [
+        -25.954208374023438,
+        7.320568084716797,
+        1.425455093383789
+      ],
+      "max_scene_m": [
+        -24.571922302246094,
+        8.725214004516602,
+        1.8889944553375244
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_43",
+      "min_scene_m": [
+        19.01746940612793,
+        -8.383232116699219,
+        0.0003662621893454343
+      ],
+      "max_scene_m": [
+        20.30476951599121,
+        -7.066819190979004,
+        0.4938250780105591
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_44",
+      "min_scene_m": [
+        14.73282527923584,
+        2.6482882499694824,
+        -0.015320823527872562
+      ],
+      "max_scene_m": [
+        16.181167602539062,
+        4.07883882522583,
+        0.39386066794395447
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_45",
+      "min_scene_m": [
+        8.547955513000488,
+        3.7072818279266357,
+        0.010216531343758106
+      ],
+      "max_scene_m": [
+        9.969012260437012,
+        5.147125720977783,
+        0.5023725628852844
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_47",
+      "min_scene_m": [
+        4.196269989013672,
+        -18.661876678466797,
+        -0.03861309587955475
+      ],
+      "max_scene_m": [
+        5.465444564819336,
+        -17.4246826171875,
+        0.384438157081604
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_49",
+      "min_scene_m": [
+        -15.665513038635254,
+        14.554043769836426,
+        -0.03346552699804306
+      ],
+      "max_scene_m": [
+        -14.157170295715332,
+        16.066959381103516,
+        0.348229318857193
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_50",
+      "min_scene_m": [
+        -17.780471801757812,
+        6.635560035705566,
+        -0.029122745618224144
+      ],
+      "max_scene_m": [
+        -16.265506744384766,
+        8.14757251739502,
+        0.3587253987789154
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_51",
+      "min_scene_m": [
+        -17.858257293701172,
+        -17.81914520263672,
+        -0.03599992021918297
+      ],
+      "max_scene_m": [
+        -16.4127197265625,
+        -16.35751724243164,
+        0.4791944921016693
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_52",
+      "min_scene_m": [
+        -15.941064834594727,
+        1.0203070640563965,
+        -0.030872277915477753
+      ],
+      "max_scene_m": [
+        -14.445772171020508,
+        2.5238680839538574,
+        0.38241225481033325
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_53",
+      "min_scene_m": [
+        -26.53065299987793,
+        -17.69306755065918,
+        -0.03595927357673645
+      ],
+      "max_scene_m": [
+        -25.374677658081055,
+        -16.57468605041504,
+        0.3277733623981476
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_56",
+      "min_scene_m": [
+        -24.551300048828125,
+        -7.267038822174072,
+        0.6405462622642517
+      ],
+      "max_scene_m": [
+        -23.226119995117188,
+        -5.970394611358643,
+        1.086271047592163
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_58",
+      "min_scene_m": [
+        -16.06244659423828,
+        -26.007078170776367,
+        0.03999999910593033
+      ],
+      "max_scene_m": [
+        -14.552701950073242,
+        -24.50347328186035,
+        0.5689780712127686
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_59",
+      "min_scene_m": [
+        -15.135270118713379,
+        5.2696685791015625,
+        -0.04868804290890694
+      ],
+      "max_scene_m": [
+        -13.710850715637207,
+        6.712528228759766,
+        0.40536317229270935
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_60",
+      "min_scene_m": [
+        -7.6779680252075195,
+        -4.607275485992432,
+        0.0053075687028467655
+      ],
+      "max_scene_m": [
+        -6.355547904968262,
+        -3.2579965591430664,
+        0.4626871645450592
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_61",
+      "min_scene_m": [
+        23.536951065063477,
+        -19.768325805664062,
+        0.543878972530365
+      ],
+      "max_scene_m": [
+        24.934919357299805,
+        -18.393321990966797,
+        0.907889723777771
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_62",
+      "min_scene_m": [
+        14.47807502746582,
+        -25.869611740112305,
+        1.254472017288208
+      ],
+      "max_scene_m": [
+        15.98539924621582,
+        -24.369352340698242,
+        1.796748399734497
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_63",
+      "min_scene_m": [
+        -6.2773847579956055,
+        -20.352933883666992,
+        0.03342476114630699
+      ],
+      "max_scene_m": [
+        -4.958514213562012,
+        -19.063016891479492,
+        0.4248117208480835
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_64",
+      "min_scene_m": [
+        12.503229141235352,
+        5.317232608795166,
+        0.006629966665059328
+      ],
+      "max_scene_m": [
+        13.98052978515625,
+        6.780760288238525,
+        0.49477651715278625
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_65",
+      "min_scene_m": [
+        -10.880392074584961,
+        4.370683193206787,
+        -0.0625254437327385
+      ],
+      "max_scene_m": [
+        -9.675352096557617,
+        5.540384769439697,
+        0.41699784994125366
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_66",
+      "min_scene_m": [
+        -26.07200050354004,
+        -12.035901069641113,
+        1.1066948175430298
+      ],
+      "max_scene_m": [
+        -24.946428298950195,
+        -10.873038291931152,
+        1.565711498260498
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_67",
+      "min_scene_m": [
+        -22.809415817260742,
+        -7.424278736114502,
+        0.1723313331604004
+      ],
+      "max_scene_m": [
+        -21.295469284057617,
+        -5.914207935333252,
+        0.6822758316993713
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_68",
+      "min_scene_m": [
+        -9.100963592529297,
+        -12.121581077575684,
+        0.039563119411468506
+      ],
+      "max_scene_m": [
+        -7.588062286376953,
+        -10.606228828430176,
+        0.5658798813819885
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_69",
+      "min_scene_m": [
+        -23.18459129333496,
+        -2.097384452819824,
+        0.34858784079551697
+      ],
+      "max_scene_m": [
+        -22.021841049194336,
+        -0.9719302654266357,
+        0.7205212116241455
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_70",
+      "min_scene_m": [
+        -25.023237228393555,
+        -17.182514190673828,
+        -0.034322720021009445
+      ],
+      "max_scene_m": [
+        -23.937711715698242,
+        -16.058067321777344,
+        0.524265706539154
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_73",
+      "min_scene_m": [
+        -22.654237747192383,
+        -25.948379516601562,
+        0.9762996435165405
+      ],
+      "max_scene_m": [
+        -21.43034553527832,
+        -24.691802978515625,
+        1.3450031280517578
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_74",
+      "min_scene_m": [
+        6.095588684082031,
+        -25.737056732177734,
+        1.259647250175476
+      ],
+      "max_scene_m": [
+        7.42875862121582,
+        -24.377769470214844,
+        1.8092546463012695
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_75",
+      "min_scene_m": [
+        -3.3314809799194336,
+        15.639683723449707,
+        0.15980789065361023
+      ],
+      "max_scene_m": [
+        -1.8838224411010742,
+        17.103179931640625,
+        0.5288642644882202
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_76",
+      "min_scene_m": [
+        -17.900772094726562,
+        16.8974609375,
+        0.5630122423171997
+      ],
+      "max_scene_m": [
+        -16.419143676757812,
+        18.39004898071289,
+        1.000487208366394
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_77",
+      "min_scene_m": [
+        -6.811172008514404,
+        15.070757865905762,
+        -0.0007017492316663265
+      ],
+      "max_scene_m": [
+        -5.3872551918029785,
+        16.513168334960938,
+        0.42893487215042114
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_78",
+      "min_scene_m": [
+        -14.194774627685547,
+        -2.103318691253662,
+        -0.016796883195638657
+      ],
+      "max_scene_m": [
+        -13.126033782958984,
+        -0.9950103163719177,
+        0.4907594919204712
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_79",
+      "min_scene_m": [
+        23.93283462524414,
+        -21.91740608215332,
+        0.7306745648384094
+      ],
+      "max_scene_m": [
+        25.076656341552734,
+        -20.811697006225586,
+        1.2009389400482178
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_80",
+      "min_scene_m": [
+        -11.25347900390625,
+        2.1248555183410645,
+        -0.04752381145954132
+      ],
+      "max_scene_m": [
+        -9.74785041809082,
+        3.6228480339050293,
+        0.45046085119247437
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_81",
+      "min_scene_m": [
+        -4.217250347137451,
+        -19.993148803710938,
+        0.019595416262745857
+      ],
+      "max_scene_m": [
+        -2.780870199203491,
+        -18.539615631103516,
+        0.3890534043312073
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_82",
+      "min_scene_m": [
+        10.31192684173584,
+        -1.0517683029174805,
+        -0.027585873380303383
+      ],
+      "max_scene_m": [
+        11.72778606414795,
+        0.3833983838558197,
+        0.49978893995285034
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_83",
+      "min_scene_m": [
+        -20.398338317871094,
+        -3.445061206817627,
+        -0.033556707203388214
+      ],
+      "max_scene_m": [
+        -18.891582489013672,
+        -1.9331631660461426,
+        0.5271244049072266
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_84",
+      "min_scene_m": [
+        -19.10763931274414,
+        -1.4663805961608887,
+        -0.02598605677485466
+      ],
+      "max_scene_m": [
+        -17.607730865478516,
+        0.02425941824913025,
+        0.4353524148464203
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_85",
+      "min_scene_m": [
+        -12.652924537658691,
+        11.371681213378906,
+        -0.07922203093767166
+      ],
+      "max_scene_m": [
+        -11.290579795837402,
+        12.708139419555664,
+        0.2954882085323334
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_86",
+      "min_scene_m": [
+        -2.3103280067443848,
+        14.37378215789795,
+        -0.034822024405002594
+      ],
+      "max_scene_m": [
+        -0.811668872833252,
+        15.879912376403809,
+        0.5054333209991455
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_87",
+      "min_scene_m": [
+        25.488521575927734,
+        -13.223307609558105,
+        0.9857701659202576
+      ],
+      "max_scene_m": [
+        26.96676254272461,
+        -11.758687019348145,
+        1.4708366394042969
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_88",
+      "min_scene_m": [
+        -12.920543670654297,
+        -9.317611694335938,
+        0.02198890969157219
+      ],
+      "max_scene_m": [
+        -11.68990707397461,
+        -8.054645538330078,
+        0.4242613613605499
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "Vista_GrassExtra_89",
+      "min_scene_m": [
+        5.377912998199463,
+        21.070941925048828,
+        2.266893148422241
+      ],
+      "max_scene_m": [
+        6.888488292694092,
+        22.57573699951172,
+        2.776031017303467
+      ],
+      "blender_location_matches_proposal": true
+    },
+    {
+      "name": "SM_Doorstep_StonebrookVista_01",
+      "min_scene_m": [
+        -1.0,
+        -1.5,
+        -0.10000000149011612
+      ],
+      "max_scene_m": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "blender_location_matches_proposal": true
+    }
+  ],
+  "scope": "Actual saved Blender scene transforms and BVH geometry; no UE import or runtime changes"
+}

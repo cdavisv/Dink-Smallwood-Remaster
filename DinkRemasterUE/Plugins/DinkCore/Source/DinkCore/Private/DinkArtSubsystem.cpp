@@ -1,4 +1,5 @@
 #include "DinkArtSubsystem.h"
+#include "DinkArtContextActor.h"
 #include "DinkCoreModule.h"
 #include "DinkOriginComponent.h"
 #include "DinkHumanoidComponent.h"
@@ -110,6 +111,14 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			}
 		}
 	}
+
+    if (Manifest->HasField(TEXT("context")))
+    {
+        if (ADinkArtContextActor* Context=ADinkArtContextActor::CreateFromManifest(World,Manifest,Meshes,TargetScreen))
+            Context->Tags.Add(FName(*FString::Printf(TEXT("DinkArtManifest_%s"),*ManifestFile)));
+        else UE_LOG(LogDink,Warning,TEXT("Art: invalid render-only context %s; skipped without changing scene"),*ManifestFile);
+        return;
+    }
 
 	TMap<FString, ADinkPlaceholderActor*> Placements;
 	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It) Placements.Add(It->Origin->OriginId.ToString(), *It);

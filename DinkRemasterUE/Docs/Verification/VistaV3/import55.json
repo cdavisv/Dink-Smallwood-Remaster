@@ -1,0 +1,101 @@
+{
+  "actual_editor_import_exit": 0,
+  "separate_check_exit": 0,
+  "assets": 55,
+  "catalogue_roots": {
+    "Kits": 54,
+    "Props": 1
+  },
+  "source_triangles": 17604,
+  "fallback_triangles": 17604,
+  "actual_nanite_triangles": 17604,
+  "bounds": "all55 source vertex bounds match pinned source within.05cm; culling bounds not used",
+  "nanite_policy": "Enabled,PercentTriangles1.0,error0,1LOD each",
+  "shared_materials": {
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.MI_Stonebrook_Fieldstone": [
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.MI_Stonebrook_Fieldstone"
+    ],
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow.MI_Stonebrook_Meadow": [
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow.MI_Stonebrook_Meadow"
+    ]
+  },
+  "reference_correction": {
+    "/Game/Dink/Materials/StonebrookExterior/MI_Stonebrook_Meadow.MI_Stonebrook_Meadow": "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow.MI_Stonebrook_Meadow"
+  },
+  "original_inputs": 5598,
+  "original_changes": [],
+  "package_bytes_unchanged_in_check": true,
+  "package_sha256": {
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN16.uasset": "237d94661a541fa8dbc5170695a26bd3461854961da3f0985aa772ba5f5afff9",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN24.uasset": "bbcfa61a1d4602bee7e4eb1fce8efb564063fc33d3482b9b2906b8891fa1834a",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN32.uasset": "f0d7a0e0acbb92d9c3fa8d002f07bb96bc4d0e1bd14e701b2e3eba5798cd5f9c",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN8.uasset": "e9c158c0457cae92e09a7f89b61052b6ceb50d643a588097dd62bd7524455610",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP0.uasset": "1f3578787f580d1fe27b77059fd3e7f25ad2548755ff6933bc68dcf32bd959dd",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP16.uasset": "577f397a3e369c575e340e22fa6f7b696bcac27627e8181990f677123ee1c55e",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP8.uasset": "5c0b034a22a6298cef45d7abfa6adce9a8e1ab5e9eeb6eb4ab18f0cd65c024c6",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN16.uasset": "05bafa86fc12d24362380cfbad1ca282296b94d49fd1c6a0d9aa1ac3719dbd6b",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN24.uasset": "592b02e1ff2e62d481d30463cb9633dfa429672a0b351529d43aecb71fb70332",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN32.uasset": "1e1712e26eea966fd1ac3405c2cc80f7f005003c724f33bba6f88aac51dad201",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN8.uasset": "9a59911f9d5feef79b11933122ec6bb4ed14d494707b8cc541ea98af797dbc32",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP0.uasset": "49c5d5718e93618c4e9907b9ae7957540d04ab21f419a3e71e120ea48dced8b6",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP16.uasset": "4074202a5b136e4b33cefaa332be6b496dba31317843851586ad9e49fe634997",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP8.uasset": "5819784e1d17f02ccff3f888c51963952e17b5a44d00f3a65c8a71777b7722b2",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN16.uasset": "d98094e04f8ded6474a4ac6ada3521ca783a5f7352527f46fdecc494a12f872d",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN24.uasset": "cfe25e763685df40797c67de57b49cad1c98636740fdc1d4a92d63645958f058",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN32.uasset": "19277f9889e46312fc348f184d54544d03e6fe754d5d4db648550f0d98ea4870",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN8.uasset": "4d651519dec387e33b00b9631b079c3c00877d6f5f742c4bf89a97612fb5f191",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP0.uasset": "af271f8b2054cb20b7cbc8b95255cab23568d2dd1624b17bcc329f7b98d15ef3",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP16.uasset": "c140259754c7856c10af3832dc8f8878b6742aff763eb09c73ea4eae9bbb87df",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP8.uasset": "e9fde5505572e9fe5b7d5db0560faa5cf32fdb93f3f746855d5bb04386d6b994",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN16.uasset": "a6c9c295638e278e91b48b917ec3a668cb2eecbd6c0d78b7dd3f2e48a69d3ffb",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN24.uasset": "91e09615008dd567c02fb37a7d9964f9cafd42b66737dc9bdc8718da430b0ca4",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN32.uasset": "5ab6637b0709e27a3f59a83086fbf558ee696ab82e8ca9f4fb5c8a34e8acebb1",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN8.uasset": "4109322e25e56cf94a748cbaf3c147282d180709ccde9dfc70e38434b15f04a1",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP13R.uasset": "15be9a940ed2275a466561e4ff8428487dc9d23598db5bd4c30600abea111ee3",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP16.uasset": "2f8c955ea1f707ca9c47a0c80450984241f3118bba8c6323e0b4067b6b0c4ad2",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN16.uasset": "7a2a8ed36ef63a0681443b6ec8f64ef571ae5894b38365abac98f5116a006206",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN24.uasset": "a0d1ecd2fc83d13b8e830730fe08b9caa95d564c4156115687bbdcb7cbe126b5",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN32.uasset": "2a9dca749c68d2b4edfe9d2ae251914af247522bfdb29b9e8edb155bcc83a00e",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN8.uasset": "9f4b25d0e71e77d5376383f7213c6a5ff8df874ebed02d1d3876e3f4fcc6a593",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP13R.uasset": "0106d804b377ce1b400ecf941e05b30cf6db24a35a6be116179483a3e3432f90",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP16.uasset": "2a2b903e8a0c5ef43d3a54e5ff76cfc00e024d777926ff7bd26e4de5321d878f",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN16.uasset": "ba32e30a6b9146ca06f56aac6039a9f84c39c0c50dfdd28fef11b461fad80c18",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN24.uasset": "043c33648e80f603e3b09ca3a0584499246ba13e73b54fa829afc18484313500",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN32.uasset": "6d8be181860c5feea25dd36549495200bbe03103ce1a15e96bc4facac4a9f3de",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN8.uasset": "61063a166bbbb24cd9301cfe3e6b154438ac2cb26a0c8de0727228188af7cc2b",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP0.uasset": "cf41b7ff555164ac7e1915e3a516d52b342416767dba6148d483dec2e0400bc2",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP16.uasset": "00beb95e02eb565bbb197a3f5252d1268881fbfd11ef98c9219e13a60c447144",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP8.uasset": "96bda55f6cdba3a2c24c63f8a50a767a4602a9a556cdbcc669742289efaa0e94",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN16.uasset": "63adeaa6ba1b71200de5d6dbf621201cc897f24f8459134086f64c403fc0b353",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN24.uasset": "0e5933b780d385dede9a99413f310e99d564045996bc3f073132beea3e7efea1",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN32.uasset": "8f10985b73b8ff7d6cc699425d71e47fa0b93349bda9a1b59f3ff016bd8ab9b7",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN8.uasset": "82404c7c63ec56331c5544820ce0e2f53bf7981a0fc03738dc20737c78b7d04e",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP0.uasset": "810556088258af94444d876db037ef67340f8b0e005d84140fb70e440d7d67b4",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP16.uasset": "db2b43d900f610e0b28e7b727773b066d92947030745197fa6e47abe913b6789",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP8.uasset": "801e8fc684655f9b90ca1da96b27a1e5a41146e116764c5bcbecaa5c57c00ea5",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN16.uasset": "398368927f3d680e2a0ef1d7c8a4f3d52bfa8a817f10e047900ffec06eb46e21",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN24.uasset": "df1d76321132a63ed1c4f107d1ce1e2e4c02b063d86e144ccf7f17b1ba62cc9a",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN32.uasset": "7dc2b84f7abef2a95e250c0322e975320d0385707cbeaac2a614ede5bc030b70",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN8.uasset": "57a225657c99eda91c0144e477f270be22900613253934be81c440abfe9834ab",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP0.uasset": "d869db83539f7ae90a5aad4aa40e46e7fd57f57a8bfed5b4c30a1792c21f2865",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP16.uasset": "589e015c0c2dc9a52f9fe0984348d69557ef2d9bfe25b844a16d19d1f226079d",
+    "Content/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP8.uasset": "b71c8c5e74d66a084e8c79bf938781dfcd435e22b53cea8c3240ae1ecb11947e",
+    "Content/Dink/Props/Stonebrook/InteriorVista/SM_Doorstep_StonebrookVista_01.uasset": "8e79f14d8c57afdad5fc338064d74c5c9c0d81208ba77f9ebe1e9b6105c59924"
+  },
+  "data_files": 666,
+  "runtime_layer_published": false,
+  "ledger_written": false,
+  "pinned_source_sha256": "46712f5b263ca747ac8f8f0e0ad32a05f01f1cc95a4b8816035ff0b6eb3a4fa0",
+  "source_files": 139,
+  "prior_failures": [
+    "first_failure.json:doorstep classification",
+    "second_failure.json:Meadow reference metadata",
+    "third_failure.json:commandlet subsystem getter; no saved meshes"
+  ],
+  "standalone": "13/13PASS",
+  "scripts": {
+    "Scripts/import_stonebrook_vista.py": "813e036ad98511d9bac753bf4625bd2b4ab6fe2d223f4c195455877cdf49d41c",
+    "Scripts/vista_import_support.py": "7a8ad9d9596574b210fcdcf89cc477b0aa9d6e3e829154e9e31e66e8fa40b84d",
+    "Scripts/tests/test_vista_import.py": "2ab9d00b584d04642366e6740f36e96b48cfe3b016a96f1d1cf47fa0bb8b39f7"
+  }
+}
