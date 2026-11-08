@@ -1,0 +1,7555 @@
+{
+  "schema": "dink-art/1",
+  "screen": 1,
+  "context": {
+    "visibility": "owner_screen_only",
+    "render_only": true
+  },
+  "elements": [
+    {
+      "name": "Vista_000_SM_VistaGround_8m_XN32_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN32.SM_VistaGround_8m_XN32_YN32",
+      "world_cm": [
+        -187006.0975,
+        396795.98,
+        241.13593101501465
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_001_SM_VistaGround_8m_XN32_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN24.SM_VistaGround_8m_XN32_YN24",
+      "world_cm": [
+        -187006.0975,
+        395995.98,
+        222.5309133529663
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_002_SM_VistaGround_8m_XN32_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN16.SM_VistaGround_8m_XN32_YN16",
+      "world_cm": [
+        -187006.0975,
+        395195.98,
+        196.86284065246582
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_003_SM_VistaGround_8m_XN32_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YN8.SM_VistaGround_8m_XN32_YN8",
+      "world_cm": [
+        -187006.0975,
+        394395.98,
+        223.19002151489258
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_004_SM_VistaGround_8m_XN32_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP0.SM_VistaGround_8m_XN32_YP0",
+      "world_cm": [
+        -187006.0975,
+        393595.98,
+        249.51722621917725
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_005_SM_VistaGround_8m_XN32_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP8.SM_VistaGround_8m_XN32_YP8",
+      "world_cm": [
+        -187006.0975,
+        392795.98,
+        253.71592044830322
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_006_SM_VistaGround_8m_XN32_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN32_YP16.SM_VistaGround_8m_XN32_YP16",
+      "world_cm": [
+        -187006.0975,
+        391995.98,
+        249.84474182128906
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_007_SM_VistaGround_8m_XN24_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN32.SM_VistaGround_8m_XN24_YN32",
+      "world_cm": [
+        -186206.0975,
+        396795.98,
+        219.29879188537598
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_008_SM_VistaGround_8m_XN24_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN24.SM_VistaGround_8m_XN24_YN24",
+      "world_cm": [
+        -186206.0975,
+        395995.98,
+        79.24089431762695
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_009_SM_VistaGround_8m_XN24_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN16.SM_VistaGround_8m_XN24_YN16",
+      "world_cm": [
+        -186206.0975,
+        395195.98,
+        65.77038764953613
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_010_SM_VistaGround_8m_XN24_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YN8.SM_VistaGround_8m_XN24_YN8",
+      "world_cm": [
+        -186206.0975,
+        394395.98,
+        79.58679795265198
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_011_SM_VistaGround_8m_XN24_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP0.SM_VistaGround_8m_XN24_YP0",
+      "world_cm": [
+        -186206.0975,
+        393595.98,
+        93.40320825576782
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_012_SM_VistaGround_8m_XN24_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP8.SM_VistaGround_8m_XN24_YP8",
+      "world_cm": [
+        -186206.0975,
+        392795.98,
+        95.60666680335999
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_013_SM_VistaGround_8m_XN24_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN24_YP16.SM_VistaGround_8m_XN24_YP16",
+      "world_cm": [
+        -186206.0975,
+        391995.98,
+        210.95166206359863
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_014_SM_VistaGround_8m_XN16_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN32.SM_VistaGround_8m_XN16_YN32",
+      "world_cm": [
+        -185406.0975,
+        396795.98,
+        127.40422487258911
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_015_SM_VistaGround_8m_XN16_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN24.SM_VistaGround_8m_XN16_YN24",
+      "world_cm": [
+        -185406.0975,
+        395995.98,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_016_SM_VistaGround_8m_XN16_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN16.SM_VistaGround_8m_XN16_YN16",
+      "world_cm": [
+        -185406.0975,
+        395195.98,
+        3.991755098104477
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_017_SM_VistaGround_8m_XN16_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YN8.SM_VistaGround_8m_XN16_YN8",
+      "world_cm": [
+        -185406.0975,
+        394395.98,
+        3.0988432466983795
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_018_SM_VistaGround_8m_XN16_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP0.SM_VistaGround_8m_XN16_YP0",
+      "world_cm": [
+        -185406.0975,
+        393595.98,
+        -2.500000037252903
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_019_SM_VistaGround_8m_XN16_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP8.SM_VistaGround_8m_XN16_YP8",
+      "world_cm": [
+        -185406.0975,
+        392795.98,
+        7.511727511882782
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_020_SM_VistaGround_8m_XN16_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN16_YP16.SM_VistaGround_8m_XN16_YP16",
+      "world_cm": [
+        -185406.0975,
+        391995.98,
+        158.52477550506592
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_021_SM_VistaGround_8m_XN8_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN32.SM_VistaGround_8m_XN8_YN32",
+      "world_cm": [
+        -184606.0975,
+        396795.98,
+        195.9763765335083
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_022_SM_VistaGround_8m_XN8_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN24.SM_VistaGround_8m_XN8_YN24",
+      "world_cm": [
+        -184606.0975,
+        395995.98,
+        46.425387263298035
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_023_SM_VistaGround_8m_XN8_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN16.SM_VistaGround_8m_XN8_YN16",
+      "world_cm": [
+        -184606.0975,
+        395195.98,
+        3.944103792309761
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_024_SM_VistaGround_8m_XN8_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YN8.SM_VistaGround_8m_XN8_YN8",
+      "world_cm": [
+        -184606.0975,
+        394395.98,
+        3.0577462166547775
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_025_SM_VistaGround_8m_XN8_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP16.SM_VistaGround_8m_XN8_YP16",
+      "world_cm": [
+        -184606.0975,
+        391995.98,
+        189.37658071517944
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_026_SM_VistaGround_8m_XP0_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN32.SM_VistaGround_8m_XP0_YN32",
+      "world_cm": [
+        -183806.0975,
+        396795.98,
+        241.45033359527588
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_027_SM_VistaGround_8m_XP0_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN24.SM_VistaGround_8m_XP0_YN24",
+      "world_cm": [
+        -183806.0975,
+        395995.98,
+        88.05581331253052
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_028_SM_VistaGround_8m_XP0_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN16.SM_VistaGround_8m_XP0_YN16",
+      "world_cm": [
+        -183806.0975,
+        395195.98,
+        -2.9799677431583405
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_029_SM_VistaGround_8m_XP0_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YN8.SM_VistaGround_8m_XP0_YN8",
+      "world_cm": [
+        -183806.0975,
+        394395.98,
+        -2.500000037252903
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_030_SM_VistaGround_8m_XP0_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP16.SM_VistaGround_8m_XP0_YP16",
+      "world_cm": [
+        -183806.0975,
+        391995.98,
+        233.0937623977661
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_031_SM_VistaGround_8m_XP8_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN32.SM_VistaGround_8m_XP8_YN32",
+      "world_cm": [
+        -183006.0975,
+        396795.98,
+        244.31054592132568
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_032_SM_VistaGround_8m_XP8_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN24.SM_VistaGround_8m_XP8_YN24",
+      "world_cm": [
+        -183006.0975,
+        395995.98,
+        89.23823833465576
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_033_SM_VistaGround_8m_XP8_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN16.SM_VistaGround_8m_XP8_YN16",
+      "world_cm": [
+        -183006.0975,
+        395195.98,
+        -3.633415699005127
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_034_SM_VistaGround_8m_XP8_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YN8.SM_VistaGround_8m_XP8_YN8",
+      "world_cm": [
+        -183006.0975,
+        394395.98,
+        -2.500000037252903
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_035_SM_VistaGround_8m_XP8_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP0.SM_VistaGround_8m_XP8_YP0",
+      "world_cm": [
+        -183006.0975,
+        393595.98,
+        3.0988432466983795
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_036_SM_VistaGround_8m_XP8_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP8.SM_VistaGround_8m_XP8_YP8",
+      "world_cm": [
+        -183006.0975,
+        392795.98,
+        19.48249340057373
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_037_SM_VistaGround_8m_XP8_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP8_YP16.SM_VistaGround_8m_XP8_YP16",
+      "world_cm": [
+        -183006.0975,
+        391995.98,
+        236.00637912750244
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_038_SM_VistaGround_8m_XP16_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN32.SM_VistaGround_8m_XP16_YN32",
+      "world_cm": [
+        -182206.0975,
+        396795.98,
+        227.174711227417
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_039_SM_VistaGround_8m_XP16_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN24.SM_VistaGround_8m_XP16_YN24",
+      "world_cm": [
+        -182206.0975,
+        395995.98,
+        83.53345394134521
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_040_SM_VistaGround_8m_XP16_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN16.SM_VistaGround_8m_XP16_YN16",
+      "world_cm": [
+        -182206.0975,
+        395195.98,
+        59.941333532333374
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_041_SM_VistaGround_8m_XP16_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YN8.SM_VistaGround_8m_XP16_YN8",
+      "world_cm": [
+        -182206.0975,
+        394395.98,
+        59.15418863296509
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_042_SM_VistaGround_8m_XP16_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP0.SM_VistaGround_8m_XP16_YP0",
+      "world_cm": [
+        -182206.0975,
+        393595.98,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_043_SM_VistaGround_8m_XP16_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP8.SM_VistaGround_8m_XP16_YP8",
+      "world_cm": [
+        -182206.0975,
+        392795.98,
+        65.98520278930664
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_044_SM_VistaGround_8m_XP16_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP16_YP16.SM_VistaGround_8m_XP16_YP16",
+      "world_cm": [
+        -182206.0975,
+        391995.98,
+        220.22838592529297
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_045_SM_VistaGround_8m_XP24_YN32",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN32.SM_VistaGround_8m_XP24_YN32",
+      "world_cm": [
+        -181406.0975,
+        396795.98,
+        172.65396118164062
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_046_SM_VistaGround_8m_XP24_YN24",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN24.SM_VistaGround_8m_XP24_YN24",
+      "world_cm": [
+        -181406.0975,
+        395995.98,
+        139.1356110572815
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_047_SM_VistaGround_8m_XP24_YN16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN16.SM_VistaGround_8m_XP24_YN16",
+      "world_cm": [
+        -181406.0975,
+        395195.98,
+        122.8142261505127
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_048_SM_VistaGround_8m_XP24_YN8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YN8.SM_VistaGround_8m_XP24_YN8",
+      "world_cm": [
+        -181406.0975,
+        394395.98,
+        120.85655927658081
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_049_SM_VistaGround_8m_XP24_YP0",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP0.SM_VistaGround_8m_XP24_YP0",
+      "world_cm": [
+        -181406.0975,
+        393595.98,
+        115.9987211227417
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_050_SM_VistaGround_8m_XP24_YP8",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP8.SM_VistaGround_8m_XP24_YP8",
+      "world_cm": [
+        -181406.0975,
+        392795.98,
+        153.51673364639282
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_051_SM_VistaGround_8m_XP24_YP16",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP24_YP16.SM_VistaGround_8m_XP24_YP16",
+      "world_cm": [
+        -181406.0975,
+        391995.98,
+        167.80149936676025
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_052_SM_VistaGround_8m_XN8_YP13R",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XN8_YP13R.SM_VistaGround_8m_XN8_YP13R",
+      "world_cm": [
+        -184606.0975,
+        392245.98,
+        10.957175493240356
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_053_SM_VistaGround_8m_XP0_YP13R",
+      "mesh": "/Game/Dink/Kits/Stonebrook/InteriorVista/SM_VistaGround_8m_XP0_YP13R.SM_VistaGround_8m_XP0_YP13R",
+      "world_cm": [
+        -183806.0975,
+        392245.98,
+        19.31298077106476
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_054_Vista_DirtPath0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -183897.62945708333,
+        393599.8610740833,
+        -2.1423285762402546
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_055_Vista_DirtPath1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -183888.16358558333,
+        394401.25857615,
+        -2.6231669403885176
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_056_Vista_FenceWest2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186923.6415,
+        391709.98399624997,
+        199.5075173954687
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_057_Vista_FenceWest3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186918.48767250002,
+        392110.91386775,
+        208.52385713445588
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_058_Vista_FenceWest4",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186913.33384500002,
+        392511.84373925,
+        211.5626718949994
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_059_Vista_FenceWest5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186908.1800175,
+        392912.77361075,
+        208.11672542551972
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_060_Vista_FenceWest6",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186903.02619,
+        393313.70348225,
+        199.4154065615656
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_061_Vista_FenceWestCorner",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186634.85383625,
+        393503.45128574996,
+        217.28661620212733
+      ],
+      "rotation_deg": [
+        0,
+        35.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_062_Vista_FenceGarden0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186366.71546875,
+        393693.26227375,
+        133.48711334410467
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_063_Vista_FenceGarden1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186361.634085625,
+        394094.32682799996,
+        120.97350491897446
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_064_Vista_FenceSouth0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -186142.57961666666,
+        394298.79354791663,
+        48.343310987243065
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_065_Vista_FenceSouth1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -185744.0551785417,
+        394301.47894766665,
+        -4.2535535182281885
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_066_Vista_FenceSouth2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -185345.53074041667,
+        394304.16434741666,
+        -0.6260719079279377
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_067_Vista_FenceSouth3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -184947.00630229167,
+        394306.8497471666,
+        2.094582748113085
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_068_Vista_FenceSouth4",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -184548.48186416668,
+        394309.53514691663,
+        2.5589120579096987
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_069_Vista_FenceSouth5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -184149.95742604166,
+        394312.22054666665,
+        0.5254588960161283
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_070_Vista_FenceSouth7",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -183352.90854979167,
+        394317.5913461667,
+        -6.317262114563926
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_071_Vista_FenceSouth8",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -182954.38411166664,
+        394320.27674591664,
+        -7.751463730113686
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_072_Vista_FenceSouth9",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -182555.85967354168,
+        394322.96214566665,
+        -6.597878927833895
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_073_Vista_FenceSouth10",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -182157.33523541666,
+        394325.64754541666,
+        -3.413465992532512
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_074_Vista_FenceSouth11",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -181758.81079729166,
+        394328.3329451666,
+        2.80190715675967
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_075_Vista_FenceSouth12",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "world_cm": [
+        -181360.28635916667,
+        394331.01834491664,
+        51.94436648763021
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_076_Vista_OakWest",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        -186066.07402083333,
+        392745.98,
+        45.91236672052369
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_077_Vista_OakEast",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        -182134.92334375,
+        391595.98,
+        177.12242611861055
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1.1,
+        1.1,
+        1.1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_078_Vista_OakNorth",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        -185394.5609375,
+        391395.98,
+        157.9192193276134
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_079_Vista_Boulder0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -186168.27554166666,
+        392258.53178124997,
+        81.25082690560112
+      ],
+      "rotation_deg": [
+        0,
+        0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_080_Vista_Boulder1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -182030.34704166668,
+        392479.65314791666,
+        2.545553095192401
+      ],
+      "rotation_deg": [
+        0,
+        71.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_081_Vista_Boulder2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -182437.655875,
+        391286.14888125,
+        195.26032528952317
+      ],
+      "rotation_deg": [
+        0,
+        142.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_082_Vista_Boulder3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -185701.13040104168,
+        394192.800825,
+        -3.7118688325506555
+      ],
+      "rotation_deg": [
+        0,
+        213.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_083_Vista_Boulder4",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -182898.87144791667,
+        394013.0149020833,
+        -5.847349086077227
+      ],
+      "rotation_deg": [
+        0,
+        284.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_084_Vista_Grass000",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185347.95323159252,
+        392985.10973327263,
+        -4.160295472702027
+      ],
+      "rotation_deg": [
+        0,
+        51.719704089400196,
+        0
+      ],
+      "scale": [
+        0.6702409393140808,
+        0.6702409393140808,
+        0.6702409393140808
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_085_Vista_Grass001",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184045.19295545536,
+        394457.1580865974,
+        -0.24561198133006246
+      ],
+      "rotation_deg": [
+        0,
+        200.90889950485544,
+        0
+      ],
+      "scale": [
+        1.1156784589628472,
+        1.1156784589628472,
+        1.1156784589628472
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_086_Vista_Grass002",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186058.22517896455,
+        391053.26427159464,
+        140.26185269251025
+      ],
+      "rotation_deg": [
+        0,
+        212.63226155540633,
+        0
+      ],
+      "scale": [
+        0.8711956620648488,
+        0.8711956620648488,
+        0.8711956620648488
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_087_Vista_Grass003",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185194.25269549407,
+        391897.45664501307,
+        28.613901581805656
+      ],
+      "rotation_deg": [
+        0,
+        226.0291556997306,
+        0
+      ],
+      "scale": [
+        0.6541774077963542,
+        0.6541774077963542,
+        0.6541774077963542
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_088_Vista_Grass004",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181862.5199239037,
+        393805.31587023544,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        256.92782652664863,
+        0
+      ],
+      "scale": [
+        0.8717574830817327,
+        0.8717574830817327,
+        0.8717574830817327
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_089_Vista_Grass005",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184438.9072762119,
+        391153.3236767128,
+        108.37774801365524
+      ],
+      "rotation_deg": [
+        0,
+        48.96691163070956,
+        0
+      ],
+      "scale": [
+        1.0623692054984595,
+        1.0623692054984595,
+        1.0623692054984595
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_090_Vista_Grass006",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182152.63048137596,
+        390861.8118355355,
+        149.02805845340353
+      ],
+      "rotation_deg": [
+        0,
+        132.10303656287175,
+        0
+      ],
+      "scale": [
+        1.01799704537846,
+        1.01799704537846,
+        1.01799704537846
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_091_Vista_Grass007",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185412.21896888613,
+        394455.1004358985,
+        -1.051486129735452
+      ],
+      "rotation_deg": [
+        0,
+        12.799719389505082,
+        0
+      ],
+      "scale": [
+        0.9865110813787996,
+        0.9865110813787996,
+        0.9865110813787996
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_092_Vista_Grass008",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184733.89490546234,
+        392087.7038005133,
+        -8.099925924403715
+      ],
+      "rotation_deg": [
+        0,
+        123.67118932488505,
+        0
+      ],
+      "scale": [
+        0.751680812794959,
+        0.751680812794959,
+        0.751680812794959
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_093_Vista_Grass009",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185831.72231491946,
+        390978.3315972963,
+        127.11808430134768
+      ],
+      "rotation_deg": [
+        0,
+        186.41152410626376,
+        0
+      ],
+      "scale": [
+        0.7730392949871462,
+        0.7730392949871462,
+        0.7730392949871462
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_094_Vista_Grass011",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185468.10236418038,
+        393998.73454344063,
+        -2.0143928433855818
+      ],
+      "rotation_deg": [
+        0,
+        181.40261103195448,
+        0
+      ],
+      "scale": [
+        0.867476524864516,
+        0.867476524864516,
+        0.867476524864516
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_095_Vista_Grass012",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182459.01477284127,
+        393679.6986144382,
+        -2.963865453744372
+      ],
+      "rotation_deg": [
+        0,
+        357.52167180201087,
+        0
+      ],
+      "scale": [
+        0.6655811464791865,
+        0.6655811464791865,
+        0.6655811464791865
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_096_Vista_Grass013",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185519.7845224036,
+        391045.10722797614,
+        114.81543495053606
+      ],
+      "rotation_deg": [
+        0,
+        153.51015158459796,
+        0
+      ],
+      "scale": [
+        1.157198013913765,
+        1.157198013913765,
+        1.157198013913765
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_097_Vista_Grass014",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185580.23700176424,
+        394132.9036505707,
+        -2.7165398934907143
+      ],
+      "rotation_deg": [
+        0,
+        203.00443949745122,
+        0
+      ],
+      "scale": [
+        1.1569717556513792,
+        1.1569717556513792,
+        1.1569717556513792
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_098_Vista_Grass015",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184456.67384129233,
+        393837.7430531052,
+        -0.6490030684449782
+      ],
+      "rotation_deg": [
+        0,
+        156.7837407707018,
+        0
+      ],
+      "scale": [
+        1.2484545072668274,
+        1.2484545072668274,
+        1.2484545072668274
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_099_Vista_Grass016",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186037.93983388122,
+        393010.30971143476,
+        35.949010774783794
+      ],
+      "rotation_deg": [
+        0,
+        236.24158487591913,
+        0
+      ],
+      "scale": [
+        0.6803746961941692,
+        0.6803746961941692,
+        0.6803746961941692
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_100_Vista_Grass017",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182789.5043234742,
+        391499.819820394,
+        224.53309249341206
+      ],
+      "rotation_deg": [
+        0,
+        236.49706124358048,
+        0
+      ],
+      "scale": [
+        0.886352378651137,
+        0.886352378651137,
+        0.886352378651137
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_101_Vista_Grass018",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184153.93602989498,
+        390870.1497928028,
+        113.58320174590304
+      ],
+      "rotation_deg": [
+        0,
+        108.83667413225619,
+        0
+      ],
+      "scale": [
+        1.0780393293754504,
+        1.0780393293754504,
+        1.0780393293754504
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_102_Vista_Grass019",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181906.16880453457,
+        393379.6086330577,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        64.05734654004449,
+        0
+      ],
+      "scale": [
+        0.8790048653177647,
+        0.8790048653177647,
+        0.8790048653177647
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_103_Vista_Grass020",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185841.1891384797,
+        394463.93410574377,
+        -4.1284302747895225
+      ],
+      "rotation_deg": [
+        0,
+        103.06028609466543,
+        0
+      ],
+      "scale": [
+        0.907380041548034,
+        0.907380041548034,
+        0.907380041548034
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_104_Vista_Grass022",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184603.90726792318,
+        391065.00748346053,
+        103.01077692801606
+      ],
+      "rotation_deg": [
+        0,
+        318.87750850118476,
+        0
+      ],
+      "scale": [
+        1.1199388118069524,
+        1.1199388118069524,
+        1.1199388118069524
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_105_Vista_Grass023",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182588.14703578295,
+        391702.9230245047,
+        145.7663187004502
+      ],
+      "rotation_deg": [
+        0,
+        339.7282908494682,
+        0
+      ],
+      "scale": [
+        0.9281546101705267,
+        0.9281546101705267,
+        0.9281546101705267
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_106_Vista_Grass024",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182276.6388294157,
+        390977.520821647,
+        156.04519847775305
+      ],
+      "rotation_deg": [
+        0,
+        338.42691222602986,
+        0
+      ],
+      "scale": [
+        0.7074835818431964,
+        0.7074835818431964,
+        0.7074835818431964
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_107_Vista_Grass025",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185378.68703489815,
+        393877.6851008093,
+        -1.787894545895119
+      ],
+      "rotation_deg": [
+        0,
+        233.60537865495473,
+        0
+      ],
+      "scale": [
+        0.6932754138176348,
+        0.6932754138176348,
+        0.6932754138176348
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_108_Vista_Grass026",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185664.715740256,
+        393858.3314570531,
+        -2.9402850137895387
+      ],
+      "rotation_deg": [
+        0,
+        66.17130807499272,
+        0
+      ],
+      "scale": [
+        0.7609827514090968,
+        0.7609827514090968,
+        0.7609827514090968
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_109_Vista_Grass027",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181984.05671963,
+        394516.4158377333,
+        -1.6672454445682785
+      ],
+      "rotation_deg": [
+        0,
+        312.9335737956516,
+        0
+      ],
+      "scale": [
+        0.8420988678897603,
+        0.8420988678897603,
+        0.8420988678897603
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_110_Vista_Grass029",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181481.35977326316,
+        391807.858714156,
+        64.16483162281949
+      ],
+      "rotation_deg": [
+        0,
+        198.72926731657918,
+        0
+      ],
+      "scale": [
+        1.2394713844022056,
+        1.2394713844022056,
+        1.2394713844022056
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_111_Vista_Grass030",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183968.6884382522,
+        391726.6391116396,
+        99.96185053411428
+      ],
+      "rotation_deg": [
+        0,
+        9.931566003688989,
+        0
+      ],
+      "scale": [
+        1.0906596986865105,
+        1.0906596986865105,
+        1.0906596986865105
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_112_Vista_Grass032",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182259.20408012514,
+        392116.4962143979,
+        -0.36711897350183675
+      ],
+      "rotation_deg": [
+        0,
+        261.1567003145244,
+        0
+      ],
+      "scale": [
+        1.017978740739643,
+        1.017978740739643,
+        1.017978740739643
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_113_Vista_Grass033",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184327.02127943502,
+        394238.4433263594,
+        1.385218941697138
+      ],
+      "rotation_deg": [
+        0,
+        339.08375140644927,
+        0
+      ],
+      "scale": [
+        1.0361231203014483,
+        1.0361231203014483,
+        1.0361231203014483
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_114_Vista_Grass034",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182583.00898636522,
+        394422.41571124346,
+        -7.115610248719211
+      ],
+      "rotation_deg": [
+        0,
+        252.99192963046875,
+        0
+      ],
+      "scale": [
+        0.8120406246200701,
+        0.8120406246200701,
+        0.8120406246200701
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_115_Vista_Grass035",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183960.06172872844,
+        391602.1434980095,
+        144.37552705688347
+      ],
+      "rotation_deg": [
+        0,
+        9.594790064353681,
+        0
+      ],
+      "scale": [
+        0.853035050317992,
+        0.853035050317992,
+        0.853035050317992
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_116_Vista_Grass036",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181605.73966795026,
+        391147.9208942627,
+        130.33590406033636
+      ],
+      "rotation_deg": [
+        0,
+        171.99798833364994,
+        0
+      ],
+      "scale": [
+        0.6972277657785005,
+        0.6972277657785005,
+        0.6972277657785005
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_117_Vista_Grass037",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181489.3279389772,
+        390828.85603112215,
+        119.39887026539719
+      ],
+      "rotation_deg": [
+        0,
+        173.59973954146975,
+        0
+      ],
+      "scale": [
+        1.0837424552154635,
+        1.0837424552154635,
+        1.0837424552154635
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_118_Vista_Grass038",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185080.26308519623,
+        391490.6398364713,
+        139.5932162306923
+      ],
+      "rotation_deg": [
+        0,
+        15.741618207764706,
+        0
+      ],
+      "scale": [
+        0.7396820984687099,
+        0.7396820984687099,
+        0.7396820984687099
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_119_Vista_Grass039",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182604.42064784147,
+        393336.0533334025,
+        -0.7121395785950897
+      ],
+      "rotation_deg": [
+        0,
+        175.79100580738734,
+        0
+      ],
+      "scale": [
+        0.8365081888828685,
+        0.8365081888828685,
+        0.8365081888828685
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_120_Vista_Grass040",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182774.76024291106,
+        393038.978323946,
+        1.6315730032805371
+      ],
+      "rotation_deg": [
+        0,
+        275.85641785759,
+        0
+      ],
+      "scale": [
+        1.047650108059708,
+        1.047650108059708,
+        1.047650108059708
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_121_Vista_Grass041",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185359.3797373087,
+        391685.38003620255,
+        101.61612677860892
+      ],
+      "rotation_deg": [
+        0,
+        150.1619899772376,
+        0
+      ],
+      "scale": [
+        0.8864692171146862,
+        0.8864692171146862,
+        0.8864692171146862
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_122_Vista_Grass042",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185119.27912980414,
+        394216.91098748153,
+        0.7950081799980511
+      ],
+      "rotation_deg": [
+        0,
+        65.3733380872532,
+        0
+      ],
+      "scale": [
+        1.2027743643717708,
+        1.2027743643717708,
+        1.2027743643717708
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_123_Vista_Grass043",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186464.8893527817,
+        391306.1447104203,
+        199.63973720247236
+      ],
+      "rotation_deg": [
+        0,
+        137.46797972880054,
+        0
+      ],
+      "scale": [
+        0.8114829441893653,
+        0.8114829441893653,
+        0.8114829441893653
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_124_Vista_Grass044",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184721.7770423079,
+        390919.60119292577,
+        99.0895241591591
+      ],
+      "rotation_deg": [
+        0,
+        143.597698974516,
+        0
+      ],
+      "scale": [
+        1.0979807804494734,
+        1.0979807804494734,
+        1.0979807804494734
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_125_Vista_Grass045",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186045.79864222108,
+        394293.56383686233,
+        24.16206217464468
+      ],
+      "rotation_deg": [
+        0,
+        15.386499083436135,
+        0
+      ],
+      "scale": [
+        1.2452537274232203,
+        1.2452537274232203,
+        1.2452537274232203
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_126_Vista_Grass046",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185344.81465004952,
+        392787.8050344376,
+        -4.54960899051347
+      ],
+      "rotation_deg": [
+        0,
+        314.01539852297424,
+        0
+      ],
+      "scale": [
+        1.0607553199058466,
+        1.0607553199058466,
+        1.0607553199058466
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_127_Vista_Grass048",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184722.44347676006,
+        391117.52642108366,
+        102.16260625987815
+      ],
+      "rotation_deg": [
+        0,
+        77.33306791444865,
+        0
+      ],
+      "scale": [
+        1.0337105671099045,
+        1.0337105671099045,
+        1.0337105671099045
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_128_Vista_Grass049",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186395.1219202556,
+        391475.235466931,
+        215.6194301757231
+      ],
+      "rotation_deg": [
+        0,
+        354.1168302650418,
+        0
+      ],
+      "scale": [
+        0.8176703356423409,
+        0.8176703356423409,
+        0.8176703356423409
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_129_Vista_Grass051",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186565.69810674543,
+        390949.8049741245,
+        157.24723740359823
+      ],
+      "rotation_deg": [
+        0,
+        89.92054987422367,
+        0
+      ],
+      "scale": [
+        0.8712409497179163,
+        0.8712409497179163,
+        0.8712409497179163
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_130_Vista_Grass052",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181932.08455280244,
+        392152.20463111333,
+        2.3373448414929547
+      ],
+      "rotation_deg": [
+        0,
+        53.23517986082003,
+        0
+      ],
+      "scale": [
+        1.0331991219615062,
+        1.0331991219615062,
+        1.0331991219615062
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_131_Vista_Grass053",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186312.33974346943,
+        393984.9084832937,
+        106.99139837225256
+      ],
+      "rotation_deg": [
+        0,
+        105.68694580795416,
+        0
+      ],
+      "scale": [
+        1.0724735909893075,
+        1.0724735909893075,
+        1.0724735909893075
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_132_Vista_Grass054",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181339.17944880735,
+        392834.97907042573,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        133.42073004993128,
+        0
+      ],
+      "scale": [
+        0.7068876801210975,
+        0.7068876801210975,
+        0.7068876801210975
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_133_Vista_Grass055",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186303.50404569175,
+        392136.81375172554,
+        132.85031868022065
+      ],
+      "rotation_deg": [
+        0,
+        320.72481580886017,
+        0
+      ],
+      "scale": [
+        1.243043508371313,
+        1.243043508371313,
+        1.243043508371313
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_134_Vista_Grass056",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184263.94181166863,
+        391140.741832098,
+        114.14944547340443
+      ],
+      "rotation_deg": [
+        0,
+        83.21222294516862,
+        0
+      ],
+      "scale": [
+        0.6834576622173737,
+        0.6834576622173737,
+        0.6834576622173737
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_135_Vista_Grass057",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181667.82868654866,
+        392733.34323662706,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        177.0374529736989,
+        0
+      ],
+      "scale": [
+        1.1957270038269676,
+        1.1957270038269676,
+        1.1957270038269676
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_136_Vista_Grass059",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181707.1152408392,
+        394406.1724781136,
+        7.296432835643748
+      ],
+      "rotation_deg": [
+        0,
+        147.81927623178345,
+        0
+      ],
+      "scale": [
+        0.8101558241841647,
+        0.8101558241841647,
+        0.8101558241841647
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_137_Vista_Grass060",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183573.19083373714,
+        394181.60970578034,
+        -3.9602463302851567
+      ],
+      "rotation_deg": [
+        0,
+        29.91375382678052,
+        0
+      ],
+      "scale": [
+        0.6593205891301889,
+        0.6593205891301889,
+        0.6593205891301889
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_138_Vista_Grass062",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184044.67349527834,
+        394010.9413172819,
+        -1.2413827904007082
+      ],
+      "rotation_deg": [
+        0,
+        12.39440858225393,
+        0
+      ],
+      "scale": [
+        0.79006141096302,
+        0.79006141096302,
+        0.79006141096302
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_139_Vista_Grass064",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182117.80290929918,
+        391057.703843197,
+        152.50258657643502
+      ],
+      "rotation_deg": [
+        0,
+        48.748661363371724,
+        0
+      ],
+      "scale": [
+        0.8970546341024164,
+        0.8970546341024164,
+        0.8970546341024164
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_140_Vista_Grass065",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181440.82667012693,
+        393752.24263219023,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        212.9505492120789,
+        0
+      ],
+      "scale": [
+        1.213619133194082,
+        1.213619133194082,
+        1.213619133194082
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_141_Vista_Grass066",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181361.02793474117,
+        394337.6125269231,
+        54.09068432642321
+      ],
+      "rotation_deg": [
+        0,
+        40.40187689192472,
+        0
+      ],
+      "scale": [
+        1.0972272080796996,
+        1.0972272080796996,
+        1.0972272080796996
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_142_Vista_Grass067",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182623.07342841182,
+        393525.4944983615,
+        -1.995651619371902
+      ],
+      "rotation_deg": [
+        0,
+        25.079994471713206,
+        0
+      ],
+      "scale": [
+        1.0122818766634842,
+        1.0122818766634842,
+        1.0122818766634842
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_143_Vista_Grass068",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181808.16716927715,
+        393524.07694281836,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        37.85480296244568,
+        0
+      ],
+      "scale": [
+        0.9977817278127672,
+        0.9977817278127672,
+        0.9977817278127672
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_144_Vista_Grass069",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186143.7339570704,
+        391953.9321913263,
+        70.5465630005164
+      ],
+      "rotation_deg": [
+        0,
+        329.1800169711637,
+        0
+      ],
+      "scale": [
+        0.9684151829031947,
+        0.9684151829031947,
+        0.9684151829031947
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_145_Vista_Grass070",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186487.91307784824,
+        391094.71438737324,
+        159.5182174824569
+      ],
+      "rotation_deg": [
+        0,
+        333.17038250019755,
+        0
+      ],
+      "scale": [
+        0.9185364314162934,
+        0.9185364314162934,
+        0.9185364314162934
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_146_Vista_Grass071",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185093.23430353875,
+        392535.20795085176,
+        -7.185916561722102
+      ],
+      "rotation_deg": [
+        0,
+        106.2370609399298,
+        0
+      ],
+      "scale": [
+        0.9152808649595638,
+        0.9152808649595638,
+        0.9152808649595638
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_147_Vista_Grass072",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182549.96943638969,
+        393570.80858352326,
+        -2.336018133022313
+      ],
+      "rotation_deg": [
+        0,
+        6.045282325408445,
+        0
+      ],
+      "scale": [
+        1.2317794346715363,
+        1.2317794346715363,
+        1.2317794346715363
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_148_Vista_Grass074",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181877.77012860245,
+        393881.6573357824,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        45.80993613012208,
+        0
+      ],
+      "scale": [
+        1.0611449982438474,
+        1.0611449982438474,
+        1.0611449982438474
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_149_Vista_Grass075",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183541.51100447268,
+        391576.477316866,
+        177.2581748196402
+      ],
+      "rotation_deg": [
+        0,
+        292.0724623971842,
+        0
+      ],
+      "scale": [
+        0.9620185357876252,
+        0.9620185357876252,
+        0.9620185357876252
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_150_Vista_Grass076",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185236.88307994214,
+        391048.2391706401,
+        105.34491168966964
+      ],
+      "rotation_deg": [
+        0,
+        349.69689878675626,
+        0
+      ],
+      "scale": [
+        1.2194303891838285,
+        1.2194303891838285,
+        1.2194303891838285
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_151_Vista_Grass078",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181978.43215302896,
+        390812.5017130078,
+        141.22916786512616
+      ],
+      "rotation_deg": [
+        0,
+        55.44563650599911,
+        0
+      ],
+      "scale": [
+        0.6554228566802772,
+        0.6554228566802772,
+        0.6554228566802772
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_152_Vista_Grass079",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185884.18295382423,
+        393315.79270211863,
+        3.9982395839718556
+      ],
+      "rotation_deg": [
+        0,
+        295.38862544207564,
+        0
+      ],
+      "scale": [
+        0.8162883324315068,
+        0.8162883324315068,
+        0.8162883324315068
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_153_Vista_Grass080",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182376.8898681758,
+        390982.8124110227,
+        158.98478244274816
+      ],
+      "rotation_deg": [
+        0,
+        314.2981561591841,
+        0
+      ],
+      "scale": [
+        0.8891912659153072,
+        0.8891912659153072,
+        0.8891912659153072
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_154_Vista_Grass081",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186008.7164353337,
+        394232.79118568863,
+        16.932470292297076
+      ],
+      "rotation_deg": [
+        0,
+        141.47083724996534,
+        0
+      ],
+      "scale": [
+        0.9686979668960389,
+        0.9686979668960389,
+        0.9686979668960389
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_155_Vista_Grass082",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182928.1499683811,
+        393764.7728401384,
+        -3.9148170408751195
+      ],
+      "rotation_deg": [
+        0,
+        266.85342324887415,
+        0
+      ],
+      "scale": [
+        0.7613778189531404,
+        0.7613778189531404,
+        0.7613778189531404
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_156_Vista_Grass083",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185565.09845568833,
+        393302.6395812623,
+        -2.4404745869641236
+      ],
+      "rotation_deg": [
+        0,
+        58.49066838306838,
+        0
+      ],
+      "scale": [
+        0.9015754656901745,
+        0.9015754656901745,
+        0.9015754656901745
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_157_Vista_Grass084",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183113.41784526297,
+        391120.1679656248,
+        163.4239777041218
+      ],
+      "rotation_deg": [
+        0,
+        174.13087883669513,
+        0
+      ],
+      "scale": [
+        0.8463980606022221,
+        0.8463980606022221,
+        0.8463980606022221
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_158_Vista_Grass085",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186272.7430949153,
+        391183.5673162326,
+        154.26752458508415
+      ],
+      "rotation_deg": [
+        0,
+        335.0458842872417,
+        0
+      ],
+      "scale": [
+        0.9392552601900008,
+        0.9392552601900008,
+        0.9392552601900008
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_159_Vista_Grass086",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182216.1483843748,
+        391796.92076610256,
+        92.02942465019265
+      ],
+      "rotation_deg": [
+        0,
+        314.5948975735165,
+        0
+      ],
+      "scale": [
+        1.0622446672529064,
+        1.0622446672529064,
+        1.0622446672529064
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_160_Vista_Grass087",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185799.13241566287,
+        392228.98413009994,
+        0.2971554804729893
+      ],
+      "rotation_deg": [
+        0,
+        224.01149029062242,
+        0
+      ],
+      "scale": [
+        1.0830224843245209,
+        1.0830224843245209,
+        1.0830224843245209
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_161_Vista_Grass088",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182734.61506469903,
+        391850.85583784664,
+        74.78730847084111
+      ],
+      "rotation_deg": [
+        0,
+        79.01298922615115,
+        0
+      ],
+      "scale": [
+        0.6666690346871987,
+        0.6666690346871987,
+        0.6666690346871987
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_162_Vista_Grass089",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185355.5058795865,
+        391897.10274099506,
+        31.37110245893983
+      ],
+      "rotation_deg": [
+        0,
+        311.1568955773911,
+        0
+      ],
+      "scale": [
+        0.9558264709481109,
+        0.9558264709481109,
+        0.9558264709481109
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_163_Vista_Grass090",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183781.16104038485,
+        391115.3222045742,
+        135.9284894492256
+      ],
+      "rotation_deg": [
+        0,
+        140.18595312666224,
+        0
+      ],
+      "scale": [
+        0.7263821340241965,
+        0.7263821340241965,
+        0.7263821340241965
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_164_Vista_Grass091",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183243.85979417965,
+        391503.1315404206,
+        212.8889620409264
+      ],
+      "rotation_deg": [
+        0,
+        6.0737221897310345,
+        0
+      ],
+      "scale": [
+        0.7650311338438768,
+        0.7650311338438768,
+        0.7650311338438768
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_165_Vista_Grass093",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182053.82900067422,
+        390816.37782172195,
+        144.3335618194127
+      ],
+      "rotation_deg": [
+        0,
+        38.526803025370874,
+        0
+      ],
+      "scale": [
+        1.126317344184102,
+        1.126317344184102,
+        1.126317344184102
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_166_Vista_Grass094",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181827.4306132479,
+        393548.5712376389,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        335.9579950023203,
+        0
+      ],
+      "scale": [
+        1.178569901850146,
+        1.178569901850146,
+        1.178569901850146
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_167_Vista_Street_0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -186206.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_168_Vista_Street_1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -185406.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_169_Vista_Street_2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -184606.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_170_Vista_Street_3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -183806.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_171_Vista_Street_4",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -183006.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_172_Vista_Street_5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -182206.0975,
+        395395.98,
+        -2.8
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_173_Vista_Street_6",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -181406.0975,
+        395395.98,
+        121.3168933791118
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_174_Vista_Neighbor_East",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "world_cm": [
+        -181406.0975,
+        393195.98,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_175_Vista_Neighbor_SouthWest",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "world_cm": [
+        -185006.0975,
+        396095.98,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        -180.0,
+        0
+      ],
+      "scale": [
+        0.85,
+        0.85,
+        0.85
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_176_Vista_Neighbor_Access",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "world_cm": [
+        -185556.0975,
+        395345.98,
+        4.8
+      ],
+      "rotation_deg": [
+        0,
+        90.0,
+        0
+      ],
+      "scale": [
+        0.5,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_177_Vista_LayeredOak_0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        -184106.0975,
+        394965.98,
+        0.7644175637604633
+      ],
+      "rotation_deg": [
+        0,
+        -0.0,
+        0
+      ],
+      "scale": [
+        0.78,
+        0.78,
+        0.78
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_178_Vista_LayeredOak_1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "world_cm": [
+        -183006.0975,
+        395895.98,
+        53.14886105357569
+      ],
+      "rotation_deg": [
+        0,
+        -40.10704565915762,
+        0
+      ],
+      "scale": [
+        0.85,
+        0.85,
+        0.85
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_179_Vista_PineLayer_0",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -186106.0975,
+        396495.98,
+        212.76432258359037
+      ],
+      "rotation_deg": [
+        0,
+        -0.9758891704671655,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_180_Vista_PineLayer_1",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -185106.0975,
+        396595.98,
+        14.000460844675743
+      ],
+      "rotation_deg": [
+        0,
+        124.37283648204821,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_181_Vista_PineLayer_2",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184106.0975,
+        396495.98,
+        45.21771967960368
+      ],
+      "rotation_deg": [
+        0,
+        -102.3613509661316,
+        0
+      ],
+      "scale": [
+        0.85,
+        0.85,
+        0.85
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_182_Vista_PineLayer_3",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -183506.0975,
+        396595.98,
+        214.76777240413873
+      ],
+      "rotation_deg": [
+        0,
+        95.58601755851406,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_183_Vista_PineLayer_4",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -182406.0975,
+        396495.98,
+        236.80860593011795
+      ],
+      "rotation_deg": [
+        0,
+        -109.03710387169514,
+        0
+      ],
+      "scale": [
+        0.83,
+        0.83,
+        0.83
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_184_Vista_PineLayer_5",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -181306.0975,
+        396295.98,
+        136.4073437909383
+      ],
+      "rotation_deg": [
+        0,
+        -75.81102275279316,
+        0
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_185_Vista_PineLayer_6",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -186606.0975,
+        392895.98,
+        231.49685878640258
+      ],
+      "rotation_deg": [
+        0,
+        55.3485501831965,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_186_Vista_PineLayer_7",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -186606.0975,
+        392095.98,
+        235.62971185709603
+      ],
+      "rotation_deg": [
+        0,
+        -9.354297722242949,
+        0
+      ],
+      "scale": [
+        0.88,
+        0.88,
+        0.88
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_187_Vista_LanePebble_0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183612.55503525914,
+        393820.0281516784,
+        -2.885293521086538
+      ],
+      "rotation_deg": [
+        0,
+        161.68311688706433,
+        0
+      ],
+      "scale": [
+        0.11049195264368981,
+        0.11049195264368981,
+        0.11049195264368981
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_188_Vista_LanePebble_1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183978.30586041108,
+        394005.5814935215,
+        -2.0897280542299086
+      ],
+      "rotation_deg": [
+        0,
+        -143.93679234203853,
+        0
+      ],
+      "scale": [
+        0.04517427282753261,
+        0.04517427282753261,
+        0.04517427282753261
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_189_Vista_LanePebble_2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183638.29735696985,
+        394828.86486392585,
+        -3.5242815121284603
+      ],
+      "rotation_deg": [
+        0,
+        -169.21893904454697,
+        0
+      ],
+      "scale": [
+        0.046180125181199565,
+        0.046180125181199565,
+        0.046180125181199565
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_190_Vista_LanePebble_3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183972.92359139,
+        394764.75127129717,
+        -1.7536954206211441
+      ],
+      "rotation_deg": [
+        0,
+        13.443958025374217,
+        0
+      ],
+      "scale": [
+        0.09993679209715374,
+        0.09993679209715374,
+        0.09993679209715374
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_191_Vista_LanePebble_4",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183947.9469001225,
+        394240.89263808803,
+        -2.367368333055752
+      ],
+      "rotation_deg": [
+        0,
+        -141.8788305301784,
+        0
+      ],
+      "scale": [
+        0.09307222689638285,
+        0.09307222689638285,
+        0.09307222689638285
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_192_Vista_LanePebble_5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183966.6796125579,
+        394642.7357419866,
+        -1.9236692370063135
+      ],
+      "rotation_deg": [
+        0,
+        -173.18875591991417,
+        0
+      ],
+      "scale": [
+        0.08241941449259849,
+        0.08241941449259849,
+        0.08241941449259849
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_193_Vista_LanePebble_6",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183943.7379626691,
+        394546.87868922285,
+        -2.4069907943681894
+      ],
+      "rotation_deg": [
+        0,
+        -142.68000282099987,
+        0
+      ],
+      "scale": [
+        0.03646429906494914,
+        0.03646429906494914,
+        0.03646429906494914
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_194_Vista_LanePebble_7",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183657.34500398004,
+        394270.32786411163,
+        -3.063820454599748
+      ],
+      "rotation_deg": [
+        0,
+        -103.5073351021733,
+        0
+      ],
+      "scale": [
+        0.0743703459148567,
+        0.0743703459148567,
+        0.0743703459148567
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_195_Vista_LanePebble_8",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183955.61022837955,
+        394577.42650783295,
+        -2.1803317502102
+      ],
+      "rotation_deg": [
+        0,
+        -22.443966289478247,
+        0
+      ],
+      "scale": [
+        0.05071829545744103,
+        0.05071829545744103,
+        0.05071829545744103
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_196_Vista_LanePebble_9",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183628.5231686872,
+        394015.01477249037,
+        -3.0451921739142707
+      ],
+      "rotation_deg": [
+        0,
+        -145.5620284406004,
+        0
+      ],
+      "scale": [
+        0.07474069341492406,
+        0.07474069341492406,
+        0.07474069341492406
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_197_Vista_LanePebble_10",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183911.81975888112,
+        395223.48659324757,
+        -3.587247220184428
+      ],
+      "rotation_deg": [
+        0,
+        115.09361959409755,
+        0
+      ],
+      "scale": [
+        0.07062519928890479,
+        0.07062519928890479,
+        0.07062519928890479
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_198_Vista_LanePebble_11",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183918.1976493517,
+        394551.83887833136,
+        -2.760657365515318
+      ],
+      "rotation_deg": [
+        0,
+        -121.58333541487191,
+        0
+      ],
+      "scale": [
+        0.05176929799285797,
+        0.05176929799285797,
+        0.05176929799285797
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_199_Vista_LanePebble_12",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183657.46291029296,
+        394343.6363583599,
+        -3.11253131485283
+      ],
+      "rotation_deg": [
+        0,
+        57.59823814620695,
+        0
+      ],
+      "scale": [
+        0.09442364976086724,
+        0.09442364976086724,
+        0.09442364976086724
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_200_Vista_LanePebble_13",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183606.22140037455,
+        394224.3947683162,
+        -3.5359339478216762
+      ],
+      "rotation_deg": [
+        0,
+        -145.0857429848732,
+        0
+      ],
+      "scale": [
+        0.06373499616274284,
+        0.06373499616274284,
+        0.06373499616274284
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_201_Vista_LanePebble_14",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183918.647762776,
+        395130.87193515216,
+        -3.2834322782469996
+      ],
+      "rotation_deg": [
+        0,
+        -100.8624786862629,
+        0
+      ],
+      "scale": [
+        0.07390364886422363,
+        0.07390364886422363,
+        0.07390364886422363
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_202_Vista_LanePebble_15",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183592.25035257835,
+        395218.29799719335,
+        -3.6158011694726775
+      ],
+      "rotation_deg": [
+        0,
+        13.615474518048476,
+        0
+      ],
+      "scale": [
+        0.04693485094032976,
+        0.04693485094032976,
+        0.04693485094032976
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_203_Vista_LanePebble_16",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183919.436024286,
+        394093.8136114728,
+        -2.630834855580238
+      ],
+      "rotation_deg": [
+        0,
+        -125.29342364945701,
+        0
+      ],
+      "scale": [
+        0.1127638168055038,
+        0.1127638168055038,
+        0.1127638168055038
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_204_Vista_LanePebble_17",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183915.24995476985,
+        394277.1941082126,
+        -2.7069894422888328
+      ],
+      "rotation_deg": [
+        0,
+        22.277725690032433,
+        0
+      ],
+      "scale": [
+        0.11160430468924587,
+        0.11160430468924587,
+        0.11160430468924587
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_205_Vista_LanePebble_18",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183976.66520190632,
+        394270.80758157826,
+        -1.8789534719953587
+      ],
+      "rotation_deg": [
+        0,
+        88.2492012078117,
+        0
+      ],
+      "scale": [
+        0.06042870177977986,
+        0.06042870177977986,
+        0.06042870177977986
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_206_Vista_LanePebble_19",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183649.98105550252,
+        394838.76171835396,
+        -3.431579916617576
+      ],
+      "rotation_deg": [
+        0,
+        -171.58483942102828,
+        0
+      ],
+      "scale": [
+        0.08900195635974362,
+        0.08900195635974362,
+        0.08900195635974362
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_207_Vista_LanePebble_20",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183664.3958326063,
+        394659.7585717602,
+        -3.2581399679995284
+      ],
+      "rotation_deg": [
+        0,
+        -136.57648483290274,
+        0
+      ],
+      "scale": [
+        0.051353281056983544,
+        0.051353281056983544,
+        0.051353281056983544
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_208_Vista_LanePebble_21",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183651.56564156365,
+        394668.9234680001,
+        -3.3423940840474793
+      ],
+      "rotation_deg": [
+        0,
+        -177.5413800367631,
+        0
+      ],
+      "scale": [
+        0.09889350932231324,
+        0.09889350932231324,
+        0.09889350932231324
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_209_Vista_LanePebble_22",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183660.4425230682,
+        394705.9499237733,
+        -3.303351183012314
+      ],
+      "rotation_deg": [
+        0,
+        -77.39638041978432,
+        0
+      ],
+      "scale": [
+        0.04511217577421849,
+        0.04511217577421849,
+        0.04511217577421849
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_210_Vista_LanePebble_23",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183646.0890973387,
+        394530.3038874104,
+        -3.312175101154559
+      ],
+      "rotation_deg": [
+        0,
+        -170.63359219884117,
+        0
+      ],
+      "scale": [
+        0.059577925987592414,
+        0.059577925987592414,
+        0.059577925987592414
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_211_Vista_LanePebble_24",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183908.35083744416,
+        394853.27300382394,
+        -2.972710825874713
+      ],
+      "rotation_deg": [
+        0,
+        143.06617046319784,
+        0
+      ],
+      "scale": [
+        0.043156104168568146,
+        0.043156104168568146,
+        0.043156104168568146
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_212_Vista_LanePebble_25",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183617.87156323047,
+        393922.40623307833,
+        -3.0077060628437584
+      ],
+      "rotation_deg": [
+        0,
+        36.07299804637342,
+        0
+      ],
+      "scale": [
+        0.09538667079485272,
+        0.09538667079485272,
+        0.09538667079485272
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_213_Vista_LanePebble_26",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183634.68416632843,
+        394349.77142562333,
+        -3.303063635361952
+      ],
+      "rotation_deg": [
+        0,
+        105.99604608386021,
+        0
+      ],
+      "scale": [
+        0.055976673437805415,
+        0.055976673437805415,
+        0.055976673437805415
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_214_Vista_LanePebble_27",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183912.33272578576,
+        394312.0689822059,
+        -2.738405175497887
+      ],
+      "rotation_deg": [
+        0,
+        93.42131610036208,
+        0
+      ],
+      "scale": [
+        0.05681205376328955,
+        0.05681205376328955,
+        0.05681205376328955
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_215_Vista_LanePebble_28",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183935.8277277493,
+        394408.82953248586,
+        -2.5222090394646806
+      ],
+      "rotation_deg": [
+        0,
+        18.204919953928904,
+        0
+      ],
+      "scale": [
+        0.08204938532968348,
+        0.08204938532968348,
+        0.08204938532968348
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_216_Vista_LanePebble_29",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183917.25693701574,
+        393837.9373267377,
+        -2.5735034350624857
+      ],
+      "rotation_deg": [
+        0,
+        -26.653429731272386,
+        0
+      ],
+      "scale": [
+        0.04928952270886406,
+        0.04928952270886406,
+        0.04928952270886406
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_217_Vista_LanePebble_30",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183598.58145170935,
+        394420.7663460325,
+        -3.8691220408805482
+      ],
+      "rotation_deg": [
+        0,
+        27.681392155704884,
+        0
+      ],
+      "scale": [
+        0.092284249959736,
+        0.092284249959736,
+        0.092284249959736
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_218_Vista_LanePebble_31",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183652.03628004907,
+        394100.646831443,
+        -2.967787099874331
+      ],
+      "rotation_deg": [
+        0,
+        15.984447981599503,
+        0
+      ],
+      "scale": [
+        0.05309104643620527,
+        0.05309104643620527,
+        0.05309104643620527
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_219_Vista_LanePebble_32",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183961.56054957572,
+        395055.7047060735,
+        -2.16991179601546
+      ],
+      "rotation_deg": [
+        0,
+        -16.96563530891283,
+        0
+      ],
+      "scale": [
+        0.06466430742152134,
+        0.06466430742152134,
+        0.06466430742152134
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_220_Vista_LanePebble_33",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183621.3518349375,
+        394908.7762479818,
+        -3.7339288778908184
+      ],
+      "rotation_deg": [
+        0,
+        93.72872384905241,
+        0
+      ],
+      "scale": [
+        0.08703008223182115,
+        0.08703008223182115,
+        0.08703008223182115
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_221_Vista_LanePebble_34",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183663.2036633147,
+        394549.8124269233,
+        -3.204254987187983
+      ],
+      "rotation_deg": [
+        0,
+        105.62922393846097,
+        0
+      ],
+      "scale": [
+        0.06501971519682671,
+        0.06501971519682671,
+        0.06501971519682671
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_222_Vista_LanePebble_35",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183948.75975911773,
+        395124.0351219509,
+        -2.9437092109709515
+      ],
+      "rotation_deg": [
+        0,
+        143.37343211228122,
+        0
+      ],
+      "scale": [
+        0.046652140901570584,
+        0.046652140901570584,
+        0.046652140901570584
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_223_Vista_LanePebble_36",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183923.83712971312,
+        394543.0270282988,
+        -2.695356699172035
+      ],
+      "rotation_deg": [
+        0,
+        -115.89833694286602,
+        0
+      ],
+      "scale": [
+        0.08446209793915146,
+        0.08446209793915146,
+        0.08446209793915146
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_224_Vista_LanePebble_37",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183925.21693134576,
+        393983.9180969882,
+        -2.5758500263415267
+      ],
+      "rotation_deg": [
+        0,
+        169.20610147745757,
+        0
+      ],
+      "scale": [
+        0.06694738139999257,
+        0.06694738139999257,
+        0.06694738139999257
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_225_Vista_LanePebble_38",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183651.7072183538,
+        394358.4580338973,
+        -3.1605448590290184
+      ],
+      "rotation_deg": [
+        0,
+        65.11571472304783,
+        0
+      ],
+      "scale": [
+        0.11661738141784157,
+        0.11661738141784157,
+        0.11661738141784157
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_226_Vista_LanePebble_39",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183932.9951476707,
+        395149.4629976888,
+        -3.302318440943085
+      ],
+      "rotation_deg": [
+        0,
+        30.973005206543117,
+        0
+      ],
+      "scale": [
+        0.049574311587689095,
+        0.049574311587689095,
+        0.049574311587689095
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_227_Vista_LanePebble_40",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183591.96099756286,
+        395153.27617379074,
+        -3.7658928615498293
+      ],
+      "rotation_deg": [
+        0,
+        -52.7507580717855,
+        0
+      ],
+      "scale": [
+        0.05222647473594374,
+        0.05222647473594374,
+        0.05222647473594374
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_228_Vista_LanePebble_41",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183595.86919256835,
+        394619.62424392987,
+        -4.064295355231681
+      ],
+      "rotation_deg": [
+        0,
+        175.3281347584177,
+        0
+      ],
+      "scale": [
+        0.09073504240632349,
+        0.09073504240632349,
+        0.09073504240632349
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_229_Vista_LanePebble_42",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183970.40609367256,
+        393878.1468714395,
+        -2.2852563944340716
+      ],
+      "rotation_deg": [
+        0,
+        129.66937443116643,
+        0
+      ],
+      "scale": [
+        0.050968296987409865,
+        0.050968296987409865,
+        0.050968296987409865
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_230_Vista_LanePebble_43",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "world_cm": [
+        -183650.13541009594,
+        394828.0690795969,
+        -3.4260233685982118
+      ],
+      "rotation_deg": [
+        0,
+        68.32275932206181,
+        0
+      ],
+      "scale": [
+        0.09733512197913688,
+        0.09733512197913688,
+        0.09733512197913688
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_231_Vista_Pine_0",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -186606.0975,
+        396395.98,
+        222.26608484546335
+      ],
+      "rotation_deg": [
+        0,
+        133.840155164165,
+        0
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_232_Vista_Pine_1",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -185606.0975,
+        396595.98,
+        15.752042206130273
+      ],
+      "rotation_deg": [
+        0,
+        -125.064522140953,
+        0
+      ],
+      "scale": [
+        0.83,
+        0.83,
+        0.83
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_233_Vista_Pine_2",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184606.0975,
+        396495.98,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        28.898995179077446,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_234_Vista_Pine_3",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -183006.0975,
+        396595.98,
+        238.5842438399166
+      ],
+      "rotation_deg": [
+        0,
+        -17.027538460818807,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_235_Vista_Pine_4",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -181806.0975,
+        396395.98,
+        187.07555142634152
+      ],
+      "rotation_deg": [
+        0,
+        -129.58186224062754,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_236_Vista_Pine_5",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -180906.0975,
+        395495.98,
+        127.62318297747939
+      ],
+      "rotation_deg": [
+        0,
+        12.277265418215332,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_237_Vista_Pine_6",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -186606.0975,
+        391695.98,
+        226.5397166233971
+      ],
+      "rotation_deg": [
+        0,
+        -157.75288924518438,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_238_Vista_Pine_7",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184506.0975,
+        391395.98,
+        148.63716673655912
+      ],
+      "rotation_deg": [
+        0,
+        -162.88285082555385,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_239_Vista_Pine_8",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -183306.0975,
+        391395.98,
+        221.4539418237632
+      ],
+      "rotation_deg": [
+        0,
+        47.42058464259924,
+        0
+      ],
+      "scale": [
+        0.84,
+        0.84,
+        0.84
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_240_Vista_Pine_9",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -182006.0975,
+        391395.98,
+        208.42414522918938
+      ],
+      "rotation_deg": [
+        0,
+        27.09986532573169,
+        0
+      ],
+      "scale": [
+        0.76,
+        0.76,
+        0.76
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_241_Vista_GrassExtra_0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185667.24098854233,
+        394973.2737341242,
+        -3.8128951878686554
+      ],
+      "rotation_deg": [
+        0,
+        -30.294384547991562,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.0064764068787908
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_242_Vista_GrassExtra_1",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181293.36874485988,
+        395835.73142437445,
+        86.996093191348
+      ],
+      "rotation_deg": [
+        0,
+        -6.257891099900611,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6984255520541349
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_243_Vista_GrassExtra_2",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186458.0123368271,
+        392970.18758613826,
+        186.4082103650616
+      ],
+      "rotation_deg": [
+        0,
+        99.03450810323855,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6588237940489624
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_244_Vista_GrassExtra_3",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185884.5622598779,
+        392706.4436849411,
+        6.47109989077659
+      ],
+      "rotation_deg": [
+        0,
+        -122.1858578531174,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.885340496436201
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_245_Vista_GrassExtra_5",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186402.7144723038,
+        395403.8637994983,
+        12.799928842573294
+      ],
+      "rotation_deg": [
+        0,
+        -3.2981764668857965,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9533080124002712
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_246_Vista_GrassExtra_6",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181430.98180426276,
+        394490.9683937653,
+        55.01018171850072
+      ],
+      "rotation_deg": [
+        0,
+        0.6320751195215532,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8957644606151701
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_247_Vista_GrassExtra_7",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182807.34889315572,
+        392761.88912365213,
+        3.098558928192757
+      ],
+      "rotation_deg": [
+        0,
+        49.39687575265411,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.819569829033062
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_248_Vista_GrassExtra_8",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182925.7197033101,
+        392899.2730597402,
+        2.614156093693894
+      ],
+      "rotation_deg": [
+        0,
+        145.8021773018455,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7453354402634602
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_249_Vista_GrassExtra_9",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185531.14670578155,
+        393895.5450026927,
+        -2.409934331804288
+      ],
+      "rotation_deg": [
+        0,
+        -122.57883608000361,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7310802639845746
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_250_Vista_GrassExtra_10",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181307.9650796001,
+        395405.0172486836,
+        6.977666233262767
+      ],
+      "rotation_deg": [
+        0,
+        75.66321016917446,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8582614902608372
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_251_Vista_GrassExtra_11",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185193.23600110467,
+        394063.3094904704,
+        -0.2700389914671454
+      ],
+      "rotation_deg": [
+        0,
+        140.98850908625676,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9546713397370699
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_252_Vista_GrassExtra_13",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185546.64571819463,
+        393480.0563302804,
+        -2.508397938406317
+      ],
+      "rotation_deg": [
+        0,
+        94.80330700219268,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9556488084855926
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_253_Vista_GrassExtra_16",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182544.14793951705,
+        395708.4016053429,
+        6.2483887774261255
+      ],
+      "rotation_deg": [
+        0,
+        -32.80406294211241,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9121821838056619
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_254_Vista_GrassExtra_17",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184035.36775526308,
+        395494.4317213698,
+        -1.1700523372020908
+      ],
+      "rotation_deg": [
+        0,
+        43.862998644507314,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8304904156443271
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_255_Vista_GrassExtra_18",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183020.34800540228,
+        394944.34609448275,
+        -8.814475942163114
+      ],
+      "rotation_deg": [
+        0,
+        -152.34745390673234,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7924166308566765
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_256_Vista_GrassExtra_19",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184835.61644659587,
+        393780.6902699818,
+        -1.0153591934849413
+      ],
+      "rotation_deg": [
+        0,
+        -100.60779227502614,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8558485615478921
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_257_Vista_GrassExtra_22",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182165.86729849325,
+        391869.5872618274,
+        58.139780993679366
+      ],
+      "rotation_deg": [
+        0,
+        62.9767545711497,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9657016114443945
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_258_Vista_GrassExtra_23",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181362.27056728056,
+        394506.8877009171,
+        68.49977595905224
+      ],
+      "rotation_deg": [
+        0,
+        175.2135513440636,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8100122967107481
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_259_Vista_GrassExtra_24",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181337.46337681144,
+        391882.22691304685,
+        84.26734859848565
+      ],
+      "rotation_deg": [
+        0,
+        -7.537061868716855,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6904052947712772
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_260_Vista_GrassExtra_25",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184827.90583959222,
+        395731.3190020092,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        -174.7095833442673,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6633237595626232
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_261_Vista_GrassExtra_26",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183829.50399296376,
+        395374.12957746186,
+        -3.598622248981251
+      ],
+      "rotation_deg": [
+        0,
+        98.24158312075167,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8072752350157698
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_262_Vista_GrassExtra_27",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183084.0468224427,
+        394124.4270774163,
+        -6.4717731014070825
+      ],
+      "rotation_deg": [
+        0,
+        -161.27283191816173,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8072137339093781
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_263_Vista_GrassExtra_28",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185334.62968009658,
+        394499.14815021085,
+        -0.2193652066267784
+      ],
+      "rotation_deg": [
+        0,
+        -155.80572965355952,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.654428374161118
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_264_Vista_GrassExtra_29",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182167.4704144021,
+        391827.99112411117,
+        76.42246073338819
+      ],
+      "rotation_deg": [
+        0,
+        4.565445071861579,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.0373643280940292
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_265_Vista_GrassExtra_30",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186192.83915138288,
+        396065.2332465437,
+        102.50413626640014
+      ],
+      "rotation_deg": [
+        0,
+        -143.884299960834,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.0153396563045125
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_266_Vista_GrassExtra_31",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182114.4595665182,
+        392693.2936299366,
+        -0.11802607826167602
+      ],
+      "rotation_deg": [
+        0,
+        -116.01283134696119,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.729247505379873
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_267_Vista_GrassExtra_33",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182646.13596755778,
+        396134.28109691077,
+        141.90656995058723
+      ],
+      "rotation_deg": [
+        0,
+        2.816626993526247,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7949475757479837
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_268_Vista_GrassExtra_34",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185675.06611531475,
+        392153.11390192,
+        -1.1315151778631791
+      ],
+      "rotation_deg": [
+        0,
+        10.051066456288483,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.898027472931394
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_269_Vista_GrassExtra_35",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182827.47215886274,
+        392877.2275319931,
+        2.6326988984251156
+      ],
+      "rotation_deg": [
+        0,
+        25.118077714538167,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8215425044213496
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_270_Vista_GrassExtra_36",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181912.6921646866,
+        395773.9722745882,
+        18.240086128038993
+      ],
+      "rotation_deg": [
+        0,
+        -112.73616144039316,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7768379879685728
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_271_Vista_GrassExtra_37",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185549.5579799625,
+        391412.5048489295,
+        166.7679485482673
+      ],
+      "rotation_deg": [
+        0,
+        109.10272480697505,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.0353482866432653
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_272_Vista_GrassExtra_39",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185466.44064523774,
+        394059.9030802574,
+        -1.9382105908931988
+      ],
+      "rotation_deg": [
+        0,
+        -96.3844437098111,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9674293521995484
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_273_Vista_GrassExtra_40",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182510.3894723692,
+        395945.83630941133,
+        70.13640236271024
+      ],
+      "rotation_deg": [
+        0,
+        -96.19516608527509,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7680766223160802
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_274_Vista_GrassExtra_42",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186332.40402512476,
+        392793.6908944068,
+        142.54550679529194
+      ],
+      "rotation_deg": [
+        0,
+        158.15333359668148,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8428154604540227
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_275_Vista_GrassExtra_43",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181839.9855435239,
+        394368.48255485896,
+        0.03662621766420886
+      ],
+      "rotation_deg": [
+        0,
+        14.205425536639936,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8972154523605695
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_276_Vista_GrassExtra_44",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182260.39783285392,
+        393259.623634489,
+        -1.5320823305609843
+      ],
+      "rotation_deg": [
+        0,
+        116.76755868587846,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7439809262477426
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_277_Vista_GrassExtra_45",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182880.24907562602,
+        393153.2596393466,
+        1.021653177672504
+      ],
+      "rotation_deg": [
+        0,
+        25.71012550153568,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8948467605756412
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_278_Vista_GrassExtra_47",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183323.01177510284,
+        395400.3079989357,
+        -3.8613097730459773
+      ],
+      "rotation_deg": [
+        0,
+        79.21910075937755,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7691991828575336
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_279_Vista_GrassExtra_49",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185297.2316456701,
+        392064.92987252166,
+        -3.3465526479731604
+      ],
+      "rotation_deg": [
+        0,
+        40.38911435002209,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6940042569195829
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_280_Vista_GrassExtra_50",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185508.39638557576,
+        392856.8233769696,
+        -2.9122745576813798
+      ],
+      "rotation_deg": [
+        0,
+        -132.02331768613388,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7051922879140557
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_281_Vista_GrassExtra_51",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185519.64642462457,
+        395304.8130727531,
+        -3.59999190633038
+      ],
+      "rotation_deg": [
+        0,
+        -151.4387533753324,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9367354253141043
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_282_Vista_GrassExtra_52",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185325.43937978387,
+        393418.77124283597,
+        -3.087227823124645
+      ],
+      "rotation_deg": [
+        0,
+        -36.639153557287344,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7514411546557204
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_283_Vista_GrassExtra_53",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186401.36405374436,
+        395309.3676344232,
+        -3.59592732934631
+      ],
+      "rotation_deg": [
+        0,
+        -86.37945097675097,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6613450292975769
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_284_Vista_GrassExtra_56",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186194.9684911061,
+        394257.8516504278,
+        64.05462604084691
+      ],
+      "rotation_deg": [
+        0,
+        75.11915412628784,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8104246188321159
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_285_Vista_GrassExtra_58",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185336.8549174091,
+        396121.5075061367,
+        4.0
+      ],
+      "rotation_deg": [
+        0,
+        51.19825124855839,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9617971342664635
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_286_Vista_GrassExtra_59",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185248.40351483022,
+        392996.87014267646,
+        -4.868804188437784
+      ],
+      "rotation_deg": [
+        0,
+        -26.078452023738862,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8255638744322984
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_287_Vista_GrassExtra_60",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184507.77328422753,
+        393989.2436103731,
+        0.5307568515160742
+      ],
+      "rotation_deg": [
+        0,
+        163.18364273881775,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8316155875253235
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_288_Vista_GrassExtra_61",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181382.5039151602,
+        395504.0623272351,
+        54.38789703501414
+      ],
+      "rotation_deg": [
+        0,
+        -68.81565426203339,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6618507177496954
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_289_Vista_GrassExtra_62",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182282.92376078852,
+        396107.9282545754,
+        125.44720300371736
+      ],
+      "rotation_deg": [
+        0,
+        127.86277553717237,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9859765196110286
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_290_Vista_GrassExtra_63",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184367.8924468183,
+        395566.7774570591,
+        3.342476195992325
+      ],
+      "rotation_deg": [
+        0,
+        -75.60666758188665,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7116266094200164
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_291_Vista_GrassExtra_64",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182481.90952214444,
+        392991.08033310703,
+        0.6629966549172771
+      ],
+      "rotation_deg": [
+        0,
+        120.98413980546859,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8875565718482464
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_292_Vista_GrassExtra_65",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184833.88468303139,
+        393100.42661444674,
+        -6.25254458921939
+      ],
+      "rotation_deg": [
+        0,
+        -83.42085631265043,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8718775859399743
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_293_Vista_GrassExtra_66",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186357.01888414138,
+        394741.4269569414,
+        110.66948317406691
+      ],
+      "rotation_deg": [
+        0,
+        4.0247321669112734,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8345920649518777
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_294_Vista_GrassExtra_67",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186011.34172380765,
+        394262.9043238457,
+        17.2331328423464
+      ],
+      "rotation_deg": [
+        0,
+        -48.90829788726427,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9271900104308588
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_295_Vista_GrassExtra_68",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184640.54881771805,
+        394732.3705391784,
+        3.956311959514449
+      ],
+      "rotation_deg": [
+        0,
+        42.53034965212654,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9569583471196054
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_296_Vista_GrassExtra_69",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186066.41904724124,
+        393749.4457396465,
+        34.85878329438326
+      ],
+      "rotation_deg": [
+        0,
+        85.9819117194179,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6762558270076482
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_297_Vista_GrassExtra_70",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186254.14486800815,
+        395258.0091299414,
+        -3.432272135819323
+      ],
+      "rotation_deg": [
+        0,
+        -178.18843795066476,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.0156352000031035
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_298_Vista_GrassExtra_73",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -186010.32665668745,
+        396127.9891618381,
+        97.62996229185998
+      ],
+      "rotation_deg": [
+        0,
+        170.0801782519795,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6703831756853856
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_299_Vista_GrassExtra_74",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183129.88015623426,
+        396101.72125064774,
+        125.96472741698499
+      ],
+      "rotation_deg": [
+        0,
+        -162.34120290584593,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9993057256215986
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_300_Vista_GrassExtra_75",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184066.86266385062,
+        391958.8369114713,
+        15.980788554027253
+      ],
+      "rotation_deg": [
+        0,
+        -151.1702264844341,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6710248126716291
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_301_Vista_GrassExtra_76",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185522.0933012002,
+        391831.6045204824,
+        56.30122226240471
+      ],
+      "rotation_deg": [
+        0,
+        146.1143810891194,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7954246128155321
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_302_Vista_GrassExtra_77",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184416.0188472049,
+        392016.7837541406,
+        -0.07017492181305429
+      ],
+      "rotation_deg": [
+        0,
+        -26.02300236327827,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.781172829394282
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_303_Vista_GrassExtra_78",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185172.13793297973,
+        393750.8964546363,
+        -1.6796882417176744
+      ],
+      "rotation_deg": [
+        0,
+        0.9097768130085524,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9228478410014338
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_304_Vista_GrassExtra_79",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181355.62288679692,
+        395732.43519601633,
+        73.06745858979312
+      ],
+      "rotation_deg": [
+        0,
+        92.91551970107277,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8550428958156203
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_305_Vista_GrassExtra_80",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184856.1640053962,
+        393308.59482893604,
+        -4.752381154396909
+      ],
+      "rotation_deg": [
+        0,
+        -52.71638226110723,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9054443574184154
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_306_Vista_GrassExtra_81",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184156.00352734653,
+        395522.6181707274,
+        1.9595416160494274
+      ],
+      "rotation_deg": [
+        0,
+        152.55447705179122,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6717549332611918
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_307_Vista_GrassExtra_82",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182704.11185457025,
+        393629.3984970221,
+        -2.758587318492517
+      ],
+      "rotation_deg": [
+        0,
+        25.152790187507364,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9588820349271012
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_308_Vista_GrassExtra_83",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185770.5934819247,
+        393864.89120682015,
+        -3.3556707666443324
+      ],
+      "rotation_deg": [
+        0,
+        39.812998634096715,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1.019440231185443
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_309_Vista_GrassExtra_84",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185641.8659405532,
+        393668.0860600278,
+        -2.598605594364381
+      ],
+      "rotation_deg": [
+        0,
+        54.37906214387914,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8388136674311023
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_310_Vista_GrassExtra_85",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185003.27271524337,
+        392391.98895233124,
+        -7.922203143903717
+      ],
+      "rotation_deg": [
+        0,
+        107.92105506197807,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.6813046989426683
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_311_Vista_GrassExtra_86",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183962.19734196077,
+        392083.29531175445,
+        -3.482202547447491
+      ],
+      "rotation_deg": [
+        0,
+        -37.450051637692646,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.9823017834844056
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_312_Vista_GrassExtra_87",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -181183.33325090248,
+        394845.0797468333,
+        98.57701646464204
+      ],
+      "rotation_deg": [
+        0,
+        -58.85648741788436,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.8819563963581203
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_313_Vista_GrassExtra_88",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185036.62005731778,
+        394464.59286736656,
+        2.1988910052410118
+      ],
+      "rotation_deg": [
+        0,
+        10.35413655198525,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.7314187986155491
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_314_Vista_GrassExtra_89",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183192.77743979063,
+        391413.64599462406,
+        226.68931415256358
+      ],
+      "rotation_deg": [
+        0,
+        50.83371623932209,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        0.925723236122665
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "Vista_315_SM_Doorstep_StonebrookVista_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/InteriorVista/SM_Doorstep_StonebrookVista_01.SM_Doorstep_StonebrookVista_01",
+      "world_cm": [
+        -183806.0975,
+        393670.98,
+        -10.000000149011612
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_00",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185126.45588841932,
+        396621.9991643726,
+        28.484460711479187
+      ],
+      "rotation_deg": [
+        0,
+        37.02724779258284,
+        0
+      ],
+      "scale": [
+        1.1890533904647942,
+        1.1890533904647942,
+        1.7374754960578982
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_01",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -185039.49762972852,
+        396674.16959428304,
+        63.10766339302063
+      ],
+      "rotation_deg": [
+        0,
+        -41.209150640233624,
+        0
+      ],
+      "scale": [
+        1.1783397131915403,
+        1.1783397131915403,
+        1.9640755924595712
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_02",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184970.3427644871,
+        396463.57874253974,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        69.48166344527465,
+        0
+      ],
+      "scale": [
+        1.5223235405663118,
+        1.5223235405663118,
+        2.0671768252279805
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_03",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184873.37012804768,
+        396562.3028135857,
+        4.273673519492149
+      ],
+      "rotation_deg": [
+        0,
+        19.864020597094644,
+        0
+      ],
+      "scale": [
+        1.1276103924665621,
+        1.1276103924665621,
+        1.6163482850834505
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_04",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184805.19437605128,
+        396541.6017148854,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        -79.63502651444374,
+        0
+      ],
+      "scale": [
+        1.3741987155403363,
+        1.3741987155403363,
+        2.0733802325410826
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_05",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184725.30659293022,
+        396601.8360820236,
+        16.523079574108124
+      ],
+      "rotation_deg": [
+        0,
+        23.105073424312632,
+        0
+      ],
+      "scale": [
+        1.2813921335767162,
+        1.2813921335767162,
+        1.8634560319789213
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_06",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184652.43945076756,
+        396639.75793127646,
+        39.44810330867767
+      ],
+      "rotation_deg": [
+        0,
+        62.57538596790795,
+        0
+      ],
+      "scale": [
+        1.2218662708856396,
+        1.2218662708856396,
+        1.9996151231680401
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_07",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184577.11960290195,
+        396653.4100200327,
+        49.273255467414856
+      ],
+      "rotation_deg": [
+        0,
+        168.97580648098895,
+        0
+      ],
+      "scale": [
+        1.3129024463828611,
+        1.3129024463828611,
+        1.834903086577511
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_08",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184508.10044511006,
+        396474.0981710579,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        -142.39426751443008,
+        0
+      ],
+      "scale": [
+        1.5342629540384574,
+        1.5342629540384574,
+        1.7792629622729
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_09",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184402.32496102148,
+        396557.3066491326,
+        4.013082385063171
+      ],
+      "rotation_deg": [
+        0,
+        -66.88477088132244,
+        0
+      ],
+      "scale": [
+        1.5978563044898122,
+        1.5978563044898122,
+        1.6116550794998403
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_10",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184346.81696244158,
+        396528.691540297,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        128.0312402937287,
+        0
+      ],
+      "scale": [
+        1.1275987127050233,
+        1.1275987127050233,
+        1.6730388022559848
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_11",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184276.2885312958,
+        396553.83395761927,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        69.13473081657301,
+        0
+      ],
+      "scale": [
+        1.2351836934453162,
+        1.2351836934453162,
+        2.0874613418499184
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_12",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184188.99464833297,
+        396671.7701948496,
+        69.1233217716217
+      ],
+      "rotation_deg": [
+        0,
+        44.46714062904596,
+        0
+      ],
+      "scale": [
+        1.303158045856879,
+        1.303158045856879,
+        2.0360237328327724
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_13",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184104.49051353347,
+        396516.1507273974,
+        46.99036478996277
+      ],
+      "rotation_deg": [
+        0,
+        -129.50444379580875,
+        0
+      ],
+      "scale": [
+        1.3425015532978697,
+        1.3425015532978697,
+        1.977211004147659
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_14",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -184053.76912777254,
+        396532.68173465476,
+        99.74223971366882
+      ],
+      "rotation_deg": [
+        0,
+        40.147561658295224,
+        0
+      ],
+      "scale": [
+        1.5456808146612517,
+        1.5456808146612517,
+        1.7607982740732564
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_15",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183976.93428816894,
+        396506.69142629177,
+        171.3721752166748
+      ],
+      "rotation_deg": [
+        0,
+        -52.812757530587774,
+        0
+      ],
+      "scale": [
+        1.1173989738457402,
+        1.1173989738457402,
+        2.0681848288417153
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_16",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183883.0629288146,
+        396481.88401088386,
+        189.07854557037354
+      ],
+      "rotation_deg": [
+        0,
+        81.29076682209238,
+        0
+      ],
+      "scale": [
+        1.560073631733298,
+        1.560073631733298,
+        1.8869319192642955
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_17",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183795.62072257872,
+        396529.00815838133,
+        198.75609874725342
+      ],
+      "rotation_deg": [
+        0,
+        50.89182829822422,
+        0
+      ],
+      "scale": [
+        1.3555801647688024,
+        1.3555801647688024,
+        1.635047071300281
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_18",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183737.89067708876,
+        396558.6405470932,
+        203.12743186950684
+      ],
+      "rotation_deg": [
+        0,
+        55.24090344090565,
+        0
+      ],
+      "scale": [
+        1.2114058290435117,
+        1.2114058290435117,
+        1.8136613366229364
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_19",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183648.6164171774,
+        396603.98803294654,
+        203.35872173309326
+      ],
+      "rotation_deg": [
+        0,
+        -92.88837339126067,
+        0
+      ],
+      "scale": [
+        1.4457275333549358,
+        1.4457275333549358,
+        1.91770782077205
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_20",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183602.39324193672,
+        396610.16736637923,
+        205.24213314056396
+      ],
+      "rotation_deg": [
+        0,
+        13.279313548494027,
+        0
+      ],
+      "scale": [
+        1.5921402503890332,
+        1.5921402503890332,
+        2.075321356670503
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_21",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183524.77907206563,
+        396459.3536844127,
+        212.0396375656128
+      ],
+      "rotation_deg": [
+        0,
+        97.50267843979204,
+        0
+      ],
+      "scale": [
+        1.1434566375942712,
+        1.1434566375942712,
+        1.7164290139789098
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_22",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183448.00921873507,
+        396511.5973454504,
+        222.41528034210205
+      ],
+      "rotation_deg": [
+        0,
+        102.48920830752158,
+        0
+      ],
+      "scale": [
+        1.4593148838242813,
+        1.4593148838242813,
+        1.8023362416532869
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_23",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183351.6490855029,
+        396592.18621037656,
+        224.99315738677979
+      ],
+      "rotation_deg": [
+        0,
+        159.33246729752304,
+        0
+      ],
+      "scale": [
+        1.1240911255392563,
+        1.1240911255392563,
+        1.973097719675675
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_24",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183300.52445471467,
+        396463.34270057746,
+        225.9521245956421
+      ],
+      "rotation_deg": [
+        0,
+        -136.94872161371902,
+        0
+      ],
+      "scale": [
+        1.5815687949012363,
+        1.5815687949012363,
+        1.8925959343045862
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_25",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183200.83163221,
+        396652.4644797989,
+        216.2431240081787
+      ],
+      "rotation_deg": [
+        0,
+        0.45105667480350353,
+        0
+      ],
+      "scale": [
+        1.1662126592787583,
+        1.1662126592787583,
+        1.851925076707078
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_26",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183142.77478042254,
+        396604.98203634867,
+        232.21044540405273
+      ],
+      "rotation_deg": [
+        0,
+        21.035642219014658,
+        0
+      ],
+      "scale": [
+        1.12345639640219,
+        1.12345639640219,
+        1.7495079593110363
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_27",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -183049.49142162126,
+        396592.3464369654,
+        238.16869258880615
+      ],
+      "rotation_deg": [
+        0,
+        8.04725204048086,
+        0
+      ],
+      "scale": [
+        1.3908499111498973,
+        1.3908499111498973,
+        2.0663996644893006
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_28",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182980.81638994077,
+        396467.11622900894,
+        238.60337734222412
+      ],
+      "rotation_deg": [
+        0,
+        -9.181715725768713,
+        0
+      ],
+      "scale": [
+        1.4983852283698287,
+        1.4983852283698287,
+        1.9948136879347698
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_29",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182900.60939440632,
+        396601.47925617656,
+        239.35315608978271
+      ],
+      "rotation_deg": [
+        0,
+        -56.18938449018864,
+        0
+      ],
+      "scale": [
+        1.1247757803498644,
+        1.1247757803498644,
+        1.602254574339486
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_30",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182845.60457044627,
+        396548.2415063988,
+        247.08492755889893
+      ],
+      "rotation_deg": [
+        0,
+        153.4425766101676,
+        0
+      ],
+      "scale": [
+        1.1757776423211859,
+        1.1757776423211859,
+        1.7370200891417134
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_31",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182732.23007734198,
+        396547.7333097336,
+        247.21670150756836
+      ],
+      "rotation_deg": [
+        0,
+        -38.93280568421929,
+        0
+      ],
+      "scale": [
+        1.2611469095061638,
+        1.2611469095061638,
+        1.6251271485960763
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_32",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182686.1875606642,
+        396652.09599468124,
+        224.75848197937012
+      ],
+      "rotation_deg": [
+        0,
+        -177.709036617929,
+        0
+      ],
+      "scale": [
+        1.144377704535361,
+        1.144377704535361,
+        1.8069893430936468
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_33",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182607.08362560032,
+        396479.07915742905,
+        240.85967540740967
+      ],
+      "rotation_deg": [
+        0,
+        18.386211839966712,
+        0
+      ],
+      "scale": [
+        1.1818525404879057,
+        1.1818525404879057,
+        1.6589354787404242
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_CrestGrass_34",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "world_cm": [
+        -182530.89482683,
+        396499.9298351383,
+        241.34573936462402
+      ],
+      "rotation_deg": [
+        0,
+        -170.76653181720457,
+        0
+      ],
+      "scale": [
+        1.4887265553633289,
+        1.4887265553633289,
+        1.8800283609023885
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_00",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -185006.0975,
+        396668.84132459725,
+        59.23512578010559
+      ],
+      "rotation_deg": [
+        0,
+        65.8818873753003,
+        0
+      ],
+      "scale": [
+        1.0513525355753635,
+        1.0513525355753635,
+        1.0513525355753635
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_01",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184686.0975,
+        396529.7963572695,
+        3.999999910593033
+      ],
+      "rotation_deg": [
+        0,
+        58.351071060605975,
+        0
+      ],
+      "scale": [
+        1.10312424994446,
+        1.10312424994446,
+        1.10312424994446
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_02",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184356.0975,
+        396593.8811392388,
+        13.547246158123016
+      ],
+      "rotation_deg": [
+        0,
+        58.4682975973309,
+        0
+      ],
+      "scale": [
+        1.1307536363284636,
+        1.1307536363284636,
+        1.1307536363284636
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_03",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -184016.0975,
+        396572.4823009129,
+        139.35647010803223
+      ],
+      "rotation_deg": [
+        0,
+        -27.465631822536146,
+        0
+      ],
+      "scale": [
+        1.130070299573151,
+        1.130070299573151,
+        1.130070299573151
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_04",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -183656.0975,
+        396650.1367642054,
+        191.10589027404785
+      ],
+      "rotation_deg": [
+        0,
+        -177.17538027769757,
+        0
+      ],
+      "scale": [
+        1.0076104683768945,
+        1.0076104683768945,
+        1.0076104683768945
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_05",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -183306.0975,
+        396664.94816340733,
+        207.48047828674316
+      ],
+      "rotation_deg": [
+        0,
+        17.804873949139417,
+        0
+      ],
+      "scale": [
+        1.021688319309153,
+        1.021688319309153,
+        1.021688319309153
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_06",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -182956.0975,
+        396614.0977735951,
+        235.27579307556152
+      ],
+      "rotation_deg": [
+        0,
+        -32.450607822229514,
+        0
+      ],
+      "scale": [
+        0.9741870568520715,
+        0.9741870568520715,
+        0.9741870568520715
+      ],
+      "collision": false,
+      "camera_occluder": false
+    },
+    {
+      "name": "VistaV4_Woodland_07",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "world_cm": [
+        -182606.0975,
+        396586.69487725326,
+        241.57423973083496
+      ],
+      "rotation_deg": [
+        0,
+        -37.175213595667415,
+        0
+      ],
+      "scale": [
+        1.0946789008326696,
+        1.0946789008326696,
+        1.0946789008326696
+      ],
+      "collision": false,
+      "camera_occluder": false
+    }
+  ],
+  "source_provenance": {
+    "source_bundle_sha256": "46712f5b263ca747ac8f8f0e0ad32a05f01f1cc95a4b8816035ff0b6eb3a4fa0",
+    "composition_source": "SourceAssets/Art/Stonebrook/InteriorVistaV4/Stonebrook_HorizonV4.blend",
+    "composition_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
+    "composition_additions_sha256": "90b4fb33a648fdd8dc7deba8ea2a2e970c58f9853ff983bcffaaa689eaa0f5cb"
+  }
+}

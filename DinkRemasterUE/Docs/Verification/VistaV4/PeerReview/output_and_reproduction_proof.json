@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "fixed_current_manifest_byte_identical_to_original_generator": true,
+  "fixed_current_manifest_byte_identical_to_parent_provided_file": true,
+  "current_valid_manifest_sha256": "c6c83b57adb235668b5378e3965b8301512b4ae48f18aacab0155985f69c5c94",
+  "unmodified_source_builder_completed": true,
+  "rebuilt_additions_byte_identical": true,
+  "rebuilt_359_runtime_elements_identical": true,
+  "rebuild_preview_pixel_mean_absolute_delta": 0.0,
+  "rebuild_preview_pixel_max_delta": 0.0,
+  "rebuild_preview_dimensions": [
+    540,
+    960,
+    4
+  ],
+  "rebuild_source_receipt_passed": true
+}

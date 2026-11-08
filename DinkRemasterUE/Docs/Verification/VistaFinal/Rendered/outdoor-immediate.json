@@ -1,0 +1,58 @@
+{
+  "pawn_cm": [
+    97729.04183297047,
+    37507.452937191156,
+    98.34999561309814
+  ],
+  "camera_cm": [
+    97732.28591541936,
+    37127.04416300336,
+    221.9567933630771
+  ],
+  "camera_rotation": "<Struct 'Rotator' (0x7f69f3fa85b0) {pitch: -18.000000, yaw: 90.488600, roll: -0.000000}>",
+  "control_rotation": "<Struct 'Rotator' (0x7f69f3fa85b0) {pitch: -18.000000, yaw: 90.488600, roll: 0.000000}>",
+  "field_of_view": 90.0,
+  "arm_cm": 400.0,
+  "target_offset": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "socket_offset": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "interior_mode": false,
+  "managed_occluders": 1,
+  "fading_occluders": 1,
+  "floor_framing_shift": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "floor_framing_available": false,
+  "floor_framing_feasible": true,
+  "fading_materials": [
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Thatch_v1_0",
+      "opacity": 0.0
+    },
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_WroughtIron_v1_0",
+      "opacity": 0.0
+    },
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Oak_v1_85",
+      "opacity": 0.0
+    },
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Limewash_v1_29",
+      "opacity": 0.0
+    },
+    {
+      "material": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.MID_M_CameraFade_Fieldstone_v1_0",
+      "opacity": 0.0
+    }
+  ]
+}

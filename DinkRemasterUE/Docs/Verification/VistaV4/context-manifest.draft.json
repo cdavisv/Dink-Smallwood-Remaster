@@ -7548,8 +7548,8 @@
   ],
   "source_provenance": {
     "source_bundle_sha256": "46712f5b263ca747ac8f8f0e0ad32a05f01f1cc95a4b8816035ff0b6eb3a4fa0",
-    "status": "Work-only review file; not published to runtime Data",
-    "material_reference_note": "Imported Meadow binds original Materials/Stonebrook as recorded in Import55 report; pinned proposal metadata left unchanged."
-  },
-  "source_revision": "InteriorVistaV3 immutable terrain and references + InteriorVistaV4 43-instance woodland/meadow crest composition; pending rendered native acceptance"
+    "composition_source": "SourceAssets/Art/Stonebrook/InteriorVistaV4/Stonebrook_HorizonV4.blend",
+    "composition_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
+    "composition_additions_sha256": "90b4fb33a648fdd8dc7deba8ea2a2e970c58f9853ff983bcffaaa689eaa0f5cb"
+  }
 }
