@@ -1,5 +1,6 @@
 #include "DinkTestHelpers.h"
 #include "DinkBodyDynamics.h"
+#include "DinkHeroPhysicality.h"
 #include "DinkHumanoidComponent.h"
 #include "Animation/BlendSpace.h"
 #include "Engine/Engine.h"
@@ -53,6 +54,44 @@ bool FDinkBodyDynamicsTest::RunTest(const FString&)
     const FRotator Land=Falling.Update(FVector::ZeroVector,FQuat::Identity,.05f,true);
     const FRotator Stand=Grounded.Update(FVector::ZeroVector,FQuat::Identity,.05f,true);
     TestTrue(TEXT("landing gives a damped weight response"), Land.Pitch<Stand.Pitch-.1);
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkClumsyHeroTest,"Dink.Movement.ClumsyHero",DINK_TEST_FLAGS)
+bool FDinkClumsyHeroTest::RunTest(const FString&)
+{
+    FDinkHeroPhysicality A,B;
+    int32 Stumbles=0;
+    for (int32 I=0; I<100; ++I)
+    {
+        const bool DidStumble=A.Land(300.f,.4f,.3f);
+        TestEqual(TEXT("cosmetic landing stream is repeatable"),DidStumble,B.Land(300.f,.4f,.3f));
+        Stumbles+=DidStumble ? 1 : 0;
+        A.Update(2.f,0,true,true); B.Update(2.f,0,true,true);
+    }
+    TestTrue(TEXT("normal landing chance produces occasional rather than constant stumbles"),Stumbles>10 && Stumbles<50);
+    TestFalse(TEXT("small steps do not cause stumbles"),A.Land(100,.4f,1));
+    TestFalse(TEXT("spawn-height falls do not cause stumbles"),A.Land(300,.05f,1));
+    TestTrue(TEXT("qualifying fall can stumble"),A.Land(300,.4f,1));
+    A.Update(.2f,200,true,true);
+    TestTrue(TEXT("stumble visibly pitches the torso forward"),A.GetRotation().Pitch < -4.);
+    TestTrue(TEXT("stumble includes a bounded catch-step offset"),A.GetOffset().X>1 && A.GetOffset().Size()<10);
+    const FRotator Paused=A.GetRotation(); A.Update(0,200,true,true);
+    TestTrue(TEXT("paused game time cannot advance stumble"),A.GetRotation().Equals(Paused));
+    TestFalse(TEXT("bounce contacts cannot retrigger a stumble"),A.Land(300,.4f,1));
+    A.Update(.6f,0,true,true); TestFalse(TEXT("Dink recovers promptly"),A.IsStumbling());
+    A.Update(2,0,true,true); A.Land(300,.4f,1); A.Update(.1f,200,true,false);
+    TestFalse(TEXT("cutscene freeze cancels recovery"),A.IsStumbling());
+    TestTrue(TEXT("freeze removes cosmetic offset"),A.GetOffset().IsNearlyZero());
+    double MaxWaddle=0;
+    for (int32 I=0;I<120;++I)
+    {
+        A.Update(1.f/60.f,200,true,true);
+        MaxWaddle=FMath::Max(MaxWaddle,FMath::Abs(A.GetRotation().Roll));
+        TestTrue(TEXT("awkward gait stays bounded and finite"),!A.GetRotation().ContainsNaN() && A.GetOffset().Size()<3);
+    }
+    TestTrue(TEXT("walking adds a visible uneven shoulder sway"),MaxWaddle>1.);
+    A.Cancel(); TestTrue(TEXT("teleport/reset removes transient physicality"),A.GetOffset().IsNearlyZero() && A.GetRotation().IsNearlyZero());
     return true;
 }
 
@@ -172,6 +211,7 @@ public:
             Test->TestFalse(TEXT("cutscene freeze rejects jumping"),H->bPressedJump);
             Freeze(false);
             StartZ=H->GetActorLocation().Z;
+            H->LandingStumbleChance=1.f; // exercise the actual Landed callback deterministically
             Key(EKeys::SpaceBar,IE_Pressed);
             At=W->GetTimeSeconds(); Phase=4; return false;
         }
@@ -190,7 +230,9 @@ public:
             Peak=FMath::Max(Peak,H->GetActorLocation().Z-StartZ);
             if (!Move->IsMovingOnGround() || W->GetTimeSeconds()-At<.3) return false;
             Test->TestTrue(TEXT("jump lands on physical ground"),FMath::Abs(H->GetActorLocation().Z-StartZ)<5);
-            Test->TestTrue(TEXT("jump reaches a useful bounded height"),Peak>35 && Peak<160);
+            Test->TestTrue(TEXT("Dink has a low, unathletic hop"),Peak>20 && Peak<65);
+            Test->AddInfo(FString::Printf(TEXT("Measured Dink hop height %.2f cm; previous jump measured107.6cm"),Peak));
+            Test->TestTrue(TEXT("eligible actual landing can trigger Dink stumble"),H->IsStumbling());
             Test->TestEqual(TEXT("walking and jumping retain narrow house capsule"),H->GetCapsuleComponent()->GetUnscaledCapsuleRadius(),28.f);
             UDinkInteriorCameraComponent* Camera=H->FindComponentByClass<UDinkInteriorCameraComponent>();
             Camera->AddZoomInput(2);

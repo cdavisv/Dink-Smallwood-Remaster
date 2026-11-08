@@ -1,0 +1,35 @@
+{
+  "initial": {
+    "screen": 439,
+    "map": [
+      450.0,
+      350.0
+    ],
+    "world": [
+      98767.355,
+      37937.533,
+      98.35
+    ],
+    "yaw": 0.0,
+    "pitch": -12.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "final": {
+    "screen": 439,
+    "map": [
+      536.964,
+      349.428
+    ],
+    "world": [
+      99623.075,
+      37937.533,
+      98.35
+    ],
+    "yaw": 90.0,
+    "pitch": -12.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "scope": "Fixture travel only; actual W/Shift/Space. First landing chance1 to inspect stumble; eight normal-chance jumps afterwards."
+}

@@ -1,0 +1,104 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BA19B439724194203254E6EE2D9C",
+			"instanceName": "omarchy-65566",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-07.40.26",
+	"succeeded": 5,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 4.442451000213623,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "ClumsyHero",
+			"fullTestPath": "Dink.Movement.ClumsyHero",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA19B439724194203254E6EE2D9C"
+			],
+			"duration": 0.008133990690112114,
+			"dateTime": "2026.11.08-07.40.22",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HumanoidReconfigure",
+			"fullTestPath": "Dink.Movement.HumanoidReconfigure",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA19B439724194203254E6EE2D9C"
+			],
+			"duration": 0.14803320169448853,
+			"dateTime": "2026.11.08-07.40.22",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PlayableControls",
+			"fullTestPath": "Dink.Movement.PlayableControls",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA19B439724194203254E6EE2D9C"
+			],
+			"duration": 4.2762885093688965,
+			"dateTime": "2026.11.08-07.40.22",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SecondaryMotion",
+			"fullTestPath": "Dink.Movement.SecondaryMotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA19B439724194203254E6EE2D9C"
+			],
+			"duration": 0.0018456140533089638,
+			"dateTime": "2026.11.08-07.40.26",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ZoomLimits",
+			"fullTestPath": "Dink.Movement.ZoomLimits",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA19B439724194203254E6EE2D9C"
+			],
+			"duration": 0.0081496201455593109,
+			"dateTime": "2026.11.08-07.40.26",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

@@ -52,13 +52,15 @@ Scripts/import_greybox.sh --region all          # the whole world, about 45 s mo
 
 Then open the project in the editor, File > Open Level >
 `Content/Dink/_Generated/Maps/L_Greybox_World` (or `L_Greybox_Stonebrook`) and press Play. You
-start in Dink's house. WASD and mouse to run (6 m/s), hold **Left Shift** to walk (2 m/s), **Space** to jump (hold briefly for more height), and scroll the **mouse wheel** to zoom in/out; the line at the top left names the original
+start in Dink's house. WASD and mouse to run (6 m/s), hold **Left Shift** to walk (2 m/s), **Space** for a small hop (hold briefly for more height), and scroll the **mouse wheel** to zoom in/out; the line at the top left names the original
 screen you are on. Console commands: `dink.Goto <screen>` jumps to any original screen,
 `dink.Vision <screen> <value>` shows a quest-state variant (try `dink.Vision 1 2`), `dink.Where`.
 
 Gamepad: left shoulder holds walk, bottom face button jumps, and D-pad Up/Down adjusts zoom. Camera zoom blends smoothly and uses a shorter range indoors. Dialogue confirmations take priority over jumping.
 
 Player movement has acceleration, braking, gravity and air control. Player and authored humanoid NPC meshes have bounded spring-driven weight shifts, cornering lean and subtle idle motion; the player also reacts to landings. NPC gait cadence continues to follow actual movement, including scripted movement.
+
+Dink carries himself awkwardly: a slight hunch, uneven shoulder sway and shuffle, slower starts and turns, and a much lower jump. Substantial landings have a 30% chance of a brief off-balance catch-step. He recovers in 0.7 seconds while movement and attacks remain available; tiny steps do not trigger it. This procedural layer is specific to Dink.
 
 ## See a conversation
 
