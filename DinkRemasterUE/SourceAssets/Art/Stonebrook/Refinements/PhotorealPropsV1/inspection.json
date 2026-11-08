@@ -1,0 +1,77 @@
+{
+  "SM_Table_Oak_01": {
+    "instances": [
+      {
+        "name": "Reference_S001_P22",
+        "location": [
+          -0.109375,
+          7.393750190734863,
+          0.0
+        ],
+        "collections": [
+          "Preview_ExistingRoom_GeometryUnchanged"
+        ],
+        "hide_render": false
+      }
+    ],
+    "collections": []
+  },
+  "SM_Chair_Oak_01": {
+    "instances": [
+      {
+        "name": "Reference_Chair1",
+        "location": [
+          -0.10941249877214432,
+          8.44363784790039,
+          0.0
+        ],
+        "collections": [
+          "Preview_ExistingRoom_GeometryUnchanged"
+        ],
+        "hide_render": false
+      },
+      {
+        "name": "Reference_Chair2",
+        "location": [
+          -0.10941249877214432,
+          6.256137371063232,
+          0.0
+        ],
+        "collections": [
+          "Preview_ExistingRoom_GeometryUnchanged"
+        ],
+        "hide_render": false
+      }
+    ],
+    "collections": []
+  },
+  "SM_Bed_Oak_01": {
+    "instances": [
+      {
+        "name": "Reference_S001_P23",
+        "location": [
+          -4.768750190734863,
+          4.921875,
+          0.0
+        ],
+        "collections": [
+          "Preview_ExistingRoom_GeometryUnchanged"
+        ],
+        "hide_render": false
+      },
+      {
+        "name": "Reference_S001_P24",
+        "location": [
+          4.550000190734863,
+          4.965624809265137,
+          0.0
+        ],
+        "collections": [
+          "Preview_ExistingRoom_GeometryUnchanged"
+        ],
+        "hide_render": false
+      }
+    ],
+    "collections": []
+  }
+}

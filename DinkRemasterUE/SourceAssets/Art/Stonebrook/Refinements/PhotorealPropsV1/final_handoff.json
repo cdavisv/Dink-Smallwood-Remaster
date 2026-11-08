@@ -1,0 +1,357 @@
+{
+  "candidate": "PhotorealPropsV1 final chamfered table / olive flax bedding",
+  "status": "Frozen work-only source candidate; parent approved table silhouette and bed palette; native import/gameplay/lighting acceptance pending",
+  "frozen_utc": "2026-11-08T07:03:52.119027+00:00",
+  "main_blend_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+  "export_blend_sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+  "geometry": {
+    "SM_Table_Oak_01": {
+      "original_vertices": 1200,
+      "candidate_vertices": 4680,
+      "candidate_triangles": 9232,
+      "collision_hulls": 18,
+      "candidate_bounds_m": [
+        [
+          -1.3250000476837158,
+          -0.7489999532699585,
+          0.0
+        ],
+        [
+          1.3250000476837158,
+          0.7489999532699585,
+          0.8999999761581421
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -1.3250000476837158,
+          -0.7489999532699585,
+          0.0
+        ],
+        [
+          1.3250000476837158,
+          0.7489999532699585,
+          0.906000018119812
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_S001_P22",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -0.109375
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              7.393750190734863
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "corner_chamfer_m": 0.22
+    },
+    "SM_Chair_Oak_01": {
+      "original_vertices": 896,
+      "candidate_vertices": 3072,
+      "candidate_triangles": 6064,
+      "collision_hulls": 16,
+      "candidate_bounds_m": [
+        [
+          -0.32499998807907104,
+          -0.26875001192092896,
+          0.0
+        ],
+        [
+          0.32499998807907104,
+          0.26874998211860657,
+          1.0049999952316284
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -0.32499998807907104,
+          -0.26875001192092896,
+          0.0
+        ],
+        [
+          0.32499998807907104,
+          0.26875001192092896,
+          1.0049999952316284
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_Chair1",
+          "matrix_world": [
+            [
+              -1.0,
+              -8.742277657347586e-08,
+              0.0,
+              -0.10941249877214432
+            ],
+            [
+              8.742277657347586e-08,
+              -1.0,
+              0.0,
+              8.44363784790039
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "name": "Reference_Chair2",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -0.10941249877214432
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              6.256137371063232
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    },
+    "SM_Bed_Oak_01": {
+      "original_vertices": 3930,
+      "candidate_vertices": 9860,
+      "candidate_triangles": 19588,
+      "collision_hulls": 13,
+      "candidate_bounds_m": [
+        [
+          -1.2549998760223389,
+          -0.6850000619888306,
+          0.0
+        ],
+        [
+          1.2549998760223389,
+          0.6850000619888306,
+          1.119999885559082
+        ]
+      ],
+      "original_bounds_m": [
+        [
+          -1.2549998760223389,
+          -0.6850000619888306,
+          0.0
+        ],
+        [
+          1.2549998760223389,
+          0.6850000619888306,
+          1.119999885559082
+        ]
+      ],
+      "instances": [
+        {
+          "name": "Reference_S001_P23",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              -4.768750190734863
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              4.921875
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "name": "Reference_S001_P24",
+          "matrix_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              4.550000190734863
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              4.965624809265137
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "verification": {
+    "guide_assets_passed": 3,
+    "guide_errors": 0,
+    "guide_warnings": 3,
+    "warning_reason": "triangles exceed6000soft target but remain below20000hard limit",
+    "FBX_roundtrip_dimension_error_m": 0,
+    "FBX_hulls": {
+      "table": 18,
+      "chair": 16,
+      "bed": 13
+    },
+    "matched_before_after_pairs": 4,
+    "actual_exported_FBX_baked_PBR_render_views": 3,
+    "maps": "9x2048px BC/N/ORM; BC sRGB, N/ORMlinear; ORM R255 Groughness B0",
+    "packed_missing_path_reopens": "17main +29export +23immutable-input images successfully reopened with every file path absent"
+  },
+  "review_limits": [
+    "Native UE camera/lighting,28cm capsule routes,original-script interaction/reach and save IDs remain parent staged verification.",
+    "Extreme cloth close-up shows a filtering difference between procedural warp/weft and2048atlas-baked normal; retain actual roundtrip detail render for native-distance review.",
+    "Export baked material is a single slot per asset; tiny procedural linen sheen is represented with roughness rather than a separate cloth shader."
+  ],
+  "files": {
+    "ART_BRIEF.txt": "60307117c68ffda2bab4c987302a0648b89178767472ac9aebe434b52d94d593",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.fbx": "f8c655428f773a22d98570f9b5f492a7e4cd5b0f24aa0a80fa98cb57dbc1a8f6",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.glb": "d6a9f715abe6d8acffe370462384eb7294ba981611c2411df2346dcca693d07a",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.fbx": "337465dc11e7025e5cd5740e93d5c582e64cb5012a779aa459daedd5b7a3ab31",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.glb": "c6ba2651c1216fd0c48e18d334ee33015df1b19a5bfbc5ecd20c51aa7337d287",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.fbx": "c7d1a842dfa4549c805212eb327744dcef2811a303e069bc752b52bf1610ae8d",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.glb": "2691fbe79035ccced4bf3371c991c4ca410d59a3abe84fa379e6884eaaa537ac",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_BC.png": "7d607d32acabb1ee30ef53bc1e5d9403a546c733764a1b2e82144912ba763c46",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_N.png": "b6bb4f2f9eecb022a18570a16511c7f7eb4e17888de2b0b986f6d12abc3057f9",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_ORM.png": "5039015eba9fed2d15cc16777a92928ade0dd94843315172f25754ff3cf85974",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_BC.png": "ff33f35b1185ed04d5092a035e8572e823f10497dbe937469b9e1c860984bf69",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_N.png": "912ca10739e1eb2d3a2e2c35432d2478b6e3e5c5c871b7cc913708aa8d900611",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_ORM.png": "889e1c8285f77e1f0a26c4d38ef21b06ae6c94969600316e89cfd7277e7a441e",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_BC.png": "d7ed5088111c3af7cb3597dbd7581492f1d28c21837ed465f0c3b7c2f483c1e0",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_N.png": "a8eee7459383c89233d15b22ee6283a5bc9aaae9f7cdd6ca69ba7aca497b2755",
+    "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_ORM.png": "285651f0e198d27af591e678042d7b1f6bf728145939955473dac8f63396af3a",
+    "Export/manifest.json": "26c3b8006f28549b4d441125d5c0ce2038a60e7ea761ee9f1eebe401efddc761",
+    "Inputs/461_01.png": "f73964b86ead20467cdfeebb4602af043c1b8072621447d79b751ee672d02110",
+    "Inputs/64_03.png": "70aaf133f609b610374fe45895624b52e854ead9ba4456282eff56c00246ed09",
+    "Inputs/87_09.png": "7144c69f408c29065a33605ea0ae6d7f61b00058d45276cf3268eece74079147",
+    "Inputs/GeneratedOak_Albedo_V1.png": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+    "Inputs/Original_OakFurnitureV1.blend": "e833a3e4bcab107b3da1764ae6fd007abce581b133c26ce7f4a7fc73dcab32ea",
+    "Inputs/generation.json": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9",
+    "Inputs/sequences.txt": "fe8d3423de0635380f0337af40cfffe48b9be7201b93a68341a0bb5da192425a",
+    "Inputs/sheet_inside.png": "ed6d5dd9ae91a9668798ca81ab5dd4dbeac820b406b0b6878397f1dc0a66c831",
+    "PhotorealPropsV1.blend": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+    "PhotorealPropsV1_Export.blend": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+    "Pipeline/dinkasset/__init__.py": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+    "Pipeline/dinkasset/common.py": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+    "Pipeline/dinkasset/conventions.py": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+    "Pipeline/dinkasset/export_ue.py": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+    "Pipeline/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "Pipeline/dinkasset/fix.py": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+    "Pipeline/dinkasset/import_generated.py": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+    "Pipeline/dinkasset/make_lods.py": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+    "Pipeline/dinkasset/validate.py": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+    "Textures/T_Bed_Oak_01_Photo_BC.png": "7d607d32acabb1ee30ef53bc1e5d9403a546c733764a1b2e82144912ba763c46",
+    "Textures/T_Bed_Oak_01_Photo_N.png": "b6bb4f2f9eecb022a18570a16511c7f7eb4e17888de2b0b986f6d12abc3057f9",
+    "Textures/T_Bed_Oak_01_Photo_ORM.png": "5039015eba9fed2d15cc16777a92928ade0dd94843315172f25754ff3cf85974",
+    "Textures/T_Bed_Oak_01_Photo_Rough.png": "cdf8450f6c5beef01d5bbc2bfcf62ef59a5c9674b3fcdff3f2c5bffe17201b3e",
+    "Textures/T_Chair_Oak_01_Photo_BC.png": "ff33f35b1185ed04d5092a035e8572e823f10497dbe937469b9e1c860984bf69",
+    "Textures/T_Chair_Oak_01_Photo_N.png": "912ca10739e1eb2d3a2e2c35432d2478b6e3e5c5c871b7cc913708aa8d900611",
+    "Textures/T_Chair_Oak_01_Photo_ORM.png": "889e1c8285f77e1f0a26c4d38ef21b06ae6c94969600316e89cfd7277e7a441e",
+    "Textures/T_Chair_Oak_01_Photo_Rough.png": "b7f67d7c0bb01f5532dcdc35821d6f5f8c289e5afef59b5036921ff9586a4922",
+    "Textures/T_Table_Oak_01_Photo_BC.png": "d7ed5088111c3af7cb3597dbd7581492f1d28c21837ed465f0c3b7c2f483c1e0",
+    "Textures/T_Table_Oak_01_Photo_N.png": "a8eee7459383c89233d15b22ee6283a5bc9aaae9f7cdd6ca69ba7aca497b2755",
+    "Textures/T_Table_Oak_01_Photo_ORM.png": "285651f0e198d27af591e678042d7b1f6bf728145939955473dac8f63396af3a",
+    "Textures/T_Table_Oak_01_Photo_Rough.png": "f0beb03d6b654a8000c14b19256fa2f474cb690217e85094829a52f1134b273a",
+    "bake_export.py": "36032763eff5639cacfdc634546ba78b340a5ebdba4c67682c1aa4aa974cd732",
+    "bake_receipt.json": "e1ee8cdb5c92084a43b85c17b97f3120d14661e464a6e2d8a5fc9eed98f920b5",
+    "bed-cloth-after.png": "58e76a7bb59d1275e614f2ed4ba7b05e1d210620a1b87e781d5d4c1dfc5d87dd",
+    "bed-cloth-before.png": "fe227d2bb67cb9da4742b5e985e1248927224344e3f6ea673a6c7cd5ee02cebe",
+    "build_props.py": "c47f74b1bf26847cb8917562e75fb38e7d033432094512c504fef5258c3a797f",
+    "chamfer_table.py": "ed5247f178872ac44e059a25a18ed08a96743c5118ddc924dab3a631e936475f",
+    "check_portable.py": "8e4f4f280f8b43cf5152812008b2a785bc5368b4996861335679f46700136c69",
+    "cloth-detail-after.png": "3d1a66d498d6f007612ffc71379bdfa0153ae8adbbf71c3237d0798cb9587c75",
+    "cloth-detail-before.png": "2d6f0cbb16d2bb11eb0390402053cd653015793ea3a5f95e6fff2e066833eb1a",
+    "export_driver.py": "93e5589519ef998ad88f5efa76954a8cead59a4d3ae8e1cf0edfb43ff1d1fa51",
+    "export_report.json": "50dc23e2c9b9cac3798b4d56e84e0f36ca24f56d5c78e1cfd61c13453d71a6bb",
+    "finalize_validation.py": "c962e08a05406eb5b70178e9c52edc371beb83ac26a73209bdee79063013bca0",
+    "gameplay-distance-after.png": "bdb732b2f8af4d66dee25ecbb651a75ef3e5dbbc255d34a66ed7bca9ec22fda3",
+    "gameplay-distance-before.png": "99d6332c31729739e3b6d414cd073b18c10f332b6418f907e879d1413859c480",
+    "geometry_report.json": "9ede02a341cc214df6670ffbd1c1dafa21b3398bff9ce6f18f5ba610c06ccb20",
+    "guide_validation.json": "77bd1b5c411c8e91384d3b17018c103c5720db3aa901c041c436a962afda2d13",
+    "inspect.py": "a4d9377696d54564edd0209816b03cdb945d00dce9e9024296fa7783aa320376",
+    "inspection.json": "75a0bae20ce48a7c625f7759d10aa3de3e6ba7ca55a448ebdaf941393f6e2584",
+    "portable_reopen_receipt.json": "244c05d891e40d0e34773355fa8abf9f5fbb33039e9efbedb1b82c923ee9b977",
+    "provenance_manifest.json": "4d36131feb3dbb51a88ca250ca9d990fffce872f7bc360025e11d04fce81012c",
+    "rebuild.py": "eef480303d6901ed5f827e0e5b8eef6e9cd8ede1b8cb1f04e4967f57f346a367",
+    "render_props.py": "6da371c29d25f208c1e97addb0c3400fd1aaf9dbf662e22c829c82413266ddb3",
+    "render_receipt.json": "2d822561b8cb15f4a88b6c0e4d4011cc7963c22c50232fced9b8c32c68968f91",
+    "roundtrip-bed-cloth.png": "4e1e24a671d3480c403137dc460908b4b53a087527fde59cd41c25f4b7a9fe9b",
+    "roundtrip-cloth-detail.png": "3a825ceb9da16fa2bf4e08248c314b7fc3775639e87f24c4e863278d689c3c37",
+    "roundtrip-table-joinery.png": "7786fde31749806cc437516eddb457fad4694d4d976c23bc9c3ee58acf21ba55",
+    "roundtrip.py": "a3ef4dec544108305a2795eb2725c1680798a8596664cc5a1b31eac9eb44992a",
+    "roundtrip_receipt.json": "5b7edf41ab0361c82b33c0747bdde3229e461583fca1b29993f249eac75be097",
+    "table-joinery-after.png": "bddd6b6128c39bfeff4199879bfa189562c1a7aaf7584e9cccf8162a0f5d1025",
+    "table-joinery-before.png": "2bb799784d049f3aabd4cd86d4165d909356c7742678768b63052a8b10117bb3",
+    "technical_validation.json": "ba5b93da22d188519eaf93fff3f695407272db74e5b203b53714889ff2f4c22c",
+    "texture_payload_validation.json": "e265aa7385304bbd2e1b2f2f69c84dc0d588626752b6c8c386cd484a373038d3"
+  },
+  "publication_corrections": [
+    "Standalone inspect.py uses bundle-relative input/output paths; art, bakes and exports unchanged."
+  ]
+}

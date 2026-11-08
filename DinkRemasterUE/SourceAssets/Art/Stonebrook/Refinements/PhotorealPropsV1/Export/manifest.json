@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T06:59:58Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Bed_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealPropsV1_Export.blend",
+        "sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+        "collection": "SM_Bed_Oak_01",
+        "note": "Original Blender geometry; original Dink sequence87 table and461 chairs; immutable generated oak reference from FloorOakV1, see ART_BRIEF.txt"
+      },
+      "tris": {
+        "LOD0": 19588
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ],
+        "size_cm": [
+          251.0,
+          137.0,
+          112.0
+        ],
+        "unreal_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Bed_Oak_01_01",
+        "UCX_SM_Bed_Oak_01_02",
+        "UCX_SM_Bed_Oak_01_03",
+        "UCX_SM_Bed_Oak_01_04",
+        "UCX_SM_Bed_Oak_01_05",
+        "UCX_SM_Bed_Oak_01_06",
+        "UCX_SM_Bed_Oak_01_07",
+        "UCX_SM_Bed_Oak_01_08",
+        "UCX_SM_Bed_Oak_01_09",
+        "UCX_SM_Bed_Oak_01_10",
+        "UCX_SM_Bed_Oak_01_11",
+        "UCX_SM_Bed_Oak_01_12",
+        "UCX_SM_Bed_Oak_01_13"
+      ],
+      "material_slots": [
+        "MI_Bed_Oak_01_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Bed_Oak_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Bed_Oak_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Bed_Oak_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Bed_Oak_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Chair_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealPropsV1_Export.blend",
+        "sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+        "collection": "SM_Chair_Oak_01",
+        "note": "Original Blender geometry; original Dink sequence87 table and461 chairs; immutable generated oak reference from FloorOakV1, see ART_BRIEF.txt"
+      },
+      "tris": {
+        "LOD0": 6064
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "blender_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ],
+        "size_cm": [
+          65.0,
+          53.75,
+          100.5
+        ],
+        "unreal_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "unreal_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Chair_Oak_01_01",
+        "UCX_SM_Chair_Oak_01_02",
+        "UCX_SM_Chair_Oak_01_03",
+        "UCX_SM_Chair_Oak_01_04",
+        "UCX_SM_Chair_Oak_01_05",
+        "UCX_SM_Chair_Oak_01_06",
+        "UCX_SM_Chair_Oak_01_07",
+        "UCX_SM_Chair_Oak_01_08",
+        "UCX_SM_Chair_Oak_01_09",
+        "UCX_SM_Chair_Oak_01_10",
+        "UCX_SM_Chair_Oak_01_11",
+        "UCX_SM_Chair_Oak_01_12",
+        "UCX_SM_Chair_Oak_01_13",
+        "UCX_SM_Chair_Oak_01_14",
+        "UCX_SM_Chair_Oak_01_15",
+        "UCX_SM_Chair_Oak_01_16"
+      ],
+      "material_slots": [
+        "MI_Chair_Oak_01_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Chair_Oak_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Chair_Oak_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Chair_Oak_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Chair_Oak_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Table_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealPropsV1_Export.blend",
+        "sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+        "collection": "SM_Table_Oak_01",
+        "note": "Original Blender geometry; original Dink sequence87 table and461 chairs; immutable generated oak reference from FloorOakV1, see ART_BRIEF.txt"
+      },
+      "tris": {
+        "LOD0": 9232
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "blender_max_cm": [
+          132.5,
+          74.9,
+          90.0
+        ],
+        "size_cm": [
+          265.0,
+          149.8,
+          90.0
+        ],
+        "unreal_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "unreal_max_cm": [
+          132.5,
+          74.9,
+          90.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Table_Oak_01_01",
+        "UCX_SM_Table_Oak_01_02",
+        "UCX_SM_Table_Oak_01_03",
+        "UCX_SM_Table_Oak_01_04",
+        "UCX_SM_Table_Oak_01_05",
+        "UCX_SM_Table_Oak_01_06",
+        "UCX_SM_Table_Oak_01_07",
+        "UCX_SM_Table_Oak_01_08",
+        "UCX_SM_Table_Oak_01_09",
+        "UCX_SM_Table_Oak_01_10",
+        "UCX_SM_Table_Oak_01_11",
+        "UCX_SM_Table_Oak_01_12",
+        "UCX_SM_Table_Oak_01_13",
+        "UCX_SM_Table_Oak_01_14",
+        "UCX_SM_Table_Oak_01_15",
+        "UCX_SM_Table_Oak_01_16",
+        "UCX_SM_Table_Oak_01_17",
+        "UCX_SM_Table_Oak_01_18"
+      ],
+      "material_slots": [
+        "MI_Table_Oak_01_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Table_Oak_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Table_Oak_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Table_Oak_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/Textures/T_Table_Oak_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}
