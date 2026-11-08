@@ -11,7 +11,7 @@ class UDinkStorySubsystem;
  *   Space/Enter/E    skip the say_stop text being waited on (the original's skip)
  *   Up/Down, W/S     move the menu highlight;  Enter/Space/E pick;  1-9 pick directly
  *   F / Left Ctrl    attack: the armed item's `use` (fists, sword, pig feed...; the original's Ctrl)
- *   Q / Left Shift   cast the armed spell when charged (the original's Shift)
+ *   Q                cast the armed spell when charged (the original's Shift)
  * Only acts in a game world, and never while the console is open.
  */
 class FDinkNarrativeInputProcessor : public IInputProcessor

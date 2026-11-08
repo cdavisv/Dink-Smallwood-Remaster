@@ -15,6 +15,13 @@ UDinkHumanoidComponent::UDinkHumanoidComponent()
 
 void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomotion)
 {
+	// A script size/profile reapply may already have supplied a fresh authored transform.
+	// Strip our last lean only if that exact pose is still ours; never remove it from a new base.
+	const FQuat Current = GetRelativeRotation().Quaternion();
+	if (bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f))
+		SetRelativeRotation(AppliedBodyRotation.Inverse() * Current);
+	AppliedBodyRotation = FQuat::Identity;
+	bBodyRotationApplied = false;
 	SetSkeletalMesh(Mesh);
 	LocomotionAsset = Locomotion;
 	if (Locomotion)
@@ -24,6 +31,7 @@ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomot
 		if (UAnimSingleNodeInstance* Animation=GetSingleNodeInstance()) Animation->SetPlayRate(1.f);
 	}
 	Motion.Reset();
+	BodyDynamics.Reset();
 	LocomotionSpeed = 0.f;
 }
 
@@ -32,6 +40,13 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	if (AActor* Owner = GetOwner())
 	{
 		const FVector Location = Owner->GetActorLocation();
+		const FQuat Current = GetRelativeRotation().Quaternion();
+		const FQuat Base = bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f)
+			? AppliedBodyRotation.Inverse() * Current : Current;
+		AppliedBodyRotation = BodyDynamics.Update(Location, Owner->GetActorQuat(), DeltaTime).Quaternion();
+		LastBodyRotation = AppliedBodyRotation * Base;
+		SetRelativeRotation(LastBodyRotation);
+		bBodyRotationApplied = true;
 		LocomotionSpeed = Motion.Update(Location, DeltaTime);
 		if (UAnimSingleNodeInstance* Animation = GetSingleNodeInstance(); Animation && LocomotionAsset)
 		{

@@ -1,0 +1,21 @@
+{
+  "Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp": "8aefd540841162e812684d9a632a08032c97c54a835476977f2ea6b228e366b5",
+  "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp": "6c0ddc798f1df12140f98786b7aa474c654de32f496ea5c3c0cdd3339fda96a4",
+  "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp": "6b131af9a93f4cbd9dc76157ea4b14fd5f0ae6954c811be4e4e5702779dce3ac",
+  "Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h": "6e932de5a71b153ad0ebfec403a8eae0022822f2bc46befcb2cf938fc7fc6613",
+  "Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h": "e35ddc5a429a53edfde0fe992dd8b9792c54f26c8e6b91c650d5d5bf62cdee26",
+  "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h": "6dd9633a8618998b5a545a5da3fe0a40d3f5d467d0a382587517412116495904",
+  "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp": "f12202c5a8f687e058538c331a5559e42d4199cca7c0c41617e42b4e6abfca94",
+  "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h": "d6d71c2b40519cd9abadcc4ecbac5dd3657016691740afbc654c85243517de47",
+  "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp": "10fb7593a0743d4d513e0ef7fa36683cd28cbd69d00456c6e01001765503ad0e",
+  "Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs": "b64e495f30f5453aa6931c7969ce93b407375f9d84f05d60b255b34cb7852798",
+  "README.md": "50db5680f15288dde8496c42cf2c2c6fcd631712da4e482ca2a2c18d1ac65fed",
+  "Plugins/DinkCore/Source/DinkCore/Public/DinkBodyDynamics.h": "4bffdceed1b10675056db303b476bf7e049c71da249eb28b801ff21868672e0f",
+  "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp": "cc5091d465351f7d1ce8d04b25d42d543d0804c278f8b3f1d23abedfb820c30e",
+  "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "cf3b92e78398feb1a94a1459ba75e1bd1c541bcd2e855fe2d8c1e5d4b5fd18a6",
+  "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "d72eaddcf9677a59eca2a378fadf6d148a077492ecae73e51fa41c89fe01c112",
+  "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "1cecb4eb3cd95e4016905db077706f47e698bb618e5d73f0bf5375e5caf5d88f",
+  "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "276e77794f9ee08679ef1614f4fe15519b5ac09934343f0a4e74021b432467bb",
+  "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "9dd507d6c5a0f823c42de574b9b3cc5952acb7238aea67e34cfa1cb5c2736296",
+  "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "5786afb45445be9e22fe2d72240ce6cd73ae6cfe57fa9011e0d9bb4ebc140c4f"
+}
