@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "source_sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_Stonebrook_Wicker_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1435537,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2898185,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1302556,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}
