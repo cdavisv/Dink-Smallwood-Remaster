@@ -5,6 +5,10 @@ project. Read this file before doing any work here, and keep it accurate: when y
 fact, a pitfall or a decision, write it down here and remove anything that has become wrong.
 Label uncertain or temporary information as such.
 
+## Photoreal basket source candidate (8 November 2026)
+
+Source-only `art/photoreal-basket-source`, base7930e7b, adds portable Blender/FBX/GLB and2048BC/N/ORM under SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1. The added decorative WickerBasket is distinct from the original grain sack S001_P52/422_12/s1-sack; room-context PNGs are explicitly not its direct sprite. Coordinating root approved source/export iteration only; native/game acceptance remains pending.19680triangles, guide0errors/1soft-targetwarning; separate complete UVoverlap0/truncationfalse, atlas83.2%/821px/m. Original kit bounds/pivot/authoredUCX retained, but rebuilt render triangles differ and complex-as-simple needs native gameplay verification. NoContent/runtime references change. Source recipe fixes use safe shader socketpairs; original archived trailing-space recipe retained separately with AST-equivalent canonical whitespace cleanup.
+
 ## Photoreal barrel source candidate (8 Nov 2026 UTC)
 
 Source-only branch `art/photoreal-barrel-source`, base64d57e8f, adds the reviewed packed Blender barrel/triangulated export and2048BC/N/ORM payloads under SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1. No Content/runtime references change; native/game acceptance remains pending. Guide retains0errors2sourcewarnings/1exportwarning; exact original bounds/pivot and75x75x100cmUCX retained.56new ledger rows remain candidate; prior1353rows/483audio rows preserve rawbytes. The copied payload audit removes an author-only duplicate archival-file dependency, retaining approved source SHA; original handoff and correction are recorded in Docs/Verification/PhotorealBarrelSource.

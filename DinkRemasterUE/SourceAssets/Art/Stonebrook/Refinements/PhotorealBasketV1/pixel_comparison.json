@@ -1,0 +1,46 @@
+{
+  "same_geometry_materials_camera_and_studio": true,
+  "changes": "Only UVs/rebaked2048BC/N/ORM, actualFBXroundtrip",
+  "measurements": {
+    "handle": {
+      "ROI_xyxy": [
+        350,
+        200,
+        790,
+        790
+      ],
+      "old_mean_abs_RGB_255": 0.5414008498191833,
+      "refined_mean_abs_RGB_255": 0.3038020133972168,
+      "refined_p95_abs_RGB_255": 2.0,
+      "mean_error_change_percent": -43.88593673706055,
+      "refined_image_sha256": "e002f113d432bccc264bfce922ac6ce6f552a93a0feec23bd4db1ff1e2275ae4"
+    },
+    "weave": {
+      "ROI_xyxy": [
+        40,
+        40,
+        760,
+        760
+      ],
+      "old_mean_abs_RGB_255": 0.8999620676040649,
+      "refined_mean_abs_RGB_255": 0.6630915403366089,
+      "refined_p95_abs_RGB_255": 2.0,
+      "mean_error_change_percent": -26.320056915283203,
+      "refined_image_sha256": "472c8945d516786be1e8c996a08cef5aeff6c2097b049cc99e0eecdda5fcf25d"
+    },
+    "game-distance": {
+      "ROI_xyxy": [
+        250,
+        250,
+        550,
+        550
+      ],
+      "old_mean_abs_RGB_255": 0.44003334641456604,
+      "refined_mean_abs_RGB_255": 0.4075407385826111,
+      "refined_p95_abs_RGB_255": 2.0,
+      "mean_error_change_percent": -7.384124279022217,
+      "refined_image_sha256": "d458222e023e588b4278a5e2185af98f4e387e3f4fde53dcc33397cda9a87c7c"
+    }
+  },
+  "limits": "Measurements are not universal visual thresholds; native filtering/light/gameplay acceptance pending."
+}

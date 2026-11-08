@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "source_state_except_UV_unchanged": true,
+  "state_sha256": "ee25b592ffb3c51c03c592944b5ac856227a0715bcc30d9ca55d6498b23eb4b9",
+  "all_mesh_positions_topology_normals_materials_attributes_and_transforms_checked": true,
+  "complete_UV_overlap_stats": {
+    "uv_area": 0.8320327885792744,
+    "area_3d": 5.17372214997244,
+    "overlap_area": 0.0,
+    "overlap_ratio": 0.0,
+    "overlapping_tris": 0,
+    "degenerate_tris": 0,
+    "tris_out_of_range": 0,
+    "truncated": false,
+    "tris": 19680
+  },
+  "density_px_per_m": 821.2939470909467,
+  "guide_summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 1
+  },
+  "source_sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf"
+}
