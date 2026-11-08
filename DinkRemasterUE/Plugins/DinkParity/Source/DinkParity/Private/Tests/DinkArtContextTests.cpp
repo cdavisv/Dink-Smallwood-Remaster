@@ -211,7 +211,7 @@ class FContextPIE : public IAutomationLatentCommand
             auto Camera=H ? H->FindComponentByClass<UDinkInteriorCameraComponent>() : nullptr;
             auto Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
             const bool ManagedCottage=B.M->GetStaticMesh() && B.M->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01") &&
-                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && !Camera->bInteriorMode;
+                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && Camera->bEnableWallCutaway && !Camera->bInteriorMode;
             if (ManagedCottage)
             {
                 auto Expected=B.Responses;Expected.SetResponse(ECC_Camera,ECR_Ignore);

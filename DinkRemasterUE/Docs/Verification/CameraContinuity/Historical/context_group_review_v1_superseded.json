@@ -1,0 +1,57 @@
+{
+  "status": "Read-only review complete: strict screen_set behavior has no blocking finding for unique-number generated worlds; one owner-only parity edge recommended for correction",
+  "patch_sha256": "e05d6bb4a9c7430241879150e680dc83b7a9cf838926b02f6655b9756c6ca694",
+  "delivery_sha256": "7a185625982b51757ce3d3af864259b60b52ea1d96eaa34f44ca9c9adc000ea1",
+  "input_pins_sha256": "88fe3fa3d75f8f2ea492b344c14224a5ac019e90cefa4608eab36ab7f86c011a",
+  "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+  "prerequisite_camera_posture_patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
+  "files": {
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h": "3259f4358d0326adfce1a80216d6a643c0569ffcc54e96e4c5fb295ad4eb87f4",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp": "e380b0ce288a1832be7a1e623d793a65f552b85b43e86de713070a0278b85daa",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp": "92472390f29ecbceafe69c609452340779d1d20fe5fde748d71fa062579707f9"
+  },
+  "current_combined_input_count": 8942,
+  "current_combined_pin_mismatches": [],
+  "reverse_patch_check": "Read-only git apply --check --reverse exited0",
+  "findings": [
+    {
+      "severity": "P2 parity edge; dormant withunique-number currentgeneratedscreens",
+      "path": "Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp",
+      "line": 112,
+      "summary": "owner_screen_only fallback no longer requires cached/physical screen object identity",
+      "detail": "OriginalUpdateVisibility requiredGreybox->FindScreenAt(PawnLocation)==CachedScreen. NewIncludesScreenPair onlychecks bothScreenNumber==Owner whenVisibleScreens isempty. GreyboxRegisterScreen AddUnique deduplicatesActor pointers ratherthan ScreenNumber, so two valid registeredvolumes withsamereusednumber butdifferentpositions canactivateanoldowner-onlycontext whilecache stillpointsanotherActor. This changes the oldowner-only guard, thoughgeneratedworldcurrentlyhasuniqueIDs.",
+      "recommendation": "KeepPhysical==Screen requirementonlyin the emptyVisibleScreens owner-onlybranch, while retaining independentmembershipfornonemptysharedscreen_set. Addduplicate-number-volume guard regression, or explicitlydocument a verifiedunique-screen-ID invariant instead of claiming exactoldpolicy parity.",
+      "verification": "Source/API controlflowreview; no newnative testexecuted."
+    }
+  ],
+  "native_focused_evidence": {
+    "report": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/shared_context_focus/index.json",
+    "sha256": "5eb74fdc66010104033802849d64d434bc32951ec2ac87067b20785df094738f",
+    "states": {
+      "Success": 2
+    },
+    "tests": [
+      "Dink.Art.Context.OwnerScreenVisibility",
+      "Dink.Art.Context.SharedOutdoorVisibility"
+    ],
+    "failed": 0,
+    "warning_tests": 0,
+    "duration_seconds_author_claim": 24
+  },
+  "positive_checks": [
+    "screen_set manifest validates nonempty<=32,strictnumericfiniteinteger IDs1..768,duplicate rejection andowner membership beforeactor spawn.",
+    "owner_screen_only rejects screens field, preserving explicitmode separation; all prior top-levelcollision/hide/warp/light/postprocesspolicyfields remain rejected.",
+    "ConfigureScreenSet prepares a temporary setbeforecommit, so rejected updates leavepreviousvalidpolicy; ConfigureOwnerScreen clearsgroupmembership.",
+    "Cached andphysicalIDs are independentlyrequiredmembers forscreen_set; they neednotbe equal, preservingoneworldcontextthroughcachelag. Missingpawn/cached/physicalscreen hidescontext.",
+    "Renderer-only components remainNoCollision/nooverlaps/nonav/nohiddenShadow/GI, onecontexttimer/no meshticks; transformneverchangesonvisibilityupdates.",
+    "ExistingBeginPlay screen/pawn callbacks andboundedcontroller refresh,EndPlaytimer/delegateclear remainunchanged.",
+    "FocusedactualPIEfixture testsinvalidfactoryinputs and two-real-screen visibility transitions/missingpawn/interior-exclusionforundeclared1; originalContext.OwnerScreenVisibility also passes."
+  ],
+  "coverage_limits": [
+    "No authored shared-world composition assets are published; this runtimecontract doesnot deduplicate overlapping sourceassetgeometry or provecontinuouslandscapeplacement.",
+    "Declaredgroupmembership is not limited tooutdoor volumes byruntime; aninterior is excludedonlyifnotlisted. Currenttest list439/471 deliberately excludes1.",
+    "Focusedtests do notexplicitlyenumerate everyparseredge (e.g.33items,NaNviaC++construct) though codeguards cover them.",
+    "Combined16filefullsuite is stillpending separate terminalevidence; focused2passdoesnotstandinforfullsuite.",
+    "Do not conflateduplicate-screen-ID rejection withinamanifestset withgloballyuniqueScreenVolumeactorIDs orassetdeduplication."
+  ]
+}
