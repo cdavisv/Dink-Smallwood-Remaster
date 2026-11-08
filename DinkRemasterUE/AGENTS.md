@@ -7,7 +7,7 @@ Label uncertain or temporary information as such.
 
 ## Current delivery checkpoint (7Nov2026 local /8Nov UTC)
 
-- This project is delivered under DinkRemasterUE/ in the owner-selected GitHub repository. Original-engine files remain at the root. Scripts discover extraction data in the parent repo or the original sibling layout. Binary assets are pinned by AssetPacks/house-v1.json and restored by Scripts/bootstrap_asset_pack.py; new Git LFS uploads are unavailable in this public fork. UE5.8.4 stays outside the repo and must never be edited.
+- This project is delivered under DinkRemasterUE/ in the owner-selected GitHub repository. Original-engine files remain at the root. Scripts discover extraction data in the parent repo or the original sibling layout. The owner explicitly chose Git LFS for binary assets and is arranging repository support. Use git lfs pull; the existing release pack is only an optional recovery copy. UE5.8.4 stays outside the repo and must never be edited.
 - The staged camera/fireplace snapshot passed130/130,0warnings,354s with666Data,225compiled files,7DLLs,8new material/mesh packages and651protected originals unchanged. All6 original gameplay traces and healer payment matched prior verification. See Docs/Verification/house-stage130.json. This is not a claim of full-world art or complete sanctuary/Mog gameplay.
 - Actual W house exit/return passed. Native projection-based component occlusion now fades the foreground door jamb while preserving empty-doorway, behind-eye and beyond-pawn controls, physical collision and shadow behavior. Before/fixed captures and routes are in Docs/Verification.
 - FireplaceV2 retains P19’s original transform/script, has251×111.5×300.4cm actual source dimensions,3authored fallback LODs15484/8050/4180 and6fitted hulls. Nanite follows the Blender source, with explicit PercentTriangles1.0 and material usage. Reported render bounds can include Nanite's coarse envelope; use source vertices and real hull queries for physical scale. Local firelight is40lm/2000K/55cm; global exposure is unchanged.
@@ -217,7 +217,7 @@ Shared helpers in `DinkTestHelpers.h`.
 - **Git:** never `git commit` or `git push` unless explicitly told to ("commit" means local only;
   it is not permission to push). Never add AI co-author lines (no `Co-Authored-By` for
   Claude/Codex/OpenAI etc.) to commits. The owner explicitly requested commits, PRs, review and merge for this delivery; origin is cdavisv/Dink-Smallwood-Remaster.
-- **Binary assets:** this public fork rejected new Git LFS uploads. Binary art/audio and Unreal packages stay ignored locally and are versioned through GitHub Release packs with archive/per-file hashes in `AssetPacks/house-v1.json`. Bootstrap and fully verify assets before building/importing. CSV/JSON/INI/Ink and source code stay plain Git text. Preserve modified local art; publish reviewed new pack revisions rather than replacing published files.
+- **Binary assets:** use Git LFS through `.gitattributes`, including lockable Unreal packages and editable source art. Run `git lfs pull` and the full source verifier before building/importing. Expected asset hashes come from Git’s staged pointers; metadata-only verification does not establish missing binary contents. CSV/JSON/INI/Ink and source code stay plain Git text. Preserve modified local art. The historical release pack is optional recovery tooling, not the primary storage policy.
 - **Secrets:** never commit credentials or tokens; local notes go in `agents_secret.md`
   (git-ignored).
 
