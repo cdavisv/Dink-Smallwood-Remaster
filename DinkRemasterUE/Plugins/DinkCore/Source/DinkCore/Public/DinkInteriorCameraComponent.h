@@ -35,6 +35,8 @@ class DINKCORE_API UDinkInteriorCameraComponent : public UActorComponent
     GENERATED_BODY()
 public:
     UDinkInteriorCameraComponent();
+    /** Historical cutaway mode for comparison fixtures only. Normal play keeps architecture opaque. */
+    UPROPERTY(Transient) bool bEnableWallCutaway = false;
     /** Positive steps move closer. Kept separate from interior/outdoor base distances. */
     void AddZoomInput(float Steps);
     float GetZoomOffset() const { return ZoomOffset; }
@@ -79,5 +81,6 @@ private:
     FVector OutdoorPivot = FVector::ZeroVector;
     FVector OutdoorSocket = FVector::ZeroVector;
     bool bSelectedScreen = false;
+    bool bAppliedCutaway = false;
     float ZoomOffset = 0.f;
 };

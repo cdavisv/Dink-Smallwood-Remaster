@@ -1,0 +1,21 @@
+{
+  "start": {
+    "screen": 1,
+    "map": [
+      303.0,
+      350.0
+    ],
+    "world": [
+      -183808.285,
+      393377.23,
+      98.0
+    ],
+    "yaw": 270.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "exit": "PASS",
+  "return": "PASS",
+  "scope": "actual held W from prior explicit303/350 photo fixture; no route teleports"
+}

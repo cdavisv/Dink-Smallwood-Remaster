@@ -1,6 +1,7 @@
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
+#include "DinkEarlyPostureAnimInstance.h"
 #include "DinkInteriorCameraComponent.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStatsComponent.h"
@@ -228,6 +229,12 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
 	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
 		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
+    if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
+        Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
+    {
+        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
+        AppliedBodyRotation = AppliedBodyRotation * FRotator(1.2f,0,0).Quaternion();
+    }
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
 	AppliedBodyOffset = HeroPhysicality.GetOffset();

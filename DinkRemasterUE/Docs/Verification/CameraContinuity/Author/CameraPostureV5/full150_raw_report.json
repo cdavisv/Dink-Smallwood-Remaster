@@ -1,0 +1,5016 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BCBE1760786C98F2234383A67121",
+			"instanceName": "omarchy-177811",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-20.06.28",
+	"succeeded": 149,
+	"succeededWithWarnings": 1,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 434.35983276367188,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "WindUpAndAttackerCap",
+			"fullTestPath": "Dink.AI.Adaptation.WindUpAndAttackerCap",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.27579116821289062,
+			"dateTime": "2026.11.08-19.59.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "layer off: at most 3 attacking at once, 0 wind-ups, 138 hits on Dink in 20 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "layer on: at most 2 attacking at once, 46 wind-ups, 44 hits on Dink in 20 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.11"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuckAndPig",
+			"fullTestPath": "Dink.AI.Animals.DuckAndPig",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.18794374167919159,
+			"dateTime": "2026.11.08-19.59.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "brain 3: 19684 px in 3 min, directions 4 1 7 3 9 6, 11 sounds",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "brain 4: 20484 px in 3 min, directions 1 7 3 9, 110 sounds",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.11"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DamageFormula",
+			"fullTestPath": "Dink.AI.Attack.DamageFormula",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1329471617937088,
+			"dateTime": "2026.11.08-19.59.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "the hit landed 350 ms after the attack began",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "touch damage 4 for 1 s: 2 touches",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AttackingDinkWins",
+			"fullTestPath": "Dink.AI.Bonca.AttackingDinkWins",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.13333123922348022,
+			"dateTime": "2026.11.08-19.59.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "won after 7 punches; Dink's life 3/10, &wizard_see 3",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "KillsIdleDink",
+			"fullTestPath": "Dink.AI.Bonca.KillsIdleDink",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.13437040150165558,
+			"dateTime": "2026.11.08-19.59.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "hit 1 by 4 strength 8 damage 8",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "dink -8 life",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "hit 1 by 4 strength 8 damage 6",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "dink -6 life",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "idle Dink died after 7.28 s (bound 7.7 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SameSeedSameOutcome",
+			"fullTestPath": "Dink.AI.Determinism.SameSeedSameOutcome",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.40704444050788879,
+			"dateTime": "2026.11.08-19.59.12",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WallsAndLowHardness",
+			"fullTestPath": "Dink.AI.Missile.WallsAndLowHardness",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1400836706161499,
+			"dateTime": "2026.11.08-19.59.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "wall: SCR_013 x 220 y 60; missile reached x 219",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "low: SCR_014 x 295 y 60; flying at 379, non-flying at 294",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PillbugChasesWithinHardness",
+			"fullTestPath": "Dink.AI.Monster.PillbugChasesWithinHardness",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15475957095623016,
+			"dateTime": "2026.11.08-19.59.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "pillbug: start 150 px from Dink, closest 0 px in 30 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "wander: 13276 px in 120 s from 252,250",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.13"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FrozenAndScriptedMove",
+			"fullTestPath": "Dink.AI.Override.FrozenAndScriptedMove",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14100442826747894,
+			"dateTime": "2026.11.08-19.59.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VillagerWandersInBounds",
+			"fullTestPath": "Dink.AI.People.VillagerWandersInBounds",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.20310771465301514,
+			"dateTime": "2026.11.08-19.59.13",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "SmileStein: 15746 px walked, 27817 frames sitting, 8183 walking in 10 min",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.13"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BarrierBlocksExits",
+			"fullTestPath": "Dink.AI.Screenlock.BarrierBlocksExits",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0095985336229205132,
+			"dateTime": "2026.11.08-19.59.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FightsLockAndUnlock",
+			"fullTestPath": "Dink.AI.Screenlock.FightsLockAndUnlock",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14148716628551483,
+			"dateTime": "2026.11.08-19.59.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WallsRemainSolid",
+			"fullTestPath": "Dink.Art.Camera.WallsRemainSolid",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 5.3161230087280273,
+			"dateTime": "2026.11.08-19.59.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OwnerScreenVisibility",
+			"fullTestPath": "Dink.Art.Context.OwnerScreenVisibility",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 6.0776572227478027,
+			"dateTime": "2026.11.08-19.59.18",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase0 hero0 story0 pending-1 tickable-1 commandlet0 paused-1 worldtime-1.000 menu-1 frozen-1 ignored-1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.20"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorLocomotionAndPhysicalFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.ActorLocomotionAndPhysicalFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0086120720952749252,
+			"dateTime": "2026.11.08-19.59.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPigActorsAndDeathPersistence",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPigActorsAndDeathPersistence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14927318692207336,
+			"dateTime": "2026.11.08-19.59.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPillbugVisionTouchDeathAndMixedFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPillbugVisionTouchDeathAndMixedFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15351349115371704,
+			"dateTime": "2026.11.08-19.59.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisibleGroundGrainOcclusion",
+			"fullTestPath": "Dink.Art.CreaturePresentation.VisibleGroundGrainOcclusion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0087404260411858559,
+			"dateTime": "2026.11.08-19.59.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OwnerScreenLifecycle",
+			"fullTestPath": "Dink.Art.Exposure.OwnerScreenLifecycle",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 8.3582859039306641,
+			"dateTime": "2026.11.08-19.59.25",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "doorway eyeX=-183761.097 Y=393745.484 Z=224.164 old-bounds distance125.754cm blend100.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.29"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AuthoredSuppressesGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.9143433570861816,
+			"dateTime": "2026.11.08-19.59.33",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GreyboxRetainsGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.7775430679321289,
+			"dateTime": "2026.11.08-19.59.36",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorOwnedLocomotion",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.ActorOwnedLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0080483919009566307,
+			"dateTime": "2026.11.08-19.59.39",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BrainTurnsHumanoidButNotFurniture",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.BrainTurnsHumanoidButNotFurniture",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15356205403804779,
+			"dateTime": "2026.11.08-19.59.39",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0093373283743858337,
+			"dateTime": "2026.11.08-19.59.39",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FadesAndRestoresPhysicalHouse",
+			"fullTestPath": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 9.9288730621337891,
+			"dateTime": "2026.11.08-19.59.39",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Real PIE viewport prior1280x720 initialized1280x720 LocalPlayerSizeX=1.000 Y=1.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.42"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Clear-aperture fixture pawnV(X=-183806.10, Y=393355.35, Z=98.00) eyeV(X=-183761.10, Y=393595.35, Z=150.00) insideDoorBounds1 geometricSphereClear1 opacity1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.45"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Actual-return foreground pawnV(X=-183808.48, Y=393536.18, Z=98.00) eyeV(X=-183763.48, Y=393764.44, Z=224.16) controlR(P=-18.00, Y=-90.00) independentPixelHits9 endDepth228.069",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.45"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase2 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.46"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.46"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.0 floorHitV(X=-183967.54, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.5 floorHitV(X=-183805.18, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction1.0 floorHitV(X=-183642.82, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw225.0 shoulder45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183612.88, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.0 floorHitV(X=-183969.37, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.5 floorHitV(X=-183807.02, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction1.0 floorHitV(X=-183644.66, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw315.0 shoulder-45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183999.32, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.47"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase4 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.49"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.49"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ForegroundProjection",
+			"fullTestPath": "Dink.Art.InteriorCamera.ForegroundProjection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0038777489680796862,
+			"dateTime": "2026.11.08-19.59.49",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MinimumTranslation",
+			"fullTestPath": "Dink.Art.InteriorCamera.MinimumTranslation",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0079051414504647255,
+			"dateTime": "2026.11.08-19.59.49",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ClassicBrainAcrossRenderCadences",
+			"fullTestPath": "Dink.Art.MotionEstimate.ClassicBrainAcrossRenderCadences",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.81225818395614624,
+			"dateTime": "2026.11.08-19.59.49",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "30Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.49"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "60Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.50"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "120Hz actual601.81 presented600.00 intermittent165 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.50"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "144Hz actual602.12 presented600.10 intermittent231 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.50"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "240Hz actual602.72 presented600.00 intermittent495 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.50"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReadableExitAndOwnership",
+			"fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 9.1390933990478516,
+			"dateTime": "2026.11.08-19.59.50",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "actual outdoor exit pawnV(X=97729.07, Y=37504.15, Z=98.35) eyeV(X=97729.07, Y=37123.73, Z=221.96) distance400.000 requested400.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.55"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase2 actualP=-18.000000 Y=90.000000 R=0.000000 expectedP=-18.000000 Y=90.000000 R=0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.55"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Post-Possess fixture baseline: controlP=0.000000 Y=90.000000 R=-0.000000 actorP=0.000000 Y=90.000000 R=-0.000000 inputPawnInputComponent0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.58"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase6 actualP=0.000000 Y=90.000000 R=-0.000000 expectedP=0.000000 Y=90.000000 R=-0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-19.59.59"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ApprovedFistTimingSaveAndLocomotion",
+			"fullTestPath": "Dink.Art.PlayerAction.ApprovedFistTimingSaveAndLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.97677904367446899,
+			"dateTime": "2026.11.08-19.59.59",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "EarlyMoodWeight",
+			"fullTestPath": "Dink.Art.Posture.EarlyMoodWeight",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0014714420540258288,
+			"dateTime": "2026.11.08-20.00.00",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OverrideOwnership",
+			"fullTestPath": "Dink.Art.Posture.OverrideOwnership",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0084419893100857735,
+			"dateTime": "2026.11.08-20.00.00",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MarkerScaleSizeAndSavedFacing",
+			"fullTestPath": "Dink.Art.ScriptCharacter.MarkerScaleSizeAndSavedFacing",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.21990476548671722,
+			"dateTime": "2026.11.08-20.00.00",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PerimeterSkirtOwnership",
+			"fullTestPath": "Dink.Art.Underfloor.PerimeterSkirtOwnership",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 4.9170455932617188,
+			"dateTime": "2026.11.08-20.00.01",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CharacterBindPoseAndMaterials",
+			"fullTestPath": "Dink.Art.CharacterBindPoseAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.049124155193567276,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ConvexTransformInspection",
+			"fullTestPath": "Dink.Art.ConvexTransformInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008302023634314537,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CreatureRigMaterialsAndMotion",
+			"fullTestPath": "Dink.Art.CreatureRigMaterialsAndMotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0081411777064204216,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExteriorAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ExteriorAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.007079743780195713,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ImportedAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ImportedAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0080324215814471245,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MaterialPropertyInspection",
+			"fullTestPath": "Dink.Art.MaterialPropertyInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0081703038886189461,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PigPenFeedScatterLODAndMaterial",
+			"fullTestPath": "Dink.Art.PigPenFeedScatterLODAndMaterial",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082503864541649818,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ApprovedAssets",
+			"fullTestPath": "Dink.Audio.ApprovedAssets",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.032546106725931168,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ApprovedLookupAndCueParity",
+			"fullTestPath": "Dink.Audio.ApprovedLookupAndCueParity",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0081337848678231239,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DefenseRule",
+			"fullTestPath": "Dink.Core.Combat.DefenseRule",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0079585220664739609,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Magic",
+			"fullTestPath": "Dink.Core.Combat.Magic",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082394750788807869,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Melee",
+			"fullTestPath": "Dink.Core.Combat.Melee",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0080438042059540749,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Missile",
+			"fullTestPath": "Dink.Core.Combat.Missile",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008446437306702137,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Touch",
+			"fullTestPath": "Dink.Core.Combat.Touch",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082175526767969131,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Conditions",
+			"fullTestPath": "Dink.Core.Facts.Conditions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0080794012174010277,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Delegates",
+			"fullTestPath": "Dink.Core.Facts.Delegates",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082901613786816597,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GetSetAdd",
+			"fullTestPath": "Dink.Core.Facts.GetSetAdd",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082336235791444778,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LoadAndRestore",
+			"fullTestPath": "Dink.Core.Facts.LoadAndRestore",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.00857516098767519,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ShippedTable",
+			"fullTestPath": "Dink.Core.Facts.ShippedTable",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083461282774806023,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LegacyCardsCurrentScreen",
+			"fullTestPath": "Dink.Core.Greybox.LegacyCardsCurrentScreen",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15290854871273041,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ArmDisarm",
+			"fullTestPath": "Dink.Core.Inventory.ArmDisarm",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083581497892737389,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Limits",
+			"fullTestPath": "Dink.Core.Inventory.Limits",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083891591057181358,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SanitizeLoadedState",
+			"fullTestPath": "Dink.Core.Inventory.SanitizeLoadedState",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0084559759125113487,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Format",
+			"fullTestPath": "Dink.Core.OriginId.Format",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008096674457192421,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Parse",
+			"fullTestPath": "Dink.Core.OriginId.Parse",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083203082904219627,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RoundTripAndHash",
+			"fullTestPath": "Dink.Core.OriginId.RoundTripAndHash",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083670066669583321,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Experience",
+			"fullTestPath": "Dink.Core.Progression.Experience",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0080219022929668427,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LevelUp",
+			"fullTestPath": "Dink.Core.Progression.LevelUp",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083730593323707581,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GameInstanceSlotRoundTrip",
+			"fullTestPath": "Dink.Core.Save.GameInstanceSlotRoundTrip",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15017387270927429,
+			"dateTime": "2026.11.08-20.00.06",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Migration",
+			"fullTestPath": "Dink.Core.Save.Migration",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082813547924160957,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MigrationV1ToV2",
+			"fullTestPath": "Dink.Core.Save.MigrationV1ToV2",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083937877789139748,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RoundTrip",
+			"fullTestPath": "Dink.Core.Save.RoundTrip",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008079000748693943,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ScreenCacheBeforeNarrativeRestore",
+			"fullTestPath": "Dink.Core.Save.ScreenCacheBeforeNarrativeRestore",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15139617025852203,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DamageAndDeath",
+			"fullTestPath": "Dink.Core.Stats.DamageAndDeath",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0079078264534473419,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FactMirror",
+			"fullTestPath": "Dink.Core.Stats.FactMirror",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083493134006857872,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FactMirrorTwoWay",
+			"fullTestPath": "Dink.Core.Stats.FactMirrorTwoWay",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083331326022744179,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NewGameDefaults",
+			"fullTestPath": "Dink.Core.Stats.NewGameDefaults",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0081309787929058075,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ProgressionAndMagic",
+			"fullTestPath": "Dink.Core.Stats.ProgressionAndMagic",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0081990482285618782,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SeededRandomIsDeterministic",
+			"fullTestPath": "Dink.Core.Stats.SeededRandomIsDeterministic",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083087263628840446,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ClockSkewGuard",
+			"fullTestPath": "Dink.Core.WorldState.ClockSkewGuard",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083626089617609978,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExportImport",
+			"fullTestPath": "Dink.Core.WorldState.ExportImport",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0084757637232542038,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RespawnTiming",
+			"fullTestPath": "Dink.Core.WorldState.RespawnTiming",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008154112845659256,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SetGetClear",
+			"fullTestPath": "Dink.Core.WorldState.SetGetClear",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083814654499292374,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TypeRules",
+			"fullTestPath": "Dink.Core.WorldState.TypeRules",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0082710953429341316,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CreatureBrainSweepsRotatedFootprint",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.CreatureBrainSweepsRotatedFootprint",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14585214853286743,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HiddenCreatureBoxUsesPhysicalEdge",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.HiddenCreatureBoxUsesPhysicalEdge",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14456550776958466,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HitAndPushUsePhysicalEdge",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.HitAndPushUsePhysicalEdge",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14561024308204651,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HumanoidBrainAvoidsNewChair",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.HumanoidBrainAvoidsNewChair",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15196861326694489,
+			"dateTime": "2026.11.08-20.00.07",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PickupUsesRenderedComponentOffset",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.PickupUsesRenderedComponentOffset",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14346754550933838,
+			"dateTime": "2026.11.08-20.00.08",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PillbugEscapesPondTurnAtActualPose",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.PillbugEscapesPondTurnAtActualPose",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.8031477928161621,
+			"dateTime": "2026.11.08-20.00.08",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RestoredInactiveActorCannotBlock",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.RestoredInactiveActorCannotBlock",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1506631076335907,
+			"dateTime": "2026.11.08-20.00.11",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TabletopPickupPreservesGroundAndWallLimits",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.TabletopPickupPreservesGroundAndWallLimits",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14814826846122742,
+			"dateTime": "2026.11.08-20.00.11",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TalkUsesVisibleGeometryAndBodyProxy",
+			"fullTestPath": "Dink.Gameplay.AuthoredGeometry.TalkUsesVisibleGeometryAndBodyProxy",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14468437433242798,
+			"dateTime": "2026.11.08-20.00.11",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DropTableOdds",
+			"fullTestPath": "Dink.Gameplay.Combat.DropTableOdds",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 1.8427324295043945,
+			"dateTime": "2026.11.08-20.00.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "emake.medium x2000: sheart 116, heart 104, sfood 100, mgold 1680",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.13"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PillbugDiesAndDrops",
+			"fullTestPath": "Dink.Gameplay.Combat.PillbugDiesAndDrops",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.44650587439537048,
+			"dateTime": "2026.11.08-20.00.13",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "emake.small over 300 seeded kills: 97 small hearts (expected 1/3 = 100)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.13"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SceneryLines",
+			"fullTestPath": "Dink.Gameplay.Hit.SceneryLines",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.13868312537670135,
+			"dateTime": "2026.11.08-20.00.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "EatNutKillCurItem",
+			"fullTestPath": "Dink.Gameplay.Items.EatNutKillCurItem",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.13848517835140228,
+			"dateTime": "2026.11.08-20.00.14",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SwordChangesDamage",
+			"fullTestPath": "Dink.Gameplay.Items.SwordChangesDamage",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.13918142020702362,
+			"dateTime": "2026.11.08-20.00.14",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CastFacesThePawn",
+			"fullTestPath": "Dink.Gameplay.Magic.CastFacesThePawn",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14619830250740051,
+			"dateTime": "2026.11.08-20.00.14",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RechargeSteps",
+			"fullTestPath": "Dink.Gameplay.Magic.RechargeSteps",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.41542047262191772,
+			"dateTime": "2026.11.08-20.00.14",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SpellFliesOnTheCurrentScreen",
+			"fullTestPath": "Dink.Gameplay.Magic.SpellFliesOnTheCurrentScreen",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.14024388790130615,
+			"dateTime": "2026.11.08-20.00.14",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch1Stonebrook",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch1Stonebrook",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 42.327098846435547,
+			"dateTime": "2026.11.08-20.00.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 1 (Stonebrook, Martridge, the toll, Jack, the prisoner's cave) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 16.6667 ms, world time 0.016667 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 1: 47 of 47 steps, trace md5 b3760d52d7 (4338 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 new game: fists armed, mother's opening scene on SCR_001 (&story 1) (1.5 s game time, done at 1.483 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 touch the sack of pig feed (S001_P52, s1-sack touch) (0.0 s game time, done at 1.517 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 the sack's actor is gone (brain 12 vanish) and stays gone (editor_type 1) (0.3 s game time, done at 1.817 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 arm the feed (inventory) (0.0 s game time, done at 1.850 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 walk to the pig pen (SCR_407) (0.2 s game time, done at 2.033 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 throw feed in the pen (item-pig use) -> the bully's scene (&pig_story 1) (5.2 s game time, done at 7.200 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    7 walk to Ethel's house (SCR_002) (0.1 s game time, done at 7.283 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    8 talk to Ethel: ask after her pet, agree (&old_womans_duck 1) (2.7 s game time, done at 10.017 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    9 search the woods for the duck (SCR_440/441, findduck: one visit in four) (14.3 s game time, done at 24.283 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   10 talk to the duck: yell at it (s1-oldd, &old_womans_duck 2) (4.0 s game time, done at 28.283 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   11 back to Ethel's: the duck is home (&old_womans_duck 4) (0.5 s game time, done at 28.750 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   12 home: mother asks for AlkTree nuts (s1-h1-m main, &story 2) (4.3 s game time, done at 33.083 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   13 arm the fists (inventory) (0.0 s game time, done at 33.117 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   14 walk to the AlkTree (SCR_474) (0.2 s game time, done at 33.283 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   15 hit the AlkTree (S474_P01, s1-ntree hit) until a nut falls (1.3 s game time, done at 34.617 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   16 pick up the nut (s1-nut touch: &story 3) (0.0 s game time, done at 34.650 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   17 outside the house: it burns (SCR_439, s1-h1-o main) (0.8 s game time, done at 35.467 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   18 into the burning house (SCR_001, s1-h1-s main: &story 4) (8.3 s game time, done at 43.767 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   19 outside: the villagers (SCR_439, s1-h1-o main: &story 5) (0.0 s game time, done at 43.800 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   20 walk to the gravedigger (SCR_408) (0.3 s game time, done at 44.050 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   21 talk to him: a letter came (s1-gg talk: &letter 1) (1.1 s game time, done at 45.167 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   22 home: read the letter (s1-h1-s, s1-ltr: &story 6) (5.3 s game time, done at 50.433 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   23 walk into the apparition's clearing (SCR_376, s1-magic/s1-wiz scene: &wizard_again 1) (12.7 s game time, done at 63.167 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   24 walk to Martridge's hidden cabin (SCR_006) (0.1 s game time, done at 63.300 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   25 talk to Martridge: tell him you're worthy (s1-mh-m talk: red potion, &wizard_see 2) (5.9 s game time, done at 69.217 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   26 drink the red potion (rpotion touch: &strength + 1) (0.0 s game time, done at 69.250 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   27 walk into the Bonca's cave west of the hills (SCR_100, s1-cavem main) (0.1 s game time, done at 69.300 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   28 kill the Bonca with the fists, keeping its distance (s1-cavem die: &wizard_see 3) (6.8 s game time, done at 76.100 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   29 back to the cabin: Martridge is gone, his scroll lies there (s1-mh-s main: &vision 1) (0.2 s game time, done at 76.300 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   30 read the scroll (s1-mh-f talk: 200 gold, +1 magic, fireball, &wizard_see 4) (1.5 s game time, done at 77.767 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   31 walk to the toll bridge (SCR_404) (0.3 s game time, done at 78.050 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   32 pay the toll (s1-brg2 talk, 100 gold: &story 7) (3.1 s game time, done at 81.117 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   33 over the bridge to Terris: Aunt Maria's house, Jack and Maria (SCR_036, s2-auntp main: &s2-aunt 1) (10.6 s game time, done at 91.717 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   34 upstairs to the room she prepared (SCR_037, s2-h2-s main: &s2-aunt 2) (0.6 s game time, done at 92.333 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   35 back down: Jack beats Maria (s2-auntp main: &s2-aunt 3) (9.2 s game time, done at 101.517 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   36 arm the fireball (inventory: magic slot 1) (0.0 s game time, done at 101.550 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   37 kill Jack with fireballs from a distance (s2-jack: 50 hp; his hit makes him a brain-9 chaser with touch damage 10; die: &s2-aunt 4, +100 exp) (37.0 s game time, done at 138.567 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   38 the prisoner's cave (SCR_579, s2-cave main: &caveguy 1) (6.4 s game time, done at 144.983 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   39 the bar in Terris (SCR_034, s2-bar main: the cave cult scene, &caveguy 2) (15.8 s game time, done at 160.767 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   40 the magic teacher (S038_P22, s2-mh-m talk: &caveguy 3, or 4 with Acid Rain at &magic 5) (6.9 s game time, done at 167.617 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   41 a potion of magic in the fields near Terris (SCR_273, ppotion touch: &magic 3) (3.0 s game time, done at 170.650 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   42 a potion of magic in the southern dam country (SCR_597, ppotion touch: &magic 4) (3.0 s game time, done at 173.683 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   43 a potion of magic in the cobbler's meadows (SCR_352, ppotion touch: &magic 5) (3.0 s game time, done at 176.717 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   44 learn Acid Rain from him (s2-mh-m talk needs &magic > 4: &caveguy 4) (6.9 s game time, done at 183.583 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   45 arm Acid Rain (inventory: magic slot 2, item-ice: cost 1000) (0.0 s game time, done at 183.617 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   46 free the prisoner: cast Acid Rain at the idol in his cave (SCR_579, item-ice -> dam-ice -> dam-icee: &caveguy 5) (25.4 s game time, done at 209.000 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   47 on into the next room (SCR_578, s2-cave2 main: the cult's ambush, the Mordavia scroll: &caveguy 6) (21.8 s game time, done at 230.767 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch2Terris",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch2Terris",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 29.857458114624023,
+			"dateTime": "2026.11.08-20.00.57",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 2 (Terris: Nadine, the cult of the Dead Dragon Carcass, Mary) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.00.57"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch1': 122 state lines compared with chapter 1's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.00"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 230800.0120 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.00"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 2: 6 of 6 steps, trace md5 253e6f7268 (3092 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 talk to Nadine: ask why her house is such a mess (SCR_066, s2-nadp talk: &s2-nad 1) (4.7 s game time, done at 235.500 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 talk to Nadine again: offer to find her girl (&s2-nad 2) (3.0 s game time, done at 238.467 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 arm the fireball (inventory: magic slot 1, cost 100: 2 s of charge at magic 5) (0.0 s game time, done at 238.500 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 the cult's backyard (SCR_238, s2-cult main: four girls, Bishop Nelson, Mary; screenlock) (20.1 s game time, done at 258.550 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 kill the four girls and Bishop Nelson, keeping clear of all of them (s2-cbon, s2-cslay die: screenlock(0)) (107.3 s game time, done at 365.833 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 talk to Mary: rescue complete (s2-culg talk: scripted walk home to SCR_066, &s2-nad 3, &story 8) (10.9 s game time, done at 376.700 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.26"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch3Roads",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch3Roads",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 12.517406463623047,
+			"dateTime": "2026.11.08-20.01.27",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 3 (The roads: gold heart, three chests, strength potions, the Mayor) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.27"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch2': 127 state lines compared with chapter 2's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.30"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 376733.3530 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.30"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 3: 11 of 11 steps, trace md5 e9fce770bc (430 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 the road to KernSin: a gold heart (SCR_524, S524_P04 gheart touch: &lifemax + 10) (3.0 s game time, done at 379.750 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 open the chest S005_P28 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 380.950 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 380.983 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 open the chest S557_P05 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 382.183 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 382.217 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 open the chest S747_P01 with a punch (ch1-pap hit: the coins appear) (1.2 s game time, done at 383.417 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    7 take the coins (papgold touch: &gold + 200) (0.0 s game time, done at 383.450 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    8 four strength potions beside the goblin camp (SCR_681, S681_P14-17 rpotion touch: &strength + 4) (12.0 s game time, done at 395.483 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    9 Christina at the fountain (SCR_586, s3-chick talk: tell her about the planned assault, &mayor 1) (15.1 s game time, done at 410.533 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   10 into the bookstore street: the girl leads him on (SCR_587, s3-st1o main: &mayor 2) (12.0 s game time, done at 422.533 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   11 the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk: tell him about the planned assault, &mayor 3) (7.5 s game time, done at 430.033 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch4Gold",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch4Gold",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 32.006504058837891,
+			"dateTime": "2026.11.08-20.01.39",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 4 (Gold for the bow: monsters that kill each other, waits for their return) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch3': 142 state lines compared with chapter 3's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.42"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 430066.6891 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.01.42"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 4: 12 of 12 steps, trace md5 d431e6780f (2121 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 round 1: SCR_583, Bong and Boncd fight, he waits, then takes the loot (15.7 s game time, done at 445.750 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 round 1: SCR_480, two Bongs (21.8 s game time, done at 467.500 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 round 1: SCR_632, two Bongs (34.0 s game time, done at 501.500 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 round 2: wait 5 minutes in the shop (8x), the screens' monsters come back (editor_type 6) (302.0 s game time, done at 803.517 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 round 2: SCR_583, Bong and Boncd fight, he waits, then takes the loot (16.0 s game time, done at 819.533 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 round 2: SCR_480, two Bongs (25.4 s game time, done at 844.967 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    7 round 2: SCR_632, two Bongs (0.0 s game time, done at 844.983 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    8 round 3: wait 5 minutes in the shop (8x), the screens' monsters come back (editor_type 6) (0.0 s game time, done at 845.017 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    9 round 3: SCR_583, Bong and Boncd fight, he waits, then takes the loot (0.0 s game time, done at 845.033 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   10 round 3: SCR_480, two Bongs (0.0 s game time, done at 845.050 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   11 round 3: SCR_632, two Bongs (0.0 s game time, done at 845.067 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK   12 to Arturous's shop (SCR_097), gold counted (0.2 s game time, done at 845.283 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch5Bow",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch5Bow",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 4.6649961471557617,
+			"dateTime": "2026.11.08-20.02.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 5 (The bow: Arturous, arm it, the goblin gate guard) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.11"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch4': 150 state lines compared with chapter 4's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 845316.7108 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 5: 3 of 3 steps, trace md5 6c709d1069 (120 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 buy the bow from Arturous (SCR_097, s3-st2p talk: \"Buy a Bow and some arrows for $1000\": gold >= 1000, a free slot) (0.9 s game time, done at 846.183 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 arm the bow (inventory: item-b1; the guard checks the armed weapon, s3-gobg.c:80) (0.0 s game time, done at 846.217 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 the goblin gate guard (SCR_712, s3-gobg talk: \"Ask the Goblin guard to let you in\": armed bow, &mayor 3, &gobpass 1) (5.3 s game time, done at 851.517 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch6Goblins",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch6Goblins",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 5.6485247611999512,
+			"dateTime": "2026.11.08-20.02.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 6 (The goblin sanctuary: healer and first goblin (the other three are chapter 7)) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch5': 152 state lines compared with chapter 5's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.19"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 851550.0444 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.19"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 6: 3 of 3 steps, trace md5 9e87080221 (462 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.21"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 the healer in Terris (SCR_033, s2-healp talk: \"Get healed\": 1 gold per missing life) (0.5 s game time, done at 852.083 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.21"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 goblin S680_P13 (s3-gh, 40 hp, 15 px/s): pulled by a fireball from the east end of the strip, killed (+150 exp, editor_type 6) (11.4 s game time, done at 863.450 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.21"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 out of the sanctuary to the south gate (SCR_712): the other three goblins are still walking about (0.1 s game time, done at 863.550 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.21"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.21"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch7Sanctuary",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch7Sanctuary",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 34.50103759765625,
+			"dateTime": "2026.11.08-20.02.22",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 7 (The goblin sanctuary: the other goblins and Mog, the Cast camp, the ambush) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.22"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch6': 156 state lines compared with chapter 6's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.25"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 863583.3784 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.25"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 7: 8 of 8 steps, trace md5 d50e5111f6 (2589 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 goblin S680_P14 (s3-gh, 40 hp) (56.0 s game time, done at 919.617 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 the healer in Terris (1 gold per missing life) (0.0 s game time, done at 919.633 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 goblin S680_P11 (s3-gs, 60 hp) (43.0 s game time, done at 962.667 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 the healer in Terris (1 gold per missing life) (0.0 s game time, done at 962.683 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71) (22.6 s game time, done at 985.250 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 Mog (s3-mog.c scene, en-gmog.c: 50 hp, defense 4, range 45, screenlock): the duel; his death is the warp to SCR_489 (&gobpass 5) (24.8 s game time, done at 1010.050 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    7 the Cast camp (SCR_489, s3-camp.c: Dink frozen, scripted walk and fade_down; the move over the screen's edge to SCR_521) (18.0 s game time, done at 1028.067 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    8 the ambush begins (SCR_521, s3-camps.c: fade_up, the scripted walk, dialogue, screenlock, three knights s3-dorks, &mayor 3 -> 4): played to the first blow, then the stop below (10.1 s game time, done at 1038.200 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch8Knights",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch8Knights",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 13.917122840881348,
+			"dateTime": "2026.11.08-20.02.56",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 8 (The ambush: the three Cast knights, the Mayor and the parade) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.56"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch7': 162 state lines compared with chapter 7's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.59"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 1038233.3875 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.02.59"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 8: 3 of 3 steps, trace md5 28406402c0 (1443 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 the three knights (s3-dorks: 40 hp, defense 6, strength 12, touch 5): SquadFight (39.2 s game time, done at 1077.450 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 the knights' loot (emake.large: gold lying where each fell; the screen is unlocked) (1.3 s game time, done at 1078.783 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk at &mayor 4: \"Show him the scroll with the plans\": &mayor 5, the parade on SCR_586 (s3-tc.c): &story 10, &mayor 6) (15.9 s game time, done at 1094.667 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Ch9Windemere",
+			"fullTestPath": "Dink.Gameplay.Probe.Ch9Windemere",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 12.81226921081543,
+			"dateTime": "2026.11.08-20.03.10",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 9 (Windemere: Pete's bomb, the two all-potion chests, the cracked rock, the 27 ducks) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.10"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch8': 168 state lines compared with chapter 8's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 1094700.0571 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.13"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 9: 6 of 6 steps, trace md5 1db62e4adb (2323 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 Blistering Pete's (SCR_196, s4-st3p talk: \"See what's for sale\", \"Bomb - $20\": gold - 20, item-bom) (4.1 s game time, done at 1098.750 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 the all-potion chest S536_P31 (ch-ap hit: apotion appears; touch: magic, strength and defense +1) (2.4 s game time, done at 1101.117 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 the all-potion chest S536_P29 (ch-ap hit: apotion appears; touch: magic, strength and defense +1) (1.4 s game time, done at 1102.483 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 plant the bomb by the cracked rock (SCR_536 S536_P15 s4-rock, vision 1): arm item-bom, attack: dam-bom is spawned and the bomb leaves the inventory (0.0 s game time, done at 1102.517 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 walk away from the fuse (3 s): the explosion hits the rock (s4-rock hit, &missle_source dam-bomn): &s4-duck 1 (3.2 s game time, done at 1105.717 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 the 27 ducks of the enclosure (SCR_536, s4-duck: die, then duckdie each; the last one's duckdie reaches spawn(\"s4-end\")): &s4-duck 2, &story 11 (38.7 s game time, done at 1144.400 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ChAJoppa",
+			"fullTestPath": "Dink.Gameplay.Probe.ChAJoppa",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 9.744049072265625,
+			"dateTime": "2026.11.08-20.03.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 10 (Windemere's errands and Joppa: the healer, three pickups, the basement scene, the family and the dragons) on /Game/Dink/_Generated/Maps/L_Greybox_World",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.23"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch9': 167 state lines compared with chapter 9's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 1144433.3930 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "chapter 10: 7 of 7 steps, trace md5 c532805f11 (442 events)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    1 the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life) (0.5 s game time, done at 1144.967 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    2 the strength potion of the Windemere wilds (SCR_663 S663_P06 rpotion: strength +1) (0.9 s game time, done at 1145.817 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    3 the defense potion of the marshes (SCR_603 S603_P02 bpotion: defense +1) (0.8 s game time, done at 1146.650 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    4 the chest of the sanctuary village (SCR_742 S742_P16 box2-sp: a punch, then the potion it makes: strength +1) (1.4 s game time, done at 1148.000 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    5 Joppa (SCR_419, s5-jops: &s5-jop 0 -> 1, \"Weird.  This town looks deserted.\") (0.2 s game time, done at 1148.167 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    6 the basement (SCR_229, s5-base creates s5-guy and s5-mom, the scene of the hiding parents): &s5-jop 1 -> 2 (15.2 s game time, done at 1163.350 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "OK    7 back to Joppa (SCR_419, s5-jops with &s5-jop 2: s5-fguy's scene, two dragons en-drag, screenlock): the fight can begin (15.1 s game time, done at 1178.467 s)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "DONE every step done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.33"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Repeatable",
+			"fullTestPath": "Dink.Gameplay.Probe.Repeatable",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 30.285116195678711,
+			"dateTime": "2026.11.08-20.03.33",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 16.6667 ms, world time 0.016667 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.34"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "repeat run ended: stopped after 28 steps",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.48"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 76100.0040 ms, world time 76.100004 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.03.48"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "repeat run ended: stopped after 28 steps",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.03"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "two runs, 1125 events each, identical",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.03"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RepeatableChapter",
+			"fullTestPath": "Dink.Gameplay.Probe.RepeatableChapter",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 61.513996124267578,
+			"dateTime": "2026.11.08-20.04.03",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch1': 122 state lines compared with chapter 1's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.06"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 230800.0120 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.06"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "repeat run ended: stopped after 6 steps",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.33"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "loaded slot 'probe_ch1': 122 state lines compared with chapter 1's end, 0 differ",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.36"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "probe begins at story clock 230800.0120 ms, world time 9.550000 s",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.04.36"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "repeat run ended: stopped after 6 steps",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.05.04"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "two runs, 3093 events each, identical",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.05.04"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Rock",
+			"fullTestPath": "Dink.Gameplay.Push.Rock",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15670685470104218,
+			"dateTime": "2026.11.08-20.05.05",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DeathMenuCreatesFreshPlayableWorldTwice",
+			"fullTestPath": "Dink.Gameplay.Restart.DeathMenuCreatesFreshPlayableWorldTwice",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 15.011990547180176,
+			"dateTime": "2026.11.08-20.05.05",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LevelUpAndDeath",
+			"fullTestPath": "Dink.Gameplay.Status.LevelUpAndDeath",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15978358685970306,
+			"dateTime": "2026.11.08-20.05.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuckQuestAndKill",
+			"fullTestPath": "Dink.Gameplay.Stonebrook.DuckQuestAndKill",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15733055770397186,
+			"dateTime": "2026.11.08-20.05.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PigFeeding",
+			"fullTestPath": "Dink.Gameplay.Stonebrook.PigFeeding",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15755636990070343,
+			"dateTime": "2026.11.08-20.05.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExpiredTextKeepsARecycledHandle",
+			"fullTestPath": "Dink.Gameplay.Texts.ExpiredTextKeepsARecycledHandle",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15368720889091492,
+			"dateTime": "2026.11.08-20.05.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DamageHurtsDink",
+			"fullTestPath": "Dink.Gameplay.Touch.DamageHurtsDink",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15642449259757996,
+			"dateTime": "2026.11.08-20.05.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GoldAndHeart",
+			"fullTestPath": "Dink.Gameplay.Touch.GoldAndHeart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15554134547710419,
+			"dateTime": "2026.11.08-20.05.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "EditorTypePersistence",
+			"fullTestPath": "Dink.Gameplay.World.EditorTypePersistence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.76744157075881958,
+			"dateTime": "2026.11.08-20.05.21",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RetainedLowWaterAndDryCorridors",
+			"fullTestPath": "Dink.Import.Fields.RetainedLowWaterAndDryCorridors",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.9096395969390869,
+			"dateTime": "2026.11.08-20.05.22",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Meshes",
+			"fullTestPath": "Dink.Import.Greybox.Meshes",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0041336221620440483,
+			"dateTime": "2026.11.08-20.05.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ScriptNoHardWarpOverlap",
+			"fullTestPath": "Dink.Import.Greybox.ScriptNoHardWarpOverlap",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 12.329320907592773,
+			"dateTime": "2026.11.08-20.05.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookCollision",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookCollision",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.05421297624707222,
+			"dateTime": "2026.11.08-20.05.37",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "House route capsule sweeps: fixed width 56 cm 0 blocked, original width 84 cm 2 blocked",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.05.37"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "walkable 444 (0 blocked), ground 444 (0 missing), solid 232 (0 wrong), low 160 (0 wrong), warp destinations 14 (0 blocked)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.05.37"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookContent",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookContent",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.115582674741745,
+			"dateTime": "2026.11.08-20.05.37",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "640 origin actors, 134 instances, 61 screen volumes, 13 warps, 77 vision-gated",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.05.37"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookPlay",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookPlay",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 33.570610046386719,
+			"dateTime": "2026.11.08-20.05.37",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WorldCollision",
+			"fullTestPath": "Dink.Import.Greybox.WorldCollision",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 1.0053026676177979,
+			"dateTime": "2026.11.08-20.06.11",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "House route capsule sweeps: fixed width 56 cm 0 blocked, original width 84 cm 2 blocked",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.12"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "walkable 4642 (0 blocked), ground 4642 (0 missing), solid 2194 (0 wrong), low 1816 (0 wrong), warp destinations 115 (0 blocked)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WorldContent",
+			"fullTestPath": "Dink.Import.Greybox.WorldContent",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1230817437171936,
+			"dateTime": "2026.11.08-20.06.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "4206 origin actors, 1640 instances, 644 screen volumes, 116 warps, 164 vision-gated",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AxisMapping",
+			"fullTestPath": "Dink.Import.Layout.AxisMapping",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.008222418837249279,
+			"dateTime": "2026.11.08-20.06.12",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Continuity",
+			"fullTestPath": "Dink.Import.Layout.Continuity",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.052216455340385437,
+			"dateTime": "2026.11.08-20.06.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "1649 walkable crossings, 14841 points, max gap 0.000000000 m; 22 crossings cut between sheets (0 of them reached)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MatchesWorldLayout",
+			"fullTestPath": "Dink.Import.Layout.MatchesWorldLayout",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1321309506893158,
+			"dateTime": "2026.11.08-20.06.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "5846 placements: max position error 0.000142 m (S468_P04), max yaw error 0.0002 deg",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.12"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NoOverlap",
+			"fullTestPath": "Dink.Import.Layout.NoOverlap",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.3473560810089111,
+			"dateTime": "2026.11.08-20.06.12",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "644 imported screens, 0 overlapping sample points",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ClumsyHero",
+			"fullTestPath": "Dink.Movement.ClumsyHero",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0073539288714528084,
+			"dateTime": "2026.11.08-20.06.15",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "HumanoidReconfigure",
+			"fullTestPath": "Dink.Movement.HumanoidReconfigure",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0093649476766586304,
+			"dateTime": "2026.11.08-20.06.15",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PlayableControls",
+			"fullTestPath": "Dink.Movement.PlayableControls",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 3.9035563468933105,
+			"dateTime": "2026.11.08-20.06.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Measured Dink hop height 48.14 cm; previous jump measured107.6cm",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.17"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SecondaryMotion",
+			"fullTestPath": "Dink.Movement.SecondaryMotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0016143970424309373,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ZoomLimits",
+			"fullTestPath": "Dink.Movement.ZoomLimits",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.0083852782845497131,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FollowsWorldTime",
+			"fullTestPath": "Dink.Narrative.Clock.FollowsWorldTime",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.16233591735363007,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BlockingOrder",
+			"fullTestPath": "Dink.Narrative.Director.BlockingOrder",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15890206396579742,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExternalAndSpawnRunAtOnce",
+			"fullTestPath": "Dink.Narrative.Director.ExternalAndSpawnRunAtOnce",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.16164880990982056,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SpritesAndWorldState",
+			"fullTestPath": "Dink.Narrative.Director.SpritesAndWorldState",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15880313515663147,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SpScriptRunsMainAtOnce",
+			"fullTestPath": "Dink.Narrative.Director.SpScriptRunsMainAtOnce",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.16113494336605072,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "UnknownCommand",
+			"fullTestPath": "Dink.Narrative.Director.UnknownCommand",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15939238667488098,
+			"dateTime": "2026.11.08-20.06.19",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Vocabulary",
+			"fullTestPath": "Dink.Narrative.Director.Vocabulary",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15837915241718292,
+			"dateTime": "2026.11.08-20.06.20",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "director status: 112 implemented, 32 recorded, 0 not done",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.20"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Nbsp",
+			"fullTestPath": "Dink.Narrative.Display.Nbsp",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15580490231513977,
+			"dateTime": "2026.11.08-20.06.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OneSourceOfTruth",
+			"fullTestPath": "Dink.Narrative.Facts.OneSourceOfTruth",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1547667384147644,
+			"dateTime": "2026.11.08-20.06.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "IntroAndTalk",
+			"fullTestPath": "Dink.Narrative.Greybox.IntroAndTalk",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 2.1434230804443359,
+			"dateTime": "2026.11.08-20.06.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MidConversation",
+			"fullTestPath": "Dink.Narrative.Save.MidConversation",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.31946679949760437,
+			"dateTime": "2026.11.08-20.06.22",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AllEntryPoints",
+			"fullTestPath": "Dink.Narrative.Smoke.AllEntryPoints",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 4.1820621490478516,
+			"dateTime": "2026.11.08-20.06.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogHttp: HTTP request timed out after 3.00 seconds URL=https://www.google.com/generate_204",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.26"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "smoke run: 930 entry points, 903 completed, 27 hit the step cap (27 idle loops), 0 stalled, 0 with errors; 139834 lines, 17205 spoken, 123002 commands, 88 menus in 4.0 s; report ../../../../../Work/DinkContinuityFix/DinkRemasterUE/Saved/Narrative/smoke_report.txt",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-20.06.27"
+				}
+			],
+			"warnings": 1,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "KnotsResolve",
+			"fullTestPath": "Dink.Narrative.Story.KnotsResolve",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15306948125362396,
+			"dateTime": "2026.11.08-20.06.27",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Loads",
+			"fullTestPath": "Dink.Narrative.Story.Loads",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15847888588905334,
+			"dateTime": "2026.11.08-20.06.27",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Mother",
+			"fullTestPath": "Dink.Narrative.Talk.Mother",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.1565142422914505,
+			"dateTime": "2026.11.08-20.06.27",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SmileStein",
+			"fullTestPath": "Dink.Narrative.Talk.SmileStein",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.154375821352005,
+			"dateTime": "2026.11.08-20.06.27",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TollBridge",
+			"fullTestPath": "Dink.Narrative.Talk.TollBridge",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BCBE1760786C98F2234383A67121"
+			],
+			"duration": 0.15266920626163483,
+			"dateTime": "2026.11.08-20.06.28",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

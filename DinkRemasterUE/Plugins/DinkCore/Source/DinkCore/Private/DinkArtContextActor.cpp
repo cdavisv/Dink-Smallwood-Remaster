@@ -36,9 +36,34 @@ void ADinkArtContextActor::BeginPlay()
 void ADinkArtContextActor::ConfigureOwnerScreen(int32 ScreenNumber)
 {
     OwnerScreenNumber = ScreenNumber > 0 ? ScreenNumber : 0;
+    VisibleScreens.Reset();
     if (HasActorBegunPlay())
         UpdateVisibility();
 }
+bool ADinkArtContextActor::ConfigureScreenSet(const TArray<int32>& ScreenNumbers)
+{
+    if (OwnerScreenNumber<=0 || ScreenNumbers.IsEmpty() || ScreenNumbers.Num()>32) return false;
+    TSet<int32> Prepared;
+    for (const int32 Screen : ScreenNumbers)
+    {
+        if (Screen<1 || Screen>768 || Prepared.Contains(Screen)) return false;
+        Prepared.Add(Screen);
+    }
+    if (!Prepared.Contains(OwnerScreenNumber)) return false;
+    VisibleScreens=MoveTemp(Prepared);
+    if (HasActorBegunPlay()) UpdateVisibility();
+    return true;
+}
+
+bool ADinkArtContextActor::IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const
+{
+    if (VisibleScreens.IsEmpty())
+        return OwnerScreenNumber>0 && CachedScreen==OwnerScreenNumber && PhysicalScreen==OwnerScreenNumber;
+    // The screen cache intentionally lags slightly. Crossing between two covered screens
+    // must retain the SAME world dressing while both locations remain within the group.
+    return VisibleScreens.Contains(CachedScreen) && VisibleScreens.Contains(PhysicalScreen);
+}
+
 UStaticMeshComponent *ADinkArtContextActor::AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &Transform)
 {
     if (!IsValid(Mesh) || Transform.ContainsNaN())
@@ -83,8 +108,10 @@ void ADinkArtContextActor::UpdateVisibility()
     const ADinkScreenVolume *Screen = Greybox.IsValid() ? Greybox->GetCurrentScreen() : nullptr;
     // The screen subsystem deliberately updates at0.25s intervals. The exact pawn
     // location prevents showing stale context during possession/load transitions.
-    const bool Visible = OwnerScreenNumber > 0 && Pawn && Screen && Screen->ScreenNumber == OwnerScreenNumber &&
-                         Greybox->FindScreenAt(Pawn->GetActorLocation()) == Screen;
+    const ADinkScreenVolume* Physical=Pawn && Greybox.IsValid() ? Greybox->FindScreenAt(Pawn->GetActorLocation()) : nullptr;
+    const bool Visible=Pawn && Screen && Physical &&
+        (VisibleScreens.IsEmpty() ? Physical==Screen && Screen->ScreenNumber==OwnerScreenNumber :
+                                   IncludesScreenPair(Screen->ScreenNumber,Physical->ScreenNumber));
     SetActorHiddenInGame(!Visible);
 }
 void ADinkArtContextActor::EndPlay(const EEndPlayReason::Type Reason)
@@ -113,9 +140,26 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
     if (OwnerScreen <= 0 || !Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-art/1") ||
         !Manifest->TryGetNumberField(TEXT("screen"), ExplicitScreen) || ExplicitScreen != OwnerScreen ||
         !Manifest->TryGetObjectField(TEXT("context"), Context) ||
-        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) || Visibility != TEXT("owner_screen_only") ||
+        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) ||
+        (Visibility != TEXT("owner_screen_only") && Visibility != TEXT("screen_set")) ||
         !(*Context)->TryGetBoolField(TEXT("render_only"), RenderOnly) || !RenderOnly)
         return nullptr;
+    TArray<int32> ScreenSet;
+    if (Visibility==TEXT("screen_set"))
+    {
+        const TArray<TSharedPtr<FJsonValue>>* Screens=nullptr;
+        if (!(*Context)->TryGetArrayField(TEXT("screens"),Screens) || Screens->IsEmpty() || Screens->Num()>32) return nullptr;
+        TSet<int32> Seen;
+        for (const auto& Value:*Screens)
+        {
+            double Number=0;
+            if (Value->Type!=EJson::Number || !Value->TryGetNumber(Number) || !FMath::IsFinite(Number) ||
+                Number<1 || Number>768 || Number!=FMath::FloorToDouble(Number) || Seen.Contains(int32(Number))) return nullptr;
+            Seen.Add(int32(Number)); ScreenSet.Add(int32(Number));
+        }
+        if (!Seen.Contains(OwnerScreen)) return nullptr;
+    }
+    else if ((*Context)->HasField(TEXT("screens"))) return nullptr;
     for (const TCHAR *Key : {TEXT("replacements"), TEXT("warp_overrides"), TEXT("hide_origins"),
                              TEXT("hide_screen_visuals"), TEXT("authored_collision_screens"),
                              TEXT("preserve_low_collision_screens"), TEXT("lights"), TEXT("postprocess")})
@@ -169,5 +213,9 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
             return nullptr;
         }
     Actor->ConfigureOwnerScreen(OwnerScreen);
+    if (!ScreenSet.IsEmpty() && !Actor->ConfigureScreenSet(ScreenSet))
+    {
+        Actor->Destroy(); return nullptr;
+    }
     return Actor;
 }

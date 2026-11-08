@@ -1,0 +1,117 @@
+Setting up bundled DotNet SDK
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll DinkRemaster Linux Development -Project=/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=2
+Log file: /home/artist/.config/Epic/UnrealBuildTool/Log.txt
+Executing up to 2 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (/home/artist/Work/DinkPhotorealArtIntegration).
+Creating makefile for DinkRemaster (no existing makefile)
+UbaStorageServer - FileMapping backing: memfd
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+UHT compiled-in object format Default
+Building DinkRemaster...
+===== Toolchain Information =====
+Using ISPC compiler (/home/artist/UnrealEngine/UE_5.8.4/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20240919, LLVM 18.1.6)
+Using Clang compiler 20.1.8 (/home/artist/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
+  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: /home/artist/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
+Using Clang archiver (/home/artist/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
+  LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+Using toolchain located at '/home/artist/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
+Using bundled libc++ standard C++ library.
+Compressing debug files
+===== End Toolchain Information =====
+Using Unreal Build Accelerator local executor to run 85 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 30.45 GB physical, 17.55 GB/76.11 GB committed
+  UBA Storage capacity 40 GB
+[1/85] Compile SharedPCH.CoreUObject.Project.ValApi.ValExpApi.Cpp20.h [NoUba]
+[2/85] Compile CallStack.cpp [NoUba]
+[3/85] Compile Choice.cpp [NoUba]
+[4/85] Compile ChoicePoint.cpp [NoUba]
+[5/85] Compile Container.cpp [NoUba]
+[6/85] Compile ControlCommand.cpp [NoUba]
+[7/85] Compile DebugMetadata.cpp [NoUba]
+[8/85] Compile Divert.cpp [NoUba]
+[9/85] Compile Flow.cpp [NoUba]
+[10/85] Compile InkList.cpp [NoUba]
+[11/85] Compile InkListItem.cpp [NoUba]
+[12/85] Compile InkPlusPlus.cpp [NoUba]
+[13/85] Compile InkPlusPlusLog.cpp [NoUba]
+[14/85] Compile InkPlusPlusUtility.cpp [NoUba]
+[15/85] Compile JsonExtension.cpp [NoUba]
+[16/85] Compile JsonSerialisation.cpp [NoUba]
+[17/85] Compile ListDefinition.cpp [NoUba]
+[18/85] Compile ListDefinitionsOrigin.cpp [NoUba]
+[19/85] Compile NamedContent.cpp [NoUba]
+[20/85] Compile SharedPCH.Engine.Project.ValApi.ValExpApi.Cpp20.h [NoUba]
+[21/85] Compile DinkRemaster.cpp [NoUba]
+[22/85] Compile NativeFunctionCall.cpp [NoUba]
+[23/85] Compile DinkArtContextActor.cpp [NoUba]
+[24/85] Compile DinkCombat.cpp [NoUba]
+[25/85] Compile DinkCoreModule.cpp [NoUba]
+[26/85] Compile DinkArtSubsystem.cpp [NoUba]
+[27/85] Compile DinkCreatureComponent.cpp [NoUba]
+[28/85] Compile DinkEarlyPostureAnimInstance.cpp [NoUba]
+[29/85] Compile DinkCreatureSubsystem.cpp [NoUba]
+[30/85] Compile DinkFactTypes.cpp [NoUba]
+[31/85] Compile DinkFactSubsystem.cpp [NoUba]
+[32/85] Compile DinkGreyboxDebugConsole.cpp [NoUba]
+[33/85] Compile DinkGreyboxCharacter.cpp [NoUba]
+[34/85] Compile DinkHumanoidComponent.cpp [NoUba]
+[35/85] Compile DinkGreyboxSubsystem.cpp [NoUba]
+[36/85] Compile DinkInstanceOriginsComponent.cpp [NoUba]
+[37/85] Compile DinkInventoryComponent.cpp [NoUba]
+[38/85] Compile DinkLayout.cpp [NoUba]
+[39/85] Compile DinkInteriorCameraComponent.cpp [NoUba]
+[40/85] Compile DinkOriginComponent.cpp [NoUba]
+[41/85] Compile DinkOriginId.cpp [NoUba]
+[42/85] Compile DinkPlaceholderActor.cpp [NoUba]
+[43/85] Compile DinkPostureComponent.cpp [NoUba]
+[44/85] Compile DinkSaveGame.cpp [NoUba]
+[45/85] Compile DinkPlayerActionComponent.cpp [NoUba]
+[46/85] Compile DinkSaveSubsystem.cpp [NoUba]
+[47/85] Compile DinkScreenExposureComponent.cpp [NoUba]
+[48/85] Compile DinkScreenVolume.cpp [NoUba]
+[49/85] Compile DinkStatsComponent.cpp [NoUba]
+[50/85] Compile DinkWarpComponent.cpp [NoUba]
+[51/85] Compile DinkWorldStateSubsystem.cpp [NoUba]
+[52/85] Compile Module.DinkCore.gen.cpp [NoUba]
+[53/85] Compile DinkAudioSubsystem.cpp [NoUba]
+[54/85] Compile DinkAuthoredInteraction.cpp [NoUba]
+[55/85] Compile DinkBrains.cpp [NoUba]
+[56/85] Compile DinkGameplay.cpp [NoUba]
+[57/85] Compile DinkDirector.cpp [NoUba]
+[58/85] Compile DinkNarrative.cpp [NoUba]
+[59/85] Compile DinkInkStory.cpp [NoUba]
+[60/85] Compile DinkNarrativeConsole.cpp [NoUba]
+[61/85] Compile DinkNarrativePresentation.cpp [NoUba]
+[62/85] Compile DinkNarrativeTypes.cpp [NoUba]
+[63/85] Compile DinkScriptSpriteComponent.cpp [NoUba]
+[64/85] Compile Module.DinkNarrative.gen.cpp [NoUba]
+[65/85] Compile DinkProbeHold.cpp [NoUba]
+[66/85] Compile DinkProbeModule.cpp [NoUba]
+[67/85] Compile DinkStorySubsystem.cpp [NoUba]
+[68/85] Compile Object.cpp [NoUba]
+[69/85] Compile Path.cpp [NoUba]
+[70/85] Compile Pointer.cpp [NoUba]
+[71/85] Compile SearchResult.cpp [NoUba]
+[72/85] Compile SimpleJson.cpp [NoUba]
+[73/85] Compile SimpleJsonObject.cpp [NoUba]
+[74/85] Compile StatePatch.cpp [NoUba]
+[75/85] Compile DinkProbeTests.cpp [NoUba]
+[76/85] Compile StoryException.cpp [NoUba]
+[77/85] Compile Story.cpp [NoUba]
+[78/85] Compile Tag.cpp [NoUba]
+[79/85] Compile Value.cpp [NoUba]
+[80/85] Compile StoryState.cpp [NoUba]
+[81/85] Compile VariableAssignment.cpp [NoUba]
+[82/85] Compile VariableReference.cpp [NoUba]
+[83/85] Compile VariableState.cpp [NoUba]
+[84/85] Link DinkRemaster [NoUba]
+[85/85] WriteMetadata DinkRemaster.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 59.27 seconds
+Output binary: /home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Binaries/Linux/DinkRemaster
+
+Result: Succeeded
+Total execution time: 65.00 seconds
+Trace written to file /home/artist/.config/Epic/UnrealBuildTool/Trace.uba with size 16.1kb

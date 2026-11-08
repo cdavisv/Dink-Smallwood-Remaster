@@ -1,0 +1,106 @@
+{
+  "records": [
+    {
+      "label": "interior-east",
+      "state": {
+        "screen": 1,
+        "map": [
+          410.0,
+          165.0
+        ],
+        "world": [
+          -183340.16,
+          392567.855,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -12.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "readback": "[2026.11.08-19.41.47:739][929]LogPython: Error: Traceback (most recent call last):\n[2026.11.08-19.41.47:739][929]LogPython: Error:   File \"<string>\", line 1, in <module>\n[2026.11.08-19.41.47:739][929]LogPython: Error: Exception: DinkInteriorCameraComponent: Property 'bEnableWallCutaway' for attribute 'bEnableWallCutaway' on 'DinkInteriorCameraComponent' is protected and cannot be read\n"
+    },
+    {
+      "label": "interior-north",
+      "state": {
+        "screen": 1,
+        "map": [
+          370.0,
+          130.0
+        ],
+        "world": [
+          -183515.16,
+          392414.73,
+          98.0
+        ],
+        "yaw": 90.0,
+        "pitch": -12.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "readback": "[2026.11.08-19.42.02:048][573]LogPython: Error: Traceback (most recent call last):\n[2026.11.08-19.42.02:048][573]LogPython: Error:   File \"<string>\", line 1, in <module>\n[2026.11.08-19.42.02:048][573]LogPython: Error: Exception: DinkInteriorCameraComponent: Property 'bEnableWallCutaway' for attribute 'bEnableWallCutaway' on 'DinkInteriorCameraComponent' is protected and cannot be read\n"
+    },
+    {
+      "label": "cottage-east",
+      "state": {
+        "screen": 439,
+        "map": [
+          377.867,
+          196.955
+        ],
+        "world": [
+          98039.842,
+          36414.421,
+          98.35
+        ],
+        "yaw": 180.0,
+        "pitch": -12.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "readback": "[2026.11.08-19.42.17:982][290]LogPython: Error: Traceback (most recent call last):\n[2026.11.08-19.42.17:982][290]LogPython: Error:   File \"<string>\", line 1, in <module>\n[2026.11.08-19.42.17:982][290]LogPython: Error: Exception: DinkInteriorCameraComponent: Property 'bEnableWallCutaway' for attribute 'bEnableWallCutaway' on 'DinkInteriorCameraComponent' is protected and cannot be read\n"
+    },
+    {
+      "label": "cottage-front",
+      "state": {
+        "screen": 439,
+        "map": [
+          400.628,
+          276.166
+        ],
+        "world": [
+          98273.027,
+          37201.678,
+          98.35
+        ],
+        "yaw": -90.0,
+        "pitch": -12.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "readback": "[2026.11.08-19.42.33:538][990]LogPython: Error: Traceback (most recent call last):\n[2026.11.08-19.42.33:538][990]LogPython: Error:   File \"<string>\", line 1, in <module>\n[2026.11.08-19.42.33:538][990]LogPython: Error: Exception: DinkInteriorCameraComponent: Property 'bEnableWallCutaway' for attribute 'bEnableWallCutaway' on 'DinkInteriorCameraComponent' is protected and cannot be read\n"
+    }
+  ],
+  "final": {
+    "screen": 1,
+    "map": [
+      302.978,
+      388.153
+    ],
+    "world": [
+      -183808.381,
+      393544.149,
+      98.0
+    ],
+    "yaw": -90.713,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "scope": "Console fixtures establish wall viewpoints; exterior approaches and exit/return use actual W input. Normal default opaque policy; owner visible game receives no input.",
+  "observer_limit": "Initial Python reads of protected transient cutaway flag failed; they are not passing checks. Subsequent native console readbacks in native-readback.json establish policyfalse/fading0/managed0/probeTrue.",
+  "route_results": {
+    "exit": "PASS",
+    "return": "PASS"
+  }
+}

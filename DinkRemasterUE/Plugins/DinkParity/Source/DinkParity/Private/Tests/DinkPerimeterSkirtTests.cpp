@@ -67,7 +67,7 @@ public:
         if(Phase==1)
         {
             Check(true);if(auto* C=H->FindComponentByClass<UDinkInteriorCameraComponent>())
-                T->TestEqual(TEXT("skirt never adds a camera occluder"),C->ManagedOccluderCount,85);
+                T->TestEqual(TEXT("skirt never adds a disappearing camera surface"),C->ManagedOccluderCount,C->bEnableWallCutaway ? 85 : 0);
             else T->AddError(TEXT("real interior camera component missing"));
             Move(H,G,Yard);Phase=2;At=FPlatformTime::Seconds();return false;
         }
