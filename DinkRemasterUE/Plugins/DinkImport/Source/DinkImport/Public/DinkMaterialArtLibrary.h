@@ -35,4 +35,8 @@ public:
 	/** Uses public GetTransform; never cooks, rebuilds, saves or modifies the mesh/body. */
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static TArray<FDinkConvexArtSnapshot> InspectStaticMeshConvexCollision(UStaticMesh* Mesh);
+
+	/** JSON triangle/group bindings resolved by actual imported slot names. No index-order assumptions or writes. */
+	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+	static FString InspectStaticMeshMaterialBindings(UStaticMesh* Mesh, int32 LODIndex = 0);
 };
