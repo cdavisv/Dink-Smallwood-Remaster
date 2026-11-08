@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "export_pixels_and_bytes_identical_to_bakes": true,
+  "textures": {
+    "BC": {
+      "sha256": "5894fdb201206ab7afa8d314833105e425e4f0714521bc29aaf2138e596bb5c3",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        0,
+        0,
+        0
+      ],
+      "channel_max": [
+        125,
+        95,
+        74
+      ]
+    },
+    "N": {
+      "sha256": "6aa26300c2396b5bf67cb8e40f2869c537b641656fc5d3f404061712e41da957",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        95,
+        98,
+        251
+      ],
+      "channel_max": [
+        155,
+        152,
+        255
+      ]
+    },
+    "ORM": {
+      "sha256": "6171ae465dec57cde321cd849a144f2a02eee2a91d2a656895dab7ceed76fc47",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        255,
+        0,
+        0
+      ],
+      "channel_max": [
+        255,
+        194,
+        240
+      ],
+      "bare_metal_texels_over100": 402543,
+      "wood_zero_metal_texels": 3784546
+    }
+  }
+}

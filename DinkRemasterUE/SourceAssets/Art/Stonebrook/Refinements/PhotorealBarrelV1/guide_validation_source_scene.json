@@ -1,0 +1,82 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Work/DinkQA/PhotorealSessions/Barrel/PhotorealBarrelV1_Source.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 2
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "203 mesh objects are outside any asset collection and will not be exported: Reference_Floor_0_0, Reference_Ceiling_0_0, Reference_Floor_1_0, Reference_Ceiling_1_0, Reference_Floor_2_0, Reference_Ceiling_2_0, Reference_Floor_3_0, Reference_Ceiling_3_0"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SM_Barrel_Oak_01",
+      "class": "prop",
+      "collection": "SM_Barrel_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 16648
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "blender_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ],
+        "size_cm": [
+          83.947,
+          84.46,
+          100.75
+        ],
+        "unreal_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "unreal_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Barrel_Oak_01",
+          "message": "mesh data 'SM_Barrel_Oak_01_PhotorealSource' differs from object name 'SM_Barrel_Oak_01'",
+          "object": "SM_Barrel_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Barrel_Oak_01",
+          "message": "LOD0 has 16648 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Barrel_Oak_01",
+          "data": {
+            "tris": 16648,
+            "target": 6000
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

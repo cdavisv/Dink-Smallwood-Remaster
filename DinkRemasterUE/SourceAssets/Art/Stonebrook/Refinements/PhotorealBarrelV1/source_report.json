@@ -1,0 +1,117 @@
+{
+  "original_source_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+  "original_local_bounds_m": [
+    [
+      -0.4197332262992859,
+      -0.42229944467544556,
+      0.0
+    ],
+    [
+      0.4197332262992859,
+      0.42229944467544556,
+      1.0075000524520874
+    ]
+  ],
+  "original_instances": [
+    {
+      "name": "Reference_Barrel1",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -6.803162574768066
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          12.249887466430664
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Reference_Barrel2",
+      "matrix": [
+        [
+          0.9702957272529602,
+          0.24192190170288086,
+          0.0,
+          -6.7594122886657715
+        ],
+        [
+          -0.24192190170288086,
+          0.9702957272529602,
+          0.0,
+          11.28738784790039
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "original_vertices": 5392,
+  "original_triangles": 10472,
+  "original_collision_m": {
+    "min": [
+      -0.375,
+      -0.375,
+      0
+    ],
+    "max": [
+      0.375,
+      0.375,
+      1
+    ]
+  },
+  "source_sprite": "173_01 natural oak initial barrel, bonuses/barrels/barel-01.bmp;174_01/02 palette variants inspected",
+  "candidate_vertices": 8396,
+  "candidate_triangles": 16648,
+  "candidate_bounds_m": [
+    [
+      -0.4197332262992859,
+      -0.42229944467544556,
+      0.0
+    ],
+    [
+      0.4197332262992859,
+      0.42229944467544556,
+      1.0075000524520874
+    ]
+  ],
+  "materials": [
+    "MI_BarrelOak_PhotoSource",
+    "MI_Barrel_WornForgedIron"
+  ],
+  "staves": 18,
+  "flat_hoops": 4,
+  "head_boards": 5,
+  "collision_copied_exact": true,
+  "source_reference_sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+  "root_first_visual_gate": "pending",
+  "baked": false,
+  "exported": false,
+  "CPU_threads": 4
+}
