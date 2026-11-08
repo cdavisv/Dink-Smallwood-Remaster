@@ -1,5 +1,6 @@
 #include "DinkArtSubsystem.h"
 #include "DinkArtContextActor.h"
+#include "DinkScreenExposureComponent.h"
 #include "DinkCoreModule.h"
 #include "DinkOriginComponent.h"
 #include "DinkHumanoidComponent.h"
@@ -258,8 +259,8 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			Bounds->RegisterComponent();
 			UPostProcessComponent* PP = NewObject<UPostProcessComponent>(A, TEXT("ArtExposure"));
 			PP->SetupAttachment(Bounds);
+			PP->bEnabled = false;
 			PP->bUnbound = false;
-			PP->bEnabled = true;
 			PP->BlendRadius = 100.f;
 			PP->BlendWeight = 1.f;
 			PP->Priority = 10.f;
@@ -269,6 +270,10 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			PP->Settings.BloomIntensity = 0.15f;
 			A->AddInstanceComponent(PP);
 			PP->RegisterComponent();
+            UDinkScreenExposureComponent* Ownership=NewObject<UDinkScreenExposureComponent>(A,TEXT("ArtExposureOwner"));
+            Ownership->ConfigureExposure(PP,TargetScreen);
+            A->AddInstanceComponent(Ownership);
+            Ownership->RegisterComponent();
 			float Distance = 0.f;
 			UE_LOG(LogDink, Display, TEXT("Art exposure: bias %.1f, bounds contain centre %s"),
 				PP->Settings.AutoExposureBias, PP->EncompassesPoint(VectorField(Row, TEXT("world_cm")), 0.f, &Distance) ? TEXT("yes") : TEXT("no"));

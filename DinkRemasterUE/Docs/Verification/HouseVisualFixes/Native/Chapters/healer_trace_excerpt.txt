@@ -1,0 +1,7 @@
+851783.378 0 start d_s2_healp.on_main sprite=19 instance=311
+852050.044 0 start d_s2_healp.on_talk sprite=19 instance=311
+852066.711 311 title "You are injured!  It will cost $13 gold to heal you."
+852066.711 311 menu Get healed | Buy a bottle of elixer for $25 | Leave instance=311
+852066.711 0 choose Get healed s2-healp.talk.c2.1
+852083.378 311 say I am healed. spk=1 col=14 id=s2-healp.talk.001 say
+852283.378 0 end s2-healp.talk screen change

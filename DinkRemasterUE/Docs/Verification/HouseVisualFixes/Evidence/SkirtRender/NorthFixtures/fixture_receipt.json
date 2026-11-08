@@ -1,0 +1,123 @@
+{
+  "method": "Explicit safe north photo fixture after real W routes; only normal camera rotation. Pitch sweep does not prove every possible camera angle.",
+  "camera_comparison": {
+    "pawn_cm": {
+      "before": [
+        -183760.15999999997,
+        392550.355,
+        98.0
+      ],
+      "after": [
+        -183760.15999999997,
+        392550.355,
+        98.0
+      ]
+    },
+    "camera_cm": {
+      "before": [
+        -183715.15999999997,
+        392778.60856226814,
+        224.16407864998737
+      ],
+      "after": [
+        -183715.15999999997,
+        392778.60856226814,
+        224.16407864998737
+      ]
+    },
+    "camera_rotation": {
+      "before": "<Struct 'Rotator' (0x7fc834c46a40) {pitch: -18.000000, yaw: -90.000000, roll: -0.000000}>",
+      "after": "<Struct 'Rotator' (0x7f73fe6be3b0) {pitch: -18.000000, yaw: -90.000000, roll: -0.000000}>"
+    },
+    "FOV": {
+      "before": 70.0,
+      "after": 70.0
+    },
+    "arm_cm": {
+      "before": 240.0,
+      "after": 240.0
+    },
+    "target_offset": {
+      "before": [
+        0.0,
+        0.0,
+        52.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        52.0
+      ]
+    },
+    "socket_offset": {
+      "before": [
+        0.0,
+        45.0,
+        0.0
+      ],
+      "after": [
+        0.0,
+        45.0,
+        0.0
+      ]
+    },
+    "floor_framing_shift": {
+      "before": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "dink.View 225 -18",
+      "output": ""
+    },
+    {
+      "command": "dink.Goto 1 314 161",
+      "output": ""
+    },
+    {
+      "command": "dink.View 270 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('skirt-north-exact')",
+      "output": "[2026.11.08-08.26.45:371][463]LogPython: QA_VISUAL_READ skirt-north-exact\n"
+    },
+    {
+      "command": "dink.View 270 -10",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('skirt-north-pitch-10')",
+      "output": "[2026.11.08-08.26.50:265][776]LogPython: QA_VISUAL_READ skirt-north-pitch-10\n"
+    },
+    {
+      "command": "dink.View 270 -25",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('skirt-north-pitch-25')",
+      "output": "[2026.11.08-08.26.55:134][ 88]LogPython: QA_VISUAL_READ skirt-north-pitch-25\n"
+    },
+    {
+      "command": "dink.View 270 -35",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('skirt-north-pitch-35')",
+      "output": "[2026.11.08-08.27.00:001][399]LogPython: QA_VISUAL_READ skirt-north-pitch-35\n"
+    },
+    {
+      "command": "py exec(open('/home/davisc/Work/DinkQA/OwnerScreenExposure/read_skirt_geometry.py').read())",
+      "output": "[2026.11.08-08.27.02:836][581]LogPython: QA_SKIRT_GEOMETRY_EXPORTED\n"
+    }
+  ]
+}
