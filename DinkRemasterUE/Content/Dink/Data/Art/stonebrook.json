@@ -35,7 +35,7 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
       "expected_size_cm": [
         114.40000534057617,
         94.19999718666077,
@@ -3180,7 +3180,7 @@
     },
     {
       "name": "WickerBasket",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
       "world_cm": [
         -183182.65999999997,
         392484.73,

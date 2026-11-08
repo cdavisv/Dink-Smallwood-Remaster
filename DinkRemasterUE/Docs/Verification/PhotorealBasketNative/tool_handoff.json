@@ -1,0 +1,51 @@
+{
+  "status": "Scratch tools frozen for coordinating root independent review; not copied or executed natively",
+  "production_tools": {
+    "basket_contract.py": "8dcbf4986c3c11c238f95f623304555c61d092a1a864981c2482ce466723f7a8",
+    "basket_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "import_photoreal_basket.py": "c5e30a1838d5fe75280aca894d157199b5bce463842b039d1ff3ede4f19eec94",
+    "publish_photoreal_basket.py": "ff7132e6393819dcd7f350febf09ccafd7656629a268af8bc359e5926499a51d",
+    "prepare_photoreal_basket_plan.py": "98b281e5710a5d5c9161675f7ab9875451bb6e8eba6f8c5c9a455b1ede114c43"
+  },
+  "tests": {
+    "count": 97,
+    "passed": 97,
+    "failed": 0,
+    "pure_only": true,
+    "files": {
+      "test_basket_import_guards.py": "9595df0ca53118450c478b0938875f71cd0e8a739222956b8db02afbe457c078",
+      "test_basket_publication.py": "3dd4e0d988b530530830b195832526a3101ce6bf8be8d91f40d64a7d15a33f93",
+      "test_basket_published_clone.py": "8b92b1d168948051c87a328b170264921dde8e8cc995550658cb9dcc5c39c269",
+      "test_basket_scope_guards.py": "d3ce09cd5e3bed01d5665fd4079b5535b338bf4856d294a3ae9052ca5fe7dd19",
+      "test_basket_specific.py": "4cfe869a8e395b699f0ef6e0b3365f9968cc8ecfbff572e2613ee26354efc5ea",
+      "test_basket_tolerant_matching.py": "ae4a356d68b1deb1f75dd807dcb287a0c73d8ede0f47eb5ed5eef38417bfd45f"
+    },
+    "log_sha256": "a21b62cc7832e04adb6db4db980b06b17ae60d1e087c242c07530804dfdf09e3",
+    "command": "python -m unittest discover -s /home/artist/Work/DinkQA/BasketImportDevelopment -p 'test_basket*.py' -v"
+  },
+  "source_plan_sha256": "18e2a747a8c81be41f624e313f1e12752d403bb6ff779f922956ded1158ee445",
+  "source_self_consistency_sha256": "0d16fc6d18236f02e2cc552555411e8580a1457dda25f05909c5f810cb3ee1f8",
+  "source_material_readback_sha256": "224de139c8be0232b956846aec50789ae5bf654425f105ef3df137f2c7b02eda",
+  "base_tool_pins_sha256": "e7f4d420e8c8a84b761dbf8d15a0d04a7bfac3fbd634e073c70c06c8b0e35c1e",
+  "coordinator_native_baseline_sha256": "f397e0ba1c34729cc931cec532181ac80b98b12e23159f02f0ecf2af7a1f8900",
+  "source_dependencies": 57,
+  "source_handoff_sha256": "3eb71614767ab045461741739182c93b7d43aaeea3b502730f0ba4bd36a72c5b",
+  "specular": {
+    "UE_constant": 0.21853724634807323,
+    "native_tolerance": 1e-06,
+    "scope": "Normal-incidence dielectric F0 approximation only; no full BRDF or final rendered equivalence claim"
+  },
+  "runtime_scope": {
+    "new_packages": 5,
+    "mesh_path_edits": 2,
+    "asset_rows": 1,
+    "decorative_WickerBasket_rows": 1,
+    "FeedSack_grain_pickup": "unchanged S001_P52/s1-sack",
+    "collision": "existing complex-as-simple preserved; UCX retained not active query source",
+    "native_imported": false,
+    "runtime_published": false
+  },
+  "next": "Root independently review all five tools and six pure-test files; root alone may copy into own stopped checkout and execute preflight/import/verify/publication/native/render checks.",
+  "README_sha256": "8369705a3eb35e7c82dbc80714d06350020c208a0a4943fab2f50bac91a42d16",
+  "review_fix": "Native material report records the actual saved scalar float getter as specular, separately expected_specular; publisher tolerance accepts actual float32 and rejects direct.25/.35"
+}
