@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "new_packages": 7,
+  "actual_iostore_filenames": {
+    "Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01": [
+      "../../../DinkRemaster/Content/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.uasset"
+    ],
+    "Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1": [
+      "../../../DinkRemaster/Content/Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1.uasset"
+    ],
+    "Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1": [
+      "../../../DinkRemaster/Content/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.uasset"
+    ],
+    "Dink/Materials/Stonebrook/Refinements/M_Stonebrook_Underfloor_DarkOak_V1": [
+      "../../../DinkRemaster/Content/Dink/Materials/Stonebrook/Refinements/M_Stonebrook_Underfloor_DarkOak_V1.uasset"
+    ],
+    "Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC": [
+      "../../../DinkRemaster/Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC.uasset"
+    ],
+    "Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N": [
+      "../../../DinkRemaster/Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N.uasset"
+    ],
+    "Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM": [
+      "../../../DinkRemaster/Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM.uasset"
+    ]
+  },
+  "container_csv_sha256": "66ceba5046803f6d104409f37cc980b9540799353d5244e9223711f2feed3d46"
+}

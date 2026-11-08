@@ -1,0 +1,89 @@
+{
+  "phase": "AfterOakOnly",
+  "photo_recovery_same_process": false,
+  "actual_route_exercised": false,
+  "method": "Photographic fixture teleports only; no actual-route claim. No material/light/collision/property setters. Normal view yaw/pitch only.",
+  "initial": {
+    "screen": 1,
+    "map": [
+      314.0,
+      161.0
+    ],
+    "world": [
+      -183760.16,
+      392550.355,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "actual_route_final": null,
+  "records": [
+    {
+      "command": "dink.ScreenInfo 0",
+      "response": "[2026.11.08-05.25.34:402][651]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "DisableAllScreenMessages",
+      "response": "[2026.11.08-05.25.35:646][730]LogEngine: Onscreen warnings/messages are now DISABLED\n"
+    },
+    {
+      "command": "py QA_FLOOR_PHASE='AfterOakOnly'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
+      "response": "[2026.11.08-05.25.38:703][927]LogPython: QA_FLOOR_READER_READY\n"
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-05.25.41:666][118]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "dink.Goto 1 303.5 345",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_fs_read('door-room')",
+      "response": "[2026.11.08-05.25.49:176][599]LogPython: QA_FLOOR_READ door-room\n"
+    },
+    {
+      "command": "py qa_nc_read('door-room')",
+      "response": "[2026.11.08-05.25.50:429][679]LogPython: QA_NATIVE_CAMERA_READ door-room\n"
+    },
+    {
+      "command": "dink.Goto 1 355 335",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -40",
+      "response": ""
+    },
+    {
+      "command": "py qa_fs_read('floor-close')",
+      "response": "[2026.11.08-05.25.56:307][ 53]LogPython: QA_FLOOR_READ floor-close\n"
+    },
+    {
+      "command": "py qa_nc_read('floor-close')",
+      "response": "[2026.11.08-05.25.57:587][136]LogPython: QA_NATIVE_CAMERA_READ floor-close\n"
+    }
+  ],
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 354449,
+    "backend": "private Xvfb :189 with XTest"
+  }
+}

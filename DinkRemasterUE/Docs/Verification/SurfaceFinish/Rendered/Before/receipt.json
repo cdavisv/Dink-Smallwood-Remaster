@@ -1,0 +1,90 @@
+{
+  "phase": "Before",
+  "photo_recovery_same_process": true,
+  "method": "Fresh actual keyboard exit and return precede separate photographic fixture teleports. No material/light/collision/property setters. Normal view yaw/pitch only.",
+  "initial": {
+    "recovery": "See unchanged actual-exit.json; first controller passed both actual routes before photographic reader failure"
+  },
+  "actual_route_final": {
+    "screen": 1,
+    "map": [
+      302.955,
+      386.217
+    ],
+    "world": [
+      -183808.482,
+      393535.678,
+      98.0
+    ],
+    "yaw": -90.7,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "records": [
+    {
+      "command": "dink.ScreenInfo 0",
+      "response": "[2026.11.08-04.56.13:312][  5]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "DisableAllScreenMessages",
+      "response": "[2026.11.08-04.56.14:555][ 82]LogEngine: Onscreen warnings/messages are now DISABLED\n"
+    },
+    {
+      "command": "py QA_FLOOR_PHASE='Before'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
+      "response": "[2026.11.08-04.56.17:491][264]LogPython: QA_FLOOR_READER_READY\n"
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-04.56.20:461][449]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "dink.Goto 1 303.5 345",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_fs_read('door-room')",
+      "response": "[2026.11.08-04.56.26:992][856]LogPython: QA_FLOOR_READ door-room\n"
+    },
+    {
+      "command": "py qa_nc_read('door-room')",
+      "response": "[2026.11.08-04.56.28:239][934]LogPython: QA_NATIVE_CAMERA_READ door-room\n"
+    },
+    {
+      "command": "dink.Goto 1 355 335",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -40",
+      "response": ""
+    },
+    {
+      "command": "py qa_fs_read('floor-close')",
+      "response": "[2026.11.08-04.56.34:136][292]LogPython: QA_FLOOR_READ floor-close\n"
+    },
+    {
+      "command": "py qa_nc_read('floor-close')",
+      "response": "[2026.11.08-04.56.35:421][376]LogPython: QA_NATIVE_CAMERA_READ floor-close\n"
+    }
+  ],
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 341517,
+    "backend": "private Xvfb :189 with XTest"
+  }
+}

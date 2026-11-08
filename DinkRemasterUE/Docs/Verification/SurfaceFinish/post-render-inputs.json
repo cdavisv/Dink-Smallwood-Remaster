@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "tested_inputs": 8835,
+  "changed_inputs": [],
+  "actual_exit_return": "PASS; reader correction resumed same owned game without restart; photographic teleports only afterward",
+  "camera_contracts": "Before and final numeric pawn/camera/FOV/arm/offset/framing values identical",
+  "blue_seams": "Both same-camera floor ROI blue counts became0",
+  "native_game_pid": 364612,
+  "normal_exit": "Quit after captures; authoritative host ps reported PID364612 absent and private-display inspect reported no game"
+}

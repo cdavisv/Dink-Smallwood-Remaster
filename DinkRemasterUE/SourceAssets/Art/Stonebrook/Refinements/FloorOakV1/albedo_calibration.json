@@ -1,0 +1,13 @@
+{
+  "source_image_sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+  "coverage_across_grain_m": 1.0,
+  "coverage_along_grain_m": 2.0,
+  "grain_direction": "image+V aligned to existing boardY length",
+  "basis": "Art-directed physical scale chosen for this visual trial; not a measured scan",
+  "per_board_footprint_m": [
+    0.25,
+    1.0
+  ],
+  "bounded_image_crop": true,
+  "BC_pixels_edited": false
+}

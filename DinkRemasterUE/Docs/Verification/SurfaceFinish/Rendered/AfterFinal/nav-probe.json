@@ -1,0 +1,21 @@
+[
+  {
+    "name": "bCanEverAffectNavigation",
+    "value": "False"
+  },
+  {
+    "name": "CanEverAffectNavigation",
+    "error": "StaticMeshComponent: Failed to find property 'CanEverAffectNavigation' for attribute 'CanEverAffectNavigation' on 'StaticMeshComponent'"
+  },
+  {
+    "name": "can_ever_affect_navigation",
+    "error": "StaticMeshComponent: Failed to find property 'can_ever_affect_navigation' for attribute 'can_ever_affect_navigation' on 'StaticMeshComponent'"
+  },
+  {
+    "name": "canEverAffectNavigation",
+    "error": "StaticMeshComponent: Failed to find property 'canEverAffectNavigation' for attribute 'canEverAffectNavigation' on 'StaticMeshComponent'"
+  },
+  {
+    "methods": []
+  }
+]

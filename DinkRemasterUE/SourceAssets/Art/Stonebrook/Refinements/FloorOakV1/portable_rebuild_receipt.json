@@ -1,0 +1,25 @@
+{
+  "source_file_sha256": "a7dd05b547773ea77cca3837cbdc17a549f10a8567b0395bb7a34fce6cccac87",
+  "source_unchanged": true,
+  "textures": {
+    "BC": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_BC.png",
+      "sha256": "16dda3128958413f322a142c87960295c009a0686179d81553df481bc1f62050"
+    },
+    "N": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_N.png",
+      "sha256": "bbed06aaadafb9f1746cd0e68aefa80fc39be284f051b682d6bfcd0b9ca443c5"
+    },
+    "ORM": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_ORM.png",
+      "sha256": "a935b96cea247b1c51596d76a26d5b589c252a46549dca71e4658b1065f1b271"
+    }
+  },
+  "byte_identical_to_reference": {
+    "BC": true,
+    "N": true,
+    "ORM": true
+  },
+  "complete": true,
+  "original_geometry_UV_indices_nails_unchanged": true
+}
