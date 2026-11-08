@@ -1,0 +1,10 @@
+{
+  "tested_base": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "integrated_base": "eb964598f24b611cb32eb92e5d4f58776627b478",
+  "intervening_merge": "PR8 adds candidate source art, ledger and documentation; no runtime Content, C++ or input assets change.",
+  "all13_frozen_source_files_match": true,
+  "patch_sha256": "421f47fd4dfd422425e16579299bd4e24e36cf9662638009dca7ee0950cc8a7c",
+  "native_tested_source_changed_during_integration": false,
+  "compiled_binaries_copied_or_used_in_this_checkout": false,
+  "scope": "Native tests were run in the author isolated checkout; integration source pins match. Whole-tree temporal immutability is not claimed."
+}

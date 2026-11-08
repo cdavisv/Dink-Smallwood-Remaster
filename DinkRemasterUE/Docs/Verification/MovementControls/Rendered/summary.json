@@ -1,0 +1,20 @@
+{
+  "samples": 1081,
+  "walk_max_cm_s": 200.0,
+  "run_max_cm_s": 600.0,
+  "jump_height_cm": 107.56457515928344,
+  "camera_arm_cm": [
+    295.00067138671875,
+    400.0
+  ],
+  "final_z_cm": 120.15000166822722,
+  "initial_z_cm": 120.15000057220459,
+  "npc_relative_pitch_range": {
+    "DinkPlaceholderActor_16": [
+      0.00036652429356576443,
+      0.24999991691867415
+    ]
+  },
+  "scope": "Actual XTest W/Shift/Space and wheel input; console teleport establishes outdoor fixture. No claim of uninterrupted traversal or full-world jumping/ledge validation.",
+  "result": "PASS"
+}

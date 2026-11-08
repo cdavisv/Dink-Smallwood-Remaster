@@ -1,0 +1,37 @@
+{
+  "base_commit": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "files": [
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp",
+    "Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs",
+    "README.md",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkBodyDynamics.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp"
+  ],
+  "patch_sha256": "421f47fd4dfd422425e16579299bd4e24e36cf9662638009dca7ee0950cc8a7c",
+  "excluded_foreign_edits": [
+    "DinkRemasterUE/AGENTS.md existing photoreal direction paragraph",
+    "doc/remaster/REMASTER_PLAN.md"
+  ],
+  "notes": "Frozen13-file patch reviewed and final native suite complete. AGENTS movement memory merges manually. Original art/assets/manifests preserved. End-state baseline comparison provenance in final-verification.json.",
+  "revision": 2,
+  "status": "FINAL VERIFIED:143/143 pass;1testwithengineHTTPwarning;467s",
+  "review_fixes": [
+    "Preserve selected/in-progress zoom across screen transitions",
+    "Humanoid reconfiguration removes only still-owned lean and resets body bookkeeping"
+  ],
+  "receipts": {
+    "before_fix": "Saved/Automation/movement_review_repro/index.json",
+    "fixed_focus": "Saved/Automation/movement_review_v2/index.json",
+    "final_all": "Saved/Automation/movement_final_v2_all/index.json",
+    "rendered_input": "Saved/Playtest/evidence/movement-controls/summary.json"
+  },
+  "verification_receipt": "final-verification.json"
+}
