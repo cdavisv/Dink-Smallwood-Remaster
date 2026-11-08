@@ -1,0 +1,1451 @@
+tile_num,tileset,cell,use_count,screen_count,indoor_use,terrain,is_transition,blend_classes,walkable_hint,animated,hard_solid_pct,hard_low_pct,confidence,notes
+0,1,0,193,3,0,grass,0,,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest"
+1,1,1,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+2,1,2,2,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+3,1,3,3,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+4,1,4,2,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+5,1,5,2,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+6,1,6,432,32,432,wood_floor,0,,yes,,0.1,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; interior plank floor"
+7,1,7,433,32,433,wood_floor,0,,yes,,0.2,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; interior plank floor"
+12,1,12,5,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+13,1,13,5,1,0,gravel,0,,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; stony clearing centre"
+14,1,14,11,1,0,gravel,0,,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; stony clearing centre"
+15,1,15,9,1,0,gravel,0,,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; stony clearing centre"
+16,1,16,4,1,0,gravel,0,,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; stony clearing centre"
+17,1,17,4,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+18,1,18,434,32,434,wood_floor,0,,yes,,0.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; interior plank floor"
+19,1,19,432,32,432,wood_floor,0,,yes,,0.5,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; interior plank floor"
+24,1,24,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+25,1,25,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+26,1,26,18,4,0,gravel,1,gravel|grass,yes,,4.6,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+27,1,27,17,4,0,gravel,1,gravel|grass,yes,,4.8,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+28,1,28,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+29,1,29,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+30,1,30,832,38,727,void,0,,no,,1.7,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; black fill around interior rooms"
+31,1,31,440,35,439,void,0,,no,,0.8,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; black fill around interior rooms"
+40,1,40,5368,375,59,grass,0,,yes,,3.5,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest"
+41,1,41,5224,375,62,grass,0,,yes,,4.2,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest"
+42,1,42,244,25,233,void,0,,no,,2.4,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; black fill around interior rooms"
+43,1,43,160,24,159,void,0,,no,,0.5,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; black fill around interior rooms"
+48,1,48,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+49,1,49,1,1,0,gravel,1,gravel|grass,yes,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; gravel clearing edge"
+52,1,52,149,55,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+53,1,53,149,55,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+54,1,54,150,55,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+55,1,55,151,55,0,forest_canopy,0,,no,,2.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+60,1,60,2726,278,0,grass,0,,yes,,3.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest"
+61,1,61,2652,275,0,grass,0,,yes,,3.2,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest"
+64,1,64,148,55,0,forest_canopy,0,,no,,4.6,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+65,1,65,148,55,0,forest_canopy,0,,no,,0.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+66,1,66,149,55,0,forest_canopy,0,,no,,0.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+67,1,67,150,55,0,forest_canopy,0,,no,,4.8,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+72,1,72,68,42,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+73,1,73,69,42,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+74,1,74,68,42,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+75,1,75,68,42,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+76,1,76,163,60,0,forest_canopy,0,,no,,4.4,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+77,1,77,163,60,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+78,1,78,163,60,0,forest_canopy,0,,no,,0.0,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+79,1,79,164,60,0,forest_canopy,0,,no,,4.5,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+84,1,84,68,42,0,forest_canopy,1,forest_canopy|grass,partial,,15.2,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; forest edge: trunks over grass"
+85,1,85,69,42,0,forest_canopy,1,forest_canopy|grass,partial,,10.4,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; forest edge: trunks over grass"
+86,1,86,68,42,0,forest_canopy,1,forest_canopy|grass,partial,,11.8,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; forest edge: trunks over grass"
+87,1,87,68,42,0,forest_canopy,1,forest_canopy|grass,partial,,12.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; forest edge: trunks over grass"
+88,1,88,172,66,0,forest_canopy,0,,no,,0.4,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+89,1,89,173,66,0,forest_canopy,0,,no,,0.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+90,1,90,174,66,0,forest_canopy,0,,no,,0.3,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+91,1,91,174,66,0,forest_canopy,0,,no,,2.7,0.0,high,"mixed base sheet: grass, gravel clearing, wood floor, void, pine forest; pine forest roof"
+128,2,0,14,13,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+129,2,1,19,19,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+130,2,2,11,11,0,grass_rocky,0,,partial,,0.0,10.5,medium,grass with painted boulders and outcrops; boulder sheet (rock 9%)
+131,2,3,12,12,0,grass,0,,yes,,0.0,5.6,medium,grass with painted boulders and outcrops; boulder sheet (rock 6%)
+132,2,4,12,12,0,grass_rocky,0,,partial,,0.0,13.8,high,grass with painted boulders and outcrops; boulder sheet (rock 17%)
+133,2,5,12,12,0,grass,0,,yes,,0.0,16.5,medium,grass with painted boulders and outcrops; boulder sheet (rock 8%)
+134,2,6,20,20,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+135,2,7,20,19,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+136,2,8,24,24,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+137,2,9,24,24,0,grass,0,,yes,,2.1,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+138,2,10,24,24,0,grass_rocky,0,,partial,,0.0,5.9,medium,grass with painted boulders and outcrops; boulder sheet (rock 9%)
+139,2,11,24,24,0,grass_rocky,0,,partial,,0.0,13.1,medium,grass with painted boulders and outcrops; boulder sheet (rock 11%)
+140,2,12,12,11,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+141,2,13,12,12,0,grass_rocky,0,,partial,,0.0,14.8,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+142,2,14,12,12,0,grass_rocky,0,,partial,,0.0,15.4,high,grass with painted boulders and outcrops; boulder sheet (rock 47%)
+143,2,15,12,12,0,rock_mass,0,,no,,0.0,18.7,medium,grass with painted boulders and outcrops; boulder sheet (rock 63%)
+144,2,16,12,12,0,rock_mass,0,,no,,0.0,20.0,medium,grass with painted boulders and outcrops; boulder sheet (rock 63%)
+145,2,17,12,12,0,grass_rocky,0,,partial,,0.0,33.2,high,grass with painted boulders and outcrops; boulder sheet (rock 47%)
+146,2,18,12,12,0,grass_rocky,0,,partial,,0.0,27.9,high,grass with painted boulders and outcrops; boulder sheet (rock 46%)
+147,2,19,12,12,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 3%)
+148,2,20,24,24,0,grass_rocky,0,,partial,,0.0,15.3,medium,grass with painted boulders and outcrops; boulder sheet (rock 11%)
+149,2,21,24,24,0,grass_rocky,0,,partial,,2.1,40.6,high,grass with painted boulders and outcrops; boulder sheet (rock 31%)
+150,2,22,24,24,0,grass_rocky,0,,partial,,2.1,19.7,high,grass with painted boulders and outcrops; boulder sheet (rock 35%)
+151,2,23,24,24,0,grass,0,,yes,,2.1,7.0,medium,grass with painted boulders and outcrops; boulder sheet (rock 5%)
+152,2,24,12,12,0,grass_rocky,0,,partial,,0.0,10.8,medium,grass with painted boulders and outcrops; boulder sheet (rock 10%)
+153,2,25,12,12,0,rock_mass,0,,no,,0.0,5.5,high,grass with painted boulders and outcrops; boulder sheet (rock 96%)
+154,2,26,12,12,0,rock_mass,0,,no,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 75%)
+155,2,27,12,12,0,rock_mass,0,,no,,0.0,0.0,high,hand override: centre of the big outcrop; lighter rock texture fooled the colour split
+156,2,28,13,13,0,rock_mass,0,,no,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 70%)
+157,2,29,13,13,0,rock_mass,0,,no,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 71%)
+158,2,30,12,12,0,grass_rocky,0,,partial,,0.0,34.8,medium,grass with painted boulders and outcrops; boulder sheet (rock 59%)
+159,2,31,12,12,0,grass,0,,yes,,0.0,0.0,medium,grass with painted boulders and outcrops; boulder sheet (rock 6%)
+160,2,32,55,55,0,grass_rocky,0,,partial,,0.0,7.0,high,grass with painted boulders and outcrops; boulder sheet (rock 26%)
+161,2,33,55,55,0,grass_rocky,0,,partial,,0.9,5.1,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+162,2,34,47,47,0,grass_rocky,0,,partial,,0.0,8.6,high,grass with painted boulders and outcrops; boulder sheet (rock 12%)
+163,2,35,47,47,0,grass_rocky,0,,partial,,0.0,2.4,medium,grass with painted boulders and outcrops; boulder sheet (rock 10%)
+164,2,36,12,12,0,grass,0,,yes,,0.0,7.4,high,grass with painted boulders and outcrops; boulder sheet (rock 3%)
+165,2,37,12,12,0,grass_rocky,0,,partial,,0.0,13.0,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+166,2,38,12,12,0,grass_rocky,0,,partial,,0.0,10.0,high,grass with painted boulders and outcrops; boulder sheet (rock 32%)
+167,2,39,12,12,0,grass_rocky,0,,partial,,0.0,13.8,medium,grass with painted boulders and outcrops; boulder sheet (rock 9%)
+168,2,40,12,12,0,grass_rocky,0,,partial,,0.0,13.8,high,grass with painted boulders and outcrops; boulder sheet (rock 20%)
+169,2,41,12,12,0,grass_rocky,0,,partial,,0.0,10.4,high,grass with painted boulders and outcrops; boulder sheet (rock 24%)
+170,2,42,12,12,0,grass,0,,yes,,0.0,5.6,high,grass with painted boulders and outcrops; boulder sheet (rock 5%)
+171,2,43,12,12,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+172,2,44,55,55,0,grass,0,,yes,,0.0,2.2,high,grass with painted boulders and outcrops; boulder sheet (rock 5%)
+173,2,45,55,55,0,grass_rocky,0,,partial,,0.9,14.3,high,grass with painted boulders and outcrops; boulder sheet (rock 31%)
+174,2,46,47,47,0,grass_rocky,0,,partial,,0.0,9.6,high,grass with painted boulders and outcrops; boulder sheet (rock 36%)
+175,2,47,47,47,0,grass,0,,yes,,0.0,5.7,medium,grass with painted boulders and outcrops; boulder sheet (rock 8%)
+176,2,48,2,2,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+177,2,49,15,15,0,grass,0,,yes,,0.0,2.8,high,grass with painted boulders and outcrops; boulder sheet (rock 3%)
+178,2,50,15,15,0,grass_rocky,0,,partial,,0.0,10.0,high,grass with painted boulders and outcrops; boulder sheet (rock 24%)
+179,2,51,15,15,0,grass_rocky,0,,partial,,0.0,8.4,high,grass with painted boulders and outcrops; boulder sheet (rock 12%)
+180,2,52,15,15,0,grass_rocky,0,,partial,,0.0,11.1,high,grass with painted boulders and outcrops; boulder sheet (rock 15%)
+181,2,53,15,15,0,grass_rocky,0,,partial,,0.0,10.6,medium,grass with painted boulders and outcrops; boulder sheet (rock 10%)
+182,2,54,15,15,0,grass,0,,yes,,0.0,3.9,medium,grass with painted boulders and outcrops; boulder sheet (rock 7%)
+183,2,55,25,24,0,grass,0,,yes,,4.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+184,2,56,33,32,0,grass,0,,yes,,3.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+185,2,57,32,31,0,grass,0,,yes,,1.6,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 2%)
+186,2,58,38,38,0,grass_rocky,0,,partial,,0.0,6.0,high,grass with painted boulders and outcrops; boulder sheet (rock 19%)
+187,2,59,38,38,0,grass_rocky,0,,partial,,0.0,6.4,high,grass with painted boulders and outcrops; boulder sheet (rock 25%)
+188,2,60,2,2,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+189,2,61,15,15,0,grass_rocky,0,,partial,,0.0,14.2,high,grass with painted boulders and outcrops; boulder sheet (rock 33%)
+190,2,62,15,15,0,rock_mass,0,,no,,0.0,13.2,high,grass with painted boulders and outcrops; boulder sheet (rock 73%)
+191,2,63,15,15,0,rock_mass,0,,no,,0.0,8.0,medium,grass with painted boulders and outcrops; boulder sheet (rock 65%)
+192,2,64,15,15,0,grass_rocky,0,,partial,,0.0,7.4,high,grass with painted boulders and outcrops; boulder sheet (rock 52%)
+193,2,65,15,15,0,rock_mass,0,,no,,0.0,5.3,high,grass with painted boulders and outcrops; boulder sheet (rock 72%)
+194,2,66,15,15,0,rock_mass,0,,no,,0.0,2.1,high,grass with painted boulders and outcrops; boulder sheet (rock 68%)
+195,2,67,15,15,0,grass_rocky,0,,partial,,3.3,6.6,high,grass with painted boulders and outcrops; boulder sheet (rock 27%)
+196,2,68,32,31,0,grass,0,,yes,,3.5,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 4%)
+197,2,69,32,31,0,grass_rocky,0,,partial,,3.1,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+198,2,70,39,39,0,grass_rocky,0,,partial,,0.0,10.2,high,grass with painted boulders and outcrops; boulder sheet (rock 25%)
+199,2,71,38,38,0,grass_rocky,0,,partial,,0.0,10.5,high,grass with painted boulders and outcrops; boulder sheet (rock 19%)
+200,2,72,2,2,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+201,2,73,20,19,0,grass,0,,yes,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+202,2,74,15,15,0,grass_rocky,0,,partial,,0.0,5.5,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+203,2,75,15,15,0,rock_mass,0,,no,,0.0,2.9,high,grass with painted boulders and outcrops; boulder sheet (rock 79%)
+204,2,76,15,15,0,rock_mass,0,,no,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 86%)
+205,2,77,15,15,0,rock_mass,0,,no,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 68%)
+206,2,78,15,15,0,rock_mass,0,,no,,0.0,8.2,medium,grass with painted boulders and outcrops; boulder sheet (rock 63%)
+207,2,79,15,15,0,grass_rocky,0,,partial,,3.3,5.8,high,grass with painted boulders and outcrops; boulder sheet (rock 30%)
+208,2,80,8,8,0,grass_rocky,0,,partial,,7.9,0.0,medium,grass with painted boulders and outcrops; boulder sheet (rock 10%)
+209,2,81,7,7,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 13%)
+210,2,82,14,14,0,grass_rocky,0,,partial,,0.0,17.9,high,grass with painted boulders and outcrops; boulder sheet (rock 13%)
+211,2,83,14,14,0,grass_rocky,0,,partial,,0.0,12.5,medium,grass with painted boulders and outcrops; boulder sheet (rock 8%)
+212,2,84,1,1,0,grass,0,,yes,,50.0,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 1%)
+213,2,85,23,22,0,grass,0,,yes,,2.2,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+214,2,86,15,15,0,grass,0,,yes,,3.3,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 2%)
+215,2,87,15,15,0,grass_rocky,0,,partial,,3.3,4.4,high,grass with painted boulders and outcrops; boulder sheet (rock 31%)
+216,2,88,15,15,0,grass_rocky,0,,partial,,0.0,4.8,high,grass with painted boulders and outcrops; boulder sheet (rock 26%)
+217,2,89,15,15,0,grass_rocky,0,,partial,,0.0,5.6,high,grass with painted boulders and outcrops; boulder sheet (rock 14%)
+218,2,90,15,15,0,grass,0,,yes,,0.0,0.6,high,grass with painted boulders and outcrops; boulder sheet (rock 2%)
+219,2,91,28,27,0,grass,0,,yes,,1.8,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 0%)
+220,2,92,8,8,0,grass_rocky,0,,partial,,21.9,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 12%)
+221,2,93,8,8,0,grass_rocky,0,,partial,,1.6,0.0,high,grass with painted boulders and outcrops; boulder sheet (rock 17%)
+222,2,94,14,14,0,grass_rocky,0,,partial,,0.0,12.2,high,grass with painted boulders and outcrops; boulder sheet (rock 21%)
+223,2,95,14,14,0,grass_rocky,0,,partial,,0.0,14.3,high,grass with painted boulders and outcrops; boulder sheet (rock 32%)
+256,3,0,31,31,0,grass_rocky,0,,partial,,6.5,4.2,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 29%)
+257,3,1,31,31,0,grass_rocky,0,,partial,,1.6,4.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 21%)
+258,3,2,51,51,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 17%)
+259,3,3,51,51,0,grass_rocky,0,,partial,,0.0,20.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 45%)
+260,3,4,62,62,0,grass_rocky,0,,partial,,1.2,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 20%)
+261,3,5,62,62,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 25%)
+262,3,6,81,80,0,grass_rocky,0,,partial,,0.5,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 15%)
+263,3,7,81,80,0,grass_rocky,0,,partial,,1.2,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 11%)
+264,3,8,32,32,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 37%)
+265,3,9,32,32,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 16%)
+268,3,12,31,31,0,grass_rocky,0,,partial,,3.2,3.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 34%)
+269,3,13,31,31,0,grass_rocky,0,,partial,,0.0,3.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 23%)
+270,3,14,49,49,0,grass_rocky,0,,partial,,0.0,14.6,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 54%)
+271,3,15,49,49,0,grass_rocky,0,,partial,,0.0,7.8,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 12%)
+272,3,16,61,61,0,grass_rocky,0,,partial,,2.7,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 23%)
+273,3,17,61,61,0,grass_rocky,0,,partial,,0.8,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 14%)
+274,3,18,80,80,0,grass_rocky,0,,partial,,0.5,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 12%)
+275,3,19,79,79,0,grass_rocky,0,,partial,,2.2,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 11%)
+276,3,20,30,30,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+277,3,21,33,33,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+280,3,24,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+281,3,25,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+282,3,26,5,5,0,grass,0,,yes,,0.0,3.1,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 6%)
+283,3,27,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+284,3,28,5,5,0,grass,0,,yes,,0.0,0.0,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 6%)
+285,3,29,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+286,3,30,6,6,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+287,3,31,4,4,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+288,3,32,19,17,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 11%)
+289,3,33,20,18,0,grass,0,,yes,,2.5,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+292,3,36,5,5,0,grass_rocky,0,,partial,,0.0,3.2,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 13%)
+293,3,37,5,5,0,grass_rocky,0,,partial,,0.0,5.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 43%)
+294,3,38,5,5,0,rock_mass,0,,no,,0.0,3.4,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 84%)
+295,3,39,5,5,0,rock_mass,0,,no,,0.0,4.7,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 76%)
+296,3,40,5,5,0,rock_mass,0,,no,,0.0,4.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 80%)
+297,3,41,5,5,0,rock_mass,0,,no,,0.0,6.4,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 62%)
+298,3,42,5,5,0,grass_rocky,0,,partial,,0.0,4.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 19%)
+299,3,43,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+300,3,44,20,17,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+301,3,45,19,16,0,grass,0,,yes,,2.7,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+304,3,48,5,5,0,grass_rocky,0,,partial,,0.0,4.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 47%)
+305,3,49,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 97%)
+306,3,50,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 71%)
+307,3,51,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 73%)
+308,3,52,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 91%)
+309,3,53,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 77%)
+310,3,54,5,5,0,rock_mass,0,,no,,0.0,0.9,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 73%)
+311,3,55,5,5,0,rock_mass,0,,no,,0.0,5.2,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 62%)
+312,3,56,5,5,0,grass_rocky,0,,partial,,0.0,5.9,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 27%)
+313,3,57,5,5,0,grass,0,,yes,,10.2,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+316,3,60,5,5,0,rock_mass,0,,no,,17.4,3.2,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 67%)
+317,3,61,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 89%)
+318,3,62,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 87%)
+319,3,63,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 73%)
+320,3,64,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 93%)
+321,3,65,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 81%)
+322,3,66,5,5,0,rock_mass,0,,no,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 82%)
+323,3,67,5,5,0,rock_mass,0,,no,,0.0,1.8,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 90%)
+324,3,68,5,5,0,rock_mass,0,,no,,0.0,7.6,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 81%)
+325,3,69,5,5,0,grass,0,,yes,,10.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+328,3,72,4,4,0,grass_rocky,0,,partial,,0.0,4.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 24%)
+329,3,73,4,4,0,rock_mass,0,,no,,0.0,5.2,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 65%)
+330,3,74,4,4,0,rock_mass,0,,no,,0.0,5.4,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 73%)
+331,3,75,4,4,0,rock_mass,0,,no,,0.0,8.1,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 77%)
+332,3,76,4,4,0,grass_rocky,0,,partial,,0.0,4.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 52%)
+333,3,77,4,4,0,rock_mass,0,,no,,0.0,5.8,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 71%)
+334,3,78,4,4,0,rock_mass,0,,no,,0.0,4.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 96%)
+335,3,79,4,4,0,grass_rocky,0,,partial,,0.0,6.6,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 30%)
+336,3,80,19,18,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 15%)
+337,3,81,19,18,0,grass_rocky,0,,partial,,4.6,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 27%)
+340,3,84,4,4,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+341,3,85,5,5,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+342,3,86,4,4,0,grass_rocky,0,,partial,,0.0,2.5,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 15%)
+343,3,87,4,4,0,grass_rocky,0,,partial,,0.0,3.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 16%)
+344,3,88,4,4,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 2%)
+345,3,89,4,4,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+346,3,90,3,3,0,grass_rocky,0,,partial,,0.0,0.0,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 11%)
+347,3,91,3,3,0,grass,0,,yes,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 1%)
+348,3,92,18,17,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with boulders and one large rock mound; boulder/mound sheet (rock 19%)
+349,3,93,18,17,0,grass,0,,yes,,2.8,0.0,medium,grass with boulders and one large rock mound; boulder/mound sheet (rock 8%)
+384,4,0,26,25,0,grass,0,,yes,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 2%)
+385,4,1,23,23,0,grass,0,,yes,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 1%)
+386,4,2,23,23,0,grass,0,,yes,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 3%)
+387,4,3,23,23,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 26%)
+388,4,4,23,23,0,grass,0,,yes,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 4%)
+389,4,5,26,26,0,grass,0,,yes,,1.9,0.0,high,grass with a boulder cluster; boulder sheet (rock 1%)
+396,4,12,23,23,0,grass,0,,yes,,0.0,0.0,medium,grass with a boulder cluster; boulder sheet (rock 6%)
+397,4,13,23,23,0,grass_rocky,0,,partial,,0.0,11.3,high,grass with a boulder cluster; boulder sheet (rock 27%)
+398,4,14,23,23,0,grass_rocky,0,,partial,,0.0,7.2,medium,grass with a boulder cluster; boulder sheet (rock 60%)
+399,4,15,23,23,0,grass_rocky,0,,partial,,0.0,6.0,medium,grass with a boulder cluster; boulder sheet (rock 55%)
+400,4,16,23,23,0,grass_rocky,0,,partial,,0.0,7.4,high,grass with a boulder cluster; boulder sheet (rock 15%)
+401,4,17,23,23,0,grass,0,,yes,,2.2,5.5,high,grass with a boulder cluster; boulder sheet (rock 2%)
+408,4,24,23,23,0,grass_rocky,0,,partial,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 44%)
+409,4,25,23,23,0,rock_mass,0,,no,,0.0,14.2,high,grass with a boulder cluster; boulder sheet (rock 78%)
+410,4,26,23,23,0,rock_mass,0,,no,,0.0,0.0,high,grass with a boulder cluster; boulder sheet (rock 74%)
+411,4,27,23,23,0,rock_mass,0,,no,,0.0,16.1,high,grass with a boulder cluster; boulder sheet (rock 69%)
+412,4,28,23,23,0,rock_mass,0,,no,,0.0,1.9,high,grass with a boulder cluster; boulder sheet (rock 93%)
+413,4,29,23,23,0,grass_rocky,0,,partial,,0.0,4.0,high,grass with a boulder cluster; boulder sheet (rock 52%)
+420,4,36,23,23,0,grass_rocky,0,,partial,,0.0,0.0,medium,grass with a boulder cluster; boulder sheet (rock 10%)
+421,4,37,23,23,0,grass_rocky,0,,partial,,2.2,14.0,high,grass with a boulder cluster; boulder sheet (rock 51%)
+422,4,38,23,23,0,grass_rocky,0,,partial,,0.0,8.0,high,grass with a boulder cluster; boulder sheet (rock 40%)
+423,4,39,23,23,0,grass_rocky,0,,partial,,0.0,10.2,high,grass with a boulder cluster; boulder sheet (rock 17%)
+424,4,40,23,23,0,grass_rocky,0,,partial,,0.0,6.0,high,grass with a boulder cluster; boulder sheet (rock 23%)
+425,4,41,23,23,0,grass,0,,yes,,4.3,3.7,medium,grass with a boulder cluster; boulder sheet (rock 8%)
+512,5,0,34,26,0,grass,0,,yes,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 8%)
+513,5,1,34,26,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.8,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 43%)
+514,5,2,160,52,1,cliff_face,1,cliff_face|grass,partial,,0.6,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 55%)
+515,5,3,160,53,1,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 49%)
+516,5,4,30,24,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.5,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 31%)
+517,5,5,30,24,0,grass,0,,yes,,0.0,5.2,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 20%)
+518,5,6,53,37,0,grass,0,,yes,,0.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 5%)
+519,5,7,52,39,0,grass,0,,yes,,0.0,5.2,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 9%)
+520,5,8,48,39,0,grass,0,,yes,,0.0,5.1,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 10%)
+521,5,9,50,41,0,grass,0,,yes,,2.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 6%)
+524,5,12,34,26,0,cliff_face,1,cliff_face|grass,partial,,0.0,12.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 25%)
+525,5,13,34,26,0,cliff_face,0,,no,,0.0,6.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 78%)
+526,5,14,160,52,1,cliff_face,1,cliff_face|grass,partial,,0.6,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 61%)
+527,5,15,160,53,1,cliff_face,1,cliff_face|grass,partial,,0.9,4.0,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 66%)
+528,5,16,30,24,0,cliff_face,0,,no,,0.0,2.1,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 79%)
+529,5,17,30,24,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 64%)
+530,5,18,52,39,0,cliff_face,1,cliff_face|grass,partial,,0.0,5.5,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 38%)
+531,5,19,52,39,0,cliff_face,1,cliff_face|grass,partial,,0.0,8.8,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 62%)
+532,5,20,49,40,0,cliff_face,1,cliff_face|grass,partial,,0.0,13.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 26%)
+533,5,21,49,40,0,cliff_face,1,cliff_face|grass,partial,,1.0,4.9,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 24%)
+536,5,24,55,35,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 32%)
+537,5,25,55,35,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 42%)
+538,5,26,107,27,1,grass,0,,yes,,0.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 14%)
+539,5,27,90,24,0,grass,0,,yes,,0.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 15%)
+540,5,28,43,27,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 49%)
+541,5,29,43,27,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 61%)
+542,5,30,55,42,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 54%)
+543,5,31,55,42,0,cliff_face,0,,no,,0.0,4.4,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 77%)
+544,5,32,59,47,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 51%)
+545,5,33,59,47,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 26%)
+548,5,36,48,31,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 34%)
+549,5,37,48,31,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 40%)
+550,5,38,108,27,0,grass,0,,yes,,0.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 11%)
+551,5,39,97,27,0,grass,0,,yes,,0.0,0.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 8%)
+552,5,40,52,26,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 46%)
+553,5,41,52,26,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 60%)
+554,5,42,55,42,0,cliff_face,1,cliff_face|grass,partial,,0.9,3.6,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 24%)
+555,5,43,55,42,0,cliff_face,1,cliff_face|grass,partial,,0.9,4.3,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 65%)
+556,5,44,59,47,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.4,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 58%)
+557,5,45,59,47,0,grass,0,,yes,,0.0,4.1,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 13%)
+560,5,48,24,21,0,cliff_face,1,cliff_face|grass,partial,,0.0,7.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 26%)
+561,5,49,24,21,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.9,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 41%)
+562,5,50,211,50,1,grass,0,,yes,,0.2,4.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 18%)
+563,5,51,215,50,0,grass,0,,yes,,0.1,4.8,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 14%)
+564,5,52,28,20,0,cliff_face,1,cliff_face|grass,partial,,0.0,4.2,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 66%)
+565,5,53,28,20,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.8,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 40%)
+572,5,60,25,22,0,grass,0,,yes,,0.0,2.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 5%)
+573,5,61,24,21,0,grass,0,,yes,,0.0,6.4,low,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 21%)
+574,5,62,211,50,1,grass,0,,yes,,0.3,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 17%)
+575,5,63,215,50,0,grass,0,,yes,,0.5,6.6,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 14%)
+576,5,64,28,20,0,grass,0,,yes,,0.0,6.0,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 5%)
+577,5,65,28,20,0,grass,0,,yes,,0.0,2.4,medium,low earth ridges (ring and C shapes) on grass; low ridge; small step in 3D. mixed cells are grass|cliff_face (rock 6%)
+640,6,0,22,13,0,cliff_face,1,cliff_face|grass,partial,,4.5,9.5,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+641,6,1,22,13,0,cliff_face,1,cliff_face|grass,partial,,4.5,11.5,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+642,6,2,18,15,0,cliff_face,1,cliff_face|grass,partial,,5.6,6.3,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+643,6,3,17,14,0,cliff_face,1,cliff_face|grass,partial,,8.8,7.1,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+644,6,4,20,13,0,cliff_face,1,cliff_face|grass,partial,,0.0,8.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+645,6,5,21,13,0,cliff_face,1,cliff_face|grass,partial,,6.5,10.4,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+646,6,6,7,7,0,cliff_face,1,cliff_face|grass,partial,,0.0,16.4,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+647,6,7,7,7,0,cliff_face,1,cliff_face|grass,partial,,0.0,11.9,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+648,6,8,12,10,0,cliff_face,1,cliff_face|grass,partial,,4.2,10.2,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+649,6,9,12,10,0,cliff_face,1,cliff_face|grass,partial,,0.0,12.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff top lip with grass above"
+652,6,12,21,13,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+653,6,13,21,13,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+654,6,14,18,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+655,6,15,18,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+656,6,16,21,13,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+657,6,17,21,13,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+658,6,18,7,7,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+659,6,19,7,7,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+660,6,20,12,10,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+661,6,21,12,10,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+664,6,24,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+665,6,25,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+666,6,26,24,20,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+667,6,27,24,20,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+668,6,28,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+669,6,29,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+670,6,30,16,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+671,6,31,16,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+672,6,32,17,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+673,6,33,17,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+676,6,36,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+677,6,37,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+678,6,38,24,20,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+679,6,39,24,20,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+680,6,40,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+681,6,41,26,18,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+682,6,42,16,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+683,6,43,16,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+684,6,44,17,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+685,6,45,17,15,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+688,6,48,29,22,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+689,6,49,29,22,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+690,6,50,35,26,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+691,6,51,35,26,0,cliff_face,0,,no,,1.4,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+692,6,52,36,24,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+693,6,53,36,24,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+694,6,54,17,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+695,6,55,17,12,0,cliff_face,0,,no,,0.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+696,6,56,16,14,0,cliff_face,0,,no,,2.0,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+697,6,57,16,14,0,cliff_face,0,,no,,4.3,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; escarpment wall"
+700,6,60,29,22,0,cliff_face,1,cliff_face|path,partial,,6.9,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+701,6,61,29,22,0,cliff_face,1,cliff_face|path,partial,,11.2,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+702,6,62,34,26,0,cliff_face,1,cliff_face|path,partial,,6.7,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+703,6,63,34,26,0,cliff_face,1,cliff_face|path,partial,,10.5,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+704,6,64,35,24,0,cliff_face,1,cliff_face|path,partial,,7.9,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+705,6,65,35,24,0,cliff_face,1,cliff_face|path,partial,,9.2,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+706,6,66,17,12,0,cliff_face,1,cliff_face|path,partial,,6.4,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+707,6,67,17,12,0,cliff_face,1,cliff_face|path,partial,,7.2,0.0,high,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; cliff foot with gravel path and grass below"
+708,6,68,16,14,0,path,1,path|grass,yes,,16.3,0.0,medium,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; gravel path around a grass hump at cliff foot"
+709,6,69,16,14,0,path,1,path|grass,yes,,9.4,0.0,medium,"main escarpment cliff: grass top, tall cliff body, gravel path at foot; gravel path around a grass hump at cliff foot"
+768,7,0,7,5,0,cliff_face,1,cliff_face|grass,partial,,0.0,10.0,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+769,7,1,7,5,0,cliff_face,1,cliff_face|grass,partial,,0.0,14.0,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+770,7,2,10,7,0,cliff_face,1,cliff_face|grass,partial,,0.0,13.6,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+771,7,3,10,7,0,cliff_face,1,cliff_face|grass,partial,,0.0,17.8,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+780,7,12,7,5,0,cliff_face,1,cliff_face|grass,partial,,0.0,12.0,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+781,7,13,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+782,7,14,10,7,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+783,7,15,9,6,0,cliff_face,1,cliff_face|grass,partial,,0.0,12.5,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+792,7,24,7,5,0,cliff_face,1,cliff_face|grass,partial,,0.0,6.6,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+793,7,25,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+794,7,26,9,6,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+795,7,27,10,7,0,cliff_face,1,cliff_face|grass,partial,,0.0,3.1,high,escarpment with a gravel pass cut through it; cliff lip / side with grass
+804,7,36,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+805,7,37,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+806,7,38,10,7,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+807,7,39,10,7,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+816,7,48,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+817,7,49,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+818,7,50,12,9,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+819,7,51,11,9,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+828,7,60,7,5,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+829,7,61,7,5,0,path,1,path|cliff_face,partial,,6.6,0.0,high,escarpment with a gravel pass cut through it; gravel pass through the cliff
+830,7,62,11,9,0,path,1,path|cliff_face,partial,,8.1,0.0,high,escarpment with a gravel pass cut through it; gravel pass through the cliff
+831,7,63,12,9,0,cliff_face,0,,no,,0.0,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+840,7,72,5,5,0,cliff_face,0,,no,,5.9,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+841,7,73,5,5,0,path,1,path|cliff_face,partial,,7.0,0.0,high,escarpment with a gravel pass cut through it; gravel pass through the cliff
+842,7,74,8,6,0,path,1,path|cliff_face,partial,,6.6,0.0,high,escarpment with a gravel pass cut through it; gravel pass through the cliff
+843,7,75,8,6,0,cliff_face,0,,no,,1.8,0.0,high,escarpment with a gravel pass cut through it; cliff wall
+852,7,84,6,5,0,path,1,path|grass,yes,,3.2,0.0,high,escarpment with a gravel pass cut through it; pass exit onto grass
+853,7,85,6,5,0,path,1,path|grass,yes,,0.0,0.0,high,escarpment with a gravel pass cut through it; pass exit onto grass
+854,7,86,8,6,0,path,1,path|grass,yes,,6.2,0.0,high,escarpment with a gravel pass cut through it; pass exit onto grass
+855,7,87,8,6,0,path,1,path|grass,yes,,6.1,0.0,high,escarpment with a gravel pass cut through it; pass exit onto grass
+896,8,0,54,39,0,grass,0,,yes,water,0.0,4.4,medium,"animated water (frame 1): lake with grass banks, islet; bank corner, almost all grass"
+897,8,1,54,39,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+898,8,2,226,73,0,grass,1,grass|water,partial,water,0.4,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+899,8,3,223,70,0,grass,1,grass|water,partial,water,0.9,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+900,8,4,56,43,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+901,8,5,56,43,0,grass,0,,yes,water,0.0,5.2,medium,"animated water (frame 1): lake with grass banks, islet; bank corner, almost all grass"
+902,8,6,44,34,0,water,0,,no,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+903,8,7,44,34,0,water,0,,no,water,3.4,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+904,8,8,56,43,0,water,0,,no,water,2.9,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+905,8,9,54,41,0,water,0,,no,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+908,8,12,54,39,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+909,8,13,54,39,0,water,1,water|grass,partial,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+910,8,14,225,73,0,water,1,water|grass,partial,water,0.2,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+911,8,15,221,70,0,water,1,water|grass,partial,water,0.5,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+912,8,16,55,42,0,water,1,water|grass,partial,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+913,8,17,55,42,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+914,8,18,44,34,0,water,1,water|grass,partial,water,1.1,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+915,8,19,44,34,0,grass,1,grass|water,partial,water,4.8,2.9,high,"animated water (frame 1): lake with grass banks, islet; grass islet in water"
+916,8,20,56,43,0,grass,1,grass|water,partial,water,6.5,3.0,high,"animated water (frame 1): lake with grass banks, islet; grass islet in water"
+917,8,21,55,42,0,water,1,water|grass,partial,water,2.7,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+920,8,24,100,47,0,grass,1,grass|water,partial,water,0.9,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+921,8,25,100,47,0,water,1,water|grass,partial,water,1.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+922,8,26,754,122,0,water,0,,no,water,0.2,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+923,8,27,757,122,0,water,0,,no,water,0.2,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+924,8,28,99,45,0,water,1,water|grass,partial,water,1.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+925,8,29,99,45,0,grass,1,grass|water,partial,water,2.0,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+926,8,30,57,42,0,water,1,water|grass,partial,water,0.9,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+927,8,31,59,43,0,grass,1,grass|water,partial,water,2.7,2.4,high,"animated water (frame 1): lake with grass banks, islet; grass islet in water"
+928,8,32,56,40,0,grass,1,grass|water,partial,water,3.8,2.6,high,"animated water (frame 1): lake with grass banks, islet; grass islet in water"
+929,8,33,54,40,0,water,1,water|grass,partial,water,0.9,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+932,8,36,91,47,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+933,8,37,91,47,0,water,1,water|grass,partial,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+934,8,38,745,121,0,water,0,,no,water,0.2,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+935,8,39,750,121,0,water,0,,no,water,0.2,0.0,high,"animated water (frame 1): lake with grass banks, islet; animated water"
+936,8,40,93,43,0,water,1,water|grass,partial,water,1.1,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+937,8,41,93,43,0,grass,1,grass|water,partial,water,1.1,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+938,8,42,58,43,0,water,1,water|grass,partial,water,0.0,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+939,8,43,59,43,0,water,1,water|grass,partial,water,1.7,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+940,8,44,56,40,0,water,1,water|grass,partial,water,2.9,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+941,8,45,54,40,0,water,1,water|grass,partial,water,0.0,0.0,medium,"animated water (frame 1): lake with grass banks, islet; water around islet"
+944,8,48,54,44,0,grass,1,grass|water,partial,water,0.0,5.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+945,8,49,54,44,0,water,1,water|grass,partial,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+946,8,50,166,58,0,water,1,water|grass,partial,water,0.6,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+947,8,51,161,55,0,water,1,water|grass,partial,water,0.6,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+948,8,52,40,32,0,water,1,water|grass,partial,water,0.0,0.0,high,"animated water (frame 1): lake with grass banks, islet; water against bank"
+949,8,53,40,32,0,grass,1,grass|water,partial,water,0.0,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+956,8,60,55,46,0,grass,0,,yes,water,0.0,0.0,medium,"animated water (frame 1): lake with grass banks, islet; bank corner, almost all grass"
+957,8,61,53,44,0,grass,1,grass|water,partial,water,0.0,5.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+958,8,62,162,58,0,grass,1,grass|water,partial,water,1.3,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+959,8,63,157,55,0,grass,1,grass|water,partial,water,1.7,3.9,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+960,8,64,40,31,0,grass,1,grass|water,partial,water,1.2,4.0,high,"animated water (frame 1): lake with grass banks, islet; grass bank above water"
+961,8,65,40,31,0,grass,0,,yes,water,0.0,3.6,medium,"animated water (frame 1): lake with grass banks, islet; bank corner, almost all grass"
+1050,9,26,145,15,0,water,0,,no,,0.0,0.0,high,animated water frame 2 (cells used directly as static water); static water (outside the animated range)
+1051,9,27,145,15,0,water,0,,no,,0.0,0.0,high,animated water frame 2 (cells used directly as static water); static water (outside the animated range)
+1062,9,38,143,14,0,water,0,,no,,0.0,0.0,high,animated water frame 2 (cells used directly as static water); static water (outside the animated range)
+1063,9,39,143,14,0,water,0,,no,,0.0,0.0,high,animated water frame 2 (cells used directly as static water); static water (outside the animated range)
+1340,11,60,1,1,0,grass,0,,yes,,0.0,0.0,low,"animated water frame 4; single use; dark grass corner of a water frame sheet, likely an editor slip"
+1664,14,0,590,34,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1665,14,1,592,34,0,water,0,,no,,0.3,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1666,14,2,561,73,0,sand,0,,yes,,0.2,0.0,high,sea and beach shoreline; shoreline sheet (sand 100%)
+1667,14,3,526,71,0,sand,0,,yes,,0.1,0.0,high,sea and beach shoreline; shoreline sheet (sand 100%)
+1668,14,4,3,3,0,sand,0,,yes,,0.0,4.8,high,sea and beach shoreline; shoreline sheet (sand 93% water 7%)
+1669,14,5,3,3,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 95% sand 5%)
+1670,14,6,5,4,0,water,1,water|sand,partial,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 90% sand 10%)
+1671,14,7,5,4,0,sand,0,,yes,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 98% water 2%)
+1672,14,8,22,16,0,sand,0,,yes,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 91% water 9%)
+1673,14,9,22,16,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 99%)
+1674,14,10,10,10,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 92% sand 8%)
+1675,14,11,10,10,0,sand,1,sand|water,partial,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 86% water 14%)
+1676,14,12,590,34,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1677,14,13,592,34,0,water,0,,no,,0.3,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1678,14,14,553,72,0,sand,0,,yes,,0.2,0.0,high,sea and beach shoreline; shoreline sheet (sand 100%)
+1679,14,15,525,69,0,sand,0,,yes,,0.4,0.0,high,sea and beach shoreline; shoreline sheet (sand 100%)
+1680,14,16,3,3,0,sand,0,,yes,,0.0,4.8,high,sea and beach shoreline; shoreline sheet (sand 95% water 5%)
+1681,14,17,3,3,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 94% sand 6%)
+1682,14,18,5,4,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1683,14,19,5,4,0,sand,1,sand|water,partial,,0.0,5.6,high,sea and beach shoreline; shoreline sheet (sand 86% water 14%)
+1684,14,20,23,16,0,sand,0,,yes,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 98% water 2%)
+1685,14,21,23,16,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 91% sand 9%)
+1686,14,22,10,10,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1687,14,23,10,10,0,sand,1,sand|water,partial,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 76% water 24%)
+1688,14,24,41,29,0,sand,0,,yes,,0.0,3.9,high,sea and beach shoreline; shoreline sheet (sand 98%)
+1689,14,25,42,29,0,sand,0,,yes,,2.4,3.8,high,sea and beach shoreline; shoreline sheet (sand 95% water 5%)
+1690,14,26,43,29,0,sand,1,sand|water,partial,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 87% water 13%)
+1691,14,27,42,29,0,sand,1,sand|water,partial,,0.6,4.0,high,sea and beach shoreline; shoreline sheet (sand 88% water 12%)
+1692,14,28,30,26,0,sand,1,sand|water,partial,,0.0,6.1,high,sea and beach shoreline; shoreline sheet (sand 70% water 30%)
+1693,14,29,31,27,0,sand,1,sand|water,partial,,0.0,4.8,high,sea and beach shoreline; shoreline sheet (sand 83% water 17%)
+1694,14,30,33,26,0,sand,0,,yes,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 99%)
+1695,14,31,33,26,0,sand,0,,yes,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 98%)
+1696,14,32,17,13,0,sand,1,sand|water,partial,,0.0,6.5,high,sea and beach shoreline; shoreline sheet (sand 76% water 24%)
+1697,14,33,17,13,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1698,14,34,15,14,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1699,14,35,15,14,0,sand,1,sand|water,partial,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 87% water 13%)
+1700,14,36,41,29,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1701,14,37,42,29,0,water,0,,no,,4.8,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1702,14,38,43,29,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1703,14,39,42,29,0,water,0,,no,,1.2,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1704,14,40,30,26,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1705,14,41,31,27,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1706,14,42,33,26,0,water,1,water|sand,partial,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 78% sand 22%)
+1707,14,43,33,26,0,water,1,water|sand,partial,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 83% sand 17%)
+1708,14,44,16,13,0,sand,0,,yes,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 94% water 6%)
+1709,14,45,16,13,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 99%)
+1710,14,46,15,14,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1711,14,47,15,14,0,sand,1,sand|water,partial,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 83% water 17%)
+1712,14,48,29,26,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 99%)
+1713,14,49,29,26,0,water,0,,no,,3.4,0.0,high,sea and beach shoreline; shoreline sheet (water 95% sand 5%)
+1714,14,50,35,21,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1715,14,51,36,20,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1716,14,52,20,17,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1717,14,53,18,16,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 100%)
+1718,14,54,18,16,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 98%)
+1719,14,55,17,15,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 99%)
+1720,14,56,16,16,0,sand,1,sand|water,partial,,0.0,7.6,high,sea and beach shoreline; shoreline sheet (sand 83% water 17%)
+1721,14,57,16,16,0,water,1,water|sand,partial,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 81% sand 19%)
+1722,14,58,29,18,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 92% sand 8%)
+1723,14,59,29,18,0,sand,0,,yes,,0.0,4.0,high,sea and beach shoreline; shoreline sheet (sand 99%)
+1724,14,60,29,26,0,sand,0,,yes,,3.5,4.0,high,sea and beach shoreline; shoreline sheet (sand 92% water 8%)
+1725,14,61,29,26,0,sand,1,sand|water,partial,,1.7,5.0,high,sea and beach shoreline; shoreline sheet (sand 84% water 16%)
+1726,14,62,35,21,0,sand,1,sand|water,partial,,1.4,3.9,high,sea and beach shoreline; shoreline sheet (sand 79% water 21%)
+1727,14,63,36,20,0,sand,1,sand|water,partial,,1.4,3.9,high,sea and beach shoreline; shoreline sheet (sand 77% water 23%)
+1728,14,64,20,17,0,sand,1,sand|water,partial,,0.0,4.8,high,sea and beach shoreline; shoreline sheet (sand 80% water 20%)
+1729,14,65,18,16,0,water,1,water|sand,partial,,0.0,4.7,medium,sea and beach shoreline; shoreline sheet (water 52% sand 48%)
+1730,14,66,18,16,0,sand,1,sand|water,partial,,0.0,5.9,high,sea and beach shoreline; shoreline sheet (sand 73% water 27%)
+1731,14,67,17,15,0,sand,0,,yes,,0.0,4.4,high,sea and beach shoreline; shoreline sheet (sand 92% water 8%)
+1732,14,68,16,16,0,sand,0,,yes,,0.0,5.2,high,sea and beach shoreline; shoreline sheet (sand 96% water 4%)
+1733,14,69,16,16,0,water,1,water|sand,partial,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 82% sand 18%)
+1734,14,70,29,18,0,water,0,,no,,0.0,0.0,high,sea and beach shoreline; shoreline sheet (water 99%)
+1735,14,71,29,18,0,sand,1,sand|water,partial,,3.0,5.4,high,sea and beach shoreline; shoreline sheet (sand 89% water 11%)
+1792,15,0,3,3,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 99%)"
+1793,15,1,3,3,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1794,15,2,2,2,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1795,15,3,2,2,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1796,15,4,3,3,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1797,15,5,3,3,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1798,15,6,4,4,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1799,15,7,4,4,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1800,15,8,27,23,0,sand,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 100%)"
+1801,15,9,27,23,0,sand,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 97%)"
+1802,15,10,15,14,0,sand,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 98%)"
+1803,15,11,16,14,0,sand,0,,yes,,0.0,4.1,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 100%)"
+1804,15,12,3,3,0,grass,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 93% sand 6%)"
+1805,15,13,3,3,0,sand,0,,yes,,0.0,4.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 85% grass 8% water 6%)"
+1806,15,14,2,2,0,sand,1,sand|water,partial,,0.0,4.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 79% water 16% grass 5%)"
+1807,15,15,2,2,0,grass,1,grass|sand,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 63% sand 36%)"
+1808,15,16,4,4,0,grass,1,grass|sand,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 65% sand 35%)"
+1809,15,17,4,4,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 60% grass 40%)"
+1810,15,18,4,4,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 60% grass 40%)"
+1811,15,19,4,4,0,grass,1,grass|sand,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 72% sand 28%)"
+1812,15,20,27,23,0,sand,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 94% water 4% grass 3%)"
+1813,15,21,27,23,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 94% sand 5%)"
+1814,15,22,15,14,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1815,15,23,16,14,0,sand,1,sand|water,partial,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 81% water 13% grass 6%)"
+1816,15,24,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 98% sand 2%)"
+1817,15,25,1,1,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 75% grass 25%)"
+1820,15,28,4,4,0,grass,1,grass|water,partial,,0.0,5.2,high,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass bank with small cliff above water"
+1821,15,29,4,4,0,grass,1,grass|water,partial,,0.0,4.0,high,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass bank with small cliff above water"
+1822,15,30,4,4,0,grass,1,grass|water,partial,,0.0,4.6,high,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass bank with small cliff above water"
+1823,15,31,4,4,0,grass,1,grass|water,partial,,0.0,4.6,high,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass bank with small cliff above water"
+1824,15,32,11,9,0,sand,1,sand|grass,yes,,0.0,4.8,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 81% grass 13% water 5%)"
+1825,15,33,11,9,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1826,15,34,25,21,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 89% grass 7% sand 3%)"
+1827,15,35,25,21,0,sand,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 98%)"
+1828,15,36,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1829,15,37,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1832,15,40,4,4,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 92% grass 8%)"
+1833,15,41,4,4,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1834,15,42,4,4,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 96% grass 4%)"
+1835,15,43,4,4,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 91% grass 9%)"
+1836,15,44,11,9,0,sand,0,,yes,,0.0,4.1,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 100%)"
+1837,15,45,11,9,0,sand,0,,yes,,0.0,4.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 91% water 6% grass 3%)"
+1838,15,46,25,21,0,sand,1,sand|water,partial,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 82% water 14% grass 5%)"
+1839,15,47,25,21,0,sand,0,,yes,,0.0,4.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 100%)"
+1840,15,48,1,1,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1841,15,49,1,1,0,grass,1,grass|water,partial,,0.0,4.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass with small bank against water"
+1842,15,50,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1843,15,51,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1844,15,52,3,3,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 99%)"
+1845,15,53,3,3,0,grass,1,grass|sand,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 56% sand 44%)"
+1846,15,54,3,3,0,grass,0,,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 92% sand 5% water 3%)"
+1847,15,55,3,3,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1848,15,56,34,24,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1849,15,57,34,24,0,water,0,,no,,4.4,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 99%)"
+1850,15,58,21,14,0,water,0,,no,,2.4,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1851,15,59,21,14,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1852,15,60,2,2,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1853,15,61,2,2,0,grass,1,grass|water,partial,,0.0,4.3,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; grass with small bank against water"
+1854,15,62,1,1,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 75% grass 25%)"
+1855,15,63,1,1,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1856,15,64,3,3,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1857,15,65,3,3,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 71% grass 29%)"
+1858,15,66,3,3,0,sand,1,sand|grass,yes,,0.0,4.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 84% grass 13% water 3%)"
+1859,15,67,3,3,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98% grass 2%)"
+1860,15,68,34,24,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 99%)"
+1861,15,69,34,24,0,sand,1,sand|water,partial,,4.4,3.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 86% water 10% grass 4%)"
+1862,15,70,21,14,0,sand,1,sand|water,partial,,2.4,3.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 71% water 24% grass 4%)"
+1863,15,71,21,14,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 94% sand 4%)"
+1868,15,76,2,2,0,grass,0,,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1869,15,77,2,2,0,sand,1,sand|grass,yes,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 65% grass 35%)"
+1870,15,78,2,2,0,sand,1,sand|water,partial,,0.0,5.4,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 76% water 20% grass 5%)"
+1871,15,79,2,2,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1872,15,80,27,19,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 98%)"
+1873,15,81,27,19,0,sand,0,,yes,,1.9,4.8,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 86% water 10% grass 4%)"
+1874,15,82,39,26,0,sand,0,,yes,,2.6,3.9,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (sand 87% grass 7% water 6%)"
+1875,15,83,39,26,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 93% grass 6%)"
+1880,15,88,2,2,0,grass,0,,yes,,25.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 100%)"
+1881,15,89,2,2,0,grass,1,grass|sand,yes,,25.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 72% sand 28%)"
+1882,15,90,2,2,0,grass,1,grass|sand,yes,,25.0,1.0,low,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (grass 48% sand 47% water 5%)"
+1883,15,91,2,2,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1884,15,92,27,19,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1885,15,93,27,19,0,water,0,,no,,1.9,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1886,15,94,39,26,0,water,0,,no,,2.6,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 94% sand 5%)"
+1887,15,95,39,26,0,water,0,,no,,0.0,0.0,medium,"sea / sand / flowered grass mixes, sand islet, shadowed corner; flowered grass / sand / sea mix (water 100%)"
+1920,16,0,8,7,0,sand,1,sand|grass,yes,,12.5,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 74% grass 26%)
+1921,16,1,6,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1922,16,2,6,6,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1923,16,3,6,6,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 62% grass 38%)
+1924,16,4,6,6,0,sand,1,sand|grass,yes,,8.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 57% grass 43%)
+1925,16,5,5,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 94% sand 6%)
+1926,16,6,10,7,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 99%)
+1927,16,7,10,7,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 83% grass 17%)
+1928,16,8,13,11,0,sand,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 100%)
+1929,16,9,13,11,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 80% grass 20%)
+1930,16,10,6,5,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 81% grass 19%)
+1931,16,11,7,5,0,sand,0,,yes,,9.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 97% grass 3%)
+1932,16,12,8,7,0,sand,1,sand|grass,yes,,12.5,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 85% grass 15%)
+1933,16,13,6,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1934,16,14,6,6,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1935,16,15,6,6,0,sand,1,sand|grass,yes,,0.0,0.0,medium,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 51% grass 49%)
+1936,16,16,9,7,0,sand,1,sand|grass,yes,,5.6,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 88% grass 12%)
+1937,16,17,8,6,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 94% sand 6%)
+1938,16,18,10,9,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1939,16,19,10,9,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 72% grass 28%)
+1940,16,20,14,11,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 80% grass 20%)
+1941,16,21,14,11,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1942,16,22,5,4,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1943,16,23,6,4,0,sand,1,sand|grass,yes,,8.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 65% grass 35%)
+1944,16,24,9,9,0,sand,1,sand|grass,yes,,7.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 61% grass 39%)
+1945,16,25,9,9,0,grass,0,,yes,,9.7,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1946,16,26,6,6,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1947,16,27,7,7,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 66% grass 34%)
+1948,16,28,18,14,0,sand,1,sand|grass,yes,,5.6,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 81% grass 19%)
+1949,16,29,16,12,0,grass,0,,yes,,6.2,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 99%)
+1950,16,30,9,9,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 99%)
+1951,16,31,10,10,0,sand,1,sand|grass,yes,,5.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 85% grass 15%)
+1952,16,32,16,13,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 67% grass 33%)
+1953,16,33,17,14,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1954,16,34,18,16,0,grass,0,,yes,,2.8,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1955,16,35,18,16,0,sand,1,sand|grass,yes,,0.7,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 82% grass 18%)
+1956,16,36,9,9,0,sand,1,sand|grass,yes,,11.1,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 73% grass 27%)
+1957,16,37,8,8,0,grass,0,,yes,,6.2,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1958,16,38,5,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1959,16,39,5,5,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 65% grass 35%)
+1960,16,40,17,14,0,sand,1,sand|grass,yes,,5.9,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 82% grass 18%)
+1961,16,41,15,12,0,grass,0,,yes,,4.2,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 99%)
+1962,16,42,7,7,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1963,16,43,7,7,0,sand,1,sand|grass,yes,,12.4,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 67% grass 33%)
+1964,16,44,15,12,0,sand,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 100%)
+1965,16,45,16,13,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 75% grass 25%)
+1966,16,46,20,16,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 65% grass 35%)
+1967,16,47,20,16,0,sand,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 99%)
+1968,16,48,11,9,0,sand,1,sand|grass,yes,,7.9,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 84% grass 16%)
+1969,16,49,10,9,0,sand,1,sand|grass,yes,,6.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 78% grass 22%)
+1970,16,50,9,8,0,sand,1,sand|grass,yes,,4.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 70% grass 30%)
+1971,16,51,9,8,0,sand,1,sand|grass,yes,,0.9,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 67% grass 33%)
+1972,16,52,5,5,0,grass,1,grass|sand,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 61% sand 39%)
+1973,16,53,5,5,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 66% grass 34%)
+1974,16,54,6,5,0,sand,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 92% grass 8%)
+1975,16,55,5,4,0,sand,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 93% grass 7%)
+1976,16,56,14,13,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1977,16,57,16,13,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1978,16,58,12,11,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1979,16,59,11,10,0,grass,0,,yes,,4.5,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1980,16,60,11,9,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1981,16,61,10,9,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1982,16,62,9,8,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1983,16,63,9,8,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1984,16,64,5,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1985,16,65,5,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1986,16,66,6,5,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 94% sand 6%)
+1987,16,67,5,4,0,grass,0,,yes,,10.2,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 94% sand 6%)
+1988,16,68,15,13,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1989,16,69,16,13,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 56% grass 44%)
+1990,16,70,12,11,0,grass,1,grass|sand,yes,,0.0,0.0,medium,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 55% sand 45%)
+1991,16,71,12,11,0,grass,0,,yes,,4.2,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1992,16,72,28,21,0,grass,0,,yes,,8.9,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1993,16,73,28,21,0,grass,0,,yes,,8.9,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1994,16,74,22,18,0,grass,0,,yes,,9.7,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1995,16,75,22,17,0,grass,0,,yes,,11.4,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1996,16,76,17,15,0,grass,0,,yes,,10.5,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1997,16,77,17,16,0,grass,0,,yes,,10.5,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1998,16,78,14,13,0,grass,0,,yes,,14.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+1999,16,79,14,13,0,grass,0,,yes,,14.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2000,16,80,7,4,0,grass,0,,yes,,9.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2001,16,81,7,4,0,sand,1,sand|grass,yes,,14.3,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 56% grass 44%)
+2002,16,82,14,12,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 60% grass 40%)
+2003,16,83,14,12,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2004,16,84,28,20,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 62% grass 38%)
+2005,16,85,29,20,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 71% grass 29%)
+2006,16,86,24,18,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 75% grass 25%)
+2007,16,87,24,18,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 61% grass 39%)
+2008,16,88,17,15,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 61% grass 39%)
+2009,16,89,17,16,0,grass,1,grass|sand,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 70% sand 30%)
+2010,16,90,15,14,0,sand,1,sand|grass,yes,,0.0,0.0,medium,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 51% grass 49%)
+2011,16,91,14,13,0,sand,1,sand|grass,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (sand 74% grass 26%)
+2012,16,92,7,4,0,grass,0,,yes,,0.0,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2013,16,93,7,4,0,grass,0,,yes,,7.1,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2014,16,94,14,12,0,grass,0,,yes,,3.6,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2015,16,95,14,12,0,grass,0,,yes,,3.6,0.0,high,sand and flowered grass blends (dunes into meadow); sand/meadow blend (grass 100%)
+2048,17,0,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2049,17,1,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2050,17,2,4,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2051,17,3,4,3,0,grass,1,grass|dirt,yes,,0.0,0.5,high,bare dirt plot with grass banks; bank around dirt plot
+2052,17,4,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2053,17,5,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2060,17,12,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2061,17,13,3,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2062,17,14,4,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2063,17,15,4,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2064,17,16,3,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2065,17,17,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2072,17,24,2,2,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2073,17,25,2,2,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2074,17,26,3,2,0,dirt,0,,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot
+2075,17,27,3,2,0,dirt,0,,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot
+2076,17,28,2,2,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2077,17,29,2,2,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2084,17,36,2,2,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2085,17,37,2,2,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2086,17,38,3,2,0,dirt,0,,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot
+2087,17,39,3,2,0,dirt,0,,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot
+2088,17,40,2,2,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2089,17,41,2,2,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2096,17,48,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2097,17,49,3,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2098,17,50,4,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2099,17,51,4,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2100,17,52,3,3,0,dirt,1,dirt|grass,yes,,0.0,0.0,high,bare dirt plot with grass banks; dirt plot edge
+2101,17,53,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2108,17,60,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2109,17,61,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2110,17,62,4,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2111,17,63,4,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2112,17,64,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2113,17,65,3,3,0,grass,1,grass|dirt,yes,,0.0,0.0,high,bare dirt plot with grass banks; bank around dirt plot
+2306,19,2,10,2,10,lava,1,lava|grass,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2307,19,3,10,2,10,lava,1,lava|grass,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2310,19,6,2,2,2,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2311,19,7,2,2,2,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2312,19,8,1,1,1,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2313,19,9,1,1,1,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2318,19,14,12,1,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2319,19,15,12,1,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2322,19,18,2,2,2,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2323,19,19,2,2,2,grass,1,grass|lava,partial,fire,0.0,5.9,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2324,19,20,1,1,1,grass,1,grass|lava,partial,fire,0.0,5.8,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2325,19,21,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2328,19,24,2,1,2,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2329,19,25,2,1,2,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2330,19,26,12,1,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2331,19,27,12,1,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2332,19,28,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2333,19,29,1,1,1,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2334,19,30,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2335,19,31,1,1,1,grass,1,grass|lava,partial,fire,0.0,3.6,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2336,19,32,1,1,1,grass,1,grass|lava,partial,fire,0.0,3.5,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2337,19,33,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2340,19,36,2,1,2,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2341,19,37,2,1,2,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2342,19,38,12,2,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2343,19,39,12,2,12,lava,0,,no,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; animated fire
+2344,19,40,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2345,19,41,1,1,1,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2354,19,50,9,2,9,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2355,19,51,9,2,9,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2356,19,52,1,1,1,lava,1,lava|grass,partial,fire,0.0,0.0,high,animated fire pit (frame 1) with mossy banks; fire against bank
+2357,19,53,1,1,1,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2366,19,62,9,2,9,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2367,19,63,9,2,9,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2368,19,64,1,1,1,grass,1,grass|lava,partial,fire,0.0,4.0,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2369,19,65,1,1,1,grass,1,grass|lava,partial,fire,0.0,2.1,high,animated fire pit (frame 1) with mossy banks; mossy bank beside fire
+2944,24,0,2,2,0,wasteland,0,,yes,,0.0,3.6,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 8%)
+2945,24,1,2,2,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 40%)
+2946,24,2,34,9,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 52%)
+2947,24,3,34,9,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 43%)
+2950,24,6,16,12,0,wasteland,0,,yes,,0.0,0.1,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 5%)
+2951,24,7,14,12,0,wasteland,0,,yes,,0.0,4.5,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 9%)
+2952,24,8,13,12,0,wasteland,0,,yes,,0.0,4.5,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 10%)
+2953,24,9,13,12,0,wasteland,0,,yes,,0.0,0.1,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 6%)
+2956,24,12,2,2,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 24%)
+2957,24,13,2,2,0,cliff_face,0,,no,,0.0,2.4,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 73%)
+2958,24,14,34,9,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 57%)
+2959,24,15,34,9,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 62%)
+2962,24,18,14,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.9,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 36%)
+2963,24,19,14,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,5.2,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 60%)
+2964,24,20,14,13,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,5.3,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 22%)
+2965,24,21,14,13,0,wasteland,0,,yes,,0.0,5.1,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 21%)
+2968,24,24,34,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 29%)
+2969,24,25,34,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 40%)
+2970,24,26,584,50,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 14%)
+2971,24,27,587,50,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 15%)
+2972,24,28,28,10,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 47%)
+2973,24,29,28,10,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 58%)
+2974,24,30,5,4,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 53%)
+2975,24,31,5,4,0,cliff_face,0,,no,,0.0,3.0,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 72%)
+2976,24,32,7,7,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,3.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 44%)
+2977,24,33,7,7,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 23%)
+2980,24,36,34,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 32%)
+2981,24,37,34,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 38%)
+2982,24,38,584,50,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 12%)
+2983,24,39,580,50,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 7%)
+2984,24,40,27,10,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 44%)
+2985,24,41,27,10,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 58%)
+2986,24,42,5,4,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.1,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 24%)
+2987,24,43,5,4,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 64%)
+2988,24,44,7,7,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 57%)
+2989,24,45,7,7,0,wasteland,0,,yes,,0.0,4.2,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 12%)
+2992,24,48,7,7,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.3,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 24%)
+2993,24,49,7,7,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.9,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 37%)
+2994,24,50,53,15,0,wasteland,0,,yes,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 16%)
+2995,24,51,53,15,0,wasteland,0,,yes,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 13%)
+2996,24,52,8,8,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,5.0,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 65%)
+2997,24,53,8,8,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.6,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 39%)
+3004,24,60,7,7,0,wasteland,0,,yes,,0.0,1.6,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 6%)
+3005,24,61,7,7,0,wasteland,0,,yes,,0.0,4.3,low,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 21%)
+3006,24,62,53,15,0,wasteland,0,,yes,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 17%)
+3007,24,63,53,15,0,wasteland,0,,yes,,0.0,4.0,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 14%)
+3008,24,64,8,8,0,wasteland,0,,yes,,0.0,4.3,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 5%)
+3009,24,65,9,9,0,wasteland,0,,yes,,0.0,1.2,medium,Darklands ground with ridge rings; Darklands ridge; mixed cells are wasteland|cliff_face (rock 6%)
+3072,25,0,4,4,0,wasteland,1,wasteland|cliff_face,partial,,0.0,3.9,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 78% rim 22%)
+3073,25,1,4,4,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 56% ground 42% pit 2%)
+3074,25,2,48,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 56% ground 37% pit 7%)
+3075,25,3,48,12,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 54% ground 41% pit 5%)
+3076,25,4,6,6,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 61% rim 35% pit 4%)
+3077,25,5,6,6,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.2,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 60% rim 39%)
+3078,25,6,3,3,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3079,25,7,3,3,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 94% rim 5%)
+3080,25,8,4,3,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 94% rim 4%)
+3081,25,9,4,3,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3084,25,12,4,4,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 66% rim 32% pit 2%)
+3085,25,13,4,4,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,low,Darklands ground with a black pit ringed by rock; pit sheet (pit 45% rim 45% ground 10%)
+3086,25,14,48,12,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 88% rim 12%)
+3087,25,15,48,12,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 91% rim 9%)
+3088,25,16,6,6,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 63% rim 31% ground 6%)
+3089,25,17,6,6,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 56% ground 30% pit 15%)
+3090,25,18,3,3,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 94% rim 6%)
+3091,25,19,3,3,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.8,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 49% ground 28% pit 23%)
+3092,25,20,3,3,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.8,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 61% rim 38%)
+3093,25,21,3,3,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 87% rim 13%)
+3096,25,24,34,12,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 58% rim 40% pit 2%)
+3097,25,25,34,12,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 79% rim 19% ground 3%)
+3098,25,26,126,15,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3099,25,27,128,15,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3100,25,28,32,14,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 92% rim 8%)
+3101,25,29,32,14,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 59% ground 29% pit 12%)
+3102,25,30,7,7,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 97% rim 3%)
+3103,25,31,7,7,0,cliff_face,1,cliff_face|chasm,no,,0.0,2.7,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 57% pit 27% ground 17%)
+3104,25,32,5,5,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,2.9,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 63% ground 31% pit 6%)
+3105,25,33,5,5,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 89% rim 10%)
+3108,25,36,34,12,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 59% rim 36% pit 5%)
+3109,25,37,34,12,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 87% rim 13%)
+3110,25,38,125,15,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3111,25,39,127,15,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3112,25,40,32,14,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 90% rim 10%)
+3113,25,41,32,14,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (rim 58% ground 31% pit 11%)
+3114,25,42,7,7,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3115,25,43,7,7,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 95% rim 5%)
+3116,25,44,5,5,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 94% rim 6%)
+3117,25,45,5,5,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 100%)
+3120,25,48,2,2,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.4,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 58% rim 38% pit 4%)
+3121,25,49,2,2,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,low,Darklands ground with a black pit ringed by rock; pit sheet (pit 43% rim 36% ground 22%)
+3122,25,50,53,11,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 85% rim 10% ground 5%)
+3123,25,51,53,11,0,chasm,0,,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 87% rim 7% ground 6%)
+3124,25,52,2,2,0,chasm,1,chasm|cliff_face,no,,0.0,0.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (pit 62% rim 35% ground 4%)
+3125,25,53,2,2,0,cliff_face,1,cliff_face|wasteland,partial,,0.0,4.8,low,Darklands ground with a black pit ringed by rock; pit sheet (rim 50% ground 47% pit 3%)
+3132,25,60,2,2,0,wasteland,1,wasteland|cliff_face,partial,,0.0,1.5,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 79% rim 21%)
+3133,25,61,2,2,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 60% rim 40%)
+3134,25,62,53,11,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 66% rim 34%)
+3135,25,63,53,11,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 68% rim 32%)
+3136,25,64,2,2,0,wasteland,1,wasteland|cliff_face,partial,,0.0,4.0,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 87% rim 13%)
+3137,25,65,2,2,0,wasteland,1,wasteland|cliff_face,partial,,0.0,0.7,medium,Darklands ground with a black pit ringed by rock; pit sheet (ground 80% rim 20%)
+3200,26,0,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3201,26,1,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3202,26,2,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 10%)
+3203,26,3,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 7%)
+3204,26,4,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 18%)
+3205,26,5,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3206,26,6,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3207,26,7,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3208,26,8,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 14%)
+3209,26,9,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 21%)
+3210,26,10,7,7,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 2%)
+3211,26,11,7,7,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 3%)
+3212,26,12,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3213,26,13,1,1,0,wasteland,0,,yes,,0.0,7.4,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 22%)
+3214,26,14,1,1,0,wasteland,0,,yes,,0.0,13.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 51%)
+3215,26,15,1,1,0,rock_mass,0,,no,,0.0,9.8,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 66%)
+3216,26,16,1,1,0,rock_mass,0,,no,,0.0,11.3,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 66%)
+3217,26,17,1,1,0,wasteland,0,,yes,,0.0,13.1,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 53%)
+3218,26,18,1,1,0,wasteland,0,,yes,,0.0,5.8,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 50%)
+3219,26,19,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 5%)
+3220,26,20,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 18%)
+3221,26,21,3,3,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3222,26,22,7,7,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 5%)
+3223,26,23,7,7,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 22%)
+3224,26,24,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 11%)
+3225,26,25,1,1,0,rock_mass,0,,no,,0.0,11.5,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 97%)
+3226,26,26,1,1,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 77%)
+3227,26,27,1,1,0,wasteland,0,,yes,,0.0,7.3,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 52%)
+3228,26,28,1,1,0,rock_mass,0,,no,,0.0,3.8,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 73%)
+3229,26,29,1,1,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 74%)
+3230,26,30,1,1,0,rock_mass,0,,no,,0.0,13.2,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 64%)
+3231,26,31,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 7%)
+3232,26,32,7,7,0,wasteland,0,,yes,,0.0,12.9,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 21%)
+3233,26,33,7,7,0,wasteland,0,,yes,,0.0,32.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 27%)
+3234,26,34,6,6,0,wasteland,0,,yes,,0.0,10.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 13%)
+3235,26,35,6,6,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 12%)
+3236,26,36,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 3%)
+3237,26,37,1,1,0,wasteland,0,,yes,,0.0,13.6,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 23%)
+3238,26,38,1,1,0,wasteland,0,,yes,,0.0,8.1,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 33%)
+3239,26,39,1,1,0,wasteland,0,,yes,,0.0,6.4,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 10%)
+3240,26,40,1,1,0,wasteland,0,,yes,,0.0,6.8,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 23%)
+3241,26,41,1,1,0,wasteland,0,,yes,,0.0,10.9,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 26%)
+3242,26,42,1,1,0,wasteland,0,,yes,,0.0,3.4,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 5%)
+3243,26,43,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3244,26,44,7,7,0,wasteland,0,,yes,,0.0,24.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 26%)
+3245,26,45,7,7,0,wasteland,0,,yes,,0.0,20.6,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 20%)
+3246,26,46,6,6,0,wasteland,0,,yes,,0.0,17.6,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 37%)
+3247,26,47,6,6,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3248,26,48,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3249,26,49,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 3%)
+3250,26,50,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 25%)
+3251,26,51,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 15%)
+3252,26,52,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 16%)
+3253,26,53,1,1,0,wasteland,0,,yes,,0.0,3.7,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 13%)
+3254,26,54,1,1,0,wasteland,0,,yes,,0.0,2.7,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3255,26,55,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3256,26,56,2,2,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 10%)
+3257,26,57,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 13%)
+3258,26,58,2,2,0,wasteland,0,,yes,,0.0,7.9,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 14%)
+3259,26,59,2,2,0,wasteland,0,,yes,,0.0,2.6,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3260,26,60,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3261,26,61,1,1,0,wasteland,0,,yes,,0.0,6.6,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 36%)
+3262,26,62,1,1,0,rock_mass,0,,no,,0.0,12.9,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 76%)
+3263,26,63,1,1,0,rock_mass,0,,no,,0.0,10.1,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 70%)
+3264,26,64,1,1,0,wasteland,0,,yes,,0.0,14.4,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 56%)
+3265,26,65,1,1,0,rock_mass,0,,no,,0.0,10.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 76%)
+3266,26,66,1,1,0,rock_mass,0,,no,,0.0,6.1,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 72%)
+3267,26,67,1,1,0,wasteland,0,,yes,,0.0,7.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 28%)
+3268,26,68,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 13%)
+3269,26,69,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 17%)
+3270,26,70,2,2,0,wasteland,0,,yes,,0.0,5.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 22%)
+3271,26,71,2,2,0,wasteland,0,,yes,,0.0,4.5,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 34%)
+3272,26,72,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3273,26,73,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3274,26,74,1,1,0,wasteland,0,,yes,,0.0,4.5,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 22%)
+3275,26,75,1,1,0,rock_mass,0,,no,,0.0,11.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 80%)
+3276,26,76,1,1,0,rock_mass,0,,no,,0.0,3.4,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 87%)
+3277,26,77,1,1,0,rock_mass,0,,no,,0.0,5.5,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 71%)
+3278,26,78,1,1,0,rock_mass,0,,no,,0.0,9.9,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 67%)
+3279,26,79,1,1,0,wasteland,0,,yes,,0.0,6.7,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 31%)
+3280,26,80,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 11%)
+3281,26,81,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3282,26,82,3,3,0,wasteland,0,,yes,,0.0,25.3,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 33%)
+3283,26,83,3,3,0,wasteland,0,,yes,,0.0,7.6,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 13%)
+3284,26,84,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3285,26,85,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3286,26,86,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 2%)
+3287,26,87,1,1,0,wasteland,0,,yes,,0.0,5.7,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 33%)
+3288,26,88,1,1,0,wasteland,0,,yes,,0.0,4.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 29%)
+3289,26,89,1,1,0,wasteland,0,,yes,,0.0,6.7,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 15%)
+3290,26,90,1,1,0,wasteland,0,,yes,,0.0,0.2,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 2%)
+3291,26,91,1,1,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3292,26,92,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 9%)
+3293,26,93,1,1,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 7%)
+3294,26,94,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 1%)
+3295,26,95,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with boulders and outcrops; boulders on Darklands ground (scatter rock meshes) (rock 0%)
+3328,27,0,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 31%)
+3329,27,1,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 20%)
+3330,27,2,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 50%)
+3331,27,3,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 44%)
+3332,27,4,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 16%)
+3333,27,5,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 25%)
+3334,27,6,3,3,0,wasteland,0,,yes,,0.0,24.2,high,Darklands ground with small boulders; boulders on Darklands ground (rock 46%)
+3335,27,7,3,3,0,wasteland,0,,yes,,0.0,18.8,high,Darklands ground with small boulders; boulders on Darklands ground (rock 41%)
+3336,27,8,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 37%)
+3337,27,9,2,2,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with small boulders; boulders on Darklands ground (rock 56%)
+3340,27,12,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 19%)
+3341,27,13,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 20%)
+3342,27,14,3,3,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 34%)
+3343,27,15,3,3,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 70%)
+3344,27,16,2,2,0,wasteland,0,,yes,,0.0,5.3,high,Darklands ground with small boulders; boulders on Darklands ground (rock 32%)
+3345,27,17,2,2,0,wasteland,0,,yes,,0.0,15.4,medium,Darklands ground with small boulders; boulders on Darklands ground (rock 57%)
+3346,27,18,3,3,0,wasteland,0,,yes,,0.0,9.4,medium,Darklands ground with small boulders; boulders on Darklands ground (rock 56%)
+3347,27,19,3,3,0,wasteland,0,,yes,,0.0,8.6,high,Darklands ground with small boulders; boulders on Darklands ground (rock 51%)
+3348,27,20,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 47%)
+3349,27,21,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 42%)
+3360,27,32,8,8,0,wasteland,0,,yes,,0.0,4.2,high,Darklands ground with small boulders; boulders on Darklands ground (rock 27%)
+3361,27,33,8,8,0,wasteland,0,,yes,,0.0,11.4,high,Darklands ground with small boulders; boulders on Darklands ground (rock 34%)
+3372,27,44,8,8,0,wasteland,0,,yes,,0.0,23.7,medium,Darklands ground with small boulders; boulders on Darklands ground (rock 55%)
+3373,27,45,8,8,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with small boulders; boulders on Darklands ground (rock 30%)
+3456,28,0,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 2%)
+3457,28,1,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 1%)
+3458,28,2,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 3%)
+3459,28,3,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 26%)
+3460,28,4,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 4%)
+3461,28,5,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 1%)
+3468,28,12,2,2,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 6%)
+3469,28,13,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 28%)
+3470,28,14,2,2,0,rock_mass,0,,no,,0.0,0.0,medium,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 61%)
+3471,28,15,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 53%)
+3472,28,16,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 15%)
+3473,28,17,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 2%)
+3480,28,24,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 44%)
+3481,28,25,2,2,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 77%)
+3482,28,26,2,2,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 75%)
+3483,28,27,2,2,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 70%)
+3484,28,28,2,2,0,rock_mass,0,,no,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 93%)
+3485,28,29,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 52%)
+3492,28,36,2,2,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 10%)
+3493,28,37,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 52%)
+3494,28,38,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 39%)
+3495,28,39,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 17%)
+3496,28,40,2,2,0,wasteland,0,,yes,,0.0,0.0,high,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 21%)
+3497,28,41,2,2,0,wasteland,0,,yes,,0.0,0.0,medium,Darklands ground with a boulder cluster; boulders on Darklands ground (rock 7%)
+3592,29,8,1,1,0,snow,0,,yes,,12.2,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 6%)
+3593,29,9,1,1,0,snow,0,,yes,,8.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3604,29,20,1,1,0,cliff_face,1,cliff_face|snow,partial,,14.5,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 58%)
+3605,29,21,1,1,0,cliff_face,1,cliff_face|snow,partial,,25.8,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 39%)
+3608,29,24,1,1,0,cliff_face,1,cliff_face|snow,partial,,18.5,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 45%)
+3609,29,25,1,1,0,cliff_face,1,cliff_face|snow,partial,,20.2,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 47%)
+3610,29,26,231,21,0,snow,0,,yes,,4.8,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3611,29,27,229,20,0,snow,0,,yes,,6.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3612,29,28,3,1,0,cliff_face,1,cliff_face|snow,partial,,26.5,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 46%)
+3613,29,29,3,1,0,cliff_face,1,cliff_face|snow,partial,,22.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 55%)
+3622,29,38,225,19,0,snow,0,,yes,,8.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3623,29,39,218,19,0,snow,0,,yes,,8.6,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3624,29,40,3,1,0,cliff_face,1,cliff_face|snow,partial,,20.8,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 50%)
+3625,29,41,3,1,0,cliff_face,1,cliff_face|snow,partial,,18.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 53%)
+3634,29,50,32,8,0,cliff_face,1,cliff_face|snow,partial,,16.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 17%)
+3635,29,51,33,9,0,cliff_face,1,cliff_face|snow,partial,,16.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 14%)
+3636,29,52,1,1,0,cliff_face,0,,no,,44.0,0.0,low,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 71%)
+3637,29,53,1,1,0,cliff_face,1,cliff_face|snow,partial,,29.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 23%)
+3646,29,62,32,8,0,snow,0,,yes,,16.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 4%)
+3647,29,63,33,9,0,cliff_face,1,cliff_face|snow,partial,,19.7,0.0,low,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 11%)
+3648,29,64,1,1,0,snow,0,,yes,,14.8,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 2%)
+3649,29,65,1,1,0,snow,0,,yes,,0.0,0.0,medium,snow with rock ridge rings; snow ridge; mixed cells are snow|cliff_face (rock 0%)
+3712,30,0,7,6,0,snow,0,,yes,,0.0,3.2,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 100%)"
+3713,30,1,7,6,0,snow,1,snow|cliff_face,partial,,0.0,4.2,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 64% rock 32% ice 4%)"
+3714,30,2,17,9,0,cliff_face,1,cliff_face|snow,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 58% snow 36% ice 7%)"
+3715,30,3,18,9,0,cliff_face,1,cliff_face|snow,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 56% snow 39% ice 5%)"
+3716,30,4,6,4,0,snow,1,snow|cliff_face,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 55% rock 37% ice 8%)"
+3717,30,5,6,4,0,snow,0,,yes,,0.0,4.1,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 93% rock 5%)"
+3718,30,6,6,4,0,ice,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3719,30,7,6,4,0,ice,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 95% rock 4%)"
+3720,30,8,6,5,0,ice,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 96% rock 4%)"
+3721,30,9,6,5,0,ice,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3724,30,12,7,6,0,snow,1,snow|cliff_face,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 74% rock 22% ice 4%)"
+3725,30,13,7,6,0,cliff_face,0,,no,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 90% ice 10%)"
+3726,30,14,17,9,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 68% ice 32%)"
+3727,30,15,18,9,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 69% ice 31%)"
+3728,30,16,6,4,0,cliff_face,0,,no,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 90% ice 10%)"
+3729,30,17,6,4,0,cliff_face,1,cliff_face|snow,partial,,0.0,4.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 52% snow 43% ice 5%)"
+3730,30,18,6,4,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 66% rock 34%)"
+3731,30,19,6,4,0,cliff_face,1,cliff_face|snow,partial,,0.0,4.8,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 53% snow 44% ice 3%)"
+3732,30,20,6,5,0,cliff_face,1,cliff_face|snow,partial,,0.0,5.3,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 46% snow 43% ice 11%)"
+3733,30,21,6,5,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 66% rock 34%)"
+3736,30,24,3,3,0,snow,1,snow|cliff_face,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 56% rock 38% ice 6%)"
+3737,30,25,3,3,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 56% rock 44%)"
+3738,30,26,313,19,0,ice,0,,yes,,1.9,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3739,30,27,311,19,0,ice,0,,yes,,1.8,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3740,30,28,5,3,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 58% rock 42%)"
+3741,30,29,5,3,0,cliff_face,1,cliff_face|snow,partial,,0.0,4.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 49% snow 46% ice 5%)"
+3742,30,30,9,6,0,ice,1,ice|cliff_face,partial,,0.0,0.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 53% rock 47%)"
+3743,30,31,9,6,0,cliff_face,1,cliff_face|snow,partial,,0.0,3.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 77% snow 19% ice 4%)"
+3744,30,32,10,5,0,cliff_face,1,cliff_face|snow,partial,,0.0,3.4,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 71% snow 22% ice 7%)"
+3745,30,33,10,5,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 60% rock 40%)"
+3748,30,36,4,4,0,snow,1,snow|cliff_face,partial,,0.0,4.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 54% rock 41% ice 5%)"
+3749,30,37,4,4,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 64% rock 35%)"
+3750,30,38,317,19,0,ice,0,,yes,,3.4,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3751,30,39,316,19,0,ice,0,,yes,,3.5,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 100%)"
+3752,30,40,6,4,0,ice,1,ice|cliff_face,partial,,0.0,0.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 52% rock 47%)"
+3753,30,41,6,4,0,snow,1,snow|cliff_face,partial,,0.0,4.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 48% rock 47% ice 5%)"
+3754,30,42,9,6,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 84% rock 16%)"
+3755,30,43,9,6,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 60% ice 40%)"
+3756,30,44,10,5,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,low,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 53% ice 47%)"
+3757,30,45,10,5,0,ice,1,ice|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 86% rock 14%)"
+3760,30,48,2,2,0,snow,1,snow|cliff_face,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 78% rock 18% ice 4%)"
+3761,30,49,2,2,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 52% ice 38% snow 10%)"
+3762,30,50,10,6,0,ice,1,ice|cliff_face,partial,,5.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 86% rock 14%)"
+3763,30,51,11,7,0,ice,0,,yes,,4.5,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (ice 88% rock 11%)"
+3764,30,52,4,3,0,cliff_face,1,cliff_face|ice,partial,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (rock 65% ice 31% snow 4%)"
+3765,30,53,4,3,0,snow,1,snow|cliff_face,partial,,0.0,4.7,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 77% rock 20% ice 3%)"
+3772,30,60,2,2,0,snow,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 100%)"
+3773,30,61,2,2,0,snow,0,,yes,,0.0,0.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 97%)"
+3774,30,62,10,6,0,snow,0,,yes,,6.4,3.2,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 97%)"
+3775,30,63,11,7,0,snow,0,,yes,,14.9,2.5,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 89% rock 8% ice 3%)"
+3776,30,64,4,3,0,snow,0,,yes,,18.8,3.0,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 98%)"
+3777,30,65,4,3,0,snow,0,,yes,,0.0,1.1,medium,"snow, rock ridge and frozen lake / ice; ice/snow/ridge sheet; the blue is read as ice (streaked, pale) (snow 100%)"
+3872,31,32,1,1,0,snow,0,,yes,,0.0,8.0,high,snow with boulders; boulders on snow (rock 23%)
+3873,31,33,1,1,0,snow,0,,yes,,0.0,8.5,high,snow with boulders; boulders on snow (rock 26%)
+3884,31,44,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+3885,31,45,1,1,0,snow,0,,yes,,0.0,8.3,high,snow with boulders; boulders on snow (rock 23%)
+3898,31,58,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 16%)
+3899,31,59,1,1,0,snow,0,,yes,,0.0,15.7,high,snow with boulders; boulders on snow (rock 36%)
+3910,31,70,1,1,0,snow,0,,yes,,0.0,4.0,high,snow with boulders; boulders on snow (rock 27%)
+3911,31,71,1,1,0,snow,0,,yes,,0.0,5.6,high,snow with boulders; boulders on snow (rock 24%)
+3970,32,2,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 4%)
+3971,32,3,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 18%)
+3972,32,4,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 33%)
+3973,32,5,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 13%)
+3974,32,6,1,1,0,snow,0,,yes,,32.0,0.0,medium,snow with boulders; boulders on snow (rock 6%)
+3975,32,7,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 14%)
+3976,32,8,2,2,0,snow,0,,yes,,6.5,0.0,medium,snow with boulders; boulders on snow (rock 8%)
+3977,32,9,2,2,0,snow,0,,yes,,6.5,0.0,medium,snow with boulders; boulders on snow (rock 8%)
+3982,32,14,1,1,0,snow,0,,yes,,0.0,0.0,medium,snow with boulders; boulders on snow (rock 7%)
+3983,32,15,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 1%)
+3984,32,16,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+3985,32,17,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+3986,32,18,1,1,0,snow,0,,yes,,0.0,0.0,medium,snow with boulders; boulders on snow (rock 9%)
+3987,32,19,1,1,0,snow,0,,yes,,0.0,0.0,medium,snow with boulders; boulders on snow (rock 6%)
+3988,32,20,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 5%)
+3989,32,21,2,2,0,snow,0,,yes,,0.0,0.0,medium,snow with boulders; boulders on snow (rock 6%)
+4000,32,32,1,1,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+4001,32,33,1,1,0,snow,0,,yes,,0.0,12.8,high,snow with boulders; boulders on snow (rock 40%)
+4012,32,44,1,1,0,snow,0,,yes,,0.0,10.2,high,snow with boulders; boulders on snow (rock 41%)
+4013,32,45,1,1,0,snow,0,,yes,,0.0,1.5,medium,snow with boulders; boulders on snow (rock 6%)
+4048,32,80,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 5%)
+4049,32,81,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+4060,32,92,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+4061,32,93,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with boulders; boulders on snow (rock 0%)
+4096,33,0,2,2,0,snow,0,,yes,,25.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4097,33,1,2,2,0,snow,0,,yes,,25.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4098,33,2,2,2,0,snow,0,,yes,,19.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4099,33,3,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 12%)
+4100,33,4,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4101,33,5,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4108,33,12,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 3%)
+4109,33,13,2,2,0,snow,0,,yes,,0.0,3.6,high,snow with a boulder cluster; boulders on snow (rock 15%)
+4110,33,14,2,2,0,snow,0,,yes,,0.0,7.9,high,snow with a boulder cluster; boulders on snow (rock 52%)
+4111,33,15,2,2,0,snow,0,,yes,,0.0,4.6,high,snow with a boulder cluster; boulders on snow (rock 12%)
+4112,33,16,2,2,0,snow,0,,yes,,0.0,4.2,high,snow with a boulder cluster; boulders on snow (rock 12%)
+4113,33,17,2,2,0,snow,0,,yes,,0.0,1.4,high,snow with a boulder cluster; boulders on snow (rock 2%)
+4120,33,24,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 34%)
+4121,33,25,2,2,0,snow,0,,yes,,0.0,8.8,high,snow with a boulder cluster; boulders on snow (rock 40%)
+4122,33,26,2,2,0,rock_mass,0,,no,,0.0,16.4,high,snow with a boulder cluster; boulders on snow (rock 77%)
+4123,33,27,2,2,0,snow,0,,yes,,0.0,13.8,high,snow with a boulder cluster; boulders on snow (rock 53%)
+4124,33,28,2,2,0,rock_mass,0,,no,,0.0,8.1,high,snow with a boulder cluster; boulders on snow (rock 89%)
+4125,33,29,2,2,0,snow,0,,yes,,0.0,10.0,high,snow with a boulder cluster; boulders on snow (rock 51%)
+4132,33,36,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 0%)
+4133,33,37,2,2,0,snow,0,,yes,,0.0,9.9,high,snow with a boulder cluster; boulders on snow (rock 39%)
+4134,33,38,2,2,0,snow,0,,yes,,0.0,8.0,high,snow with a boulder cluster; boulders on snow (rock 31%)
+4135,33,39,2,2,0,snow,0,,yes,,0.0,0.0,high,snow with a boulder cluster; boulders on snow (rock 2%)
+4136,33,40,2,2,0,snow,0,,yes,,0.0,5.3,medium,snow with a boulder cluster; boulders on snow (rock 7%)
+4137,33,41,2,2,0,snow,0,,yes,,0.0,2.9,high,snow with a boulder cluster; boulders on snow (rock 3%)
+4224,34,0,8,7,0,structure_facade,0,,no,,10.9,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4225,34,1,7,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4226,34,2,7,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4227,34,3,8,5,0,structure_facade,0,,no,,6.2,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4228,34,4,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4229,34,5,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4230,34,6,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4231,34,7,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4236,34,12,7,7,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4237,34,13,7,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4238,34,14,5,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4239,34,15,7,5,0,structure_facade,0,,no,,7.1,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4240,34,16,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4241,34,17,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4242,34,18,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4243,34,19,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4248,34,24,7,7,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4249,34,25,6,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4250,34,26,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4251,34,27,5,4,0,structure_facade,0,,no,,10.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4252,34,28,3,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4253,34,29,3,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4254,34,30,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4255,34,31,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4260,34,36,7,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4261,34,37,6,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4262,34,38,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4263,34,39,4,3,0,structure_facade,0,,no,,12.5,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4264,34,40,3,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4265,34,41,3,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4266,34,42,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4267,34,43,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4272,34,48,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4273,34,49,1,1,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4274,34,50,5,5,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4275,34,51,6,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4276,34,52,1,1,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4277,34,53,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); roof eave over timbered wall
+4284,34,60,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4285,34,61,1,1,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4286,34,62,5,5,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4287,34,63,6,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4288,34,64,1,1,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4289,34,65,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4296,34,72,6,6,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4297,34,73,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4298,34,74,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4299,34,75,5,5,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4300,34,76,1,1,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4301,34,77,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4308,34,84,6,5,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4309,34,85,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4310,34,86,4,4,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4311,34,87,5,5,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4312,34,88,2,2,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4313,34,89,3,3,0,structure_facade,0,,no,,0.0,0.0,high,half-timbered wall with shingle roof (large tile-drawn building); timbered wall (some with windows)
+4352,35,0,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4353,35,1,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4354,35,2,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4355,35,3,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4356,35,4,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4357,35,5,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4358,35,6,8,8,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4359,35,7,8,8,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4364,35,12,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4365,35,13,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4366,35,14,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4367,35,15,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4368,35,16,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4369,35,17,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4370,35,18,10,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4371,35,19,10,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4376,35,24,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4377,35,25,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4378,35,26,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4379,35,27,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4380,35,28,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4381,35,29,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4382,35,30,10,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4383,35,31,10,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4388,35,36,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4389,35,37,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4390,35,38,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4391,35,39,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4392,35,40,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4393,35,41,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4394,35,42,11,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4395,35,43,11,9,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4400,35,48,4,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4401,35,49,5,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4402,35,50,6,6,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4403,35,51,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; roof eave over timbered wall"
+4412,35,60,3,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4413,35,61,4,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4414,35,62,6,6,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4415,35,63,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4424,35,72,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4425,35,73,3,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4426,35,74,5,5,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4427,35,75,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4436,35,84,3,3,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4437,35,85,2,2,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4438,35,86,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4439,35,87,4,4,0,structure_facade,0,,no,,0.0,0.0,high,"half-timbered wall with shingle roof, other facing; timbered wall (some with windows)"
+4480,36,0,7,3,0,stone_floor,0,,yes,,0.0,0.0,medium,blue-grey flagstones (snow castle interior); broken/rubbled flagstones
+4481,36,1,7,3,0,stone_floor,0,,yes,,0.0,0.0,medium,blue-grey flagstones (snow castle interior); broken/rubbled flagstones
+4482,36,2,17,8,0,stone_floor,0,,yes,,2.9,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4483,36,3,17,8,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4484,36,4,16,8,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4485,36,5,16,8,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4492,36,12,7,3,0,stone_floor,0,,yes,,7.1,0.0,medium,blue-grey flagstones (snow castle interior); broken/rubbled flagstones
+4493,36,13,7,3,0,stone_floor,0,,yes,,7.1,0.0,medium,blue-grey flagstones (snow castle interior); broken/rubbled flagstones
+4494,36,14,17,8,0,stone_floor,0,,yes,,3.7,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4495,36,15,17,8,0,stone_floor,0,,yes,,2.9,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4496,36,16,16,8,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4497,36,17,16,8,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4506,36,26,12,4,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4507,36,27,12,4,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4508,36,28,5,3,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4509,36,29,5,3,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4518,36,38,12,4,0,stone_floor,0,,yes,,1.1,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4519,36,39,12,4,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4520,36,40,5,3,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4521,36,41,5,3,0,stone_floor,0,,yes,,0.0,0.0,high,blue-grey flagstones (snow castle interior); flagstones
+4608,37,0,100,10,100,stone_floor,0,,yes,,16.0,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4609,37,1,100,10,100,stone_floor,0,,yes,,13.3,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4610,37,2,71,10,71,stone_floor,0,,yes,,9.0,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4611,37,3,71,10,71,stone_floor,0,,yes,,12.9,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4612,37,4,47,9,47,stone_floor,0,,yes,,5.6,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4613,37,5,47,9,47,stone_floor,0,,yes,,15.7,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4620,37,12,101,10,101,stone_floor,0,,yes,,17.2,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4621,37,13,100,10,100,stone_floor,0,,yes,,16.0,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4622,37,14,71,10,71,stone_floor,0,,yes,,9.5,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4623,37,15,72,10,72,stone_floor,0,,yes,,12.3,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4624,37,16,47,9,47,stone_floor,0,,yes,,6.7,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4625,37,17,47,9,47,stone_floor,0,,yes,,16.0,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4632,37,24,44,8,44,stone_floor,0,,yes,,16.5,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4633,37,25,44,8,44,stone_floor,0,,yes,,11.4,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4634,37,26,19,6,19,stone_floor,0,,yes,,10.6,0.0,medium,blue-grey flagstones (castle interiors); broken/rubbled flagstones
+4635,37,27,19,6,19,stone_floor,0,,yes,,13.8,0.0,medium,blue-grey flagstones (castle interiors); broken/rubbled flagstones
+4644,37,36,45,8,45,stone_floor,0,,yes,,16.1,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4645,37,37,45,8,45,stone_floor,0,,yes,,10.0,0.0,high,blue-grey flagstones (castle interiors); flagstones
+4646,37,38,19,6,19,stone_floor,0,,yes,,2.6,0.0,medium,blue-grey flagstones (castle interiors); broken/rubbled flagstones
+4647,37,39,19,6,19,stone_floor,0,,yes,,9.9,0.0,medium,blue-grey flagstones (castle interiors); broken/rubbled flagstones
+4738,38,2,15,3,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4739,38,3,14,3,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4740,38,4,9,3,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4741,38,5,6,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4750,38,14,14,3,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4751,38,15,14,3,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4752,38,16,7,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4753,38,17,7,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4762,38,26,8,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4763,38,27,7,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4764,38,28,8,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4765,38,29,8,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4774,38,38,11,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4775,38,39,9,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4776,38,40,8,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4777,38,41,7,2,0,stone_floor,0,,yes,,0.0,0.0,high,brown flagstones (dark); flagstones
+4864,39,0,140,14,20,stone_floor,0,,yes,,9.3,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4865,39,1,145,14,20,stone_floor,0,,yes,,13.4,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4866,39,2,103,10,102,stone_floor,0,,yes,,4.3,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4867,39,3,102,10,101,stone_floor,0,,yes,,8.6,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4868,39,4,86,12,83,stone_floor,0,,yes,,7.5,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4869,39,5,86,12,83,stone_floor,0,,yes,,9.2,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4876,39,12,155,14,20,stone_floor,0,,yes,,9.4,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4877,39,13,161,14,20,stone_floor,0,,yes,,15.0,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4878,39,14,103,10,102,stone_floor,0,,yes,,13.6,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4879,39,15,103,10,102,stone_floor,0,,yes,,13.3,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4880,39,16,86,12,83,stone_floor,0,,yes,,14.7,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4881,39,17,86,12,83,stone_floor,0,,yes,,16.7,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4888,39,24,14,6,8,stone_floor,0,,yes,,0.0,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4889,39,25,15,6,8,stone_floor,0,,yes,,3.3,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4890,39,26,14,12,3,stone_floor,0,,yes,,5.4,0.0,medium,"brown flagstones (courtyards, castle); broken/rubbled flagstones"
+4891,39,27,13,11,3,stone_floor,0,,yes,,0.0,0.0,medium,"brown flagstones (courtyards, castle); broken/rubbled flagstones"
+4900,39,36,14,5,8,stone_floor,0,,yes,,17.9,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4901,39,37,13,5,8,stone_floor,0,,yes,,18.2,0.0,high,"brown flagstones (courtyards, castle); flagstones"
+4902,39,38,14,12,3,stone_floor,0,,yes,,17.9,0.0,medium,"brown flagstones (courtyards, castle); broken/rubbled flagstones"
+4903,39,39,13,11,3,stone_floor,0,,yes,,16.4,0.0,medium,"brown flagstones (courtyards, castle); broken/rubbled flagstones"
+4992,40,0,10,10,10,cave_wall,1,cave_wall|cave_floor,partial,,7.2,0.0,high,cave: rugged floor with spiky rock walls; room corner
+4993,40,1,12,10,12,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+4994,40,2,46,15,46,cave_floor,1,cave_floor|cave_wall,partial,,6.4,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+4995,40,3,46,15,46,cave_floor,1,cave_floor|cave_wall,partial,,7.5,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+4996,40,4,12,12,12,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+4997,40,5,12,12,12,cave_wall,1,cave_wall|cave_floor,partial,,6.6,0.0,high,cave: rugged floor with spiky rock walls; room corner
+4998,40,6,11,11,11,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+4999,40,7,11,11,11,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5000,40,8,11,11,11,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5001,40,9,10,10,10,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5004,40,12,10,10,10,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5005,40,13,10,10,10,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5006,40,14,45,15,45,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5007,40,15,47,15,47,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5008,40,16,12,12,12,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5009,40,17,12,12,12,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5010,40,18,12,12,12,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5011,40,19,12,12,12,cave_floor,1,cave_floor|cave_wall,partial,,3.8,0.0,medium,cave: rugged floor with spiky rock walls; floor around a rock pillar
+5012,40,20,12,11,12,cave_floor,1,cave_floor|cave_wall,partial,,3.2,0.0,medium,cave: rugged floor with spiky rock walls; floor around a rock pillar
+5013,40,21,11,11,11,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5016,40,24,26,12,26,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5017,40,25,25,11,25,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5018,40,26,19,6,19,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5019,40,27,24,6,24,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5020,40,28,23,12,23,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5021,40,29,23,12,23,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5022,40,30,13,13,13,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5023,40,31,13,13,13,cave_floor,1,cave_floor|cave_wall,partial,,4.1,0.0,medium,cave: rugged floor with spiky rock walls; floor around a rock pillar
+5024,40,32,11,10,11,cave_floor,1,cave_floor|cave_wall,partial,,3.6,0.0,medium,cave: rugged floor with spiky rock walls; floor around a rock pillar
+5025,40,33,10,10,10,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5028,40,36,26,12,26,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5029,40,37,25,11,25,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5030,40,38,30,6,30,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5031,40,39,35,6,35,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5032,40,40,25,13,25,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5033,40,41,25,13,25,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5034,40,42,12,12,12,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5035,40,43,12,12,12,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5036,40,44,10,10,10,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5037,40,45,9,9,9,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5040,40,48,2,2,2,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5041,40,49,2,2,2,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5042,40,50,64,15,64,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5043,40,51,64,15,64,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5044,40,52,2,2,2,cave_floor,0,,yes,,0.0,0.0,high,cave: rugged floor with spiky rock walls; cave floor
+5045,40,53,2,2,2,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5046,40,54,122,16,122,cave_wall,0,,no,,0.0,0.0,high,cave: rugged floor with spiky rock walls; solid spiky cave rock
+5047,40,55,128,16,128,cave_wall,0,,no,,0.0,0.0,high,cave: rugged floor with spiky rock walls; solid spiky cave rock
+5052,40,60,2,2,2,cave_wall,1,cave_wall|cave_floor,partial,,7.5,0.0,high,cave: rugged floor with spiky rock walls; room corner
+5053,40,61,2,2,2,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5054,40,62,66,15,66,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5055,40,63,65,15,65,cave_floor,1,cave_floor|cave_wall,partial,,5.9,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5056,40,64,2,2,2,cave_floor,1,cave_floor|cave_wall,partial,,6.0,0.0,high,cave: rugged floor with spiky rock walls; floor along the room wall
+5057,40,65,2,2,2,cave_wall,1,cave_wall|cave_floor,partial,,7.1,0.0,high,cave: rugged floor with spiky rock walls; room corner
+5058,40,66,121,16,121,cave_wall,0,,no,,0.0,0.0,high,cave: rugged floor with spiky rock walls; solid spiky cave rock
+5059,40,67,130,16,130,cave_wall,0,,no,,0.0,0.0,high,cave: rugged floor with spiky rock walls; solid spiky cave rock
+5120,41,0,3,1,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 97% path 3%)
+5121,41,1,4,2,0,path,1,path|grass,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 50% grass 50%)
+5122,41,2,4,2,0,grass,1,grass|path,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 52% path 48%)
+5123,41,3,4,2,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 96% path 4%)
+5124,41,4,56,24,0,path,0,,yes,,1.6,0.0,high,gravel road with grass corners and grass islands; road sheet (path 84% grass 16%)
+5125,41,5,51,23,0,path,0,,yes,,2.9,0.0,high,gravel road with grass corners and grass islands; road sheet (path 86% grass 14%)
+5126,41,6,153,17,0,path,0,,yes,,10.2,0.0,high,gravel road with grass corners and grass islands; road sheet (path 90% grass 10%)
+5127,41,7,169,18,0,path,0,,yes,,8.1,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5132,41,12,3,1,0,path,1,path|grass,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 52% grass 48%)
+5133,41,13,5,3,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 96% grass 4%)
+5134,41,14,4,2,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5135,41,15,4,2,0,path,1,path|grass,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 56% grass 44%)
+5136,41,16,54,24,0,path,0,,yes,,3.7,0.0,high,gravel road with grass corners and grass islands; road sheet (path 87% grass 13%)
+5137,41,17,51,24,0,path,0,,yes,,4.7,0.0,high,gravel road with grass corners and grass islands; road sheet (path 90% grass 10%)
+5138,41,18,141,19,0,path,0,,yes,,12.4,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5139,41,19,165,20,0,path,0,,yes,,12.5,0.0,high,gravel road with grass corners and grass islands; road sheet (path 96% grass 4%)
+5144,41,24,4,2,0,path,1,path|grass,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 55% grass 45%)
+5145,41,25,6,4,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5146,41,26,5,4,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 89% grass 11%)
+5147,41,27,5,4,0,grass,1,grass|path,yes,,8.5,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 53% path 47%)
+5148,41,28,138,39,0,path,0,,yes,,0.4,0.0,high,gravel road with grass corners and grass islands; road sheet (path 82% grass 18%)
+5149,41,29,138,40,0,path,0,,yes,,0.6,0.0,high,gravel road with grass corners and grass islands; road sheet (path 84% grass 16%)
+5150,41,30,1,1,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 97% path 3%)
+5151,41,31,1,1,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 97% path 3%)
+5156,41,36,4,2,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 91% path 9%)
+5157,41,37,4,2,0,path,1,path|grass,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 58% grass 42%)
+5158,41,38,6,4,0,grass,1,grass|path,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 51% path 49%)
+5159,41,39,5,4,0,grass,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 94% path 6%)
+5160,41,40,139,39,0,path,0,,yes,,0.5,0.0,high,gravel road with grass corners and grass islands; road sheet (path 86% grass 14%)
+5161,41,41,135,40,0,path,0,,yes,,0.7,0.0,high,gravel road with grass corners and grass islands; road sheet (path 91% grass 9%)
+5168,41,48,18,16,0,grass,0,,yes,,0.7,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 84% path 16%)
+5169,41,49,18,16,0,path,1,path|grass,yes,,2.8,0.0,high,gravel road with grass corners and grass islands; road sheet (path 70% grass 30%)
+5170,41,50,13,12,0,path,1,path|grass,yes,,4.8,0.0,high,gravel road with grass corners and grass islands; road sheet (path 70% grass 30%)
+5171,41,51,13,12,0,grass,1,grass|path,yes,,7.7,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 79% path 21%)
+5172,41,52,1,1,0,grass,1,grass|path,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 54% path 46%)
+5173,41,53,1,1,0,grass,1,grass|path,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 52% path 48%)
+5174,41,54,1,1,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 90% grass 10%)
+5180,41,60,16,16,0,path,1,path|grass,yes,,3.1,0.0,high,gravel road with grass corners and grass islands; road sheet (path 78% grass 22%)
+5181,41,61,15,14,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 96% grass 4%)
+5182,41,62,12,12,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5183,41,63,12,11,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 80% grass 20%)
+5184,41,64,1,1,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5185,41,65,1,1,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 96% grass 4%)
+5192,41,72,12,11,0,path,1,path|grass,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 79% grass 21%)
+5193,41,73,10,9,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 91% grass 9%)
+5194,41,74,18,17,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 89% grass 11%)
+5195,41,75,17,16,0,path,1,path|grass,yes,,0.8,0.0,high,gravel road with grass corners and grass islands; road sheet (path 77% grass 23%)
+5196,41,76,1,1,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 90% grass 10%)
+5197,41,77,3,3,0,path,1,path|grass,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 51% grass 49%)
+5198,41,78,4,4,0,grass,1,grass|path,yes,,12.5,0.0,medium,gravel road with grass corners and grass islands; road sheet (grass 50% path 50%)
+5199,41,79,2,2,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5204,41,84,12,11,0,grass,1,grass|path,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 67% path 33%)
+5205,41,85,12,11,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 86% grass 14%)
+5206,41,86,19,18,0,path,1,path|grass,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 79% grass 21%)
+5207,41,87,18,17,0,grass,1,grass|path,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (grass 72% path 28%)
+5208,41,88,3,3,0,path,0,,yes,,4.3,0.0,high,gravel road with grass corners and grass islands; road sheet (path 92% grass 8%)
+5209,41,89,3,3,0,path,1,path|grass,yes,,0.0,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 54% grass 46%)
+5210,41,90,3,3,0,path,1,path|grass,yes,,16.7,0.0,medium,gravel road with grass corners and grass islands; road sheet (path 52% grass 48%)
+5211,41,91,2,2,0,path,0,,yes,,0.0,0.0,high,gravel road with grass corners and grass islands; road sheet (path 96% grass 4%)
