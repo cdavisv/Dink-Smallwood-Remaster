@@ -1,0 +1,52 @@
+{
+  "original_references": {
+    "87_09.png": "starting-house S001_P22 table, original sequence87 frame9, s1-h1-4",
+    "64_03.png": "starting-house S001_P23/P24 beds, original sequence64 frame3, s1-h1-1 and s1-h1-3",
+    "461_01.png": "original sequence461 chair frame1; see inside contact-sheet chair silhouette"
+  },
+  "source_files": [
+    {
+      "file": "Inputs/461_01.png",
+      "bytes": 2902,
+      "sha256": "f73964b86ead20467cdfeebb4602af043c1b8072621447d79b751ee672d02110"
+    },
+    {
+      "file": "Inputs/64_03.png",
+      "bytes": 11824,
+      "sha256": "70aaf133f609b610374fe45895624b52e854ead9ba4456282eff56c00246ed09"
+    },
+    {
+      "file": "Inputs/87_09.png",
+      "bytes": 5821,
+      "sha256": "7144c69f408c29065a33605ea0ae6d7f61b00058d45276cf3268eece74079147"
+    },
+    {
+      "file": "Inputs/GeneratedOak_Albedo_V1.png",
+      "bytes": 3063961,
+      "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a"
+    },
+    {
+      "file": "Inputs/Original_OakFurnitureV1.blend",
+      "bytes": 45178166,
+      "sha256": "e833a3e4bcab107b3da1764ae6fd007abce581b133c26ce7f4a7fc73dcab32ea"
+    },
+    {
+      "file": "Inputs/generation.json",
+      "bytes": 2176,
+      "sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9"
+    },
+    {
+      "file": "Inputs/sequences.txt",
+      "bytes": 24774,
+      "sha256": "fe8d3423de0635380f0337af40cfffe48b9be7201b93a68341a0bb5da192425a"
+    },
+    {
+      "file": "Inputs/sheet_inside.png",
+      "bytes": 133505,
+      "sha256": "ed6d5dd9ae91a9668798ca81ab5dd4dbeac820b406b0b6878397f1dc0a66c831"
+    }
+  ],
+  "oak_generation_provenance": "Inputs/generation.json exact original prompt/tool metadata; albedo unmodified",
+  "Blender_geometry_and_cloth": "New original procedural geometry/material shaders authored in this bundle; original bed timber retained from immutable preliminary source",
+  "pipeline": "Unmodified copy of project tools/blender/dinkasset in Pipeline; no repo edits"
+}

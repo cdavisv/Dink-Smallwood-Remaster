@@ -1,0 +1,39 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/artist/Work/DinkQA/PhotorealSessions/Props/Export",
+  "manifest": "/home/artist/Work/DinkQA/PhotorealSessions/Props/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Table_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.glb"
+      },
+      "tris": {
+        "LOD0": 9232
+      }
+    },
+    {
+      "name": "SM_Chair_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.glb"
+      },
+      "tris": {
+        "LOD0": 6064
+      }
+    },
+    {
+      "name": "SM_Bed_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.glb"
+      },
+      "tris": {
+        "LOD0": 19588
+      }
+    }
+  ],
+  "rejected": []
+}

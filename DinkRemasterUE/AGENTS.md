@@ -5,7 +5,17 @@ project. Read this file before doing any work here, and keep it accurate: when y
 fact, a pitfall or a decision, write it down here and remove anything that has become wrong.
 Label uncertain or temporary information as such.
 
+## Third-person controls and body motion (8 Nov 2026 UTC)
+
+The owner requested walk/run, jump, zoom and more physical character movement. `ADinkGreyboxCharacter` keeps default run600cm/s and adds hold-LeftShift walk200cm/s, variable-height Space jump (420cm/s launch, gravity1.35, hold cap160ms, one jump), acceleration1400, braking1200 and air control0.3. Q casts; LeftShift no longer casts. Dialogue/menu Space confirmation takes priority. Gamepad: left shoulder walk, bottom face jump, D-pad up/down zoom. Native transient Enhanced Input actions/context require no binary input-asset edits; UEnhancedInputComponent explicitly deletes legacy BindKey/BindAxisKey. Held gait polling changes the cap only on a gait transition, preserving external/script/test speed overrides.
+
+Mouse wheel adjusts the existing interior camera through a separate zoom offset, smoothly interpolated before room framing/occlusion. Limits180–650cm outdoors and180–320cm indoors; reversing at a limit responds immediately. `FDinkBodyDynamics` adds bounded damped mesh lean, starts/stops/turn response and independent idle sway to player and authored humanoid NPCs; player landings add a spring impulse. It uses observed displacement and game time, resets on teleports, and draws no gameplay random values. NPC script roots, original AI speed/timing, collision and hit math remain authoritative; this is secondary body motion, not ragdoll/cloth simulation.
+
+New `Dink.Movement` automation exercises real controller Shift/Space input, measured speeds, jump/landing, frozen input, no double jump, camera persistence/limits and spring stability. When resetting a test story during an opening freeze, execute unfreeze BEFORE ResetRuntime: ResetSprites discards the director input-lock tracking. Build with `Scripts/build.sh -NoUBA` with access to the normal Unreal compiler caches; even this flag initializes cache services outside the restricted workspace.
+
 ## Current delivery checkpoint (7Nov2026 local /8Nov UTC)
+
+Owner art direction update (8Nov2026 UTC): develop photorealistic art in Blender, using original Dink sprites as guide and inspiration. This latest owner request takes precedence over earlier stylised-realism preferences. Preserve recognisable original silhouettes, palette, placement/script identity and gameplay behaviour while improving real construction, materials and detail. New art and visual fixes develop in isolated sessions/checkouts; the visible SurfaceDelivery game remains frozen.
 
 - FloorOakV1/UnderfloorV1 checkpoint (8Nov UTC):139/139 native tests,0warnings,436s; all8,835 inputs unchanged through testing and final GPU captures. The new oak is a material-only original-floor duplicate, retaining every vertex/UV/triangle group, both slot names, original nails, collision and Nanite settings. All56 floor instances plus the one asset row change mesh path only. One separate24-vertex/44-triangle underfloor closes real plank gaps at topZ=-16cm without collision/nav/overlaps. Its owner-screen context is hidden outdoors including hidden shadows/GI. Actual W exit and return pass; outside camera stays400cm. Same-camera blue floor ROI counts380/726 become0/0. Reader access errors were corrected using exact native reflected navigation property names in the same game; no restart or route teleport preceded the actual return. See Docs/Verification/SurfaceFinish and Scripts/FLOOR_SURFACE_PIPELINE.md.
 - Saved-material verification uses the read-only editor DinkMaterialArtLibrary to inspect all connected property IDs, including Python-hidden pins. Direct BC/N/ORM links, channel choices, UV0 and specular.35 are checked; extra WPO/emissive/hidden UV connections are rejected even when reusing approved nodes. Eight real Unreal graph mutations and20 pure publication/source guard tests pass; all91Python tests and the integrated full source audit pass. Publishers recheck full gameplay-data hashes and exact saved package bytes before publication. Never rebuild a checkout whose libraries/assets are in use. Normal clones use LFS assets and verification mode; import refuses existing destinations. Clothing and furniture work-only candidates remain unpromoted.
@@ -175,7 +185,7 @@ never hand-edited).
 | `Greybox/DinkPlaceholderActor.h` | `ADinkPlaceholderActor` (card + origin + vision gating), `ADinkWarpPlaceholderActor`, `ADinkScriptWarpActor`, `ADinkGreyboxScreen` (ground/blocker/collision meshes + background instances) |
 | `Greybox/DinkWarpComponent.h` | `UDinkWarpComponent`: warp trigger box, destination, teleports the player on overlap |
 | `Greybox/DinkGreyboxSubsystem.h` | world subsystem: current screen (on-screen display), `dink.Goto`, `dink.Vision`, `dink.Where`, warp cooldown, `SetScreenLocked` (one locked screen at a time) |
-| `Greybox/DinkGreyboxCharacter.h` | `ADinkGreyboxCharacter` (template third-person behaviour, 6 m/s, no jump; carries `UDinkStatsComponent` mirrored to facts + `UDinkInventoryComponent`) and `ADinkGreyboxGameMode` |
+| `Greybox/DinkGreyboxCharacter.h` | `ADinkGreyboxCharacter` (third-person run/walk/jump; carries `UDinkStatsComponent` mirrored to facts + `UDinkInventoryComponent`) and `ADinkGreyboxGameMode` |
 
 ### DinkImport (editor module)
 
@@ -386,7 +396,7 @@ then `Scripts/test.sh Dink.Narrative`.
 | `DinkGameplay.h` | `UDinkGameplay` + `FDinkGameplayData`: the engine's hit/touch/push/talk/damage/death/status/item rules and the seeded rand() source (see "Gameplay rules"); `FDinkHardnessMap`, `FDinkAdaptationSettings`; the brains' API |
 | `Private/DinkBrains.cpp` | the brains (`ThinkSprite`, brains 0-17), movement against hardness, the animator, screenlock, the adaptation layer (see "Brains, locked fights and the 3D adaptation layer") |
 | `DinkScriptSpriteComponent.h` | `UDinkScriptSpriteComponent` (sp_* data on the actor for the future animation/AI layers), `ADinkScriptSpriteActor` (create_sprite marker) |
-| `Private/DinkNarrativePresentation.cpp` | floating text, menu and fade drawn on the HUD canvas (`AHUD::OnHUDPostRender`); `FDinkNarrativeInputProcessor` (Slate pre-processor: E talk/skip, Space/Enter skip/pick, Up/Down/W/S, 1-9, F/Left Ctrl attack, Q/Left Shift cast) |
+| `Private/DinkNarrativePresentation.cpp` | floating text, menu and fade drawn on the HUD canvas (`AHUD::OnHUDPostRender`); `FDinkNarrativeInputProcessor` (Slate pre-processor: E talk/skip, Space/Enter skip/pick, Up/Down/W/S, 1-9, F/Left Ctrl attack, Q cast) |
 | `Private/DinkNarrativeConsole.cpp` | console commands and `RunSmoke` |
 
 **Script instances = Ink flows.** One `Ink::FStory` holds the game; every DinkC script instance
@@ -562,7 +572,7 @@ nohit, touch_damage, speed, timing, base_*), `screens.csv` (base script per scre
 | new game | newgame.c `main` (start-1.c's click does the same): fists added and armed | `StartNewGame`, run before the first screen's scripts when no save was loaded |
 | random | DinkC `random(range, base)` = rand() % range + base, base for range 0 | the `random` EXTERNAL; `FDinkStreamRandomSource` seeded (`SetRandomSeed`, `dink.Seed`, `StorySeed` on reset); tests inject `FDinkScriptedRandomSource`; combat rolls and callback timers draw from the same source in call order |
 
-Keys (Slate pre-processor): **F / Left Ctrl** attack (the original's Ctrl), **Q / Left Shift** cast
+Keys (Slate pre-processor): **F / Left Ctrl** attack (the original's Ctrl), **Q** cast
 (Shift), **E** talk. Console: `dink.Attack`, `dink.Magic`, `dink.Arm <slot|item>`,
 `dink.ArmMagic <slot|spell>`, `dink.Inventory`, `dink.Seed <n>`.
 

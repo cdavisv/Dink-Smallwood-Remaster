@@ -1,0 +1,62 @@
+{
+  "assets": [
+    {
+      "asset": "SM_Bed_Oak_01",
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.fbx",
+      "size_m": [
+        2.5099997520446777,
+        1.3700001239776611,
+        1.119999885559082
+      ],
+      "expected_m": [
+        2.5099997520446777,
+        1.3700001239776611,
+        1.119999885559082
+      ],
+      "max_size_error_m": 0.0,
+      "collision_hulls": 13,
+      "expected_collision_hulls": 13,
+      "triangles": 19588
+    },
+    {
+      "asset": "SM_Chair_Oak_01",
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.fbx",
+      "size_m": [
+        0.6499999761581421,
+        0.5374999940395355,
+        1.0049999952316284
+      ],
+      "expected_m": [
+        0.6499999761581421,
+        0.5374999940395355,
+        1.0049999952316284
+      ],
+      "max_size_error_m": 0.0,
+      "collision_hulls": 16,
+      "expected_collision_hulls": 16,
+      "triangles": 6064
+    },
+    {
+      "asset": "SM_Table_Oak_01",
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.fbx",
+      "size_m": [
+        2.6500000953674316,
+        1.497999906539917,
+        0.8999999761581421
+      ],
+      "expected_m": [
+        2.6500000953674316,
+        1.497999906539917,
+        0.8999999761581421
+      ],
+      "max_size_error_m": 0.0,
+      "collision_hulls": 18,
+      "expected_collision_hulls": 18,
+      "triangles": 9232
+    }
+  ],
+  "PBR_assignment": "actual exported FBX geometry, explicit same2048BC/N/ORM baked materials, ORM R1 Grough B0",
+  "fixed_room_lighting": true,
+  "native_imported": false,
+  "passed": true
+}
