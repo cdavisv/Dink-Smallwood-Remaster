@@ -1,0 +1,17 @@
+{
+  "pid": 282208,
+  "actors": [
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_37",
+      "hidden": true,
+      "components": [
+        {
+          "name": "Card",
+          "collision": "<CollisionEnabled.NO_COLLISION: 0>",
+          "visible": true
+        }
+      ],
+      "actor_collision_enabled": false
+    }
+  ]
+}

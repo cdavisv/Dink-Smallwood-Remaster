@@ -89,7 +89,7 @@ def walk_route(route_path, log, out):
     try:
         for waypoint in route['waypoints']:
             target = map_world(screens[waypoint['screen']], waypoint['map'])
-            for attempt in range(35):
+            for attempt in range(100):
                 state = player(log)
                 evidence['steps'].append({'target': waypoint, 'observed': state})
                 if state['world'][2] < -100:
@@ -107,7 +107,9 @@ def walk_route(route_path, log, out):
                 console(f'dink.View {math.degrees(math.atan2(dy,dx)):.4f} -18')
                 # Each short key hold goes through Enhanced Input and CharacterMovement,
                 # including acceleration, capsule sweeps, blockers, and warp overlaps.
-                duration_ms = round(1000*min(.24,max(.015,math.sqrt(distance /2048))))
+                # Long exterior segments need time to accelerate. Keep short
+                # approach steps near the waypoint and the same collision checks.
+                duration_ms = round(1000*min(.8,max(.015,math.sqrt(distance /2048))))
                 run('wtype','-P','w','-s',str(duration_ms),'-p','w')
                 time.sleep(.3)
                 updated = player(log)

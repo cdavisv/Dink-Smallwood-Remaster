@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "scope": "Independent read-only review of actual native import and fresh saved verification; pure publisher preview only",
+  "six_package_hashes": {
+    "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.uasset": "0495c3df04c68fed58cba85d618e072e2e61c35da7ae39de6c81092da7581d63",
+    "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.uasset": "d06c41e9e3081a047804e31e7b9adfc5b3cb01280456554d8f561601b222afff",
+    "Content/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.uasset": "8422c48e170994a5f30fc421342d9ef5b8c99e2124735f1c7e3e20e9649f6145",
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_BC.uasset": "c336b06a265a3f4477186e6a3e5ad9b5cd3517e1c0f7b3310b6a22b6c39fd744",
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_N.uasset": "14e885c90e336dfe4eabebc531d7454d4fb009eba49d3bb3b17c00856b369a20",
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_ORM.uasset": "7d00969e976d526fd98df057f7bbe5d01a2d1f9e718fcecbf4a915055b3f3b7e"
+  },
+  "triangles": 19644,
+  "actual_material_counts": {
+    "jute": 14852,
+    "cord": 4792
+  },
+  "actual_native_scalars": [
+    0.19231277704238892,
+    0.2199999988079071
+  ],
+  "oriented_match": {
+    "checked_triangles": 19644,
+    "bijective_source_coverage": true,
+    "cyclic_only": true,
+    "position_tolerance_cm": 0.01,
+    "UV_tolerance": 0.0001,
+    "max_position_delta_cm": 3.814697265625e-06,
+    "max_UV_delta": 2.9802322387695312e-08,
+    "minimum_geometric_front_dot": 0.9999999985338437
+  },
+  "convex_match": {
+    "checked_hulls": 1,
+    "checked_vertices": 8,
+    "bijective_hulls_and_vertices": true,
+    "position_tolerance_cm": 0.01,
+    "max_vertex_delta_cm": 1.430511474609375e-06
+  },
+  "pixels": "actual native PNG exports equal frozen sourceRGB for all3sharedtextures",
+  "source_filenames": "actualnativegetters resolve exact4selected files",
+  "protected_changes": [],
+  "runtime_data_changes": [],
+  "publication_preview": {
+    "schema": "dink-photoreal-feedsack/1",
+    "passed": true,
+    "applied": false,
+    "apply_requested": false,
+    "already_published": true,
+    "verification_basis": "import_receipt",
+    "writer_scope": "two_mesh_paths",
+    "scene_data_approval": false,
+    "changed_mesh_references": 0,
+    "only_mesh_references_changed": true,
+    "asset_rows": 1,
+    "instance_rows": 1,
+    "before_sha256": "d616f46557a505648fad663e097dfa86b81cb2d23b6df52680aa5d6028d53b0d",
+    "after_sha256": "d616f46557a505648fad663e097dfa86b81cb2d23b6df52680aa5d6028d53b0d",
+    "proposed_sha256": "d616f46557a505648fad663e097dfa86b81cb2d23b6df52680aa5d6028d53b0d",
+    "verified_baseline_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+    "verified_baseline_semantic_sha256": "6e9b59c47eeae8abcb264387ce9b800ac7715e5b660d8aedc53dd53c90219e02",
+    "verification_sha256": "bfa560672cc0933e5107f81d0195136bc7e6e64877b4564cd4065bd925e981dc",
+    "tool_sha256": {
+      "feedsack_contract.py": "ac5c7b28d6f5bc37beb08cc83907dadfaffa077b0f0be5e01e40fe374f314e17",
+      "import_photoreal_feedsack.py": "f6dd1b6991a8f65319e0fd4fd3c282489a20e60e49dc6cc66ad018340aae686e",
+      "publish_photoreal_feedsack.py": "2bc5435647971ecec885d225b169d780360ab21ceb4aa4b840820205582a693d",
+      "feedsack_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "prepare_photoreal_feedsack_plan.py": "32ef508315efee6965348e45e17a7afbd9c5a3f1173e23e6f539c73df8bf202a"
+    },
+    "plan_sha256": "b215b74f003e11a1046d71c85f58d0dab3ff734e2f7aed88768f0c6c3ba165e5"
+  },
+  "head_to_current": "Exact2approvedmeshstringchanges;allotherJSONsemanticsunchanged",
+  "publication_stage": "already published by coordinating root; guarded replay0changes",
+  "concurrency_qualification": "Earlier review expected unpublished2refs; root published during review. Earlier assertion failed on expected count, no write performed. This rerun validates actual published state and guarded no-op.",
+  "limitations": "Reads native receipts/exports and rechecks current bytes; does not independently rerun Unreal. Normals evidence is front geometry/import flags, not a direct native shading-normal getter. No scene publication, final rendered/gameplay/pickup/full-regression acceptance implied."
+}

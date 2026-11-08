@@ -1,0 +1,15 @@
+{
+  "name": "ActualW reexit continuation beyond warp threshold; prior target390 tolerance stopped389.678",
+  "expected_screen": 439,
+  "waypoints": [
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        400
+      ],
+      "warp_to": 439,
+      "tolerance_cm": 3
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+import unreal,json,os
+from pathlib import Path
+r=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();o=r/'Saved/FeedSackReviewed/Visual';world=next(w for w in unreal.ObjectIterator(unreal.World)if unreal.GameplayStatics.get_player_pawn(w,0));assert os.getpid()==293200
+bag=unreal.Vector(-183173.91,392414.73,37.5)
+lights=[a for a in unreal.GameplayStatics.get_all_actors_of_class(world,unreal.PointLight)if 'DinkAuthoredArt' in [str(x)for x in a.get_editor_property('tags')]]
+a=min(lights,key=lambda x:(x.get_actor_location()-bag).length());assert (a.get_actor_location()-bag).length()<600
+c=a.get_component_by_class(unreal.PointLightComponent)
+assert hasattr(a,'set_actor_location') and hasattr(c,'set_intensity') and hasattr(c,'set_attenuation_radius')
+assert c.get_editor_property('intensity_units')==unreal.LightUnits.LUMENS
+loc=a.get_actor_location();before=dict(actor=a.get_path_name(),location_cm=[loc.x,loc.y,loc.z],lumens=c.get_editor_property('intensity'),radius_cm=c.get_editor_property('attenuation_radius'))
+(o/'diagnostic_light_before.json').write_text(json.dumps(before,indent=2)+'\n')
+a.set_actor_location(unreal.Vector(-183290,392480,140),False,False);c.set_intensity(3000);c.set_attenuation_radius(400)
+v=dict(passed=True,pid=os.getpid(),before=before,diagnostic_location_cm=[-183290,392480,140],diagnostic_lumens=c.get_editor_property('intensity'),diagnostic_radius_cm=c.get_editor_property('attenuation_radius'),scope='Temporary QA relocation/brightness of one existing authored5000Klight; not default-game lighting or production fix; no assets saved')
+(o/'diagnostic_light.json').write_text(json.dumps(v,indent=2)+'\n');unreal.log('FEEDSACK_LIGHT_DIAGNOSTIC_READY')

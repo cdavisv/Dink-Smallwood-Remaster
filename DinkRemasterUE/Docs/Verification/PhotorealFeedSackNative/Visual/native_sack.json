@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "pid": 293200,
+  "rows": [
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_37",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_37.Card",
+      "mesh": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+      "actor_hidden": false,
+      "component_visible": true,
+      "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+      "transform": "<Struct 'Transform' (0x7fe22e5dd800) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183173.910000, y: 392414.730000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "materials": [
+        "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.MI_FeedSack_Jute_PhotoBaked",
+        "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.MI_FeedSack_Cord_PhotoBaked"
+      ]
+    }
+  ],
+  "camera_location": "<Struct 'Vector' (0x7fe22df380b0) {x: -183493.006491, y: 392415.980000, z: 287.658345}>",
+  "camera_rotation": "<Struct 'Rotator' (0x7fe22df380b0) {pitch: -35.000000, yaw: 0.000000, roll: -0.000000}>",
+  "FOV": 70.0
+}

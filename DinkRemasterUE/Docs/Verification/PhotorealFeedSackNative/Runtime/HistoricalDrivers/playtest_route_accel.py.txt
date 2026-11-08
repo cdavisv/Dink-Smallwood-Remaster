@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""Drive an already-open Dink viewport on Hyprland; capture its actual displayed pixels.
+
+Requires hyprctl, grim and wtype (all shipped on this development machine). No
+desktop config is changed. This tool checks the game window before every input
+and refuses ambiguous matches. Run in the desktop session/outside a sandbox.
+
+Examples:
+  python3 Scripts/playtest_desktop.py capture before.png
+  python3 Scripts/playtest_desktop.py console 'dink.Player'
+  python3 Scripts/playtest_desktop.py console 'dink.View 90 -18'
+  python3 Scripts/playtest_desktop.py hold w 0.25
+  python3 Scripts/playtest_desktop.py key e
+"""
+import argparse
+import json
+import math
+from pathlib import Path
+import sys
+sys.path.insert(0,'/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
+import re
+import subprocess
+import time
+
+
+def run(*args):
+    if args[0] == 'wtype':
+        active = json.loads(subprocess.run(['hyprctl','activewindow','-j'], check=True, text=True, capture_output=True).stdout)
+        if active.get('class') != 'UnrealEditor' or not active.get('title','').startswith('DinkRemaster ('):
+            raise SystemExit('Game lost focus; refusing to send input to another application.')
+    return subprocess.run(args, check=True, text=True, capture_output=True).stdout
+
+
+def window():
+    matches = [w for w in json.loads(run('hyprctl', 'clients', '-j'))
+               if w['class'] == 'UnrealEditor' and w['title'].startswith('DinkRemaster (')]
+    if len(matches) != 1:
+        raise SystemExit(f'Expected one Dink game viewport, found {len(matches)}. Open the project with -game first.')
+    return matches[0]
+
+
+def dispatch(w, operation):
+    # Address is obtained from Hyprland, and encoded as a quoted Lua string.
+    code = ('for _,w in ipairs(hl.get_windows({class="UnrealEditor"})) do '
+            f'if w.address == {json.dumps(w["address"])} then '
+            f'hl.dispatch({operation}); return end end; error("game window disappeared")')
+    result = run('hyprctl', 'eval', code)
+    if 'error:' in result.lower():
+        raise SystemExit(result)
+
+
+def focus(w):
+    dispatch(w, 'hl.dsp.focus({window=w})')
+    time.sleep(.15)
+    active = json.loads(run('hyprctl', 'activewindow', '-j'))
+    if active.get('address') != w['address']:
+        raise SystemExit('Game did not receive focus; refusing to send keyboard input.')
+
+
+def console(command):
+    run('wtype', '-k', 'grave', '-s', '350', '-d', '20', command,
+        '-k', 'Return', '-s', '200', '-k', 'Escape')
+    time.sleep(.2)
+
+
+def player(log):
+    offset = log.stat().st_size
+    console('dink.Player')
+    with log.open() as handle:
+        handle.seek(offset)
+        text = handle.read()
+    match = re.search(r'DINK PLAYER: screen=(\d+) map=([^ ]+) world=([^ ]+) yaw=([^ ]+) pitch=([^ ]+) radius=([^ ]+) move_ignored=(\d+)', text)
+    if not match:
+        raise SystemExit('No new dink.Player response in log; build the debug console tools and check --log.')
+    return {'screen': int(match[1]), 'map': [float(v) for v in match[2].split(',')],
+            'world': [float(v) for v in match[3].split(',')], 'yaw': float(match[4]),
+            'pitch': float(match[5]), 'radius': float(match[6]), 'move_ignored': bool(int(match[7]))}
+
+
+def map_world(screen, point):
+    u, v = point[0] /600, point[1] /400
+    c = screen['corners']
+    return [100*((1-u)*(1-v)*c['nw'][axis] +u*(1-v)*c['ne'][axis] +
+                 (1-u)*v*c['sw'][axis] +u*v*c['se'][axis]) for axis in (0,1)]
+
+
+def walk_route(route_path, log, out):
+    route = json.loads(route_path.read_text())
+    screens = {s['screen']: s for s in json.loads((Path('/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/ImportData/screens.json')).read_text())['screens']}
+    evidence = {'route': str(route_path), 'input': 'normal held W keys, camera yaw only; no teleports', 'steps': []}
+    try:
+        for waypoint in route['waypoints']:
+            target = map_world(screens[waypoint['screen']], waypoint['map'])
+            for attempt in range(100):
+                state = player(log)
+                evidence['steps'].append({'target': waypoint, 'observed': state})
+                if state['world'][2] < -100:
+                    raise RuntimeError(f'Player fell below the walkable floor: {state}')
+                if state['move_ignored']:
+                    raise RuntimeError('Movement is frozen by dialogue; complete/skip the scene first.')
+                if state['screen'] != waypoint['screen']:
+                    if state['screen'] == waypoint.get('warp_to'):
+                        break
+                    raise RuntimeError(f'Unexpected screen {state["screen"]} on way to {waypoint}')
+                dx,dy = target[0]-state['world'][0],target[1]-state['world'][1]
+                distance = math.hypot(dx,dy)
+                if distance < waypoint.get('tolerance_cm',6):
+                    break
+                console(f'dink.View {math.degrees(math.atan2(dy,dx)):.4f} -18')
+                # Each short key hold goes through Enhanced Input and CharacterMovement,
+                # including acceleration, capsule sweeps, blockers, and warp overlaps.
+                duration_ms = round(1000*min(.8,max(.015,math.sqrt(distance /2048))))
+                run('wtype','-P','w','-s',str(duration_ms),'-p','w')
+                time.sleep(.3)
+                updated = player(log)
+                evidence['steps'].append({'target':waypoint,'observed':updated})
+                if updated['world'][2] < -100:
+                    raise RuntimeError(f'Player fell below the walkable floor after W input: {updated}')
+                if updated['screen'] == waypoint.get('warp_to'):
+                    break
+                travelled = math.dist(updated['world'][:2],state['world'][:2])
+                if travelled < .5:
+                    raise RuntimeError(f'Blocked after W input at {updated}, target {waypoint}')
+            else:
+                raise RuntimeError(f'Waypoint did not converge: {waypoint}')
+        final = player(log)
+        if final['screen'] != route['expected_screen']:
+            raise RuntimeError(f'Expected screen{route["expected_screen"]}, got{final["screen"]}')
+        evidence['result'] = 'PASS'
+    except (RuntimeError,SystemExit) as error:
+        evidence['result'] = 'FAIL'
+        evidence['error'] = str(error)
+    out.parent.mkdir(parents=True,exist_ok=True)
+    out.write_text(json.dumps(evidence,indent=2)+'\n')
+    print(json.dumps({k:evidence[k] for k in ('result','error') if k in evidence}))
+    if evidence['result'] != 'PASS':
+        raise SystemExit(1)
+
+
+def use_private_display(display=':189', authority='/tmp/dink-qa-tools/xauthority'):
+    """Select the explicitly isolated XTest backend; never falls back to the host."""
+    global run, window, focus, dispatch
+    from qa_private_x11 import PrivateX11
+    backend = PrivateX11(display, authority)
+    run, window, focus, dispatch = backend.command, backend.window, backend.focus, backend.dispatch
+    return backend
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--private-display', choices=[':189'], help='Use the isolated Xvfb/XTest display instead of the normal desktop.')
+    parser.add_argument('--private-authority', default='/tmp/dink-qa-tools/xauthority')
+    sub = parser.add_subparsers(dest='action', required=True)
+    cap = sub.add_parser('capture'); cap.add_argument('path', type=Path)
+    cmd = sub.add_parser('console'); cmd.add_argument('command')
+    key = sub.add_parser('key'); key.add_argument('key')
+    hold = sub.add_parser('hold'); hold.add_argument('key'); hold.add_argument('seconds', type=float)
+    sub.add_parser('normalize', help='Float only the game window at1280x720 for consistent evidence images.')
+    sub.add_parser('inspect', help='Print game viewport metadata.')
+    route = sub.add_parser('route', help='Walk JSON waypoints with real W input and record position evidence; never teleports.')
+    route.add_argument('path',type=Path)
+    route.add_argument('--log',type=Path,default=Path('/tmp/dink-remaster-playtest.log'))
+    route.add_argument('--out',type=Path,required=True)
+    args = parser.parse_args()
+    if args.private_display:
+        use_private_display(args.private_display, args.private_authority)
+        if args.action == 'route' and args.log == Path('/tmp/dink-remaster-playtest.log'):
+            args.log = Path('/tmp/dink-qa-private.log')
+    w = window()
+    if args.action == 'inspect':
+        print(json.dumps(w, indent=2)); return
+    focus(w)
+    if args.action == 'normalize':
+        dispatch(w, 'hl.dsp.window.float({action="set",window=w})')
+        dispatch(w, 'hl.dsp.window.resize({x=1280,y=720,relative=false,window=w})')
+        dispatch(w, 'hl.dsp.window.move({x=320,y=170,relative=false,window=w})')
+        time.sleep(.5)
+    elif args.action == 'console':
+        console(args.command)
+    elif args.action == 'route':
+        walk_route(args.path,args.log,args.out)
+    elif args.action == 'key':
+        run('wtype', '-k', args.key)
+    elif args.action == 'hold':
+        if not .01 <= args.seconds <= 15:
+            raise SystemExit('Use a hold between0.01 and15 seconds.')
+        # Keep the virtual keyboard alive for the entire held key.
+        run('wtype', '-P', args.key, '-s', str(round(args.seconds * 1000)), '-p', args.key)
+    elif args.action == 'capture':
+        time.sleep(.35)
+        w = window()
+        x, y = w['at']; width, height = w['size']
+        args.path.parent.mkdir(parents=True, exist_ok=True)
+        run('grim', '-g', f'{x},{y} {width}x{height}', str(args.path.resolve()))
+        print(args.path.resolve())
+
+
+if __name__ == '__main__':
+    main()

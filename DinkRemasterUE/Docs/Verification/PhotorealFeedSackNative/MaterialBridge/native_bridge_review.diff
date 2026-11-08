@@ -1,0 +1,192 @@
+diff --git i/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
+index 22699ea..3b05fea 100644
+--- i/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
+@@ -2,6 +2,11 @@
+ #include "Materials/Material.h"
+ #include "Engine/StaticMesh.h"
+ #include "PhysicsEngine/BodySetup.h"
++#include "MeshDescription.h"
++#include "StaticMeshAttributes.h"
++#include "Dom/JsonObject.h"
++#include "Serialization/JsonSerializer.h"
++#include "Serialization/JsonWriter.h"
+ 
+ TArray<int32> UDinkMaterialArtLibrary::GetConnectedMaterialProperties(UMaterial* Material)
+ {
+@@ -37,6 +42,77 @@ TArray<FDinkConvexArtSnapshot> UDinkMaterialArtLibrary::InspectStaticMeshConvexC
+ 	return Result;
+ }
+ 
++FString UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(UStaticMesh* Mesh, int32 LODIndex)
++{
++	TSharedRef<FJsonObject> Root = MakeShared<FJsonObject>();
++	Root->SetStringField(TEXT("schema"), TEXT("dink-static-mesh-material-bindings/1"));
++	Root->SetBoolField(TEXT("valid"), false);
++	Root->SetNumberField(TEXT("lod"), LODIndex);
++	auto Finish = [&Root](const TCHAR* Error = nullptr)
++	{
++		if (Error) Root->SetStringField(TEXT("error"), Error);
++		FString Result;
++		FJsonSerializer::Serialize(Root, TJsonWriterFactory<>::Create(&Result));
++		return Result;
++	};
++	if (!Mesh) return Finish(TEXT("null_mesh"));
++	Root->SetStringField(TEXT("mesh"), Mesh->GetPathName());
++	if (LODIndex < 0 || LODIndex >= Mesh->GetNumSourceModels()) return Finish(TEXT("invalid_lod"));
++	const FMeshDescription* Description = Mesh->GetMeshDescription(LODIndex);
++	if (!Description || Description->Triangles().Num() == 0) return Finish(TEXT("missing_geometry"));
++	const FStaticMeshConstAttributes Attributes(*Description);
++	const auto Names = Attributes.GetPolygonGroupMaterialSlotNames();
++	if (!Names.IsValid()) return Finish(TEXT("missing_imported_slot_attribute"));
++
++	TMap<FName, int32> ImportedToSlot;
++	TArray<TSharedPtr<FJsonValue>> Slots;
++	const TArray<FStaticMaterial>& Materials = Mesh->GetStaticMaterials();
++	for (int32 Index = 0; Index < Materials.Num(); ++Index)
++	{
++		const FStaticMaterial& Material = Materials[Index];
++		if (Material.ImportedMaterialSlotName.IsNone()) return Finish(TEXT("unnamed_imported_slot"));
++		if (ImportedToSlot.Contains(Material.ImportedMaterialSlotName)) return Finish(TEXT("ambiguous_imported_slot"));
++		ImportedToSlot.Add(Material.ImportedMaterialSlotName, Index);
++		TSharedRef<FJsonObject> Slot = MakeShared<FJsonObject>();
++		Slot->SetNumberField(TEXT("slot_index"), Index);
++		Slot->SetStringField(TEXT("slot_name"), Material.MaterialSlotName.ToString());
++		Slot->SetStringField(TEXT("imported_slot_name"), Material.ImportedMaterialSlotName.ToString());
++		Slots.Add(MakeShared<FJsonValueObject>(Slot));
++	}
++	TMap<int32, int32> GroupToSlot;
++	TArray<TSharedPtr<FJsonValue>> Groups;
++	for (const FPolygonGroupID Group : Description->PolygonGroups().GetElementIDs())
++	{
++		const FName ImportedName = Names[Group];
++		const int32* SlotIndex = ImportedToSlot.Find(ImportedName);
++		if (ImportedName.IsNone() || !SlotIndex) return Finish(TEXT("unresolved_polygon_group_slot"));
++		GroupToSlot.Add(Group.GetValue(), *SlotIndex);
++		TSharedRef<FJsonObject> Row = MakeShared<FJsonObject>();
++		Row->SetNumberField(TEXT("polygon_group_id"), Group.GetValue());
++		Row->SetStringField(TEXT("imported_slot_name"), ImportedName.ToString());
++		Row->SetNumberField(TEXT("slot_index"), *SlotIndex);
++		Groups.Add(MakeShared<FJsonValueObject>(Row));
++	}
++	TArray<TSharedPtr<FJsonValue>> Triangles;
++	Triangles.Reserve(Description->Triangles().Num());
++	for (const FTriangleID Triangle : Description->Triangles().GetElementIDs())
++	{
++		const FPolygonGroupID Group = Description->GetTrianglePolygonGroup(Triangle);
++		const int32* SlotIndex = GroupToSlot.Find(Group.GetValue());
++		if (!SlotIndex) return Finish(TEXT("unresolved_triangle_group"));
++		TSharedRef<FJsonObject> Row = MakeShared<FJsonObject>();
++		Row->SetNumberField(TEXT("triangle_id"), Triangle.GetValue());
++		Row->SetNumberField(TEXT("polygon_group_id"), Group.GetValue());
++		Row->SetNumberField(TEXT("slot_index"), *SlotIndex);
++		Triangles.Add(MakeShared<FJsonValueObject>(Row));
++	}
++	Root->SetArrayField(TEXT("slots"), Slots);
++	Root->SetArrayField(TEXT("groups"), Groups);
++	Root->SetArrayField(TEXT("triangles"), Triangles);
++	Root->SetBoolField(TEXT("valid"), true);
++	return Finish();
++}
++
+ #if WITH_DEV_AUTOMATION_TESTS
+ #include "Materials/MaterialExpressionConstant3Vector.h"
+ #include "Misc/AutomationTest.h"
+@@ -115,4 +191,84 @@ bool FDinkConvexArtInspectionTest::RunTest(const FString& Parameters)
+ 	TestEqual(TEXT("body dirty state preserved"), Body->GetOutermost()->IsDirty(), bBodyDirty);
+ 	return true;
+ }
++
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkMaterialSlotBindingInspectionTest,
++	"Dink.Art.MaterialSlotBindingInspection", EAutomationTestFlags::EditorContext | EAutomationTestFlags::ProductFilter)
++
++bool FDinkMaterialSlotBindingInspectionTest::RunTest(const FString& Parameters)
++{
++	auto Parse = [this](const FString& Text)
++	{
++		TSharedPtr<FJsonObject> Result;
++		TestTrue(TEXT("inspection returns JSON"), FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Result));
++		return Result;
++	};
++	const auto NullResult = Parse(UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(nullptr));
++	if (!NullResult) return false;
++	TestFalse(TEXT("null mesh is refused"), NullResult->GetBoolField(TEXT("valid")));
++	UStaticMesh* Mesh = NewObject<UStaticMesh>();
++	Mesh->AddSourceModel();
++	Mesh->GetStaticMaterials().Add(FStaticMaterial(nullptr, TEXT("RenamedPublicA"), TEXT("ImportedA")));
++	Mesh->GetStaticMaterials().Add(FStaticMaterial(nullptr, TEXT("RenamedPublicB"), TEXT("ImportedB")));
++	FMeshDescription* Description = Mesh->CreateMeshDescription(0);
++	if (!TestNotNull(TEXT("fixture description"), Description)) return false;
++	FStaticMeshAttributes Attributes(*Description);
++	Attributes.Register();
++	const FPolygonGroupID First = Description->CreatePolygonGroup();
++	const FPolygonGroupID Gap = Description->CreatePolygonGroup();
++	const FPolygonGroupID Last = Description->CreatePolygonGroup();
++	Description->DeletePolygonGroup(Gap);
++	auto Names = Attributes.GetPolygonGroupMaterialSlotNames();
++	Names[First] = TEXT("ImportedB");
++	Names[Last] = TEXT("ImportedA");
++	auto Positions = Attributes.GetVertexPositions();
++	for (int32 Triangle = 0; Triangle < 2; ++Triangle)
++	{
++		TArray<FVertexInstanceID> Corners;
++		for (int32 Corner = 0; Corner < 3; ++Corner)
++		{
++			const FVertexID Vertex = Description->CreateVertex();
++			Positions[Vertex] = FVector3f(float(Triangle * 10 + (Corner == 1)), float(Corner == 2), 0);
++			Corners.Add(Description->CreateVertexInstance(Vertex));
++		}
++		Description->CreateTriangle(Triangle == 0 ? First : Last, Corners);
++	}
++	const bool DirtyBefore = Mesh->GetOutermost()->IsDirty();
++	const FString Before = UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh);
++	const auto Result = Parse(Before);
++	if (!Result || !TestTrue(TEXT("named fixture is valid"), Result->GetBoolField(TEXT("valid")))) return false;
++	const auto& Triangles = Result->GetArrayField(TEXT("triangles"));
++	if (!TestEqual(TEXT("both triangles inspected"), Triangles.Num(), 2)) return false;
++	TestEqual(TEXT("group zero resolves to slot one, not group index"),
++		Triangles[0]->AsObject()->GetNumberField(TEXT("slot_index")), 1.0);
++	TestEqual(TEXT("sparse group resolves to slot zero"),
++		Triangles[1]->AsObject()->GetNumberField(TEXT("slot_index")), 0.0);
++	TestEqual(TEXT("actual sparse group ID retained"),
++		Triangles[1]->AsObject()->GetNumberField(TEXT("polygon_group_id")), double(Last.GetValue()));
++	TestEqual(TEXT("source imported names unchanged"), Names[First], FName(TEXT("ImportedB")));
++	Triangles[0]->AsObject()->SetNumberField(TEXT("slot_index"), 999);
++	TestEqual(TEXT("detached JSON edits do not change the source"),
++		UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh), Before);
++	TestEqual(TEXT("inspection preserves dirty state"), Mesh->GetOutermost()->IsDirty(), DirtyBefore);
++	Names[First] = TEXT("NoSuchImportedSlot");
++	const auto Unresolved = Parse(UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh));
++	if (!Unresolved) return false;
++	TestFalse(TEXT("unknown name never falls back to a dense index"), Unresolved->GetBoolField(TEXT("valid")));
++	Names[First] = TEXT("ImportedB");
++	Mesh->GetStaticMaterials()[1].ImportedMaterialSlotName = TEXT("ImportedA");
++	const auto Ambiguous = Parse(UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh));
++	if (!Ambiguous) return false;
++	TestFalse(TEXT("ambiguous imported names are refused"), Ambiguous->GetBoolField(TEXT("valid")));
++	Mesh->GetStaticMaterials()[1].ImportedMaterialSlotName = TEXT("ImportedB");
++	Description->PolygonGroupAttributes().UnregisterAttribute(MeshAttribute::PolygonGroup::ImportedMaterialSlotName);
++	const auto Missing = Parse(UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh));
++	if (!Missing) return false;
++	TestFalse(TEXT("missing attribute is not created by inspection"), Missing->GetBoolField(TEXT("valid")));
++	TestFalse(TEXT("inspection leaves the missing attribute absent"),
++		FStaticMeshConstAttributes(*Description).GetPolygonGroupMaterialSlotNames().IsValid());
++	const auto BadLOD = Parse(UDinkMaterialArtLibrary::InspectStaticMeshMaterialBindings(Mesh, 1));
++	if (!BadLOD) return false;
++	TestFalse(TEXT("invalid LOD is refused before description access"), BadLOD->GetBoolField(TEXT("valid")));
++	return true;
++}
+ #endif
+diff --git i/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
+index 8291c1f..bafc426 100644
+--- i/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
+@@ -35,4 +35,8 @@ public:
+ 	/** Uses public GetTransform; never cooks, rebuilds, saves or modifies the mesh/body. */
+ 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+ 	static TArray<FDinkConvexArtSnapshot> InspectStaticMeshConvexCollision(UStaticMesh* Mesh);
++
++	/** JSON triangle/group bindings resolved by actual imported slot names. No index-order assumptions or writes. */
++	UFUNCTION(BlueprintPure, Category = "Dink|Art")
++	static FString InspectStaticMeshMaterialBindings(UStaticMesh* Mesh, int32 LODIndex = 0);
+ };
