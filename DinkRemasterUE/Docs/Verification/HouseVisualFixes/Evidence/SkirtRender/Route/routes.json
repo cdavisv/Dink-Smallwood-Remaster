@@ -1,0 +1,120 @@
+{
+  "initial": {
+    "screen": 1,
+    "map": [
+      314.0,
+      161.0
+    ],
+    "world": [
+      -183760.16,
+      392550.355,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "outside": {
+    "screen": 439,
+    "map": [
+      344.995,
+      307.207
+    ],
+    "world": [
+      97729.052,
+      37506.201,
+      98.35
+    ],
+    "yaw": 90.497,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "final": {
+    "screen": 1,
+    "map": [
+      302.895,
+      381.41
+    ],
+    "world": [
+      -183808.745,
+      393514.65,
+      98.0
+    ],
+    "yaw": -90.709,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "method": "Actual held W routes; no fixture teleports or property setters.",
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 87819,
+    "backend": "private Xvfb :189 with XTest"
+  },
+  "launch": {
+    "display": ":189",
+    "server_pid": 83420,
+    "game_pid": 87819,
+    "log": "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
+    "audio_enabled": false,
+    "pulse_sink": null,
+    "serial_rhi_diagnostic": true,
+    "serial_vulkan_submission_diagnostic": true,
+    "command": [
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/EngineWrapper/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-abslog=/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-nosound"
+    ],
+    "renderer_transport": "RADV with MESA_VK_WSI_DEBUG=sw; normal X11 swapchain, not nullrhi"
+  },
+  "commands": [
+    {
+      "command": "dink.ScreenInfo 0",
+      "output": "[2026.11.08-08.21.43:925][217]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "py exec(open('/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Scripts/Playtest/read_visual_qa.py').read())",
+      "output": "[2026.11.08-08.21.46:939][413]LogPython: QA_VISUAL_READER_READY\n"
+    },
+    {
+      "command": "py qa_v_read('skirt-fresh-house')",
+      "output": "[2026.11.08-08.21.52:466][768]LogPython: QA_VISUAL_READ skirt-fresh-house\n"
+    },
+    {
+      "command": "py qa_v_read('skirt-actual-outside')",
+      "output": "[2026.11.08-08.24.09:517][389]LogPython: QA_VISUAL_READ skirt-actual-outside\n"
+    },
+    {
+      "command": "py qa_v_read('skirt-actual-return')",
+      "output": "[2026.11.08-08.25.31:589][736]LogPython: QA_VISUAL_READ skirt-actual-return\n"
+    }
+  ],
+  "phase": "routes",
+  "qa_driver_sha256": "c0b8aac7d43b06d81efc5e91d2e2952024d685209526b5b56c6c6eb49d0739b9",
+  "qa_reader_sha256": "eeed281779bc0bdf6a624328ec6d91c690ca38a38e98afbcf308bc1aa197eb26"
+}

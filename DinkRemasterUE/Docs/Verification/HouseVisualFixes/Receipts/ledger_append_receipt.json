@@ -1,0 +1,28 @@
+{
+  "old_rows": 1322,
+  "new_rows": 16,
+  "total_rows": 1338,
+  "old_sha256": "36ff684c0d041d4a7c5a86dd62f8b861a0ff542ae9f2134d470aef301b412955",
+  "old_raw_bytes": 1167685,
+  "old_prefix_byte_identical": true,
+  "existing_audio_rows_unchanged": 483,
+  "new_paths": [
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/source_handoff.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/build_skirt.py",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/verify_skirt.py",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/validate_guide.py",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/underfloor_plan.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/north_floor_right_ray_diagnosis.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/input_pins.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/asset_manifest.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/stonebrook_perimeter_skirt_v1.context.draft.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/PerimeterSkirtV1.blend",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/SM_Stonebrook_PerimeterSkirt_V1.fbx",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/export_verification.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/guide_validation.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/guide_exception.json",
+    "SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/REPRODUCE.txt",
+    "Content/Dink/Kits/Stonebrook/Refinements/PerimeterSkirtV1/SM_Stonebrook_PerimeterSkirt_V1.uasset"
+  ],
+  "new_sha256": "6caa06193bb249c12adaa2f3ef08d6aaeeb33f0c7ff84b84a6ba6ac133542d7e"
+}
