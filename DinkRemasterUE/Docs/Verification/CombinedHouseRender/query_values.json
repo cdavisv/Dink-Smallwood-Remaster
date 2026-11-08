@@ -1,0 +1,46 @@
+[
+  {
+    "query": "r.DefaultFeature.AutoExposure.Bias",
+    "output": "[2026.11.08-19.23.51:009][775]r.DefaultFeature.AutoExposure.Bias = \"1\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.Lumen.Supported",
+    "output": "[2026.11.08-19.23.52:110][842]r.Lumen.Supported = \"1\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.GenerateMeshDistanceFields",
+    "output": "[2026.11.08-19.23.53:414][917]\nHISTORY\n[2026.11.08-19.23.53:414][917]Constructor: 0\n[2026.11.08-19.23.53:414][917]ProjectSetting: 1\n[2026.11.08-19.23.53:414][917]r.GenerateMeshDistanceFields = \"1\"      LastSetBy: ProjectSetting\n"
+  },
+  {
+    "query": "r.Lumen.TraceMeshSDFs",
+    "output": "[2026.11.08-19.23.54:584][988]r.Lumen.TraceMeshSDFs = \"0\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.Lumen.HardwareRayTracing",
+    "output": "[2026.11.08-19.23.55:871][ 63]r.Lumen.HardwareRayTracing = \"1\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.EyeAdaptation.MethodOverride",
+    "output": "[2026.11.08-19.23.57:229][142]r.EyeAdaptation.MethodOverride = \"-1\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.EyeAdaptation.PreExposureOverride",
+    "output": "[2026.11.08-19.23.58:681][216]r.EyeAdaptation.PreExposureOverride = \"0\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "r.Lumen.Visualize",
+    "output": "[2026.11.08-19.23.59:780][269]r.Lumen.Visualize = \"0\"      LastSetBy: Constructor\n"
+  },
+  {
+    "query": "sg.GlobalIlluminationQuality",
+    "output": "[2026.11.08-19.24.01:078][333]\nHISTORY\n[2026.11.08-19.24.01:078][333]Constructor: 3\n[2026.11.08-19.24.01:078][333]Scalability: 3\n[2026.11.08-19.24.01:078][333]sg.GlobalIlluminationQuality = \"3\"      LastSetBy: Scalability\n"
+  },
+  {
+    "query": "r.Lumen.DiffuseIndirect.Allow",
+    "output": "[2026.11.08-19.24.02:416][398]\nHISTORY\n[2026.11.08-19.24.02:416][398]Constructor: 1\n[2026.11.08-19.24.02:416][398]Scalability: 1\n[2026.11.08-19.24.02:416][398]r.Lumen.DiffuseIndirect.Allow = \"1\"      LastSetBy: Scalability\n"
+  },
+  {
+    "query": "r.Lumen.Reflections.Allow",
+    "output": "[2026.11.08-19.24.03:681][460]\nHISTORY\n[2026.11.08-19.24.03:682][460]Constructor: 1\n[2026.11.08-19.24.03:682][460]Scalability: 1\n[2026.11.08-19.24.03:682][460]r.Lumen.Reflections.Allow = \"1\"      LastSetBy: Scalability\n"
+  }
+]

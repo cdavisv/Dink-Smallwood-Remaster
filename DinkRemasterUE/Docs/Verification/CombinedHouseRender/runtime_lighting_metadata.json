@@ -1,0 +1,359 @@
+{
+  "pid": 148811,
+  "project": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+  "cvars": {
+    "r.RayTracing": "0",
+    "r.Lumen.HardwareRayTracing": "1",
+    "r.Lumen.TraceMeshSDFs": "0",
+    "r.Lumen.TraceGlobalSDF": "",
+    "r.LumenScene.SurfaceCache.AtlasSize": "4096",
+    "r.DefaultFeature.AutoExposure.Bias": "1",
+    "r.Lumen.ScreenProbeGather.ScreenTraces": "1",
+    "r.SkyLight.RealTimeReflectionCapture": "1"
+  },
+  "lights": [
+    {
+      "actor": "DirectionalLight_0",
+      "component": "LightComponent0",
+      "class": "DirectionalLightComponent",
+      "properties": {
+        "intensity": 8.0,
+        "intensity_units": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'intensity_units' for attribute 'intensity_units' on 'DirectionalLightComponent'"
+        },
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'DirectionalLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'DirectionalLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'DirectionalLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'DirectionalLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'DirectionalLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'DirectionalLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'DirectionalLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "DirectionalLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'DirectionalLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "SkyLight_0",
+      "component": "SkyLightComponent0",
+      "class": "SkyLightComponent",
+      "properties": {
+        "intensity": 1.0,
+        "intensity_units": {
+          "unavailable": "SkyLightComponent: Failed to find property 'intensity_units' for attribute 'intensity_units' on 'SkyLightComponent'"
+        },
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": "<SkyLightSourceType.SLS_CAPTURED_SCENE: 0>",
+        "real_time_capture": true,
+        "lower_hemisphere_is_black": true,
+        "occlusion_max_distance": 1000.0,
+        "occlusion_exponent": 1.0,
+        "occlusion_contrast": {
+          "unavailable": "SkyLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'SkyLightComponent'"
+        },
+        "min_occlusion": 0.0,
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "SkyLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'SkyLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "PointLight_0",
+      "component": "LightComponent0",
+      "class": "PointLightComponent",
+      "properties": {
+        "intensity": 50.0,
+        "intensity_units": "<LightUnits.LUMENS: 2>",
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "PointLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'PointLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "PointLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'PointLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "PointLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'PointLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'PointLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'PointLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'PointLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "PointLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'PointLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "PointLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'PointLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "PointLight_1",
+      "component": "LightComponent0",
+      "class": "PointLightComponent",
+      "properties": {
+        "intensity": 40.0,
+        "intensity_units": "<LightUnits.LUMENS: 2>",
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "PointLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'PointLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "PointLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'PointLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "PointLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'PointLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'PointLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'PointLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'PointLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "PointLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'PointLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "PointLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'PointLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "PointLight_2",
+      "component": "LightComponent0",
+      "class": "PointLightComponent",
+      "properties": {
+        "intensity": 450.0,
+        "intensity_units": "<LightUnits.LUMENS: 2>",
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "PointLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'PointLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "PointLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'PointLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "PointLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'PointLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'PointLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'PointLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'PointLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "PointLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'PointLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "PointLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'PointLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "PointLight_3",
+      "component": "LightComponent0",
+      "class": "PointLightComponent",
+      "properties": {
+        "intensity": 450.0,
+        "intensity_units": "<LightUnits.LUMENS: 2>",
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "PointLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'PointLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "PointLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'PointLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "PointLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'PointLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'PointLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'PointLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'PointLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "PointLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'PointLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "PointLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'PointLightComponent'"
+        }
+      }
+    },
+    {
+      "actor": "PointLight_4",
+      "component": "LightComponent0",
+      "class": "PointLightComponent",
+      "properties": {
+        "intensity": 120.0,
+        "intensity_units": "<LightUnits.LUMENS: 2>",
+        "indirect_lighting_intensity": 1.0,
+        "volumetric_scattering_intensity": 1.0,
+        "source_type": {
+          "unavailable": "PointLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'PointLightComponent'"
+        },
+        "real_time_capture": {
+          "unavailable": "PointLightComponent: Failed to find property 'real_time_capture' for attribute 'real_time_capture' on 'PointLightComponent'"
+        },
+        "lower_hemisphere_is_black": {
+          "unavailable": "PointLightComponent: Failed to find property 'lower_hemisphere_is_black' for attribute 'lower_hemisphere_is_black' on 'PointLightComponent'"
+        },
+        "occlusion_max_distance": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_max_distance' for attribute 'occlusion_max_distance' on 'PointLightComponent'"
+        },
+        "occlusion_exponent": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_exponent' for attribute 'occlusion_exponent' on 'PointLightComponent'"
+        },
+        "occlusion_contrast": {
+          "unavailable": "PointLightComponent: Failed to find property 'occlusion_contrast' for attribute 'occlusion_contrast' on 'PointLightComponent'"
+        },
+        "min_occlusion": {
+          "unavailable": "PointLightComponent: Failed to find property 'min_occlusion' for attribute 'min_occlusion' on 'PointLightComponent'"
+        },
+        "cast_shadows": true,
+        "affect_dynamic_indirect_lighting": {
+          "unavailable": "PointLightComponent: Failed to find property 'affect_dynamic_indirect_lighting' for attribute 'affect_dynamic_indirect_lighting' on 'PointLightComponent'"
+        }
+      }
+    }
+  ],
+  "representative_meshes": {
+    "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01": {
+      "mesh": {
+        "generate_mesh_distance_field": {
+          "unavailable": "StaticMesh: Failed to find property 'generate_mesh_distance_field' for attribute 'generate_mesh_distance_field' on 'StaticMesh'"
+        },
+        "support_ray_tracing": {
+          "unavailable": "StaticMesh: Failed to find property 'support_ray_tracing' for attribute 'support_ray_tracing' on 'StaticMesh'"
+        },
+        "two_sided_distance_field_generation": {
+          "unavailable": "StaticMesh: Failed to find property 'two_sided_distance_field_generation' for attribute 'two_sided_distance_field_generation' on 'StaticMesh'"
+        }
+      },
+      "component": {
+        "affect_distance_field_lighting": true,
+        "affect_dynamic_indirect_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true
+      },
+      "LOD0_build": {
+        "distance_field_resolution_scale": 1.0,
+        "generate_distance_field_as_if_two_sided": false,
+        "max_lumen_mesh_cards": 12
+      }
+    },
+    "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01": {
+      "mesh": {
+        "generate_mesh_distance_field": {
+          "unavailable": "StaticMesh: Failed to find property 'generate_mesh_distance_field' for attribute 'generate_mesh_distance_field' on 'StaticMesh'"
+        },
+        "support_ray_tracing": {
+          "unavailable": "StaticMesh: Failed to find property 'support_ray_tracing' for attribute 'support_ray_tracing' on 'StaticMesh'"
+        },
+        "two_sided_distance_field_generation": {
+          "unavailable": "StaticMesh: Failed to find property 'two_sided_distance_field_generation' for attribute 'two_sided_distance_field_generation' on 'StaticMesh'"
+        }
+      },
+      "component": {
+        "affect_distance_field_lighting": true,
+        "affect_dynamic_indirect_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true
+      },
+      "LOD0_build": {
+        "distance_field_resolution_scale": 1.0,
+        "generate_distance_field_as_if_two_sided": false,
+        "max_lumen_mesh_cards": 12
+      }
+    },
+    "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01": {
+      "mesh": {
+        "generate_mesh_distance_field": {
+          "unavailable": "StaticMesh: Failed to find property 'generate_mesh_distance_field' for attribute 'generate_mesh_distance_field' on 'StaticMesh'"
+        },
+        "support_ray_tracing": {
+          "unavailable": "StaticMesh: Failed to find property 'support_ray_tracing' for attribute 'support_ray_tracing' on 'StaticMesh'"
+        },
+        "two_sided_distance_field_generation": {
+          "unavailable": "StaticMesh: Failed to find property 'two_sided_distance_field_generation' for attribute 'two_sided_distance_field_generation' on 'StaticMesh'"
+        }
+      },
+      "component": {
+        "affect_distance_field_lighting": true,
+        "affect_dynamic_indirect_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true
+      },
+      "LOD0_build": {
+        "distance_field_resolution_scale": 1.0,
+        "generate_distance_field_as_if_two_sided": false,
+        "max_lumen_mesh_cards": 12
+      }
+    },
+    "/Game/Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1.SM_Underfloor_Stonebrook_V1": {
+      "mesh": {
+        "generate_mesh_distance_field": {
+          "unavailable": "StaticMesh: Failed to find property 'generate_mesh_distance_field' for attribute 'generate_mesh_distance_field' on 'StaticMesh'"
+        },
+        "support_ray_tracing": {
+          "unavailable": "StaticMesh: Failed to find property 'support_ray_tracing' for attribute 'support_ray_tracing' on 'StaticMesh'"
+        },
+        "two_sided_distance_field_generation": {
+          "unavailable": "StaticMesh: Failed to find property 'two_sided_distance_field_generation' for attribute 'two_sided_distance_field_generation' on 'StaticMesh'"
+        }
+      },
+      "component": {
+        "affect_distance_field_lighting": true,
+        "affect_dynamic_indirect_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true
+      },
+      "LOD0_build": {
+        "distance_field_resolution_scale": 1.0,
+        "generate_distance_field_as_if_two_sided": false,
+        "max_lumen_mesh_cards": 12
+      }
+    }
+  },
+  "limits": "Metadata flags only, no proof of actual built SDF/card coverage; no setters/saves or renderer diagnostic toggles."
+}
