@@ -125,7 +125,7 @@ The original damage formula is ported into one function and the original numbers
 ## 7. Audio
 
 - **Music:** all new. Public-domain compositions among the original tracks are re-rendered with free instruments; the rest get new themes in the same mood. One theme per region plus battle, cave, Darklands, title.
-- **Effects:** all 58 replaced from CC0 sources and own recordings; the signature ones stay recognisable (quack, pig, level-up, secret-found, save-machine hum).
+- **Effects:** all 48 replaced (new generated effects; the earlier figure of 58 counted files the scripts never load); the signature ones stay recognisable (quack, pig, level-up, secret-found, save-machine hum).
 - **Implementation:** MetaSounds, region music states with a combat layer, per-biome ambience and footsteps. Tools: Reaper or Ardour, Audacity.
 
 ## 8. Data pipeline
