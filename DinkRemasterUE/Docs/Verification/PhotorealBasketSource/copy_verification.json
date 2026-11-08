@@ -1,0 +1,308 @@
+{
+  "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Basket/UVRefinement",
+  "destination": "/home/davisc/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1",
+  "reviewed_payload_count": 44,
+  "runtime_content_changed": false,
+  "files": [
+    {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.fbx",
+      "sha256": "4dcbb08777b83ee7d606cc677df7459e18cf161b753f8394fd373601ecec2e01",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.glb",
+      "sha256": "7ffd454008a5703641f3bcbadf934b25efdcb436acb23e255c37b8ec2c4100ea",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_BC.png",
+      "sha256": "e4a926f9768036dacfeb1ac09b149cd4aba56423c5368414a091fdffe926b91f",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_N.png",
+      "sha256": "f69ac1782bfa0f3c695f5e5faac68edd9a2c5fd36ae966ed3c975af148bed51a",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_ORM.png",
+      "sha256": "9bc62cbae9e82abdd9ec345622c400e679d32825ee118b9f83e29739608bff56",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Export/manifest.json",
+      "sha256": "ada551896e0a26cbaec12e8cbff59598941d9408c975da034f81a2887d46e6f4",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "HANDOFF.md",
+      "sha256": "3dd2169c414163931c43e50c497890aaf48bb545ff4fb58c3db48aaf83a9cdb2",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Inputs/V4_Source.blend",
+      "sha256": "f550ff60db5c41b6e43157f978734322918e1b2738cf5bfe62989c96164ac020",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "PhotorealBasketV1_Export.blend",
+      "sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "PhotorealBasketV1_Source.blend",
+      "sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/import_generated.py",
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/make_lods.py",
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Pipeline/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Roundtrip/front.png",
+      "sha256": "f94f4247042d4e7e90b19473b4eea585188eb88e594287615b30353a74fb2a27",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Roundtrip/game-distance.png",
+      "sha256": "d458222e023e588b4278a5e2185af98f4e387e3f4fde53dcc33397cda9a87c7c",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Roundtrip/handle.png",
+      "sha256": "e002f113d432bccc264bfce922ac6ce6f552a93a0feec23bd4db1ff1e2275ae4",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Roundtrip/weave.png",
+      "sha256": "472c8945d516786be1e8c996a08cef5aeff6c2097b049cc99e0eecdda5fcf25d",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Textures/T_Basket_Wicker_01_Photo_BC.png",
+      "sha256": "e4a926f9768036dacfeb1ac09b149cd4aba56423c5368414a091fdffe926b91f",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Textures/T_Basket_Wicker_01_Photo_Metal.png",
+      "sha256": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Textures/T_Basket_Wicker_01_Photo_N.png",
+      "sha256": "f69ac1782bfa0f3c695f5e5faac68edd9a2c5fd36ae966ed3c975af148bed51a",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Textures/T_Basket_Wicker_01_Photo_ORM.png",
+      "sha256": "9bc62cbae9e82abdd9ec345622c400e679d32825ee118b9f83e29739608bff56",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Textures/T_Basket_Wicker_01_Photo_Rough.png",
+      "sha256": "6e44573ce06094e93b12aa7369aa89a60927cabf53f18ec7de8f2354b8b5a421",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "bake_basket.py",
+      "sha256": "8cba01005195f9388c97dc7dda51b0deda665bd7a121382bb02eeaed33e12dc0",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "bake_receipt.json",
+      "sha256": "4d453cd4c883e73b46cdb30c22f33812c880739aefb779a8613261eef6c1d889",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "check_portable.py",
+      "sha256": "cb7c814c49602f62e56c935b7d330ce41398913adbc52bb9cc272c5d00c5a71b",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "export_basket.py",
+      "sha256": "f1c86401afb4fd2605c9638f92284f167fee8b9ecabffbf612cad1cc1a9facb1",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "export_report.json",
+      "sha256": "f3701f5fd9f9c9422ab49af5eecaa0e0e30fa480607ed91a1476d5bc12bc3a89",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "guide_validation.json",
+      "sha256": "82043a19b8b7f3bb6cd437b5b8e05c0704ac95127404eb35ee44e7681cc96c0b",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "pixel_comparison.json",
+      "sha256": "f4f80fc44b038f3ccc53438414bc13c94bdfc860f6848c54b8139f43e97ee5ce",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "portable_export_receipt.json",
+      "sha256": "f180cfae34603b3e1924075640229259a0e18580cea066f0124ee58879f8df75",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "render_detail.py",
+      "sha256": "74c8cffbaf26702227e82b136bad9be1dca984235caf74c0f1097dea4896d3aa",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "repack_uv.py",
+      "sha256": "0a8e35a7a292f2d4834e20f97a78515d199c31e8f137eda68bda153a8d157ece",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "roundtrip_basket.py",
+      "sha256": "825ca90f6da59ed6cfcad19d6c2850948555e604eea9bb7102e8e1b135674429",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "roundtrip_receipt.json",
+      "sha256": "90362ed39c0b0a396a3d96a05627dcd3099919e6c38315313ffd00d8e77e4036",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "texture_payload_validation.json",
+      "sha256": "811dbb8dc5606f3a27a064b9e0296bc0abd1f2fb6ca514780646f8db8858e5b6",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "uv_repack_receipt.json",
+      "sha256": "82304bebc79ee3116f62a3203ff4db1e19d7e3c3d1b533c6f1ab7f9df3fbf358",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "uv_verification.json",
+      "sha256": "c9c7f70eced6fe22c60a33373522f38271824d1762b3025e78cee8e984d4d026",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "verify_uv.py",
+      "sha256": "2c9042a6245b22a3aacf6631da287290ff47d68d5c767315f47abb3f73f744c2",
+      "independent_inode": true,
+      "role": "unchanged reviewed candidate payload"
+    },
+    {
+      "file": "Inputs/KIT_Stonebrook_Input.blend",
+      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "independent_inode": true,
+      "role": "original kit authoring input"
+    },
+    {
+      "file": "Inputs/Textures/T_Stonebrook_Wicker_BC.png",
+      "sha256": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3",
+      "independent_inode": true,
+      "role": "original kit authoring input"
+    },
+    {
+      "file": "Inputs/Textures/T_Stonebrook_Wicker_N.png",
+      "sha256": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243",
+      "independent_inode": true,
+      "role": "original kit authoring input"
+    },
+    {
+      "file": "Inputs/Textures/T_Stonebrook_Wicker_ORM.png",
+      "sha256": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48",
+      "independent_inode": true,
+      "role": "original kit authoring input"
+    }
+  ],
+  "initial_copy_all44_byte_identical": true,
+  "canonical_recipe_change": {
+    "file": "roundtrip_basket.py",
+    "change": "Remove trailing space from one blank line only",
+    "author_sha256": "825ca90f6da59ed6cfcad19d6c2850948555e604eea9bb7102e8e1b135674429",
+    "published_sha256": "b4b341f38a90979cbc2557843f425c091bc7ed2ddf7f4f9e7658111a09faa0f5",
+    "AST_equivalent": true,
+    "original_archive": "Inputs/AuthorRecipe/roundtrip_basket.py.zip",
+    "archived_original_sha256": "825ca90f6da59ed6cfcad19d6c2850948555e604eea9bb7102e8e1b135674429",
+    "archive_entry": "roundtrip_basket.py",
+    "archive_sha256": "534f4e216d8ff8a51f7392dff6eed419a35ec8dca293726b25e9b31cef9e1fa9"
+  }
+}

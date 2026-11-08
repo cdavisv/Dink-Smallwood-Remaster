@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "source_sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_Basket_Wicker_01_Photo_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 3089516,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Basket_Wicker_01_Photo_Metal",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 55235,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Basket_Wicker_01_Photo_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 2532644,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Basket_Wicker_01_Photo_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 2317602,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Basket_Wicker_01_Photo_Rough",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 2339517,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Stonebrook_Wicker_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1435537,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2898185,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1302556,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}

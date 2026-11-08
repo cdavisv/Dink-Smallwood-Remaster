@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T20:10:32Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Basket_Wicker_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealBasketV1_Export.blend",
+        "sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+        "collection": "SM_Basket_Wicker_01",
+        "note": "Project-authored split willow; added room prop, not a claimed direct sprite replacement"
+      },
+      "tris": {
+        "LOD0": 19680
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "blender_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ],
+        "size_cm": [
+          114.4,
+          94.2,
+          67.2
+        ],
+        "unreal_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "unreal_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Basket_Wicker_01_01"
+      ],
+      "material_slots": [
+        "MI_Basket_Wicker_01_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Basket_Wicker_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Basket_Wicker_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Basket_Wicker_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealBasketV1/Textures/T_Basket_Wicker_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}
