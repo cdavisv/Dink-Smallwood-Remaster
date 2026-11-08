@@ -1,0 +1,28 @@
+{
+  "schema": "dink-art/1",
+  "screen": 1,
+  "source": "SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/placement_plan.json",
+  "replacements": [
+    {
+      "origin": "S001_P19",
+      "offset_cm": [
+        6.5625,
+        -28.437499999941792,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "mesh": "/Game/Dink/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.SM_Fireplace_Stonebrook_V2"
+    }
+  ],
+  "elements": [],
+  "source_blend_sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02"
+}

@@ -66,7 +66,7 @@ Findings that shape the plan:
 - **The screen survives as a logical unit.** Each original screen becomes a volume that drives music, enemy reset, quest-state variants and locked fights. Every imported actor carries its origin ID (`S412_P03` = screen 412, sprite 3) and script name.
 - **AI:** four State Trees cover every original behaviour (wanderer, chaser, ranged caster, boss). Navmesh movement, short attack wind-ups, at most two attackers at once.
 - **Dialogue:** Ink via the Inkpot plugin; fallback is compiling Ink to JSON offline. Spiked on Linux in pre-production.
-- **Version control:** Git + LFS on a self-hosted Forgejo (file locking), `.blend` sources in a separate LFS repo. This repo stays as reference engine, extraction tools and design docs.
+- **Version control (owner update7Nov2026):** Git in this GitHub repository, with the Unreal project under `DinkRemasterUE/` and binary art/audio in SHA-256-pinned GitHub Release packs. Restore them with `Scripts/bootstrap_asset_pack.py`; public-fork LFS uploads were rejected by GitHub. The earlier proposal was a separate Forgejo/source-art repository. The original engine, extraction tools and design docs remain at the root.
 - **Linux caveats to settle in pre-production:** editor stability on your compositor, whether Fab works in the Linux editor, and Windows packaging (likely needs a Windows machine or VM).
 
 ## 3. World conversion
@@ -228,7 +228,7 @@ All in `DinkExpanded`, behind a switch, and not started before the alpha gate.
 | `doc/remaster/reference/` | World map rendered from `map.dat`, sprite and tile contact sheets, sequence listing |
 | `tools/` | Extraction and conversion pipeline (section 8) |
 
-The Unreal project lives in its own repository once Unreal Engine 5.8 is installed; nothing in this repo depends on it.
+The Unreal project lives under `DinkRemasterUE/` in this repository (owner delivery decision7Nov2026). The original engine does not depend on it; the Unreal project consumes generated extraction outputs without reading the original engine at runtime.
 
 ## Sources checked
 
