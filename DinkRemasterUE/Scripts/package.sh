@@ -20,7 +20,7 @@
 #   DINK_PACKAGE_MAPS       '+'-separated maps to cook (default /Game/Dink/_Generated/Maps/L_Greybox_World;
 #                           its streaming sublevels are cooked by reference)
 #   DINK_COOK_DIRS          '+'-separated extra content dirs (absolute) to cook. Default: every existing one
-#                           of Dink/{Kits,Foliage,Camera,Refinements,Audio,Creatures,NPC,Hero,Materials,Textures} and Characters:
+#                           of Dink/{Kits,Props,Foliage,Camera,Refinements,Audio,Creatures,NPC,Hero,Materials,Textures} and Characters:
 #                           the runtime loads these by string path from Data/Art and Data/Audio JSON,
 #                           which the cook cannot see. Set to "none" to disable.
 #   DINK_COMPILE_EDITOR=1   let UAT build the editor target too (default: -nocompileeditor)
@@ -99,7 +99,7 @@ if [[ "${DINK_COOK_DIRS:-}" != "none" ]]; then
 	if [[ -n "${DINK_COOK_DIRS:-}" ]]; then
 		IFS='+' read -r -a COOK_DIRS <<<"$DINK_COOK_DIRS"
 	else
-		for d in Dink/Kits Dink/Foliage Dink/Camera Dink/Refinements Dink/Audio Dink/Creatures Dink/NPC Dink/Hero Dink/Materials Dink/Textures Characters Input; do
+		for d in Dink/Kits Dink/Props Dink/Foliage Dink/Camera Dink/Refinements Dink/Audio Dink/Creatures Dink/NPC Dink/Hero Dink/Materials Dink/Textures Characters Input; do
 			if [[ -d "$PROJECT_DIR/Content/$d" ]]; then COOK_DIRS+=("$PROJECT_DIR/Content/$d"); fi
 		done
 	fi

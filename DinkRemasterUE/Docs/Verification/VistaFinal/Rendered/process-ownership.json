@@ -1,0 +1,49 @@
+{
+  "pid": 306643,
+  "project": "/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE",
+  "argv": [
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE/DinkRemaster.uproject",
+    "/Game/Dink/_Generated/Maps/L_Greybox_World",
+    "-game",
+    "-sdlvideodriver=x11",
+    "-windowed",
+    "-ResX=1280",
+    "-ResY=720",
+    "-nosplash",
+    "-unattended",
+    "-abslog=/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE/Saved/Playtest/vista-final.log",
+    "-norhithread",
+    "-forcerhibypass",
+    "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+    "-nosound",
+    "-ddc=InstalledNoZenLocalFallback",
+    "-LocalDataCachePath=/home/davisc/Work/DinkQA/RenderedDelivery/Cache",
+    "-UserDir=/home/davisc/Work/DinkQA/VistaFinal/User"
+  ],
+  "loaded_custom_modules": [
+    {
+      "path": "Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+      "sha256": "800ea98857ef948a4a1f092fb16b1d2d042831618464d3479d0228a497023ea0"
+    },
+    {
+      "path": "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+      "sha256": "a6b18e7726e32d2104874d829101c05d7e41fa00903abf987faeb4e5b15c6976"
+    },
+    {
+      "path": "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+      "sha256": "c1ac394fbd3015d780d0fea04b655f2f044acb437661bdaf87a8af9030e37ed6"
+    },
+    {
+      "path": "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+      "sha256": "a5c2c710cef5bbd54a12f0a5d88dfac4cf4e2883f369110ec8b1d7504def5d6b"
+    },
+    {
+      "path": "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
+      "sha256": "c7ef51a0dabbd233ba980da9af5c4670050a03becd0cfab61d18e555c8922095"
+    }
+  ],
+  "all_loaded_module_hashes_match_full_suite": true,
+  "display": ":189",
+  "audio_enabled": false
+}

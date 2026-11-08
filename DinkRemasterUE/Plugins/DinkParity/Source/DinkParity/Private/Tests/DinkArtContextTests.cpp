@@ -1,3 +1,5 @@
+#include "DinkInteriorCameraComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "AssetCompilingManager.h"
 #include "Components/StaticMeshComponent.h"
 #include "DinkArtContextActor.h"
@@ -160,24 +162,24 @@ class FContextPIE : public IAutomationLatentCommand
         if (!HasRuntimeManifest) return;
         if (!T->TestNotNull(TEXT("published private real-manifest context exists"),RuntimeContext)) return;
         T->TestEqual(TEXT("real context owner screen remains1"),RuntimeContext->GetOwnerScreenNumber(),1);
-        T->TestEqual(TEXT("real316 context visibility follows current owner"),RuntimeContext->IsHidden(),!ExpectedVisible);
+        T->TestEqual(TEXT("real359 context visibility follows current owner"),RuntimeContext->IsHidden(),!ExpectedVisible);
         T->TestFalse(TEXT("real context never ticks"),RuntimeContext->PrimaryActorTick.bCanEverTick);
         T->TestFalse(TEXT("real context actor has no collision"),RuntimeContext->GetActorEnableCollision());
         T->TestNull(TEXT("cosmetic context has no original save/script identity"),RuntimeContext->FindComponentByClass<UDinkOriginComponent>());
         T->TestFalse(TEXT("real context never joins camera occluders"),RuntimeContext->ActorHasTag(TEXT("DinkCameraOccluder")));
         TInlineComponentArray<UStaticMeshComponent*> Components(RuntimeContext);
-        T->TestEqual(TEXT("actual manifest creates316 components"),Components.Num(),316);
-        T->TestEqual(TEXT("actual fixture has316 source rows"),RuntimeRows.Num(),316);
+        T->TestEqual(TEXT("actual manifest creates359 components"),Components.Num(),359);
+        T->TestEqual(TEXT("actual fixture has359 source rows"),RuntimeRows.Num(),359);
         TSet<UStaticMesh*> Assets;TArray<bool> Matched;Matched.Init(false,RuntimeRows.Num());
         for (auto M:Components)
         {
             Assets.Add(M->GetStaticMesh());
-            T->TestFalse(TEXT("all316 components have no ticks"),M->PrimaryComponentTick.bCanEverTick);
-            T->TestEqual(TEXT("all316 components are NoCollision"),M->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
-            T->TestFalse(TEXT("all316 have no overlap events"),M->GetGenerateOverlapEvents());
-            T->TestFalse(TEXT("all316 have no navigation influence"),M->CanEverAffectNavigation());
-            T->TestFalse(TEXT("all316 cast no hidden shadow"),M->bCastHiddenShadow);
-            T->TestFalse(TEXT("all316 contribute no hidden GI"),M->bAffectIndirectLightingWhileHidden);
+            T->TestFalse(TEXT("all359 components have no ticks"),M->PrimaryComponentTick.bCanEverTick);
+            T->TestEqual(TEXT("all359 components are NoCollision"),M->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
+            T->TestFalse(TEXT("all359 have no overlap events"),M->GetGenerateOverlapEvents());
+            T->TestFalse(TEXT("all359 have no navigation influence"),M->CanEverAffectNavigation());
+            T->TestFalse(TEXT("all359 cast no hidden shadow"),M->bCastHiddenShadow);
+            T->TestFalse(TEXT("all359 contribute no hidden GI"),M->bAffectIndirectLightingWhileHidden);
             bool Found=false;
             for (int32 I=0;I<RuntimeRows.Num();++I)
             {
@@ -193,7 +195,7 @@ class FContextPIE : public IAutomationLatentCommand
             FHitResult Hit;RuntimeContext->GetWorld()->LineTraceSingleByChannel(Hit,M->Bounds.Origin+FVector(0,0,100),M->Bounds.Origin-FVector(0,0,100),ECC_Visibility);
             T->TestTrue(TEXT("world trace never hits any actual render-only vista component"),Hit.GetActor()!=RuntimeContext);
         }
-        T->TestEqual(TEXT("actual316 component set references62 meshes"),Assets.Num(),62);
+        T->TestEqual(TEXT("actual359 component set references62 meshes"),Assets.Num(),62);
     }
     void CheckOriginals()
     {
@@ -205,10 +207,29 @@ class FContextPIE : public IAutomationLatentCommand
             T->TestEqual(TEXT("exterior parent unchanged"), B.M->GetAttachParent(), B.Parent);
             T->TestTrue(TEXT("exterior transform unchanged"), B.M->GetComponentTransform().Equals(B.Transform, .001));
             T->TestEqual(TEXT("exterior collision unchanged"), B.M->GetCollisionEnabled(), B.Enabled);
-            T->TestTrue(TEXT("exterior responses unchanged"), B.M->GetCollisionResponseToChannels() == B.Responses);
-            T->TestTrue(TEXT("exterior overrides unchanged"), B.M->OverrideMaterials == B.Overrides);
-            for (int I = 0; I < B.Materials.Num(); ++I)
-                T->TestEqual(TEXT("exterior material unchanged"), B.M->GetMaterial(I), B.Materials[I].Get());
+            auto W=B.M->GetWorld(); auto PC=W->GetFirstPlayerController(); auto H=PC ? PC->GetPawn() : nullptr;
+            auto Camera=H ? H->FindComponentByClass<UDinkInteriorCameraComponent>() : nullptr;
+            auto Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
+            const bool ManagedCottage=B.M->GetStaticMesh() && B.M->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01") &&
+                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && !Camera->bInteriorMode;
+            if (ManagedCottage)
+            {
+                auto Expected=B.Responses;Expected.SetResponse(ECC_Camera,ECR_Ignore);
+                T->TestTrue(TEXT("qualified cottage changes only Camera response"),B.M->GetCollisionResponseToChannels()==Expected);
+                T->TestEqual(TEXT("qualified cottage has exactly five managed material overrides"),B.M->OverrideMaterials.Num(),B.Materials.Num());
+                for(int I=0;I<B.Materials.Num();++I)
+                {
+                    auto MID=Cast<UMaterialInstanceDynamic>(B.M->GetMaterial(I));
+                    T->TestTrue(TEXT("cottage material changes belong solely to native camera policy"),MID && MID->GetOuter()==Camera && MID->GetBlendMode()==BLEND_Masked);
+                }
+            }
+            else
+            {
+                T->TestTrue(TEXT("foreign exterior responses unchanged / cottage restores when unmanaged"), B.M->GetCollisionResponseToChannels() == B.Responses);
+                T->TestTrue(TEXT("foreign exterior overrides unchanged / cottage restores when unmanaged"), B.M->OverrideMaterials == B.Overrides);
+                for (int I = 0; I < B.Materials.Num(); ++I)
+                    T->TestEqual(TEXT("foreign exterior material unchanged / cottage restores when unmanaged"), B.M->GetMaterial(I), B.Materials[I].Get());
+            }
         }
         T->TestFalse(TEXT("ordinary screen-tagged art never globally hidden"), Ordinary->IsHidden());
     }
@@ -253,6 +274,10 @@ class FContextPIE : public IAutomationLatentCommand
             if (!T->TestNotNull(TEXT("real cube loads"), Cube))
                 return true;
             Meshes.Add(Cube->GetPathName(), Cube);
+            for (TActorIterator<AStaticMeshActor> I(W); I; ++I)
+                if (I->ActorHasTag(TEXT("DinkArtScreen_439")))
+                    Originals.Emplace(I->GetStaticMeshComponent());
+            T->TestTrue(TEXT("real persistent exterior captured"), Originals.Num() > 10);
             Move(H, G, Yard);
             Phase = 1;
             At = FPlatformTime::Seconds();
@@ -263,7 +288,7 @@ class FContextPIE : public IAutomationLatentCommand
             return false;
         if (Phase == 1)
         {
-            const FString ManifestPath=FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/stonebrook_vista_v3.json");
+            const FString ManifestPath=FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/stonebrook_vista_v4.json");
             FString Text;HasRuntimeManifest=FFileHelper::LoadFileToString(Text,*ManifestPath);
             if (HasRuntimeManifest)
             {
@@ -271,15 +296,12 @@ class FContextPIE : public IAutomationLatentCommand
                 if (!T->TestTrue(TEXT("private actual manifest parses"),FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Json)))return true;
                 RuntimeRows=Json->GetArrayField(TEXT("elements"));
                 for(TActorIterator<ADinkArtContextActor> I(W);I;++I)
-                    if(I->ActorHasTag(TEXT("DinkArtManifest_stonebrook_vista_v3.json")))
+                    if(I->ActorHasTag(TEXT("DinkArtManifest_stonebrook_vista_v4.json")))
                     {T->TestNull(TEXT("only one real-manifest context root"),RuntimeContext);RuntimeContext=*I;}
                 CheckRuntime(false);
             }
             BaselineContextCount=Count(*W);
-            for (TActorIterator<AStaticMeshActor> I(W); I; ++I)
-                if (I->ActorHasTag(TEXT("DinkArtScreen_439")))
-                    Originals.Emplace(I->GetStaticMeshComponent());
-            T->TestTrue(TEXT("real persistent exterior captured"), Originals.Num() > 10);
+
             Ordinary = W->SpawnActor<AStaticMeshActor>();
             Ordinary->GetStaticMeshComponent()->SetMobility(EComponentMobility::Movable);
             Ordinary->GetStaticMeshComponent()->SetStaticMesh(Cube);

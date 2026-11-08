@@ -1,0 +1,12 @@
+{
+  "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp": "8fb9cedbaedba8b7c5d0d25e8944d1002709da5fdb7e66764561784aab67d09d",
+  "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp": "cba69f7e5b43241b09652a8f9db23df3dca2d11b19f1dfad86b5badcf99b96d7",
+  "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp": "ddff5f97897142176614dbdc689954815fb43956508d0cf479e0029d3d31de63",
+  "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp": "6df8f2b4ece9f70485a65dc11123a4cf9dd5922b2fc709a056839921fd288928",
+  "Scripts/import_camera_materials.py": "5334967d749905a990a01b65f6085aa4a5a8dba049bdb7fb0a1d89cb59523d33",
+  "Content/Dink/Data/Art/camera_materials.json": "d872fea8d90de5af81cd967302113dd0fe43552e51e83c4be8512b6b102b7e78",
+  "Content/Dink/Data/Art/stonebrook_exterior.json": "c574f9a66679de272fe803137ca20ec942513e31d61846d132be12a7886eaa5b",
+  "Content/Dink/Camera/Stonebrook/M_CameraFade_Fieldstone_v1.uasset": "5133aedb907246b110e3e11e9cca7140a1291d15e7eb25fc322a818d15207645",
+  "Content/Dink/Camera/Stonebrook/M_CameraFade_Thatch_v1.uasset": "d8b8e4a9f760980c85dd1cde01ab993cdf767ac4fbca842f9573617f217e256b",
+  "Content/Dink/Camera/Stonebrook/M_CameraFade_WroughtIron_v1.uasset": "f5e5303e593be5e23923ec7838bdd67d470cd56b61706c0a2da9c6b698453365"
+}

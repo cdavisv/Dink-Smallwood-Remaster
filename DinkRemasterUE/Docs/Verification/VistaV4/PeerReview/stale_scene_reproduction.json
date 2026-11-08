@@ -1,0 +1,23 @@
+{
+  "issue": "Editable scene new-instance transform drift passes source checker and produces stale Data with the changed scene SHA",
+  "checker_passed": true,
+  "edited_source_offset_cm": [
+    100,
+    0,
+    0
+  ],
+  "generated_world_cm": [
+    -185126.45588841932,
+    396621.9991643726,
+    28.484460711479187
+  ],
+  "unchanged_cached_world_cm": [
+    -185126.45588841932,
+    396621.9991643726,
+    28.484460711479187
+  ],
+  "same_data": true,
+  "provenance_scene_sha256": "7e2b2a965fe5cf8c4d75636717b0fae1dc4558a2861de94e4987dcd1a8c5160b",
+  "original_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
+  "fixture_scene_sha256": "7e2b2a965fe5cf8c4d75636717b0fae1dc4558a2861de94e4987dcd1a8c5160b"
+}
