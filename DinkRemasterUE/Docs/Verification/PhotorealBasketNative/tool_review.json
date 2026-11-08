@@ -1,0 +1,23 @@
+{
+  "status": "No blocking findings; approved for root-owned native preflight/import/verify, not runtime publication acceptance",
+  "handoff_sha256": "13e0386fea53ad756317c0a5e7cef144d290c7f9b8ce86316aa7d5816dd20cc1",
+  "tools": {
+    "basket_contract.py": "8dcbf4986c3c11c238f95f623304555c61d092a1a864981c2482ce466723f7a8",
+    "basket_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "import_photoreal_basket.py": "c5e30a1838d5fe75280aca894d157199b5bce463842b039d1ff3ede4f19eec94",
+    "publish_photoreal_basket.py": "ff7132e6393819dcd7f350febf09ccafd7656629a268af8bc359e5926499a51d",
+    "prepare_photoreal_basket_plan.py": "98b281e5710a5d5c9161675f7ab9875451bb6e8eba6f8c5c9a455b1ede114c43"
+  },
+  "pure_tests_reproduced": 97,
+  "reviewed_guards": [
+    "source/tool/module/nativefilename binding",
+    "original9692triangle1material baseline",
+    "actual oriented geometry UV/fronts/retained88x88x60UCX",
+    "sourceIOR/spec mapping; actual native scalar getter reported",
+    "neutralAO255/metal0 and saved Texture.Source pixel checks",
+    "exactly2meshstrings/FeedSack S001_P52 protected",
+    "late source/tool/receipt/candidate races",
+    "publishedclone noauthorreceipt+zero-writeapply"
+  ],
+  "native_run": false
+}

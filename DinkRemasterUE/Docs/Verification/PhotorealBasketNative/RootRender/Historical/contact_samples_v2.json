@@ -1,0 +1,153 @@
+{
+  "states": [
+    {
+      "screen": 1,
+      "map": [
+        409.0,
+        146.0
+      ],
+      "world": [
+        -183344.535,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        411.359,
+        146.0
+      ],
+      "world": [
+        -183334.216,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        413.717,
+        146.0
+      ],
+      "world": [
+        -183323.898,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        415.297,
+        146.0
+      ],
+      "world": [
+        -183316.986,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        416.877,
+        146.0
+      ],
+      "world": [
+        -183310.074,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        419.235,
+        146.0
+      ],
+      "world": [
+        -183299.755,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        421.594,
+        146.0
+      ],
+      "world": [
+        -183289.437,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        423.174,
+        146.0
+      ],
+      "world": [
+        -183282.525,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        424.754,
+        146.0
+      ],
+      "world": [
+        -183275.613,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "expected_native_capsule_hit_center": [
+    -183265.702338,
+    392484.73,
+    98.0
+  ]
+}

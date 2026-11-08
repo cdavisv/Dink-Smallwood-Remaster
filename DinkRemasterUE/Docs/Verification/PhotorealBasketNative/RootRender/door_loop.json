@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "pid": 232554,
+  "start": {
+    "screen": 1,
+    "map": [
+      335.407,
+      146.023
+    ],
+    "world": [
+      -183666.506,
+      392484.833,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "exit": "PASS",
+  "return": "PASS",
+  "native_policy": {
+    "getall DinkInteriorCameraComponent bEnableWallCutaway": "[2026.11.08-22.04.44:484][935]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.bEnableWallCutaway = False\n",
+    "getall DinkInteriorCameraComponent ManagedOccluderCount": "[2026.11.08-22.04.46:329][ 18]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.ManagedOccluderCount = 0\n",
+    "getall DinkInteriorCameraComponent FadingOccluderCount": "[2026.11.08-22.04.48:173][101]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.FadingOccluderCount = 0\n",
+    "getall SpringArmComponent bDoCollisionTest": "[2026.11.08-22.04.49:773][173]0) SpringArmComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.CameraBoom.bDoCollisionTest = True\n"
+  },
+  "scope": "Actual W route from preceding basket probe departure; photo/contact setup was earlier explicitly teleported, no teleports in door exit/return route."
+}

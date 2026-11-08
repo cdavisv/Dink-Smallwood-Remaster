@@ -1,0 +1,5 @@
+{
+  "status": "REJECTED as contact proof despite driverPASS",
+  "reason": "12cm proximity threshold stopped9.910662cm before native sweep hit; this proves approach/departure only, not actual contact. Final v3 requires observed lateral deflection AND a native capsule sweep remaining distance<=1cm on identified basket component.",
+  "no_geometry_changes": true
+}
