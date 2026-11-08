@@ -1,0 +1,419 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/Object.h"
+#include "DinkOriginId.h"
+#include "DinkRandom.h"
+#include "DinkGameplay.generated.h"
+
+class UDinkStorySubsystem;
+class UDinkDirector;
+class FJsonObject;
+struct FDinkSprite;
+
+/** One frame of dink.ini (Content/Dink/Data/Gameplay/frames.csv). */
+struct DINKNARRATIVE_API FDinkFrameInfo
+{
+	int32 DelayMs = 0;
+	/** set_frame_special: the frame on which an attack animation hits (dink.cpp D:16971). */
+	bool bSpecial = false;
+	/** Hardbox relative to the sprite position (engine pixels). */
+	int32 Left = 0;
+	int32 Top = 0;
+	int32 Right = 0;
+	int32 Bottom = 0;
+	/** SET_FRAME_FRAME <seq> <frame> -1: the animation wraps to frame 1 here (frame[] == -1, D:16996). */
+	bool bLoop = false;
+	/** A slot without a picture: the animation ends here (frame[] < 1, D:17010). */
+	bool bEmpty = false;
+	/** The picture's size (getpic()'s box: right = Width, bottom = Height). */
+	int32 Width = 0;
+	int32 Height = 0;
+};
+
+/**
+ * One screen's hardness map as the engine builds it on load (g_hitmap: tile hardness, then the hardboxes of
+ * placements with hard == 0 as 100 + placement index), from Content/Dink/Data/Gameplay/Hardness/SCR_nnn.txt.
+ * Codes: 0 free, 1 solid, 2 low (missiles and flyers cross), 3 other, 100+n sprite hardbox of placement n.
+ */
+struct DINKNARRATIVE_API FDinkHardnessMap
+{
+	static constexpr int32 Width = 600;
+	static constexpr int32 Height = 400;
+	int32 Screen = 0;
+	int32 Vision = 0;
+	TArray<uint8> Codes;
+
+	/** get_hard (D:527): map pixel (engine x - 20, y); 0 outside the 600x400 map. */
+	int32 Get(int32 MapX, int32 MapY) const
+	{
+		return MapX < 0 || MapY < 0 || MapX >= Width || MapY >= Height || Codes.Num() != Width * Height ? 0 : Codes[MapY * Width + MapX];
+	}
+	void Set(int32 MapX, int32 MapY, uint8 Code)
+	{
+		if (Codes.Num() != Width * Height) { Codes.SetNumZeroed(Width * Height); }
+		if (MapX >= 0 && MapY >= 0 && MapX < Width && MapY < Height) { Codes[MapY * Width + MapX] = Code; }
+	}
+	/** Parses one vision block of the text format (see Scripts/sync_gameplay_data.py). */
+	static TMap<int32, TSharedPtr<FDinkHardnessMap>> ParseFile(int32 Screen, const FString& Text);
+};
+
+/**
+ * The 3D adaptation layer over the Classic brains (REMASTER_PLAN section 2 "AI": short attack wind-ups,
+ * at most two attackers at once). Numbers come from Content/Dink/Data/AI/adaptation.ini; play reads the
+ * file (Enabled=1 there), parity tests switch it off. Off = the original's rules exactly.
+ */
+struct DINKNARRATIVE_API FDinkAdaptationSettings
+{
+	bool bEnabled = false;
+	/** Telegraph: the attacker stops, faces its target and waits this long before its attack starts. */
+	double WindUpMs = 450.0;
+	/** Sprites that may be winding up or attacking the same target at once; the others hold position. */
+	int32 MaxAttackers = 2;
+	/** Hold behaviour of a capped attacker: 0 stand still facing the target, 1 also re-aim every HoldReaimMs. */
+	double HoldReaimMs = 400.0;
+	FString Source;
+	/** Reads the ini (missing file: defaults, disabled). */
+	bool Load(const FString& Path, FString* OutError = nullptr);
+	static FString DefaultPath();
+};
+
+/** Physical reach for authored geometry; independent of each region's legacy pixel scale. */
+struct DINKNARRATIVE_API FDinkAuthoredInteractionSettings
+{
+	double AttackReachCm = 85.0;
+	double AttackHalfWidthCm = 18.0;
+	double TalkReachCm = 150.0;
+	double TalkHalfWidthCm = 50.0;
+	double PickupReachCm = 30.0;
+	double ElevatedPickupReachCm = 85.0;
+	double ElevatedPickupMinHeightCm = 45.0;
+	double PickupShoulderHeightCm = 140.0;
+	double ContactReachCm = 5.0;
+	static FString DefaultPath();
+	void Load();
+};
+
+/** One map.dat placement (Content/Dink/Data/Gameplay/placements.csv). */
+struct DINKNARRATIVE_API FDinkPlacementInfo
+{
+	FDinkOriginId Origin;
+	/** 0 background, 1 live sprite, 2 hardness only. Only type 1 becomes a sprite with a script (place_sprites_game). */
+	int32 Type = 0;
+	/** Engine x (map x + the 20 px status bar) and y. */
+	int32 X = 0;
+	int32 Y = 0;
+	int32 Seq = 0;
+	int32 Frame = 0;
+	int32 Size = 100;
+	int32 Vision = 0;
+	int32 Brain = 0;
+	FName Script;
+	int32 Hitpoints = 0;
+	int32 Strength = 0;
+	int32 Defense = 0;
+	int32 Exp = 0;
+	int32 NoHit = 0;
+	int32 TouchDamage = 0;
+	int32 Speed = 0;
+	int32 Timing = 0;
+	int32 BaseWalk = -1;
+	int32 BaseIdle = -1;
+	int32 BaseAttack = -1;
+	int32 BaseHit = 0;
+	int32 BaseDie = -1;
+	int32 Hard = 0;
+	int32 Sound = 0;
+};
+
+/** The original's per-frame and per-placement data (Scripts/sync_gameplay_data.py; never hand-edited). */
+class DINKNARRATIVE_API FDinkGameplayData
+{
+public:
+	/** Loads frames.csv and placements.csv from Content/Dink/Data/Gameplay. */
+	bool Load(FString* OutError = nullptr);
+	bool IsLoaded() const { return Frames.Num() > 0 && Placements.Num() > 0; }
+	static FString GetDataPath(const TCHAR* File);
+
+	const FDinkFrameInfo* FindFrame(int32 Seq, int32 Frame) const;
+	/** g_seq[Seq].active: dink.ini defines the sequence. */
+	bool SeqExists(int32 Seq) const { return Seq > 0 && FrameCounts.Contains(Seq); }
+	/** g_seq[Seq].frame[Frame] as the animator reads it: 1 a picture, 0 end of the animation, -1 wrap to frame 1. */
+	int32 FrameCode(int32 Seq, int32 Frame) const;
+	/** Delay of a frame (dink.ini set_frame_delay or the sequence default), ms. */
+	int32 FrameDelay(int32 Seq, int32 Frame) const;
+	/** The screen's hardness for a &vision value (falls back to vision 0); null if the screen has no data. Loaded on first use. */
+	const FDinkHardnessMap* GetHardness(int32 Screen, int32 Vision) const;
+	/** Tests: replace a screen's hardness (all visions). Null removes the override. */
+	void SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map);
+	/** Time from the start of Seq until its first special (hit) frame shows; INDEX_NONE if it has none. */
+	int32 HitFrameDelayMs(int32 Seq) const;
+	const FDinkPlacementInfo* FindPlacement(const FDinkOriginId& Origin) const;
+	/** Placements of a screen in placement order. */
+	TArray<const FDinkPlacementInfo*> GetPlacementsOnScreen(int32 Screen) const;
+	/** The screen's base script (map.dat), None if it has none. */
+	FName GetBaseScript(int32 Screen) const { return BaseScripts.FindRef(Screen); }
+
+	int32 NumFrames() const { return Frames.Num(); }
+	int32 NumPlacements() const { return Placements.Num(); }
+
+private:
+	static int64 Key(int32 Seq, int32 Frame) { return static_cast<int64>(Seq) * 1000 + Frame; }
+	TMap<int64, FDinkFrameInfo> Frames;
+	TMap<int32, int32> FrameCounts;
+	TMap<FDinkOriginId, FDinkPlacementInfo> Placements;
+	TMap<int32, TArray<FDinkOriginId>> ByScreen;
+	TMap<int32, FName> BaseScripts;
+	/** Screen -> vision -> map (lazy; the files are ~9 KB each). */
+	mutable TMap<int32, TMap<int32, TSharedPtr<FDinkHardnessMap>>> Hardness;
+	TMap<int32, TSharedPtr<FDinkHardnessMap>> HardnessOverrides;
+};
+
+/** A melee hit waiting for its attack animation's special frame. */
+struct DINKNARRATIVE_API FDinkPendingHit
+{
+	int32 Sprite = 0;
+	int32 Seq = 0;
+	double AtMs = 0.0;
+};
+
+/**
+ * The original engine's gameplay rules that decide WHEN a script procedure runs, ported from
+ * source/dink/dink.cpp onto the director's sprite records (engine pixel space, so they work the same
+ * for greybox actors and for virtual sprites in headless tests):
+ *
+ *  - hit:   run_through_tag_list (D:15460-15596), when an attack animation reaches its special frame;
+ *           every live sprite whose hardbox (+5/+5/+5/+10) holds the attacker's position after the
+ *           28 px (or sp_range) forward reach; melee damage = DinkRules::ResolveMeleeHit; sets
+ *           &missle_source, &enemy_sprite, last_hit and runs `hit`.
+ *  - touch: run_through_touch_damage_list (D:15629-15680) for Dink every tick: touch_damage -1 only
+ *           runs `touch` (again every tick until the script clears it), > 0 hurts Dink (defense rule)
+ *           with 400 ms immunity and runs `touch`.
+ *  - push:  walking into hardness in a cardinal direction for 600 ms (D:13526, 14768), then `push`
+ *           of scripted sprites whose hardbox +2 holds Dink (run_through_tag_list_push, D:15600).
+ *  - damage and death: hurt_thing (D:6656) accumulates damage; each tick the sprite's brain applies it
+ *           (pill_brain 9, dragon_brain 10, people_brain 16: hitpoints, `die`, corpse, exp through
+ *           add_exp only when Dink dealt the last hit; duck_brain 3: `die` then `duckdie`;
+ *           pig_brain 4); Dink loses &life.
+ *  - status (every 100 ms while &update_status is 1, D:5836-5963): spell charge, level-up (lraise
+ *           `raise`), Dink's death (dinfo `die`).
+ *  - items and magic: arm_weapon / add_item / kill_cur_item ... run the item scripts' arm, disarm,
+ *           pickup, use, holdingdrop and drop procedures (D:1480-1600, 6915-6955, 7850-7870, 14819, 14941).
+ *  - brains (ThinkSprite, D:16790-16880, in DinkBrains.cpp): every non-Dink sprite thinks at the engine's
+ *           60 Hz step, gated by sp_timing, and runs its brain: 0 none (follow), 2 bounce, 3 duck, 4 pig,
+ *           5/6/7 play once / repeat / play once and vanish, 9 monster (diagonal wander, chase sp_target,
+ *           melee with base_attack), 10 dragon (cardinal wander, script ATTACK), 11/17 missile (hardness:
+ *           walls stop it, low hardness 2 lets flyers pass, sprite hardboxes run `hit`/`damage`),
+ *           12 scale and vanish, 15 shadow, 16 people (sit / walk). Movement is in screen pixels against
+ *           the screen's hardness map; the animator advances seq/frame from dink.ini and lands a melee hit on
+ *           a special frame (run_through_tag_list). Scripted move/move_stop (the director) take priority.
+ *  - the 3D adaptation layer (Adaptation, off unless enabled): telegraphed wind-up, attacker cap.
+ *
+ * One seedable random source stands in for the C library's rand(): DinkC random(), the combat rolls and
+ * set_callback_random draw from it in call order.
+ */
+UCLASS()
+class DINKNARRATIVE_API UDinkGameplay : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	void Init(UDinkStorySubsystem* InStory);
+	const FDinkGameplayData& GetData() const { return Data; }
+	bool HasData() const { return Data.IsLoaded(); }
+
+	// ---- Random ----
+
+	/** Reseeds the default stream (and drops an injected source). */
+	void SetRandomSeed(int32 Seed);
+	/** Injects a source (tests: FDinkScriptedRandomSource); null restores the seeded stream. */
+	void SetRandomSource(TSharedPtr<IDinkRandomSource> Source);
+	IDinkRandomSource& Rng();
+	/** DinkC random(range, base): (rand() % range) + base; base when range is 0 (dink.cpp "random"). */
+	int32 Random(int32 Range, int32 Base);
+	/** rand() % N for engine-internal draws (set_callback_random timers). */
+	int32 RandomModulo(int32 N) { return N > 0 ? Rng().RandomModulo(N) : 0; }
+
+	// ---- Sprite data ----
+
+	/** Copies map.dat's live-sprite fields onto a placement sprite (place_sprites_game, D:6080-6110). */
+	void InitPlacementSprite(FDinkSprite& Sprite) const;
+	/** Absolute hardbox of a sprite (getpic(): its current sequence/frame); false if no picture data. */
+	bool GetHardbox(const FDinkSprite& Sprite, int32& L, int32& T, int32& R, int32& B) const;
+	/** Script set sp_seq: a sequence with a hit frame schedules that sprite's melee test. */
+	void OnSequenceSet(int32 Handle, int32 Seq);
+
+	// ---- Player actions (keys, console, tests) ----
+
+	/** Attack key: the armed weapon's `use` (D:14819); the hit lands on the animation's hit frame. False if nothing ran. */
+	bool PlayerAttack();
+	/** Magic key: the armed spell's `use` when &magic_level >= &magic_cost (D:14941). */
+	bool PlayerCastMagic();
+	/** Inventory screen stand-in: arm item slot N (1-based, &cur_weapon) as arm_weapon does. */
+	bool ArmItemSlot(int32 Slot);
+	/** Inventory screen stand-in: arm spell slot N (1-based, &cur_magic) as arm_magic does. */
+	bool ArmMagicSlot(int32 Slot);
+	/** Per frame from the player controller: Dink walks into hardness (not low hardness) in a numpad direction. */
+	void UpdatePush(bool bBlockedByHardness, int32 Dir, double NowMs);
+	/** New game: runs newgame.c `main` (fists added and armed, as the start button's start-1.c does). */
+	void StartNewGame();
+	/** Dink's pixel position and screen from the player pawn (PIE); nothing for a virtual Dink. */
+	void SyncDinkFromActor();
+	/**
+	 * SyncDinkFromActor plus Dink's dir from the pawn's facing (the original's dir is where Dink faces). The attack,
+	 * magic and talk keys call it before their scripts read sp_dir(1, -1); nothing for a virtual Dink.
+	 */
+	void SyncDinkFacingFromActor();
+
+	// ---- Engine ports ----
+
+	void RunThroughTagList(int32 Attacker);
+	void RunThroughTouchDamageList(int32 H);
+	void RunThroughTagListPush(int32 H);
+	/**
+	 * run_through_tag_list_talk (D:14171): the first sprite (handle order) whose hardbox + 10 px, plus 50 px
+	 * (35 up/down) in Dink's facing direction, holds Dink and whose script has `talk`. 0 if none.
+	 */
+	int32 FindTalkTarget(int32 H);
+	/** hurt_thing: defense rule, adds to the sprite's pending damage. Returns the damage added. */
+	int32 HurtThing(int32 Target, int32 Damage);
+	/** add_exp: only when Dink dealt the last hit unless bAlways (the add_exp command). */
+	void AddExp(int32 Amount, int32 Sprite, bool bAlways = false);
+	/** Applies pending damage the way each sprite's brain does on its next think. */
+	void ProcessDamage();
+	/** One 100 ms status update (D:5836): magic charge, level-up, Dink's death. */
+	void StatusTick();
+
+	// ---- Item scripts (commands) ----
+
+	/** add_item / add_magic: inventory slot, then the item script's `pickup` (D:6915-6955). */
+	int32 AddItem(FName Script, bool bMagic);
+	/** arm_weapon / arm_magic: `disarm` of the old script, `arm` of the slot's script (D:7850-7870). */
+	void ArmWeapon();
+	void ArmMagic();
+	/** kill_cur_item (D:1480): disarm, then holdingdrop and drop of the item. */
+	void KillCurItem();
+	/** kill_this_item (D:1505): drop of that item (holdingdrop and disarm first if armed). */
+	void KillThisItem(FName Script);
+	int32 GetWeaponInstance() const { return WeaponInstance; }
+	int32 GetMagicInstance() const { return MagicInstance; }
+
+	// ---- Brains (DinkBrains.cpp) ----
+
+	/** Run the brains at all (on by default; tests of other rules may switch them off). */
+	bool bBrainsEnabled = true;
+	/** The 3D adaptation layer (loaded from Content/Dink/Data/AI/adaptation.ini by Init). */
+	FDinkAdaptationSettings Adaptation;
+	/** One engine frame (the original is locked at 60 fps, D:17300). */
+	static constexpr double EngineFrameMs = 1000.0 / 60.0;
+	/** Advances the brains by whole engine frames (60 Hz) of game time. */
+	void TickBrains(double DeltaMs);
+	/**
+	 * ThinkSprite (D:16790) for one sprite at engine time TickMs: the sp_timing gate, its brain, the hardness
+	 * check of the move it made and its animation (with the special-frame hit). Public so a State Tree task can
+	 * drive one sprite; the brains are plain C++ on the director's sprite records.
+	 */
+	void ThinkSprite(int32 Handle, double TickMs);
+	/** get_hard on Screen for engine pixel X (with the 20 px bar), Y; removed placements' hardboxes read as 0. */
+	int32 GetHard(int32 Screen, int32 X, int32 Y) const;
+	/** get_distance_and_dir (D:12405, smooth_follow off as in the base game): the larger axis distance; cardinal dir. */
+	int32 GetDistanceAndDir(int32 H, int32 H1, int32& OutDir) const;
+	/** changedir (D:5596): mx/my from speed and dir, the walk sequence base+dir with the engine's fallbacks. */
+	void ChangeDir(FDinkSprite& S, int32 Dir, int32 Base);
+	/** automove + move (D:12214, 13520): steps mx/my one pixel at a time, recording the path. */
+	void AutoMove(FDinkSprite& S);
+	/** check_if_move_is_legal (D:13416): the first hard pixel on the path stops the sprite before it; returns its code. */
+	int32 CheckIfMoveIsLegal(FDinkSprite& S);
+	/** Sprites (other than Except) winding up or in an attack animation against Target. */
+	int32 CountAttackers(int32 Target, int32 Except) const;
+	/** screenlock(n) (D:10083): the flag, the greybox barriers of Dink's screen; a screen load clears it (D:1016). */
+	void SetScreenLock(bool bLocked);
+	bool IsScreenLocked() const;
+	/** did_player_cross_screen (D:14049): false while the screen is locked (Dink is clamped at the edge). */
+	bool CanDinkLeaveScreen() const { return !IsScreenLocked(); }
+	/** Engine time of the last brain frame. */
+	double GetBrainClockMs() const { return BrainClockMs; }
+
+	// ---- Time ----
+
+	/** Called by the story subsystem every tick before scripts step. */
+	void Tick(double DeltaMs, double NowMs);
+	/** Lands every pending hit now (instant mode). */
+	void FlushPendingHits();
+
+	// ---- Save ----
+	TSharedPtr<FJsonObject> SaveState() const;
+	void LoadState(const TSharedPtr<FJsonObject>& State);
+	void Reset();
+
+	/** Status updates done (tests). */
+	int64 StatusTicks = 0;
+	/** Gameplay events in order ("hit S002_P21 by 1", "die 7", "drop 9 heart", ...), for tests and dink.Story. */
+	TArray<FString> Events;
+
+
+private:
+	UDinkDirector* Director() const;
+	TArray<int32> LiveSprites(int32 Screen) const;
+	void RunProc(int32 Handle, FName Proc);
+	void RunInstanceProc(int32 InstanceId, FName Proc);
+	int32 NewItemInstance(FName Script);
+	void Die(int32 Handle);
+	void AddKillSprite(int32 Handle);
+	// Brains (DinkBrains.cpp)
+	void Animate(FDinkSprite& S, double TickMs);
+	void NoBrain(FDinkSprite& S);
+	void BounceBrain(FDinkSprite& S);
+	void DuckBrain(FDinkSprite& S, double TickMs);
+	void PigBrain(FDinkSprite& S, double TickMs);
+	void OneTimeBrain(FDinkSprite& S, bool bForReal);
+	void RepeatBrain(FDinkSprite& S);
+	void PillBrain(FDinkSprite& S, double TickMs);
+	void DragonBrain(FDinkSprite& S, double TickMs);
+	void MissileBrain(FDinkSprite& S, bool bRepeat);
+	void ScaleBrain(FDinkSprite& S);
+	void ShadowBrain(FDinkSprite& S);
+	void PeopleBrain(FDinkSprite& S, double TickMs);
+	void FindAction(FDinkSprite& S, double TickMs);
+	bool ProcessFollow(FDinkSprite& S);
+	void ProcessTarget(FDinkSprite& S);
+	int32 AutoReverse(FDinkSprite& S);
+	int32 AutoReverseDiag(FDinkSprite& S);
+	/** Adaptation layer: may this sprite start its attack now? Handles the wind-up and the attacker cap. */
+	bool AdaptationAllowsAttack(FDinkSprite& S, int32 Target, int32& InOutDir, double TickMs);
+	void RunAttackScript(FDinkSprite& S);
+	enum class EAuthoredInteraction { Hit, Talk, Touch, Push };
+	bool UsesAuthoredGeometry(const FDinkSprite& Attacker, const FDinkSprite& Target) const;
+	bool AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FIntPoint& From, const FIntPoint& To, FQuat* OutFacing = nullptr) const;
+	bool AuthoredGeometryMatches(const FDinkSprite& Attacker, const FDinkSprite& Target, EAuthoredInteraction Kind, double* OutDistanceCm = nullptr) const;
+	FDinkAuthoredInteractionSettings AuthoredInteraction;
+	int32 CapsuleMarginPixels(const FDinkSprite& Dink) const;
+	void Note(const FString& E);
+
+	void SetFact(const TCHAR* Name, int32 Value);
+	int32 GetFact(const TCHAR* Name) const;
+	bool IsFrozenDink() const;
+
+	UPROPERTY()
+	TObjectPtr<UDinkStorySubsystem> Story;
+
+	FDinkGameplayData Data;
+	TSharedPtr<IDinkRandomSource> RandomSource;
+	/** The seeded stream (RandomSource points at it unless a test injected another source). */
+	TSharedPtr<FDinkStreamRandomSource> StreamSource;
+	int32 Seed = 1997;
+	int32 WeaponInstance = 0;
+	int32 MagicInstance = 0;
+	int32 DeathInstance = 0;
+	TArray<FDinkPendingHit> PendingHits;
+	double NowMs = 0.0;
+	double NextStatusMs = 100.0;
+	bool bPushActive = false;
+	int32 PushDir = 0;
+	double PushStartMs = 0.0;
+	/** Brain clock: engine frames run at BrainClockMs, BrainCarryMs of game time not yet used. */
+	double BrainClockMs = 0.0;
+	double BrainCarryMs = 0.0;
+	/** moveman / lpx / lpy of the sprite thinking now: the pixels its last automove passed (index 0 = start). */
+	TArray<FIntPoint> MovePath;
+};

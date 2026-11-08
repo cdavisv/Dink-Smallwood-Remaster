@@ -1,0 +1,40 @@
+{
+  "MI_PineV3_Bark": {
+    "base_color": [
+      0.055,
+      0.029,
+      0.014
+    ],
+    "roughness": 0.86,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "normal_strength": 0.5,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_PineV3_Bark_BC.png",
+      "N": "Textures/T_PineV3_Bark_N.png",
+      "ORM": "Textures/T_PineV3_Bark_ORM.png"
+    }
+  },
+  "MI_PineV3_Sprays": {
+    "base_color": [
+      0.025,
+      0.055,
+      0.028
+    ],
+    "roughness": 0.79,
+    "metallic": 0,
+    "masked": true,
+    "two_sided": true,
+    "alpha_clip": 0.12,
+    "normal_strength": 0.5,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_PineV3_Sprays_BC.png",
+      "N": "Textures/T_PineV3_Sprays_N.png",
+      "ORM": "Textures/T_PineV3_Sprays_ORM.png"
+    },
+    "preserve_alpha_coverage": true
+  }
+}

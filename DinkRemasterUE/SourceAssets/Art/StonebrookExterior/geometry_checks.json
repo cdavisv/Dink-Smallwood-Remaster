@@ -1,0 +1,96 @@
+{
+  "tool": "actual cottage mesh BVH doorway check",
+  "passed": true,
+  "checks": [
+    {
+      "x_m": 4.7,
+      "height_m": 0.4,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 4.7,
+      "height_m": 0.9,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 4.7,
+      "height_m": 1.3,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 4.7,
+      "height_m": 1.8,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 4.7,
+      "height_m": 2.25,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.3,
+      "height_m": 0.4,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.3,
+      "height_m": 0.9,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.3,
+      "height_m": 1.3,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.3,
+      "height_m": 1.8,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.3,
+      "height_m": 2.25,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.9,
+      "height_m": 0.4,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.9,
+      "height_m": 0.9,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.9,
+      "height_m": 1.3,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.9,
+      "height_m": 1.8,
+      "clear": true,
+      "hit": null
+    },
+    {
+      "x_m": 5.9,
+      "height_m": 2.25,
+      "clear": true,
+      "hit": null
+    }
+  ]
+}

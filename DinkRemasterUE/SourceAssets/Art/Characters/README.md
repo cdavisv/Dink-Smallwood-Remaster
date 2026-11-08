@@ -1,0 +1,45 @@
+# Stonebrook character art candidates
+
+The mother is an anatomical CC0 MakeHuman human with original project-authored rural clothing, rather than a sprite card or primitive mannequin. `SK_Mother.blend` contains the editable, metre-scale source, four weighted LODs, five material slots and a unique-UV 4096 atlas. The reference robot geometry has been removed from both the delivered source and exports. `character_manifest.json` drives the separate Unreal import bridge.
+
+## Sources and licences
+
+MakeHuman's base anatomy, phenotype targets, skin, eyes, hair, brows and lashes are CC0 assets distributed by the official MakeHuman Community project. MPFB is GPLv3 software; its output is unrestricted and the software licence does not turn generated character art into GPL assets. See `Provenance/MakeHuman_CC0.txt`, `MPFB_LICENSE.md`, and `makehuman_sources.json` for retained notices, exact download URL, source revision and archive hash. `ThirdParty/MakeHuman` retains the selected CC0 source files. Wardrobe geometry and procedural wardrobe textures are original project work.
+
+Primary references: [MPFB asset licence](https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.ASSETS.md), [software licence](https://github.com/makehumancommunity/mpfb2/blob/master/LICENSE.md), [official CC0 system pack](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html).
+
+The Epic Manny reference bone hierarchy and rest transforms are separate Unreal project content used for animation compatibility. They are **not** CC0 authored anatomy. The temporary reference mesh is used only for surface-weight projection and is removed before source delivery. Epic animation/skeleton assets stay in their existing project locations and retain their own terms.
+
+## Reproducible pipeline
+
+Use Blender 5.2.2 LTS and official MPFB revision recorded in provenance. Install MPFB at `/tmp/dink-mpfb2` and unpack the official pack into `/tmp/dink-mpfb-user/data`. The current profile scripts use these explicit tool-cache paths; no desktop preferences are saved. The mother profile inputs/intermediates live in `/tmp/dink-art` and `Working`, and the corresponding Dink scripts retain their own profile paths. Run base creation, art construction, surface-weight transfer, atlas bake and finalization in that order. `Tools` contains the checked-in deterministic scripts; the source `.blend` and exports are the deliverable checkpoints. The uncommitted temporary Manny reference file is supplied from the project's existing engine mesh.
+
+1. Create the MPFB anatomical body and fit the selected CC0 eyes, hair, brows and lashes. Bake phenotype targets and remove helper geometry.
+2. Fit anatomical joint landmarks smoothly to the reference rest pose, author garments over the body surface, remove covered anatomy and assign five material families.
+3. Project reference skin weights, normalize to at most four influences, and add garment-specific weighting where needed. Remove reference robot geometry.
+4. Bake the materials to unique-UV BC/normal/ORM atlases. Hair/brow alpha remains in BC alpha. The Unreal bridge enables masked, two-sided shading only for those slots.
+5. Generate four LODs, validate using the companion Blender asset validator, save metre-scale `.blend`, then export each LOD to an individual FBX. Exporting sibling LOD objects together does not create actual Unreal LODs; the bridge explicitly imports each LOD.
+
+## Exact shared skeleton gate
+
+A plain Blender FBX roundtrip was insufficient: source-metre exports produced root scale 100 and child translations 100 times too small. A rotated synthetic root also caused six local rest transforms to differ by 90 degrees. The working recipe was verified against all 89 native UE reference bones before skin delivery:
+
+* Import with automatic bone orientation disabled. Detach the imported scaled empty while preserving global rest transforms, and apply coherent object transforms.
+* Restore the explicit `root` edit bone with identity basis: head `(0,0,0)`, tail `(0,0.1,0)`, roll zero. Preserve every other bone's global rest matrix when parenting the former top-level bones.
+* Keep the editable source in metres with object scale one. Name the armature wrapper exactly `Armature` so Unreal strips it instead of creating another root.
+* In the temporary export process only, multiply mesh vertex positions and edit-bone head/tail positions by 100, set scene unit scale `.01`, and export `FBX_SCALE_ALL`. The resulting FBX centimetre unit header is 1; no leaf bones or animation bake are added.
+* Preserve the original 89-bone names/hierarchy. The bridge first imports independently and compares every parent, local translation, local rotation and local scale before assigning the existing `/Game/Characters/Mannequins/Meshes/SK_Mannequin` skeleton. The passing reference comparison had zero differences at 0.1 cm translation, 0.002 rad rotation and 0.001 scale tolerances.
+
+Mother production import passed 89 matching bones, four actual skeletal LODs, five material slots and physical bounds. A generated Physics Asset is assigned in Unreal; ordinary movement uses the authored gameplay capsule. Import evidence is `Saved/Art/character_import_report.json`. The source rig report separately confirms no reference mesh, no unweighted vertices and maximum four influences.
+
+## Candidate quality and limits
+
+The latest mother preview has a continuous crew neckline, conforming waist apron and belt, closed leather footwear, realistic anatomical face and fine woven materials. This is a reviewable art candidate: some apron fold tips remain angular and the bodice fit could use further tailoring. Deformation and lighting must be judged in the live game as well as the Blender portrait. Source validator warnings are retained in `mother_validation.json`, including intentional thin/open hair and cloth boundaries and low-LOD wire topology; the validator reports zero errors. Source and derived-file hashes are recorded in the project asset ledger. No mother exports should be changed during the current Unreal QA session.
+
+## Dink hero candidate
+
+`Dink/SK_Dink.blend` uses a distinct young adult male phenotype and the official CC0 `short02` hairstyle and young male skin. His original wardrobe is a rust-red linen shirt, tan wool trousers, a conforming dark leather belt and modeled boots with closed soles and separate shafts. The trouser selection is restricted to the lower-body region so his hands remain skin. No static mannequin is used as the player art.
+
+Run `Tools/create_dink_base.py`, `build_dink_art.py`, `rig_dink.py`, `bake_dink_atlas.py`, and `finalize_dink.py` in separate Blender background processes. The finalizer merges Dink into the shared manifest without changing mother's replacement mapping; `player.mesh` points to `SK_Dink`, imported to `/Game/Dink/Hero`. Character atlas materials/textures share the `/Game/Dink/Materials/Characters` and `/Game/Dink/Textures/Characters` destinations with distinct Dink names. The temporary FBX export disables material node graphs after saving the complete source `.blend`: all runtime PNGs are supplied explicitly by the manifest, avoiding meaningless embedded texture paths.
+
+The revised wardrobe adds a split neckline with continuous sewn binding, cloth drape, fitted turned cuffs, a physically modeled iron buckle with metallic ORM data, and leather boot welts. Skin under the neckline is retained and cloth stays outside it. The revised skin checkpoint has 31,689 triangles before microscopic-face cleanup, five slots, 89 bones, at most four influences and zero unweighted fallback vertices. Final LOD/validation reports are authoritative. Fine tailoring and surface wear remain candidate polish; live locomotion QA is required before art approval.

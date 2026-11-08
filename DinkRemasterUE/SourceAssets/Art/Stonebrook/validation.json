@@ -1,0 +1,802 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 14,
+    "assets_passed": 14,
+    "errors": 0,
+    "warnings": 12
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Table_Oak_01",
+      "class": "prop",
+      "collection": "SM_Table_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 2264
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "blender_max_cm": [
+          132.5,
+          74.9,
+          90.6
+        ],
+        "size_cm": [
+          265.0,
+          149.8,
+          90.6
+        ],
+        "unreal_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "unreal_max_cm": [
+          132.5,
+          74.9,
+          90.6
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Table_Oak_01",
+          "message": "mesh data 'SM_Table_Oak_01_Mesh' differs from object name 'SM_Table_Oak_01'",
+          "object": "SM_Table_Oak_01"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Table_Oak_01",
+          "message": "reaching 512 px/m with this UV layout needs a 2759 px texture, above the 2048 px cap for prop: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Table_Oak_01",
+          "data": {
+            "needed_px": 2760,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Bed_Oak_01",
+      "class": "prop",
+      "collection": "SM_Bed_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 7744
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ],
+        "size_cm": [
+          251.0,
+          137.0,
+          112.0
+        ],
+        "unreal_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Bed_Oak_01",
+          "message": "mesh data 'SM_Bed_Oak_01_Mesh' differs from object name 'SM_Bed_Oak_01'",
+          "object": "SM_Bed_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Bed_Oak_01",
+          "message": "LOD0 has 7744 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Bed_Oak_01",
+          "data": {
+            "tris": 7744,
+            "target": 6000
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Bed_Oak_01",
+          "message": "reaching 512 px/m with this UV layout needs a 3361 px texture, above the 2048 px cap for prop: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Bed_Oak_01",
+          "data": {
+            "needed_px": 3362,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Chair_Oak_01",
+      "class": "prop",
+      "collection": "SM_Chair_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 1728
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "blender_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ],
+        "size_cm": [
+          65.0,
+          53.75,
+          100.5
+        ],
+        "unreal_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "unreal_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Chair_Oak_01",
+          "message": "mesh data 'SM_Chair_Oak_01_Mesh' differs from object name 'SM_Chair_Oak_01'",
+          "object": "SM_Chair_Oak_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Fireplace_Fieldstone_01",
+      "class": "prop_large",
+      "collection": "SM_Fireplace_Fieldstone_01",
+      "tris_per_lod": {
+        "LOD0": 13216
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -201.0,
+          -77.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          201.0,
+          77.0,
+          414.5
+        ],
+        "size_cm": [
+          402.0,
+          154.0,
+          414.5
+        ],
+        "unreal_min_cm": [
+          -201.0,
+          -77.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          201.0,
+          77.0,
+          414.5
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Fireplace_Fieldstone_01",
+          "message": "mesh data 'SM_Fireplace_Fieldstone_01_Mesh' differs from object name 'SM_Fireplace_Fieldstone_01'",
+          "object": "SM_Fireplace_Fieldstone_01"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Fireplace_Fieldstone_01",
+          "message": "reaching 256 px/m with this UV layout needs a 5157 px texture, above the 4096 px cap for prop_large: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Fireplace_Fieldstone_01",
+          "data": {
+            "needed_px": 5157,
+            "target": 256
+          }
+        },
+        {
+          "code": "COLLISION_BOUNDS",
+          "severity": "warning",
+          "asset": "SM_Fireplace_Fieldstone_01",
+          "message": "collision extends 26 cm beyond the render mesh bounds",
+          "object": "UCX_SM_Fireplace_Fieldstone_01_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Basket_Wicker_01",
+      "class": "prop",
+      "collection": "SM_Basket_Wicker_01",
+      "tris_per_lod": {
+        "LOD0": 9692
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "blender_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ],
+        "size_cm": [
+          114.4,
+          94.2,
+          67.2
+        ],
+        "unreal_min_cm": [
+          -57.2,
+          -47.1,
+          0.0
+        ],
+        "unreal_max_cm": [
+          57.2,
+          47.1,
+          67.2
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "mesh data 'SM_Basket_Wicker_01_Mesh' differs from object name 'SM_Basket_Wicker_01'",
+          "object": "SM_Basket_Wicker_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "LOD0 has 9692 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Basket_Wicker_01",
+          "data": {
+            "tris": 9692,
+            "target": 6000
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Basket_Wicker_01",
+          "message": "reaching 512 px/m with this UV layout needs a 3291 px texture, above the 2048 px cap for prop: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Basket_Wicker_01",
+          "data": {
+            "needed_px": 3292,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_FeedSack_Jute_01",
+      "class": "prop",
+      "collection": "SM_FeedSack_Jute_01",
+      "tris_per_lod": {
+        "LOD0": 2588
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -36.141,
+          -27.734,
+          0.0
+        ],
+        "blender_max_cm": [
+          36.141,
+          27.734,
+          75.0
+        ],
+        "size_cm": [
+          72.283,
+          55.469,
+          75.0
+        ],
+        "unreal_min_cm": [
+          -36.141,
+          -27.734,
+          0.0
+        ],
+        "unreal_max_cm": [
+          36.141,
+          27.734,
+          75.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_FeedSack_Jute_01",
+          "message": "mesh data 'SM_FeedSack_Jute_01_Mesh' differs from object name 'SM_FeedSack_Jute_01'",
+          "object": "SM_FeedSack_Jute_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_2m_01",
+      "class": "kit_floor",
+      "collection": "SM_Floor_Oak_2m_01",
+      "tris_per_lod": {
+        "LOD0": 2624
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Floor_Oak_2m_01",
+          "message": "mesh data 'SM_Floor_Oak_2m_01_Mesh' differs from object name 'SM_Floor_Oak_2m_01'",
+          "object": "SM_Floor_Oak_2m_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_2m_01",
+          "message": "LOD0 has 2624 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Floor_Oak_2m_01",
+          "data": {
+            "tris": 2624,
+            "target": 1000
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Wall_Limewash_2m_01",
+      "class": "kit_wall",
+      "collection": "SM_Wall_Limewash_2m_01",
+      "tris_per_lod": {
+        "LOD0": 864
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -19.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          19.0,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          38.0,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -19.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          19.0,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Wall_Limewash_2m_01",
+          "message": "mesh data 'SM_Wall_Limewash_2m_01_Mesh' differs from object name 'SM_Wall_Limewash_2m_01'",
+          "object": "SM_Wall_Limewash_2m_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Doorway_Limewash_4m_01",
+      "class": "kit_piece",
+      "collection": "SM_Doorway_Limewash_4m_01",
+      "tris_per_lod": {
+        "LOD0": 972
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -16.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          400.0,
+          16.0,
+          350.0
+        ],
+        "size_cm": [
+          400.0,
+          32.0,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -16.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          400.0,
+          16.0,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Doorway_Limewash_4m_01",
+          "message": "mesh data 'SM_Doorway_Limewash_4m_01_Mesh' differs from object name 'SM_Doorway_Limewash_4m_01'",
+          "object": "SM_Doorway_Limewash_4m_01"
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Doorway_Limewash_4m_01",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Doorway_Limewash_4m_01",
+          "data": {
+            "vertices": 4
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Ceiling_Oak_2m_01",
+      "class": "kit_ceiling",
+      "collection": "SM_Ceiling_Oak_2m_01",
+      "tris_per_lod": {
+        "LOD0": 972
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          199.7,
+          200.0,
+          20.0
+        ],
+        "size_cm": [
+          199.7,
+          200.0,
+          20.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          199.7,
+          -0.0,
+          20.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Ceiling_Oak_2m_01",
+          "message": "mesh data 'SM_Ceiling_Oak_2m_01_Mesh' differs from object name 'SM_Ceiling_Oak_2m_01'",
+          "object": "SM_Ceiling_Oak_2m_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Window_Limewash_2m_01",
+      "class": "kit_wall",
+      "collection": "SM_Window_Limewash_2m_01",
+      "tris_per_lod": {
+        "LOD0": 1296
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -21.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          21.0,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          42.0,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -21.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          21.0,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Window_Limewash_2m_01",
+          "message": "mesh data 'SM_Window_Limewash_2m_01_Mesh' differs from object name 'SM_Window_Limewash_2m_01'",
+          "object": "SM_Window_Limewash_2m_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Barrel_Oak_01",
+      "class": "prop",
+      "collection": "SM_Barrel_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 10472
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "blender_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ],
+        "size_cm": [
+          83.947,
+          84.46,
+          100.75
+        ],
+        "unreal_min_cm": [
+          -41.973,
+          -42.23,
+          0.0
+        ],
+        "unreal_max_cm": [
+          41.973,
+          42.23,
+          100.75
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Barrel_Oak_01",
+          "message": "mesh data 'SM_Barrel_Oak_01_Mesh' differs from object name 'SM_Barrel_Oak_01'",
+          "object": "SM_Barrel_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Barrel_Oak_01",
+          "message": "LOD0 has 10472 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Barrel_Oak_01",
+          "data": {
+            "tris": 10472,
+            "target": 6000
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Barrel_Oak_01",
+          "message": "reaching 512 px/m with this UV layout needs a 2924 px texture, above the 2048 px cap for prop: use more UV tiles/materials or accept a lower density (set dink_tex_px to declare it)",
+          "object": "SM_Barrel_Oak_01",
+          "data": {
+            "needed_px": 2925,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Candle_Iron_01",
+      "class": "prop_small",
+      "collection": "SM_Candle_Iron_01",
+      "tris_per_lod": {
+        "LOD0": 1020
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ],
+        "size_cm": [
+          20.0,
+          20.0,
+          45.05
+        ],
+        "unreal_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Candle_Iron_01",
+          "message": "mesh data 'SM_Candle_Iron_01_Mesh' differs from object name 'SM_Candle_Iron_01'",
+          "object": "SM_Candle_Iron_01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Pie_Rustic_01",
+      "class": "prop_small",
+      "collection": "SM_Pie_Rustic_01",
+      "tris_per_lod": {
+        "LOD0": 4196
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ],
+        "size_cm": [
+          49.0,
+          49.0,
+          11.9
+        ],
+        "unreal_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Pie_Rustic_01",
+          "message": "mesh data 'SM_Pie_Rustic_01_Mesh' differs from object name 'SM_Pie_Rustic_01'",
+          "object": "SM_Pie_Rustic_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Pie_Rustic_01",
+          "message": "LOD0 has 4196 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_Pie_Rustic_01",
+          "data": {
+            "tris": 4196,
+            "target": 1500
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

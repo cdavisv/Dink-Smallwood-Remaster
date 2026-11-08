@@ -1,0 +1,2619 @@
+{
+  "passed_with_documented_exceptions": true,
+  "raw_summary": {
+    "assets": 193,
+    "assets_passed": 51,
+    "errors": 207,
+    "warnings": 4
+  },
+  "waived_errors": [
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_00_01_00",
+      "message": "x extent 4.114 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_00_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_00_02_00",
+      "message": "x extent 2.229 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_00_02_00",
+      "message": "y extent 1.377 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_01_00_00",
+      "message": "y extent 5.958 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_01_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_01_02_00",
+      "message": "y extent 1.383 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_01_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_01_04_00",
+      "message": "x extent 4.438 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_01_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_01_04_00",
+      "message": "y extent 1.552 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_01_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_02_00_00",
+      "message": "y extent 5.917 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_02_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_02_02_00",
+      "message": "y extent 1.390 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_02_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_02_04_00",
+      "message": "y extent 1.557 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_02_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_03_00_00",
+      "message": "y extent 5.875 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_03_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_03_02_00",
+      "message": "y extent 1.396 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_03_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_03_04_00",
+      "message": "y extent 1.553 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_03_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_00_00",
+      "message": "y extent 4.648 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_01_00",
+      "message": "x extent 1.586 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_01_00",
+      "message": "y extent 5.296 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_02_00",
+      "message": "y extent 1.398 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_03_00",
+      "message": "x extent 5.332 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_03_00",
+      "message": "y extent 0.020 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_04_04_00",
+      "message": "y extent 1.529 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_04_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_05_00_00",
+      "message": "y extent 3.752 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_05_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_05_03_00",
+      "message": "y extent 0.042 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_05_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_06_00_00",
+      "message": "y extent 3.742 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_06_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_06_02_00",
+      "message": "x extent 0.148 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_06_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_06_02_00",
+      "message": "y extent 0.558 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_06_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_06_03_00",
+      "message": "y extent 0.127 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_06_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_06_04_00",
+      "message": "y extent 1.476 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_06_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_07_00_00",
+      "message": "y extent 3.732 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_07_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_07_02_00",
+      "message": "y extent 3.513 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_07_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_07_04_00",
+      "message": "y extent 1.449 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_07_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_08_00_00",
+      "message": "y extent 3.722 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_08_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_08_02_00",
+      "message": "y extent 3.510 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_08_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_08_04_00",
+      "message": "y extent 1.423 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_08_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_09_00_00",
+      "message": "y extent 3.712 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_09_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_09_04_00",
+      "message": "y extent 1.396 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_09_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_10_02_00",
+      "message": "x extent 3.852 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_10_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_10_04_00",
+      "message": "x extent 5.864 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_10_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Land_10_04_00",
+      "message": "y extent 1.370 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Land_10_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_00_02_00",
+      "message": "x extent 1.797 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_00_02_00",
+      "message": "y extent 4.625 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_01_02_00",
+      "message": "y extent 3.069 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_01_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_01_03_00",
+      "message": "y extent 4.936 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_01_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_01_04_00",
+      "message": "x extent 4.458 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_01_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_01_04_00",
+      "message": "y extent 0.063 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_01_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_02_02_00",
+      "message": "y extent 2.934 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_02_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_02_03_00",
+      "message": "y extent 1.874 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_02_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_02_04_00",
+      "message": "y extent 0.047 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_02_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_00_00",
+      "message": "x extent 0.462 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_00_00",
+      "message": "y extent 1.185 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_01_00",
+      "message": "x extent 0.211 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_01_00",
+      "message": "y extent 0.704 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_02_00",
+      "message": "y extent 3.053 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_03_00",
+      "message": "y extent 1.902 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_03_04_00",
+      "message": "y extent 0.025 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_03_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_04_00_00",
+      "message": "y extent 2.098 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_04_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_04_02_00",
+      "message": "x extent 5.337 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_04_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_04_02_00",
+      "message": "y extent 4.315 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_04_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_04_03_00",
+      "message": "y extent 1.848 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_04_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_05_00_00",
+      "message": "y extent 2.072 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_05_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_05_01_00",
+      "message": "y extent 0.848 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_05_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_05_03_00",
+      "message": "y extent 1.909 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_05_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_06_00_00",
+      "message": "y extent 2.040 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_06_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_06_02_00",
+      "message": "x extent 2.884 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_06_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_06_02_00",
+      "message": "y extent 5.239 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_06_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_06_03_00",
+      "message": "y extent 5.958 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_06_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_01_00",
+      "message": "y extent 1.027 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_02_00",
+      "message": "x extent 0.516 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_02_00",
+      "message": "y extent 1.784 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_02_02",
+      "message": "y extent 2.665 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_02_02"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_03_00",
+      "message": "x extent 1.810 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_07_03_00",
+      "message": "y extent 5.873 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_07_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_08_00_00",
+      "message": "y extent 1.976 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_08_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_08_01_00",
+      "message": "y extent 1.030 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_08_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_08_02_00",
+      "message": "y extent 1.886 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_08_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_09_00_00",
+      "message": "y extent 1.944 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_09_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_09_01_00",
+      "message": "y extent 1.068 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_09_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_09_02_00",
+      "message": "y extent 1.875 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_09_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_10_00_00",
+      "message": "x extent 0.565 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_10_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_10_00_00",
+      "message": "y extent 1.912 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_10_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_10_01_00",
+      "message": "x extent 2.209 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_10_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Bank_10_02_00",
+      "message": "x extent 2.893 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Bank_10_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_02_00",
+      "message": "x extent 0.903 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_02_00",
+      "message": "y extent 1.809 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_00_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_03_00",
+      "message": "x extent 0.334 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_00_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_03_00",
+      "message": "y extent 1.064 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_00_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_00_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_01_02_00",
+      "message": "y extent 1.873 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_01_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_01_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_01_03_00",
+      "message": "y extent 4.584 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_01_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_01_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_02_02_00",
+      "message": "y extent 1.811 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_02_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_02_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_02_03_00",
+      "message": "y extent 4.442 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_02_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_02_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_03_02_00",
+      "message": "y extent 1.875 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_03_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_03_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_03_03_00",
+      "message": "y extent 4.554 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_03_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_03_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_01_00",
+      "message": "x extent 3.023 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_04_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_01_00",
+      "message": "y extent 5.173 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_04_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_03_00",
+      "message": "y extent 4.525 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_04_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_04_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_05_01_00",
+      "message": "y extent 5.352 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_05_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_05_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_05_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_05_03_00",
+      "message": "y extent 4.384 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_05_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_05_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_01_00",
+      "message": "y extent 5.261 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_06_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_03_00",
+      "message": "x extent 4.829 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_06_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_03_00",
+      "message": "y extent 4.310 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_06_03_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_06_03_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_07_01_00",
+      "message": "y extent 5.297 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_07_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_07_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_07_02_00",
+      "message": "y extent 1.043 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_07_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_07_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_08_01_00",
+      "message": "y extent 5.212 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_08_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_08_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_08_02_00",
+      "message": "y extent 0.923 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_08_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_08_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_09_01_00",
+      "message": "y extent 5.256 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_09_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_09_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_09_02_00",
+      "message": "y extent 1.056 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_09_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_09_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_01_00",
+      "message": "x extent 2.200 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_10_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_01_00",
+      "message": "y extent 5.172 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_10_01_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_01_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_02_00",
+      "message": "x extent 2.389 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_10_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_02_00",
+      "message": "y extent 0.923 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_471_Water_10_02_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_471_Water_10_02_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_01_00",
+      "message": "x extent 5.866 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_02_00",
+      "message": "x extent 5.733 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_03_00",
+      "message": "x extent 5.599 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_04_00",
+      "message": "x extent 5.465 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_05_00",
+      "message": "x extent 5.332 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_06_00",
+      "message": "x extent 5.198 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_00_06_00",
+      "message": "y extent 2.932 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_00_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_01_00_00",
+      "message": "y extent 5.979 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_01_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_01_06_00",
+      "message": "y extent 3.029 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_01_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_02_00_00",
+      "message": "y extent 5.957 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_02_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_02_06_00",
+      "message": "y extent 3.126 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_02_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_03_00_00",
+      "message": "y extent 5.936 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_03_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_03_06_00",
+      "message": "y extent 3.224 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_03_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_04_00_00",
+      "message": "y extent 5.914 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_04_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_04_06_00",
+      "message": "y extent 3.321 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_04_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_05_00_00",
+      "message": "y extent 5.893 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_05_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_05_04_00",
+      "message": "x extent 2.573 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_05_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_05_06_00",
+      "message": "y extent 3.418 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_05_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_06_00_00",
+      "message": "y extent 5.872 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_06_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_06_03_00",
+      "message": "y extent 2.720 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_06_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_06_05_00",
+      "message": "x extent 0.543 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_06_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_06_05_00",
+      "message": "y extent 0.552 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_06_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_06_06_00",
+      "message": "y extent 3.515 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_06_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_00_00",
+      "message": "y extent 5.850 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_04_00",
+      "message": "x extent 0.152 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_04_00",
+      "message": "y extent 5.753 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_04_00"
+    },
+    {
+      "code": "SCALE_RANGE",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_04_01",
+      "message": "longest dimension 0.149 m is outside the kit_floor range 0.50-8.00 m.",
+      "object": "SM_Fields_438_Land_07_04_01",
+      "data": {
+        "longest_m": 0.1494,
+        "range_m": [
+          0.5,
+          8.0
+        ],
+        "size_m": [
+          0.0658,
+          0.1494,
+          0.13
+        ]
+      }
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_04_01",
+      "message": "x extent 0.066 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_04_01"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_04_01",
+      "message": "y extent 0.149 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_04_01"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_05_00",
+      "message": "x extent 0.064 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_05_00",
+      "message": "y extent 4.302 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_05_01",
+      "message": "x extent 1.057 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_05_01"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_05_01",
+      "message": "y extent 1.023 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_05_01"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_07_06_00",
+      "message": "y extent 3.612 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_07_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_08_00_00",
+      "message": "y extent 5.829 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_08_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_08_06_00",
+      "message": "y extent 3.709 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_08_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_00_00",
+      "message": "x extent 5.444 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_00_00",
+      "message": "y extent 5.807 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_00_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_01_00",
+      "message": "x extent 5.522 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_01_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_02_00",
+      "message": "x extent 5.600 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_02_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_03_00",
+      "message": "x extent 5.677 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_04_00",
+      "message": "x extent 5.755 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_05_00",
+      "message": "x extent 5.832 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_06_00",
+      "message": "x extent 5.882 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Land_09_06_00",
+      "message": "y extent 3.804 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Land_09_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_05_03_00",
+      "message": "x extent 3.554 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_05_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_05_03_00",
+      "message": "y extent 3.357 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_05_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_05_04_00",
+      "message": "x extent 3.530 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_05_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_05_05_00",
+      "message": "x extent 3.427 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_05_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_05_05_00",
+      "message": "y extent 5.448 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_05_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_06_03_00",
+      "message": "y extent 3.341 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_06_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_06_04_00",
+      "message": "y extent 3.048 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_06_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_06_05_00",
+      "message": "y extent 2.083 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_06_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_06_06_00",
+      "message": "x extent 5.457 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_06_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_06_06_00",
+      "message": "y extent 1.153 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_06_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_07_03_00",
+      "message": "x extent 5.848 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_07_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_07_03_00",
+      "message": "y extent 3.280 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_07_03_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_07_06_00",
+      "message": "x extent 4.943 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_07_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Bank_07_06_00",
+      "message": "y extent 1.201 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Bank_07_06_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_05_04_00",
+      "message": "x extent 1.272 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_05_04_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_05_04_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_05_05_00",
+      "message": "y extent 3.917 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_05_05_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_05_05_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_06_04_00",
+      "message": "y extent 5.074 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_06_04_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_06_04_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_06_05_00",
+      "message": "y extent 4.641 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_06_05_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_06_05_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_04_00",
+      "message": "x extent 3.669 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_07_04_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_04_00",
+      "message": "y extent 4.916 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_07_04_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_04_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_05_00",
+      "message": "x extent 3.620 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_07_05_00"
+    },
+    {
+      "code": "SNAP",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_05_00",
+      "message": "y extent 4.595 m is not a multiple of the 0.5 m sub-grid",
+      "object": "SM_Fields_438_Water_07_05_00"
+    },
+    {
+      "code": "COLLISION_MISSING",
+      "severity": "error",
+      "asset": "SM_Fields_438_Water_07_05_00",
+      "message": "class kit_floor needs UCX_ collision (run make_lods.py --collision)"
+    }
+  ],
+  "unexpected_errors": [],
+  "justification": {
+    "SNAP": "Bilinearly fitted stream/pond contours and sheared world quad cannot snap to a 0.5m grid without moving source gameplay boundaries.",
+    "SCALE_RANGE": "A clipped source-boundary sliver must remain to close the exact terrain partition; longest dimension is under0.5m. No gameplay collider is enlarged.",
+    "COLLISION_MISSING": "Water is decorative below the shore. An enabled water-sheet collider would alter original Low+fill_water semantics."
+  },
+  "files": [
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_00_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_01_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_02_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 37
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 24
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_03_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 33
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_04_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_05_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 22
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 35
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_06_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 55
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 145
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_07_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_08_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 25
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_09_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Land_10_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 19
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_00_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 69
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 165
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 93
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_01_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 24
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 93
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 102
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_02_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 12
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 12
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 173
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 105
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_03_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 12
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 46
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 265
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 196
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_04_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 118
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 131
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_05_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 91
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 128
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 225
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_06_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 245
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 22
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 137
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 12
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_02_02.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 112
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_07_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 133
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 114
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_08_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 107
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 153
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_09_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 116
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 22
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 46
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Bank_10_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 60
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_00_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 11
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_00_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 5
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_01_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 32
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_01_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_02_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_02_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 19
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_03_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 37
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_03_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 25
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 47
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 43
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_04_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 23
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 27
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 6
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_05_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 23
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 28
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 35
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_06_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 36
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_07_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 28
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_07_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 24
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_08_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 23
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_08_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 24
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_09_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 28
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_09_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 27
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_10_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_471_Water_10_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 12
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_00_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_01_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_02_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_03_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_04_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 51
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 39
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_05_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 17
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_06_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 57
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 68
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 21
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_04_01.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 10
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_05_01.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 39
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_07_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 95
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 35
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_08_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_00_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 19
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_01_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_02_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 16
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Land_09_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 44
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 92
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_05_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 102
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 20
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 185
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 134
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_06_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 43
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_03_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 53
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 260
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 188
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Bank_07_06_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 80
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 19
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_05_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 18
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 40
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_06_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 25
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_04_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 48
+    },
+    {
+      "file": "Export/Game/Dink/Kits/StonebrookFields/SM_Fields_438_Water_07_05_00.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 32
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookFields/SM_Pine_Stonebrook_01_LOD0.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 19301
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookFields/SM_Pine_Stonebrook_01_LOD1.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 5848
+    },
+    {
+      "file": "Export/Game/Dink/Foliage/StonebrookFields/SM_Pine_Stonebrook_01_LOD2.fbx",
+      "unit_scale_factor": 100,
+      "zero_normals": 0,
+      "normal_count": 4728
+    }
+  ]
+}

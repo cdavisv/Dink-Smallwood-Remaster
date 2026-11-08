@@ -1,0 +1,93 @@
+{
+  "schema": "dink-pine-refinement/3",
+  "candidate": "SM_Pine_Stonebrook_V3",
+  "method": "Sapling0.4.0 Weber-Penn small_pine parameters +original modeledpairedneedle atlas +authoredper-splineLODretention",
+  "source_original_modified": false,
+  "dimensions_m": [
+    5.780095100402832,
+    5.865981578826904,
+    13.0
+  ],
+  "lods": [
+    {
+      "lod": 0,
+      "triangles": 22270,
+      "vertices": 19715,
+      "branch_splines_retained": 584,
+      "primary_branch_splines_retained": 101,
+      "needle_sprays_retained": 1853,
+      "whorl_rings_retained": 14,
+      "bounds_min_m": [
+        -2.890047550201416,
+        -2.932990789413452,
+        0.0
+      ],
+      "bounds_max_m": [
+        2.890047550201416,
+        2.932990789413452,
+        13.0
+      ]
+    },
+    {
+      "lod": 1,
+      "triangles": 10942,
+      "vertices": 14051,
+      "branch_splines_retained": 584,
+      "primary_branch_splines_retained": 101,
+      "needle_sprays_retained": 1853,
+      "whorl_rings_retained": 14,
+      "bounds_min_m": [
+        -2.890047550201416,
+        -2.932990789413452,
+        0.00014655027189292014
+      ],
+      "bounds_max_m": [
+        2.890047550201416,
+        2.932990789413452,
+        13.0
+      ]
+    },
+    {
+      "lod": 2,
+      "triangles": 6784,
+      "vertices": 10119,
+      "branch_splines_retained": 584,
+      "primary_branch_splines_retained": 101,
+      "needle_sprays_retained": 1853,
+      "whorl_rings_retained": 14,
+      "bounds_min_m": [
+        -2.890047550201416,
+        -2.932990789413452,
+        0.00014655027189292014
+      ],
+      "bounds_max_m": [
+        2.890047550201416,
+        2.932990789413452,
+        13.0
+      ]
+    }
+  ],
+  "collision": {
+    "vertex_face_sha256": "4bfd84811693136a8b5cf3ce1a44c6b188f912cd43a0bc83032b395d0b871c07",
+    "bounds_min_m": [
+      -0.11420904099941254,
+      -0.15600982308387756,
+      0.0
+    ],
+    "bounds_max_m": [
+      0.3457909822463989,
+      0.2814761698246002,
+      2.0
+    ]
+  },
+  "sapling_level_ends": [
+    1,
+    102,
+    584
+  ],
+  "source_whorls": 14,
+  "lower_crown_spray_enlargement_max": 1.3,
+  "blender_alpha_mode": "GREATER_THAN.12 matchesUEhardmask",
+  "material_policy": "2slots:originalbarkPBR andmaskedtwo-sidedmodeledneedle-sprays; no greenopaqueclumpcores",
+  "lod_policy": "Allbranchsplines and allneedle-spray placements retained atall3LODs; woodcrosssections/curve sampling andspraybow simplified only."
+}

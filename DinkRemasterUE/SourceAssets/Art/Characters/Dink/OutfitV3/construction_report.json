@@ -1,0 +1,103 @@
+{
+  "stage": "SOURCE REVIEW ONLY; nofinalexport/import/manifest/ledger untilrootvisualgate",
+  "source": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend",
+  "source_sha256": "bd9cc7f98a087c2cfe1dbc82f196243381700d5bb1b87044a571c07577f7ea97",
+  "rest_bones": 89,
+  "protected_material_refs": [
+    "MI_Dink_Skin",
+    "MI_Dink_Eyes",
+    "MI_Dink_Hair",
+    "MI_Dink_BrowLash"
+  ],
+  "new_material": "MI_Dink_WardrobeV3",
+  "lods": [
+    {
+      "lod": 0,
+      "triangles": 39301,
+      "original_vertices": 16545,
+      "new_vertices": 4111,
+      "original_faces": 17162,
+      "new_faces": 4020,
+      "new_vertices_by_part": {
+        "backpack_strap": 307,
+        "jerkin_seam": 384,
+        "pack_buckle": 448,
+        "red_bracer": 576,
+        "backpack_flap": 56,
+        "jerkin": 1248,
+        "jerkin_shoulder": 412,
+        "backpack": 56,
+        "pack_tongue": 112,
+        "shirt_collar": 512
+      },
+      "backpack_max_radius_m": 0.26624846379779565,
+      "new_influence_max": 4
+    },
+    {
+      "lod": 1,
+      "triangles": 21297,
+      "original_vertices": 8570,
+      "new_vertices": 3031,
+      "original_faces": 15844,
+      "new_faces": 2940,
+      "new_vertices_by_part": {
+        "backpack_strap": 307,
+        "jerkin_seam": 256,
+        "pack_buckle": 448,
+        "red_bracer": 360,
+        "backpack_flap": 56,
+        "jerkin": 640,
+        "jerkin_shoulder": 412,
+        "backpack": 56,
+        "pack_tongue": 112,
+        "shirt_collar": 384
+      },
+      "backpack_max_radius_m": 0.26624846379779565,
+      "new_influence_max": 4
+    },
+    {
+      "lod": 2,
+      "triangles": 11438,
+      "original_vertices": 4538,
+      "new_vertices": 2063,
+      "original_faces": 7921,
+      "new_faces": 2020,
+      "new_vertices_by_part": {
+        "backpack_strap": 307,
+        "jerkin_seam": 192,
+        "pack_buckle": 192,
+        "red_bracer": 224,
+        "backpack_flap": 24,
+        "jerkin": 384,
+        "jerkin_shoulder": 412,
+        "backpack": 24,
+        "pack_tongue": 48,
+        "shirt_collar": 256
+      },
+      "backpack_max_radius_m": 0.2658163262391214,
+      "new_influence_max": 4
+    },
+    {
+      "lod": 3,
+      "triangles": 6472,
+      "original_vertices": 2413,
+      "new_vertices": 1639,
+      "original_faces": 3803,
+      "new_faces": 1596,
+      "new_vertices_by_part": {
+        "backpack_strap": 307,
+        "jerkin_seam": 128,
+        "pack_buckle": 192,
+        "red_bracer": 120,
+        "backpack_flap": 24,
+        "jerkin": 192,
+        "jerkin_shoulder": 412,
+        "backpack": 24,
+        "pack_tongue": 48,
+        "shirt_collar": 192
+      },
+      "backpack_max_radius_m": 0.2658163262391214,
+      "new_influence_max": 4
+    }
+  ]
+}

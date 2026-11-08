@@ -1,0 +1,2780 @@
+{
+  "schema": "dink-art/1",
+  "screen": 407,
+  "hide_screen_visuals": [
+    407
+  ],
+  "authored_collision_screens": [
+    407
+  ],
+  "hide_origins": [
+    "S407_P01",
+    "S407_P03",
+    "S407_P04",
+    "S407_P08",
+    "S407_P09",
+    "S407_P10",
+    "S407_P12",
+    "S407_P13",
+    "S407_P14",
+    "S407_P15",
+    "S407_P16",
+    "S407_P17",
+    "S407_P18",
+    "S407_P19",
+    "S407_P20",
+    "S407_P21",
+    "S407_P22",
+    "S407_P23",
+    "S407_P24",
+    "S407_P25",
+    "S407_P26",
+    "S407_P27",
+    "S407_P28",
+    "S407_P29",
+    "S407_P30",
+    "S407_P31",
+    "S407_P32",
+    "S407_P33",
+    "S407_P34",
+    "S407_P35",
+    "S407_P36",
+    "S407_P37",
+    "S407_P38",
+    "S407_P39",
+    "S407_P40",
+    "S407_P41",
+    "S407_P42",
+    "S407_P43",
+    "S407_P44",
+    "S407_P45",
+    "S407_P46",
+    "S407_P47",
+    "S407_P48",
+    "S407_P49",
+    "S407_P50",
+    "S407_P51",
+    "S407_P52",
+    "S407_P53",
+    "S407_P54",
+    "S407_P55",
+    "S407_P56",
+    "S407_P57",
+    "S407_P58",
+    "S407_P59",
+    "S407_P60",
+    "S407_P61",
+    "S407_P62"
+  ],
+  "replacements": [],
+  "elements": [
+    {
+      "name": "Meadow_0_0",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        99.8042627627238,
+        100.22252714949694
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "Meadow_1_0",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        301.12962022254834,
+        99.53943259857103
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "Meadow_2_0",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        502.45642085276705,
+        98.85726705229108
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "Meadow_0_1",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        98.38835569119023,
+        301.6865366035315
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "Meadow_1_1",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        299.5009718922098,
+        300.866495217243
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "Meadow_2_1",
+      "mesh": "SM_Ground_Meadow_20m_01",
+      "source_pixel": [
+        500.6153169454784,
+        300.047566736112
+      ],
+      "height_cm": -9.8,
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9901583333333311,
+        0.9986449999999991,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.500000000001165,
+        117.8124999999998
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.500000000000043,
+        155.4374999999996
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.500000000001137,
+        193.06249999999997
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_03",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.499999999999467,
+        230.68750000000028
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_04",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.500000000000565,
+        268.312499999999
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_05",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.500000000001375,
+        305.93749999999994
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_06",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.50000000000048,
+        343.5624999999992
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterWest_07",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        23.49999999999846,
+        381.18749999999966
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.62284449636174,
+        0
+      ],
+      "scale": [
+        0.8921811821842918,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNW_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        37.914046448574894,
+        92.08164663382897
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        -25.72426254176766,
+        0
+      ],
+      "scale": [
+        0.7506039254191574,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNW_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        66.74528372457353,
+        78.24696401629824
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        -25.72426254176766,
+        0
+      ],
+      "scale": [
+        0.7506039254191574,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNW_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        95.58071324542966,
+        64.41498005096874
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        -25.72426254176766,
+        0
+      ],
+      "scale": [
+        0.7506039254191574,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        130.12499999999838,
+        57.50000000000023
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        170.37500000000082,
+        57.49999999999966
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        210.62500000000026,
+        57.499999999999766
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_03",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        250.875,
+        57.50000000000017
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_04",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        291.1250000000005,
+        57.499999999999204
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_05",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        331.3749999999991,
+        57.4999999999991
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_06",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        371.62499999999943,
+        57.49999999999988
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNorth_07",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        411.87500000000006,
+        57.49999999999963
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.18772301273520203,
+        0
+      ],
+      "scale": [
+        0.9469828051951834,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNE_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        446.00296999352116,
+        65.58524519197394
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        30.24442033040272,
+        0
+      ],
+      "scale": [
+        0.7666295767701509,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNE_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        474.0053450290526,
+        81.75344072803644
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        30.24442033040272,
+        0
+      ],
+      "scale": [
+        0.7666295767701509,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterNE_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        502.00296892788793,
+        97.91857783933277
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        30.24442033040272,
+        0
+      ],
+      "scale": [
+        0.7666295767701509,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterEastTop_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        530.0003366348119,
+        106.91688336686222
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        3.9756614036746103,
+        0
+      ],
+      "scale": [
+        0.6609437127487746,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterEastTop_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        558.0006058795447,
+        108.7503900197202
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        3.9756614036746103,
+        0
+      ],
+      "scale": [
+        0.6609437127487746,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "OuterEastTop_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        586.0003365646863,
+        110.58354998838746
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        3.9756614036746103,
+        0
+      ],
+      "scale": [
+        0.6609437127487746,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        155.36111111111128,
+        147.49999999999943
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        193.08333333333533,
+        147.4999999999995
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        230.80555555555694,
+        147.4999999999996
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_03",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        268.52777777778044,
+        147.49999999999977
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_04",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        306.2500000000013,
+        147.49999999999943
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_05",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        343.9722222222229,
+        147.49999999999974
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_06",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        381.69444444444537,
+        147.50000000000006
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_07",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        419.4166666666685,
+        147.49999999999994
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenNorth_08",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        457.1388888888903,
+        147.4999999999998
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.2052999728228855,
+        0
+      ],
+      "scale": [
+        0.8879330592980591,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        476.0000000000004,
+        165.75000000000014
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        476.00000000000045,
+        202.24999999999997
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        476.00000000000136,
+        238.75000000000048
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_03",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        475.9999999999999,
+        275.25000000000006
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_04",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        476.0000000000004,
+        311.74999999999966
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenEast_05",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        476.0000000000011,
+        348.25000000000017
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.48783937075282,
+        0
+      ],
+      "scale": [
+        0.8668524517238791,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        155.3611111111126,
+        366.50000000000017
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        193.0833333333333,
+        366.50000000000034
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        230.80555555555773,
+        366.5000000000003
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_03",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        268.5277777777796,
+        366.50000000000006
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_04",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        306.2500000000002,
+        366.49999999999983
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_05",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        343.97222222222314,
+        366.50000000000017
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_06",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        381.6944444444439,
+        366.49999999999994
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_07",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        419.4166666666682,
+        366.49999999999955
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenSouth_08",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        457.13888888889005,
+        366.49999999999943
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        0.24800075311380815,
+        0
+      ],
+      "scale": [
+        0.8889617446527617,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenWestUpper_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        136.50000000000014,
+        161.25000000000003
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.58909114658103,
+        0
+      ],
+      "scale": [
+        0.6523458016220391,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenWestUpper_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        136.50000000000153,
+        188.74999999999943
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.58909114658103,
+        0
+      ],
+      "scale": [
+        0.6523458016220391,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenWestUpper_02",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        136.50000000000017,
+        216.24999999999972
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.58909114658103,
+        0
+      ],
+      "scale": [
+        0.6523458016220391,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenWestLower_00",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        136.5000000000002,
+        306.125
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.58909114658087,
+        0
+      ],
+      "scale": [
+        0.9547970369195267,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "PenWestLower_01",
+      "mesh": "SM_Fence_SplitRail_4m_01",
+      "source_pixel": [
+        136.50000000000136,
+        346.3749999999998
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        89.58909114658087,
+        0
+      ],
+      "scale": [
+        0.9547970369195267,
+        1,
+        1
+      ],
+      "collision": true
+    },
+    {
+      "name": "TroddenEarth_0_0",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.77777437858813,
+        192.1700609915018
+      ],
+      "height_cm": 0.4,
+      "rotation_deg": [
+        0,
+        0.2100819149493462,
+        0
+      ],
+      "scale": [
+        1.0209479824443322,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_0",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.7698335798284,
+        192.16494930199457
+      ],
+      "height_cm": 0.402,
+      "rotation_deg": [
+        0,
+        0.2100819149493491,
+        0
+      ],
+      "scale": [
+        1.020947982444318,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_0",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.7618968044872,
+        192.15984020246225
+      ],
+      "height_cm": 0.404,
+      "rotation_deg": [
+        0,
+        0.21008191494974202,
+        0
+      ],
+      "scale": [
+        1.0209479824443464,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_0",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.75396404951255,
+        192.15473369093831
+      ],
+      "height_cm": 0.406,
+      "rotation_deg": [
+        0,
+        0.2100819149493462,
+        0
+      ],
+      "scale": [
+        1.0209479824443322,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_1",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.77593748687127,
+        219.17008148108008
+      ],
+      "height_cm": 0.41500000000000004,
+      "rotation_deg": [
+        0,
+        0.2153503752978561,
+        0
+      ],
+      "scale": [
+        1.0210937635676216,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_1",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.76799780528074,
+        219.1649705107231
+      ],
+      "height_cm": 0.41700000000000004,
+      "rotation_deg": [
+        0,
+        0.2153503752978561,
+        0
+      ],
+      "scale": [
+        1.0210937635676216,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_1",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.76006214597373,
+        219.1598621296101
+      ],
+      "height_cm": 0.41900000000000004,
+      "rotation_deg": [
+        0,
+        0.21535037529785314,
+        0
+      ],
+      "scale": [
+        1.0210937635676358,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_1",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.75213050589866,
+        219.1547563357738
+      ],
+      "height_cm": 0.42100000000000004,
+      "rotation_deg": [
+        0,
+        0.21535037529825482,
+        0
+      ],
+      "scale": [
+        1.0210937635676218,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_2",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.77410165107807,
+        246.17010213524796
+      ],
+      "height_cm": 0.43000000000000005,
+      "rotation_deg": [
+        0,
+        0.22061733146449494,
+        0
+      ],
+      "scale": [
+        1.0212395533219785,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_2",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.76616308627897,
+        246.16499188379478
+      ],
+      "height_cm": 0.43200000000000005,
+      "rotation_deg": [
+        0,
+        0.22061733146449186,
+        0
+      ],
+      "scale": [
+        1.0212395533219927,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_2",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.75822854262594,
+        246.1598842208552
+      ],
+      "height_cm": 0.43400000000000005,
+      "rotation_deg": [
+        0,
+        0.22061733146489054,
+        0
+      ],
+      "scale": [
+        1.0212395533219927,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_2",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.75029801706665,
+        246.15477914446402
+      ],
+      "height_cm": 0.43600000000000005,
+      "rotation_deg": [
+        0,
+        0.22061733146488746,
+        0
+      ],
+      "scale": [
+        1.0212395533220069,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_3",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.77226687057853,
+        273.17012295386064
+      ],
+      "height_cm": 0.445,
+      "rotation_deg": [
+        0,
+        0.2258827840051751,
+        0
+      ],
+      "scale": [
+        1.0213853517036924,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_3",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.76432942218403,
+        273.1650134210672
+      ],
+      "height_cm": 0.447,
+      "rotation_deg": [
+        0,
+        0.22588278400557055,
+        0
+      ],
+      "scale": [
+        1.0213853517037066,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_3",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.7563959938038,
+        273.1599064760571
+      ],
+      "height_cm": 0.449,
+      "rotation_deg": [
+        0,
+        0.22588278400516884,
+        0
+      ],
+      "scale": [
+        1.0213853517037208,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_3",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.74846658238465,
+        273.1548021168644
+      ],
+      "height_cm": 0.451,
+      "rotation_deg": [
+        0,
+        0.2258827840055674,
+        0
+      ],
+      "scale": [
+        1.0213853517037208,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_4",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.77043314473724,
+        300.1701439367768
+      ],
+      "height_cm": 0.46,
+      "rotation_deg": [
+        0,
+        0.23114673347398984,
+        0
+      ],
+      "scale": [
+        1.0215311587090976,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_4",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.76249681237107,
+        300.16503512239655
+      ],
+      "height_cm": 0.462,
+      "rotation_deg": [
+        0,
+        0.2311467334747933,
+        0
+      ],
+      "scale": [
+        1.0215311587090692,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_4",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.7545644988825,
+        300.15992889507
+      ],
+      "height_cm": 0.464,
+      "rotation_deg": [
+        0,
+        0.2311467334747869,
+        0
+      ],
+      "scale": [
+        1.0215311587090976,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_4",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.7466362012249,
+        300.15482525283255
+      ],
+      "height_cm": 0.466,
+      "rotation_deg": [
+        0,
+        0.23114673347479656,
+        0
+      ],
+      "scale": [
+        1.021531158709055,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_5",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.76860047292845,
+        327.17016508385194
+      ],
+      "height_cm": 0.47500000000000003,
+      "rotation_deg": [
+        0,
+        0.23640918042643713,
+        0
+      ],
+      "scale": [
+        1.0216769743344167,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_5",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.76066525620598,
+        327.16505698764115
+      ],
+      "height_cm": 0.47700000000000004,
+      "rotation_deg": [
+        0,
+        0.23640918042723078,
+        0
+      ],
+      "scale": [
+        1.0216769743344312,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_5",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.75273405723175,
+        327.159951477754
+      ],
+      "height_cm": 0.47900000000000004,
+      "rotation_deg": [
+        0,
+        0.23640918042682904,
+        0
+      ],
+      "scale": [
+        1.0216769743344452,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_5",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.74480687295227,
+        327.15484855222724
+      ],
+      "height_cm": 0.48100000000000004,
+      "rotation_deg": [
+        0,
+        0.23640918042723078,
+        0
+      ],
+      "scale": [
+        1.0216769743344312,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_0_6",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        154.76676885451784,
+        354.17018639494563
+      ],
+      "height_cm": 0.49,
+      "rotation_deg": [
+        0,
+        0.24167012541656552,
+        0
+      ],
+      "scale": [
+        1.021822798576045,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_1_6",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        229.75883475306233,
+        354.1650790166593
+      ],
+      "height_cm": 0.492,
+      "rotation_deg": [
+        0,
+        0.24167012541696395,
+        0
+      ],
+      "scale": [
+        1.021822798576045,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_2_6",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        304.7509046682194,
+        354.1599742239666
+      ],
+      "height_cm": 0.494,
+      "rotation_deg": [
+        0,
+        0.24167012541656552,
+        0
+      ],
+      "scale": [
+        1.021822798576045,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "TroddenEarth_3_6",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        379.7429785969384,
+        354.15487201490566
+      ],
+      "height_cm": 0.496,
+      "rotation_deg": [
+        0,
+        0.24167012541695723,
+        0
+      ],
+      "scale": [
+        1.0218227985760735,
+        2.0,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "AccessDirt_0",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        105.22582233420788,
+        399.8279485960375
+      ],
+      "height_cm": 0.4,
+      "rotation_deg": [
+        0,
+        -90.39702237440295,
+        0
+      ],
+      "scale": [
+        1.759747738355314,
+        1.5,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "AccessDirt_1",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        89.83410266441552,
+        273.1309149737946
+      ],
+      "height_cm": 0.4,
+      "rotation_deg": [
+        0,
+        0.22685770284675383,
+        0
+      ],
+      "scale": [
+        1.6613333441845313,
+        1.5,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "AccessDirt_2",
+      "mesh": "SM_Path_Earth_8m_01",
+      "source_pixel": [
+        89.86190461296452,
+        402.1047912255308
+      ],
+      "height_cm": 0.4,
+      "rotation_deg": [
+        0,
+        0.2525769292762078,
+        0
+      ],
+      "scale": [
+        4.063871580498162,
+        1.2,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P04_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        127,
+        137
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        37.306428988125134,
+        0
+      ],
+      "scale": [
+        0.1789915014717976,
+        0.1789915014717976,
+        0.10917478559314081
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P13_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        376,
+        379
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        131.80345494221766,
+        0
+      ],
+      "scale": [
+        0.16506747997290727,
+        0.16506747997290727,
+        0.10488244926557998
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P14_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        501,
+        217
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        182.0409233713717,
+        0
+      ],
+      "scale": [
+        0.1817632700782052,
+        0.1817632700782052,
+        0.0642280788945544
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P15_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        326,
+        381
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        284.97949909193824,
+        0
+      ],
+      "scale": [
+        0.1693026486931033,
+        0.1693026486931033,
+        0.11463781166248654
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P16_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        163,
+        381
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        183.67835226799414,
+        0
+      ],
+      "scale": [
+        0.20972348897069612,
+        0.20972348897069612,
+        0.08761422512767855
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P17_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        394,
+        128
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        77.50685487826347,
+        0
+      ],
+      "scale": [
+        0.12587137356386535,
+        0.12587137356386535,
+        0.08450952979643238
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P25_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        133,
+        212
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        105.4783086120137,
+        0
+      ],
+      "scale": [
+        0.12488137977417428,
+        0.12488137977417428,
+        0.10520288897686818
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P26_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        65,
+        294
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        297.27825522748236,
+        0
+      ],
+      "scale": [
+        0.1682825627778063,
+        0.1682825627778063,
+        0.10030682174395154
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P27_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        424,
+        372
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        51.53160446148776,
+        0
+      ],
+      "scale": [
+        0.1270699273910019,
+        0.1270699273910019,
+        0.08189800210399319
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P28_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        493,
+        182
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        37.553419850780195,
+        0
+      ],
+      "scale": [
+        0.1993974580527686,
+        0.1993974580527686,
+        0.09527340066593404
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P29_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        269,
+        130
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        66.86083625669882,
+        0
+      ],
+      "scale": [
+        0.2116409103251543,
+        0.2116409103251543,
+        0.07541866359898562
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P30_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        119,
+        275
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        57.03572565920483,
+        0
+      ],
+      "scale": [
+        0.15285180039192892,
+        0.15285180039192892,
+        0.11715577002089453
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P31_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        522,
+        323
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        58.453882017592925,
+        0
+      ],
+      "scale": [
+        0.19206977544585976,
+        0.19206977544585976,
+        0.06380558010519069
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P32_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        181,
+        104
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        258.2028828231301,
+        0
+      ],
+      "scale": [
+        0.19629005874925864,
+        0.19629005874925864,
+        0.08035054920775622
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P33_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        221,
+        372
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        23.376540500146902,
+        0
+      ],
+      "scale": [
+        0.10364619226757195,
+        0.10364619226757195,
+        0.08197003322265692
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P34_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        502,
+        289
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        191.09471532542906,
+        0
+      ],
+      "scale": [
+        0.21450616266245603,
+        0.21450616266245603,
+        0.07019827468850295
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P35_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        473,
+        379
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        223.7258647338848,
+        0
+      ],
+      "scale": [
+        0.12839168413552463,
+        0.12839168413552463,
+        0.07849196171577595
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P36_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        101,
+        250
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        351.1001731185444,
+        0
+      ],
+      "scale": [
+        0.1423169152766201,
+        0.1423169152766201,
+        0.0950679015713033
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P37_Feed",
+      "mesh": "SM_FeedScatter_Wheat_01",
+      "source_pixel": [
+        73,
+        256
+      ],
+      "height_cm": 0.6,
+      "rotation_deg": [
+        0,
+        135.5379368895838,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P38_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        242,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        165.3576715677697,
+        0
+      ],
+      "scale": [
+        0.11298039038028053,
+        0.11298039038028053,
+        0.07273993057602711
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P39_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        324,
+        123
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        133.59038379753528,
+        0
+      ],
+      "scale": [
+        0.20996838815881474,
+        0.20996838815881474,
+        0.1012032625663685
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P40_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        499,
+        124
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        43.135805137708076,
+        0
+      ],
+      "scale": [
+        0.19356225946135322,
+        0.19356225946135322,
+        0.09695846338325464
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P49_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        322,
+        97
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        26.583049030609782,
+        0
+      ],
+      "scale": [
+        0.21824425175762488,
+        0.21824425175762488,
+        0.06732769068007745
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P50_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        376,
+        100
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        269.139819322988,
+        0
+      ],
+      "scale": [
+        0.1358172575535889,
+        0.1358172575535889,
+        0.08646786581066643
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P51_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        419,
+        63
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        174.33409781325284,
+        0
+      ],
+      "scale": [
+        0.8868600052113897,
+        0.8868600052113897,
+        0.8868600052113897
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P52_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        41,
+        111
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        33.588442571556584,
+        0
+      ],
+      "scale": [
+        1.039498894152084,
+        1.039498894152084,
+        1.039498894152084
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P53_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        262,
+        65
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        26.107748825977197,
+        0
+      ],
+      "scale": [
+        0.8920278062884645,
+        0.8920278062884645,
+        0.8920278062884645
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P54_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        554,
+        145
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        112.59639488359997,
+        0
+      ],
+      "scale": [
+        0.6860541623409626,
+        0.6860541623409626,
+        0.6860541623409626
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P55_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        152,
+        120
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        81.6839339378855,
+        0
+      ],
+      "scale": [
+        0.9697622884576738,
+        0.9697622884576738,
+        0.9697622884576738
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P56_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        500,
+        365
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        136.28655657907515,
+        0
+      ],
+      "scale": [
+        0.9013265622460934,
+        0.9013265622460934,
+        0.9013265622460934
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P58_Grass",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        25,
+        66
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        293.3465131122762,
+        0
+      ],
+      "scale": [
+        0.6509885703423666,
+        0.6509885703423666,
+        0.6509885703423666
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P59_Feed",
+      "mesh": "SM_FeedScatter_Wheat_01",
+      "source_pixel": [
+        77,
+        171
+      ],
+      "height_cm": 0.6,
+      "rotation_deg": [
+        0,
+        163.3351712183378,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false
+    },
+    {
+      "name": "S407_P61_Pebble",
+      "mesh": "SM_Boulder_Fieldstone_01",
+      "source_pixel": [
+        392,
+        129
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        86.49941496253953,
+        0
+      ],
+      "scale": [
+        0.11246944405101861,
+        0.11246944405101861,
+        0.07531587280324091
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_01",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        346.6048866560958,
+        127.28483868126176
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        198.91709075986685,
+        0
+      ],
+      "scale": [
+        0.765726420890658,
+        0.765726420890658,
+        0.765726420890658
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_06",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        540.8932042528193,
+        258.9476749562735
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        14.603897823276748,
+        0
+      ],
+      "scale": [
+        0.9124559334949665,
+        0.9124559334949665,
+        0.9124559334949665
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_14",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        221.88914106165447,
+        380.5281025302216
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        80.78950920575201,
+        0
+      ],
+      "scale": [
+        1.1308810694885758,
+        1.1308810694885758,
+        1.1308810694885758
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_18",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        197.68633153634235,
+        82.6937314261861
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        252.82739018187593,
+        0
+      ],
+      "scale": [
+        0.7537648532576026,
+        0.7537648532576026,
+        0.7537648532576026
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_25",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        78.11891757767131,
+        178.38309832197385
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        271.4692639462865,
+        0
+      ],
+      "scale": [
+        0.8854198241954352,
+        0.8854198241954352,
+        0.8854198241954352
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_32",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        517.1008868186755,
+        82.02787435252861
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        144.4886552135159,
+        0
+      ],
+      "scale": [
+        0.8074781854468258,
+        0.8074781854468258,
+        0.8074781854468258
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_34",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        68.9844234598332,
+        261.9511999757335
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        221.80272221555887,
+        0
+      ],
+      "scale": [
+        0.7103050942496438,
+        0.7103050942496438,
+        0.7103050942496438
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_40",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        62.692604753839234,
+        259.12112545692423
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        110.91799223081445,
+        0
+      ],
+      "scale": [
+        0.859248622650908,
+        0.859248622650908,
+        0.859248622650908
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_44",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        48.21728594491271,
+        91.60419058824883
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        203.8396566998496,
+        0
+      ],
+      "scale": [
+        1.040885192265018,
+        1.040885192265018,
+        1.040885192265018
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_46",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        104.82277184732641,
+        78.28521641567797
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        155.52229191173626,
+        0
+      ],
+      "scale": [
+        0.9155791350947764,
+        0.9155791350947764,
+        0.9155791350947764
+      ],
+      "collision": false
+    },
+    {
+      "name": "MeadowAccent_49",
+      "mesh": "SM_Grass_Meadow_01",
+      "source_pixel": [
+        48.0196259156671,
+        185.75808483156493
+      ],
+      "height_cm": 0,
+      "rotation_deg": [
+        0,
+        141.49258108525757,
+        0
+      ],
+      "scale": [
+        1.1214926150114413,
+        1.1214926150114413,
+        1.1214926150114413
+      ],
+      "collision": false
+    }
+  ],
+  "lights": [],
+  "asset_paths": {
+    "SM_Ground_Meadow_20m_01": "/Game/Dink/Kits/StonebrookExterior/SM_Ground_Meadow_20m_01.SM_Ground_Meadow_20m_01",
+    "SM_Fence_SplitRail_4m_01": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+    "SM_Boulder_Fieldstone_01": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+    "SM_Grass_Meadow_01": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+    "SM_Path_Earth_8m_01": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+  }
+}

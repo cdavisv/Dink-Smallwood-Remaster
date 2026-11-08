@@ -1,0 +1,133 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Milder/SK_Milder.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Milder",
+      "class": "character_humanoid",
+      "collection": "SK_Milder",
+      "tris_per_lod": {
+        "LOD0": 32674,
+        "LOD1": 16337,
+        "LOD2": 8168,
+        "LOD3": 3921
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.964,
+          -33.286,
+          -0.0
+        ],
+        "blender_max_cm": [
+          55.964,
+          16.099,
+          182.935
+        ],
+        "size_cm": [
+          111.928,
+          49.385,
+          182.935
+        ],
+        "unreal_min_cm": [
+          -55.964,
+          -16.099,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          55.964,
+          33.286,
+          182.935
+        ]
+      },
+      "errors": 0,
+      "warnings": 5,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Milder",
+          "message": "mesh data 'SK_Milder_LOD0_Mesh' differs from object name 'SK_Milder_LOD0'",
+          "object": "SK_Milder_LOD0"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SK_Milder",
+          "message": "LOD0 has 32674 triangles, target for character_humanoid is 20000 (hard max 35000)",
+          "object": "SK_Milder_LOD0",
+          "data": {
+            "tris": 32674,
+            "target": 20000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Milder",
+          "message": "1340 non-manifold edges (1338 open boundary, 2 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Milder_LOD0",
+          "data": {
+            "boundary": 1338,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Milder",
+          "message": "1215 non-manifold edges (1213 open boundary, 2 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Milder_LOD1",
+          "data": {
+            "boundary": 1213,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Milder",
+          "message": "986 non-manifold edges (984 open boundary, 2 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Milder_LOD2",
+          "data": {
+            "boundary": 984,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Milder",
+          "message": "705 non-manifold edges (703 open boundary, 2 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)",
+          "object": "SK_Milder_LOD3",
+          "data": {
+            "boundary": 703,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Milder",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Milder_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+script,spk,character,voice,kind,lines,chars,notes
+1gold,1,Dink,,system,1,17,
+apotion,1,Dink,,system,1,37,
+button6,1,Dink,dink,dialogue,1,22,
+dam-icee,temp1hold,cave prisoner,man_middle,dialogue,5,182,freed from the cave jail; the same man as the s2-cave prisoner
+dam-icee,1,Dink,dink,dialogue,2,62,
+duck,current_sprite,talking bottle,duck,object,1,68,a bottle that quacks; deadpan joke
+en-drag,current_sprite,dragon (spell caster),,system,1,12,only spell-cast captions; stage directions: <Casts harm>
+en-drag,en_drag__kcrap,spell target,,system,1,15,"""Magic resisted."" caption"
+en-gh,current_sprite,goblin,goblin,dialogue,4,94,"GIBBERISH: invented goblin language, read as nonsense words, consistent phonetics"
+en-gmog,current_sprite,Mog,mog,dialogue,2,57,"dying; Mog surrenders and offers to reveal the Cast camp; weak, pleading"
+en-gs,current_sprite,goblin,goblin,dialogue,4,94,"GIBBERISH: invented goblin language, read as nonsense words, consistent phonetics"
+escape,1,Dink,dink,dialogue,2,67,
+findduck,1,Dink,dink,dialogue,2,47,
+get-fb,1,Dink,dink,dialogue,3,73,
+get-sfb,1,Dink,dink,dialogue,2,46,
+gold200,1,Dink,,system,1,17,
+gold500,1,Dink,,system,1,17,
+item-b1,1,Dink,,system,1,14,
+item-b2,1,Dink,,system,1,14,
+item-nut,1,Dink,dink,dialogue,1,17,
+item-p1,1,Dink,dink,dialogue,1,22,
+item-pig,1,Dink,dink,dialogue,1,18,
+king,current_sprite,King Daniel,king,dialogue,23,910,1 ALL-CAPS/!!! line(s): shouting
+king,1,Dink,dink,dialogue,11,456,
+king,,end card,narrator,narration,14,528,"ending screen text (congratulations, thanks, sign-off), not spoken in-world; 3 ALL-CAPS/!!! line(s): shouting"
+lgold,1,Dink,,system,1,17,
+lraise,1,Dink,dink,dialogue,1,11,
+mgold,1,Dink,,system,1,17,
+papgold,1,Dink,,system,1,17,
+pdie,1,Dink,dink,dialogue,1,26,
+poster,current_sprite,King's News poster (+Dink comments),narrator,object,45,1887,"newspaper-style poster read aloud; lines in Dink colour (14) are Dink's comments and are cast as Dink; 9 Dink-comment lines, 36 poster lines; 2 ALL-CAPS/!!! line(s): shouting"
+s1-blove,1,Dink,dink,dialogue,1,39,
+s1-blove,current_sprite,Milder Flatstomp,milder,dialogue,3,105,"smug, patronising, hitting on Lyna"
+s1-blove,s1_blove__who,Lyna,woman_young,dialogue,3,84,"rejecting Milder; sharp, self-possessed"
+s1-boot,1,Dink,dink,dialogue,9,301,1 system line(s) in this pair not voiced
+s1-boot,current_sprite,cobbler,merchant,dialogue,6,134,dry salesman; 1 ALL-CAPS/!!! line(s): shouting
+s1-brg2,current_sprite,toll man,man_middle,dialogue,5,131,"bridge toll collector; greedy then pitiful; LOW CONFIDENCE: toll man: role from bible, no name"
+s1-brg2,1,Dink,dink,dialogue,3,121,
+s1-bul,1,Dink,dink,dialogue,6,93,1 ALL-CAPS/!!! line(s): shouting
+s1-bul,current_sprite,Milder Flatstomp,milder,dialogue,5,152,village bully taunting the pig farmer; mocking laughter (Bawahahah)
+s1-cave,1,Dink,dink,dialogue,6,142,stage directions: <shiver>
+s1-cavem,current_sprite,Bonca,monster,dialogue,3,78,"cave beast; deep, menacing, sensing an intruder"
+s1-caves,1,Dink,dink,dialogue,6,142,stage directions: <shiver>
+s1-eltr,current_sprite,demo sign,narrator,object,3,90,demo advert on a sign (order the full version); read as an announcement
+s1-eltr,1,Dink,dink,dialogue,2,46,
+s1-farm,1,Dink,dink,dialogue,1,17,
+s1-farms,current_sprite,sign,narrator,object,1,41,
+s1-fmons,current_sprite,farm monster,monster,dialogue,6,212,snarling beast that taunts in words; includes a growl line and a dying curse
+s1-fount,1,Dink,dink,dialogue,2,42,1 ALL-CAPS/!!! line(s): shouting
+s1-gg,current_sprite,Guard Renton,guard,dialogue,8,361,"amused, condescending; stage directions: <chuckle>"
+s1-gg,1,Dink,dink,dialogue,4,139,
+s1-h1-1,1,Dink,dink,dialogue,4,111,
+s1-h1-2,1,Dink,dink,dialogue,6,161,
+s1-h1-3,1,Dink,dink,dialogue,4,68,
+s1-h1-4,1,Dink,dink,dialogue,6,159,
+s1-h1-m,current_sprite,Mother,mother,dialogue,14,569,"brisk, dry; some lines are commands (YES, NOW.); stage directions: <laugh>"
+s1-h1-m,1,Dink,dink,dialogue,10,259,1 ALL-CAPS/!!! line(s): shouting
+s1-h1-m,s1_h1_m__cur_sprite,Mother,mother,dialogue,2,42,"brisk, dry"
+s1-h1-o,s1_h1_o__person2,Lyna,woman_young,dialogue,2,39,vision at the burning house; distressed; 1 ALL-CAPS/!!! line(s): shouting; LOW CONFIDENCE: variable person2 is a girl sprite (colour 4 = Lyna elsewhere); best guess Lyna
+s1-h1-o,1,Dink,dink,dialogue,5,140,1 ALL-CAPS/!!! line(s): shouting
+s1-h1-o,s1_h1_o__person1,Ethel,woman_old,dialogue,4,136,"vision at the burning house; consoling, then a pointed jab about her duck; LOW CONFIDENCE: variable person1 is the old lady sprite; Ethel by context"
+s1-h1-o,s1_h1_o__person3,Milder Flatstomp,milder,dialogue,1,25,vision at the burning house; the silver knight; LOW CONFIDENCE: variable person3 is the silver knight sprite; best guess Milder
+s1-h1-s,1,Dink,dink,dialogue,7,182,
+s1-h2-1,1,Dink,dink,dialogue,2,61,1 ALL-CAPS/!!! line(s): shouting
+s1-h2-2,1,Dink,dink,dialogue,2,66,
+s1-h2-3,1,Dink,dink,dialogue,2,43,
+s1-h2-dk,1,Dink,dink,dialogue,2,33,
+s1-h2-dk,s1_h2_dk__who,Ethel,woman_old,dialogue,3,47,SHOUTING: hysterical grief and rage when Dink kills her duck
+s1-h2-o,current_sprite,Ethel,woman_old,dialogue,23,737,sentimental about her missing duck; accuses Dink in some branches; one line has a tearful aside; stage directions: <begins to tear up>
+s1-h2-o,1,Dink,dink,dialogue,11,427,stage directions: <chortles>
+s1-h3-1,1,Dink,dink,dialogue,2,33,
+s1-h3-2,1,Dink,dink,dialogue,2,63,
+s1-h3-3,1,Dink,dink,dialogue,2,61,
+s1-h3-4,1,Dink,dink,dialogue,2,30,
+s1-h3-5,s1_h3_5__man,Mr. SmileStein,man_middle,dialogue,1,23,shouting a challenge; LOW CONFIDENCE: unnamed man; colour matches Mr. SmileStein
+s1-h3-6,1,Dink,dink,dialogue,2,35,
+s1-h3-7,1,Dink,dink,dialogue,1,14,
+s1-h3-8,1,Dink,dink,dialogue,4,110,
+s1-h3-9,1,Dink,dink,dialogue,2,44,
+s1-h3-l,current_sprite,Libby SmileStein,woman_young,dialogue,14,444,"grieving, tearful, then angry when blamed; stage directions: <sniff>; 1 ALL-CAPS/!!! line(s): shouting"
+s1-h3-l,1,Dink,dink,dialogue,23,822,
+s1-h3-of,current_sprite,Mr. SmileStein,man_middle,dialogue,24,860,"widowed farmer, melancholy; some lines spoken to his late wife"
+s1-h3-of,1,Dink,dink,dialogue,9,189,
+s1-h3-s,1,Dink,dink,dialogue,1,25,
+s1-hsign,current_sprite,sign,narrator,object,1,46,Wizard Martridge's keep-out sign
+s1-hsign,1,Dink,dink,dialogue,1,56,
+s1-lg,current_sprite,Chealse,girl,dialogue,27,1185,gossipy little girl; sassy outbursts
+s1-lg,1,Dink,dink,dialogue,19,595,3 ALL-CAPS/!!! line(s): shouting
+s1-ltr,s1_ltr__mycur,letter from Aunt Maria,woman_middle,object,7,360,letter read aloud; kind and anxious; sincere sign-off
+s1-ltr,1,Dink,dink,dialogue,2,70,
+s1-ltr,,UI hint,,system,1,34,"instruction text, not voiced"
+s1-mh-f,1,Dink,dink,dialogue,4,135,
+s1-mh-f,current_sprite,letter from Martridge,martridge,object,10,383,letter read aloud in Martridge's voice
+s1-mh-m,current_sprite,Wizard Martridge,martridge,dialogue,21,770,"teacher of magic; patient, dry"
+s1-mh-m,1,Dink,dink,dialogue,15,575,
+s1-nopas,1,Dink,dink,dialogue,1,54,
+s1-ntree,1,Dink,dink,dialogue,1,23,
+s1-nut,1,Dink,dink,dialogue,2,59,
+s1-oldd,1,Dink,dink,dialogue,4,131,
+s1-oldd,current_sprite,Quackers,duck,dialogue,3,39,a duck; one line is just QUACK!!; sulky and sarcastic otherwise; 1 ALL-CAPS/!!! line(s): shouting
+s1-rob2,s1_rob2__guy,robbery victim,man_middle,dialogue,4,131,frightened traveller; ends with a cry for help
+s1-rob2,s1_rob2__bad2,rogue Royal Guard 2,guard,dialogue,2,60,bullying a traveller; mocking laughter
+s1-rob2,1,Dink,dink,dialogue,2,92,
+s1-rob2,s1_rob2__bad1,rogue Royal Guard 1,guard,dialogue,2,76,bullying a traveller; mocking laughter
+s1-rob2,current_sprite,rogue Royal Guard (dying),guard,dialogue,1,8,dying scream
+s1-roc,1,Dink,dink,dialogue,5,174,
+s1-sack,1,Dink,dink,dialogue,3,66,
+s1-sign2,current_sprite,sign,narrator,object,1,16,
+s1-ss2,1,Dink,dink,dialogue,8,192,
+s1-vic,current_sprite,robbery victim,man_middle,dialogue,5,175,rescued traveller; grateful
+s1-vic,1,Dink,dink,dialogue,3,84,
+s1-vil,current_sprite,sign,narrator,object,1,27,
+s1-vil2,current_sprite,sign,narrator,object,1,30,
+s1-wand,current_sprite,traveller,traveller,dialogue,37,1557,friendly lore-giver; long explanations
+s1-wand,1,Dink,dink,dialogue,6,209,
+s1-wand2,current_sprite,Chance Zands,zands,dialogue,38,1747,"escaped goblin prisoner; jumpy, informal, long explanations"
+s1-wand2,1,Dink,dink,dialogue,11,261,2 ALL-CAPS/!!! line(s): shouting
+s1-wiz,1,Dink,dink,dialogue,8,239,
+s1-wiz,current_sprite,Wizard Martridge,martridge,dialogue,7,255,"tiny astral form; indignant, booms DON'T ANGER ME, HUMAN!; 1 ALL-CAPS/!!! line(s): shouting"
+s2-auntp,s2_auntp__temphold,Jack Kneedlewood,man_middle,dialogue,10,284,"abusive husband; belligerent, violent, shouting (domestic violence scene)"
+s2-auntp,current_sprite,Aunt Maria Kneedlewood,woman_middle,dialogue,29,877,"abused wife; frightened, sobbing, but fierce when she leaves her husband; some lines are stage directions; stage directions: <sob>"
+s2-auntp,1,Dink,dink,dialogue,37,1168,
+s2-bar,1,Dink,dink,dialogue,11,215,
+s2-bar,temphold,barkeep,man_middle,dialogue,13,465,gruff tavern owner; bullies the barmaid; 1 system line(s) in this pair not voiced; stage directions: <presses button under the counter>
+s2-bar,s2_bar__crap,Cast agent / bar thug,villain,dialogue,3,37,"cold threat from a Cast agent; also the thug line ""Attack him!""; LOW CONFIDENCE: sprite var is a created sprite reused for two different characters"
+s2-ca-g,current_sprite,castle guard,guard,dialogue,21,1064,"proud, boastful about the castle; turns hostile when hit; 1 ALL-CAPS/!!! line(s): shouting"
+s2-ca-g,1,Dink,dink,dialogue,16,375,
+s2-ca-o,1,Dink,dink,dialogue,1,29,
+s2-cave,s2_cave__dude,cave prisoner,man_middle,dialogue,22,638,"trapped prisoner of the Cast; desperate, then sardonic; one angry outburst; 2 ALL-CAPS/!!! line(s): shouting"
+s2-cave,1,Dink,dink,dialogue,20,500,
+s2-cave2,s2_cave2__dude,cave prisoner,man_middle,dialogue,12,291,"freed prisoner; capable, brisk"
+s2-cave2,s2_cave2__evil,Cast agent,villain,dialogue,6,157,sinister ambush; laughter
+s2-cave2,s2_cave2__evil2,Cast agent,villain,dialogue,3,30,LAUGHTER only (Haha ha ha)
+s2-cave2,s2_cave2__evil3,Cast agent,villain,dialogue,3,30,LAUGHTER only (Ha ha haaa)
+s2-cave2,1,Dink,dink,dialogue,8,152,
+s2-cman,current_sprite,Bishop Nelson,nelson,dialogue,6,218,"cult leader, now a slayer shapeshifter in combat; menacing sermon; 1 ALL-CAPS/!!! line(s): shouting"
+s2-cslay,current_sprite,Bishop Nelson,nelson,dialogue,4,107,cult leader revealing himself
+s2-cslay,1,Dink,dink,dialogue,2,49,
+s2-cslay,temp6hold,Mary,girl,dialogue,1,35,screaming warning
+s2-culg,1,Dink,dink,dialogue,5,159,1 ALL-CAPS/!!! line(s): shouting
+s2-culg,current_sprite,Mary,girl,dialogue,5,100,"rescued little girl; cries for help, then grateful"
+s2-culg,temp1hold,Nadine,woman_middle,dialogue,3,114,mother reunited with her daughter; relieved
+s2-culg,temp2hold,Mary,girl,dialogue,2,50,little girl reunited with her mother
+s2-cult,1,Dink,dink,dialogue,10,369,
+s2-cult,temphold,Jennifer,girl,dialogue,7,296,"cult girl; chanting, reverent, then screaming a transformation order (transforms into a slayer)"
+s2-cult,temp2hold,cult girl 2,girl,dialogue,1,35,cult girl; devoted chant
+s2-cult,temp3hold,cult girl 3,girl,dialogue,1,41,cult girl; devoted chant
+s2-cult,temp4hold,Cindy,girl,dialogue,4,103,"cult girl; sulky, then eager; 1 ALL-CAPS/!!! line(s): shouting"
+s2-cult,temp5hold,Bishop Nelson,nelson,dialogue,11,381,"cult leader; smooth, ominous; 1 ALL-CAPS/!!! line(s): shouting"
+s2-cult,temp6hold,Mary,girl,dialogue,2,78,"kidnapped girl; terrified, defiant"
+s2-dams,current_sprite,sign,narrator,object,1,9,
+s2-ds,current_sprite,sign,narrator,object,1,30,
+s2-fgate,1,Dink,dink,dialogue,1,5,
+s2-fight,current_sprite,dying fighter,man_middle,dialogue,1,8,"dying scream (Ahhhhhhh); LOW CONFIDENCE: script is an empty death handler; no name in source, gender guessed"
+s2-h1-s,1,Dink,dink,dialogue,2,68,
+s2-h2-s,1,Dink,dink,dialogue,2,86,
+s2-healp,temphold,healer,merchant,dialogue,1,37,polite healer; LOW CONFIDENCE: healer: gender not stated
+s2-healp,1,Dink,dink,dialogue,1,12,
+s2-idol,1,Dink,dink,dialogue,1,28,
+s2-jack,1,Dink,dink,dialogue,13,513,
+s2-jack,current_sprite,Jack Kneedlewood,man_middle,dialogue,12,222,"abusive husband; surly, short-tempered, shouting when attacked; some lines are stage directions; stage directions: <grumble>"
+s2-jack,temp2hold,Aunt Maria Kneedlewood,woman_middle,dialogue,5,158,"abused wife; timid, tearful when Dink fights her husband; stage directions: <bursts into tears> <sob>"
+s2-man1,current_sprite,old man 1,man_old,dialogue,1,5,tipsy tavern regular; yelp
+s2-man2,current_sprite,Nathan,man_old,dialogue,32,1145,"tall-tale-telling old adventurer; boasting, tipsy; shouts FIGHT when brawling"
+s2-man2,temp3hold,old man 2,man_old,dialogue,17,389,sceptical drinking companion of Nathan; laughs
+s2-man2,temphold,barkeep,man_middle,dialogue,3,88,grumpy bar owner; sarcastic
+s2-man2,1,Dink,dink,dialogue,14,501,
+s2-man2,s2_man2__milder,Milder Flatstomp,milder,dialogue,5,224,mocking Dink in front of the tavern crowd; laughing; 1 ALL-CAPS/!!! line(s): shouting
+s2-mdoor,1,Dink,dink,dialogue,13,422,
+s2-mdoor,s2_mdoor__me,old magician,wizard_old,dialogue,8,245,"behind a locked door at first; vague, forgetful, misnames Dink; asks ""Are you high?""; LOW CONFIDENCE: unnamed old magician in Terris; distinct from Martridge per bible"
+s2-mh-m,current_sprite,old magician,wizard_old,dialogue,13,579,"teaches Dink magic; forgetful, mispronounces his name (Tallwood, BallWood...)"
+s2-mh-m,1,Dink,dink,dialogue,11,391,
+s2-mybed,1,Dink,dink,dialogue,2,74,
+s2-na1,1,Dink,dink,dialogue,2,58,
+s2-na2,1,Dink,dink,dialogue,2,40,1 ALL-CAPS/!!! line(s): shouting
+s2-nadp,1,Dink,dink,dialogue,13,607,
+s2-nadp,current_sprite,Nadine,woman_middle,dialogue,11,328,"poor mother searching for her missing daughter; sad, then relieved"
+s2-out,temphold,shopkeeper,merchant,dialogue,2,82,helpful outfitter
+s2-qgirl,current_sprite,girl,girl,dialogue,1,9,friendly little girl greeting Dink; LOW CONFIDENCE: unnamed girl
+s2-ryan2,current_sprite,Thief,man_middle,dialogue,4,71,"shady ""specialist""; whispers"
+s2-ryan2,1,Dink,dink,dialogue,1,17,
+s2-ryan3,current_sprite,Thief,man_middle,dialogue,5,114,shady specialist picking a lock; whispers
+s2-ryan3,1,Dink,dink,dialogue,2,34,
+s2-ryant,1,Dink,dink,dialogue,8,272,
+s2-ryant,current_sprite,Thief,man_middle,dialogue,15,335,"shady ""specialist"" in the tavern; evasive, smooth"
+s2-sale,current_sprite,sign,narrator,object,1,49,
+s2-sale,1,Dink,dink,dialogue,1,27,
+s2-sale2,current_sprite,sign,narrator,object,1,8,
+s2-sec2,current_sprite,talking tree,tree,dialogue,2,87,tree pun: tree years old; cackling HAW HAW HAW
+s2-sec2,1,Dink,dink,dialogue,1,46,1 ALL-CAPS/!!! line(s): shouting
+s2-sign3,current_sprite,sign,narrator,object,1,14,
+s2-signe,current_sprite,sign,narrator,object,1,82,
+s2-sk,current_sprite,sign,narrator,object,1,39,
+s2-stat,temphold,shopkeeper,merchant,dialogue,2,125,shop owner; patient with a customer attacking a stuffed slayer
+s2-t1s,current_sprite,sign,narrator,object,1,29,
+s2-t2s,current_sprite,sign,narrator,object,1,16,
+s2-table,1,Dink,dink,dialogue,2,30,
+s2-tdoor,1,Dink,dink,dialogue,1,12,
+s2-tds,s2_tds__poop,Terris guard 1,guard,dialogue,3,109,celebrating a capture with Dink
+s2-tds,s2_tds__poop2,Terris guard 2,guard,dialogue,3,133,celebrating a capture with Dink
+s2-tds,1,Dink,dink,dialogue,2,63,
+s2-wand,current_sprite,hunter,man_middle,dialogue,24,999,friendly outdoorsman
+s2-wand,1,Dink,dink,dialogue,4,58,
+s2-want,current_sprite,sign,narrator,object,2,115,
+s2-well1,1,Dink,dink,dialogue,2,100,
+s2-wench,current_sprite,Terris barmaid,woman_young,dialogue,10,252,"tired, overworked, a little flirty/dry; 1 ALL-CAPS/!!! line(s): shouting"
+s2-wench,temphold,barkeep,man_middle,dialogue,1,21,one surprised line; LOW CONFIDENCE: temphold in s2-wench is inherited from the bar script (the barkeep); best guess
+s2-wench,1,Dink,dink,dialogue,7,218,
+s3-1st,1,Dink,dink,dialogue,7,224,
+s3-1st,s3_1st__evil2,Cast knight,villain,dialogue,3,155,conspirators planning a raid; hushed
+s3-1st,s3_1st__evil,Cast knight,villain,dialogue,2,90,conspirators planning a raid; hushed
+s3-bh,s3_bh__guy,grumpy homeowner,man_middle,dialogue,11,274,SHOUTING: angry at Dink barging into his house
+s3-bh,1,Dink,dink,dialogue,8,233,1 ALL-CAPS/!!! line(s): shouting
+s3-bowl,1,Dink,dink,dialogue,2,48,1 system line(s) in this pair not voiced
+s3-camp,1,Dink,dink,dialogue,4,93,
+s3-camp,s3_camp__evil2,Cast knight,villain,dialogue,1,5,one shouted surprise
+s3-camps,1,Dink,dink,dialogue,4,171,
+s3-camps,s3_camps__evil,Cast knight,villain,dialogue,5,166,threatening; speaks of killing Dink
+s3-camps,s3_camps__evil2,Cast knight,villain,dialogue,1,10,LAUGHTER only
+s3-chick,current_sprite,Christina,christina,dialogue,23,790,"painter and Mayor's daughter; earnest, sunny; one line is a debug message (system); 1 system line(s) in this pair not voiced"
+s3-chick,1,Dink,dink,dialogue,20,620,
+s3-chick,s3_chick__woman,Christina,christina,dialogue,6,252,telling Dink about a rumor
+s3-fount,1,Dink,dink,dialogue,1,24,
+s3-freak,current_sprite,duck freak,man_young,dialogue,25,720,hyperactive and unhinged; SHOUTING when ducks die or Dink is rude
+s3-freak,1,Dink,dink,dialogue,12,275,
+s3-gh,current_sprite,goblin,goblin,dialogue,4,94,"GIBBERISH: invented goblin language, read as nonsense words, consistent phonetics"
+s3-gob,current_sprite,Goblin George,goblin,dialogue,9,307,"BROKEN ENGLISH, misspelled phonetically; pacifist goblin pleading with Dink; keep misspellings as pronunciation guides; 1 ALL-CAPS/!!! line(s): shouting"
+s3-gob,1,Dink,dink,dialogue,9,382,
+s3-gob2,current_sprite,sign,narrator,object,1,25,
+s3-gobg,current_sprite,Goblin gate guard,goblin,dialogue,8,224,"BROKEN ENGLISH, misspelled phonetically; suspicious gate guard; shouts GATS OPAN"
+s3-gobg,1,Dink,dink,dialogue,4,218,
+s3-gs,current_sprite,goblin,goblin,dialogue,4,94,"GIBBERISH: invented goblin language, read as nonsense words, consistent phonetics"
+s3-gsign,current_sprite,sign,narrator,object,1,21,"Goblin George's sign, misspelled on purpose"
+s3-larry,current_sprite,Robinson Cabinets owner,man_middle,dialogue,15,492,"henpecked father and furniture dealer; eager salesman, flustered by his daughter; LOW CONFIDENCE: owner is not named in the source (script name larry)"
+s3-larry,1,Dink,dink,dialogue,6,279,
+s3-larry,s3_larry__prom,Promise,girl,dialogue,7,163,"SPOILED CHILD: screeching DADDY!!!!!!!!!, demanding; 5 ALL-CAPS/!!! line(s): shouting"
+s3-loser,1,Dink,dink,dialogue,4,92,
+s3-loser,current_sprite,parade worker,man_young,dialogue,6,168,"deadpan, bored"
+s3-mayor,1,Dink,dink,dialogue,21,729,
+s3-mayor,current_sprite,Mayor,man_middle,dialogue,14,475,pompous and cautious; panics at the news of an attack
+s3-mdoor,1,Dink,dink,dialogue,1,12,
+s3-mog,1,Dink,dink,dialogue,4,163,1 ALL-CAPS/!!! line(s): shouting
+s3-mog,s3_mog__crap,Mog,mog,dialogue,3,160,"king of the goblins; fluent, imperious; rages at the end; 1 ALL-CAPS/!!! line(s): shouting"
+s3-peeps,current_sprite,parade spectator,woman_middle,dialogue,8,282,"cheerful parade crowd member; panics when Dink attacks; 2 ALL-CAPS/!!! line(s): shouting; LOW CONFIDENCE: several different spectator sprites share this script; gender mixed, one voice assigned"
+s3-peeps,1,Dink,dink,dialogue,1,26,1 ALL-CAPS/!!! line(s): shouting
+s3-rock,1,Dink,dink,dialogue,2,44,
+s3-sign1,1,Dink,dink,dialogue,2,82,1 ALL-CAPS/!!! line(s): shouting
+s3-sign1,current_sprite,sign,narrator,object,2,99,
+s3-sign2,current_sprite,sign,narrator,object,1,18,
+s3-sign3,current_sprite,sign,narrator,object,1,17,
+s3-sign3,1,Dink,dink,dialogue,1,21,
+s3-sign6,current_sprite,sign,narrator,object,1,14,
+s3-sign7,current_sprite,sign,narrator,object,1,54,
+s3-st1o,s3_st1o__woman,Christina,christina,dialogue,5,153,urgently showing Dink where to find the Mayor
+s3-st1o,1,Dink,dink,dialogue,2,37,
+s3-st1p,current_sprite,bookstore clerk,merchant,dialogue,19,763,"prim, genteel bookseller; meek when hit"
+s3-st1p,1,Dink,dink,dialogue,15,376,
+s3-st2,,sign,narrator,object,1,16,shop sign (no sprite)
+s3-st2p,current_sprite,Arturous,merchant,dialogue,15,665,smug bow salesman; shrugs off arrows
+s3-st2p,1,Dink,dink,dialogue,10,336,
+s3-tc,s3_tc__woman,Christina,christina,dialogue,6,200,warm and proud of Dink
+s3-tc,1,Dink,dink,dialogue,4,163,
+s4-dg,current_sprite,duck altar guard,guard,dialogue,7,245,solemn; pleads when hit
+s4-dg,1,Dink,dink,dialogue,4,143,1 ALL-CAPS/!!! line(s): shouting
+s4-dsign,current_sprite,sign,narrator,object,2,38,
+s4-dsign,1,Dink,dink,dialogue,1,41,
+s4-end,s4_end__man,Kelly's father,man_middle,dialogue,11,215,"SHOUTING: outraged, then converted; calls to his daughter"
+s4-end,1,Dink,dink,dialogue,2,86,
+s4-end,s4_end__girl,Kelly,girl,dialogue,4,66,"child; innocent, later eating meat; ""Bye, Dink."""
+s4-end,s4_end__guard,duck altar guard,guard,dialogue,7,250,SHOUTING: zealot avenging the duck
+s4-h1p,current_sprite,paranoid man,man_middle,dialogue,13,433,"SCREAMING while fireballing Dink; later grateful, over-friendly"
+s4-h1p,1,Dink,dink,dialogue,15,365,1 ALL-CAPS/!!! line(s): shouting
+s4-h2p1,current_sprite,starving mother,woman_middle,dialogue,9,281,"starving, meek; pleads when hit"
+s4-h2p1,1,Dink,dink,dialogue,4,167,
+s4-h2p2,current_sprite,starving father,man_middle,dialogue,7,161,too hungry to talk; weary politeness
+s4-h2p2,1,Dink,dink,dialogue,1,14,
+s4-h2p3,1,Dink,dink,dialogue,4,84,
+s4-h2p3,current_sprite,starving daughter,girl,dialogue,6,156,"CHILD; quiet, honest"
+s4-healp,temphold,healer,merchant,dialogue,1,37,polite healer; LOW CONFIDENCE: healer: gender not stated
+s4-healp,1,Dink,dink,dialogue,1,12,
+s4-md2,current_sprite,voice behind a door 1,man_middle,dialogue,6,102,"BEHIND A LOCKED DOOR (muffled); hostile, desperate for food; LOW CONFIDENCE: speaker unseen; gender guessed from colour/lines"
+s4-md2,1,Dink,dink,dialogue,3,32,
+s4-md3,current_sprite,voice behind a door 2,woman_middle,dialogue,7,186,"BEHIND A LOCKED DOOR (muffled); starving mother with children; LOW CONFIDENCE: speaker unseen; ""My children are starving"" suggests a mother"
+s4-md3,1,Dink,dink,dialogue,3,74,
+s4-mdoor,temp1hold,voice behind a door 3,man_middle,dialogue,7,103,BEHIND A LOCKED DOOR (muffled); hostile or grateful depending on story; one NOOOO scream; LOW CONFIDENCE: temp1hold is sprite 7 (an unseen door occupant); gender unknown
+s4-not,temp4hold,starving father,man_middle,dialogue,1,48,one line; warning Dink away from the food; LOW CONFIDENCE: temp4hold; colour matches the starving father
+s4-sign1,current_sprite,sign,narrator,object,2,63,
+s4-sign2,current_sprite,sign,narrator,object,1,20,
+s4-sign3,current_sprite,sign,narrator,object,5,168,"duck tax decree, formal herald-style proclamation"
+s4-st1p,current_sprite,Jill,merchant,dialogue,18,653,"devout, impoverished pawnbroker; trails off muttering about the ducks; LOW CONFIDENCE: Jill: gender not stated, bible refers to the shop only"
+s4-st1p,1,Dink,dink,dialogue,8,209,
+s4-st2p,current_sprite,furrier,merchant,dialogue,19,804,sensible outsider
+s4-st2p,1,Dink,dink,dialogue,9,266,
+s4-st3p,current_sprite,Blistering Pete,man_old,dialogue,16,527,"ex-pirate weapons dealer; PIRATE accent in the spelling (Arrr, ye); threatens to give a wooden leg"
+s4-st3p,1,Dink,dink,dialogue,5,164,
+s4-stat,1,Dink,dink,dialogue,2,51,1 ALL-CAPS/!!! line(s): shouting
+s4-tree,current_sprite,talking tree,tree,dialogue,5,160,"timid, hint-giving tree; yelps when hit; 1 ALL-CAPS/!!! line(s): shouting"
+s4-tree,1,Dink,dink,dialogue,1,19,
+s5-end,temp1hold,Joppa father,man_middle,dialogue,4,189,relieved townsman explaining the dragon war
+s5-end,temp3hold,Gwen,girl,dialogue,1,36,"rescued daughter, overjoyed; LOW CONFIDENCE: temp3hold colour 13 shared with mother; guess Gwen"
+s5-end,temp2hold,Joppa mother,woman_middle,dialogue,1,34,grateful; LOW CONFIDENCE: temp2hold colour 13 matches the mother; guess
+s5-end,1,Dink,dink,dialogue,1,74,
+s5-fd,1,Dink,dink,dialogue,1,48,1 ALL-CAPS/!!! line(s): shouting
+s5-fd,current_sprite,Gwen,girl,dialogue,1,39,"rescued daughter, awed"
+s5-fguy,temp2hold,Joppa mother,woman_middle,dialogue,1,24,calling her daughter to safety; frantic; 1 ALL-CAPS/!!! line(s): shouting
+s5-fguy,temp3hold,Gwen,girl,dialogue,1,32,frightened daughter
+s5-fguy,temp1hold,Joppa father,man_middle,dialogue,3,56,defiant; battle cry
+s5-fguy,temp4hold,dragon,dragon,dialogue,1,28,"vengeful dragon; slow, rumbling"
+s5-fguy,temp5hold,dragon,dragon,dialogue,1,17,"vengeful dragon; slow, rumbling"
+s5-fguy,1,Dink,dink,dialogue,1,55,1 ALL-CAPS/!!! line(s): shouting
+s5-fmom,1,Dink,dink,dialogue,1,50,1 ALL-CAPS/!!! line(s): shouting
+s5-fmom,current_sprite,Joppa mother,woman_middle,dialogue,1,35,"rescued mother, grateful"
+s5-guy,temp2hold,Joppa mother,woman_middle,dialogue,3,135,anxious mother; her daughter is missing
+s5-guy,1,Dink,dink,dialogue,4,98,
+s5-guy,temp1hold,Joppa father,man_middle,dialogue,3,182,anxious father; his daughter is missing
+s5-jops,1,Dink,dink,dialogue,1,33,
+s5-sign1,current_sprite,sign,narrator,object,1,34,
+s5-sign1,1,Dink,dink,dialogue,1,65,
+s5-st1p,current_sprite,axe seller,merchant,dialogue,4,102,dry weapon dealer; protests when hit
+s6-fount,1,Dink,dink,dialogue,6,102,
+s6-g1,current_sprite,Edge of the World guard (Tom's friend),guard,dialogue,5,164,supportive; flinches when hit
+s6-g2,current_sprite,Edge of the World guard Tom,guard,dialogue,5,151,supportive; flinches when hit
+s6-sign1,current_sprite,sign,narrator,object,1,28,
+s6-sign5,current_sprite,sign,narrator,object,1,64,"warning sign from ""the ancient ones"""
+s6-st1p,current_sprite,church shopkeeper,merchant,dialogue,13,607,grave and reverent; praises Dink as a hero
+s6-st1p,1,Dink,dink,dialogue,8,205,
+s6-vend,current_sprite,hellfire man,man_old,dialogue,8,221,"nihilist, flat and unbothered; fatalistic"
+s6-vend,1,Dink,dink,dialogue,9,270,1 system line(s) in this pair not voiced
+s7-boat,1,Dink,dink,dialogue,1,15,
+s7-boss,current_sprite,Seth,seth,dialogue,14,415,final boss in combat; menacing taunts; spell-cast captions are system lines; 2 system line(s) in this pair not voiced; stage directions: <Casts explosion> <Casts greater harm>; 2 ALL-CAPS/!!! line(s): shouting
+s7-boss,s7_boss__kcrap,spell target,,system,1,15,"""Magic resisted."" caption"
+s7-boss,1,Dink,dink,dialogue,4,139,
+s7-dgirl,current_sprite,crazy ghost girl,ghost,dialogue,1,5,SCREAMING one-word demand (FOOD!)
+s7-dink,1,Dink,dink,dialogue,1,30,
+s7-drag,current_sprite,dragon (spell caster),,system,1,20,only spell-cast captions; stage directions: <Casts greater harm>
+s7-drag,s7_drag__kcrap,spell target,,system,1,15,"""Magic resisted."" caption"
+s7-girl,current_sprite,ghost girl,ghost,dialogue,7,234,"GHOST OF A CHILD; plaintive, eerie, SHOUTING I HATE IT HERE!; hungry; stage directions: <giggles>"
+s7-mil,1,Dink,dink,dialogue,16,447,2 ALL-CAPS/!!! line(s): shouting
+s7-mil,,Milder Flatstomp,milder,dialogue,15,496,"DYING: whispered, broken, long pauses (ellipses mark gasps); stage direction groan; last lines are faint, then a scream NOOO!; stage directions: <groan>"
+s7-mil,temp1hold,Seth,seth,dialogue,5,122,first appearance of the ancient evil; chilling and unhurried; action captions are system lines; 2 system line(s) in this pair not voiced; stage directions: <casts explosion> <grins evilly at you>
+s7-mom,current_sprite,ghost mother,ghost,dialogue,5,145,"GHOST OF A MOTHER; menacing, hollow; SHOUTING LOOK UPON MY DEFORMED FACE!"
+s7-mom,1,Dink,dink,dialogue,2,46,
+s8-da,s8_da__pep,duck fight host,duck,dialogue,15,401,"bloodthirsty announcer for the duck arena; hearty, rowdy"
+s8-da,1,Dink,dink,dialogue,2,38,
+s8-da,s8_da__duck1,giant duck,duck,dialogue,1,18,defeated duck fighter
+s8-da,s8_da__duck2,giant duck,duck,dialogue,1,17,defeated duck fighter
+s8-dish,1,Dink,dink,dialogue,1,22,
+s8-duck,current_sprite,giant duck,duck,dialogue,4,75,friendly giant duck of Koka Isle
+s8-duck,1,Dink,dink,dialogue,1,13,
+s8-duck2,1,Dink,dink,dialogue,8,140,
+s8-duck2,current_sprite,giant duck,duck,dialogue,8,187,friendly giant duck of Koka Isle; 1 ALL-CAPS/!!! line(s): shouting
+s8-duck3,current_sprite,mother duck,duck,dialogue,3,45,friendly giant duck of Koka Isle
+s8-duck3,1,Dink,dink,dialogue,5,90,
+s8-duck4,1,Dink,dink,dialogue,1,30,
+s8-duck4,current_sprite,giant duck,duck,dialogue,2,60,friendly giant duck of Koka Isle
+s8-guy,current_sprite,bow-maker,man_middle,dialogue,3,107,"craftsman; irritable when disturbed, shouts for help when hit"
+s8-guy,1,Dink,dink,dialogue,3,71,1 system line(s) in this pair not voiced
+s8-sign,current_sprite,sign,narrator,object,1,24,joke graffiti sign
+s8-well,1,Dink,dink,dialogue,2,57,
+savebot,1,Dink,dink,dialogue,1,46,
+savebot,,save machine,,system,1,10,"""Game saved"" caption"
+sc-drag,current_sprite,dragon (spell caster),,system,1,12,only spell-cast captions; stage directions: <Casts harm>
+sc-drag,sc_drag__kcrap,spell target,,system,1,15,"""Magic resisted."" caption"
+sc-wiz,current_sprite,snow castle wizard,wizard_old,dialogue,22,792,"centuries old, still fighting a war that ended long ago; rambling, confused; 1 ALL-CAPS/!!! line(s): shouting"
+sc-wiz,1,Dink,dink,dialogue,15,565,
+sfood,1,Dink,dink,dialogue,1,4,
+sgold,1,Dink,,system,1,17,
+spice,1,Dink,dink,dialogue,4,112,1 ALL-CAPS/!!! line(s): shouting
+spice,spice__sporty_spice,Sporty (pop-group cameo),woman_young,dialogue,1,34,Dink's fantasy cameo; cheery
+start-1,,game message,,system,1,20,"UI text, not voiced"
+start-2,,game message,,system,1,45,"UI text, not voiced"
+start-3,,magic voice (shareware advert),narrator,narration,7,207,voice of the shareware advert on the title screen; a prices-and-order-info announcer; 1 ALL-CAPS/!!! line(s): shouting
+start-3,start_3__ddink,Dink,dink,dialogue,5,121,reacting to the advert; 1 ALL-CAPS/!!! line(s): shouting
+start,,game message,,system,1,61,"error text, not voiced"
+treeduck,current_sprite,magical tree-duck,duck,dialogue,1,15,one-line exclamation when hit; LOW CONFIDENCE: sprite spawns a tree/duck; identity guessed
+water,1,Dink,dink,dialogue,1,11,
+xlgold,1,Dink,,system,1,17,

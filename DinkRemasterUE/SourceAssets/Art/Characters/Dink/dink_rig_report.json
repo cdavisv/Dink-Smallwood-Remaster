@@ -1,0 +1,19 @@
+{
+  "bone_count": 89,
+  "root_bones": [
+    "root"
+  ],
+  "triangles": 31689,
+  "material_slots": [
+    "MI_Dink_Skin",
+    "MI_Dink_Eyes",
+    "MI_Dink_Hair",
+    "MI_Dink_BrowLash",
+    "MI_Dink_Wardrobe"
+  ],
+  "max_influences": 4,
+  "unweighted_before_fallback": 0,
+  "vertices": 16568,
+  "skirt_vertices": 0,
+  "reference_geometry_present": false
+}

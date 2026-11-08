@@ -1,0 +1,21 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/davisc/Work/DinkQA/FireplaceV2/Export",
+  "manifest": "/home/davisc/Work/DinkQA/FireplaceV2/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Fireplace_Stonebrook_V2",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/Refinements/SM_Fireplace_Stonebrook_V2.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/Refinements/SM_Fireplace_Stonebrook_V2.glb"
+      },
+      "tris": {
+        "LOD0": 15484,
+        "LOD1": 8050,
+        "LOD2": 4180
+      }
+    }
+  ],
+  "rejected": []
+}

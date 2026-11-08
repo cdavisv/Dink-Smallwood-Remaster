@@ -1,0 +1,23 @@
+{
+  "name": "authored cottage entry aligned to its visible doorway center",
+  "expected_screen": 1,
+  "waypoints": [
+    {
+      "screen": 439,
+      "map": [
+        339,
+        350
+      ],
+      "tolerance_cm": 4
+    },
+    {
+      "screen": 439,
+      "map": [
+        339,
+        280
+      ],
+      "warp_to": 1,
+      "tolerance_cm": 3
+    }
+  ]
+}

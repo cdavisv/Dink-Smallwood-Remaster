@@ -1,0 +1,1205 @@
+{
+  "screen": 407,
+  "source_screen": {
+    "id": "SCR_407",
+    "screen": 407,
+    "col": 22,
+    "row": 12,
+    "region": "stonebrook",
+    "region_name": "Stonebrook",
+    "name": "Stonebrook village",
+    "kind": "settlement",
+    "sheet": "mainland",
+    "group": "mainland",
+    "indoor": false,
+    "music": {
+      "raw": 104,
+      "action": "play",
+      "file": "sound/104.mid"
+    },
+    "base_script": "",
+    "encounter": {
+      "screenlock": false,
+      "locking": false,
+      "scripts": [],
+      "provisional": false
+    },
+    "interior": null,
+    "vision": null,
+    "corners": {
+      "nw": [
+        942.6864,
+        304.7951
+      ],
+      "ne": [
+        1001.6752,
+        304.9768
+      ],
+      "sw": [
+        942.9425,
+        344.4383
+      ],
+      "se": [
+        1002.0559,
+        344.7009
+      ]
+    },
+    "center": [
+      972.34,
+      324.7278
+    ],
+    "m_per_px_center": 0.0988,
+    "ground_image": "ground/SCR_407.png",
+    "ground_hash": "1c373dfe728dd14a1cf1e32e3831630fe2fbcb5e",
+    "collision_hash": "f65c41b26c166773a6c1cf601a2d9bff6299bd9f",
+    "rect_counts": {
+      "solid": 0,
+      "low": 0,
+      "sprite": 31,
+      "warp": 0,
+      "fill_water": 0,
+      "fill_solid": 0
+    },
+    "reached": true,
+    "excluded": "",
+    "hash": "4facb06cb170dee2a7a629f3aca26005cc6a5e03"
+  },
+  "raw_count": 62,
+  "visible_count": 60,
+  "pig_origins_preserved": [
+    "S407_P02",
+    "S407_P05",
+    "S407_P06",
+    "S407_P07",
+    "S407_P11"
+  ],
+  "hidden_nonpig_origins": [
+    "S407_P01",
+    "S407_P03",
+    "S407_P04",
+    "S407_P08",
+    "S407_P09",
+    "S407_P10",
+    "S407_P12",
+    "S407_P13",
+    "S407_P14",
+    "S407_P15",
+    "S407_P16",
+    "S407_P17",
+    "S407_P18",
+    "S407_P19",
+    "S407_P20",
+    "S407_P21",
+    "S407_P22",
+    "S407_P23",
+    "S407_P24",
+    "S407_P25",
+    "S407_P26",
+    "S407_P27",
+    "S407_P28",
+    "S407_P29",
+    "S407_P30",
+    "S407_P31",
+    "S407_P32",
+    "S407_P33",
+    "S407_P34",
+    "S407_P35",
+    "S407_P36",
+    "S407_P37",
+    "S407_P38",
+    "S407_P39",
+    "S407_P40",
+    "S407_P41",
+    "S407_P42",
+    "S407_P43",
+    "S407_P44",
+    "S407_P45",
+    "S407_P46",
+    "S407_P47",
+    "S407_P48",
+    "S407_P49",
+    "S407_P50",
+    "S407_P51",
+    "S407_P52",
+    "S407_P53",
+    "S407_P54",
+    "S407_P55",
+    "S407_P56",
+    "S407_P57",
+    "S407_P58",
+    "S407_P59",
+    "S407_P60",
+    "S407_P61",
+    "S407_P62"
+  ],
+  "placements": [
+    {
+      "id": "S407_P01",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 21,
+      "map_y": 164,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          3,
+          99,
+          40,
+          188
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P02",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pig",
+      "category": "animal",
+      "map_x": 230,
+      "map_y": 225,
+      "brain": 4,
+      "script": "die",
+      "seq": 41,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P03",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_diag_nw",
+      "category": "structure_part",
+      "map_x": 516,
+      "map_y": 105,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 6,
+      "hardness": {
+        "rect": [
+          462,
+          82,
+          536,
+          111
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P04",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 127,
+      "map_y": 137,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 9,
+      "hardness": null
+    },
+    {
+      "id": "S407_P05",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pig",
+      "category": "animal",
+      "map_x": 269,
+      "map_y": 302,
+      "brain": 4,
+      "script": "die",
+      "seq": 47,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P06",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pig",
+      "category": "animal",
+      "map_x": 377,
+      "map_y": 211,
+      "brain": 4,
+      "script": "die",
+      "seq": 49,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P07",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pig",
+      "category": "animal",
+      "map_x": 391,
+      "map_y": 269,
+      "brain": 4,
+      "script": "die",
+      "seq": 41,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P08",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 210,
+      "map_y": 142,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          121,
+          136,
+          296,
+          159
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P09",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 358,
+      "map_y": 142,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          269,
+          136,
+          444,
+          159
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P10",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 403,
+      "map_y": 361,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          314,
+          355,
+          489,
+          378
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P11",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pig",
+      "category": "animal",
+      "map_x": 311,
+      "map_y": 245,
+      "brain": 4,
+      "script": "die",
+      "seq": 41,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P12",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 136,
+      "map_y": 206,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          118,
+          141,
+          155,
+          230
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P13",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 376,
+      "map_y": 379,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 9,
+      "hardness": null
+    },
+    {
+      "id": "S407_P14",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 501,
+      "map_y": 217,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 11,
+      "hardness": null
+    },
+    {
+      "id": "S407_P15",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 326,
+      "map_y": 381,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 11,
+      "hardness": null
+    },
+    {
+      "id": "S407_P16",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 163,
+      "map_y": 381,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 14,
+      "hardness": null
+    },
+    {
+      "id": "S407_P17",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 394,
+      "map_y": 128,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 14,
+      "hardness": null
+    },
+    {
+      "id": "S407_P18",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 506,
+      "map_y": 144,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P19",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 473,
+      "map_y": 202,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          455,
+          137,
+          492,
+          226
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P20",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 475,
+      "map_y": 276,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          457,
+          211,
+          494,
+          300
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P21",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 476,
+      "map_y": 349,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          458,
+          284,
+          495,
+          373
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P22",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 255,
+      "map_y": 361,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          166,
+          355,
+          341,
+          378
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P23",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 106,
+      "map_y": 359,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P24",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 136,
+      "map_y": 351,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          118,
+          286,
+          155,
+          375
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P25",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 133,
+      "map_y": 212,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 14,
+      "hardness": null
+    },
+    {
+      "id": "S407_P26",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 65,
+      "map_y": 294,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 8,
+      "hardness": null
+    },
+    {
+      "id": "S407_P27",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 424,
+      "map_y": 372,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 8,
+      "hardness": {
+        "rect": [
+          419,
+          371,
+          429,
+          373
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P28",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 493,
+      "map_y": 182,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 8,
+      "hardness": null
+    },
+    {
+      "id": "S407_P29",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 269,
+      "map_y": 130,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 8,
+      "hardness": null
+    },
+    {
+      "id": "S407_P30",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 119,
+      "map_y": 275,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 16,
+      "hardness": null
+    },
+    {
+      "id": "S407_P31",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 522,
+      "map_y": 323,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 16,
+      "hardness": null
+    },
+    {
+      "id": "S407_P32",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 181,
+      "map_y": 104,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 15,
+      "hardness": null
+    },
+    {
+      "id": "S407_P33",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 221,
+      "map_y": 372,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 13,
+      "hardness": null
+    },
+    {
+      "id": "S407_P34",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 502,
+      "map_y": 289,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 3,
+      "hardness": null
+    },
+    {
+      "id": "S407_P35",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 473,
+      "map_y": 379,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 3,
+      "hardness": null
+    },
+    {
+      "id": "S407_P36",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 101,
+      "map_y": 250,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 2,
+      "hardness": null
+    },
+    {
+      "id": "S407_P37",
+      "type": 0,
+      "kind": "background",
+      "class_id": "seed_scatter",
+      "category": "prop",
+      "map_x": 73,
+      "map_y": 256,
+      "brain": 0,
+      "script": "",
+      "seq": 431,
+      "frame": 4,
+      "hardness": null
+    },
+    {
+      "id": "S407_P38",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 242,
+      "map_y": 100,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 4,
+      "hardness": null
+    },
+    {
+      "id": "S407_P39",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 324,
+      "map_y": 123,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 15,
+      "hardness": null
+    },
+    {
+      "id": "S407_P40",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 499,
+      "map_y": 124,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 15,
+      "hardness": null
+    },
+    {
+      "id": "S407_P41",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 599,
+      "map_y": 106,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          510,
+          100,
+          600,
+          123
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P42",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_diag_nw",
+      "category": "structure_part",
+      "map_x": 472,
+      "map_y": 80,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 3,
+      "hardness": {
+        "rect": [
+          407,
+          54,
+          483,
+          85
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P43",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 346,
+      "map_y": 52,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          257,
+          46,
+          432,
+          69
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P44",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 198,
+      "map_y": 52,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          109,
+          46,
+          284,
+          69
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P45",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_diag_ne",
+      "category": "structure_part",
+      "map_x": 113,
+      "map_y": 75,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 5,
+      "hardness": {
+        "rect": [
+          64,
+          60,
+          133,
+          86
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P46",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_diag_ne",
+      "category": "structure_part",
+      "map_x": 71,
+      "map_y": 105,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 2,
+      "hardness": {
+        "rect": [
+          7,
+          80,
+          80,
+          108
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P47",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 22,
+      "map_y": 239,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          4,
+          174,
+          41,
+          263
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P48",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 22,
+      "map_y": 313,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          4,
+          248,
+          41,
+          337
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P49",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 322,
+      "map_y": 97,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 14,
+      "hardness": null
+    },
+    {
+      "id": "S407_P50",
+      "type": 1,
+      "kind": "live",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 376,
+      "map_y": 100,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 16,
+      "hardness": null
+    },
+    {
+      "id": "S407_P51",
+      "type": 1,
+      "kind": "live",
+      "class_id": "grass_tall",
+      "category": "flora_grass",
+      "map_x": 419,
+      "map_y": 63,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          407,
+          60,
+          431,
+          66
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P52",
+      "type": 1,
+      "kind": "live",
+      "class_id": "weed_sprig",
+      "category": "flora_grass",
+      "map_x": 41,
+      "map_y": 111,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 2,
+      "hardness": null
+    },
+    {
+      "id": "S407_P53",
+      "type": 1,
+      "kind": "live",
+      "class_id": "weed_sprig",
+      "category": "flora_grass",
+      "map_x": 262,
+      "map_y": 65,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 2,
+      "hardness": {
+        "rect": [
+          257,
+          63,
+          267,
+          67
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P54",
+      "type": 1,
+      "kind": "live",
+      "class_id": "weed_sprig",
+      "category": "flora_grass",
+      "map_x": 554,
+      "map_y": 145,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 2,
+      "hardness": null
+    },
+    {
+      "id": "S407_P55",
+      "type": 1,
+      "kind": "live",
+      "class_id": "weed_sprig",
+      "category": "flora_grass",
+      "map_x": 152,
+      "map_y": 120,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 2,
+      "hardness": null
+    },
+    {
+      "id": "S407_P56",
+      "type": 1,
+      "kind": "live",
+      "class_id": "weed_small",
+      "category": "flora_grass",
+      "map_x": 500,
+      "map_y": 365,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 6,
+      "hardness": null
+    },
+    {
+      "id": "S407_P57",
+      "type": 1,
+      "kind": "live",
+      "class_id": "fence_rail_ns",
+      "category": "structure_part",
+      "map_x": 24,
+      "map_y": 387,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 4,
+      "hardness": {
+        "rect": [
+          6,
+          322,
+          43,
+          400
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P58",
+      "type": 1,
+      "kind": "live",
+      "class_id": "grass_tall",
+      "category": "flora_grass",
+      "map_x": 25,
+      "map_y": 66,
+      "brain": 0,
+      "script": "",
+      "seq": 65,
+      "frame": 1,
+      "hardness": null
+    },
+    {
+      "id": "S407_P59",
+      "type": 0,
+      "kind": "background",
+      "class_id": "seed_scatter",
+      "category": "prop",
+      "map_x": 77,
+      "map_y": 171,
+      "brain": 0,
+      "script": "",
+      "seq": 431,
+      "frame": 4,
+      "hardness": null
+    },
+    {
+      "id": "S407_P60",
+      "type": 2,
+      "kind": "hardness_only",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 234,
+      "map_y": 358,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          145,
+          352,
+          320,
+          375
+        ],
+        "kind": "solid"
+      }
+    },
+    {
+      "id": "S407_P61",
+      "type": 0,
+      "kind": "background",
+      "class_id": "pebbles",
+      "category": "rock",
+      "map_x": 392,
+      "map_y": 129,
+      "brain": 0,
+      "script": "",
+      "seq": 97,
+      "frame": 14,
+      "hardness": null
+    },
+    {
+      "id": "S407_P62",
+      "type": 2,
+      "kind": "hardness_only",
+      "class_id": "fence_rail_ew",
+      "category": "structure_part",
+      "map_x": 382,
+      "map_y": 142,
+      "brain": 0,
+      "script": "",
+      "seq": 93,
+      "frame": 1,
+      "hardness": {
+        "rect": [
+          293,
+          136,
+          468,
+          159
+        ],
+        "kind": "solid"
+      }
+    }
+  ]
+}

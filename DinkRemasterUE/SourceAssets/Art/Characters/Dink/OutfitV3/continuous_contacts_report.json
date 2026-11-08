@@ -1,0 +1,29 @@
+{
+  "scope": "Only new wardrobe vertices/weights changed. Sleeve boundary vertices enter original bracer rim by6mm along forearm and3mm inward with exact bracer weights. Rear strap ends enter existing pack front7mm with its interpolated weights. Existing anatomy, bracer/pack geometry, allfour protected materials and rig unchanged.",
+  "lods": [
+    {
+      "lod": 0,
+      "cuff_boundary_vertices_fitted_inside_bracer": 101,
+      "rear_strap_vertices_fitted_inside_pack_front": 64,
+      "pack_front_y_m": 0.12345004826784134
+    },
+    {
+      "lod": 1,
+      "cuff_boundary_vertices_fitted_inside_bracer": 101,
+      "rear_strap_vertices_fitted_inside_pack_front": 64,
+      "pack_front_y_m": 0.11589548736810684
+    },
+    {
+      "lod": 2,
+      "cuff_boundary_vertices_fitted_inside_bracer": 101,
+      "rear_strap_vertices_fitted_inside_pack_front": 64,
+      "pack_front_y_m": 0.11182429641485214
+    },
+    {
+      "lod": 3,
+      "cuff_boundary_vertices_fitted_inside_bracer": 101,
+      "rear_strap_vertices_fitted_inside_pack_front": 64,
+      "pack_front_y_m": 0.11182429641485214
+    }
+  ]
+}

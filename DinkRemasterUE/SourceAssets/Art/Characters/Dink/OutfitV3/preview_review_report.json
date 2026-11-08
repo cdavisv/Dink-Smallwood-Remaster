@@ -1,0 +1,191 @@
+{
+  "stage": "SOURCE VISUAL REVIEW ONLY; nofinalexports/imports/manifests/ledger",
+  "source_blend": "SK_Dink_OutfitV3.blend",
+  "existing_idle_and_fist_reference": true,
+  "walk_reference_existing_Epic_only": true,
+  "walk_reference_rest_matrix_max_error": 0.30148719996213913,
+  "walk_reference_root_translation_removed_for_framing": true,
+  "walk_animation_exported": false,
+  "images": [
+    {
+      "image": "outfit_idle_front.png",
+      "pose": "Existing exactEpic idle boundary, unchanged89rig",
+      "frame": 1,
+      "camera": [
+        0,
+        -4.5,
+        1.55
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_idle_threequarter.png",
+      "pose": "Existing exactEpic idle boundary, unchanged89rig",
+      "frame": 1,
+      "camera": [
+        2.6,
+        -4.1,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_idle_back.png",
+      "pose": "Existing exactEpic idle boundary, unchanged89rig",
+      "frame": 1,
+      "camera": [
+        0,
+        4.4,
+        1.55
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_torso_detail.png",
+      "pose": "Existing exactEpic idle boundary, unchanged89rig",
+      "frame": 1,
+      "camera": [
+        0,
+        -2.4,
+        1.55
+      ],
+      "target": [
+        0,
+        -0.015,
+        1.28
+      ]
+    },
+    {
+      "image": "outfit_backpack_detail.png",
+      "pose": "Existing exactEpic idle boundary, unchanged89rig",
+      "frame": 1,
+      "camera": [
+        1.25,
+        2.1,
+        1.65
+      ],
+      "target": [
+        0,
+        0.12,
+        1.28
+      ]
+    },
+    {
+      "image": "outfit_fist_impact.png",
+      "pose": "Existing originalDink_Fist_Forward frame8/175ms, noanimationchanges",
+      "frame": 8,
+      "camera": [
+        2.6,
+        -4.1,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_fist_side.png",
+      "pose": "Existing originalDink_Fist_Forward frame8/175ms, noanimationchanges",
+      "frame": 8,
+      "camera": [
+        3.5,
+        -0.8,
+        1.8
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_fist_back.png",
+      "pose": "Existing originalDink_Fist_Forward frame8/175ms, noanimationchanges",
+      "frame": 8,
+      "camera": [
+        1.9,
+        3.7,
+        1.8
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_walk_reference_0_front.png",
+      "pose": "ExistingEpic MF_Unarmed_Walk_Fwd reference frame10; roottranslation removedforframing, noanimationexport",
+      "frame": 8,
+      "camera": [
+        2.6,
+        -4.1,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_walk_reference_0_back.png",
+      "pose": "ExistingEpic MF_Unarmed_Walk_Fwd reference frame10; roottranslation removedforframing, noanimationexport",
+      "frame": 8,
+      "camera": [
+        1.9,
+        3.7,
+        1.8
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_walk_reference_1_front.png",
+      "pose": "ExistingEpic MF_Unarmed_Walk_Fwd reference frame33; roottranslation removedforframing, noanimationexport",
+      "frame": 8,
+      "camera": [
+        2.6,
+        -4.1,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    },
+    {
+      "image": "outfit_walk_reference_1_back.png",
+      "pose": "ExistingEpic MF_Unarmed_Walk_Fwd reference frame33; roottranslation removedforframing, noanimationexport",
+      "frame": 8,
+      "camera": [
+        1.9,
+        3.7,
+        1.8
+      ],
+      "target": [
+        0,
+        0,
+        0.96
+      ]
+    }
+  ]
+}

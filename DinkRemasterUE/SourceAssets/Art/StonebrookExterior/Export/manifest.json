@@ -1,0 +1,980 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-07T06:25:47Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Cottage_Stonebrook_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/StonebrookExterior/SM_Cottage_Stonebrook_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookExterior/SM_Cottage_Stonebrook_01.fbx",
+        "glb": "Game/Dink/Buildings/StonebrookExterior/SM_Cottage_Stonebrook_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Cottage_Stonebrook_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 113788
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -941.5,
+          -527.336,
+          0.0
+        ],
+        "blender_max_cm": [
+          941.5,
+          527.336,
+          793.0
+        ],
+        "size_cm": [
+          1883.0,
+          1054.672,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -527.336,
+          0.0
+        ],
+        "unreal_max_cm": [
+          941.5,
+          527.336,
+          793.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Cottage_Stonebrook_01_01",
+        "UCX_SM_Cottage_Stonebrook_01_02",
+        "UCX_SM_Cottage_Stonebrook_01_03",
+        "UCX_SM_Cottage_Stonebrook_01_04",
+        "UCX_SM_Cottage_Stonebrook_01_05",
+        "UCX_SM_Cottage_Stonebrook_01_06"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Fieldstone",
+        "MI_Stonebrook_Limewash",
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_WroughtIron",
+        "MI_Stonebrook_Thatch"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Fieldstone_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Fieldstone_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Fieldstone_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Limewash_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Limewash_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Limewash_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Limewash_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Limewash_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Limewash_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Oak_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Oak_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Oak_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Oak_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Oak_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Oak_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_WroughtIron_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_WroughtIron_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_WroughtIron_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Thatch_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Thatch_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Thatch_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Thatch_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Ground_Meadow_20m_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/StonebrookExterior/SM_Ground_Meadow_20m_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookExterior/SM_Ground_Meadow_20m_01.fbx",
+        "glb": "Game/Dink/Buildings/StonebrookExterior/SM_Ground_Meadow_20m_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Ground_Meadow_20m_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 12
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          10.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          10.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          10.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Ground_Meadow_20m_01_01"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Meadow_BC",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Meadow_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Meadow_N",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Meadow_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Meadow_ORM",
+          "file": "Game/Dink/Buildings/StonebrookExterior/Textures/T_Stonebrook_Meadow_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Grass_Meadow_01",
+      "class": "foliage",
+      "kind": "static",
+      "content_path": "/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01.fbx",
+        "glb": "Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Grass_Meadow_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 510,
+        "LOD1": 255,
+        "LOD2": 128
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -52.577,
+          -54.587,
+          0.0
+        ],
+        "blender_max_cm": [
+          52.577,
+          54.587,
+          54.999
+        ],
+        "size_cm": [
+          105.154,
+          109.175,
+          54.999
+        ],
+        "unreal_min_cm": [
+          -52.577,
+          -54.587,
+          0.0
+        ],
+        "unreal_max_cm": [
+          52.577,
+          54.587,
+          54.999
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_Stonebrook_OakLeaf"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_OakLeaf_BC",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_OakLeaf_N",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_OakLeaf_ORM",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Oak_Stonebrook_01",
+      "class": "foliage",
+      "kind": "static",
+      "content_path": "/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01.fbx",
+        "glb": "Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "bacd67375df36fff62152f8108e8b82dfde7a3b28a15fd1c979ee8844bfd9111",
+        "collection": "SM_Oak_Stonebrook_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 19076,
+        "LOD1": 9538,
+        "LOD2": 4742
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -475.424,
+          -489.917,
+          0.0
+        ],
+        "blender_max_cm": [
+          475.424,
+          489.917,
+          908.969
+        ],
+        "size_cm": [
+          950.848,
+          979.834,
+          908.969
+        ],
+        "unreal_min_cm": [
+          -475.424,
+          -489.917,
+          0.0
+        ],
+        "unreal_max_cm": [
+          475.424,
+          489.917,
+          908.969
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Oak_Stonebrook_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_OakLeaf"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Oak_BC",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_Oak_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Oak_N",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_Oak_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Oak_ORM",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_Oak_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_OakLeaf_BC",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_OakLeaf_N",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_OakLeaf_ORM",
+          "file": "Game/Dink/Foliage/StonebrookExterior/Textures/T_Stonebrook_OakLeaf_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 6,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Path_Earth_8m_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.fbx",
+        "glb": "Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Path_Earth_8m_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 132
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.5
+        ],
+        "blender_max_cm": [
+          800.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          200.0,
+          2.5
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.5
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Path_Earth_8m_01_01"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Earth"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Earth_BC",
+          "file": "Game/Dink/Kits/StonebrookExterior/Textures/T_Stonebrook_Earth_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Earth_N",
+          "file": "Game/Dink/Kits/StonebrookExterior/Textures/T_Stonebrook_Earth_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Earth_ORM",
+          "file": "Game/Dink/Kits/StonebrookExterior/Textures/T_Stonebrook_Earth_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Boulder_Fieldstone_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/StonebrookExterior/SM_Boulder_Fieldstone_01",
+      "files": {
+        "fbx": "Game/Dink/Props/StonebrookExterior/SM_Boulder_Fieldstone_01.fbx",
+        "glb": "Game/Dink/Props/StonebrookExterior/SM_Boulder_Fieldstone_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Boulder_Fieldstone_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1280
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -106.021,
+          -84.672,
+          0.0
+        ],
+        "blender_max_cm": [
+          106.021,
+          84.672,
+          118.508
+        ],
+        "size_cm": [
+          212.042,
+          169.344,
+          118.508
+        ],
+        "unreal_min_cm": [
+          -106.021,
+          -84.672,
+          0.0
+        ],
+        "unreal_max_cm": [
+          106.021,
+          84.672,
+          118.508
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Boulder_Fieldstone_01_01"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Fieldstone"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Fieldstone_BC",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Fieldstone_N",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Fieldstone_ORM",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Fieldstone_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Fence_SplitRail_4m_01",
+      "class": "prop_large",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/StonebrookExterior/SM_Fence_SplitRail_4m_01",
+      "files": {
+        "fbx": "Game/Dink/Props/StonebrookExterior/SM_Fence_SplitRail_4m_01.fbx",
+        "glb": "Game/Dink/Props/StonebrookExterior/SM_Fence_SplitRail_4m_01.glb"
+      },
+      "source": {
+        "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
+        "sha256": "8f2189d7066aa7452b8e669db2ab095814d7731e8735e4ef8a2e4605999df542",
+        "collection": "SM_Fence_SplitRail_4m_01",
+        "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1080
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -209.0,
+          -9.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          209.0,
+          9.5,
+          144.0
+        ],
+        "size_cm": [
+          418.0,
+          19.0,
+          144.0
+        ],
+        "unreal_min_cm": [
+          -209.0,
+          -9.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          209.0,
+          9.5,
+          144.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Fence_SplitRail_4m_01_01"
+      ],
+      "material_slots": [
+        "MI_Stonebrook_Oak"
+      ],
+      "textures": [
+        {
+          "name": "T_Stonebrook_Oak_BC",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Oak_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Oak_N",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Oak_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Oak_ORM",
+          "file": "Game/Dink/Props/StonebrookExterior/Textures/T_Stonebrook_Oak_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

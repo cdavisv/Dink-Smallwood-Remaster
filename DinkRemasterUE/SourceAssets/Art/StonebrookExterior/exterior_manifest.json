@@ -1,0 +1,334 @@
+{
+  "schema": "dink-stonebrook-art/1",
+  "units": "metres; FBX UnitScaleFactor100 converts to Unreal cm",
+  "seed": 439,
+  "source": "KIT_StonebrookExterior.blend",
+  "assets": {
+    "SM_Cottage_Stonebrook_01": {
+      "class": "building",
+      "dimensions_m": [
+        18.829998016357422,
+        10.546720504760742,
+        7.930000305175781
+      ],
+      "materials": [
+        "MI_Stonebrook_Fieldstone",
+        "MI_Stonebrook_Limewash",
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_WroughtIron",
+        "MI_Stonebrook_Thatch"
+      ],
+      "fbx": "Export/Game/Dink/Buildings/StonebrookExterior/SM_Cottage_Stonebrook_01.fbx",
+      "blend_collection": "SM_Cottage_Stonebrook_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Fence_SplitRail_4m_01": {
+      "class": "prop_large",
+      "dimensions_m": [
+        4.180000305175781,
+        0.1899999976158142,
+        1.440000057220459
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak"
+      ],
+      "fbx": "Export/Game/Dink/Props/StonebrookExterior/SM_Fence_SplitRail_4m_01.fbx",
+      "blend_collection": "SM_Fence_SplitRail_4m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Boulder_Fieldstone_01": {
+      "class": "prop",
+      "dimensions_m": [
+        2.1204185485839844,
+        1.6934441328048706,
+        1.1850773096084595
+      ],
+      "materials": [
+        "MI_Stonebrook_Fieldstone"
+      ],
+      "fbx": "Export/Game/Dink/Props/StonebrookExterior/SM_Boulder_Fieldstone_01.fbx",
+      "blend_collection": "SM_Boulder_Fieldstone_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Oak_Stonebrook_01": {
+      "class": "foliage",
+      "dimensions_m": [
+        9.508479118347168,
+        9.79833984375,
+        9.089691162109375
+      ],
+      "materials": [
+        "MI_Stonebrook_Oak",
+        "MI_Stonebrook_OakLeaf"
+      ],
+      "fbx": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD0.fbx",
+      "blend_collection": "SM_Oak_Stonebrook_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md",
+      "lod_union_dimensions_m": [
+        9.508479118347168,
+        9.815052032470703,
+        9.111050358973444
+      ],
+      "lod_fbx": [
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD0.fbx",
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD1.fbx",
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD2.fbx"
+      ],
+      "full_fbx": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01.fbx"
+    },
+    "SM_Grass_Meadow_01": {
+      "class": "foliage",
+      "dimensions_m": [
+        1.0515384674072266,
+        1.091749906539917,
+        0.5499892234802246
+      ],
+      "materials": [
+        "MI_Stonebrook_OakLeaf"
+      ],
+      "fbx": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD0.fbx",
+      "blend_collection": "SM_Grass_Meadow_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md",
+      "lod_union_dimensions_m": [
+        1.0584836602210999,
+        1.0967906713485718,
+        0.5612673759460449
+      ],
+      "lod_fbx": [
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD0.fbx",
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD1.fbx",
+        "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01_LOD2.fbx"
+      ],
+      "full_fbx": "Export/Game/Dink/Foliage/StonebrookExterior/SM_Grass_Meadow_01.fbx"
+    },
+    "SM_Ground_Meadow_20m_01": {
+      "class": "building",
+      "dimensions_m": [
+        20.0,
+        20.0,
+        0.10000000149011612
+      ],
+      "materials": [
+        "MI_Stonebrook_Meadow"
+      ],
+      "fbx": "Export/Game/Dink/Buildings/StonebrookExterior/SM_Ground_Meadow_20m_01.fbx",
+      "blend_collection": "SM_Ground_Meadow_20m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    },
+    "SM_Path_Earth_8m_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        8.0,
+        2.0,
+        0.02500000037252903
+      ],
+      "materials": [
+        "MI_Stonebrook_Earth"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.fbx",
+      "blend_collection": "SM_Path_Earth_8m_01",
+      "pivot": "origin, ground center; kit modules follow companion CONVENTIONS.md"
+    }
+  },
+  "materials": {
+    "MI_Stonebrook_Oak": {
+      "name": "MI_Stonebrook_Oak",
+      "base_color": [
+        0.265,
+        0.1625,
+        0.074
+      ],
+      "roughness": 0.72,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Oak_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Oak_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Oak_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Limewash": {
+      "name": "MI_Stonebrook_Limewash",
+      "base_color": [
+        0.625,
+        0.565,
+        0.44
+      ],
+      "roughness": 0.89,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Limewash_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Limewash_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Limewash_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Fieldstone": {
+      "name": "MI_Stonebrook_Fieldstone",
+      "base_color": [
+        0.33,
+        0.29,
+        0.23
+      ],
+      "roughness": 0.87,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Fieldstone_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Fieldstone_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Fieldstone_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Linen": {
+      "name": "MI_Stonebrook_Linen",
+      "base_color": [
+        0.455,
+        0.45,
+        0.31
+      ],
+      "roughness": 0.94,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Linen_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Linen_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Linen_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_WroughtIron": {
+      "name": "MI_Stonebrook_WroughtIron",
+      "base_color": [
+        0.0925,
+        0.078,
+        0.060000000000000005
+      ],
+      "roughness": 0.58,
+      "metallic": 0.82,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_WroughtIron_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_WroughtIron_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_WroughtIron_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Wicker": {
+      "name": "MI_Stonebrook_Wicker",
+      "base_color": [
+        0.35000000000000003,
+        0.22,
+        0.0715
+      ],
+      "roughness": 0.83,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Wicker_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Wicker_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Wicker_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Soot": {
+      "name": "MI_Stonebrook_Soot",
+      "base_color": [
+        0.0435,
+        0.032,
+        0.0195
+      ],
+      "roughness": 0.98,
+      "metallic": 0,
+      "textures": {
+        "BC": "../Stonebrook/Textures/T_Stonebrook_Soot_BC.png",
+        "N": "../Stonebrook/Textures/T_Stonebrook_Soot_N.png",
+        "ORM": "../Stonebrook/Textures/T_Stonebrook_Soot_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Thatch": {
+      "name": "MI_Stonebrook_Thatch",
+      "base_color": [
+        0.27,
+        0.21,
+        0.0875
+      ],
+      "roughness": 0.94,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Thatch_BC.png",
+        "N": "Textures/T_Stonebrook_Thatch_N.png",
+        "ORM": "Textures/T_Stonebrook_Thatch_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_OakLeaf": {
+      "name": "MI_Stonebrook_OakLeaf",
+      "base_color": [
+        0.109,
+        0.1775,
+        0.032
+      ],
+      "roughness": 0.82,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_OakLeaf_BC.png",
+        "N": "Textures/T_Stonebrook_OakLeaf_N.png",
+        "ORM": "Textures/T_Stonebrook_OakLeaf_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "two_sided": true
+    },
+    "MI_Stonebrook_Meadow": {
+      "name": "MI_Stonebrook_Meadow",
+      "base_color": [
+        0.119,
+        0.1465,
+        0.041499999999999995
+      ],
+      "roughness": 0.97,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Meadow_BC.png",
+        "N": "Textures/T_Stonebrook_Meadow_N.png",
+        "ORM": "Textures/T_Stonebrook_Meadow_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Stonebrook_Earth": {
+      "name": "MI_Stonebrook_Earth",
+      "base_color": [
+        0.18,
+        0.1245,
+        0.0715
+      ],
+      "roughness": 0.95,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Stonebrook_Earth_BC.png",
+        "N": "Textures/T_Stonebrook_Earth_N.png",
+        "ORM": "Textures/T_Stonebrook_Earth_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    }
+  },
+  "cottage_door_local_cm": [
+    530,
+    450,
+    0
+  ],
+  "notes": [
+    "First local exterior art candidate. No changes to original screenplay or quest facts.",
+    "Ground module bottom at0/top10cm: exterior_layout places at height_cm=-9.8, yielding top0.2cm.",
+    "Tree and grass use true modeled leaves/blades and three LOD levels; enable two-sided leaf material in Unreal.",
+    "Cottage front faces +Y in UE. Door opening localX530,Y450cm aligns source339,294 when cottagecenter285,248.5."
+  ]
+}

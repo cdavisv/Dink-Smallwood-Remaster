@@ -1,0 +1,97 @@
+file,slot,cue,variant,type,requested_s,measured_s,duration_dev_pct,peak_db,mean_db,leading_silence_ms,clip_samples,wav_duration_s,wav_peak_db,flags
+01_quack_a.mp3,01,quack,a,oneshot,1.10,1.080,-1.8,-0.2,-16.6,0.0,0,1.080,-3.0,
+01_quack_b.mp3,01,quack,b,oneshot,1.10,1.080,-1.8,-2.5,-15.7,0.0,0,1.080,-3.0,
+02_pig1_a.mp3,02,pig1,a,oneshot,0.80,0.800,+0.0,-1.7,-17.1,0.0,0,0.800,-3.0,
+02_pig1_b.mp3,02,pig1,b,oneshot,0.80,0.800,+0.0,-0.2,-19.0,0.2,0,0.800,-3.0,
+03_pig2_a.mp3,03,pig2,a,oneshot,0.90,0.880,-2.2,-0.5,-18.8,6.8,0,0.875,-3.0,
+03_pig2_b.mp3,03,pig2,b,oneshot,0.90,0.880,-2.2,-4.6,-23.0,45.6,0,0.836,-3.0,
+04_pig3_a.mp3,04,pig3,a,oneshot,0.50,0.480,-4.0,-2.7,-19.9,0.0,0,0.480,-3.0,
+04_pig3_b.mp3,04,pig3,b,oneshot,0.50,0.480,-4.0,-0.5,-20.5,0.7,0,0.480,-3.0,
+05_pig4_a.mp3,05,pig4,a,oneshot,0.80,0.800,+0.0,-0.1,-13.2,0.0,0,0.800,-3.0,
+05_pig4_b.mp3,05,pig4,b,oneshot,0.80,0.800,+0.0,0.0,-11.3,0.0,17,0.800,-3.0,clipping (17 samples at/near full scale)
+06_burn_a.mp3,06,burn,a,oneshot,2.60,2.560,-1.5,-0.1,-12.5,8.8,0,2.553,-3.0,
+06_burn_b.mp3,06,burn,b,oneshot,2.60,2.560,-1.5,0.0,-13.5,10.9,11,2.551,-3.0,clipping (11 samples at/near full scale)
+07_open_a.mp3,07,open,a,oneshot,1.50,1.480,-1.3,0.0,-17.9,0.0,5,1.480,-3.0,clipping (5 samples at/near full scale)
+07_open_b.mp3,07,open,b,oneshot,1.50,1.480,-1.3,-0.1,-16.6,0.0,0,1.480,-3.0,
+08_swing_a.mp3,08,swing,a,oneshot_snappy,0.50,0.480,-4.0,-0.1,-10.1,0.0,0,0.480,-3.0,
+08_swing_b.mp3,08,swing,b,oneshot_snappy,0.50,0.480,-4.0,-0.1,-12.3,0.0,0,0.480,-3.0,
+09_punch_a.mp3,09,punch,a,oneshot_snappy,0.50,0.480,-4.0,-27.7,-43.9,0.0,0,0.480,-3.0,
+09_punch_b.mp3,09,punch,b,oneshot_snappy,0.50,0.480,-4.0,-20.0,-36.2,0.0,0,0.480,-3.0,
+10_sword2_a.mp3,10,sword2,a,oneshot_snappy,0.60,0.600,+0.0,0.0,-21.3,0.0,4,0.600,-3.0,clipping (4 samples at/near full scale)
+10_sword2_b.mp3,10,sword2,b,oneshot_snappy,0.60,0.600,+0.0,-2.0,-22.3,0.0,0,0.600,-3.0,
+11_select_a.mp3,11,select,a,oneshot_snappy,0.60,0.600,+0.0,-14.0,-34.9,0.0,0,0.600,-3.0,
+11_select_b.mp3,11,select,b,oneshot_snappy,0.60,0.600,+0.0,-7.1,-26.2,0.0,0,0.600,-3.0,
+12_wscream_a.mp3,12,wscream,a,oneshot,1.00,1.000,+0.0,-0.0,-8.8,0.0,0,1.000,-3.0,
+12_wscream_b.mp3,12,wscream,b,oneshot,1.00,1.000,+0.0,0.0,-8.9,0.0,2,1.000,-3.0,clipping (2 samples at/near full scale)
+13_picker_a.mp3,13,picker,a,oneshot_snappy,0.50,0.480,-4.0,-20.8,-41.7,0.2,0,0.480,-3.0,
+13_picker_b.mp3,13,picker,b,oneshot_snappy,0.50,0.480,-4.0,-1.1,-31.4,10.3,0,0.472,-3.0,
+14_gold_a.mp3,14,gold,a,oneshot,0.50,0.480,-4.0,-2.9,-26.3,0.0,0,0.480,-3.0,
+14_gold_b.mp3,14,gold,b,oneshot,0.50,0.480,-4.0,-4.2,-24.3,0.0,0,0.480,-3.0,
+15_grunt1_a.mp3,15,grunt1,a,oneshot,0.50,0.480,-4.0,0.0,-13.9,0.0,2,0.480,-3.0,clipping (2 samples at/near full scale)
+15_grunt1_b.mp3,15,grunt1,b,oneshot,0.50,0.480,-4.0,-0.3,-22.4,0.0,0,0.480,-3.0,
+16_grunt2_a.mp3,16,grunt2,a,oneshot,0.50,0.480,-4.0,0.0,-15.9,0.0,2,0.480,-3.0,clipping (2 samples at/near full scale)
+16_grunt2_b.mp3,16,grunt2,b,oneshot,0.50,0.480,-4.0,-5.4,-25.8,0.0,0,0.480,-3.0,
+17_sel1_a.mp3,17,sel1,a,oneshot,1.00,1.000,+0.0,-2.3,-20.0,0.0,0,1.000,-3.0,
+17_sel1_b.mp3,17,sel1,b,oneshot,1.00,1.000,+0.0,0.0,-15.7,0.0,25,1.000,-3.0,clipping (25 samples at/near full scale)
+18_escape_a.mp3,18,escape,a,oneshot,0.80,0.800,+0.0,-7.3,-31.0,0.0,0,0.800,-3.0,
+18_escape_b.mp3,18,escape,b,oneshot,0.80,0.800,+0.0,-0.0,-13.7,0.0,2,0.800,-3.0,clipping (2 samples at/near full scale)
+19_nono_a.mp3,19,nono,a,oneshot,0.50,0.480,-4.0,-2.8,-15.4,0.0,0,0.480,-3.0,
+19_nono_b.mp3,19,nono,b,oneshot,0.50,0.480,-4.0,-2.7,-12.5,0.0,0,0.480,-3.0,
+20_sel2_a.mp3,20,sel2,a,oneshot_snappy,0.50,0.480,-4.0,-13.1,-34.9,0.0,0,0.480,-3.0,
+20_sel2_b.mp3,20,sel2,b,oneshot_snappy,0.50,0.480,-4.0,-9.1,-32.0,0.0,0,0.480,-3.0,
+21_sel3_a.mp3,21,sel3,a,oneshot_snappy,0.90,0.880,-2.2,-5.4,-33.5,0.0,0,0.880,-3.0,
+21_sel3_b.mp3,21,sel3,b,oneshot_snappy,0.90,0.880,-2.2,-4.6,-30.9,0.0,0,0.880,-3.0,
+22_high2_a.mp3,22,high2,a,oneshot,3.40,3.400,+0.0,-3.4,-19.7,0.0,0,3.400,-3.0,
+22_high2_b.mp3,22,high2,b,oneshot,3.40,3.400,+0.0,-10.2,-29.8,199.8,0,3.202,-3.0,
+23_fire_a.mp3,23,fire,a,loop,7.00,7.000,+0.0,-2.6,-36.7,0.0,0,7.000,-3.0,
+23_fire_b.mp3,23,fire,b,loop,7.00,7.000,+0.0,-1.1,-36.0,0.2,0,7.000,-3.0,
+24_spell1_a.mp3,24,spell1,a,oneshot,1.60,1.600,+0.0,0.0,-19.7,0.0,1,1.600,-3.0,clipping (1 samples at/near full scale)
+24_spell1_b.mp3,24,spell1,b,oneshot,1.60,1.600,+0.0,0.0,-17.8,0.0,2,1.600,-3.0,clipping (2 samples at/near full scale)
+26_snarl1_a.mp3,26,snarl1,a,oneshot,1.60,1.600,+0.0,-0.7,-9.9,0.0,0,1.600,-3.0,
+26_snarl1_b.mp3,26,snarl1,b,oneshot,1.60,1.600,+0.0,-0.4,-13.3,0.0,0,1.600,-3.0,
+27_snarl2_a.mp3,27,snarl2,a,oneshot,0.80,0.800,+0.0,0.0,-10.6,0.0,15,0.800,-3.0,clipping (15 samples at/near full scale)
+27_snarl2_b.mp3,27,snarl2,b,oneshot,0.80,0.800,+0.0,0.0,-12.8,0.0,5,0.800,-3.0,clipping (5 samples at/near full scale)
+28_snarl3_a.mp3,28,snarl3,a,oneshot,2.00,2.000,+0.0,-3.9,-18.1,0.0,0,2.000,-3.0,
+28_snarl3_b.mp3,28,snarl3,b,oneshot,2.00,2.000,+0.0,-4.6,-23.1,0.0,0,2.000,-3.0,
+29_hurt1_a.mp3,29,hurt1,a,oneshot,2.40,2.400,+0.0,0.0,-4.8,0.2,324,2.400,-3.0,clipping (324 samples at/near full scale)
+29_hurt1_b.mp3,29,hurt1,b,oneshot,2.40,2.400,+0.0,0.0,-4.7,0.0,970,2.400,-3.0,clipping (970 samples at/near full scale)
+30_hurt2_a.mp3,30,hurt2,a,oneshot,1.30,1.280,-1.5,-7.4,-21.9,0.0,0,1.280,-3.0,
+30_hurt2_b.mp3,30,hurt2,b,oneshot,1.30,1.280,-1.5,-5.7,-27.6,0.0,0,1.280,-3.0,
+31_attack1_a.mp3,31,attack1,a,oneshot,1.30,1.280,-1.5,0.0,-5.7,0.0,518,1.280,-3.0,clipping (518 samples at/near full scale)
+31_attack1_b.mp3,31,attack1,b,oneshot,1.30,1.280,-1.5,0.0,-6.1,0.0,478,1.280,-3.0,clipping (478 samples at/near full scale)
+32_caveent_a.mp3,32,caveent,a,oneshot,6.60,6.560,-0.6,-1.9,-17.4,0.1,0,6.560,-3.0,
+32_caveent_b.mp3,32,caveent,b,oneshot,6.60,6.560,-0.6,-1.6,-17.3,1.6,0,6.560,-3.0,
+33_level_a.mp3,33,level,a,oneshot,1.70,1.680,-1.2,0.0,-15.2,0.0,5,1.680,-3.0,clipping (5 samples at/near full scale)
+33_level_b.mp3,33,level,b,oneshot,1.70,1.680,-1.2,0.0,-13.3,0.0,33,1.680,-3.0,clipping (33 samples at/near full scale)
+34_save_a.mp3,34,save,a,loop,3.00,3.000,+0.0,-0.3,-8.5,0.0,0,3.000,-3.0,
+34_save_b.mp3,34,save,b,loop,3.00,3.000,+0.0,-3.3,-12.5,0.0,0,3.000,-3.0,
+35_splash_a.mp3,35,splash,a,oneshot,2.70,2.680,-0.7,-1.6,-26.0,0.0,0,2.680,-3.0,
+35_splash_b.mp3,35,splash,b,oneshot,2.70,2.680,-0.7,-3.1,-28.5,13.2,0,2.669,-3.0,
+36_sword1_a.mp3,36,sword1,a,oneshot_snappy,0.80,0.800,+0.0,-7.7,-32.8,0.0,0,0.800,-3.0,
+36_sword1_b.mp3,36,sword1,b,oneshot_snappy,0.80,0.800,+0.0,-20.6,-40.9,0.0,0,0.800,-3.0,
+37_bhit_a.mp3,37,bhit,a,oneshot_snappy,0.70,0.680,-2.8,0.0,-15.8,0.0,17,0.680,-3.0,clipping (17 samples at/near full scale)
+37_bhit_b.mp3,37,bhit,b,oneshot_snappy,0.70,0.680,-2.8,-0.1,-25.1,0.0,0,0.680,-3.0,
+38_squish_a.mp3,38,squish,a,oneshot,0.50,0.480,-4.0,-1.3,-20.7,0.0,0,0.480,-3.0,
+38_squish_b.mp3,38,squish,b,oneshot,0.50,0.480,-4.0,0.0,-18.7,0.0,2,0.480,-3.0,clipping (2 samples at/near full scale)
+39_stairs_a.mp3,39,stairs,a,oneshot,0.80,0.800,+0.0,-3.1,-18.5,0.0,0,0.800,-3.0,
+39_stairs_b.mp3,39,stairs,b,oneshot,0.80,0.800,+0.0,-0.1,-15.0,0.0,0,0.800,-3.0,
+40_steps_a.mp3,40,steps,a,oneshot,1.80,1.760,-2.2,-1.9,-23.3,0.0,0,1.760,-3.0,
+40_steps_b.mp3,40,steps,b,oneshot,1.80,1.760,-2.2,-0.4,-22.4,0.0,0,1.760,-3.0,
+41_arrow_a.mp3,41,arrow,a,oneshot_snappy,0.70,0.680,-2.8,-12.1,-36.6,0.0,0,0.680,-3.0,
+41_arrow_b.mp3,41,arrow,b,oneshot_snappy,0.70,0.680,-2.8,0.0,-18.5,0.0,31,0.680,-3.0,clipping (31 samples at/near full scale)
+42_flyby_a.mp3,42,flyby,a,oneshot,0.60,0.600,+0.0,0.0,-13.0,0.0,12,0.600,-3.0,clipping (12 samples at/near full scale)
+42_flyby_b.mp3,42,flyby,b,oneshot,0.60,0.600,+0.0,-0.0,-14.5,0.0,0,0.600,-3.0,
+43_secret_a.mp3,43,secret,a,oneshot,1.40,1.360,-2.9,-0.3,-16.3,0.0,0,1.360,-3.0,
+43_secret_b.mp3,43,secret,b,oneshot,1.40,1.360,-2.9,-1.0,-15.0,0.0,0,1.360,-3.0,
+44_bow1_a.mp3,44,bow1,a,oneshot_snappy,0.50,0.480,-4.0,-36.9,-56.8,1.9,0,0.480,-3.0,
+44_bow1_b.mp3,44,bow1,b,oneshot_snappy,0.50,0.480,-4.0,-20.7,-44.3,0.0,0,0.480,-3.0,
+45_knock_a.mp3,45,knock,a,oneshot_snappy,0.70,0.680,-2.8,0.0,-20.6,0.0,2,0.680,-3.0,clipping (2 samples at/near full scale)
+45_knock_b.mp3,45,knock,b,oneshot_snappy,0.70,0.680,-2.8,-0.4,-25.7,0.3,0,0.680,-3.0,
+46_drag1_a.mp3,46,drag1,a,oneshot,1.30,1.280,-1.5,-10.7,-27.2,0.0,0,1.280,-3.0,
+46_drag1_b.mp3,46,drag1,b,oneshot,1.30,1.280,-1.5,0.0,-8.7,0.0,19,1.280,-3.0,clipping (19 samples at/near full scale)
+47_drag2_a.mp3,47,drag2,a,oneshot,3.10,3.080,-0.6,-0.1,-10.9,0.0,0,3.080,-3.0,
+47_drag2_b.mp3,47,drag2,b,oneshot,3.10,3.080,-0.6,-0.0,-10.8,0.0,2,3.080,-3.0,clipping (2 samples at/near full scale)
+48_axe_a.mp3,48,axe,a,oneshot_snappy,0.50,0.480,-4.0,0.0,-14.1,0.0,84,0.480,-3.0,clipping (84 samples at/near full scale)
+48_axe_b.mp3,48,axe,b,oneshot_snappy,0.50,0.480,-4.0,-32.6,-48.5,0.0,0,0.480,-3.0,
+49_bird1_a.mp3,49,bird1,a,oneshot,1.60,1.600,+0.0,0.0,-11.6,0.0,95,1.600,-3.0,clipping (95 samples at/near full scale)
+49_bird1_b.mp3,49,bird1,b,oneshot,1.60,1.600,+0.0,-0.0,-11.7,0.0,1,1.600,-3.0,clipping (1 samples at/near full scale)

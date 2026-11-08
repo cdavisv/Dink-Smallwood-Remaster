@@ -1,0 +1,30 @@
+{
+  "name": "real keyboard walk to original house feed sack",
+  "expected_screen": 1,
+  "waypoints": [
+    {
+      "screen": 1,
+      "map": [
+        370,
+        161
+      ],
+      "tolerance_cm": 8
+    },
+    {
+      "screen": 1,
+      "map": [
+        420,
+        130
+      ],
+      "tolerance_cm": 8
+    },
+    {
+      "screen": 1,
+      "map": [
+        437,
+        130
+      ],
+      "tolerance_cm": 8
+    }
+  ]
+}

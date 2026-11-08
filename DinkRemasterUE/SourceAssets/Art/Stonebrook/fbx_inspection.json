@@ -1,0 +1,300 @@
+{
+  "tool": "independent binary FBX parser",
+  "passed": true,
+  "assets": [
+    {
+      "name": "SM_Table_Oak_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        265.00000953674316,
+        149.7999906539917,
+        90.6000018119812
+      ],
+      "manifest_size_cm": [
+        265.00000953674316,
+        149.7999906539917,
+        90.6000018119812
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Bed_Oak_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        250.99997520446777,
+        137.0000123977661,
+        111.9999885559082
+      ],
+      "manifest_size_cm": [
+        250.99997520446777,
+        137.0000123977661,
+        111.9999885559082
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Chair_Oak_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        64.99999761581421,
+        53.75000238418579,
+        100.49999952316284
+      ],
+      "manifest_size_cm": [
+        64.99999761581421,
+        53.75000238418579,
+        100.49999952316284
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Fireplace_Fieldstone_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        401.99999809265137,
+        154.0000081062317,
+        414.49999809265137
+      ],
+      "manifest_size_cm": [
+        401.99999809265137,
+        154.0000081062317,
+        414.49999809265137
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Basket_Wicker_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        114.40000534057617,
+        94.19999718666077,
+        67.1999990940094
+      ],
+      "manifest_size_cm": [
+        114.40000534057617,
+        94.19999718666077,
+        67.1999990940094
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_FeedSack_Jute_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        72.28283882141113,
+        55.468541383743286,
+        75.0
+      ],
+      "manifest_size_cm": [
+        72.28283882141113,
+        55.468541383743286,
+        75.0
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_2m_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        199.399995803833,
+        199.20001029968262,
+        10.999999940395355
+      ],
+      "manifest_size_cm": [
+        199.399995803833,
+        199.20001029968262,
+        10.999999940395355
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Wall_Limewash_2m_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        200.0,
+        38.00000250339508,
+        350.0
+      ],
+      "manifest_size_cm": [
+        200.0,
+        38.00000250339508,
+        350.0
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Doorway_Limewash_4m_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        400.0,
+        31.999999284744263,
+        350.0
+      ],
+      "manifest_size_cm": [
+        400.0,
+        31.999999284744263,
+        350.0
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Ceiling_Oak_2m_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        199.6999979019165,
+        200.0,
+        20.000000298023224
+      ],
+      "manifest_size_cm": [
+        199.6999979019165,
+        200.0,
+        20.000000298023224
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Window_Limewash_2m_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        200.0,
+        41.999998688697815,
+        350.0
+      ],
+      "manifest_size_cm": [
+        200.0,
+        41.999998688697815,
+        350.0
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Barrel_Oak_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        83.94664525985718,
+        84.45988893508911,
+        100.75000524520874
+      ],
+      "manifest_size_cm": [
+        83.94664525985718,
+        84.45988893508911,
+        100.75000524520874
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Candle_Iron_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        20.000000298023224,
+        20.000000298023224,
+        45.04999816417694
+      ],
+      "manifest_size_cm": [
+        20.000000298023224,
+        20.000000298023224,
+        45.04999816417694
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    },
+    {
+      "name": "SM_Pie_Rustic_01",
+      "unit_scale_factor": 100.0,
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "vertex_size_cm": [
+        49.000000953674316,
+        49.000000953674316,
+        11.900001019239426
+      ],
+      "manifest_size_cm": [
+        49.000000953674316,
+        49.000000953674316,
+        11.900001019239426
+      ],
+      "max_error_cm": 0.0,
+      "passed": true
+    }
+  ]
+}
