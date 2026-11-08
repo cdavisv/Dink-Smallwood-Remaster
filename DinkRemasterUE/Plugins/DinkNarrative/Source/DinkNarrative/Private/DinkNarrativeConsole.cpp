@@ -227,7 +227,7 @@ static FAutoConsoleCommandWithWorld GDinkAttackCommand(
 
 static FAutoConsoleCommandWithWorld GDinkMagicCommand(
 	TEXT("dink.Magic"),
-	TEXT("dink.Magic: the magic key (Q / Left Shift): casts the armed spell if &magic_level >= &magic_cost."),
+	TEXT("dink.Magic: the magic key (Q): casts the armed spell if &magic_level >= &magic_cost."),
 	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
 	{
 		if (UDinkStorySubsystem* S = GetStory(World))

@@ -1,0 +1,23 @@
+{
+  "scope": "Independent read-only review of movement.patch on base 067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "patch_sha256": "e4b15b49f86a9884be9bd11edb2eecc741b2a4d70ce19209a754f7819232ca4f",
+  "status": "Changes requested; original frozen patch invalidated by author pending fixes and regression tests",
+  "findings": [
+    {
+      "severity": "P2",
+      "file": "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp",
+      "trigger": "Cross a screen boundary while zoomed away from the default arm length.",
+      "issue": "SelectScreen/RestoreCamera assign an unzoomed preset before interpolation, causing a visible camera snap on the transition frame.",
+      "requested_fix": "Honor the desired zoom during screen selection/restoration; test the first transition frame across outdoor screens."
+    },
+    {
+      "severity": "P2",
+      "file": "Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp",
+      "trigger": "Apply sp_size to a script humanoid after its secondary body rotation becomes nonzero.",
+      "issue": "ApplyScriptCharacter replaces the relative transform before Configure resets BodyDynamics; retained AppliedBodyRotation then subtracts stale lean from the new authored transform, permanently biasing the base pose.",
+      "requested_fix": "Reset applied rotation bookkeeping with replacement presentation; test reconfiguration after nonzero lean and verify the authored base rotation."
+    }
+  ],
+  "validation": "Code-path inspection only; git diff --check passed. Reviewer did not build or run games.",
+  "publication": "Do not publish the v1 patch as approved or cite interrupted full-suite runs as passing."
+}

@@ -52,9 +52,13 @@ Scripts/import_greybox.sh --region all          # the whole world, about 45 s mo
 
 Then open the project in the editor, File > Open Level >
 `Content/Dink/_Generated/Maps/L_Greybox_World` (or `L_Greybox_Stonebrook`) and press Play. You
-start in Dink's house. WASD and mouse to run (6 m/s); the line at the top left names the original
+start in Dink's house. WASD and mouse to run (6 m/s), hold **Left Shift** to walk (2 m/s), **Space** to jump (hold briefly for more height), and scroll the **mouse wheel** to zoom in/out; the line at the top left names the original
 screen you are on. Console commands: `dink.Goto <screen>` jumps to any original screen,
 `dink.Vision <screen> <value>` shows a quest-state variant (try `dink.Vision 1 2`), `dink.Where`.
+
+Gamepad: left shoulder holds walk, bottom face button jumps, and D-pad Up/Down adjusts zoom. Camera zoom blends smoothly and uses a shorter range indoors. Dialogue confirmations take priority over jumping.
+
+Player movement has acceleration, braking, gravity and air control. Player and authored humanoid NPC meshes have bounded spring-driven weight shifts, cornering lean and subtle idle motion; the player also reacts to landings. NPC gait cadence continues to follow actual movement, including scripted movement.
 
 ## See a conversation
 
@@ -81,7 +85,7 @@ by eye, are in `AGENTS.md`, section "Greybox import".
 
 In `L_Greybox_Stonebrook`: **F** (or Left Ctrl) attacks with the armed item (fists on a new game;
 the hit lands on the attack animation's hit frame, about 0.2 s later, 28 px of the original screen
-in front of Dink), **Q** (or Left Shift) casts the armed spell, **E** talks. Walk onto the sack of
+in front of Dink), **Q** casts the armed spell, **E** talks. Walk onto the sack of
 pig feed in Dink's house to pick it up; `dink.Inventory` lists items, `dink.Arm 2` arms slot 2 (or
 `dink.Arm item-pig`), `dink.ArmMagic 1` arms a spell (there is no inventory screen yet). Hit the
 furniture in the houses (`S002_P21`, `S003_P16`), the pillbugs south of the village (`dink.Goto 278`)

@@ -80,6 +80,21 @@ void UDinkInteriorCameraComponent::BeginPlay()
     }
 }
 
+float UDinkInteriorCameraComponent::GetDesiredArmLength() const
+{
+    return FMath::Clamp((bInteriorMode ? InteriorArmLength : OutdoorArm) + ZoomOffset,
+        MinimumArmLength, bInteriorMode ? MaximumInteriorArmLength : MaximumOutdoorArmLength);
+}
+
+void UDinkInteriorCameraComponent::AddZoomInput(float Steps)
+{
+    if (!FMath::IsFinite(Steps) || FMath::IsNearlyZero(Steps)) return;
+    const float Base = bInteriorMode ? InteriorArmLength : OutdoorArm;
+    // Clamp from the effective distance, so reversing at a limit responds immediately.
+    ZoomOffset = FMath::Clamp(GetDesiredArmLength() - FMath::Clamp(Steps, -10.f, 10.f) * ZoomStep,
+        MinimumArmLength, bInteriorMode ? MaximumInteriorArmLength : MaximumOutdoorArmLength) - Base;
+}
+
 void UDinkInteriorCameraComponent::RestoreCamera()
 {
     FloorFramingShift=FVector::ZeroVector; bFloorFramingAvailable=false; bFloorFramingFeasible=true;
@@ -133,15 +148,19 @@ void UDinkInteriorCameraComponent::RestoreOccluders()
 
 void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
 {
+    const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
+    const float PreviousArm = Arm->TargetArmLength;
     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
     bInteriorMode = Screen && Screen->bIndoor;
     if (bInteriorMode)
     {
-        Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
+        Arm->TargetArmLength=GetDesiredArmLength(); Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
         Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
         ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
     }
-    else RestoreCamera();
+    else { RestoreCamera(); Arm->TargetArmLength=GetDesiredArmLength(); }
+    // Adjacent screens must not restart an in-progress zoom or flash the unzoomed preset.
+    if (SameMode) Arm->TargetArmLength=PreviousArm;
     // Outdoor meshes participate only through the same explicit tag and complete
     // authored material mapping. Their physical collision and outdoor camera stay intact.
     if (!Screen) return;
@@ -295,6 +314,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
     if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
+    Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
     if (bInteriorMode) UpdateFraming(DeltaTime);
     if (Occluders.IsEmpty()) return;
     const FRotator Rotation=Arm->GetTargetRotation();
