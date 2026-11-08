@@ -1,0 +1,10 @@
+/home/artist/Work/DinkQA/UnderfloorV1/build_underfloor.py:10: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new(p['material']['name']);mat.use_nodes=True;bs=mat.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=(*p['material']['base_color_linear'],1);bs.inputs['Roughness'].default_value=.96;bs.inputs['Metallic'].default_value=0;bs.inputs['Specular IOR Level'].default_value=.25;bs.inputs['Coat Weight'].default_value=0;mat.diffuse_color=(*p['material']['base_color_linear'],1);mesh.materials.append(mat)
+Info: Saved as "UnderfloorV1.blend"
+
+FBX export starting... '/home/artist/Work/DinkQA/UnderfloorV1/SM_Underfloor_Stonebrook_V1.fbx'
+export finished in 0.0027 sec.
+UNDERFLOOR_SOURCE_READY
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+
+Blender quit

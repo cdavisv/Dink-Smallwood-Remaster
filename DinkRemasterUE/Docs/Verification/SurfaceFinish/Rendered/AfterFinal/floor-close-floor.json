@@ -1,0 +1,674 @@
+[
+  {
+    "actor": "StaticMeshActor_135",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e52f0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_137",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e56e0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_139",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e5bf0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_141",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e5da0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_143",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e5f50) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_145",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6100) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_147",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e62b0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_149",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6460) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 392470.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_151",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6610) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_153",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e67c0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_155",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6970) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_157",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6b20) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_159",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6cd0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_161",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e6e80) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_163",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7030) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_165",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e71e0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 392658.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_167",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7390) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_169",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7540) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_171",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e76f0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_173",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e78a0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_175",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7a50) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_177",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7c00) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_179",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7db0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_181",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65bf9e7f60) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 392845.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_183",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700180) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_185",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700330) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_187",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927004e0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_189",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700690) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_191",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700840) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_193",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927009f0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_195",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700ba0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_197",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700d50) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 393033.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_199",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592700f00) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_201",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927010b0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_203",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701260) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_205",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701410) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_207",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927015c0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_209",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701770) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_211",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701920) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_213",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701ad0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 393220.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_215",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701c80) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_217",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701e30) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_219",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592701fe0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_221",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702190) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_223",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702340) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_225",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927024f0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_227",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927026a0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_229",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702850) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 393408.480000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_231",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702a00) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184565.160000, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_233",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702bb0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184379.222500, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_235",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702d60) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184193.285000, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_237",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592702f10) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -184007.347500, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_239",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f65927030c0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.410000, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_241",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592703270) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183635.472500, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_243",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592703420) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183449.535000, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  },
+  {
+    "actor": "StaticMeshActor_245",
+    "component": "StaticMeshComponent0",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.MI_Stonebrook_FloorOakV1",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron"
+    ],
+    "transform": "<Struct 'Transform' (0x7f6592703540) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183263.597500, y: 393595.980000, z: 0.000000}, scale3d: {x: 0.929688, y: 0.937500, z: 1.000000}}>",
+    "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "profile": "BlockAll"
+  }
+]

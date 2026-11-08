@@ -1,0 +1,118 @@
+{
+  "phase": "AfterFinal",
+  "actual_route_exercised": true,
+  "underfloor_runtime_checked": true,
+  "controller_recovery_same_process": true,
+  "method": "Actual keyboard exit passed before reader error on unexposed Python navigation alias. Reader corrected to native reflected name; same owned game resumed outdoors without restart/teleport/asset changes. Actual keyboard return then passed; only afterward separate photographic fixture teleports. Read-only inspection, normal view yaw/pitch only.",
+  "preserved_exit_sha256": "4efd1d0f89d5541eb07b0c34966c185dbc79ec607e05387f30d81e009a8ceb8b",
+  "recovery_outside": {
+    "screen": 439,
+    "map": [
+      344.99,
+      307.442
+    ],
+    "world": [
+      97729.027,
+      37508.532,
+      98.35
+    ],
+    "yaw": 90.563,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "actual_route_final": {
+    "screen": 1,
+    "map": [
+      302.985,
+      388.693
+    ],
+    "world": [
+      -183808.35,
+      393546.512,
+      98.0
+    ],
+    "yaw": -90.697,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "records": [
+    {
+      "command": "py QA_FLOOR_PHASE='AfterFinal'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
+      "response": "[2026.11.08-05.49.11:439][267]LogPython: QA_FLOOR_READER_READY\n"
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-05.49.14:400][463]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "py qa_fu_read('actual-outside',False)",
+      "response": "[2026.11.08-05.49.15:920][561]LogPython: QA_UNDERFLOOR_PASS actual-outside\n"
+    },
+    {
+      "command": "py qa_nc_read('outdoor-after-exit')",
+      "response": "[2026.11.08-05.49.17:344][654]LogPython: QA_NATIVE_CAMERA_READ outdoor-after-exit\n"
+    },
+    {
+      "command": "py qa_fu_read('actual-return',True)",
+      "response": "[2026.11.08-05.50.16:647][552]LogPython: QA_UNDERFLOOR_PASS actual-return\n"
+    },
+    {
+      "command": "dink.Goto 1 303.5 345",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_fu_read('door-room',True)",
+      "response": "[2026.11.08-05.50.22:286][909]LogPython: QA_UNDERFLOOR_PASS door-room\n"
+    },
+    {
+      "command": "py qa_fs_read('door-room')",
+      "response": "[2026.11.08-05.50.23:553][988]LogPython: QA_FLOOR_READ door-room\n"
+    },
+    {
+      "command": "py qa_nc_read('door-room')",
+      "response": "[2026.11.08-05.50.24:811][ 68]LogPython: QA_NATIVE_CAMERA_READ door-room\n"
+    },
+    {
+      "command": "dink.Goto 1 355 335",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -40",
+      "response": ""
+    },
+    {
+      "command": "py qa_fu_read('floor-close',True)",
+      "response": "[2026.11.08-05.50.30:757][442]LogPython: QA_UNDERFLOOR_PASS floor-close\n"
+    },
+    {
+      "command": "py qa_fs_read('floor-close')",
+      "response": "[2026.11.08-05.50.32:067][524]LogPython: QA_FLOOR_READ floor-close\n"
+    },
+    {
+      "command": "py qa_nc_read('floor-close')",
+      "response": "[2026.11.08-05.50.33:364][606]LogPython: QA_NATIVE_CAMERA_READ floor-close\n"
+    }
+  ],
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 364612,
+    "backend": "private Xvfb :189 with XTest"
+  }
+}
