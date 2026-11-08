@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_Stonebrook_Linen_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 802223,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Linen_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2777429,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Linen_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1248754,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1435537,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2898185,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1302556,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}

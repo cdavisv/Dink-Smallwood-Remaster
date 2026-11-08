@@ -1,0 +1,29 @@
+{
+  "candidate": true,
+  "reference": "Originalsprite422_12 +s1-sack script grain/feedpickup S001_P52",
+  "input_sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+  "triangles": 19644,
+  "old_bounds_m": [
+    [
+      -0.36141419410705566,
+      -0.27734270691871643,
+      0.0
+    ],
+    [
+      0.36141419410705566,
+      0.27734270691871643,
+      0.75
+    ]
+  ],
+  "materials": [
+    "jute",
+    "cord"
+  ],
+  "construction": "Bounded finish: monotonic smooth shoulders/compressed seams/coarse jute slub/panel tone/taut three-ply cord with exposed ends; full cloth body with gathered pleats, flattened footing, rolled side seams,72stitches, fittedtwowraptie/knot/ends",
+  "native_imported": false,
+  "remaining": [
+    "Sourceguide/UV/physicalcontact review",
+    "Matchedoriginal/current source renders",
+    "Bake/export/roundtrip and native tests"
+  ]
+}

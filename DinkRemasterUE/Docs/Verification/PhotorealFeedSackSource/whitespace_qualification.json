@@ -1,0 +1,8 @@
+{
+  "clean": false,
+  "inherited_exact_approved_source_whitespace": [
+    "ExportIteration/roundtrip_sack.py:39 blank line contains one space",
+    "SourceCheckpoint/Inputs/s1-sack.c:31 original script trailing space"
+  ],
+  "decision": "Preserve approved75file byte-identical bundle; do not silently normalize original script or frozen evidence."
+}

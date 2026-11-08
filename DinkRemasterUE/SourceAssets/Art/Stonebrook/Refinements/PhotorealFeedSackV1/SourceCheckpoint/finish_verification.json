@@ -1,0 +1,71 @@
+{
+  "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+  "material_slots_IOR_and_specular_unchanged": true,
+  "before": {
+    "materials": {
+      "MI_FeedSack_Jute_PhotoSource": {
+        "IOR": 1.4600000381469727,
+        "Specular IOR Level": 0.2199999988079071
+      },
+      "MI_FeedSack_Cord_PhotoSource": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.2199999988079071
+      }
+    },
+    "slot_count": 2,
+    "body_vertices": 5200,
+    "shoulder_adjacent_face_angle_p95_deg": 29.915801677832725,
+    "shoulder_max_adjacent_angle_deg": 48.42960657413715,
+    "tail_clearances": [
+      {
+        "vertices": 102,
+        "min_signed_clearance_m": -0.08314193226397038,
+        "vertices_inside_body": 93,
+        "mean_signed_clearance_m": -0.043720078162818136
+      },
+      {
+        "vertices": 102,
+        "min_signed_clearance_m": -0.09784874133765697,
+        "vertices_inside_body": 90,
+        "mean_signed_clearance_m": -0.044241681883874
+      }
+    ],
+    "triangles": 15876
+  },
+  "after": {
+    "materials": {
+      "MI_FeedSack_Jute_PhotoSource": {
+        "IOR": 1.4600000381469727,
+        "Specular IOR Level": 0.2199999988079071
+      },
+      "MI_FeedSack_Cord_PhotoSource": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.2199999988079071
+      }
+    },
+    "slot_count": 2,
+    "body_vertices": 6760,
+    "shoulder_adjacent_face_angle_p95_deg": 17.404763175107362,
+    "shoulder_max_adjacent_angle_deg": 35.07570906745388,
+    "tail_clearances": [
+      {
+        "vertices": 126,
+        "min_signed_clearance_m": 0.0006304804483079351,
+        "vertices_inside_body": 0,
+        "mean_signed_clearance_m": 0.009084920316076427
+      },
+      {
+        "vertices": 126,
+        "min_signed_clearance_m": 0.0010626274452079087,
+        "vertices_inside_body": 0,
+        "mean_signed_clearance_m": 0.008697749488684209
+      }
+    ],
+    "triangles": 19644
+  },
+  "limits": [
+    "Dihedral numbers are bounded geometry measurements, not universal visual approval",
+    "Signed clearances measure original cloth body, not knot/seam contacts or universal mesh intersections",
+    "Native/query/camera acceptance pending"
+  ]
+}
