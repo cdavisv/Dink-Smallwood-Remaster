@@ -61,3 +61,12 @@ Outdoor review revision `skin-muzzle-linear-half-v2` reduces only the pig's Skin
 Final pig-pen verification:112/112 automated checks passed with zero warnings in264s; all661 runtime Data hashes stayed unchanged. Durable report: `Saved/Automation/pigpen_all_verified/index.html`; exact build/input scope: `Saved/PigPenStage`. The initial generated-status drift and corrected full rerun are both retained. Source/art/audio ledger verifies374/374 hashes with all prior audio decisions intact.
 
 The final rendered pickup/gate/F/Milder fixture passed and restored its temporary camera settings. It uses explicitly recorded debug travel between the real pickup and real gate walk; the earlier complete uninterrupted route remains a separate receipt. Wide/close shots are under `Saved/Playtest/evidence/pigpen-final-focused`. No distinct live nibble was observed in the final throw; physical-food activation and true/false occlusion pass native regression. Wider greybox terrain and further material/deformation polish remain separate work.
+
+
+## Oak floor and render-only underfloor
+
+The incremental starting-house surface workflow is documented in [FLOOR_SURFACE_PIPELINE.md](FLOOR_SURFACE_PIPELINE.md). It preserves the original floor geometry, UVs, nails and collision while assigning a new wood material to a unique mesh copy. BC gain1 and normal strength1 use the accepted Blender bakes directly. The original generated oak reference, full prompt and art-directed scale calibration remain in the source bundle.
+
+A separate contour-fitted underfloor is entirely render-only. Its source guide result has one explicit collision-missing exception, with all other checks passing; do not generate collision for it. The context actor supplies owner-screen visibility, no collision/navigation/overlap events and no hidden shadows/GI. Actual native import dimensions are1486.9421387×1311.75×2cm,24vertices/44triangles, topZ=-16cm. The original walking floor remains unchanged.
+
+Native saved-package inspection and source/publication guards accompany both assets. The material helper is editor-only and read-only; native input inspection covers pins omitted from Python enums. Runtime readers in editor-game mode may need exact native reflected property names such as bCanEverAffectNavigation and bHasNavigationData rather than their unavailable Python aliases. Final native tests, real-keyboard routes and matched-camera captures are recorded in Docs/Verification/SurfaceFinish.

@@ -1,0 +1,63 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/UnderfloorV1/UnderfloorV1.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 0
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Underfloor_Stonebrook_V1",
+      "class": "building",
+      "collection": "SM_Underfloor_Stonebrook_V1",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -743.471,
+          -655.875,
+          0.0
+        ],
+        "blender_max_cm": [
+          743.471,
+          655.875,
+          2.0
+        ],
+        "size_cm": [
+          1486.942,
+          1311.75,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -743.471,
+          -655.875,
+          0.0
+        ],
+        "unreal_max_cm": [
+          743.471,
+          655.875,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Underfloor_Stonebrook_V1",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}

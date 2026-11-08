@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "chapters": 10,
+  "trace_comparison": "full byte equality; independently confirmed beyond script MD5 display",
+  "traces": [
+    {
+      "name": "stonebrook_probe_trace.txt",
+      "bytes": 311123,
+      "sha256": "711c9422e0de11ab2c49be8471b4287a43059f4d6fdf035524ef711342982877",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch2_trace.txt",
+      "bytes": 205504,
+      "sha256": "c8f2646d7a418fe3d6f859e4c2f467e1f53de7230dc0ca1a0a6fde610dc82335",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch3_trace.txt",
+      "bytes": 19957,
+      "sha256": "6b5b00eb94f960730451349a7603bee9fa6b42f5f1bc147d74f9d9c1a2b6ac28",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch4_trace.txt",
+      "bytes": 137775,
+      "sha256": "2d74a13a920829e2d64cdd5ef0b2dbe9af12d6840705cc26478407611fa8cc32",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch5_trace.txt",
+      "bytes": 6991,
+      "sha256": "fe4b5ef7e81044d268f5a44eb2158163bb0bfd101e004165944191c0c2ae79c7",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch6_trace.txt",
+      "bytes": 27382,
+      "sha256": "06077b802f9d407549caceea7ac2a8b27cec3e7c43276dd8d6a1849926b58f90",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch7_trace.txt",
+      "bytes": 289275,
+      "sha256": "1f72e3826ca627b811b00a4eb917957cf251bd728a8eaf0650b9ce8ffbf2f050",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch8_trace.txt",
+      "bytes": 107998,
+      "sha256": "ab1ac5e59a4181cc519506c607b1fdebd15fe03d38e2de63cb08cd6e4fda8fed",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch9_trace.txt",
+      "bytes": 151049,
+      "sha256": "ead419feeefca9c7dbc6659b3bf8ae3428778845b45283bdc8e1a6332b3023f4",
+      "editor_and_packaged_byte_identical": true
+    },
+    {
+      "name": "probe_ch10_trace.txt",
+      "bytes": 20144,
+      "sha256": "2dc5d4a4f58fcc98dff7ab38a9e5c9199bd67b065e6fe74c2507feda453802f4",
+      "editor_and_packaged_byte_identical": true
+    }
+  ]
+}

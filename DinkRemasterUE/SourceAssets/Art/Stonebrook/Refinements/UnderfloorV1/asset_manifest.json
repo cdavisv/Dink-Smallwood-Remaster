@@ -1,0 +1,134 @@
+{
+  "schema": "dink-underfloor-asset/1",
+  "asset": "SM_Underfloor_Stonebrook_V1",
+  "class": "building",
+  "files": {
+    "blend": {
+      "file": "UnderfloorV1.blend",
+      "sha256": "97c83f17ce5cce583f9cdac3084e2519969c010ef86e14c320b179910c7006db"
+    },
+    "fbx": {
+      "file": "SM_Underfloor_Stonebrook_V1.fbx",
+      "sha256": "daa4801ccb0c360ab362395d6754183069585cb45b001ccf24855d9d9d65a197"
+    }
+  },
+  "source_geometry": {
+    "vertices": 24,
+    "triangles": 44,
+    "polygons": 14,
+    "material_slots": 1,
+    "UV_layers": 1,
+    "dimensions_m": [
+      14.869421818256669,
+      13.117500114442082,
+      0.02
+    ],
+    "native_geometry_bound_contour_corners": 12,
+    "pivot": "base_center",
+    "source_UCX_count": 0,
+    "collision_rule_exception": "Requiredcollision rule waived by explicit render-only task; no sourceUCX and nativeNoCollision/noNav/overlap. All other geometry/size/pivot/UV/material rules remain."
+  },
+  "placement_world_cm": [
+    -183821.68890908716,
+    392940.10499427794,
+    -18.0
+  ],
+  "rotation_deg": [
+    0,
+    0,
+    0
+  ],
+  "scale": [
+    1,
+    1,
+    1
+  ],
+  "material": {
+    "name": "M_Stonebrook_Underfloor_DarkOak_V1",
+    "base_color_linear": [
+      0.009,
+      0.005,
+      0.0025
+    ],
+    "roughness": 0.96,
+    "metallic": 0,
+    "specular": 0.25,
+    "opaque": true
+  },
+  "floor_binding_signature": "64792bcc71f8ca1071256271c16d08d55bec04e0785c0e82f36a573cc59f020a",
+  "geometry_positions_signature": "8894fb29b6cc53f0fdf5618bd19c3ec13b9f01c44af9806cf4d5b01466b095a1",
+  "proposed_native_package": "/Game/Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1",
+  "proposed_runtime_element": {
+    "name": "StartingHouseUnderfloorV1",
+    "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1.SM_Underfloor_Stonebrook_V1",
+    "world_cm": [
+      -183821.68890908716,
+      392940.10499427794,
+      -18.0
+    ],
+    "rotation_deg": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "collision": false,
+    "camera_occluder": false
+  },
+  "runtime_policy": {
+    "collision": false,
+    "camera_occluder": false,
+    "navigation": false,
+    "overlap_events": false,
+    "visibility": "owner_screen1_only",
+    "shared_geometry_or_material_edits": false
+  },
+  "native_import_requirements": {
+    "generate_collisions": false,
+    "has_navigation_data": false,
+    "component_collision": "NoCollision",
+    "component_navigation": false,
+    "component_generate_overlaps": false,
+    "owner_screen": 1
+  },
+  "runtime_published": false,
+  "approved_floor_bakes_or_geometry_modified": false,
+  "runtime_publication_policy": {
+    "separate_context_manifest": "Content/Dink/Data/Art/stonebrook_underfloor_v1.json",
+    "context": {
+      "visibility": "owner_screen_only",
+      "render_only": true
+    },
+    "original_floor_manifest_modified": false,
+    "Vista359_manifest_modified": false
+  },
+  "actual_blue_pixel_ray_proof": {
+    "matching_camera_file": "/home/davisc/Work/DinkQA/SurfaceNative/Before/door-room-camera.json",
+    "matching_camera_sha256": "4962a7ec13a45b0b3e1eecbccd2d69088cc882f052a3f5fa4d65062ec374b619",
+    "camera_world_cm": [
+      -183761.09749999997,
+      393583.60856226814,
+      224.16407864998737
+    ],
+    "pixel": [
+      660,
+      600
+    ],
+    "before_RGB": [
+      122,
+      164,
+      200
+    ],
+    "before_floor_triangle_hit": null,
+    "underfloor_plane_hit_world_cm": [
+      -183751.46603929487,
+      393210.1141071002,
+      -16.00000000000003
+    ],
+    "hit_inside_derived_contour": true
+  }
+}

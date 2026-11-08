@@ -1,0 +1,42 @@
+UnderfloorV1 — Work-only source candidate
+
+One thin closed dark matte sheet derived from the convex outer contour of all
+56 actual imported floor placements. It intentionally spans internal plank/module
+seams, retains the outer bevel corner cuts, and does not extend to a room AABB.
+No floor geometry, UVs, nails, approved textures, shared materials or lighting changed.
+
+Dimensions: 1486.9421818 x 1311.7500114 x 2 cm.
+Base-center world placement: (-183821.68890908716,392940.10499427794,-18) cm.
+UE local X = Blender X; UE local Y = -Blender Y; metres -> centimetres.
+Top Z=-16 cm, bottom=-18 cm. Actual imported floor vertex min=-11 cm;
+clearance5 cm. Conservative -14 cm nail/culling envelope clearance2 cm.
+Original floor source floor plane is Z=0. No geometric/collision edits to it.
+
+Portable rebuild (Blender5.2.2):
+  ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 2 --python-exit-code 1 -P build_underfloor.py
+  ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 2 --python-exit-code 1 -P verify_export.py
+All geometry/material rebuilding inputs are in underfloor_plan.json. No external
+blend, image or library is required. prepare_plan.py is historical derivation/
+rebinding tooling, requiring the original native snapshot and runtime placements.
+It hashes ONLY sorted name/transform/scale of56floors (not mesh paths or allData).
+The plan retains exact bindings and native vertex-position signature.
+
+guide_validation.json truthfully reports ONE COLLISION_MISSING error and ZERO
+warnings. This is an explicit task-authorized exception: render-only underfloor
+must have NO source UCX, native collision, navigation or overlap events. All other
+standard asset checks passed. Never run collision-generation repair on this asset.
+Source classification building allows this single14.87m architectural mesh.
+
+Proposed import: unique Kits/Stonebrook/Refinements/UnderfloorV1 package,1LOD,
+material DarkOakV1 with constant linear(.009,.005,.0025),roughness.96,specular.25,
+metallic0,opaque,no coat. Native has_navigation_data=False, no generated collision.
+DO NOT publish in persistent stonebrook.json or alter Vista359. Separate
+stonebrook_underfloor_v1.json context uses owner_screen_only/render_only on screen1,
+ADinkArtContextActor: NoCollision,no nav,no overlaps,no camera occluder; hidden
+outside owner incl hidden shadows/GI. Draft asset row has expected size/LOD/tolerance.
+
+The exact blue-pixel(660,600) witness uses door-room-camera.json SHA4962a7ec...,
+not floor-close-camera. Export verification intersects actual round-tripped FBX
+triangles at topZ=-16 and bottomZ=-18 with <0.05cm float precision tolerance.
+This proves coverage geometrically; native import/render and owner-screen tests
+remain pending. No source visual/native acceptance is claimed by these checks.

@@ -1,0 +1,17 @@
+{
+  "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkArtContextActor_0",
+  "class": "DinkArtContextActor",
+  "actor_hidden": true,
+  "component_visible": true,
+  "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/UnderfloorV1/SM_Underfloor_Stonebrook_V1.SM_Underfloor_Stonebrook_V1",
+  "material": "/Game/Dink/Materials/Stonebrook/Refinements/M_Stonebrook_Underfloor_DarkOak_V1.M_Stonebrook_Underfloor_DarkOak_V1",
+  "collision": "<CollisionEnabled.NO_COLLISION: 0>",
+  "profile": "NoCollision",
+  "overlap": false,
+  "navigation": false,
+  "mesh_navigation": false,
+  "hidden_shadow": false,
+  "hidden_GI": false,
+  "transform": "<Struct 'Transform' (0x7f65bf9e5b60) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183821.688909, y: 392940.104994, z: -18.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+  "expected_visible": false
+}
