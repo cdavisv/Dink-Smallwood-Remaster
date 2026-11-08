@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "scope": "Read-only independent full-suite/savedinput/saveinventory/ledger/audio review",
+  "native_report": "152Success0warnings0failed;152actual test rows checked",
+  "native_test_duration_seconds": 497.86199951171875,
+  "root_runner_seconds": 517.2593672275543,
+  "frozen_inputs": 9240,
+  "before_after_and_current": "allidentical",
+  "old_saves": 40,
+  "old_save_changes": [],
+  "new_full_user_probe_saves": 10,
+  "ledger": "raw1658row HEADprefix identical;exact6rowappend=>1664",
+  "audio": "all483SourceAssetsAudioledgerrowsunchanged",
+  "limitations": "Trackedoldsaveinventory scope is root checkout Saved inventory; does not claim all account saves. New live-render save/pigfeed/load results separate root-owned. No live game input or root writes."
+}

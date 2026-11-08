@@ -1,0 +1,11 @@
+import unreal,json,os
+from pathlib import Path
+r=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();world=next(w for w in unreal.ObjectIterator(unreal.World)if unreal.GameplayStatics.get_player_pawn(w,0));rows=[]
+for actor in unreal.GameplayStatics.get_all_actors_of_class(world,unreal.Actor):
+ for c in actor.get_components_by_class(unreal.StaticMeshComponent):
+  mesh=c.get_editor_property('static_mesh')
+  if not mesh or '/PhotorealFeedSackV1/' not in mesh.get_path_name():continue
+  rows.append(dict(actor=actor.get_path_name(),component=c.get_path_name(),mesh=mesh.get_path_name(),actor_hidden=actor.get_editor_property('hidden'),component_visible=c.is_visible(),collision=str(c.get_collision_enabled()),transform=c.get_component_transform().export_text(),materials=[c.get_material(i).get_path_name()for i in range(c.get_num_materials())]))
+assert os.getpid()==293200 and len(rows)==1 and not rows[0]['actor_hidden'] and rows[0]['component_visible'],rows
+cam=unreal.GameplayStatics.get_player_camera_manager(world,0)
+(r/'Saved/FeedSackReviewed/Visual/native_sack.json').write_text(json.dumps(dict(passed=True,pid=os.getpid(),rows=rows,camera_location=str(cam.get_camera_location()),camera_rotation=str(cam.get_camera_rotation()),FOV=cam.get_fov_angle()),indent=2)+'\n')

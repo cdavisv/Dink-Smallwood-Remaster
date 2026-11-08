@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "pid": 10,
+  "package_sha256": "4d5597a242fb8df320ca65b03266ee2dc0da2373a29760c6c7223a1b4e048849",
+  "triangles": 2588,
+  "slots": [
+    {
+      "slot_index": 0,
+      "slot_name": "MI_Stonebrook_Linen",
+      "imported_slot_name": "MI_Stonebrook_Linen"
+    },
+    {
+      "slot_index": 1,
+      "slot_name": "MI_Stonebrook_Wicker",
+      "imported_slot_name": "MI_Stonebrook_Wicker"
+    }
+  ],
+  "groups": [
+    {
+      "polygon_group_id": 0,
+      "imported_slot_name": "MI_Stonebrook_Linen",
+      "slot_index": 0
+    },
+    {
+      "polygon_group_id": 1,
+      "imported_slot_name": "MI_Stonebrook_Wicker",
+      "slot_index": 1
+    }
+  ],
+  "slot_triangle_counts": {
+    "0": 1724,
+    "1": 864
+  },
+  "dirty_packages_before": [],
+  "dirty_packages_after": [],
+  "read_only": true
+}

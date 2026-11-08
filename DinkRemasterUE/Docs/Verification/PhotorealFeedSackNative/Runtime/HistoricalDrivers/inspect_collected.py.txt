@@ -1,0 +1,11 @@
+import unreal,json,os
+from pathlib import Path
+r=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();world=next(w for w in unreal.ObjectIterator(unreal.World)if unreal.GameplayStatics.get_player_pawn(w,0));rows=[]
+for actor in unreal.GameplayStatics.get_all_actors_of_class(world,unreal.Actor):
+ origin=actor.get_component_by_class(unreal.DinkOriginComponent)
+ if not origin or origin.get_origin_string()!='S001_P52':continue
+ entry={'actor':actor.get_path_name(),'hidden':actor.get_editor_property('hidden'),'components':[]}
+ if hasattr(actor,'get_actor_enable_collision'):entry['actor_collision_enabled']=actor.get_actor_enable_collision()
+ for component in actor.get_components_by_class(unreal.PrimitiveComponent):entry['components'].append({'name':component.get_name(),'collision':str(component.get_collision_enabled()),'visible':component.is_visible()})
+ rows.append(entry)
+(r/'Saved/FeedSackReviewed/Render/collected_native_state.json').write_text(json.dumps({'pid':os.getpid(),'actors':rows},indent=2)+'\n')

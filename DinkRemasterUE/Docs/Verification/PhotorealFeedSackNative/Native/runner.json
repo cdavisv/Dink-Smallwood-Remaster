@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "preflight",
+    "returncode": 0,
+    "seconds": 19.259758472442627,
+    "passed": true
+  },
+  {
+    "mode": "import",
+    "returncode": 0,
+    "seconds": 47.1929235458374,
+    "passed": true
+  },
+  {
+    "mode": "verify",
+    "returncode": 0,
+    "seconds": 36.38519024848938,
+    "passed": true
+  }
+]

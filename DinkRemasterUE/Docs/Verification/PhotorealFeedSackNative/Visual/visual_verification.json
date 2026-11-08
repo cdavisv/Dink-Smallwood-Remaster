@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "pid": 293200,
+  "scope": "Explicitphoto teleports only; fresh unsaved game; no pickup or story/fact/item changes; all lighting/material/runtime modules unchanged",
+  "fixtures": [
+    {
+      "name": "feed-sack-wide",
+      "photo_fixture": [
+        410,
+        120
+      ],
+      "photo_teleport": true,
+      "player": {
+        "screen": 1,
+        "map": [
+          410.0,
+          120.0
+        ],
+        "world": [
+          -183340.16,
+          392370.98,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "view_yaw": 0,
+      "view_pitch": -35,
+      "inventory": "[2026.11.08-23.32.40:641][541]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.32.40:641][541]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    },
+    {
+      "name": "feed-sack-close",
+      "photo_fixture": [
+        420,
+        120
+      ],
+      "photo_teleport": true,
+      "player": {
+        "screen": 1,
+        "map": [
+          420.0,
+          120.0
+        ],
+        "world": [
+          -183296.41,
+          392370.98,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "view_yaw": 0,
+      "view_pitch": -35,
+      "inventory": "[2026.11.08-23.32.48:397][890]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.32.48:397][890]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    }
+  ],
+  "native_component_verified": {
+    "passed": true,
+    "pid": 293200,
+    "rows": [
+      {
+        "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_37",
+        "component": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_37.Card",
+        "mesh": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+        "actor_hidden": false,
+        "component_visible": true,
+        "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+        "transform": "<Struct 'Transform' (0x7fe22e5dd800) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -183173.910000, y: 392414.730000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "materials": [
+          "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.MI_FeedSack_Jute_PhotoBaked",
+          "/Game/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.MI_FeedSack_Cord_PhotoBaked"
+        ]
+      }
+    ],
+    "camera_location": "<Struct 'Vector' (0x7fe22df380b0) {x: -183493.006491, y: 392415.980000, z: 287.658345}>",
+    "camera_rotation": "<Struct 'Rotator' (0x7fe22df380b0) {pitch: -35.000000, yaw: 0.000000, roll: -0.000000}>",
+    "FOV": 70.0
+  },
+  "diagnostic_light": "Temporary450to3000lumens/reposition, separatelylabeled/fullyrestored; native material readback, not defaultlightingacceptance",
+  "native_inspector_v1_failure": "Historical getter corrected get_component_transform to installed get_world_transform; rawLogPython error retained",
+  "diagnostic_spawn_v1_failure": "GameplayStatics spawningAPI notreflected ininstalledPython; noactorcreated; usedexistingownedlight instead",
+  "scope_qualification": "Defaultroomcorner remains dark; no finalhouse lighting approval. NativeAssetappearance readable under explicitlytemporarydiagnosticlighting; original material/data untouched."
+}
