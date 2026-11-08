@@ -1,0 +1,9 @@
+{
+  "raw_guide_passed": false,
+  "raw_errors": 1,
+  "raw_warnings": 0,
+  "accepted_exception": "COLLISION_MISSING",
+  "reason": "Owner-authorized render-only seam closure must have no UCX/native collision/navigation/overlaps.",
+  "all_other_guide_checks_passed": true,
+  "native_tested": false
+}

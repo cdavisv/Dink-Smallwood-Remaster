@@ -1,0 +1,7 @@
+Dink.Gameplay.Probe chapter 5 (The bow: Arturous, arm it, the goblin gate guard): 3 of 3 steps in 851.5 s of game time (1.0 s wall); trace md5 6c709d1069, 120 events; final greybox screen 712, Dink sprite screen 712, pawn at V(X=19167.87, Y=69538.87, Z=98.00); wizard_see 4, wizard_again 1, s2-aunt 4, caveguy 6, strength 9, defense 0, magic 5, level 3, spell charge 100/100, story 8, pig_story 1, old_womans_duck 4, nuttree 1, letter 2, gold 72, life 13/26, exp 200, player_map 712, vision 0, Dink free at 246,342, menu none; scripts:; game time 851533 ms, update_status 1, status ticks 62; last lines: "your bow back farther, thus hitting harder.  No refunds.  Enjoy!" / "Greetings my good fellow!  May I enter your fine establishment?" / "hmm." / "ashee yoo hav bough. GATS OPAN!"
+  last gameplay events: 846183 item item-b1 in slot 4 | 846200 arm item-b1
+
+OK    1 buy the bow from Arturous (SCR_097, s3-st2p talk: "Buy a Bow and some arrows for $1000": gold >= 1000, a free slot) (0.9 s game time, done at 846.183 s)
+OK    2 arm the bow (inventory: item-b1; the guard checks the armed weapon, s3-gobg.c:80) (0.0 s game time, done at 846.217 s)
+OK    3 the goblin gate guard (SCR_712, s3-gobg talk: "Ask the Goblin guard to let you in": armed bow, &mayor 3, &gobpass 1) (5.3 s game time, done at 851.517 s)
+DONE every step done

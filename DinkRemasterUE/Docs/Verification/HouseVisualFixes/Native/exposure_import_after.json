@@ -1,0 +1,324 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BA2DD72B72D286DE2232471836E5",
+			"instanceName": "omarchy-82699",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-08.03.19",
+	"succeeded": 12,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 54.252685546875,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "RetainedLowWaterAndDryCorridors",
+			"fullTestPath": "Dink.Import.Fields.RetainedLowWaterAndDryCorridors",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 4.293858528137207,
+			"dateTime": "2026.11.08-08.02.25",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Meshes",
+			"fullTestPath": "Dink.Import.Greybox.Meshes",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.0051362537778913975,
+			"dateTime": "2026.11.08-08.02.29",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ScriptNoHardWarpOverlap",
+			"fullTestPath": "Dink.Import.Greybox.ScriptNoHardWarpOverlap",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 12.226895332336426,
+			"dateTime": "2026.11.08-08.02.29",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookCollision",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookCollision",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.048598282039165497,
+			"dateTime": "2026.11.08-08.02.41",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "House route capsule sweeps: fixed width 56 cm 0 blocked, original width 84 cm 2 blocked",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.02.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "walkable 444 (0 blocked), ground 444 (0 missing), solid 232 (0 wrong), low 160 (0 wrong), warp destinations 14 (0 blocked)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.02.41"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookContent",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookContent",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.11188040673732758,
+			"dateTime": "2026.11.08-08.02.41",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "640 origin actors, 134 instances, 61 screen volumes, 13 warps, 77 vision-gated",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.02.42"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StonebrookPlay",
+			"fullTestPath": "Dink.Import.Greybox.StonebrookPlay",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 33.610660552978516,
+			"dateTime": "2026.11.08-08.02.42",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WorldCollision",
+			"fullTestPath": "Dink.Import.Greybox.WorldCollision",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.96912044286727905,
+			"dateTime": "2026.11.08-08.03.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "House route capsule sweeps: fixed width 56 cm 0 blocked, original width 84 cm 2 blocked",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "walkable 4642 (0 blocked), ground 4642 (0 missing), solid 2194 (0 wrong), low 1816 (0 wrong), warp destinations 115 (0 blocked)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "WorldContent",
+			"fullTestPath": "Dink.Import.Greybox.WorldContent",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.11237180233001709,
+			"dateTime": "2026.11.08-08.03.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "4206 origin actors, 1640 instances, 644 screen volumes, 116 warps, 164 vision-gated",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AxisMapping",
+			"fullTestPath": "Dink.Import.Layout.AxisMapping",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.0074043162167072296,
+			"dateTime": "2026.11.08-08.03.16",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Continuity",
+			"fullTestPath": "Dink.Import.Layout.Continuity",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.045453377068042755,
+			"dateTime": "2026.11.08-08.03.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "1649 walkable crossings, 14841 points, max gap 0.000000000 m; 22 crossings cut between sheets (0 of them reached)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MatchesWorldLayout",
+			"fullTestPath": "Dink.Import.Layout.MatchesWorldLayout",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 0.12273199111223221,
+			"dateTime": "2026.11.08-08.03.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "5846 placements: max position error 0.000142 m (S468_P04), max yaw error 0.0002 deg",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.17"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NoOverlap",
+			"fullTestPath": "Dink.Import.Layout.NoOverlap",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2DD72B72D286DE2232471836E5"
+			],
+			"duration": 2.6985769271850586,
+			"dateTime": "2026.11.08-08.03.17",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "644 imported screens, 0 overlapping sample points",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.03.19"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

@@ -1,0 +1,42 @@
+PerimeterSkirtV1 is an additive render-only seam candidate. It preserves the
+published floor and UnderfloorV1 source, packages and owner-screen context.
+
+Measured cause: seven blue pixels in the real north/fireplace camera have rays
+that miss BOTH actual floor source triangles and UnderfloorV1. They cross the
+outer floor boundary at about Z=-5.9..-9.8cm before reaching the sheet at -16cm.
+The full native pixel/ray evidence is preserved in north_floor_right_ray_diagnosis.json.
+
+The new closed hollow rim sits INSIDE the actual12corner floor contour. Its
+outer/inner bounds contract by0.1/0.8cm per axis, retaining the small bevel facets
+without collapsed normal-offset corners. All48vertices are within the original
+convex footprint. BottomZ=-18cm, topZ=-0.2cm. Source48vertices/96triangles,
+one constant dark material matching UnderfloorV1, disjoint per-face UV islands,
+no textures, no source UCX. Base-center/pivot and floor binding hashes are recorded.
+
+Rebuild from this folder using Blender5.2.2 LTS:
+  ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 2 --python-exit-code 1 -P build_skirt.py
+  ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 2 --python-exit-code 1 -P verify_skirt.py
+  ALSOFT_DRIVERS=null blender -b --factory-startup -noaudio -t 2 --python-exit-code 1 -P validate_guide.py -- --pipeline /path/to/repo/tools/blender
+
+Actual FBX roundtrip verifies dimensions, closed manifold, positive signed volume,
+finite UV0 and front-facing intersections for all7measured escaped rays. These
+are geometric source checks, not native rendered acceptance. The residual0.2cm
+top gap, source-hit/Nanite edge pixels, other pitches/angles and lighting still
+need native checks. Do not claim universal ray coverage or a native fix yet.
+
+The raw guide reports one COLLISION_MISSING error and zero warnings. The task
+explicitly authorizes that exception: this render-only architecture must NOT
+gain collision, navigation or overlaps. All other guide checks pass.
+
+Native plan: one NEW unique mesh package under Kits/Stonebrook/Refinements/
+PerimeterSkirtV1. Reuse the exact saved UnderfloorV1 dark material; never edit it.
+Disable generated collision and asset navigation data. Use one LOD, Nanite with
+full-triangle fallback; check the7mm rim thickness survives native simplification.
+Publish only a new stonebrook_perimeter_skirt_v1.json owner_screen_only/render_only
+context with NoCollision/no nav/no overlaps/no camera occluder and no hidden
+shadow/GI outside owner screen1. Original V1 context remains byte-identical.
+
+The general guide CLI produced its expected raw report but did not finish in its
+wrapper; only that owned handle was interrupted. The direct guide API recipe
+above then exited normally0 and retained the exact authorized error in the raw
+report plus guide_exception.json. No game or native process was launched here.

@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "utc": "2026-11-08T08:38:53.000551+00:00",
+  "tests": 145,
+  "failed": 0,
+  "warnings": 0,
+  "duration_seconds": 450,
+  "frozen_files_before": 8852,
+  "frozen_files_after": 8852,
+  "changes": [],
+  "old_save_changes": [],
+  "new_save_slots": [
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch1.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch10.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch2.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch3.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch4.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch5.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch6.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch7.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch8.sav",
+    "Saved/VisualQA/Full145/User/Saved/SaveGames/probe_ch9.sav"
+  ],
+  "all_new_saves_in_fresh_isolated_UserDir": true,
+  "chapter_step_audit": {
+    "1": {
+      "completed": 47,
+      "total": 47,
+      "OK": 47,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/stonebrook_probe.txt"
+    },
+    "10": {
+      "completed": 7,
+      "total": 7,
+      "OK": 7,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch10.txt"
+    },
+    "2": {
+      "completed": 6,
+      "total": 6,
+      "OK": 6,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch2.txt"
+    },
+    "3": {
+      "completed": 11,
+      "total": 11,
+      "OK": 11,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch3.txt"
+    },
+    "4": {
+      "completed": 12,
+      "total": 12,
+      "OK": 12,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch4.txt"
+    },
+    "5": {
+      "completed": 3,
+      "total": 3,
+      "OK": 3,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch5.txt"
+    },
+    "6": {
+      "completed": 3,
+      "total": 3,
+      "OK": 3,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch6.txt"
+    },
+    "7": {
+      "completed": 8,
+      "total": 8,
+      "OK": 8,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch7.txt"
+    },
+    "8": {
+      "completed": 3,
+      "total": 3,
+      "OK": 3,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch8.txt"
+    },
+    "9": {
+      "completed": 6,
+      "total": 6,
+      "OK": 6,
+      "failed": 0,
+      "report": "Saved/VisualQA/Full145/User/Saved/Narrative/probe_ch9.txt"
+    }
+  },
+  "limitations": [
+    "Native suite is NullRHI; targeted actual-RHI door/angles/floor captures are separate.",
+    "Probe chapters validate these enumerated automated steps; this is not an exhaustive all-world manual playthrough.",
+    "Photoreal hero/props are not imported in this checkout; dark hero/center and bright outdoor distance remain unfinished lighting/material work."
+  ]
+}

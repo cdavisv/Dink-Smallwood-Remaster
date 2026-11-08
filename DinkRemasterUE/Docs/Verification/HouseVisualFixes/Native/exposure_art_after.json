@@ -1,0 +1,718 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BA2CC73E7D9C91C10C2F743C0B7C",
+			"instanceName": "omarchy-82260",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-08.01.55",
+	"succeeded": 24,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 41.841384887695312,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "OwnerScreenVisibility",
+			"fullTestPath": "Dink.Art.Context.OwnerScreenVisibility",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 7.4223084449768066,
+			"dateTime": "2026.11.08-08.01.13",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase0 hero0 story0 pending-1 tickable-1 commandlet0 paused-1 worldtime-1.000 menu-1 frozen-1 ignored-1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Context startup phase6 hero1 story1 pending0 tickable1 commandlet0 paused0 worldtime4.210 menu0 frozen0 ignored0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.20"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorLocomotionAndPhysicalFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.ActorLocomotionAndPhysicalFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0088927550241351128,
+			"dateTime": "2026.11.08-08.01.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPigActorsAndDeathPersistence",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPigActorsAndDeathPersistence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.13471277058124542,
+			"dateTime": "2026.11.08-08.01.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OriginalPillbugVisionTouchDeathAndMixedFood",
+			"fullTestPath": "Dink.Art.CreaturePresentation.OriginalPillbugVisionTouchDeathAndMixedFood",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.13976301252841949,
+			"dateTime": "2026.11.08-08.01.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisibleGroundGrainOcclusion",
+			"fullTestPath": "Dink.Art.CreaturePresentation.VisibleGroundGrainOcclusion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0067412750795483589,
+			"dateTime": "2026.11.08-08.01.20",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OwnerScreenLifecycle",
+			"fullTestPath": "Dink.Art.Exposure.OwnerScreenLifecycle",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 8.2838993072509766,
+			"dateTime": "2026.11.08-08.01.20",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "doorway eyeX=-183761.097 Y=393745.484 Z=224.164 old-bounds distance125.754cm blend100.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AuthoredSuppressesGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 2.7096376419067383,
+			"dateTime": "2026.11.08-08.01.29",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "GreyboxRetainsGeneratedVisuals",
+			"fullTestPath": "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 2.609825611114502,
+			"dateTime": "2026.11.08-08.01.31",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ActorOwnedLocomotion",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.ActorOwnedLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0092249661684036255,
+			"dateTime": "2026.11.08-08.01.34",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BrainTurnsHumanoidButNotFurniture",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.BrainTurnsHumanoidButNotFurniture",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.143935427069664,
+			"dateTime": "2026.11.08-08.01.34",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"fullTestPath": "Dink.Art.HumanoidPresentation.OptionalPlayerMeshKeepsAnimationAndCapsule",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0091879861429333687,
+			"dateTime": "2026.11.08-08.01.34",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FadesAndRestoresPhysicalHouse",
+			"fullTestPath": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 9.2651700973510742,
+			"dateTime": "2026.11.08-08.01.34",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Real PIE viewport prior1280x720 initialized1280x720 LocalPlayerSizeX=1.000 Y=1.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.37"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Clear-aperture fixture pawnV(X=-183806.10, Y=393355.35, Z=98.00) eyeV(X=-183761.10, Y=393595.35, Z=150.00) insideDoorBounds1 geometricSphereClear1 opacity1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.39"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Actual-return foreground pawnV(X=-183808.48, Y=393536.18, Z=98.00) eyeV(X=-183763.48, Y=393764.44, Z=224.16) controlR(P=-18.00, Y=-90.00) independentPixelHits9 endDepth228.069",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.40"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase2 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.40"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.40"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.0 floorHitV(X=-183967.54, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.5 floorHitV(X=-183805.18, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw225.0 viewport1280x720 fraction1.0 floorHitV(X=-183642.82, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw225.0 shoulder45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183612.88, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.0 floorHitV(X=-183969.37, Y=393266.27) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.5 floorHitV(X=-183807.02, Y=393428.62) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Floor-frustum yaw315.0 viewport1280x720 fraction1.0 floorHitV(X=-183644.66, Y=393590.98) insideUnionMargin3=1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Adaptive382 yaw315.0 shoulder-45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183999.32, Y=393620.92, Z=224.16)",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.41"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Camera fixture phase4 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed85 fading2",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.43"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.43"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ForegroundProjection",
+			"fullTestPath": "Dink.Art.InteriorCamera.ForegroundProjection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.004293512087315321,
+			"dateTime": "2026.11.08-08.01.44",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MinimumTranslation",
+			"fullTestPath": "Dink.Art.InteriorCamera.MinimumTranslation",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0082828756421804428,
+			"dateTime": "2026.11.08-08.01.44",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ClassicBrainAcrossRenderCadences",
+			"fullTestPath": "Dink.Art.MotionEstimate.ClassicBrainAcrossRenderCadences",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.78321921825408936,
+			"dateTime": "2026.11.08-08.01.44",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "30Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.44"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "60Hz actual600.00 presented600.00 intermittent0 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.44"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "120Hz actual601.81 presented600.00 intermittent165 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.44"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "144Hz actual602.12 presented600.10 intermittent231 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.44"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "240Hz actual602.72 presented600.00 intermittent495 falseidle0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.44"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReadableExitAndOwnership",
+			"fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 9.0463008880615234,
+			"dateTime": "2026.11.08-08.01.44",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "actual outdoor exit pawnV(X=97729.07, Y=37504.15, Z=98.35) eyeV(X=97729.07, Y=37123.73, Z=221.96) distance400.000 requested400.000",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.49"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase2 actualP=-18.000000 Y=90.000000 R=0.000000 expectedP=-18.000000 Y=90.000000 R=0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.49"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Post-Possess fixture baseline: controlP=0.000000 Y=90.000000 R=-0.000000 actorP=0.000000 Y=90.000000 R=-0.000000 inputPawnInputComponent0",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.52"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "Input/control phase6 actualP=0.000000 Y=90.000000 R=-0.000000 expectedP=0.000000 Y=90.000000 R=-0.000000 inputmatches1",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.11.08-08.01.53"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ApprovedFistTimingSaveAndLocomotion",
+			"fullTestPath": "Dink.Art.PlayerAction.ApprovedFistTimingSaveAndLocomotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.94105184078216553,
+			"dateTime": "2026.11.08-08.01.53",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MarkerScaleSizeAndSavedFacing",
+			"fullTestPath": "Dink.Art.ScriptCharacter.MarkerScaleSizeAndSavedFacing",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.21314504742622375,
+			"dateTime": "2026.11.08-08.01.54",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CharacterBindPoseAndMaterials",
+			"fullTestPath": "Dink.Art.CharacterBindPoseAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.05888226255774498,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CreatureRigMaterialsAndMotion",
+			"fullTestPath": "Dink.Art.CreatureRigMaterialsAndMotion",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0082839569076895714,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ExteriorAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ExteriorAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.010094429366290569,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ImportedAssetScaleAndMaterials",
+			"fullTestPath": "Dink.Art.ImportedAssetScaleAndMaterials",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0081188129261136055,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MaterialPropertyInspection",
+			"fullTestPath": "Dink.Art.MaterialPropertyInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0082178516313433647,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PigPenFeedScatterLODAndMaterial",
+			"fullTestPath": "Dink.Art.PigPenFeedScatterLODAndMaterial",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BA2CC73E7D9C91C10C2F743C0B7C"
+			],
+			"duration": 0.0081933643668889999,
+			"dateTime": "2026.11.08-08.01.55",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

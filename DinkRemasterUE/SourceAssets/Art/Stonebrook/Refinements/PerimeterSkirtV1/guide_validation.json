@@ -1,0 +1,63 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Work/DinkQA/PerimeterSkirtV1/PerimeterSkirtV1.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 0
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Stonebrook_PerimeterSkirt_V1",
+      "class": "building",
+      "collection": "SM_Stonebrook_PerimeterSkirt_V1",
+      "tris_per_lod": {
+        "LOD0": 96
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -743.371,
+          -655.775,
+          0.0
+        ],
+        "blender_max_cm": [
+          743.371,
+          655.775,
+          17.8
+        ],
+        "size_cm": [
+          1486.742,
+          1311.55,
+          17.8
+        ],
+        "unreal_min_cm": [
+          -743.371,
+          -655.775,
+          0.0
+        ],
+        "unreal_max_cm": [
+          743.371,
+          655.775,
+          17.8
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Stonebrook_PerimeterSkirt_V1",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}
