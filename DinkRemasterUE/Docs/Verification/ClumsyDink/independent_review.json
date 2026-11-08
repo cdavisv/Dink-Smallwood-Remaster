@@ -1,0 +1,27 @@
+{
+  "status": "No definite functional findings in frozen five-file player-clumsy delta",
+  "findings": [],
+  "base_commit": "e53cae950e0748ff1c72b4111767e07eca7d34b0",
+  "patch_sha256": "fe9d8761c2ba7482519bd725d1add7ddf6e82598e7f5e9fe6c3ddb45ec0ae0c4",
+  "reviewed_files_match_frozen_pins": true,
+  "reviewed_files": [
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp",
+    "README.md",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkHeroPhysicality.h"
+  ],
+  "observations": [
+    "NPC body-dynamics implementation and humanoid component are untouched.",
+    "Landing chance and side selection use an instance-private seeded FRandomStream; gameplay/story random sources are not consumed.",
+    "Landed reads impact velocity before Super::Landed; installed CharacterMovementComponent::ProcessLanded invokes callback before SetPostLandedPhysics, preserving downward impact velocity.",
+    "Movement root, capsule, combat logic and gait speed caps remain authoritative; new physicality applies only to the player mesh.",
+    "Tick removes its previous rotation and translation contribution before applying the new one. Freeze/dead/unpossessed state and detected displacement >=200cm cancel new transient physicality; pause leaves game-time animation unchanged."
+  ],
+  "test_limitations": [
+    "No builds, tests, Unreal sessions or GPU work run by this reviewer. Author focused5/5 receipt is reported rather than independently reproduced; final full suite is pending.",
+    "New unit tests exercise private-stream repeatability/chance, threshold rejection, pause/cooldown/recovery/freeze, bounded gait, and Cancel; integration deterministically exercises an actual qualifying Landed callback and low-hop bound.",
+    "Native rendered foot placement/mesh clipping, low-frame-rate visual cadence, and actual warp/freeze cancellation need final acceptance; tests do not directly exercise actor-level warp/death/unpossession during an active stumble.",
+    "Warp cancellation uses the existing >=200cm observed-displacement heuristic; smaller transform changes are not identified as teleports. No concrete gameplay regression from that limitation was established."
+  ]
+}
