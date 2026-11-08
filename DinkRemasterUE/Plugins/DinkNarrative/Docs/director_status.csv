@@ -30,7 +30,7 @@ sp_active,sprites,80,command,implemented,"0 removes the sprite: actor hidden (sp
 sp_hitpoints,sprites,78,command,implemented,life of the actor's UDinkStatsComponent (recorded when it has none); also bound as EXTERNAL (value form)
 sp_nohit,sprites,69,command,implemented,"no hit damage: melee only runs `hit` (if scripted), missiles pass (D:15467, 14316)"
 move,movement,61,command,implemented,walks the sprite in a numpad direction until it passes the stop coordinate; does not wait
-external,scripts,52,command,implemented,runs another script's procedure in a new instance for the same sprite and waits for it
+external,scripts,52,command,implemented,runs another script's procedure in a new instance for the same sprite at once (dink.cpp:11326-11360); the caller waits only if the child blocks
 savegameinfo,other,50,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 sp_brain_parm,sprites,50,command,implemented,"brain parameter: target size of brain 12 (pickup vanish), the sprite a missile must not hit; other uses recorded for the AI layer"
 sp_exp,sprites,43,command,implemented,"experience the player gets when he dealt the killing blow (add_exp in add_kill_sprite, D:12359)"
@@ -88,7 +88,7 @@ get_version,other,7,external,implemented,EXTERNAL function bound with lookaheadS
 kill_shadow,other,7,command,implemented,removes the brain-15 shadow sprites whose brain_parm is the sprite (D:9020)
 sp_brain_parm2,sprites,7,command,implemented,second sprite a missile must not hit (missile_brain D:14318); other uses recorded
 sp_kill,sprites,7,command,implemented,removes the sprite after ms (sp_kill timer)
-spawn,scripts,7,command,implemented,starts another script's main in a new instance owned by 1000
+spawn,scripts,7,command,implemented,starts another script's main in a new instance owned by 1000 and runs it at once (dink.cpp:8181-8203)
 draw_hard_map,world,6,command,recorded,collision is baked into the screen meshes; nothing to rebuild
 fill_screen,screen,6,command,recorded,palette fill of the 2D back buffer; the 3D view has nothing to fill
 kill_this_item,inventory,6,command,implemented,"removes that item: `holdingdrop` and `disarm` if armed, then `drop` (kill_cur_item_script, D:1505)"
