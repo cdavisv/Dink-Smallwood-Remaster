@@ -1,0 +1,6 @@
+{
+  "getall DinkInteriorCameraComponent bEnableWallCutaway": "[2026.11.08-19.47.22:541][981]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.bEnableWallCutaway = False\n",
+  "getall DinkInteriorCameraComponent FadingOccluderCount": "[2026.11.08-19.47.24:386][ 64]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.FadingOccluderCount = 0\n",
+  "getall DinkInteriorCameraComponent ManagedOccluderCount": "[2026.11.08-19.47.26:231][147]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.ManagedOccluderCount = 0\n",
+  "getall SpringArmComponent bDoCollisionTest": "[2026.11.08-19.47.27:831][219]0) SpringArmComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.CameraBoom.bDoCollisionTest = True\n"
+}

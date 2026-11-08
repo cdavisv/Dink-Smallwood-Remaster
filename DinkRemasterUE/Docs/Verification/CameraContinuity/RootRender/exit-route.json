@@ -1,0 +1,15 @@
+{
+  "name": "real W departure from documented room photo fixture",
+  "expected_screen": 439,
+  "waypoints": [
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        390
+      ],
+      "warp_to": 439,
+      "tolerance_cm": 3
+    }
+  ]
+}

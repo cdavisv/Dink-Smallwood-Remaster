@@ -1,0 +1,180 @@
+{
+  "status": "Root combined native151 and standalone game build pass; root private render receipt pending",
+  "worktree": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+  "branch": "fix/house-camera-and-contexts",
+  "source_integration": "Sixteen source files hash-match frozen13filecamera/posturev5 plus separate3filecontextv2; full151after mergedPR14nativebarrels",
+  "packets": {
+    "camera_posture": {
+      "patch": "Author/CameraPostureV5/camera-posture.patch",
+      "sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
+      "source_files": 13,
+      "author_full_report": "Author/CameraPostureV5/full150_raw_report.json",
+      "author_full_stats": {
+        "tests": 150,
+        "states": {
+          "Success": 150
+        },
+        "failed": 0,
+        "warning_tests": 1,
+        "warning_events": [
+          {
+            "test": "Dink.Narrative.Smoke.AllEntryPoints",
+            "state": "Success",
+            "message": "LogHttp: HTTP request timed out after 3.00 seconds URL=https://www.google.com/generate_204"
+          }
+        ],
+        "error_events": []
+      },
+      "author_process_duration_seconds": 452,
+      "freeze_count": 8941,
+      "freeze_scope_qualification": "Author final receipt reports no mismatches; subsequent context/module changes have their own8942pinfreeze, not relabeled as the old8941map."
+    },
+    "context_group": {
+      "patch": "Author/ContextGroupV2/context-screen-set.patch",
+      "sha256": "4bdffbc56eabe9cee9ef036a622ffd30f82234b0850cf1d4a119b2d5cdb62467",
+      "source_files": 3,
+      "author_combined_report": "Author/ContextGroupV2/combined151_raw_report.json",
+      "author_combined_stats": {
+        "tests": 151,
+        "states": {
+          "Success": 151
+        },
+        "failed": 0,
+        "warning_tests": 0,
+        "warning_events": [],
+        "error_events": []
+      },
+      "author_process_duration_seconds": 444,
+      "freeze_count": 8942
+    }
+  },
+  "root_full_native": {
+    "verification": "RootNative/Full151/verification.json",
+    "stats": {
+      "tests": 151,
+      "states": {
+        "Success": 151
+      },
+      "failed": 0,
+      "warning_tests": 0,
+      "warning_events": [],
+      "error_events": []
+    },
+    "seconds": 442.6078643798828,
+    "input_files": 8963,
+    "input_changes": [],
+    "old_save_inventory": 20,
+    "old_save_inventory_scope": "Ten prior probe slots each underNativeProps/CombinedFull/User andBarrelReviewed/Full147/User; notanexhaustiveowner-saveinventory",
+    "old_save_changes": [],
+    "new_isolated_probe_slots": 10,
+    "independent_check": "RootNative/independent_check.json"
+  },
+  "builds": {
+    "Editor": {
+      "passed": true,
+      "compiler_warnings": 0,
+      "build_log_seconds": 24.52,
+      "rounded_root_elapsed_seconds": 25,
+      "actions": 18,
+      "report": "EditorBuild/verification.json"
+    },
+    "StandaloneDevelopmentGame": {
+      "passed": true,
+      "seconds": 65,
+      "compiler_warnings": 0,
+      "editor_modules_unchanged": 7,
+      "report": "GameBuild/verification.json",
+      "limits": "No cook/package/standalone runtime or authoredpose asset acceptance claimed"
+    }
+  },
+  "focused_tests": {
+    "PostureOwnershipAndMood": {
+      "tests": 2,
+      "states": {
+        "Success": 2
+      },
+      "failed": 0,
+      "warning_tests": 0,
+      "warning_events": [],
+      "error_events": []
+    },
+    "ActualPawnLifecycleAndSolidWalls": {
+      "tests": 1,
+      "states": {
+        "Success": 1
+      },
+      "failed": 0,
+      "warning_tests": 0,
+      "warning_events": [],
+      "error_events": []
+    },
+    "OriginalAndSharedContextVisibility": {
+      "tests": 2,
+      "states": {
+        "Success": 2
+      },
+      "failed": 0,
+      "warning_tests": 0,
+      "warning_events": [],
+      "error_events": []
+    }
+  },
+  "author_render": {
+    "images": [
+      "Author/Render/interior-east.png",
+      "Author/Render/cottage-east.png",
+      "Author/Render/north-corner-opaque-v5.png",
+      "Author/Render/returned.png"
+    ],
+    "actual_keyboard_exit": "PASS",
+    "actual_keyboard_return": "PASS",
+    "north_corner_fixture": {
+      "screen": 1,
+      "map": [
+        178,
+        120
+      ],
+      "yaw": 180,
+      "pitch": -25
+    },
+    "readback": "Author/Render/corner-v5-readback.json",
+    "policy_readback": "Author/Render/native-readback.json",
+    "limits": "These author views use original barrel Content and old hero, not rootcombinedPR14barrelmaterials. Photographicfixtures useconsole setup; realWroutes are independently recorded. EarlyprotectedPythonflagreaderrors retainedinvisual-receipt; subsequentnativegetallreadbacks validatecutawayfalse,fading0,managed0,probeTrue."
+  },
+  "root_render": {
+    "status": "PASS",
+    "game_pid": 208615,
+    "display_pid": 208609,
+    "normal_game_exit": true,
+    "display_stopped": true,
+    "pinned_inputs": 6920,
+    "changed_inputs": 0,
+    "photo_fixtures": [
+      "screen1 map178/120 yaw180 pitch-25",
+      "screen1 map303/350 yaw270 pitch-18"
+    ],
+    "native_policy": "cutaway False; managed0; fading0; springarmcollision True",
+    "door_scope": "actual held W exit and return from prior303/350 photo fixture, no route teleports",
+    "visual_review": "solid wall/window frame; no exposed outside-floor blue strip at exact corner; current merged barrels visible; old hero and dark room remain unfinished",
+    "failed_diagnostic": "First Python reader could not access protected enable_wall_cutaway; no capture/readback success claimed for that attempt. Corrected driver uses native getall. Raw game log retained under Saved/ContinuityIntegration/Render/game.log."
+  },
+  "behavior": {
+    "camera": "Walls/cottage remain opaque bydefault, originalmaterial/collisionpolicies preserved, spring-arm physicalprobe active. Historicalcutaway fixtures optin; policytoggle restoresownedmodifications.",
+    "posture": "Optional skeleton-compatible native policy/ownership only; raw previous/null override restoration and observedABAforeignownership safety tested. Earlymood/attack/airborneweight helper and actualpawnfreeze/pause/warp/unpossess policy tested. No additivegraph/clip/newbody/clothing asset installed.",
+    "context": "Strict optional screen_set validates boundeduniqueintegerIDs1..768max32inclowner. Sharedcached+physicalmembershipindependent; oldowner-only branch retainsPhysical==CachedVolumeidentity. Render-only/NoCollision/nohiddenGI/nav flags unchanged."
+  },
+  "canonical_art_delivery_decision": {
+    "exterior": "Futurecanonicalexteriorart usesordinarypersistentworldgeometry andnewdeltasonly; screen_set is anoptionaltestedAPI, notcanonicaloutdoorassetcompositiondelivery.",
+    "interior": "Screen1interior willuse its separateowner-onlyderivedcopy.",
+    "delivered_assets_in_this_packet": "No new character/clothing/additiveclip or landscape/composition asset published."
+  },
+  "historical": "Historical/superseded_runs.json preservespaths/hashes forv1fixture-nullcrash,Art27/28old85vs0policyassertion andcancelledv3/v4; supersededreviewJSONs retain resolvedownership/parity findings.",
+  "remaining": [
+    "Root actualprivateexactnorthcorner/currentbarrel/door/camera renderreadback andnormalquit/freeze receipt",
+    "Native actualnewheroclip/postprocessgraph/body/clothing import and bone/render/physical acceptance",
+    "Canonicalpersistentexteriorgeometry newdeltas withnative/worldcoordinate/collision/screenshot gates",
+    "Furtherlighting/materialcalibration andfullstartinghouseart acceptance",
+    "Commit/LFS/PR review/merge ofthisboundedsourceiteration afterrootrendergate"
+  ],
+  "git_base_at_docs_checkpoint": "7930e7b921ec6f52f4c44f31fb59e5b7c4c741a6"
+}

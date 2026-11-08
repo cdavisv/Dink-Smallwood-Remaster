@@ -1,0 +1,24 @@
+{
+  "state": {
+    "screen": 1,
+    "map": [
+      178.0,
+      120.0
+    ],
+    "world": [
+      -184355.16,
+      392370.98,
+      98.0
+    ],
+    "yaw": 180.0,
+    "pitch": -25.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "readbacks": {
+    "getall DinkInteriorCameraComponent bEnableWallCutaway": "[2026.11.08-19.58.26:348][958]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.bEnableWallCutaway = False\n",
+    "getall DinkInteriorCameraComponent FadingOccluderCount": "[2026.11.08-19.58.28:191][ 41]0) DinkInteriorCameraComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.InteriorCamera.FadingOccluderCount = 0\n",
+    "getall SpringArmComponent bDoCollisionTest": "[2026.11.08-19.58.29:770][112]0) SpringArmComponent /Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.CameraBoom.bDoCollisionTest = True\n"
+  },
+  "scope": "Exact previously fading north corner console fixture178,120,yaw180,pitch-25; default opaque policy. No pose changes."
+}

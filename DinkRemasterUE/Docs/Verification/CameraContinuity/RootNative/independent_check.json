@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "raw_native_states": {
+    "Success": 151
+  },
+  "before_after_frozen_inputs_identical": 8963,
+  "old_scoped_probe_save_slots": 20,
+  "old_save_roots": {
+    "Saved/NativeProps/CombinedFull/User": 10,
+    "Saved/BarrelReviewed/Full147/User": 10
+  },
+  "old_slots_current_hash_match": true,
+  "new_slots_isolated": 10,
+  "matched_source_files": 16,
+  "game_build_editor_modules_unchanged": 7,
+  "limits": "Oldsaveinventory is20earlier probe slots in isolated test UserDirs, not an exhaustive owner-saveinventory. All8963inputs were unchanged throughFull151; later standalone build onlyhas its own7editor-modulefreeze, not a claimallgameoutputfiles stayedunchanged."
+}

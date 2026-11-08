@@ -1,0 +1,331 @@
+{
+  "route": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/ContinuityIntegration/Render/exit-route.json",
+  "input": "normal held W keys, camera yaw only; no teleports",
+  "steps": [
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.0,
+          350.0
+        ],
+        "world": [
+          -183808.285,
+          393377.23,
+          98.0
+        ],
+        "yaw": 270.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.126,
+          360.041
+        ],
+        "world": [
+          -183807.736,
+          393421.161,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.126,
+          360.041
+        ],
+        "world": [
+          -183807.736,
+          393421.161,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.231,
+          368.474
+        ],
+        "world": [
+          -183807.275,
+          393458.055,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.231,
+          368.474
+        ],
+        "world": [
+          -183807.275,
+          393458.055,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.336,
+          376.907
+        ],
+        "world": [
+          -183806.813,
+          393494.949,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.336,
+          376.907
+        ],
+        "world": [
+          -183806.813,
+          393494.949,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.391,
+          381.295
+        ],
+        "world": [
+          -183806.573,
+          393514.143,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.391,
+          381.295
+        ],
+        "world": [
+          -183806.573,
+          393514.143,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.432,
+          384.556
+        ],
+        "world": [
+          -183806.395,
+          393528.411,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.432,
+          384.556
+        ],
+        "world": [
+          -183806.395,
+          393528.411,
+          98.0
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          390
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 439,
+        "map": [
+          345.0,
+          307.876
+        ],
+        "world": [
+          97729.179,
+          37512.838,
+          98.35
+        ],
+        "yaw": 89.284,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    }
+  ],
+  "result": "PASS"
+}

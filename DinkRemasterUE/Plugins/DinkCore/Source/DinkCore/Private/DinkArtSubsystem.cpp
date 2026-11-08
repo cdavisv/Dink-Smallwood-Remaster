@@ -1,5 +1,8 @@
 #include "DinkArtSubsystem.h"
 #include "DinkArtContextActor.h"
+#include "DinkEarlyPostureAnimInstance.h"
+#include "DinkPostureComponent.h"
+#include "Animation/AnimBlueprintGeneratedClass.h"
 #include "DinkScreenExposureComponent.h"
 #include "DinkCoreModule.h"
 #include "DinkOriginComponent.h"
@@ -360,6 +363,25 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
 	}
 	Component.SetSkeletalMesh(Mesh);
     ConfigurePlayerActions(Component);
+    FString PosturePath;
+    UClass* PostureClass=nullptr;
+    if ((*Row)->TryGetStringField(TEXT("posture_class"),PosturePath))
+    {
+        UClass* Candidate=LoadClass<UDinkEarlyPostureAnimInstance>(nullptr,*PosturePath);
+        const UAnimBlueprintGeneratedClass* Graph=Cast<UAnimBlueprintGeneratedClass>(Candidate);
+        if (Graph && Graph->GetTargetSkeleton()==Mesh->GetSkeleton()) PostureClass=Candidate;
+        else UE_LOG(LogDink,Warning,TEXT("Player posture class missing or incompatible: %s"),*PosturePath);
+    }
+    if (AActor* Owner=Component.GetOwner())
+    {
+        UDinkPostureComponent* Posture=Owner->FindComponentByClass<UDinkPostureComponent>();
+        if (!Posture && PostureClass)
+        {
+            Posture=NewObject<UDinkPostureComponent>(Owner,TEXT("PlayerPosture"));
+            Owner->AddInstanceComponent(Posture); Posture->RegisterComponent();
+        }
+        if (Posture) Posture->Configure(&Component,PostureClass);
+    }
 	UE_LOG(LogDink, Display, TEXT("DINK PLAYER ART OK: %s; existing locomotion and collision retained"), *Path);
 	return true;
 }
