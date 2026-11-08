@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gather everything the greybox importer needs from the data repo into ImportData/.
 
-    python3 Scripts/export_import_bundle.py [--data ../Dink-Smallwood-Remaster] [--out ImportData]
+    python3 Scripts/export_import_bundle.py [--data ..] [--out ImportData]
 
 The Unreal importer (DinkImport, Scripts/import_greybox.sh) reads ONLY this bundle, never the
 data repo. The bundle is deterministic (no timestamps): exporting twice from the same data gives
@@ -27,8 +27,6 @@ Outputs (ImportData/, git-ignored):
 Stdlib + numpy + Pillow (both on the dev machine).
 """
 from __future__ import annotations
-
-from remaster_paths import default_data_repo
 
 import argparse
 import csv
@@ -337,7 +335,7 @@ def git_head(repo: Path) -> str:
 def main(argv=None) -> int:
     here = Path(__file__).resolve().parent.parent
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--data", default=str(default_data_repo(here)), help="data repo root")
+    ap.add_argument("--data", default=str(here.parent), help="data repo root")
     ap.add_argument("--out", default=str(here / "ImportData"), help="bundle directory")
     args = ap.parse_args(argv)
 

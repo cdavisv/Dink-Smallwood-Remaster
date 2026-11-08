@@ -331,8 +331,10 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
 - Pipeline tools live under `tools/`. They read `bin/dink/` and must never
   modify `bin/` or `source/`. Generated output goes in each tool's `out/`
   directory, which is not tracked.
-- The Unreal project lives beside this repo at `../DinkRemasterUE` (its own
-  git repo, initialised 5 Nov 2026, first commit 7 Nov 2026). It has its own `AGENTS.md`.
+- The Unreal project lives IN this repo at `DinkRemasterUE/` (moved in from a
+  sibling checkout on 8 Nov 2026; a symlink at `~/Repos/Dink-Smallwood/DinkRemasterUE`
+  keeps the old path working). It has its own `AGENTS.md`; its binaries go
+  through Git LFS (`DinkRemasterUE/.gitattributes`).
 - Dev machine facts (5 Nov 2026): Arch-based Linux, Python 3.14 with numpy and
   Pillow, Blender 5.2 LTS, dotnet 10, cmake/clang, uv, node. No pytest
   (use stdlib `unittest`). git-lfs 3.8.1 is installed per-user through mise
@@ -459,7 +461,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   comment stripper runs before escapes (`\//` is still a comment); empty
   conditional branches and tag-only lines are rejected; `inklecate -p` is
   quadratic on long output, so run it in chunks of about 200 lines.
-- `../DinkRemasterUE` (scaffolded 5 Nov 2026): C++ project `DinkRemaster` with
+- `DinkRemasterUE` (scaffolded 5 Nov 2026): C++ project `DinkRemaster` with
   plugins `DinkCore` (facts, world-state overrides, origin IDs, stats and the
   original combat maths, inventory, save), `DinkParity` (31 automation tests,
   `Dink.Core.*`), and empty shells `DinkNarrative`, `DinkImport`,
@@ -474,7 +476,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   about 6,000 files into the engine tree; the build does not need it); the
   build tool caches under `Engine/Saved/UnrealBuildTool` and listens on port
   1345 while building.
-- Greybox import (stage 6, built 6 Nov 2026) lives in `../DinkRemasterUE`:
+- Greybox import (stage 6, built 6 Nov 2026) lives in `DinkRemasterUE`:
   `Scripts/export_import_bundle.py` gathers the `tools/*/out/` data into
   `ImportData/`, and `Scripts/import_greybox.sh --region stonebrook|all` runs
   the `DinkImportGreybox` commandlet headless (whole world in about 45 s;
@@ -499,7 +501,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   lists `never_set`: 16 screens (17 values) have vision-gated placements that no
   script sets, so the shipped game never draws them; SCR_001 is "Dink's house"
   with `vision_states` in `regions.csv`.
-- Dialogue runtime (built 6 Nov 2026) is `../DinkRemasterUE/Plugins/DinkNarrative`:
+- Dialogue runtime (built 6 Nov 2026) is `DinkRemasterUE/Plugins/DinkNarrative`:
   the compiled story (`tools/dinkink/out/json/dink.json`) runs on Inkpot's C++
   Ink runtime (`Plugins/Inkpot`, trimmed to the `InkPlusPlus` module, commit
   34a2e9e, MIT), one Ink flow per script instance, with `DinkCore`'s fact store
@@ -539,12 +541,12 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 127 automation tests (verified 7 Nov
-  2026: 126/127 in 380 s, the one failure a Codex creature-art test waiting on
-  un-imported pillbug art; the probe runs as six save-slot chapters, Ch1..Ch6,
-  deterministic across runs; PIE tests run on a fixed 60 Hz step).
+  rows, 111 implemented, 35 recorded. 133 automation tests (verified 7 Nov
+  2026 night: 133/133 in 463 s; the probe runs as nine save-slot chapters,
+  Ch1..Ch9, deterministic across runs and identical packaged; PIE tests run
+  on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
-  `../DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
+  `DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
   `stonebrook_probe_trace.txt`): a scripted play-through from a new game with
   real interactions plays Martridge's trial, pays the toll (`&story` 7),
   kills Jack with seven fireballs, picks up three magic potions (SCR_273,
@@ -571,12 +573,12 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   and voice. The workspace can run sound effects (`eleven_text_to_sound_v2`,
   0.5-30 s, loopable), music (`eleven_music_v2_5`, up to 600 s), speech
   (`eleven_v4`) and voice design. Every generated file must go in the asset
-  ledger (`../DinkRemasterUE/SourceAssets/asset_ledger.csv`) with tool, model
+  ledger (`DinkRemasterUE/SourceAssets/asset_ledger.csv`) with tool, model
   and licence; the ElevenLabs plan's licence for free redistribution is NOT
   yet confirmed by the owner.
 - Sound effects (generated 6 Nov 2026): the scripts load 48 distinct effects
   (`start.c`, slots 1-49; slot 25 repeats CAVEENT), not 58. Two candidates
-  (`a`, `b`) per effect are in `../DinkRemasterUE/SourceAssets/Audio/SFX/`:
+  (`a`, `b`) per effect are in `DinkRemasterUE/SourceAssets/Audio/SFX/`:
   `delivered/<slot>_<cue>_<a|b>.mp3` as returned (128 kbps) and engine-ready
   WAVs (44.1 kHz, 16-bit, mono; loops 23 and 34 stereo; peak -3 dBFS) rebuilt
   by `SourceAssets/Audio/tools/prepare_sfx.py`. ElevenLabs flow id
@@ -587,7 +589,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   (click, pop, intro, ocean1, high1, bird2, sword2_item) are not loaded by
   the scripts and were not regenerated.
 - Music drafts (generated 7 Nov 2026, owner approved the spend): 28 original
-  instrumental cues, one take each, in `../DinkRemasterUE/SourceAssets/Audio/Music/`
+  instrumental cues, one take each, in `DinkRemasterUE/SourceAssets/Audio/Music/`
   (`delivered/<nn>_<cue>.mp3` as returned, 48 kHz ~194 kbps; engine-ready
   stereo WAVs beside them; `README.md` there is the cue map: which `playmidi`
   names and `dink.dat` music values each cue replaces). ElevenLabs
@@ -610,6 +612,20 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   (dink.cpp keeps a kill timer per slot). Six chapters, hashes in the UE AGENTS.md.
   Chapter 6 later gained the Terris healer (s2-healp, 1 gold per missing life),
   so it is three steps.
+- Probe progress, later on 7 Nov 2026: a `DuelFight` tactic (reach-box dance
+  with healer trips) beat the other three goblins and Mog (`spawn` verified);
+  the Cast camp scene ran (scripted walk over SCR_489's edge, `fade_up`
+  verified). Engine fix: `sp_script` now runs the attached script's `main` on
+  the spot (`dink.cpp:8155-8175`; `no_running_main` mirrored for a screen's
+  first base-script run; test `Dink.Narrative.Director.SpScriptRunsMainAtOnce`),
+  which gives the knights their 40 hp; `SquadFight` beats them (their blows
+  hit each other), then the Mayor, the parade (`&story 10`), Pete's bomb, the
+  all-stat chests and the cracked rock. The probe now stops at route step 31,
+  the 27 ducks of Windemere: `external` and `spawn` have the same deferred
+  start as `sp_script` had (`dink.cpp:11326-11360`, `8181-8203`), so the last
+  `duckdie` is removed before `external("make","foodduck")` runs and
+  `spawn("s4-end")` never fires (UE AGENTS.md pitfall 56; next fix). Nine
+  chapters, hashes in the UE AGENTS.md, packaged md5s identical to PIE.
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.
@@ -626,7 +642,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   (`-DinkProbeHold` pauses the world until the probe starts). Details and
   pitfalls 47-52 in the UE AGENTS.md and `packaged_probe.md`. Only
   `L_Greybox_World` is cooked; Windows and Shipping were not attempted.
-- Voice lines (started 7 Nov 2026): `../DinkRemasterUE/SourceAssets/Audio/Voice/`
+- Voice lines (started 7 Nov 2026): `DinkRemasterUE/SourceAssets/Audio/Voice/`
   (README there). The 1997 lines, verbatim, tagged in the Ink data with speaker
   expressions (`spk:1` Dink, `current_sprite`, script sprite variables): 2,125
   unique lines, 68,486 characters, mapped to 29 voice archetypes
@@ -643,7 +659,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   Import into the game is the audio pipeline's job (Codex's
   `import_approved_audio.py`); nothing is wired to play them yet.
 - Probe route (written 7 Nov 2026, script-verified):
-  `../DinkRemasterUE/Plugins/DinkParity/Docs/probe_route.md`, 56 steps from
+  `DinkRemasterUE/Plugins/DinkParity/Docs/probe_route.md`, 56 steps from
   &story 7 to 16 with `file.c:line` for every fact (the &story setters:
   s1-brg2.c:47, s2-culg.c:79, s3-1st.c:93, s3-tc.c:285, s4-end.c:7,
   s5-end.c:36, king.c:134, king.c:189, s7-boss.c:304, king.c:102; spot-checked).
@@ -673,4 +689,4 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `freeze`/`unfreeze`; `sp_prop` is still a no-op and every switch false, so
   OD1 and OD2 stay open). Review-queue IDs were renumbered by that change, so
   the R-numbers in `verbatim_review.md` are the pre-fix ones (match by
-  script and line). `../DinkRemasterUE` has not been synced with the new story.
+  script and line). `DinkRemasterUE` has not been synced with the new story.

@@ -1,11 +1,10 @@
-> This Unreal project lives in `DinkRemasterUE/` inside `cdavisv/Dink-Smallwood-Remaster`. Run the commands below from this directory. Extraction tools, the original game and the design bible live in the parent directory. The older standalone/sibling checkout layout remains supported.
-
 # Dink Smallwood Remaster (Unreal Engine 5.8)
 
 A free fan remaster of Dink Smallwood (1997) as a third-person 3D game, built with Unreal
-Engine 5.8. The Unreal project lives inside the
-[Dink-Smallwood-Remaster repository](../), alongside the design documents, original game data
-and extraction pipeline. Read [the remaster plan](../doc/remaster/REMASTER_PLAN.md) first.
+Engine 5.8. This repository is the Unreal project. The design documents, the original game data
+and the extraction pipeline live in the companion data repository
+[Dink-Smallwood-Remaster](..) (a fork of the open-source Dink Smallwood HD
+engine). Read its `doc/remaster/REMASTER_PLAN.md` first.
 
 Status: pre-production. There is C++ gameplay core (quest facts, world state, origin IDs, the
 original combat maths, inventory and save) with automated tests, and a headless importer that
@@ -22,8 +21,6 @@ dies, and an optional, data-driven 3D layer telegraphs attacks and limits attack
 ## Build and test (Linux, headless)
 
 ```
-python3 Scripts/bootstrap_asset_pack.py  # download and verify art/audio before building
-python3 Scripts/verify_sources.py        # verify source syntax and every asset hash
 Scripts/build.sh    # compiles DinkRemasterEditor (Linux, Development), about 30 s from clean
 Scripts/test.sh     # runs the "Dink" automation tests with no display (see AGENTS.md for the count and time)
 python3 Scripts/sync_story.py   # copies the converted Ink story from the data repository (after it changes)
@@ -34,17 +31,9 @@ Both print one summary line and exit non-zero on failure. They expect the engine
 `~/UnrealEngine/UE_5.8.4` (override with `UE_ROOT`). See `AGENTS.md` for details, conventions and
 known Linux issues.
 
-
-Binary assets use a versioned [GitHub Release pack](https://github.com/cdavisv/Dink-Smallwood-Remaster/releases/tag/unreal-house-assets-20261108-v1),
-because this public fork cannot upload new LFS objects. [AssetPacks/house-v1.json](AssetPacks/house-v1.json) pins the archive and every file by SHA-256.
-The bootstrap verifies all bytes before installing, preserves modified local assets, and supports
-`--archive /path/to/unreal-house-assets-20261108-v1.tar.gz` for an offline copy.
-`verify_sources.py --metadata-only` checks the source and manifest without downloaded assets;
-it does not verify missing binary contents. The shared engine and generated/template content remain separate.
-
 ## Walk the greybox
 
-The extraction tools' outputs must be built in the parent repository (or in the older sibling data repository); see the parent `AGENTS.md`.
+The data repository must sit next to this one with its tools' outputs built (see its `AGENTS.md`).
 
 ```
 Scripts/build.sh
@@ -72,7 +61,8 @@ Console (`~`): `dink.Run <script> <procedure> [S001_P26|handle]` runs any conver
 reads or writes a quest fact by its original name (`dink.Fact story`, `dink.Fact gold 500`),
 `dink.Choose <n>`, `dink.Skip`, `dink.Story` (running scripts, texts, audio cues, errors),
 `dink.ScreenScripts 0|1` (run screen `main` procedures on entry, default 1), `dink.SmokeRun`
-(the whole-story smoke run, report in `Saved/Narrative/smoke_report.txt`). Approved music and sound cues play through the audio layer and are also logged (`LogDinkAudio`).
+(the whole-story smoke run, report in `Saved/Narrative/smoke_report.txt`). There is no audio:
+music and sound cues are logged (`LogDinkAudio`).
 
 Everything the importer writes lives in `Content/Dink/_Generated/` (git-ignored, regenerable, never
 edited by hand). `Saved/Import/coverage.csv` lists every original screen, placement and warp and
@@ -87,8 +77,8 @@ in front of Dink), **Q** (or Left Shift) casts the armed spell, **E** talks. Wal
 pig feed in Dink's house to pick it up; `dink.Inventory` lists items, `dink.Arm 2` arms slot 2 (or
 `dink.Arm item-pig`), `dink.ArmMagic 1` arms a spell (there is no inventory screen yet). Hit the
 furniture in the houses (`S002_P21`, `S003_P16`), the pillbugs south of the village (`dink.Goto 278`)
-or the AlkTree (`dink.Goto 474`). Dink’s fist action uses the authored animation with the original hit timing. Dying enemies
-and vanishing pickups still use provisional presentation. Fireballs are a placeholder cylinder (they stop at walls and
+or the AlkTree (`dink.Goto 474`). There is no animation: nothing shows the swing, and dying enemies
+and vanishing pickups simply disappear. Fireballs are a placeholder cylinder (they stop at walls and
 fly over water). `dink.Attack`, `dink.Magic` and `dink.Seed <n>` do the same from the console.
 
 Enemies and townsfolk move by the 1997 engine's rules ("Classic", in the original screen's pixels):
@@ -140,5 +130,3 @@ plan. Check it before distributing anything.
 
 
 The 7 Nov2026 verified build passes103/103 automation tests, with one unrelated engine HTTP connectivity warning. Rendered keyboard checks pass all12 interaction cases and the exit/yard/return route; actual approved music and swing effects were captured from the game mixer. The stable report is `Saved/Automation/final_all_verified/index.html`; screenshots/audio/launch receipts are in `Saved/Playtest/evidence`. This validates the current starting-area pass, not a finished world or complete Terris playthrough.
-
-Fireplace source import supports `DINK_FIREPLACE_MODE=check` and `publish`. If an unpublished import was interrupted, restore its approved source bytes and use `DINK_FIREPLACE_MODE=resume Scripts/import_fireplace_refinement.sh`; this backs up and rebuilds only its six unique candidate packages. Resume refuses a published runtime refinement. Source bytes must match the ledger before import, check, render configuration or publication.

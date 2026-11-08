@@ -6,8 +6,26 @@ the code on the morning of 7 Nov 2026; it was then carried out, and it now says 
 the packaged run is kept identical to the editor's.
 
 **Result.** `Scripts/package.sh` cooks and packages the `DinkRemaster` game target (Linux, Development) and
-`Scripts/run_packaged_tests.sh` runs the six probe chapters in the packaged game, one process per chapter, headless. Each chapter's
-event trace is byte-identical to the editor's PIE trace (md5, first 10 digits; the probe prints it and writes `*_trace.txt`):
+`Scripts/run_packaged_tests.sh` runs the probe chapters in the packaged game, one process per chapter, headless. Each chapter's
+event trace is byte-identical to the editor's PIE trace (md5, first 10 digits; the probe prints it and writes `*_trace.txt`).
+
+**Update, 7 Nov 2026 night (after the `sp_script` parity fix, AGENTS.md pitfall 53): nine chapters, all `PARITY OK`.** `Scripts/package.sh` (28 s, incremental cook) then
+`Scripts/run_packaged_tests.sh`; the chapters 7-9 were packaged for the first time (the script's default chapter list now ends with `Ch9Windemere`). Every hash moved with the fix (the
+mains of the scripts `sp_script` attaches now run in the caller's turn) and PIE and packaged moved together:
+
+| Chapter | PIE trace md5 | Packaged trace md5 | Events |
+|---|---|---|---|
+| 1 `Ch1Stonebrook` (47 steps) | b3760d52d7 | b3760d52d7 | 4338 |
+| 2 `Ch2Terris` | a5cfdf70bc | a5cfdf70bc | 3092 |
+| 3 `Ch3Roads` | e9fce770bc | e9fce770bc | 430 |
+| 4 `Ch4Gold` | cd1b3bf820 | cd1b3bf820 | 2121 |
+| 5 `Ch5Bow` | 6c709d1069 | 6c709d1069 | 120 |
+| 6 `Ch6Goblins` | 9e87080221 | 9e87080221 | 462 |
+| 7 `Ch7Sanctuary` | 7cc6e2fe93 | 7cc6e2fe93 | 2589 |
+| 8 `Ch8Knights` | 6697a02e52 | 6697a02e52 | 1443 |
+| 9 `Ch9Windemere` | 0ea9677ee2 | 0ea9677ee2 | 344 |
+
+The earlier table (before the fix, kept for history; chapter 7 was not packaged then):
 
 | Chapter | PIE trace md5 | Packaged trace md5 |
 |---|---|---|
@@ -18,7 +36,7 @@ event trace is byte-identical to the editor's PIE trace (md5, first 10 digits; t
 | 5 `Ch5Bow` | 6c709d1069 | 6c709d1069 |
 | 6 `Ch6Goblins` | 6d33d4a177 (7471375e32 after a healer step another agent added to chapter 6 at 13:05; PIE and packaged agree on that too) | 6d33d4a177 (7471375e32, same source) |
 
-(The gate itself, `&story 16`, still needs the remaining chapters authored: `probe_route.md`. This was the prerequisite.)
+(The gate itself, `&story 16`, still needs the remaining chapters authored: `probe_route.md`; the probe now stops at the ducks of Windemere, route step 31, AGENTS.md pitfall 56. This was the prerequisite.)
 
 ## 1. What was changed
 

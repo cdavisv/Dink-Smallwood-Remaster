@@ -10,12 +10,12 @@ Rebuild from the Unreal project directory:
 
 ```bash
 blender -b --factory-startup -P SourceAssets/Art/tools/build_stonebrook.py
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py validate --blend SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend --report SourceAssets/Art/Stonebrook/validation.json
-python3 ../Dink-Smallwood-Remaster/tools/blender/dink.py export_ue --blend SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend --out SourceAssets/Art/Stonebrook/Export --formats fbx,gltf --source-root SourceAssets/Art
+python3 ../tools/blender/dink.py validate --blend SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend --report SourceAssets/Art/Stonebrook/validation.json
+python3 ../tools/blender/dink.py export_ue --blend SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend --out SourceAssets/Art/Stonebrook/Export --formats fbx,gltf --source-root SourceAssets/Art
 python3 SourceAssets/Art/tools/record_stonebrook.py
 ```
 
-The companion project's [asset conventions](../../../Dink-Smallwood-Remaster/tools/blender/CONVENTIONS.md) and [Blender workflow](../../../Dink-Smallwood-Remaster/tools/blender/README.md) define the validation gate. The export uses the documented [Epic FBX pipeline](https://dev.epicgames.com/documentation/en-us/unreal-engine/fbx-static-mesh-pipeline-in-unreal-engine): separate convex collision pieces preserve doorway openings. `validation.json` and `Export/manifest.json` record the actual results; export rejects assets with errors. Warnings are retained for art review: joined furniture can need more texel density than one shared 1024 px set, and the bed, basket and barrel exceed their preferred triangle target while remaining below the hard budget. This is a local art candidate, with ledger status `candidate`; animated fire, ruin variants and wider-world art remain pending.
+The companion project's [asset conventions](../../../tools/blender/CONVENTIONS.md) and [Blender workflow](../../../tools/blender/README.md) define the validation gate. The export uses the documented [Epic FBX pipeline](https://dev.epicgames.com/documentation/en-us/unreal-engine/fbx-static-mesh-pipeline-in-unreal-engine): separate convex collision pieces preserve doorway openings. `validation.json` and `Export/manifest.json` record the actual results; export rejects assets with errors. Warnings are retained for art review: joined furniture can need more texel density than one shared 1024 px set, and the bed, basket and barrel exceed their preferred triangle target while remaining below the hard budget. This is a local art candidate, with ledger status `candidate`; animated fire, ruin variants and wider-world art remain pending.
 
 ## Cottage yard
 

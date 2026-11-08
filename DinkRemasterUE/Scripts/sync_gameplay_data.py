@@ -36,8 +36,6 @@ Deterministic: same input, byte-identical output; unchanged files are not rewrit
 """
 from __future__ import annotations
 
-from remaster_paths import default_data_repo
-
 import argparse
 import csv
 import hashlib
@@ -140,7 +138,7 @@ def placements(dinkex: pathlib.Path):
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--data", type=pathlib.Path, default=default_data_repo(HERE))
+    ap.add_argument("--data", type=pathlib.Path, default=HERE.parent)
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
     dinkex = args.data / "tools" / "dinkex" / "out"

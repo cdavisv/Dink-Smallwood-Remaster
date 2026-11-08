@@ -26,8 +26,6 @@ Reads the data repo only. The game never reads the data repo at run time.
 """
 from __future__ import annotations
 
-from remaster_paths import default_data_repo
-
 import argparse
 import csv
 import hashlib
@@ -82,7 +80,7 @@ def compile_story(ink_dir: pathlib.Path) -> bytes:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--data", type=pathlib.Path, default=default_data_repo(HERE))
+    ap.add_argument("--data", type=pathlib.Path, default=HERE.parent)
     ap.add_argument("--rebuild", action="store_true", help="run the dinkink converter first")
     ap.add_argument("--check", action="store_true", help="report only; exit 1 if out of date")
     args = ap.parse_args()
