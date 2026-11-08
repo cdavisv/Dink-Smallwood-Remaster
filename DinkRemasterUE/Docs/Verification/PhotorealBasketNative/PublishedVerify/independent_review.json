@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "returncode": 0,
+  "seconds": 39.14587473869324,
+  "absent_author_receipt_reported": true,
+  "verification_basis": "published_entry_state",
+  "writer_scope": "none",
+  "native_reports_equal_completed_unpublished_saved_verification": true,
+  "both_publisher_checks_already_published_and_no_writes": true,
+  "publisher_scope_pins": 8887,
+  "publisher_scope_excludes": [
+    "Saved",
+    "Docs",
+    "pycache"
+  ],
+  "publisher_scope_qualification": "Zero changes in declared8887-file scope; no whole-Saved inventory claim",
+  "native_verify_sha256": "2f93093c891250982c420650832d6231b64dcad9a4ad2e22e34c900a633e871f"
+}

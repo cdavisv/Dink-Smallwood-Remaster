@@ -1,0 +1,93 @@
+{
+  "blend": "/home/davisc/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Source.blend",
+  "sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+  "blender": "5.2.2 LTS",
+  "objects": [
+    {
+      "object": "SM_Basket_Wicker_01",
+      "materials": [
+        {
+          "material": "MI_Basket_Willow_PhotoSource",
+          "principled": [
+            {
+              "node": "Dry split willow",
+              "values": {
+                "IOR": {
+                  "default": 1.4600000381469727,
+                  "linked": false,
+                  "links": []
+                },
+                "Specular IOR Level": {
+                  "default": 0.25,
+                  "linked": false,
+                  "links": []
+                },
+                "Specular Tint": {
+                  "default": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "linked": false,
+                  "links": []
+                },
+                "Metallic": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Coat Weight": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Coat Tint": {
+                  "default": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "linked": false,
+                  "links": []
+                },
+                "Transmission Weight": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Subsurface Weight": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Sheen Weight": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Emission Strength": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Thin Film Thickness": {
+                  "default": 0.0,
+                  "linked": false,
+                  "links": []
+                },
+                "Alpha": {
+                  "default": 1.0,
+                  "linked": false,
+                  "links": []
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "no_blend_save_performed": true
+}
