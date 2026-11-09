@@ -686,14 +686,14 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   Generated with `eleven_v4` at 1 credit per character, one take per line, one
   flow per voice, files named `<voice>/<line id>.mp3`, every line ledgered
   `candidate` with generation id, flow, credits, sha256 and duration
-  (manifests `pilot_dink`, `dink_batch_01..03`, `cast_batch_01..06`). 8 Nov 2026
-  night: 1,473 voice lines, 47,284 credits (56 of them copies of an identical
-  text already generated for the same voice). Still to generate: 619 lines,
-  18,844 characters (Dink's 555 lines outside Stonebrook, 51 girl lines,
-  10 Martridge letter lines and three odd ones); the account's DAILY generation
-  limit (HTTP 429) stopped the batches on 8 Nov after about 36,000 credits, so
-  the rest waits for the reset. Lines that are only a stage direction
-  (`[groans]`, `[sniffs]`, `[sobs]`) cannot be generated and stay unvoiced.
+  (manifests `pilot_dink`, `dink_batch_01..04`, `cast_batch_01..07`). Complete on
+  9 Nov 2026: 2,088 voice lines, 65,562 credits (82 of them copies of an identical
+  text already generated for the same voice), all `candidate`; every speaking
+  part has a voice. The only unvoiced lines are the four that are nothing but a
+  stage direction (`[chortles]`, `[sniffs]`, `[sobs]`, `[groans]`: the service
+  needs words) and the 33 system lines. The account's DAILY generation limit
+  (HTTP 429) stopped the batches twice on 8 Nov after about 36,000 credits a day.
+  Audio quality has not been listened through; the takes are review candidates.
   `SourceAssets/Audio/REDISTRIBUTION.md` (7 Nov 2026) records the owner's
   confirmation of redistribution rights for the generated audio. Import into
   the game is the audio pipeline's job (Codex's `import_approved_audio.py`);
