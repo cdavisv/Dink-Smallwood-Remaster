@@ -1,0 +1,1315 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/SharedGroundDelivery/ExportV2",
+  "manifest": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/SharedGroundDelivery/ExportV2/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 40
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 40
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 40
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YP0_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP0_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YP0_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP0_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 76
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YP0_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP0_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YP0_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP0_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YP1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 40
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 72
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM5_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 208
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 200
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 320
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 360
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 360
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 276
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 52
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM5_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 92
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 92
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 140
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 124
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 72
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM2_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 56
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 92
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM5_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 212
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 300
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 296
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 288
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 304
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 184
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 88
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP1_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 120
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 240
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP2_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 200
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 324
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 108
+      }
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 152
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 56
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP1_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 24
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 124
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP2_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 104
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 92
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 24
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 112
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP1_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 140
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 292
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP2_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 288
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 268
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 16
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 92
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 100
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 136
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 104
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 40
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 20
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 112
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 136
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 52
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 104
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 36
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 28
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 48
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 20
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 88
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 136
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 52
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 68
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 116
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 44
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM4_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM4_01.fbx"
+      },
+      "tris": {
+        "LOD0": 60
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 104
+      }
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 36
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM6_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM6_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 63,
+        "LOD1": 42,
+        "LOD2": 21
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 63,
+        "LOD1": 42,
+        "LOD2": 21
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM2_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XM2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 42,
+        "LOD1": 28,
+        "LOD2": 14
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP1_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP1_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP2_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP2_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 42,
+        "LOD1": 28,
+        "LOD2": 14
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP3_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP3_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM3_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM3_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM1_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM1_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    },
+    {
+      "name": "SM_Vista_Reeds_XP5_YM2_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP5_YM2_01.fbx"
+      },
+      "tris": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      }
+    }
+  ],
+  "rejected": []
+}

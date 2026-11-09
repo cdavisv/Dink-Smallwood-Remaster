@@ -1,0 +1,20 @@
+{
+  "status": "Publication-only audit wrapper correction; sourcepayload unchanged",
+  "changes": [
+    {
+      "file": "Tools/run_guide.py",
+      "before": "ec38e1f5a7a3fe64210fd3929ff110491a0ef20597a8ba5584ad7b504bb2b879",
+      "after": "06f75a80fa2532cbca5a6ff6ba98dbb671b2f2c16f6d90e32ddf4fc08939f829",
+      "reason": "Entire argument/manifest/import/load/runpy path is inside controlled BaseException catch. Every unexpected setup failure returns nonzero; expectedSystemExit codes retained.",
+      "intermediate_runpy_only_catch_sha256": "3b8b70f2993bc0378e31f48e265b57564ce0b9d11febd60088aaf7b2c1be20b5"
+    },
+    {
+      "file": "Tools/export_candidate.py",
+      "before": "60e46c703277eb720d6d8773e97e046c26368aff3c1b9ad87cbd8952061a2788",
+      "after": "c897b334f07a058c91ec140f125c689dacd4f4f6ce5e3b07b96be1585521d0a7",
+      "reason": "Entire argument/manifest/import/load/runpy path is inside controlled BaseException catch. Every unexpected setup failure returns nonzero; expectedSystemExit codes retained.",
+      "intermediate_runpy_only_catch_sha256": "ceaf3fb1dd301fafeacb23097c5b3d039c50714fb6262461915534ec64e93cdc"
+    }
+  ],
+  "old_handoff_sha256": "ac01411415e7d0d9a3a0dd560d022f81d2754f8669a405b5c5476878c590518e"
+}

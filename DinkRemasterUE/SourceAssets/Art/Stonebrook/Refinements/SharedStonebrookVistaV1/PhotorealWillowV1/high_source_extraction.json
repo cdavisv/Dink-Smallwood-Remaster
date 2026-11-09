@@ -1,0 +1,12 @@
+{
+  "source": "ImmutableV11willow object retained in actual game candidate source",
+  "original_shared_donor_sha256": "fd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1",
+  "game_source_sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+  "extracted_file": "WillowHighV11_Extract.blend",
+  "extracted_sha256": "fb3ecaf82cc9344615ddb9690356c933eb9eb21a93afd18094d7529d5fd6ad18",
+  "extracted_object": "SM_Shared_Willow_SourceHigh_01",
+  "source_triangles": 128796,
+  "geometry_sha256": "951990aca2170ea85a2e401fc9c18ba886cc144e665daa60b7aa7aeca62ce281",
+  "game_source_unchanged": true,
+  "note": "Portable authored high source only, no shared560scene references or native content"
+}

@@ -1,0 +1,95 @@
+{
+  "status": "Actual independent-folder packed reopen + component/UV topology proofs pass",
+  "source_sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+  "probe_has_no_external_texture_directory": true,
+  "images": [
+    {
+      "image": "T_Shared_Willow_Bark_BC",
+      "packed": true,
+      "pixels_read": 16777216,
+      "missing_external_path": true
+    },
+    {
+      "image": "T_Shared_Willow_Bark_N",
+      "packed": true,
+      "pixels_read": 16777216,
+      "missing_external_path": true
+    },
+    {
+      "image": "T_Shared_Willow_Bark_ORM",
+      "packed": true,
+      "pixels_read": 16777216,
+      "missing_external_path": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_BC",
+      "packed": true,
+      "pixels_read": 4194304,
+      "missing_external_path": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_N",
+      "packed": true,
+      "pixels_read": 4194304,
+      "missing_external_path": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_ORM",
+      "packed": true,
+      "pixels_read": 4194304,
+      "missing_external_path": true
+    }
+  ],
+  "LODs": [
+    {
+      "object": "SM_Shared_Willow_01_LOD0",
+      "triangles": 24846,
+      "closed_bark_components": 379,
+      "bark_nonmanifold_edges": 0,
+      "nonpositive_bark_volume_components": 0,
+      "individual_open_leaf_diamonds": 8505,
+      "zero_UVarea_triangles": 0,
+      "UV_note": "Shared foliage trim overlaps intentionally; no unique atlas/no-overlap claim",
+      "finite_vertices_UVs": true,
+      "UV_layers": 1,
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    },
+    {
+      "object": "SM_Shared_Willow_01_LOD1",
+      "triangles": 14072,
+      "closed_bark_components": 379,
+      "bark_nonmanifold_edges": 0,
+      "nonpositive_bark_volume_components": 0,
+      "individual_open_leaf_diamonds": 4320,
+      "zero_UVarea_triangles": 0,
+      "UV_note": "Shared foliage trim overlaps intentionally; no unique atlas/no-overlap claim",
+      "finite_vertices_UVs": true,
+      "UV_layers": 1,
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    },
+    {
+      "object": "SM_Shared_Willow_01_LOD2",
+      "triangles": 7472,
+      "closed_bark_components": 379,
+      "bark_nonmanifold_edges": 0,
+      "nonpositive_bark_volume_components": 0,
+      "individual_open_leaf_diamonds": 2160,
+      "zero_UVarea_triangles": 0,
+      "UV_note": "Shared foliage trim overlaps intentionally; no unique atlas/no-overlap claim",
+      "finite_vertices_UVs": true,
+      "UV_layers": 1,
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    }
+  ],
+  "source_unchanged": true,
+  "native_approval": false
+}

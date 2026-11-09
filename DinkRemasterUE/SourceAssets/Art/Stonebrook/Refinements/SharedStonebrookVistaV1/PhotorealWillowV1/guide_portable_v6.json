@@ -1,0 +1,113 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/WillowGameV6.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 4
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Shared_Willow_01",
+      "class": "foliage",
+      "collection": "SM_Shared_Willow_01",
+      "tris_per_lod": {
+        "LOD0": 24846,
+        "LOD1": 14072,
+        "LOD2": 7472
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -488.882,
+          -537.366,
+          0.0
+        ],
+        "blender_max_cm": [
+          491.251,
+          493.738,
+          750.809
+        ],
+        "size_cm": [
+          980.133,
+          1031.104,
+          750.809
+        ],
+        "unreal_min_cm": [
+          -488.882,
+          -493.738,
+          0.0
+        ],
+        "unreal_max_cm": [
+          491.251,
+          537.366,
+          750.809
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Shared_Willow_01",
+          "message": "LOD0 has 24846 triangles, target for foliage is 8000 (hard max 25000)",
+          "object": "SM_Shared_Willow_01_LOD0",
+          "data": {
+            "tris": 24846,
+            "target": 8000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Shared_Willow_01",
+          "message": "34020 non-manifold edges (34020 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Shared_Willow_01_LOD0",
+          "data": {
+            "boundary": 34020,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Shared_Willow_01",
+          "message": "17280 non-manifold edges (17280 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Shared_Willow_01_LOD1",
+          "data": {
+            "boundary": 17280,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Shared_Willow_01",
+          "message": "8640 non-manifold edges (8640 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Shared_Willow_01_LOD2",
+          "data": {
+            "boundary": 8640,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Shared_Willow_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Shared_Willow_01_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Blender 5.2.2, Commit date: 2026-09-14 15:14, Hash d13f752e3b9c
+
+# backtrace
+blender(+0x281b17d) [0x56173237917d]
+blender(+0x1a5ef87) [0x5617315bcf87]
+/usr/lib/libc.so.6(+0x9d79c) [0x7ff76da9d79c]
+/usr/lib/libc.so.6(pthread_once+0x19) [0x7ff76da9d819]
+blender(+0x1a5ee2b) [0x5617315bce2b]
+/usr/lib/libc.so.6(+0x3e6f0) [0x7ff76da3e6f0]
+blender(+0x3fede7e) [0x561733b4be7e]
+blender(+0x3fef389) [0x561733b4d389]
+/usr/lib/libpython3.14.so.1.0(+0x5f4de) [0x7ff76f45f4de]
+/usr/lib/libpython3.14.so.1.0(+0x1b7872) [0x7ff76f5b7872]
+/usr/lib/libpython3.14.so.1.0(PyEval_EvalCode+0xb4) [0x7ff76f6b5294]
+/usr/lib/libpython3.14.so.1.0(+0x2fecbf) [0x7ff76f6fecbf]
+/usr/lib/libpython3.14.so.1.0(+0x2fe3fe) [0x7ff76f6fe3fe]
+/usr/lib/libpython3.14.so.1.0(PyRun_FileExFlags+0x71) [0x7ff76f56518e]
+blender(+0x3fd2f32) [0x561733b30f32]
+blender(+0x1a5b0cc) [0x5617315b90cc]
+blender(+0x282e85e) [0x56173238c85e]
+blender(+0x1a58f55) [0x5617315b6f55]
+/usr/lib/libc.so.6(+0x27781) [0x7ff76da27781]
+/usr/lib/libc.so.6(__libc_start_main+0x89) [0x7ff76da278b9]
+blender(+0x1a589e5) [0x5617315b69e5]
+
+# Python backtrace
+  File "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/SharedGroundDelivery/preview_context_v2.py", line 5 in <module>

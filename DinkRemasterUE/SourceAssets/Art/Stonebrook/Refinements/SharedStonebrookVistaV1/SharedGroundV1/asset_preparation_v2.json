@@ -1,0 +1,4756 @@
+{
+  "status": "Preparedactual rebasedgeometry/PBRcandidate; rawguide/export/independentaudit/visualreviewpending",
+  "input_clipped_table_sha256": "56b472a1eb6eaa4fa89137e28d62e3adfa50663b3416d75842b9f7b30ff7a12a",
+  "canonical_contract_sha256": "1c25ca997ed175a38dd3269ddccad9182c151b4ca67506e55cfb6fc54bc4ca2d",
+  "terrain_assets": [
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 12,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -86.5398383153742,
+        34.715066405036865,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89007.62709815006,
+        33898.81755762132,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.9497980474625365e-07,
+      "top_original_hash": "774c72d93c820e409c019b0b1d81658637909eb9764db651b85a9e346c174fd6",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -86.57458704653823,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89004.15222503366,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0316855398050393e-07,
+      "top_original_hash": "1b5c6935161ca8966025ea92bed4ac0a5df301bea119a0d5e70298db5e06681f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -86.59005464843739,
+        64.45189384390585,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89002.60546484374,
+        30925.134813734418,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2009074029938347e-07,
+      "top_original_hash": "4a8fbdf2e0a9eb3e39b13c5f733f48539e644820dbad7c45a7272a29f4095790",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        34.679408365134236,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        33902.38336161158,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.728269237195491e-07,
+      "top_original_hash": "212d0851ae3df8ad6171cb95ed0c2391d65f447210096c9cae607c0a649a9060",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.814206479546556e-07,
+      "top_original_hash": "c5ab758dfa24e8442da445c0faae4fbd07496631ccea5a46b0bd367294e30fd0",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        64.45283898520448,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        30925.040299604556,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.814206479546556e-07,
+      "top_original_hash": "0cdd2884c80f51e30046fa809d1c35cad6ff7ab06dccf20eeb33cb58eb21c74e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        34.64375032523158,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        33905.94916560184,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.814206479546556e-07,
+      "top_original_hash": "46030e20634062f59df99a2849ba71e0523c5b873bdbff6ba641144ee806d4f4",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 28,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 28,
+      "side_triangles": 44,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.814206479546556e-07,
+      "top_original_hash": "010995bd6f7e5252d7c0a0cad55a471cdb6d020527c20cbf7ef96d609cb03345",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        64.45378412650311,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        30924.945785474694,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.210479976838542e-07,
+      "top_original_hash": "ee8e765338f1e012650b27d89673ab0aa6ad064da0a24b81fffd5bd91a4a3703",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -36.83680464843741,
+        34.632470990624995,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        93977.93046484374,
+        33907.0770990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.262402745145664e-07,
+      "top_original_hash": "cb2f47eb9a7b9aaa1acb6dfa2d001273eb7d36659157a2a2027d44003e1f3d92",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -36.87147955306922,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        93974.46297438056,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.1378853770338537e-07,
+      "top_original_hash": "8deb8e327035d2ae02bf775560d70dd17e3025f19149a47c33fa9d9b8b4c1c5a",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 406,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 40,
+      "bottom_triangles": 10,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -36.93608079615758,
+        64.45407099062501,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        93968.00285007172,
+        30924.917099062503,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.79894669827263e-07,
+      "top_original_hash": "1b700b3034ebb2765f0f953c62960d508a63d16e5daeba53615983f5b7e4678c",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 12,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -26.871479553069225,
+        34.60209979051336,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94974.46297438056,
+        33910.114219073665,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.3400472909097516e-07,
+      "top_original_hash": "cd579cab5c2f9cee0e65889294047439d45ecfac182469a24355688ec37a1cc2",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -26.936080796157587,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94968.00285007172,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2007608180274474e-07,
+      "top_original_hash": "09722935c752c872e455a6a708af51f00bcec2ca9ba08c168ece169a76585681",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -26.96485464843738,
+        64.45407099062501,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94965.12546484375,
+        30924.917099062503,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2087036199991417e-07,
+      "top_original_hash": "26a73deb8b256af5ee2fe8723eca5b4abd5f758eec4493b194fa8c9b72bd915f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        34.55767669862557,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        33914.556528262445,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.295523557904744e-07,
+      "top_original_hash": "d8bcbde3a3426442badded574c89cd5294f46f294d532ed7455c4759ceaa5bb5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.3763451534032356e-07,
+      "top_original_hash": "537343b717cd382c0ad0144a6e4df1280fe00a568eae541c3ac2e67d1022a9bf",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        64.43261752675355,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        30927.06244544965,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.3763451534032356e-07,
+      "top_original_hash": "4ff1ffbc5f36beadcc1c42ce8501ff9b52a1e4d07ffcf966f86761396b70bdc7",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        34.51325360673777,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        33918.998837451225,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.3763451534032356e-07,
+      "top_original_hash": "fad86a91b028c3afab3a05782d17f0166aab567ec17655d633e43842222eb3f8",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 28,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 28,
+      "side_triangles": 44,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.3763451534032356e-07,
+      "top_original_hash": "27938e0f5ed8ef2abc61078769c26bfadcad0b7a71ff40c47b690bd7a592e735",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        64.4018150693379,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        30930.142691191213,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.9356910740953026e-07,
+      "top_original_hash": "005d1b41011f8316ddf3f38569e85139976c2939647601d8c35ec53e2274927e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        22.71989535156257,
+        34.50117099062501,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        99933.60046484374,
+        33920.2070990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.5585712276333652e-07,
+      "top_original_hash": "d9ce91371ceaf3323fb1ed686e0ba5d1a3fec9e6ad2cb94837488f6c33dd00f7",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        22.66719675791618,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        99928.3306054791,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.0859372423510649e-07,
+      "top_original_hash": "769d9919ff072a3827b3c49f659487be35d0d762a2f089cbdb329a5e27ac7bdb",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 407,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 40,
+      "bottom_triangles": 10,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        22.571360728906093,
+        64.37101261192225,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        99918.7470025781,
+        30933.222936932776,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.968118681361375e-07,
+      "top_original_hash": "98fa4d41faac66e0e304dca58478b94d3dce05aff4a96040d5d7e9000ac464e4",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 12,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.66719675791616,
+        34.4707620308818,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100928.33060547909,
+        33923.24799503682,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2192581639046693e-07,
+      "top_original_hash": "c89c9fd4bb2e7d80c9cddcb12e3a1a4ebb99ce71a8c4dfdf9660e78ac2030bff",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.57136072890608,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100918.7470025781,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0985737592127407e-07,
+      "top_original_hash": "7b204ff0001e1a59e88d7e4c9f905652090674c33aee63d6f0ae78b04e6de5c0",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.529545351562604,
+        64.363220990625,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100914.56546484373,
+        30934.002099062505,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3726151709979604e-07,
+      "top_original_hash": "5ddebfa25da926f36d1ae98e27005218f229c570e2948ca22a9928dc66d0d7ec",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        34.42899208221803,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        33927.4249899032,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2219083817276442e-07,
+      "top_original_hash": "f53ddedf2814dda977a5c03648e9ddaeb8b91dcc79bde33be09fcf7794a75a73",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.6697977517642357e-07,
+      "top_original_hash": "fcedbb491fefa61295a6c77b580b9d04dd427be3f2d98a38eb7d674756f0a540",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        64.32391875603061,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        30937.93232252194,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.6697977517642357e-07,
+      "top_original_hash": "745decb8e089d2b3b14152a1cb84d55676650856e8f0a53839ca4d7c4f03f0ca",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        34.38722213355426,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        33931.60198476958,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.669796685950132e-07,
+      "top_original_hash": "5406d67d8402394a9348dfffc1ada42cdcc93e58672f087416cef603c4f1d2ce",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 28,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 28,
+      "side_triangles": 44,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.669796685950132e-07,
+      "top_original_hash": "b0623c72c0af2263b680e7fcc7f29a4c92067bdbaed304fcd577affa7315af8d",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        64.27130852486805,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        30943.1933456382,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.098574896081118e-07,
+      "top_original_hash": "4c115bf16fc41dee470fb061c7c6a37206ef3ced71ab912bbb5ac7e3a5f9005b",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.25069535156263,
+        34.377820990625,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105886.68046484374,
+        33932.542099062506,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.4187049046654465e-07,
+      "top_original_hash": "74596b2a395f16b7feb3e829e2d9e2972cb7f46ea70c16fe8b44dfe18a038b3f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.17720874517896,
+        50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105879.33180420537,
+        32370.324198125003,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.098574896081118e-07,
+      "top_original_hash": "a7cb82f109394bd43a81442357453f77734cf81bb1fa86e75bae09ca038c7ba5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 408,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 40,
+      "bottom_triangles": 10,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.04650033788509,
+        64.21869829370549,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105866.26096347599,
+        30948.454368754454,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1047797815754166e-07,
+      "top_original_hash": "443aef3fc5f5c5f3a0aff8c3c6c7509119ec50223d46efd283b4fc0d134a4997",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 12,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.87778846874819,
+        -5.395433513523931,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100949.3897765623,
+        37909.86754947739,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.9516749816261836e-07,
+      "top_original_hash": "006f2a21a0a74771cdf70e4658ecc0bffbd19e93730b3c632ab8d2a30dc2b5ac",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YP0_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.76890545696402,
+        10.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100938.50147538388,
+        36370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3396609094561427e-07,
+      "top_original_hash": "950ec00723be1906563e9a9017d00956720b7313d7c9bfb1fc7f7d1e7bdbbb52",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.71989535156257,
+        24.501170990625013,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100933.60046484374,
+        34920.2070990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.908431670472055e-07,
+      "top_original_hash": "affce34f2c44f552b052f7e4ec0361937eb8edfcaf253afcca98b5ad08923871",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -5.433167700900914,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        37913.64096821509,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3351681033290106e-07,
+      "top_original_hash": "7064f675b78bf61c12ded64f97ef09c30bec89545d244b2dc1c7f688d8247c80",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YP0_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        10.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        36370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.65454048076208e-07,
+      "top_original_hash": "21076350fda0cfbd23cfd57f73544d54bf524a3a08cc478b8bc5f5999051f53c",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 76,
+      "bottom_triangles": 21,
+      "side_triangles": 34,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        24.4707620308818,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        34923.24799503682,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.65454048076208e-07,
+      "top_original_hash": "7281d54ae6303048d3572d3768279e04bbf52da5214ff3bacc07d954d64c835d",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -5.470901888277903,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        37917.41438695279,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.65454048076208e-07,
+      "top_original_hash": "4980256db66035ada847abb84a9d9e627dffe0fb9884d85ceeef9c2064f6c976",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YP0_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 28,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 28,
+      "side_triangles": 44,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        10.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        36370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.65454048076208e-07,
+      "top_original_hash": "7d802dfaa7235ae90563548f101a2ed62a576ab6b16abddb0e7b7020d1167212",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        24.42899208221803,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        34927.4249899032,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1138311012691702e-07,
+      "top_original_hash": "d234b0efb6d9b9e4399774ac7abb50cbd4184c24f21ceb2e317649e00c4995ec",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.45854535156263,
+        -5.480179009374979,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105907.46546484374,
+        37918.3420990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.7636716620472725e-07,
+      "top_original_hash": "147d0135c974bfb5c610bed8ef28ea21f3956018b308e742ada06dfd84df30d7",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YP0_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.40118533509082,
+        10.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105901.72946319656,
+        36370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3396609094561427e-07,
+      "top_original_hash": "b9e9beb2d3e073d857699af4f6fdfdf336d8a8f766ae10065dca375e28fd85a5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YP1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 440,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 40,
+      "bottom_triangles": 10,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        82.29651719126957,
+        24.38722213355426,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        105891.26264881443,
+        34931.60198476958,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0047893656283122e-07,
+      "top_original_hash": "d1e9e32e6fbbdd07c2012c662626513144e8b02e6b39c1edb725a77eedc49666",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM5_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 72,
+      "bottom_triangles": 16,
+      "side_triangles": 40,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -84.15072148967016,
+        -23.96970425432744,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        89246.53878072047,
+        39767.29462355775,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.4650905200142006e-07,
+      "top_original_hash": "2d475d07865ba33d17b9450d49f71db2382ecf0be86a700f7ae12f0106b09cd4",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM5_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 50,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 208,
+      "bottom_triangles": 50,
+      "side_triangles": 108,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -84.7519753650667,
+        -15.022595747558313,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        89186.4133931808,
+        38872.58377288083,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 2.3347439537246828e-07,
+      "top_original_hash": "33f9145959edede910a00585ad57a5f787fac88dc96415e8a0fd421945201158",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM4_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 44,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 200,
+      "bottom_triangles": 44,
+      "side_triangles": 112,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -23.979814727094734,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        39768.305670834474,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 3.0674664230900817e-07,
+      "top_original_hash": "5a900e2d5c8d51e00c6d872632b688b6e678457d5e49a2de7884e4a7a431d848",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM4_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 80,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 320,
+      "bottom_triangles": 80,
+      "side_triangles": 160,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -15.082491888707136,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        38878.57338699572,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 2.942789478765917e-07,
+      "top_original_hash": "7eddb61b7c0bc884073b0ec4f281bb6b50417fc7f736ed15f0f1a30b33196ffd",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM3_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 89,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 360,
+      "bottom_triangles": 89,
+      "side_triangles": 182,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -27.240363422291665,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        40094.36054035417,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 4.322877202866948e-07,
+      "top_original_hash": "c686cbabea88e24b5ad49e653950332e1d7f7e4a09824cb4a01388e3c9f6477a",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM3_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 90,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 360,
+      "bottom_triangles": 90,
+      "side_triangles": 180,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.88014788699765,
+        -15.253935444648448,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        92573.59614098772,
+        38895.71774258985,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 4.3907401447995653e-07,
+      "top_original_hash": "2360645189fc1963995c566fe6772f8beecdf4b973cf89571ab7fbe4a177fdbf",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM2_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 470,
+      "source_top_triangles": 71,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 276,
+      "bottom_triangles": 71,
+      "side_triangles": 134,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -32.79954577771076,
+        -29.054266042535048,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        94381.6563519164,
+        40275.750802378505,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 2.179351099584892e-07,
+      "top_original_hash": "75bf6f145b9bbc514bf96d250f0e8ac73d0f12a863294fb9dccb952d6a0c2748",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM5_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 52,
+      "bottom_triangles": 12,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -82.70371967424086,
+        -31.23563159556221,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89391.2389622634,
+        40493.887357681226,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1500205349411772e-07,
+      "top_original_hash": "fd889973f40b4b17787a8c49a64a305ea0359c82057ca8a7356102f5eeb0df97",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM5_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 11,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -86.08875464843743,
+        -13.049606999303904,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89052.73546484373,
+        38675.2848980554,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 9.864766070677433e-08,
+      "top_original_hash": "f2cc46dede16e93ede05993e68c64ce47312d4c8c7ca0c6bf108cda27c2afcb5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM4_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 25,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 92,
+      "bottom_triangles": 25,
+      "side_triangles": 42,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -31.229949221670854,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        40493.319120292086,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1520323301160715e-07,
+      "top_original_hash": "7d738cc9dafe8cc868d34bcca61b64222982ea09f03f8c6aaf095c7d9fd8087d",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM4_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 22,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 92,
+      "bottom_triangles": 22,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -13.28725839544158,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        38699.05003766916,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.800458448997233e-07,
+      "top_original_hash": "fe58c4438a2146a5e9afd6f4ca7b23692a6b4be69fd082ca8607a3bb136bad33",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM3_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 140,
+      "bottom_triangles": 34,
+      "side_triangles": 72,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -28.068885595410904,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        40177.21275766609,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.798775196628412e-07,
+      "top_original_hash": "e15b354569fd07658ed8194333fa526aad42bd873b2784a55d4dd2e81cba458e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM3_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 30,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 124,
+      "bottom_triangles": 30,
+      "side_triangles": 64,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -14.94656406796864,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        38864.98060492187,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.136207169518457e-07,
+      "top_original_hash": "304f59365cd1677654fabe13db8492d6b1cec6fe6db44bd283788e95a994b984",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM2_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 72,
+      "bottom_triangles": 16,
+      "side_triangles": 40,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -32.55825464843741,
+        -28.00830875295263,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94405.78546484374,
+        40171.15507342027,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.423080983111504e-07,
+      "top_original_hash": "0c1a4696f7a3b17e9dd0ccea001ac47797e55e91110a2a28aea1e558d405fe6f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM2_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 470,
+      "source_top_triangles": 14,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 56,
+      "bottom_triangles": 14,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -35.0607988999412,
+        -15.108282649847142,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94155.53103969336,
+        38881.15246310972,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2191549220451634e-07,
+      "top_original_hash": "faab9a08df02438cec8c39a739f9474af40debb58c2e294ba74d8fc7e3007e74",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM5_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 23,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 92,
+      "bottom_triangles": 23,
+      "side_triangles": 46,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -84.14628988214756,
+        -23.196837416874985,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        89246.98194147272,
+        39690.0079398125,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2966966639614839e-07,
+      "top_original_hash": "3c043152532ab3d5c7cb69042a0c13d47a3f4fc25d7bf6a4b30e9590af9eb9d2",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM5_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 53,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 212,
+      "bottom_triangles": 53,
+      "side_triangles": 106,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -84.18340347767605,
+        -16.499039769375003,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        89243.27058191987,
+        39020.228175062504,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.2771404556133348e-07,
+      "top_original_hash": "abd5f55748bb589509a23dc7a10979b93e6d49cf1edc25178713a49fc3f20f6b",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM4_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 76,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 300,
+      "bottom_triangles": 76,
+      "side_triangles": 148,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -23.218735916875005,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        39692.197789812504,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.0674664230900817e-07,
+      "top_original_hash": "7d13e0f2f8746ba69907edcaa65c9828871d7112d9bf007df40462f249394aa8",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM4_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 69,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 296,
+      "bottom_triangles": 69,
+      "side_triangles": 158,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -16.51081842937498,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        39021.4060410625,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.942789478765917e-07,
+      "top_original_hash": "931b39e1ed80a80bd2c578557dc4f37a0b92c027cfa3e763eb7893111bff3346",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM3_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 72,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 288,
+      "bottom_triangles": 72,
+      "side_triangles": 144,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -26.48754853020833,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        40019.07905114583,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.322877202866948e-07,
+      "top_original_hash": "721650ca15f986f4fa31c4e0fa3f25d58793343392f95f755ad7d55cf877037a",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM3_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 74,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 304,
+      "bottom_triangles": 74,
+      "side_triangles": 156,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -52.06413932343736,
+        -16.695350769374983,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        92455.19699734374,
+        39039.8592750625,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3601421617058804e-07,
+      "top_original_hash": "55b36095bb21c7025c521ae500ffc5da26a8bc2213aa2807aed15420e453d84c",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM2_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 470,
+      "source_top_triangles": 45,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 184,
+      "bottom_triangles": 45,
+      "side_triangles": 94,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -33.09562127922874,
+        -29.687191012916657,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        94352.0488017646,
+        40339.04329941667,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.342276843592117e-07,
+      "top_original_hash": "63f9646cd564cfb92dbe380f28efd2975e689d752ae4a54d8571df4558d97d27",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP1_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 21,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 88,
+      "bottom_triangles": 21,
+      "side_triangles": 46,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        34.20492518922139,
+        -22.412492774796135,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        101082.10344860962,
+        39611.573475604615,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 2.1553181994704573e-07,
+      "top_original_hash": "6749c69d40b68b2777b138d42ca4020e4c6ac778b2bad7fef1999944cd69bc30",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP1_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 28,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 120,
+      "bottom_triangles": 28,
+      "side_triangles": 64,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        33.43990109685399,
+        -17.207336689890127,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        101005.60103937288,
+        39091.05786711402,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2176243419380626e-07,
+      "top_original_hash": "45d721d587b8f7ebdf1d611c953fc0d1b4c97c8f9562a42ab9059bb4fc615275",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP2_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 58,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 240,
+      "bottom_triangles": 58,
+      "side_triangles": 124,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -28.502077433735053,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        40220.531941498506,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 4.183107193966862e-07,
+      "top_original_hash": "62e7dd40cf3ce67373c93273407eb6bee26ea718045d197135376791265f88d7",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP2_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 49,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 200,
+      "bottom_triangles": 49,
+      "side_triangles": 102,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -15.99127406911538,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        38969.45160503654,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 3.649822701845551e-07,
+      "top_original_hash": "23ba32d6168d7bef64d7cef69c4bdb32e439ddf908457e8d1d67099615c4743b",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP3_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 82,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 324,
+      "bottom_triangles": 82,
+      "side_triangles": 160,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -27.78291277930748,
+        -0.8200000000000002
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        40148.615476055755,
+        -82.00000000000001
+      ],
+      "vertex_reconstruction_max_error_m": 4.607786650012713e-07,
+      "top_original_hash": "271478804eb6cc2051696bec6bf158a42306c7f0d7f1375d64644d8bd1832496",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP3_YM1_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 26,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 108,
+      "bottom_triangles": 26,
+      "side_triangles": 56,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        62.79470093838548,
+        -17.25323790734849,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        103941.08102352603,
+        39095.647988859855,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.0497587865643254e-07,
+      "top_original_hash": "a43acc9e0c55a5f6bf967c956b18a220fb24588d4cedb152360d6d1b5f7f808e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP4_YM2_01",
+      "class": "building",
+      "role": "Bank",
+      "source_screen": 472,
+      "source_top_triangles": 38,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 1,
+      "actual_total_triangles": 152,
+      "bottom_triangles": 38,
+      "side_triangles": 76,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        85.43894535156255,
+        -29.649861727214304,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        106205.50546484374,
+        40335.31037084643,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.378842509642709e-07,
+      "top_original_hash": "714489b20bc8a9c9ba33a44b918506c7ca5d4958bfabcbafda8ebfd8d4df0d42",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP1_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 15,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 56,
+      "bottom_triangles": 15,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        34.86580510578705,
+        -30.24774492724093,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        101148.19144026618,
+        40395.098690849096,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.362802291600019e-07,
+      "top_original_hash": "def68802d7d65985e5886e1364ff41c37bc2b01314f5a99386e5e5f793b9bf0b",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP1_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 5,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 24,
+      "bottom_triangles": 5,
+      "side_triangles": 14,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        32.936245351562604,
+        -12.594298955782055,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100955.23546484373,
+        38629.75409370321,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 8.987416322270292e-08,
+      "top_original_hash": "1a9cb20fc4839eabea194474fde9951c01b5c7acff815f8e5615ba1bd9748390",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP2_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 35,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 124,
+      "bottom_triangles": 35,
+      "side_triangles": 54,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -30.205167279352324,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        40390.840926060235,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.16180682805134e-07,
+      "top_original_hash": "2dec0710c65057828843da21f4d55ddf8aa3959db8ed45cf83f27db3e09f0324",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP2_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -12.648671420872407,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        38635.191340212245,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.7974832644540584e-07,
+      "top_original_hash": "63d18c34ad29c483f1f8a1cb4983d4a78449a19eba8c83f0c2733e53ea5266a3",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP3_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 24,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 104,
+      "bottom_triangles": 24,
+      "side_triangles": 56,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -27.79320491747694,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        40149.6446898727,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.30092234435142e-07,
+      "top_original_hash": "bce3f4021e2551d4a5476c688c43052d20fee9adc246e81b61b0267f4670896a",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP3_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 24,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 92,
+      "bottom_triangles": 24,
+      "side_triangles": 44,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -15.433167700900924,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        38913.6409682151,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3351680056293844e-07,
+      "top_original_hash": "c8e6fd0be18e458c2e9445d67e9f664c0bb061dd26b1c95ff37f189f5119b21f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP4_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 5,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 24,
+      "bottom_triangles": 5,
+      "side_triangles": 14,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        84.01576295476548,
+        -21.88854952538742,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        106063.18722516403,
+        39559.179150663746,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.4882675714034121e-07,
+      "top_original_hash": "f62ad4906ddd12a60d97bf075df7016dc8f7cf7534b7e952af6266f7ea8392dc",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP4_YM1_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 472,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 11,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        83.5568502626692,
+        -15.470901888277908,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        106017.2959559544,
+        38917.41438695279,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.769808726237443e-07,
+      "top_original_hash": "ec2b1731c52dcb0a3b01e5dd8e92da5a235e401f44ffa7120c298e6b5a161f8e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP1_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 27,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 112,
+      "bottom_triangles": 27,
+      "side_triangles": 58,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        34.20946790478219,
+        -21.696093887708344,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        101082.5577201657,
+        39539.93358689584,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.85706440447575e-07,
+      "top_original_hash": "a32208a24f839c8c04db559e53c426a708513633ccf304046220392db77772cd",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP1_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 35,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 140,
+      "bottom_triangles": 35,
+      "side_triangles": 70,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        33.82028088390348,
+        -18.55159975270834,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        101043.63901807783,
+        39225.48417339584,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3759412215440534e-07,
+      "top_original_hash": "318e3fde9259953b495e33f2333b2143183bf33850794a1ac923563e70ee8df5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP2_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 73,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 292,
+      "bottom_triangles": 73,
+      "side_triangles": 146,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -26.27822029437499,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        39998.1462275625,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.183107193966862e-07,
+      "top_original_hash": "97178ba633207c74371ef4af4c18f373b8c70290177a89843dfd26ee6fb8b33e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP2_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 74,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 288,
+      "bottom_triangles": 74,
+      "side_triangles": 140,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -18.561598419375002,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        39226.4840400625,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.649822701845551e-07,
+      "top_original_hash": "e3a4f71a5ed649ade430f34dfe2f54bad36dab5b121beb97b7bf7187326780e6",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP3_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 65,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 268,
+      "bottom_triangles": 65,
+      "side_triangles": 138,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -26.267630481041635,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        39997.087246229166,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.607786650012713e-07,
+      "top_original_hash": "15b2c6101e170b434f34dd171c6560ffac779ba6f704d6490ff879086c01bfbc",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP3_YM1_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 24,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 24,
+      "side_triangles": 52,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        61.58505189458599,
+        -18.71450143288073,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        103820.11611914607,
+        39241.774341413075,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 5.9454507095324516e-08,
+      "top_original_hash": "5c7c77732d702e34822e2fd4fb99b85a6808f66505500f6721619686907c85b7",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP4_YM2_01",
+      "class": "building",
+      "role": "Water",
+      "source_screen": 472,
+      "source_top_triangles": 25,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 25,
+      "side_triangles": 50,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        84.68941299768869,
+        -27.894172392073855,
+        -0.8200000000000001
+      ],
+      "actor_UE_cm": [
+        106130.55222945634,
+        40159.74143733239,
+        -82.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.0675819339667214e-07,
+      "top_original_hash": "25e38d68008d785c5a4a6b1e51eae5c15fd87256fca4961c4420d39a3b9ea455",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -81.22370464843743,
+        -68.05012900937498,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89539.24046484374,
+        44175.337099062504,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.131560279394762e-07,
+      "top_original_hash": "29a961939293737ded67e76a4d7a93325f398adffe969857da2c41c9d94f55cf",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 11,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -81.2072716886749,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89540.88376081998,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.400146511012281e-07,
+      "top_original_hash": "534b1c3bf7e54785420f9c3f5a019810c6f677436f58c34bbcea02adbc00088f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 3,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 16,
+      "bottom_triangles": 3,
+      "side_triangles": 10,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -81.18685840120656,
+        -38.12946243786919,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        89542.92508956682,
+        41183.270441911925,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 5.9295871324138716e-08,
+      "top_original_hash": "11b77977b43253d856e29a1248e94ba3faef96aa3706ca77e2777f33b8863942",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 26,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 92,
+      "bottom_triangles": 26,
+      "side_triangles": 40,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -68.04287156510934,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        44174.611354635934,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.723471166949821e-07,
+      "top_original_hash": "db099a6a97b1e015cd32b5829dc1b561ae110cbec055367013eaa46bb190c69f",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.400146511012281e-07,
+      "top_original_hash": "ff05d1ab9e0710e55fcb57b9ee56baabe712d26a38d2a57a3ff3eb0c0bd85461",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -70.0,
+        -38.068885595410904,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        90661.61092968748,
+        41177.21275766609,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3599486098646594e-07,
+      "top_original_hash": "4abe8e3fc8d877d1d23703666b768267ea320a391c231253f4fd603e16c82f5e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 27,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 100,
+      "bottom_triangles": 27,
+      "side_triangles": 46,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -67.98356440896745,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        44168.680639021746,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.329469109303318e-07,
+      "top_original_hash": "b2aa95fabcc323363a40dd13bc521d86943dedfef25236992241b761e61f5562",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 42,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 136,
+      "bottom_triangles": 42,
+      "side_triangles": 52,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.400146511012281e-07,
+      "top_original_hash": "9fe990bd644b7abbd45c8fbb00f6386b2c783d033117a98104f82de9408a8420",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 11,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -50.0,
+        -38.00830875295262,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        92661.61092968748,
+        41171.15507342027,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.329469109303318e-07,
+      "top_original_hash": "5b5ed2f78fd907f741a1706510b658e0d7efa289dcd0b6dd62dc8ae2c0599b15",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -32.4582046484374,
+        -67.92425725282554,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94415.79046484374,
+        44162.74992340756,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.351379748688487e-07,
+      "top_original_hash": "8c2e56ba9164c19e64b67bbd5dee50e25e127449c5c42ca4f5135f9c33fd9575",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 31,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 104,
+      "bottom_triangles": 31,
+      "side_triangles": 42,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -32.49778764715645,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94411.83216497183,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.400146511012281e-07,
+      "top_original_hash": "8b01b9ae9114dad3abdcb7461dbb2495e55b913853eb924f4df6724230cdae3a",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 502,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -32.54802288161266,
+        -37.963229009375,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        94406.80864152621,
+        41166.6470990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0157808222620588e-07,
+      "top_original_hash": "3227f8cef9f15eff17fe64ce60de122c2178f57c26571637d32ae0969c577109",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 9,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 40,
+      "bottom_triangles": 9,
+      "side_triangles": 22,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -22.49778764715644,
+        -67.879529009375,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        95411.83216497183,
+        44158.2770990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.995366289975209e-07,
+      "top_original_hash": "0d0849687d19b38f8915de8f7e03a5bcb5ed2af9986367238a469e5f910ebd58",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 11,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -22.548022881612653,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        95406.80864152621,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.176391487613728e-07,
+      "top_original_hash": "2eaf071db6d582245e66b253f79b5ac82fe8f653fea3a07942a20fc33b94a501",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 4,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 20,
+      "bottom_triangles": 4,
+      "side_triangles": 12,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -22.558254648437412,
+        -37.95192866092368,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        95405.78546484374,
+        41165.51706421737,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.0107024195349368e-07,
+      "top_original_hash": "a0d3cb4e1504c907f27d259b17aa302875ebd16e3b98c8d376c7dfc1d5d96b85",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 29,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 2,
+      "actual_total_triangles": 112,
+      "bottom_triangles": 29,
+      "side_triangles": 54,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        -67.867279857583,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        44157.0521838833,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3046546004934498e-07,
+      "top_original_hash": "38523ce44c3539eb1285543d32832187839e093facbffcb370695def24a93d21",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 42,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 136,
+      "bottom_triangles": 42,
+      "side_triangles": 52,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.176391487613728e-07,
+      "top_original_hash": "649b1fed4e45252b008f1bd1c6066354662ac3ec6c5efd58569a612be1beed06",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 52,
+      "bottom_triangles": 12,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        -10.0,
+        -37.907756559220616,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        96661.61092968748,
+        41161.09985404706,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.406862111252849e-07,
+      "top_original_hash": "0c0e2bf5cc14aef5a84fcafcf786ec91b3ba489704e601a925133401c21ea5b5",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        -67.81745019104251,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        44152.069217229255,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.2251333575695753e-07,
+      "top_original_hash": "f58fdeb64f22c35aeaa1d9e64c25e3d33807745f5092ac52c47e52b10b225d66",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.9527218831381106e-07,
+      "top_original_hash": "7eeb7be97f74824f15f633e7eeeb709f1dd29c1fffd8b968844240012b61f435",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        10.0,
+        -37.86358445751756,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        98661.61092968748,
+        41156.68264387676,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.9527218831381106e-07,
+      "top_original_hash": "edbd6d8ab5e632218203a76068512e28ed7d4960bbe5f3e84b9b4702d0e40e28",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        26.47034535156257,
+        -67.76762052450201,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100308.64546484374,
+        44147.0862505752,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0283543733512488e-07,
+      "top_original_hash": "f91732c64691961dd953c2597faadf2a0eb205c8c8cb600f604e5c340105e58e",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 31,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 104,
+      "bottom_triangles": 31,
+      "side_triangles": 42,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        26.424107649611784,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100304.02169464866,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 3.176391487613728e-07,
+      "top_original_hash": "e4d0bb1725d86dfc50b6787c2d94cc40abba4ff4b928c3a5e51dd84142689852",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 503,
+      "source_top_triangles": 8,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 36,
+      "bottom_triangles": 8,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        26.364333329704863,
+        -37.835529009374994,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        100298.04426265796,
+        41153.877099062505,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1096079194649064e-07,
+      "top_original_hash": "feb06f3a8e0f9cc7a2eac47a47815f5af8b14819cc061b2ac899d160df079278",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 6,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 28,
+      "bottom_triangles": 6,
+      "side_triangles": 16,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        36.42410764961181,
+        -67.73537900937498,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        101304.02169464866,
+        44143.8620990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0968019498468493e-07,
+      "top_original_hash": "26cf81f885ed946ffc92a5c297f76d5e25b84678dafff0c4eb1f5c027df951a0",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 11,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 48,
+      "bottom_triangles": 11,
+      "side_triangles": 26,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        36.36433332970488,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        101298.04426265796,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1235348413028987e-07,
+      "top_original_hash": "4cbe35706f15fe77a1faa4c8132d3e3ce393448ebbe37cb001e5e964bafd2372",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 4,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 20,
+      "bottom_triangles": 4,
+      "side_triangles": 12,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        36.35139535156259,
+        -37.82421474814333,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        101296.75046484373,
+        41152.74567293934,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.0595593380458013e-07,
+      "top_original_hash": "6441bf1d17f77fccd62db9f51da12d185e38a04508f7022bd0c2065cd9adf03d",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 24,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 88,
+      "bottom_triangles": 24,
+      "side_triangles": 40,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -67.72018789703628,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        44142.34298782863,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.72144151331122e-07,
+      "top_original_hash": "b8afe048e865d70cb499f2c94edcef5e936e5435933d8fd67935e0e4f5b9a2c3",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 42,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 136,
+      "bottom_triangles": 42,
+      "side_triangles": 52,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.72144151331122e-07,
+      "top_original_hash": "91c2df62c5802c110065167e20e4a2dd88ec5f2337406bcd8699acf2ebc6bb06",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 12,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 52,
+      "bottom_triangles": 12,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        50.0,
+        -37.79320491747694,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        102661.61092968748,
+        41149.6446898727,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 4.4281023292569444e-07,
+      "top_original_hash": "7e3a39d145443a94bebd04c19f7a8a1515d90477d77c780398249ee19892c8e2",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 18,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 68,
+      "bottom_triangles": 18,
+      "side_triangles": 32,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -67.67714937386118,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        44138.03913551112,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3184576036783255e-07,
+      "top_original_hash": "39bb91f21625d780ea66ee74549f6aee6416291aa20f88be8a3d572235c58ccd",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 34,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 116,
+      "bottom_triangles": 34,
+      "side_triangles": 48,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3045674879540456e-07,
+      "top_original_hash": "6f39077edab5bb1ef638308539ff0c099418caa90edda1896e152ba7e70a62ab",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 10,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 44,
+      "bottom_triangles": 10,
+      "side_triangles": 24,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        70.0,
+        -37.76219508681055,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        104661.61092968748,
+        41146.54370680606,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.1250215809232031e-07,
+      "top_original_hash": "4a9e2becb067a0e3299cc2d27f160b21bb594a825e7a1523163795ef68d371aa",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM4_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 16,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 60,
+      "bottom_triangles": 16,
+      "side_triangles": 28,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        85.54894535156257,
+        -67.63411085068606,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        106216.50546484374,
+        44133.73528319361,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.0619762608475867e-07,
+      "top_original_hash": "41e5c04411180a4ccf54a8f836d0b161bd2da8f9c52de36257badf99f0409552",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM3_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 31,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 104,
+      "bottom_triangles": 31,
+      "side_triangles": 42,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        85.5068044300864,
+        -50.0,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        106212.29137269611,
+        42370.324198125,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 2.3045674879540456e-07,
+      "top_original_hash": "ecae6bf8cb415c0a8b1858f574530a6c0dda629ae76377d4246691052941207d",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM2_01",
+      "class": "building",
+      "role": "Land",
+      "source_screen": 504,
+      "source_top_triangles": 8,
+      "input_order_corrected_for_upwardfront": true,
+      "point_touch_vertex_fan_splits": 0,
+      "actual_total_triangles": 36,
+      "bottom_triangles": 8,
+      "side_triangles": 20,
+      "skin_depth_down_m": 0.02,
+      "pivot_canonical_m": [
+        85.45143037836705,
+        -37.745329009374984,
+        -0.02
+      ],
+      "actor_UE_cm": [
+        106206.75396752419,
+        41144.8570990625,
+        -2.0
+      ],
+      "vertex_reconstruction_max_error_m": 1.1103594488304225e-07,
+      "top_original_hash": "2139d367262e37f1d6c6291b4f83e6a1c46f421090cd4f3ad65901da99d05ca9",
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "policy_exception": "Terrainrender-only has no requiredbuildingUCX; exactboundaryslivers may bebelow4mclasssize. Rawguide errors must remain recorded."
+    }
+  ],
+  "terrain_top_triangles": 3305,
+  "terrain_total_triangles": 12880,
+  "added_bottom_side_geometry": "Closedskin only2cmdownward; originaltop/worldwalkplane/water envelope unchanged withinfloatstorage proof. Extra geometry explicitlyseparate fromcoverage.",
+  "new_439_438_471_ground": false,
+  "reed_clusters": [
+    {
+      "asset": "SM_Vista_Reeds_XM6_YM1_01",
+      "root_indices": [
+        0
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -84.177490234375,
+          -10.099413871765137,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        -84.16093063354492,
+        -10.112820148468018,
+        0
+      ],
+      "actor_UE_cm": [
+        89245.51786633299,
+        38381.606212971805,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM5_YM2_01",
+      "root_indices": [
+        1,
+        2,
+        3
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -71.9427261352539,
+          -16.88243865966797,
+          0.0
+        ],
+        [
+          -72.15155792236328,
+          -16.285961151123047,
+          0.0
+        ],
+        [
+          -76.177490234375,
+          -26.81619644165039,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        63,
+        42,
+        21
+      ],
+      "pivot_canonical_m": [
+        -74.02959442138672,
+        -21.57045078277588,
+        0
+      ],
+      "actor_UE_cm": [
+        90258.6514875488,
+        39527.36927640259,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM4_YM1_01",
+      "root_indices": [
+        4
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -59.66763687133789,
+          -11.787336349487305,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        -59.67541694641113,
+        -11.776570320129395,
+        0
+      ],
+      "actor_UE_cm": [
+        91694.06923504637,
+        38547.98123013794,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM3_YM2_01",
+      "root_indices": [
+        5,
+        6,
+        7
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -42.84288024902344,
+          -16.66646957397461,
+          0.0
+        ],
+        [
+          -42.61350631713867,
+          -17.372758865356445,
+          0.0
+        ],
+        [
+          -40.76475524902344,
+          -23.065406799316406,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        63,
+        42,
+        21
+      ],
+      "pivot_canonical_m": [
+        -41.83590316772461,
+        -19.86073112487793,
+        0
+      ],
+      "actor_UE_cm": [
+        93478.02061291502,
+        39356.397310612796,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM2_YM3_01",
+      "root_indices": [
+        10
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -25.599075317382812,
+          -34.39085388183594,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        -25.548073768615723,
+        -34.349679946899414,
+        0
+      ],
+      "actor_UE_cm": [
+        95106.8035528259,
+        40805.292192814944,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM2_YM2_01",
+      "root_indices": [
+        8,
+        9
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          -28.958044052124023,
+          -23.702436447143555,
+          0.0
+        ],
+        [
+          -28.177494049072266,
+          -26.186193466186523,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        42,
+        28,
+        14
+      ],
+      "pivot_canonical_m": [
+        -28.552931785583496,
+        -24.925718307495117,
+        0
+      ],
+      "actor_UE_cm": [
+        94806.31775112913,
+        39862.896028874515,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP1_YM1_01",
+      "root_indices": [
+        11
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          26.879817962646484,
+          -14.4146728515625,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        26.907682418823242,
+        -14.389418601989746,
+        0
+      ],
+      "actor_UE_cm": [
+        100352.3791715698,
+        38809.26605832398,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP2_YM2_01",
+      "root_indices": [
+        12,
+        13
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          41.87250518798828,
+          -24.824331283569336,
+          0.0
+        ],
+        [
+          33.87250518798828,
+          -24.82476234436035,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        42,
+        28,
+        14
+      ],
+      "pivot_canonical_m": [
+        37.88084411621094,
+        -24.83115291595459,
+        0
+      ],
+      "actor_UE_cm": [
+        101449.69534130857,
+        39853.43948972046,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP3_YM2_01",
+      "root_indices": [
+        15
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          49.87250518798828,
+          -24.894229888916016,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        49.904090881347656,
+        -24.896236419677734,
+        0
+      ],
+      "actor_UE_cm": [
+        102652.02001782224,
+        39859.94784009278,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP3_YM1_01",
+      "root_indices": [
+        14
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          57.87250518798828,
+          -14.500578880310059,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        57.86677932739258,
+        -14.475652694702148,
+        0
+      ],
+      "actor_UE_cm": [
+        103448.28886242674,
+        38817.88946759522,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM3_01",
+      "root_indices": [
+        18
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          66.63800048828125,
+          -35.565826416015625,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        66.60116577148438,
+        -35.57558059692383,
+        0
+      ],
+      "actor_UE_cm": [
+        104321.72750683592,
+        40927.882257817386,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM2_01",
+      "root_indices": [
+        17
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          65.26817321777344,
+          -18.737558364868164,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        65.25513076782227,
+        -18.73460865020752,
+        0
+      ],
+      "actor_UE_cm": [
+        104187.1240064697,
+        39243.785063145755,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM1_01",
+      "root_indices": [
+        16
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          64.00963592529297,
+          -14.949341773986816,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        64.0036678314209,
+        -14.97498083114624,
+        0
+      ],
+      "actor_UE_cm": [
+        104061.97771282957,
+        38867.82228123963,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP5_YM2_01",
+      "root_indices": [
+        19
+      ],
+      "actual_root_positions_canonical_m": [
+        [
+          88.75092315673828,
+          -26.737558364868164,
+          0.0
+        ]
+      ],
+      "all_roots_and_blades_retained_all_LODs": true,
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "pivot_canonical_m": [
+        88.74761962890625,
+        -26.754911422729492,
+        0
+      ],
+      "actor_UE_cm": [
+        106536.3728925781,
+        40045.81534039795,
+        0
+      ],
+      "LOD0_vertex_reconstruction_max_error_m": 0,
+      "collision": false,
+      "ordinary_world_visible": true,
+      "screen_set": false
+    }
+  ],
+  "reed_root_count": 20,
+  "reed_source_triangles": 420,
+  "reed_shared_texture_provenance": [
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_BC.png",
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_BC.png",
+      "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8"
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_N.png",
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_N.png",
+      "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc"
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_ORM.png",
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_ORM.png",
+      "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4"
+    }
+  ],
+  "original560exported": false,
+  "native_imported": false
+}

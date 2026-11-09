@@ -1,0 +1,124 @@
+{
+  "status": "Actual saved PNG channel audit",
+  "textures": [
+    {
+      "file": "Textures/T_Shared_Willow_Bark_BC.png",
+      "sha256": "89cbacb59cbc46e0a581a4bc7b95e90818bc0cf1f66dcf7144b9999dbda00cb4",
+      "mode": "RGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "channel_min": [
+        77,
+        72,
+        58
+      ],
+      "channel_max": [
+        77,
+        72,
+        58
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Bark_N.png",
+      "sha256": "b89389b632c7c250a95325b50d39fb388f533a6f28de14714e85160f1c0e0f06",
+      "mode": "RGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "channel_min": [
+        83,
+        126,
+        247
+      ],
+      "channel_max": [
+        173,
+        130,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Bark_ORM.png",
+      "sha256": "15a89c2c3558f0a3c350d03cdcc18e3ec41d1b164e14ff8e482cb1c6a5d08f78",
+      "mode": "RGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "channel_min": [
+        255,
+        224,
+        0
+      ],
+      "channel_max": [
+        255,
+        224,
+        0
+      ],
+      "AO_all_255": true,
+      "metallic_all_zero": true
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_BC.png",
+      "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8",
+      "mode": "RGB",
+      "size": [
+        1024,
+        1024
+      ],
+      "channel_min": [
+        72,
+        99,
+        47
+      ],
+      "channel_max": [
+        72,
+        99,
+        47
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_N.png",
+      "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc",
+      "mode": "RGB",
+      "size": [
+        1024,
+        1024
+      ],
+      "channel_min": [
+        128,
+        128,
+        255
+      ],
+      "channel_max": [
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_ORM.png",
+      "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4",
+      "mode": "RGB",
+      "size": [
+        1024,
+        1024
+      ],
+      "channel_min": [
+        255,
+        209,
+        0
+      ],
+      "channel_max": [
+        255,
+        209,
+        0
+      ],
+      "AO_all_255": true,
+      "metallic_all_zero": true
+    }
+  ],
+  "maps": 6
+}

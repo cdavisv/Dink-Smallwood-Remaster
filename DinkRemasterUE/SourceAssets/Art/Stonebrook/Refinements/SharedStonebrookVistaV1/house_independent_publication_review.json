@@ -1,0 +1,207 @@
+{
+  "schema": "dink-house-independent-publication-review/1",
+  "conclusion": "APPROVE corrected bounded SOURCE/EXPORT publication candidate; NOT native/game/final-in-game-art acceptance",
+  "reviewed_handoff_sha256": "50bf30b343047baed5339fc27c5950cb9017e7173c71d9e9cb1ab51cbb67b950",
+  "reviewed_source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "reviewed_file_count": 70,
+  "blocking_findings": [],
+  "resolved_blocking_findings": [
+    {
+      "id": "wrapper_unexpected_exception_exit0",
+      "initial_handoff_sha256": "ac01411415e7d0d9a3a0dd560d022f81d2754f8669a405b5c5476878c590518e",
+      "issue": "Initial run_guide/export_candidate finally os._exit(0) suppressed unexpected exceptions; independent missing-tool probe returned0 with no report.",
+      "resolution": "Both corrected wrappers enclose parse/import/manifest/runpy scope, preserve intended SystemExit and traceback/nonzero unexpected failures. Independent fresh-copy probes bothreturn1 with no output report; actual guide returns1 with exactrawreport; actual export returns0 and createsFBX/GLB/15PNGoutputs outside frozeninput.",
+      "art_source_hashes_unchanged": true
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "archive_low_reference_label",
+      "finding": "Fieldstone normal archive contains hidden113982-triangle olderV5low object still named SM_Shared_House440_01, not literallyV5 inobjectname.",
+      "qualification": "README explicitly discloses oldV5reference and HANDOFF selects separate authoritative SharedHouse440_GameV6.blend. Coordinator accepted disclosure and kept archivebytes frozen. Portableproductiontools never select thisreference asgame source."
+    }
+  ],
+  "copy_and_scope": {
+    "Run01": "69initialfiles allbyteexact/independentinodes",
+    "Run02": "70correctedfiles allbyteexact/independentinodes",
+    "existing_payload_changes": [
+      "Tools/run_guide.py",
+      "Tools/export_candidate.py"
+    ],
+    "new_payload": "wrapper_correction.json",
+    "all_source_art_FBXPBR_archives_unchanged": true,
+    "production_scene": "1mesh/1datamesh+SourceCamera+SourceSun, no560references, no linkedlibraries",
+    "toolpaths": "Relativebundle-local dependencies, reports/exports outsidebundle",
+    "frozen_Willow_Ground_cores_retained": true
+  },
+  "source_and_FBX": {
+    "triangles": 114354,
+    "oriented_geometry_UV_material_missing": 0,
+    "extra": 0,
+    "actual_authored_corner_normal_max_difference": 0,
+    "minimum_geometric_front_dot": 0.09699095040559769,
+    "all_faces_closed_nonmanifold0": true,
+    "zero_area_faces": 0,
+    "finite_UV_layers": 1,
+    "UV_collapsed_triangles": 0,
+    "UV_overlap": "Intentionalphysicaltiling; truncatedguideoverlapinfo retained; NOT aunique/no-overlapclaim",
+    "door_point_rays": {
+      "clear": 15,
+      "total": 15,
+      "native_capsule_proof": false
+    }
+  },
+  "actual_numeric_roundtrips": [
+    {
+      "format": "FBX",
+      "actual_oriented_geometry_material_triangles": 114354,
+      "missing_extra": 0,
+      "actual_numeric_UV_max_error": 0,
+      "UV_triangles_different": 0,
+      "UV_tolerance": 1e-06
+    },
+    {
+      "format": "GLB",
+      "actual_oriented_geometry_material_triangles": 114354,
+      "missing_extra": 0,
+      "actual_numeric_UV_max_error": 3.958120942115784e-08,
+      "UV_triangles_different": 3921,
+      "UV_tolerance": 1e-06
+    }
+  ],
+  "materials": [
+    {
+      "role": "Stone",
+      "name": "MI_Shared_House440_Stone_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "normal_strength": 1.0,
+      "normal_color_input_verified": true,
+      "implicit_UV0_multiplier1_repeat": true,
+      "images": [
+        "T_Shared_House440_Fieldstone_BC",
+        "T_Shared_House440_Fieldstone_N",
+        "T_Shared_House440_Fieldstone_ORM"
+      ]
+    },
+    {
+      "role": "Oak",
+      "name": "MI_Shared_House440_Oak_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "normal_strength": 1.0,
+      "normal_color_input_verified": true,
+      "implicit_UV0_multiplier1_repeat": true,
+      "images": [
+        "T_Shared_House440_Oak_BC",
+        "T_Shared_House440_Oak_N",
+        "T_Shared_House440_Oak_ORM"
+      ]
+    },
+    {
+      "role": "Thatch",
+      "name": "MI_Shared_House440_Thatch_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.20000000298023224,
+      "normal_strength": 1.0,
+      "normal_color_input_verified": true,
+      "implicit_UV0_multiplier1_repeat": true,
+      "images": [
+        "T_Shared_House440_Thatch_BC",
+        "T_Shared_House440_Thatch_N",
+        "T_Shared_House440_Thatch_ORM"
+      ]
+    },
+    {
+      "role": "Glass",
+      "name": "MI_Shared_House440_Glass_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "normal_strength": 1.0,
+      "normal_color_input_verified": true,
+      "implicit_UV0_multiplier1_repeat": true,
+      "images": [
+        "T_Shared_House440_Glass_BC",
+        "T_Shared_House440_Glass_N",
+        "T_Shared_House440_Glass_ORM"
+      ]
+    },
+    {
+      "role": "Mortar",
+      "name": "MI_Shared_House440_Mortar_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "normal_strength": 1.0,
+      "normal_color_input_verified": true,
+      "implicit_UV0_multiplier1_repeat": true,
+      "images": [
+        "T_Shared_House440_Mortar_BC",
+        "T_Shared_House440_Mortar_N",
+        "T_Shared_House440_Mortar_ORM"
+      ]
+    }
+  ],
+  "PBR": {
+    "actual_maps": 15,
+    "BC_sRGB_NORM_linear": true,
+    "normal_map_Color_connection_and_unlinked_strength1_verified": true,
+    "canonical_UV0_no_hidden_multiplier_and_REPEAT": true,
+    "AO255_metal0_actual_png_measured": true,
+    "all15_export_texture_copies_exact": true,
+    "normal_decoded_unit_quantization_tolerance": ".98..1.02, actualPNGmeasured",
+    "packed_missing_external_path_reopen_15maps": true,
+    "opaque_glazing_proposal": "ExplicitlydisclosedV11transmission.35\u2192opaque; no materialequivalenceclaim"
+  },
+  "guide": {
+    "raw_errors": 1,
+    "raw_error_code": "COLLISION_MISSING",
+    "raw_warnings": 2,
+    "warnings": [
+      "114354>60000softtarget but<200000hard",
+      "60coincidentvertices onindependentclosedmortarboxes"
+    ],
+    "truncated_overlap_info_retained": true,
+    "manifest_forced_export_retained": true,
+    "qualification_not_raw_zeroerror": true
+  },
+  "high_archive": {
+    "parts": 123,
+    "base_triangles": 333784,
+    "evaluated_triangles": 575320,
+    "selfcontained_local_data_and_packedimages": true,
+    "no_original560_reference_meshes": true
+  },
+  "fieldstone_normal_archive": {
+    "physical_surface_vertices": 66049,
+    "physical_surface_triangles": 131072,
+    "zrange_m": [
+      -0.007186006288975477,
+      0.0019737761467695236
+    ],
+    "distinct_z_samples_rounded_1um": 4995,
+    "independent_origin": "Read-onlyauthorrecipe inspected: seed630406,600analyticpores+256grid/noise/sine height. Generatedimage onlyfeedsBaseColor, independentNoise controlsroughness/microbump. NoBCluminanceheight.",
+    "older_V5_reference_hidden": true,
+    "older_V5_reference_disclosed": true
+  },
+  "reference_binding": "Metadata explicitly requires CURRENTguardedfullmainmanifest paths/elements for existing560insidecopy; no oldV11basenames oroutside560duplicates. Currentnativebindings are NOT reviewed bythissource-onlytask.",
+  "remaining_native_gates": [
+    "Actualsavedmaterialgraphs/Texture.Source/resolvedsourcefilenames",
+    "Actualworldcomposition andowner1door/window captures",
+    "Originallegacycollider/warp/capsule andstoryvision semantics",
+    "Nanitefallback/performance/final in-gameart acceptance"
+  ],
+  "evidence": {
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/copy_receipt.json": "71eb4b068631aa2a004909fafd5847724139d15dca54df82fb1b880bedd3ba8d",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/portable_audit.json": "40630f44233ea2d198584cd10c0d8163158324dcdc67a385207028ff698b059b",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_graph_archive_inspection.json": "bc63fca294f2d406ced57b016614fa9397e25cab77a6063d1e676afbeda6eaed",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_numeric_roundtrip.json": "9afad49e9814b84a9b84a8acf59b350550641813f0f00691d7bfd8f4762f38bc",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_pixel_audit.json": "f1a0dbc7dd4451e61e90d6366ef3130f256cbafb32b5b8ec9c26b2ab4531f313",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/guide_failure_probe.log": "430aa876d0e2d54cdb080ee6d5783db759b6de2150fea1e3f40fa631ce343fc0",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/copy_receipt.json": "1ed108b7db32b8de960e2d4273d69c4cf98279203cb38b9b7d1a136f194c6c06",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/guide_failure_probe.log": "c570a34e88b47575cc8f95f465a4c6af2aebe559820f159194aa544926e0bd3b",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_failure_probe.log": "a8786652d83bd99286a06abec94c6ddebeafafef2f009625a0ccba31b5046a9f",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/raw_guide.json": "5129405d694806d89bed5057fed769ced6dbfcb5301430c2341214c3711d6d81",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_success.json": "061edd1bbafabe42c998e10c4486c133ef639e7ed73258d68c12a50137c1d624"
+  },
+  "no_frozen_or_repo_native_GPU_mutations_by_reviewer": true
+}

@@ -1,0 +1,95 @@
+{
+  "status": "ActualFBX independent oriented geometry/UV/material bijection and unit/normal proof; not native import acceptance",
+  "source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "fbx_sha256": "3d54c58a65b818fef5813f7d425e919f554a0940d722b92de9f2414fa973bc23",
+  "fbx_path": "Export/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx",
+  "source_triangles": 114354,
+  "actualFBX_triangles": 114354,
+  "oriented_missing": 0,
+  "oriented_extra": 0,
+  "actualUV_finite": true,
+  "UV_policy": "Intentional shared physical tiles, overlap/out-of-range allowed; no uniqueatlas/no-overlap claim",
+  "normal_length_range": [
+    0.9999998528510223,
+    1.0000001511783438
+  ],
+  "minimum_stored_normal_dot_geometric_front": 0.09699095040559769,
+  "FBX_header": {
+    "version": 7400,
+    "up_axis": [
+      2,
+      1
+    ],
+    "front_axis": [
+      1,
+      -1
+    ],
+    "coord_axis": [
+      0,
+      1
+    ],
+    "unit_scale_factor": 100.0,
+    "original_unit_scale_factor": 100.0,
+    "models": {
+      "SM_Shared_House440_01": {
+        "name": "SM_Shared_House440_01",
+        "type": "Mesh",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scaling": [
+          1,
+          1,
+          1
+        ],
+        "parent": null,
+        "min": [
+          -7.788265228271484,
+          -5.719433307647705,
+          0.0
+        ],
+        "max": [
+          7.788261413574219,
+          5.718709945678711,
+          9.849328994750977
+        ],
+        "size": [
+          15.576526641845703,
+          11.438143253326416,
+          9.849328994750977
+        ],
+        "size_cm": [
+          1557.6526641845703,
+          1143.8143253326416,
+          984.9328994750977
+        ],
+        "min_cm": [
+          -778.8265228271484,
+          -571.9433307647705,
+          0.0
+        ],
+        "max_cm": [
+          778.8261413574219,
+          571.8709945678711,
+          984.9328994750977
+        ],
+        "tris": 114354
+      }
+    }
+  },
+  "no_UCX_by_design": true,
+  "source_roles": [
+    "MI_Shared_House440_Stone_Tile",
+    "MI_Shared_House440_Oak_Tile",
+    "MI_Shared_House440_Thatch_Tile",
+    "MI_Shared_House440_Glass_Tile",
+    "MI_Shared_House440_Mortar_Tile"
+  ]
+}

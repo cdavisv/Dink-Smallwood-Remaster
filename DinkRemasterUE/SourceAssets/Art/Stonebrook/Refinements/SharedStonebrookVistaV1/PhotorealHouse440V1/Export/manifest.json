@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T22:31:34Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Shared_House440_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx",
+        "glb": "Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.glb"
+      },
+      "source": {
+        "blend": "SharedHouse440_GameV6.blend",
+        "sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+        "collection": "SM_Shared_House440_01",
+        "note": "V11 immutable donor fd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1; quality geometry from V3 with full material-role PBR tiles; no collision/nav/overlap"
+      },
+      "tris": {
+        "LOD0": 114354
+      },
+      "lod_count": 1,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -778.827,
+          -571.943,
+          0.0
+        ],
+        "blender_max_cm": [
+          778.826,
+          571.871,
+          984.933
+        ],
+        "size_cm": [
+          1557.653,
+          1143.814,
+          984.933
+        ],
+        "unreal_min_cm": [
+          -778.827,
+          -571.871,
+          0.0
+        ],
+        "unreal_max_cm": [
+          778.826,
+          571.943,
+          984.933
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_Shared_House440_Stone_Tile",
+        "MI_Shared_House440_Oak_Tile",
+        "MI_Shared_House440_Thatch_Tile",
+        "MI_Shared_House440_Glass_Tile",
+        "MI_Shared_House440_Mortar_Tile"
+      ],
+      "textures": [
+        {
+          "name": "T_Shared_House440_Fieldstone_BC",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Fieldstone_N",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_House440_Fieldstone_ORM",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Oak_BC",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Oak_N",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_House440_Oak_ORM",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Thatch_BC",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Thatch_N",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_House440_Thatch_ORM",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Glass_BC",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_BC.png",
+          "role": "BC",
+          "size": [
+            256,
+            256
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Glass_N",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_N.png",
+          "role": "N",
+          "size": [
+            256,
+            256
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_House440_Glass_ORM",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_ORM.png",
+          "role": "ORM",
+          "size": [
+            256,
+            256
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Mortar_BC",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_BC.png",
+          "role": "BC",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_House440_Mortar_N",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_N.png",
+          "role": "N",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_House440_Mortar_ORM",
+          "file": "Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_ORM.png",
+          "role": "ORM",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 1,
+        "warnings": 2,
+        "forced": true
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

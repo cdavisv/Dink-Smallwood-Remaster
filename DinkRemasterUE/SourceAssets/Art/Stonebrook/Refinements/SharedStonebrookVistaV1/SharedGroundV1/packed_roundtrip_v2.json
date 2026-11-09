@@ -1,0 +1,2323 @@
+{
+  "status": "Actualpacked independent-folder reopen and everyFBXimport passed",
+  "source_sha256": "9ea680849a3125a33ef9868bb72533a889a69dcace7cd4957724dd60298ebbcc",
+  "packed_images": [
+    {
+      "image": "T_Shared_Ground_Meadow_BC",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_Meadow_N",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_Meadow_ORM",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_Water_BC",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_Water_N",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_Water_ORM",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_WetBank_BC",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_WetBank_N",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Ground_WetBank_ORM",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        2048,
+        2048
+      ],
+      "pixels_read": 16777216
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_BC",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "pixels_read": 4194304
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_N",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "pixels_read": 4194304
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_ORM",
+      "packed": true,
+      "missing_external_file": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "pixels_read": 4194304
+    }
+  ],
+  "actual_FBX_files_imported": 184,
+  "roundtrips": [
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM2_YM2_01",
+          "actual_import_triangles": 276,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM3_YM1_01",
+          "actual_import_triangles": 360,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM3_YM2_01",
+          "actual_import_triangles": 360,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM4_YM1_01",
+          "actual_import_triangles": 320,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM4_YM2_01",
+          "actual_import_triangles": 200,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM5_YM1_01",
+          "actual_import_triangles": 208,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S470_XM5_YM2_01",
+          "actual_import_triangles": 72,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP1_YM1_01",
+          "actual_import_triangles": 120,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP1_YM2_01",
+          "actual_import_triangles": 88,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP2_YM1_01",
+          "actual_import_triangles": 200,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP2_YM2_01",
+          "actual_import_triangles": 240,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP3_YM1_01",
+          "actual_import_triangles": 108,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP3_YM2_01",
+          "actual_import_triangles": 324,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Bank_S472_XP4_YM2_01",
+          "actual_import_triangles": 152,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM2_YP1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM2_YP2_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM2_YP3_01",
+          "actual_import_triangles": 40,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM3_YP1_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM3_YP2_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM3_YP3_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM4_YP1_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM4_YP2_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM4_YP3_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM5_YP1_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM5_YP2_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S406_XM5_YP3_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM1_YP1_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM1_YP2_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM1_YP3_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM2_YP1_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM2_YP2_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XM2_YP3_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP0_YP1_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP0_YP2_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP0_YP3_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP1_YP1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP1_YP2_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S407_XP1_YP3_01",
+          "actual_import_triangles": 40,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP1_YP1_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP1_YP2_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP1_YP3_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP2_YP1_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP2_YP2_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP2_YP3_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP3_YP1_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP3_YP2_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP3_YP3_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP4_YP1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP4_YP2_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S408_XP4_YP3_01",
+          "actual_import_triangles": 40,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP1_YM1_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP0_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP1_YP0_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP1_YP1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP2_YM1_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP0_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP2_YP0_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP2_YP1_01",
+          "actual_import_triangles": 76,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP3_YM1_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP0_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP3_YP0_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP3_YP1_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP4_YM1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP0_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP4_YP0_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S440_XP4_YP1_01",
+          "actual_import_triangles": 40,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM2_YM1_01",
+          "actual_import_triangles": 56,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM2_YM2_01",
+          "actual_import_triangles": 72,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM3_YM1_01",
+          "actual_import_triangles": 124,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM3_YM2_01",
+          "actual_import_triangles": 140,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM4_YM1_01",
+          "actual_import_triangles": 92,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM4_YM2_01",
+          "actual_import_triangles": 92,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM5_YM1_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S470_XM5_YM2_01",
+          "actual_import_triangles": 52,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP1_YM1_01",
+          "actual_import_triangles": 24,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP1_YM2_01",
+          "actual_import_triangles": 56,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP2_YM1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP2_YM2_01",
+          "actual_import_triangles": 124,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP3_YM1_01",
+          "actual_import_triangles": 92,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP3_YM2_01",
+          "actual_import_triangles": 104,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP4_YM1_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S472_XP4_YM2_01",
+          "actual_import_triangles": 24,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM2_YM2_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM2_YM3_01",
+          "actual_import_triangles": 104,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM2_YM4_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM3_YM2_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM3_YM3_01",
+          "actual_import_triangles": 136,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM3_YM4_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM4_YM2_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM4_YM3_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM4_YM4_01",
+          "actual_import_triangles": 92,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM5_YM2_01",
+          "actual_import_triangles": 16,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM5_YM3_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S502_XM5_YM4_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM1_YM2_01",
+          "actual_import_triangles": 52,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM1_YM3_01",
+          "actual_import_triangles": 136,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM1_YM4_01",
+          "actual_import_triangles": 112,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM2_YM2_01",
+          "actual_import_triangles": 20,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM2_YM3_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XM2_YM4_01",
+          "actual_import_triangles": 40,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP0_YM2_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP0_YM3_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP0_YM4_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP1_YM2_01",
+          "actual_import_triangles": 36,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP1_YM3_01",
+          "actual_import_triangles": 104,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S503_XP1_YM4_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP1_YM2_01",
+          "actual_import_triangles": 20,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP1_YM3_01",
+          "actual_import_triangles": 48,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP1_YM4_01",
+          "actual_import_triangles": 28,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP2_YM2_01",
+          "actual_import_triangles": 52,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP2_YM3_01",
+          "actual_import_triangles": 136,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP2_YM4_01",
+          "actual_import_triangles": 88,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP3_YM2_01",
+          "actual_import_triangles": 44,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP3_YM3_01",
+          "actual_import_triangles": 116,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP3_YM4_01",
+          "actual_import_triangles": 68,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP4_YM2_01",
+          "actual_import_triangles": 36,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP4_YM3_01",
+          "actual_import_triangles": 104,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM4_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Land_S504_XP4_YM4_01",
+          "actual_import_triangles": 60,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM2_YM2_01",
+          "actual_import_triangles": 184,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM3_YM1_01",
+          "actual_import_triangles": 304,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM3_YM2_01",
+          "actual_import_triangles": 288,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM4_YM1_01",
+          "actual_import_triangles": 296,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM4_YM2_01",
+          "actual_import_triangles": 300,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM5_YM1_01",
+          "actual_import_triangles": 212,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S470_XM5_YM2_01",
+          "actual_import_triangles": 92,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP1_YM1_01",
+          "actual_import_triangles": 140,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP1_YM2_01",
+          "actual_import_triangles": 112,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP2_YM1_01",
+          "actual_import_triangles": 288,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP2_YM2_01",
+          "actual_import_triangles": 292,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP3_YM1_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP3_YM2_01",
+          "actual_import_triangles": 268,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Water_S472_XP4_YM2_01",
+          "actual_import_triangles": 100,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD0",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD1",
+          "actual_import_triangles": 28,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD2",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD0",
+          "actual_import_triangles": 63,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD1",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD2",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD0",
+          "actual_import_triangles": 63,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD1",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD2",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM6_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP1_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP2_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD0",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD1",
+          "actual_import_triangles": 28,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD2",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM1_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM3_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP5_YM2_01.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        },
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD0",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD1",
+          "actual_import_triangles": 28,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP2_YM2_01_LOD2",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP5_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM4_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM3_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP1_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD0",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD1",
+          "actual_import_triangles": 28,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM2_01_LOD2",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM6_YM1_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD0",
+          "actual_import_triangles": 63,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD1",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM3_YM2_01_LOD2",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP3_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XP4_YM2_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD0",
+          "actual_import_triangles": 63,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD1",
+          "actual_import_triangles": 42,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM5_YM2_01_LOD2",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD0.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD0",
+          "actual_import_triangles": 21,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD1.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD1",
+          "actual_import_triangles": 14,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    },
+    {
+      "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD2.fbx",
+      "actual_models": [
+        {
+          "model": "SM_Vista_Reeds_XM2_YM3_01_LOD2",
+          "actual_import_triangles": 7,
+          "source_bounds_error_m": 0.0,
+          "UV_layers": 1
+        }
+      ]
+    }
+  ],
+  "source_unchanged": true,
+  "native_approval": false
+}
