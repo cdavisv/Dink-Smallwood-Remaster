@@ -1,0 +1,18 @@
+{
+  "scope": "Independent dense midpoint integration against original physical smooth profiles; mathematical filter proof, not native GPU image/AA runtime acceptance.",
+  "oracle_samples_per_case": 100000,
+  "line_cases": 25,
+  "arc_cases": 42,
+  "maximum_line_error": 1.5142498366316204e-11,
+  "maximum_arc_error": 1.5265677610898365e-11,
+  "analytic_line_area_m": 0.0003,
+  "analytic_running_mean": 0.63,
+  "HLSL_smoke_compile": {
+    "tool": "glslangValidator -D -V -S frag -e Main",
+    "result": "PASS exact flat Custom body in standalone pixel wrapper",
+    "limitation": "Not Unreal material/DXC compile, no GPU/native pipeline writes or run",
+    "source_sha256": "f20d8df7685511822bc5bc3c572abf04f7955efa0af6fb68b0ee3b3e3b2b5820"
+  },
+  "primary_normal_math_reference": "https://raw.githubusercontent.com/blender/blender/main/intern/cycles/kernel/svm/displace.h",
+  "reference_finding": "Cycles separates normalized displaced normal from Strength blend; prototype preserves Distance and Strength separately, with differential step.1. HLSL converts meter Distance to cm, not Strength into height approximation."
+}

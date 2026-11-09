@@ -1364,3 +1364,8 @@ Editor-only read-only Skeleton/skeletal LOD/texture inspectors add two synthetic
 ## Optional physical-element navigation policy (isolated candidate)
 
 Physical `elements` may provide boolean `can_affect_navigation`; omission preserves inherited navigation behavior. Invalid types reject the entire manifest before scene mutation. Explicit false is set before final transform/mesh setup; explicit true after setup. Collision stays BlockAll with existing collision=false override; overlap events remain false. Replacement cards and render-only contexts retain their existing behavior. No existing Data rows are changed. Candidate validation/publication status is in HANDOFF and Docs/Verification/ArtElementNavigation; merge requires coordinating independent review.
+
+
+## Photoreal trousers source candidate (9 November 2026 UTC)
+
+Branch art/photoreal-trousers-source base master30 7c6e41e4 adds portable SOURCE-ONLY V33 under SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33. Selected V19fit/V32metric stitches,2Kcoarse+256weave, pants/contextFBX20620/62964triangles,89rig/3trouserUV exact binary readback and independent Blender import. Actual relocated4-source reopening preserves packed relative images/core signatures. Rawguide22errors8warnings and knownwalk11rise residuals remain explicit; no production-guide/native/GPU/PhysicsAsset/all-motion approval.133candidateledgerrows preserve3296prior rows/1597audio raw bytes. NoContent/runtime/audiochanges. Read Docs/Verification/PhotorealTrousersSource and sourceREADME.

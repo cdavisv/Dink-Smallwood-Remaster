@@ -1,0 +1,51 @@
+{
+  "scope": "Complete dedicated-trouser atlas triangle clipping, same project uv_audit249 threshold; not a bake/export/native acceptance",
+  "source_sha256": "2ba737652aad0dd11e873865688fe2b245c6961132f6412477491b9f73d88b12",
+  "triangles": 20620,
+  "pair_candidates_tested": 456189,
+  "overlap_counts": {},
+  "witnesses": [],
+  "degenerate_UV_area_below_1e12": 0,
+  "chart_winding_counts": {
+    "Outer_Back_Right": {
+      "positive": 2576
+    },
+    "Outer_Front_Right": {
+      "positive": 2446
+    },
+    "Outer_Front_Left": {
+      "positive": 2550
+    },
+    "Outer_Back_Left": {
+      "positive": 2581
+    },
+    "Inner_Back_Right": {
+      "positive": 2576
+    },
+    "Inner_Front_Right": {
+      "positive": 2446
+    },
+    "Inner_Front_Left": {
+      "positive": 2550
+    },
+    "Inner_Back_Left": {
+      "positive": 2581
+    },
+    "WaistRim": {
+      "positive": 96
+    },
+    "Cuff_Right": {
+      "positive": 92
+    },
+    "Cuff_Left": {
+      "positive": 94
+    },
+    "Outer_Gusset": {
+      "positive": 16
+    },
+    "Inner_Gusset": {
+      "positive": 16
+    }
+  },
+  "seconds": 1.6110332012176514
+}

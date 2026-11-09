@@ -1,0 +1,76 @@
+[
+  {
+    "map": "BC",
+    "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_BC.png",
+    "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
+    "width": 2048,
+    "height": 2048,
+    "bits": 8,
+    "PNG_color_type": 2,
+    "color_space": "sRGB",
+    "all_pixels_checked": 4194304,
+    "maximum_linear_roundtrip_error": 0.0015406161546707153,
+    "mean_linear_roundtrip_error": 0.0003689323493745178,
+    "source_RGB_min": [
+      0.11179269850254059,
+      0.14905692636966705,
+      0.04192226007580757
+    ],
+    "source_RGB_max": [
+      0.12156088650226593,
+      0.16208115220069885,
+      0.04558533430099487
+    ]
+  },
+  {
+    "map": "N",
+    "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_N.png",
+    "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
+    "width": 2048,
+    "height": 2048,
+    "bits": 16,
+    "PNG_color_type": 2,
+    "color_space": "Non-Color",
+    "all_pixels_checked": 4194304,
+    "maximum_linear_roundtrip_error": 1.0013580322265625e-05,
+    "mean_linear_roundtrip_error": 5.401635917223757e-06,
+    "source_RGB_min": [
+      0.33278873562812805,
+      0.32410770654678345,
+      0.9617129564285278
+    ],
+    "source_RGB_max": [
+      0.6652442216873169,
+      0.6919134855270386,
+      1.0000100135803223
+    ],
+    "tangent_convention": "OpenGL +Y full RGB16; no channel reconstruction/clamp",
+    "normal_length_min": 0.9627277851104736,
+    "normal_length_max": 1.0000276565551758
+  },
+  {
+    "map": "ORM",
+    "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_ORM.png",
+    "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
+    "width": 2048,
+    "height": 2048,
+    "bits": 8,
+    "PNG_color_type": 2,
+    "color_space": "Non-Color",
+    "all_pixels_checked": 4194304,
+    "maximum_linear_roundtrip_error": 0.0013726353645324707,
+    "mean_linear_roundtrip_error": 0.000457545043900609,
+    "source_RGB_min": [
+      1.0,
+      0.8299999833106995,
+      0.0
+    ],
+    "source_RGB_max": [
+      1.0,
+      0.830000102519989,
+      0.0
+    ],
+    "AO_all_pixels_exact_one": true,
+    "metallic_all_pixels_exact_zero": true
+  }
+]

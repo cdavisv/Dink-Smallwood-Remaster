@@ -1,0 +1,3817 @@
+{
+  "scope": "Read-only actual frozen baked Blender graph inventory; no native BSDF equivalence or alpha policy chosen",
+  "source_blend": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/Candidates/V267PortableQAReview/SK_Dink_RealHero_QA_Hi.blend",
+  "source_blend_sha256": "b57cd8c094c7bba585ff7146939ef273464e09df490ddb4e1df1892c2a7892b4",
+  "sha256sums_sha256": "3d4f277af6b9c8cbae0418e48c51a067bb09fb33e9f7819fe4436e2065fbfd78",
+  "review_manifest_sha256": "1a51314d0f52dbeb51dbb67a83e9bc9c21563f4eb48001e53352ce9390113d1f",
+  "materials": [
+    {
+      "source_material": "Baked252_OriginalIdentity_RedWovenTie",
+      "fbx_alias": "QA_LeftArm_RedCloth",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.3199999928474426,
+              0.02199999988079071,
+              0.017999999225139618,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.8399999737739563,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.20999999344348907,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.12999999523162842,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_QA_BlueWovenCloth_PBRPending_WovenSeamSource_RealPanelSeamPrototype",
+      "fbx_alias": "QA_Shirt_BlueCloth",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.8299999833106995,
+            "IOR": 1.4600000381469727,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.23999999463558197,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.1599999964237213,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_QA_OliveWovenTrouser_FinishPending_WovenSeamSource_RealPanelSeamPrototype",
+      "fbx_alias": "QA_Trousers_OliveCloth",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.8299999833106995,
+            "IOR": 1.4600000381469727,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.23999999463558197,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.1599999964237213,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_SourceDarkLeather_NEW_Dink_Bracer_L",
+      "fbx_alias": "QA_BracerL_Leather",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.4700000286102295,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.2800000011920929,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_SourceDarkLeather_NEW_Dink_Bracer_R",
+      "fbx_alias": "QA_BracerR_Leather",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.4700000286102295,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.2800000011920929,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_TailoredBrownLeather_ContinuousWarmBinding_FineGrainFinish",
+      "fbx_alias": "QA_Jerkin_Leather",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.11999999731779099,
+              0.04600000008940697,
+              0.017999999225139618,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.7200000286102295,
+            "IOR": 1.4700000286102295,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.2800000011920929,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "Baked252_WarmLeatherEdgeBinding_DIELECTRIC_FineGrainFinish",
+      "fbx_alias": "QA_Jerkin_Trim",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.2199999988079071,
+              0.10499999672174454,
+              0.03999999910593033,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.7200000286102295,
+            "IOR": 1.4700000286102295,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.2800000011920929,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_BC_png_c5d8fcf59f3d.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c5d8fcf59f3dbdd35fa664fb7383e97c2e6456f58574a95bc14ffe129a98192a"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_N_png_a922807742f5.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "a922807742f521bcf37af34d8993d5540e4b7ffc8551327994c9e6b928ddb990"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "EXTEND",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "Dink_NewWardrobe252_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/Dink_NewWardrobe252_ORM_png_6a2d2d0ba828.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "6a2d2d0ba8288572e1b86db89634451e24cae091b9a1179341cec114ed46ff58"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": "WardrobeAtlasUV"
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_BrowLash",
+      "fbx_alias": "Legacy_BrowLash",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": false,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": false,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_BC",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_BC_9b5b3f7c5f54.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "9b5b3f7c5f54fd02e324ba02830f434cb4d4f276533514c29570523a06a9d9a8"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_ORM",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_ORM_962f3508f05b.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "962f3508f05b4aa97d4590747f87ee45158165d07573ed532f34fae10d92d2b5"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_N",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_N_aab2d6b8d0e2.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "aab2d6b8d0e216549b3f7dd259b61b34b4214621ddeb8ea85d04078cf0d61843"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Alpha",
+          "to_node": "Principled BSDF",
+          "to_socket": "Alpha"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_Eyes",
+      "fbx_alias": "Legacy_Eyes",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_BC",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_BC_9b5b3f7c5f54.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "9b5b3f7c5f54fd02e324ba02830f434cb4d4f276533514c29570523a06a9d9a8"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_ORM",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_ORM_962f3508f05b.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "962f3508f05b4aa97d4590747f87ee45158165d07573ed532f34fae10d92d2b5"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_N",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_N_aab2d6b8d0e2.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "aab2d6b8d0e216549b3f7dd259b61b34b4214621ddeb8ea85d04078cf0d61843"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_Hair",
+      "fbx_alias": "Legacy_Hair",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": false,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": false,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_BC",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_BC_9b5b3f7c5f54.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "9b5b3f7c5f54fd02e324ba02830f434cb4d4f276533514c29570523a06a9d9a8"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_ORM",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_ORM_962f3508f05b.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "962f3508f05b4aa97d4590747f87ee45158165d07573ed532f34fae10d92d2b5"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_N",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_N_aab2d6b8d0e2.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "aab2d6b8d0e216549b3f7dd259b61b34b4214621ddeb8ea85d04078cf0d61843"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Alpha",
+          "to_node": "Principled BSDF",
+          "to_socket": "Alpha"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_Skin",
+      "fbx_alias": "Legacy_Skin",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": false,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.5,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.07999999821186066,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.5,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_BC",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_BC_9b5b3f7c5f54.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "9b5b3f7c5f54fd02e324ba02830f434cb4d4f276533514c29570523a06a9d9a8"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_ORM",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_ORM_962f3508f05b.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "962f3508f05b4aa97d4590747f87ee45158165d07573ed532f34fae10d92d2b5"
+          }
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_Atlas_N",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_Atlas_N_aab2d6b8d0e2.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "aab2d6b8d0e216549b3f7dd259b61b34b4214621ddeb8ea85d04078cf0d61843"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_WardrobeV3",
+      "fbx_alias": "Legacy_Wardrobe_Belt",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": true,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.4500000476837158,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.3499999940395355,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_BC.png",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_BC_png_441fbf33873b.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "441fbf33873b72c65f3d337d9158f574c9f749e88a578359f4d5089ebf278d30"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_N.png",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_N_png_f1d7cd3a1578.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "f1d7cd3a15787340236848d0f47ee4603c90a965b762af98cc035f38b179b269"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_ORM.png",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_ORM_png_c41b6d434bb7.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c41b6d434bb754099bbcae21e689e5fee919459193013d59764a8b93eb6054ea"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        }
+      ]
+    },
+    {
+      "source_material": "MI_Dink_WardrobeV3.001",
+      "fbx_alias": "Legacy_Wardrobe_Gear",
+      "material_properties": {
+        "surface_render_method": "DITHERED",
+        "use_backface_culling": true,
+        "use_transparency_overlap": true,
+        "blend_method": "HASHED",
+        "alpha_threshold": 0.5,
+        "diffuse_color": [
+          0.800000011920929,
+          0.800000011920929,
+          0.800000011920929,
+          1.0
+        ],
+        "use_nodes": true,
+        "use_screen_refraction": false,
+        "show_transparent_back": true,
+        "refraction_depth": 0.0,
+        "displacement_method": "BUMP"
+      },
+      "nodes": [
+        {
+          "name": "Material Output",
+          "type": "ShaderNodeOutputMaterial",
+          "inputs": {
+            "Displacement": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Thickness": 0.0
+          },
+          "outputs": [],
+          "is_active_output": true,
+          "target": "ALL"
+        },
+        {
+          "name": "Principled BSDF",
+          "type": "ShaderNodeBsdfPrincipled",
+          "inputs": {
+            "Base Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ],
+            "Metallic": 0.0,
+            "Roughness": 0.5,
+            "IOR": 1.4500000476837158,
+            "Alpha": 1.0,
+            "Thin Wall": false,
+            "Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Weight": 0.0,
+            "Diffuse Roughness": 0.0,
+            "Subsurface Weight": 0.0,
+            "Subsurface Radius": [
+              1.0,
+              0.20000000298023224,
+              0.10000000149011612
+            ],
+            "Subsurface Scale": 0.004999999888241291,
+            "Subsurface IOR": 1.399999976158142,
+            "Subsurface Anisotropy": 0.0,
+            "Specular IOR Level": 0.3499999940395355,
+            "Specular Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Anisotropic": 0.0,
+            "Anisotropic Rotation": 0.0,
+            "Tangent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Transmission Weight": 0.0,
+            "Coat Weight": 0.0,
+            "Coat Roughness": 0.029999999329447746,
+            "Coat IOR": 1.5,
+            "Coat Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Coat Normal": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Sheen Weight": 0.0,
+            "Sheen Roughness": 0.5,
+            "Sheen Tint": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Color": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Emission Strength": 0.0,
+            "Thin Film Thickness": 0.0,
+            "Thin Film IOR": 1.3300000429153442
+          },
+          "outputs": [
+            "BSDF"
+          ],
+          "distribution": "MULTI_GGX",
+          "subsurface_method": "RANDOM_WALK"
+        },
+        {
+          "name": "Image Texture",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_BC.png.001",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_BC_png_441fbf33873b.png",
+            "colorspace": "sRGB",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "441fbf33873b72c65f3d337d9158f574c9f749e88a578359f4d5089ebf278d30"
+          }
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_N.png.001",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_N_png_f1d7cd3a1578.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "f1d7cd3a15787340236848d0f47ee4603c90a965b762af98cc035f38b179b269"
+          }
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "ShaderNodeTexImage",
+          "inputs": {
+            "Vector": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "outputs": [
+            "Color",
+            "Alpha"
+          ],
+          "extension": "REPEAT",
+          "interpolation": "Linear",
+          "projection": "FLAT",
+          "projection_blend": 0.0,
+          "image": {
+            "name": "T_Dink_WardrobeV3_ORM.png.001",
+            "filepath": "//../V253ClosurePreparation/Textures/T_Dink_WardrobeV3_ORM_png_c41b6d434bb7.png",
+            "colorspace": "Non-Color",
+            "size": [
+              4096,
+              4096
+            ],
+            "alpha_mode": "STRAIGHT",
+            "packed_sha256": "c41b6d434bb754099bbcae21e689e5fee919459193013d59764a8b93eb6054ea"
+          }
+        },
+        {
+          "name": "Normal Map",
+          "type": "ShaderNodeNormalMap",
+          "inputs": {
+            "Strength": 1.0,
+            "Color": [
+              0.5,
+              0.5,
+              1.0,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Normal"
+          ],
+          "space": "TANGENT",
+          "uv_map": ""
+        },
+        {
+          "name": "Separate Color",
+          "type": "ShaderNodeSeparateColor",
+          "inputs": {
+            "Color": [
+              0.800000011920929,
+              0.800000011920929,
+              0.800000011920929,
+              1.0
+            ]
+          },
+          "outputs": [
+            "Red",
+            "Green",
+            "Blue"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "from_node": "Principled BSDF",
+          "from_socket": "BSDF",
+          "to_node": "Material Output",
+          "to_socket": "Surface"
+        },
+        {
+          "from_node": "Image Texture",
+          "from_socket": "Color",
+          "to_node": "Principled BSDF",
+          "to_socket": "Base Color"
+        },
+        {
+          "from_node": "Image Texture.001",
+          "from_socket": "Color",
+          "to_node": "Normal Map",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Normal Map",
+          "from_socket": "Normal",
+          "to_node": "Principled BSDF",
+          "to_socket": "Normal"
+        },
+        {
+          "from_node": "Image Texture.002",
+          "from_socket": "Color",
+          "to_node": "Separate Color",
+          "to_socket": "Color"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Green",
+          "to_node": "Principled BSDF",
+          "to_socket": "Roughness"
+        },
+        {
+          "from_node": "Separate Color",
+          "from_socket": "Blue",
+          "to_node": "Principled BSDF",
+          "to_socket": "Metallic"
+        }
+      ]
+    }
+  ]
+}

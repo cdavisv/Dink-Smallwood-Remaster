@@ -1,0 +1,32 @@
+{
+  "utc": "2026-11-09T15:46:31.585721+00:00",
+  "status": "NO_SOURCE_CANDIDATE_BLOCKERS_NOT_NATIVE_OR_PRODUCTION_ACCEPTANCE",
+  "branch": "art/photoreal-trousers-source",
+  "base": "7c6e41e4035a41507a84b7e745851aa35d8cc425",
+  "packet": "/home/artist/Work/DinkTrouserSourceDelivery/DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33",
+  "index_SHA256": "168314b0f92468155c74831be8c8ff0fd2128264c46d3e45a2b64e54ee061da8",
+  "manifest_SHA256": "e9016f4b1e9f39e20dbd27ca4f6e0bbb383a82e96e7a2bca5316342830512aca",
+  "checked": {
+    "payload_hashes_equal_frozen_source": 131,
+    "independent_regular_single_link_copies": 131,
+    "actual_raw_FBX_recheck": "PASS 20620 pants +62964 context, all89canonicalmetadata,namedweights,3pantsUV,bind transforms,normalbounds",
+    "independent_GLB_header_JSON": "89joints/3UVsemantics/0materials/0animations",
+    "shader_code_hash_matches_proposal": true,
+    "guide_actual_failure_retained": "22errors/8warnings and honestclassification",
+    "viewed_actual_previews": [
+      "V32_metric_10cm.png",
+      "V19_fit_idle_front_NEUTRAL.png",
+      "V19_known_walk11_front_NEUTRAL.png"
+    ]
+  },
+  "findings": [],
+  "qualifications": [
+    "No relocated Blender run by this reviewer; Root separately owns its actual4source reopen run and must check result.",
+    "Walk11 inner-rise contacts/deep fold remain visible; source-only selectedfit checkpoint is not allmotion clearance.",
+    "13context materialslots/8authoring meshes/HiLOD/names/inheritedshirt face remain productionguide failures.",
+    "2K coarse+256 weave+metric stitches source supports further native testing; native material/DXC/LWC/skeletalUVbudget/cookedflags/GPU not established.",
+    "Historical absolute source/reference paths inside archived reports are not required dependencies; portable entrypoints resolve package-relative files and require outputs outside frozenpacket.",
+    "Licence documentation preserves CC0 anatomy-data versus GPLtool distinction and original sprite rights; no new blanketCC0 claim."
+  ],
+  "scope": "Readonly independent source-delivery review. No modifications to delivery/source, no Unreal/Blender/GPU runs; only pure byte/FBX checks and external review outputs."
+}

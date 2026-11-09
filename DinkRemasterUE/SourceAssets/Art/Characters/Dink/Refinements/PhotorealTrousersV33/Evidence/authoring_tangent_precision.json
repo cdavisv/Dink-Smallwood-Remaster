@@ -1,0 +1,29 @@
+{
+  "scope": "Read-only numeric UV0 frame equality; hash-only differences do not establish geometric mismatch",
+  "rows": [
+    {
+      "variant": "V22",
+      "numeric_array_equal": true,
+      "maximum_component_delta": 0.0,
+      "maximum_tangent_angle_degrees": 1.2074182697257333e-06,
+      "bitangent_sign_mismatches": 0,
+      "signed_zero_bit_differences": 0
+    },
+    {
+      "variant": "V31",
+      "numeric_array_equal": false,
+      "maximum_component_delta": 1.7881393432617188e-07,
+      "maximum_tangent_angle_degrees": 8.622691156561379e-06,
+      "bitangent_sign_mismatches": 0,
+      "signed_zero_bit_differences": 0
+    },
+    {
+      "variant": "V32",
+      "numeric_array_equal": false,
+      "maximum_component_delta": 1.1920928955078125e-07,
+      "maximum_tangent_angle_degrees": 4.829673078902934e-06,
+      "bitangent_sign_mismatches": 0,
+      "signed_zero_bit_differences": 0
+    }
+  ]
+}

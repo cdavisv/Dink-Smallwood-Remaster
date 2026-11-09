@@ -1,0 +1,179 @@
+{
+  "scope": "Source-only material fidelity controls, NOT native/game runtime screenshots or motion acceptance. Exact selected V19 geometry and original optics. Game framing matches render_baked269 camera/scale/resolution.",
+  "authority_sha256": "58f1bca89b64ac2a2036edcdef4f2e812eb543c0818538dd1453356a85cd58b9",
+  "views": [
+    {
+      "label": "metric_stitch_detail",
+      "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "source_sha256": "ab6a8841cfa0001bb8ca6ac7fe4b3a58f2037e2cc158d008f651a2c3330fc2d1",
+      "pose": "rest",
+      "actual89_max_delta": 1.7881393432617188e-07,
+      "framing": "detail",
+      "camera": [
+        0.01,
+        -4,
+        1.5
+      ],
+      "look_at": [
+        0.01,
+        -0.16,
+        0.9
+      ],
+      "ortho_scale": 0.1,
+      "resolution": [
+        800,
+        800
+      ],
+      "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
+      "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_detail.png",
+      "image_sha256": "77ea3f6674d8343f946e181d8714aa7a5b969ae77b7249d80fcb83051dd87e04"
+    },
+    {
+      "label": "metric_stitch_game",
+      "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "source_sha256": "ab6a8841cfa0001bb8ca6ac7fe4b3a58f2037e2cc158d008f651a2c3330fc2d1",
+      "pose": "rest",
+      "actual89_max_delta": 1.7881393432617188e-07,
+      "framing": "game",
+      "camera": [
+        3,
+        -4,
+        5
+      ],
+      "look_at": [
+        0,
+        0,
+        0.95
+      ],
+      "ortho_scale": 3.8,
+      "resolution": [
+        900,
+        1100
+      ],
+      "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
+      "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_game.png",
+      "image_sha256": "2d536c5474bd4f7a35ee22f7529c770580f8e12d5bd8b07e930c69e04fb9b138"
+    },
+    {
+      "label": "metric_stitch_walk0_game",
+      "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "source_sha256": "ab6a8841cfa0001bb8ca6ac7fe4b3a58f2037e2cc158d008f651a2c3330fc2d1",
+      "pose": "walk0",
+      "actual89_max_delta": 2.384185791015625e-07,
+      "framing": "game",
+      "camera": [
+        3,
+        -4,
+        5
+      ],
+      "look_at": [
+        0,
+        0,
+        0.95
+      ],
+      "ortho_scale": 3.8,
+      "resolution": [
+        900,
+        1100
+      ],
+      "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
+      "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_walk0_game.png",
+      "image_sha256": "86c22c83262063c0bfa4cbe98d9a856573c170615ce703fcaedd2490549d1534"
+    },
+    {
+      "label": "atlas_stitch_2cm",
+      "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricMaterialV27/Dink_Trousers_COARSE_PLUS_METRIC_SOURCE.blend",
+      "source_sha256": "f385e609e9a6df5d81d8631c46789e9103006c4d20bc772e4b7743b5f6b237bd",
+      "pose": "rest",
+      "actual89_max_delta": 1.7881393432617188e-07,
+      "framing": "detail",
+      "camera": [
+        0,
+        -4,
+        1.5
+      ],
+      "look_at": [
+        0,
+        -0.16,
+        0.9
+      ],
+      "ortho_scale": 0.02,
+      "resolution": [
+        800,
+        800
+      ],
+      "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
+      "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/atlas_stitch_2cm.png",
+      "image_sha256": "176db1fc059a7f7e81fe853b4a67f7db7241ccfdff444babf949d0494b7a1cd1"
+    },
+    {
+      "label": "metric_stitch_2cm",
+      "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "source_sha256": "ab6a8841cfa0001bb8ca6ac7fe4b3a58f2037e2cc158d008f651a2c3330fc2d1",
+      "pose": "rest",
+      "actual89_max_delta": 1.7881393432617188e-07,
+      "framing": "detail",
+      "camera": [
+        0,
+        -4,
+        1.5
+      ],
+      "look_at": [
+        0,
+        -0.16,
+        0.9
+      ],
+      "ortho_scale": 0.02,
+      "resolution": [
+        800,
+        800
+      ],
+      "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
+      "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_2cm.png",
+      "image_sha256": "958327b6ad6066f4428a2787ccd9be544eee6e877e4728555ddb96b1200b7818"
+    }
+  ],
+  "original_Dink_reference_guide": {
+    "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
+    "files": [
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+      }
+    ],
+    "visually_reviewed_original_images": [
+      "original_identity_crop.png",
+      "original_sequences_contact.png",
+      "original_walk_ds-w2-01.png"
+    ],
+    "retained_identity": [
+      "subdued olive trousers",
+      "slate-blue woven shirt",
+      "brown leather torso/gear and russet boots",
+      "practical narrow-waist silhouette",
+      "red tie on anatomical LEFT upper arm"
+    ],
+    "limits": "Only trousers material/UV were changed in this source exploration. Other seven meshes/materials remain protected. A separate backpack is a prior remaster interpretation, not conclusively established by the rear sprite mass.",
+    "camera_note": "V14 current game controls use the historical render_baked269 orthographic review framing. REFERENCE_DESIGN_BRIEF also specifies a separate real gameplay perspective approximation; no source preview is a runtime screenshot."
+  }
+}
