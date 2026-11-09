@@ -1,0 +1,104 @@
+{
+  "scope": "Read-only editor inspection bridge, not hero import or appearance approval",
+  "base": "910cb5995899d317792838fcc5f177a5e4d1c6a0",
+  "branch": "test/hero-native-inspection",
+  "source_sha256": {
+    "Plugins/DinkImport/Source/DinkImport/Public/DinkHeroInspectionLibrary.h": "f8cffa53b3ba0b6b3f7bfd811bb151e6088155aaf165cb692e5b90b9b792ce03",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkHeroInspectionLibrary.cpp": "eccc449a975cd41909431bdf4001f3130e025148613fa6476e21c6ed8be0fd40",
+    "Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkHeroInspectionTests.cpp": "68fe4f07807bc5b464101edd1fb818e4827978eff5e54821e33786c6ca8b9c7a",
+    "Plugins/DinkImport/Source/DinkImport/DinkImport.Build.cs": "36517f1c2a35fb5f01ba6ffcd65da23565ff3db50bb4e2a3cab15bc3c04551e0"
+  },
+  "editor_build": {
+    "exit_code": 0,
+    "duration_s": 880.05,
+    "actions": 151,
+    "compiler_diagnostics": 0,
+    "cache_note": "Some action result store tasks did not succeed footer preserved"
+  },
+  "focused": {
+    "tests": 2,
+    "failed": 0,
+    "test_warnings": 0,
+    "exit_code": 0
+  },
+  "reference_v2": {
+    "exit_code": 0,
+    "mesh_bones": 89,
+    "shared_skeleton_bones": 161,
+    "virtual_bones": 0,
+    "source_and_built_available": true,
+    "texture_source_available": true,
+    "texture_platform": "unavailable under NullRHI; no GPU/pixel-format claim"
+  },
+  "full": {
+    "actual_tests": 156,
+    "failed": 0,
+    "succeeded_without_reported_warnings": 140,
+    "succeeded_with_warnings": 16,
+    "duration_s": 1252,
+    "native_exit_code": 0,
+    "postprocessor_exit_code": 1,
+    "postprocessor_failure": "UTF-8 BOM rejected by original Saved-only JSON reader after native success and guards",
+    "derived_receipt_sha256": "1805daec2c0d09c65c5d6534302334ef77cda8befb901d5394f8717d2863d4e1",
+    "raw_index_sha256": "55710b25688f6bcdb34471dbaae9560f8f27bc34b1cdf552231a3c8bce2215c0",
+    "warning_classification": "14 tests SDL/Wayland initialization warnings;2 HTTP connectivity timeout warning tests; no suppression or threshold change"
+  },
+  "game": {
+    "exit_code": 0,
+    "duration_s": 760.14,
+    "actions": 85,
+    "compiler_diagnostics": 0,
+    "Editor_DLLs_preserved": 7,
+    "Editor_metadata_files_preserved": 6,
+    "all_protected_scopes_unchanged": true,
+    "cache_note": "Some action result store tasks did not succeed footer preserved",
+    "scope": "Build only; no game execution/cook/package"
+  },
+  "protection_scope": "Root7DLL+6metadata and51preceding/61midrun scoped saves, own7EditorDLL+6metadata, Root/own Content+ImportData, source4/config strict before/after; bounded shared host journal observational only; no atomic whole-host claim",
+  "historical_failures": [
+    "Missing RHI linker dependency, corrected dependency only",
+    "Build retry143 cause unknown",
+    "Default namespace detached launch failed to survive startup",
+    "ReferenceV1 returned compiling_unavailable before existing pending-compilation barrier",
+    "Full native passed then Saved postprocessor BOM failure1"
+  ],
+  "not_claimed": [
+    "new hero import",
+    "candidate normal GPU fidelity",
+    "material BSDF parity",
+    "new hero final appearance or LOD acceptance",
+    "runtime gameplay changes"
+  ],
+  "source_audits": {
+    "source_full_audit.json": {
+      "verification_mode": "full",
+      "binary_files_verified": 2444,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 461,
+      "shell_syntax_files": 22,
+      "ledger_rows": 2182,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    },
+    "source_metadata_audit.json": {
+      "verification_mode": "metadata",
+      "binary_files_verified": 2444,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 461,
+      "shell_syntax_files": 22,
+      "ledger_rows": 2182,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    }
+  }
+}
