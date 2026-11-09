@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "pid": 299254,
+  "before": {
+    "pid": 299254,
+    "game_time": 496.5287740872591,
+    "location": [
+      -183810.89669092422,
+      393547.6414288652,
+      98.0
+    ],
+    "overlapping_warps": [
+      {
+        "warp": "S001_P25",
+        "source": 1,
+        "kind": "exit",
+        "center": [
+          -183799.535,
+          393587.23,
+          150.0
+        ]
+      }
+    ],
+    "movement_ignored": false,
+    "current_acceleration": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scope": "Read-only actual game state; no pose, inventory, facts or transforms assigned"
+  },
+  "after": {
+    "pid": 299254,
+    "game_time": 498.9510362492292,
+    "location": [
+      -183810.89669092422,
+      393547.6414288652,
+      98.0
+    ],
+    "overlapping_warps": [
+      {
+        "warp": "S001_P25",
+        "source": 1,
+        "kind": "exit",
+        "center": [
+          -183799.535,
+          393587.23,
+          150.0
+        ]
+      }
+    ],
+    "movement_ignored": false,
+    "current_acceleration": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scope": "Read-only actual game state; no pose, inventory, facts or transforms assigned"
+  },
+  "player_after": {
+    "screen": 1,
+    "map": [
+      302.403,
+      388.951
+    ],
+    "world": [
+      -183810.897,
+      393547.641,
+      98.0
+    ],
+    "yaw": -119.695,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "qualification": "Precise outside approach unexpectedly triggered natural entrance before planned outdoor waypoint; near-entry.json retains FAIL for that waypoint. ActualS439_P13 warp andsource1 overlap independentlyconfirmed; no additionalteleport occurred."
+}
