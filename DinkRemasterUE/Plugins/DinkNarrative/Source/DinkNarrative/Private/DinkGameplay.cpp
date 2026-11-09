@@ -3,6 +3,9 @@
 #include "DinkDirector.h"
 #include "DinkArtSubsystem.h"
 #include "DinkFactSubsystem.h"
+#include "DinkWorldStateSubsystem.h"
+#include "Greybox/DinkGreyboxSubsystem.h"
+#include "Algo/StableSort.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStorySubsystem.h"
 #include "DinkNarrativeTypes.h"
@@ -161,6 +164,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 		P.BaseDie = Int(TEXT("base_die"), -1);
 		P.Hard = Int(TEXT("hard"));
 		P.Sound = Int(TEXT("sound"));
+		P.Que = Int(TEXT("que"));
 		ByScreen.FindOrAdd(P.Origin.Screen).Add(P.Origin);
 		Placements.Add(P.Origin, P);
 	}
@@ -222,11 +226,12 @@ TMap<int32, TSharedPtr<FDinkHardnessMap>> FDinkHardnessMap::ParseFile(int32 Scre
 		{
 			continue;
 		}
-		if (Line.StartsWith(TEXT("vision ")))
+		const bool bTiles = Line == TEXT("tiles");
+		if (bTiles || Line.StartsWith(TEXT("vision ")))
 		{
 			Cur = MakeShared<FDinkHardnessMap>();
 			Cur->Screen = Screen;
-			Cur->Vision = FCString::Atoi(*Line.Mid(7));
+			Cur->Vision = bTiles ? TileLayerVision : FCString::Atoi(*Line.Mid(7));
 			Cur->Codes.SetNumZeroed(Width * Height);
 			Out.Add(Cur->Vision, Cur);
 			Row = 0;
@@ -280,6 +285,16 @@ const FDinkHardnessMap* FDinkGameplayData::GetHardness(int32 Screen, int32 Visio
 	}
 	const TSharedPtr<FDinkHardnessMap>* Base = ByVision->Find(0);
 	return Base ? Base->Get() : nullptr;
+}
+
+const FDinkHardnessMap* FDinkGameplayData::GetTileHardness(int32 Screen) const
+{
+	if (HardnessOverrides.Contains(Screen) || !GetHardness(Screen, 0))
+	{
+		return nullptr;
+	}
+	const TSharedPtr<FDinkHardnessMap>* Tiles = Hardness.FindChecked(Screen).Find(FDinkHardnessMap::TileLayerVision);
+	return Tiles ? Tiles->Get() : nullptr;
 }
 
 void FDinkGameplayData::SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map)
@@ -520,6 +535,8 @@ void UDinkGameplay::Reset()
 	BrainClockMs = NowMs;
 	BrainCarryMs = 0.0;
 	MovePath.Reset();
+	// A new game or a load builds the screen's hardness anew (load_map), so nothing a script redrew survives.
+	OnScreenLoaded();
 	SetRandomSeed(Seed);
 }
 
@@ -1630,6 +1647,320 @@ void UDinkGameplay::StartNewGame()
 	if (const int32 Id = Story->CreateDetachedInstance(TEXT("newgame"), UDinkDirector::HandleNoSprite))
 	{
 		RunInstanceProc(Id, NAME_Main);
+	}
+}
+
+// ---------------------------------------------------------------------------------------------
+// Hardness the scripts change (sp_hard, draw_hard_sprite, draw_hard_map)
+//
+// The engine keeps one hardness map, g_hitmap, built when a screen loads (fill_whole_hard, then place_sprites_game stamps the hardbox of every
+// placement whose hard flag is 0 as 100 + its index, D:6076/6136) and changed afterwards only by these two commands. GetHard reads the data's
+// loaded map until a script redraws it; from then on (until the next screen load) the redrawn map, built here as the engine builds it.
+
+void UDinkGameplay::SetPlacementHard(const FDinkOriginId& Origin, int32 Hard)
+{
+	VisitPlacementHard.Add(Origin, Hard);
+}
+
+const FDinkHardnessMap* UDinkGameplay::GetLiveHardness(int32 Screen) const
+{
+	const FLiveHardness* Live = LiveHardness.Find(Screen);
+	return Live ? Live->Map.Get() : nullptr;
+}
+
+void UDinkGameplay::OnScreenLoaded()
+{
+	RestoreGreyboxHardness();
+	LiveHardness.Reset();
+	VisitPlacementHard.Reset();
+}
+
+FDinkHardnessMap& UDinkGameplay::EnsureLiveHardness(int32 Screen)
+{
+	if (FLiveHardness* Found = LiveHardness.Find(Screen))
+	{
+		return *Found->Map;
+	}
+	FLiveHardness& Live = LiveHardness.Add(Screen);
+	Live.Map = MakeShared<FDinkHardnessMap>();
+	Live.Map->Screen = Screen;
+	Live.Map->Codes.SetNumZeroed(FDinkHardnessMap::Width * FDinkHardnessMap::Height);
+	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+	const FDinkHardnessMap* Loaded = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
+	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
+	if (Loaded && Loaded->Codes.Num() == Live.Map->Codes.Num())
+	{
+		Live.Map->Vision = Loaded->Vision;
+		Live.Map->Codes = Loaded->Codes;
+	}
+	// The map the engine holds now: the loaded one, where a placement that was removed when the screen loaded was never stamped (place_sprites_game
+	// skips it after update_play_changes, D:5974, 5784), so its pixels show the tile layer. (GetHard reads them as 0 until a redraw.)
+	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
+	{
+		for (int32 i = 0; i < Live.Map->Codes.Num(); ++i)
+		{
+			const int32 Code = Live.Map->Codes[i];
+			if (Code > 100 && World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100)))
+			{
+				Live.Map->Codes[i] = Tiles && Tiles->Codes.IsValidIndex(i) ? Tiles->Codes[i] : 0;
+			}
+		}
+	}
+	Live.Base = Live.Map->Codes;
+	return *Live.Map;
+}
+
+bool UDinkGameplay::MapPlacement(const FDinkPlacementInfo& P, bool& bActive, int32& Type, int32& Hard, int32& Seq, int32& Frame) const
+{
+	bActive = true;
+	Type = P.Type;
+	const int32* VisitHard = VisitPlacementHard.Find(P.Origin);
+	Hard = VisitHard ? *VisitHard : P.Hard;
+	Seq = P.Seq;
+	Frame = P.Frame;
+	const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr;
+	FDinkWorldOverride Override;
+	if (!World || !World->TryGetOverride(P.Origin, Override) || Override.Type == EDinkOverrideType::None)
+	{
+		return true;
+	}
+	// update_play_changes (D:5773-5832), which draw_hard_sprite and draw_hard_map run first (D:8096, 8228): the editor_type of the save
+	// overrides the placement's type, hard flag and activity, and its stored editor_seq/editor_frame its picture.
+	bActive = !World->IsPlacementRemoved(P.Origin);
+	switch (Override.Type)
+	{
+	case EDinkOverrideType::LiveNoHardness: Type = 1; Hard = 1; break;        // D:5787-5791
+	case EDinkOverrideType::BackgroundNoHardness: Type = 0; Hard = 1; break;  // D:5792-5798
+	case EDinkOverrideType::LiveHard: Type = 1; Hard = 0; break;              // D:5801-5805
+	case EDinkOverrideType::BackgroundHard: Type = 0; Hard = 0; break;        // D:5807-5811
+	default: break;
+	}
+	// D:5829-5830. The remaster keeps only the last of editor_seq / editor_frame (the override's Variant, "seq173" or "frame6"); the other
+	// part stays map.dat's.
+	const FString Variant = Override.Variant.ToString();
+	if (Variant.StartsWith(TEXT("seq")))
+	{
+		Seq = FCString::Atoi(*Variant.Mid(3));
+	}
+	else if (Variant.StartsWith(TEXT("frame")))
+	{
+		Frame = FCString::Atoi(*Variant.Mid(5));
+	}
+	return true;
+}
+
+void UDinkGameplay::AddHardness(FDinkHardnessMap& Map, int32 L, int32 T, int32 R, int32 B, uint8 Code)
+{
+	// add_hardness (D:487-501): xx from x + hardbox.left to x + hardbox.right (exclusive), likewise y; pixels with xx - 20 > 600, < 0, yy > 400
+	// or < 0 are skipped (the engine's map also has a column 600 and a row 400 outside the play field, which FDinkHardnessMap drops).
+	for (int32 XX = L; XX < R; ++XX)
+	{
+		for (int32 YY = T; YY < B; ++YY)
+		{
+			if (XX - 20 > 600 || XX - 20 < 0 || YY > 400 || YY < 0)
+			{
+				continue;
+			}
+			Map.Set(XX - 20, YY, Code);
+		}
+	}
+}
+
+void UDinkGameplay::FillBackSprites(FDinkHardnessMap& Map, int32 Screen) const
+{
+	// fill_back_sprites (D:6832-6895): the map's placements that are active, not live sprites (type != 1) and hard (flag 0), ranked by
+	// que (or y when que is 0; keys of 20000 and more are never ranked) with the lower index first on a tie (D:6845-6868); each of the
+	// current &vision (or vision 0) stamps its picture's hardbox at its map position as 100 + index (add_sprite_dumb + add_hardness, D:6879-6891).
+	struct FCandidate { const FDinkPlacementInfo* P; int32 Key; int32 Seq; int32 Frame; };
+	TArray<FCandidate> Rank;
+	for (const FDinkPlacementInfo* P : Data.GetPlacementsOnScreen(Screen))
+	{
+		bool bActive = false;
+		int32 Type = 0, Hard = 0, Seq = 0, Frame = 0;
+		if (!P || P->Origin.Placement < 1 || P->Origin.Placement > 99 || !MapPlacement(*P, bActive, Type, Hard, Seq, Frame) || !bActive || Type == 1 || Hard != 0)
+		{
+			continue;
+		}
+		const int32 Key = P->Que != 0 ? P->Que : P->Y;
+		if (Key < 20000)
+		{
+			Rank.Add({ P, Key, Seq, Frame });
+		}
+	}
+	Algo::StableSortBy(Rank, [](const FCandidate& C) { return C.Key; });
+	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+	const int32 Vision = Facts ? Facts->GetFact(TEXT("vision")) : 0;
+	for (const FCandidate& C : Rank)
+	{
+		if (C.P->Vision != 0 && C.P->Vision != Vision)
+		{
+			continue;
+		}
+		const FDinkFrameInfo* Box = Data.FindFrame(C.Seq, C.Frame);
+		if (!Box)
+		{
+			Box = Data.FindInitSequence(C.Seq);
+		}
+		if (Box)
+		{
+			AddHardness(Map, C.P->X + Box->Left, C.P->Y + Box->Top, C.P->X + Box->Right, C.P->Y + Box->Bottom, static_cast<uint8>(100 + C.P->Origin.Placement));
+		}
+	}
+}
+
+void UDinkGameplay::FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const
+{
+	// fill_hard_sprites (D:6972-7031): every active sprite, ranked by que (or y; keys of 22024 and more never), lower handle first on a tie;
+	// a placement's sprite stamps its current picture's hardbox at its current position as 100 + its index when the map's flag for it is 0
+	// (g_smallMap.sprite[sp_index].hard, D:7016-7021); any other sprite as 1 when its own flag is 0 (D:7024-7029).
+	UDinkDirector* D = Director();
+	if (!D)
+	{
+		return;
+	}
+	static const FName P_Que(TEXT("que")), P_Hard(TEXT("hard"));
+	struct FCandidate { const FDinkSprite* S; int32 Key; };
+	TArray<FCandidate> Rank;
+	TArray<int32> Handles;
+	D->GetSprites().GetKeys(Handles);
+	Handles.Sort();
+	for (const int32 H : Handles)
+	{
+		const FDinkSprite& S = D->GetSprites().FindChecked(H);
+		if (!S.bActive || S.bText || H == UDinkDirector::HandleNoSprite || (S.Screen != Screen && H != 1))
+		{
+			continue;
+		}
+		const FDinkPlacementInfo* P = S.Origin.IsValid() ? Data.FindPlacement(S.Origin) : nullptr;
+		const int32* Que = S.Props.Find(P_Que);
+		const int32 Q = Que ? *Que : (P ? P->Que : 0);
+		const int32 Key = Q != 0 ? Q : FMath::RoundToInt32(S.Y);
+		if (Key < 22024)
+		{
+			Rank.Add({ &S, Key });
+		}
+	}
+	Algo::StableSortBy(Rank, [](const FCandidate& C) { return C.Key; });
+	for (const FCandidate& C : Rank)
+	{
+		const FDinkSprite& S = *C.S;
+		uint8 Code = 0;
+		if (S.Origin.IsValid() && S.Origin.Screen == Screen)
+		{
+			const FDinkPlacementInfo* P = Data.FindPlacement(S.Origin);
+			bool bActive = false;
+			int32 Type = 0, Hard = 1, Seq = 0, Frame = 0;
+			if (P && MapPlacement(*P, bActive, Type, Hard, Seq, Frame) && Hard == 0)
+			{
+				Code = static_cast<uint8>(100 + S.Origin.Placement);
+			}
+		}
+		else if (S.GetProp(P_Hard, 1) == 0)
+		{
+			Code = 1;
+		}
+		int32 L = 0, T = 0, R = 0, B = 0;
+		if (Code != 0 && GetHardbox(S, L, T, R, B))
+		{
+			AddHardness(Map, L, T, R, B, Code);
+		}
+	}
+}
+
+void UDinkGameplay::DrawHardSprite(int32 Handle)
+{
+	UDinkDirector* D = Director();
+	const FDinkSprite* S = D ? D->FindSprite(Handle) : nullptr;
+	if (!S)
+	{
+		return;
+	}
+	const int32 Screen = S->Screen;
+	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
+	// fill_hardxy (D:597-614) of the sprite's picture's hardbox at its position (D:8098-8102): the tile layer comes back there (get_hard_map,
+	// D:582: 0 outside the map), with the engine's clamps (right > 599 -> 600, bottom > 399 -> 400, top and left at least 0).
+	int32 L = 0, T = 0, R = 0, B = 0;
+	if (GetHardbox(*S, L, T, R, B))
+	{
+		L -= 20;
+		R -= 20;
+		if (R > 599) { R = 600; }
+		if (T < 0) { T = 0; }
+		if (B > 399) { B = 400; }
+		if (L < 0) { L = 0; }
+		const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
+		for (int32 X1 = L; X1 < R; ++X1)
+		{
+			for (int32 Y1 = T; Y1 < B; ++Y1)
+			{
+				Map.Set(X1, Y1, static_cast<uint8>(Tiles ? Tiles->Get(X1, Y1) : 0));
+			}
+		}
+	}
+	FillBackSprites(Map, Screen);
+	FillHardSprites(Map, Screen);
+	UE_LOG(LogDinkDirector, Verbose, TEXT("draw_hard_sprite %d: SCR_%03d box %d,%d-%d,%d"), Handle, Screen, L, T, R, B);
+	SyncGreyboxHardness(Screen);
+}
+
+void UDinkGameplay::DrawHardMap(int32 Screen)
+{
+	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
+	// fill_whole_hard (D:654-681): the tile layer over the whole map; then fill_hard_sprites and fill_back_sprites (D:8229-8231).
+	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
+	if (Tiles && Tiles->Codes.Num() == Map.Codes.Num())
+	{
+		Map.Codes = Tiles->Codes;
+	}
+	else
+	{
+		FMemory::Memzero(Map.Codes.GetData(), Map.Codes.Num());
+	}
+	FillHardSprites(Map, Screen);
+	FillBackSprites(Map, Screen);
+	UE_LOG(LogDinkDirector, Verbose, TEXT("draw_hard_map: SCR_%03d"), Screen);
+	SyncGreyboxHardness(Screen);
+}
+
+void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
+{
+	UWorld* World = Story ? Story->GetWorld() : nullptr;
+	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	const FLiveHardness* Live = LiveHardness.Find(Screen);
+	if (!Greybox || !Live || Live->Base.Num() != Live->Map->Codes.Num())
+	{
+		return;
+	}
+	// The greybox's solid collision was baked from the loaded map: pass on only what the draws changed (1 now solid, 2 no longer solid).
+	TArray<uint8> Changes;
+	Changes.SetNumZeroed(Live->Base.Num());
+	bool bAny = false;
+	for (int32 i = 0; i < Changes.Num(); ++i)
+	{
+		const bool bWas = FDinkHardnessMap::IsSolidCode(Live->Base[i]);
+		const bool bNow = FDinkHardnessMap::IsSolidCode(Live->Map->Codes[i]);
+		if (bWas != bNow)
+		{
+			Changes[i] = bNow ? 1 : 2;
+			bAny = true;
+		}
+	}
+	if (bAny)
+	{
+		Greybox->ApplyScreenSolidChanges(Screen, Changes);
+	}
+	else
+	{
+		Greybox->RestoreScreenSolidCollision(Screen);
+	}
+}
+
+void UDinkGameplay::RestoreGreyboxHardness()
+{
+	UWorld* World = Story ? Story->GetWorld() : nullptr;
+	if (UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr)
+	{
+		Greybox->RestoreScreenSolidCollision(0);
 	}
 }
 
