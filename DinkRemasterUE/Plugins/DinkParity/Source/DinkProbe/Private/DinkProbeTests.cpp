@@ -426,8 +426,10 @@ namespace DinkProbeTest
 		/**
 		 * A player's spacing in a fight: stand Gap px west (or east, if that spot is hard) of the sprite on its
 		 * row, face it and punch. A Bonca attacks inside 50 px and its reach ends at 47; Dink's fist reaches 62.
+		 * Hold > 0: Dink already within Hold px of his spot stays where he is (no teleport), so a target that jitters in place (a duck against a corner) is
+		 * not followed pixel by pixel through the punch.
 		 */
-		bool KiteAndPunch(int32 Handle, int32 Gap, bool bPunch = true) const
+		bool KiteAndPunch(int32 Handle, int32 Gap, bool bPunch = true, int32 Hold = 0) const
 		{
 			const FDinkSprite* T = D->FindSprite(Handle);
 			if (!T || !T->bActive)
@@ -438,8 +440,26 @@ namespace DinkProbeTest
 			// West, east, then (cornered) the far side of the screen: never within its touch box.
 			bool bPlaced = false;
 			bool bWest = true;
+			if (Hold > 0)
+			{
+				const FDinkSprite& Dk = D->GetDink();
+				for (const int32 Side : { -1, 1 })
+				{
+					if (Dk.Screen == T->Screen && FMath::Abs(Dk.X - (X + Side * Gap)) <= Hold && FMath::Abs(Dk.Y - Y) <= Hold)
+					{
+						bPlaced = true;
+						bWest = Side < 0;
+						Face(T->Screen, Dk.X, Dk.Y, bWest ? 6 : 4);
+						break;
+					}
+				}
+			}
 			for (const int32 Side : { -1, 1 })
 			{
+				if (bPlaced)
+				{
+					break;
+				}
 				const double Px = X + Side * Gap;
 				if (Px > 25.0 && Px < 615.0 && Clear(T->Screen, FMath::RoundToInt32(Px), Y) && GB->GotoScreen(T->Screen, Px - 20.0, Y))
 				{
@@ -2654,9 +2674,12 @@ namespace DinkProbeTest
 			}
 			// s7-boss.c:45-51: `freeze` and the pose 580 (only the bomb's wind-up freezes him; his animator may still show a walking seq).
 			const bool bWindUp = T->bFrozen && T->GetProp(TEXT("pseq")) == 580;
-			if (bWindUp && P->BombStartMs < 0.0)
+			// A new wind-up also when the last bomb's state is still up (two bombs 2 s apart: random(4000, 2000)). The wind-up is seen at the earliest
+			// when its pframe turns 2 (s7-boss.c:52-56), which is the moment the spot is taken: the start was 500 ms before (standing for the spot
+			// then only wastes the 800 ms the blast leaves to walk off it).
+			if (bWindUp && (P->BombStartMs < 0.0 || Now > P->BombStartMs + 1500.0))
 			{
-				P->BombStartMs = Now;
+				P->BombStartMs = T->GetProp(TEXT("pframe")) == 2 ? Now - 500.0 : Now;
 				S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: Seth winds up a bomb; Dink at %.0f,%.0f"), Dk.X, Dk.Y));
 			}
 			if (!bWindUp && Blasts.Num() == 0 && P->BombStartMs >= 0.0 && Now > P->BombStartMs + 1500.0)
@@ -3643,15 +3666,15 @@ namespace DinkProbeTest
 		}
 
 		/**
-		 * One sweep of a monster screen for its loot (Feud: see BuildChapter4's comment), until gold reaches GoldTarget. Shared by chapters 4 and 11.
+		 * One sweep of a monster screen for its loot (Feud: see BuildChapter4's comment), until gold reaches GoldTarget (and exp ExpTarget). Shared by chapters 4 and 11.
 		 * Level-up menus that open during it are answered LevelUps.
 		 */
-		void AddFeud(const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen, int32 GoldTarget, const TArray<FString>& LevelUps)
+		void AddFeud(const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen, int32 GoldTarget, const TArray<FString>& LevelUps, int32 ExpTarget = 0)
 		{
 			Add(Name,
-				[Screen, X, Y, Expected, bPen, GoldTarget](FCtx& C)
+				[Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
-					if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
+					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
 					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
 					const int32 Alive = C.Hostiles(Screen);
 					if (C.P->Mark < 0 && Alive >= Expected) { C.P->Mark = Alive; } // all of them have run their main
@@ -3685,9 +3708,9 @@ namespace DinkProbeTest
 					}
 					C.KiteFight(NAME_None, 70, O);
 				},
-				[Screen, bPen, GoldTarget](FCtx& C)
+				[Screen, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
-					const bool bGold = C.Fact(TEXT("gold")) >= GoldTarget;
+					const bool bGold = C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget;
 					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)));
 					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; return true; }
 					return false;
@@ -3696,19 +3719,19 @@ namespace DinkProbeTest
 
 		// Waits in Arturous's shop (nothing there to hurt him) at 8x time dilation: game time is what the respawn clock counts, and
 		// nothing is fought meanwhile.
-		void AddShopWait(const TCHAR* Name, double Seconds, int32 GoldTarget)
+		void AddShopWait(const TCHAR* Name, double Seconds, int32 GoldTarget, int32 ExpTarget = 0)
 		{
 			Add(Name,
-				[Seconds, GoldTarget](FCtx& C)
+				[Seconds, GoldTarget, ExpTarget](FCtx& C)
 				{
-					if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
+					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
 					if (C.P->WaitUntilMs < 0.0) { C.P->WaitUntilMs = C.S->GetNowMs() + Seconds * 1000.0; }
 					if (!C.OnScreen(97)) { C.Goto(97, 300, 230); } // inside, clear of the door's warp
 					C.Dilate(8.0f);
 				},
-				[GoldTarget](FCtx& C)
+				[GoldTarget, ExpTarget](FCtx& C)
 				{
-					if (C.Fact(TEXT("gold")) >= GoldTarget || C.S->GetNowMs() >= C.P->WaitUntilMs)
+					if ((C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) || C.S->GetNowMs() >= C.P->WaitUntilMs)
 					{
 						C.P->WaitUntilMs = -1.0;
 						C.Dilate(1.0f);
@@ -3969,7 +3992,9 @@ namespace DinkProbeTest
 							if (Dist < Best) { Best = Dist; Target = Pair.Key; }
 						}
 					}
-					if (Target) { C.KiteAndPunch(Target, 30); }
+					// Since the rock's hardness goes with it (s4-rock.c: sp_hard 1, draw_hard_map; pitfall 77), ducks wander out of the pen through the gap and
+					// one can jitter against the screen's north-west corner: Dink holds his spot (4 px) instead of following it pixel by pixel.
+					if (Target) { C.KiteAndPunch(Target, 30, true, 4); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
 		}
@@ -4029,16 +4054,19 @@ namespace DinkProbeTest
 			// Strength at the dragons is 13 + 1 (the level-up of chapter 8, now Attack) + 2 (the two all-potions below) + 4 (the longsword armed, item-sw1.c:44).
 			// 400 gold for the sword (s4-st3p.c:36-49); this run has 205. One round of chapter 4's Feud pays about 200, a second (after the 5-minute wait) the rest.
 			const int32 GoldTarget = 480; // 400 + 3 elixirs of 25 + a little
+			// And exp: the dragons' 800 must make level 5 (1600) for chapter 13. Since the cracked rock's hardness goes with it (chapter 9, pitfall 77) the
+			// random stream here differs and two rounds paid the gold with only 440 exp (three: 680); the rounds go on until both are there, four at most.
+			const int32 ExpTarget = 800;
 			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
-			for (int32 Round = 1; Round <= 3; ++Round)
+			for (int32 Round = 1; Round <= 4; ++Round)
 			{
 				if (Round > 1)
 				{
-					AddShopWait(*FString::Printf(TEXT("round %d: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)"), Round), 302.0, GoldTarget);
+					AddShopWait(*FString::Printf(TEXT("round %d: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)"), Round), 302.0, GoldTarget, ExpTarget);
 				}
-				AddFeud(*FString::Printf(TEXT("round %d: SCR_583, Bong and Boncd fight, he waits, then takes the loot"), Round), 583, 570, 60, 2, false, GoldTarget, LevelUps);
-				AddFeud(*FString::Printf(TEXT("round %d: SCR_480, two Bongs"), Round), 480, 570, 60, 2, true, GoldTarget, LevelUps);
-				AddFeud(*FString::Printf(TEXT("round %d: SCR_632, two Bongs"), Round), 632, 60, 380, 2, false, GoldTarget, LevelUps);
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_583, Bong and Boncd fight, he waits, then takes the loot"), Round), 583, 570, 60, 2, false, GoldTarget, LevelUps, ExpTarget);
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_480, two Bongs"), Round), 480, 570, 60, 2, true, GoldTarget, LevelUps, ExpTarget);
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_632, two Bongs"), Round), 632, 60, 380, 2, false, GoldTarget, LevelUps, ExpTarget);
 			}
 			// Route step 6/38 (probe_route.md 2.3): the all-potion chest of Murkwood (SCR_395 S395_P03 ch1-ap, with a flying pill bug beside it: touch 4) and the potion on the
 			// south coast (SCR_750 S750_P02): +1 strength, defense and magic each.
@@ -4053,14 +4081,9 @@ namespace DinkProbeTest
 				},
 				[](FCtx& C) { const bool bOk = C.Slot(TEXT("item-sw1")) != 0 && C.P->Mark >= 400 && C.Fact(TEXT("gold")) == C.P->Mark - 400 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 60.0, { TEXT("See what's for sale"), TEXT("Longsword - $400") }, 4.0);
 			// The dragons' harm cannot be dodged (20 - defense 5 = 15 a cast, 29 life): elixirs (Terris healer SCR_033, "Buy a bottle of elixer for $25", life +20) drunk in the fight.
-			Add(TEXT("three elixirs from the Terris healer (SCR_033 s2-healp: \"Buy a bottle of elixer for $25\" x3)"),
-				[](FCtx& C)
-				{
-					if (C.CountItem(TEXT("item-eli")) >= 3) { return; }
-					if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
-					if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
-				},
-				[](FCtx& C) { return C.CountItem(TEXT("item-eli")) >= 3 && C.Idle(); }, 60.0, { TEXT("Buy a bottle of elixer for $25"), TEXT("Buy a bottle of elixer for $25"), TEXT("Buy a bottle of elixer for $25") }, 0.5, true); // the healer's main loops on wait(500): Busy() is always true there
+			// Three at least; more when the rounds paid more (the Joppa dragons' casts are a lottery, pitfall 71: with the random stream of the rock's
+			// hardness fix, three were not enough). Gold kept for the healer.
+			AddElixirs(TEXT("elixirs from the Terris healer (SCR_033 s2-healp: \"Buy a bottle of elixer for $25\", three or more, up to six; 20 gold kept)"), 6, 20);
 			Add(TEXT("arm the longsword (item-sw1 arm: strength +4, sp_distance 50, sp_range 40)"),
 				[](FCtx& C) { if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("strength")); } C.G->ArmItemSlot(C.Slot(TEXT("item-sw1"))); },
 				[](FCtx& C) { const bool bOk = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") && C.P->Mark >= 0 && C.Fact(TEXT("strength")) == C.P->Mark + 4 && C.Idle(); if (bOk) { C.P->Mark = -1; } return bOk; }, 10.0);
@@ -4127,7 +4150,8 @@ namespace DinkProbeTest
 			// The two dragons' death spots hold emake.xlarge (gold200 and the like); the second kill's 400 exp reach 1600 (100 * 4 * 4): level 5, the menu "YOU ARE NOW LEVEL 5".
 			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Fact(TEXT("level")) >= 5 && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
+				// (level 5 only when the exp is there: chapter 11's rounds may have paid less than 800, and the level-up then comes in the Darklands)
+				[](FCtx& C) { return Drops(C) == 0 && (C.Fact(TEXT("level")) >= 5 || C.Fact(TEXT("exp")) < 1600) && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
 			Add(TEXT("the castle gate (SCR_402, s2-ca-g talk at &story 12: \"Request an audience with King Daniel\": enter() -> SCR_102)"),
 				[](FCtx& C)
 				{
@@ -4241,7 +4265,14 @@ namespace DinkProbeTest
 			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
 				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
-			AddPickup(TEXT("the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)"), 157, 267, 215, TEXT("gheart"), TEXT("lifemax"), 0);
+			// (The fight of chapter 16 can walk Dink over it: then it is taken already.)
+			Add(TEXT("the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(157)) { C.Goto(157, 267, 215); return; }
+					if (const int32 Heart = C.SpriteWithScript(TEXT("gheart"))) { C.StandBy(Heart, 0, true); }
+				},
+				[](FCtx& C) { return C.OnScreen(157) && !C.SpriteWithScript(TEXT("gheart")) && C.Idle(); }, 30.0, {}, 0.5);
 			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
 				[](FCtx& C)
 				{
@@ -4361,6 +4392,77 @@ namespace DinkProbeTest
 					for (const FString& Script : Scripts) { bLeft |= C.SpriteWithScript(*Script) != 0; }
 					return C.OnScreen(Screen) && !bLeft && C.Idle() && !C.Busy();
 				}, 60.0, Answers, 0.5);
+		}
+
+		/**
+		 * A barrel or chest hit from one side (Dink at engine X/Y of Screen facing Dir, a blow) until its script has run, then the potion it made (Script, raising
+		 * Fact by one) picked up; also every placed sprite with that script on Screen. An elixir when one more Darklands harm (30 - defense) would kill.
+		 * Guard: a monster with that script nearer than GuardClear px to X/Y is first led away (Dink waits at LureX/LureY until it has followed him).
+		 */
+		void AddHitAndPickup(const TCHAR* Name, int32 Screen, int32 Index, double X, double Y, int32 Dir, const TCHAR* Script, const TCHAR* Fact, const TArray<FString>& Answers,
+			const TCHAR* Guard = nullptr, double LureX = 0.0, double LureY = 0.0, double GuardClear = 0.0)
+		{
+			const FName GuardName(Guard ? Guard : TEXT(""));
+			Add(Name,
+				[=](FCtx& C)
+				{
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); }
+					if (!C.OnScreen(Screen)) { C.Goto(Screen, Guard ? LureX : X, Guard ? LureY : Y); return; }
+					if (C.DrinkAndKeepSword(30)) { return; }
+					if (Guard)
+					{
+						bool bNear = false;
+						for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+						{
+							const FDinkSprite& O = Pair.Value;
+							bNear |= O.bActive && O.Screen == Screen && O.Script == GuardName && FMath::Max(FMath::Abs(O.X - X), FMath::Abs(O.Y - Y)) < GuardClear;
+						}
+						if (bNear) { C.Goto(Screen, LureX, LureY); return; }
+					}
+					const int32 Box = C.Placement(Screen, Index);
+					const FDinkSprite* B = Box ? C.D->FindSprite(Box) : nullptr;
+					const FDinkPlacementInfo* P = C.G->GetData().FindPlacement(FDinkOriginId(Screen, Index));
+					if (B && P && B->bActive && B->Script == P->Script)
+					{
+						C.GB->GotoScreen(Screen, X - 20.0, Y);
+						C.G->SyncDinkFromActor();
+						C.Face(Screen, X, Y, Dir);
+						C.G->PlayerAttack();
+						return;
+					}
+					if (const int32 Potion = C.SpriteWithScript(Script)) { C.StandBy(Potion, 0, true); }
+				},
+				[=](FCtx& C)
+				{
+					const FDinkPlacementInfo* P = C.G->GetData().FindPlacement(FDinkOriginId(Screen, Index));
+					const int32 Box = C.Placement(Screen, Index);
+					const FDinkSprite* B = Box ? C.D->FindSprite(Box) : nullptr;
+					const bool bHit = !(B && P && B->bActive && B->Script == P->Script);
+					const bool bOk = C.P->Mark >= 0 && bHit && C.Fact(Fact) >= C.P->Mark + 1 && !C.SpriteWithScript(Script) && C.Idle();
+					if (bOk) { C.P->Mark = -1; }
+					return bOk;
+				}, 40.0, Answers, 0.5, true);
+		}
+
+		/** The sprites with these scripts on Screen picked up one after the other (teleported onto, as StandBy does); Dink arrives at engine X/Y. An elixir when one more Darklands harm would kill. */
+		void AddTake(const TCHAR* Name, int32 Screen, double X, double Y, TArray<FString> Scripts, const TArray<FString>& Answers)
+		{
+			Add(Name,
+				[=](FCtx& C)
+				{
+					if (!C.OnScreen(Screen)) { C.Goto(Screen, X, Y); return; }
+					if (C.DrinkAndKeepSword(30)) { return; }
+					for (const FString& Script : Scripts)
+					{
+						if (const int32 H = C.SpriteWithScript(*Script)) { C.StandBy(H, 0, true); return; }
+					}
+				},
+				[=](FCtx& C)
+				{
+					bool bLeft = false;
+					for (const FString& Script : Scripts) { bLeft |= C.SpriteWithScript(*Script) != 0; }
+					return C.OnScreen(Screen) && !bLeft && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy();
+				}, 60.0, Answers, 0.5, true);
 		}
 
 		/** Waits at the Windemere healer (nothing there to hurt him) at 8x until the Darklands rooms are back (editor_type 6: 5 minutes after Dink last left them). */
@@ -4501,8 +4603,7 @@ namespace DinkProbeTest
 			// SCR_209: two en-stg golems (brain 9, target Dink from `main`, 30 px/s, strength 35, defense 18) walk towards him; the hole first, while they are far.
 			AddPit(TEXT("the hole of SCR_209 (S209_P04 s1-hole3: touch, a 2 s fall, &player_map 198)"), 209, 4, 283, 297, 198, LevelUps);
 			AddPickup(TEXT("the two strength potions of the room below (SCR_198 S198_P20/P21 rpotion: strength +2)"), 198, 300, 300, TEXT("rpotion"), TEXT("strength"), 0);
-			// The chest of SCR_209's east side, in and out. (The potion S209_P10 lies behind the food barrel S209_P13, in a pocket of low hardness: the barrel's `hit`
-			// makes it flat and soft (bar-f1.c: sp_hard 1, draw_hard_sprite), which the remaster records but does not apply to the hardness; it is left there.)
+			// The chest of SCR_209's east side, in and out.
 			Add(TEXT("the chest of SCR_209's east side (S209_P05 ch1-sp: a blow, then make.rpotion: strength +1)"),
 				[](FCtx& C)
 				{
@@ -4527,6 +4628,12 @@ namespace DinkProbeTest
 					if (bOk) { C.P->Mark = -1; }
 					return bOk;
 				}, 30.0, LevelUps, 0.5, true);
+			// The potion S209_P10 lies behind the food barrel S209_P13, in a pocket of low hardness: the barrel's `hit` makes it flat and soft (bar-f1.c: editor_type 3,
+			// sp_hard 1, draw_hard_sprite), and the greybox's collision follows since pitfall 77 was fixed (UDinkGameplay::DrawHardSprite).
+			// The golem S209_P16 starts beside the barrel in the same walkable pocket (x 399-446 below y 225, then the strip at y 175-200 to the east
+			// edge): Dink waits at the strip's west end until it has followed him out (30 px/s), then hits the barrel and takes the potion.
+			AddHitAndPickup(TEXT("the food barrel of SCR_209 (S209_P13 bar-f1: a blow from the north makes it flat and soft) and the potion behind it (S209_P10 rpotion: strength +1)"),
+				209, 13, 416, 280, 2, TEXT("rpotion"), TEXT("strength"), LevelUps, TEXT("en-stg"), 260, 188, 100.0);
 			AddWindemereHealer(LevelUps);
 			AddPit(TEXT("the hole of SCR_180 (S180_P01 s6-hole2: touch, a 2 s fall, &player_map 166)"), 180, 1, 265, 72, 166, LevelUps);
 			Add(TEXT("SCR_166, the room below: two slayers (en-slay: 100 hp, defense 5, strength 20, range 45): SquadFight with the sword"),
@@ -4541,6 +4648,20 @@ namespace DinkProbeTest
 				[](FCtx& C) { return C.OnScreen(166) && C.SpriteWithScript(TEXT("en-slay")) == 0 && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, LevelUps, 0.001, true);
 			AddCollect(TEXT("SCR_166's potions (rpotion, apotion, ppotion, bpotion: strength +2, defense +2, magic +2), the gold heart (lifemax +10) and the slayers' loot"), 166,
 				{ TEXT("rpotion"), TEXT("apotion"), TEXT("ppotion"), TEXT("bpotion"), TEXT("gheart") }, LevelUps);
+			// Margin for Seth (chapter 20 won with the last of eleven elixirs; eleven is every free item slot, so more elixirs cannot be carried). Pickups no monster
+			// guards (probe_route.md 2.3 lists none of them as taken): strength 26 -> 30 at the bow makes item-b1's arrow (power / 100) * (strength / 5) 30 and a
+			// power shot 90 instead of 25 and 75 (item-b1.c:70-89), lifemax +30, defense +2, magic +1; then SCR_159's four magic potions under four Darklands
+			// dragons (s7-drag: greater harm 30, resisted when random(40, 1) <= &magic, s7-drag.c:67-90; the same resist Seth's harm has, s7-boss.c:76-87).
+			AddHitAndPickup(TEXT("the barrel of SCR_177 (S177_P03 bar-sp: a blow from the south, make.spotion) and its potion (rpotion: strength +1)"),
+				177, 3, 272, 82, 8, TEXT("rpotion"), TEXT("strength"), LevelUps);
+			AddPickup(TEXT("the gold heart of SCR_165 (S165_P01 gheart: lifemax +10)"), 165, 309, 230, TEXT("gheart"), TEXT("lifemax"), 0);
+			AddPickup(TEXT("the chest of SCR_284 (S284_P04 ch2-gh: a blow, then make.gheart: lifemax +10)"), 284, 330, 268, TEXT("gheart"), TEXT("lifemax"), 4);
+			AddTake(TEXT("SCR_352's potions and gold heart (S352_P18-21: bpotion, rpotion, gheart, apotion: strength +2, defense +2, magic +1, lifemax +10; its ppotion P17 is chapter 1's; the gold is left)"),
+				352, 205, 388, { TEXT("rpotion"), TEXT("apotion"), TEXT("bpotion"), TEXT("ppotion"), TEXT("gheart") }, LevelUps);
+			AddWindemereHealer(LevelUps);
+			AddTake(TEXT("SCR_159's four magic potions (S159_P10-13 ppotion: magic +4) among four Darklands dragons (s7-drag, not fought)"),
+				159, 380, 210, { TEXT("ppotion") }, LevelUps);
+			AddWindemereHealer(LevelUps);
 			// Gold and the level-up: the Darklands rooms, back 5 minutes after Dink last left them (chapters 15-17 played them first).
 			AddRespawnWait(TEXT("visit 1: wait at the Windemere healer (8x) until the Darklands rooms are back (editor_type 6, 5 minutes)"), GoldTarget, LevelUps);
 			AddDarklandsVisit(1, GoldTarget, LevelUps);
@@ -4587,7 +4708,7 @@ namespace DinkProbeTest
 					if (const int32 Man = C.SpriteWithScript(TEXT("s3-bowl"))) { C.StandBy(Man, 25); C.S->TryTalk(C.Pawn); }
 				},
 				[](FCtx& C) { const bool bOk = C.Fact(TEXT("bowlore")) == 1 && C.P->Mark >= 1500 && C.Fact(TEXT("gold")) == C.P->Mark - 1500 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 60.0, { TEXT("Learn bow lore") }, 4.0);
-			AddElixirs(TEXT("elixirs for Seth (SCR_033 s2-healp: up to ten, gold kept for the healer)"), Elixirs, 40, LevelUps);
+			AddElixirs(TEXT("elixirs for Seth (SCR_033 s2-healp: up to eleven, every free item slot; gold kept for the healer)"), Elixirs, 40, LevelUps);
 			AddWindemereHealer(LevelUps);
 			Add(TEXT("arm the bow (item-b1 arm: the bow's pictures; the longsword's disarm takes its +4 strength back)"),
 				[](FCtx& C) { C.G->ArmItemSlot(C.Slot(TEXT("item-b1"))); },
