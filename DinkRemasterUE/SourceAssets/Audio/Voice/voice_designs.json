@@ -31,7 +31,8 @@
   "chosen": 3,
   "voice_id": "aDgFAjt9jU7EaszhbUMK",
   "voice_name": "Martridge (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "milder": {
   "voice": "milder",
@@ -65,7 +66,8 @@
   "chosen": 3,
   "voice_id": "SpXDjf4aU5aSzLHg7yY2",
   "voice_name": "Milder Flatstomp (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "mother": {
   "voice": "mother",
@@ -99,7 +101,8 @@
   "chosen": 1,
   "voice_id": "IlQeJJkmgM3UT2XafSjZ",
   "voice_name": "Dink's Mother (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "king": {
   "voice": "king",
@@ -133,7 +136,8 @@
   "chosen": 2,
   "voice_id": "evN3MUnCM5KirzySatpt",
   "voice_name": "King Daniel (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "dink": {
   "character": "Dink",
@@ -167,8 +171,9 @@
   "chosen": 1,
   "voice_id": "TU37Ff3IUgsCPWFKXNG7",
   "voice_name": "Dink Smallwood (remaster)",
-  "chosen_on": "2026-11-07",
-  "voice": "dink"
+  "chosen_on": "2026-11-08",
+  "voice": "dink",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "seth": {
   "voice": "seth",
@@ -202,7 +207,8 @@
   "chosen": 2,
   "voice_id": "UsTbo6fMD8ua10r5WIYH",
   "voice_name": "Seth (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
  },
  "mog": {
   "voice": "mog",
@@ -236,6 +242,714 @@
   "chosen": 1,
   "voice_id": "qpvaboJ8HxkAt3kkxRCj",
   "voice_name": "Mog (remaster)",
-  "chosen_on": "2026-11-07"
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (saved in the ElevenLabs library)"
+ },
+ "woman_old": {
+  "voice": "woman_old",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Elderly woman, quavering, fussy and sentimental, a little nosy and fond of a drink, breaking into hysterical grief.",
+  "preview_text": "You must keep searching for Quackers!  I loved him! Hello murderer!! I'm so grateful to you, Dink!  You are wonderful! It's not your fault Dink. Oh Dink, look who is here!",
+  "view_state_id": "viewstate_01m6yxxj04fd1v7t02j1e050r1",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "TGX146dGyoeyVrocfxkc",
+    "file": "previews/woman_old_preview_1_TGX146dGyoeyVrocfxkc.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "LnZBx8nLjGOAx8wW3PtM",
+    "file": "previews/woman_old_preview_2_LnZBx8nLjGOAx8wW3PtM.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "4A1X7ffg1kEAFZmmM4Op",
+    "file": "previews/woman_old_preview_3_4A1X7ffg1kEAFZmmM4Op.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 1,
+  "voice_id": "TGX146dGyoeyVrocfxkc",
+  "voice_name": "Old woman (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "guard": {
+  "voice": "guard",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Adult man in uniform, stolid and professional, a touch amused or wary, shouting when provoked.",
+  "preview_text": "Sorry about what happened Dink, I hope you're ok. Dink is a hero!  WE MUST GO TELL THE OTHERS! King Daniel has ruled with an iron hand for nearly a decade now.",
+  "view_state_id": "viewstate_01m6yxxtsxegwbndec15tm07m0",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "rXJaUbRF8wKw4C939mDL",
+    "file": "previews/guard_preview_1_rXJaUbRF8wKw4C939mDL.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "DakcTbRDt9n2ygSI6EW3",
+    "file": "previews/guard_preview_2_DakcTbRDt9n2ygSI6EW3.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "5jShMg4k5ZxBJvOhovGs",
+    "file": "previews/guard_preview_3_5jShMg4k5ZxBJvOhovGs.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "5jShMg4k5ZxBJvOhovGs",
+  "voice_name": "Guard (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "man_middle": {
+  "voice": "man_middle",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Ordinary middle-aged man, an all-purpose voice that runs from tired and polite to gruff, anxious or angry.",
+  "preview_text": "Actually, it was to stop a freak named Bishop Nelson. Guards!! Help me, destroy this madman! But they say a magic user came and cast a mighty spell on the castle.",
+  "view_state_id": "viewstate_01m6yxy31efjrrznn3213metkk",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "AuCxHbbsnhopmq1xpipo",
+    "file": "previews/man_middle_preview_1_AuCxHbbsnhopmq1xpipo.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "Jscju4X4Hz8yKibOC0jm",
+    "file": "previews/man_middle_preview_2_Jscju4X4Hz8yKibOC0jm.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "SxtC37CnDHpElpgHYBiJ",
+    "file": "previews/man_middle_preview_3_SxtC37CnDHpElpgHYBiJ.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "Jscju4X4Hz8yKibOC0jm",
+  "voice_name": "Man, middle-aged (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "man_old": {
+  "voice": "man_old",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Elderly man with a weathered, gravelly voice, cranky and rambling, a tall-tale teller or ex-sailor who has had a drink.",
+  "preview_text": "Did I ever tell you about the time I trained a slayer? He's a PIG FARMER?! I suppose I'll be dead soon.  I'm not particularly worried. Nope.  If I did, I doubt I would want to live it.",
+  "view_state_id": "viewstate_01m6yxydwfevdttbexr39aq462",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "VMpUSOBcT9PYkVRAiL1t",
+    "file": "previews/man_old_preview_1_VMpUSOBcT9PYkVRAiL1t.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "KRSr6TsIW9m1jyJzkbGH",
+    "file": "previews/man_old_preview_2_KRSr6TsIW9m1jyJzkbGH.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "qi49U0EY8fGVXbNaZUC5",
+    "file": "previews/man_old_preview_3_qi49U0EY8fGVXbNaZUC5.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "KRSr6TsIW9m1jyJzkbGH",
+  "voice_name": "Man, old (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "woman_young": {
+  "voice": "woman_young",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Young adult woman, bright, direct and spirited, able to turn sharp, sorrowful or tearful.",
+  "preview_text": "Oh yes!  Hey, hero Smallwood just asked me out! You fool, of course not!!  He doesn't do that!! Nothing Dink, you wouldn't understand. There was nothing you could do..",
+  "view_state_id": "viewstate_01m6yxynz7fk5bf0bw20yaw4y4",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "oh7cYPfLaynUO6lmsIJV",
+    "file": "previews/woman_young_preview_1_oh7cYPfLaynUO6lmsIJV.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "UA3uDhyUgUIetRteJ5hk",
+    "file": "previews/woman_young_preview_2_UA3uDhyUgUIetRteJ5hk.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "Fi3J1415QoBHYj3LooBY",
+    "file": "previews/woman_young_preview_3_Fi3J1415QoBHYj3LooBY.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 1,
+  "voice_id": "oh7cYPfLaynUO6lmsIJV",
+  "voice_name": "Woman, young (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "merchant": {
+  "voice": "merchant",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Shopkeeper of either sex, polite and practical, with smug or prim sales patter that turns meek when struck.",
+  "preview_text": "That hurts and all, but you could be doing much more damage with a bow! I'm sorry sir, but you DON'T have enough gold! Um, sir?  It's stuffed.  It isn't alive... It won't hurt you.",
+  "view_state_id": "viewstate_01m6yxyywzf4ntbv7dq6nsyzt7",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "8uJV8KIF7mHpQkN8biW7",
+    "file": "previews/merchant_preview_1_8uJV8KIF7mHpQkN8biW7.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "XDBSIsuZ4ERMPHQ5e0qQ",
+    "file": "previews/merchant_preview_2_XDBSIsuZ4ERMPHQ5e0qQ.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "AjyiBcPVLbsNzxN13Yej",
+    "file": "previews/merchant_preview_3_AjyiBcPVLbsNzxN13Yej.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 1,
+  "voice_id": "8uJV8KIF7mHpQkN8biW7",
+  "voice_name": "Merchant (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "monster": {
+  "voice": "monster",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Deep, slow, growling beast that speaks in words through a snarl, menacing and boastful.",
+  "preview_text": "Try your best but you risk your life doing so... Who dares enter my cave? You cannot win, Smallwood. RRrrr ar a rar a  arrgghhh. I sense someone in my domain.",
+  "view_state_id": "viewstate_01m6yxz9jse8rvc322beh49jyd",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "8qAFN5aM3NxkD4Vmyh6E",
+    "file": "previews/monster_preview_1_8qAFN5aM3NxkD4Vmyh6E.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "k23dThXtPDcDOatu0rEY",
+    "file": "previews/monster_preview_2_k23dThXtPDcDOatu0rEY.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "xnSoYpTVFFoJpM8qrdeN",
+    "file": "previews/monster_preview_3_xnSoYpTVFFoJpM8qrdeN.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "k23dThXtPDcDOatu0rEY",
+  "voice_name": "Monster (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "duck": {
+  "voice": "duck",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Comic talking duck, deadpan and friendly, with a slight quacking nasal cadence, ranging from sulky to hearty.",
+  "preview_text": "Hi, we are the giant ducks of Koka Isle. Quack.  No!! To bad, better luck next time. The bets are in, let's fight! Would you like to play with me? Too bad, better luck next time.",
+  "view_state_id": "viewstate_01m6yxzjy1eevsw1y5qa3myct5",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "p9wT6SOOlYnx9fRjWYPY",
+    "file": "previews/duck_preview_1_p9wT6SOOlYnx9fRjWYPY.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "md49TqMoWQeeNkqOdzcy",
+    "file": "previews/duck_preview_2_md49TqMoWQeeNkqOdzcy.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "m9C7Ji6MKfHgXYObrUfO",
+    "file": "previews/duck_preview_3_m9C7Ji6MKfHgXYObrUfO.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "md49TqMoWQeeNkqOdzcy",
+  "voice_name": "Duck (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "traveller": {
+  "voice": "traveller",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Friendly middle-aged wanderer, chatty and relaxed, a natural lore-giver who explains things at length in a warm storytelling tone.",
+  "preview_text": "AlkTree nuts??  Those make for a hearty meal.  Let's see.. Ow, crazy bastard!! If you ever run into goblins, be careful. So young man, what's your name?",
+  "view_state_id": "viewstate_01m6yxzvapf0ttw66y9yk0w73x",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "N7ckpO5o6nbXH8BGk1u4",
+    "file": "previews/traveller_preview_1_N7ckpO5o6nbXH8BGk1u4.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "eRqtyGF47keCwbzMCf8N",
+    "file": "previews/traveller_preview_2_eRqtyGF47keCwbzMCf8N.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "9eT0xjfYAxpARksu77cY",
+    "file": "previews/traveller_preview_3_9eT0xjfYAxpARksu77cY.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "9eT0xjfYAxpARksu77cY",
+  "voice_name": "Traveller (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "zands": {
+  "voice": "zands",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Man in his thirties, jumpy and informal, an escaped prisoner who talks a lot, dry and bitter about goblins, with lore delivered in long rambling explanations.",
+  "preview_text": "I hope I can make it to PortTown and get away for a while. Anyway they said this guy could actually turn people to ice!! I've always wanted to go out into the world and find adventure.",
+  "view_state_id": "viewstate_01m6yy02dtfsz9e0jtek3dm78p",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "EYpv73sZ2YqOmYzrj01d",
+    "file": "previews/zands_preview_1_EYpv73sZ2YqOmYzrj01d.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "nzu62CBzkP5c9LJ4grSd",
+    "file": "previews/zands_preview_2_nzu62CBzkP5c9LJ4grSd.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "i61nfwAxa3d2xqzvEFbE",
+    "file": "previews/zands_preview_3_i61nfwAxa3d2xqzvEFbE.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 1,
+  "voice_id": "EYpv73sZ2YqOmYzrj01d",
+  "voice_name": "Chance Zands (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "narrator": {
+  "voice": "narrator",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Neutral, clear storyteller or reader voice for signs, posters and end-card text, warm, slightly wry and unhurried.",
+  "preview_text": "Or make your own, download the free development kit. YOU HAVE FINISHED THE GAME. By order of our great ducks the monthly tax shall be doubled. The King's News, issue 76.",
+  "view_state_id": "viewstate_01m6yy0b6wfbgan6szr4yqrae3",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "boceiNdQx5Slag8ptuG2",
+    "file": "previews/narrator_preview_1_boceiNdQx5Slag8ptuG2.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "6bGahNVA4VsZvx9Ru6Hy",
+    "file": "previews/narrator_preview_2_6bGahNVA4VsZvx9Ru6Hy.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "tGrNbeX46CMRbp3kX3jK",
+    "file": "previews/narrator_preview_3_tGrNbeX46CMRbp3kX3jK.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "tGrNbeX46CMRbp3kX3jK",
+  "voice_name": "Narrator (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "girl": {
+  "voice": "girl",
+  "designed_on": "2026-11-08",
+  "blocked": "ElevenLabs refused the voice-design prompt (safety guidelines: a child voice). Proposal: cast the girls with the woman_young voice, or decide a different approach with the owner.",
+  "voice_description": "Young girl of about six to ten, high and bright, by turns chirpy and gossipy, innocent, frightened or spoiled and screeching.",
+  "preview_text": "Libby and her new boyfriend seem really happy together. He's a slayer shapeshifter!  No!!!! I think the Carcass would appreciate another sacrifice, Bishop Nelson.",
+  "previews": [],
+  "chosen": null,
+  "stand_in": "woman_young",
+  "voice_id": "oh7cYPfLaynUO6lmsIJV",
+  "voice_name": "Woman, young (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (approved the stand-in in chat)"
+ },
+ "christina": {
+  "voice": "christina",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Young woman, earnest and sunny, a painter and the Mayor's daughter, polite, a little dreamy, urgent when the town is in danger.",
+  "preview_text": "Yeah me too, everyone's happy as can be. I'll head back to the fountain and warn people. My god, look at this plan. The mayor's sometimes in here. Not really, no one's been here.",
+  "view_state_id": "viewstate_01m6yyqqvyf9esb3q0535419q3",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "KflMZJcXDCbso1iLp8wz",
+    "file": "previews/christina_preview_1_KflMZJcXDCbso1iLp8wz.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "O2jrM7gBydPKHZIsCfkK",
+    "file": "previews/christina_preview_2_O2jrM7gBydPKHZIsCfkK.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "ytzFUDsFJ3vSvWNVu0RP",
+    "file": "previews/christina_preview_3_ytzFUDsFJ3vSvWNVu0RP.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "ytzFUDsFJ3vSvWNVu0RP",
+  "voice_name": "Christina (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "nelson": {
+  "voice": "nelson",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Smooth, theatrical middle-aged cult leader, unctuous and sermonizing, with a gleeful cruelty underneath.",
+  "preview_text": "Your blood will flow like the river Jordan. The girls are hungry - DINNER TIME! How goes the Dead Dragon Carcass worshipping, girls? Judgement day has cometh, sinner!",
+  "view_state_id": "viewstate_01m6yyr2gxe15sjw4mfhgvz8d6",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "VJAhuDkK49BevvT4WfvD",
+    "file": "previews/nelson_preview_1_VJAhuDkK49BevvT4WfvD.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "57XIVd3CP3Ysq1Drvmwl",
+    "file": "previews/nelson_preview_2_57XIVd3CP3Ysq1Drvmwl.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "Rlu6VFbsdysBw1j7egLG",
+    "file": "previews/nelson_preview_3_Rlu6VFbsdysBw1j7egLG.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 1,
+  "voice_id": "VJAhuDkK49BevvT4WfvD",
+  "voice_name": "Bishop Nelson (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "villain": {
+  "voice": "villain",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Cold, rough-voiced men of a criminal conspiracy, sneering and threatening, with short bursts of cruel laughter.",
+  "preview_text": "You may live, if you forget all that you've seen here. Looks like you have trouble learning, small one. I thought I told you to stay away from us. Right.  Have you contacted Mog?",
+  "view_state_id": "viewstate_01m6yyravhfvms2zg7f5pyfdqt",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "tByjzsgSl21A2XkLhZVO",
+    "file": "previews/villain_preview_1_tByjzsgSl21A2XkLhZVO.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "75hSBNlPqMJMgGSq8f3F",
+    "file": "previews/villain_preview_2_75hSBNlPqMJMgGSq8f3F.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "VRG9wzaUZgPYdGETquvY",
+    "file": "previews/villain_preview_3_VRG9wzaUZgPYdGETquvY.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "VRG9wzaUZgPYdGETquvY",
+  "voice_name": "Cast villain (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "man_young": {
+  "voice": "man_young",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Young adult man, casual, energetic and slightly deadpan or hyperactive, an everyman.",
+  "preview_text": "There go my chances of impressing the Mayor's daughter!!!! My ducks!!!!!!!! ALL DEAD!!!!!!! DAMN YOU! I don't know man, I just work here. What are you, some kind of freak?",
+  "view_state_id": "viewstate_01m6yyrj9te47tzyh83t71fp67",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "3BQeEcPpBimrXfPRYybj",
+    "file": "previews/man_young_preview_1_3BQeEcPpBimrXfPRYybj.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "ySQAck4VuH1YhXmei3zl",
+    "file": "previews/man_young_preview_2_ySQAck4VuH1YhXmei3zl.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "f4EbqXW08ovCPUcxaQVy",
+    "file": "previews/man_young_preview_3_f4EbqXW08ovCPUcxaQVy.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "ySQAck4VuH1YhXmei3zl",
+  "voice_name": "Man, young (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "woman_middle": {
+  "voice": "woman_middle",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Middle-aged woman, warm, worn and practical, alternating anxious motherly softness with fear or resolve.",
+  "preview_text": "This must be a hard time for you, being so young and suffering... Not the fists, not the fists!! It's in the King's News, there is a copy at the healers.",
+  "view_state_id": "viewstate_01m6yyrswpf0xrv3bj52mbekcq",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "zPVVq5o8bqg2hc1pbUEX",
+    "file": "previews/woman_middle_preview_1_zPVVq5o8bqg2hc1pbUEX.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "uU1YqTkA3kFEwyBQlq6u",
+    "file": "previews/woman_middle_preview_2_uU1YqTkA3kFEwyBQlq6u.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "arFS6jGhNZR1R9ZXy06f",
+    "file": "previews/woman_middle_preview_3_arFS6jGhNZR1R9ZXy06f.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "arFS6jGhNZR1R9ZXy06f",
+  "voice_name": "Woman, middle-aged (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "wizard_old": {
+  "voice": "wizard_old",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Very old, absent-minded mage, dry and rambling, forgetful with names, muttering ancient lore.",
+  "preview_text": "Why should I care what happens to this man? SMALLWOOD ?!? Well, if those Cast members are involved I'd best help. Thank you ... what is your name friend?",
+  "view_state_id": "viewstate_01m6yys3jpeavs3bve1yx3wrrw",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "yLXi0JUtpfGJpLvO1n84",
+    "file": "previews/wizard_old_preview_1_yLXi0JUtpfGJpLvO1n84.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "T18BLJvQNV6V7yNbHeAd",
+    "file": "previews/wizard_old_preview_2_T18BLJvQNV6V7yNbHeAd.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "ziL889vqLm5fsPpWk3sz",
+    "file": "previews/wizard_old_preview_3_ziL889vqLm5fsPpWk3sz.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "T18BLJvQNV6V7yNbHeAd",
+  "voice_name": "Wizard, old (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "ghost": {
+  "voice": "ghost",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Eerie spectral adult voice, hollow and echoing, flat and plaintive, then shrieking.",
+  "preview_text": "Last thing I remember is that group of knights.. and blood. LOOK UPON MY DEFORMED FACE! I feel so old.. yet why have I not aged? Some of us like to eat humans.  I would leave if I were you.",
+  "view_state_id": "viewstate_01m6yysfc4frksdn0xhz941gjr",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "XzBJRq3wmqTrahdN0APL",
+    "file": "previews/ghost_preview_1_XzBJRq3wmqTrahdN0APL.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "X1yjKuc5mUjAspsO9GkP",
+    "file": "previews/ghost_preview_2_X1yjKuc5mUjAspsO9GkP.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "QE6VHaegHjItrY0ZuuFn",
+    "file": "previews/ghost_preview_3_QE6VHaegHjItrY0ZuuFn.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 3,
+  "voice_id": "QE6VHaegHjItrY0ZuuFn",
+  "voice_name": "Ghost (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "tree": {
+  "voice": "tree",
+  "model": "eleven_ttv_v3",
+  "language": "en",
+  "guidance_scale": 10,
+  "designed_on": "2026-11-08",
+  "voice_description": "Creaky, comical talking tree, timid and nasal, fond of puns and a cackling laugh.",
+  "preview_text": "Please sir, don't hurt me, the talking tree of the east! Your magic is treely useless against me.. HAW HAW HAW! There is a rock near the Duck Idol with a crack in it...",
+  "view_state_id": "viewstate_01m6yyssb7f1jba4wntbzjnftx",
+  "previews": [
+   {
+    "n": 1,
+    "generated_voice_id": "oosdgu43OM1kaQiEUGLl",
+    "file": "previews/tree_preview_1_oosdgu43OM1kaQiEUGLl.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 2,
+    "generated_voice_id": "ApEIasxKqvX0n2T8TkAJ",
+    "file": "previews/tree_preview_2_ApEIasxKqvX0n2T8TkAJ.mp3",
+    "downloaded": true
+   },
+   {
+    "n": 3,
+    "generated_voice_id": "s6NrzYszulyKGzVpWbYm",
+    "file": "previews/tree_preview_3_s6NrzYszulyKGzVpWbYm.mp3",
+    "downloaded": true
+   }
+  ],
+  "chosen": 2,
+  "voice_id": "ApEIasxKqvX0n2T8TkAJ",
+  "voice_name": "Talking tree (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (picks given in chat, saved by Claude)"
+ },
+ "goblin": {
+  "voice": "goblin",
+  "designed_on": "2026-11-08",
+  "blocked": "ElevenLabs refused the voice-design prompt (safety guidelines), most likely the gibberish preview text. Proposal: cast the goblins with the Mog voice (qpvaboJ8HxkAt3kkxRCj), or decide another approach with the owner.",
+  "voice_description": "Gruff, guttural goblins; most lines are invented gibberish to be read as an alien language with consistent sounds, and a few are childlike broken English.",
+  "preview_text": "Hoglim dack byork! Oston tewers inat'l meen o mistary! Gro'k ki owab dakis gedi! no bow?!!! un not joon! leev!! they ar BAD.  they can oonly anderstund ONE theng.",
+  "previews": [],
+  "chosen": null,
+  "stand_in": "mog",
+  "voice_id": "qpvaboJ8HxkAt3kkxRCj",
+  "voice_name": "Mog (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (approved the stand-in in chat)"
+ },
+ "dragon": {
+  "voice": "dragon",
+  "designed_on": "2026-11-08",
+  "not_designed": "only two lines (46 characters), below the design tool minimum of 100. Proposal: cast the dragons with the monster voice (k23dThXtPDcDOatu0rEY).",
+  "voice_description": "Vast, ancient dragon, a low rumbling slow voice, solemn and vengeful.",
+  "preview_text": "Let us finish it. Run from us no more, humans.",
+  "previews": [],
+  "chosen": null,
+  "stand_in": "monster",
+  "voice_id": "k23dThXtPDcDOatu0rEY",
+  "voice_name": "Monster (remaster)",
+  "chosen_on": "2026-11-08",
+  "chosen_by": "owner (approved the stand-in in chat)"
  }
 }
