@@ -14,14 +14,14 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FDinkScreenChanged, ADinkScreenVolume*);
 
 /**
  * Play-time helper for the imported greybox: knows every screen volume, tracks which original
- * screen the player is on (shown on screen while playing), applies &vision per screen, and keeps
+ * screen the player is on (optionally shown by the developer overlay), applies &vision per screen, and keeps
  * a short post-warp cooldown so a warp cannot fire twice in a row.
  *
  * Console commands (PIE / game):
  *   dink.Where                       print the current screen
  *   dink.Goto <screen> [x y]         teleport the player to a screen (map pixels, default centre)
  *   dink.Vision <screen> <value>     show the placements of that &vision value on a screen
- *   dink.ScreenInfo 0|1              on-screen display of the current screen (default 1)
+ *   dink.ScreenInfo 0|1              on-screen display of the current screen (default 0; developer opt-in)
  */
 
 
