@@ -1,0 +1,135 @@
+{
+  "schema": "dink-art-families/1",
+  "about": "Sprite-family art bindings, read by UDinkArtFamilySubsystem at screen activation and by Scripts/art_coverage.py. Visual only: placements keep their collision, hardness, origin IDs and scripts. Precedence: origin and screen bindings in the other Data/Art manifests win; a class id row wins over a sequence row. fit none (the default): real-size meshes standing at the card's ground point, like the player and the dressed screens. Rules: SourceAssets/Art/ART_STANDARD.md.",
+  "families": [
+    {
+      "family": "barrel",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "173 bonuses/barrels/barel- frame 1. Kit barrel (library Oak + WroughtIron), not the photoreal V1 (16,648 tris, private material). Scripted barrels included: their scripts hold pickups, the barrel stays a barrel. barrel_broken stays unbound."
+    },
+    {
+      "family": "bed",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "64 inside/details/inacc- frame 3. Scripted beds are the sleep/save beds; the bed stays a bed."
+    },
+    {
+      "family": "table_long",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Table_Oak_01.SM_Table_Oak_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "87 inside/details/table- frames 3 and 5. table_round, benches, cabinets and posts stay unbound: the oak table's rectangle would change their silhouette."
+    },
+    {
+      "family": "chair",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "461 inner/chair- frames 1-4, 7, 8 (one facing per frame; the mesh takes a stable per-origin yaw for all). Stools stay unbound: a chair back would add to the silhouette."
+    },
+    {
+      "family": "tree_pine_large",
+      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree- frame 1. The pine screen 471 and the vista use. Scripted pines (burnable secrets, the talking tree) keep their cards so they can get a visibly dry tree (plan section 3)."
+    },
+    {
+      "family": "tree_oak_large",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Exterior kit oak."
+    },
+    {
+      "family": "tree_willow_large",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Stand-in broadleaf until the willow (SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealWillowV1, source only) is imported; rebind then."
+    },
+    {
+      "family": "tree_willow",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Stand-in, as tree_willow_large. Dead trees, stumps and the forest-edge strips stay unbound: a leafy single oak would read wrong."
+    },
+    {
+      "family": "boulder_grey_tall",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "95 lands/rocks/rock-. Scripted (bombable) rocks keep their cards so they can get a visibly cracked rock (plan section 3)."
+    },
+    {
+      "family": "boulder_large",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "95 lands/rocks/rock-."
+    },
+    {
+      "family": "boulder_flat",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "95 lands/rocks/rock-."
+    },
+    {
+      "family": "boulder_red",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "95 lands/rocks/rock-. Grey fieldstone for a reddish boulder: shape right, colour not; rebind when a red-stone material exists in the library."
+    },
+    {
+      "family": "boulder_white",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "95 lands/rocks/rock-. The pair of white boulders and the blue ore rock stay unbound."
+    },
+    {
+      "family": "rock_mound_small",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "97 lands/rocks/rocks-. Pebbles (214) stay unbound: a boulder where the sprite is walk-over scatter would read as an obstacle that does not block."
+    },
+    {
+      "family": "grass_tall",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frame 1."
+    },
+    {
+      "family": "weed_small",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frames 4-6."
+    },
+    {
+      "family": "weed_sprig",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frame 2. Ferns, flowers and the bushes (179) stay unbound: a grass clump is not their shape."
+    },
+    {
+      "family": "fence_rail_ew",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
+    }
+  ]
+}
