@@ -683,8 +683,13 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   hashes; ch19 579f75b840, ch20 eae2c35f54. 176/176 tests. Packaged run from
   master 8175f75 the same day: all twenty chapters PARITY OK, so the alpha
   gate's first condition (bot completes &story 0-16 on a packaged build) holds;
-  conditions two (every origin ID final/placeholder/cut) and three (no original
-  audio) are the art backlog and already met respectively. Remaster gap noted:
+  condition three (no original audio) is met; condition two (every origin ID
+  final/placeholder/cut) is audited by `DinkRemasterUE/Scripts/art_coverage.py`
+  (9 Nov 2026: 143 final, all in Stonebrook on screens 1/407/438/439/471;
+  6,459 placeholder; 5 cut; art binds by origin ID or screen only, never by
+  sprite family, so delivered pillbug/duck sources dress one screen each;
+  101 placeholders can never be final: hardness proxies, never-set vision
+  variants, empty placements; report in `Plugins/DinkImport/Docs/art_coverage.md`). Remaster gap noted:
   `draw_hard_sprite`/`sp_hard` are only recorded (UE AGENTS.md pitfall 77).
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
