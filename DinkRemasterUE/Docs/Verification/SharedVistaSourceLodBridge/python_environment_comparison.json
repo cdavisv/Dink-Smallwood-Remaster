@@ -1,0 +1,141 @@
+{
+  "runs": [
+    {
+      "exit_code": 245,
+      "command": [
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "-run=pythonscript",
+        "-script=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/python_capability.py",
+        "-nullrhi",
+        "-unattended",
+        "-nosplash",
+        "-nopause",
+        "-nosound",
+        "-NoCompile",
+        "-stdout",
+        "-FullStdOutLogOutput",
+        "-abslog=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/capability_Unreal.log"
+      ],
+      "pinned_files": 51404,
+      "changes": {
+        "added": [],
+        "missing": [],
+        "changed": []
+      },
+      "all_owned_modules": true,
+      "HOME": "/home/artist",
+      "run": "capability"
+    },
+    {
+      "exit_code": 0,
+      "command": [
+        "Scripts/test.sh",
+        "Dink.Art.Camera.WallsRemainSolid"
+      ],
+      "pinned_files": 51404,
+      "changes": {
+        "added": [],
+        "missing": [],
+        "changed": []
+      },
+      "all_owned_modules": true,
+      "HOME": "/home/artist",
+      "run": "walls"
+    },
+    {
+      "exit_code": 0,
+      "command": [
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "-run=pythonscript",
+        "-script=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only.py",
+        "-nullrhi",
+        "-unattended",
+        "-nosplash",
+        "-nopause",
+        "-nosound",
+        "-NoCompile",
+        "-stdout",
+        "-FullStdOutLogOutput",
+        "-abslog=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only_Unreal.log"
+      ],
+      "pinned_files": 51404,
+      "changes": {
+        "added": [],
+        "missing": [],
+        "changed": []
+      },
+      "all_owned_modules": true,
+      "HOME": "/home/artist",
+      "run": "load_only"
+    },
+    {
+      "exit_code": 0,
+      "command": [
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "-run=pythonscript",
+        "-script=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
+        "-nullrhi",
+        "-unattended",
+        "-nosplash",
+        "-nopause",
+        "-nosound",
+        "-NoCompile",
+        "-stdout",
+        "-FullStdOutLogOutput",
+        "-abslog=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_Unreal.log"
+      ],
+      "pinned_files": 51404,
+      "changes": {
+        "added": [],
+        "missing": [],
+        "changed": []
+      },
+      "all_owned_modules": true,
+      "HOME": "/home/artist",
+      "run": "cleanup"
+    },
+    {
+      "exit_code": 245,
+      "command": [
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "-run=pythonscript",
+        "-script=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable.py",
+        "-nullrhi",
+        "-unattended",
+        "-nosplash",
+        "-nopause",
+        "-nosound",
+        "-NoCompile",
+        "-stdout",
+        "-FullStdOutLogOutput",
+        "-abslog=/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable_Unreal.log"
+      ],
+      "pinned_files": 51404,
+      "changes": {
+        "added": [],
+        "missing": [],
+        "changed": []
+      },
+      "all_owned_modules": true,
+      "HOME": "/home/artist",
+      "run": "old_callable"
+    }
+  ],
+  "original_failure_preserved": true,
+  "conclusion": "Existing inspector callable retained without invocation also reproduces PyWeakref/PyFinalize shutdown failure. New getter body invocation unnecessary; exact internal reference bug remains unproven. Explicit reference cleanup+Python gc passed with real None/3LOD getter calls. No engine/module/source patches or exit masking.",
+  "private_writes": {
+    "FilterBar_bytes": 206,
+    "ProjectEditorRecords_bytes": 372,
+    "UBTTrace_bytes_range": [
+      303,
+      304
+    ]
+  },
+  "actual_host_Epic_all_file_hashes_unchanged": true,
+  "network_warnings_retained": true,
+  "no_import_or_native_batch": true
+}
