@@ -154,6 +154,17 @@ namespace DinkProbeTest
 						bool bSawDrop = false;
 						/** Game time (ms) the loot of the current sweep began to lie there; -1 = none. */
 						double LootSinceMs = -1.0;
+		/** BowDuel: game time (ms) Seth's bomb wind-up was first seen (-1 = none), the draw began (-1 = not drawing), arrows let go, draws given up. */
+		double BombStartMs = -1.0;
+		double DrawStartMs = -1.0;
+		int32 Arrows = 0;
+		int32 Aborts = 0;
+		/** BowDuel: the cell Dink walks to and stands on to draw (-1 = none), chosen at most every 100 ms. */
+		int32 BowGoal = -1;
+		double BowGoalMs = -1000.0;
+		/** StallBreak: the monsters' hit points summed, and since when they have not changed (game ms). */
+		int32 StallHp = -1;
+		double StallSinceMs = -1.0;
 	};
 
 	/**
@@ -282,6 +293,28 @@ namespace DinkProbeTest
 		int32 Range = 0;
 		/** Log the choice every this many ms. */
 		double LogMs = 100.0;
+	};
+
+	/**
+	 * Knobs of FCtx::BowDuel (Seth, s7-boss.c: brain 10, he wanders in straight cardinal lines and casts from where he stands; touch 30;
+	 * every 2-6 s a bomb on the spot where Dink stood 0.5 s into the wind-up, or "greater harm" 30 that cannot be dodged).
+	 */
+	struct FBowOpts
+	{
+		/** Pixels kept from his touch box on top of the touch rule's 2 px and the capsule. */
+		double SafeMargin = 16.0;
+		/** A draw is let go unshot (and Dink walks off) when his touch box could reach Dink within this many seconds. */
+		double AbortSec = 0.45;
+		/** Lines of fire are wanted this far (px) from him at least, and at most. */
+		double MinDist = 45.0;
+		double MaxDist = 340.0;
+		/** A full draw held this long without a line is let go and Dink stands elsewhere. */
+		double HoldMaxSec = 6.0;
+		/** Clearance (Chebyshev px) from the bomb's spot (the explosion's box, 22 x 14, plus its range 30, plus a margin). */
+		double BombClear = 70.0;
+		/** Drink an elixir (item-eli: life +20) at this life or less: one more harm (30 - defense) must not kill. */
+		int32 DrinkAt = 0;
+		double LogMs = 250.0;
 	};
 
 	struct FCtx
@@ -2479,6 +2512,443 @@ namespace DinkProbeTest
 			}
 			return false;
 		}
+		/**
+		 * The elixir with the bow armed: a drawn bow is let go first (Dink's brain reads no other key while it is drawn, dink.cpp:14761-14766), then
+		 * the elixir is armed and used (item-eli.c: life +20, kill_cur_item) and the bow taken up again. Returns true when this frame went to the elixir.
+		 */
+		bool DrinkAndKeepBow(int32 DrinkAt) const
+		{
+			const double NowMs = S->GetNowMs();
+			if (Fact(TEXT("life")) > 0 && Fact(TEXT("life")) <= DrinkAt && NowMs - P->LastDrinkMs > 500.0)
+			{
+				if (const int32 Eli = Slot(TEXT("item-eli")))
+				{
+					if (G->IsBowActive())
+					{
+						G->PlayerAttackRelease();
+						P->DrawStartMs = -1.0;
+						++P->Aborts;
+						return true;
+					}
+					G->PlayerAttackRelease();
+					G->ArmItemSlot(Eli);
+					if (G->PlayerAttack())
+					{
+						P->LastDrinkMs = NowMs;
+						S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: elixir at life %d (%d left)"), Fact(TEXT("life")), CountItem(TEXT("item-eli")) - 1));
+					}
+					return true;
+				}
+			}
+			if (D->GetInventory()->GetArmedItem() != TEXT("item-b1") && !G->IsBowActive() && NowMs - P->LastDrinkMs > 200.0)
+			{
+				if (const int32 Bow = Slot(TEXT("item-b1")))
+				{
+					G->ArmItemSlot(Bow);
+				}
+			}
+			return false;
+		}
+
+		/**
+		 * The bow against one target that wanders in straight lines and casts from where it stands (Seth). Every frame:
+		 *  - his walk is predicted frame by frame (mx/my per think, sp_timing, turned back by hardness: dragon_brain, check_if_move_is_legal);
+		 *  - a bomb's wind-up (he freezes on his pose, s7-boss.c:45-66) takes the spot where Dink stands 500 ms into it: Dink lets a draw go, stands
+		 *    still until then, and walks off that spot (and every explosion's reach) before it bursts 800 ms later;
+		 *  - drawn: a full draw (500) is let go the frame an arrow from here, in one of the four directions, would meet his predicted box (the arrow:
+		 *    item-b1.c, 30 px ahead for 4 and 6, 6 px a frame, range 10, flying over low hardness); a draw is given up when his walk would touch Dink
+		 *    within AbortSec, or held longer than HoldMaxSec;
+		 *  - not drawn: walk (180 px/s) to the cell that stays clear of his walk until the draw is full and a little after, preferring cells whose row
+		 *    or column he crosses then; there, press the attack key and hold it (the draw: ~1.3 s).
+		 */
+		static int32 DinkCellNow(const FDinkSprite& Dk) { return CellAt(Dk.X, Dk.Y); }
+		void BowDuel(int32 Handle, const FBowOpts& Opt = FBowOpts()) const
+		{
+			const FDinkSprite* T = D->FindSprite(Handle);
+			const double Now = S->GetNowMs();
+			if (!T || !T->bActive || T->GetProp(TEXT("hitpoints")) <= 0)
+			{
+				G->PlayerAttackRelease();
+				P->DrawStartMs = -1.0;
+				return;
+			}
+			if (!G->IsBowActive() && G->IsAttackHeld() && P->DrawStartMs < 0.0)
+			{
+				G->PlayerAttackRelease(); // a press that drew nothing (the bow was not armed that frame)
+			}
+			G->SyncDinkFromActor();
+			const FDinkSprite& Dk = D->GetDink();
+			const int32 Screen = T->Screen;
+			const double Dt = P->LastWalkMs < 0.0 ? 17.0 : FMath::Clamp(Now - P->LastWalkMs, 0.0, 100.0);
+			P->LastWalkMs = Now;
+			BuildGrid(Screen);
+			// His box: the walking pictures (581-589) have dink.ini's hardboxes. The pose 580 of the wind-up has none here (only s7-mil.c's init() line
+			// defines it, and the remaster records init lines without loading them), so an arrow passes him then; its clearance uses the walking box.
+			int32 BoxL = -15, BoxT = -7, BoxR = 17, BoxB = 17;
+			bool bHittable = false;
+			{
+				int32 L = 0, Tp = 0, R = 0, B = 0;
+				if (G->GetHardbox(*T, L, Tp, R, B))
+				{
+					const int32 X0 = FMath::RoundToInt32(T->X), Y0 = FMath::RoundToInt32(T->Y);
+					BoxL = L - X0;
+					BoxT = Tp - Y0;
+					BoxR = R - X0;
+					BoxB = B - Y0;
+					bHittable = true;
+				}
+			}
+			const double TouchPx = 2.0 + CapsulePx(Screen, Dk.X, Dk.Y);
+			// His walk, predicted: mx/my per think, a think every ceil(timing / 16.7 ms) frames, straight on, turned back by any hardness (he does not fly:
+			// the low walls of the room hold him) or the screen's edge.
+			constexpr int32 H = 240;
+			TArray<FVector2D> Path;
+			Path.SetNum(H + 1);
+			const bool bStill = T->bFrozen || T->bMoving;
+			{
+				const int32 Timing = T->GetProp(TEXT("timing"));
+				const double PerThink = Timing <= 0 ? 1.0 : FMath::Max(1.0, FMath::CeilToDouble(Timing / UDinkGameplay::EngineFrameMs - 1e-6));
+				double Vx = bStill ? 0.0 : T->GetProp(TEXT("mx")) / PerThink;
+				double Vy = bStill ? 0.0 : T->GetProp(TEXT("my")) / PerThink;
+				FVector2D Q(T->X, T->Y);
+				Path[0] = Q;
+				for (int32 Fr = 1; Fr <= H; ++Fr)
+				{
+					const FVector2D N = Q + FVector2D(Vx, Vy);
+					if (N.X < 20.0 || N.X > 619.0 || N.Y < 0.0 || N.Y > 399.0 || G->GetHard(Screen, FMath::RoundToInt32(N.X), FMath::RoundToInt32(N.Y)) != 0)
+					{
+						Vx = -Vx;
+						Vy = -Vy;
+					}
+					else
+					{
+						Q = N;
+					}
+					Path[Fr] = Q;
+				}
+			}
+			auto Clearance = [&](double X, double Y, int32 Fr)
+			{
+				const FVector2D& Q = Path[FMath::Clamp(Fr, 0, H)];
+				const double Dx = FMath::Max3(Q.X + BoxL - X, 0.0, X - (Q.X + BoxR));
+				const double Dy = FMath::Max3(Q.Y + BoxT - Y, 0.0, Y - (Q.Y + BoxB));
+				return FMath::Max(Dx, Dy);
+			};
+			auto MinClearance = [&](double X, double Y, int32 Fr0, int32 Fr1, int32 Step)
+			{
+				double M = 1e9;
+				for (int32 Fr = Fr0; Fr <= Fr1; Fr += Step)
+				{
+					M = FMath::Min(M, Clearance(X, Y, Fr));
+				}
+				return FMath::Min(M, Clearance(X, Y, Fr1));
+			};
+			// Explosions (dam-bom2's brain-17 sprite running dam-bomn: it hits Dink while his box + its range 30 holds it: 14 + 30 across, 9 + 30 up and down).
+			TArray<FVector2D> Blasts;
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				if (Pair.Value.bActive && Pair.Value.Screen == Screen && Pair.Value.Script == FName(TEXT("dam-bomn")))
+				{
+					Blasts.Add(FVector2D(Pair.Value.X, Pair.Value.Y));
+				}
+			}
+			// s7-boss.c:45-51: `freeze` and the pose 580 (only the bomb's wind-up freezes him; his animator may still show a walking seq).
+			const bool bWindUp = T->bFrozen && T->GetProp(TEXT("pseq")) == 580;
+			if (bWindUp && P->BombStartMs < 0.0)
+			{
+				P->BombStartMs = Now;
+				S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: Seth winds up a bomb; Dink at %.0f,%.0f"), Dk.X, Dk.Y));
+			}
+			if (!bWindUp && Blasts.Num() == 0 && P->BombStartMs >= 0.0 && Now > P->BombStartMs + 1500.0)
+			{
+				P->BombStartMs = -1.0;
+			}
+			const bool bBomb = P->BombStartMs >= 0.0;
+			// s7-boss.c:52-54: the spot is where Dink stands 500 ms into the wind-up (&save_x, &save_y); the explosion follows 800 ms later (:55-69).
+			if (bBomb && Now >= P->BombStartMs + 520.0 && Now <= P->BombStartMs + 1500.0)
+			{
+				Blasts.Add(FVector2D(Fact(TEXT("save_x")), Fact(TEXT("save_y"))));
+			}
+			auto BlastClearance = [&](double X, double Y)
+			{
+				double M = 1e9;
+				for (const FVector2D& B : Blasts)
+				{
+					M = FMath::Min(M, FMath::Max(FMath::Abs(X - B.X) - 44.0, FMath::Abs(Y - B.Y) - 39.0));
+				}
+				return M;
+			};
+			const TArray<FIntRect> Obstacles = MissileObstacles(Screen, Handle);
+			// The direction (6, 4, 2, 8) in which an arrow let go now meets his predicted box; 0 = none.
+			auto ShotDir = [&]() -> int32
+			{
+				if (!bHittable)
+				{
+					return 0;
+				}
+				for (const int32 Dir : { 6, 4, 2, 8 })
+				{
+					const FVector2D Step = Dir == 6 ? FVector2D(6, 0) : Dir == 4 ? FVector2D(-6, 0) : Dir == 2 ? FVector2D(0, 6) : FVector2D(0, -6);
+					FVector2D A(Dk.X + (Dir == 6 ? 30.0 : Dir == 4 ? -30.0 : 0.0), Dk.Y);
+					for (int32 Fr = 1; Fr <= 100; ++Fr)
+					{
+						A += Step;
+						if (A.X < 0.0 || A.X > 640.0 || A.Y < 0.0 || A.Y > 400.0)
+						{
+							break;
+						}
+						const int32 Hard = G->GetHard(Screen, FMath::RoundToInt32(A.X), FMath::RoundToInt32(A.Y));
+						if (Hard != 0 && Hard != 2)
+						{
+							break;
+						}
+						bool bBlocked = false;
+						for (const FIntRect& R : Obstacles)
+						{
+							bBlocked |= A.X >= R.Min.X && A.X <= R.Max.X && A.Y >= R.Min.Y && A.Y <= R.Max.Y;
+						}
+						if (bBlocked)
+						{
+							break;
+						}
+						const FVector2D& Q = Path[FMath::Min(Fr + 1, H)];
+						// The arrow's range is 10 (item-b1.c:98); 3 px of it are kept as a margin for his next think.
+						if (A.X >= Q.X + BoxL - 7 && A.X <= Q.X + BoxR + 7 && A.Y >= Q.Y + BoxT - 7 && A.Y <= Q.Y + BoxB + 7)
+						{
+							// A shot across his walk is only taken when it is short: over a long flight he turns (1 in 12 at the end of a walk cycle,
+							// dragon_brain) and the arrow misses (chapter 20's first full fights: about half the long crossing shots missed).
+							const FVector2D V = Path[FMath::Min(Fr + 1, H)] - Path[FMath::Min(Fr, H)];
+							const double Across = FMath::Abs(Step.X != 0.0 ? V.Y : V.X);
+							if (Across < 0.3 || Fr <= 30)
+							{
+								return Dir;
+							}
+							break;
+						}
+					}
+				}
+				return 0;
+			};
+			auto Log = [&](const TCHAR* What)
+			{
+				if (Now - P->LastLogMs >= Opt.LogMs)
+				{
+					P->LastLogMs = Now;
+					S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: bow %s; Dink %.0f,%.0f life %d power %d arrows %d aborts %d; Seth %.0f,%.0f hp %d mx %d my %d timing %d%s"), What,
+						Dk.X, Dk.Y, Fact(TEXT("life")), G->GetBowPower(), P->Arrows, P->Aborts, T->X, T->Y, T->GetProp(TEXT("hitpoints")), T->GetProp(TEXT("mx")), T->GetProp(TEXT("my")),
+						T->GetProp(TEXT("timing")), bBomb ? TEXT(" (bomb)") : TEXT("")));
+				}
+			};
+			if (G->IsBowActive())
+			{
+				const int32 Power = G->GetBowPower();
+				const int32 Dir = Power >= UDinkGameplay::BowMaxPower ? ShotDir() : 0;
+				const bool bDanger = MinClearance(Dk.X, Dk.Y, 1, FMath::RoundToInt32(Opt.AbortSec * 60.0), 1) < TouchPx + 4.0;
+				const bool bTooLong = P->DrawStartMs >= 0.0 && Now - P->DrawStartMs > (Opt.HoldMaxSec + 1.4) * 1000.0;
+				if (Dir != 0)
+				{
+					Face(Screen, Dk.X, Dk.Y, Dir);
+					G->PlayerAttackRelease();
+					++P->Arrows;
+					P->DrawStartMs = -1.0;
+					S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: arrow %d facing %d from %.0f,%.0f at Seth %.0f,%.0f hp %d"), P->Arrows, Dir, Dk.X, Dk.Y, T->X, T->Y, T->GetProp(TEXT("hitpoints"))));
+				}
+				else if (bBomb || bDanger || bTooLong)
+				{
+					G->PlayerAttackRelease();
+					++P->Aborts;
+					P->DrawStartMs = -1.0;
+					Log(bBomb ? TEXT("let go for the bomb") : bDanger ? TEXT("let go, he comes") : TEXT("let go, no line"));
+				}
+				else
+				{
+					Log(TEXT("drawn"));
+				}
+				return;
+			}
+			// A bomb on its way and its spot not taken yet: stand (the spot is where he stands at 500 ms; he walks off it after). Never inside an explosion.
+			if (bBomb && Now < P->BombStartMs + 520.0 && BlastClearance(Dk.X, Dk.Y) > 0.0)
+			{
+				Log(TEXT("stands for the bomb's spot"));
+				return;
+			}
+			// Draw where he stands if his walk leaves this spot clear until the draw is full and a little after: a full draw is held, and let go the
+			// frame he crosses one of the four lines (a fast Seth crosses the room every second or two).
+			if (!bBomb && Blasts.Num() == 0 && MinClearance(Dk.X, Dk.Y, 0, 110, 2) >= TouchPx + Opt.SafeMargin && D->GetInventory()->GetArmedItem() == TEXT("item-b1"))
+			{
+				const FVector2D& Q = Path[90];
+				const double Dx = Q.X - Dk.X, Dy = Q.Y - Dk.Y;
+				Face(Screen, Dk.X, Dk.Y, FMath::Abs(Dx) >= FMath::Abs(Dy) ? (Dx > 0 ? 6 : 4) : (Dy > 0 ? 2 : 8));
+				if (G->PlayerAttackPress())
+				{
+					P->DrawStartMs = Now;
+					P->BowGoal = DinkCellNow(Dk);
+					Log(TEXT("draws where he stands"));
+				}
+				else
+				{
+					G->PlayerAttackRelease();
+				}
+				return;
+			}
+			// Where to draw next.
+			TArray<double> DistDink;
+			TArray<int32> Parent;
+			const int32 DinkCell = CellAt(Dk.X, Dk.Y);
+			{
+				const TArray<uint8> Walkable = P->Free;
+				for (int32 I = 0; I < Cols * Rows; ++I)
+				{
+					if (P->Free[I] && I != DinkCell)
+					{
+						const FIntPoint C = CellCentre(I);
+						// (Only his touch box is a wall for the walk: an explosion is walked out of, through its own reach if need be.)
+						if (Clearance(C.X, C.Y, 0) < TouchPx + 6.0)
+						{
+							P->Free[I] = 0;
+						}
+					}
+				}
+				WalkDistances(DinkCell, 0.0, DistDink, &Parent);
+				P->Free = Walkable;
+			}
+			const double Need = TouchPx + Opt.SafeMargin;
+			int32 Goal = INDEX_NONE;
+			double Best = -1e18;
+			for (int32 I = 0; I < Cols * Rows; ++I)
+			{
+				if (DistDink[I] < 0.0 || (I != DinkCell && I != P->BowGoal && ((I % Cols) % 2 != 0 || (I / Cols) % 2 != 0)))
+				{
+					continue;
+				}
+				const FIntPoint C = CellCentre(I);
+				const int32 Arrive = FMath::CeilToInt32(DistDink[I] / (WalkPxPerMs * UDinkGameplay::EngineFrameMs));
+				const int32 Ready = Arrive + 80; // hitme within 7 frames, then 72 pulls
+				if (Ready + 30 > H)
+				{
+					continue;
+				}
+				const double Safe = MinClearance(C.X, C.Y, Arrive, Ready + 30, 3);
+				if (Safe < Need || BlastClearance(C.X, C.Y) < Opt.BombClear - 44.0)
+				{
+					continue;
+				}
+				// He crosses this cell's row or column while the draw is full: a line (the release itself is decided frame by frame).
+				int32 When = -1;
+				bool bAlong = false;
+				for (int32 Fr = Ready; Fr <= FMath::Min(H, Ready + 100) && When < 0; Fr += 3)
+				{
+					const FVector2D& Q = Path[Fr];
+					const FVector2D V = Path[Fr] - Path[FMath::Max(Fr - 1, 0)];
+					const bool bRow = C.Y >= Q.Y + BoxT - 3 && C.Y <= Q.Y + BoxB + 3 && FMath::Abs(Q.X - C.X) >= Opt.MinDist && FMath::Abs(Q.X - C.X) <= Opt.MaxDist;
+					const bool bCol = C.X >= Q.X + BoxL - 3 && C.X <= Q.X + BoxR + 3 && FMath::Abs(Q.Y - C.Y) >= Opt.MinDist && FMath::Abs(Q.Y - C.Y) <= Opt.MaxDist;
+					if (bRow || bCol)
+					{
+						When = Fr - Ready;
+						// Along his walk (in his row while he walks east or west, in his column while he walks north or south, or he stands): an arrow
+						// along his own line meets him whatever his pace; one across it must be timed, and the prediction misses more.
+						bAlong = V.IsNearlyZero(0.01) || (bRow && FMath::Abs(V.X) > FMath::Abs(V.Y)) || (bCol && FMath::Abs(V.Y) > FMath::Abs(V.X));
+					}
+				}
+				// Near and safe first (walking is time not drawing), a line second, the goal of the last frames kept unless another is much better.
+				const double Score = (When >= 0 ? 150.0 + (bAlong ? 150.0 : 0.0) : 0.0) + 2.0 * FMath::Min(Safe, 120.0) - 1.5 * DistDink[I] + (I == P->BowGoal ? 120.0 : 0.0);
+				if (Score > Best)
+				{
+					Best = Score;
+					Goal = I;
+				}
+			}
+			if (Goal == INDEX_NONE)
+			{
+				// Nothing is safe by the clock: the reachable cell farthest from his walk.
+				for (int32 I = 0; I < Cols * Rows; ++I)
+				{
+					if (DistDink[I] >= 0.0)
+					{
+						const FIntPoint C = CellCentre(I);
+						const double Score = FMath::Min(MinClearance(C.X, C.Y, 0, 60, 3), BlastClearance(C.X, C.Y) + 44.0) - 0.2 * DistDink[I];
+						if (Score > Best)
+						{
+							Best = Score;
+							Goal = I;
+						}
+					}
+				}
+			}
+			P->BowGoal = Goal;
+			if (Goal == INDEX_NONE)
+			{
+				Log(TEXT("cornered"));
+				return;
+			}
+			TArray<int32> Way;
+			for (int32 I = Goal; I != INDEX_NONE && I != DinkCell; I = Parent[I])
+			{
+				Way.Insert(I, 0);
+				if (Way.Num() > Cols * Rows)
+				{
+					break;
+				}
+			}
+			const FIntPoint GoalC = CellCentre(Goal);
+			if (Way.Num() == 0 && (FMath::Abs(Dk.X - GoalC.X) > 1.0 || FMath::Abs(Dk.Y - GoalC.Y) > 1.0))
+			{
+				Way.Add(Goal);
+			}
+			double Budget = WalkPxPerMs * Dt;
+			double X = Dk.X, Y = Dk.Y;
+			for (const int32 I : Way)
+			{
+				const FIntPoint C = CellCentre(I);
+				const double Seg = FVector2D::Distance(FVector2D(X, Y), FVector2D(C));
+				if (Seg <= Budget)
+				{
+					X = C.X;
+					Y = C.Y;
+					Budget -= Seg;
+				}
+				else
+				{
+					const double A = Budget / FMath::Max(Seg, 1e-6);
+					X += (C.X - X) * A;
+					Y += (C.Y - Y) * A;
+					break;
+				}
+			}
+			if (FMath::Abs(X - Dk.X) > 0.01 || FMath::Abs(Y - Dk.Y) > 0.01)
+			{
+				GB->GotoScreen(Screen, X - 20.0, Y);
+				G->SyncDinkFromActor();
+				if (FMath::Abs(D->GetDink().X - X) > 3.0 || FMath::Abs(D->GetDink().Y - Y) > 3.0)
+				{
+					P->Free[CellAt(X, Y)] = 0; // the capsule did not fit there
+				}
+				Log(TEXT("walks"));
+				return;
+			}
+			// On the spot: draw, if his walk and the bombs leave it clear until the draw is full.
+			const FDinkSprite& Dk2 = D->GetDink();
+			if (!bBomb && MinClearance(Dk2.X, Dk2.Y, 0, 90, 2) >= TouchPx + Opt.SafeMargin * 0.5 && BlastClearance(Dk2.X, Dk2.Y) >= 10.0
+				&& D->GetInventory()->GetArmedItem() == TEXT("item-b1"))
+			{
+				// Face where he will cross (the release faces the line anyway).
+				const FVector2D& Q = Path[90];
+				const double Dx = Q.X - Dk2.X, Dy = Q.Y - Dk2.Y;
+				Face(Screen, Dk2.X, Dk2.Y, FMath::Abs(Dx) >= FMath::Abs(Dy) ? (Dx > 0 ? 6 : 4) : (Dy > 0 ? 2 : 8));
+				if (G->PlayerAttackPress())
+				{
+					P->DrawStartMs = Now;
+					Log(TEXT("draws"));
+				}
+				else
+				{
+					G->PlayerAttackRelease();
+				}
+				return;
+			}
+			Log(TEXT("waits"));
+		}
+
 		int32 CountItem(FName Item) const
 		{
 			int32 N = 0;
@@ -2487,6 +2957,50 @@ namespace DinkProbeTest
 				N += D->GetInventory()->GetItemAt(i) == Item ? 1 : 0;
 			}
 			return N;
+		}
+		/**
+		 * A squad fight whose last monster nobody can reach: SquadFight struck from 66 px at a slayer that walked back and forth in SCR_157's
+		 * south-east corner (screen edge, diagonal wander) for 200 s. With one monster left and its hit points unchanged for 8 s, Dink
+		 * stands level with it and strikes (KiteAndPunch, 46 px: the sword's reach). Returns true when it acted this frame.
+		 */
+		bool StallBreak(int32 Screen) const
+		{
+			int32 Sum = 0, Last = 0, N = 0;
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				const FDinkSprite& O = Pair.Value;
+				const int32 Brain = O.GetProp(TEXT("brain"));
+				if (Pair.Key != 1 && O.bActive && !O.bText && O.Screen == Screen && (Brain == 9 || Brain == 10) && O.GetProp(TEXT("hitpoints")) > 0)
+				{
+					Sum += O.GetProp(TEXT("hitpoints"));
+					Last = Pair.Key;
+					++N;
+				}
+			}
+			const double Now = S->GetNowMs();
+			if (N == 0 || Sum != P->StallHp)
+			{
+				P->StallHp = N == 0 ? -1 : Sum;
+				P->StallSinceMs = Now;
+				return false;
+			}
+			if (N == 1 && Now - P->StallSinceMs > 8000.0)
+			{
+				KiteAndPunch(Last, 46);
+				return true;
+			}
+			return false;
+		}
+		int32 MagicSlot(FName Spell) const
+		{
+			for (int32 i = 0; i < FDinkInventoryState::NumMagicSlots; ++i)
+			{
+				if (D->GetInventory()->GetMagicAt(i) == Spell)
+				{
+					return i + 1;
+				}
+			}
+			return 0;
 		}
 		int32 Slot(FName Item) const
 		{
@@ -2832,6 +3346,10 @@ namespace DinkProbeTest
 		{
 			RestoreTimeStep();
 			C.Dilate(1.0f);
+			if (C.G)
+			{
+				C.G->PlayerAttackRelease(); // a chapter never ends with the attack key held (the bow, chapter 20)
+			}
 			Log.Add(Current >= Steps.Num() ? TEXT("DONE ") + Why : TEXT("STOP ") + Why);
 			// The whole run, event by event in game time: two runs with the same seed must give the same lines
 			// (diff two copies to find where runs part).
@@ -2905,6 +3423,8 @@ namespace DinkProbeTest
 			case 16: BuildChapter16(); break;
 			case 17: BuildChapter17(); break;
 			case 18: BuildChapter18(); break;
+			case 19: BuildChapter19(); break;
+			case 20: BuildChapter20(); break;
 			default: break;
 			}
 		}
@@ -3765,9 +4285,366 @@ namespace DinkProbeTest
 					if (const int32 Milder = C.SpriteWithScript(TEXT("s7-mil"))) { C.StandBy(Milder, 25); C.S->TryTalk(C.Pawn); }
 				},
 				[](FCtx& C) { return C.OnScreen(86) && C.SpriteWithScript(TEXT("s7-boss")) != 0 && C.Idle() && !C.Busy(); }, 120.0, { TEXT("Take his advice") }, 4.0);
-			// NEXT (design-level stop, 8 Nov 2026): Act F step 53, Seth (s7-boss: 300 hp, defense 25, touch 30; every 2-6 s a bomb (strength 25) or "greater harm" 30 unless random(40,1) <= magic).
-			// Dink here: see the chapter's report line (strength 22 with the longsword, defense 7, magic 10, life 52, level 5, 1 elixir). Sword hits on defense 25 do 0.5 net (a pity point
-			// half the time): about 600 swings for 300 hp. The route needs the bow (b1 + bow lore 1500 gold, strength about 25, no hold-the-key action in the probe yet: `activate_bow`).
+			// The chapter ends with Seth there (his first bomb on its way). The sword cannot win (defense 25: 0.5 net a swing); chapter 19 (BuildChapter19) walks out, gets
+			// the kit (strength 26 without the sword, bow lore, eleven elixirs) and arms the bow (UDinkGameplay's bow: activate_bow, process_bow); chapter 20 talks to Milder
+			// again (his `main` sets &fighting 0 on every load of SCR_086) and fights Seth with arrows (FCtx::BowDuel).
+		}
+
+		// ---- Shared by chapters 19 and 20 ----
+
+		/** The healer of Windemere (SCR_195 s4-healp: "Get healed", 1 gold per missing life); skipped at full life. Extra answers for a level-up menu that opens meanwhile. */
+		void AddWindemereHealer(const TArray<FString>& Extra = {})
+		{
+			TArray<FString> Answers = { TEXT("Get healed") };
+			Answers.Append(Extra);
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, Answers, 0.5, true);
+		}
+
+		/** Elixirs (item-eli, life +20) from the Terris healer (SCR_033 s2-healp: "Buy a bottle of elixer for $25") until Dink holds Count, or gold would fall below Keep. */
+		void AddElixirs(const TCHAR* Name, int32 Count, int32 Keep, const TArray<FString>& Extra = {})
+		{
+			TArray<FString> Answers;
+			for (int32 i = 0; i < Count; ++i) { Answers.Add(TEXT("Buy a bottle of elixer for $25")); }
+			Answers.Append(Extra);
+			Add(Name,
+				[Count, Keep](FCtx& C)
+				{
+					if (C.CountItem(TEXT("item-eli")) >= Count || C.Fact(TEXT("gold")) < Keep + 25) { return; }
+					if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
+					if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[Count, Keep](FCtx& C) { return (C.CountItem(TEXT("item-eli")) >= Count || C.Fact(TEXT("gold")) < Keep + 25) && C.Idle(); }, 90.0, Answers, 0.5, true); // the healer's main loops on wait: a fight step (pitfall 43)
+		}
+
+		/**
+		 * A pit whose `touch` (touch_damage -1) drops Dink into a room below (s1-hole3, s6-hole2: freeze, a 2 s fall, load_screen). The pit's hardbox
+		 * is stamped into the hardness, so the capsule stops short of the touch box (pitfall 70): the probe asks for exact pixels below it, as chapter 14 does.
+		 */
+		void AddPit(const TCHAR* Name, int32 Screen, int32 Index, int32 X, int32 Y, int32 Room, const TArray<FString>& Answers)
+		{
+			Add(Name,
+				[Screen, Index, X, Y, Room](FCtx& C)
+				{
+					if (C.Fact(TEXT("player_map")) == Room) { return; }
+					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.Goto(Screen, X, Y + 20); return; }
+					const int32 Attempt = FMath::Max(C.P->Mark, 0);
+					C.P->Mark = Attempt + 1;
+					C.GB->GotoScreen(Screen, X - 20.0, Y + (Attempt % 6));
+					C.G->SyncDinkFromActor();
+				},
+				[Room](FCtx& C) { const bool bOk = C.OnScreen(Room) && C.D->GetDink().Screen == Room && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, Answers, 0.3);
+		}
+
+		/** Every pickup and drop lying on Screen (Scripts), touched one after the other. */
+		void AddCollect(const TCHAR* Name, int32 Screen, TArray<FString> Scripts, const TArray<FString>& Answers)
+		{
+			Add(Name,
+				[Screen, Scripts](FCtx& C)
+				{
+					if (!C.OnScreen(Screen)) { return; }
+					for (const FString& Script : Scripts)
+					{
+						if (const int32 H = C.SpriteWithScript(*Script)) { C.StandBy(H, 0, true); return; }
+					}
+					if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); }
+				},
+				[Screen, Scripts](FCtx& C)
+				{
+					bool bLeft = Drops(C) != 0;
+					for (const FString& Script : Scripts) { bLeft |= C.SpriteWithScript(*Script) != 0; }
+					return C.OnScreen(Screen) && !bLeft && C.Idle() && !C.Busy();
+				}, 60.0, Answers, 0.5);
+		}
+
+		/** Waits at the Windemere healer (nothing there to hurt him) at 8x until the Darklands rooms are back (editor_type 6: 5 minutes after Dink last left them). */
+		void AddRespawnWait(const TCHAR* Name, int32 GoldTarget, const TArray<FString>& Answers)
+		{
+			auto Due = [](FCtx& C) -> int64
+			{
+				int64 Last = 0;
+				if (const UDinkWorldStateSubsystem* W = C.World->GetGameInstance()->GetSubsystem<UDinkWorldStateSubsystem>())
+				{
+					for (const FDinkScreenExitTime& E : W->ExportScreenExitTimes())
+					{
+						if (E.Screen == 156 || E.Screen == 157 || E.Screen == 190) { Last = FMath::Max(Last, E.ExitedAtMs); }
+					}
+				}
+				return Last + 300000 + 2000;
+			};
+			auto Now = [](FCtx& C) -> int64
+			{
+				const UDinkWorldStateSubsystem* W = C.World->GetGameInstance()->GetSubsystem<UDinkWorldStateSubsystem>();
+				return W ? W->GetGameTimeMs() : 0;
+			};
+			Add(Name,
+				[GoldTarget, Due, Now](FCtx& C)
+				{
+					if (C.Fact(TEXT("gold")) >= GoldTarget || Now(C) >= Due(C)) { C.Dilate(1.0f); return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); }
+					C.Dilate(8.0f);
+				},
+				[GoldTarget, Due, Now](FCtx& C)
+				{
+					if (C.Fact(TEXT("gold")) >= GoldTarget || Now(C) >= Due(C)) { C.Dilate(1.0f); return C.Idle(); }
+					return false;
+				}, 400.0, Answers, 1.0, true);
+		}
+
+		/** One visit of the three Darklands rooms (chapters 15-17's fights and their loot), skipped once gold reaches GoldTarget. */
+		void AddDarklandsVisit(int32 Visit, int32 GoldTarget, const TArray<FString>& LevelUps)
+		{
+			auto Rich = [GoldTarget](FCtx& C) { return C.Fact(TEXT("gold")) >= GoldTarget; };
+			auto Heal = [this, Rich, LevelUps](int32 Room)
+			{
+				TArray<FString> Answers = { TEXT("Get healed") };
+				Answers.Append(LevelUps);
+				Add(*FString::Printf(TEXT("before SCR_%03d: the healer in Windemere (SCR_195 s4-healp)"), Room),
+					[Rich](FCtx& C)
+					{
+						if (Rich(C) || C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+						if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+						if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+					},
+					[Rich](FCtx& C) { return (Rich(C) || C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) && C.Idle(); }, 60.0, Answers, 0.5, true);
+			};
+			auto Loot = [this, Rich, LevelUps](int32 Room)
+			{
+				Add(*FString::Printf(TEXT("the loot of SCR_%03d"), Room),
+					[Rich, Room](FCtx& C) { if (!Rich(C) || C.OnScreen(Room)) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } } },
+					[Rich, Room](FCtx& C) { return (!C.OnScreen(Room) || Drops(C) == 0) && C.Idle() && !C.Busy(); }, 40.0, LevelUps, 0.5);
+			};
+			Heal(156);
+			Add(*FString::Printf(TEXT("visit %d: SCR_156 (s7-bong, s7-slay, s7-drag; screenlock): DuelFight with the sword, the dragon first"), Visit),
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(156)) { if (!Rich(C)) { C.Goto(156, 60, 250); } return; }
+					if (C.DrinkAndKeepSword(30)) { return; }
+					int32 Target = 0;
+					for (const TCHAR* Script : { TEXT("s7-drag"), TEXT("s7-slay"), TEXT("s7-bong") })
+					{
+						const int32 H = C.SpriteWithScript(Script);
+						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
+						if (T && T->GetProp(TEXT("hitpoints")) > 0) { Target = H; break; }
+					}
+					if (!Target) { return; }
+					FDuelOpts O;
+					O.bCaster = C.D->FindSprite(Target)->GetProp(TEXT("brain")) == 10;
+					O.bPull = false;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					O.StageCheb = 60.0;
+					C.DuelFight(Target, O);
+				},
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(156)) { return Rich(C) && C.Idle(); }
+					return C.SpriteWithScript(TEXT("s7-slay")) == 0 && C.SpriteWithScript(TEXT("s7-bong")) == 0 && C.SpriteWithScript(TEXT("s7-drag")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle();
+				}, 150.0, LevelUps, 0.001, true);
+			Loot(156);
+			Heal(157);
+			Add(*FString::Printf(TEXT("visit %d: SCR_157, the four slayers (screenlock): SquadFight with the sword"), Visit),
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(157)) { if (!Rich(C)) { C.Goto(157, 60, 250); } return; }
+					if (C.DrinkAndKeepSword(27) || C.StallBreak(C.D->GetDink().Screen)) { return; }
+					FSquadOpts O;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					C.SquadFight(O);
+				},
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(157)) { return Rich(C) && C.Idle(); }
+					return C.SpriteWithScript(TEXT("s7-slay")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle();
+				}, 200.0, LevelUps, 0.001, true);
+			Loot(157);
+			Heal(190);
+			Add(*FString::Printf(TEXT("visit %d: SCR_190, the three duck-bugs (screenlock): SquadFight with the sword"), Visit),
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(190)) { if (!Rich(C)) { C.Goto(190, 60, 250); } return; }
+					if (C.DrinkAndKeepSword(27) || C.StallBreak(C.D->GetDink().Screen)) { return; }
+					FSquadOpts O;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					C.SquadFight(O);
+				},
+				[Rich](FCtx& C)
+				{
+					if (!C.OnScreen(190)) { return Rich(C) && C.Idle(); }
+					return C.Hostiles(190) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle();
+				}, 200.0, LevelUps, 0.001, true);
+			Loot(190);
+		}
+
+		// ---- Chapter 19 (test `ChJBowLore`): the kit for Seth (probe_route.md 2.6, kit A: b1 + bow lore at strength about 25), Act E step 38 ----
+		void BuildChapter19()
+		{
+			// Chapter 18 ends with Seth on SCR_086 (s7-mil.c talk made him); Dink walks out: Milder's `main` sets &fighting 0 on every load of the screen and his
+			// talk makes Seth again (chapter 20). The kit: item-b1 has no bonus and the longsword's +4 goes with it (item-sw1.c `disarm`), so the 22 of chapter 18 are
+			// 18 at the bow: (500 / 100) * (18 / 5) = 15, tripled 45: 8.6 a power shot against defense 25, 300 hp in about 104 arrows. At 25, (25 / 5) * 5 = 25 and 75:
+			// 31 a power shot, about 29 arrows. +7: six potions on the Edge plateau and the pit rooms below it (probe_route.md 2.3, last row: "not used" there; no
+			// golem fight is needed for these), and the level-up of 2500 exp (level 6, Attack) the Darklands rooms bring.
+			// Gold: 847 now; bow lore 1500 (s3-bowl.c:38), and about ten elixirs for Seth (his harm is 30 - defense 7 = 23, every 2-6 s half the time).
+			const int32 Elixirs = 11; // every free item slot (16 less the fists, the pig's feed, the nut, the bow and the longsword)
+			const int32 GoldTarget = 1500 + 25 * Elixirs + 40;
+			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
+			AddWindemereHealer(LevelUps);
+			AddElixirs(TEXT("three elixirs for the fights of this chapter (SCR_033 s2-healp, $25 each)"), 3, 0, LevelUps);
+			// The Edge plateau (walk group of SCR_144: the pit of SCR_243 leads there, chapter 14).
+			AddPickup(TEXT("the strength potion of SCR_214 (S214_P02 rpotion: strength +1)"), 214, 123, 322, TEXT("rpotion"), TEXT("strength"), 0);
+			AddPickup(TEXT("the chest of SCR_184 (S184_P02 ch1-sp: a blow, then make.rpotion: strength +1)"), 184, 200, 120, TEXT("rpotion"), TEXT("strength"), 2);
+			// SCR_209: two en-stg golems (brain 9, target Dink from `main`, 30 px/s, strength 35, defense 18) walk towards him; the hole first, while they are far.
+			AddPit(TEXT("the hole of SCR_209 (S209_P04 s1-hole3: touch, a 2 s fall, &player_map 198)"), 209, 4, 283, 297, 198, LevelUps);
+			AddPickup(TEXT("the two strength potions of the room below (SCR_198 S198_P20/P21 rpotion: strength +2)"), 198, 300, 300, TEXT("rpotion"), TEXT("strength"), 0);
+			// The chest of SCR_209's east side, in and out. (The potion S209_P10 lies behind the food barrel S209_P13, in a pocket of low hardness: the barrel's `hit`
+			// makes it flat and soft (bar-f1.c: sp_hard 1, draw_hard_sprite), which the remaster records but does not apply to the hardness; it is left there.)
+			Add(TEXT("the chest of SCR_209's east side (S209_P05 ch1-sp: a blow, then make.rpotion: strength +1)"),
+				[](FCtx& C)
+				{
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("strength")); }
+					if (!C.OnScreen(209)) { C.Goto(209, 540, 340); return; }
+					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+					{
+						if (Pair.Value.bActive && Pair.Value.Script == FName(TEXT("rpotion")) && !Pair.Value.Origin.IsValid()) { C.StandBy(Pair.Key, 0, true); return; }
+					}
+					const int32 Chest = C.Placement(209, 5);
+					const FDinkSprite* Ch = Chest ? C.D->FindSprite(Chest) : nullptr;
+					if (Ch && Ch->Script == FName(TEXT("ch1-sp"))) { C.StandBy(Chest, 12); C.G->PlayerAttack(); }
+				},
+				[](FCtx& C)
+				{
+					bool bMade = false;
+					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+					{
+						bMade |= Pair.Value.bActive && Pair.Value.Script == FName(TEXT("rpotion")) && !Pair.Value.Origin.IsValid();
+					}
+					const bool bOk = C.P->Mark >= 0 && C.Fact(TEXT("strength")) >= C.P->Mark + 1 && !bMade && C.Idle();
+					if (bOk) { C.P->Mark = -1; }
+					return bOk;
+				}, 30.0, LevelUps, 0.5, true);
+			AddWindemereHealer(LevelUps);
+			AddPit(TEXT("the hole of SCR_180 (S180_P01 s6-hole2: touch, a 2 s fall, &player_map 166)"), 180, 1, 265, 72, 166, LevelUps);
+			Add(TEXT("SCR_166, the room below: two slayers (en-slay: 100 hp, defense 5, strength 20, range 45): SquadFight with the sword"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(166)) { return; }
+					if (C.DrinkAndKeepSword(27) || C.StallBreak(C.D->GetDink().Screen)) { return; }
+					FSquadOpts O;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					C.SquadFight(O);
+				},
+				[](FCtx& C) { return C.OnScreen(166) && C.SpriteWithScript(TEXT("en-slay")) == 0 && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, LevelUps, 0.001, true);
+			AddCollect(TEXT("SCR_166's potions (rpotion, apotion, ppotion, bpotion: strength +2, defense +2, magic +2), the gold heart (lifemax +10) and the slayers' loot"), 166,
+				{ TEXT("rpotion"), TEXT("apotion"), TEXT("ppotion"), TEXT("bpotion"), TEXT("gheart") }, LevelUps);
+			// Gold and the level-up: the Darklands rooms, back 5 minutes after Dink last left them (chapters 15-17 played them first).
+			AddRespawnWait(TEXT("visit 1: wait at the Windemere healer (8x) until the Darklands rooms are back (editor_type 6, 5 minutes)"), GoldTarget, LevelUps);
+			AddDarklandsVisit(1, GoldTarget, LevelUps);
+			AddRespawnWait(TEXT("visit 2 (if gold is short): wait at the Windemere healer (8x) for the rooms"), GoldTarget, LevelUps);
+			AddDarklandsVisit(2, GoldTarget, LevelUps);
+			// Route step 38: bow lore. The secret tree of SCR_710 (S710_P14 s3-sec1) burns from a fireball (dam-fire.c:23-41: pseq 32 frame 1, run_script_by_number "DIE"),
+			// its stump's touch warps to the hut (SCR_227, s3-sec1.c:31-45), where the old man teaches bow lore for 1500 gold (s3-bowl.c:30-48).
+			Add(TEXT("the secret tree (SCR_710 S710_P14 s3-sec1): a charged fireball from its row; dam-fire runs its `die`: it burns to a stump (touch -1)"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(710)) { C.Goto(710, 230, 311); return; }
+					if (C.D->GetInventory()->GetArmedMagic() != TEXT("item-fb")) { C.G->ArmMagicSlot(C.MagicSlot(TEXT("item-fb"))); return; }
+					const int32 Tree = C.Placement(710, 14);
+					const FDinkSprite* T = Tree ? C.D->FindSprite(Tree) : nullptr;
+					if (!T || T->GetProp(TEXT("pseq")) != 32) { return; }
+					C.GB->GotoScreen(710, 230.0 - 20.0, 311.0);
+					C.G->SyncDinkFromActor();
+					C.Face(710, 230, 311, 6);
+					C.G->PlayerCastMagic();
+				},
+				[](FCtx& C)
+				{
+					const int32 Tree = C.OnScreen(710) ? C.Placement(710, 14) : 0;
+					const FDinkSprite* T = Tree ? C.D->FindSprite(Tree) : nullptr;
+					return T && T->GetProp(TEXT("touch_damage")) == -1 && C.Idle() && !C.Busy();
+				}, 40.0, LevelUps, 1.0, true);
+			Add(TEXT("the stump's touch (s3-sec1 touch: &player_map 227, the bow-lore hut)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("player_map")) == 227) { return; }
+					// The stump's touch box is its picture's (89/10: -33..13, -23..3) + 2 + the capsule; the tree's hardbox is still stamped below it (the remaster
+					// records draw_hard_sprite), so he stands on its north edge, exact pixels as at the pit (pitfall 70).
+					const int32 Attempt = FMath::Max(C.P->Mark, 0);
+					C.P->Mark = Attempt + 1;
+					C.GB->GotoScreen(710, 338.0 - 20.0, 284.0 + (Attempt % 8));
+					C.G->SyncDinkFromActor();
+				},
+				[](FCtx& C) { const bool bOk = C.OnScreen(227) && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, LevelUps, 0.3, true);
+			Add(TEXT("bow lore (SCR_227 S227_P02 s3-bowl talk: \"Learn bow lore\": &bowlore 1, gold - 1500)"),
+				[](FCtx& C)
+				{
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("gold")); }
+					if (!C.OnScreen(227)) { return; }
+					if (const int32 Man = C.SpriteWithScript(TEXT("s3-bowl"))) { C.StandBy(Man, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { const bool bOk = C.Fact(TEXT("bowlore")) == 1 && C.P->Mark >= 1500 && C.Fact(TEXT("gold")) == C.P->Mark - 1500 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 60.0, { TEXT("Learn bow lore") }, 4.0);
+			AddElixirs(TEXT("elixirs for Seth (SCR_033 s2-healp: up to ten, gold kept for the healer)"), Elixirs, 40, LevelUps);
+			AddWindemereHealer(LevelUps);
+			Add(TEXT("arm the bow (item-b1 arm: the bow's pictures; the longsword's disarm takes its +4 strength back)"),
+				[](FCtx& C) { C.G->ArmItemSlot(C.Slot(TEXT("item-b1"))); },
+				[](FCtx& C) { return C.D->GetInventory()->GetArmedItem() == TEXT("item-b1") && C.Idle(); }, 10.0, {}, 1.0);
+		}
+
+		// ---- Chapter 20 (test `ChKSeth`): Seth with the bow (Act F steps 52-54) and the ending (Act G steps 55-56, &story 15 -> 16) ----
+		void BuildChapter20()
+		{
+			// Seth's `die` gives 10000 exp (s7-boss.c:247): the level-ups after it go to Attack too.
+			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
+			AddWindemereHealer();
+			Add(TEXT("Milder (SCR_086 s7-mil talk at &story 14: \"Take his advice\", the dialogue, the explosion, Seth appears and gets s7-boss)"),
+				[](FCtx& C)
+				{
+					if (C.SpriteWithScript(TEXT("s7-boss"))) { return; }
+					if (!C.OnScreen(86)) { C.Goto(86, 250, 300); return; }
+					if (const int32 Milder = C.SpriteWithScript(TEXT("s7-mil"))) { C.StandBy(Milder, 25); C.S->TryTalk(C.Pawn); }
+				},
+				// Done as soon as Seth is there and Dink is free: s7-boss's first `attack` (its attack_wait is 0) starts in the same frame, a bomb half the
+				// time, and its wind-up must be seen from its start (BowDuel stands for its spot and walks off it).
+				[](FCtx& C) { return C.OnScreen(86) && C.SpriteWithScript(TEXT("s7-boss")) != 0 && C.Idle(); }, 120.0, { TEXT("Take his advice") }, 4.0);
+			Add(TEXT("Seth (s7-boss: 300 hp, defense 25, touch 30, bombs and greater harm): BowDuel with item-b1 and bow lore, elixirs at life 25; his `die`: &story 15"),
+				[](FCtx& C)
+				{
+					const int32 DrinkAt = 30 - C.Fact(TEXT("defense")) + 2;
+					if (C.DrinkAndKeepBow(DrinkAt)) { return; }
+					FBowOpts O;
+					O.DrinkAt = DrinkAt;
+					C.BowDuel(C.SpriteWithScript(TEXT("s7-boss")), O);
+				},
+				[](FCtx& C)
+				{
+					const bool bOk = C.Fact(TEXT("story")) == 15 && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy();
+					if (bOk) { C.G->PlayerAttackRelease(); }
+					return bOk;
+				}, 300.0, LevelUps, 0.001, true);
+			// Route step 55: the machine of SCR_154 (S154_P23 s7-warp, "Press the red button": &player_map 253). The walk back through SCR_190/157/156 would meet the rooms
+			// again (they are back by now); the probe teleports, as the route does.
+			Add(TEXT("the machine (SCR_154 S154_P23 s7-warp talk: \"Press the red button\": the spinner, fade, &player_map 253)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("player_map")) == 253) { return; }
+					if (!C.OnScreen(154)) { C.Goto(154, 225, 330); return; }
+					if (const int32 Machine = C.Placement(154, 23)) { C.StandBy(Machine, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.OnScreen(253) && C.D->GetDink().Screen == 253 && C.Idle() && !C.Busy() && C.Fact(TEXT("story")) == 15; }, 90.0,
+				{ TEXT("Press the red button"), TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") }, 4.0);
+			// Route step 56: the King (SCR_070 S070_P03 king.c talk at &story 15: the report, the credits, six potions, &story 16).
+			Add(TEXT("the King (SCR_070 king.c talk at &story 15: \"SMALLWOOD HAS RETURNED!\", the credits, &story 16)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("story")) == 16) { return; }
+					if (!C.OnScreen(70)) { C.Goto(70, 300, 260); return; }
+					if (const int32 King = C.Placement(70, 3)) { C.StandBy(King, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("story")) == 16 && C.Idle() && !C.Busy(); }, 180.0, LevelUps, 4.0);
 		}
 
 		// ---- Chapter 3: preparation (Act B/C of Docs/probe_route.md): gold, strength and hearts on the roads, then the Mayor's errand ----
@@ -4082,6 +4959,21 @@ bool FDinkGameplayProbeCh18Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
 	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 2, 0);
+}
+
+// Chapter 19 sorts after ChISeth as `ChJ...`, chapter 20 as `ChK...` (pitfall 60).
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh19Test, "Dink.Gameplay.Probe.ChJBowLore", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh19Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(19, TEXT("The kit for Seth: strength potions of the Edge, the Darklands rooms again, bow lore, elixirs, the bow")), 37, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh20Test, "Dink.Gameplay.Probe.ChKSeth", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh20Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(20, TEXT("Seth with the bow, the machine, the King: the ending")), 5, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh4Test, "Dink.Gameplay.Probe.Ch4Gold", DINK_TEST_FLAGS)

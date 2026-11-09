@@ -35,7 +35,7 @@ enum class EDinkInstanceState : uint8
 enum class EDinkBlock : uint8
 {
 	None,
-	/** wait(ms), fades, activate_bow: until NowMs >= BlockUntilMs. */
+	/** wait(ms), fades: until NowMs >= BlockUntilMs. */
 	Time,
 	/** say_stop*: until text BlockRef is gone (timed out or skipped). */
 	Say,
@@ -47,6 +47,8 @@ enum class EDinkBlock : uint8
 	Frame,
 	/** wait_for_button / show_bmp: until the player presses the skip key. */
 	Button,
+	/** activate_bow: until the attack key is let go (UDinkGameplay::ProcessBow runs the script on, dink.cpp:14615-14620). */
+	Bow,
 };
 
 /**

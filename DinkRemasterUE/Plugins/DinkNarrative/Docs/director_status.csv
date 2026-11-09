@@ -5,7 +5,7 @@ unfreeze,control,378,command,implemented,undoes freeze
 create_sprite,sprites,342,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 (line) say,dialogue,339,spoken line,implemented,floating text over the speaker in its colour; does not block
 playsound,audio,298,command,implemented,"audio stub: logs the sound cue (number, speed, sprite, repeat)"
-init,animation,289,command,recorded,dink.ini line that redefines a 2D sequence: recorded for the animation layer
+init,animation,289,command,recorded,dink.ini line: recorded for the animation layer; a sequence dink.ini lacks gets the line's hardbox (dink.cpp:2335-2344)
 freeze,control,270,command,implemented,sprite frozen; for Dink (1) player movement input is ignored
 sp_brain,sprites,263,command,implemented,"the sprite's brain, run every 60 Hz engine frame (DinkBrains.cpp): 0 none/follow, 2 bounce, 3 duck, 4 pig, 5/6/7 play once/repeat/play and vanish, 9 monster (wander, chase, melee), 10 dragon (script ATTACK), 11/17 missile (hardness), 12 scale and vanish, 15 shadow, 16 people; 13/14 (title mouse/buttons) are recorded only; also bound as EXTERNAL (value form)"
 sp_dir,sprites,217,command,implemented,sprite property: moves/turns the actor through the screen-to-world transform; also bound as EXTERNAL (value form)
@@ -102,7 +102,7 @@ sp_attack_hit_sound_speed,sprites,4,command,recorded,"speed of that sound, recor
 sp_follow,sprites,4,command,implemented,"sprite to walk after until within 40 px (process_follow, D:12560)"
 =defense,fact-write,3,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 =update_status,fact-write,3,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
-activate_bow,combat,3,command,recorded,bow charge (combat layer not built): yields one frame
+activate_bow,combat,3,command,implemented,"draws the bow (dink.cpp:9397-9408): the script waits while the attack key is held, 7 power a frame after the first 100 ms tick, up to 500 (D:14564-14621); the release runs it on"
 compare_sprite_script,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 game_exist,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 get_last_bow_power,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
