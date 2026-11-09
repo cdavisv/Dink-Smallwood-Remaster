@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "source_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_Pie_Rustic_01_Photo_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 2806440,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Pie_Rustic_01_Photo_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 1719544,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Pie_Rustic_01_Photo_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 1279728,
+      "pixels_reopened": 16777216
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}

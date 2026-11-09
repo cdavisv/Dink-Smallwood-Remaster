@@ -1,0 +1,160 @@
+{
+  "status": "opticalLOD candidate, appearance review pending; no native/publication approval",
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 2905,
+      "sha256": "7398605a578a9f844908a19dda15737385a522abee6989ee2b97c3b81482e117"
+    },
+    {
+      "path": "Inputs/V4_Export.blend",
+      "bytes": 6118542,
+      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e"
+    },
+    {
+      "path": "PhotorealPieV1_Export.blend",
+      "bytes": 6126003,
+      "sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a"
+    },
+    {
+      "path": "Pipeline/dinkasset/__init__.py",
+      "bytes": 79,
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94"
+    },
+    {
+      "path": "Pipeline/dinkasset/common.py",
+      "bytes": 14649,
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c"
+    },
+    {
+      "path": "Pipeline/dinkasset/conventions.py",
+      "bytes": 12111,
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840"
+    },
+    {
+      "path": "Pipeline/dinkasset/export_ue.py",
+      "bytes": 14265,
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087"
+    },
+    {
+      "path": "Pipeline/dinkasset/fbxparse.py",
+      "bytes": 6994,
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+    },
+    {
+      "path": "Pipeline/dinkasset/fix.py",
+      "bytes": 20902,
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf"
+    },
+    {
+      "path": "Pipeline/dinkasset/import_generated.py",
+      "bytes": 9026,
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535"
+    },
+    {
+      "path": "Pipeline/dinkasset/make_lods.py",
+      "bytes": 16792,
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c"
+    },
+    {
+      "path": "Pipeline/dinkasset/validate.py",
+      "bytes": 35342,
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933"
+    },
+    {
+      "path": "Roundtrip/PieSource-front-LOD1.png",
+      "bytes": 542318,
+      "sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0"
+    },
+    {
+      "path": "Roundtrip/PieSource-front-LOD2.png",
+      "bytes": 546023,
+      "sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353"
+    },
+    {
+      "path": "Roundtrip/PieSource-game-distance-LOD1.png",
+      "bytes": 474454,
+      "sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d"
+    },
+    {
+      "path": "Roundtrip/PieSource-game-distance-LOD2.png",
+      "bytes": 475817,
+      "sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779"
+    },
+    {
+      "path": "Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "bytes": 2806440,
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784"
+    },
+    {
+      "path": "Textures/T_Pie_Rustic_01_Photo_N.png",
+      "bytes": 1719544,
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555"
+    },
+    {
+      "path": "Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "bytes": 1279728,
+      "sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47"
+    },
+    {
+      "path": "check_portable.py",
+      "bytes": 1831,
+      "sha256": "bd5f2bd25b8c28ca4450cbcb077231ee860a1f879a010209ddab292e3d825428"
+    },
+    {
+      "path": "export_uv_verification.json",
+      "bytes": 2885,
+      "sha256": "d49adfc0c97da93b0c35a7bd758f83b4201dd88eac55dd588db2625bfa39dae1"
+    },
+    {
+      "path": "guide_validation.json",
+      "bytes": 1459,
+      "sha256": "11dca28c5b76d89cf5bfd5111ee45a734933b22cc403431788107d2eb4144deb"
+    },
+    {
+      "path": "optical_lod_report.json",
+      "bytes": 731,
+      "sha256": "6c1b00cc9090b0fbcdd44ec18df53482683b4e788875f4b2c026dabb6d3b4c44"
+    },
+    {
+      "path": "pixel_comparison.json",
+      "bytes": 1562,
+      "sha256": "313dfa10bdfaad43537432d61f29ffa3fa2776c5fc808276268eecf02c3dc301"
+    },
+    {
+      "path": "portable_export_receipt.json",
+      "bytes": 808,
+      "sha256": "84a7f507c68a742dd55d389a22a6c7e9544a9cc41a2de3d255302ecd20fdf8d8"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 560,
+      "sha256": "ba80477b0ced042f4cd6a5e7431d456b26cd822960779705b1cf72325c64fa22"
+    },
+    {
+      "path": "render_single_lod.py",
+      "bytes": 3172,
+      "sha256": "2a23ca6dcbac9251a63c305f6f60aa47389a1aba1e4dbdd404c9e63efe9d9666"
+    },
+    {
+      "path": "retain_ceramic.py",
+      "bytes": 3376,
+      "sha256": "ab1ea12d2d6796d5c82388ff8924aa5a9be19db12fda3a6a55b38a277b828527"
+    },
+    {
+      "path": "validate_source.py",
+      "bytes": 415,
+      "sha256": "9faf3026529bfc924883396d01ed8c1365d042e6bdf514e958f46e7f7fee89c5"
+    },
+    {
+      "path": "verify_export_uv.py",
+      "bytes": 1749,
+      "sha256": "3552a2535aa7a96c063071d73867c51206e900c5404857c51a23427e17b41fe3"
+    },
+    {
+      "path": "verify_preservation.py",
+      "bytes": 2680,
+      "sha256": "87ca451bd893e4f3abe6cd840258212db27a28f55de14368f6e12bec43c7caa6"
+    }
+  ]
+}

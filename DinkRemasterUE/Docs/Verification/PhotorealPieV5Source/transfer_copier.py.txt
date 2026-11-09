@@ -1,0 +1,79 @@
+"""Prepare/apply an exact source-only transfer and append-only candidate ledger.
+
+No Git commands. --apply is reserved for a separately authorized delivery checkout.
+The normal QA run uses a shadow Unreal root, never the active repository.
+"""
+from pathlib import Path,PurePosixPath
+import argparse,csv,io,json,hashlib,shutil,tempfile,os,datetime,fcntl,stat
+FIELDS=['asset_path','derived_path','kind','replaces','source','tool_model','prompt','parameters','generation_id','flow_id','generated_on','credits','licence','sha256','duration_s','status','notes']
+AUDIO={'music','sfx','voice line'}
+PREFIX='SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1'
+def digest(data):return hashlib.sha256(data).hexdigest()
+def ledger_info(raw):
+ text=raw.decode('utf-8');reader=csv.reader(io.StringIO(text,newline=''));lines=raw.splitlines(keepends=True);header=next(reader);assert header==FIELDS,header;start=reader.line_num;audio=[];rows=[]
+ for values in reader:
+  block=b''.join(lines[start:reader.line_num]);start=reader.line_num;assert len(values)==len(FIELDS),len(values);row=dict(zip(FIELDS,values));rows.append(row)
+  if row['kind']in AUDIO:audio.append(block)
+ return {'rows':rows,'audio_raw_sha256':digest(b''.join(audio)),'audio_count':len(audio),'raw_sha256':digest(raw),'raw_bytes':len(raw)}
+def classify(rel):
+ ext=Path(rel).suffix.lower();lower=rel.lower()
+ if ext=='.blend':return'source_blend'
+ if ext=='.fbx':return'mesh_export'
+ if ext=='.glb':return'mesh_interchange'
+ if ext=='.png':return'source_preview'if'preview'in lower or'house-detail'in lower else'source_reference'if'inputs/'in lower or'original63_04'in lower else'source_texture'
+ if ext=='.py':return'source_tool'if'/tools/'in lower else'source_script'
+ if ext=='.md':return'source_documentation'
+ if 'catalog'in lower or'coordinate_contract'in lower:return'placement_plan'
+ return'source_evidence'if any(s in lower for s in['audit','proof','guide','review','receipt','qualified','roundtrip','provenance','handoff','correction','crash'])else'source_metadata'
+def row_for(rel,sha,prefix):
+ r={k:''for k in FIELDS};r.update(asset_path=prefix+'/'+rel,kind=classify(rel),source=prefix+'/V5_OpticalLOD/source_handoff.json',sha256=sha,status='candidate',generated_on='2026-11-08 UTC',tool_model='Blender5.2.2 LTS; source opticalLOD; CyclesCPU bake; actualFBX audits',replaces='Original S001_P51 sprite421/frame11 sfood touch food; source-only no native references changed',parameters='V5 current4844/3046/2048tri;2slots;49x49x11.9cmLOD0;UCX0;full860tri ceramic retained allLODs;BC/N/ORM2048',licence='Project-authored source art/derived original Dink/KIT reference; inherited attribution retained; not CC0',notes='Source-only candidate. V4 authoring guide1NONPOTerror2warnings retained; V5 0errors1softtri warning. V4 geometry/bake evidence historical; only NativeLODExportsV5 FBXs are selected current imports. Original heal3 capped max/sound10/brain12/removal/editor_type1 save behavior unchanged. Native query/material clearcoat/F0/LOD/lighting/gameplay/save acceptance pending. Audio unchanged.')
+ if rel.startswith('V4_ReferenceAlbedo/'):
+  r['source']=prefix+'/V4_ReferenceAlbedo/candidate_handoff.json';r['parameters']='Immutable raw9edd authoring donor;generated1254RGB color reference is BC-only; no BC-derived normal/height/roughness;raw guide error retained'
+ if rel.startswith('V4_BakeExportIteration/'):
+  r['source']=prefix+'/V4_BakeExportIteration/source_export_handoff.json';r['parameters']='Historical corrected922 bake dependency4844/2542/1330;closedcrumb repair;independent2048maps;old combinedFBX not selected for native import'
+ if '/Pipeline/dinkasset/'in rel:r['licence']='Inherited repository Blender tool code; original repository licence/attribution retained'
+ if '/Inputs/'in rel or rel.endswith('input_provenance.json'):
+  r['licence']='Original Dink/KIT/source reference or provenance; inherited original attribution applies, not generated/CC0'
+ if rel.endswith('GeneratedShortcrust_Albedo_V1.png'):
+  r['kind']='source_reference';r['tool_model']='Built-in image_gen.imagegen; model not exposed';r['source']=prefix+'/V4_ReferenceAlbedo/Textures/generation_provenance.json';r['prompt']=prefix+'/V4_ReferenceAlbedo/Textures/prompt.txt';r['licence']='Original AI-generated synthetic pastry albedo reference for project; not measured scan, original Dink artwork, thirdparty photograph or CC0 claim';r['parameters']='Exact1254x1254RGB original SHA4b211bc5;no bitmap editing/resampling;pastry BaseColor ONLY;derived2048BC is3D UVbake'
+ return r
+def canonical_rel(value):
+ assert isinstance(value,str)and value and'\\'not in value,'Canonical POSIX relative path required'
+ p=PurePosixPath(value);assert not p.is_absolute()and str(p)==value and all(x not in{'.','..'}for x in p.parts),'Noncanonical relative path: '+value
+ return p
+def bounded(root,path):
+ assert path.is_absolute()and path.is_relative_to(root),'Path outside selected root'
+ current=root
+ for part in path.relative_to(root).parts:
+  current=current/part
+  if os.path.lexists(current):assert not stat.S_ISLNK(current.lstat().st_mode),'Symlink path rejected: '+str(current)
+ assert path.resolve(strict=False).is_relative_to(root),'Resolved path outside selected root'
+def fdbytes(fd):
+ return os.pread(fd,os.fstat(fd).st_size,0)
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--inventory',required=True);p.add_argument('--bundle',required=True);p.add_argument('--expected-handoff-sha256',required=True);p.add_argument('--ledger',required=True);p.add_argument('--qa-output',required=True);p.add_argument('--target-relative',default=PREFIX);p.add_argument('--unreal-root');p.add_argument('--apply',action='store_true');a=p.parse_args();B=Path(a.bundle).resolve();out=Path(a.qa_output).resolve();assert not out.is_relative_to(B),'QAoutputs must be outside frozenbundle';out.mkdir(parents=True,exist_ok=True);handoff=Path(a.inventory).resolve();assert digest(handoff.read_bytes())==a.expected_handoff_sha256,'Frozen handoff SHA mismatch';h=json.loads(handoff.read_text());assert h['selected_files']==139 and len(h['files'])==139;files={r['relative']:r['sha256']for r in h['files']};assert len(files)==139;prefix=canonical_rel(a.target_relative);assert prefix.parts[:2]==('SourceAssets','Art'),'Source-only transfer must stayunder SourceAssets/Art';prefix=prefix.as_posix();plan=[]
+ for rel,sha in sorted(files.items()):
+  canonical_rel(rel);source=B/rel;assert source.suffix.lower()not in{'.uasset','.umap'},'NoNativepackages';assert source.is_file()and not source.is_symlink()and source.resolve().is_relative_to(B);assert digest(source.read_bytes())==sha,rel;plan.append({'source':rel,'destination':prefix+'/'+rel,'sha256':sha,'bytes':source.stat().st_size,'kind':classify(rel)})
+ ledger=Path(a.ledger).resolve();raw=ledger.read_bytes();baseline=ledger_info(raw);paths={r['asset_path']for r in baseline['rows']};assert not paths.intersection(x['destination']for x in plan),'Destination rows already exist';rows=[row_for(x['source'],x['sha256'],prefix)for x in plan];csvout=io.StringIO(newline='');writer=csv.DictWriter(csvout,fieldnames=FIELDS,lineterminator='\n');writer.writerows(rows);append=csvout.getvalue().encode();combined=raw+(b''if raw.endswith(b'\n')else b'\n')+append;info=ledger_info(combined);assert combined.startswith(raw);assert info['audio_count']==baseline['audio_count']and info['audio_raw_sha256']==baseline['audio_raw_sha256'];assert len(info['rows'])==len(baseline['rows'])+len(rows)
+ (out/'candidate_ledger_rows.csv').write_bytes((','.join(FIELDS)+'\n').encode()+append);(out/'prepared_ledger.csv').write_bytes(combined);(out/'baseline_ledger_snapshot.csv').write_bytes(raw);receipt={'status':'Prepared exact source-only copy/append plan; no repository changes unless explicit--apply to authorized delivery checkout','bundle':str(B),'top_handoff_sha256':a.expected_handoff_sha256,'target_relative':prefix,'baseline_ledger':{'sha256':baseline['raw_sha256'],'bytes':baseline['raw_bytes'],'rows':len(baseline['rows']),'audio_rows':baseline['audio_count'],'audio_raw_sha256':baseline['audio_raw_sha256']},'append_rows':len(rows),'prepared_rows':len(info['rows']),'prepared_ledger_sha256':digest(combined),'prior_raw_prefix_preserved':True,'audio_raw_bytes_preserved':True,'native_or_runtime_paths':False,'files':plan,'applied':False}
+ if a.apply:
+  assert a.unreal_root,'--apply needs explicit authorized delivery root';U=Path(a.unreal_root).resolve();assert U.is_dir();assert not U.is_relative_to(B)and not B.is_relative_to(U/'SourceAssets/Art'),'Never transfer into frozen source or its ancestry';expected_ledger=U/'SourceAssets/asset_ledger.csv';assert ledger==expected_ledger.resolve(),'Ledger must belong to selected Unreal root';bounded(U,expected_ledger);target=U/prefix;bounded(U,target);assert not os.path.lexists(target),'Refuse any existing target, including dangling symlink';target.parent.mkdir(parents=True,exist_ok=True);bounded(U,target)
+  lock=U/'.pie_source_transfer.lock';lockfd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY|os.O_NOFOLLOW,0o600);ledgerfd=None
+  try:
+   ledgerfd=os.open(expected_ledger,os.O_RDWR|os.O_APPEND|os.O_NOFOLLOW);fcntl.flock(ledgerfd,fcntl.LOCK_EX|fcntl.LOCK_NB);assert stat.S_ISREG(os.fstat(ledgerfd).st_mode)
+   inode=(os.fstat(ledgerfd).st_dev,os.fstat(ledgerfd).st_ino);assert inode==(expected_ledger.stat().st_dev,expected_ledger.stat().st_ino);assert fdbytes(ledgerfd)==raw,'Ledger changed; regenerate authoritative baseline'
+   with tempfile.TemporaryDirectory(prefix='.pie-transfer-',dir=str(target.parent))as temp:
+    stage=Path(temp)/'payload';stage.mkdir();copied=[]
+    for row in plan:
+     rel=canonical_rel(row['source']);source=B/rel;dest=stage/rel;assert dest.is_relative_to(stage);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,dest);assert source.stat().st_ino!=dest.stat().st_ino and digest(dest.read_bytes())==row['sha256'];copied.append({'file':str(rel),'sha256':row['sha256'],'independent_inode':True})
+    assert sum(f.is_file()for f in stage.rglob('*'))==len(plan),'Every manifest member must be staged'
+    bounded(U,expected_ledger);bounded(U,target);assert fdbytes(ledgerfd)==raw,'Ledger changed during transfer';assert inode==(expected_ledger.stat().st_dev,expected_ledger.stat().st_ino),'Ledger inode replaced';assert digest(handoff.read_bytes())==a.expected_handoff_sha256
+    for row in plan:assert digest((B/row['source']).read_bytes())==row['sha256'],'Source changed during transfer'
+    assert not os.path.lexists(target);os.replace(stage,target)
+   # Never replace/truncate the ledger. Kernel O_APPEND preserves even an uncooperative late append.
+   assert fdbytes(ledgerfd)==raw,'Ledger changed before append';assert inode==(expected_ledger.stat().st_dev,expected_ledger.stat().st_ino),'Ledger inode replaced';addition=combined[len(raw):];written=os.write(ledgerfd,addition);os.fsync(ledgerfd);assert written==len(addition),'Partial append: preserve data and stop for review';result=fdbytes(ledgerfd);assert inode==(expected_ledger.stat().st_dev,expected_ledger.stat().st_ino),'Concurrent ledger replacement: stop for review';assert result.startswith(raw),'Prior bytes changed externally';assert result==combined,'Concurrent append preserved; stop for review, do not rollback/truncate';assert ledger_info(result)['audio_raw_sha256']==baseline['audio_raw_sha256'];receipt['applied']=True;receipt['transfer_receipt']=copied;receipt['destination']=str(target);receipt['ledger_write']='Exclusive cooperative lock + O_APPEND, never replace/truncate; any unexpected concurrent state stops for review without rolling back another writer'
+  finally:
+   if ledgerfd is not None:os.close(ledgerfd)
+   os.close(lockfd);os.unlink(lock)
+ (out/'source_transfer_plan.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps({k:v for k,v in receipt.items()if k not in ['files','transfer_receipt']}))
+if __name__=='__main__':main()

@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "GeneratedShortcrust_Albedo_V1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "packed_bytes": 3209596,
+      "pixels_reopened": 6290064
+    },
+    {
+      "image": "T_Stonebrook_Wicker_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1435537,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2898185,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1302556,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1185324,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2914121,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_WroughtIron_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1341944,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}
