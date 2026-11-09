@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "initial_baked_sha256": "05417a2246b57d77551e962c0fd6ef0e519a1172f66f7b26e14640217f2fe67e",
+  "repaired_export_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "raw9edd_donor_unchanged": true,
+  "LOD0_geometry_UV_normals_unchanged": true,
+  "production_maps_and_optics_unchanged": true,
+  "method": "Only collapsedlowercrumbcomponents replaced byexactclosedLOD0crumbcomponents; no nonmanifold/normal/count checks relaxed",
+  "records": [
+    {
+      "LOD": 1,
+      "initial_triangles": 2422,
+      "removed_collapsed_faces": 40,
+      "restored_closed_source_crumb_faces": 160,
+      "final_triangles": 2542,
+      "restored_components": 20,
+      "all_remaining_body_and_restored_LOD0_crumb_corner_positions_UV_materialIDs_exact": true,
+      "max_normal_angle_radians": 0.0,
+      "bounds_before_m": [
+        [
+          -0.24474771320819855,
+          -0.24474771320819855,
+          -2.0013107132399455e-05
+        ],
+        [
+          0.24474771320819855,
+          0.24474771320819855,
+          0.11881916970014572
+        ]
+      ],
+      "bounds_after_m": [
+        [
+          -0.24474771320819855,
+          -0.24474771320819855,
+          -2.0013107132399455e-05
+        ],
+        [
+          0.24474771320819855,
+          0.24474771320819855,
+          0.11900001019239426
+        ]
+      ]
+    },
+    {
+      "LOD": 2,
+      "initial_triangles": 1210,
+      "removed_collapsed_faces": 40,
+      "restored_closed_source_crumb_faces": 160,
+      "final_triangles": 1330,
+      "restored_components": 20,
+      "all_remaining_body_and_restored_LOD0_crumb_corner_positions_UV_materialIDs_exact": true,
+      "max_normal_angle_radians": 0.0,
+      "bounds_before_m": [
+        [
+          -0.24636167287826538,
+          -0.24636167287826538,
+          0.00026710701058618724
+        ],
+        [
+          0.24636167287826538,
+          0.24636167287826538,
+          0.1184348613023758
+        ]
+      ],
+      "bounds_after_m": [
+        [
+          -0.24636167287826538,
+          -0.24636167287826538,
+          0.00026710701058618724
+        ],
+        [
+          0.24636167287826538,
+          0.24636167287826538,
+          0.11900001019239426
+        ]
+      ]
+    }
+  ],
+  "native_imported": false
+}

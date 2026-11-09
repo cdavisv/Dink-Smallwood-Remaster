@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "export_sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a",
+  "LODs": [
+    {
+      "LOD": 0,
+      "FBX_sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "single_render_mesh": true,
+      "triangles": 4844,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997764825821,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    },
+    {
+      "LOD": 1,
+      "FBX_sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "single_render_mesh": true,
+      "triangles": 3046,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997756240191,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    },
+    {
+      "LOD": 2,
+      "FBX_sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "single_render_mesh": true,
+      "triangles": 2048,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997802078724,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    }
+  ],
+  "authored_UCX_count": 0,
+  "baked_Blender_material_optics": {
+    "MI_Pie_BlueCeramic_PhotoBaked": {
+      "IOR": 1.4800000190734863,
+      "Specular IOR Level": 0.5,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    },
+    "MI_Pie_PastryFruit_PhotoBaked": {
+      "IOR": 1.4600000381469727,
+      "Specular IOR Level": 0.30000001192092896,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    }
+  },
+  "limits": "Actual Blender FBX geometry/UV/normal/materialID roundtrip. Food/glaze/native material/LODdistance/pickup/camera acceptance unproven; raw1254reference is authoringdonor only, all3exportmaps2048."
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": {
+    "parent_symlink_rejected": true,
+    "dangling_symlink_rejected": true,
+    "late_append_visible_to_retained_fd": true
+  },
+  "scope": "Owned QA scratch only; reviewed apply-body inode/exclusive-lock/O_APPEND guards unchanged."
+}
