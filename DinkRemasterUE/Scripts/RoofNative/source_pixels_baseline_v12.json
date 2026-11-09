@@ -1,0 +1,282 @@
+{
+  "scope": "Corrected source-file-to-package metadata only; original decoded RGB baselines preserved, no image bytes changed",
+  "supersedes": "source_pixels_baseline_v11.json",
+  "correction": "Identical ORM PNG SHA values may belong to multiple named source files; bind by exact source image filename, not first SHA match",
+  "textures": [
+    {
+      "source_file": "Textures/T_FireplaceV2_Atlas_BC.png",
+      "PNG_sha256": "82bb4f9265b48ad0c4fa2be89a535e5d8a712c167f738477df5926ede66368a4",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "68d09ba82dcd2c197d60b8b93e9f944ae6c833a2af3e67c195e095ef37a722db",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_FireplaceV2_Atlas_E.png",
+      "PNG_sha256": "235ac449c24ce2a3313664399f41a6bef1a49349af0997a5c1c621a45eaa12dc",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_E",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "7235d39636bbcf63d7893569a56b28cee624afd947c69622f02c915aca80776f",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_FireplaceV2_Atlas_N.png",
+      "PNG_sha256": "8e713117312c74953120a13b96a323e0b224c812150f805e748a6ac903d94020",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "ae4375f2162b982bf2d781520481c16da5fb7be2e52d2521a9731225121309f7",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_FireplaceV2_Atlas_ORM.png",
+      "PNG_sha256": "4a1125a42582b6001a5f172c2848f205ec0f37f22623fc768b3a1f4311b81b7b",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "1e63e47da009964aa167ddc4b3a2ebb718b6d3b86d8f466e0235995d53f92f06",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_GablePlaster_BC.png",
+      "PNG_sha256": "8f7e5151c6d9b0f691fc6022377c0c7422f80d95b41c3da3cf0b7386869d32bf",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "7e0e0e6a73026f4b1fd45776b6ef136ed7a33d4a9ab7471efa60473482b51322",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_GablePlaster_N.png",
+      "PNG_sha256": "0f29901676d3bc2fb1b53b0d90990017bbd25627e275ef53ae9a16431717697c",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "f998355ba22b8ea26c371b41e3d0cd7668d81a4e99c696a3f72519306c1db15a",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_GablePlaster_ORM.png",
+      "PNG_sha256": "d3e9e0e8c19180fe6a1229032afb4bc57ab6100e0b7460d7a77fb51e9babf458",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "2e62b758285c1a9051f81e4c22c16746c58bd148eea7294b9df5c95f9a0adccf",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakEndgrain_BC.png",
+      "PNG_sha256": "12ead883bdbe823a5a7c1b4ec61b65834591754195918a1c3bdc9e25f088a79b",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "42bba11501b7379e8f1f8185e8c7d65abb233f5aa75ca54ac04bc31a1960c58b",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakEndgrain_N.png",
+      "PNG_sha256": "387c5d6386d19ce5eb68fd2c21b39ce9c07b041afcb29803eb622753cbf8fac2",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "c4c8b4efb813dae0e94aaae4aa0897bc325edb207819c31a0cb741982bbe1d59",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakEndgrain_ORM.png",
+      "PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "b72b1125321a18ddb2aac6b4724e9df0b48e0f822f6993694d26123fb66ce6d0",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakLonggrain_BC.png",
+      "PNG_sha256": "34cda85e0dc193a5b09d1a3b3cfc4444f0006ef6f836fc5a5191026dd44c2209",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "e57230b72104d54a2faf0afa116ee6c4823fdf18df56e51de23ade4add2baa20",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakLonggrain_N.png",
+      "PNG_sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "c47f54d4ba866804bcf849c0e5a8e887a1439b7cb729e6486d9d77156bb5d5ab",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_OakLonggrain_ORM.png",
+      "PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "b72b1125321a18ddb2aac6b4724e9df0b48e0f822f6993694d26123fb66ce6d0",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_RoofBoards_BC.png",
+      "PNG_sha256": "dea3622f23f398bda5603fd0a6bdbe09eddfef584d342b24010833e189971ac7",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "eb3f9474ab5f5f9d9b481da10fcfed7087276189a96684423d64f9aa0dde8f8e",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_RoofBoards_N.png",
+      "PNG_sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "c47f54d4ba866804bcf849c0e5a8e887a1439b7cb729e6486d9d77156bb5d5ab",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_InteriorRoof_RoofBoards_ORM.png",
+      "PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "b72b1125321a18ddb2aac6b4724e9df0b48e0f822f6993694d26123fb66ce6d0",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_V8_CoursedLimestone_BC.png.png",
+      "PNG_sha256": "1446d731434535e15731cbb9d60175e340638a07ea9bc3fc7452dc4d1ba59408",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "237feb60f382aea4fc4b0ca62a78efbcb7cfb9bb0d4c07af404b7bed2656b8c1",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_V8_CoursedLimestone_N.png.png",
+      "PNG_sha256": "3c1029c7c1aa33bf71bc41f4701e52d2d49d4e24bca0917be558dec007f9e8d4",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "7d4b900b4403ef1e3138545036f722079cbdb2e83ce4e927f5dc41350aa204d0",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_V8_CoursedLimestone_ORM.png.png",
+      "PNG_sha256": "8d87b04871a9ce9a973551154ae51dbc2532710546b03034189390a2b6b15794",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "bc2500615c8203adbfba7e5685469b8151150655b53be5d8d2806610e892c301",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_V8_DullZinc_BC.png.png",
+      "PNG_sha256": "570f53d12f51b44894b48e15ed8ed941bd3ae5a34ac29df31005500e607348ac",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "757a8db1f3e3a72b02af23235d207990bfec4808e41b8562c01f2fa5b7157d7f",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_V8_DullZinc_N.png.png",
+      "PNG_sha256": "d57bb309f21c8933d6ae2f8ca1a65306705e1e042f91f08018e7e3a7210cfcdc",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "21da685b712e10a20cc6a0dc0edf0f0878f7fa81258fbd8e6f3ada331a7d1212",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_V8_DullZinc_ORM.png.png",
+      "PNG_sha256": "d1c92dc0195c85f36b26d1f880a26cc1102243d3a47203050e9170ad78c24012",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "3f6e089ba8e1a1b4aac5cf92338ff02c9a448f5aefc790a3aa6b7b6100c2a5c7",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    },
+    {
+      "source_file": "Textures/T_V8_SootLining_BC.png.png",
+      "PNG_sha256": "953b4920becc32ab3a91d49df59b55910ff685046591d677a2568903864ce6e0",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_BC",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "e66a39f261c6743b4b19ae6b5019110d0f105c456d6f298e62ec501d0a756207",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT"
+    },
+    {
+      "source_file": "Textures/T_V8_SootLining_N.png.png",
+      "PNG_sha256": "7641460961a61d47784b20359d6ac7954920afb4c026efce15785870354a51ea",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_N",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "105afa340fc624be5ad6637a2fde8032812bc137210f711a2676606edd3789b6",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP"
+    },
+    {
+      "source_file": "Textures/T_V8_SootLining_ORM.png.png",
+      "PNG_sha256": "1b52b4d9e2d8d5cb5000216b310ec800cf23098b6267536c4f3e4e069e92d9f0",
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_ORM",
+      "width": 2048,
+      "height": 2048,
+      "decoded_RGB_sha256": "ae1b41e7479f64c02f5d620105bd4d10569436ce013a70be6c9590c4155d3d6e",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS"
+    }
+  ]
+}
