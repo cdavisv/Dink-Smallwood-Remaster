@@ -553,8 +553,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 176 automation tests (verified 9 Nov
-  2026: 176/176 in 723 s; the probe runs as twenty save-slot chapters,
+  rows, 111 implemented, 35 recorded. 185 automation tests (verified 9 Nov
+  2026 evening: 185/185 in 696 s on master 5d65ed8; the probe runs as twenty save-slot chapters,
   Ch1..Ch9 and ChA..ChK, deterministic across runs and identical packaged for all
   twenty (9 Nov 2026); PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
@@ -693,6 +693,22 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   placements, plus 46 warps on such proxies, so 143 final / 6,312 placeholder /
   152 cut; report in `Plugins/DinkImport/Docs/art_coverage.md`). Remaster gap noted:
   `draw_hard_sprite`/`sp_hard` are only recorded (UE AGENTS.md pitfall 77).
+- Probe progress, 9 Nov 2026 evening (PR #41): `sp_hard`, `draw_hard_sprite` and
+  `draw_hard_map` ported from `dink.cpp` (9979-9998, 8089-8104, 8224-8232):
+  the loaded hardness map is redrawn from a per-screen `tiles` layer plus the
+  hard placements and sprites in `que` order, read by `GetHard` until the next
+  screen load; the greybox swaps a runtime collision mesh in for the baked one
+  (`DinkGreyboxHardness.cpp`). Five `Dink.Gameplay.Hardness.*` tests on real
+  SCR_031 data (six untouched screens reproduce `tools/dinkex` pixel for
+  pixel). Chapter 9 moved because `s4-rock.c` now opens the duck pen as in the
+  original, 10-20 follow from it. Seth margin: chapter 19 also takes SCR_209's
+  and SCR_177's barrel potions, two gold hearts, SCR_352's pickups and
+  SCR_159's four magic potions (strength 30 at the bow, defense 11, magic 17,
+  lifemax 95); Seth dies with 8 of 11 elixirs left, 30/95 life, 41 arrows,
+  100 s (was 0 left, 7 life, 139 s). Master 5d65ed8 (PR #40 + #41): 185/185,
+  packaged probe all twenty PARITY OK (ch9 ddb1e8e0ca .. ch20 2298aad2ce,
+  table in `Plugins/DinkParity/Docs/packaged_probe.md`). Still open: saved
+  editor_type 2-5 hard flags are not applied on screen load (pitfall 77).
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.
