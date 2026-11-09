@@ -218,6 +218,12 @@ public:
 	void StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard = 0);
 	/** True while a script carries Dink with a move that ignores hardness (warps must not fire then). */
 	bool IsDinkCarriedThroughHardness() const { const FDinkSprite* D = Sprites.Find(1); return D && D->bMoving && D->bMoveNoHard; }
+	/**
+	 * A script is putting Dink somewhere (load_screen): the warps his new place overlaps must not fire. The original warps only from the walk code's
+	 * hardness hit (special_block, dink.cpp:15337); sp_x / sp_y / load_screen never run it (s3-sec1.c:40-42 puts Dink at 515,383 of SCR_227, inside
+	 * the hut's exit, and he stays). True only during that placement.
+	 */
+	bool IsDinkPlacedByScript() const { return bPlacingDink; }
 	/** Instant mode: finish every move now. */
 	void FinishAllMoves();
 
@@ -253,6 +259,8 @@ public:
 	/** dink.ini lines scripts ran with init() (sequence redefinitions), in order, for the animation layer. */
 	TArray<FString> InitLines;
 	bool bDinkCanWalkOffScreen = false;
+	/** load_screen is moving the pawn (IsDinkPlacedByScript). */
+	bool bPlacingDink = false;
 	FDinkAudioStub Audio;
 
 	/** Inventory for scripts when the player has no UDinkInventoryComponent (tests, smoke run). */

@@ -80,6 +80,8 @@ void UDinkGameplay::TickBrains(double DeltaMs)
 		BrainCarryMs -= EngineFrameMs;
 		BrainClockMs += EngineFrameMs;
 		++Frames;
+		// Dink (sprite 1) thinks first in the engine's sprite loop (D:16858); his brain's only part here is the bow (process_bow, D:14761-14766).
+		ProcessBow(BrainClockMs);
 		TArray<int32> Handles;
 		const int32 Screen = D->GetDink().Screen;
 		for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
