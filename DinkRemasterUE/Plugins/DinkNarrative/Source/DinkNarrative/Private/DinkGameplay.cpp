@@ -58,6 +58,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 	Placements.Reset();
 	ByScreen.Reset();
 	BaseScripts.Reset();
+	InitSequences.Reset();
 	auto Fail = [OutError](const FString& Message)
 	{
 		if (OutError)
@@ -506,6 +507,9 @@ void UDinkGameplay::Reset()
 {
 	WeaponInstance = MagicInstance = DeathInstance = 0;
 	PendingHits.Reset();
+	// A new game or a load puts the bow down (dink.cpp:1324 load_game, 17693 the start of a game).
+	Bow = FDinkBowStatus();
+	bAttackHeld = false;
 	NowMs = Story ? Story->GetNowMs() : 0.0;
 	NextStatusMs = NowMs + 100.0;
 	bPushActive = false;
@@ -571,6 +575,14 @@ bool UDinkGameplay::GetHardbox(const FDinkSprite& S, int32& L, int32& T, int32& 
 	{
 		F = Data.FindFrame(S.GetProp(P_PSeq), FMath::Max(1, S.GetProp(P_PFrame, 1)));
 	}
+	if (!F && Seq > 0)
+	{
+		F = Data.FindInitSequence(Seq);
+	}
+	if (!F)
+	{
+		F = Data.FindInitSequence(S.GetProp(P_PSeq));
+	}
 	FDinkFrameInfo DinkBox;
 	if (!F && S.Handle == 1)
 	{
@@ -591,6 +603,42 @@ bool UDinkGameplay::GetHardbox(const FDinkSprite& S, int32& L, int32& T, int32& 
 	T = Y + F->Top;
 	R = X + F->Right;
 	B = Y + F->Bottom;
+	return true;
+}
+
+bool UDinkGameplay::ApplyInitLine(const FString& Line)
+{
+	// figure_out (dink.cpp:2318-2344): words 1-10: LOAD_SEQUENCE[_NOW] <file> <seq> <speed> <xoffset> <yoffset> <left> <top> <right> <bottom>.
+	TArray<FString> W;
+	Line.ParseIntoArrayWS(W);
+	if (W.Num() < 3 || !(W[0].Equals(TEXT("load_sequence_now"), ESearchCase::IgnoreCase) || W[0].Equals(TEXT("load_sequence"), ESearchCase::IgnoreCase)))
+	{
+		return false;
+	}
+	const int32 Seq = FCString::Atoi(*W[2]);
+	// Only a sequence that is not active yet is read from the line (dink.cpp:2338-2342); dink.ini's are (frames.csv).
+	if (Seq <= 0 || Data.SeqExists(Seq) || Data.FindInitSequence(Seq))
+	{
+		return false;
+	}
+	// ReadFromLoadSequenceString (dink.cpp:2190-2226): BLACK / LEFTALIGN / NOTANIM in word 4 is no animation and gives no hardbox.
+	if (W.Num() < 10 || W[3].Equals(TEXT("BLACK"), ESearchCase::IgnoreCase) || W[3].Equals(TEXT("LEFTALIGN"), ESearchCase::IgnoreCase) || W[3].Equals(TEXT("NOTANIM"), ESearchCase::IgnoreCase))
+	{
+		return false;
+	}
+	FDinkFrameInfo Box;
+	Box.DelayMs = FCString::Atoi(*W[3]);
+	Box.Left = FCString::Atoi(*W[6]);
+	Box.Top = FCString::Atoi(*W[7]);
+	Box.Right = FCString::Atoi(*W[8]);
+	Box.Bottom = FCString::Atoi(*W[9]);
+	// LoadSpriteSingleFrame (dink.cpp:1899-1922) takes the line's box when right > 0 and bottom > 0; otherwise it is computed from the picture,
+	// which the remaster does not have: no box then.
+	if (Box.Right <= 0 || Box.Bottom <= 0)
+	{
+		return false;
+	}
+	Data.AddInitSequence(Seq, Box); // (no event: the trace records the init command itself)
 	return true;
 }
 
@@ -1273,6 +1321,11 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 	int32 Guard = 0;
 	while (NowMs >= NextStatusMs && Guard++ < 100000)
 	{
+		// The 100 ms timer (D:17339-17344) sets the bow's hitme whatever &update_status is; the pull adds power only after it.
+		if (Bow.bActive)
+		{
+			Bow.bHitMe = true;
+		}
 		StatusTick();
 		NextStatusMs += 100.0;
 	}
@@ -1284,7 +1337,8 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 bool UDinkGameplay::PlayerAttack()
 {
 	UDinkDirector* D = Director();
-	if (!D || IsFrozenDink())
+	// While the bow is drawn Dink's brain runs process_bow and returns (D:14761-14766): the attack key does not start another `use`.
+	if (!D || IsFrozenDink() || Bow.bActive)
 	{
 		return false;
 	}
@@ -1306,7 +1360,8 @@ bool UDinkGameplay::PlayerAttack()
 
 bool UDinkGameplay::PlayerCastMagic()
 {
-	if (IsFrozenDink())
+	// The magic key is not read while the bow is drawn either (D:14761-14766 return before D:14941).
+	if (IsFrozenDink() || Bow.bActive)
 	{
 		return false;
 	}
@@ -1321,6 +1376,106 @@ bool UDinkGameplay::PlayerCastMagic()
 	Note(FString::Printf(TEXT("cast %s facing %d"), *Magic->Script.ToString(), Director() ? Director()->GetDink().Dir : 0));
 	RunInstanceProc(MagicInstance, NAME_Use);
 	return true;
+}
+
+bool UDinkGameplay::PlayerAttackPress()
+{
+	bAttackHeld = true;
+	return PlayerAttack();
+}
+
+void UDinkGameplay::PlayerAttackRelease()
+{
+	bAttackHeld = false;
+}
+
+// ---------------------------------------------------------------------------------------------
+// The bow
+
+void UDinkGameplay::ActivateBow(int32 InstanceId)
+{
+	// activate_bow (D:9397-9408): Dink's animation stops on the first frame of the draw (seq 0, pseq 100 + dir, pframe 1), the bow is
+	// active for this script, hitme false, time 0; the script waits (ugly_return(2)) until process_bow runs it again at the release.
+	UDinkDirector* D = Director();
+	if (D)
+	{
+		FDinkSprite& Dink = D->GetDink();
+		Dink.Props.Add(P_Seq, 0);
+		Dink.Props.Add(P_PSeq, 100 + Dink.Dir);
+		Dink.Props.Add(P_PFrame, 1);
+	}
+	Bow.bActive = true;
+	Bow.Instance = InstanceId;
+	Bow.bHitMe = false;
+	Bow.Time = 0;
+	Note(TEXT("bow drawn (activate_bow)"));
+}
+
+void UDinkGameplay::ProcessBow(double TickMs)
+{
+	if (!Bow.bActive || !Story)
+	{
+		return;
+	}
+	UDinkDirector* D = Director();
+	FDinkScriptInstance* Instance = Story->FindInstance(Bow.Instance);
+	if (!D || !Instance || !Instance->IsAlive())
+	{
+		// The script that drew the bow is gone (its item was disarmed: item-b1.c `disarm` is kill_this_task). The original would run_script a dead
+		// slot at the release; there is nothing to run on here, so the bow is put down. (The original cannot get here from play: the inventory key
+		// is not read while the bow is drawn.)
+		Bow.bActive = false;
+		Note(TEXT("bow put down (its script ended)"));
+		return;
+	}
+	// human_brain (D:14690-14766): a scripted move of Dink, an open menu (talk_info) and freeze all come before the bow and return. (Dink's
+	// nocontrol is not modelled for the pawn: the remaster has no animator for Dink that would clear it again.)
+	FDinkSprite& Dink = D->GetDink();
+	if (Dink.bMoving || Dink.bFrozen || Story->GetActiveMenu())
+	{
+		return;
+	}
+	// The arrow keys turn Dink while he draws (D:14568-14598); here the pawn's facing is the direction input, as for the attack key.
+	SyncDinkFacingFromActor();
+	FDinkSprite& Drawer = D->GetDink();
+	Drawer.Props.Add(P_PSeq, 100 + Drawer.Dir);
+	// The pull (D:14600-14612): every 10 ms of engine time, 7 power once hitme is set, at most 500; the picture follows the draw.
+	if (Bow.PullWaitMs < TickMs)
+	{
+		Bow.PullWaitMs = TickMs + BowPullTickMs;
+		if (Bow.bHitMe)
+		{
+			Bow.Time += BowPullPerTick;
+		}
+		if (Bow.Time > BowMaxPower)
+		{
+			Bow.Time = BowMaxPower;
+		}
+		const float Progress = float(Bow.Time) / float(BowMaxPower);
+		Drawer.Props.Add(P_PFrame, static_cast<int32>((4.0f * Progress) + 1.0f));
+	}
+	// The release (D:14615-14620): the attack key is up: the bow is put down, its power kept, and the script runs on at once (run_script).
+	if (!bAttackHeld)
+	{
+		Bow.bActive = false;
+		Bow.LastPower = Bow.Time;
+		Note(FString::Printf(TEXT("bow released at power %d"), Bow.LastPower));
+		if (Instance->State == EDinkInstanceState::Blocked && Instance->Block == EDinkBlock::Bow)
+		{
+			Instance->State = EDinkInstanceState::Running;
+			Instance->Block = EDinkBlock::None;
+			Story->RunNow(Bow.Instance);
+		}
+	}
+}
+
+void UDinkGameplay::EndBowBlock(int32 InstanceId)
+{
+	if (Bow.bActive && Bow.Instance == InstanceId)
+	{
+		Bow.bActive = false;
+		Bow.LastPower = Bow.Time;
+	}
 }
 
 int32 UDinkGameplay::AddItem(FName Script, bool bMagic)
@@ -1505,6 +1660,18 @@ TSharedPtr<FJsonObject> UDinkGameplay::SaveState() const
 		Hits.Add(MakeShared<FJsonValueObject>(HO));
 	}
 	O->SetArrayField(TEXT("pendingHits"), Hits);
+	// The bow (only when it has been used, so saves of games that never drew it are unchanged).
+	if (Bow.bActive || Bow.LastPower != 0)
+	{
+		TSharedRef<FJsonObject> BO = MakeShared<FJsonObject>();
+		BO->SetBoolField(TEXT("active"), Bow.bActive);
+		BO->SetNumberField(TEXT("instance"), Bow.Instance);
+		BO->SetBoolField(TEXT("hitme"), Bow.bHitMe);
+		BO->SetNumberField(TEXT("time"), Bow.Time);
+		BO->SetNumberField(TEXT("lastPower"), Bow.LastPower);
+		BO->SetNumberField(TEXT("pullWaitMs"), Bow.PullWaitMs);
+		O->SetObjectField(TEXT("bow"), BO);
+	}
 	return O;
 }
 
@@ -1527,6 +1694,17 @@ void UDinkGameplay::LoadState(const TSharedPtr<FJsonObject>& State)
 	if (State->TryGetNumberField(TEXT("rngSeed"), RngSeed))
 	{
 		StreamSource->GetStream().Initialize(RngSeed);
+	}
+	const TSharedPtr<FJsonObject>* BowObject = nullptr;
+	if (State->TryGetObjectField(TEXT("bow"), BowObject) && BowObject && BowObject->IsValid())
+	{
+		const FJsonObject& BO = **BowObject;
+		Bow.bActive = BO.GetBoolField(TEXT("active"));
+		Bow.Instance = BO.GetIntegerField(TEXT("instance"));
+		Bow.bHitMe = BO.GetBoolField(TEXT("hitme"));
+		Bow.Time = BO.GetIntegerField(TEXT("time"));
+		Bow.LastPower = BO.GetIntegerField(TEXT("lastPower"));
+		Bow.PullWaitMs = BO.GetNumberField(TEXT("pullWaitMs"));
 	}
 	const TArray<TSharedPtr<FJsonValue>>* Hits = nullptr;
 	if (State->TryGetArrayField(TEXT("pendingHits"), Hits))
