@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "LODs": [
+    {
+      "name": "SM_Pie_Rustic_01_LOD0",
+      "triangles": 4844,
+      "UV": {
+        "uv_area": 0.4898919680721743,
+        "area_3d": 1.2933839095490325,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 4844
+      },
+      "material_optics": {
+        "MI_Pie_BlueCeramic_PhotoSource": {
+          "IOR": 1.4800000190734863,
+          "Specular IOR Level": 0.5,
+          "Coat Weight": 0.18000000715255737,
+          "Coat Roughness": 0.18000000715255737
+        },
+        "MI_Pie_PastryFruit_PhotoSource": {
+          "IOR": 1.4600000381469727,
+          "Specular IOR Level": 0.30000001192092896,
+          "Coat Weight": 0.019999999552965164,
+          "Coat Roughness": 0.5
+        }
+      }
+    },
+    {
+      "name": "SM_Pie_Rustic_01_LOD1",
+      "triangles": 2422,
+      "UV": {
+        "uv_area": 0.4807775222442405,
+        "area_3d": 1.2883300806957645,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 2422
+      },
+      "material_optics": {
+        "MI_Pie_BlueCeramic_PhotoSource": {
+          "IOR": 1.4800000190734863,
+          "Specular IOR Level": 0.5,
+          "Coat Weight": 0.18000000715255737,
+          "Coat Roughness": 0.18000000715255737
+        },
+        "MI_Pie_PastryFruit_PhotoSource": {
+          "IOR": 1.4600000381469727,
+          "Specular IOR Level": 0.30000001192092896,
+          "Coat Weight": 0.019999999552965164,
+          "Coat Roughness": 0.5
+        }
+      }
+    },
+    {
+      "name": "SM_Pie_Rustic_01_LOD2",
+      "triangles": 1210,
+      "UV": {
+        "uv_area": 0.4561644449799448,
+        "area_3d": 1.2667284306699742,
+        "overlap_area": 0.0,
+        "overlap_ratio": 0.0,
+        "overlapping_tris": 0,
+        "degenerate_tris": 0,
+        "tris_out_of_range": 0,
+        "truncated": false,
+        "tris": 1210
+      },
+      "material_optics": {
+        "MI_Pie_BlueCeramic_PhotoSource": {
+          "IOR": 1.4800000190734863,
+          "Specular IOR Level": 0.5,
+          "Coat Weight": 0.18000000715255737,
+          "Coat Roughness": 0.18000000715255737
+        },
+        "MI_Pie_PastryFruit_PhotoSource": {
+          "IOR": 1.4600000381469727,
+          "Specular IOR Level": 0.30000001192092896,
+          "Coat Weight": 0.019999999552965164,
+          "Coat Roughness": 0.5
+        }
+      }
+    }
+  ],
+  "limits": "LOD0zerooverlap required; decimatedLODs use class0.2%overlap threshold with actual values retained. UV/material/finite checks are not universal contact or native approval."
+}

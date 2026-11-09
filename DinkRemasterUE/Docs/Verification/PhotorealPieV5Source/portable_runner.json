@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "complete": true,
+  "jobs": [
+    {
+      "job": "raw_packed",
+      "script": "V4_ReferenceAlbedo/check_portable.py",
+      "returncode": 0,
+      "seconds": 0.6233932670002105,
+      "log_sha256": "b01aa4344002b886f72b1782a07ee624fc375e8fc6065d374ca6a26e8c2a7601"
+    },
+    {
+      "job": "bake_packed",
+      "script": "V4_BakeExportIteration/check_portable.py",
+      "returncode": 0,
+      "seconds": 0.5010868169920286,
+      "log_sha256": "9390fbb39cb09bc2baae0e85280c4299fcb69e28b8ff17959602802ab02ee5ea"
+    },
+    {
+      "job": "V5_packed",
+      "script": "V5_OpticalLOD/check_portable.py",
+      "returncode": 0,
+      "seconds": 0.49335055000847206,
+      "log_sha256": "69a6084b63c2a4238210287639d86f48c14cf5b83c42b59fcab97f45db3f073c"
+    },
+    {
+      "job": "V5_preservation",
+      "script": "V5_OpticalLOD/verify_preservation.py",
+      "returncode": 0,
+      "seconds": 0.6916367530066054,
+      "log_sha256": "7dfdb1b8721a682e6e8d0fc08b48061b66b8033439953eadc6cd9fac2a730372"
+    },
+    {
+      "job": "V5_UV",
+      "script": "V5_OpticalLOD/verify_export_uv.py",
+      "returncode": 0,
+      "seconds": 0.5867391159990802,
+      "log_sha256": "005f3d9e00424ee6fa0ebc5c09af17dbcf2afc443f0aa251c2054c88bd8defc0"
+    },
+    {
+      "job": "V5_guide",
+      "script": "V5_OpticalLOD/validate_source.py",
+      "returncode": 0,
+      "seconds": 0.5927852549939416,
+      "log_sha256": "bc3c202af71beb2bc03b5e20440d320ffb0759b69da84c5377f387a8d5ac92a0"
+    },
+    {
+      "job": "V5_FBX",
+      "script": "NativeLODExportsV5/verify_lod_exports.py",
+      "returncode": 0,
+      "seconds": 0.7021548319899011,
+      "log_sha256": "cbe2805e7656ba10fe05cce25345943d209a412242282d1cc3b34fe3e609e841"
+    }
+  ],
+  "CPU_threads": 2,
+  "rendered": false,
+  "source": "Disposable copy only"
+}

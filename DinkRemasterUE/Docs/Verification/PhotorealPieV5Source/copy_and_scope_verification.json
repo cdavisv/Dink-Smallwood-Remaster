@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "source_delivery_base": "c367bc8a4e6d20f37fa5c1835ae2f3fdbc7e8e81",
+  "payload_files": 139,
+  "payload_bytes": 107661641,
+  "all_frozen_SHA_size_match": true,
+  "all_independent_inodes": true,
+  "payload_paths_and_relative_layout_unchanged": true,
+  "baseline_rows": 2043,
+  "appended_candidate_rows": 139,
+  "total_rows": 2182,
+  "baseline_raw_prefix_bytes": 1957908,
+  "audio_rows_preserved": 483,
+  "CPU_blender_threads": 2,
+  "portable_runs": 7,
+  "qualification": "Blender CPU verification only in disposable copy; no image rendering, Unreal, native files, runtime Content/Data or frozen-author changes.",
+  "Unreal_GPU_render_or_runtime_changed": false
+}

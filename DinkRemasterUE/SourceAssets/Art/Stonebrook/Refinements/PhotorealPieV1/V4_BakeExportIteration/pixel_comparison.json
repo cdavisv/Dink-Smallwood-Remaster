@@ -1,0 +1,54 @@
+{
+  "scope": "IdenticalCPUstudio/camera, approvedrawdonor9edd referencealbedo+proceduralN/roughness versus actualFBXwith3POTbakedmaps/2materials; LOD0views",
+  "measurements": {
+    "front": {
+      "ROI_xyxy": [
+        110,
+        190,
+        610,
+        550
+      ],
+      "mean_abs_RGB_255": 0.3641592562198639,
+      "p95_abs_RGB_255": 2.0,
+      "source_sha256": "4efde13a67e7e8d5dfb3722a6d05329366183f9bc14e99a4c97e12ecfd4a44af",
+      "actualFBX_baked_sha256": "1ff01069e229e7bddb041ccacb714c88c90e1f40ac62978c73bbe72876f8f91c"
+    },
+    "crust": {
+      "ROI_xyxy": [
+        40,
+        40,
+        680,
+        680
+      ],
+      "mean_abs_RGB_255": 1.291100263595581,
+      "p95_abs_RGB_255": 4.0,
+      "source_sha256": "7a047d746068bd9eb4647b2dc3417d1bd842a03aadb1f784f0b33118f15e8432",
+      "actualFBX_baked_sha256": "434a77b703eee537269d12a0a7eb17efd536cc78f6ce4b9e928a43e89f12ab91"
+    },
+    "dish": {
+      "ROI_xyxy": [
+        80,
+        180,
+        640,
+        600
+      ],
+      "mean_abs_RGB_255": 1.1399561166763306,
+      "p95_abs_RGB_255": 4.0,
+      "source_sha256": "4bd4d7408a8d7bd6317460cb14216b28c97c012972dec8d3e603ac2cfa524cdb",
+      "actualFBX_baked_sha256": "f073677051c2c49d11a7621be94e661d72e3887d55f9e4cd40eb2662b96255fd"
+    },
+    "game-distance": {
+      "ROI_xyxy": [
+        240,
+        250,
+        480,
+        470
+      ],
+      "mean_abs_RGB_255": 0.1658838391304016,
+      "p95_abs_RGB_255": 1.0,
+      "source_sha256": "7f8b66d9584c48401964e8ab17c5cec7014ef9737202838fa3f0f1d5a0f849a0",
+      "actualFBX_baked_sha256": "c4a22db5ff39b2d0909cb0a8f75c932f16b5b58a02bca34adef907cec144641e"
+    }
+  },
+  "limits": "Not universalvisualthresholds, nativefiltering/lighting/LODdistance/foodpickupacceptance"
+}

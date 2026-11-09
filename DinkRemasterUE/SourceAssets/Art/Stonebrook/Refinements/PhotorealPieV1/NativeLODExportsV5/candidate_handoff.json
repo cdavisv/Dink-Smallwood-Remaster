@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "SM_Pie_Rustic_01_LOD0.fbx",
+      "sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "bytes": 179500
+    },
+    {
+      "path": "SM_Pie_Rustic_01_LOD1.fbx",
+      "sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "bytes": 130476
+    },
+    {
+      "path": "SM_Pie_Rustic_01_LOD2.fbx",
+      "sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "bytes": 93532
+    },
+    {
+      "path": "export_native_lods.py",
+      "sha256": "5b015f1f71d0307943418ab25755d2fc780b75e888b2705ddd8a3ffd7c1a06f0",
+      "bytes": 1537
+    },
+    {
+      "path": "verify_lod_exports.py",
+      "sha256": "fa2b5ab6e954453113048f181ba2ff3b3a373a8ffec9212c608f4c568303f94e",
+      "bytes": 3879
+    },
+    {
+      "path": "lod_manifest.json",
+      "sha256": "32f6521c933c27f550fd99bdb6da48405bccf7c10cc57a0ff0078802c1d863c4",
+      "bytes": 1405
+    },
+    {
+      "path": "lod_roundtrip_receipt.json",
+      "sha256": "cfef6d19a728c5f2ad56c601dbd7da2504e2d93df67b5bccebc0b3062690cef2",
+      "bytes": 2324
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "315f79a96677811bb63677c4f92f7e473092491b0e9c4c4f6f8be807df99615c",
+      "bytes": 607
+    }
+  ]
+}

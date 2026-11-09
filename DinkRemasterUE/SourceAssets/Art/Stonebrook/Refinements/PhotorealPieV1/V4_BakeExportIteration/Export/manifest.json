@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T22:36:20Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Pie_Rustic_01",
+      "class": "prop_small",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealPieV1_Export.blend",
+        "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+        "collection": "SM_Pie_Rustic_01",
+        "note": "Original S001_P51/421_11/sfood golden pastry on blue dish; project authored pastry/fruit/glaze"
+      },
+      "tris": {
+        "LOD0": 4844,
+        "LOD1": 2542,
+        "LOD2": 1330
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ],
+        "size_cm": [
+          49.0,
+          49.0,
+          11.9
+        ],
+        "unreal_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_Pie_BlueCeramic_PhotoBaked",
+        "MI_Pie_PastryFruit_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Pie_Rustic_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Pie_Rustic_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Pie_Rustic_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}
