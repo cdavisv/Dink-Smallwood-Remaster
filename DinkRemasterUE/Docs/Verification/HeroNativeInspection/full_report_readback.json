@@ -1,0 +1,114 @@
+{
+  "utc": "2026-11-09T05:44:59.764134+00:00",
+  "scope": "Read-only postrun UTF8BOM-aware derivation, no UE/tests rerun; original supervisor/postparser failure unchanged",
+  "report": "/home/artist/Work/DinkHeroNativeProof/DinkRemasterUE/Saved/Automation/hero_full156_verified/index.json",
+  "report_sha256": "55710b25688f6bcdb34471dbaae9560f8f27bc34b1cdf552231a3c8bce2215c0",
+  "report_has_UTF8_BOM": true,
+  "exit_code": 0,
+  "actual_test_count": 156,
+  "succeeded": 140,
+  "failed": 0,
+  "tests_with_warnings": 16,
+  "all_protected_scopes_unchanged": true,
+  "changed_scopes": [],
+  "actual_owned7": true,
+  "failed_test_paths": [],
+  "warning_test_entries": [
+    {
+      "path": "Dink.AI.Adaptation.WindUpAndAttackerCap",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Animals.DuckAndPig",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Attack.DamageFormula",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Bonca.AttackingDinkWins",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Bonca.KillsIdleDink",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Determinism.SameSeedSameOutcome",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Missile.WallsAndLowHardness",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Monster.PillbugChasesWithinHardness",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Override.FrozenAndScriptedMove",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.People.VillagerWandersInBounds",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Screenlock.BarrierBlocksExits",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.AI.Screenlock.FightsLockAndUnlock",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.Art.Camera.WallsRemainSolid",
+      "warning_entries": 2
+    },
+    {
+      "path": "Dink.Gameplay.Probe.Ch2Terris",
+      "warning_entries": 5952
+    },
+    {
+      "path": "Dink.Gameplay.Restart.DeathMenuCreatesFreshPlayableWorldTwice",
+      "warning_entries": 1
+    },
+    {
+      "path": "Dink.Narrative.Smoke.AllEntryPoints",
+      "warning_entries": 1
+    }
+  ],
+  "Wayland_direct_events_by_observed_active_test": {
+    "startup_unbound": 214,
+    "WindUpAndAttackerCap": 2,
+    "DuckAndPig": 2,
+    "DamageFormula": 2,
+    "AttackingDinkWins": 2,
+    "KillsIdleDink": 2,
+    "SameSeedSameOutcome": 2,
+    "WallsAndLowHardness": 2,
+    "PillbugChasesWithinHardness": 2,
+    "FrozenAndScriptedMove": 2,
+    "VillagerWandersInBounds": 2,
+    "BarrierBlocksExits": 2,
+    "FightsLockAndUnlock": 2,
+    "WallsRemainSolid": 2,
+    "Ch2Terris": 5952
+  },
+  "Wayland_direct_events": 6192,
+  "Wayland_controller_replayed_rows": 5966,
+  "Wayland_first_direct_event": "[2026.11.09-05.22.33:458][192]LogInit: Warning: Querying IsUsingWayland before SDL is initialized",
+  "environment_classification": "SDL/Wayland initialization warnings observed under unchanged headless environment; occurrence timing is not attribution to new inspector code. No suppression/threshold changes. Report per-test counts and raw direct/replay counts are distinct.",
+  "supervisor_child_returncode": 1,
+  "postprocessor_failure": "Savedguard reader used json.loads(read_text()) and rejected Unreal UTF8BOM after UE/tests and allstrictguards had passed. Rawfailure preserved.",
+  "host_observation": {
+    "atomic_tree": false,
+    "whole_host_unchanged_claim": false,
+    "status_counts": {
+      "equal_at_observed_versions": 19996,
+      "unavailable": 311
+    },
+    "unknowns_retained": true
+  }
+}
