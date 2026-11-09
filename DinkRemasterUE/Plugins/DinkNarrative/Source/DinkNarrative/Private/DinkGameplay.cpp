@@ -165,6 +165,8 @@ bool FDinkGameplayData::Load(FString* OutError)
 		P.Hard = Int(TEXT("hard"));
 		P.Sound = Int(TEXT("sound"));
 		P.Que = Int(TEXT("que"));
+		P.Prop = Int(TEXT("prop"));
+		P.WarpMap = Int(TEXT("warp_map"));
 		ByScreen.FindOrAdd(P.Origin.Screen).Add(P.Origin);
 		Placements.Add(P.Origin, P);
 	}
@@ -1673,6 +1675,90 @@ void UDinkGameplay::OnScreenLoaded()
 	RestoreGreyboxHardness();
 	LiveHardness.Reset();
 	VisitPlacementHard.Reset();
+	VisitPlacementProp.Reset();
+}
+
+void UDinkGameplay::SetPlacementProp(const FDinkOriginId& Origin, int32 Prop)
+{
+	// g_smallMap.sprite[n].prop = Prop (owner decision OD1: no 1997 command writes it). get_hard and special_block read the flag whenever they
+	// run (dink.cpp:569-575, 15339), so unlike sp_hard it needs no redraw: it acts at once and until the screen loads again.
+	const FDinkPlacementInfo* P = Data.FindPlacement(Origin);
+	const int32 MapProp = P ? P->Prop : 0;
+	if (Prop == MapProp)
+	{
+		VisitPlacementProp.Remove(Origin);
+	}
+	else
+	{
+		VisitPlacementProp.Add(Origin, Prop);
+	}
+	Note(FString::Printf(TEXT("prop %s %d"), *Origin.ToString(), Prop));
+	UWorld* World = Story ? Story->GetWorld() : nullptr;
+	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	if (Greybox && MapProp == 1)
+	{
+		// A sprite warp: special_block runs only while its prop is 1 (D:15339). Its hardbox is solid in the greybox either way (the importer's
+		// approximation of a warp: block and fire on contact), which is what a prop-0 placement's stamped hardbox is.
+		Greybox->SetSpriteWarpOn(Origin.ToString(), GetPlacementProp(Origin) == 1);
+	}
+	if (Origin.Screen > 0)
+	{
+		SyncGreyboxHardness(Origin.Screen);
+	}
+}
+
+int32 UDinkGameplay::GetPlacementProp(const FDinkOriginId& Origin) const
+{
+	if (const int32* Visit = VisitPlacementProp.Find(Origin))
+	{
+		return *Visit;
+	}
+	const FDinkPlacementInfo* P = Data.FindPlacement(Origin);
+	return P ? P->Prop : 0;
+}
+
+bool UDinkGameplay::IsWalkThroughByProp(int32 Screen, int32 Code) const
+{
+	// get_hard (D:569-575): a stamped hardbox whose placement's prop is not 0 reads 0. Only a prop an sp_prop of this visit gave a placement that
+	// map.dat has at 0: the 93 map.dat warps keep the greybox's warp approximation (solid, the trigger fires on contact).
+	if (Code <= 100 || VisitPlacementProp.Num() == 0)
+	{
+		return false;
+	}
+	const FDinkOriginId Origin(Screen, Code - 100);
+	const int32* Visit = VisitPlacementProp.Find(Origin);
+	const FDinkPlacementInfo* P = Visit ? Data.FindPlacement(Origin) : nullptr;
+	return Visit && *Visit != 0 && (!P || P->Prop == 0);
+}
+
+bool UDinkGameplay::BuildLoadedCodes(int32 Screen, TArray<uint8>& OutCodes, int32& OutVision) const
+{
+	OutCodes.Reset();
+	OutCodes.SetNumZeroed(FDinkHardnessMap::Width * FDinkHardnessMap::Height);
+	OutVision = 0;
+	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+	const FDinkHardnessMap* Loaded = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
+	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
+	const bool bLoaded = Loaded && Loaded->Codes.Num() == OutCodes.Num();
+	if (bLoaded)
+	{
+		OutVision = Loaded->Vision;
+		OutCodes = Loaded->Codes;
+	}
+	// The map the engine holds now: the loaded one, where a placement that was removed when the screen loaded was never stamped (place_sprites_game
+	// skips it after update_play_changes, D:5974, 5784), so its pixels show the tile layer. (GetHard reads them as 0 until a redraw.)
+	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
+	{
+		for (int32 i = 0; i < OutCodes.Num(); ++i)
+		{
+			const int32 Code = OutCodes[i];
+			if (Code > 100 && World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100)))
+			{
+				OutCodes[i] = Tiles && Tiles->Codes.IsValidIndex(i) ? Tiles->Codes[i] : 0;
+			}
+		}
+	}
+	return bLoaded;
 }
 
 FDinkHardnessMap& UDinkGameplay::EnsureLiveHardness(int32 Screen)
@@ -1684,28 +1770,7 @@ FDinkHardnessMap& UDinkGameplay::EnsureLiveHardness(int32 Screen)
 	FLiveHardness& Live = LiveHardness.Add(Screen);
 	Live.Map = MakeShared<FDinkHardnessMap>();
 	Live.Map->Screen = Screen;
-	Live.Map->Codes.SetNumZeroed(FDinkHardnessMap::Width * FDinkHardnessMap::Height);
-	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
-	const FDinkHardnessMap* Loaded = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
-	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
-	if (Loaded && Loaded->Codes.Num() == Live.Map->Codes.Num())
-	{
-		Live.Map->Vision = Loaded->Vision;
-		Live.Map->Codes = Loaded->Codes;
-	}
-	// The map the engine holds now: the loaded one, where a placement that was removed when the screen loaded was never stamped (place_sprites_game
-	// skips it after update_play_changes, D:5974, 5784), so its pixels show the tile layer. (GetHard reads them as 0 until a redraw.)
-	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
-	{
-		for (int32 i = 0; i < Live.Map->Codes.Num(); ++i)
-		{
-			const int32 Code = Live.Map->Codes[i];
-			if (Code > 100 && World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100)))
-			{
-				Live.Map->Codes[i] = Tiles && Tiles->Codes.IsValidIndex(i) ? Tiles->Codes[i] : 0;
-			}
-		}
-	}
+	BuildLoadedCodes(Screen, Live.Map->Codes, Live.Map->Vision);
 	Live.Base = Live.Map->Codes;
 	return *Live.Map;
 }
@@ -1926,19 +1991,35 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 {
 	UWorld* World = Story ? Story->GetWorld() : nullptr;
 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
-	const FLiveHardness* Live = LiveHardness.Find(Screen);
-	if (!Greybox || !Live || Live->Base.Num() != Live->Map->Codes.Num())
+	if (!Greybox)
 	{
 		return;
 	}
-	// The greybox's solid collision was baked from the loaded map: pass on only what the draws changed (1 now solid, 2 no longer solid).
+	// The greybox's solid collision was baked from the loaded map: pass on only what the draws changed and what sp_prop made walk-through
+	// (1 now solid, 2 no longer solid).
+	const FLiveHardness* Live = LiveHardness.Find(Screen);
+	TArray<uint8> Loaded;
+	if (!Live)
+	{
+		int32 Vision = 0;
+		if (!BuildLoadedCodes(Screen, Loaded, Vision))
+		{
+			return;
+		}
+	}
+	const TArray<uint8>& Base = Live ? Live->Base : Loaded;
+	const TArray<uint8>& Now = Live ? Live->Map->Codes : Loaded;
+	if (Base.Num() != Now.Num())
+	{
+		return;
+	}
 	TArray<uint8> Changes;
-	Changes.SetNumZeroed(Live->Base.Num());
+	Changes.SetNumZeroed(Base.Num());
 	bool bAny = false;
 	for (int32 i = 0; i < Changes.Num(); ++i)
 	{
-		const bool bWas = FDinkHardnessMap::IsSolidCode(Live->Base[i]);
-		const bool bNow = FDinkHardnessMap::IsSolidCode(Live->Map->Codes[i]);
+		const bool bWas = FDinkHardnessMap::IsSolidCode(Base[i]);
+		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]);
 		if (bWas != bNow)
 		{
 			Changes[i] = bNow ? 1 : 2;
@@ -1961,6 +2042,8 @@ void UDinkGameplay::RestoreGreyboxHardness()
 	if (UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr)
 	{
 		Greybox->RestoreScreenSolidCollision(0);
+		// sp_prop's switched-off sprite warps are on again: load_map reads map.dat's prop anew.
+		Greybox->RestoreSpriteWarps();
 	}
 }
 

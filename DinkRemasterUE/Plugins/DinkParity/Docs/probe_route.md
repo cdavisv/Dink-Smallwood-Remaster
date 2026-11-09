@@ -596,7 +596,7 @@ here, steps 38-41 are skipped (section 1).
     do: watch; menu "Pshaw, twasn't nuthin!" or "I saved all of you, actually." (either)
     needs: both dragons dead and `&life > 0` (`en-drag.c:113`)
     result: `screenlock(0)` (`s5-end.c:9`), **`&story 11 -> 12`**, **`&s5-jop = 4`** (`:36-37`), the door `sp(2)` opened (`:32-33`); +1 healer on SCR_226 (`s5-heals.c:5`: vision 2 at story 12)
-    hazards: `s5-fguy.c:6` calls the nonexistent `sp_prop` (does nothing in the engine); heart/gold drops of the dragons spawn at their death spots (pick up quickly)
+    hazards: `s5-fguy.c:6` calls the nonexistent `sp_prop` (does nothing in the engine; the remaster's director defines it since 9 Nov 2026, owner decision OD1, but the call sits behind `fix_s5_fguy_l6`, which stays false, so the door stays a warp); heart/gold drops of the dragons spawn at their death spots (pick up quickly)
 
 ### Act E. Bow lore, the castle, the Edge of the World (&story 12 -> 14): 8 steps
 
@@ -904,3 +904,20 @@ before later fixes), so the bow needs 276 more; a large drop (`lgold`) is 50-74 
 
 **Gold, the real shortfall:** 276 at the end of chapter 3; chapter 4 earns 348 in two rounds (13 + 61 + 65 + 67, then 14 + 58 + 70). The pill
 bugs (speed 180 px/s) were not needed: the Bongs kill each other.
+
+### 8.1 Lines spoken since the owner decision of 9 Nov 2026 (OD2)
+
+The four pure-typo fix switches are on in the shipped story (`doc/remaster/verbatim_review.md` OD2; `tools/dinkink/dinkink/overrides.py`
+`OWNER_DECISIONS`), so lines the 1997 engine dropped are spoken. Where the route meets them:
+
+| Switch | Line | Where | On the probe's route |
+|---|---|---|---|
+| `fix_s2_jack_l171` | "I guess I just killed your husband." (Dink, `say_stop`) | Jack's `die` (`s2-jack.c:171`), SCR_036, Act A step 2 here (optional: kill Jack; probe step 37 of the old numbering) | **yes**, chapter 1 (`Ch1Stonebrook`, "kill Jack with fireballs"): between "Dink!  What have you done!" and Maria's "Jack wasn't always like that..." at about 137.5 s of game time; the probe skips it like every text (one frame), so the scene is one frame longer |
+| `fix_s3_chick_l42` | "Hello Dink, I'm Christina." (Christina, `say_stop`) | her `talk`, option "Say hi" (`s3-chick.c:42`), SCR_586 | no: route step 17 (chapter 3) answers "Tell her about the planned assault" |
+| `fix_s4_sign3_l17` | "Long live the ducks." (the sign) | the Windemere sign's `talk` while `&story` <= 10 (`s4-sign3.c:17`), SCR_504 | no: the probe never reads that sign |
+| `fix_s1_h3_8_l13` | "Libby's bed, to dream the impossible dream..." / "Libby's bed, looks lonely." (one of three at random) | Libby's bed's `talk` (`s1-h3-8.c:16`, `:20`), SCR_004 | no: the probe never talks to the bed |
+
+What moved in the probe (9 Nov 2026, night): chapter 1 only through Jack's line, all other chapters only through chapter 1's save (see
+DinkRemasterUE/AGENTS.md "The probe, in chapters", the hashes of 9 Nov 2026, night). The two `sp_prop` calls of the dragon fight
+(route steps 35-37, `s5-fguy.c:6`, `s5-end.c:33`) stay off (OD1: the director defines `sp_prop`, the switches stay false): the SCR_419
+door is a warp throughout, as in 1997.

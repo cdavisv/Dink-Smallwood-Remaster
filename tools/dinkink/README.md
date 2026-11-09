@@ -12,7 +12,7 @@ cd tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story \
 cd tools/dinkink
 python3 -m dinkink build --ast ../dinkc/out --out out     # about 7 s, compiles every file
 python3 -m dinkink build --ast ../dinkc/out --out out --no-file-check   # root file only, 1-2 s
-python3 -m unittest discover -s tests                     # 39 tests, 12-27 s (builds into a temp dir)
+python3 -m unittest discover -s tests                     # 44 tests, 12-27 s (builds into a temp dir)
 ```
 
 `build` exits 1 if the root story or any script file fails to compile. It never writes
@@ -29,7 +29,7 @@ outside `--out`. The `.gitignore` keeps `out/` untracked.
 | `names.csv` | `kind` (knot / entry / local / global / pseudo / fix), `original`, `ink`, `scope`, `script`. One row per name; both columns are unique, so it maps both ways |
 | `line_ids.csv` | `id`, `kind` (spoken / title / option), `script`, `procedure`, `line`, `call`, `speaker`, `colour`, `live` (0 = behind a fix switch), `text` (original, colour code removed) |
 | `director_commands.csv` | every command instance: `script`, `procedure`, `line`, `command`, `form` (line / comment / var-write / fix-intent), `blocking`, `args` (as written in Ink), `kind`, `status`, `screens` |
-| `director_vocabulary.csv` | one row per command or external: `category`, `args`, `blocking`, counts per form, number of scripts, note. Category `unknown-command` marks a name that is not an engine command (`sp_prop`: only its switched-off intent uses it); misspelt commands (`freeeze`) never appear, their intent branch emits the corrected command |
+| `director_vocabulary.csv` | one row per command or external: `category`, `args`, `blocking`, counts per form, number of scripts, note. Category `unknown-command` marks a name that is not an engine command (`sp_prop`: only its switched-off intent uses it; the remaster's director defines it by owner decision OD1, see DESIGN.md section 9); misspelt commands (`freeeze`) never appear, their intent branch emits the corrected command |
 | `shot_lists/<script>.md` | plain-language beats for cutscenes and any procedure that moves sprites, fades, or freezes Dink for 4+ `say_stop`s |
 | `review_queue.csv` | `id`, `priority` (high = changes what the player sees or does), `category`, `code`, `script`, `status`, `line`, `procedure`, `engine_behaviour`, `author_intent`, `conversion`, `fix_const` (empty when nothing is switched). Categories: `never-spoken` (written dialogue the 1997 engine never speaks: `s2-jack:171`, `s4-sign3:17`, `s3-chick:42`, `s1-h3-8:13`; all behind a switch), `wrong-speaker`, `text`, `engine-differs`, `engine-matches-intent` (`goto mainloop` with no such label: nothing to switch), `structure`, `variables`, `not-code`, `missing-script`, `dead-data`, `unverified`. IDs are numbered after sorting, so they move when rows are added or removed |
 | `coverage.csv` | every script (380 plus 6 referenced but missing): `kind`, `status`, `reason`, placement/caller, `screens`, line/menu/option/command counts in and out, `fix_switches`, `compiles`, `compile_warnings` |
@@ -51,7 +51,7 @@ file; the script files share the globals, so none can compile with no declaratio
 
 ```
 VAR s3_chick__wherex = 0                     // script-local int
-CONST fix_s4_sign3_l17 = false               // a review-queue switch (engine bug)
+CONST fix_s2_cave_l117 = false               // a review-queue switch (engine bug; true only by owner decision)
 
 === d_s3_chick ===
 = on_talk
@@ -117,7 +117,7 @@ has the full list (126 command and external names, 29 of them used as externals;
 | `unfreeze` / `freeze` | sprite | | 374 / 267 | 1 = Dink (player control) |
 | `move_stop` / `move` | sprite, dir, stop, ignore_hardness | B / - | 216 / 61 | numpad dirs; stop is x for 4,6,1,3,7,9 and y for 2,8 |
 | `playsound` | sound, speed_hz, random_hz, sprite, repeat | | 179 | sprite 0 = not positional |
-| `sp_<prop>` | sprite, value | | 1642 in all (`sp_prop` is not a real command: see the `unknown-command` row) | `sp_brain`, `sp_speed`, `sp_seq`, `sp_pseq`/`sp_pframe` (pose), `sp_dir`, `sp_script`, `sp_active` (0 = remove), `sp_x`/`sp_y`, ...; -1 = no change |
+| `sp_<prop>` | sprite, value | | 1642 in all (`sp_prop` is not a 1997 command: see the `unknown-command` row) | `sp_brain`, `sp_speed`, `sp_seq`, `sp_pseq`/`sp_pframe` (pose), `sp_dir`, `sp_script`, `sp_active` (0 = remove), `sp_x`/`sp_y`, ...; -1 = no change |
 | `choice_start` | set_y, title_color | B | 115 | a menu follows (title lines, then Ink choices) |
 | `init` | dink.ini line | | 49 | weapon animation sets |
 | `kill_this_task` | | B | 44 | followed by `-> DONE` |
