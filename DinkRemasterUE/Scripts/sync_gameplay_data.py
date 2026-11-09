@@ -22,11 +22,15 @@ writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToA
                       `index` stamped its hardbox (the engine's own value, D:6136; warp boxes included). The
                       brains (walkers, missiles) test their path against it. Format: "vision V" then 400
                       rows of run-length tokens, "N" = N pixels of 0, "N:C" = N pixels of code C.
+                      A last block "tiles" (same format) is the tile layer alone (fill_whole_hard, D:654,
+                      from bin/dink/hard.dat through tools/dinkex's HardDat; tile values above 3 read 3):
+                      what draw_hard_sprite (fill_hardxy, D:597) and draw_hard_map put back under a hardbox.
     placements.csv    one row per map.dat placement: origin (S001_P26), type (0 background, 1 live
                       sprite, 2 hardness only), engine x (with the 20 px bar) and y, seq/frame, size,
                       vision, and the sprite fields place_sprites_game copies onto a live sprite
                       (brain, script, hitpoints, strength, defense, exp, nohit, touch_damage, speed,
-                      timing, base_walk/idle/attack/hit/die, hard, sound).
+                      timing, base_walk/idle/attack/hit/die, hard, sound, que: the draw order that also
+                      orders the hardbox stamps, D:5966 and fill_back_sprites D:6832).
     screens.csv       screen,base_script: the script whose `main` runs when the screen loads (headless
                       screen entry uses it when there is no ADinkScreenVolume)
     gameplay_manifest.json   data repo commit and sha256 of each file
@@ -53,7 +57,7 @@ DEST = HERE / "Content" / "Dink" / "Data" / "Gameplay"
 FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height"]
 PLACEMENT_COLS = ["origin", "screen", "index", "type", "x", "y", "seq", "frame", "size", "vision", "brain",
                   "script", "hitpoints", "strength", "defense", "exp", "nohit", "touch_damage", "speed", "timing",
-                  "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound"]
+                  "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound", "que"]
 
 
 def git_commit(repo: pathlib.Path) -> str:
@@ -99,8 +103,41 @@ def screens(dinkex: pathlib.Path):
     return rows
 
 
-def hardness(dinkex: pathlib.Path):
-    """{"Hardness/SCR_nnn.txt": bytes}: every screen's hardness map per vision value, run-length coded."""
+def rle_rows(codes):
+    """400 lines of run-length tokens ("N" free, "N:C" code C) for a 400x600 code array."""
+    import numpy as np
+    lines = []
+    for row in codes:
+        edges = np.flatnonzero(np.diff(row)) + 1
+        starts = np.concatenate(([0], edges))
+        ends = np.concatenate((edges, [len(row)]))
+        lines.append(" ".join(f"{e - b}" if row[b] == 0 else f"{e - b}:{row[b]}" for b, e in zip(starts, ends)))
+    return lines
+
+
+def tile_layers(data: pathlib.Path, dinkex: pathlib.Path):
+    """{screen stem: 400x600 int array}: fill_whole_hard's tile layer (D:654-681) of every screen, without placements.
+
+    Built with the data repo's own reader (tools/dinkex/dinkex/hard.py: HardDat, build_tile_layer) from bin/dink/hard.dat
+    and the screen's tiles (num, althard) in tools/dinkex/out/screens; values above 3 read 3, as in the hardness PNGs."""
+    import numpy as np
+    sys.path.insert(0, str(data / "tools" / "dinkex"))
+    try:
+        from dinkex import hard as hardmod
+    finally:
+        sys.path.pop(0)
+    hard_dat = hardmod.HardDat.from_file(str(data / "bin" / "dink" / "hard.dat"))
+    out = {}
+    for path in sorted((dinkex / "screens").glob("SCR_*.json")):
+        d = json.loads(path.read_text())
+        tiles = [{"num": t["num"], "althard": t["althard"]} for t in sorted(d["tiles"], key=lambda t: t["index"])]
+        hit, _skipped = hardmod.build_tile_layer(hard_dat, tiles)
+        out[path.stem] = np.where(hit > 3, 3, hit).astype(np.int32)
+    return out
+
+
+def hardness(dinkex: pathlib.Path, tiles=None):
+    """{"Hardness/SCR_nnn.txt": bytes}: every screen's hardness map per vision value, run-length coded, then its tile layer."""
     import numpy as np
     from PIL import Image
     out = {}
@@ -114,13 +151,14 @@ def hardness(dinkex: pathlib.Path):
             codes = np.array(Image.open(path)).astype(np.int32)
             owner = np.array(Image.open(path.with_name(path.stem + "_owner.png"))).astype(np.int32)
             stamped = codes >= 100
+            if tiles is not None and stem in tiles and not np.array_equal(codes[~stamped], tiles[stem][~stamped]):
+                sys.exit(f"{stem} vision {vision}: the tile layer differs from the hardness map outside the hardboxes")
             codes[stamped] = 100 + owner[stamped]
             lines.append(f"vision {vision}")
-            for row in codes:
-                edges = np.flatnonzero(np.diff(row)) + 1
-                starts = np.concatenate(([0], edges))
-                ends = np.concatenate((edges, [len(row)]))
-                lines.append(" ".join(f"{e - b}" if row[b] == 0 else f"{e - b}:{row[b]}" for b, e in zip(starts, ends)))
+            lines.extend(rle_rows(codes))
+        if tiles is not None and stem in tiles:
+            lines.append("tiles")
+            lines.extend(rle_rows(tiles[stem]))
         out[f"Hardness/{stem}.txt"] = ("\n".join(lines) + "\n").encode()
     return out
 
@@ -150,8 +188,8 @@ def main() -> int:
     f_rows, p_rows, s_rows = frames(dinkex), placements(dinkex), screens(dinkex)
     files = {"frames.csv": to_csv(FRAME_COLS, f_rows), "placements.csv": to_csv(PLACEMENT_COLS, p_rows),
              "screens.csv": to_csv(["screen", "base_script"], s_rows)}
-    files.update(hardness(dinkex))
-    manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/)",
+    files.update(hardness(dinkex, tile_layers(args.data, dinkex)))
+    manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/); bin/dink/hard.dat (tile layers)",
                 "data_repo_commit": git_commit(args.data),
                 "files": {n: hashlib.sha256(b).hexdigest() for n, b in sorted(files.items())},
                 "counts": {"frames": len(f_rows), "placements": len(p_rows), "screens": len(s_rows),

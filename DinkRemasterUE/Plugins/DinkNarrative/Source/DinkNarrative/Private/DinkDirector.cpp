@@ -341,7 +341,6 @@ void UDinkDirector::RegisterCommands()
 		{ TEXT("reverse"), S::Recorded, TEXT("2D animation reversed, recorded for the animation layer") },
 		{ TEXT("que"), S::Recorded, TEXT("2D draw order, recorded (no meaning for depth-sorted 3D)") },
 		{ TEXT("noclip"), S::Recorded, TEXT("2D screen clipping, recorded (no meaning in 3D)") },
-		{ TEXT("hard"), S::Recorded, TEXT("hardbox in the hardness map, recorded (greybox collision is baked per screen)") },
 		{ TEXT("nohit"), S::Implemented, TEXT("no hit damage: melee only runs `hit` (if scripted), missiles pass (D:15467, 14316)") },
 		{ TEXT("notouch"), S::Implemented, TEXT("touch/missile immunity flag; as in the engine it clears on the next tick unless a hit set its timer") },
 		{ TEXT("nocontrol"), S::Recorded, TEXT("player control lock while moving, recorded") },
@@ -378,6 +377,21 @@ void UDinkDirector::RegisterCommands()
 			});
 		}
 	}
+	Register(TEXT("sp_hard"), S::Implemented, TEXT("the sprite's hard flag (0 = its hardbox is hard); on a placement's sprite also the loaded map's flag, which draw_hard_sprite / draw_hard_map read (dink.cpp:9979-9998)"), [this](FDinkCommandContext& Ctx)
+	{
+		static const FName PropHard(TEXT("hard"));
+		const int32 Handle = Ctx.Int(0);
+		const int32 Value = Ctx.Int(1, -1);
+		const int32 Now = SpriteProperty(&Ctx.Instance, PropHard, Handle, Value);
+		const FDinkSprite* Sprite = FindSprite(Handle);
+		UDinkGameplay* Game = Story->GetGameplay();
+		// g_smallMap.sprite[sp_index].hard = the sprite's new flag, for a placement's sprite and a value that is not -1 (D:9993-9998).
+		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1)
+		{
+			Game->SetPlacementHard(Sprite->Origin, Now);
+		}
+		return FDinkCommandResult();
+	});
 	Register(TEXT("sp_active"), S::Implemented, TEXT("0 removes the sprite: actor hidden (spawned ones destroyed), its scripts end"), [this](FDinkCommandContext& Ctx)
 	{
 		const int32 Handle = Ctx.Int(0);
@@ -590,8 +604,22 @@ void UDinkDirector::RegisterCommands()
 		bDinkCanWalkOffScreen = Ctx.Int(0) != 0;
 		return FDinkCommandResult();
 	});
-	Register(TEXT("draw_hard_map"), S::Recorded, TEXT("collision is baked into the screen meshes; nothing to rebuild"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
-	Register(TEXT("draw_hard_sprite"), S::Recorded, TEXT("collision is baked into the screen meshes; nothing to rebuild"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
+	Register(TEXT("draw_hard_map"), S::Implemented, TEXT("rebuilds the screen's hardness as dink.cpp:8224-8232 does (tile layer, then the hardboxes of active sprites and background placements whose flag is 0); the greybox's solid collision follows"), [this](FDinkCommandContext& Ctx)
+	{
+		if (UDinkGameplay* Game = Story->GetGameplay())
+		{
+			Game->DrawHardMap(InstanceScreen(Ctx.Instance));
+		}
+		return FDinkCommandResult();
+	});
+	Register(TEXT("draw_hard_sprite"), S::Implemented, TEXT("the tile hardness back under the sprite's hardbox, then every hardbox whose flag is 0 stamped again (dink.cpp:8089-8104); the greybox's solid collision follows"), [this](FDinkCommandContext& Ctx)
+	{
+		if (UDinkGameplay* Game = Story->GetGameplay())
+		{
+			Game->DrawHardSprite(Ctx.Int(0));
+		}
+		return FDinkCommandResult();
+	});
 
 	// ---- Screen ----
 	Register(TEXT("fade_down"), S::Implemented, TEXT("fades the view to black and waits (600 ms, assumed)"), [this, Block](FDinkCommandContext&)
