@@ -1,0 +1,15 @@
+{
+  "base": "5040e632d53125571b1769b715fc54cfa521126d",
+  "branch": "fix/warp-overlap-intent",
+  "files": [
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxSubsystem.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkWarpComponent.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxSubsystem.h",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkWarpComponent.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkDoorRetryTests.cpp"
+  ],
+  "patch_sha256": "80cccee81efd1099d3a5897fc9bd57184fd132bf05c680732d7940b804559343",
+  "inputs": 9241,
+  "scope": "Only ordinary fresh player intent retries enabled walk_in door/exit current overlaps; preserve .75s cooldown/guards/nohard1 and existing hard0 BeginOverlap. NoData/spawn/collider edits.",
+  "validation": "FINAL Editor/Game0warnings;focus2/2PASS0warnings;full153/153PASS0warnings491s9241unchanged;actualalready-overlapWexitPASS;render9245pinsunchanged"
+}

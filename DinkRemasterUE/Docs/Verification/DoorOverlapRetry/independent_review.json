@@ -1,0 +1,64 @@
+{
+  "utc": "2026-11-09T00:02:53.214066+00:00",
+  "verdict": "No definite blocking correctness issue found in the reviewed five-file patch.",
+  "blocking_findings": [],
+  "patch_sha256": "80cccee81efd1099d3a5897fc9bd57184fd132bf05c680732d7940b804559343",
+  "expected_patch_sha256": "80cccee81efd1099d3a5897fc9bd57184fd132bf05c680732d7940b804559343",
+  "integration_root": "/home/artist/Work/DinkPhotorealArtIntegration",
+  "branch": "fix/arrival-door-reexit",
+  "head": "b9a3d74d44f4f3e1d1d38bb6ba8ecbd5eaa97499",
+  "applied_file_hashes": [
+    {
+      "path": "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxSubsystem.cpp",
+      "author_sha256": "22aa0e21aede0675e4a65f7f4fc69a2bc9d9b68c67ec1deddb44715f9e5bc224",
+      "integration_sha256": "22aa0e21aede0675e4a65f7f4fc69a2bc9d9b68c67ec1deddb44715f9e5bc224",
+      "equal": true
+    },
+    {
+      "path": "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkWarpComponent.cpp",
+      "author_sha256": "7efa6c34c9724086051887e786fa80800991799fef852bd9f6b23a1a662eac09",
+      "integration_sha256": "7efa6c34c9724086051887e786fa80800991799fef852bd9f6b23a1a662eac09",
+      "equal": true
+    },
+    {
+      "path": "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxSubsystem.h",
+      "author_sha256": "9f5715f635c590b9995d8101e113e839fd588dc3080504d0c06680caff3937c3",
+      "integration_sha256": "9f5715f635c590b9995d8101e113e839fd588dc3080504d0c06680caff3937c3",
+      "equal": true
+    },
+    {
+      "path": "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkWarpComponent.h",
+      "author_sha256": "15fe52878326551bd80dcec8471b9fa98867aca6a47cd7ece80651412657a8f6",
+      "integration_sha256": "15fe52878326551bd80dcec8471b9fa98867aca6a47cd7ece80651412657a8f6",
+      "equal": true
+    },
+    {
+      "path": "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkDoorRetryTests.cpp",
+      "author_sha256": "4a01b9f346da9769cd239b774e3612255e51073e053fc964ca0b5ffd7f097d15",
+      "integration_sha256": "4a01b9f346da9769cd239b774e3612255e51073e053fc964ca0b5ffd7f097d15",
+      "equal": true
+    }
+  ],
+  "reviewed_contracts": {
+    "freshness": "CurrentAcceleration captured only by actual Character movement update, positive delta, same GFrameCounter; no LastInput/velocity fallback. UE5.8 PerformMovement calls external delegate after scoped movement overlap updates. Current location must remain within1cm of callback location. Skipped movement updates invalidate reuse by frame guard.",
+    "ownership_lifetime": "Only current first-player possessed ACharacter; weak observed pawn, old delegate removed on pawn replacement/unpossession, reset intent/frame on rebind, delegate detached on subsystem Deinitialize; weak per-warp approach keys pruned on new entry and removed on overlap end. No persistent pawn ownership introduced.",
+    "eligibility": "Active ticking movement, non-MOVE_None, live stats when present, no ignored input, current physical source screen, actual current overlap, enabled walk_in door/exit only; intended heading dot approach>.5. No NPC polling.",
+    "approach": "Initial XY direction toward trigger retained while overlap continues, so pushing through centre remains valid; zero approach rejected. End-overlap clears entry record. Fallback uses current centre direction when no entry record exists.",
+    "warp_safety": "Existing TryWarp, synchronous BeginWarp/EndWarp guard and0.75s cooldown unchanged. WarpSuppressed checked at entry and every retry; nohard1 suppresses. Existing nohard0 BeginOverlap behavior preserved. Exactly one selected retry candidate attempted per0.25s poll; distance then WarpId tie break. Failure does not substitute another candidate in that poll.",
+    "scope": "Four runtime Core files plus new test only; no geometry/Data/spawn/trigger extents/cooldown edits. Headless virtual classic rules untouched."
+  },
+  "coverage_review": {
+    "author_full": "Receipt153/153,0warnings491s,9241inputs unchanged. This reviewer did not rerun tests.",
+    "author_game": "Receipt standalone Development compiled0warnings,7EditorDLL hashes unchanged. This is compile coverage, not packaged acceptance.",
+    "native_fixture": "Actual Stonebrook door pair, actual movement entry/reexit, arrival overlap, idle, ignored input, suppression callback, disabled, wrongkind/mode/source, unpossession, dead, stale acceleration/movement-update skip, uncontrolled overlapping pawn, away movement, retained direction past centre, full cooldown and final no idle bounce. Test fixture explicitly resets transforms/cooldown and disables screen scripts for bounded isolation.",
+    "actual_keyboard": "Inspected idle-proof and immediate-reexit-proof: actual returned pawn overlaps S001_P25, remains idle2.42s at unchanged transform/currentacceleration0, then actualW.6s gives exactly one successful1\u2192439 warp. Initial debug setup, earlier excluded continuousreturn and retained waypointFAIL qualifications preserved.",
+    "not_proven": [
+      "Actual tangent-input rejection in native fixture",
+      "Exact zero-approach native fixture",
+      "Two overlapping candidates with selected destination blocked; one-attempt/failure behavior reviewed statically",
+      "Arbitrary network multiplayer/predicted movement or non-character player control",
+      "Every possible overlapping primitive combination or every world doorway"
+    ]
+  },
+  "review_actions": "Read-only source/engine/evidence inspection and QA-only receipt writing. No build, Unreal launch, desktop input, process signals, protected owner access or production edits."
+}
