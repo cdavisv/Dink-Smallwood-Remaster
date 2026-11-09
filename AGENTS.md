@@ -671,27 +671,29 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   pitfalls 47-52 in the UE AGENTS.md and `packaged_probe.md`. Only
   `L_Greybox_World` is cooked; Windows and Shipping were not attempted.
 - Voice lines (started 7 Nov 2026): `DinkRemasterUE/SourceAssets/Audio/Voice/`
-  (README there). The 1997 lines, verbatim, tagged in the Ink data with speaker
-  expressions (`spk:1` Dink, `current_sprite`, script sprite variables): 2,125
-  unique lines, 68,486 characters, mapped to 29 voice archetypes
-  (`voice_cast.csv`, `voices.csv`, `voice_lines.csv` with a `tts_text` column
-  that turns `<shiver>`-style stage directions into ElevenLabs v4 tags; system
-  lines such as gold pickups are never voiced). Voices are designed from text
-  (`eleven_ttv_v3`), never cloned, chosen by the owner from three previews, and
-  saved in the owner's ElevenLabs library (`voices_saved.csv`). 8 Nov 2026:
-  18 voices saved (Dink, Martridge, Milder, Mother, King Daniel, Seth, Mog,
-  old woman, guard, middle-aged man, old man, young woman, merchant, monster,
-  duck, traveller, Chance Zands, narrator); 756 lines generated at 1 credit per
-  character (Dink's 244 Stonebrook lines, the six named NPCs, nine shared
-  voices), ledgered `candidate` with generation id, flow, credits, sha256 and
-  duration; then man_middle and merchant (357 lines, 11,673 credits): 1,113
-  voice lines in the ledger on 8 Nov 2026 evening. Eight more voices
-  (christina, nelson, villain, man_young, woman_middle, wizard_old, ghost, tree)
-  have previews awaiting the owner's picks. The service refuses to design a
-  child voice and refused the goblins' gibberish round, and the dragons have
-  only 46 characters of text: proposals, young woman for the girls, Mog for
-  the goblins, monster for the dragons. Lines that are only a stage direction
-  (`[groans]`, `[sniffs]`) cannot be generated and stay unvoiced.
+  (README there has the full state). The 1997 lines, verbatim, tagged in the Ink
+  data with speaker expressions (`spk:1` Dink, `current_sprite`, script sprite
+  variables): 2,125 unique lines, 68,486 characters, mapped to 29 voice
+  archetypes (`voice_cast.csv`, `voices.csv`, `voice_lines.csv` with a
+  `tts_text` column that turns `<shiver>`-style stage directions into ElevenLabs
+  v4 tags; system lines such as gold pickups are never voiced). Voices are
+  designed from text (`eleven_ttv_v3`), never cloned, chosen by the owner from
+  three previews and saved in the owner's ElevenLabs library
+  (`voices_saved.csv`, `voice_designs.json`): 26 designed voices plus three
+  owner-approved stand-ins (girl = young woman, goblin = Mog, dragon = monster;
+  the service refuses to design a child voice and refused the goblins'
+  gibberish round, and the dragons have only 46 characters of lines).
+  Generated with `eleven_v4` at 1 credit per character, one take per line, one
+  flow per voice, files named `<voice>/<line id>.mp3`, every line ledgered
+  `candidate` with generation id, flow, credits, sha256 and duration
+  (manifests `pilot_dink`, `dink_batch_01..03`, `cast_batch_01..06`). 8 Nov 2026
+  night: 1,473 voice lines, 47,284 credits (56 of them copies of an identical
+  text already generated for the same voice). Still to generate: 619 lines,
+  18,844 characters (Dink's 555 lines outside Stonebrook, 51 girl lines,
+  10 Martridge letter lines and three odd ones); the account's DAILY generation
+  limit (HTTP 429) stopped the batches on 8 Nov after about 36,000 credits, so
+  the rest waits for the reset. Lines that are only a stage direction
+  (`[groans]`, `[sniffs]`, `[sobs]`) cannot be generated and stay unvoiced.
   `SourceAssets/Audio/REDISTRIBUTION.md` (7 Nov 2026) records the owner's
   confirmation of redistribution rights for the generated audio. Import into
   the game is the audio pipeline's job (Codex's `import_approved_audio.py`);
