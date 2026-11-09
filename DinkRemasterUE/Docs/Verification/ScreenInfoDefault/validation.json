@@ -1,0 +1,168 @@
+{
+  "base_commit": "286da79bf1b2adc04961c4c089c3221a2217c14e",
+  "branch": "fix/optional-screen-debug-labels",
+  "project": "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE",
+  "compiled_source_sha256": {
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxSubsystem.cpp": "9cacc4e6402788e2fa4fd5f069a3cd979fa46a0fce78e51e92fbdf052768a7cf",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxSubsystem.h": "6082cf7a94b58a900820c41abd03195a99360eccb726415909aca3cfb788c29a"
+  },
+  "results": {
+    "build": {
+      "mode": "build",
+      "exit_code": 0,
+      "elapsed_seconds": 75.46608332599999,
+      "loaded_custom_modules": [],
+      "success": true
+    },
+    "game-build": {
+      "mode": "game-build",
+      "exit_code": 0,
+      "elapsed_seconds": 44.28481973099997,
+      "loaded_custom_modules": [],
+      "success": true
+    },
+    "focused": {
+      "mode": "focused",
+      "exit_code": 255,
+      "elapsed_seconds": 76.132907918,
+      "loaded_custom_modules": [
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      ],
+      "tests": 7,
+      "failed": 1,
+      "passed": 6,
+      "with_warnings": 0,
+      "input_changes": {
+        "changed": []
+      },
+      "input_missing": [],
+      "inputs_checked": 11877,
+      "all_loaded_custom_owned": true,
+      "success": false
+    },
+    "warm_focused": {
+      "mode": "focused",
+      "exit_code": 0,
+      "elapsed_seconds": 18.180274394000207,
+      "loaded_custom_modules": [
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      ],
+      "tests": 7,
+      "failed": 0,
+      "passed": 7,
+      "with_warnings": 0,
+      "input_changes": {
+        "changed": []
+      },
+      "input_missing": [],
+      "inputs_checked": 11877,
+      "all_loaded_custom_owned": true,
+      "success": true
+    },
+    "warm_full": {
+      "mode": "full",
+      "exit_code": 0,
+      "elapsed_seconds": 581.1948616589998,
+      "loaded_custom_modules": [
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "/home/davisc/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      ],
+      "tests": 168,
+      "failed": 0,
+      "passed": 168,
+      "with_warnings": 0,
+      "input_changes": {
+        "changed": []
+      },
+      "input_missing": [],
+      "inputs_checked": 11877,
+      "all_loaded_custom_owned": true,
+      "success": true
+    }
+  },
+  "console_readback": {
+    "cold": [
+      [
+        "0",
+        "Constructor"
+      ],
+      [
+        "1",
+        "Console"
+      ],
+      [
+        "0",
+        "Console"
+      ]
+    ],
+    "warm_focused": [
+      [
+        "0",
+        "Constructor"
+      ],
+      [
+        "1",
+        "Console"
+      ],
+      [
+        "0",
+        "Console"
+      ]
+    ],
+    "full": [
+      [
+        "0",
+        "Constructor"
+      ],
+      [
+        "1",
+        "Console"
+      ],
+      [
+        "0",
+        "Console"
+      ]
+    ]
+  },
+  "source_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 3649,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 471,
+    "shell_syntax_files": 22,
+    "ledger_rows": 3429,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "limitations": [
+    "First cold movement run retains6/7 with sole movement PIE timeout at60.396s amid initial asset preparation; unchanged warm run passes7/7. No test timeout/assertion/source change.",
+    "Full native suite is headless; no new GPU screenshot or painted-overlay acceptance.",
+    "UBA cache result-store notes are retained in successful build logs; compiler diagnostics are zero.",
+    "Live user playtest PID89615 and its checkout/modules are untouched; this fix has not been deployed into that running game.",
+    "No source/art admission, cooked package, new visible launch or Git publication is implied.",
+    "Saved-only report finalizer first hit a Python apostrophe SyntaxError before writing reports. The failure is preserved in Saved/ScreenLabels/finalize-first-error.log; only that report helper was corrected, with no native rerun or source/module change."
+  ],
+  "raw_receipts": "Saved/ScreenLabels (cold failure) and Saved/ScreenLabels/Warm (same-binary successful focused/full)"
+}

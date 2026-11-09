@@ -1,0 +1,7 @@
+# Screen-name overlay defaults off
+
+Ordinary playtests displayed a large persistent screen name across Dink and the scenery. The existing `dink.ScreenInfo` toggle now defaults to `0`; developers can explicitly enable it with `dink.ScreenInfo 1` and disable it again with `dink.ScreenInfo 0`. Other warnings and on-screen messages retain their behavior. The subsystem header/help text describe the opt-in default. Historical photo helper `live_review.py` still deliberately restores `1`; it is unchanged and is not the baseline launch path.
+
+The isolated Editor and Development Game builds pass with zero compiler errors/warnings. Existing movement tests pass 7/7 after warming; the first cold run's sole 60-second PIE timeout is retained and qualified. Full native suite passes 168/168. All recorded inputs remain unchanged during the native runs and all seven loaded custom modules belong to this checkout. Actual native console readback confirms constructor default 0, explicit opt-in 1 and return to 0. No test or timeout was changed. See validation.json for counts, warning qualifications, hashes and raw receipt locations.
+
+The observed clutter belongs to the previously launched master31 baseline. This fix was compiled/tested in a separate checkout and does not change that user's running game. No new raster/painted-overlay acceptance or full-world art acceptance is claimed. No blanket DisableAllScreenMessages command was added.
