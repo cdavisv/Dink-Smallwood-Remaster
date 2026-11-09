@@ -1,0 +1,16 @@
+{
+  "successful_tests": 154,
+  "tests_with_warnings": 33,
+  "warning_event_categories": {
+    "Epic_EOS_backend_network": 793,
+    "denied_global_EditorConfig_JSON_write": 32,
+    "engine_HTTP_network": 406
+  },
+  "warning_suppression": false,
+  "global_FilterBar_writes_denied_by_sandbox": true,
+  "native_source_changes_for_retry": false,
+  "global_EditorConfig_JSON_targets": [
+    "FilterBar.json",
+    "ProjectEditorRecords.json"
+  ]
+}
