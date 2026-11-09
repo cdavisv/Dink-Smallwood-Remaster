@@ -1,0 +1,178 @@
+{
+  "schema": "dink-photoreal-house-source/1",
+  "status": "Frozen bounded sourceappearance/exportcandidate; NOT nativegame/finalin-gameart approval",
+  "source_file": "SharedHouse440_GameV6.blend",
+  "FBX_file": "Export/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx",
+  "asset": "SM_Shared_House440_01",
+  "triangles": 114354,
+  "material_roles": {
+    "Stone": {
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "repeat_m": 1
+    },
+    "Oak": {
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "repeat_m": 2
+    },
+    "Thatch": {
+      "IOR": 1.5,
+      "specular_IOR_level": 0.2,
+      "repeat_m": 1.5384615384615383
+    },
+    "Glass": {
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "repeat_m": 1,
+      "opaque_proposal_vs_V11_transmission_.35": true
+    },
+    "Mortar": {
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "repeat_m": 2
+    }
+  },
+  "normal_strength": 1,
+  "normal_green_flip_native": true,
+  "material_UV_multiplier": 1,
+  "sampler_wrap_UV": true,
+  "PBR": "15actual BC/N/ORMmaps,5roles;BCsRGB,N/ORMlinear;AO255/metallic0measured; independentnormal/roughnessnotBCderived",
+  "placement": {
+    "canonical_group_pivot_m": [
+      59.35541534423828,
+      6.993415832519531,
+      -0.00048593664541840553
+    ],
+    "canonical_actor_UE_cm": [
+      103597.1524641113,
+      36670.98261487305,
+      -0.04859366454184055
+    ],
+    "door_local_game_m": [
+      -4.000007629394531,
+      -4.931173324584961,
+      0.00048593664541840553
+    ],
+    "source_house_origins": [
+      "S440_P03",
+      "S440_P11"
+    ],
+    "source_door_origin": "S440_P06",
+    "canonical_to_owner1_translation_cm": [
+      -281461.1459296875,
+      356225.655801875,
+      -0.0
+    ],
+    "owner1_yaw_deg": 0,
+    "owner1_scale": 1
+  },
+  "source_authority": "Original63_04guide/inspiration; weatheredquarriedstone+thatch adaptation approved bounded source/export direction; allfullNativecomposition/legacycollider/warp/storyvisibility gates coordinatorowned",
+  "world_policy": {
+    "new_outdoor_art": "Ordinarymainmanifestworldvisibility;NEVERscreen_set terrain",
+    "existing560": "Authoringreference only;neverduplicateoutdoors. Owner1copyresolveCURRENTguardedfullmainmanifestpaths/elements(transformsretained),notstaleV11oldkit/basenamepaths;concurrent3barrelstringschangedafterbaseline",
+    "interior1": "Owner-only canonicalcompositionderivedexactfrontplane replacesoldV4;excludeown439cottageandroomreferencegeometry; no outsideownercontextalwaysvisible"
+  },
+  "collision_policy": {
+    "active_collision": false,
+    "navigation": false,
+    "overlaps": false,
+    "no_UCX_by_intent": true,
+    "authority": "Originalgameplayunchanged;sourcepointdoorraysdoNOTestablishnativecapsule/legacycollider/warpclearance"
+  },
+  "guide_qualification": {
+    "raw_errors": 1,
+    "render_only_exception": "COLLISION_MISSING",
+    "retained_warnings": [
+      "soft60000targetvs114354underhard200000",
+      "60coincidentpointsatindependentclosedmortarboxes;retainclosedcomponents"
+    ],
+    "UV": "Intentionalsharedtiling;0collapsedUV;truncatedoverlapinfo NOTno-overlapclaim",
+    "forced_export_manifest_retained": true
+  },
+  "source_high": {
+    "donor_V11_sha256": "fd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1",
+    "base_original_house_group_triangles": 333784,
+    "evaluated_original_high_triangles": 575320,
+    "extract": "SourceReference/HouseHighV11_Extract.blend",
+    "new_fieldstone_normal_source": "SourceReference/FieldstoneNormalSourceV6.blend"
+  },
+  "validation": "Actual FBX oriented geometry, UVs, materials and authored corner normals match all114354triangles. Actual FBX+GLB reimports retain geometry/material identity; GLB UV max difference3.95812094e-8 is documented float32 transfer.15packed maps reopen with missing external paths. All inputs stay unchanged.",
+  "remaining_native_gates": [
+    "Actualworldcomposition/owner1door+window matchednativecaptures",
+    "Physicallegacycollider/warp/capsulewalking and storyvisionflags",
+    "SavedmaterialIOR/specular/normal/PNGsourcefilename+sourcepixel validation",
+    "Nanitefallback/performance and finalin-gameart acceptance"
+  ],
+  "files_sha256": {
+    "Evidence/portable_source_audit.json": "40630f44233ea2d198584cd10c0d8163158324dcdc67a385207028ff698b059b",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx": "3d54c58a65b818fef5813f7d425e919f554a0940d722b92de9f2414fa973bc23",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.glb": "289a693ebc6357d6b0cd960ee36912a3f559cb4f65370629dfb07a556c2b6e13",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_BC.png": "2881c65c5b92af9664f71a4960e027c478ae6fc9880956b5830df537577f0d81",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_N.png": "12f1ae34768c4678cef5e20049299e953c1d6ab033d5579908fe9eef92e3cc8b",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Fieldstone_ORM.png": "fe8944dab5d6a5e6bfb45d53738cca279c64cd9bc1b09688d3c38f7333dac13c",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_BC.png": "1dadb94f1059fffc2db336e66ccff204cbe35fab0d29dfa44b56b17f5f90caa8",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_N.png": "44da437029c7d4f5d146ca74521d3494a7244d9031b18a7d0205f846f7fcdf7e",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Glass_ORM.png": "b1a0d2f090cb7d7fcec8e5efadcba96ad80d2594cb80f54cb0e2de64a24674fc",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_BC.png": "a86c6c1e2acbc3a87a0e9362e1465ed75f2d33806d740ff78c8095852b12c588",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_N.png": "818ef2645d7a8d01a427825f86b71b382e624ab42f2d9420d3e3ca5670b1d1ff",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Mortar_ORM.png": "5e303fcb0f9d8ba3b90b70ea88318ad3187336a3096fb193923479ebfa568989",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_BC.png": "a524fd3e9ac12c48ccfdaf8bf422d46b34c346917edc0fe06c9455201bb745aa",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_N.png": "43bde8ba761209f6020d4f6f2e8ffae08c98014347d8f4fc7b5b66f204ce62e4",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Oak_ORM.png": "a3c31ada07db7b3f560f7a70f0fc2ccde55d9bd268c73bb0fcdf23a0e051a5d8",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_BC.png": "2d186db91c0341cfe3d91fbc3386ccd657ba14a2f27d3b7474ecec2f47f2bb84",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_N.png": "5a7d9f6032a7c8d6c70663b52ca47f10e5e1f57814d1fe7da29f476cb50ebadc",
+    "Export/Game/Dink/Buildings/Stonebrook/SharedVista/Textures/T_Shared_House440_Thatch_ORM.png": "e8306d1c9b53e75aa9f23d32fbf3da902dae15b9308cba5032c51fd5a05af02e",
+    "Export/manifest.json": "0140e6032bb8f7acfaf5729d675e61ba3c649cac240623ff592969d40dc83ee6",
+    "Previews/house-detail.png": "b4eeeaa35a25d97e5c9b9fd8208e64c96ada9f53d33b5e06b876fa308d7cbd05",
+    "README.md": "ba08b450415ff1d9549efdf9fff209a68b671545f47ca0011010d6187c5a3e66",
+    "SharedHouse440_GameV6.blend": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+    "SourceReference/FieldstoneNormalSourceV6.blend": "a0ed1fdee8ca69f36893a29f7baa75d2a816a3418ed7a993ffbd4bec8efe88f6",
+    "SourceReference/HouseHighV11_Extract.blend": "a48f9e3f8bca7d7a3e24d28e73ea9a6c76f01110b81771f05a0dd056a63925ee",
+    "SourceReference/Inputs/GeneratedFieldstone_Albedo_V1.png": "f4c50a0ca0ac8b576c77ff853063a93fde59bb2e3feabc39d35ed929dfcb9125",
+    "SourceReference/Inputs/GeneratedThatch_Albedo_V1.png": "cb28ac2a17b34f0873948f1fbbeaaf8bd783da2c9c6bceb4f89ace74862d64d5",
+    "SourceReference/Original63_04.png": "61d1e6f39bf381ceb215723218912483f23478344ed4abf0221f30fdba58cc63",
+    "SourceReference/high_extract_v11.json": "160a03e83ccb51175269c6d18ec9749917031bb7e236885c1e3b45008e166e9e",
+    "Textures/T_Shared_House440_Fieldstone_BC.png": "2881c65c5b92af9664f71a4960e027c478ae6fc9880956b5830df537577f0d81",
+    "Textures/T_Shared_House440_Fieldstone_N.png": "12f1ae34768c4678cef5e20049299e953c1d6ab033d5579908fe9eef92e3cc8b",
+    "Textures/T_Shared_House440_Fieldstone_ORM.png": "fe8944dab5d6a5e6bfb45d53738cca279c64cd9bc1b09688d3c38f7333dac13c",
+    "Textures/T_Shared_House440_Glass_BC.png": "1dadb94f1059fffc2db336e66ccff204cbe35fab0d29dfa44b56b17f5f90caa8",
+    "Textures/T_Shared_House440_Glass_N.png": "44da437029c7d4f5d146ca74521d3494a7244d9031b18a7d0205f846f7fcdf7e",
+    "Textures/T_Shared_House440_Glass_ORM.png": "b1a0d2f090cb7d7fcec8e5efadcba96ad80d2594cb80f54cb0e2de64a24674fc",
+    "Textures/T_Shared_House440_Mortar_BC.png": "a86c6c1e2acbc3a87a0e9362e1465ed75f2d33806d740ff78c8095852b12c588",
+    "Textures/T_Shared_House440_Mortar_N.png": "818ef2645d7a8d01a427825f86b71b382e624ab42f2d9420d3e3ca5670b1d1ff",
+    "Textures/T_Shared_House440_Mortar_ORM.png": "5e303fcb0f9d8ba3b90b70ea88318ad3187336a3096fb193923479ebfa568989",
+    "Textures/T_Shared_House440_Oak_BC.png": "a524fd3e9ac12c48ccfdaf8bf422d46b34c346917edc0fe06c9455201bb745aa",
+    "Textures/T_Shared_House440_Oak_N.png": "43bde8ba761209f6020d4f6f2e8ffae08c98014347d8f4fc7b5b66f204ce62e4",
+    "Textures/T_Shared_House440_Oak_ORM.png": "a3c31ada07db7b3f560f7a70f0fc2ccde55d9bd268c73bb0fcdf23a0e051a5d8",
+    "Textures/T_Shared_House440_Thatch_BC.png": "2d186db91c0341cfe3d91fbc3386ccd657ba14a2f27d3b7474ecec2f47f2bb84",
+    "Textures/T_Shared_House440_Thatch_N.png": "5a7d9f6032a7c8d6c70663b52ca47f10e5e1f57814d1fe7da29f476cb50ebadc",
+    "Textures/T_Shared_House440_Thatch_ORM.png": "e8306d1c9b53e75aa9f23d32fbf3da902dae15b9308cba5032c51fd5a05af02e",
+    "Tools/dinkasset/__init__.py": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+    "Tools/dinkasset/common.py": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+    "Tools/dinkasset/conventions.py": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+    "Tools/dinkasset/export_ue.py": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+    "Tools/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "Tools/dinkasset/fix.py": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+    "Tools/dinkasset/import_generated.py": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+    "Tools/dinkasset/make_lods.py": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+    "Tools/dinkasset/validate.py": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+    "Tools/export_candidate.py": "c897b334f07a058c91ec140f125c689dacd4f4f6ce5e3b07b96be1585521d0a7",
+    "Tools/run_guide.py": "06f75a80fa2532cbca5a6ff6ba98dbb671b2f2c16f6d90e32ddf4fc08939f829",
+    "Tools/verify_payload.py": "1aa271c8709f7bf2cb6f6fc33abfaac7e9bdecad19abdc49ea0d735a7afcc4d8",
+    "actual_fbx_proof_v6.json": "e325c8f6fd4c7bd0ab20022161cdf5ea3b7f4643679f07ed424a7f9da51d8745",
+    "coordinate_contract.json": "1c25ca997ed175a38dd3269ddccad9182c151b4ca67506e55cfb6fc54bc4ca2d",
+    "copy_receipt.json": "b0018d9d50831da4031d4420e9d9f0a1ebbfb7a3b3e7fc7d7f95960087be986f",
+    "export_report_v6.json": "43cbf6cb0fc20e76fc1fa928b6e45cd4b27ec042020abe583bbd764d7541e9a3",
+    "fieldstone_generation.json": "478f305fe179a0bbeec77a844ff926231a24e01ee8c9fafa7be4a4562f208767",
+    "fieldstone_mortar_finish_v6.json": "5dabd4b92f468cc3165fae921f27fdda9d2dec83f350e335d979ab89c6b559ef",
+    "glb_uv_float_diagnosis_v6.json": "bf9caaa3129eeccf55c987bc9e8e8825aa327c5624626f78b31cd6489e8af735",
+    "guide_house_raw_v6.json": "1a08737ce49c7373c0eef900505c089e85fde9e41c0f76179a9b124fcd64fda4",
+    "guide_qualified_v6.json": "bc5fb5a18ec95abd8bd9b45b48c82fd11fb06212d82187ddda2b16dceec947ae",
+    "matched_context_review_v6.json": "f2180a7a22385e660ee369aceeb5693cd4761c84cdcb91c67983e726da162583",
+    "roundtrip_house_v6.json": "4a8ec00277af6a19d45b448eb8733eb61dc41b5563e6d50088076f14e7df277a",
+    "texture_pixel_proof.json": "a055e6b47c1371c58b1d62f1aece030bd79b6540314799a2c4924c6e45e3bd8a",
+    "thatch_generation.json": "e57793cc5e47fe98e5a8096a6f81e97e0d1a7930de6ce15ea9352d7402218f9a",
+    "wrapper_correction.json": "664b3971eab0582ae8733e0357fa60e264b68340431d67489e5dc28c9c208791"
+  }
+}

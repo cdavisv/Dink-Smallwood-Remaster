@@ -1,0 +1,305 @@
+{
+  "status": "Source study only; not final photoreal/export/native approval",
+  "source_blend_sha256": "366492f2927c8568584edb72172adbe1ad37a6f49ce02e0a7d8cdc3c85a6f825",
+  "base_report": "source_finish_v6_report.json",
+  "shutters_corrected_to_open_outward": [
+    "WestLower1_Brace-1-0.4",
+    "WestLower1_Brace-10.4",
+    "WestLower1_Brace1-0.4",
+    "WestLower1_Brace10.4",
+    "WestLower1_Shutter-1_0",
+    "WestLower1_Shutter-1_1",
+    "WestLower1_Shutter-1_2",
+    "WestLower1_Shutter1_0",
+    "WestLower1_Shutter1_1",
+    "WestLower1_Shutter1_2",
+    "WestLower2_Brace-1-0.4",
+    "WestLower2_Brace-10.4",
+    "WestLower2_Brace1-0.4",
+    "WestLower2_Brace10.4",
+    "WestLower2_Shutter-1_0",
+    "WestLower2_Shutter-1_1",
+    "WestLower2_Shutter-1_2",
+    "WestLower2_Shutter1_0",
+    "WestLower2_Shutter1_1",
+    "WestLower2_Shutter1_2",
+    "EastLower_Brace-1-0.4",
+    "EastLower_Brace-10.4",
+    "EastLower_Brace1-0.4",
+    "EastLower_Brace10.4",
+    "EastLower_Shutter-1_0",
+    "EastLower_Shutter-1_1",
+    "EastLower_Shutter-1_2",
+    "EastLower_Shutter1_0",
+    "EastLower_Shutter1_1",
+    "EastLower_Shutter1_2",
+    "FrontLower_Brace-1-0.4",
+    "FrontLower_Brace-10.4",
+    "FrontLower_Brace1-0.4",
+    "FrontLower_Brace10.4",
+    "FrontLower_Shutter-1_0",
+    "FrontLower_Shutter-1_1",
+    "FrontLower_Shutter-1_2",
+    "FrontLower_Shutter1_0",
+    "FrontLower_Shutter1_1",
+    "FrontLower_Shutter1_2",
+    "WestUpper_Brace-1-0.4",
+    "WestUpper_Brace-10.4",
+    "WestUpper_Brace1-0.4",
+    "WestUpper_Brace10.4",
+    "WestUpper_Shutter-1_0",
+    "WestUpper_Shutter-1_1",
+    "WestUpper_Shutter-1_2",
+    "WestUpper_Shutter1_0",
+    "WestUpper_Shutter1_1",
+    "WestUpper_Shutter1_2",
+    "FrontUpper1_Brace-1-0.4",
+    "FrontUpper1_Brace-10.4",
+    "FrontUpper1_Brace1-0.4",
+    "FrontUpper1_Brace10.4",
+    "FrontUpper1_Shutter-1_0",
+    "FrontUpper1_Shutter-1_1",
+    "FrontUpper1_Shutter-1_2",
+    "FrontUpper1_Shutter1_0",
+    "FrontUpper1_Shutter1_1",
+    "FrontUpper1_Shutter1_2",
+    "FrontUpper2_Brace-1-0.4",
+    "FrontUpper2_Brace-10.4",
+    "FrontUpper2_Brace1-0.4",
+    "FrontUpper2_Brace10.4",
+    "FrontUpper2_Shutter-1_0",
+    "FrontUpper2_Shutter-1_1",
+    "FrontUpper2_Shutter-1_2",
+    "FrontUpper2_Shutter1_0",
+    "FrontUpper2_Shutter1_1",
+    "FrontUpper2_Shutter1_2"
+  ],
+  "base_path_geometry_unchanged": true,
+  "base_walk_plane_unchanged": true,
+  "path_surface_replacements": [
+    {
+      "object": "S439_DirtPath0",
+      "source_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "geometry_changed": false,
+      "ordinary_outdoor_delta": false,
+      "requires_separate_guarded_main_replacement": true,
+      "boundary_segments": 44
+    },
+    {
+      "object": "S439_DirtPath1",
+      "source_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "geometry_changed": false,
+      "ordinary_outdoor_delta": false,
+      "requires_separate_guarded_main_replacement": true,
+      "boundary_segments": 44
+    }
+  ],
+  "new_reed_roots_canonical_m": [
+    [
+      -84.177490234375,
+      -10.099413871765137,
+      0.0
+    ],
+    [
+      -71.9427261352539,
+      -16.88243865966797,
+      0.0
+    ],
+    [
+      -72.15155792236328,
+      -16.285961151123047,
+      0.0
+    ],
+    [
+      -76.177490234375,
+      -26.81619644165039,
+      0.0
+    ],
+    [
+      -59.66763687133789,
+      -11.787336349487305,
+      0.0
+    ],
+    [
+      -42.84288024902344,
+      -16.66646957397461,
+      0.0
+    ],
+    [
+      -42.61350631713867,
+      -17.372758865356445,
+      0.0
+    ],
+    [
+      -40.76475524902344,
+      -23.065406799316406,
+      0.0
+    ],
+    [
+      -28.958044052124023,
+      -23.702436447143555,
+      0.0
+    ],
+    [
+      -28.177494049072266,
+      -26.186193466186523,
+      0.0
+    ],
+    [
+      -25.599075317382812,
+      -34.39085388183594,
+      0.0
+    ],
+    [
+      26.879817962646484,
+      -14.4146728515625,
+      0.0
+    ],
+    [
+      41.87250518798828,
+      -24.824331283569336,
+      0.0
+    ],
+    [
+      33.87250518798828,
+      -24.82476234436035,
+      0.0
+    ],
+    [
+      57.87250518798828,
+      -14.500578880310059,
+      0.0
+    ],
+    [
+      49.87250518798828,
+      -24.894229888916016,
+      0.0
+    ],
+    [
+      64.00963592529297,
+      -14.949341773986816,
+      0.0
+    ],
+    [
+      65.26817321777344,
+      -18.737558364868164,
+      0.0
+    ],
+    [
+      66.63800048828125,
+      -35.565826416015625,
+      0.0
+    ],
+    [
+      88.75092315673828,
+      -26.737558364868164,
+      0.0
+    ]
+  ],
+  "new_reed_triangles": 420,
+  "ordinary_world_deltas_only": true,
+  "no_native_or_collision_changes": true,
+  "poses": [
+    {
+      "label": "inside-door",
+      "camera_m": [
+        0,
+        1.55,
+        1.65
+      ],
+      "target_m": [
+        0.25,
+        -12,
+        0.1
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": true
+    },
+    {
+      "label": "yard-south",
+      "camera_m": [
+        0,
+        -5,
+        1.7
+      ],
+      "target_m": [
+        0,
+        -30,
+        0.6
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": false
+    },
+    {
+      "label": "yard-east",
+      "camera_m": [
+        6,
+        -4,
+        1.7
+      ],
+      "target_m": [
+        60,
+        5,
+        2
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": false
+    },
+    {
+      "label": "inside-west-window-exact",
+      "camera_m": [
+        -6.356249809265137,
+        4.6875,
+        1.7000000476837158
+      ],
+      "target_m": [
+        -31.65625,
+        4.6875,
+        1.5
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": true
+    },
+    {
+      "label": "inside-east-window-exact",
+      "camera_m": [
+        5.918749809265137,
+        4.6875,
+        1.7000000476837158
+      ],
+      "target_m": [
+        31.21875,
+        4.6875,
+        1.5
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": true
+    },
+    {
+      "label": "house-detail",
+      "camera_m": [
+        45.35540771484375,
+        -10.93775749206543,
+        3.200000047683716
+      ],
+      "target_m": [
+        59.35540771484375,
+        5.06224250793457,
+        4.0
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": false
+    }
+  ],
+  "limits": [
+    "Edge blending is source shader study requiring baked portable material before publication.",
+    "Existing main-art surface changes require separate guarded replacements and are never duplicated outdoor deltas.",
+    "Original bank envelope/pine/oak source references retain known art-quality limitations."
+  ]
+}

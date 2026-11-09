@@ -1,0 +1,330 @@
+{
+  "status": "Actual15PNG pixel checks; authoredmasks/normals, no native acceptance",
+  "textures": [
+    {
+      "file": "Textures/T_Shared_House440_Fieldstone_BC.png",
+      "sha256": "2881c65c5b92af9664f71a4960e027c478ae6fc9880956b5830df537577f0d81",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        26,
+        23,
+        13
+      ],
+      "RGB_max": [
+        175,
+        178,
+        181
+      ],
+      "srgb_expected": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Fieldstone_N.png",
+      "sha256": "12f1ae34768c4678cef5e20049299e953c1d6ab033d5579908fe9eef92e3cc8b",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        66,
+        70,
+        237
+      ],
+      "RGB_max": [
+        177,
+        181,
+        255
+      ],
+      "srgb_expected": false,
+      "decoded_length_range": [
+        0.9948347806930542,
+        1.005658745765686
+      ],
+      "OpenGL_Y_plus": true,
+      "native_green_flip_required": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Fieldstone_ORM.png",
+      "sha256": "fe8944dab5d6a5e6bfb45d53738cca279c64cd9bc1b09688d3c38f7333dac13c",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        255,
+        208,
+        0
+      ],
+      "RGB_max": [
+        255,
+        236,
+        0
+      ],
+      "srgb_expected": false,
+      "AO_255": true,
+      "metallic_0_measured": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Glass_BC.png",
+      "sha256": "1dadb94f1059fffc2db336e66ccff204cbe35fab0d29dfa44b56b17f5f90caa8",
+      "size": [
+        256,
+        256
+      ],
+      "RGB_min": [
+        39,
+        50,
+        45
+      ],
+      "RGB_max": [
+        39,
+        50,
+        45
+      ],
+      "srgb_expected": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Glass_N.png",
+      "sha256": "44da437029c7d4f5d146ca74521d3494a7244d9031b18a7d0205f846f7fcdf7e",
+      "size": [
+        256,
+        256
+      ],
+      "RGB_min": [
+        128,
+        128,
+        255
+      ],
+      "RGB_max": [
+        128,
+        128,
+        255
+      ],
+      "srgb_expected": false,
+      "decoded_length_range": [
+        1.000015377998352,
+        1.000015377998352
+      ],
+      "OpenGL_Y_plus": true,
+      "native_green_flip_required": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Glass_ORM.png",
+      "sha256": "b1a0d2f090cb7d7fcec8e5efadcba96ad80d2594cb80f54cb0e2de64a24674fc",
+      "size": [
+        256,
+        256
+      ],
+      "RGB_min": [
+        255,
+        46,
+        0
+      ],
+      "RGB_max": [
+        255,
+        46,
+        0
+      ],
+      "srgb_expected": false,
+      "AO_255": true,
+      "metallic_0_measured": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Mortar_BC.png",
+      "sha256": "a86c6c1e2acbc3a87a0e9362e1465ed75f2d33806d740ff78c8095852b12c588",
+      "size": [
+        512,
+        512
+      ],
+      "RGB_min": [
+        101,
+        99,
+        91
+      ],
+      "RGB_max": [
+        101,
+        99,
+        91
+      ],
+      "srgb_expected": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Mortar_N.png",
+      "sha256": "818ef2645d7a8d01a427825f86b71b382e624ab42f2d9420d3e3ca5670b1d1ff",
+      "size": [
+        512,
+        512
+      ],
+      "RGB_min": [
+        125,
+        125,
+        255
+      ],
+      "RGB_max": [
+        130,
+        130,
+        255
+      ],
+      "srgb_expected": false,
+      "decoded_length_range": [
+        1.000015377998352,
+        1.0001999139785767
+      ],
+      "OpenGL_Y_plus": true,
+      "native_green_flip_required": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Mortar_ORM.png",
+      "sha256": "5e303fcb0f9d8ba3b90b70ea88318ad3187336a3096fb193923479ebfa568989",
+      "size": [
+        512,
+        512
+      ],
+      "RGB_min": [
+        255,
+        245,
+        0
+      ],
+      "RGB_max": [
+        255,
+        245,
+        0
+      ],
+      "srgb_expected": false,
+      "AO_255": true,
+      "metallic_0_measured": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Oak_BC.png",
+      "sha256": "a524fd3e9ac12c48ccfdaf8bf422d46b34c346917edc0fe06c9455201bb745aa",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        26,
+        13,
+        5
+      ],
+      "RGB_max": [
+        100,
+        63,
+        29
+      ],
+      "srgb_expected": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Oak_N.png",
+      "sha256": "43bde8ba761209f6020d4f6f2e8ffae08c98014347d8f4fc7b5b66f204ce62e4",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        94,
+        98,
+        250
+      ],
+      "RGB_max": [
+        160,
+        156,
+        255
+      ],
+      "srgb_expected": false,
+      "decoded_length_range": [
+        0.9952675104141235,
+        1.0048019886016846
+      ],
+      "OpenGL_Y_plus": true,
+      "native_green_flip_required": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Oak_ORM.png",
+      "sha256": "a3c31ada07db7b3f560f7a70f0fc2ccde55d9bd268c73bb0fcdf23a0e051a5d8",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        255,
+        164,
+        0
+      ],
+      "RGB_max": [
+        255,
+        203,
+        0
+      ],
+      "srgb_expected": false,
+      "AO_255": true,
+      "metallic_0_measured": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Thatch_BC.png",
+      "sha256": "2d186db91c0341cfe3d91fbc3386ccd657ba14a2f27d3b7474ecec2f47f2bb84",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        5,
+        2,
+        1
+      ],
+      "RGB_max": [
+        183,
+        170,
+        150
+      ],
+      "srgb_expected": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Thatch_N.png",
+      "sha256": "5a7d9f6032a7c8d6c70663b52ca47f10e5e1f57814d1fe7da29f476cb50ebadc",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        25,
+        105,
+        203
+      ],
+      "RGB_max": [
+        230,
+        150,
+        255
+      ],
+      "srgb_expected": false,
+      "decoded_length_range": [
+        0.9942781329154968,
+        1.0059033632278442
+      ],
+      "OpenGL_Y_plus": true,
+      "native_green_flip_required": true
+    },
+    {
+      "file": "Textures/T_Shared_House440_Thatch_ORM.png",
+      "sha256": "e8306d1c9b53e75aa9f23d32fbf3da902dae15b9308cba5032c51fd5a05af02e",
+      "size": [
+        2048,
+        2048
+      ],
+      "RGB_min": [
+        255,
+        232,
+        0
+      ],
+      "RGB_max": [
+        255,
+        232,
+        0
+      ],
+      "srgb_expected": false,
+      "AO_255": true,
+      "metallic_0_measured": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Work-only copied tool broadphase performance correction; no roottool/mesh/UV changes",
+  "original_sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+  "corrected_sha256": "7780806d28a8c7734a711a31f2d80b750927e00b97b5cf590ace32fe81a23436",
+  "change": "UniformUVgridscale64/max(1,UVspan); originaltriangle coords, clippingthresholds, areas, severity andfindings logic unchanged",
+  "equivalence_actual_asset_pending": false,
+  "equivalence_actual_asset_report": "validator_actual_uv_equivalence.json",
+  "original_full_v1_guide_actually_completed": true,
+  "original_full_v1_summary": {
+    "assets": 142,
+    "errors": 251,
+    "warnings": 49
+  }
+}
