@@ -1,0 +1,68 @@
+{
+  "actual_asset_count": 142,
+  "actual_forced_terrain_assets": 128,
+  "raw_errors_retained": 130,
+  "copied_texture_count": 12,
+  "files": [
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Meadow_BC.png",
+      "sha256": "e045d91a7662857aef030c061df27265f130a78187d692ff2181690a00698caf",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Meadow_N.png",
+      "sha256": "1dbb18a1ab790c2b02a2e2353f3f491ae1cd6cd3099ccabdf0ba1d8b374bcf23",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Meadow_ORM.png",
+      "sha256": "15a89c2c3558f0a3c350d03cdcc18e3ec41d1b164e14ff8e482cb1c6a5d08f78",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_WetBank_BC.png",
+      "sha256": "3af8754da208d20844ab154c408fd711c2aa77338c53cfe2394e1cd4bc32c431",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_WetBank_N.png",
+      "sha256": "1975bf93d12c9fd9725721be41d39e52d03b59bd43b2ca48357b197749d06fec",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_WetBank_ORM.png",
+      "sha256": "b8b777f42b4adfe65744bb07a0a88a0e1acfd7afb630e0240e52c182a1022b0f",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Water_BC.png",
+      "sha256": "ce4d0c68618b5e909ec2b2996fab2ccab1de4824431d0f6cba595beb7eabc0a4",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Water_N.png",
+      "sha256": "938f8979952790b4c21afd58f0c4a00f6e6bf802120667c520162d82c6727d5c",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/Textures/T_Shared_Ground_Water_ORM.png",
+      "sha256": "9e56cf1261038ca8d7a8f8eac0d6bdbce2f05f1aee97261c6f1d283fdcd989bd",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/Textures/T_Shared_Willow_Leaf_BC.png",
+      "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/Textures/T_Shared_Willow_Leaf_N.png",
+      "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc",
+      "byte_identical_to_source": true
+    },
+    {
+      "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/Textures/T_Shared_Willow_Leaf_ORM.png",
+      "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4",
+      "byte_identical_to_source": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "file": "Inputs/terrain_tiles_v1.json",
+    "original_source": "DinkQA/PhotorealSessions/SharedStonebrookVista/GameReadyV1/terrain_tiles_v1.json",
+    "sha256": "56b472a1eb6eaa4fa89137e28d62e3adfa50663b3416d75842b9f7b30ff7a12a",
+    "byte_identical": true
+  },
+  {
+    "file": "Inputs/coordinate_contract.json",
+    "original_source": "DinkQA/PhotorealSessions/SharedStonebrookVista/coordinate_contract.json",
+    "sha256": "1c25ca997ed175a38dd3269ddccad9182c151b4ca67506e55cfb6fc54bc4ca2d",
+    "byte_identical": true
+  },
+  {
+    "file": "Inputs/ground_finish_v7_report.json",
+    "original_source": "DinkQA/PhotorealSessions/SharedStonebrookVista/ground_finish_v7_report.json",
+    "sha256": "c569c6789ee6bb874f9ec45502c02219709166a4e4d2a4f2267b38b33559fee4",
+    "byte_identical": true
+  },
+  {
+    "file": "Inputs/meadow_generation.json",
+    "original_source": "DinkQA/PhotorealSessions/SharedStonebrookVista/meadow_generation.json",
+    "sha256": "3b87941b391a47e02c5353c958b08de9f56063e99b5494bbc8b30a76cd28ed5b",
+    "byte_identical": true
+  }
+]

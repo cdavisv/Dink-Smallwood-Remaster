@@ -1,0 +1,7105 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/SharedGroundDelivery/SharedGroundGameV2.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 142,
+    "assets_passed": 14,
+    "errors": 130,
+    "warnings": 49
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM5_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -653.984,
+          -528.493,
+          0.0
+        ],
+        "blender_max_cm": [
+          653.984,
+          528.493,
+          2.0
+        ],
+        "size_cm": [
+          1307.968,
+          1056.987,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -653.984,
+          -528.493,
+          0.0
+        ],
+        "unreal_max_cm": [
+          653.984,
+          528.493,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM5_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM5_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -657.458,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          657.458,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1314.917,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -657.458,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          657.458,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM5_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM5_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM5_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -659.006,
+          -445.189,
+          0.0
+        ],
+        "blender_max_cm": [
+          659.006,
+          445.19,
+          2.0
+        ],
+        "size_cm": [
+          1318.011,
+          890.379,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -659.006,
+          -445.19,
+          0.0
+        ],
+        "unreal_max_cm": [
+          659.006,
+          445.189,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM5_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM4_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -532.059,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          532.059,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1064.118,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -532.059,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          532.059,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM4_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM4_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM4_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM4_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM4_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -445.284,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          445.284,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          890.568,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -445.284,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          445.284,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM4_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM3_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -535.625,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          535.625,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1071.25,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -535.625,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          535.625,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM3_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM3_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM3_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM3_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM3_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -445.378,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          445.378,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          890.757,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -445.378,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          445.378,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM3_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM2_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -316.32,
+          -536.753,
+          0.0
+        ],
+        "blender_max_cm": [
+          316.32,
+          536.753,
+          2.0
+        ],
+        "size_cm": [
+          632.639,
+          1073.506,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -316.32,
+          -536.753,
+          0.0
+        ],
+        "unreal_max_cm": [
+          316.32,
+          536.753,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM2_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM2_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -312.852,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          312.852,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          625.704,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -312.852,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          312.852,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM2_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S406_XM2_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S406_XM2_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 40
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -306.392,
+          -445.407,
+          0.0
+        ],
+        "blender_max_cm": [
+          306.392,
+          445.407,
+          2.0
+        ],
+        "size_cm": [
+          612.784,
+          890.814,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -306.392,
+          -445.407,
+          0.0
+        ],
+        "unreal_max_cm": [
+          306.392,
+          445.407,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S406_XM2_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM2_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -687.148,
+          -539.79,
+          0.0
+        ],
+        "blender_max_cm": [
+          687.148,
+          539.79,
+          2.0
+        ],
+        "size_cm": [
+          1374.296,
+          1079.58,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -687.148,
+          -539.79,
+          0.0
+        ],
+        "unreal_max_cm": [
+          687.148,
+          539.79,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM2_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM2_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -693.608,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          693.608,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1387.216,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -693.608,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          693.608,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM2_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM2_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM2_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -696.486,
+          -445.407,
+          0.0
+        ],
+        "blender_max_cm": [
+          696.486,
+          445.407,
+          2.0
+        ],
+        "size_cm": [
+          1392.971,
+          890.814,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -696.486,
+          -445.407,
+          0.0
+        ],
+        "unreal_max_cm": [
+          696.486,
+          445.407,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM2_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM1_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -544.232,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          544.232,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1088.465,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -544.232,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          544.232,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM1_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM1_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM1_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XM1_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XM1_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -443.262,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          443.262,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          886.523,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -443.262,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          443.262,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XM1_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP0_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -548.675,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          548.675,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1097.349,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -548.675,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          548.675,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP0_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP0_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP0_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP0_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP0_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -440.181,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          440.182,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          880.363,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -440.182,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          440.181,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP0_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP1_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -271.989,
+          -549.883,
+          0.0
+        ],
+        "blender_max_cm": [
+          271.989,
+          549.883,
+          2.0
+        ],
+        "size_cm": [
+          543.979,
+          1099.766,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -271.989,
+          -549.883,
+          0.0
+        ],
+        "unreal_max_cm": [
+          271.989,
+          549.883,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP1_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP1_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -266.72,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          266.72,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          533.439,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -266.72,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          266.72,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP1_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S407_XP1_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S407_XP1_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 40
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -257.136,
+          -437.101,
+          0.0
+        ],
+        "blender_max_cm": [
+          257.136,
+          437.101,
+          2.0
+        ],
+        "size_cm": [
+          514.272,
+          874.202,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -257.136,
+          -437.101,
+          0.0
+        ],
+        "unreal_max_cm": [
+          257.136,
+          437.101,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S407_XP1_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP1_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -733.28,
+          -552.924,
+          0.0
+        ],
+        "blender_max_cm": [
+          733.28,
+          552.924,
+          2.0
+        ],
+        "size_cm": [
+          1466.561,
+          1105.848,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -733.28,
+          -552.924,
+          0.0
+        ],
+        "unreal_max_cm": [
+          733.28,
+          552.924,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP1_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP1_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -742.864,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          742.864,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1485.728,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -742.864,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          742.864,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP1_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP1_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP1_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -747.046,
+          -436.322,
+          0.0
+        ],
+        "blender_max_cm": [
+          747.046,
+          436.322,
+          2.0
+        ],
+        "size_cm": [
+          1494.091,
+          872.644,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -747.046,
+          -436.322,
+          0.0
+        ],
+        "unreal_max_cm": [
+          747.046,
+          436.322,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP1_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP2_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -557.101,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          557.101,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1114.201,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -557.101,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          557.101,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP2_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP2_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP2_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP2_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP2_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -432.392,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          432.392,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          864.784,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -432.392,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          432.392,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP2_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP3_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -561.278,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          561.278,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1122.556,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -561.278,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          561.278,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP3_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP3_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP3_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP3_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP3_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -427.131,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          427.131,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          854.262,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -427.131,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          427.131,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP3_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP4_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -225.069,
+          -562.218,
+          0.0
+        ],
+        "blender_max_cm": [
+          225.069,
+          562.218,
+          2.0
+        ],
+        "size_cm": [
+          450.139,
+          1124.436,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -225.069,
+          -562.218,
+          0.0
+        ],
+        "unreal_max_cm": [
+          225.069,
+          562.218,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP4_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP4_YP2_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -217.721,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          217.721,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          435.442,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -217.721,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          217.721,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP4_YP2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S408_XP4_YP3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S408_XP4_YP3_01",
+      "tris_per_lod": {
+        "LOD0": 40
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -204.65,
+          -421.87,
+          0.0
+        ],
+        "blender_max_cm": [
+          204.65,
+          421.87,
+          2.0
+        ],
+        "size_cm": [
+          409.3,
+          843.739,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -204.65,
+          -421.87,
+          0.0
+        ],
+        "unreal_max_cm": [
+          204.65,
+          421.87,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S408_XP4_YP3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP1_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -712.221,
+          -539.543,
+          0.0
+        ],
+        "blender_max_cm": [
+          712.221,
+          539.543,
+          2.0
+        ],
+        "size_cm": [
+          1424.442,
+          1079.087,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -712.221,
+          -539.543,
+          0.0
+        ],
+        "unreal_max_cm": [
+          712.221,
+          539.543,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP1_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YP0_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP1_YP0_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -723.109,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          723.109,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1446.219,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -723.109,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          723.109,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP1_YP0_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP1_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP1_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -728.011,
+          -450.117,
+          0.0
+        ],
+        "blender_max_cm": [
+          728.011,
+          450.117,
+          2.0
+        ],
+        "size_cm": [
+          1456.021,
+          900.234,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -728.011,
+          -450.117,
+          0.0
+        ],
+        "unreal_max_cm": [
+          728.011,
+          450.117,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP1_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP2_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -543.317,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          543.317,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1086.634,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -543.317,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          543.317,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP2_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YP0_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP2_YP0_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP2_YP0_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP2_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP2_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 76
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -447.076,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          447.076,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          894.152,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -447.076,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          447.076,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP2_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -547.09,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          547.09,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1094.18,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -547.09,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          547.09,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YP0_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP3_YP0_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP3_YP0_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP3_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP3_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -442.899,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          442.899,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          885.798,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -442.899,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          442.899,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP3_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -245.854,
+          -548.018,
+          0.0
+        ],
+        "blender_max_cm": [
+          245.854,
+          548.018,
+          2.0
+        ],
+        "size_cm": [
+          491.708,
+          1096.036,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -245.854,
+          -548.018,
+          0.0
+        ],
+        "unreal_max_cm": [
+          245.854,
+          548.018,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP4_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YP0_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP4_YP0_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -240.118,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          240.118,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          480.237,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -240.118,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          240.118,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP4_YP0_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S440_XP4_YP1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S440_XP4_YP1_01",
+      "tris_per_lod": {
+        "LOD0": 40
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -229.652,
+          -438.722,
+          0.0
+        ],
+        "blender_max_cm": [
+          229.652,
+          438.722,
+          2.0
+        ],
+        "size_cm": [
+          459.303,
+          877.444,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -229.652,
+          -438.722,
+          0.0
+        ],
+        "unreal_max_cm": [
+          229.652,
+          438.722,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S440_XP4_YP1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM5_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 72
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -415.072,
+          -396.97,
+          0.0
+        ],
+        "blender_max_cm": [
+          415.072,
+          396.97,
+          82.0
+        ],
+        "size_cm": [
+          830.144,
+          793.941,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -415.072,
+          -396.97,
+          0.0
+        ],
+        "unreal_max_cm": [
+          415.072,
+          396.97,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Bank_S470_XM5_YM2_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Bank_S470_XM5_YM2_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM5_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM5_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM5_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 208
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -475.198,
+          -497.74,
+          0.0
+        ],
+        "blender_max_cm": [
+          475.198,
+          497.74,
+          82.0
+        ],
+        "size_cm": [
+          950.395,
+          995.481,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -475.198,
+          -497.74,
+          0.0
+        ],
+        "unreal_max_cm": [
+          475.198,
+          497.74,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Bank_S470_XM5_YM1_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Bank_S470_XM5_YM1_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM5_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 200
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -397.981,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          397.981,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          795.963,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -397.981,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          397.981,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM4_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -491.751,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          491.751,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          983.502,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -491.751,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          491.751,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM4_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -724.036,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          724.036,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          1448.073,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -724.036,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          724.036,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -911.985,
+          -474.606,
+          0.0
+        ],
+        "blender_max_cm": [
+          911.985,
+          474.606,
+          82.0
+        ],
+        "size_cm": [
+          1823.971,
+          949.213,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -911.985,
+          -474.606,
+          0.0
+        ],
+        "unreal_max_cm": [
+          911.985,
+          474.606,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S470_XM2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S470_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 276
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -720.045,
+          -540.428,
+          0.0
+        ],
+        "blender_max_cm": [
+          720.045,
+          540.429,
+          82.0
+        ],
+        "size_cm": [
+          1440.091,
+          1080.857,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -720.045,
+          -540.429,
+          0.0
+        ],
+        "unreal_max_cm": [
+          720.045,
+          540.428,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S470_XM2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM5_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 52
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -270.372,
+          -503.763,
+          0.0
+        ],
+        "blender_max_cm": [
+          270.372,
+          503.763,
+          2.0
+        ],
+        "size_cm": [
+          540.744,
+          1007.525,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -270.372,
+          -503.763,
+          0.0
+        ],
+        "unreal_max_cm": [
+          270.372,
+          503.763,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM5_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM5_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM5_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -608.875,
+          -367.685,
+          0.0
+        ],
+        "blender_max_cm": [
+          608.875,
+          367.685,
+          2.0
+        ],
+        "size_cm": [
+          1217.751,
+          735.37,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -608.875,
+          -367.685,
+          0.0
+        ],
+        "unreal_max_cm": [
+          608.875,
+          367.685,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM5_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 92
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -502.898,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          502.898,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1005.795,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -502.898,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          502.898,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM4_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 92
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -371.757,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          371.757,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          743.513,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -371.757,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          371.757,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM4_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 140
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -806.889,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          806.889,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1613.777,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -806.889,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          806.889,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 124
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -505.344,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          505.344,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1010.687,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -505.344,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          505.344,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 72
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -744.175,
+          -800.831,
+          0.0
+        ],
+        "blender_max_cm": [
+          744.175,
+          800.831,
+          2.0
+        ],
+        "size_cm": [
+          1488.349,
+          1601.662,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -744.175,
+          -800.831,
+          0.0
+        ],
+        "unreal_max_cm": [
+          744.175,
+          800.831,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S470_XM2_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S470_XM2_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 56
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -493.92,
+          -489.172,
+          0.0
+        ],
+        "blender_max_cm": [
+          493.92,
+          489.172,
+          2.0
+        ],
+        "size_cm": [
+          987.84,
+          978.343,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -493.92,
+          -489.172,
+          0.0
+        ],
+        "unreal_max_cm": [
+          493.92,
+          489.172,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S470_XM2_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM5_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 92
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -414.629,
+          -319.684,
+          0.0
+        ],
+        "blender_max_cm": [
+          414.629,
+          319.684,
+          2.0
+        ],
+        "size_cm": [
+          829.259,
+          639.367,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -414.629,
+          -319.684,
+          0.0
+        ],
+        "unreal_max_cm": [
+          414.629,
+          319.684,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM5_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM5_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM5_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 212
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -418.34,
+          -350.096,
+          0.0
+        ],
+        "blender_max_cm": [
+          418.34,
+          350.096,
+          2.0
+        ],
+        "size_cm": [
+          836.681,
+          700.192,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -418.34,
+          -350.096,
+          0.0
+        ],
+        "unreal_max_cm": [
+          418.34,
+          350.096,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM5_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 300
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -321.874,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          321.874,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          643.747,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -321.874,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          321.874,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM4_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 296
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -348.918,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          348.918,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          697.836,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -348.918,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          348.918,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM4_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 288
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -648.755,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          648.755,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1297.51,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -648.755,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          648.755,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 304
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -793.586,
+          -330.465,
+          0.0
+        ],
+        "blender_max_cm": [
+          793.586,
+          330.465,
+          2.0
+        ],
+        "size_cm": [
+          1587.172,
+          660.93,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -793.586,
+          -330.465,
+          0.0
+        ],
+        "unreal_max_cm": [
+          793.586,
+          330.465,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Water_S470_XM3_YM1_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Water_S470_XM3_YM1_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S470_XM2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S470_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 184
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -690.438,
+          -325.559,
+          0.0
+        ],
+        "blender_max_cm": [
+          690.438,
+          325.559,
+          2.0
+        ],
+        "size_cm": [
+          1380.876,
+          651.118,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -690.438,
+          -325.559,
+          0.0
+        ],
+        "unreal_max_cm": [
+          690.438,
+          325.559,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S470_XM2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 88
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -579.507,
+          -241.249,
+          0.0
+        ],
+        "blender_max_cm": [
+          579.507,
+          241.249,
+          82.0
+        ],
+        "size_cm": [
+          1159.015,
+          482.499,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -579.507,
+          -241.249,
+          0.0
+        ],
+        "unreal_max_cm": [
+          579.507,
+          241.249,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP1_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP1_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 120
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -656.01,
+          -279.266,
+          0.0
+        ],
+        "blender_max_cm": [
+          656.01,
+          279.266,
+          82.0
+        ],
+        "size_cm": [
+          1312.02,
+          558.533,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -656.01,
+          -279.266,
+          0.0
+        ],
+        "unreal_max_cm": [
+          656.01,
+          279.266,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Bank_S472_XP1_YM1_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Bank_S472_XP1_YM1_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP1_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 240
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -554.063,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          554.063,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          1108.126,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -554.063,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          554.063,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Bank_S472_XP2_YM2_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Bank_S472_XP2_YM2_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP2_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP2_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 200
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -154.023,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          154.023,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          308.047,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -154.023,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          154.023,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP2_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 324
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -778.291,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          778.291,
+          82.0
+        ],
+        "size_cm": [
+          2000.0,
+          1556.583,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -778.291,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          778.291,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 108
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -279.47,
+          -274.676,
+          0.0
+        ],
+        "blender_max_cm": [
+          279.47,
+          274.676,
+          82.0
+        ],
+        "size_cm": [
+          558.94,
+          549.352,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -279.47,
+          -274.676,
+          0.0
+        ],
+        "unreal_max_cm": [
+          279.47,
+          274.676,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Bank_S472_XP4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Bank_S472_XP4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 152
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -543.894,
+          -587.453,
+          0.0
+        ],
+        "blender_max_cm": [
+          543.894,
+          587.453,
+          82.0
+        ],
+        "size_cm": [
+          1087.788,
+          1174.906,
+          82.0
+        ],
+        "unreal_min_cm": [
+          -543.894,
+          -587.453,
+          0.0
+        ],
+        "unreal_max_cm": [
+          543.894,
+          587.453,
+          82.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Bank_S472_XP4_YM2_01",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Bank_S472_XP4_YM2_01",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Bank_S472_XP4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 56
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -513.42,
+          -542.331,
+          0.0
+        ],
+        "blender_max_cm": [
+          513.419,
+          542.331,
+          2.0
+        ],
+        "size_cm": [
+          1026.839,
+          1084.663,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -513.42,
+          -542.331,
+          0.0
+        ],
+        "unreal_max_cm": [
+          513.419,
+          542.331,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP1_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP1_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 24
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -706.376,
+          -185.674,
+          0.0
+        ],
+        "blender_max_cm": [
+          706.376,
+          185.674,
+          2.0
+        ],
+        "size_cm": [
+          1412.751,
+          371.348,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -706.376,
+          -185.674,
+          0.0
+        ],
+        "unreal_max_cm": [
+          706.376,
+          185.674,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP1_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 124
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -544.326,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          544.326,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1088.652,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -544.326,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          544.326,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP2_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP2_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -185.78,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          185.78,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          371.561,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -185.78,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          185.78,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP2_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 104
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -779.321,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          779.321,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1558.641,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -779.321,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          779.321,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 92
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -456.683,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          456.683,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          913.367,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -456.683,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          456.683,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 24
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -401.576,
+          -188.855,
+          0.0
+        ],
+        "blender_max_cm": [
+          401.576,
+          188.855,
+          2.0
+        ],
+        "size_cm": [
+          803.152,
+          377.71,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -401.576,
+          -188.855,
+          0.0
+        ],
+        "unreal_max_cm": [
+          401.576,
+          188.855,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S472_XP4_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S472_XP4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -355.685,
+          -452.91,
+          0.0
+        ],
+        "blender_max_cm": [
+          355.685,
+          452.91,
+          2.0
+        ],
+        "size_cm": [
+          711.369,
+          905.82,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -355.685,
+          -452.91,
+          0.0
+        ],
+        "unreal_max_cm": [
+          355.685,
+          452.91,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S472_XP4_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 112
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -579.053,
+          -169.609,
+          0.0
+        ],
+        "blender_max_cm": [
+          579.053,
+          169.609,
+          2.0
+        ],
+        "size_cm": [
+          1158.106,
+          339.219,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -579.053,
+          -169.609,
+          0.0
+        ],
+        "unreal_max_cm": [
+          579.053,
+          169.609,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP1_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP1_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 140
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -617.972,
+          -144.84,
+          0.0
+        ],
+        "blender_max_cm": [
+          617.972,
+          144.84,
+          2.0
+        ],
+        "size_cm": [
+          1235.944,
+          289.68,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -617.972,
+          -144.84,
+          0.0
+        ],
+        "unreal_max_cm": [
+          617.972,
+          144.84,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP1_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 292
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -627.822,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          627.822,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1255.644,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -627.822,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          627.822,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP2_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP2_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 288
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -143.84,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          143.84,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          287.68,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -143.84,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          143.84,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP2_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 268
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -626.763,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          626.763,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1253.526,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -626.763,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          626.763,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP3_YM1_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -158.505,
+          -128.55,
+          0.0
+        ],
+        "blender_max_cm": [
+          158.505,
+          128.55,
+          2.0
+        ],
+        "size_cm": [
+          317.01,
+          257.1,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -158.505,
+          -128.55,
+          0.0
+        ],
+        "unreal_max_cm": [
+          158.505,
+          128.55,
+          2.0
+        ]
+      },
+      "errors": 2,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "SCALE_RANGE",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP3_YM1_01",
+          "message": "longest dimension 3.170 m is outside the building range 4.00-40.00 m.",
+          "object": "SM_Vista_Water_S472_XP3_YM1_01",
+          "data": {
+            "longest_m": 3.1701,
+            "range_m": [
+              4.0,
+              40.0
+            ],
+            "size_m": [
+              3.1701,
+              2.571,
+              0.02
+            ]
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP3_YM1_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Water_S472_XP4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Water_S472_XP4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -468.941,
+          -147.671,
+          0.0
+        ],
+        "blender_max_cm": [
+          468.941,
+          147.671,
+          2.0
+        ],
+        "size_cm": [
+          937.883,
+          295.341,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -468.941,
+          -147.671,
+          0.0
+        ],
+        "unreal_max_cm": [
+          468.941,
+          147.671,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Water_S472_XP4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM5_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -122.37,
+          -805.013,
+          0.0
+        ],
+        "blender_max_cm": [
+          122.37,
+          805.013,
+          2.0
+        ],
+        "size_cm": [
+          244.74,
+          1610.026,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -122.37,
+          -805.013,
+          0.0
+        ],
+        "unreal_max_cm": [
+          122.37,
+          805.013,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM5_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM5_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -120.728,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          120.728,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          241.455,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -120.728,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          120.728,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM5_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM5_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 16
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -118.686,
+          -187.054,
+          0.0
+        ],
+        "blender_max_cm": [
+          118.686,
+          187.054,
+          2.0
+        ],
+        "size_cm": [
+          237.372,
+          374.107,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -118.686,
+          -187.054,
+          0.0
+        ],
+        "unreal_max_cm": [
+          118.686,
+          187.054,
+          2.0
+        ]
+      },
+      "errors": 2,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "SCALE_RANGE",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM5_YM2_01",
+          "message": "longest dimension 3.741 m is outside the building range 4.00-40.00 m.",
+          "object": "SM_Vista_Land_S502_XM5_YM2_01",
+          "data": {
+            "longest_m": 3.7411,
+            "range_m": [
+              4.0,
+              40.0
+            ],
+            "size_m": [
+              2.3737,
+              3.7411,
+              0.02
+            ]
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM5_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM4_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 92
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -804.287,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          804.287,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1608.574,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -804.287,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          804.287,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM4_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM4_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM4_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -193.111,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          193.111,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          386.223,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -193.111,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          193.111,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM3_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 100
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -798.357,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          798.357,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1596.713,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -798.357,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          798.357,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM3_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM3_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 136
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM3_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -199.169,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          199.169,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          398.338,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -199.169,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          199.169,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM2_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -754.179,
+          -792.426,
+          0.0
+        ],
+        "blender_max_cm": [
+          754.18,
+          792.426,
+          2.0
+        ],
+        "size_cm": [
+          1508.359,
+          1584.851,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -754.179,
+          -792.426,
+          0.0
+        ],
+        "unreal_max_cm": [
+          754.18,
+          792.426,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM2_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM2_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 104
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -750.221,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          750.221,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1500.443,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -750.221,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          750.221,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM2_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S502_XM2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S502_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -745.198,
+          -203.677,
+          0.0
+        ],
+        "blender_max_cm": [
+          745.198,
+          203.677,
+          2.0
+        ],
+        "size_cm": [
+          1490.395,
+          407.354,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -745.198,
+          -203.677,
+          0.0
+        ],
+        "unreal_max_cm": [
+          745.198,
+          203.677,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S502_XM2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM2_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 40
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -249.779,
+          -787.953,
+          0.0
+        ],
+        "blender_max_cm": [
+          249.779,
+          787.953,
+          2.0
+        ],
+        "size_cm": [
+          499.557,
+          1575.906,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -249.779,
+          -787.953,
+          0.0
+        ],
+        "unreal_max_cm": [
+          249.779,
+          787.953,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM2_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM2_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -254.802,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          254.802,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          509.605,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -254.802,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          254.802,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM2_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 20
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -255.825,
+          -204.807,
+          0.0
+        ],
+        "blender_max_cm": [
+          255.825,
+          204.807,
+          2.0
+        ],
+        "size_cm": [
+          511.651,
+          409.615,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -255.825,
+          -204.807,
+          0.0
+        ],
+        "unreal_max_cm": [
+          255.825,
+          204.807,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM1_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 112
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -786.728,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          786.728,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1573.456,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -786.728,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          786.728,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Vista_Land_S503_XM1_YM4_01",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Vista_Land_S503_XM1_YM4_01",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM1_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM1_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 136
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM1_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XM1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XM1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 52
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -209.224,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          209.224,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          418.449,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -209.224,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          209.224,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XM1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP0_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -781.745,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          781.745,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1563.49,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -781.745,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          781.745,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP0_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP0_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP0_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP0_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP0_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -213.642,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          213.642,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          427.283,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -213.642,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          213.642,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP0_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP1_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -647.034,
+          -776.762,
+          0.0
+        ],
+        "blender_max_cm": [
+          647.034,
+          776.762,
+          2.0
+        ],
+        "size_cm": [
+          1294.069,
+          1553.524,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -647.034,
+          -776.762,
+          0.0
+        ],
+        "unreal_max_cm": [
+          647.034,
+          776.762,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP1_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP1_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 104
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -642.411,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          642.411,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1284.822,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -642.411,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          642.411,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP1_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S503_XP1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S503_XP1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 36
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -636.433,
+          -216.447,
+          0.0
+        ],
+        "blender_max_cm": [
+          636.433,
+          216.447,
+          2.0
+        ],
+        "size_cm": [
+          1272.867,
+          432.894,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -636.433,
+          -216.447,
+          0.0
+        ],
+        "unreal_max_cm": [
+          636.433,
+          216.447,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S503_XP1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP1_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 28
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -357.589,
+          -773.538,
+          0.0
+        ],
+        "blender_max_cm": [
+          357.589,
+          773.538,
+          2.0
+        ],
+        "size_cm": [
+          715.179,
+          1547.076,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -357.589,
+          -773.538,
+          0.0
+        ],
+        "unreal_max_cm": [
+          357.589,
+          773.538,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP1_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP1_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 48
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -363.567,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          363.567,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          727.133,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -363.567,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          363.567,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP1_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP1_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP1_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 20
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -364.861,
+          -217.579,
+          0.0
+        ],
+        "blender_max_cm": [
+          364.861,
+          217.579,
+          2.0
+        ],
+        "size_cm": [
+          729.721,
+          435.157,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -364.861,
+          -217.579,
+          0.0
+        ],
+        "unreal_max_cm": [
+          364.861,
+          217.579,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP1_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP2_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 88
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -772.018,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          772.019,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1544.037,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -772.019,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          772.018,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP2_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP2_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 136
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP2_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP2_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 52
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -220.679,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          220.679,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          441.359,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -220.679,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          220.679,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP2_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP3_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 68
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -767.715,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          767.715,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          1535.43,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -767.715,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          767.715,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP3_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP3_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 116
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP3_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP3_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 44
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -1000.0,
+          -223.78,
+          0.0
+        ],
+        "blender_max_cm": [
+          1000.0,
+          223.78,
+          2.0
+        ],
+        "size_cm": [
+          2000.0,
+          447.561,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -1000.0,
+          -223.78,
+          0.0
+        ],
+        "unreal_max_cm": [
+          1000.0,
+          223.78,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP3_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM4_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP4_YM4_01",
+      "tris_per_lod": {
+        "LOD0": 60
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -554.894,
+          -763.411,
+          0.0
+        ],
+        "blender_max_cm": [
+          554.894,
+          763.411,
+          2.0
+        ],
+        "size_cm": [
+          1109.789,
+          1526.822,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -554.894,
+          -763.411,
+          0.0
+        ],
+        "unreal_max_cm": [
+          554.894,
+          763.411,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP4_YM4_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM3_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP4_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 104
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -550.681,
+          -1000.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          550.681,
+          1000.0,
+          2.0
+        ],
+        "size_cm": [
+          1101.361,
+          2000.0,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -550.681,
+          -1000.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          550.681,
+          1000.0,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP4_YM3_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Land_S504_XP4_YM2_01",
+      "class": "building",
+      "collection": "SM_Vista_Land_S504_XP4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 36
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -545.143,
+          -225.467,
+          0.0
+        ],
+        "blender_max_cm": [
+          545.143,
+          225.467,
+          2.0
+        ],
+        "size_cm": [
+          1090.286,
+          450.934,
+          2.0
+        ],
+        "unreal_min_cm": [
+          -545.143,
+          -225.467,
+          0.0
+        ],
+        "unreal_max_cm": [
+          545.143,
+          225.467,
+          2.0
+        ]
+      },
+      "errors": 1,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Vista_Land_S504_XP4_YM2_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Vista_Reeds_XM6_YM1_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM6_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -12.506,
+          -7.885,
+          0.5
+        ],
+        "blender_max_cm": [
+          12.506,
+          7.885,
+          60.709
+        ],
+        "size_cm": [
+          25.012,
+          15.769,
+          60.209
+        ],
+        "unreal_min_cm": [
+          -12.506,
+          -7.885,
+          0.5
+        ],
+        "unreal_max_cm": [
+          12.506,
+          7.885,
+          60.709
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM6_YM1_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM6_YM1_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM6_YM1_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM6_YM1_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM6_YM1_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM6_YM1_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XM5_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 63,
+        "LOD1": 42,
+        "LOD2": 21
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -225.724,
+          -538.387,
+          0.5
+        ],
+        "blender_max_cm": [
+          225.724,
+          538.387,
+          64.667
+        ],
+        "size_cm": [
+          451.448,
+          1076.775,
+          64.167
+        ],
+        "unreal_min_cm": [
+          -225.724,
+          -538.387,
+          0.5
+        ],
+        "unreal_max_cm": [
+          225.724,
+          538.387,
+          64.667
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM5_YM2_01",
+          "message": "105 non-manifold edges (105 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM5_YM2_01_LOD0",
+          "data": {
+            "boundary": 105,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM5_YM2_01",
+          "message": "84 non-manifold edges (84 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM5_YM2_01_LOD1",
+          "data": {
+            "boundary": 84,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM5_YM2_01",
+          "message": "63 non-manifold edges (63 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM5_YM2_01_LOD2",
+          "data": {
+            "boundary": 63,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XM4_YM1_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -9.859,
+          -7.544,
+          0.5
+        ],
+        "blender_max_cm": [
+          9.859,
+          7.544,
+          61.496
+        ],
+        "size_cm": [
+          19.719,
+          15.087,
+          60.996
+        ],
+        "unreal_min_cm": [
+          -9.859,
+          -7.544,
+          0.5
+        ],
+        "unreal_max_cm": [
+          9.859,
+          7.544,
+          61.496
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM4_YM1_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM4_YM1_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM4_YM1_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM4_YM1_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM4_YM1_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM4_YM1_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XM3_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 63,
+        "LOD1": 42,
+        "LOD2": 21
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -114.341,
+          -326.866,
+          0.5
+        ],
+        "blender_max_cm": [
+          114.341,
+          326.866,
+          65.031
+        ],
+        "size_cm": [
+          228.683,
+          653.732,
+          64.531
+        ],
+        "unreal_min_cm": [
+          -114.341,
+          -326.866,
+          0.5
+        ],
+        "unreal_max_cm": [
+          114.341,
+          326.866,
+          65.031
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM3_YM2_01",
+          "message": "105 non-manifold edges (105 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM3_YM2_01_LOD0",
+          "data": {
+            "boundary": 105,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM3_YM2_01",
+          "message": "84 non-manifold edges (84 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM3_YM2_01_LOD1",
+          "data": {
+            "boundary": 84,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM3_YM2_01",
+          "message": "63 non-manifold edges (63 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM3_YM2_01_LOD2",
+          "data": {
+            "boundary": 63,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XM2_YM3_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM2_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -11.744,
+          -10.043,
+          0.5
+        ],
+        "blender_max_cm": [
+          11.744,
+          10.043,
+          61.63
+        ],
+        "size_cm": [
+          23.487,
+          20.087,
+          61.13
+        ],
+        "unreal_min_cm": [
+          -11.744,
+          -10.043,
+          0.5
+        ],
+        "unreal_max_cm": [
+          11.744,
+          10.043,
+          61.63
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM3_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM3_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM3_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM3_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM3_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM3_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XM2_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XM2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 42,
+        "LOD1": 28,
+        "LOD2": 14
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -57.152,
+          -135.079,
+          0.5
+        ],
+        "blender_max_cm": [
+          57.152,
+          135.079,
+          65.462
+        ],
+        "size_cm": [
+          114.304,
+          270.158,
+          64.962
+        ],
+        "unreal_min_cm": [
+          -57.152,
+          -135.079,
+          0.5
+        ],
+        "unreal_max_cm": [
+          57.152,
+          135.079,
+          65.462
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM2_01",
+          "message": "70 non-manifold edges (70 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM2_01_LOD0",
+          "data": {
+            "boundary": 70,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM2_01",
+          "message": "56 non-manifold edges (56 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM2_01_LOD1",
+          "data": {
+            "boundary": 56,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XM2_YM2_01",
+          "message": "42 non-manifold edges (42 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XM2_YM2_01_LOD2",
+          "data": {
+            "boundary": 42,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP1_YM1_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP1_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -8.879,
+          -10.349,
+          0.5
+        ],
+        "blender_max_cm": [
+          8.879,
+          10.349,
+          47.848
+        ],
+        "size_cm": [
+          17.759,
+          20.699,
+          47.348
+        ],
+        "unreal_min_cm": [
+          -8.879,
+          -10.349,
+          0.5
+        ],
+        "unreal_max_cm": [
+          8.879,
+          10.349,
+          47.848
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP1_YM1_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP1_YM1_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP1_YM1_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP1_YM1_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP1_YM1_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP1_YM1_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP2_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP2_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 42,
+        "LOD1": 28,
+        "LOD2": 14
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -413.025,
+          -11.589,
+          0.5
+        ],
+        "blender_max_cm": [
+          413.025,
+          11.589,
+          64.099
+        ],
+        "size_cm": [
+          826.049,
+          23.179,
+          63.599
+        ],
+        "unreal_min_cm": [
+          -413.025,
+          -11.589,
+          0.5
+        ],
+        "unreal_max_cm": [
+          413.025,
+          11.589,
+          64.099
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP2_YM2_01",
+          "message": "70 non-manifold edges (70 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP2_YM2_01_LOD0",
+          "data": {
+            "boundary": 70,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP2_YM2_01",
+          "message": "56 non-manifold edges (56 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP2_YM2_01_LOD1",
+          "data": {
+            "boundary": 56,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP2_YM2_01",
+          "message": "42 non-manifold edges (42 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP2_YM2_01_LOD2",
+          "data": {
+            "boundary": 42,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP3_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP3_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -9.794,
+          -8.216,
+          0.5
+        ],
+        "blender_max_cm": [
+          9.794,
+          8.216,
+          56.975
+        ],
+        "size_cm": [
+          19.588,
+          16.432,
+          56.475
+        ],
+        "unreal_min_cm": [
+          -9.794,
+          -8.216,
+          0.5
+        ],
+        "unreal_max_cm": [
+          9.794,
+          8.216,
+          56.975
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM2_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM2_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM2_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM2_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM2_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM2_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP3_YM1_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP3_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -10.104,
+          -9.917,
+          0.5
+        ],
+        "blender_max_cm": [
+          10.104,
+          9.917,
+          58.244
+        ],
+        "size_cm": [
+          20.209,
+          19.833,
+          57.744
+        ],
+        "unreal_min_cm": [
+          -10.104,
+          -9.917,
+          0.5
+        ],
+        "unreal_max_cm": [
+          10.104,
+          9.917,
+          58.244
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM1_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM1_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM1_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM1_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP3_YM1_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP3_YM1_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM3_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP4_YM3_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -7.66,
+          -15.877,
+          0.5
+        ],
+        "blender_max_cm": [
+          7.66,
+          15.877,
+          59.809
+        ],
+        "size_cm": [
+          15.32,
+          31.754,
+          59.309
+        ],
+        "unreal_min_cm": [
+          -7.66,
+          -15.877,
+          0.5
+        ],
+        "unreal_max_cm": [
+          7.66,
+          15.877,
+          59.809
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM3_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM3_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM3_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM3_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM3_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM3_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP4_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -9.616,
+          -13.869,
+          0.5
+        ],
+        "blender_max_cm": [
+          9.616,
+          13.869,
+          60.214
+        ],
+        "size_cm": [
+          19.232,
+          27.738,
+          59.714
+        ],
+        "unreal_min_cm": [
+          -9.616,
+          -13.869,
+          0.5
+        ],
+        "unreal_max_cm": [
+          9.616,
+          13.869,
+          60.214
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM2_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM2_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM2_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM2_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM2_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM2_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP4_YM1_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP4_YM1_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -8.912,
+          -7.954,
+          0.5
+        ],
+        "blender_max_cm": [
+          8.912,
+          7.954,
+          61.733
+        ],
+        "size_cm": [
+          17.824,
+          15.907,
+          61.233
+        ],
+        "unreal_min_cm": [
+          -8.912,
+          -7.954,
+          0.5
+        ],
+        "unreal_max_cm": [
+          8.912,
+          7.954,
+          61.733
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM1_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM1_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM1_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM1_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP4_YM1_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP4_YM1_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Vista_Reeds_XP5_YM2_01",
+      "class": "foliage",
+      "collection": "SM_Vista_Reeds_XP5_YM2_01",
+      "tris_per_lod": {
+        "LOD0": 21,
+        "LOD1": 14,
+        "LOD2": 7
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -17.763,
+          -15.343,
+          0.5
+        ],
+        "blender_max_cm": [
+          17.763,
+          15.343,
+          63.396
+        ],
+        "size_cm": [
+          35.526,
+          30.685,
+          62.896
+        ],
+        "unreal_min_cm": [
+          -17.763,
+          -15.343,
+          0.5
+        ],
+        "unreal_max_cm": [
+          17.763,
+          15.343,
+          63.396
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP5_YM2_01",
+          "message": "35 non-manifold edges (35 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP5_YM2_01_LOD0",
+          "data": {
+            "boundary": 35,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP5_YM2_01",
+          "message": "28 non-manifold edges (28 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP5_YM2_01_LOD1",
+          "data": {
+            "boundary": 28,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Vista_Reeds_XP5_YM2_01",
+          "message": "21 non-manifold edges (21 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Vista_Reeds_XP5_YM2_01_LOD2",
+          "data": {
+            "boundary": 21,
+            "multi_face": 0,
+            "wire": 0
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

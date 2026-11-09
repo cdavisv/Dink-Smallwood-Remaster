@@ -1,0 +1,9 @@
+{
+  "method": "Built-in image_gen; original new material albedo",
+  "original_path": "/home/davisc/.local/state/omarchy/agents/accounts/codex/personal/generated_images/01a1bca0-f0d5-71c2-8660-f77e1a521a1f/exec-6b2cd171-e931-4122-964e-cef2030f611b.png",
+  "workspace_path": "DinkQA/PhotorealSessions/SharedStonebrookVista/Textures/GeneratedThatch_Albedo_V1.png",
+  "sha256": "cb28ac2a17b34f0873948f1fbbeaaf8bd783da2c9c6bceb4f89ace74862d64d5",
+  "prompt": "Use case: photorealistic-natural. Asset type: original seamless tileable PBR BASE COLOR / ALBEDO texture for a realistically modeled medieval reed-thatch roof in Blender. Full opaque square orthographic cross-polarized material scan, edge to edge: closely packed fine dry water-reed and wheat-straw stems running vertically from top to bottom, about 1 square metre of thatched roof surface. Fine varied straw fibres and split stems, natural irregular stems approximately 2\u20136 mm wide, muted pale oat/beige/honey with restrained weathered gray-brown and occasional darker fibres. Dense layered organic texture, irregular overlapping individual stems but NO large horizontal course seams or boards. Flat diffuse neutral illumination, no cast shadow, no directional shading, no highlights, no baked ambient occlusion or black gaps. Fine photographic plant-surface detail rather than painted lines or smooth wood strips. Compatible opposite edges for repetition, no roof outline, building, gable, sky, landscape, props, text, border or watermark. Avoid uniform caramel yellow, wooden planks, coarse stylized straw bundles, obvious repeating pattern or large dark streaks.",
+  "derived_normal_or_height": false,
+  "scope": "Work-only source shader study; tile compatibility and game material acceptance pending"
+}
