@@ -564,6 +564,9 @@ void UDinkDirector::RegisterCommands()
 		{
 			if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
 			{
+				// The placement is no walk: a warp trigger the pawn lands in must not fire (special_block, dink.cpp:15337, runs only from the walk
+				// code; s3-sec1.c:40-42 puts Dink at 515,383 of SCR_227, inside the hut's exit S227_P01, and the original leaves him there).
+				TGuardValue<bool> Placing(bPlacingDink, true);
 				Greybox->GotoScreen(Target, Dink.X - 20.0, Dink.Y);
 			}
 		}
@@ -724,13 +727,24 @@ void UDinkDirector::RegisterCommands()
 		R.bEndScript = true;
 		return R;
 	});
-	Register(TEXT("activate_bow"), S::Recorded, TEXT("bow charge (combat layer not built): yields one frame"), [this, Block](FDinkCommandContext&)
+	Register(TEXT("activate_bow"), S::Implemented, TEXT("draws the bow (dink.cpp:9397-9408): the script waits while the attack key is held, 7 power a frame after the first 100 ms tick, up to 500 (D:14564-14621); the release runs it on"), [this, Block](FDinkCommandContext& Ctx)
 	{
+		// dink.cpp:9397-9408: g_bowStatus.active, .script, hitme false, time 0, Dink's picture set; ugly_return(2) waits until process_bow's
+		// release runs the script again (D:14615-14620). UDinkGameplay::ActivateBow / ProcessBow.
+		if (UDinkGameplay* Gameplay = Story->GetGameplay())
+		{
+			Gameplay->ActivateBow(Ctx.Instance.Id);
+			return Block(EDinkBlock::Bow);
+		}
 		return Block(EDinkBlock::Frame, Story->GetNowMs());
 	});
-	Register(TEXT("init"), S::Recorded, TEXT("dink.ini line that redefines a 2D sequence: recorded for the animation layer"), [this](FDinkCommandContext& Ctx)
+	Register(TEXT("init"), S::Recorded, TEXT("dink.ini line: recorded for the animation layer; a sequence dink.ini lacks gets the line's hardbox (dink.cpp:2335-2344)"), [this](FDinkCommandContext& Ctx)
 	{
 		InitLines.AddUnique(Ctx.Str(0));
+		if (UDinkGameplay* Gameplay = Story->GetGameplay())
+		{
+			Gameplay->ApplyInitLine(Ctx.Str(0));
+		}
 		UE_LOG(LogDinkDirector, Verbose, TEXT("init \"%s\" recorded"), *Ctx.Str(0));
 		return FDinkCommandResult();
 	});
@@ -841,7 +855,11 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 		return IntResult(Handle);
 	});
 	Bind(TEXT("get_burn"), [](const TArray<Ink::FValueType>&) { return IntResult(0); }); // the engine returns 0 (D:8974)
-	Bind(TEXT("get_last_bow_power"), [](const TArray<Ink::FValueType>&) { return IntResult(0); }); // no bow yet
+	Bind(TEXT("get_last_bow_power"), [this](const TArray<Ink::FValueType>&) // g_bowStatus.last_power (dink.cpp:9410-9414)
+	{
+		const UDinkGameplay* Gameplay = Story ? Story->GetGameplay() : nullptr;
+		return IntResult(Gameplay ? Gameplay->GetLastBowPower() : 0);
+	});
 	Bind(TEXT("get_version"), [](const TArray<Ink::FValueType>&) { return IntResult(DinkVersion); });
 	Bind(TEXT("is_base_game"), [](const TArray<Ink::FValueType>&) { return IntResult(1); });
 	Bind(TEXT("scripts_used"), [this](const TArray<Ink::FValueType>&)
@@ -1813,6 +1831,10 @@ void UDinkDirector::LoadState(const TSharedPtr<FJsonObject>& State)
 		for (const TSharedPtr<FJsonValue>& V : *Inits)
 		{
 			InitLines.Add(V->AsString());
+			if (UDinkGameplay* Gameplay = Story ? Story->GetGameplay() : nullptr)
+			{
+				Gameplay->ApplyInitLine(V->AsString()); // the sequences the saved game had loaded
+			}
 		}
 	}
 	for (const TSharedPtr<FJsonValue>& V : State->GetArrayField(TEXT("sprites")))
