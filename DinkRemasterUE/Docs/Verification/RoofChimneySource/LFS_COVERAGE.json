@@ -3,9 +3,9 @@
   "staged_LFS_paths": 72,
   "staged_LFS_total_bytes": 273599347,
   "all_stage_pointer_OID_size_match_materialized_source": true,
-  "full_source_audit_binary_files_verified": 4307,
-  "extra_LFS_diagnostics_outside_auditor_binary_suffix_inventory": 29,
-  "qualification": "Full source auditor checks known binary suffixes; all103 new ledger rows and source100 also hash checked. This separate check verifies all72 actual staged LFS pointers including24bin+3gz+2largeJSON. No remote/cold-fetch claim.",
+  "full_source_audit_binary_files_verified": 4336,
+  "extra_LFS_diagnostics_outside_auditor_binary_suffix_inventory": 0,
+  "qualification": "The initial known-suffix auditor missed29 LFS diagnostics. Its staged-attribute companion fix now inventories all4336 LFS files. This separate check verifies all72 new staged pointers and273599347 materialized bytes, including24bin+3gz+2largeJSON. Cold remote availability for these identical72pointers is recorded separately.",
   "records": [
     {
       "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Chimney_Stonebrook_V8_isaved.bin",

@@ -16,7 +16,8 @@
   "candidate_rows_added": 103,
   "prior_raw_ledger_preserved": true,
   "prior_audio_rows_unchanged": 2212,
-  "native_Content_Data_Tools_Engine_changes": false,
   "commit_push_PR_performed": false,
-  "root_LFS_successor": "Four scoped attributes preserve byte-identical source;72actual staged pointers independently match materialized SHA/size. See LFS_COVERAGE.json."
+  "root_LFS_successor": "Four scoped attributes preserve byte-identical source;72actual staged pointers independently match materialized SHA/size. See LFS_COVERAGE.json.",
+  "native_Content_Data_Engine_changes": false,
+  "companion_audit_scope": "Staged LFS attributes supplement known suffixes; ordinary source pointer masquerades remain rejected.14 focused regressions."
 }

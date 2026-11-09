@@ -1,6 +1,6 @@
 # Roof and chimney V12d source candidate
 
-Source-only delivery of100 byte-identical reviewed V12d payloads. This folder contains editable packed Blender sources,12 explicit-triangle FBX files,25 textures, source/FBX audits and4 matched source views with their records. No native Content, Data, tools, Engine files or production references change. All ledger entries remain candidate; Root review is pending.
+Source-only delivery of100 byte-identical reviewed V12d payloads. This folder contains editable packed Blender sources,12 explicit-triangle FBX files,25 textures, source/FBX audits and4 matched source views with their records. No native Content, Data, Engine files or production references change. A companion source-audit update recognizes explicitly LFS-managed diagnostics in pointer-only checkouts. All ledger entries remain candidate; Root review is pending.
 
 `SHA256SUMS.json` is the portable payload manifest: every key is relative to this directory. `PROVENANCE.json` identifies the authority and qualifications. Materialize binaries with `git lfs pull` before comparing actual bytes. The exact source SHA is3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec.
 
