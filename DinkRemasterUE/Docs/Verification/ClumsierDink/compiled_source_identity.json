@@ -1,0 +1,25 @@
+{
+  "source_hash_recording": "Recorded during build after these files compiled; allfile mtimes precede recordedlaunch, no runtime/testsource edits duringbuild",
+  "files": {
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkHeroPhysicality.h": {
+      "sha256": "0d7ad3ee6bab5f5f8babaf34026e979ed5c830e9139dd522bc2ed77161ad0345",
+      "mtime_ns": 1794201698491176519,
+      "mtime_precedes_build_launch": true
+    },
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp": {
+      "sha256": "8c36e721631abba0cc10d95acfcfbfa674308e21fc831466fa51ec454a1c5151",
+      "mtime_ns": 1794201583695108933,
+      "mtime_precedes_build_launch": true
+    },
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h": {
+      "sha256": "374f1e43beb7b9be55fc6aa1a4f6e8461d57f87bafe74ccc4faac7cf92224494",
+      "mtime_ns": 1794201583695464919,
+      "mtime_precedes_build_launch": true
+    },
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp": {
+      "sha256": "a9c0a523f3cebe8d9f3335c567a2ab12624f7a4adb7e6ed4a59b2a21e7cb8811",
+      "mtime_ns": 1794201698492287168,
+      "mtime_precedes_build_launch": true
+    }
+  }
+}
