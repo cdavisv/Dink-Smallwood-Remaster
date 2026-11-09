@@ -367,6 +367,10 @@ def classify(args):
                     cands.append(label)
         if cands:
             flags.append("source candidate: " + "; ".join(cands))
+        cut_reasons = [f[len("REVIEW-CUT "):] for f in flags if f.startswith("REVIEW-CUT ")]
+        if cut_reasons:
+            # Owner decision, 9 Nov 2026: placements that can never meaningfully become final are cut, with the reason.
+            return finish(r, fam, art_kind, "cut", "cut (owner decision 9 Nov 2026): " + "; ".join(cut_reasons) + "; " + base + " (%s)" % cls)
         return finish(r, fam, art_kind, "placeholder", "; ".join([base + " (%s)" % cls] + flags))
 
     # placements first (warps inherit their host)
@@ -465,8 +469,8 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
         print("WARNING: %d bound assets are Git LFS pointers (run git lfs pull)" % len(assets.lfs_pointers))
     ph = [r for r in out if r["state"] == "placeholder" and r["type"] != "warp"]  # warps repeat their host
     cand = sum(1 for r in ph if "source candidate" in r["evidence"])
-    review = sum(1 for r in ph if "REVIEW-CUT" in r["evidence"])
-    print("Placeholder placements/screens with an unwired source candidate: %d; flagged REVIEW-CUT (coverage did not skip them, consider cutting): %d" % (cand, review))
+    decided = sum(1 for r in out if r["state"] == "cut" and r["type"] == "placement" and "owner decision" in r["evidence"])
+    print("Placeholder placements/screens with an unwired source candidate: %d; placements cut by owner decision (hardness proxies, never-set vision variants, empty placements): %d" % (cand, decided))
     print("Runtime manifests: %d dressed screens %s; %d render-only contexts; %d creature, %d character, %d replacement bindings" % (
         len(manifests["screen_dress"]), sorted(manifests["screen_dress"]), len(manifests["context"]),
         len(manifests["creature"]), len(manifests["character"]), len(manifests["replace"])))
