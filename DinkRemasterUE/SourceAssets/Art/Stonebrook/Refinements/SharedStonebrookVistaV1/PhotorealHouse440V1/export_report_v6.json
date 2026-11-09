@@ -1,0 +1,19 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/GameReadyV6/Export",
+  "manifest": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/GameReadyV6/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Shared_House440_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx",
+        "glb": "Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.glb"
+      },
+      "tris": {
+        "LOD0": 114354
+      }
+    }
+  ],
+  "rejected": []
+}

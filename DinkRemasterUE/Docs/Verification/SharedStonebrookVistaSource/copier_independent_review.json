@@ -1,0 +1,119 @@
+{
+  "status": "APPROVED_CORRECTED_COPIER_FOR_ISOLATED_AUTHORIZED_SOURCE_DELIVERY",
+  "scope": "QA-only independent review; no repository/native/runtime/frozen source writes. Actual repository apply remains withheld pending coordinator authority and PR20 merge.",
+  "reviewed_script_sha256": "dfcc8e771d33cec17bb857168b960a85264a6ea13e4024dd85ef69ba7ca6a74b",
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "RELATIVE_MANIFEST_ESCAPE",
+      "proof_case": "traversal",
+      "finding": "Manifest key ../Bundle/asset.txt passes source containment but escapes staging; apply reports success with asset missing from published tree.",
+      "required": "Require canonical nonempty PurePosix relative file keys with no dot/dotdot/backslash/absolute components and unique normalized destinations."
+    },
+    {
+      "id": "PARENT_SYMLINK_ESCAPE",
+      "proof_case": "art_parent_symlink",
+      "finding": "Existing SourceAssets/Art symlink permits successful writes outside selected root. Ledger resolve equality similarly does not enforce physical containment.",
+      "required": "Bound actual paths and reject symlink ancestors for ledger/target; validate again while applying."
+    },
+    {
+      "id": "DANGLING_FIXED_TEMP_SYMLINK",
+      "proof_case": "dangling_ledger_temp",
+      "finding": "Fixed temporary ledger exists check misses dangling symlink; write follows it and os.replace publishes symlink as ledger.",
+      "required": "Use securely exclusive no-follow temporary creation or eliminate replace-temp approach."
+    },
+    {
+      "id": "LOST_CONCURRENT_LEDGER_APPEND",
+      "proof_case": "concurrent_append",
+      "finding": "Concurrent valid row injected after final ledger read check is silently overwritten, while apply reports success.",
+      "required": "Use exclusive coordination and append semantics that never truncate or replace another writer; detect unexpected concurrent state."
+    }
+  ],
+  "historical_original_review": "IndependentCopierProbes/original_copier_independent_review.json",
+  "corrected_failure_probes": [
+    {
+      "case": "traversal",
+      "error": "AssertionError('Noncanonical relative path: ../Bundle/asset.txt')",
+      "reported_applied": null,
+      "target_resolved": "/home/artist/Work/DinkQA/SharedVistaPublicationPrep/IndependentCopierProbes/CorrectedRun/traversal/Unreal/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1",
+      "payload_asset_exists": false,
+      "ledger_is_symlink": false,
+      "outside_ledger_created": false,
+      "concurrent_row_injected": false,
+      "concurrent_row_retained": false
+    },
+    {
+      "case": "art_parent_symlink",
+      "error": "AssertionError('Symlink path rejected: /home/artist/Work/DinkQA/SharedVistaPublicationPrep/IndependentCopierProbes/CorrectedRun/art_parent_symlink/Unreal/SourceAssets/Art')",
+      "reported_applied": null,
+      "target_resolved": "/home/artist/Work/DinkQA/SharedVistaPublicationPrep/IndependentCopierProbes/CorrectedRun/art_parent_symlink/outside/Stonebrook/Refinements/SharedStonebrookVistaV1",
+      "payload_asset_exists": false,
+      "ledger_is_symlink": false,
+      "outside_ledger_created": false,
+      "concurrent_row_injected": false,
+      "concurrent_row_retained": false
+    },
+    {
+      "case": "dangling_ledger_temp",
+      "error": null,
+      "reported_applied": true,
+      "target_resolved": "/home/artist/Work/DinkQA/SharedVistaPublicationPrep/IndependentCopierProbes/CorrectedRun/dangling_ledger_temp/Unreal/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1",
+      "payload_asset_exists": true,
+      "ledger_is_symlink": false,
+      "outside_ledger_created": false,
+      "concurrent_row_injected": false,
+      "concurrent_row_retained": false
+    },
+    {
+      "case": "concurrent_append",
+      "error": "AssertionError('Concurrent append preserved; stop for review, do not rollback/truncate')",
+      "reported_applied": null,
+      "target_resolved": "/home/artist/Work/DinkQA/SharedVistaPublicationPrep/IndependentCopierProbes/CorrectedRun/concurrent_append/Unreal/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1",
+      "payload_asset_exists": true,
+      "ledger_is_symlink": false,
+      "outside_ledger_created": false,
+      "concurrent_row_injected": true,
+      "concurrent_row_retained": true
+    }
+  ],
+  "corrected_actual_shadow_checks": {
+    "script_sha256": "dfcc8e771d33cec17bb857168b960a85264a6ea13e4024dd85ef69ba7ca6a74b",
+    "files_checked": 379,
+    "copy_failures": [],
+    "prior_raw_bytes": 1507333,
+    "prior_rows": 1664,
+    "new_rows": 2043,
+    "prior_prefix_exact": true,
+    "audio_rows": 483,
+    "audio_raw_exact": true,
+    "baseline_sha256": "516ccd27789aae438d7680fe57c55a9ad21819d03d56860124358e730b4578f8",
+    "candidate_ledger_sha256": "4bde11e38cf703774d080815e3de008d251fca7ab8b606618be1219123119faa",
+    "all_manifest_paths_canonical": true,
+    "all_rows_candidate": true,
+    "advisory_only": true
+  },
+  "nonblocking_qualifications": [
+    {
+      "id": "COOPERATIVE_EXCLUSIVE_DELIVERY_ROOT",
+      "finding": "Exclusive O_EXCL transfer lock plus flock protect cooperative writers, canonical paths and symlink checks block tested escapes. Path checks followed by rename are not an adversarial descriptor-relative no-replace transaction. Use only isolated trusted delivery root with exclusive coordinator ownership."
+    },
+    {
+      "id": "PARTIAL_PUBLICATION_STOP_FOR_REVIEW",
+      "finding": "Tree is published before ledger append. Detected late append preserves both writers bytes and fails explicitly; copied tree remains. Never auto-retry, truncate, or delete concurrent data. Coordinator must inspect exact copied hashes and current ledger, then deliberately complete missing rows or remove only its verified candidate tree in an isolated checkout."
+    },
+    {
+      "id": "ADVISORY_LEDGER_BASELINE",
+      "finding": "1664-row snapshot remains advisory. Confirm PR20 merge then regenerate against authoritative current ledger; preserve all prior bytes and audio raw rows anew."
+    }
+  ],
+  "metadata_review": {
+    "candidate_status": true,
+    "source_only_prefix": true,
+    "licence_qualified_not_CC0": true,
+    "raw_guide_exceptions_not_laundered": true,
+    "no_git_native_runtime_commands": true
+  },
+  "source_art_files_frozen": 379,
+  "authoritative_ledger": false,
+  "remaining": "Coordinator to confirm merge and authorized isolated delivery checkout, regenerate fresh ledger plan, retain concrete partial-failure recovery instructions."
+}

@@ -1,0 +1,37 @@
+{
+  "status": "Actual matched final sourceLOD candidate renders, visual/native approval pending",
+  "reference": "Previews/donor_high.png unchanged frozen donor and identical scene/camera",
+  "LODs": [
+    {
+      "LOD": 0,
+      "alpha_coverage_pixels": 368980,
+      "camera": [
+        13.0,
+        -18.0,
+        10.0
+      ],
+      "triangles": 24846
+    },
+    {
+      "LOD": 1,
+      "alpha_coverage_pixels": 346166,
+      "camera": [
+        13.0,
+        -18.0,
+        10.0
+      ],
+      "triangles": 14072
+    },
+    {
+      "LOD": 2,
+      "alpha_coverage_pixels": 333819,
+      "camera": [
+        13.0,
+        -18.0,
+        10.0
+      ],
+      "triangles": 7472
+    }
+  ],
+  "limits": "Different individual leafsize/count and lower branch radial subdivisions are explicitLOD approximations; no finalphotoreal/native-transition acceptance"
+}

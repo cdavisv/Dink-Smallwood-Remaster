@@ -1,0 +1,100 @@
+{
+  "status": "Actual packed source image reads with deliberately missing external paths and actualFBX/GLB reimports passed",
+  "source_sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+  "packed_images": [
+    {
+      "image": "T_Shared_Willow_Bark_BC",
+      "packed": true,
+      "pixel_count": 16777216,
+      "size": [
+        2048,
+        2048
+      ],
+      "file_path_deliberately_missing": true
+    },
+    {
+      "image": "T_Shared_Willow_Bark_N",
+      "packed": true,
+      "pixel_count": 16777216,
+      "size": [
+        2048,
+        2048
+      ],
+      "file_path_deliberately_missing": true
+    },
+    {
+      "image": "T_Shared_Willow_Bark_ORM",
+      "packed": true,
+      "pixel_count": 16777216,
+      "size": [
+        2048,
+        2048
+      ],
+      "file_path_deliberately_missing": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_BC",
+      "packed": true,
+      "pixel_count": 4194304,
+      "size": [
+        1024,
+        1024
+      ],
+      "file_path_deliberately_missing": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_N",
+      "packed": true,
+      "pixel_count": 4194304,
+      "size": [
+        1024,
+        1024
+      ],
+      "file_path_deliberately_missing": true
+    },
+    {
+      "image": "T_Shared_Willow_Leaf_ORM",
+      "packed": true,
+      "pixel_count": 4194304,
+      "size": [
+        1024,
+        1024
+      ],
+      "file_path_deliberately_missing": true
+    }
+  ],
+  "roundtrips": [
+    {
+      "format": "FBX",
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD0.fbx",
+      "actual_reimported_triangles": 24846,
+      "source_bounds_max_error_m": 0.0,
+      "UV_layers": 1,
+      "materials": 2
+    },
+    {
+      "format": "FBX",
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD1.fbx",
+      "actual_reimported_triangles": 14072,
+      "source_bounds_max_error_m": 0.0,
+      "UV_layers": 1,
+      "materials": 2
+    },
+    {
+      "format": "FBX",
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD2.fbx",
+      "actual_reimported_triangles": 7472,
+      "source_bounds_max_error_m": 0.0,
+      "UV_layers": 1,
+      "materials": 2
+    },
+    {
+      "format": "GLB",
+      "file": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.glb",
+      "actual_reimported_triangles": 24846,
+      "source_bounds_max_error_m": 0.0
+    }
+  ],
+  "source_and_donor_unchanged": true,
+  "native_approval": false
+}

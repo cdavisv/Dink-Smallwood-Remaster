@@ -1,0 +1,91 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/GameReadyV6/SharedHouse440_GameV6.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 2
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Shared_House440_01",
+      "class": "building",
+      "collection": "SM_Shared_House440_01",
+      "tris_per_lod": {
+        "LOD0": 114354
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -778.827,
+          -571.943,
+          0.0
+        ],
+        "blender_max_cm": [
+          778.826,
+          571.871,
+          984.933
+        ],
+        "size_cm": [
+          1557.653,
+          1143.814,
+          984.933
+        ],
+        "unreal_min_cm": [
+          -778.827,
+          -571.871,
+          0.0
+        ],
+        "unreal_max_cm": [
+          778.826,
+          571.943,
+          984.933
+        ]
+      },
+      "errors": 1,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Shared_House440_01",
+          "message": "LOD0 has 114354 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_Shared_House440_01",
+          "data": {
+            "tris": 114354,
+            "target": 60000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Shared_House440_01",
+          "message": "60 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Shared_House440_01",
+          "data": {
+            "vertices": 60
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Shared_House440_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Shared_House440_01"
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Shared_House440_01",
+          "message": "class building needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}
