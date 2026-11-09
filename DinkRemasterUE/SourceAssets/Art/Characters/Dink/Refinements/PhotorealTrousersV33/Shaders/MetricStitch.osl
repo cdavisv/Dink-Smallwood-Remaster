@@ -1,0 +1,62 @@
+float line_integral(float x)
+{
+    float radius = 0.0003;
+    float t = min(abs(x) / radius, 1.0);
+    return sign(x) * radius * (t - t*t*t + 0.5*t*t*t*t);
+}
+float smooth_integral(float t) { return t*t*t - 0.5*t*t*t*t; }
+float arc_integral(float p)
+{
+    float periods = floor(p);
+    float q = p - periods;
+    float area = 0.0;
+    if (q < 0.10) area = 0.0;
+    else if (q < 0.27) area = 0.17 * smooth_integral((q - 0.10) / 0.17);
+    else if (q < 0.73) area = 0.085 + q - 0.27;
+    else if (q < 0.90) { float t = (q - 0.73) / 0.17; area = 0.545 + 0.17 * (t - smooth_integral(t)); }
+    else area = 0.63;
+    return periods * 0.63 + area;
+}
+float stitch_mask(float distance_m, float arc_m, float width_d, float width_a)
+{
+    float x = distance_m - 0.0025;
+    float line = (line_integral(x + width_d*0.5) - line_integral(x - width_d*0.5)) / width_d;
+    float p = arc_m / 0.003;
+    p -= floor(p);
+    float width_p = width_a / 0.003;
+    float running = (arc_integral(p + width_p*0.5) - arc_integral(p - width_p*0.5)) / width_p;
+    return line * running;
+}
+shader MetricStitch(
+    float SeamDistanceMeters = 0.1,
+    float SeamArcMeters = 0.0,
+    normal IncomingNormal = N,
+    point SurfacePositionMeters = P,
+    output normal StitchNormal = N,
+    output float StitchMask = 0.0,
+    output color StitchTint = color(1.0),
+    output float FootprintDistanceMeters = 0.0,
+    output float FootprintArcMeters = 0.0)
+{
+    float dx_d = Dx(SeamDistanceMeters), dy_d = Dy(SeamDistanceMeters);
+    float dx_a = Dx(SeamArcMeters), dy_a = Dy(SeamArcMeters);
+    float wd = max(abs(dx_d) + abs(dy_d), 1e-8);
+    float wa = max(abs(dx_a) + abs(dy_a), 1e-8);
+    float filter_step = 0.1;
+    float hc = 9.87 * stitch_mask(SeamDistanceMeters, SeamArcMeters, wd, wa);
+    float hx = 9.87 * stitch_mask(SeamDistanceMeters + filter_step*dx_d, SeamArcMeters + filter_step*dx_a, wd, wa);
+    float hy = 9.87 * stitch_mask(SeamDistanceMeters + filter_step*dy_d, SeamArcMeters + filter_step*dy_a, wd, wa);
+    vector px = Dx(SurfacePositionMeters), py = Dy(SurfacePositionMeters);
+    normal base = normalize(IncomingNormal);
+    vector rx = cross(py, base), ry = cross(base, px);
+    float surface_det = dot(px, rx);
+    vector surface_gradient = (hx - hc)*rx + (hy - hc)*ry;
+    normal bent = base;
+    if (abs(surface_det) > 1e-30)
+        bent = normalize(filter_step * abs(surface_det) * base - 0.00008 * sign(surface_det) * surface_gradient);
+    StitchNormal = normalize(0.19 * bent + 0.81 * base);
+    StitchMask = hc / 9.87;
+    StitchTint = color(1.0 + 0.03 * StitchMask);
+    FootprintDistanceMeters = wd;
+    FootprintArcMeters = wa;
+}

@@ -1,0 +1,1020 @@
+{
+  "scope": "Both actual evaluated meshes, same triangles. No global clearance/visual acceptance.",
+  "rows": [
+    {
+      "pose": "rest",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "idle",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 212
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist0",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 212
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist1",
+      "V15_actual": {
+        "body": 80,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 76,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist2",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist3",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist4",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist5",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist6",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist7",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist8",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist9",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist10",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist11",
+      "V15_actual": {
+        "body": 289,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 233
+        }
+      },
+      "V19_actual": {
+        "body": 159,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist12",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 212
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "fist13",
+      "V15_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk0",
+      "V15_actual": {
+        "body": 72,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 72,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk1",
+      "V15_actual": {
+        "body": 102,
+        "self": 16,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 102,
+        "self": 16,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk2",
+      "V15_actual": {
+        "body": 0,
+        "self": 26,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 26,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk3",
+      "V15_actual": {
+        "body": 127,
+        "self": 195,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 127,
+        "self": 195,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk4",
+      "V15_actual": {
+        "body": 50,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 50,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk5",
+      "V15_actual": {
+        "body": 60,
+        "self": 20,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 60,
+        "self": 20,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk6",
+      "V15_actual": {
+        "body": 0,
+        "self": 35,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 0,
+        "self": 35,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk7",
+      "V15_actual": {
+        "body": 67,
+        "self": 101,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 67,
+        "self": 101,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk8",
+      "V15_actual": {
+        "body": 77,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 77,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk9",
+      "V15_actual": {
+        "body": 108,
+        "self": 24,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 108,
+        "self": 24,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk10",
+      "V15_actual": {
+        "body": 66,
+        "self": 12,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 66,
+        "self": 12,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk11",
+      "V15_actual": {
+        "body": 118,
+        "self": 256,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 118,
+        "self": 256,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk12",
+      "V15_actual": {
+        "body": 130,
+        "self": 68,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 130,
+        "self": 68,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk13",
+      "V15_actual": {
+        "body": 42,
+        "self": 14,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 81
+        }
+      },
+      "V19_actual": {
+        "body": 42,
+        "self": 14,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk14",
+      "V15_actual": {
+        "body": 27,
+        "self": 14,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 27,
+        "self": 14,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk15",
+      "V15_actual": {
+        "body": 28,
+        "self": 58,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 28,
+        "self": 58,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk16",
+      "V15_actual": {
+        "body": 114,
+        "self": 70,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 114,
+        "self": 70,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk17",
+      "V15_actual": {
+        "body": 72,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 72,
+        "self": 0,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    },
+    {
+      "pose": "walk18",
+      "V15_actual": {
+        "body": 128,
+        "self": 80,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      },
+      "V19_actual": {
+        "body": 128,
+        "self": 80,
+        "other_garments": {
+          "NEW_Dink_Bracer_L": 0,
+          "NEW_Dink_Bracer_R": 0,
+          "NEW_Dink_Jerkin_LOD0": 0,
+          "NEW_Dink_RedUpperArmTie": 0,
+          "NEW_Dink_Shirt_ActualAnatomy_LOD0": 0,
+          "Original_Belt_Compatible": 0,
+          "QA_Dink_VisibleLegacy_HeadHandsHairGear": 0
+        }
+      }
+    }
+  ]
+}

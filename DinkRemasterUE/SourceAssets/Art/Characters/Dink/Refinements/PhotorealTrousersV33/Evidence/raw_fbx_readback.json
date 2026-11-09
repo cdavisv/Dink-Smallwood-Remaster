@@ -1,0 +1,218 @@
+{
+  "status": "ACTUAL_RAW_FBX_GEOMETRY_SKIN_UV_BIND89_PASS_NORMALS_MEASURED",
+  "scope": "Independent binary arrays/skin clusters/metadata, not native importer or runtime acceptance. Source is metre capture, export is cm. All sourceUVs including metric UV1/2 checked, no phase correction assumed.",
+  "FBX": [
+    {
+      "file": "SK_Dink_V33_Trousers_Hi.fbx",
+      "sha256": "c77e878bdf149b25d23a896fd5fc51ac4a062e8adb116c3cc6f1bbb76eaca181",
+      "binary_version": 7400,
+      "UnitScaleFactor_cm": 0.9999999776482582,
+      "actual89_names_parents_allProperties70_exact_reference": true,
+      "meshes": [
+        {
+          "mesh": "NEW_Dink_Trousers_LOD0",
+          "controlpoints": 10308,
+          "oriented_triangles_materials_matched": 20620,
+          "UV_layers": [
+            "WardrobeAtlasUV",
+            "ClothGrainMeters",
+            "ClothSeamMeters"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0,
+            "ClothGrainMeters": 0.0,
+            "ClothSeamMeters": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.00948873937372006,
+          "source_position_max_error_m": 3.814697269177714e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        }
+      ],
+      "triangle_total": 20620
+    },
+    {
+      "file": "SK_Dink_V33_Context_Hi.fbx",
+      "sha256": "b394479acd7b03617836295bccffe81a83c9981e4d40b6ef306a9975bc243cf2",
+      "binary_version": 7400,
+      "UnitScaleFactor_cm": 0.9999999776482582,
+      "actual89_names_parents_allProperties70_exact_reference": true,
+      "meshes": [
+        {
+          "mesh": "NEW_Dink_Bracer_L",
+          "controlpoints": 575,
+          "oriented_triangles_materials_matched": 576,
+          "UV_layers": [
+            "WardrobeAtlasUV"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.02814320986098814,
+          "source_position_max_error_m": 3.814697269177714e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "NEW_Dink_Bracer_R",
+          "controlpoints": 497,
+          "oriented_triangles_materials_matched": 576,
+          "UV_layers": [
+            "WardrobeAtlasUV"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.010736886003504146,
+          "source_position_max_error_m": 3.814697269177714e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "NEW_Dink_Jerkin_LOD0",
+          "controlpoints": 2806,
+          "oriented_triangles_materials_matched": 5620,
+          "UV_layers": [
+            "WardrobeAtlasUV"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.01834855178695794,
+          "source_position_max_error_m": 7.629394538355427e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "NEW_Dink_RedUpperArmTie",
+          "controlpoints": 768,
+          "oriented_triangles_materials_matched": 1536,
+          "UV_layers": [
+            "WardrobeAtlasUV"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.032519504467215916,
+          "source_position_max_error_m": 7.629394538355427e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "NEW_Dink_Shirt_ActualAnatomy_LOD0",
+          "controlpoints": 5156,
+          "oriented_triangles_materials_matched": 10320,
+          "UV_layers": [
+            "WardrobeAtlasUV"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.027886087963622793,
+          "source_position_max_error_m": 7.629394538355427e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "NEW_Dink_Trousers_LOD0",
+          "controlpoints": 10308,
+          "oriented_triangles_materials_matched": 20620,
+          "UV_layers": [
+            "WardrobeAtlasUV",
+            "ClothGrainMeters",
+            "ClothSeamMeters"
+          ],
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0,
+            "ClothGrainMeters": 0.0,
+            "ClothSeamMeters": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.00948873937372006,
+          "source_position_max_error_m": 3.814697269177714e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "Original_Belt_Compatible",
+          "controlpoints": 418,
+          "oriented_triangles_materials_matched": 374,
+          "UV_layers": [
+            "UVMap"
+          ],
+          "UV_component_max_error": {
+            "UVMap": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.005151073256998633,
+          "source_position_max_error_m": 3.814697269177714e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        },
+        {
+          "mesh": "QA_Dink_VisibleLegacy_HeadHandsHairGear",
+          "controlpoints": 14986,
+          "oriented_triangles_materials_matched": 23342,
+          "UV_layers": [
+            "UVMap"
+          ],
+          "UV_component_max_error": {
+            "UVMap": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "max_influences": 4,
+          "raw_normal_vs_source_max_angle_degrees": 0.034285115995833164,
+          "source_position_max_error_m": 7.629394538355427e-08,
+          "skin_clusters": 89,
+          "link_joint_max_error_cm": 2.193450927734375e-05,
+          "link_axis_component_max_error": 1.6808509826660156e-05,
+          "link_times_transform_identity_max_error": 1.4742122004918201e-05
+        }
+      ],
+      "triangle_total": 62964
+    }
+  ],
+  "GLB": {
+    "file": "SK_Dink_V33_Trousers_GEOMETRY_ONLY.glb",
+    "joints": 89,
+    "triangles": 20620,
+    "UV_semantics": [
+      "TEXCOORD_0",
+      "TEXCOORD_1",
+      "TEXCOORD_2"
+    ],
+    "materials": 0,
+    "animations": 0,
+    "qualification": "Geometry-only skin preview; OSL/stitch/weave/native shading intentionally absent"
+  }
+}

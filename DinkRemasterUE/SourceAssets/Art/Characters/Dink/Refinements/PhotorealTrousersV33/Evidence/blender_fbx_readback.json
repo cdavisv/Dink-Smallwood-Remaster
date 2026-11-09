@@ -1,0 +1,157 @@
+{
+  "status": "ACTUAL_BLENDER_FBX_IMPORT_GEOMETRY_SKIN_ALLUV89_PASS_NORMALS_MEASURED",
+  "scope": "Separate importer observation, not native UE/built tangents/normal render or shared161Skeleton acceptance. Blender cm importer retains.01Armature scale, compare physical joints and normalized axes rather than claiming source basis magnitudes exact. Last-bone tail display length is an importer convention, original source tail lengths remain pinned separately.",
+  "source_sha256": "d6359289ed36c45de7b22f8640cb4e7cf654abdbd8b0ee7013f7f75dee32ff9a",
+  "FBX": [
+    {
+      "file": "SK_Dink_V33_Trousers_Hi.fbx",
+      "actual_imported_bone_count": 89,
+      "bone_names_parents_exact": true,
+      "world_joint_center_max_error_m": 2.1457672119140625e-06,
+      "normalized_rest_axis_component_max_error": 1.4960765838623047e-05,
+      "armature_object_scale": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "meshes": [
+        {
+          "mesh": "NEW_Dink_Trousers_LOD0",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 20620,
+          "source_vertices": 10308,
+          "imported_vertices": 10308,
+          "position_max_error_m": 1.194564163142786e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0,
+            "ClothGrainMeters": 0.0,
+            "ClothSeamMeters": 0.0
+          },
+          "named_weight_max_error": 9.250579857678076e-09,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.009490573400487807,
+          "max_influences": 4
+        }
+      ]
+    },
+    {
+      "file": "SK_Dink_V33_Context_Hi.fbx",
+      "actual_imported_bone_count": 89,
+      "bone_names_parents_exact": true,
+      "world_joint_center_max_error_m": 2.1457672119140625e-06,
+      "normalized_rest_axis_component_max_error": 1.4960765838623047e-05,
+      "armature_object_scale": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "meshes": [
+        {
+          "mesh": "NEW_Dink_Bracer_L",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 576,
+          "source_vertices": 575,
+          "imported_vertices": 575,
+          "position_max_error_m": 1.2287812012345967e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.03841364950067037,
+          "max_influences": 4
+        },
+        {
+          "mesh": "NEW_Dink_Bracer_R",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 576,
+          "source_vertices": 497,
+          "imported_vertices": 497,
+          "position_max_error_m": 1.2287812012345967e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.016331992748864852,
+          "max_influences": 4
+        },
+        {
+          "mesh": "NEW_Dink_Jerkin_LOD0",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 5620,
+          "source_vertices": 2806,
+          "imported_vertices": 2806,
+          "position_max_error_m": 1.2036781527058338e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 9.959847169227487e-09,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.027447754503465798,
+          "max_influences": 4
+        },
+        {
+          "mesh": "NEW_Dink_RedUpperArmTie",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 1536,
+          "source_vertices": 768,
+          "imported_vertices": 768,
+          "position_max_error_m": 1.2293457984924316e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.03862581842252072,
+          "max_influences": 4
+        },
+        {
+          "mesh": "NEW_Dink_Shirt_ActualAnatomy_LOD0",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 10320,
+          "source_vertices": 5156,
+          "imported_vertices": 5156,
+          "position_max_error_m": 1.2293457984924316e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0
+          },
+          "named_weight_max_error": 9.404776513122215e-09,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.5069675382761476,
+          "max_influences": 4
+        },
+        {
+          "mesh": "NEW_Dink_Trousers_LOD0",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 20620,
+          "source_vertices": 10308,
+          "imported_vertices": 10308,
+          "position_max_error_m": 1.194564163142786e-07,
+          "UV_component_max_error": {
+            "WardrobeAtlasUV": 0.0,
+            "ClothGrainMeters": 0.0,
+            "ClothSeamMeters": 0.0
+          },
+          "named_weight_max_error": 9.250579857678076e-09,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.009490573400487807,
+          "max_influences": 4
+        },
+        {
+          "mesh": "Original_Belt_Compatible",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 374,
+          "source_vertices": 418,
+          "imported_vertices": 418,
+          "position_max_error_m": 1.1920928955078125e-07,
+          "UV_component_max_error": {
+            "UVMap": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.00734283576400352,
+          "max_influences": 4
+        },
+        {
+          "mesh": "QA_Dink_VisibleLegacy_HeadHandsHairGear",
+          "oriented_triangles_material_UV_allchannels_namedweights_matched": 23342,
+          "source_vertices": 14986,
+          "imported_vertices": 14986,
+          "position_max_error_m": 1.2287812012345967e-07,
+          "UV_component_max_error": {
+            "UVMap": 0.0
+          },
+          "named_weight_max_error": 0.0,
+          "Blender_reencoded_corner_normal_max_angle_degrees": 0.0441428553635384,
+          "max_influences": 4
+        }
+      ]
+    }
+  ],
+  "normal_qualification": "Source/raw binary normal gate is separate. Blender importer re-encodes fans and may show larger angles; do not claim universal normal roundtrip PASS."
+}

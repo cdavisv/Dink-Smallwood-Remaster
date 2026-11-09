@@ -1,0 +1,205 @@
+{
+  "status": "SOURCE PROTOTYPE + NATIVE GRAPH PROPOSAL ONLY. No native/import/export/code install performed.",
+  "source_candidate": "Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+  "source_object": "NEW_Dink_Trousers_LOD0 material slot0 only; other7 meshes/materials and89rig exact",
+  "source_fit": "V19 Root-selected. Actual35 rendered hands0, knownwalk11 self256/covered-body residuals retained. Actual in-game/ClumsyV2 review required.",
+  "UV_roles": {
+    "0": "WardrobeAtlasUV; fresh no-stitch/no-weave coarseBC/N/ORM, source Mikk tangent basis",
+    "1": "ClothGrainMeters; repeat weave normal at metric/.0288, only sharedTBN after verified positive source chart mapping and native roundtrip",
+    "2": "ClothSeamMeters raw(distance_to_sewing_path_m,arc_m). Rim per-loop(.1,0). NOT a tangent basis; often degenerate away from seams."
+  },
+  "source_attribute_readback": {
+    "UV2_against_semantic_attributes_max_error_m": 1.4901161138336505e-09,
+    "UV_count": 3,
+    "UV2_minmax": [
+      0.0,
+      0.0,
+      0.18618431687355042,
+      1.27951180934906
+    ],
+    "compiled_internal_OSL_bytecode_present": true,
+    "internal_OSL_text_sha256": "b5631308625739f5bb84ecc5399f12d6f652b259671cb108fc43dbc7333b094d",
+    "images": [
+      {
+        "image": "T_Dink_Trousers_V31_BC.png",
+        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_BC.png",
+        "packed_file_sha_exact": true,
+        "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "image": "T_Dink_Trousers_V31_N.png",
+        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_N.png",
+        "packed_file_sha_exact": true,
+        "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "image": "T_Dink_Trousers_V31_ORM.png",
+        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_ORM.png",
+        "packed_file_sha_exact": true,
+        "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "image": "T_Dink_Homespun_MetricWeave_N256.png",
+        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Homespun_MetricWeave_N256.png",
+        "packed_file_sha_exact": true,
+        "sha256": "b5599254d88eee53b01050e5a9cce8dbec4b69a8d7040e0b60f1003a36a85ad0",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ],
+    "source_geometry_unchanged": "See art_source_preservation_v32.json; UV2 is data only, never tangent basis."
+  },
+  "root_policy": {
+    "retain_2K_coarse_plus_256_tile_baseline": true,
+    "4K_not_promoted": true,
+    "full_precision_skeletal_UV_policy_accepted": true,
+    "native_actual_render_vertex_budget_and_UV_readback_pending": true,
+    "F32_texture_inheritance": false
+  },
+  "UE_graph": [
+    "Material domain Surface, opaque pants; preserve existing source/native two-sided policy. Do not change other materials.",
+    "TexCoord0 feeds newV31 coarseBC/N/ORM (Clamp), TexCoord1 recovered to source meters feeds tile at/.0288 (Repeat). NativeNormal samplers already signed; exactly one green-convention import transform.",
+    "RNM coarse/detail signed tangent normals as V27 recipe, then TransformVector Tangent\u2192World using UV0 Mikk basis. This known normal goes to Custom.BaseNormalWS. Do NOT use PixelNormalWS (would create feedback).",
+    "TexCoord2 recovered using verified actual UV import affine transform\u2192Custom.SeamMeters. In particular V flip/offset must be undone for arc phase; do not silently use1-arc as source meters.",
+    "WorldPosition node WPT_CameraRelativeNoOffsets in centimeters\u2192Custom.PositionCM. Camera-relative avoids large-world subtraction noise; currenthero noWPO. Any future WPO policy needs review.",
+    "Custom pixel expression code UE_Custom_Stitch_PROPOSAL.hlsl: output float3 normalWS, additional float1 StitchMaskOut. Set pants material TangentSpaceNormal=false and connect output directly to Normal.",
+    "BaseColor=BC31.rgb*(1+.03*StitchMaskOut), restoring original source tint once; newV31 BC excludes baked stitch tint. Roughness target.83 (RGB8 transport212/255), metallic0,AO1; existing source IOR1.46/specIOR.24/sheen.16 contract preserved, no roughness boost.",
+    "Use ONLY fresh no-stitch V31 coarseN with this procedural stitch graph; oldV25/V28 atlas stitch height/tint would double-count. No old normal reuse."
+  ],
+  "AA_normal_math": {
+    "physical_width_m": 0.0006,
+    "profile": "1-smoothstep(0,.0003,abs(distance-.0025)), box-integrated over screen derivative width",
+    "stitch_pitch_m": 0.003,
+    "running_profile": "1-smoothstep(.23,.40,abs(frac(arc/.003)-.5)), periodic box integral with mean.63",
+    "filter": "Separable metric-box approximation to screen footprint; native actual glancing/motion shimmer still untested. Phase rebased to fractional cycle before integral subtraction to reduce float cancellation.",
+    "height": "Original dimensionless mask9.87, BumpDistance.00008m,Strength.19, finite differential step.1. Strength remains normal blend, not collapsed into approximate height.",
+    "normal_space": "Source OSL world-position/normal derivative projection; native equivalent uses cmDistance.008, signed determinant and normalized incoming knownWS normal. Degenerate derivative fallback returns incoming normal only, no geometry/normal clamp.",
+    "reference": "https://raw.githubusercontent.com/blender/blender/main/intern/cycles/kernel/svm/displace.h"
+  },
+  "cost_proposal": {
+    "texture_samples": 4,
+    "new_stitch_texture_samples": 0,
+    "same_proposed_texture_fullmips_MiB_as_V27": 13.416755676269531,
+    "groups_if_keep_ORM": [
+      9,
+      13
+    ],
+    "new_UV2_float32_bytes_per_native_render_vertex": 8,
+    "total_three_float32_UVs_bytes_per_native_render_vertex": 24,
+    "scope_warning": "SkeletalLOD sharedStaticMeshVertexBuffer carries global UV count/precision for ALL combinedhero render vertices, not pants-only. Source10308pants gives82464-byte UV2 floor; actualnative seam-duplicated/globalV must be read.",
+    "delta_vs_two_full32_UV_channels": "8*actualLODRenderVertexCount bytes",
+    "delta_vs_one_half16_UV_if_actual_frozen_baseline_uses_it": "20*actualLODRenderVertexCount bytes; baselineUVcount/precision not assumed",
+    "static_shader_math": "4vector derivative calls (2float2UV +2float3position);3mask evaluations vectorized,12analytic primitive evaluations;2crosses/1dot/3normalizations plus polynomials. No loops/new texture sampling. Actual DXC instruction count/GPU cost pending material compile/profile."
+  },
+  "verification": {
+    "source_OSL_CPU_render": "PASS five actualclose/gamecontrols personallyviewed",
+    "independent_quadrature": {
+      "scope": "Independent dense midpoint integration against original physical smooth profiles; mathematical filter proof, not native GPU image/AA runtime acceptance.",
+      "oracle_samples_per_case": 100000,
+      "line_cases": 25,
+      "arc_cases": 42,
+      "maximum_line_error": 1.5142498366316204e-11,
+      "maximum_arc_error": 1.5265677610898365e-11,
+      "analytic_line_area_m": 0.0003,
+      "analytic_running_mean": 0.63,
+      "HLSL_smoke_compile": {
+        "tool": "glslangValidator -D -V -S frag -e Main",
+        "result": "PASS exact flat Custom body in standalone pixel wrapper",
+        "limitation": "Not Unreal material/DXC compile, no GPU/native pipeline writes or run",
+        "source_sha256": "f20d8df7685511822bc5bc3c572abf04f7955efa0af6fb68b0ee3b3e3b2b5820"
+      },
+      "primary_normal_math_reference": "https://raw.githubusercontent.com/blender/blender/main/intern/cycles/kernel/svm/displace.h",
+      "reference_finding": "Cycles separates normalized displaced normal from Strength blend; prototype preserves Distance and Strength separately, with differential step.1. HLSL converts meter Distance to cm, not Strength into height approximation."
+    },
+    "HLSL_syntax_smoke": "PASS glslang standalonepixel wrapper, not UE/DXC compile or GPU run",
+    "preservation_file": "../art_source_preservation_v32.json",
+    "shader_code_sha256": "f20d8df7685511822bc5bc3c572abf04f7955efa0af6fb68b0ee3b3e3b2b5820"
+  },
+  "required_before_native_acceptance": [
+    "Root visual/source selection and newgraph/budgetreview",
+    "Actual3UVaffine/phase/fullprecision/Mikk readback on newnativeasset, including asymmetric normal/phase markers",
+    "NativeMaterial/DXCcompile, featurelevel/permutation checks and normals/green/backface parity",
+    "BC5 actual compression/MIP/streaming quality and motion/glancing AA/shimmer/performance",
+    "Actual in-game35movement andClumsyV2 contact/camera review; no claim physics solved by shader"
+  ],
+  "engine_evidence": {
+    "global_skeletal_UV_buffer": "Engine/Source/Runtime/Engine/Public/Rendering/SkeletalMeshLODRenderData.h:149,309;StaticMeshVertexBuffer.h:342\u2013355",
+    "full_precision_policy": "Engine/Source/Runtime/Engine/Classes/Engine/EngineTypes.h:3130",
+    "world_position_enum": "Engine/Source/Runtime/Engine/Public/Materials/MaterialExpressionWorldPosition.h:16\u201326",
+    "normal_sampler_decode": "Engine/Shaders/Private/Common.ush:1698"
+  },
+  "original_Dink_reference_guide": {
+    "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
+    "files": [
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
+      },
+      {
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+      }
+    ],
+    "visually_reviewed_original_images": [
+      "original_identity_crop.png",
+      "original_sequences_contact.png",
+      "original_walk_ds-w2-01.png"
+    ],
+    "retained_identity": [
+      "subdued olive trousers",
+      "slate-blue woven shirt",
+      "brown leather torso/gear and russet boots",
+      "practical narrow-waist silhouette",
+      "red tie on anatomical LEFT upper arm"
+    ],
+    "limits": "Only trousers material/UV were changed in this source exploration. Other seven meshes/materials remain protected. A separate backpack is a prior remaster interpretation, not conclusively established by the rear sprite mass.",
+    "camera_note": "V14 current game controls use the historical render_baked269 orthographic review framing. REFERENCE_DESIGN_BRIEF also specifies a separate real gameplay perspective approximation; no source preview is a runtime screenshot."
+  },
+  "native_material_explicit_requirements": {
+    "SkeletalMeshUsage": true,
+    "SkeletalMeshUsage_saved_and_cook_verified": "Required; never assume editor automatic usage. Installed material usage enum/API must be read back after save.",
+    "tangent_space_normal": false,
+    "normal_output_space": "World normal from custom derivative output",
+    "world_position_node_property": "WorldPositionShaderOffset = WPT_CameraRelativeNoOffsets BEFORE float3 Custom input",
+    "absolute_world_position_forbidden": "Do not demote absolute world coordinates and then subtract camera; precision is already lost.",
+    "house_coordinate_precision_case_cm": [
+      -183808,
+      393377
+    ],
+    "absolute_float32_ULP_at_y_cm": 0.03125,
+    "effective_stitch_height_approx_cm": 0.0150024,
+    "native_far_world_LWC_gate": "Actual ~3.9km house-coordinate material/readback/render required. Local Blender/standaloneglslang does not prove LWC. Derivatives are translation invariant only before float precision loss.",
+    "existing_native_inspector": "PR28 InspectSkeletalMeshLod already hashes ALL UV channels and returns all channel values in64 vertex samples plus actual built TX/TY/N; no new C++ API requested.",
+    "final_combined_hero_M14": "Not established by this trousers+oldcontext source packet."
+  }
+}
