@@ -277,6 +277,11 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 		if (Y1 < 0 && Y1 > -5) { Y1 = 0; }
 		else if (Y1 > 399 && X1 < 405) { Y1 = 399; }
 	}
+	if (const FLiveHardness* Live = LiveHardness.Find(Screen))
+	{
+		// A script redrew the map in this screen visit (draw_hard_sprite / draw_hard_map): g_hitmap as they left it.
+		return Live->Map->Get(X1, Y1);
+	}
 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
 	const FDinkHardnessMap* Map = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
 	const int32 Code = Map ? Map->Get(X1, Y1) : 0;

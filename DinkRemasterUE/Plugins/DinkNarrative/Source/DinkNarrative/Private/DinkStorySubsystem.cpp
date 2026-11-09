@@ -1028,6 +1028,11 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
 	const int32 Previous = LastScreen;
 	LastScreen = Screen;
 	AddEvent(TEXT("screen"), FString::FromInt(Screen), FString::Printf(TEXT("from %d"), Previous));
+	// load_map builds the hardness anew (D:5966): what draw_hard_sprite / draw_hard_map changed on the last screen is gone.
+	if (Gameplay)
+	{
+		Gameplay->OnScreenLoaded();
+	}
 	// Respawn clock: leaving a screen stamps its time (update_screen_time, D:1602); entering one clears
 	// the timed overrides (editor_type 6/7/8) whose time is up (fix_dead_sprites, D:917).
 	if (UDinkWorldStateSubsystem* World = WorldState.Get())

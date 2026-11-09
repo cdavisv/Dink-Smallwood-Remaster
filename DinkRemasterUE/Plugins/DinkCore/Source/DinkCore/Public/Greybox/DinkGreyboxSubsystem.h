@@ -10,6 +10,8 @@ class UDinkWarpComponent;
 class APawn;
 class ACharacter;
 class UPrimitiveComponent;
+class UProceduralMeshComponent;
+class ADinkGreyboxScreen;
 DECLARE_MULTICAST_DELEGATE_OneParam(FDinkScreenChanged, ADinkScreenVolume*);
 
 /**
@@ -78,6 +80,21 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Dink|Greybox")
 	int32 GetLockedScreen() const { return LockedScreen; }
 
+	/**
+	 * A script redrew an original screen's hardness (draw_hard_sprite / draw_hard_map, run by DinkNarrative's UDinkGameplay): its solid
+	 * collision follows. Changes is 600 x 400 map pixels, row-major: 0 as baked, 1 now solid, 2 no longer solid. The screen's baked
+	 * CollisionSolid (one complex-as-simple trimesh: ground plus 3 m prisms) cannot lose a part, so it is switched off and a runtime mesh
+	 * built the same way (ground plus prisms of the baked solid pixels, the changes applied) takes over until RestoreScreenSolidCollision.
+	 * False, and nothing done, if the screen is not in this world or its baked collision is already off (a screen with authored collision).
+	 */
+	bool ApplyScreenSolidChanges(int32 ScreenNumber, const TArray<uint8>& Changes);
+	/** The baked solid collision back (a screen load rebuilds the hardness); 0 = every screen. */
+	void RestoreScreenSolidCollision(int32 ScreenNumber);
+	/** The runtime solid collision of a screen, if ApplyScreenSolidChanges made one (tests). */
+	UPrimitiveComponent* GetRuntimeSolidCollision(int32 ScreenNumber) const;
+	/** Height of the solid prisms (DinkImport's CollisionHeightM, 3 m), cm. */
+	static constexpr float SolidPrismHeightCm = 300.f;
+
 	bool CanWarp(const APawn* Pawn) const;
 	/** Blocks nested overlaps while TeleportTo synchronously updates the pawn's overlaps. */
 	bool BeginWarp(APawn* Pawn);
@@ -112,4 +129,15 @@ private:
 	TWeakObjectPtr<ADinkScreenVolume> CurrentScreen;
 	int32 LockedScreen = 0;
 	double NextScreenCheck = 0.0;
+
+	ADinkGreyboxScreen* FindGreyboxScreen(int32 ScreenNumber) const;
+	/** Which map pixels the baked CollisionSolid covers with a prism, by line traces at the pixel centres (computed once per screen). */
+	const TBitArray<>* BakedSolidMask(int32 ScreenNumber);
+	struct FRuntimeSolid
+	{
+		TWeakObjectPtr<UProceduralMeshComponent> Mesh;
+		TWeakObjectPtr<UPrimitiveComponent> Baked;
+	};
+	TMap<int32, FRuntimeSolid> RuntimeSolids;
+	TMap<int32, TBitArray<>> BakedSolidMasks;
 };

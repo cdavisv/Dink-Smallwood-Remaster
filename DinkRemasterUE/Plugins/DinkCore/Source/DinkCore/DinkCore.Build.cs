@@ -6,6 +6,7 @@ public class DinkCore : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "GameplayTags" });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore" });
+		// ProceduralMeshComponent: the runtime solid collision of a screen whose hardness a script redraws (Greybox/DinkGreyboxHardness.cpp).
+		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore", "ProceduralMeshComponent" });
 	}
 }

@@ -35,14 +35,20 @@ struct DINKNARRATIVE_API FDinkFrameInfo
  * One screen's hardness map as the engine builds it on load (g_hitmap: tile hardness, then the hardboxes of
  * placements with hard == 0 as 100 + placement index), from Content/Dink/Data/Gameplay/Hardness/SCR_nnn.txt.
  * Codes: 0 free, 1 solid, 2 low (missiles and flyers cross), 3 other, 100+n sprite hardbox of placement n.
+ * The file's last block ("tiles", Vision TileLayerVision) is the tile layer alone (fill_whole_hard, D:654).
  */
 struct DINKNARRATIVE_API FDinkHardnessMap
 {
 	static constexpr int32 Width = 600;
 	static constexpr int32 Height = 400;
+	/** Vision value of the "tiles" block: the tile layer without placements (fill_whole_hard, dink.cpp:654-681). */
+	static constexpr int32 TileLayerVision = -1;
 	int32 Screen = 0;
 	int32 Vision = 0;
 	TArray<uint8> Codes;
+
+	/** Blocks a walker in the screen's solid collision (codes 1, 3 and every hardbox); 2 (low) and 0 do not. */
+	static bool IsSolidCode(int32 Code) { return Code != 0 && Code != 2; }
 
 	/** get_hard (D:527): map pixel (engine x - 20, y); 0 outside the 600x400 map. */
 	int32 Get(int32 MapX, int32 MapY) const
@@ -122,8 +128,11 @@ struct DINKNARRATIVE_API FDinkPlacementInfo
 	int32 BaseAttack = -1;
 	int32 BaseHit = 0;
 	int32 BaseDie = -1;
+	/** map.dat's hard flag, inverted: 0 = the hardbox is stamped into the hardness (D:6136), 1 = none. */
 	int32 Hard = 0;
 	int32 Sound = 0;
+	/** Draw order (0 = by y); it also orders the hardbox stamps (place_sprites_game D:5966, fill_back_sprites D:6832). */
+	int32 Que = 0;
 };
 
 /** The original's per-frame and per-placement data (Scripts/sync_gameplay_data.py; never hand-edited). */
@@ -146,6 +155,8 @@ public:
 	const FDinkHardnessMap* GetHardness(int32 Screen, int32 Vision) const;
 	/** Tests: replace a screen's hardness (all visions). Null removes the override. */
 	void SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map);
+	/** The screen's tile layer (get_hard_map, D:582: what fill_hardxy and fill_whole_hard copy back); null without data or with a test override. */
+	const FDinkHardnessMap* GetTileHardness(int32 Screen) const;
 	/**
 	 * A sequence a script's init("load_sequence_now ...") defines that dink.ini does not (s7-mil.c:13: Seth's pose 580): its hardbox, for every
 	 * frame (figure_out, dink.cpp:2335-2344: a sequence not yet active is read from the line, ReadFromLoadSequenceString 2216-2226, and every
@@ -383,7 +394,10 @@ public:
 	 * drive one sprite; the brains are plain C++ on the director's sprite records.
 	 */
 	void ThinkSprite(int32 Handle, double TickMs);
-	/** get_hard on Screen for engine pixel X (with the 20 px bar), Y; removed placements' hardboxes read as 0. */
+	/**
+	 * get_hard on Screen for engine pixel X (with the 20 px bar), Y. The map a draw_hard_sprite / draw_hard_map of this screen visit
+	 * left (GetLiveHardness) if there is one; else the loaded map, where removed placements' hardboxes read as 0.
+	 */
 	int32 GetHard(int32 Screen, int32 X, int32 Y) const;
 	/** get_distance_and_dir (D:12405, smooth_follow off as in the base game): the larger axis distance; cardinal dir. */
 	int32 GetDistanceAndDir(int32 H, int32 H1, int32& OutDir) const;
@@ -395,6 +409,27 @@ public:
 	int32 CheckIfMoveIsLegal(FDinkSprite& S);
 	/** Sprites (other than Except) winding up or in an attack animation against Target. */
 	int32 CountAttackers(int32 Target, int32 Except) const;
+	// ---- Hardness the scripts change (sp_hard, draw_hard_sprite, draw_hard_map) ----
+
+	/**
+	 * sp_hard on a placement's sprite also sets the placement's flag in the loaded map (dink.cpp:9979-9998: g_smallMap.sprite[sp_index].hard
+	 * = the sprite's new value), which draw_hard_* read (fill_hard_sprites D:7016). It lasts until the screen loads again (load_map reads
+	 * map.dat). Hard is the inverted engine flag: 0 = hard.
+	 */
+	void SetPlacementHard(const FDinkOriginId& Origin, int32 Hard);
+	/**
+	 * draw_hard_sprite (dink.cpp:8089-8104): update_play_changes, then the tile hardness back under the sprite's hardbox (its picture's box at
+	 * its position, fill_hardxy D:597-614), then the hardboxes of the background placements (fill_back_sprites D:6832-6895) and of every active
+	 * sprite (fill_hard_sprites D:6972-7031) stamped again over the whole map. Also gives the greybox's solid collision the new hardness.
+	 */
+	void DrawHardSprite(int32 Handle);
+	/** draw_hard_map (dink.cpp:8224-8232): update_play_changes, the whole tile layer (fill_whole_hard D:654), fill_hard_sprites, fill_back_sprites. */
+	void DrawHardMap(int32 Screen);
+	/** The map a draw_hard_* left on Screen in this screen visit (what GetHard reads); null if no script redrew it since the screen loaded. */
+	const FDinkHardnessMap* GetLiveHardness(int32 Screen) const;
+	/** A screen load (load_map + place_sprites_game build g_hitmap anew, D:5966): drops the redrawn maps and the visit's sp_hard flags. */
+	void OnScreenLoaded();
+
 	/** screenlock(n) (D:10083): the flag, the greybox barriers of Dink's screen; a screen load clears it (D:1016). */
 	void SetScreenLock(bool bLocked);
 	bool IsScreenLocked() const;
@@ -458,6 +493,27 @@ private:
 	FDinkAuthoredInteractionSettings AuthoredInteraction;
 	int32 CapsuleMarginPixels(const FDinkSprite& Dink) const;
 	void Note(const FString& E);
+	// Hardness redrawing (DinkGameplay.cpp, "Hardness the scripts change")
+	struct FLiveHardness
+	{
+		/** g_hitmap of the screen after the draws so far. */
+		TSharedPtr<FDinkHardnessMap> Map;
+		/** The map before the first draw (the loaded map, removed placements' boxes as tile hardness): what the greybox's baked collision shows. */
+		TArray<uint8> Base;
+	};
+	FDinkHardnessMap& EnsureLiveHardness(int32 Screen);
+	/** The engine's map placement j after update_play_changes (D:5773-5832): active, type, hard flag, picture. False if it does not exist. */
+	bool MapPlacement(const FDinkPlacementInfo& P, bool& bActive, int32& Type, int32& Hard, int32& Seq, int32& Frame) const;
+	/** add_hardness (D:487-501): the absolute hardbox [L, R) x [T, B) (engine pixels: map x + 20) set to Code, clipped to the map. */
+	static void AddHardness(FDinkHardnessMap& Map, int32 L, int32 T, int32 R, int32 B, uint8 Code);
+	void FillBackSprites(FDinkHardnessMap& Map, int32 Screen) const;
+	void FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const;
+	/** The greybox's solid collision of Screen follows the live map (UDinkGreyboxSubsystem::ApplyScreenSolidChanges); no-op without a world. */
+	void SyncGreyboxHardness(int32 Screen);
+	void RestoreGreyboxHardness();
+	TMap<int32, FLiveHardness> LiveHardness;
+	/** sp_hard on placement sprites in this screen visit: g_smallMap.sprite[n].hard (D:9997). */
+	TMap<FDinkOriginId, int32> VisitPlacementHard;
 
 	void SetFact(const TCHAR* Name, int32 Value);
 	int32 GetFact(const TCHAR* Name) const;
