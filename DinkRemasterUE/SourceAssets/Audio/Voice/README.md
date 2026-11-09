@@ -45,15 +45,47 @@ for a voice file carries status `candidate` until then.
   `tools/build_cast.py` regenerates them from the Ink data.
 - `voice_designs.json` and `previews/`: every design round (description,
   verbatim preview text, the three preview ids and files, the owner's choice).
-  `voice_review.html` plays them all, plus the pilot lines.
+  `voice_review.html` plays them all, plus the pilot lines. 8 Nov 2026: eleven
+  more rounds (woman_old, guard, man_middle, man_old, woman_young, merchant,
+  monster, duck, traveller, zands, narrator) await the owner's picks; the `girl`
+  round was refused by the service (a child voice): proposal, cast the girls
+  with `woman_young`. Later on 8 Nov the owner picked those eleven (saved in the
+  library, `voices_saved.csv`) and eight more rounds were designed (christina,
+  nelson, villain, man_young, woman_middle, wizard_old, ghost, tree); `goblin`
+  was refused by the service (gibberish text), proposal: the Mog voice; `dragon`
+  has only 46 characters of lines, below the design minimum, proposal: the
+  monster voice.
 - `voices_saved.csv`: the saved library voices (voice -> ElevenLabs voice id).
 - Manifests per batch: `pilot_dink_manifest.json` (10 lines, 288 credits),
   `dink_batch_01_manifest.json` (60, 1,545), `dink_batch_02_manifest.json`
   (174, 5,336: with these Dink's Stonebrook dialogue is 244 of 245 lines),
   `cast_batch_01_manifest.json` (Martridge, Milder, Mother, King, Seth, Mog:
   115 lines, 4,193 credits; its rows were merged into the ledger from
-  `ledger_rows_cast_batch_01.merged.csv`). Ledger on 7 Nov 2026: 359 voice
-  lines, 11,362 credits, all `candidate`.
+  `ledger_rows_cast_batch_01.merged.csv`), `cast_batch_02_manifest.json`
+  (man_middle, merchant: 357 lines, 11,673 credits), `cast_batch_03_manifest.json`
+  (woman_old, guard, man_old, woman_young, monster, duck, traveller, zands,
+  narrator: 397 lines, 14,204 credits), `cast_batch_04_manifest.json`
+  (christina, nelson, villain, man_young, woman_middle, wizard_old, ghost, tree:
+  257 lines, 8,439 credits), `cast_batch_05_manifest.json` (stand-ins approved
+  by the owner: girl via the young-woman voice, goblin via Mog, dragon via
+  monster: 43 lines, 1,483 credits; 48 girl lines from `s1-lg.talk.028` on are
+  still to generate, the service's daily generation limit was reached on 8 Nov,
+  same flow `zWJTOGFXJNuoyOZVxqhB`). `dink_batch_03_manifest.json` (4 lines,
+  123 credits, flow `D7HsGNdqFFwIV56o2XwT`, plus 8 copies) and
+  `cast_batch_06_manifest.json` (no new generations, 48 copies of an identical
+  text in the same voice folder). Ledger on 8 Nov 2026 night: 1473 voice lines,
+  47,284 credits, all `candidate`; a copy is ledgered with credits 0 and notes
+  "copy of <source id>: identical text"; every speaking part has a voice.
+  The service's daily generation limit (HTTP 429 `daily_generation_limit_reached`)
+  came back after the fourth Dink line of batch 03, so the rest is listed under
+  `failed_generations` in both manifests. Still to generate (once the limit
+  resets): 531 Dink lines (16,363 characters; `dink_batch_03_manifest.json`),
+  the 48 girl lines from `s1-lg.talk.028` on (flow `zWJTOGFXJNuoyOZVxqhB`) and
+  10 Martridge letter lines `s1-mh-f.talk.003`-`.012` (`cast_batch_06_manifest.json`;
+  object lines that batch 01 never covered). 26 more duplicate lines (23 Dink,
+  3 girl) are listed under `pending_copies`: copy them from their source once
+  the source line exists. Four tag-only lines (`[chortles]`, `[sniffs]`, `[sobs]`,
+  `[groans]`) stay unvoiced.
 - A line that is only a stage direction (`<groan>` -> `[groans]`, s7-mil.talk.004;
   `<chortle>` -> `[chortles]`, s1-h2-o.talk.009)
   fails to generate: ElevenLabs needs words. Such lines stay unvoiced (the

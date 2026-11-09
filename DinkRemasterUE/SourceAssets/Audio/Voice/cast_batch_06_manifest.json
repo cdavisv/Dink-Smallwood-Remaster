@@ -1,0 +1,1039 @@
+{
+  "flow_ids": {},
+  "model": "eleven_v4",
+  "generated_on": "2026-11-08",
+  "takes_per_line": 1,
+  "voices": {
+    "woman_middle": {
+      "flow_id": null,
+      "voice_id": "arFS6jGhNZR1R9ZXy06f",
+      "voice_name": "Woman, middle-aged (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-auntp.talk.024",
+          "text": "You.. you did?",
+          "tts_text": "You.. you did?",
+          "copy_of": "s2-auntp.talk.017",
+          "credits": 0,
+          "file": "woman_middle/s2-auntp.talk.024.mp3",
+          "sha256": "67abc3e48c57d09dbc17d7e8857e6391e10521bd4402e3cf42e9b7a0ab482e5f",
+          "duration_s": "1.600000",
+          "bytes": 43918
+        }
+      ]
+    },
+    "duck": {
+      "flow_id": null,
+      "voice_id": "md49TqMoWQeeNkqOdzcy",
+      "voice_name": "Duck (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s8-da.main.006",
+          "text": "Hey, you don't have enough to play!",
+          "tts_text": "Hey, you don't have enough to play!",
+          "copy_of": "s8-da.main.004",
+          "credits": 0,
+          "file": "duck/s8-da.main.006.mp3",
+          "sha256": "10520632a2a54e414fc98ea0eb697a31fcde7222c36b24cf46188dc3cb817ba3",
+          "duration_s": "2.560000",
+          "bytes": 58964
+        },
+        {
+          "id": "s8-da.main.008",
+          "text": "Hey, you don't have enough to play!",
+          "tts_text": "Hey, you don't have enough to play!",
+          "copy_of": "s8-da.main.004",
+          "credits": 0,
+          "file": "duck/s8-da.main.008.mp3",
+          "sha256": "10520632a2a54e414fc98ea0eb697a31fcde7222c36b24cf46188dc3cb817ba3",
+          "duration_s": "2.560000",
+          "bytes": 58964
+        },
+        {
+          "id": "s8-da.main.009",
+          "text": "You can't bet that much.",
+          "tts_text": "You can't bet that much.",
+          "copy_of": "s8-da.main.007",
+          "credits": 0,
+          "file": "duck/s8-da.main.009.mp3",
+          "sha256": "bc053c2f6531da4b6ad79b0f98cf647714774902c5c8522a127f62e85927d61e",
+          "duration_s": "1.920000",
+          "bytes": 48933
+        },
+        {
+          "id": "s8-duck2.talk.009",
+          "text": "Hi there.",
+          "tts_text": "Hi there.",
+          "copy_of": "s8-duck2.talk.002",
+          "credits": 0,
+          "file": "duck/s8-duck2.talk.009.mp3",
+          "sha256": "9641c9dfea2fe871454e161b5e4879efd70645fe98fc4d9cb1dc2f0282831277",
+          "duration_s": "0.960000",
+          "bytes": 33469
+        },
+        {
+          "id": "s8-duck2.talk.010",
+          "text": "Welcome to our island.",
+          "tts_text": "Welcome to our island.",
+          "copy_of": "s8-duck2.talk.003",
+          "credits": 0,
+          "file": "duck/s8-duck2.talk.010.mp3",
+          "sha256": "c3540d77ba2737d7c18243ddc6b8b40c4f7b06ac841a6f1cdec22d496be6ec45",
+          "duration_s": "1.760000",
+          "bytes": 46426
+        },
+        {
+          "id": "s8-duck2.talk.012",
+          "text": "Would you like to play with me?",
+          "tts_text": "Would you like to play with me?",
+          "copy_of": "s8-duck2.talk.005",
+          "credits": 0,
+          "file": "duck/s8-duck2.talk.012.mp3",
+          "sha256": "7a1c90b333614d9ef4d81795f539b2b23584fa36e75ed6345c2291f15192e61e",
+          "duration_s": "1.760000",
+          "bytes": 46426
+        }
+      ]
+    },
+    "goblin": {
+      "flow_id": null,
+      "voice_id": "qpvaboJ8HxkAt3kkxRCj",
+      "voice_name": "Mog (remaster)",
+      "stand_in_for": "goblin",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "en-gs.talk.001",
+          "text": "Gro'k ki owab dakis gedi!",
+          "tts_text": "Gro'k ki owab dakis gedi!",
+          "copy_of": "en-gh.talk.001",
+          "credits": 0,
+          "file": "goblin/en-gs.talk.001.mp3",
+          "sha256": "76d5e3bd63f1459e7850b694351a96ad7582730993fd9dedeab3483d812773f3",
+          "duration_s": "3.040000",
+          "bytes": 66906
+        },
+        {
+          "id": "en-gs.talk.002",
+          "text": "Tig glock sigre!",
+          "tts_text": "Tig glock sigre!",
+          "copy_of": "en-gh.talk.002",
+          "credits": 0,
+          "file": "goblin/en-gs.talk.002.mp3",
+          "sha256": "3f29af3f943a5ceeae0f7312461ffa309f5c0f62366490f5b3c41ca66a35e6a1",
+          "duration_s": "2.480000",
+          "bytes": 57711
+        },
+        {
+          "id": "en-gs.talk.003",
+          "text": "Oston tewers inat'l meen o mistary!",
+          "tts_text": "Oston tewers inat'l meen o mistary!",
+          "copy_of": "en-gh.talk.003",
+          "credits": 0,
+          "file": "goblin/en-gs.talk.003.mp3",
+          "sha256": "9d8c09b1b79eb94cd5c27f4875f7e5025325c9559c7f430f4621a472d0f117bd",
+          "duration_s": "3.840000",
+          "bytes": 79444
+        },
+        {
+          "id": "en-gs.talk.004",
+          "text": "Hoglim dack byork!",
+          "tts_text": "Hoglim dack byork!",
+          "copy_of": "en-gh.talk.004",
+          "credits": 0,
+          "file": "goblin/en-gs.talk.004.mp3",
+          "sha256": "a9a37015acb0a97712dca88d4ef1dac6818975d9810f18a525f5afdd48672872",
+          "duration_s": "2.560000",
+          "bytes": 58964
+        },
+        {
+          "id": "s3-gh.talk.001",
+          "text": "Gro'k ki owab dakis gedi!",
+          "tts_text": "Gro'k ki owab dakis gedi!",
+          "copy_of": "en-gh.talk.001",
+          "credits": 0,
+          "file": "goblin/s3-gh.talk.001.mp3",
+          "sha256": "76d5e3bd63f1459e7850b694351a96ad7582730993fd9dedeab3483d812773f3",
+          "duration_s": "3.040000",
+          "bytes": 66906
+        },
+        {
+          "id": "s3-gh.talk.002",
+          "text": "Tig glock sigre!",
+          "tts_text": "Tig glock sigre!",
+          "copy_of": "en-gh.talk.002",
+          "credits": 0,
+          "file": "goblin/s3-gh.talk.002.mp3",
+          "sha256": "3f29af3f943a5ceeae0f7312461ffa309f5c0f62366490f5b3c41ca66a35e6a1",
+          "duration_s": "2.480000",
+          "bytes": 57711
+        },
+        {
+          "id": "s3-gh.talk.003",
+          "text": "Oston tewers inat'l meen o mistary!",
+          "tts_text": "Oston tewers inat'l meen o mistary!",
+          "copy_of": "en-gh.talk.003",
+          "credits": 0,
+          "file": "goblin/s3-gh.talk.003.mp3",
+          "sha256": "9d8c09b1b79eb94cd5c27f4875f7e5025325c9559c7f430f4621a472d0f117bd",
+          "duration_s": "3.840000",
+          "bytes": 79444
+        },
+        {
+          "id": "s3-gh.talk.004",
+          "text": "Hoglim dack byork!",
+          "tts_text": "Hoglim dack byork!",
+          "copy_of": "en-gh.talk.004",
+          "credits": 0,
+          "file": "goblin/s3-gh.talk.004.mp3",
+          "sha256": "a9a37015acb0a97712dca88d4ef1dac6818975d9810f18a525f5afdd48672872",
+          "duration_s": "2.560000",
+          "bytes": 58964
+        },
+        {
+          "id": "s3-gs.talk.001",
+          "text": "Gro'k ki owab dakis gedi!",
+          "tts_text": "Gro'k ki owab dakis gedi!",
+          "copy_of": "en-gh.talk.001",
+          "credits": 0,
+          "file": "goblin/s3-gs.talk.001.mp3",
+          "sha256": "76d5e3bd63f1459e7850b694351a96ad7582730993fd9dedeab3483d812773f3",
+          "duration_s": "3.040000",
+          "bytes": 66906
+        },
+        {
+          "id": "s3-gs.talk.002",
+          "text": "Tig glock sigre!",
+          "tts_text": "Tig glock sigre!",
+          "copy_of": "en-gh.talk.002",
+          "credits": 0,
+          "file": "goblin/s3-gs.talk.002.mp3",
+          "sha256": "3f29af3f943a5ceeae0f7312461ffa309f5c0f62366490f5b3c41ca66a35e6a1",
+          "duration_s": "2.480000",
+          "bytes": 57711
+        },
+        {
+          "id": "s3-gs.talk.003",
+          "text": "Oston tewers inat'l meen o mistary!",
+          "tts_text": "Oston tewers inat'l meen o mistary!",
+          "copy_of": "en-gh.talk.003",
+          "credits": 0,
+          "file": "goblin/s3-gs.talk.003.mp3",
+          "sha256": "9d8c09b1b79eb94cd5c27f4875f7e5025325c9559c7f430f4621a472d0f117bd",
+          "duration_s": "3.840000",
+          "bytes": 79444
+        },
+        {
+          "id": "s3-gs.talk.004",
+          "text": "Hoglim dack byork!",
+          "tts_text": "Hoglim dack byork!",
+          "copy_of": "en-gh.talk.004",
+          "credits": 0,
+          "file": "goblin/s3-gs.talk.004.mp3",
+          "sha256": "a9a37015acb0a97712dca88d4ef1dac6818975d9810f18a525f5afdd48672872",
+          "duration_s": "2.560000",
+          "bytes": 58964
+        }
+      ]
+    },
+    "guard": {
+      "flow_id": null,
+      "voice_id": "5jShMg4k5ZxBJvOhovGs",
+      "voice_name": "Guard (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s1-rob2.main.009",
+          "text": "Ha ha ha ha",
+          "tts_text": "Ha ha ha ha",
+          "copy_of": "s1-rob2.main.008",
+          "credits": 0,
+          "file": "guard/s1-rob2.main.009.mp3",
+          "sha256": "a01188fcdfbb82dc330fef88132b78c91b44353befb8bbe7b4b3e445d4c9fcf6",
+          "duration_s": "1.600000",
+          "bytes": 43918
+        },
+        {
+          "id": "s2-ca-g.talk.020",
+          "text": "Ah, the one that saved that little girl.  Nice work.",
+          "tts_text": "Ah, the one that saved that little girl. Nice work.",
+          "copy_of": "s2-ca-g.talk.017",
+          "credits": 0,
+          "file": "guard/s2-ca-g.talk.020.mp3",
+          "sha256": "d8e3b84b7fd165074c5a6e005e281980040da8aef150f11a2dbc6738dbf25fd7",
+          "duration_s": "3.760000",
+          "bytes": 78191
+        },
+        {
+          "id": "s2-ca-g.talk.022",
+          "text": "I'm sorry, the King is otherwise engaged today.",
+          "tts_text": "I'm sorry, the King is otherwise engaged today.",
+          "copy_of": "s2-ca-g.talk.019",
+          "credits": 0,
+          "file": "guard/s2-ca-g.talk.022.mp3",
+          "sha256": "27ede3c0ff597cfc565d521cfdfb9cc081a2b8437111b175d5e94c2f3e1e55e9",
+          "duration_s": "3.280000",
+          "bytes": 70667
+        }
+      ]
+    },
+    "man_middle": {
+      "flow_id": null,
+      "voice_id": "Jscju4X4Hz8yKibOC0jm",
+      "voice_name": "Man, middle-aged (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-jack.talk.010",
+          "text": "Yeah?",
+          "tts_text": "Yeah?",
+          "copy_of": "s2-jack.talk.006",
+          "credits": 0,
+          "file": "man_middle/s2-jack.talk.010.mp3",
+          "sha256": "a2f7db8ddcaf1f26d12f6add6bc8f7a95362eb16334ca231ad7a1e6e980dda1f",
+          "duration_s": "0.800000",
+          "bytes": 30961
+        },
+        {
+          "id": "s3-bh.main.009",
+          "text": "Can I HELP you?",
+          "tts_text": "Can I HELP you?",
+          "copy_of": "s3-bh.main.001",
+          "credits": 0,
+          "file": "man_middle/s3-bh.main.009.mp3",
+          "sha256": "6153b9b7ba1e7b8a859b3fb6ec79dd5800b41756b551a745ab289e3812b89e00",
+          "duration_s": "1.200000",
+          "bytes": 37231
+        },
+        {
+          "id": "s3-mayor.talk.021",
+          "text": "Thank you fair citizen.",
+          "tts_text": "Thank you fair citizen.",
+          "copy_of": "s3-mayor.talk.002",
+          "credits": 0,
+          "file": "man_middle/s3-mayor.talk.021.mp3",
+          "sha256": "cc514fa5d6ce669c9d2da3aca1d69a345ab818a4387acd2715df8117e7324bdf",
+          "duration_s": "1.840000",
+          "bytes": 47680
+        }
+      ]
+    },
+    "man_old": {
+      "flow_id": null,
+      "voice_id": "KRSr6TsIW9m1jyJzkbGH",
+      "voice_name": "Man, old (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-man2.talk.021",
+          "text": "Hahahah!",
+          "tts_text": "Hahahah!",
+          "copy_of": "s2-man2.talk.015",
+          "credits": 0,
+          "file": "man_old/s2-man2.talk.021.mp3",
+          "sha256": "0b7ecf7657afc733f05c92e01839dad43975ca4fd3e56592a29543dd80c512fa",
+          "duration_s": "1.440000",
+          "bytes": 41410
+        },
+        {
+          "id": "s2-man2.talk.026",
+          "text": "Hahahah!",
+          "tts_text": "Hahahah!",
+          "copy_of": "s2-man2.talk.015",
+          "credits": 0,
+          "file": "man_old/s2-man2.talk.026.mp3",
+          "sha256": "0b7ecf7657afc733f05c92e01839dad43975ca4fd3e56592a29543dd80c512fa",
+          "duration_s": "1.440000",
+          "bytes": 41410
+        },
+        {
+          "id": "s2-man2.talk.032",
+          "text": "Hahahah!",
+          "tts_text": "Hahahah!",
+          "copy_of": "s2-man2.talk.015",
+          "credits": 0,
+          "file": "man_old/s2-man2.talk.032.mp3",
+          "sha256": "0b7ecf7657afc733f05c92e01839dad43975ca4fd3e56592a29543dd80c512fa",
+          "duration_s": "1.440000",
+          "bytes": 41410
+        },
+        {
+          "id": "s2-man2.talk.033",
+          "text": "Hahahah!",
+          "tts_text": "Hahahah!",
+          "copy_of": "s2-man2.talk.015",
+          "credits": 0,
+          "file": "man_old/s2-man2.talk.033.mp3",
+          "sha256": "0b7ecf7657afc733f05c92e01839dad43975ca4fd3e56592a29543dd80c512fa",
+          "duration_s": "1.440000",
+          "bytes": 41410
+        },
+        {
+          "id": "s6-vend.talk.003",
+          "text": "Nope.",
+          "tts_text": "Nope.",
+          "copy_of": "s2-man2.main.007",
+          "credits": 0,
+          "file": "man_old/s6-vend.talk.003.mp3",
+          "sha256": "1a92628fed4ec7b6f78f42aaa8d4c956276a23f55b3200c5229f7044cc18de95",
+          "duration_s": "0.960000",
+          "bytes": 33469
+        }
+      ]
+    },
+    "merchant": {
+      "flow_id": null,
+      "voice_id": "8uJV8KIF7mHpQkN8biW7",
+      "voice_name": "Merchant (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-out.hit.001",
+          "text": "Please don't wreck the place, thanks.",
+          "tts_text": "Please don't wreck the place, thanks.",
+          "copy_of": "s2-healp.hit.001",
+          "credits": 0,
+          "file": "merchant/s2-out.hit.001.mp3",
+          "sha256": "586b6e119095d36c224b1fbe07b158975c04efa445aae5e21cb01f13808efa60",
+          "duration_s": "2.720000",
+          "bytes": 61890
+        },
+        {
+          "id": "s4-healp.hit.001",
+          "text": "Please don't wreck the place, thanks.",
+          "tts_text": "Please don't wreck the place, thanks.",
+          "copy_of": "s2-healp.hit.001",
+          "credits": 0,
+          "file": "merchant/s4-healp.hit.001.mp3",
+          "sha256": "586b6e119095d36c224b1fbe07b158975c04efa445aae5e21cb01f13808efa60",
+          "duration_s": "2.720000",
+          "bytes": 61890
+        },
+        {
+          "id": "s4-st2p.main.001",
+          "text": "Good day sir.",
+          "tts_text": "Good day sir.",
+          "copy_of": "s3-st2p.main.001",
+          "credits": 0,
+          "file": "merchant/s4-st2p.main.001.mp3",
+          "sha256": "ff55c8099824a84c5a166c904dd3fe04f95c62622dbf3f9f023f7d564bd8033d",
+          "duration_s": "1.280000",
+          "bytes": 38484
+        }
+      ]
+    },
+    "monster": {
+      "flow_id": null,
+      "voice_id": "k23dThXtPDcDOatu0rEY",
+      "voice_name": "Monster (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s1-fmons.hit.002",
+          "text": "You cannot win, Smallwood.",
+          "tts_text": "You cannot win, Smallwood.",
+          "copy_of": "s1-fmons.hit.001",
+          "credits": 0,
+          "file": "monster/s1-fmons.hit.002.mp3",
+          "sha256": "0bb88ea74f5566dabaeca7b9db2b922a0ba84a6d235343a0485967b83431b5c2",
+          "duration_s": "2.880000",
+          "bytes": 64398
+        }
+      ]
+    },
+    "narrator": {
+      "flow_id": null,
+      "voice_id": "tGrNbeX46CMRbp3kX3jK",
+      "voice_name": "Narrator (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "poster.talk.031",
+          "text": "The King's News, issue 48.",
+          "tts_text": "The King's News, issue 48.",
+          "copy_of": "poster.talk.027",
+          "credits": 0,
+          "file": "narrator/poster.talk.031.mp3",
+          "sha256": "03f4e9d6bdfe2fc34ecd75a9b57043519a5e380292c295b267d4b8432c358596",
+          "duration_s": "2.800000",
+          "bytes": 63144
+        },
+        {
+          "id": "poster.talk.032",
+          "text": "Sir Flatstomp is declared missing in the Darklands!",
+          "tts_text": "Sir Flatstomp is declared missing in the Darklands!",
+          "copy_of": "poster.talk.028",
+          "credits": 0,
+          "file": "narrator/poster.talk.032.mp3",
+          "sha256": "4e036bd14097a0853531c9f1acae03077345aae6ef8199c17f387b002588cc2d",
+          "duration_s": "3.440000",
+          "bytes": 73175
+        },
+        {
+          "id": "poster.talk.033",
+          "text": "'Tis a sad day for our country' - King Daniel",
+          "tts_text": "'Tis a sad day for our country' - King Daniel",
+          "copy_of": "poster.talk.029",
+          "credits": 0,
+          "file": "narrator/poster.talk.033.mp3",
+          "sha256": "6058e01eb3d60fe989f1f01d2d89a2755e9a102a0a8774837034559d55461c77",
+          "duration_s": "4.000000",
+          "bytes": 82370
+        },
+        {
+          "id": "s4-sign2.talk.001",
+          "text": "To Windemere Village",
+          "tts_text": "To Windemere Village",
+          "copy_of": "s4-sign1.talk.002",
+          "credits": 0,
+          "file": "narrator/s4-sign2.talk.001.mp3",
+          "sha256": "e7a224a3acaad0f3e3eefbe106c4586518e00596c60373da4dc54baf55326461",
+          "duration_s": "1.520000",
+          "bytes": 42664
+        }
+      ]
+    },
+    "traveller": {
+      "flow_id": null,
+      "voice_id": "9eT0xjfYAxpARksu77cY",
+      "voice_name": "Traveller (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s1-wand.makefun.008",
+          "text": "In the small village nearby, I've heard there's",
+          "tts_text": "In the small village nearby, I've heard there's",
+          "copy_of": "s1-wand.makefun.004",
+          "credits": 0,
+          "file": "traveller/s1-wand.makefun.008.mp3",
+          "sha256": "2a66d5e8229dea8296587fc3b6c82502420f6c5c1ebd43e0be4cffb60cf6e606",
+          "duration_s": "3.440000",
+          "bytes": 73175
+        },
+        {
+          "id": "s1-wand.makefun.009",
+          "text": "a madman.  A murderer who stalks and kills the pets of the people!",
+          "tts_text": "a madman. A murderer who stalks and kills the pets of the people!",
+          "copy_of": "s1-wand.makefun.005",
+          "credits": 0,
+          "file": "traveller/s1-wand.makefun.009.mp3",
+          "sha256": "3a40cd6f3ac5a3be24f1a8e9aea127f80848f19043575b22290b45ed8133f02b",
+          "duration_s": "5.280000",
+          "bytes": 102850
+        },
+        {
+          "id": "s1-wand.makefun.010",
+          "text": "Horrible isn't it?",
+          "tts_text": "Horrible isn't it?",
+          "copy_of": "s1-wand.makefun.006",
+          "credits": 0,
+          "file": "traveller/s1-wand.makefun.010.mp3",
+          "sha256": "0c615a1e6cc8d371f2df9eeac4826218d440822f36b454ff20cd94f40ebb62a3",
+          "duration_s": "1.920000",
+          "bytes": 48933
+        }
+      ]
+    },
+    "villain": {
+      "flow_id": null,
+      "voice_id": "VRG9wzaUZgPYdGETquvY",
+      "voice_name": "Cast villain (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-cave2.main.011",
+          "text": "Haha ha ha",
+          "tts_text": "Haha ha ha",
+          "copy_of": "s2-cave2.main.006",
+          "credits": 0,
+          "file": "villain/s2-cave2.main.011.mp3",
+          "sha256": "0ee0026c7e1f5876cf28a13c9171aaa3a7b92308025cd49c048e77f7a6dbb745",
+          "duration_s": "1.600000",
+          "bytes": 43918
+        },
+        {
+          "id": "s2-cave2.main.012",
+          "text": "Ha ha haaa",
+          "tts_text": "Ha ha haaa",
+          "copy_of": "s2-cave2.main.007",
+          "credits": 0,
+          "file": "villain/s2-cave2.main.012.mp3",
+          "sha256": "d774046e77d68b502ad8179d0c70655d9a29471b31560513b26bb6a263efa0a2",
+          "duration_s": "1.920000",
+          "bytes": 48933
+        },
+        {
+          "id": "s2-cave2.main.016",
+          "text": "Haha ha ha",
+          "tts_text": "Haha ha ha",
+          "copy_of": "s2-cave2.main.006",
+          "credits": 0,
+          "file": "villain/s2-cave2.main.016.mp3",
+          "sha256": "0ee0026c7e1f5876cf28a13c9171aaa3a7b92308025cd49c048e77f7a6dbb745",
+          "duration_s": "1.600000",
+          "bytes": 43918
+        },
+        {
+          "id": "s2-cave2.main.017",
+          "text": "Ha ha haaa",
+          "tts_text": "Ha ha haaa",
+          "copy_of": "s2-cave2.main.007",
+          "credits": 0,
+          "file": "villain/s2-cave2.main.017.mp3",
+          "sha256": "d774046e77d68b502ad8179d0c70655d9a29471b31560513b26bb6a263efa0a2",
+          "duration_s": "1.920000",
+          "bytes": 48933
+        }
+      ]
+    },
+    "wizard_old": {
+      "flow_id": null,
+      "voice_id": "T18BLJvQNV6V7yNbHeAd",
+      "voice_name": "Wizard, old (remaster)",
+      "credits": 0,
+      "lines": [],
+      "copies": [
+        {
+          "id": "s2-mh-m.talk.010",
+          "text": "I sense you are powerful enough now Tallwood.",
+          "tts_text": "I sense you are powerful enough now Tallwood.",
+          "copy_of": "s2-mh-m.talk.003",
+          "credits": 0,
+          "file": "wizard_old/s2-mh-m.talk.010.mp3",
+          "sha256": "32d79a865975f537fbd732bd9d36f2a90c4fa91eda1dd64486b3da80ff4e99be",
+          "duration_s": "3.760000",
+          "bytes": 78191
+        },
+        {
+          "id": "s2-mh-m.talk.011",
+          "text": "You will now understand the Acid Rain magic.",
+          "tts_text": "You will now understand the Acid Rain magic.",
+          "copy_of": "s2-mh-m.talk.004",
+          "credits": 0,
+          "file": "wizard_old/s2-mh-m.talk.011.mp3",
+          "sha256": "d1885881a2b1be83eb43f17a2ce8d5c54ad333c87c02c27a7cbbe1540af9c190",
+          "duration_s": "4.000000",
+          "bytes": 82370
+        },
+        {
+          "id": "s2-mh-m.talk.013",
+          "text": "Scoff not child or you shall burn and kill yourself with it!",
+          "tts_text": "Scoff not child or you shall burn and kill yourself with it!",
+          "copy_of": "s2-mh-m.talk.006",
+          "credits": 0,
+          "file": "wizard_old/s2-mh-m.talk.013.mp3",
+          "sha256": "d98f0a051f0093a964c02d2eaebfc73249b3d6b83461cbc623dcd52e534238ab",
+          "duration_s": "4.800000",
+          "bytes": 94909
+        }
+      ]
+    }
+  },
+  "credits_total": 0,
+  "failed_generations": [
+    {
+      "id": "s1-lg.talk.028",
+      "voice": "girl",
+      "tts_text": "Well when I went to the coast the other day I heard the Pirates",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.talk.029",
+      "voice": "girl",
+      "tts_text": "in PortTown are looking for some more help and that they may be",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.talk.030",
+      "voice": "girl",
+      "tts_text": "waging a war with the Northern Trading Company!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.talk.033",
+      "voice": "girl",
+      "tts_text": "Ok ok, my big sister Aby who lives in PortTown told me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.talk.008",
+      "voice": "girl",
+      "tts_text": "Well I hear there's been a horrible murder of Ethel's duck!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.talk.009",
+      "voice": "girl",
+      "tts_text": "I don't know much now, but I'll tell you when I do.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-lg.hit.001",
+      "voice": "girl",
+      "tts_text": "Hey, watch it pig farmer!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cslay.main.007",
+      "voice": "girl",
+      "tts_text": "He's a slayer shapeshifter! No!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.002",
+      "voice": "girl",
+      "tts_text": "Thanks to you. Who are you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.003",
+      "voice": "girl",
+      "tts_text": "I see. You will always be a hero to me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.007",
+      "voice": "girl",
+      "tts_text": "Mother!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.009",
+      "voice": "girl",
+      "tts_text": "This man saved me from some naughty people!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.012",
+      "voice": "girl",
+      "tts_text": "Help me!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.013",
+      "voice": "girl",
+      "tts_text": "Save me!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.014",
+      "voice": "girl",
+      "tts_text": "I wanna go home!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.003",
+      "voice": "girl",
+      "tts_text": "I love you, Dead Dragon Carcass.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.004",
+      "voice": "girl",
+      "tts_text": "I worship you, Dead Dragon Carcass.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.005",
+      "voice": "girl",
+      "tts_text": "I would kill for you, Dead Dragon Carcass",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.006",
+      "voice": "girl",
+      "tts_text": "I would do anything for you, DDC.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.007",
+      "voice": "girl",
+      "tts_text": "Please Cindy, say the whole name each time.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.008",
+      "voice": "girl",
+      "tts_text": "Fine.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.009",
+      "voice": "girl",
+      "tts_text": "I would do anything for you, DEAD DRAGON CARCASS.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.012",
+      "voice": "girl",
+      "tts_text": "Wonderful - thank you for showing us the light, Bishop Nelson!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.014",
+      "voice": "girl",
+      "tts_text": "More goat blood?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.017",
+      "voice": "girl",
+      "tts_text": "Please! I don't want to join your cult!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.019",
+      "voice": "girl",
+      "tts_text": "How can you worship a rotting corpse?!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.020",
+      "voice": "girl",
+      "tts_text": "I think the Carcass would appreciate another sacrifice, Bishop Nelson.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.024",
+      "voice": "girl",
+      "tts_text": "There is a man hiding in the bushes!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.035",
+      "voice": "girl",
+      "tts_text": "Girls, TRANSFORM!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-qgirl.talk.001",
+      "voice": "girl",
+      "tts_text": "Hi, Dink.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.009",
+      "voice": "girl",
+      "tts_text": "DADDY!!!!!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.020",
+      "voice": "girl",
+      "tts_text": "I need a new dress.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.022",
+      "voice": "girl",
+      "tts_text": "Well THAT one doesn't look as good in the sunlight,",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.023",
+      "voice": "girl",
+      "tts_text": "let's just return it and get a new one.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.025",
+      "voice": "girl",
+      "tts_text": "I SAID NOW!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.006",
+      "voice": "girl",
+      "tts_text": "Daddy, what happened?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.012",
+      "voice": "girl",
+      "tts_text": "I'm eating.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.015",
+      "voice": "girl",
+      "tts_text": "This meat.. tastes good!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.024",
+      "voice": "girl",
+      "tts_text": "Bye, Dink.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.002",
+      "voice": "girl",
+      "tts_text": "Hi mister, thanks for letting us all eat.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.005",
+      "voice": "girl",
+      "tts_text": "Hi mister.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.007",
+      "voice": "girl",
+      "tts_text": "Not much lately, mommy says we can't eat that much,",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.008",
+      "voice": "girl",
+      "tts_text": "because of the ducks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.009",
+      "voice": "girl",
+      "tts_text": "I don't like the ducks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.hit.001",
+      "voice": "girl",
+      "tts_text": "No mister!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-end.main.002",
+      "voice": "girl",
+      "tts_text": "Dink, you saved me! You are a hero!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-fd.talk.001",
+      "voice": "girl",
+      "tts_text": "Where did you learn to fight like that?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-fguy.main.002",
+      "voice": "girl",
+      "tts_text": "Oh mother! I've been so afraid!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.003",
+      "voice": "martridge",
+      "tts_text": "Dear Dink,",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.004",
+      "voice": "martridge",
+      "tts_text": "If you're able to see this then it means you",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.005",
+      "voice": "martridge",
+      "tts_text": "truly do possess the ability for magic.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.006",
+      "voice": "martridge",
+      "tts_text": "I unfortunately have been called away and cannot",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.007",
+      "voice": "martridge",
+      "tts_text": "instruct you any further. But there are many",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.008",
+      "voice": "martridge",
+      "tts_text": "teachers out there, you will find one and further",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.009",
+      "voice": "martridge",
+      "tts_text": "your training.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.010",
+      "voice": "martridge",
+      "tts_text": "There are 200 gold pieces enclosed, spend them wisely.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.011",
+      "voice": "martridge",
+      "tts_text": "For now I leave you with this, your first spell.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s1-mh-f.talk.012",
+      "voice": "martridge",
+      "tts_text": "Enjoy it Dink, you've earned it.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    }
+  ],
+  "pending_copies": [
+    {
+      "id": "s2-cult.main.029",
+      "voice": "girl",
+      "copy_of": "s2-cult.main.024",
+      "tts_text": "There is a man hiding in the bushes!",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-larry.talk.016",
+      "voice": "girl",
+      "copy_of": "s3-larry.talk.009",
+      "tts_text": "DADDY!!!!!!!!!",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-larry.talk.018",
+      "voice": "girl",
+      "copy_of": "s3-larry.talk.009",
+      "tts_text": "DADDY!!!!!!!!!",
+      "reason": "source line not generated yet"
+    }
+  ],
+  "skipped": [
+    {
+      "id": "s1-h3-l.talk.011",
+      "voice": "woman_young",
+      "tts_text": "[sniffs]",
+      "reason": "tag-only line; ElevenLabs needs words"
+    },
+    {
+      "id": "s2-auntp.main.008",
+      "voice": "woman_middle",
+      "tts_text": "[sobs]",
+      "reason": "tag-only line; ElevenLabs needs words"
+    },
+    {
+      "id": "s7-mil.talk.004",
+      "voice": "milder",
+      "tts_text": "[groans]",
+      "reason": "tag-only line; ElevenLabs needs words"
+    }
+  ]
+}

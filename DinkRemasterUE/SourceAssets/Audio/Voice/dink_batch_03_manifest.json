@@ -1,0 +1,3508 @@
+{
+  "flow_id": "D7HsGNdqFFwIV56o2XwT",
+  "voice_id": "TU37Ff3IUgsCPWFKXNG7",
+  "voice": "dink",
+  "model": "eleven_v4",
+  "generated_on": "2026-11-08",
+  "takes_per_line": 1,
+  "lines": [
+    {
+      "id": "button6.main.001",
+      "text": "I don't own a map yet.",
+      "tts_text": "I don't own a map yet.",
+      "generation_id": "IxSPK8ODWMBlzSgZKpMS",
+      "node_id": "U5mhRyAMZP1sQQ5nwoVw",
+      "credits": 22,
+      "file": "dink/button6.main.001.mp3",
+      "sha256": "1bfb5d1e576c12329c9910ae750ec9a4064613ef69d73c6f469c91cc615cc122",
+      "duration_s": "1.760000",
+      "bytes": 46426
+    },
+    {
+      "id": "dam-icee.main.004",
+      "text": "Mission? To what, destroy the Cast?",
+      "tts_text": "Mission? To what, destroy the Cast?",
+      "generation_id": "2sPj8oQPW44dAMCZt7pZ",
+      "node_id": "KvbdEzlgIhSthM0JpNRV",
+      "credits": 35,
+      "file": "dink/dam-icee.main.004.mp3",
+      "sha256": "7c747f8c98fe8445d3d0c45aeb976a957931ea22ead8bdd067d04f675b66d0e8",
+      "duration_s": "3.040000",
+      "bytes": 66906
+    },
+    {
+      "id": "dam-icee.main.006",
+      "text": "Wait..  I don't understand!",
+      "tts_text": "Wait.. I don't understand!",
+      "generation_id": "0X5LFpPXf246cf2HQIuy",
+      "node_id": "mHQG1BXt7jJpO7n9Mt05",
+      "credits": 26,
+      "file": "dink/dam-icee.main.006.mp3",
+      "sha256": "501f4cc3da8e0bfcb0c3312b1078e4cd385b927937c9f866fe9acaecf2c435c9",
+      "duration_s": "2.240000",
+      "bytes": 53949
+    },
+    {
+      "id": "escape.main.001",
+      "text": "Wow, this loaded game looks so familiar.",
+      "tts_text": "Wow, this loaded game looks so familiar.",
+      "generation_id": "hWkWksDepm0tSfNPAjWM",
+      "node_id": "8NzM71fo1w5dSh0D3oJB",
+      "credits": 40,
+      "file": "dink/escape.main.001.mp3",
+      "sha256": "26d1d776fd52933725e43da90cc5fa10c62372cb2f8d0d8899045acb771ef05d",
+      "duration_s": "3.280000",
+      "bytes": 70667
+    }
+  ],
+  "copies": [
+    {
+      "id": "s2-ca-g.talk.006",
+      "text": "Ah.",
+      "tts_text": "Ah.",
+      "copy_of": "s1-h3-of.talk.003",
+      "credits": 0,
+      "file": "dink/s2-ca-g.talk.006.mp3",
+      "sha256": "fe6280f649df6916a43a877d3458e6ae2e402241c02f0495c9ed2afdb89f7274",
+      "duration_s": "0.960000",
+      "bytes": 33469
+    },
+    {
+      "id": "s2-ca-g.talk.015",
+      "text": "Dink Smallwood.",
+      "tts_text": "Dink Smallwood.",
+      "copy_of": "s1-wand2.makefun.007",
+      "credits": 0,
+      "file": "dink/s2-ca-g.talk.015.mp3",
+      "sha256": "c9291833ae509ca76806e434c9b13fa19f8578249daa1ff5d862bd658b5f0d51",
+      "duration_s": "1.440000",
+      "bytes": 41410
+    },
+    {
+      "id": "s2-wench.talk.006",
+      "text": "Ah.",
+      "tts_text": "Ah.",
+      "copy_of": "s1-h3-of.talk.003",
+      "credits": 0,
+      "file": "dink/s2-wench.talk.006.mp3",
+      "sha256": "fe6280f649df6916a43a877d3458e6ae2e402241c02f0495c9ed2afdb89f7274",
+      "duration_s": "0.960000",
+      "bytes": 33469
+    },
+    {
+      "id": "s3-bowl.talk.001",
+      "text": "I don't have enough money!",
+      "tts_text": "I don't have enough money!",
+      "copy_of": "s1-boot.talk.013",
+      "credits": 0,
+      "file": "dink/s3-bowl.talk.001.mp3",
+      "sha256": "eac396a9a67ba57bcffd3b21e8a6b6ed09a2277d9f2ae934681a293a3639b522",
+      "duration_s": "1.760000",
+      "bytes": 46426
+    },
+    {
+      "id": "s6-vend.talk.015",
+      "text": "I don't have enough money!",
+      "tts_text": "I don't have enough money!",
+      "copy_of": "s1-boot.talk.013",
+      "credits": 0,
+      "file": "dink/s6-vend.talk.015.mp3",
+      "sha256": "eac396a9a67ba57bcffd3b21e8a6b6ed09a2277d9f2ae934681a293a3639b522",
+      "duration_s": "1.760000",
+      "bytes": 46426
+    },
+    {
+      "id": "s8-duck2.talk.004",
+      "text": "Thanks.",
+      "tts_text": "Thanks.",
+      "copy_of": "s1-gg.talk.005",
+      "credits": 0,
+      "file": "dink/s8-duck2.talk.004.mp3",
+      "sha256": "008de68d71500cc14a9b4d07380a0b73e23b1b85d884ec68d87c2a5a8ecfa10e",
+      "duration_s": "0.800000",
+      "bytes": 30961
+    },
+    {
+      "id": "s8-duck2.talk.011",
+      "text": "Thanks.",
+      "tts_text": "Thanks.",
+      "copy_of": "s1-gg.talk.005",
+      "credits": 0,
+      "file": "dink/s8-duck2.talk.011.mp3",
+      "sha256": "008de68d71500cc14a9b4d07380a0b73e23b1b85d884ec68d87c2a5a8ecfa10e",
+      "duration_s": "0.800000",
+      "bytes": 30961
+    },
+    {
+      "id": "s8-guy.talk.004",
+      "text": "I don't have enough money!",
+      "tts_text": "I don't have enough money!",
+      "copy_of": "s1-boot.talk.013",
+      "credits": 0,
+      "file": "dink/s8-guy.talk.004.mp3",
+      "sha256": "eac396a9a67ba57bcffd3b21e8a6b6ed09a2277d9f2ae934681a293a3639b522",
+      "duration_s": "1.760000",
+      "bytes": 46426
+    }
+  ],
+  "credits_total": 123,
+  "failed_generations": [
+    {
+      "id": "escape.main.002",
+      "voice": "dink",
+      "tts_text": "Phew, that was a close one!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "findduck.main.001",
+      "voice": "dink",
+      "tts_text": "There's that duck!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "findduck.main.002",
+      "voice": "dink",
+      "tts_text": "Where could Ethel's duck be?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "get-fb.hit.001",
+      "voice": "dink",
+      "tts_text": "I hate you, scroll of fire!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "get-fb.talk.001",
+      "voice": "dink",
+      "tts_text": "A lovely scroll.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "get-fb.touch.001",
+      "voice": "dink",
+      "tts_text": "I now have the hellfire magic!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "item-nut.use.001",
+      "voice": "dink",
+      "tts_text": "Yum, tasted good.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "item-p1.use.001",
+      "voice": "dink",
+      "tts_text": "Vas Neeko Matrid Osana",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "item-pig.use.001",
+      "voice": "dink",
+      "tts_text": "Come on pigs, eat!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.002",
+      "voice": "dink",
+      "tts_text": "I have sad news, my King.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.003",
+      "voice": "dink",
+      "tts_text": "Sir Flatstomp is dead. He died in my arms, bravely.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.005",
+      "voice": "dink",
+      "tts_text": "Also - the evil ancient Seth has been vanquished.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.026",
+      "voice": "dink",
+      "tts_text": "Greetings, M'lord.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.028",
+      "voice": "dink",
+      "tts_text": "Well... I think you should lower the pig tax, sir.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.030",
+      "voice": "dink",
+      "tts_text": "Yes - my family got royally screwed by the crown each year.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.032",
+      "voice": "dink",
+      "tts_text": "I heard about Milder.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.035",
+      "voice": "dink",
+      "tts_text": "I would like permission to go after him, my King.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.037",
+      "voice": "dink",
+      "tts_text": "He grew up in my village - I cannot turn my back on him.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.040",
+      "voice": "dink",
+      "tts_text": "Please - just tell me the way.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "king.talk.046",
+      "voice": "dink",
+      "tts_text": "Thank you. I'll be back, and I won't be alone.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "lraise.raise.001",
+      "voice": "dink",
+      "tts_text": "What a gyp!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "pdie.die.001",
+      "voice": "dink",
+      "tts_text": "Wow, that was quite a pig!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.004",
+      "voice": "dink",
+      "tts_text": "What?! Whatever!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.009",
+      "voice": "dink",
+      "tts_text": "Pig farmer!? What a crock. At least I'm on there though.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.013",
+      "voice": "dink",
+      "tts_text": "Flatstomp got married? Wow, small world.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.015",
+      "voice": "dink",
+      "tts_text": "LYNA? NOOO!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.019",
+      "voice": "dink",
+      "tts_text": "Yeah!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.023",
+      "voice": "dink",
+      "tts_text": "Big freakin' deal.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.026",
+      "voice": "dink",
+      "tts_text": "Arg! Oh well, close enough.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "poster.talk.030",
+      "voice": "dink",
+      "tts_text": "Wow.. Poor Milder...he really wasn't such a bad guy.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.main.009",
+      "voice": "dink",
+      "tts_text": "Hello.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.main.011",
+      "voice": "dink",
+      "tts_text": "I'm.. I'm Dink Smallwood. I got a letter and...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.main.013",
+      "voice": "dink",
+      "tts_text": "But I...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.main.016",
+      "voice": "dink",
+      "tts_text": "Auntie Maria!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.main.022",
+      "voice": "dink",
+      "tts_text": "Thanks, I'm sure it will be fine.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.001",
+      "voice": "dink",
+      "tts_text": "I just wanted to say, thanks for letting me stay with you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.003",
+      "voice": "dink",
+      "tts_text": "Whups, gotta get going! See ya!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.004",
+      "voice": "dink",
+      "tts_text": "Guess what I did today!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.006",
+      "voice": "dink",
+      "tts_text": "Uh, yeah. How did you know?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.008",
+      "voice": "dink",
+      "tts_text": "Ah. Ok.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.009",
+      "voice": "dink",
+      "tts_text": "So how do you know my mom?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.011",
+      "voice": "dink",
+      "tts_text": "Ah, that explains a few things.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.012",
+      "voice": "dink",
+      "tts_text": "So tell me about Terris.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.014",
+      "voice": "dink",
+      "tts_text": "You don't sound so enthusiastic.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.016",
+      "voice": "dink",
+      "tts_text": "I saw Jack hit you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.018",
+      "voice": "dink",
+      "tts_text": "Why don't you leave him? Now? Tonight?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.020",
+      "voice": "dink",
+      "tts_text": "Well maybe I'll just have to do something about it myself.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.022",
+      "voice": "dink",
+      "tts_text": "He ain't nothing, just you watch.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.025",
+      "voice": "dink",
+      "tts_text": "Yes, he's good at it. I hope to learn much from him.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.027",
+      "voice": "dink",
+      "tts_text": "I just admire his stroke - takes practice you know.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.028",
+      "voice": "dink",
+      "tts_text": "How are you holding up?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.030",
+      "voice": "dink",
+      "tts_text": "I like it. I think the locals like me too.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.032",
+      "voice": "dink",
+      "tts_text": "Me too.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.033",
+      "voice": "dink",
+      "tts_text": "Say.. I like the room and all, but my bed is a little small.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.035",
+      "voice": "dink",
+      "tts_text": "What if you traded them in for one big one we could share?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.037",
+      "voice": "dink",
+      "tts_text": "And?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.039",
+      "voice": "dink",
+      "tts_text": "Hey guess what, I just got back from a huge adventure.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.041",
+      "voice": "dink",
+      "tts_text": "I pretty much saved the universe.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.043",
+      "voice": "dink",
+      "tts_text": "You don't believe any of this.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.045",
+      "voice": "dink",
+      "tts_text": "Heh - that's what I like about you auntie!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.046",
+      "voice": "dink",
+      "tts_text": "You stupid whore.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.048",
+      "voice": "dink",
+      "tts_text": "I see now I shouldn't have killed Jack.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.talk.049",
+      "voice": "dink",
+      "tts_text": "I should have joined forces with him.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.hit.001",
+      "voice": "dink",
+      "tts_text": "Take your beatin' like a man, woman!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.hit.003",
+      "voice": "dink",
+      "tts_text": "I hope you like it rough!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-auntp.hit.004",
+      "voice": "dink",
+      "tts_text": "I hate relatives!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.001",
+      "voice": "dink",
+      "tts_text": "Hey everybody!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.002",
+      "voice": "dink",
+      "tts_text": "There's some guy trapped in a dungeon nearby.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.003",
+      "voice": "dink",
+      "tts_text": "I gotta help him!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.004",
+      "voice": "dink",
+      "tts_text": "He's trapped with some sort of magic.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.005",
+      "voice": "dink",
+      "tts_text": "Can anyone help?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.main.009",
+      "voice": "dink",
+      "tts_text": "Ok, thanks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.talk.001",
+      "voice": "dink",
+      "tts_text": "I don't much like you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.talk.003",
+      "voice": "dink",
+      "tts_text": "I might kill you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.talk.006",
+      "voice": "dink",
+      "tts_text": "Let's play.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.talk.008",
+      "voice": "dink",
+      "tts_text": "Any news, Barkeep?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-bar.talk.010",
+      "voice": "dink",
+      "tts_text": "Really?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.001",
+      "voice": "dink",
+      "tts_text": "Tell me about this grand castle, friendly Knight.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.004",
+      "voice": "dink",
+      "tts_text": "That castle actually doesn't look that big.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.007",
+      "voice": "dink",
+      "tts_text": "Tell me about our good King.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.010",
+      "voice": "dink",
+      "tts_text": "Did he kill them all?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.012",
+      "voice": "dink",
+      "tts_text": "Wow, quite a guy.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.013",
+      "voice": "dink",
+      "tts_text": "I must see the King at once.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.018",
+      "voice": "dink",
+      "tts_text": "So you will grant me access?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.021",
+      "voice": "dink",
+      "tts_text": "I have news about a Cast plot!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.024",
+      "voice": "dink",
+      "tts_text": "It was no more than any other man would have done.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.026",
+      "voice": "dink",
+      "tts_text": "Damn.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.028",
+      "voice": "dink",
+      "tts_text": "So is the King home?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.030",
+      "voice": "dink",
+      "tts_text": "Milder?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.talk.032",
+      "voice": "dink",
+      "tts_text": "Grrrrrrr.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-g.die.001",
+      "voice": "dink",
+      "tts_text": "Killing guards is fun!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ca-o.main.001",
+      "voice": "dink",
+      "tts_text": "Hey, that's GoodHeart castle.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.002",
+      "voice": "dink",
+      "tts_text": "The hell!?!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.003",
+      "voice": "dink",
+      "tts_text": "What's your problem?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.005",
+      "voice": "dink",
+      "tts_text": "Huh?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.006",
+      "voice": "dink",
+      "tts_text": "Who threw you in here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.008",
+      "voice": "dink",
+      "tts_text": "Is he telling the truth?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.009",
+      "voice": "dink",
+      "tts_text": "You probably deserved it...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.011",
+      "voice": "dink",
+      "tts_text": "Oh.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.014",
+      "voice": "dink",
+      "tts_text": "Ok ok, how do I get you out?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.018",
+      "voice": "dink",
+      "tts_text": "Hmm, just my fireball spell.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.021",
+      "voice": "dink",
+      "tts_text": "Ok... by the way, my name is Dink. Goodbye for now.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.023",
+      "voice": "dink",
+      "tts_text": "Uh, working on that.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.025",
+      "voice": "dink",
+      "tts_text": "Noted.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.027",
+      "voice": "dink",
+      "tts_text": "There's some old man in town who knows some magic.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.028",
+      "voice": "dink",
+      "tts_text": "He might have a spell that could help us.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.030",
+      "voice": "dink",
+      "tts_text": "Oh yeah, sorry.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.032",
+      "voice": "dink",
+      "tts_text": "The damn old man says I'm not powerful enough yet",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.033",
+      "voice": "dink",
+      "tts_text": "so I'm trying to raise my skills now.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.036",
+      "voice": "dink",
+      "tts_text": "Ok, ok I'm on it..",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.039",
+      "voice": "dink",
+      "tts_text": "I got the spell, so let's see if it works.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave.main.042",
+      "voice": "dink",
+      "tts_text": "Ok.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.015",
+      "voice": "dink",
+      "tts_text": "Noooo!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.020",
+      "voice": "dink",
+      "tts_text": "Forget ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.021",
+      "voice": "dink",
+      "tts_text": "I'll forget allright.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.022",
+      "voice": "dink",
+      "tts_text": "Forget to remove my foot from your ASS!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.023",
+      "voice": "dink",
+      "tts_text": "Are you okay?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.026",
+      "voice": "dink",
+      "tts_text": "I'm sorry I wasn't fast enough.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.029",
+      "voice": "dink",
+      "tts_text": "Alright.. what is it?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cave2.main.032",
+      "voice": "dink",
+      "tts_text": "Ah man...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cslay.main.002",
+      "voice": "dink",
+      "tts_text": "It's all over, Nelson.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cslay.main.005",
+      "voice": "dink",
+      "tts_text": "And just what part is that?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.001",
+      "voice": "dink",
+      "tts_text": "Mary, are you alright?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.004",
+      "voice": "dink",
+      "tts_text": "Time to go home. Follow me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.006",
+      "voice": "dink",
+      "tts_text": "I brought someone with me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.talk.011",
+      "voice": "dink",
+      "tts_text": "I was just doing my job, ma'am.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-culg.die.001",
+      "voice": "dink",
+      "tts_text": "Noooooooooooo! The girl has died! I HAVE FAILED!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.001",
+      "voice": "dink",
+      "tts_text": "What a lovely backyard.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.002",
+      "voice": "dink",
+      "tts_text": "Ah, the memories.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.010",
+      "voice": "dink",
+      "tts_text": "Interesting little party we've got here...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.022",
+      "voice": "dink",
+      "tts_text": "Nah, I think I'd rather shout something.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.023",
+      "voice": "dink",
+      "tts_text": "Excuse me?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.025",
+      "voice": "dink",
+      "tts_text": "Get your hands off her, Nelson! She's coming with me!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.027",
+      "voice": "dink",
+      "tts_text": "Girls! This man is a lunatic - turn on him and destroy him!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.028",
+      "voice": "dink",
+      "tts_text": "I agree, crucify the new girl!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.030",
+      "voice": "dink",
+      "tts_text": "I just adore your sadistic rituals. May I continue to watch?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-cult.main.032",
+      "voice": "dink",
+      "tts_text": "Ahh, this is a much better view.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-fgate.touch.001",
+      "voice": "dink",
+      "tts_text": "Ouch!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-h1-s.main.001",
+      "voice": "dink",
+      "tts_text": "Whoa, this place looks abandoned...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-h1-s.main.002",
+      "voice": "dink",
+      "tts_text": "must've been the monsters nearby.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-h2-s.main.001",
+      "voice": "dink",
+      "tts_text": "Not a bad little room. I think I'm going to enjoy my stay.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-h2-s.main.002",
+      "voice": "dink",
+      "tts_text": "Except for that guy Jack...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-healp.talk.001",
+      "voice": "dink",
+      "tts_text": "I am healed.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-idol.push.001",
+      "voice": "dink",
+      "tts_text": "Uh, darn thing won't budge!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.001",
+      "voice": "dink",
+      "tts_text": "Hi Jack! Whacha doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.003",
+      "voice": "dink",
+      "tts_text": "It's real nice of you letting me stay here and all.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.005",
+      "voice": "dink",
+      "tts_text": "Hey Jack!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.007",
+      "voice": "dink",
+      "tts_text": "Eat me!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.009",
+      "voice": "dink",
+      "tts_text": "Jack. I know I'm your guest and all but...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.011",
+      "voice": "dink",
+      "tts_text": "If you touch Maria again, you won't live to see tomorrow.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.013",
+      "voice": "dink",
+      "tts_text": "Sorry, not into that. But I know this guy named Milder...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.014",
+      "voice": "dink",
+      "tts_text": "Jack. Guess who was badmouthing you a second ago...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.016",
+      "voice": "dink",
+      "tts_text": "Yup. Better lay a bit o law into her, if you know what I mean.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.022",
+      "voice": "dink",
+      "tts_text": "Haw! Good one Jack!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.talk.025",
+      "voice": "dink",
+      "tts_text": "Get a clue, honey. How do you think I kept my mom in line? Haw!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.die.002",
+      "voice": "dink",
+      "tts_text": "I guess I just killed your husband.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-jack.die.004",
+      "voice": "dink",
+      "tts_text": "I know. It's ok, I'm here now.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.001",
+      "voice": "dink",
+      "tts_text": "Greetings men. I bring stories of my adventures from the East.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.003",
+      "voice": "dink",
+      "tts_text": "My name is Dink Smallwood. I am a warrior!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.005",
+      "voice": "dink",
+      "tts_text": "Oh yes. Once, I was in this really scary cave...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.007",
+      "voice": "dink",
+      "tts_text": "Next thing I knew I was face to face with a huge monster...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.010",
+      "voice": "dink",
+      "tts_text": "Damn you, Milder! What are you doing here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.013",
+      "voice": "dink",
+      "tts_text": "I don't tend pigs anymore, I'm a mighty warrior.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.017",
+      "voice": "dink",
+      "tts_text": "That IS NOT funny.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.019",
+      "voice": "dink",
+      "tts_text": "Great, what kind?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.023",
+      "voice": "dink",
+      "tts_text": "You stupid rubes! I hate you both!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.028",
+      "voice": "dink",
+      "tts_text": "Look... My farming days are over, ok?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.030",
+      "voice": "dink",
+      "tts_text": "Oh yes!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.034",
+      "voice": "dink",
+      "tts_text": "How 'bout I plow your momma?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.035",
+      "voice": "dink",
+      "tts_text": "Look...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-man2.talk.039",
+      "voice": "dink",
+      "tts_text": "Actually, didn't you both laugh at me and such?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.touch.001",
+      "voice": "dink",
+      "tts_text": "This looks like the place, but it's locked.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.touch.002",
+      "voice": "dink",
+      "tts_text": "Maybe I should try knocking..",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.touch.003",
+      "voice": "dink",
+      "tts_text": "I hope that damn old man gives me that spell.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.touch.004",
+      "voice": "dink",
+      "tts_text": "It's locked.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.001",
+      "voice": "dink",
+      "tts_text": "Hello, anyone in there?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.002",
+      "voice": "dink",
+      "tts_text": "Hello?!?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.004",
+      "voice": "dink",
+      "tts_text": "I .. I'm Dink Smallwood, I'm trying to help...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.005",
+      "voice": "dink",
+      "tts_text": "a poor guy who is imprisoned in the dungeon south of here.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.008",
+      "voice": "dink",
+      "tts_text": "It's Smallwood sir, and he says...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.009",
+      "voice": "dink",
+      "tts_text": "he was imprisoned by agents of the Cast and that the lock can only be broken with magic!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.011",
+      "voice": "dink",
+      "tts_text": "No.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.015",
+      "voice": "dink",
+      "tts_text": "Hey, I'm back!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mdoor.talk.017",
+      "voice": "dink",
+      "tts_text": "Hello, anyone home?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.main.002",
+      "voice": "dink",
+      "tts_text": "It's Smallwood sir.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.001",
+      "voice": "dink",
+      "tts_text": "Please. Teach me some incredibly strong sorcerous enchantment!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.002",
+      "voice": "dink",
+      "tts_text": "Er, to help the man trapped in the dungeon I mean.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.005",
+      "voice": "dink",
+      "tts_text": "Rain? Rain is the big magic you will teach?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.007",
+      "voice": "dink",
+      "tts_text": "I now have Rain Magic. Yay.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.016",
+      "voice": "dink",
+      "tts_text": "Smallwood sir.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.018",
+      "voice": "dink",
+      "tts_text": "Aww man.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.019",
+      "voice": "dink",
+      "tts_text": "Hey Mister, you know anymore magic you can teach me?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mh-m.talk.021",
+      "voice": "dink",
+      "tts_text": "Ok, no problem... and my name isn't.. oh.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mybed.talk.001",
+      "voice": "dink",
+      "tts_text": "A pretty nice bed. Looks a lot like my last one.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-mybed.hit.001",
+      "voice": "dink",
+      "tts_text": "Stop laughing at me, bed!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-na1.talk.001",
+      "voice": "dink",
+      "tts_text": "This must be the woman's bed. Looks dirty.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-na1.hit.001",
+      "voice": "dink",
+      "tts_text": "Clean yourself!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-na2.talk.001",
+      "voice": "dink",
+      "tts_text": "Such a small bed.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-na2.hit.001",
+      "voice": "dink",
+      "tts_text": "LITTLE THINGS MUST DIE!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.001",
+      "voice": "dink",
+      "tts_text": "Say, how are you and the little tike doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.003",
+      "voice": "dink",
+      "tts_text": "I see you have not had time to clean the house...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.005",
+      "voice": "dink",
+      "tts_text": "Little Mary is still out there, somewhere.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.007",
+      "voice": "dink",
+      "tts_text": "Yes.. unless she was kidnapped by really nice people.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.009",
+      "voice": "dink",
+      "tts_text": "Hi Nadine. I'm new to town. Why is your house a pig pen?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.011",
+      "voice": "dink",
+      "tts_text": "Kidnapped?! Why aren't the townspeople forming a search party?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.013",
+      "voice": "dink",
+      "tts_text": "Nadine - I care nothing about your personal finance. I will help you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.015",
+      "voice": "dink",
+      "tts_text": "Of course. What was the dear thing's name?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.017",
+      "voice": "dink",
+      "tts_text": "Do you have any idea of who may have taken her?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.019",
+      "voice": "dink",
+      "tts_text": "Well damn.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.020",
+      "voice": "dink",
+      "tts_text": "Nadine - if you had some cash saved, I would find your girl.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.talk.022",
+      "voice": "dink",
+      "tts_text": "No thanks. Also, your arms look pointy and stupid.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-nadp.hit.001",
+      "voice": "dink",
+      "tts_text": "How does it feel?!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryan2.main.003",
+      "voice": "dink",
+      "tts_text": "Yeah, no problem.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryan3.main.004",
+      "voice": "dink",
+      "tts_text": "What are we doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryan3.main.007",
+      "voice": "dink",
+      "tts_text": "This ain't good.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.001",
+      "voice": "dink",
+      "tts_text": "Hey, how's it going?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.003",
+      "voice": "dink",
+      "tts_text": "Uh, what job?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.006",
+      "voice": "dink",
+      "tts_text": "So what do you do pal?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.008",
+      "voice": "dink",
+      "tts_text": "Yup, myself, why if you couldn't tell I'm an adventurer.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.010",
+      "voice": "dink",
+      "tts_text": "Oh, what do you specialize in?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.012",
+      "voice": "dink",
+      "tts_text": "Ahh, I see, just what are you acquiring now?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.016",
+      "voice": "dink",
+      "tts_text": "Whatever you're doing .. I can help you out.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-ryant.talk.019",
+      "voice": "dink",
+      "tts_text": "Yeah, I know how to do all sorts of things.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-sale.talk.002",
+      "voice": "dink",
+      "tts_text": "I wonder who Charlie is ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-sec2.talk.002",
+      "voice": "dink",
+      "tts_text": "That is also the LAMEST thing I've ever heard.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-table.talk.001",
+      "voice": "dink",
+      "tts_text": "A small wooden table.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-table.hit.001",
+      "voice": "dink",
+      "tts_text": "Teaparty!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-tds.main.003",
+      "voice": "dink",
+      "tts_text": "Oh, uh .. glad to be of assistance guys.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-tds.main.006",
+      "voice": "dink",
+      "tts_text": "Uh.. Yes, they're fine.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wand.talk.001",
+      "voice": "dink",
+      "tts_text": "So what do you do?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wand.talk.004",
+      "voice": "dink",
+      "tts_text": "That's a good job",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wand.talk.005",
+      "voice": "dink",
+      "tts_text": "Any luck lately?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wand.hit.004",
+      "voice": "dink",
+      "tts_text": "See ya.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-well1.talk.001",
+      "voice": "dink",
+      "tts_text": "It's a well. People tend to get water and such from it.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-well1.hit.001",
+      "voice": "dink",
+      "tts_text": "This is for all the kids that fell down you!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wench.talk.001",
+      "voice": "dink",
+      "tts_text": "Wanna go get some food later?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wench.talk.003",
+      "voice": "dink",
+      "tts_text": "Ah, it's going to be easy to get used to this...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wench.talk.007",
+      "voice": "dink",
+      "tts_text": "Hey wench! How much is the beer here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wench.talk.009",
+      "voice": "dink",
+      "tts_text": "How much for you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s2-wench.talk.011",
+      "voice": "dink",
+      "tts_text": "Come on honey, I got three gold jingling in my pocket!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.001",
+      "voice": "dink",
+      "tts_text": "I hear someone coming!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.002",
+      "voice": "dink",
+      "tts_text": "Hey, those are some of the damn Cast knights.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.003",
+      "voice": "dink",
+      "tts_text": "What the hell are they doing here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.009",
+      "voice": "dink",
+      "tts_text": "Man, raiding a town!?!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.010",
+      "voice": "dink",
+      "tts_text": "A group of those guys would slaughter it.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.011",
+      "voice": "dink",
+      "tts_text": "They mentioned a festival ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-1st.main.012",
+      "voice": "dink",
+      "tts_text": "... wonder if it's around here.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.002",
+      "voice": "dink",
+      "tts_text": "Uhh ... maybe.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.004",
+      "voice": "dink",
+      "tts_text": "What do you mean?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.007",
+      "voice": "dink",
+      "tts_text": "And there's like ... something WRONG with that?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.010",
+      "voice": "dink",
+      "tts_text": "Nope, just looking through houses and stuff.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.012",
+      "voice": "dink",
+      "tts_text": "Yea whatever ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.014",
+      "voice": "dink",
+      "tts_text": "Hey old man, the funeral house called ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.015",
+      "voice": "dink",
+      "tts_text": "they're ready for you now!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-bh.main.018",
+      "voice": "dink",
+      "tts_text": "I've come for your daughter.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camp.main.001",
+      "voice": "dink",
+      "tts_text": "This must be it!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camp.main.002",
+      "voice": "dink",
+      "tts_text": "I have to make it into that tent.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camp.main.003",
+      "voice": "dink",
+      "tts_text": "Here goes nothing...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camp.main.004",
+      "voice": "dink",
+      "tts_text": "Gotta run!! Gotta run!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camps.main.001",
+      "voice": "dink",
+      "tts_text": "Man, that was close!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camps.main.002",
+      "voice": "dink",
+      "tts_text": "It looks like this scroll might just be the proof I need.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camps.main.007",
+      "voice": "dink",
+      "tts_text": "Yeah well, my foot still has an appointment with you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-camps.main.008",
+      "voice": "dink",
+      "tts_text": "What do you freaks want with town anyway?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.004",
+      "voice": "dink",
+      "tts_text": "My name's Dink, pleasure to meet you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.006",
+      "voice": "dink",
+      "tts_text": "Just having a stroll around town?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.008",
+      "voice": "dink",
+      "tts_text": "What for?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.010",
+      "voice": "dink",
+      "tts_text": "Ahh, yes.. I've ... heard of that parade.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.013",
+      "voice": "dink",
+      "tts_text": "Ahh, I see. What are you painting here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.015",
+      "voice": "dink",
+      "tts_text": "Hmm",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.016",
+      "voice": "dink",
+      "tts_text": "You know, I've heard some things about this parade.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.019",
+      "voice": "dink",
+      "tts_text": "Yeah well ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.020",
+      "voice": "dink",
+      "tts_text": "I've heard different things...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.021",
+      "voice": "dink",
+      "tts_text": "Like that Cast Knights are planning to come and kill everyone here.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.024",
+      "voice": "dink",
+      "tts_text": "Wish I was, but I heard it myself just outside of town.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.026",
+      "voice": "dink",
+      "tts_text": "We've gotta call off the parade.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.031",
+      "voice": "dink",
+      "tts_text": "Had any luck talking to people?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.035",
+      "voice": "dink",
+      "tts_text": "That could be bad.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.039",
+      "voice": "dink",
+      "tts_text": "That could be something, I'll check it out.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.040",
+      "voice": "dink",
+      "tts_text": "Take a look at this!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.041",
+      "voice": "dink",
+      "tts_text": "The Cast's battle plan for the city.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-chick.talk.045",
+      "voice": "dink",
+      "tts_text": "We've got to stop them!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-fount.talk.001",
+      "voice": "dink",
+      "tts_text": "Ah, cool and refreshing.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.003",
+      "voice": "dink",
+      "tts_text": "Why are you running around so fast?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.005",
+      "voice": "dink",
+      "tts_text": "About what?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.008",
+      "voice": "dink",
+      "tts_text": "What's with all the ducks?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.010",
+      "voice": "dink",
+      "tts_text": "I see ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.012",
+      "voice": "dink",
+      "tts_text": "Not really.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.015",
+      "voice": "dink",
+      "tts_text": "Hey..",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.017",
+      "voice": "dink",
+      "tts_text": "What's with that other one?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.020",
+      "voice": "dink",
+      "tts_text": "Oh boy ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.021",
+      "voice": "dink",
+      "tts_text": "Soooo ... didn't see you at the parade.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.024",
+      "voice": "dink",
+      "tts_text": "I'm sure. That's too bad, after all that practice.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.027",
+      "voice": "dink",
+      "tts_text": "Aww man...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-freak.talk.028",
+      "voice": "dink",
+      "tts_text": "Note to self: Don't come here next year.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.die.001",
+      "voice": "dink",
+      "tts_text": "Let that be a clear message to his people. Haw!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.001",
+      "voice": "dink",
+      "tts_text": "What is your name, Goblin?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.003",
+      "voice": "dink",
+      "tts_text": "I don't understand a thing you're saying.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.004",
+      "voice": "dink",
+      "tts_text": "Say, why aren't you in the Goblin sanctuary?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.006",
+      "voice": "dink",
+      "tts_text": "Many people are afraid of goblins, you know.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.008",
+      "voice": "dink",
+      "tts_text": "Ah, I see. Good luck to you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.009",
+      "voice": "dink",
+      "tts_text": "So what's with that Goblin Sanctuary place?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.011",
+      "voice": "dink",
+      "tts_text": "And just what thing is that? I may need to know this.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gob.talk.013",
+      "voice": "dink",
+      "tts_text": "Ah. I'm not entirely sure who Mog is but..uh thanks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gobg.talk.002",
+      "voice": "dink",
+      "tts_text": "Greetings my good fellow! May I enter your fine establishment?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gobg.talk.007",
+      "voice": "dink",
+      "tts_text": "Oh come on, let me in!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gobg.talk.009",
+      "voice": "dink",
+      "tts_text": "Say. So how 'bout that war of '23? You guys got beat back pretty hard.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-gobg.talk.011",
+      "voice": "dink",
+      "tts_text": "I mean, King Daniel basically crushed you all like tiny bugs.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.001",
+      "voice": "dink",
+      "tts_text": "Hey, what kind of store you got here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.004",
+      "voice": "dink",
+      "tts_text": "Oh, not for me then. I've had bad experiences with furniture in the past.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.005",
+      "voice": "dink",
+      "tts_text": "Things tend to light on fire, and people I know just die. :'(",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.007",
+      "voice": "dink",
+      "tts_text": "So, any other deals?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.011",
+      "voice": "dink",
+      "tts_text": "Any goofy specials this month?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-larry.talk.014",
+      "voice": "dink",
+      "tts_text": "I see, well I don't own a house, but thanks for the info.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-loser.talk.001",
+      "voice": "dink",
+      "tts_text": "Hey, uhh ... where did everyone go?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-loser.talk.004",
+      "voice": "dink",
+      "tts_text": "That quick?!?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.hit.001",
+      "voice": "dink",
+      "tts_text": "Let me show you MY version of politics, friend!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.001",
+      "voice": "dink",
+      "tts_text": "Hello Mayor, nice town you have here.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.003",
+      "voice": "dink",
+      "tts_text": "Yeah, noted.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.004",
+      "voice": "dink",
+      "tts_text": "Mayor, I have urgent news, your town is going to be attacked!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.006",
+      "voice": "dink",
+      "tts_text": "No, I'm dead serious! It's the Cast Knights.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.007",
+      "voice": "dink",
+      "tts_text": "They're planning to attack during the parade.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.009",
+      "voice": "dink",
+      "tts_text": "All the more reason for you to believe me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.010",
+      "voice": "dink",
+      "tts_text": "Now the girl by the fountain said you knew some Royal guards.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.012",
+      "voice": "dink",
+      "tts_text": "She's your daughter?? Is she single?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.014",
+      "voice": "dink",
+      "tts_text": "Never mind, so you have some connections right?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.017",
+      "voice": "dink",
+      "tts_text": "Ok, so if I get proof you'll help?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.019",
+      "voice": "dink",
+      "tts_text": "Allright, then I'm off.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.023",
+      "voice": "dink",
+      "tts_text": "I finally got the proof we need.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.025",
+      "voice": "dink",
+      "tts_text": "Oops, my bad.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.026",
+      "voice": "dink",
+      "tts_text": "Hello Mayor, how's it going?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.028",
+      "voice": "dink",
+      "tts_text": "Hey, that's just great.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.029",
+      "voice": "dink",
+      "tts_text": "I've got your proof mayor.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.030",
+      "voice": "dink",
+      "tts_text": "They plan to slaughter the entire city.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mayor.talk.033",
+      "voice": "dink",
+      "tts_text": "Now will you call the Guard?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mog.main.001",
+      "voice": "dink",
+      "tts_text": "All this killing and still no answers.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mog.main.003",
+      "voice": "dink",
+      "tts_text": "What's this? You have learned our tongue well, Mog.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mog.main.005",
+      "voice": "dink",
+      "tts_text": "It was I who fell them.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-mog.main.006",
+      "voice": "dink",
+      "tts_text": "NOW TELL ME OF YOUR SECRET DEALINGS WITH THE CAST!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-peeps.die.001",
+      "voice": "dink",
+      "tts_text": "Now, THAT'S entertainment!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-rock.push.001",
+      "voice": "dink",
+      "tts_text": "Ugh, stupid rocks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-rock.hit.001",
+      "voice": "dink",
+      "tts_text": "I'm gonna rock your world!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-sign1.hit.001",
+      "voice": "dink",
+      "tts_text": "'Sign' me up.. for DESTRUCTION! Haw haw!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-sign1.talk.002",
+      "voice": "dink",
+      "tts_text": "Huh? What on earth can they be preparing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-sign3.hit.001",
+      "voice": "dink",
+      "tts_text": "I can't read, damnit!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1o.main.004",
+      "voice": "dink",
+      "tts_text": "Ok, I'll do it.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1o.main.005",
+      "voice": "dink",
+      "tts_text": "What are you gonna do?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.002",
+      "voice": "dink",
+      "tts_text": "So what do you got here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.004",
+      "voice": "dink",
+      "tts_text": "Mmmmm",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.006",
+      "voice": "dink",
+      "tts_text": "Do you have anything in here on magic?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.008",
+      "voice": "dink",
+      "tts_text": "I see... thanks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.009",
+      "voice": "dink",
+      "tts_text": "Did you hear anything about that other town yet?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.013",
+      "voice": "dink",
+      "tts_text": "Okay, thanks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.014",
+      "voice": "dink",
+      "tts_text": "Could you tell me about any other cool towns?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.018",
+      "voice": "dink",
+      "tts_text": "So what's been going on lately round here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.021",
+      "voice": "dink",
+      "tts_text": "Uh, well .. the mayor exaggerates just a bit,",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.022",
+      "voice": "dink",
+      "tts_text": "but yes, it was pretty much me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.025",
+      "voice": "dink",
+      "tts_text": "Christina, really!??! What did she say??",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.028",
+      "voice": "dink",
+      "tts_text": "Man!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st1p.talk.029",
+      "voice": "dink",
+      "tts_text": "Damn I'm cool!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.buy.001",
+      "voice": "dink",
+      "tts_text": "Well, despite the highway robbery, I'd like to get a bow.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.buy.003",
+      "voice": "dink",
+      "tts_text": "Whoops, sorry about that.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.buy.005",
+      "voice": "dink",
+      "tts_text": "Yeah, well I'll let ya know.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.001",
+      "voice": "dink",
+      "tts_text": "Well, you talked me into it and I bought one.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.003",
+      "voice": "dink",
+      "tts_text": "Any tips on using it?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.007",
+      "voice": "dink",
+      "tts_text": "Cool! How will I know his house?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.009",
+      "voice": "dink",
+      "tts_text": "Good day.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.011",
+      "voice": "dink",
+      "tts_text": "Yes well, I was wondering how much you sold your bows for?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.013",
+      "voice": "dink",
+      "tts_text": "MAN! Don't you think that's a little steep??",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-st2p.talk.015",
+      "voice": "dink",
+      "tts_text": "Damn better be!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-tc.main.003",
+      "voice": "dink",
+      "tts_text": "Yup, it's a parade allright.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-tc.main.004",
+      "voice": "dink",
+      "tts_text": "A lot of people too, I shudder at what could've happened.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-tc.main.007",
+      "voice": "dink",
+      "tts_text": "Thanks, but I couldn't have done it without you.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s3-tc.main.010",
+      "voice": "dink",
+      "tts_text": "Oh, you will baby, you will...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-dg.talk.001",
+      "voice": "dink",
+      "tts_text": "What are you guarding here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-dg.talk.004",
+      "voice": "dink",
+      "tts_text": "Oh, I thought it might be a ranch or something.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-dg.talk.006",
+      "voice": "dink",
+      "tts_text": "You give the DUCKS your food?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-dg.talk.008",
+      "voice": "dink",
+      "tts_text": "So how does one get in to see the altar?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-dsign.talk.003",
+      "voice": "dink",
+      "tts_text": "It sure is easy to be deified these days.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.004",
+      "voice": "dink",
+      "tts_text": "Uh oh.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-end.main.021",
+      "voice": "dink",
+      "tts_text": "No.. there is a perfect explanation, you see, the friction seemed to cook and...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.main.002",
+      "voice": "dink",
+      "tts_text": "AHHHHH!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.main.003",
+      "voice": "dink",
+      "tts_text": "What the hell?!?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.003",
+      "voice": "dink",
+      "tts_text": "Hey, no problem.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.005",
+      "voice": "dink",
+      "tts_text": "Hmmm.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.006",
+      "voice": "dink",
+      "tts_text": "Hey, uh thanks for that fireball!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.007",
+      "voice": "dink",
+      "tts_text": "What the hell's wrong with you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.009",
+      "voice": "dink",
+      "tts_text": "Like who?!?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.012",
+      "voice": "dink",
+      "tts_text": "This town is messed up.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.013",
+      "voice": "dink",
+      "tts_text": "So, what's with the town here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.015",
+      "voice": "dink",
+      "tts_text": "Ok, I'm gonna turn back towards you ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.016",
+      "voice": "dink",
+      "tts_text": "and you're gonna give a normal answer this time.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.017",
+      "voice": "dink",
+      "tts_text": "Ready ....",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.019",
+      "voice": "dink",
+      "tts_text": "Yeah ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.020",
+      "voice": "dink",
+      "tts_text": "Is this some kind of religion?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h1p.talk.022",
+      "voice": "dink",
+      "tts_text": "Well okay then, I'll ... I'll get back to you on that.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p1.talk.003",
+      "voice": "dink",
+      "tts_text": "So how's the store doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p1.talk.005",
+      "voice": "dink",
+      "tts_text": "How are you doing otherwise? This town seems to be in a depression.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p1.talk.007",
+      "voice": "dink",
+      "tts_text": "Yeah, yeah, the ducks I know ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p1.talk.008",
+      "voice": "dink",
+      "tts_text": "what the hell have they given back to you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.001",
+      "voice": "dink",
+      "tts_text": "Hi little girl ..",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.003",
+      "voice": "dink",
+      "tts_text": "You're welcome.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-h2p3.talk.006",
+      "voice": "dink",
+      "tts_text": "Do you get to eat much little girl?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md2.touch.003",
+      "voice": "dink",
+      "tts_text": "My name's Dink.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md2.touch.006",
+      "voice": "dink",
+      "tts_text": "Nope ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md2.touch.008",
+      "voice": "dink",
+      "tts_text": "Sorry ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md3.touch.005",
+      "voice": "dink",
+      "tts_text": "May I come in?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md3.touch.007",
+      "voice": "dink",
+      "tts_text": "I ... I don't have any food, I'm sorry.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-md3.touch.008",
+      "voice": "dink",
+      "tts_text": "Why are you starving?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.001",
+      "voice": "dink",
+      "tts_text": "How's things been here lately?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.006",
+      "voice": "dink",
+      "tts_text": "Okay, that's the weirdest statement I think I've heard today.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.008",
+      "voice": "dink",
+      "tts_text": "Sure, no problem.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.009",
+      "voice": "dink",
+      "tts_text": "Uh, do you have anything for sale?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.011",
+      "voice": "dink",
+      "tts_text": "Why not?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.014",
+      "voice": "dink",
+      "tts_text": "I see.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st1p.talk.017",
+      "voice": "dink",
+      "tts_text": "Hi Jill, how are you doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.001",
+      "voice": "dink",
+      "tts_text": "How's the fur trading industry going?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.004",
+      "voice": "dink",
+      "tts_text": "Do you worship the ducks here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.009",
+      "voice": "dink",
+      "tts_text": "Yeah, it's pretty weird.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.010",
+      "voice": "dink",
+      "tts_text": "What do you do for food?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.014",
+      "voice": "dink",
+      "tts_text": "Hi man, how's the store doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.017",
+      "voice": "dink",
+      "tts_text": "Aww come on, I didn't do that much.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.018",
+      "voice": "dink",
+      "tts_text": "Just showed the people here what to eat.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.023",
+      "voice": "dink",
+      "tts_text": "What exactly do you have for sale?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st2p.talk.025",
+      "voice": "dink",
+      "tts_text": "Ah. Thanks.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st3p.talk.001",
+      "voice": "dink",
+      "tts_text": "Nice store here, what is it?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st3p.talk.005",
+      "voice": "dink",
+      "tts_text": "Are you a pirate?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st3p.talk.008",
+      "voice": "dink",
+      "tts_text": "Well, what are you doing here?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st3p.talk.009",
+      "voice": "dink",
+      "tts_text": "Aren't you supposed to be out on the high seas collecting booty?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-st3p.talk.017",
+      "voice": "dink",
+      "tts_text": "Just, just wondering sir.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-stat.talk.001",
+      "voice": "dink",
+      "tts_text": "What a lovely stone!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-stat.hit.001",
+      "voice": "dink",
+      "tts_text": "THESE PEOPLE JUST DON'T GET IT!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s4-tree.talk.001",
+      "voice": "dink",
+      "tts_text": "It's an apple tree.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-end.main.006",
+      "voice": "dink",
+      "tts_text": "So basically, I just killed two innocent Dragons for protecting their own?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-fd.die.001",
+      "voice": "dink",
+      "tts_text": "Noooo! The girl has died! I HAVE FAILED!!!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-fguy.die.001",
+      "voice": "dink",
+      "tts_text": "Noooo! The good father has died! I HAVE FAILED!!!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-fmom.die.001",
+      "voice": "dink",
+      "tts_text": "Noooo! The mother has died! I HAVE FAILED!!!!!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-guy.main.002",
+      "voice": "dink",
+      "tts_text": "Hello, I'm Dink Smallwood.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-guy.main.004",
+      "voice": "dink",
+      "tts_text": "Out where? Town?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-guy.main.006",
+      "voice": "dink",
+      "tts_text": "Why? I saw nothing dangerous.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-guy.main.010",
+      "voice": "dink",
+      "tts_text": "What a very strange town.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-jops.main.001",
+      "voice": "dink",
+      "tts_text": "Weird. This town looks deserted.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s5-sign1.hit.001",
+      "voice": "dink",
+      "tts_text": "I'm dreaming! You aren't really here, mystical island of legend!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.001",
+      "voice": "dink",
+      "tts_text": "Ah, refreshing.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.002",
+      "voice": "dink",
+      "tts_text": "I don't have any coins!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.003",
+      "voice": "dink",
+      "tts_text": "I hope this helps.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.004",
+      "voice": "dink",
+      "tts_text": "For luck.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.005",
+      "voice": "dink",
+      "tts_text": "Hope that wish comes true.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-fount.talk.006",
+      "voice": "dink",
+      "tts_text": "For Mother.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.002",
+      "voice": "dink",
+      "tts_text": "I killed Seth.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.005",
+      "voice": "dink",
+      "tts_text": "But how! Where is he?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.009",
+      "voice": "dink",
+      "tts_text": "Sometimes I amaze even myself.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.010",
+      "voice": "dink",
+      "tts_text": "How've things here been lately?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.013",
+      "voice": "dink",
+      "tts_text": "Well, they can do all they want,",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.014",
+      "voice": "dink",
+      "tts_text": "but I have to find Milder!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.talk.019",
+      "voice": "dink",
+      "tts_text": "What is the 'evil' you keep talking about?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-st1p.hit.001",
+      "voice": "dink",
+      "tts_text": "Hahaha!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.002",
+      "voice": "dink",
+      "tts_text": "Sell me something else you bastard!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.004",
+      "voice": "dink",
+      "tts_text": "What on earth are you doing in this cave anyway?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.006",
+      "voice": "dink",
+      "tts_text": "Do you have a family?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.008",
+      "voice": "dink",
+      "tts_text": "Do you have a home?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.010",
+      "voice": "dink",
+      "tts_text": "Your life just doesn't make sense to me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.012",
+      "voice": "dink",
+      "tts_text": "And I suppose you know everything.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s6-vend.talk.014",
+      "voice": "dink",
+      "tts_text": "I'll just be leaving now.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-boat.hit.001",
+      "voice": "dink",
+      "tts_text": "Come back here!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-boss.die.001",
+      "voice": "dink",
+      "tts_text": "EAT IT!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-boss.die.002",
+      "voice": "dink",
+      "tts_text": "Too bad I had to kill him, he seemed likable enough.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-boss.die.003",
+      "voice": "dink",
+      "tts_text": "My body is tingling!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-boss.die.004",
+      "voice": "dink",
+      "tts_text": "I must now get back to Goodheart Castle and inform the King.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-dink.talk.001",
+      "voice": "dink",
+      "tts_text": "That... sort of looks like me.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.001",
+      "voice": "dink",
+      "tts_text": "Poor Milder.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.002",
+      "voice": "dink",
+      "tts_text": "Milder, wake up! Help me fight this guy!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.003",
+      "voice": "dink",
+      "tts_text": "Milder! Milder!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.005",
+      "voice": "dink",
+      "tts_text": "Can you hear me?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.007",
+      "voice": "dink",
+      "tts_text": "Yes!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.008",
+      "voice": "dink",
+      "tts_text": "Er, no, I mean.. tell me what happened!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.010",
+      "voice": "dink",
+      "tts_text": "Ah, by the Cast?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.014",
+      "voice": "dink",
+      "tts_text": "I will not leave without you, Milder.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.016",
+      "voice": "dink",
+      "tts_text": "It is the honorable thing to do.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.018",
+      "voice": "dink",
+      "tts_text": "Nonsense. Can you walk?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.020",
+      "voice": "dink",
+      "tts_text": "Alright, see ya.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.022",
+      "voice": "dink",
+      "tts_text": "Tell her? I'll SHOW her love... moohahahha!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.025",
+      "voice": "dink",
+      "tts_text": "What the!??! Who the hell are you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.030",
+      "voice": "dink",
+      "tts_text": "You are sick and twisted is what you are.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mil.talk.036",
+      "voice": "dink",
+      "tts_text": "FOR GOD, THE CROWN AND ALL THAT IS GOOD, I SHALL DESTROY YOU, SETH!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mom.main.005",
+      "voice": "dink",
+      "tts_text": "Spirit, leave me alone!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s7-mom.main.007",
+      "voice": "dink",
+      "tts_text": "I am not afraid, ghost.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-da.main.011",
+      "voice": "dink",
+      "tts_text": "Give me number one.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-da.main.012",
+      "voice": "dink",
+      "tts_text": "Give me number two.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-dish.talk.001",
+      "voice": "dink",
+      "tts_text": "Wow, they have a dish.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck.talk.003",
+      "voice": "dink",
+      "tts_text": "Uh, I'm Dink.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck2.talk.001",
+      "voice": "dink",
+      "tts_text": "Hi giant duck.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck2.talk.006",
+      "voice": "dink",
+      "tts_text": "Uhh, not right now, I'm ... busy.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck2.talk.007",
+      "voice": "dink",
+      "tts_text": "Okay, maybe later then.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck2.talk.013",
+      "voice": "dink",
+      "tts_text": "Sure, let's play something.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck2.talk.015",
+      "voice": "dink",
+      "tts_text": "Sorry, not yet.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck3.talk.002",
+      "voice": "dink",
+      "tts_text": "Hi, who are you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck3.talk.004",
+      "voice": "dink",
+      "tts_text": "Oh, I see.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck3.talk.005",
+      "voice": "dink",
+      "tts_text": "And how are your kids doing?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck3.talk.007",
+      "voice": "dink",
+      "tts_text": "Hey, that's great.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck3.hit.001",
+      "voice": "dink",
+      "tts_text": "Yeah, this is fun!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-duck4.talk.001",
+      "voice": "dink",
+      "tts_text": "Hey duck, thanks for the game.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-guy.talk.002",
+      "voice": "dink",
+      "tts_text": "Great! Give it to me now!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-well.hit.001",
+      "voice": "dink",
+      "tts_text": "I want to draw blood, not water!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "s8-well.talk.001",
+      "voice": "dink",
+      "tts_text": "Someone must live nearby.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "savebot.hit.001",
+      "voice": "dink",
+      "tts_text": "Die, strange machine that doesn't belong here!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.003",
+      "voice": "dink",
+      "tts_text": "Who, who are you?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.005",
+      "voice": "dink",
+      "tts_text": "What are you talking about?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.008",
+      "voice": "dink",
+      "tts_text": "The .. the goblin wars, those ended a long long time ago!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.009",
+      "voice": "dink",
+      "tts_text": "They haven't fought for over 100 years!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.012",
+      "voice": "dink",
+      "tts_text": "I'm afraid so ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.014",
+      "voice": "dink",
+      "tts_text": "Ooooo, well, both the city and its castle were destroyed",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.015",
+      "voice": "dink",
+      "tts_text": "during the last part of the war 100 years ago.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.016",
+      "voice": "dink",
+      "tts_text": "Later it was partly rebuilt and now is the smaller town of KernSin.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.018",
+      "voice": "dink",
+      "tts_text": "Yes.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.021",
+      "voice": "dink",
+      "tts_text": "Dink Smallwood sir.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.024",
+      "voice": "dink",
+      "tts_text": "What??",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.026",
+      "voice": "dink",
+      "tts_text": "Hey, you wanna tell me what you're talking about?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.031",
+      "voice": "dink",
+      "tts_text": "There is some chaos brewing in this land now.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.032",
+      "voice": "dink",
+      "tts_text": "We don't know who's behind it either. I was on my way to",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sc-wiz.talk.033",
+      "voice": "dink",
+      "tts_text": "the darklands when I came here, I have to rescue a friend.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "sfood.touch.001",
+      "voice": "dink",
+      "tts_text": "Yum!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "spice.talk.001",
+      "voice": "dink",
+      "tts_text": "Oh my god, it's you!!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "spice.talk.003",
+      "voice": "dink",
+      "tts_text": "Uhh ...",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "spice.talk.004",
+      "voice": "dink",
+      "tts_text": "Let's not discuss that now Sporty. Let's talk about you ..",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "spice.talk.005",
+      "voice": "dink",
+      "tts_text": "all five of you and me!!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "start-3.click.005",
+      "voice": "dink",
+      "tts_text": "Wait a minute!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "start-3.click.006",
+      "voice": "dink",
+      "tts_text": "Hi.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "start-3.click.007",
+      "voice": "dink",
+      "tts_text": "This game is only $15?",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "start-3.click.009",
+      "voice": "dink",
+      "tts_text": "Is this some kind of joke? This ain't funny.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "start-3.click.011",
+      "voice": "dink",
+      "tts_text": "Incredible!!! Thank you magic voice.",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    },
+    {
+      "id": "water.hit.001",
+      "voice": "dink",
+      "tts_text": "Yum, water!",
+      "reason": "not generated: service returned 429 daily_generation_limit_reached; no credits charged"
+    }
+  ],
+  "pending_copies": [
+    {
+      "id": "get-sfb.talk.001",
+      "voice": "dink",
+      "copy_of": "get-fb.talk.001",
+      "tts_text": "A lovely scroll.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "get-sfb.touch.001",
+      "voice": "dink",
+      "copy_of": "get-fb.touch.001",
+      "tts_text": "I now have the hellfire magic!",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "poster.talk.034",
+      "voice": "dink",
+      "copy_of": "poster.talk.030",
+      "tts_text": "Wow.. Poor Milder...he really wasn't such a bad guy.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s2-auntp.talk.023",
+      "voice": "dink",
+      "copy_of": "s2-auntp.talk.016",
+      "tts_text": "I saw Jack hit you.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s2-mh-m.talk.012",
+      "voice": "dink",
+      "copy_of": "s2-mh-m.talk.005",
+      "tts_text": "Rain? Rain is the big magic you will teach?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s2-mh-m.talk.014",
+      "voice": "dink",
+      "copy_of": "s2-mh-m.talk.007",
+      "tts_text": "I now have Rain Magic. Yay.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s2-tdoor.touch.001",
+      "voice": "dink",
+      "copy_of": "s2-mdoor.touch.004",
+      "tts_text": "It's locked.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s2-wench.talk.004",
+      "voice": "dink",
+      "copy_of": "s2-wench.talk.001",
+      "tts_text": "Wanna go get some food later?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-chick.talk.002",
+      "voice": "dink",
+      "copy_of": "s2-ryant.talk.001",
+      "tts_text": "Hey, how's it going?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-chick.talk.011",
+      "voice": "dink",
+      "copy_of": "s2-wand.talk.001",
+      "tts_text": "So what do you do?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-loser.talk.006",
+      "voice": "dink",
+      "copy_of": "s3-loser.talk.001",
+      "tts_text": "Hey, uhh ... where did everyone go?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-loser.talk.009",
+      "voice": "dink",
+      "copy_of": "s3-freak.talk.010",
+      "tts_text": "I see ...",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-mayor.talk.020",
+      "voice": "dink",
+      "copy_of": "s3-mayor.talk.001",
+      "tts_text": "Hello Mayor, nice town you have here.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-mayor.talk.022",
+      "voice": "dink",
+      "copy_of": "s3-mayor.talk.003",
+      "tts_text": "Yeah, noted.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-mdoor.touch.001",
+      "voice": "dink",
+      "copy_of": "s2-mdoor.touch.004",
+      "tts_text": "It's locked.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-st1p.talk.005",
+      "voice": "dink",
+      "copy_of": "s2-cave.main.025",
+      "tts_text": "Noted.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s3-st1p.talk.032",
+      "voice": "dink",
+      "copy_of": "s2-cave.main.011",
+      "tts_text": "Oh.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s4-h2p2.talk.002",
+      "voice": "dink",
+      "copy_of": "s2-mh-m.talk.016",
+      "tts_text": "Smallwood sir.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s4-h2p3.talk.004",
+      "voice": "dink",
+      "copy_of": "s4-h2p3.talk.001",
+      "tts_text": "Hi little girl ..",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s4-healp.talk.001",
+      "voice": "dink",
+      "copy_of": "s2-healp.talk.001",
+      "tts_text": "I am healed.",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s4-st1p.talk.003",
+      "voice": "dink",
+      "copy_of": "s3-freak.talk.008",
+      "tts_text": "What's with all the ducks?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s7-mil.talk.034",
+      "voice": "dink",
+      "copy_of": "s2-ca-g.talk.030",
+      "tts_text": "Milder?",
+      "reason": "source line not generated yet"
+    },
+    {
+      "id": "s8-duck2.talk.008",
+      "voice": "dink",
+      "copy_of": "s8-duck2.talk.001",
+      "tts_text": "Hi giant duck.",
+      "reason": "source line not generated yet"
+    }
+  ],
+  "skipped": [
+    {
+      "id": "s1-h2-o.talk.009",
+      "voice": "dink",
+      "tts_text": "[chortles]",
+      "reason": "tag-only line; ElevenLabs needs words"
+    }
+  ]
+}
