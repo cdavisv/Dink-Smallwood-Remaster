@@ -1,0 +1,179 @@
+{
+  "pose": "fist9",
+  "actual89_world_matrix_max_delta": 3.8743019104003906e-07,
+  "actual_LBS_proof": {
+    "NEW_Dink_Bracer_L": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.1542358837725164e-07
+    },
+    "NEW_Dink_Bracer_R": {
+      "samples": 43,
+      "maximum_LBS_delta_m": 2.403028819392642e-07
+    },
+    "NEW_Dink_Jerkin_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.3910335471513076e-07
+    },
+    "NEW_Dink_RedUpperArmTie": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.4131141216608354e-07
+    },
+    "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.497959235673908e-07
+    },
+    "NEW_Dink_Trousers_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 1.1920928955078125e-07
+    },
+    "Original_Belt_Compatible": {
+      "samples": 43,
+      "maximum_LBS_delta_m": 1.2036781326982014e-07
+    },
+    "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+      "samples": 14986,
+      "maximum_LBS_delta_m": 2.908590629092326e-07
+    },
+    "Recovered_FullBody_EarlySlim_Bound89": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.0047462056687042e-07
+    }
+  },
+  "checks": {
+    "baseline": {
+      "body": {
+        "strict_crossing_pairs": 0,
+        "witness_limit": 100,
+        "witnesses": [],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "self": {
+        "strict_crossing_pairs": 0,
+        "witness_limit": 100,
+        "witnesses": [],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "other_garments": {
+        "NEW_Dink_Bracer_L": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Bracer_R": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Jerkin_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_RedUpperArmTie": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "Original_Belt_Compatible": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        }
+      }
+    },
+    "successor": {
+      "body": {
+        "strict_crossing_pairs": 0,
+        "witness_limit": 100,
+        "witnesses": [],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "self": {
+        "strict_crossing_pairs": 0,
+        "witness_limit": 100,
+        "witnesses": [],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "other_garments": {
+        "NEW_Dink_Bracer_L": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Bracer_R": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Jerkin_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_RedUpperArmTie": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "Original_Belt_Compatible": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        }
+      }
+    }
+  },
+  "qualification": "Same fixed topology V9 versus V15 binding trial; baseline manual LBS, candidate actual Blender evaluation verified against LBS. Body is actual raw LBS reference and can self-intersect in deep flex; no global volume PASS is claimed. Strict edge crossings 1e-7 m; adjacent shared edges excluded; no native/export."
+}

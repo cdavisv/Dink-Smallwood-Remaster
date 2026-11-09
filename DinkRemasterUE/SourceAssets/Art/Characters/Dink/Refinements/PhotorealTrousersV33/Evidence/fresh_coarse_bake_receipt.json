@@ -1,0 +1,213 @@
+{
+  "scope": "SOURCE exploration only, exact V19 geometry/weights and 13-panel UV. No physical/motion/export/native acceptance. Fresh dedicated BC8sRGB / OpenGLfullRGBN16NonColor / ORM8NonColor. AO1 is neutral and not wired as painted lighting.",
+  "source_sha256": "a3035188add23584815384ac56b762ec40407628a932fd0194e7acc489203917",
+  "baked_source_sha256": "a51b75da6fe4339dc33755fa801808bc83881c573fb536b57e2335968e16545a",
+  "maps": [
+    {
+      "map": "BC",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_BC.png",
+      "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
+      "width": 2048,
+      "height": 2048,
+      "bits": 8,
+      "PNG_color_type": 2,
+      "color_space": "sRGB",
+      "all_pixels_checked": 4194304,
+      "maximum_linear_roundtrip_error": 0.0015406161546707153,
+      "mean_linear_roundtrip_error": 0.0003689323493745178,
+      "source_RGB_min": [
+        0.11179269850254059,
+        0.14905692636966705,
+        0.04192226007580757
+      ],
+      "source_RGB_max": [
+        0.12156088650226593,
+        0.16208115220069885,
+        0.04558533430099487
+      ]
+    },
+    {
+      "map": "N",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_N.png",
+      "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
+      "width": 2048,
+      "height": 2048,
+      "bits": 16,
+      "PNG_color_type": 2,
+      "color_space": "Non-Color",
+      "all_pixels_checked": 4194304,
+      "maximum_linear_roundtrip_error": 1.0013580322265625e-05,
+      "mean_linear_roundtrip_error": 5.401635917223757e-06,
+      "source_RGB_min": [
+        0.33278873562812805,
+        0.32410770654678345,
+        0.9617129564285278
+      ],
+      "source_RGB_max": [
+        0.6652442216873169,
+        0.6919134855270386,
+        1.0000100135803223
+      ],
+      "tangent_convention": "OpenGL +Y full RGB16; no channel reconstruction/clamp",
+      "normal_length_min": 0.9627277851104736,
+      "normal_length_max": 1.0000276565551758
+    },
+    {
+      "map": "ORM",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_ORM.png",
+      "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
+      "width": 2048,
+      "height": 2048,
+      "bits": 8,
+      "PNG_color_type": 2,
+      "color_space": "Non-Color",
+      "all_pixels_checked": 4194304,
+      "maximum_linear_roundtrip_error": 0.0013726353645324707,
+      "mean_linear_roundtrip_error": 0.000457545043900609,
+      "source_RGB_min": [
+        1.0,
+        0.8299999833106995,
+        0.0
+      ],
+      "source_RGB_max": [
+        1.0,
+        0.830000102519989,
+        0.0
+      ],
+      "AO_all_pixels_exact_one": true,
+      "metallic_all_pixels_exact_zero": true
+    }
+  ],
+  "preserved_independent_optics": {
+    "IOR": 1.4600000381469727,
+    "Alpha": 1.0,
+    "Thin Wall": 0.0,
+    "Diffuse Roughness": 0.0,
+    "Subsurface Weight": 0.0,
+    "Subsurface Radius": [
+      1.0,
+      0.20000000298023224,
+      0.10000000149011612
+    ],
+    "Subsurface Scale": 0.004999999888241291,
+    "Subsurface Anisotropy": 0.0,
+    "Specular IOR Level": 0.23999999463558197,
+    "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Anisotropic": 0.0,
+    "Anisotropic Rotation": 0.0,
+    "Tangent": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Transmission Weight": 0.0,
+    "Coat Weight": 0.0,
+    "Coat Roughness": 0.029999999329447746,
+    "Coat IOR": 1.5,
+    "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Sheen Weight": 0.1599999964237213,
+    "Sheen Roughness": 0.5,
+    "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Emission Strength": 0.0,
+    "Thin Film Thickness": 0.0,
+    "Thin Film IOR": 1.3300000429153442
+  },
+  "source_view_settings_restored": {
+    "view_transform": "AgX",
+    "look": "None",
+    "exposure": 0.0,
+    "gamma": 1.0
+  },
+  "source_attributes": {
+    "GarmentSeamDistance": {
+      "min": 0.0,
+      "max": 0.18618431687355042
+    },
+    "GarmentSeamArc": {
+      "min": 0.0,
+      "max": 1.27951180934906
+    },
+    "ClothTexelsPerMeter": {
+      "min": 877.9139404296875,
+      "max": 1350.64306640625
+    }
+  },
+  "source_CPU_threads": 2,
+  "bake_padding_px": 8,
+  "bake_method": "Project bake_wardrobe252 IO validation adapted to RGB/2K/CPU2/pants-only, no AO bake; no forced process exit.",
+  "planned_portable_used_texture_groups_before_after": [
+    9,
+    12
+  ],
+  "procedural_master_retains_editable_grain_uv": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
+  "elapsed_seconds": 39.47759819030762,
+  "original_Dink_reference_guide": {
+    "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
+    "files": [
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
+      },
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
+      },
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
+      },
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
+      },
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
+      },
+      {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+      }
+    ],
+    "visually_reviewed_original_images": [
+      "original_identity_crop.png",
+      "original_sequences_contact.png",
+      "original_walk_ds-w2-01.png"
+    ],
+    "retained_identity": [
+      "subdued olive trousers",
+      "slate-blue woven shirt",
+      "brown leather torso/gear and russet boots",
+      "practical narrow-waist silhouette",
+      "red tie on anatomical LEFT upper arm"
+    ],
+    "limits": "Only trousers material/UV were changed in this source exploration. Other seven meshes/materials remain protected. A separate backpack is a prior remaster interpretation, not conclusively established by the rear sprite mass.",
+    "camera_note": "V14 current game controls use the historical render_baked269 orthographic review framing. REFERENCE_DESIGN_BRIEF also specifies a separate real gameplay perspective approximation; no source preview is a runtime screenshot."
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "scope": "SOURCE geometry/rig only; FBX graphs stripped in disposable memory, source graphs untouched. No animations baked or native assets touched. GLB omits materials intentionally; no OSL/PBR equivalence.",
+  "source_sha256": "d6359289ed36c45de7b22f8640cb4e7cf654abdbd8b0ee7013f7f75dee32ff9a",
+  "source_to_FBX_material_alias": {
+    "SourceDarkLeather_NEW_Dink_Bracer_L": "QA_BracerL_Leather",
+    "SourceDarkLeather_NEW_Dink_Bracer_R": "QA_BracerR_Leather",
+    "TailoredBrownLeather_ContinuousWarmBinding_FineGrainFinish": "QA_Jerkin_Leather",
+    "WarmLeatherEdgeBinding_DIELECTRIC_FineGrainFinish": "QA_Jerkin_Trim",
+    "OriginalIdentity_RedWovenTie": "QA_LeftArm_RedCloth",
+    "QA_BlueWovenCloth_PBRPending_WovenSeamSource_RealPanelSeamPrototype": "QA_Shirt_BlueCloth",
+    "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE": "QA_Trousers_MetricV32",
+    "MI_Dink_WardrobeV3": "Legacy_Wardrobe_Belt",
+    "MI_Dink_Skin": "Legacy_Skin",
+    "MI_Dink_Eyes": "Legacy_Eyes",
+    "MI_Dink_Hair": "Legacy_Hair",
+    "MI_Dink_BrowLash": "Legacy_BrowLash",
+    "MI_Dink_WardrobeV3.001": "Legacy_Wardrobe_Gear"
+  },
+  "FBX": [
+    {
+      "role": "Trousers_Hi",
+      "path": "SK_Dink_V33_Trousers_Hi.fbx",
+      "sha256": "c77e878bdf149b25d23a896fd5fc51ac4a062e8adb116c3cc6f1bbb76eaca181",
+      "bytes": 1218780,
+      "mesh_names": [
+        "NEW_Dink_Trousers_LOD0"
+      ],
+      "parameters": {
+        "filepath": "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_Hi.fbx",
+        "use_selection": true,
+        "object_types": [
+          "ARMATURE",
+          "MESH"
+        ],
+        "use_mesh_modifiers": false,
+        "mesh_smooth_type": "FACE",
+        "use_triangles": true,
+        "use_tspace": false,
+        "use_custom_props": false,
+        "colors_type": "NONE",
+        "apply_unit_scale": true,
+        "global_scale": 1,
+        "apply_scale_options": "FBX_SCALE_ALL",
+        "axis_forward": "Y",
+        "axis_up": "Z",
+        "bake_space_transform": false,
+        "use_space_transform": true,
+        "add_leaf_bones": false,
+        "primary_bone_axis": "Y",
+        "secondary_bone_axis": "X",
+        "use_armature_deform_only": false,
+        "armature_nodetype": "NULL",
+        "bake_anim": false,
+        "path_mode": "STRIP",
+        "embed_textures": false,
+        "batch_mode": "OFF"
+      }
+    },
+    {
+      "role": "Context_Hi",
+      "path": "SK_Dink_V33_Context_Hi.fbx",
+      "sha256": "b394479acd7b03617836295bccffe81a83c9981e4d40b6ef306a9975bc243cf2",
+      "bytes": 3715372,
+      "mesh_names": [
+        "NEW_Dink_Bracer_L",
+        "NEW_Dink_Bracer_R",
+        "NEW_Dink_Jerkin_LOD0",
+        "NEW_Dink_RedUpperArmTie",
+        "NEW_Dink_Shirt_ActualAnatomy_LOD0",
+        "NEW_Dink_Trousers_LOD0",
+        "Original_Belt_Compatible",
+        "QA_Dink_VisibleLegacy_HeadHandsHairGear"
+      ],
+      "parameters": {
+        "filepath": "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Context_Hi.fbx",
+        "use_selection": true,
+        "object_types": [
+          "ARMATURE",
+          "MESH"
+        ],
+        "use_mesh_modifiers": false,
+        "mesh_smooth_type": "FACE",
+        "use_triangles": true,
+        "use_tspace": false,
+        "use_custom_props": false,
+        "colors_type": "NONE",
+        "apply_unit_scale": true,
+        "global_scale": 1,
+        "apply_scale_options": "FBX_SCALE_ALL",
+        "axis_forward": "Y",
+        "axis_up": "Z",
+        "bake_space_transform": false,
+        "use_space_transform": true,
+        "add_leaf_bones": false,
+        "primary_bone_axis": "Y",
+        "secondary_bone_axis": "X",
+        "use_armature_deform_only": false,
+        "armature_nodetype": "NULL",
+        "bake_anim": false,
+        "path_mode": "STRIP",
+        "embed_textures": false,
+        "batch_mode": "OFF"
+      }
+    }
+  ],
+  "GLB": {
+    "path": "SK_Dink_V33_Trousers_GEOMETRY_ONLY.glb",
+    "sha256": "e0613afe2e9a91a1a2797e663d499033f8e2b5c8abade66997d8a4928c690658",
+    "bytes": 909300,
+    "qualification": "Geometry-only LOD0 skin preview, no materials/texture/procedural-shading fidelity, not native path",
+    "parameters": {
+      "filepath": "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_GEOMETRY_ONLY.glb",
+      "export_format": "GLB",
+      "use_selection": true,
+      "export_apply": false,
+      "export_texcoords": true,
+      "export_normals": true,
+      "export_tangents": false,
+      "export_materials": "NONE",
+      "export_cameras": false,
+      "export_lights": false,
+      "export_animations": false,
+      "export_skins": true,
+      "export_yup": true,
+      "export_def_bones": false,
+      "export_all_influences": true
+    }
+  },
+  "roundtrip": "Independent actual raw FBX and Blender import verification required"
+}

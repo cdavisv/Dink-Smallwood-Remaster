@@ -1,0 +1,925 @@
+{
+  "pose": "walk14",
+  "actual89_world_matrix_max_delta": 2.384185791015625e-07,
+  "actual_LBS_proof": {
+    "NEW_Dink_Bracer_L": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.2549548671277697e-07
+    },
+    "NEW_Dink_Bracer_R": {
+      "samples": 43,
+      "maximum_LBS_delta_m": 1.812804499357408e-07
+    },
+    "NEW_Dink_Jerkin_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.386512961692656e-07
+    },
+    "NEW_Dink_RedUpperArmTie": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.453323576752388e-07
+    },
+    "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 2.7847635136590536e-07
+    },
+    "NEW_Dink_Trousers_LOD0": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 1.2036781326982014e-07
+    },
+    "Original_Belt_Compatible": {
+      "samples": 43,
+      "maximum_LBS_delta_m": 1.2036781326982014e-07
+    },
+    "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+      "samples": 14986,
+      "maximum_LBS_delta_m": 3.5762786865234375e-07
+    },
+    "Recovered_FullBody_EarlySlim_Bound89": {
+      "samples": 42,
+      "maximum_LBS_delta_m": 1.8189185285171422e-07
+    }
+  },
+  "checks": {
+    "baseline": {
+      "body": {
+        "strict_crossing_pairs": 27,
+        "witness_limit": 100,
+        "witnesses": [
+          {
+            "pants_triangle": 15623,
+            "other_triangle": 8285,
+            "point": [
+              -0.034693583846092224,
+              0.07473726570606232,
+              0.69258713722229
+            ]
+          },
+          {
+            "pants_triangle": 15623,
+            "other_triangle": 13169,
+            "point": [
+              -0.03539333865046501,
+              0.06831850111484528,
+              0.6926619410514832
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 8285,
+            "point": [
+              -0.034693583846092224,
+              0.07473725825548172,
+              0.69258713722229
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 8284,
+            "point": [
+              -0.034669678658246994,
+              0.07444550096988678,
+              0.6937561631202698
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 13169,
+            "point": [
+              -0.03539334237575531,
+              0.06831848621368408,
+              0.6926619410514832
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13108,
+            "point": [
+              -0.03467465564608574,
+              0.0744197890162468,
+              0.6939652562141418
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 8284,
+            "point": [
+              -0.034669678658246994,
+              0.07444550096988678,
+              0.6937561631202698
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13109,
+            "point": [
+              -0.034703075885772705,
+              0.07437164336442947,
+              0.6963440179824829
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13111,
+            "point": [
+              -0.03654150292277336,
+              0.05846231430768967,
+              0.6967300176620483
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13110,
+            "point": [
+              -0.03673043102025986,
+              0.0568205900490284,
+              0.6966884136199951
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13169,
+            "point": [
+              -0.03537745401263237,
+              0.06825652718544006,
+              0.6931363940238953
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13109,
+            "point": [
+              -0.034703075885772705,
+              0.07437163591384888,
+              0.6963440179824829
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13111,
+            "point": [
+              -0.036472465842962265,
+              0.05883631482720375,
+              0.697275698184967
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13110,
+            "point": [
+              -0.0366896353662014,
+              0.05686135217547417,
+              0.6974340677261353
+            ]
+          },
+          {
+            "pants_triangle": 15703,
+            "other_triangle": 13110,
+            "point": [
+              -0.03688249737024307,
+              0.0550377182662487,
+              0.697738528251648
+            ]
+          },
+          {
+            "pants_triangle": 13867,
+            "other_triangle": 13110,
+            "point": [
+              -0.03688249737024307,
+              0.055037721991539,
+              0.697738528251648
+            ]
+          },
+          {
+            "pants_triangle": 13867,
+            "other_triangle": 13113,
+            "point": [
+              -0.03711024299263954,
+              0.054310377687215805,
+              0.697354257106781
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13111,
+            "point": [
+              -0.03669244050979614,
+              0.05764463171362877,
+              0.6955370306968689
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13110,
+            "point": [
+              -0.03673043102025986,
+              0.056820597499608994,
+              0.6966884136199951
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13113,
+            "point": [
+              -0.037399955093860626,
+              0.05488868057727814,
+              0.6928079128265381
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13169,
+            "point": [
+              -0.0362815335392952,
+              0.061528660356998444,
+              0.6927382349967957
+            ]
+          },
+          {
+            "pants_triangle": 13828,
+            "other_triangle": 13113,
+            "point": [
+              -0.03711023926734924,
+              0.0543103851377964,
+              0.697354257106781
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13113,
+            "point": [
+              -0.037399958819150925,
+              0.05488867312669754,
+              0.6928079128265381
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13169,
+            "point": [
+              -0.0362815335392952,
+              0.06152866780757904,
+              0.6927382349967957
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13168,
+            "point": [
+              -0.037083353847265244,
+              0.0556732602417469,
+              0.6922590136528015
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13167,
+            "point": [
+              -0.037152934819459915,
+              0.05549997463822365,
+              0.6923792362213135
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13166,
+            "point": [
+              -0.03726654499769211,
+              0.055208224803209305,
+              0.6925712823867798
+            ]
+          }
+        ],
+        "other_dominant_bone_counts": {
+          "thigh_twist_01_r": 27
+        },
+        "other_material_counts": {}
+      },
+      "self": {
+        "strict_crossing_pairs": 14,
+        "witness_limit": 100,
+        "witnesses": [
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20516,
+            "point": [
+              0.05881533771753311,
+              -0.09306386113166809,
+              0.9161251187324524
+            ]
+          },
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20515,
+            "point": [
+              0.0459243506193161,
+              -0.09041903913021088,
+              0.9154967069625854
+            ]
+          },
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20514,
+            "point": [
+              0.03354434669017792,
+              -0.0881979912519455,
+              0.9147462844848633
+            ]
+          },
+          {
+            "pants_triangle": 1397,
+            "other_triangle": 20514,
+            "point": [
+              0.032044585794210434,
+              -0.08832851052284241,
+              0.9147656559944153
+            ]
+          },
+          {
+            "pants_triangle": 194,
+            "other_triangle": 20514,
+            "point": [
+              0.03241259977221489,
+              -0.08826492726802826,
+              0.9147568345069885
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20516,
+            "point": [
+              0.058815304189920425,
+              -0.09306386113166809,
+              0.9161251187324524
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20515,
+            "point": [
+              0.0573977492749691,
+              -0.09368834644556046,
+              0.9162915349006653
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20514,
+            "point": [
+              0.03741731122136116,
+              -0.08986249566078186,
+              0.9149556756019592
+            ]
+          },
+          {
+            "pants_triangle": 12804,
+            "other_triangle": 20514,
+            "point": [
+              0.03741731867194176,
+              -0.08986249566078186,
+              0.9149556756019592
+            ]
+          },
+          {
+            "pants_triangle": 12803,
+            "other_triangle": 20514,
+            "point": [
+              0.04301964119076729,
+              -0.09306271374225616,
+              0.9153612852096558
+            ]
+          },
+          {
+            "pants_triangle": 12803,
+            "other_triangle": 20513,
+            "point": [
+              0.021663209423422813,
+              -0.08900295197963715,
+              0.9145240783691406
+            ]
+          },
+          {
+            "pants_triangle": 164,
+            "other_triangle": 20514,
+            "point": [
+              0.031841665506362915,
+              -0.08835889399051666,
+              0.9147699475288391
+            ]
+          },
+          {
+            "pants_triangle": 1373,
+            "other_triangle": 20514,
+            "point": [
+              0.031841665506362915,
+              -0.08835889399051666,
+              0.9147699475288391
+            ]
+          },
+          {
+            "pants_triangle": 1373,
+            "other_triangle": 20513,
+            "point": [
+              0.021663211286067963,
+              -0.08900295197963715,
+              0.9145240783691406
+            ]
+          }
+        ],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "other_garments": {
+        "NEW_Dink_Bracer_L": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Bracer_R": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Jerkin_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_RedUpperArmTie": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "Original_Belt_Compatible": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        }
+      }
+    },
+    "successor": {
+      "body": {
+        "strict_crossing_pairs": 27,
+        "witness_limit": 100,
+        "witnesses": [
+          {
+            "pants_triangle": 15623,
+            "other_triangle": 8285,
+            "point": [
+              -0.034693580120801926,
+              0.07473725825548172,
+              0.69258713722229
+            ]
+          },
+          {
+            "pants_triangle": 15623,
+            "other_triangle": 13169,
+            "point": [
+              -0.03539333492517471,
+              0.06831852346658707,
+              0.6926619410514832
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 8285,
+            "point": [
+              -0.034693580120801926,
+              0.07473725825548172,
+              0.69258713722229
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 8284,
+            "point": [
+              -0.034669678658246994,
+              0.07444550096988678,
+              0.6937561631202698
+            ]
+          },
+          {
+            "pants_triangle": 15664,
+            "other_triangle": 13169,
+            "point": [
+              -0.03539333492517471,
+              0.06831853836774826,
+              0.6926619410514832
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13109,
+            "point": [
+              -0.034703075885772705,
+              0.07437164336442947,
+              0.6963440179824829
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13111,
+            "point": [
+              -0.036472465842962265,
+              0.05883631855249405,
+              0.697275698184967
+            ]
+          },
+          {
+            "pants_triangle": 15704,
+            "other_triangle": 13110,
+            "point": [
+              -0.0366896353662014,
+              0.05686136335134506,
+              0.6974340677261353
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13108,
+            "point": [
+              -0.03467465564608574,
+              0.0744197890162468,
+              0.6939652562141418
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 8284,
+            "point": [
+              -0.034669678658246994,
+              0.07444550096988678,
+              0.6937561631202698
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13109,
+            "point": [
+              -0.034703075885772705,
+              0.07437164336442947,
+              0.6963440179824829
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13111,
+            "point": [
+              -0.03654150292277336,
+              0.05846231058239937,
+              0.6967300176620483
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13110,
+            "point": [
+              -0.03673043102025986,
+              0.05682061240077019,
+              0.6966884136199951
+            ]
+          },
+          {
+            "pants_triangle": 15663,
+            "other_triangle": 13169,
+            "point": [
+              -0.03537745773792267,
+              0.06825650483369827,
+              0.6931363940238953
+            ]
+          },
+          {
+            "pants_triangle": 15703,
+            "other_triangle": 13110,
+            "point": [
+              -0.03688249737024307,
+              0.055037721991539,
+              0.697738528251648
+            ]
+          },
+          {
+            "pants_triangle": 13867,
+            "other_triangle": 13110,
+            "point": [
+              -0.03688249737024307,
+              0.055037714540958405,
+              0.697738528251648
+            ]
+          },
+          {
+            "pants_triangle": 13867,
+            "other_triangle": 13113,
+            "point": [
+              -0.03711024299263954,
+              0.054310377687215805,
+              0.697354257106781
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13111,
+            "point": [
+              -0.03669244050979614,
+              0.05764463543891907,
+              0.6955370306968689
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13110,
+            "point": [
+              -0.03673043102025986,
+              0.05682060122489929,
+              0.6966884136199951
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13113,
+            "point": [
+              -0.037399955093860626,
+              0.05488868057727814,
+              0.6928079128265381
+            ]
+          },
+          {
+            "pants_triangle": 13827,
+            "other_triangle": 13169,
+            "point": [
+              -0.0362815335392952,
+              0.061528660356998444,
+              0.6927382349967957
+            ]
+          },
+          {
+            "pants_triangle": 13828,
+            "other_triangle": 13113,
+            "point": [
+              -0.03711024299263954,
+              0.054310381412506104,
+              0.697354257106781
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13113,
+            "point": [
+              -0.037399958819150925,
+              0.05488866940140724,
+              0.6928079128265381
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13169,
+            "point": [
+              -0.0362815335392952,
+              0.061528660356998444,
+              0.6927382349967957
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13168,
+            "point": [
+              -0.037083353847265244,
+              0.0556732602417469,
+              0.6922590136528015
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13167,
+            "point": [
+              -0.037152934819459915,
+              0.05549997463822365,
+              0.6923792362213135
+            ]
+          },
+          {
+            "pants_triangle": 13788,
+            "other_triangle": 13166,
+            "point": [
+              -0.03726654499769211,
+              0.055208224803209305,
+              0.6925712823867798
+            ]
+          }
+        ],
+        "other_dominant_bone_counts": {
+          "thigh_twist_01_r": 27
+        },
+        "other_material_counts": {}
+      },
+      "self": {
+        "strict_crossing_pairs": 14,
+        "witness_limit": 100,
+        "witnesses": [
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20516,
+            "point": [
+              0.05881641432642937,
+              -0.09306405484676361,
+              0.9161251783370972
+            ]
+          },
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20515,
+            "point": [
+              0.04592351242899895,
+              -0.09041881561279297,
+              0.9154966473579407
+            ]
+          },
+          {
+            "pants_triangle": 12806,
+            "other_triangle": 20514,
+            "point": [
+              0.0335446298122406,
+              -0.08819796144962311,
+              0.9147463440895081
+            ]
+          },
+          {
+            "pants_triangle": 1397,
+            "other_triangle": 20514,
+            "point": [
+              0.03204460069537163,
+              -0.08832850307226181,
+              0.9147657155990601
+            ]
+          },
+          {
+            "pants_triangle": 194,
+            "other_triangle": 20514,
+            "point": [
+              0.03241267800331116,
+              -0.08826490491628647,
+              0.9147568941116333
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20516,
+            "point": [
+              0.058816418051719666,
+              -0.09306405484676361,
+              0.9161251783370972
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20515,
+            "point": [
+              0.057398609817028046,
+              -0.09368860721588135,
+              0.9162915945053101
+            ]
+          },
+          {
+            "pants_triangle": 12805,
+            "other_triangle": 20514,
+            "point": [
+              0.03741830587387085,
+              -0.08986276388168335,
+              0.9149557948112488
+            ]
+          },
+          {
+            "pants_triangle": 12804,
+            "other_triangle": 20514,
+            "point": [
+              0.03741830959916115,
+              -0.08986276388168335,
+              0.9149557948112488
+            ]
+          },
+          {
+            "pants_triangle": 12803,
+            "other_triangle": 20514,
+            "point": [
+              0.043020956218242645,
+              -0.09306327253580093,
+              0.9153614640235901
+            ]
+          },
+          {
+            "pants_triangle": 12803,
+            "other_triangle": 20513,
+            "point": [
+              0.021663106977939606,
+              -0.08900295197963715,
+              0.9145240783691406
+            ]
+          },
+          {
+            "pants_triangle": 164,
+            "other_triangle": 20514,
+            "point": [
+              0.031841643154621124,
+              -0.08835889399051666,
+              0.9147700071334839
+            ]
+          },
+          {
+            "pants_triangle": 1373,
+            "other_triangle": 20514,
+            "point": [
+              0.031841643154621124,
+              -0.08835889399051666,
+              0.9147700071334839
+            ]
+          },
+          {
+            "pants_triangle": 1373,
+            "other_triangle": 20513,
+            "point": [
+              0.021663106977939606,
+              -0.08900295197963715,
+              0.9145240783691406
+            ]
+          }
+        ],
+        "other_dominant_bone_counts": {},
+        "other_material_counts": {}
+      },
+      "other_garments": {
+        "NEW_Dink_Bracer_L": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Bracer_R": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Jerkin_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_RedUpperArmTie": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "NEW_Dink_Shirt_ActualAnatomy_LOD0": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "Original_Belt_Compatible": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        },
+        "QA_Dink_VisibleLegacy_HeadHandsHairGear": {
+          "strict_crossing_pairs": 0,
+          "witness_limit": 100,
+          "witnesses": [],
+          "other_dominant_bone_counts": {},
+          "other_material_counts": {}
+        }
+      }
+    }
+  },
+  "qualification": "Same fixed topology V9 versus V15 binding trial; baseline manual LBS, candidate actual Blender evaluation verified against LBS. Body is actual raw LBS reference and can self-intersect in deep flex; no global volume PASS is claimed. Strict edge crossings 1e-7 m; adjacent shared edges excluded; no native/export."
+}

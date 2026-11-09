@@ -1,0 +1,17 @@
+{
+  "scope": "Read-only exact boundary segment minimum between already nonoverlapping atlas charts; padding feasibility only, not runtime MIP acceptance",
+  "minimum_chart_gap_UV": 0.016472592925057133,
+  "closest_chart_pair": [
+    "Inner_Gusset",
+    "Outer_Gusset"
+  ],
+  "minimum_gap_pixels_2K_4K": [
+    33.73587031051701,
+    67.47174062103402
+  ],
+  "tile_edge_min_pixels_2K_4K": [
+    17.0329647064209,
+    34.0659294128418
+  ],
+  "two_sided_padding_8px2K_16px4K_fits": true
+}

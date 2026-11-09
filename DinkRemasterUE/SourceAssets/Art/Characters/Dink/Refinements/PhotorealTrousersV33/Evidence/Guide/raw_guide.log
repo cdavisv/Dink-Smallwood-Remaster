@@ -1,0 +1,323 @@
+00:00.325  blend            | Read blend: "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend"
+/home/davisc/Work/DinkDeliveryRepo/tools/blender/dinkasset/validate.py:498: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if not mat or not mat.use_nodes or not mat.node_tree:
+
+@@DINK_REPORT_BEGIN@@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 22,
+    "warnings": 8
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Dink_Trousers_SourceCandidate",
+      "class": "character_hero",
+      "collection": "SK_Dink_Trousers_SourceCandidate",
+      "tris_per_lod": {
+        "LOD0": 576
+      },
+      "bounds": {
+        "blender_min_cm": [
+          35.676,
+          -15.85,
+          103.573
+        ],
+        "blender_max_cm": [
+          48.799,
+          -2.099,
+          118.862
+        ],
+        "size_cm": [
+          13.122,
+          13.751,
+          15.289
+        ],
+        "unreal_min_cm": [
+          35.676,
+          2.099,
+          103.573
+        ],
+        "unreal_max_cm": [
+          48.799,
+          15.85,
+          118.862
+        ]
+      },
+      "errors": 22,
+      "warnings": 8,
+      "findings": [
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_Bracer_L' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_Bracer_L"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_Bracer_R' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_Bracer_R"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_Jerkin_LOD0' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_Jerkin_LOD0"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_RedUpperArmTie' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_RedUpperArmTie"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_Shirt_ActualAnatomy_LOD0' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_Shirt_ActualAnatomy_LOD0"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'NEW_Dink_Trousers_LOD0' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "NEW_Dink_Trousers_LOD0"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'Original_Belt_Compatible' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "Original_Belt_Compatible"
+        },
+        {
+          "code": "NAME_OBJECT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "render mesh object 'QA_Dink_VisibleLegacy_HeadHandsHairGear' should be named SK_Dink_Trousers_SourceCandidate_LOD0",
+          "object": "QA_Dink_VisibleLegacy_HeadHandsHairGear"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'SourceDarkLeather_NEW_Dink_Bracer_L' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'SourceDarkLeather_NEW_Dink_Bracer_R' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'TailoredBrownLeather_ContinuousWarmBinding_FineGrainFinish' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'WarmLeatherEdgeBinding_DIELECTRIC_FineGrainFinish' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'OriginalIdentity_RedWovenTie' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'QA_BlueWovenCloth_PBRPending_WovenSeamSource_RealPanelSeamPrototype' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "NAME_MATERIAL",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "material 'MI_Dink_WardrobeV3.001' must be M_<Name> or MI_<Name> (no .001 suffixes)"
+        },
+        {
+          "code": "MULTI_MESH",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "LOD0 has 8 mesh objects (NEW_Dink_Bracer_L, NEW_Dink_Bracer_R, NEW_Dink_Jerkin_LOD0, NEW_Dink_RedUpperArmTie, NEW_Dink_Shirt_ActualAnatomy_LOD0, NEW_Dink_Trousers_LOD0, Original_Belt_Compatible, QA_Dink_VisibleLegacy_HeadHandsHairGear); join them into one (Unreal merges unpredictably)"
+        },
+        {
+          "code": "SCALE_RANGE",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "longest dimension 0.153 m is outside the character_hero range 1.40-2.20 m.",
+          "object": "NEW_Dink_Bracer_L",
+          "data": {
+            "longest_m": 0.1529,
+            "range_m": [
+              1.4,
+              2.2
+            ],
+            "size_m": [
+              0.1312,
+              0.1375,
+              0.1529
+            ]
+          }
+        },
+        {
+          "code": "SCALE_RANGE",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "height 0.153 m outside 1.40-2.20 m for character_hero",
+          "object": "NEW_Dink_Bracer_L"
+        },
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "pivot is wrong for character_hero (rule feet): origin is 112.2 cm off, should move by (42.2, -9.0, 103.6) cm. ",
+          "object": "NEW_Dink_Bracer_L",
+          "data": {
+            "rule": "feet",
+            "offset_cm": [
+              42.24,
+              -8.97,
+              103.57
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "287 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "NEW_Dink_Bracer_L",
+          "data": {
+            "vertices": 287
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "468 non-manifold edges (468 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "NEW_Dink_Bracer_L",
+          "data": {
+            "boundary": 468,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "209 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "NEW_Dink_Bracer_R",
+          "data": {
+            "vertices": 209
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "368 non-manifold edges (368 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "NEW_Dink_Bracer_R",
+          "data": {
+            "boundary": 368,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "1 zero-area faces (area < 1e-8 m2)",
+          "object": "NEW_Dink_Shirt_ActualAnatomy_LOD0",
+          "data": {
+            "faces": 1
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "160 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "Original_Belt_Compatible",
+          "data": {
+            "vertices": 160
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "424 non-manifold edges (424 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "Original_Belt_Compatible",
+          "data": {
+            "boundary": 424,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "3006 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "QA_Dink_VisibleLegacy_HeadHandsHairGear",
+          "data": {
+            "vertices": 3006
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "4602 non-manifold edges (4602 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "QA_Dink_VisibleLegacy_HeadHandsHairGear",
+          "data": {
+            "boundary": 4602,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOD_MISSING",
+          "severity": "error",
+          "asset": "SK_Dink_Trousers_SourceCandidate",
+          "message": "character_hero needs 4 LOD levels (LOD0..LOD3), found 1 (run make_lods.py)",
+          "data": {
+            "have": 1,
+            "need": 4
+          }
+        }
+      ],
+      "passed": false
+    }
+  ]
+}
+@@DINK_REPORT_END@@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)

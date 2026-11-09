@@ -1,0 +1,56 @@
+{
+  "scope": "Raw production guide execution on appearance context; no source fix or waiver applied.",
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 22,
+    "warnings": 8
+  },
+  "exit_code": 1,
+  "blender": "5.2.2 LTS",
+  "error_codes": {
+    "NAME_OBJECT": 8,
+    "NAME_MATERIAL": 8,
+    "MULTI_MESH": 1,
+    "SCALE_RANGE": 2,
+    "PIVOT": 1,
+    "ZERO_AREA": 1,
+    "LOD_MISSING": 1
+  },
+  "findings": [
+    {
+      "codes": [
+        "NAME_OBJECT",
+        "NAME_MATERIAL",
+        "MULTI_MESH"
+      ],
+      "classification": "Unjoined editable eight-mesh context and descriptive authoring names retained. Export material aliases are explicit in Export/export_receipt.json; this is not a production collection/name pass."
+    },
+    {
+      "codes": [
+        "SCALE_RANGE",
+        "PIVOT"
+      ],
+      "classification": "Guide selects the first bracer as its one LOD0 mesh. Its .153m dimension and off-feet pivot are not full-avatar size/pivot proof. The context fails the one-mesh convention; actual full-context native bounds remain pending."
+    },
+    {
+      "codes": [
+        "ZERO_AREA"
+      ],
+      "classification": "One <1e-8m2 face is reported on unchanged context shirt NEW_Dink_Shirt_ActualAnatomy_LOD0, not new trousers. This inherited defect is retained and must be addressed before whole-avatar production acceptance."
+    },
+    {
+      "codes": [
+        "LOD_MISSING"
+      ],
+      "classification": "Only high source LOD provided; required four-LOD production character chain absent."
+    }
+  ],
+  "warnings": "All eight raw warnings retained in raw_guide.json; no warning-free claim.",
+  "additional_candidate_limits": [
+    "13 context material slots exceed six-slot hero policy; do not infer compliance from first-bracer reporting.",
+    "UV0 is unique garment atlas; UV1/UV2 are deliberate metric data channels. UV2 must not generate tangents.",
+    "No PhysicsAsset/native skeleton reassignment/actual whole-avatar gameplay validation."
+  ],
+  "passed": false
+}

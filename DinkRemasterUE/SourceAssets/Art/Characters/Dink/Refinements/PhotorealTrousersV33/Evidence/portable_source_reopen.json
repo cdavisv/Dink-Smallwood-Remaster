@@ -1,0 +1,38 @@
+{
+  "status": "PACKED_LOCAL_SOURCE_REOPEN_PASS",
+  "scope": "Core geometry/rig/UV/material-slot signatures match accepted authoring captures; no reference/nude/orphan mesh datablocks in hero scenes. Helper plane and pants-only bake source explicitly separate. No native/game acceptance.",
+  "scenes": [
+    {
+      "role": "fit",
+      "core_exact": true,
+      "mesh_objects": 8,
+      "mesh_datablocks": 8,
+      "all_node_images_packed_relative_local_exact": true,
+      "image_nodes_referenced_unique_images": 9
+    },
+    {
+      "role": "appearance",
+      "core_exact": true,
+      "mesh_objects": 8,
+      "mesh_datablocks": 8,
+      "all_node_images_packed_relative_local_exact": true,
+      "image_nodes_referenced_unique_images": 13
+    },
+    {
+      "role": "coarse_procedural",
+      "core_exact": true,
+      "mesh_objects": 1,
+      "mesh_datablocks": 1,
+      "all_node_images_packed_relative_local_exact": true,
+      "image_nodes_referenced_unique_images": 0
+    },
+    {
+      "role": "weave_tile",
+      "core_exact": true,
+      "mesh_objects": 1,
+      "mesh_datablocks": 1,
+      "all_node_images_packed_relative_local_exact": true,
+      "image_nodes_referenced_unique_images": 0
+    }
+  ]
+}

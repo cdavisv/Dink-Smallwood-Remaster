@@ -1,0 +1,14 @@
+{
+  "scope": "Actual final V19 geometry/V22UV, source only; native UV/FBX roundtrip remains required.",
+  "construction": "UV0 positive isotropic per-chart scale of metric grainUV1 plus translation; no pack rotations.",
+  "maximum_tangent_angle_degrees": 0.007127565137580749,
+  "p99_tangent_angle_degrees": 0.0012296522406082262,
+  "bitangent_sign_mismatches": 0,
+  "maximum_relative_offdiagonal": 0.00025857137427176335,
+  "maximum_relative_anisotropy": 0.0005863235290378714,
+  "nonpositive_determinants": [],
+  "positive_scale_minmax": [
+    0.4286310071470085,
+    0.6595345660671441
+  ]
+}
