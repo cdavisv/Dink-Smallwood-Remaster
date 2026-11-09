@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "tested_files": 8852,
+  "tested_CPP_Content_newsource_modules_unchanged": true,
+  "intentional_changed_metadata": [
+    "SourceAssets/asset_ledger.csv"
+  ],
+  "new_portable_QA_helpers": [
+    "Scripts/Playtest/read_perimeter_skirt_geometry.py",
+    "Scripts/Playtest/verify_perimeter_skirt_capture.py"
+  ],
+  "other_metadata": "AGENTS.md and selected Docs/Verification/HouseVisualFixes added after tests; no runtime settings changed."
+}

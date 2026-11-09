@@ -1,0 +1,157 @@
+{
+  "status": "Props staged into runtime and rendered; combined full native147 passes; combined render/lighting/hero acceptance pending",
+  "integrated_git_base": "f31d243477ee75070113f7f38029113bd606f993",
+  "authoring_history": {
+    "checkpoint": "checkpoint.json",
+    "import": "import.json",
+    "verify": "verify.json",
+    "evidence_hashes": "evidence_hashes.json",
+    "note": "These preserved historical files predate guarded runtime publication and use the older tool hashes; their NOT published / remaining statements describe that earlier checkpoint."
+  },
+  "staged_publication": {
+    "receipt": "Publication/author_publication.json",
+    "only_mesh_references_changed": 8,
+    "asset_rows": 3,
+    "instance_rows": 5,
+    "house_after_sha256": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853"
+  },
+  "rendered_old_exposure_stage": {
+    "actual_W_exit": "PASS",
+    "actual_W_return": "PASS",
+    "interaction_cases": 12,
+    "interaction_result": "PASS",
+    "frozen_files": 9040,
+    "changed_files": [],
+    "native_origin_readback": "Render/Runtime/furniture_identity_summary.json",
+    "limits": [
+      "Actual door routes use real held W without teleport.",
+      "Photo and interaction fixtures explicitly teleport to setup positions; actual F/E/W actions drive responses.",
+      "Old hero and old exposure ownership were active. This is furniture visibility/interaction evidence, not final combined photoreal/lighting/cloth approval.",
+      "Origin/script identities retained; no new save/load roundtrip is claimed."
+    ]
+  },
+  "postpublication_Art24": {
+    "passed": 24,
+    "failed": 0,
+    "warning_tests": 3,
+    "warning_events": 46,
+    "warning_context": "Environmental Epic/Google HTTP DNS/timeouts and global editor FilterBar config write errno30; raw report retained.",
+    "scope": "Earlier postpublication native Art suite, not the later combined suite."
+  },
+  "current_published_native_verify": {
+    "receipt": "CurrentPublishedVerify/receipt.json",
+    "terminal": "CurrentPublishedVerify/terminal.json",
+    "seconds": 85.64292001724243,
+    "publication_state": "published",
+    "verification_basis": "published_entry_state",
+    "scene_data_approval": false,
+    "writer_scope": "none",
+    "native_source_getter_roles": 12,
+    "saved_package_count": 15,
+    "entry_exit_changes": {
+      "source_tools_config": [],
+      "source_art": [],
+      "runtime_data": [],
+      "content": [],
+      "modules": []
+    },
+    "tool_sha256": {
+      "props_contract.py": "41d03f91aa9bf34199df817220f7ce7b2ae4716738ed5bdec6445b1793796de2",
+      "import_photoreal_props.py": "f87d3074128a7d81a76eecce54009f2a9ae6dba128f9216b704cc92725a3dd03",
+      "publish_photoreal_props.py": "6a32131de837b74bf344d38da2247e536f5daefcd7f991bf8b6b7f0ac99ce630",
+      "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+    },
+    "pure_tests": 68,
+    "limits": [
+      "Fresh current-state saved-package/native asset verification in the owning integration checkout.",
+      "No fresh relocated clone was executed here. Package-relative relocation portability remains a separate acceptance check.",
+      "Current Data is pinned context; this receipt does not approve pre-entry scene or story edits."
+    ]
+  },
+  "remaining": [
+    "Combined actual-RHI lighting/furniture/cloth views after final integration.",
+    "New hero Blender/native acceptance and full photoreal visual approval.",
+    "Fresh relocated-clone verification with own local SourceAssets and no private author Saved receipts."
+  ],
+  "preserved_historical_file_sha256": {
+    "verify.json": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
+    "import.json": "3faa0be8b8a09d2ab39a8ba7d85eeaca7bb9760ac1ba30473efa1a228df4192b",
+    "checkpoint.json": "b628194b8ac7531b9484574de30901b90dc2c9af702d04c9d14e96c1415a5607",
+    "convex_bridge_test.json": "43230c5b4d21e9ff7dbe4f5d5cb7421fd98a8812864a38421f64b8e7cc68ddc3",
+    "quantization_diagnosis.json": "948fcea38d40af6f05d647822d5a5da3533de3f4d972db059b02fdea5f85c90e",
+    "tolerant_rematch_proof.json": "a9e8924146e3674eba295e96046ed70f2639a1b1987f2b8853262b70194158fb",
+    "pure_tests.log": "8382ad608e0a08f539ef29fd94f492ccd119ca682ce912bf27dc63d7af73f285",
+    "native_art_tests.json": "35558255edcd0fb5ebca1c8b3f77f322fe244900c885d54414e8d03b63f22121",
+    "build_modules.json": "592236ec6df1f7f03b223b74657e3a8c56664f7399b34fb18efbb552ee843c9d",
+    "evidence_hashes.json": "a163c11099f418855e146d78de05085c607be20f79a920d51b580b7d384aeb74",
+    "ledger_append_receipt.json": "d44778bbfc05f543c381dc9ca7d4739d86ecdd7d17e0fc9b9fcca3ddb7ad78d9"
+  },
+  "combined_full_native": {
+    "verification": "CombinedFull147/verification.json",
+    "raw_report": "CombinedFull147/raw_report.json",
+    "independent_report_check": "CombinedFull147/independent_report_check.json",
+    "passed": 147,
+    "failed": 0,
+    "warning_tests": 0,
+    "warning_events": 0,
+    "seconds": 432.3039140701294,
+    "frozen_inputs": 8884,
+    "changed_inputs": [],
+    "old_save_changes": [],
+    "new_isolated_probe_slots": 10,
+    "scope": "Merged PR10+PR11 plus native furniture/convex bridge; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded.",
+    "limits": [
+      "Full native NullRHI automation on merged PR10/PR11 plus furniture and convex bridge.",
+      "Does not replace pending combined actual-RHI lighting/furniture/cloth review or fresh relocated-clone verification.",
+      "The old-save inventory was empty; zero old-save changes does not establish preservation of pre-existing saves."
+    ],
+    "old_save_slots_inventoried": 0
+  },
+  "combined_published_native_verify": {
+    "receipt": "CombinedPublishedVerify/receipt.json",
+    "terminal": "CombinedPublishedVerify/terminal.json",
+    "seconds": 83.11642384529114,
+    "publication_state": "published",
+    "verification_basis": "published_entry_state",
+    "scene_data_approval": false,
+    "writer_scope": "none",
+    "saved_package_count": 15,
+    "native_source_getter_roles": 12,
+    "entry_exit_changes": {
+      "source_tools_config": [],
+      "source_art": [],
+      "runtime_data": [],
+      "content": [],
+      "modules": []
+    },
+    "context": "After merged PR10+PR11, rebuilt combined147 full-suite and ledger append; own-stage current-state verification, not relocated clone or actual-RHI acceptance.",
+    "publisher_noop": {
+      "receipt": "CombinedPublishedVerify/publisher_noop.json",
+      "apply_requested": true,
+      "applied": false,
+      "already_published": true,
+      "changed_mesh_references": 0,
+      "writer_scope": "none"
+    }
+  },
+  "pure_python_full_suite": {
+    "tests": 184,
+    "result": "PASS",
+    "log": "RootChecks/python184.log"
+  },
+  "relocated_clone": {
+    "result": "PASS for saved-asset portability",
+    "evidence": "RelocatedClone/verification.json",
+    "source_filename_roles": 12,
+    "candidate_packages": 15,
+    "unchanged_recorded_inputs": 3422,
+    "publisher_zero_write_files": 3815,
+    "limits": "Outer runner exitcode/time missing; nativepassedreceipt/internalguards/normalshutdown and closeoutpins prove boundedverification. No renderedlightingapproval."
+  },
+  "combined_render": {
+    "result": "ActualW door exit and return PASS",
+    "evidence": "../CombinedHouseRender/verification.json",
+    "unchanged_inputs": 6909,
+    "qualifier": "Interrupted firstdriver, resumedsamegame noGOTO/restart. Darkhero remains; failedLumenvisualizationnotcoverageproof."
+  }
+}

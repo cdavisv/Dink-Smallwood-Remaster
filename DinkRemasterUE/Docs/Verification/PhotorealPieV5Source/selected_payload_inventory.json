@@ -1,0 +1,1435 @@
+{
+  "schema": "dink-pie-v5-source-publication-plan/1",
+  "status": "PLAN ONLY; no payload copied and no repository/ledger modified",
+  "source_root": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie",
+  "proposed_target": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1",
+  "frozen_manifests": [
+    {
+      "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/candidate_handoff.json",
+      "sha256": "ca97ec1b2120e793584dc2048fa8fc87373d97fbafa707a3c1aa349918f56875",
+      "pinned_files": 44
+    },
+    {
+      "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/source_export_handoff.json",
+      "sha256": "8ee754888a40d4cf6c135845ff60140a48102262ca468bed7aa00facbb069d90",
+      "pinned_files": 52
+    },
+    {
+      "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/source_handoff.json",
+      "sha256": "6a47780b949f2c7c1976c9ca148c982a1772a56a709a7a2c0e4f4120bec099b9",
+      "pinned_files": 31
+    },
+    {
+      "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/candidate_handoff.json",
+      "sha256": "6bdab934b3a149409df4e241deaa9878bf8caed933193303d9a9ceea0fb65a9c",
+      "pinned_files": 8
+    }
+  ],
+  "selected_files": 139,
+  "bytes": 107661641,
+  "LFS_pointer_paths": 44,
+  "LFS_file_bytes": 107132013,
+  "LFS_unique_objects": 36,
+  "LFS_unique_bytes": 74792251,
+  "standalone_Python_parse_passed": true,
+  "author_only_absolute_executable_literals": [],
+  "baseline_ledger_observed": {
+    "project": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+    "sha256": "4bde11e38cf703774d080815e3de008d251fca7ab8b606618be1219123119faa",
+    "bytes": 1957908,
+    "rows": 2043,
+    "instruction": "Re-pin fresh official base at execution; append one candidate row per selected payload plus separately approved coordinator metadata. Preserve every prior raw byte and all483 audio records."
+  },
+  "files": [
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/HANDOFF.md",
+      "relative": "V4_ReferenceAlbedo/HANDOFF.md",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/HANDOFF.md",
+      "sha256": "f7211b584dd9f2f95fe0ab585964af5aedec3259f7b3198a0df41ad9633c762d",
+      "bytes": 2990,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
+      "relative": "V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
+      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "bytes": 1084207,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Original_421_11.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Original_421_11.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Original_421_11.png",
+      "sha256": "5146473a7fac110e60b89ae46672aa73746f660b724460b3cf569ddccd21a852",
+      "bytes": 861,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_BC.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_BC.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_BC.png",
+      "sha256": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3",
+      "bytes": 1435537,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_N.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_N.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_N.png",
+      "sha256": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243",
+      "bytes": 2898185,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_ORM.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_ORM.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_Wicker_ORM.png",
+      "sha256": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48",
+      "bytes": 1302556,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_BC.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_BC.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_BC.png",
+      "sha256": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+      "bytes": 1185324,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_N.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_N.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_N.png",
+      "sha256": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+      "bytes": 2914121,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_ORM.png",
+      "relative": "V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_ORM.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/Textures/T_Stonebrook_WroughtIron_ORM.png",
+      "sha256": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb",
+      "bytes": 1341944,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/V3_Source.blend",
+      "relative": "V4_ReferenceAlbedo/Inputs/V3_Source.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/V3_Source.blend",
+      "sha256": "e82a96fda986e016830a77715ecd1413c43efd1332b3bf3265fea3897632a1dc",
+      "bytes": 11460918,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/food-11.bmp",
+      "relative": "V4_ReferenceAlbedo/Inputs/food-11.bmp",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/food-11.bmp",
+      "sha256": "1151def34dc55cf8ba4fd292fb6d179e29a6de91e7892c75d675833d35254e1d",
+      "bytes": 1536,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/original_placement.json",
+      "relative": "V4_ReferenceAlbedo/Inputs/original_placement.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/original_placement.json",
+      "sha256": "f122025c9793bbb5f9f4a44e2e1668793abeb7eef089c8b318ef94fcf3f7da94",
+      "bytes": 487,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Inputs/sfood.c",
+      "relative": "V4_ReferenceAlbedo/Inputs/sfood.c",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/sfood.c",
+      "sha256": "d0d1a724664811685876b47e5aad2dfe3ed11e9ac4ed7cc7b471b8e0bb45f5d0",
+      "bytes": 607,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
+      "relative": "V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
+      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "bytes": 14609796,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/__init__.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/__init__.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "bytes": 79,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/common.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/common.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "bytes": 14649,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/conventions.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/conventions.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "bytes": 12111,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/export_ue.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/export_ue.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "bytes": 14265,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/fbxparse.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/fbxparse.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "bytes": 6994,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/fix.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/fix.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "bytes": 20902,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/import_generated.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/import_generated.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/import_generated.py",
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "bytes": 9026,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/make_lods.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/make_lods.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/make_lods.py",
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "bytes": 16792,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Pipeline/dinkasset/validate.py",
+      "relative": "V4_ReferenceAlbedo/Pipeline/dinkasset/validate.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Pipeline/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "bytes": 35342,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Previews/PieSource-crust.png",
+      "relative": "V4_ReferenceAlbedo/Previews/PieSource-crust.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-crust.png",
+      "sha256": "7a047d746068bd9eb4647b2dc3417d1bd842a03aadb1f784f0b33118f15e8432",
+      "bytes": 888968,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Previews/PieSource-dish.png",
+      "relative": "V4_ReferenceAlbedo/Previews/PieSource-dish.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-dish.png",
+      "sha256": "4bd4d7408a8d7bd6317460cb14216b28c97c012972dec8d3e603ac2cfa524cdb",
+      "bytes": 750729,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Previews/PieSource-front.png",
+      "relative": "V4_ReferenceAlbedo/Previews/PieSource-front.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-front.png",
+      "sha256": "4efde13a67e7e8d5dfb3722a6d05329366183f9bc14e99a4c97e12ecfd4a44af",
+      "bytes": 546545,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
+      "relative": "V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
+      "sha256": "7f8b66d9584c48401964e8ab17c5cec7014ef9737202838fa3f0f1d5a0f849a0",
+      "bytes": 474423,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Textures/GeneratedShortcrust_Albedo_V1.png",
+      "relative": "V4_ReferenceAlbedo/Textures/GeneratedShortcrust_Albedo_V1.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Textures/GeneratedShortcrust_Albedo_V1.png",
+      "sha256": "4b211bc541e2bdced47dc483c3378d03f4f64411823a2052d41537c0c3fe233b",
+      "bytes": 3209596,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Textures/generation_provenance.json",
+      "relative": "V4_ReferenceAlbedo/Textures/generation_provenance.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Textures/generation_provenance.json",
+      "sha256": "cc6f3d6df7e48603113afe497f97fcf2ceeeeeb0b7250198fcfdba2bbc01cf68",
+      "bytes": 1671,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/Textures/prompt.txt",
+      "relative": "V4_ReferenceAlbedo/Textures/prompt.txt",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Textures/prompt.txt",
+      "sha256": "5600279f9f1cc0bd4f672582479a23652474266f8e598de0190c3ae546fe92b9",
+      "bytes": 1146,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/apply_albedo_reference.py",
+      "relative": "V4_ReferenceAlbedo/apply_albedo_reference.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/apply_albedo_reference.py",
+      "sha256": "64bc55b05c48e5d64595ae5cc605353f0c72947450f8d6457368c774e54ca629",
+      "bytes": 3754,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/audit_source.py",
+      "relative": "V4_ReferenceAlbedo/audit_source.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/audit_source.py",
+      "sha256": "d631bd5a43278c57dc82495253f3678794c105bf87291b909547b03c0c889c8d",
+      "bytes": 2833,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/check_portable.py",
+      "relative": "V4_ReferenceAlbedo/check_portable.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/check_portable.py",
+      "sha256": "bd5f2bd25b8c28ca4450cbcb077231ee860a1f879a010209ddab292e3d825428",
+      "bytes": 1831,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/collision_comparison.json",
+      "relative": "V4_ReferenceAlbedo/collision_comparison.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/collision_comparison.json",
+      "sha256": "3da769d076923db215fc051267ce1f2dc2412e9d3e8b4ab7b17b73447cba4364",
+      "bytes": 41,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/finish_verification.json",
+      "relative": "V4_ReferenceAlbedo/finish_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/finish_verification.json",
+      "sha256": "8c6ca4fd6810c0685a8a879d04b5875e54f252deb524b4a1fdcd78237d8229ea",
+      "bytes": 2891,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/guide_validation.json",
+      "relative": "V4_ReferenceAlbedo/guide_validation.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/guide_validation.json",
+      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "bytes": 1942,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/independent_audit.json",
+      "relative": "V4_ReferenceAlbedo/independent_audit.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/independent_audit.json",
+      "sha256": "9b49d2b16dfeb557375ea13d671f0e1f38eac3e1f251e17e5ba1c4c72fd4fb6b",
+      "bytes": 789,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/input_provenance.json",
+      "relative": "V4_ReferenceAlbedo/input_provenance.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/input_provenance.json",
+      "sha256": "8c891f209af6b0d3b37dedb5240254a51badbe59e38a77f784a3a1b98e070c63",
+      "bytes": 1297,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/portable_receipt.json",
+      "relative": "V4_ReferenceAlbedo/portable_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/portable_receipt.json",
+      "sha256": "a1bda1a551e507a6a255f896001ce4eb1cddbd7e82a0a81292013aaba12a391d",
+      "bytes": 1505,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/reference_application.json",
+      "relative": "V4_ReferenceAlbedo/reference_application.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/reference_application.json",
+      "sha256": "e479e606331d25ec6f525720f685970fb4e2b7c0935274ad0cd7aa3a91d9d914",
+      "bytes": 686,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/reference_only_verification.json",
+      "relative": "V4_ReferenceAlbedo/reference_only_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/reference_only_verification.json",
+      "sha256": "a7c11b56a5f142cf06bf2baf347e3fdae595d39c244db94dc776dc88afa7516e",
+      "bytes": 570,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/review_pie.py",
+      "relative": "V4_ReferenceAlbedo/review_pie.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/review_pie.py",
+      "sha256": "61c8cbbf58a3e86e1ba60f03b5155846b49b95784289c4390c80a99af22cdd97",
+      "bytes": 2982,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/verify_finish.py",
+      "relative": "V4_ReferenceAlbedo/verify_finish.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/verify_finish.py",
+      "sha256": "4a4b6f81256d3fcaeef097cd39fc80841608b5bb574572d745a9070850d2a9db",
+      "bytes": 1746,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/verify_reference_only.py",
+      "relative": "V4_ReferenceAlbedo/verify_reference_only.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/verify_reference_only.py",
+      "sha256": "51c4edd3ce28be2751802159bf181c512048fb8c02c77bf53c070023cf9c3046",
+      "bytes": 3428,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_ReferenceAlbedo/candidate_handoff.json",
+      "relative": "V4_ReferenceAlbedo/candidate_handoff.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/candidate_handoff.json",
+      "sha256": "ca97ec1b2120e793584dc2048fa8fc87373d97fbafa707a3c1aa349918f56875",
+      "bytes": 4983,
+      "role": "immutable_raw_authoring_donor",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/PhotorealPieV1_Source.blend",
+      "relative": "V4_BakeExportIteration/PhotorealPieV1_Source.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Source.blend",
+      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "bytes": 14609796,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/PhotorealPieV1_Export.blend",
+      "relative": "V4_BakeExportIteration/PhotorealPieV1_Export.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Export.blend",
+      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "bytes": 6118542,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/AuthoringDonorValidation.json",
+      "relative": "V4_BakeExportIteration/AuthoringDonorValidation.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/AuthoringDonorValidation.json",
+      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "bytes": 1942,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/review_authorization.json",
+      "relative": "V4_BakeExportIteration/review_authorization.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/review_authorization.json",
+      "sha256": "7e0e99477b4f2d7a584290ec8874b103e46b927d1e3688dda9a1589252f65c2f",
+      "bytes": 610,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/bake_pie.py",
+      "relative": "V4_BakeExportIteration/bake_pie.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/bake_pie.py",
+      "sha256": "b2e43db43a6751477b7d5904a2c98da9efac7dcc12fed63b58c56f96e346bbf5",
+      "bytes": 7643,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/closed_crumb_normalization.py",
+      "relative": "V4_BakeExportIteration/closed_crumb_normalization.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/closed_crumb_normalization.py",
+      "sha256": "09864102797349ebb356aebf7b67b467358cfd59a734d4802ef3ad9e11bf8361",
+      "bytes": 3871,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/export_pie.py",
+      "relative": "V4_BakeExportIteration/export_pie.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_pie.py",
+      "sha256": "511005016c294e48fab397eb20ffb9c115c6efc3975cf4fba8475435bee983bd",
+      "bytes": 438,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/roundtrip_pie.py",
+      "relative": "V4_BakeExportIteration/roundtrip_pie.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/roundtrip_pie.py",
+      "sha256": "e16949d2c08aa29271cdc8db07ab2c5def1019f41582f8b2af8f2e43a6206ee1",
+      "bytes": 3846,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/render_roundtrip.py",
+      "relative": "V4_BakeExportIteration/render_roundtrip.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/render_roundtrip.py",
+      "sha256": "90edaa2ce9a8f8c9f6c5860f51ee03cd3c2a05d92c93a636a02eef46cab6d582",
+      "bytes": 3688,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/check_portable.py",
+      "relative": "V4_BakeExportIteration/check_portable.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/check_portable.py",
+      "sha256": "bd5f2bd25b8c28ca4450cbcb077231ee860a1f879a010209ddab292e3d825428",
+      "bytes": 1831,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/verify_export_contract.py",
+      "relative": "V4_BakeExportIteration/verify_export_contract.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/verify_export_contract.py",
+      "sha256": "2a3b86e660ab46e22498c088cdda02b056c6898f0dc4a7540a5adbf9d54f6da0",
+      "bytes": 1626,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/verify_export_uv.py",
+      "relative": "V4_BakeExportIteration/verify_export_uv.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/verify_export_uv.py",
+      "sha256": "3552a2535aa7a96c063071d73867c51206e900c5404857c51a23427e17b41fe3",
+      "bytes": 1749,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/verify_texture_payload.py",
+      "relative": "V4_BakeExportIteration/verify_texture_payload.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/verify_texture_payload.py",
+      "sha256": "77026c4b80f087a4654d306264fcc1e07ab2f90bbb080bffd9a9c49815cadb96",
+      "bytes": 907,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/verify_normalization_module.py",
+      "relative": "V4_BakeExportIteration/verify_normalization_module.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/verify_normalization_module.py",
+      "sha256": "eac3c4de4f412376e4910d7a6ad27f84124d1cd1f538c1701e0beba53584f19c",
+      "bytes": 1519,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/bake_receipt.json",
+      "relative": "V4_BakeExportIteration/bake_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/bake_receipt.json",
+      "sha256": "924631cc6a10821ad95a2b6a517f062a6dae48dacad96d93a86edc08b854f3ee",
+      "bytes": 1428,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/export_report.json",
+      "relative": "V4_BakeExportIteration/export_report.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_report.json",
+      "sha256": "69c1401e23201fc62ca6c2879293a6b007c81923131eb60806abc488c6c3ad2a",
+      "bytes": 595,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/roundtrip_receipt.json",
+      "relative": "V4_BakeExportIteration/roundtrip_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/roundtrip_receipt.json",
+      "sha256": "ca50fd38051fd594049f72acb0710700a2928a48c5f68e7095a23016dcbe9834",
+      "bytes": 2036,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/export_contract_verification.json",
+      "relative": "V4_BakeExportIteration/export_contract_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_contract_verification.json",
+      "sha256": "f003e2616d986740aa255b15c8ab1bc8b064e2171d02007fd7a8859f9b3b290f",
+      "bytes": 1205,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/export_uv_verification.json",
+      "relative": "V4_BakeExportIteration/export_uv_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_uv_verification.json",
+      "sha256": "4f3bf52d6f67df1f123b66dc1c9e2d7384cf0e8b32f1a3d9d452d46eea438420",
+      "bytes": 2885,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/texture_payload_validation.json",
+      "relative": "V4_BakeExportIteration/texture_payload_validation.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/texture_payload_validation.json",
+      "sha256": "2ecb32b4fe2255381c92331eb2195c7073e7b10fe7328f00ec91cc46f38dad7a",
+      "bytes": 1902,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/normalization_module_verification.json",
+      "relative": "V4_BakeExportIteration/normalization_module_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/normalization_module_verification.json",
+      "sha256": "1c2a1cdacc8b3b5fc06a1dddccac21d4abf4a372a3a10d31a5787702d3fdadc4",
+      "bytes": 322,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/portable_export_receipt.json",
+      "relative": "V4_BakeExportIteration/portable_export_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/portable_export_receipt.json",
+      "sha256": "7229468c98637a49c9e1e412e76fa67664673cd91cbf66f1eea08797f153cf5c",
+      "bytes": 808,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
+      "relative": "V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
+      "sha256": "29463e3bab118419fbe71eb8df8aeb82d240447eaa5c6fa03463575824864931",
+      "bytes": 2278,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/raw_donor_LOD_diagnostic.json",
+      "relative": "V4_BakeExportIteration/raw_donor_LOD_diagnostic.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/raw_donor_LOD_diagnostic.json",
+      "sha256": "1b7eac030b815c849f6342a671b92b3aca2b883f601cf4fe4bbae476bcb45d4f",
+      "bytes": 436,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/HISTORICAL_FAILURES.json",
+      "relative": "V4_BakeExportIteration/HISTORICAL_FAILURES.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/HISTORICAL_FAILURES.json",
+      "sha256": "95de91c5048979f3d65613b91b22987d39dd2ee15317d958f3c5517fd3d1539a",
+      "bytes": 1003,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/pixel_comparison.json",
+      "relative": "V4_BakeExportIteration/pixel_comparison.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/pixel_comparison.json",
+      "sha256": "f9680556f6622713121aceda94857684fc13bf0d78357c0eb7fc94ea5e4340e9",
+      "bytes": 1762,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/HANDOFF.md",
+      "relative": "V4_BakeExportIteration/HANDOFF.md",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/HANDOFF.md",
+      "sha256": "7f11618489137856dab68221751659e71f1f030e18ef3a9ba1593f08955b1aa9",
+      "bytes": 3409,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/PREPARATION.json",
+      "relative": "V4_BakeExportIteration/PREPARATION.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PREPARATION.json",
+      "sha256": "c07b447c6908f9e5be216d2ac19617ea696f6bd4c507f0c5b9204f3319fcd497",
+      "bytes": 1095,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/__init__.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/__init__.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "bytes": 79,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/common.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/common.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "bytes": 14649,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/conventions.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/conventions.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "bytes": 12111,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/export_ue.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/export_ue.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "bytes": 14265,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/fbxparse.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/fbxparse.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "bytes": 6994,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/fix.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/fix.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "bytes": 20902,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/import_generated.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/import_generated.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/import_generated.py",
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "bytes": 9026,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/make_lods.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/make_lods.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/make_lods.py",
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "bytes": 16792,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Pipeline/dinkasset/validate.py",
+      "relative": "V4_BakeExportIteration/Pipeline/dinkasset/validate.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Pipeline/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "bytes": 35342,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
+      "relative": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
+      "sha256": "6687fc7dc2b7dc9e0f92481bc70f26ebbc798be0ac6bebe4deae4b796f6d4133",
+      "bytes": 329132,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.glb",
+      "relative": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.glb",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.glb",
+      "sha256": "27b15c6df30e74ec0625f164932c1cb625d2cf18a040de57e0be86ada70241f3",
+      "bytes": 5968436,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "relative": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784",
+      "bytes": 2806440,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "relative": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555",
+      "bytes": 1719544,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "relative": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47",
+      "bytes": 1279728,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Export/manifest.json",
+      "relative": "V4_BakeExportIteration/Export/manifest.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/manifest.json",
+      "sha256": "e6e264b8077448e94c12a8c00091a41e2c29d070f6273646075b36fbfe65679c",
+      "bytes": 3680,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "relative": "V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784",
+      "bytes": 2806440,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Metal.png",
+      "relative": "V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Metal.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Metal.png",
+      "sha256": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37",
+      "bytes": 55235,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "relative": "V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555",
+      "bytes": 1719544,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "relative": "V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47",
+      "bytes": 1279728,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Rough.png",
+      "relative": "V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Rough.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Textures/T_Pie_Rustic_01_Photo_Rough.png",
+      "sha256": "27dcde37d88e638076bd19c8624ff5429c45db7070fa3f1c3bd4b5a1c37ed781",
+      "bytes": 1344759,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
+      "relative": "V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
+      "sha256": "434a77b703eee537269d12a0a7eb17efd536cc78f6ce4b9e928a43e89f12ab91",
+      "bytes": 795690,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
+      "relative": "V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
+      "sha256": "f073677051c2c49d11a7621be94e661d72e3887d55f9e4cd40eb2662b96255fd",
+      "bytes": 682944,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Roundtrip/PieSource-front.png",
+      "relative": "V4_BakeExportIteration/Roundtrip/PieSource-front.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-front.png",
+      "sha256": "1ff01069e229e7bddb041ccacb714c88c90e1f40ac62978c73bbe72876f8f91c",
+      "bytes": 544077,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
+      "relative": "V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
+      "sha256": "c4a22db5ff39b2d0909cb0a8f75c932f16b5b58a02bca34adef907cec144641e",
+      "bytes": 474355,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V4_BakeExportIteration/source_export_handoff.json",
+      "relative": "V4_BakeExportIteration/source_export_handoff.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/source_export_handoff.json",
+      "sha256": "8ee754888a40d4cf6c135845ff60140a48102262ca468bed7aa00facbb069d90",
+      "bytes": 6127,
+      "role": "immutable_corrected_bake_dependency_and_historical_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/HANDOFF.md",
+      "relative": "V5_OpticalLOD/HANDOFF.md",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/HANDOFF.md",
+      "sha256": "7398605a578a9f844908a19dda15737385a522abee6989ee2b97c3b81482e117",
+      "bytes": 2905,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Inputs/V4_Export.blend",
+      "relative": "V5_OpticalLOD/Inputs/V4_Export.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Inputs/V4_Export.blend",
+      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "bytes": 6118542,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/PhotorealPieV1_Export.blend",
+      "relative": "V5_OpticalLOD/PhotorealPieV1_Export.blend",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/PhotorealPieV1_Export.blend",
+      "sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a",
+      "bytes": 6126003,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/__init__.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/__init__.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94",
+      "bytes": 79,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/common.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/common.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c",
+      "bytes": 14649,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/conventions.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/conventions.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840",
+      "bytes": 12111,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/export_ue.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/export_ue.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087",
+      "bytes": 14265,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/fbxparse.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/fbxparse.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "bytes": 6994,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/fix.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/fix.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf",
+      "bytes": 20902,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/import_generated.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/import_generated.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/import_generated.py",
+      "sha256": "0fbb56f8f978952fce3de5250c2970816bdb4b22e6f6511e8d0cf1b6db22e535",
+      "bytes": 9026,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/make_lods.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/make_lods.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/make_lods.py",
+      "sha256": "fb8cdd5591633e77df8e99e7b8b0f33f97ddee04e7a4335847b31315dd3de30c",
+      "bytes": 16792,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Pipeline/dinkasset/validate.py",
+      "relative": "V5_OpticalLOD/Pipeline/dinkasset/validate.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Pipeline/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933",
+      "bytes": 35342,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
+      "relative": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
+      "sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0",
+      "bytes": 542318,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
+      "relative": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
+      "sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353",
+      "bytes": 546023,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
+      "relative": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
+      "sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d",
+      "bytes": 474454,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
+      "relative": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
+      "sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779",
+      "bytes": 475817,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "relative": "V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784",
+      "bytes": 2806440,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "relative": "V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555",
+      "bytes": 1719544,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "relative": "V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47",
+      "bytes": 1279728,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/check_portable.py",
+      "relative": "V5_OpticalLOD/check_portable.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/check_portable.py",
+      "sha256": "bd5f2bd25b8c28ca4450cbcb077231ee860a1f879a010209ddab292e3d825428",
+      "bytes": 1831,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/export_uv_verification.json",
+      "relative": "V5_OpticalLOD/export_uv_verification.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/export_uv_verification.json",
+      "sha256": "d49adfc0c97da93b0c35a7bd758f83b4201dd88eac55dd588db2625bfa39dae1",
+      "bytes": 2885,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/guide_validation.json",
+      "relative": "V5_OpticalLOD/guide_validation.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/guide_validation.json",
+      "sha256": "11dca28c5b76d89cf5bfd5111ee45a734933b22cc403431788107d2eb4144deb",
+      "bytes": 1459,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/optical_lod_report.json",
+      "relative": "V5_OpticalLOD/optical_lod_report.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/optical_lod_report.json",
+      "sha256": "6c1b00cc9090b0fbcdd44ec18df53482683b4e788875f4b2c026dabb6d3b4c44",
+      "bytes": 731,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/pixel_comparison.json",
+      "relative": "V5_OpticalLOD/pixel_comparison.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/pixel_comparison.json",
+      "sha256": "313dfa10bdfaad43537432d61f29ffa3fa2776c5fc808276268eecf02c3dc301",
+      "bytes": 1562,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/portable_export_receipt.json",
+      "relative": "V5_OpticalLOD/portable_export_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/portable_export_receipt.json",
+      "sha256": "84a7f507c68a742dd55d389a22a6c7e9544a9cc41a2de3d255302ecd20fdf8d8",
+      "bytes": 808,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/preservation.json",
+      "relative": "V5_OpticalLOD/preservation.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/preservation.json",
+      "sha256": "ba80477b0ced042f4cd6a5e7431d456b26cd822960779705b1cf72325c64fa22",
+      "bytes": 560,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/render_single_lod.py",
+      "relative": "V5_OpticalLOD/render_single_lod.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/render_single_lod.py",
+      "sha256": "2a23ca6dcbac9251a63c305f6f60aa47389a1aba1e4dbdd404c9e63efe9d9666",
+      "bytes": 3172,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/retain_ceramic.py",
+      "relative": "V5_OpticalLOD/retain_ceramic.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/retain_ceramic.py",
+      "sha256": "ab1ea12d2d6796d5c82388ff8924aa5a9be19db12fda3a6a55b38a277b828527",
+      "bytes": 3376,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/validate_source.py",
+      "relative": "V5_OpticalLOD/validate_source.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/validate_source.py",
+      "sha256": "9faf3026529bfc924883396d01ed8c1365d042e6bdf514e958f46e7f7fee89c5",
+      "bytes": 415,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/verify_export_uv.py",
+      "relative": "V5_OpticalLOD/verify_export_uv.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/verify_export_uv.py",
+      "sha256": "3552a2535aa7a96c063071d73867c51206e900c5404857c51a23427e17b41fe3",
+      "bytes": 1749,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/verify_preservation.py",
+      "relative": "V5_OpticalLOD/verify_preservation.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/verify_preservation.py",
+      "sha256": "87ca451bd893e4f3abe6cd840258212db27a28f55de14368f6e12bec43c7caa6",
+      "bytes": 2680,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/source_handoff.json",
+      "relative": "V5_OpticalLOD/source_handoff.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/source_handoff.json",
+      "sha256": "6a47780b949f2c7c1976c9ca148c982a1772a56a709a7a2c0e4f4120bec099b9",
+      "bytes": 5170,
+      "role": "current_optical_LOD_source",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
+      "relative": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
+      "sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "bytes": 179500,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
+      "relative": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
+      "sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "bytes": 130476,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
+      "relative": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
+      "sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "bytes": 93532,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "lfs"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/export_native_lods.py",
+      "relative": "NativeLODExportsV5/export_native_lods.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/export_native_lods.py",
+      "sha256": "5b015f1f71d0307943418ab25755d2fc780b75e888b2705ddd8a3ffd7c1a06f0",
+      "bytes": 1537,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/verify_lod_exports.py",
+      "relative": "NativeLODExportsV5/verify_lod_exports.py",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/verify_lod_exports.py",
+      "sha256": "fa2b5ab6e954453113048f181ba2ff3b3a373a8ffec9212c608f4c568303f94e",
+      "bytes": 3879,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/lod_manifest.json",
+      "relative": "NativeLODExportsV5/lod_manifest.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/lod_manifest.json",
+      "sha256": "32f6521c933c27f550fd99bdb6da48405bccf7c10cc57a0ff0078802c1d863c4",
+      "bytes": 1405,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/lod_roundtrip_receipt.json",
+      "relative": "NativeLODExportsV5/lod_roundtrip_receipt.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/lod_roundtrip_receipt.json",
+      "sha256": "cfef6d19a728c5f2ad56c601dbd7da2504e2d93df67b5bccebc0b3062690cef2",
+      "bytes": 2324,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/HANDOFF.md",
+      "relative": "NativeLODExportsV5/HANDOFF.md",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/HANDOFF.md",
+      "sha256": "315f79a96677811bb63677c4f92f7e473092491b0e9c4c4f6f8be807df99615c",
+      "bytes": 607,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    },
+    {
+      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/NativeLODExportsV5/candidate_handoff.json",
+      "relative": "NativeLODExportsV5/candidate_handoff.json",
+      "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/candidate_handoff.json",
+      "sha256": "6bdab934b3a149409df4e241deaa9878bf8caed933193303d9a9ceea0fb65a9c",
+      "bytes": 1273,
+      "role": "only_selected_native_import_files_and_roundtrip_evidence",
+      "ledger_status": "candidate",
+      "git_filter": "unspecified"
+    }
+  ]
+}

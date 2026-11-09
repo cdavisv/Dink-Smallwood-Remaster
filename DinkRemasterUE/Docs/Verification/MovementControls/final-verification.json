@@ -1,0 +1,43 @@
+{
+  "build": "BUILD OK: DinkRemasterEditor Linux Development in3s;0compilerwarnings",
+  "automation": "TESTS PASSED:143/143 passed,0failed(1testwithwarnings),467s",
+  "warnings": "One successful Ch4Gold test carried engine LogHttp telemetry upload/libcurl65 warnings (Epic datarouter); no gameplay/test failures.",
+  "focused": "Dink.Movement4/4,0warnings,18s; movement_review_v2",
+  "reproduction": "movement_review_repro:2/4 passed,2expected failures before review fixes (HumanoidReconfigure and PlayableControls)",
+  "report": "Saved/Automation/movement_final_v2_all/index.html",
+  "snapshot_patch_sha256": "421f47fd4dfd422425e16579299bd4e24e36cf9662638009dca7ee0950cc8a7c",
+  "frozen_changed_source_and_modules": 19,
+  "frozen_pin_mismatches": [],
+  "baseline_comparison": {
+    "scope": "End-state comparison with Git067b expected bytes (LFS resolved by object SHA256) and peer pre-staging fixture manifest. Only19 changed-source/module pins were captured at final suite start. No whole-tree pre/post-run immutability claim.",
+    "git_baseline_checked": 3403,
+    "lfs_assets_checked": 1874,
+    "excluded_intentional": [
+      "DinkRemasterUE/AGENTS.md",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkBodyDynamics.h",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h",
+      "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h",
+      "DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp",
+      "DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h",
+      "DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp",
+      "DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs",
+      "DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp",
+      "DinkRemasterUE/README.md"
+    ],
+    "git_baseline_mismatches": [],
+    "fixture_baseline_checked": 5510,
+    "fixture_baseline_mismatches": [],
+    "frozen_v2_pins_checked": 19,
+    "frozen_v2_pin_mismatches": []
+  },
+  "rendered_input_receipt": "Saved/Playtest/evidence/movement-controls/summary.json",
+  "rendered_scope": "Actual private XTest input captured before P2ownership fixes; unchanged locomotion/jump/wheel mapping. Final zoom-transition/Configure/lifecycle corrections verified by native final tests. No wider-world jump traversal claim.",
+  "review_receipts": [
+    "/home/davisc/Work/DinkQA/PhotorealSessions/movement_review_v1.json",
+    "/home/davisc/Work/DinkQA/PhotorealSessions/movement_review_v2.json"
+  ]
+}

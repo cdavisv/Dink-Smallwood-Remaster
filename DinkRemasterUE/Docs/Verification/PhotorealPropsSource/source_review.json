@@ -1,0 +1,25 @@
+{
+  "candidate": "PhotorealPropsV1 final chamfered table / olive flax bedding",
+  "source_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+  "export_blend_sha256": "c75d26f117f752efbf0af35bcc6f6fc3ad9475c94b15da8c1484e41490298fdd",
+  "independent_artifact_hashes_verified": 80,
+  "reference_review": [
+    "Original table 87_09: broad chamfered oblong perimeter and warm timber identity. First rectangular candidate was revised to retain this silhouette cue.",
+    "Original bed 64_03: warm posts, cream pillow, olive cover. First washed-out cover was corrected by reducing and tinting sheen, not only darkening base color.",
+    "Original chair reference and source bounds: open spindle silhouette retained; initial 1.25mm local offset was removed."
+  ],
+  "visual_review": "Matched table close view, bed close view, room distance and cloth detail were inspected. Approve this source iteration for native staging, not final native acceptance.",
+  "reported_source_checks": {
+    "guide_assets_passed": 3,
+    "guide_errors": 0,
+    "triangle_target_warnings_retained": 3,
+    "FBX_roundtrip_dimension_error_m": 0,
+    "retained_authored_hulls": 47,
+    "packed_path_absence_reopens": "17 main, 29 export, 23 immutable input images"
+  },
+  "limits": [
+    "Extreme cloth macro filtering differs between the procedural preview and the 2048px baked normal map; native distance and lighting review remains required.",
+    "Native packages, fitted collision queries, door routes, interactions and save/script identity have not yet been tested for these replacements.",
+    "Current native QA screenshots show the previously published assets, not this candidate."
+  ]
+}

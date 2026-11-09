@@ -1,0 +1,11 @@
+Dink.Gameplay.Probe chapter 10 (Windemere's errands and Joppa: the healer, three pickups, the basement scene, the family and the dragons): 7 of 7 steps in 1178.5 s of game time (6.2 s wall); trace md5 c532805f11, 442 events; final greybox screen 419, Dink sprite screen 419, pawn at V(X=-169113.91, Y=82485.98, Z=98.00); wizard_see 4, wizard_again 1, s2-aunt 4, caveguy 6, strength 13, defense 4, magic 7, level 4, spell charge 100/100, story 11, pig_story 1, old_womans_duck 4, nuttree 1, letter 2, gold 205, life 29/29, exp 200, player_map 419, vision 0, Dink free at 422,264, menu none; scripts:; game time 1178483 ms, update_status 1, status ticks 340; last lines: "Run from us no more, humans." / "Let us finish it." / "We will fight!" / "Protect the women, Smallwood!"
+  last gameplay events: 1145500 touch 7 (rpotion) | 1145817 vanished 7 | 1146350 touch 2 (bpotion) | 1146650 vanished 2 | 1147167 attack with item-fst facing 6 | 1147350 hit 5 by 1 strength 12 damage 0 | 1147350 hit 6 by 1 strength 12 damage 0 | 1147350 hit 7 by 1 strength 12 damage 0 | 1147350 hit 11 by 1 strength 12 damage 0 | 1147683 touch 12 (rpotion) | 1148000 vanished 12 | 1178450 screenlock 1
+
+OK    1 the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life) (0.5 s game time, done at 1144.967 s)
+OK    2 the strength potion of the Windemere wilds (SCR_663 S663_P06 rpotion: strength +1) (0.9 s game time, done at 1145.817 s)
+OK    3 the defense potion of the marshes (SCR_603 S603_P02 bpotion: defense +1) (0.8 s game time, done at 1146.650 s)
+OK    4 the chest of the sanctuary village (SCR_742 S742_P16 box2-sp: a punch, then the potion it makes: strength +1) (1.4 s game time, done at 1148.000 s)
+OK    5 Joppa (SCR_419, s5-jops: &s5-jop 0 -> 1, "Weird.  This town looks deserted.") (0.2 s game time, done at 1148.167 s)
+OK    6 the basement (SCR_229, s5-base creates s5-guy and s5-mom, the scene of the hiding parents): &s5-jop 1 -> 2 (15.2 s game time, done at 1163.350 s)
+OK    7 back to Joppa (SCR_419, s5-jops with &s5-jop 2: s5-fguy's scene, two dragons en-drag, screenlock): the fight can begin (15.1 s game time, done at 1178.467 s)
+DONE every step done

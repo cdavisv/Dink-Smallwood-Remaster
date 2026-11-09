@@ -1,0 +1,34 @@
+{
+  "reviewer": "/root/house_walls",
+  "scope": "Read-only final importer353844c5 /publisher57602238; no edits or UE starts",
+  "targets": {
+    "import_floor_surface.py": "353844c5b8ebd3bc3bd80d00d6670b081ef3e4bca9e16820c6f60c360554a134",
+    "publish_floor_surface.py": "576022385efd5feee39969e96886518aa86d1b93d6fa5ad111892bc1b3a82b3f"
+  },
+  "findings": [
+    {
+      "severity": "P2",
+      "file": "import_floor_surface.py",
+      "line": 174,
+      "title": "Saved-package verification does not verify the saved shader graph",
+      "details": "Verify checks blend/usage flags, material assignment and texture import settings but never inspects material property inputs, texture references or specular value. A saved material whose Normal is disconnected, BaseColor points to a different texture, ORM channels are swapped, or gain0.25 is applied again still passes and receives a new trusted package hash. This fails to prove the accepted baked recipe survived saving.",
+      "suggestion": "Check actual saved MP_BASE_COLOR/NORMAL/AO/ROUGHNESS/METALLIC input nodes, exact texture identity/sampler/output channels and specular constant0.35; reject any extra gain/normal-strength node."
+    },
+    {
+      "severity": "P2",
+      "file": "publish_floor_surface.py",
+      "line": 31,
+      "title": "Publisher trusts the old empty runtime_data_changes list rather than rechecking verified Data",
+      "details": "The verification report records only Data count and an empty during-command change list, not its baseline hashes. Publisher checks that old list, then reads whatever current stonebrook.json exists. A floor transform/collision/light/warp or another Data file can change after native verification while publication still reports verified unchanged runtime data. The reverted==baseline assertion compares against current bytes and does not detect this intervening drift.",
+      "suggestion": "Include complete Data path/hash set in verify report and revalidate immediately before publication. Preserve intended idempotence by explicitly canonicalizing the57already-published mesh refs or requiring a matching prior publication receipt; do not waive other Data drift."
+    }
+  ],
+  "other_checks": "No direct UV/geometry/slot1/normal-convention or original-package overwrite bug found. GetTriangleVertexInstances is safe in this engine (unlike known GetTriangleVertices append bug). Normal flipGreen true +strength1 and directBC gain1 match baked payload.",
+  "followup": {
+    "status": "BothP2resolved; no further blocking static findings",
+    "importer_sha256": "e040c2192a7ba1e0c1c33fed623578928aebd98f1e83571f87a90d937b1671eb",
+    "publisher_sha256": "5a15f672fab5ca49dacbd025286a609974da0b0e2d2e8284dac6475d341d922a",
+    "native_helper": "DinkImport.DinkMaterialArtLibrary usesnullsafe readonlyall-property loop; exactsixconnectedIDs checked; reusedexisting-node extra-property loopholeclosed",
+    "reported_tests": "Parent reports MaterialPropertyInspection1/1zero warnings +sevenpublishermutation/idempotence casesPASS. Actualsavedshader-mutation tests pending parent native trial."
+  }
+}

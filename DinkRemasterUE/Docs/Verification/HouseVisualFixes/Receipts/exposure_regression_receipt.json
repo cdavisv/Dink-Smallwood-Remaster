@@ -1,0 +1,57 @@
+{
+  "schema": "dink-exposure-regression/1",
+  "baseline_commit": "e53cae950e0748ff1c72b4111767e07eca7d34b0",
+  "approach": "Plain UPostProcessComponent retained; companion actor component enables unbound provider only for first local pawn selected AND physical owner indoor screen. Bounded100ms game-time refresh plus screen/possession events.",
+  "settings_preserved": {
+    "bias": -2,
+    "bloom": 0.15,
+    "priority": 10,
+    "blend_radius_cm": 100,
+    "bounds": true,
+    "lights": true
+  },
+  "source_sha256": {
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkScreenExposureComponent.h": "756b0da8c4c12af7d5da1716016d0377ac8b54b34dbbd390f7945fc678699436",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkScreenExposureComponent.cpp": "18908d7543a80d2c11a4dd0a1b9d87b4130c93b43a5dea95cc99bb8fccc3fb61",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp": "1493b50714fab7b6550e1936577d5aad83010cb20496fc845504937d1e9c4e29",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkScreenExposureTests.cpp": "f84e67c0e406923452441dd5d11611e82e1f3de089952c283f775fb87c9d5997",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkImportTests.cpp": "b5b4733f77b69cf3ea6b3ac4c83f0c16b9e891eebe071cf36dad78e3b2b75274"
+  },
+  "tests": {
+    "exposure_before": {
+      "passed": 0,
+      "failed": 1,
+      "warnings": 0,
+      "report": "Saved/Automation/exposure_before/index.json"
+    },
+    "exposure_after": {
+      "passed": 1,
+      "failed": 0,
+      "warnings": 0,
+      "report": "Saved/Automation/exposure_after/index.json"
+    },
+    "exposure_lifecycle_after": {
+      "passed": 1,
+      "failed": 0,
+      "warnings": 0,
+      "report": "Saved/Automation/exposure_lifecycle_after/index.json"
+    },
+    "exposure_art_after": {
+      "passed": 24,
+      "failed": 0,
+      "warnings": 0,
+      "report": "Saved/Automation/exposure_art_after/index.json"
+    },
+    "exposure_import_after": {
+      "passed": 12,
+      "failed": 0,
+      "warnings": 0,
+      "report": "Saved/Automation/exposure_import_after/index.json"
+    }
+  },
+  "rendered_verification": "Actual W exit/return +8 normal-angle states PASS; review ExposureRender/terminal_receipt.json; not final lighting grade.",
+  "additional_regression_source": {
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp": "387dec5e3e8b3734428606bcdea2cb1ae8ff4ca17209f42d06e503fd411f7ec6"
+  },
+  "skirt_native_status": "Not imported yet; test compiled against current modules."
+}

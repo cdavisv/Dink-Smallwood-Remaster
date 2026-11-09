@@ -1,0 +1,81 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/Candle/V3_Finish/PhotorealCandleV1_Source.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 2
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Candle_Iron_01",
+      "class": "prop_small",
+      "collection": "SM_Candle_Iron_01",
+      "tris_per_lod": {
+        "LOD0": 4870,
+        "LOD1": 2434,
+        "LOD2": 1218
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ],
+        "size_cm": [
+          20.0,
+          20.0,
+          45.05
+        ],
+        "unreal_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Candle_Iron_01",
+          "message": "LOD0 has 4870 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_Candle_Iron_01_LOD0",
+          "data": {
+            "tris": 4870,
+            "target": 1500
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Candle_Iron_01",
+          "message": "texel density 3417 px/m at the declared 2048 px texture; target 1024 px/m (accepted 512-2048)",
+          "object": "SM_Candle_Iron_01_LOD0",
+          "data": {
+            "density_px_per_m": 3417.0,
+            "target": 1024
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

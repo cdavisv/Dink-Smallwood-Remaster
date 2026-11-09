@@ -1,0 +1,15 @@
+{
+  "base_commit": "e53cae950e0748ff1c72b4111767e07eca7d34b0",
+  "files": [
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp",
+    "README.md",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkHeroPhysicality.h"
+  ],
+  "patch_sha256": "fe9d8761c2ba7482519bd725d1add7ddf6e82598e7f5e9fe6c3ddb45ec0ae0c4",
+  "input_pins": 8902,
+  "status": "FINAL VERIFIED:144/144,0warnings,458s;5/5focused;8902inputsunchanged;visualPASS",
+  "scope": "Player-only procedural gait and landing recovery; reduced jump and movement tuning. NPC assets/behavior and original combat logic unchanged. AGENTS memory excluded for manual merge.",
+  "verification_receipt": "final-verification.json"
+}

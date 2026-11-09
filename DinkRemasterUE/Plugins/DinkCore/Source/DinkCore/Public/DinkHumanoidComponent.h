@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "DinkMotionEstimate.h"
+#include "DinkBodyDynamics.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "DinkHumanoidComponent.generated.h"
 
@@ -22,6 +23,10 @@ public:
 	float GetLocomotionSpeed() const { return LocomotionSpeed; }
 private:
 	FDinkMotionEstimate Motion;
+	FDinkBodyDynamics BodyDynamics;
+	FQuat AppliedBodyRotation = FQuat::Identity;
+	FQuat LastBodyRotation = FQuat::Identity;
+	bool bBodyRotationApplied = false;
 	float LocomotionSpeed = 0.f;
 	UPROPERTY(Transient)
 	TObjectPtr<UBlendSpace> LocomotionAsset;

@@ -1,0 +1,19 @@
+# Photoreal woven basket source candidate
+
+Reviewed source/export iteration, not native game acceptance. This is the added decorative `WickerBasket` in the starting house, not the original grain sack `S001_P52`/`422_12`/`s1-sack`. There is no direct original sprite for this added prop. The three original PNGs under `Inputs/OriginalRoomContext` are labelled room-palette/context only; the grain sack image must not be misattributed to this basket. Existing original Dink art terms are retained.
+
+The editable packed source builds32stakes,22alternating rows, a woven base, rounded bound rim, physical side handle loops/supports and natural reed colour/roughness/fibre detail.19,680triangles remain below the20,000hard cap; the6,000soft-target warning is retained. The UV refinement retains the V4 baseline geometry. The overall rebuilt basket retains the original kit render bounds1.144×.942×.672m, pivot and authored88×88×60cmUCX; its render triangles intentionally differ from the original kit. Native query/collision approval is not implied; runtime uses complex-as-simple render geometry.
+
+Straight, short coherent UVcharts raise atlas use10.385→83.203% and density290→821px/m at the same2048cap. A complete nontruncated overlap audit found zero overlaps, collapsed or out-of-range triangles; the guide's default limited overlap pass retains its informational truncation separately. Guide0errors/1warning. UV-only refinement preserves mesh positions/topology/cornernormals, attributes, transforms and all material graphs.
+
+Baked BC(sRGB), N(linear,+Y source; green flip for UE), ORM(linear R255neutralAO/Groughness/B0nonmetal) each2048RGB. ActualFBX reimport matches all19680orientedtriangles/UVs/cornernormals and UCXvertices exactly. Fullfront/close/game-distance `Roundtrip` views are actual importedFBX with baked maps, not Unreal. Fine detail survives better than the prior low-density bake; ROI source-image errors improve43.9%handle/26.3%weave/7.4%distance, bounded measurements rather than universal approval thresholds.
+
+`Inputs/V4_Source.blend` retains the approved pre-UV editable baseline; originalKIT and exact wicker maps are included for deeper authoring. All44reviewed payloads were initially copied byte-identically. One blank-line trailing space was removed from the canonical roundtrip recipe for publication; its AST is identical and the exact original is preserved inside Inputs/AuthorRecipe/roundtrip_basket.py.zip. All art binaries retain reviewed bytes; additions provide context/provenance/reproduction. Packed source/export textures reopen with filepaths absent. Historical receipts may name the authoring directory; scripts use their own folder and require no author-only checkout.
+
+## Reproduction
+
+Use an isolated COPY, never overwrite this frozen delivery. Blender5.2.2 CPU commands: `repack_uv.py`, `verify_uv.py`, `bake_basket.py`, `export_basket.py`, `roundtrip_basket.py`. `DINK_BASKET_RENDER_MODE=roundtrip` runs `render_detail.py`; `DINK_BASKET_VIEW=front` limits a capture. `DINK_BASKET_PORTABLE_KIND=export` tests packed export reopening through `check_portable.py`. The bake uses stable socket pairs while rewiring temporary shaders, avoiding removed NodeLink wrappers.
+
+Optional `build_v4_reference.py` rebuilds the older parametric baseline from the originalKIT input into `Inputs/V4_Source_Rebuilt.blend`, not the reviewed source. Blender file IDs are not a byte-reproduction promise. Compare geometry/attributes before choosing a rebuilt baseline for another UV iteration.
+
+No Content, runtime scene references, lighting, transforms, scripts or interactions change in this source delivery. Ledger rows remain candidate. Guarded native import/material/texture/sourcefilename/geometry verification and real camera/reach/collision/gameplay renders remain required. Native physical specular must be reviewed; do not blindly reuse another prop's material constant.

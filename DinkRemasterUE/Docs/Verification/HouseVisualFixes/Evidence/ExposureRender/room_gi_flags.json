@@ -1,0 +1,1929 @@
+{
+  "method": "Read-only component flags, no settings changed. This alone does not prove Lumen surface-cache or distance-field coverage.",
+  "components": [
+    {
+      "actor": "StaticMeshActor_135",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_136",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_137",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_138",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_139",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_140",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_141",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_142",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_143",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_144",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_145",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_146",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_147",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_148",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_149",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_150",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_151",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_152",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_153",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_154",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_155",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_156",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_157",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_158",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_159",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_160",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_161",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_162",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_163",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_164",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_165",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_166",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_167",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_168",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_169",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_170",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_171",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_172",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_173",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_174",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_175",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_176",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_177",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_178",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_179",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_180",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_181",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_182",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_183",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_184",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_185",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_186",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_187",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_188",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_189",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_190",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_191",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_192",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_193",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_194",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_195",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_196",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_197",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_198",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_199",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_200",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_201",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_202",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_203",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_204",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_205",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_206",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_207",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_208",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_209",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_210",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_211",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_212",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_213",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_214",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_215",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_216",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_217",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_218",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_219",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_220",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_221",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_222",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_223",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_224",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_225",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_226",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_227",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_228",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_229",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_230",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_231",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_232",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_233",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_234",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_235",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_236",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_237",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_238",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_239",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_240",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_241",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_242",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_243",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_244",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_245",
+      "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_246",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_247",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_248",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_249",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_250",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_251",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_252",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_253",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_254",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_255",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_256",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_257",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_258",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_259",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_260",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_261",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_262",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_263",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_264",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_265",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_266",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_267",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_268",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_269",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01.SM_Doorway_Limewash_4m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_270",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_271",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_272",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_273",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_274",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_275",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_276",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_277",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_278",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_279",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_280",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_281",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    },
+    {
+      "actor": "StaticMeshActor_282",
+      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "properties": {
+        "affect_dynamic_indirect_lighting": true,
+        "affect_distance_field_lighting": true,
+        "visible_in_ray_tracing": true,
+        "cast_shadow": true,
+        "cast_dynamic_shadow": true,
+        "cast_hidden_shadow": false,
+        "indirect_lighting_cache_quality": "<IndirectLightingCacheQuality.ILCQ_POINT: 1>"
+      }
+    }
+  ]
+}

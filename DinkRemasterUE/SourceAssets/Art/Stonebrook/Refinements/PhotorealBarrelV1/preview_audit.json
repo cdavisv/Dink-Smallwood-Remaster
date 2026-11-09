@@ -1,0 +1,142 @@
+{
+  "source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "render_source_mesh": "SM_Barrel_Oak_01_PhotorealSource",
+  "instances": [
+    {
+      "name": "Reference_Barrel1",
+      "collections": [
+        "Preview_ExistingRoom_GeometryUnchanged"
+      ],
+      "transforms": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Reference_Barrel2",
+      "collections": [
+        "Preview_ExistingRoom_GeometryUnchanged"
+      ],
+      "transforms": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "SM_Barrel_Oak_01",
+      "collections": [
+        "SM_Barrel_Oak_01"
+      ],
+      "transforms": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "Studio source instance",
+      "collections": [
+        "Scene Collection"
+      ],
+      "transforms": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "loose_vertices": 0,
+  "nonmanifold_edges": 0,
+  "zero_area_faces": 0,
+  "packed_images": 18,
+  "unpacked_file_images": [],
+  "exports_performed": false,
+  "bakes_performed": false,
+  "preview_not_final_acceptance": true
+}

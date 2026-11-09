@@ -1,0 +1,45 @@
+{
+  "utc": "2026-11-09T01:51:20.349811+00:00",
+  "command": [
+    "nice",
+    "-n",
+    "10",
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Build/BatchFiles/Linux/Build.sh",
+    "DinkRemaster",
+    "Linux",
+    "Development",
+    "-Project=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=2",
+    "-DisableUnity",
+    "-DisableAdaptiveUnity",
+    "-NoUBA",
+    "-NoUBALocal",
+    "-UBARootDir=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/UBA"
+  ],
+  "exit_code": 0,
+  "seconds": 66.63336531100504,
+  "compiler_warnings": 0,
+  "editor_modules_before": {
+    "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "7f804489bf338f0b582db8aa6af2ebdc4f212264645110e24231b361283ca17e",
+    "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "422cee79e2ed0c3cef698535ff2f581fcca0426458ca26d2911ccdded39fdd85",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "1c3d4ae90c7db8741047ecfc3f82f5c07faf70e27ddadb0362f5ce30cfd8f902",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "b6f18ffb19226cda48f9a4fcb59fb8e01be71ea379bca550c4819be57c38311c",
+    "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "e03cde1c92d705297a562d5de177b8b26a6b1881b0703bff9561f853de51abba",
+    "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "e543be0b0fedd428ebe8d670c27f0805c1ae8d739accd2f71b4f1bbb268b6402",
+    "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "b40148d2bddcd4f9df90b5e0f60a075e13d7e931e87a1841f32897621176e15f"
+  },
+  "editor_modules_after": {
+    "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "7f804489bf338f0b582db8aa6af2ebdc4f212264645110e24231b361283ca17e",
+    "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "422cee79e2ed0c3cef698535ff2f581fcca0426458ca26d2911ccdded39fdd85",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "1c3d4ae90c7db8741047ecfc3f82f5c07faf70e27ddadb0362f5ce30cfd8f902",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "b6f18ffb19226cda48f9a4fcb59fb8e01be71ea379bca550c4819be57c38311c",
+    "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "e03cde1c92d705297a562d5de177b8b26a6b1881b0703bff9561f853de51abba",
+    "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "e543be0b0fedd428ebe8d670c27f0805c1ae8d739accd2f71b4f1bbb268b6402",
+    "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "b40148d2bddcd4f9df90b5e0f60a075e13d7e931e87a1841f32897621176e15f"
+  },
+  "editor_modules_unchanged": true,
+  "passed": true,
+  "game_binary_sha256": "de317543a6e096c53791e65dcd9b74b242971bd115063eb9593d48f230d17a72"
+}

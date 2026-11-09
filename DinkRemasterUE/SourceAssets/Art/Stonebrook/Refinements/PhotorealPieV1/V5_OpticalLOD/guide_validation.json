@@ -1,0 +1,70 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/V5_OpticalLOD/PhotorealPieV1_Export.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 1
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Pie_Rustic_01",
+      "class": "prop_small",
+      "collection": "SM_Pie_Rustic_01",
+      "tris_per_lod": {
+        "LOD0": 4844,
+        "LOD1": 3046,
+        "LOD2": 2048
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ],
+        "size_cm": [
+          49.0,
+          49.0,
+          11.9
+        ],
+        "unreal_min_cm": [
+          -24.5,
+          -24.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          24.5,
+          24.5,
+          11.9
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Pie_Rustic_01",
+          "message": "LOD0 has 4844 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_Pie_Rustic_01_LOD0",
+          "data": {
+            "tris": 4844,
+            "target": 1500
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

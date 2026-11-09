@@ -1,6 +1,7 @@
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
+#include "DinkEarlyPostureAnimInstance.h"
 #include "DinkInteriorCameraComponent.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStatsComponent.h"
@@ -18,6 +19,8 @@
 #include "InputAction.h"
 #include "InputActionValue.h"
 #include "InputMappingContext.h"
+#include "InputModifiers.h"
+#include "InputTriggers.h"
 
 ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 {
@@ -30,12 +33,37 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 
 	UCharacterMovementComponent* Move = GetCharacterMovement();
 	Move->bOrientRotationToMovement = true;
-	Move->RotationRate = FRotator(0.f, 500.f, 0.f);
+	Move->RotationRate = FRotator(0.f, 360.f, 0.f);
+	Move->MaxAcceleration = 1100.f;
+	Move->GroundFriction = 6.f;
 	Move->MaxWalkSpeed = RunSpeed;
 	Move->MinAnalogWalkSpeed = 20.f;
-	Move->BrakingDecelerationWalking = 2000.f;
-	Move->JumpZVelocity = 0.f;
-	Move->GetNavAgentPropertiesRef().bCanJump = false;
+	Move->BrakingDecelerationWalking = 950.f;
+	Move->JumpZVelocity = 280.f;
+	Move->GravityScale = 1.45f;
+	Move->AirControl = .2f;
+	Move->BrakingDecelerationFalling = 150.f;
+	Move->MaxStepHeight = 35.f;
+	Move->GetNavAgentPropertiesRef().bCanJump = true;
+	JumpMaxHoldTime = .08f;
+	JumpMaxCount = 1;
+
+	ThirdPersonMapping = CreateDefaultSubobject<UInputMappingContext>(TEXT("ThirdPersonControls"));
+	WalkInputAction = CreateDefaultSubobject<UInputAction>(TEXT("WalkAction"));
+	JumpInputAction = CreateDefaultSubobject<UInputAction>(TEXT("JumpAction"));
+	ZoomInputAction = CreateDefaultSubobject<UInputAction>(TEXT("ZoomAction"));
+	WalkInputAction->ValueType = EInputActionValueType::Boolean;
+	JumpInputAction->ValueType = EInputActionValueType::Boolean;
+	ZoomInputAction->ValueType = EInputActionValueType::Axis1D;
+	ThirdPersonMapping->MapKey(WalkInputAction, EKeys::LeftShift);
+	ThirdPersonMapping->MapKey(WalkInputAction, EKeys::Gamepad_LeftShoulder);
+	ThirdPersonMapping->MapKey(JumpInputAction, EKeys::SpaceBar);
+	ThirdPersonMapping->MapKey(JumpInputAction, EKeys::Gamepad_FaceButton_Bottom);
+	ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::MouseWheelAxis);
+	ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::Gamepad_DPad_Up).Triggers.Add(CreateDefaultSubobject<UInputTriggerPressed>(TEXT("ZoomInPress")));
+	FEnhancedActionKeyMapping& ZoomOut = ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::Gamepad_DPad_Down);
+	ZoomOut.Triggers.Add(CreateDefaultSubobject<UInputTriggerPressed>(TEXT("ZoomOutPress")));
+	ZoomOut.Modifiers.Add(CreateDefaultSubobject<UInputModifierNegate>(TEXT("ZoomOutDirection")));
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -80,13 +108,27 @@ void ADinkGreyboxCharacter::BeginPlay()
 	}
 }
 
+void ADinkGreyboxCharacter::EndPlay(const EEndPlayReason::Type Reason)
+{
+	if (UEnhancedInputLocalPlayerSubsystem* Input = BoundInputSubsystem.Get())
+		Input->RemoveMappingContext(ThirdPersonMapping);
+	BoundInputSubsystem.Reset();
+	Super::EndPlay(Reason);
+}
+
 void ADinkGreyboxCharacter::NotifyControllerChanged()
 {
+	if (UEnhancedInputLocalPlayerSubsystem* Input = BoundInputSubsystem.Get())
+		Input->RemoveMappingContext(ThirdPersonMapping);
+	BoundInputSubsystem.Reset();
+	StopJumping();
 	Super::NotifyControllerChanged();
 	if (APlayerController* PC = Cast<APlayerController>(Controller))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Input = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
 		{
+			BoundInputSubsystem = Input;
+			Input->AddMappingContext(ThirdPersonMapping, 1);
 			for (const TSoftObjectPtr<UInputMappingContext>& Soft : MappingContexts)
 			{
 				if (UInputMappingContext* Context = Soft.LoadSynchronous())
@@ -123,6 +165,80 @@ void ADinkGreyboxCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	{
 		Input->BindAction(A, ETriggerEvent::Triggered, this, &ADinkGreyboxCharacter::Look);
 	}
+	// Dialogue's Slate handler consumes Space before Enhanced Input sees it.
+	Input->BindAction(WalkInputAction, ETriggerEvent::Started, this, &ADinkGreyboxCharacter::StartWalking);
+	Input->BindAction(WalkInputAction, ETriggerEvent::Completed, this, &ADinkGreyboxCharacter::StopWalking);
+	Input->BindAction(WalkInputAction, ETriggerEvent::Canceled, this, &ADinkGreyboxCharacter::StopWalking);
+	Input->BindAction(JumpInputAction, ETriggerEvent::Started, this, &ADinkGreyboxCharacter::Jump);
+	Input->BindAction(JumpInputAction, ETriggerEvent::Completed, this, &ADinkGreyboxCharacter::StopJumping);
+	Input->BindAction(JumpInputAction, ETriggerEvent::Canceled, this, &ADinkGreyboxCharacter::StopJumping);
+	Input->BindAction(ZoomInputAction, ETriggerEvent::Triggered, this, &ADinkGreyboxCharacter::Zoom);
+}
+
+void ADinkGreyboxCharacter::SetWalking(bool bWalking)
+{
+	bWalkingHeld = bWalking;
+	GetCharacterMovement()->MaxWalkSpeed = bWalking ? WalkSpeed : RunSpeed;
+}
+
+void ADinkGreyboxCharacter::Jump()
+{
+	if (Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead()) Super::Jump();
+}
+
+void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
+{
+	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
+	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds, LandingStumbleChance);
+	AirSeconds = 0.f;
+	Super::Landed(Hit);
+}
+
+void ADinkGreyboxCharacter::Zoom(const FInputActionValue& Value)
+{
+	ZoomCamera(Value.Get<float>());
+}
+
+void ADinkGreyboxCharacter::ZoomCamera(float Steps)
+{
+	if (UDinkInteriorCameraComponent* Camera = FindComponentByClass<UDinkInteriorCameraComponent>())
+		Camera->AddZoomInput(Steps);
+}
+
+void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
+{
+	if (APlayerController* PC = Cast<APlayerController>(Controller); PC && IsLocallyControlled())
+	{
+		// Poll held controls too: losing focus or a consumed menu key-up must never stick a gait/jump.
+		const bool Held = PC->IsInputKeyDown(EKeys::LeftShift) || PC->IsInputKeyDown(EKeys::Gamepad_LeftShoulder);
+		if (Held != bWalkingHeld) SetWalking(Held);
+		if (PC->IsMoveInputIgnored() || Stats->IsDead() ||
+			(!PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
+	}
+	Super::Tick(DeltaSeconds);
+	const FVector Location = GetActorLocation();
+	const bool Teleported = !bBodyLocationReady || FVector::DistSquared(Location, PreviousBodyLocation) >= FMath::Square(200.);
+	if (Teleported) { HeroPhysicality.Cancel(); AirSeconds = 0.f; }
+	const bool Grounded = GetCharacterMovement()->IsMovingOnGround();
+	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
+	if (!Allowed) AirSeconds = 0.f;
+	else if (!Grounded) AirSeconds += DeltaSeconds;
+	else AirSeconds = 0.f;
+	HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported);
+	PreviousBodyLocation = Location; bBodyLocationReady = true;
+	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
+	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
+		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
+    if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
+        Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
+    {
+        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
+        AppliedBodyRotation = AppliedBodyRotation * FRotator(1.2f,0,0).Quaternion();
+    }
+	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
+	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
+	AppliedBodyOffset = HeroPhysicality.GetOffset();
+	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
 }
 
 void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)

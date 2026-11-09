@@ -1,0 +1,32 @@
+{
+  "status": "FAILED fixture assertion; not passing collision evidence",
+  "before_map": [
+    409,
+    146
+  ],
+  "after_1100ms_W": {
+    "map": [
+      447.277,
+      163.997
+    ],
+    "world": [
+      -183177.074,
+      392563.466,
+      98.15
+    ]
+  },
+  "after_additional400ms_W": {
+    "map": [
+      461.98,
+      163.997
+    ],
+    "world": [
+      -183112.745,
+      392563.467,
+      111.831
+    ]
+  },
+  "failed_assertion": "straight-world-X contact must remain mapX418..435",
+  "correction": "Native capsule sweep identifies actual basket surface normal with positiveY component; long heldW permits sliding. Short-sample real-input contact and separate departure will be measured against native hit location. No collision geometry changed.",
+  "raw_log": "Saved/BasketReviewed/Render/game.log"
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "dink-perimeter-skirt/1",
+  "name": "SM_Stonebrook_PerimeterSkirt_V1",
+  "files": {
+    "PerimeterSkirtV1.blend": "e48ba139bcc803638dce8ef062e720160a1049e5671a6ad3cbb3853d7fdb23bd",
+    "SM_Stonebrook_PerimeterSkirt_V1.fbx": "11b4652c6f65b694d630d475219d79c5439b92c67bf483a9c296af6ec8a940c6"
+  },
+  "dimensions_m": [
+    14.867422103881836,
+    13.115500450134277,
+    0.17800000309944153
+  ],
+  "vertices": 48,
+  "triangles": 96,
+  "material_slots": 1,
+  "manifold": true,
+  "signed_volume_m3": 0.069698239459601,
+  "placement_world_cm": [
+    -183821.68890908716,
+    392940.10499427794,
+    -18.0
+  ],
+  "world_top_cm": -0.2,
+  "world_base_cm": -18,
+  "outer_axis_inset_cm": 0.1,
+  "inner_axis_inset_cm": 0.8,
+  "offset_method": "Nested axiswise contraction about actual contour bounds; retains all12 bevel corners.",
+  "inside_original_floor_contour": true,
+  "source_UCX_count": 0,
+  "floor_binding_signature": "64792bcc71f8ca1071256271c16d08d55bec04e0785c0e82f36a573cc59f020a",
+  "native_source_vertices_sha256": "8894fb29b6cc53f0fdf5618bd19c3ec13b9f01c44af9806cf4d5b01466b095a1",
+  "input_sha256": {
+    "underfloor_plan.json": "375efda9fe69cceaf81bba9e7f94be58b6762b85217d9c1513b1c00cfbf5f44f",
+    "north_floor_right_ray_diagnosis.json": "23b4a9b5a4723f0012af85a3490393453c3997c251393112ba9cba5d7483e15c"
+  },
+  "material": {
+    "name": "M_Stonebrook_Underfloor_DarkOak_V1",
+    "base_color_linear": [
+      0.009,
+      0.005,
+      0.0025
+    ],
+    "roughness": 0.96,
+    "metallic": 0,
+    "specular": 0.25,
+    "opaque": true
+  },
+  "runtime_policy": {
+    "collision": false,
+    "camera_occluder": false,
+    "navigation": false,
+    "overlap_events": false,
+    "visibility": "owner_screen1_only",
+    "shared_geometry_or_material_edits": false
+  },
+  "guide_collision_exception": "Authorized render-only seam closure; no UCX, collision, navigation or overlaps.",
+  "proposed_package": "/Game/Dink/Kits/Stonebrook/Refinements/PerimeterSkirtV1/SM_Stonebrook_PerimeterSkirt_V1",
+  "qualification": "Observed perimeter-escape rays require FBX/native checks; residual0.2cm top clearance is not a universal coverage proof.",
+  "previous_underfloor_or_floor_modified": false,
+  "native_published": false
+}

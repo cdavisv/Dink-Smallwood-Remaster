@@ -1,0 +1,198 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealSessions/Props/PhotorealPropsV1_Export.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 3,
+    "assets_passed": 3,
+    "errors": 0,
+    "warnings": 3
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Table_Oak_01",
+      "class": "prop",
+      "collection": "SM_Table_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 9232
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "blender_max_cm": [
+          132.5,
+          74.9,
+          90.0
+        ],
+        "size_cm": [
+          265.0,
+          149.8,
+          90.0
+        ],
+        "unreal_min_cm": [
+          -132.5,
+          -74.9,
+          0.0
+        ],
+        "unreal_max_cm": [
+          132.5,
+          74.9,
+          90.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Table_Oak_01",
+          "message": "mesh data 'SM_Table_Oak_01_Photoreal_Mesh' differs from object name 'SM_Table_Oak_01'",
+          "object": "SM_Table_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Table_Oak_01",
+          "message": "LOD0 has 9232 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Table_Oak_01",
+          "data": {
+            "tris": 9232,
+            "target": 6000
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Chair_Oak_01",
+      "class": "prop",
+      "collection": "SM_Chair_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 6064
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "blender_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ],
+        "size_cm": [
+          65.0,
+          53.75,
+          100.5
+        ],
+        "unreal_min_cm": [
+          -32.5,
+          -26.875,
+          0.0
+        ],
+        "unreal_max_cm": [
+          32.5,
+          26.875,
+          100.5
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Chair_Oak_01",
+          "message": "mesh data 'SM_Chair_Oak_01_Photoreal_Mesh' differs from object name 'SM_Chair_Oak_01'",
+          "object": "SM_Chair_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Chair_Oak_01",
+          "message": "LOD0 has 6064 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Chair_Oak_01",
+          "data": {
+            "tris": 6064,
+            "target": 6000
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Bed_Oak_01",
+      "class": "prop",
+      "collection": "SM_Bed_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 19588
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "blender_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ],
+        "size_cm": [
+          251.0,
+          137.0,
+          112.0
+        ],
+        "unreal_min_cm": [
+          -125.5,
+          -68.5,
+          0.0
+        ],
+        "unreal_max_cm": [
+          125.5,
+          68.5,
+          112.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Bed_Oak_01",
+          "message": "mesh data 'SM_Bed_Oak_01_Photoreal_Mesh' differs from object name 'SM_Bed_Oak_01'",
+          "object": "SM_Bed_Oak_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Bed_Oak_01",
+          "message": "LOD0 has 19588 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Bed_Oak_01",
+          "data": {
+            "tris": 19588,
+            "target": 6000
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Bed_Oak_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Bed_Oak_01"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

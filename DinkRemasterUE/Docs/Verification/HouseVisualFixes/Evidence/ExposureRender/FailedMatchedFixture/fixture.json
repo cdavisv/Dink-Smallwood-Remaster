@@ -1,0 +1,85 @@
+{
+  "method": "Explicit post-route photo fixture to the archived actual returned pawn position; normal dink.View rotation, no camera/component/material/light setters.",
+  "comparison": {
+    "pawn_cm": {
+      "before": [
+        -183808.51105213116,
+        393533.540672431,
+        98.0
+      ],
+      "after": [
+        97729.06999999998,
+        37504.15000000002,
+        98.34999561309814
+      ]
+    },
+    "camera_cm": {
+      "before": [
+        -183760.69285377546,
+        393761.2205125485,
+        224.16407864998737
+      ],
+      "after": [
+        97733.77272804418,
+        37884.54353819296,
+        221.9567933630771
+      ]
+    },
+    "FOV": {
+      "before": 70.0,
+      "after": 90.0
+    },
+    "arm_cm": {
+      "before": 240.0,
+      "after": 400.0
+    },
+    "target_offset": {
+      "before": [
+        0.0,
+        0.0,
+        52.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "socket_offset": {
+      "before": [
+        0.0,
+        45.0,
+        0.0
+      ],
+      "after": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "commands": [
+    {
+      "command": "dink.Goto 1 303.5 382",
+      "output": ""
+    },
+    {
+      "command": "dink.View 225 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_pawn.set_actor_location(unreal.Vector(-183808.51105213116,393533.540672431,98.0), False, True)",
+      "output": "[2026.11.08-08.10.03:904][829]LogDink: Warp S001_P25 (exit) SCR_001 -> SCR_439 (345, 307): moved\n[2026.11.08-08.10.03:905][829]LogDink: Entered SCR_439  Stonebrook / Stonebrook village  [settlement]  music 104  visions: 1 2\n[2026.11.08-08.10.03:920][830]LogStreaming: Display: FlushAsyncLoading(484): 1 QueuedPackages, 0 AsyncPackages\n"
+    },
+    {
+      "command": "dink.View -90.708300 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-matched-return')",
+      "output": "[2026.11.08-08.10.09:755][208]LogPython: QA_VISUAL_READ exposure-matched-return\n"
+    }
+  ],
+  "status": "INVALID_MATCHED_FIXTURE",
+  "reason": "The old returned position overlaps the authored exit trigger; direct photo teleport retriggered its genuine warp. Camera/pawn contract differs, so this image is not matched before/after evidence. Successful real W routes and angle captures are stored separately."
+}

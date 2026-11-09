@@ -1,0 +1,41 @@
+[
+  {
+    "sequence": 174,
+    "frame": 1,
+    "name": "bar-01.bmp",
+    "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+    "raw_bmp_sha256": "3c14a87eb514fc841dc614bdfb98461e813001c1183a78050dc067d9bae3fcd3",
+    "png": "bar-01.bmp.png",
+    "size": [
+      56,
+      54
+    ],
+    "palette_unchanged": true
+  },
+  {
+    "sequence": 174,
+    "frame": 2,
+    "name": "bar-02.bmp",
+    "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+    "raw_bmp_sha256": "4b59c7d275e20fb2804240863266cc65dac85f85c60de5d3e976f0636af65614",
+    "png": "bar-02.bmp.png",
+    "size": [
+      27,
+      38
+    ],
+    "palette_unchanged": true
+  },
+  {
+    "sequence": 173,
+    "frame": 1,
+    "name": "barel-01.bmp",
+    "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+    "raw_bmp_sha256": "60367e6fde38abf421c051ac80c3846cfb74a09499e21b87dc0a956aa55792ff",
+    "png": "barel-01.bmp.png",
+    "size": [
+      56,
+      55
+    ],
+    "palette_unchanged": true
+  }
+]

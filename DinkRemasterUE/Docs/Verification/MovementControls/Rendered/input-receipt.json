@@ -1,0 +1,56 @@
+{
+  "initial": {
+    "screen": 439,
+    "map": [
+      300.0,
+      280.0
+    ],
+    "world": [
+      97282.992,
+      37233.58,
+      120.15
+    ],
+    "yaw": 0.0,
+    "pitch": -15.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "events": [
+    {
+      "event": "walk keydown",
+      "monotonic": 2276.39064142
+    },
+    {
+      "event": "run keydown",
+      "monotonic": 2277.621961013
+    },
+    {
+      "event": "jump keydown",
+      "monotonic": 2279.288397506
+    },
+    {
+      "event": "zoom in wheel",
+      "monotonic": 2280.673721575
+    },
+    {
+      "event": "zoom out wheel",
+      "monotonic": 2281.923541839
+    }
+  ],
+  "final": {
+    "screen": 439,
+    "map": [
+      370.523,
+      279.417
+    ],
+    "world": [
+      97977.078,
+      37232.101,
+      120.15
+    ],
+    "yaw": 0.0,
+    "pitch": -15.0,
+    "radius": 28.0,
+    "move_ignored": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "status": "copied frozen source hashes PASS; independent binary FBX inspection performed; full publication review pending final commit/ledger",
+  "files_verified": 75,
+  "fbx_sha256": "03a2b2ffe6bdf881be8306bad9027c80093bfc31c0ea932c5339c33ba7a8df3c",
+  "fbx_models": {
+    "SM_FeedSack_Jute_01": {
+      "name": "SM_FeedSack_Jute_01",
+      "type": "Mesh",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "parent": null,
+      "min": [
+        -0.36141419410705566,
+        -0.27734270691871643,
+        0.0
+      ],
+      "max": [
+        0.36141419410705566,
+        0.27734270691871643,
+        0.75
+      ],
+      "size": [
+        0.7228283882141113,
+        0.5546854138374329,
+        0.75
+      ],
+      "size_cm": [
+        72.28283882141113,
+        55.468541383743286,
+        75.0
+      ],
+      "min_cm": [
+        -36.141419410705566,
+        -27.734270691871643,
+        0.0
+      ],
+      "max_cm": [
+        36.141419410705566,
+        27.734270691871643,
+        75.0
+      ],
+      "tris": 19644
+    },
+    "UCX_SM_FeedSack_Jute_01_01": {
+      "name": "UCX_SM_FeedSack_Jute_01_01",
+      "type": "Mesh",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "parent": null,
+      "min": [
+        -0.32047051191329956,
+        -0.25527223944664,
+        -0.015000004321336746
+      ],
+      "max": [
+        0.32952946424484253,
+        0.26472774147987366,
+        0.7350000143051147
+      ],
+      "size": [
+        0.6499999761581421,
+        0.5199999809265137,
+        0.7500000186264515
+      ],
+      "size_cm": [
+        64.99999761581421,
+        51.99999809265137,
+        75.00000186264515
+      ],
+      "min_cm": [
+        -32.047051191329956,
+        -25.527223944664,
+        -1.5000004321336746
+      ],
+      "max_cm": [
+        32.95294642448425,
+        26.472774147987366,
+        73.50000143051147
+      ],
+      "tris": 12
+    }
+  },
+  "runtime_approval": false,
+  "complete_source_and_export_UV_reports_verified": true,
+  "recipe_review": "Bake captures native socket pairs before rewiring (corrected stale NodeLink pattern); source hash bound and existing export refused. Disposable copies required; it writes local authored outputs.",
+  "future_native_specular_F0_mapping": {
+    "1.46": 0.19231277678630443,
+    "1.5": 0.22000000000000006
+  },
+  "future_native_requirements": "Preserve two cloth/cord material slots and source material assignments; shared BC/N/ORM does not authorize flattening optical response. No native acceptance by source review."
+}

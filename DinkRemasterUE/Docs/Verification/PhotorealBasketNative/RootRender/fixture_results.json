@@ -1,0 +1,227 @@
+{
+  "result": "PASS",
+  "pid": 232554,
+  "method": "Explicitsetupat409/146; actual100msW samples reach actual native basket with observed lateral deflection and <=1cm remaining capsule sweep, then realWdeparture. No geometry or gameplay edits.",
+  "scope": "Bounded single-axis contact/departure; not stable-long-hold/all-directions proof. Initial long-hold assertion failed; v2approach-only result rejected ascontact. Both retained inHistorical.",
+  "start": {
+    "screen": 1,
+    "map": [
+      409.0,
+      146.0
+    ],
+    "world": [
+      -183344.535,
+      392484.73,
+      98.0
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "samples": [
+    {
+      "screen": 1,
+      "map": [
+        409.0,
+        146.0
+      ],
+      "world": [
+        -183344.535,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        411.359,
+        146.0
+      ],
+      "world": [
+        -183334.216,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        412.938,
+        146.0
+      ],
+      "world": [
+        -183327.304,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        414.518,
+        146.0
+      ],
+      "world": [
+        -183320.392,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        416.877,
+        146.0
+      ],
+      "world": [
+        -183310.074,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        419.235,
+        146.0
+      ],
+      "world": [
+        -183299.755,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        420.815,
+        146.0
+      ],
+      "world": [
+        -183292.843,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        422.395,
+        146.0
+      ],
+      "world": [
+        -183285.931,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        424.754,
+        146.0
+      ],
+      "world": [
+        -183275.613,
+        392484.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        427.018,
+        146.023
+      ],
+      "world": [
+        -183265.706,
+        392484.833,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "contact": {
+    "screen": 1,
+    "map": [
+      427.018,
+      146.023
+    ],
+    "world": [
+      -183265.706,
+      392484.833,
+      98.15
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "departure": {
+    "screen": 1,
+    "map": [
+      335.407,
+      146.023
+    ],
+    "world": [
+      -183666.506,
+      392484.833,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "trace_component_actor": "StaticMeshActor_278",
+  "trace_component": "StaticMeshComponent0",
+  "native_hit_center": [
+    -183265.702338,
+    392484.73,
+    98.0
+  ],
+  "contact_delta_cm": 0.10306507771595626,
+  "actual_contact_sweep_remaining_cm": 0.027128,
+  "lateral_deflection_cm": 0.10300000000279397,
+  "target_mesh": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01"
+}

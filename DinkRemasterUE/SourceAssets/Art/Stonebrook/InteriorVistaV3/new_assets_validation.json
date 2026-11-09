@@ -1,0 +1,2178 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/InteriorVista/Stonebrook_VistaAssets.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 55,
+    "assets_passed": 55,
+    "errors": 0,
+    "warnings": 0
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_VistaGround_8m_XN32_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -183.895
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          183.895
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -183.895
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -248.131
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          248.131
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -248.131
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -216.175
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          216.175
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -216.175
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -179.42
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          179.42
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -179.42
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -191.93
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          191.93
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -191.93
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -182.313
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          182.313
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -182.313
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN32_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN32_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -180.748
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          180.748
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -180.748
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -237.299
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          237.299
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -237.299
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -104.957
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          104.957
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -104.957
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -93.02
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          93.02
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -93.02
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -106.438
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          106.438
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -106.438
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -119.353
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          119.353
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -119.353
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -121.788
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          121.788
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -121.788
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN24_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN24_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -225.44
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          225.44
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -225.44
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -145.404
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          145.404
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -145.404
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -29.6
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          29.6
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -29.6
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -29.358
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          29.358
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -29.358
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.599
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.599
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.599
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.599
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.599
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.599
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -38.503
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          38.503
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -38.503
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN16_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN16_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -178.093
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          178.093
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -178.093
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -221.825
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          221.825
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -221.825
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -72.274
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          72.274
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -72.274
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -29.531
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          29.531
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -29.531
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -28.038
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          28.038
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -28.038
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -208.775
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          208.775
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -208.775
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -267.299
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          267.299
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -267.299
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -115.932
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          115.932
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -115.932
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.964
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.964
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.964
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.558
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.558
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.558
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -244.137
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          244.137
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -244.137
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -182.777
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          182.777
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -182.777
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -117.138
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          117.138
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -117.138
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.358
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.358
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.358
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.599
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.599
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.599
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -27.599
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          27.599
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -27.599
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -42.533
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          42.533
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -42.533
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP8_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP8_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -243.604
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          243.604
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -243.604
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -185.629
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          185.629
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -185.629
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -109.167
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          109.167
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -109.167
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -86.122
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          86.122
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -86.122
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -85.104
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          85.104
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -85.104
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -28.5
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          28.5
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -28.5
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -89.162
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          89.162
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -89.162
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP16_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP16_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -234.742
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          234.742
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -234.742
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN32",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YN32",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -131.108
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          131.108
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -131.108
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN24",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YN24",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -164.736
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          164.736
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -164.736
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YN16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -142.623
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          142.623
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -142.623
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YN8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YN8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -138.857
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          138.857
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -138.857
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP0",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YP0",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -133.999
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          133.999
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -133.999
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP8",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YP8",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -171.517
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          171.517
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -171.517
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP24_YP16",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP24_YP16",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -123.816
+        ],
+        "blender_max_cm": [
+          800.0,
+          800.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          800.0,
+          123.816
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -800.0,
+          -123.816
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XN8_YP13R",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XN8_YP13R",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -41.793
+        ],
+        "blender_max_cm": [
+          800.0,
+          250.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          250.0,
+          41.793
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -250.0,
+          -41.793
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_VistaGround_8m_XN8_YP13R",
+          "message": "y extent 2.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_VistaGround_8m_XN8_YP13R"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_VistaGround_8m_XP0_YP13R",
+      "class": "kit_floor",
+      "collection": "SM_VistaGround_8m_XP0_YP13R",
+      "tris_per_lod": {
+        "LOD0": 320
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -43.813
+        ],
+        "blender_max_cm": [
+          800.0,
+          250.0,
+          0.0
+        ],
+        "size_cm": [
+          800.0,
+          250.0,
+          43.813
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -250.0,
+          -43.813
+        ],
+        "unreal_max_cm": [
+          800.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_VistaGround_8m_XP0_YP13R",
+          "message": "y extent 2.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_VistaGround_8m_XP0_YP13R"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Doorstep_StonebrookVista_01",
+      "class": "prop",
+      "collection": "SM_Doorstep_StonebrookVista_01",
+      "tris_per_lod": {
+        "LOD0": 324
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -100.0,
+          -75.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          100.0,
+          75.0,
+          10.0
+        ],
+        "size_cm": [
+          200.0,
+          150.0,
+          10.0
+        ],
+        "unreal_min_cm": [
+          -100.0,
+          -75.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          100.0,
+          75.0,
+          10.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 0,
+      "findings": [],
+      "passed": true
+    }
+  ]
+}

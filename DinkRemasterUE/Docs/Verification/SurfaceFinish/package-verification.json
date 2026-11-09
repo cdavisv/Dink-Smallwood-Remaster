@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "uat_exit": 0,
+  "package_seconds": 62,
+  "package_warnings": 0,
+  "packaged_chapters_passed": 10,
+  "editor_packaged_traces_byte_identical": 10,
+  "actual_iostore_new_packages": 7,
+  "packaged_world_context_actors": 2,
+  "both_new_meshes_loaded": true,
+  "checked_preexisting_full_suite_inputs": 8835,
+  "changed_inputs": [
+    "AGENTS.md",
+    "Scripts/ART_PIPELINE.md"
+  ],
+  "changes_are_documentation_only": true,
+  "runtime_asset_code_input_changes": [],
+  "scope": "Editor GPU and real-keyboard route proven separately. Packaged verification covers actual container contents, NullRHI object loading and ten narrative chapters; packaged GPU not claimed."
+}

@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "schema": "dink-photoreal-basket/1",
+      "passed": true,
+      "applied": false,
+      "apply_requested": false,
+      "already_published": true,
+      "verification_basis": "published_entry_state",
+      "writer_scope": "none",
+      "scene_data_approval": false,
+      "changed_mesh_references": 0,
+      "only_mesh_references_changed": true,
+      "asset_rows": 1,
+      "instance_rows": 1,
+      "before_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "after_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "proposed_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "verified_baseline_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "verified_baseline_semantic_sha256": "6e9b59c47eeae8abcb264387ce9b800ac7715e5b660d8aedc53dd53c90219e02",
+      "verification_sha256": "2f93093c891250982c420650832d6231b64dcad9a4ad2e22e34c900a633e871f",
+      "tool_sha256": {
+        "basket_contract.py": "8dcbf4986c3c11c238f95f623304555c61d092a1a864981c2482ce466723f7a8",
+        "import_photoreal_basket.py": "c5e30a1838d5fe75280aca894d157199b5bce463842b039d1ff3ede4f19eec94",
+        "publish_photoreal_basket.py": "ff7132e6393819dcd7f350febf09ccafd7656629a268af8bc359e5926499a51d",
+        "basket_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+        "prepare_photoreal_basket_plan.py": "98b281e5710a5d5c9161675f7ab9875451bb6e8eba6f8c5c9a455b1ede114c43"
+      },
+      "plan_sha256": "8193b849a7b931d413359b363408656b1c6dfdb99956793aaa577baaaf8b53d4"
+    },
+    {
+      "schema": "dink-photoreal-basket/1",
+      "passed": true,
+      "applied": false,
+      "apply_requested": true,
+      "already_published": true,
+      "verification_basis": "published_entry_state",
+      "writer_scope": "none",
+      "scene_data_approval": false,
+      "changed_mesh_references": 0,
+      "only_mesh_references_changed": true,
+      "asset_rows": 1,
+      "instance_rows": 1,
+      "before_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "after_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "proposed_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "verified_baseline_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+      "verified_baseline_semantic_sha256": "6e9b59c47eeae8abcb264387ce9b800ac7715e5b660d8aedc53dd53c90219e02",
+      "verification_sha256": "2f93093c891250982c420650832d6231b64dcad9a4ad2e22e34c900a633e871f",
+      "tool_sha256": {
+        "basket_contract.py": "8dcbf4986c3c11c238f95f623304555c61d092a1a864981c2482ce466723f7a8",
+        "import_photoreal_basket.py": "c5e30a1838d5fe75280aca894d157199b5bce463842b039d1ff3ede4f19eec94",
+        "publish_photoreal_basket.py": "ff7132e6393819dcd7f350febf09ccafd7656629a268af8bc359e5926499a51d",
+        "basket_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+        "prepare_photoreal_basket_plan.py": "98b281e5710a5d5c9161675f7ab9875451bb6e8eba6f8c5c9a455b1ede114c43"
+      },
+      "plan_sha256": "8193b849a7b931d413359b363408656b1c6dfdb99956793aaa577baaaf8b53d4"
+    }
+  ],
+  "pinned_files": 8887,
+  "changed_files": [],
+  "scope": "Content/SourceAssets/Scripts/Source/Config/ImportData plus owned custom modules; excludes Saved/Docs and pycache"
+}

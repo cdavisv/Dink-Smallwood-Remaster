@@ -1,0 +1,107 @@
+{
+  "schema": "dink-visual-issues/1",
+  "baseline_commit": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "project": "/home/davisc/Work/DinkPhotorealDelivery/DinkRemasterUE",
+  "live_project_untouched": true,
+  "issues": [
+    {
+      "id": "PP_001",
+      "severity": "visual_bug",
+      "status": "fixed_native_and_rendered_owner_regression_verified",
+      "trigger": "Actual W return, looking north at yaw270/pitch−18; exposure changes with camera angle.",
+      "evidence": [
+        "GuardedRepeat/actual-return-settled.png",
+        "Runtime/actual-return-settled.json"
+      ],
+      "finding": "46 seconds after the warp, the camera remains141.49cm outside the authored box. With100cm blend radius, the accepted−2EV override contributes0 while the pawn is still inside its owner room. A separate screen-ownership coordinator fixes activation; native lifecycle/art/import tests pass; screenshots pending.",
+      "after_evidence": [
+        "ExposureRender/Route/actual-return.png",
+        "Full145/verification.json"
+      ]
+    },
+    {
+      "id": "FLOOR_001",
+      "severity": "visual_bug",
+      "status": "fixed_in_measured_native_views_and_geometry",
+      "trigger": "Map314,161, yaw270/pitch−18 with the normal right shoulder.",
+      "evidence": [
+        "Baseline/north-floor-right.png",
+        "Runtime/north-floor-right.json",
+        "north_floor_right_ray_diagnosis.json"
+      ],
+      "finding": "23 blue pixels;7 unambiguous rays miss actual floor and underfloor source triangles. At Z−16 they escape21.71cm north of the sheet. A separate closed perimeter skirt has source/FBX proof; native import and multiangle checks pending.",
+      "after_evidence": [
+        "SkirtRender/NorthFixtures/north-exact.png",
+        "SkirtRender/exact_native_ray_and_pixel_proof.json"
+      ],
+      "qualification": "Four measured pitches and exact old witness camera; no universal all-angle/world claim."
+    },
+    {
+      "id": "LIGHT_002",
+      "severity": "visual_deficiency",
+      "status": "measured_readbacks_available_no_blind_fix",
+      "evidence": [
+        "Baseline/actual-outside.png",
+        "Runtime/yard-settled.json"
+      ],
+      "finding": "Distant terrain/fence/sky approach white clipping. The indoor owner-exposure bug is separate; daylight/material calibration remains unfinished.",
+      "trigger": "Settled outdoor view."
+    },
+    {
+      "id": "ART_001",
+      "severity": "unfinished_art",
+      "status": "separate_photoreal_candidates_unpromoted",
+      "finding": "Native baseline still has red-shirt/tan-pants hero, coarse clothing/face and old wavy furniture. New photoreal source candidates have not been imported in this checkout.",
+      "trigger": "Normal gameplay views."
+    },
+    {
+      "id": "ROUTE_001",
+      "severity": "fixture_planning_failure",
+      "status": "preserved_fixture_failure_not_proven_game_bug",
+      "evidence": [
+        "Neighbors/actual-west.json",
+        "Neighbors/west-garden-fence-stop.png"
+      ],
+      "finding": "The planned path hits visible FenceGarden1. Use the south gate. This is not evidence of an oversized collider.",
+      "trigger": "Straight-west route through garden fence."
+    },
+    {
+      "id": "BORDER_001",
+      "severity": "qualified_visual_bug",
+      "status": "component_identity_unconfirmed",
+      "trigger": "Actual eastward walk on screen439 at map597.144,378.",
+      "finding": "Movement stops28cm before the screen boundary. Original screen440 fence S440_P01 hardness covers the contact coordinates while adjacent legacy cards are hidden until their screen becomes current. Exact hit component could not be read through protected Python HitResult fields; preserve this as qualified visibility-policy evidence, not a proven collider defect.",
+      "evidence": [
+        "Neighbors/east-boundary-stop.png",
+        "Neighbors/east-boundary-and-fixture.json",
+        "Neighbors/legacy_card_inventory.json"
+      ]
+    },
+    {
+      "id": "LIGHT_003",
+      "severity": "unfinished_lighting",
+      "status": "measured_flags_enabled_cause_not_established",
+      "finding": "Room center and hero remain dark under accepted−2EV policy. All148 house meshes affect dynamic indirect/distance-field lighting, visible in ray tracing and cast dynamic shadows; Epic quality3/Lumen/eye adaptation enabled. Surface-cache/SDF coverage and final lighting grade remain unverified.",
+      "evidence": [
+        "ExposureRender/Route/actual-return.png",
+        "ExposureRender/render_quality.json",
+        "ExposureRender/room_gi_flags.json"
+      ]
+    }
+  ],
+  "tests": {
+    "real_door_exit_return_roundtrips": 2,
+    "second_roundtrip_fully_guarded": true,
+    "interaction_cases_passed": 12,
+    "baseline_art_native_passed": 23,
+    "baseline_art_warnings": 0,
+    "full_native_passed": 145,
+    "full_native_warnings": 0,
+    "python_passed": 116
+  },
+  "capture_guard_count": 6974,
+  "scope_guard_note": "The first route began before the capture pin. The complete second route and all later baseline captures were guarded by6974 hashes, unchanged after normal quit. QA readers were versioned separately. No C++/Content/Data/module writes while the baseline game was alive.",
+  "current_commit": "e53cae950e0748ff1c72b4111767e07eca7d34b0",
+  "final_full_freeze_files": 8852,
+  "final_full_freeze_changes": []
+}

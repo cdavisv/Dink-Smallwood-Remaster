@@ -1,0 +1,45 @@
+{
+  "editor_exit": 0,
+  "passed": true,
+  "inputs": {
+    "audit_loaded_vista.py": "05a8f55254f8421ad2c5714b22b466df6a51a50d6b31e5ec17b1e3e45234b899",
+    "vista_audit_geometry.py": "3ba6c832a1cc28c938587ea65802e1306881a07b1b6f5193afd06aa2ef6fa5b8",
+    "stonebrook_vista_v3.context.draft.json": "c69b050323916c8a388bac1172e30d5bee68824ce4dc48122c7f10a5f6fc7cfe"
+  },
+  "actual": {
+    "rooms": 644,
+    "other_rooms": 643,
+    "instances": 316,
+    "meshes": 62,
+    "owner_AABB_potentials": 0,
+    "confirmed_owner_intrusions": 0,
+    "neighbor_AABB_potentials": 0,
+    "confirmed_neighbor_intrusions": 0,
+    "protected_files": 5422,
+    "protected_changes": [],
+    "floor_top_cm": 0.0,
+    "ground_height_range_cm": [
+      -2.6251898519694805,
+      -2.502999714016914
+    ],
+    "closest_other_room": {
+      "screen": 2,
+      "name": "Ethel's house",
+      "geometry_AABB_potential_overlap": false,
+      "geometry_overlap": false,
+      "triangle_intersections": [],
+      "culling_overlap": false,
+      "geometry_gap_cm": 2086.900681571802
+    }
+  },
+  "array_getter_diagnostic": "triangle_api.json:arrayLength6; three indexed vertices validated, packageunchanged",
+  "engine_changed": false,
+  "actor_or_context_spawned": false,
+  "runtime_Data_or_ledger_published": false,
+  "unit_tests": "8/8PASS; includes indexedaccessor validity/unsafegetter avoidance",
+  "limitations": [
+    "Editor-loaded actual screen-volume bounds; no live-context rendering acceptance",
+    "GeometryAABB is conservative, not exact triangle overlap",
+    "Culling envelope is recorded separately and never used as physical mesh dimensions"
+  ]
+}

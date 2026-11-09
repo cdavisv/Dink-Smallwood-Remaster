@@ -1,0 +1,32 @@
+{
+  "verification_mode": "full",
+  "binary_files_verified": 1990,
+  "binary_files_metadata_only": 0,
+  "python_syntax_files": 262,
+  "shell_syntax_files": 22,
+  "ledger_rows": 1414,
+  "missing_assets": 0,
+  "hash_errors": 0,
+  "secret_flags": [],
+  "errors": [
+    {
+      "file": "DinkRemasterUE/Scripts/tests/tmpezbhrh3o/tools/props_contract.py",
+      "error": "invalid syntax (props_contract.py, line 1)"
+    },
+    {
+      "file": "DinkRemasterUE/Scripts/tests/tmpezbhrh3o/tools/import_photoreal_props.py",
+      "error": "invalid syntax (import_photoreal_props.py, line 1)"
+    },
+    {
+      "file": "DinkRemasterUE/Scripts/tests/tmpezbhrh3o/tools/publish_photoreal_props.py",
+      "error": "invalid syntax (publish_photoreal_props.py, line 1)"
+    },
+    {
+      "file": "DinkRemasterUE/Scripts/tests/tmpezbhrh3o/tools/props_fbxparse.py",
+      "error": "invalid syntax (props_fbxparse.py, line 1)"
+    }
+  ],
+  "layout_cases_passed": 3,
+  "approved_audio_runtime_matches": true,
+  "passed": false
+}

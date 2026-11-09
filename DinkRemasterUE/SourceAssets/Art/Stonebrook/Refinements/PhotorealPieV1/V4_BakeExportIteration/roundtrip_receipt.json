@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "export_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "FBX_sha256": "6687fc7dc2b7dc9e0f92481bc70f26ebbc798be0ac6bebe4deae4b796f6d4133",
+  "LODs": [
+    {
+      "LOD": 0,
+      "triangles": 4844,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997764825821,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    },
+    {
+      "LOD": 1,
+      "triangles": 2542,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999997756240191,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    },
+    {
+      "LOD": 2,
+      "triangles": 1330,
+      "max_position_delta_m": 0,
+      "max_UV_delta": 0,
+      "minimum_front_dot": 0.9999998105486156,
+      "max_normal_angle_radians": 0,
+      "all_material_ids_preserved": true,
+      "all_source_and_imported_corner_normals_unit": true,
+      "slots": 2
+    }
+  ],
+  "authored_UCX_count": 0,
+  "baked_Blender_material_optics": {
+    "MI_Pie_BlueCeramic_PhotoBaked": {
+      "IOR": 1.4800000190734863,
+      "Specular IOR Level": 0.5,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    },
+    "MI_Pie_PastryFruit_PhotoBaked": {
+      "IOR": 1.4600000381469727,
+      "Specular IOR Level": 0.30000001192092896,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ]
+    }
+  },
+  "limits": "Actual Blender FBX geometry/UV/normal/materialID roundtrip. Raw1254reference is authoring-only; export3images2048POT; nativefood/glaze/LOD-distance/camera/pickup acceptance still unproven."
+}

@@ -1,0 +1,9 @@
+{
+  "stage": "preflight independent read-only review PASS",
+  "tool_packet": "exact frozen successor5tools match receipt/root bytes",
+  "old_package": "4d5597...8849 unchanged",
+  "baseline": "2588triangles/2material baseline/complex-as-simple",
+  "protected_changes": [],
+  "runtime_data_changes": [],
+  "scope": "Only preflight; actual saved new-sack assignments and native verification pending"
+}

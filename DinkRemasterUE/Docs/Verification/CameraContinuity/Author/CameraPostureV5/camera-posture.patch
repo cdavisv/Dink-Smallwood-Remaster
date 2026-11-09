@@ -1,0 +1,480 @@
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+index 59a973d..c82a744 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+@@ -1,5 +1,8 @@
+ #include "DinkArtSubsystem.h"
+ #include "DinkArtContextActor.h"
++#include "DinkEarlyPostureAnimInstance.h"
++#include "DinkPostureComponent.h"
++#include "Animation/AnimBlueprintGeneratedClass.h"
+ #include "DinkScreenExposureComponent.h"
+ #include "DinkCoreModule.h"
+ #include "DinkOriginComponent.h"
+@@ -360,6 +363,25 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
+ 	}
+ 	Component.SetSkeletalMesh(Mesh);
+     ConfigurePlayerActions(Component);
++    FString PosturePath;
++    UClass* PostureClass=nullptr;
++    if ((*Row)->TryGetStringField(TEXT("posture_class"),PosturePath))
++    {
++        UClass* Candidate=LoadClass<UDinkEarlyPostureAnimInstance>(nullptr,*PosturePath);
++        const UAnimBlueprintGeneratedClass* Graph=Cast<UAnimBlueprintGeneratedClass>(Candidate);
++        if (Graph && Graph->GetTargetSkeleton()==Mesh->GetSkeleton()) PostureClass=Candidate;
++        else UE_LOG(LogDink,Warning,TEXT("Player posture class missing or incompatible: %s"),*PosturePath);
++    }
++    if (AActor* Owner=Component.GetOwner())
++    {
++        UDinkPostureComponent* Posture=Owner->FindComponentByClass<UDinkPostureComponent>();
++        if (!Posture && PostureClass)
++        {
++            Posture=NewObject<UDinkPostureComponent>(Owner,TEXT("PlayerPosture"));
++            Owner->AddInstanceComponent(Posture); Posture->RegisterComponent();
++        }
++        if (Posture) Posture->Configure(&Component,PostureClass);
++    }
+ 	UE_LOG(LogDink, Display, TEXT("DINK PLAYER ART OK: %s; existing locomotion and collision retained"), *Path);
+ 	return true;
+ }
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+index e03bf13..2506eb8 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+@@ -151,6 +151,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
+     const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
+     const float PreviousArm = Arm->TargetArmLength;
+     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
++    bAppliedCutaway=bEnableWallCutaway;
+     bInteriorMode = Screen && Screen->bIndoor;
+     if (bInteriorMode)
+     {
+@@ -163,7 +164,9 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
+     if (SameMode) Arm->TargetArmLength=PreviousArm;
+     // Outdoor meshes participate only through the same explicit tag and complete
+     // authored material mapping. Their physical collision and outdoor camera stay intact.
+-    if (!Screen) return;
++    // Normal play retracts the camera against solid architecture instead of removing it.
++    // This also prevents a single exterior-cottage component from fading the whole house.
++    if (!Screen || !bEnableWallCutaway) return;
+     const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"),Screen->ScreenNumber));
+     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+     {
+@@ -313,7 +316,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
+     }
+     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
+     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
+-    if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
++    if (!bSelectedScreen || Screen!=CurrentScreen.Get() || bAppliedCutaway!=bEnableWallCutaway) SelectScreen(Screen);
+     Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
+     if (bInteriorMode) UpdateFraming(DeltaTime);
+     if (Occluders.IsEmpty()) return;
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+index 3a7e28a..b87af24 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+@@ -1,6 +1,7 @@
+ #include "Greybox/DinkGreyboxCharacter.h"
+ #include "DinkCoreModule.h"
+ #include "DinkArtSubsystem.h"
++#include "DinkEarlyPostureAnimInstance.h"
+ #include "DinkInteriorCameraComponent.h"
+ #include "DinkInventoryComponent.h"
+ #include "DinkStatsComponent.h"
+@@ -228,6 +229,12 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
+ 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
+ 	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
+ 		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
++    if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
++        Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
++    {
++        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
++        AppliedBodyRotation = AppliedBodyRotation * FRotator(1.2f,0,0).Quaternion();
++    }
+ 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
+ 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
+ 	AppliedBodyOffset = HeroPhysicality.GetOffset();
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+index 3f2f1d8..111c653 100644
+--- a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+@@ -35,6 +35,8 @@ class DINKCORE_API UDinkInteriorCameraComponent : public UActorComponent
+     GENERATED_BODY()
+ public:
+     UDinkInteriorCameraComponent();
++    /** Historical cutaway mode for comparison fixtures only. Normal play keeps architecture opaque. */
++    UPROPERTY(Transient) bool bEnableWallCutaway = false;
+     /** Positive steps move closer. Kept separate from interior/outdoor base distances. */
+     void AddZoomInput(float Steps);
+     float GetZoomOffset() const { return ZoomOffset; }
+@@ -79,5 +81,6 @@ private:
+     FVector OutdoorPivot = FVector::ZeroVector;
+     FVector OutdoorSocket = FVector::ZeroVector;
+     bool bSelectedScreen = false;
++    bool bAppliedCutaway = false;
+     float ZoomOffset = 0.f;
+ };
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
+index 0695a48..c916650 100644
+--- a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
+@@ -211,7 +211,7 @@ class FContextPIE : public IAutomationLatentCommand
+             auto Camera=H ? H->FindComponentByClass<UDinkInteriorCameraComponent>() : nullptr;
+             auto Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
+             const bool ManagedCottage=B.M->GetStaticMesh() && B.M->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01") &&
+-                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && !Camera->bInteriorMode;
++                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && Camera->bEnableWallCutaway && !Camera->bInteriorMode;
+             if (ManagedCottage)
+             {
+                 auto Expected=B.Responses;Expected.SetResponse(ECC_Camera,ECR_Ignore);
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+index 7d0aae2..1f7070d 100644
+--- a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+@@ -63,6 +63,9 @@ public:
+         UDinkInteriorCameraComponent* C=Hero->FindComponentByClass<UDinkInteriorCameraComponent>();
+         if (Phase==0)
+         {
++            // Retain historical cutaway ownership/restore coverage explicitly; default play
++            // uses opaque architecture and is tested by WallsRemainSolid below.
++            if (C) C->bEnableWallCutaway=true;
+             if (!ViewportReady)
+             {
+                 ULocalPlayer* Local=PC->GetLocalPlayer(); FViewport* V=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
+index 2cea8f7..dea0d3c 100644
+--- a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
+@@ -55,6 +55,7 @@ public:
+   {
+    Story->SkipDialogue(); if (Story->GetActiveMenu() || Story->GetDirector()->GetDink().bFrozen || PC->IsMoveInputIgnored()) return false;
+    if (!Test->TestNotNull(TEXT("actual character camera policy"),Camera)) return true;
++   Camera->bEnableWallCutaway=true; // explicit historical comparison, before leaving the room
+    auto* Local=PC->GetLocalPlayer(); auto* Viewport=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
+    if (!Test->TestNotNull(TEXT("real PIE local viewport"),Viewport)) return true;
+    if (Viewport->GetSizeXY()==FIntPoint::ZeroValue) Viewport->SetInitialSize(FIntPoint(1280,720));
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
+index a78810f..01594d8 100644
+--- a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
+@@ -67,7 +67,7 @@ public:
+         if(Phase==1)
+         {
+             Check(true);if(auto* C=H->FindComponentByClass<UDinkInteriorCameraComponent>())
+-                T->TestEqual(TEXT("skirt never adds a camera occluder"),C->ManagedOccluderCount,85);
++                T->TestEqual(TEXT("skirt never adds a disappearing camera surface"),C->ManagedOccluderCount,C->bEnableWallCutaway ? 85 : 0);
+             else T->AddError(TEXT("real interior camera component missing"));
+             Move(H,G,Yard);Phase=2;At=FPlatformTime::Seconds();return false;
+         }
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkPostureComponent.h b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkPostureComponent.h
+new file mode 100644
+index 0000000..ae614a3
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkPostureComponent.h
+@@ -0,0 +1,25 @@
++#pragma once
++#include "CoreMinimal.h"
++#include "Components/ActorComponent.h"
++#include "DinkPostureComponent.generated.h"
++class UAnimInstance;
++class USkeletalMeshComponent;
++
++/** Owns only its optional post-process override, preserving the previous raw override and
++ * respecting external changes. Art validation owns graph/skeleton compatibility. */
++UCLASS()
++class DINKCORE_API UDinkPostureComponent : public UActorComponent
++{
++    GENERATED_BODY()
++public:
++    bool Configure(USkeletalMeshComponent* Mesh, TSubclassOf<UAnimInstance> Class);
++    void Release();
++    static bool ReadOverride(const USkeletalMeshComponent* Mesh, TSubclassOf<UAnimInstance>& Out);
++protected:
++    virtual void OnUnregister() override;
++private:
++    UPROPERTY(Transient) TObjectPtr<USkeletalMeshComponent> Target;
++    UPROPERTY(Transient) TSubclassOf<UAnimInstance> Previous;
++    UPROPERTY(Transient) TSubclassOf<UAnimInstance> Managed;
++    bool bExternallyReplaced = false;
++};
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkPostureComponent.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkPostureComponent.cpp
+new file mode 100644
+index 0000000..9692901
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkPostureComponent.cpp
+@@ -0,0 +1,44 @@
++#include "DinkPostureComponent.h"
++#include "Animation/AnimInstance.h"
++#include "Components/SkeletalMeshComponent.h"
++#include "UObject/UnrealType.h"
++
++bool UDinkPostureComponent::ReadOverride(const USkeletalMeshComponent* Mesh, TSubclassOf<UAnimInstance>& Out)
++{
++    // The public getter resolves the mesh asset fallback; restoration needs the exact raw
++    // override, including null. Read reflection only; all changes use the native setter.
++    const FClassProperty* Property=FindFProperty<FClassProperty>(USkeletalMeshComponent::StaticClass(),TEXT("OverridePostProcessAnimBP"));
++    if (!Mesh || !Property) return false;
++    Out=Cast<UClass>(Property->GetObjectPropertyValue_InContainer(Mesh));
++    return true;
++}
++
++bool UDinkPostureComponent::Configure(USkeletalMeshComponent* Mesh, TSubclassOf<UAnimInstance> Class)
++{
++    if (!Mesh || !Class) { Release(); return false; }
++    if (Target && Target!=Mesh) Release();
++    TSubclassOf<UAnimInstance> Current;
++    if (!ReadOverride(Mesh,Current)) return false;
++    if (Target==Mesh && (bExternallyReplaced || (Managed && Current!=Managed)))
++    {
++        bExternallyReplaced=true; return false;
++    }
++    if (!Target) { Target=Mesh; Previous=Current; }
++    if (Current!=Class) Mesh->SetOverridePostProcessAnimBP(Class);
++    Managed=Class;
++    return true;
++}
++
++void UDinkPostureComponent::Release()
++{
++    TSubclassOf<UAnimInstance> Current;
++    if (!bExternallyReplaced && Managed && ReadOverride(Target,Current) && Current==Managed)
++        Target->SetOverridePostProcessAnimBP(Previous);
++    Target=nullptr; Previous=nullptr; Managed=nullptr; bExternallyReplaced=false;
++}
++
++void UDinkPostureComponent::OnUnregister()
++{
++    Release();
++    Super::OnUnregister();
++}
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkEarlyPostureAnimInstance.h b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkEarlyPostureAnimInstance.h
+new file mode 100644
+index 0000000..ae1b965
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkEarlyPostureAnimInstance.h
+@@ -0,0 +1,20 @@
++#pragma once
++#include "CoreMinimal.h"
++#include "Animation/AnimInstance.h"
++#include "DinkEarlyPostureAnimInstance.generated.h"
++
++/** Parent of the optional post-process graph. The graph applies a local-space additive
++ * authored on Dink's unchanged rig; ordinary locomotion and action poses are its input. */
++UCLASS(Transient, Blueprintable)
++class DINKCORE_API UDinkEarlyPostureAnimInstance : public UAnimInstance
++{
++    GENERATED_BODY()
++public:
++    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Transient, Category="Dink|Posture")
++    float PostureWeight = 0.f;
++    virtual void NativeUpdateAnimation(float DeltaSeconds) override;
++    static float TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne);
++private:
++    FVector PreviousLocation = FVector::ZeroVector;
++    bool bHasPreviousLocation = false;
++};
+diff --git a/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkEarlyPostureAnimInstance.cpp b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkEarlyPostureAnimInstance.cpp
+new file mode 100644
+index 0000000..eb4d796
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkEarlyPostureAnimInstance.cpp
+@@ -0,0 +1,37 @@
++#include "DinkEarlyPostureAnimInstance.h"
++#include "DinkFactSubsystem.h"
++#include "DinkPlayerActionComponent.h"
++#include "DinkStatsComponent.h"
++#include "Engine/GameInstance.h"
++#include "GameFramework/Character.h"
++#include "GameFramework/CharacterMovementComponent.h"
++#include "GameFramework/Controller.h"
++
++float UDinkEarlyPostureAnimInstance::TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne)
++{
++    if (!bAllowed) return 0.f;
++    // Timid in Stonebrook; later progress relaxes the pose without changing quest facts.
++    const float Mood = Story <= 2 ? 1.f : (Story < 7 ? .7f : .3f);
++    return Mood * (bAttacking ? .35f : (bAirborne ? .5f : 1.f));
++}
++
++void UDinkEarlyPostureAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
++{
++    Super::NativeUpdateAnimation(DeltaSeconds);
++    if (DeltaSeconds <= SMALL_NUMBER) return;
++    const ACharacter* Hero = Cast<ACharacter>(TryGetPawnOwner());
++    if (!Hero) { PostureWeight=0.f; bHasPreviousLocation=false; return; }
++    const FVector Position=Hero->GetActorLocation();
++    const bool Teleported=!bHasPreviousLocation || FVector::DistSquared(Position,PreviousLocation)>FMath::Square(200.);
++    PreviousLocation=Position; bHasPreviousLocation=true;
++    const AController* Controller=Hero->GetController();
++    const UDinkStatsComponent* Stats=Hero->FindComponentByClass<UDinkStatsComponent>();
++    const UDinkPlayerActionComponent* Action=Hero->FindComponentByClass<UDinkPlayerActionComponent>();
++    const UGameInstance* GI=Hero->GetGameInstance();
++    const UDinkFactSubsystem* Facts=GI ? GI->GetSubsystem<UDinkFactSubsystem>() : nullptr;
++    const bool Allowed=Controller && !Controller->IsMoveInputIgnored() && (!Stats || !Stats->IsDead());
++    const float Target=TargetWeight(Facts ? Facts->GetFact(TEXT("story")) : 0,Allowed,
++        Action && Action->IsActionActive(),Hero->GetCharacterMovement()->IsFalling());
++    // A cutscene/death or observed warp drops the transient pose immediately.
++    PostureWeight=(!Allowed || Teleported) ? 0.f : FMath::FInterpTo(PostureWeight,Target,DeltaSeconds,5.f);
++}
+diff --git a/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkSolidWallsTests.cpp b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkSolidWallsTests.cpp
+new file mode 100644
+index 0000000..e6beedd
+--- /dev/null
++++ b/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkSolidWallsTests.cpp
+@@ -0,0 +1,156 @@
++#include "DinkTestHelpers.h"
++#include "DinkEarlyPostureAnimInstance.h"
++#include "DinkPostureComponent.h"
++#include "Animation/AnimSingleNodeInstance.h"
++#include "Components/SkeletalMeshComponent.h"
++#include "DinkInteriorCameraComponent.h"
++#include "DinkStorySubsystem.h"
++#include "Greybox/DinkGreyboxCharacter.h"
++#include "Greybox/DinkGreyboxSubsystem.h"
++#include "Greybox/DinkScreenVolume.h"
++#include "Components/StaticMeshComponent.h"
++#include "Editor.h"
++#include "Engine/StaticMesh.h"
++#include "Engine/World.h"
++#include "EngineUtils.h"
++#include "FileHelpers.h"
++#include "GameFramework/CharacterMovementComponent.h"
++#include "GameFramework/PlayerController.h"
++#include "GameFramework/SpringArmComponent.h"
++#include "Misc/PackageName.h"
++#include "Tests/AutomationEditorCommon.h"
++namespace
++{
++class FSolidWallsCheck : public IAutomationLatentCommand
++{
++public:
++    explicit FSolidWallsCheck(FAutomationTestBase* T):Test(T) {}
++    bool Update() override
++    {
++        if (!Start) Start=FPlatformTime::Seconds();
++        if (FPlatformTime::Seconds()-Start>90) { Test->AddError(TEXT("solid-wall fixture readiness timed out"));return true; }
++        UWorld* W=GEditor ? GEditor->PlayWorld.Get() : nullptr;
++        auto* PC=W ? W->GetFirstPlayerController() : nullptr;
++        auto* H=PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
++        auto* S=W && W->GetGameInstance() ? W->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>() : nullptr;
++        if (!H || !S || S->bNewGamePending) return false;
++        auto* C=H->FindComponentByClass<UDinkInteriorCameraComponent>();
++        auto* G=W->GetSubsystem<UDinkGreyboxSubsystem>();
++        if (!Stage)
++        {
++            S->SkipDialogue(); if (PC->IsMoveInputIgnored()) return false;
++            Test->TestFalse(TEXT("normal play never enables whole-wall cutaway"),C->bEnableWallCutaway);
++            // Exercise the native policy with the actual pawn/controller/world, without claiming
++            // that a not-yet-imported additive graph has evaluated any bones.
++            auto* Posture=NewObject<UDinkEarlyPostureAnimInstance>(H->GetMesh());
++            Posture->NativeUpdateAnimation(.2f); Posture->NativeUpdateAnimation(.2f);
++            Test->TestTrue(TEXT("real early-game pawn builds the timid pose weight"),Posture->PostureWeight>.9f);
++            const float BeforePause=Posture->PostureWeight; Posture->NativeUpdateAnimation(0);
++            Test->TestEqual(TEXT("zero game delta cannot advance native posture"),Posture->PostureWeight,BeforePause);
++            PC->SetIgnoreMoveInput(true); Posture->NativeUpdateAnimation(.2f);
++            Test->TestEqual(TEXT("actual controller freeze cancels native posture"),Posture->PostureWeight,0.f);
++            PC->SetIgnoreMoveInput(false); Posture->NativeUpdateAnimation(.2f);
++            const FTransform BeforeWarp=H->GetActorTransform();
++            H->AddActorWorldOffset(FVector(500,0,0),false,nullptr,ETeleportType::TeleportPhysics);
++            Posture->NativeUpdateAnimation(.2f);
++            Test->TestEqual(TEXT("observed real pawn warp resets native posture"),Posture->PostureWeight,0.f);
++            H->SetActorTransform(BeforeWarp,false,nullptr,ETeleportType::TeleportPhysics);
++            PC->UnPossess(); Posture->NativeUpdateAnimation(.2f);
++            Test->TestEqual(TEXT("unpossessed pawn cannot retain native posture"),Posture->PostureWeight,0.f);
++            PC->Possess(H);
++
++            for (TActorIterator<AActor> A(W);A;++A)
++            {
++                if (!A->ActorHasTag(TEXT("DinkCameraOccluder"))) continue;
++                TInlineComponentArray<UStaticMeshComponent*> Components(*A);
++                for (auto* M:Components)
++                {
++                    FBefore B; B.Mesh=M; B.Responses=M->GetCollisionResponseToChannels(); B.Overrides=M->OverrideMaterials;
++                    Before.Add(B);
++                }
++            }
++            Test->TestTrue(TEXT("actual architecture fixtures exist"),Before.Num()>10);
++            ++Stage;
++        }
++        // Exercise interior and exterior walls with the camera pointed back through architecture.
++        const int32 Screens[]={1,439}; const double Xs[]={370,339}; const double Ys[]={161,320};
++        const int32 Index=(Stage-1)/4;
++        if (Index>=2) return true;
++        auto* Screen=G->FindScreen(Screens[Index]);
++        if (!Test->TestNotNull(TEXT("fixture screen exists"),Screen)) return true;
++        H->GetCharacterMovement()->StopMovementImmediately();
++        H->SetActorLocation(Screen->MapPixelToWorld(Xs[Index],Ys[Index])+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics);
++        G->RefreshCurrentScreen(); PC->SetControlRotation(FRotator(-12,(Stage-1)%4*90,0));
++        C->TickComponent(.25f,LEVELTICK_All,nullptr);
++        Test->TestEqual(TEXT("no architecture managed for disappearance"),C->ManagedOccluderCount,0);
++        Test->TestEqual(TEXT("no wall or house becomes transparent"),C->FadingOccluderCount,0);
++        Test->TestTrue(TEXT("camera retains physical collision probe"),H->CameraBoom->bDoCollisionTest);
++        for (const auto& B:Before)
++        {
++            Test->TestTrue(TEXT("wall material overrides stay exactly authored"),B.Mesh->OverrideMaterials==B.Overrides);
++            Test->TestTrue(TEXT("wall camera/physical collision policy stays authored"),B.Mesh->GetCollisionResponseToChannels()==B.Responses);
++            Test->TestFalse(TEXT("wall actor is never hidden"),B.Mesh->GetOwner()->IsHidden());
++        }
++        ++Stage; return false;
++    }
++private:
++    struct FBefore { UStaticMeshComponent* Mesh=nullptr; FCollisionResponseContainer Responses; TArray<TObjectPtr<UMaterialInterface>> Overrides; };
++    TArray<FBefore> Before;
++    FAutomationTestBase* Test;
++    double Start=0;
++    int32 Stage=0;
++};
++}
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkSolidWallsTest,"Dink.Art.Camera.WallsRemainSolid",DINK_TEST_FLAGS)
++bool FDinkSolidWallsTest::RunTest(const FString&)
++{
++    const FString File=FPackageName::LongPackageNameToFilename(TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World"),FPackageName::GetMapPackageExtension());
++    if (!TestNotNull(TEXT("actual world loads"),UEditorLoadingAndSavingUtils::LoadMap(File))) return false;
++    AddCommand(new FStartPIECommand(false)); AddCommand(new FSolidWallsCheck(this)); AddCommand(new FEndPlayMapCommand()); return true;
++}
++
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkEarlyPostureWeightTest,"Dink.Art.Posture.EarlyMoodWeight",DINK_TEST_FLAGS)
++bool FDinkEarlyPostureWeightTest::RunTest(const FString&)
++{
++    TestEqual(TEXT("early Dink gets full authored timid pose"),UDinkEarlyPostureAnimInstance::TargetWeight(0,true,false,false),1.f);
++    TestEqual(TEXT("later progression relaxes the posture"),UDinkEarlyPostureAnimInstance::TargetWeight(7,true,false,false),.3f);
++    TestEqual(TEXT("attack reduces head/shoulder additive"),UDinkEarlyPostureAnimInstance::TargetWeight(0,true,true,false),.35f);
++    TestEqual(TEXT("airborne additive is reduced"),UDinkEarlyPostureAnimInstance::TargetWeight(0,true,false,true),.5f);
++    TestEqual(TEXT("frozen or dead Dink cannot retain transient posture"),UDinkEarlyPostureAnimInstance::TargetWeight(0,false,false,false),0.f);
++    return true;
++}
++
++IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkPostureOwnershipTest,"Dink.Art.Posture.OverrideOwnership",DINK_TEST_FLAGS)
++bool FDinkPostureOwnershipTest::RunTest(const FString&)
++{
++    USkeletalMeshComponent* Mesh=NewObject<USkeletalMeshComponent>();
++    UDinkPostureComponent* Owner=NewObject<UDinkPostureComponent>();
++    TSubclassOf<UAnimInstance> Current;
++    const auto PoseClass=UDinkEarlyPostureAnimInstance::StaticClass();
++    const auto PriorClass=UAnimSingleNodeInstance::StaticClass();
++    const auto ForeignClass=UAnimInstance::StaticClass();
++    Mesh->SetOverridePostProcessAnimBP(PriorClass);
++    TestTrue(TEXT("managed pose can replace a previous override"),Owner->Configure(Mesh,PoseClass));
++    Owner->Release(); UDinkPostureComponent::ReadOverride(Mesh,Current);
++    TestTrue(TEXT("removing optional pose restores exact previous raw override"),Current==PriorClass);
++    Mesh->SetOverridePostProcessAnimBP(nullptr); Owner->Configure(Mesh,PoseClass);
++    Owner->Configure(Mesh,nullptr); UDinkPostureComponent::ReadOverride(Mesh,Current);
++    TestTrue(TEXT("missing or invalid pose restores null raw override"),!Current);
++    Owner->Configure(Mesh,PoseClass); Mesh->SetOverridePostProcessAnimBP(ForeignClass);
++    TestFalse(TEXT("reapplying owned pose cannot overwrite a foreign replacement"),Owner->Configure(Mesh,PoseClass));
++    Owner->Release(); UDinkPostureComponent::ReadOverride(Mesh,Current);
++    TestTrue(TEXT("release preserves foreign replacement"),Current==ForeignClass);
++    Owner->Configure(Mesh,PoseClass); Mesh->SetOverridePostProcessAnimBP(ForeignClass);
++    Owner->Configure(Mesh,PoseClass); // observe ownership loss
++    Mesh->SetOverridePostProcessAnimBP(PoseClass); // another system deliberately selects the same class
++    Owner->Release(); UDinkPostureComponent::ReadOverride(Mesh,Current);
++    TestTrue(TEXT("observed ownership loss stays released even if external code selects the old managed class"),Current==PoseClass);
++    Mesh->SetOverridePostProcessAnimBP(ForeignClass);
++    Owner->Configure(Mesh,PoseClass);
++    USkeletalMeshComponent* Other=NewObject<USkeletalMeshComponent>();
++    Owner->Configure(Other,PoseClass); UDinkPostureComponent::ReadOverride(Mesh,Current);
++    TestTrue(TEXT("retargeting restores the previous mesh independently"),Current==ForeignClass);
++    Owner->Release(); UDinkPostureComponent::ReadOverride(Other,Current);
++    TestTrue(TEXT("retargeted mesh restores its own original override"),!Current);
++    return true;
++}

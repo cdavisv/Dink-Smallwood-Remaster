@@ -1,0 +1,8 @@
+{
+  "initial_baked_05417": "Mapbake/optics/POTvalid, butlowerLODs had20opposedcollapsedcrumbfacepairs +60zero cornernormals each; FBXimportdropped20faces perlowerLOD. Archived underVersions/InitialBakeExport_05417.",
+  "rejected_2acf_split": "Separatedopposedfaces restoredFBXcount, butopened120boundaryedges ineachlowerLOD; hardclosed-solidguide correctlyrejected. Archived underVersions/RejectedOpenFaceSplit_2acf. Neverforce-exported asapprovedasset.",
+  "current_92215f6_fix": "Restoreexact20closedLOD0crumbcomponents intoeachlowerLOD; LOD0 andallremainingbodygeometry/UV/materialIDs/normalspreserved. Validcounts4844/2542/1330. No validator/count/normalcriteriarelaxed.",
+  "portable_proof": "verify_normalization_module.py derivesfixedmeshfromraw9edd source+triangulation, no privateinitialarchive required. Canonicalbake_pie.py nowintegratesclosed_crumb_normalization.py beforefinalsave.",
+  "raw_donor_and_generated_PNG_unchanged": true,
+  "initial_premature_roundtrip_status_corrected": true
+}

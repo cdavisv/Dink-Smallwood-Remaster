@@ -1,0 +1,106 @@
+{
+  "status": "Scratch-only tools ready for independent root review; no native execution",
+  "native_run": false,
+  "root_stage_or_repository_writes": false,
+  "frozen_source_writes": false,
+  "tests": {
+    "passed": 83,
+    "failed": 0,
+    "log_sha256": "5c4fce0ba648c57c7598de5594e6040a407db5e3e46a18cae56b57c2dff87c6e",
+    "all_python_AST_compile": true
+  },
+  "tool_sha256": {
+    "barrel_contract.py": "0eb325564c1ee3429cf0892b2bd47fefa125df72cf11f0d965e08b5717980943",
+    "import_photoreal_barrel.py": "cb769652acec47d20420d00067a5a74cd9df677139c172e46d91869b5eda31e3",
+    "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
+    "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "base_tools": {
+    "props_contract.py": "41d03f91aa9bf34199df817220f7ce7b2ae4716738ed5bdec6445b1793796de2",
+    "import_photoreal_props.py": "f87d3074128a7d81a76eecce54009f2a9ae6dba128f9216b704cc92725a3dd03",
+    "publish_photoreal_props.py": "6a32131de837b74bf344d38da2247e536f5daefcd7f991bf8b6b7f0ac99ce630",
+    "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+  },
+  "scope": {
+    "asset_row": {
+      "section": "assets",
+      "current_index": 11
+    },
+    "decorative_instances": [
+      {
+        "section": "elements",
+        "current_index": 144,
+        "name": "Barrel1"
+      },
+      {
+        "section": "elements",
+        "current_index": 145,
+        "name": "Barrel2"
+      }
+    ],
+    "changes": 3,
+    "locator_contract": "Exact mesh-count/Barrel1+Barrel2 identities, not fragile array indices; semantic reverse verifies every non-mesh value remains unchanged."
+  },
+  "source_plan": {
+    "author_bundle": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel",
+    "author_handoff_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
+    "publication_bundle": "/home/davisc/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "publication_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+    "asset_plan_identical": true,
+    "required_packages": [
+      "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset",
+      "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset",
+      "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset",
+      "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset",
+      "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset"
+    ],
+    "plan_SHA256_publication": "f6bb485b533c32bc69604ec5036585ef2aba4fede4378d42d548a6029bb12cb7"
+  },
+  "source_geometry": {
+    "triangles": 16648,
+    "hulls": 1,
+    "hull_box_cm": [
+      75,
+      75,
+      100
+    ],
+    "bounds_cm": [
+      83.94664525985718,
+      84.45988893508911,
+      100.75000524520874
+    ],
+    "pivot": "ground_center",
+    "unchanged_runtime_query_policy": "complex-as-simple; UCX retained not active query source"
+  },
+  "PBR": {
+    "BC": "sRGB/Default",
+    "N": "linear/Normalmap/green-flip",
+    "ORM": "linear/Masks direct R->AO,G->Roughness,B->Metallic",
+    "source_AO_R": 255,
+    "source_metallic_B_range": [
+      0,
+      240
+    ],
+    "specular": 0.35,
+    "native_source_images": "must export Texture.Source and compare every RGB pixel to frozen source; not yet executed"
+  },
+  "guards": [
+    "All frozen source handoff dependencies hash checked with selected handoff, including corrected publication inspect.py; no hardcoded author handoff SHA",
+    "All-old3refs+emptycandidate destinations required preflight/import; no overwrite or implicit resume",
+    "All-new3refs published verification pins5candidatepackagefamilies at entry; verifies exactset/hash after loaded inspection and finalguard",
+    "Unpublished verify retains successful import receipt chain; module/code/source/data/old-content drift rejected",
+    "Actual native import/source geometry cyclic bijective matching,0.01cm/0.0001UV; front-normal alignment and source normals/import/Mikk flags; stored corner-normal values not exposed",
+    "Read-only convex bridge actual GetTransform/local+mesh vertices/closed indices, bijective hullsource matching; exact frozen 75x75x100cm sourcebox",
+    "Direct graph channels and hidden native material property IDs, no extra expression/UV/WPO/emissive, exact native Texture.Source pixels and source filenames",
+    "Custommodule .so/.modules/.target byte pins at native entry/exit and publisher initial/atomic guards; module symlinks rejected",
+    "Validity/range checks before native vertex/triangle/corner getters; invalid/sparse/NaN cases pure-tested",
+    "Atomic3-string publication only after guards, unchanged nonmesh semantics; future fresh-published publisherdefault/--apply zero writes no private author receipts/scene approval"
+  ],
+  "pure_test_scope": "68 adapted real publisher/geometry/TOCTOU tests plus15barrel identity/metal/module/native-getter guards. Synthetic publisher fixtures stub ONLY FBX geometry/model reads because their FBXbytes are fake; actual selected source plans separately parse real frozen FBX without stubs.",
+  "native_pending": [
+    "Confirm actual old native baseline10472triangles,2Oak/WroughtIron materialslots,bounds and complex-as-simple policy; do not weaken on mismatch",
+    "Own-stage native preflight/import independent freshverify with actual 1UCX and4sourcefilename roles",
+    "Only then guarded three-path publication and real game lighting/collision/door/camera checks",
+    "Publishedrelocatedclone after source/native committed; engine and visibleSurfaceDelivery remain untouched"
+  ]
+}

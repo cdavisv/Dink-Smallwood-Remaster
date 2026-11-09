@@ -1,0 +1,26 @@
+{
+  "status": "Matched actual-source context review; game source remains standalone one asset, no baseline duplicates",
+  "source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "source_after_preview_unchanged": true,
+  "reference_scene_donor": "V11 immutable original canonical scene loaded only for preview, never saved over donor or candidate",
+  "original560_ref_objects": true,
+  "poses": [
+    {
+      "label": "house-detail",
+      "camera_m": [
+        45.35540771484375,
+        -10.93775749206543,
+        3.200000047683716
+      ],
+      "target_m": [
+        59.35540771484375,
+        5.06224250793457,
+        4.0
+      ],
+      "lens_mm": 26,
+      "same_canonical_geometry": true,
+      "own_cottage_hidden_only": false
+    }
+  ],
+  "native_approval": false
+}

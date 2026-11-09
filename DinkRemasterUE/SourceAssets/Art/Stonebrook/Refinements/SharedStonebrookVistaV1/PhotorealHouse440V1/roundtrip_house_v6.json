@@ -1,0 +1,184 @@
+{
+  "status": "ActualFBX+GLB Blender roundtrips and actual packed-missing-path reopen; source-only",
+  "source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "source_stats": {
+    "triangles": 114354,
+    "size_m": [
+      15.576526000000001,
+      11.438143,
+      9.849329
+    ]
+  },
+  "roundtrips": [
+    {
+      "format": "fbx",
+      "objects": 1,
+      "triangles": 114354,
+      "oriented_geometry_material_missing": 0,
+      "oriented_extra": 0,
+      "max_abs_UV_difference": 0,
+      "UV_numeric_tolerance": 1e-06,
+      "size_m": [
+        15.576526000000001,
+        11.438143,
+        9.849329
+      ],
+      "file_sha256": "3d54c58a65b818fef5813f7d425e919f554a0940d722b92de9f2414fa973bc23"
+    },
+    {
+      "format": "glb",
+      "objects": 1,
+      "triangles": 114354,
+      "oriented_geometry_material_missing": 0,
+      "oriented_extra": 0,
+      "max_abs_UV_difference": 3.958120942115784e-08,
+      "UV_numeric_tolerance": 1e-06,
+      "size_m": [
+        15.576526000000001,
+        11.438143,
+        9.849329
+      ],
+      "file_sha256": "289a693ebc6357d6b0cd960ee36912a3f559cb4f65370629dfb07a556c2b6e13"
+    }
+  ],
+  "packed_reopen_images": [
+    {
+      "name": "T_Shared_House440_Fieldstone_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "T_Shared_House440_Fieldstone_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Fieldstone_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Glass_BC",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "T_Shared_House440_Glass_N",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Glass_ORM",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Mortar_BC",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "T_Shared_House440_Mortar_N",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Mortar_ORM",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Oak_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "T_Shared_House440_Oak_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Oak_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Thatch_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "T_Shared_House440_Thatch_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "T_Shared_House440_Thatch_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color"
+    }
+  ],
+  "source_file_unchanged": true,
+  "GLB_float32_UV_qualification": "Prior roundedUVkey fixture produced10falsemismatches atdecimalbinboundaries; independent geometrymatchedall114354 and maxnumericUVdifference3.9582e-8. Use directnumericcomparison, notbin-equality. Rawfailedlogs retained.",
+  "native_approval": false
+}

@@ -1,0 +1,38 @@
+{
+  "isolated_root": "/home/davisc/Work/DinkVistaStage",
+  "build": "PASS44s0warnings",
+  "focused": "PASS1/1,0warnings,45s",
+  "before_fix": "ControllerBefore contains exact2 same-screen-controller recovery failures",
+  "tracked_scope": 5597,
+  "scope_stable": true,
+  "scope_changes": [],
+  "changed_source_files": {
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h": "921fe64fcfdd94feb45b5f1a42e792968458b30c46eec86ae543ee440a0f6c7d",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp": "3f0658cf9e2cc5b8872265f508807278daf631909d5dfab91b98091e10444c7c",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp": "e32aeacd6dade5cb20197e5aa02631584cd08b4bc28b41b3d971b5aef722ad9a",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp": "d15b527d813a392840894c7b328ec0925669a79dde67620c12caf4acfddfeff4"
+  },
+  "source_patch_sha256": "11f565d870f821170b411bc910b1feb9b207d1c88078bae64ae09bde32ea5e44",
+  "data_files": 666,
+  "asset_or_runtime_manifest_published": false,
+  "new_art_imported": false,
+  "same_screen_PC_replacement": "one.25s context timer; events retained; zero actor/mesh ticks; cleared EndPlay",
+  "passed_gates": [
+    "1/2/439/no-screen transitions",
+    "before/after BeginPlay configuration",
+    "immediate unpossess hide",
+    "same-screen new firstPC rebind",
+    "actual NoCollision world trace,nav/overlap/ticks/hidden shadow/GI flags",
+    "persistent439 actor transform/material/overrides/collision/ownership unchanged",
+    "ordinary screen-tagged actor never hidden",
+    "two independent contexts",
+    "invalid JSON policy/mesh/transform/flags reject before spawn",
+    "destroy unregisters geometry; subsequent screen/possession events and timer period healthy"
+  ],
+  "limitations": [
+    "No imported316-instance Vista manifest yet; rendering gate remains",
+    "Initial cold-cache readiness timeout retained; startup allowance separated from functional deadline",
+    "One isolated early SIGSEGV has no retained core and did not repeat under gdb or normal before/after runs; not diagnosed as fixed",
+    "Focused native suite only; full inherited135-suite acceptance still pending after reviewed import"
+  ]
+}

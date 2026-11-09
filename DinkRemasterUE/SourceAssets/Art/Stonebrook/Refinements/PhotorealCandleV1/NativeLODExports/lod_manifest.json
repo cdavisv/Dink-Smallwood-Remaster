@@ -1,0 +1,41 @@
+{
+  "source_export_sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c",
+  "files": [
+    {
+      "LOD": 0,
+      "file": "SM_Candle_Iron_01_LOD0.fbx",
+      "sha256": "7309e735b730758b3384bad44046efdff581baf1346fe236891f6f963b89bf93",
+      "triangles": 4870,
+      "source_object": "SM_Candle_Iron_01_LOD0",
+      "material_slots": [
+        "MI_Candle_IronChar_PhotoBaked",
+        "MI_Candle_Wax_PhotoBaked"
+      ]
+    },
+    {
+      "LOD": 1,
+      "file": "SM_Candle_Iron_01_LOD1.fbx",
+      "sha256": "614c2a402e17bbd4829cf74d3bea3afb9f2ac901134029e114fb1f803a297d8a",
+      "triangles": 2434,
+      "source_object": "SM_Candle_Iron_01_LOD1",
+      "material_slots": [
+        "MI_Candle_IronChar_PhotoBaked",
+        "MI_Candle_Wax_PhotoBaked"
+      ]
+    },
+    {
+      "LOD": 2,
+      "file": "SM_Candle_Iron_01_LOD2.fbx",
+      "sha256": "065a9c3467a004f4750da0b8fb696d3e0c42c40fc8cb0f9ac1a37b9c36e9908b",
+      "triangles": 1218,
+      "source_object": "SM_Candle_Iron_01_LOD2",
+      "material_slots": [
+        "MI_Candle_IronChar_PhotoBaked",
+        "MI_Candle_Wax_PhotoBaked"
+      ]
+    }
+  ],
+  "units": "FBX UnitScaleFactor100; metres in Blender -> centimetres in Unreal",
+  "import_contract": "Import LOD0 alone; attach LOD1/LOD2 individually using StaticMeshEditorSubsystem.import_lod; never combine all three siblings",
+  "native_imported": false
+}

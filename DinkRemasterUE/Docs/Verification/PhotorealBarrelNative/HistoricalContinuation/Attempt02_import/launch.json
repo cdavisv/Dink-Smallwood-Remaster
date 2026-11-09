@@ -1,0 +1,41 @@
+{
+  "command": [
+    "nice",
+    "-n",
+    "10",
+    "taskset",
+    "-c",
+    "8,9",
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject",
+    "-run=pythonscript",
+    "-script=/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/import_photoreal_barrel.py",
+    "-nullrhi",
+    "-notraceserver",
+    "-unattended",
+    "-nosplash",
+    "-nopause",
+    "-nosound",
+    "-stdout",
+    "-FullStdOutLogOutput",
+    "-ddc=InstalledNoZenLocalFallback",
+    "-LocalDataCachePath=/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative/DDC",
+    "-UserDir=/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative/User",
+    "-abslog=/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative/Attempt02_import/unreal.log"
+  ],
+  "env_overrides": {
+    "DINK_BARREL_MODE": "import",
+    "DINK_BARREL_SOURCE": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "DINK_BARREL_REPORT": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative/Attempt02_import/receipt.json",
+    "DINK_BARREL_IMPORT_RECEIPT": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative/approved_import_receipt.json"
+  },
+  "build_module_sha256": {
+    "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "e6a582121a9156a8e50966b28e9056f051e2746f7d5ed5a40de0e17eca50ae6d",
+    "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "d32b45670ffce6f28a5c19d8c27eb624f6ebb76639c4c2c7054bbcd2d7f0cdc5",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "84f865ddc2ca2c53515cba9c39cb19daba0c1727b4477317615cb8e55733308f",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "c1f8d8cb3e97c04626c78471abd45240adf4903e481ed3364006af0b3ace2cdb",
+    "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "7d652823c3f9c9cbe3754f249aaa8a1126cddd43a43f5692fa950ad794074da0",
+    "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "3c3a4807307e44fba0d508fca842ed8bf7c4682d5fa0b2a421a4a3754ddf45f5",
+    "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "afcda216a4a45875ebb3083a576401bed43bf2d3e8a7e8a556fd83b2d63cb39d"
+  }
+}

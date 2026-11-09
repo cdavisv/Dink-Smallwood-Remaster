@@ -1,0 +1,10 @@
+[
+  {
+    "file": "inspect_payload.py",
+    "original_sha256": "37f2790d0f5bfb0a5d14218b12c7716e04a2a61986cb235a4ad3dcad440c96c1",
+    "published_sha256": "49742c9f05f453084c630a4e481826a0ebf2101c705bd6f7bfb9a6f91395c8b7",
+    "change": "Remove duplicate ApprovedSource archival-file assertion; fixed approved source SHA check retained. Publication includes actual source once and does not depend on author-only ApprovedSource duplicate.",
+    "art_payload_changes": false,
+    "author_handoff_preserved": "Docs/Verification/PhotorealBarrelSource/author_handoff.json"
+  }
+]

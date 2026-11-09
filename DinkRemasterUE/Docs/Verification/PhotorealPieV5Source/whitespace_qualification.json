@@ -1,0 +1,8 @@
+{
+  "qualified": true,
+  "file": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/sfood.c",
+  "line": 28,
+  "sha256": "d0d1a724664811685876b47e5aad2dfe3ed11e9ac4ed7cc7b471b8e0bb45f5d0",
+  "reason": "Original frozen Dink sfood.c editor_type line has one inherited trailing space. Preserve exact original script/provenance bytes; no runtime script is changed. All139 author payload hashes remain exact.",
+  "scope": "Only this inherited source-reference line is exempted; all other staged lines checked normally."
+}

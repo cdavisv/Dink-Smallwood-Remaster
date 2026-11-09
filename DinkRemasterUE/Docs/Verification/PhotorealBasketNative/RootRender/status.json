@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "game_pid": 232554,
+  "display_pid": 232548,
+  "normal_game_exit": true,
+  "display_stopped": true,
+  "runtime_inputs": 6925,
+  "changed_runtime_inputs": [],
+  "contact_map": [
+    427.018,
+    146.023
+  ],
+  "departure_map": [
+    335.407,
+    146.023
+  ],
+  "capsule_radius_cm": 28,
+  "capsule_half_height_cm": 96,
+  "contact_sweep_remaining_cm": 0.027128,
+  "observed_lateral_deflection_cm": 0.10300000000279397,
+  "identified_mesh": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+  "native_hit_component": "StaticMeshActor_278.StaticMeshComponent0",
+  "actual_W_door_exit_return": true,
+  "scope": "Three explicit photo fixtures, single-axis shortW actual capsule contact/departure, then realW door exit/return without route teleports. No universal all-direction/contact/interaction or final house lighting/hero claim.",
+  "rejected_probes": [
+    "V1longW assertion expected straightXstop but actual curved basket normal permits slide",
+    "V2reportedPASS rejected as contact proof: stopped9.910662cm before hit, approach/departure only"
+  ],
+  "trace_note": "FHitResult.export_text supplies native hit data/component despite protected Python property getters. First trace emitted deprecated enum warning; final helper uses ECC_VISIBILITY. Runtime log is not claimed warning-free."
+}

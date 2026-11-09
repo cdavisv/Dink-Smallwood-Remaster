@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "preliminary_original_file_unchanged": true,
+    "oak_reference_sha256": true,
+    "all_transforms_applied": true,
+    "all_finite_geometry_UVs": true,
+    "all_baked_PBR_payloads_present": true,
+    "matched_camera_light_exposure_pairs": true,
+    "guide_no_errors": true
+  },
+  "passed": true,
+  "guide_summary": {
+    "assets": 3,
+    "assets_passed": 3,
+    "errors": 0,
+    "warnings": 3
+  },
+  "native_imported": false,
+  "source_only": true
+}

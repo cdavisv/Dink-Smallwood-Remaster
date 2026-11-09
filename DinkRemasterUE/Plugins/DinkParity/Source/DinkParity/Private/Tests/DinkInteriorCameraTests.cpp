@@ -63,6 +63,9 @@ public:
         UDinkInteriorCameraComponent* C=Hero->FindComponentByClass<UDinkInteriorCameraComponent>();
         if (Phase==0)
         {
+            // Retain historical cutaway ownership/restore coverage explicitly; default play
+            // uses opaque architecture and is tested by WallsRemainSolid below.
+            if (C) C->bEnableWallCutaway=true;
             if (!ViewportReady)
             {
                 ULocalPlayer* Local=PC->GetLocalPlayer(); FViewport* V=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
@@ -296,7 +299,7 @@ public:
         {
             Test->TestEqual(TEXT("exit selects outdoor439"),Grey->GetCurrentScreen(),Yard);
             Test->TestFalse(TEXT("exiting clears interior mode"),C->bInteriorMode);
-            Test->TestEqual(TEXT("exiting releases occluder ownership"),C->ManagedOccluderCount,0);
+            Test->TestEqual(TEXT("exiting restores all indoor surfaces and manages only qualified exterior cottage"),C->ManagedOccluderCount,1);
             CheckRestored(); CheckCamera(Hero,false); CheckInput(Hero,PC);
             ExpectedControl=FRotator(-18,225,0); PC->SetControlRotation(ExpectedControl);
             Move(Hero,Grey,Home,303.5,370); Phase=4; At=FPlatformTime::Seconds(); return false;

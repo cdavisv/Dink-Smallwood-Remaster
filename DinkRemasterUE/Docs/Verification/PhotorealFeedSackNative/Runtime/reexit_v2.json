@@ -1,0 +1,170 @@
+{
+  "route": "Saved/FeedSackReviewed/Render/short_reexit_route_v2.json",
+  "input": "normal held W keys, camera yaw only; no teleports",
+  "steps": [
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.46,
+          389.678
+        ],
+        "world": [
+          -183806.273,
+          393550.821,
+          98.0
+        ],
+        "yaw": 82.915,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.473,
+          392.939
+        ],
+        "world": [
+          -183806.217,
+          393565.089,
+          98.0
+        ],
+        "yaw": 89.777,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.473,
+          392.939
+        ],
+        "world": [
+          -183806.217,
+          393565.089,
+          98.0
+        ],
+        "yaw": 89.777,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.482,
+          393.577
+        ],
+        "world": [
+          -183806.177,
+          393567.879,
+          98.15
+        ],
+        "yaw": 89.778,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.482,
+          393.577
+        ],
+        "world": [
+          -183806.177,
+          393567.879,
+          98.15
+        ],
+        "yaw": 89.778,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    {
+      "target": {
+        "screen": 1,
+        "map": [
+          303.5,
+          400
+        ],
+        "warp_to": 439,
+        "tolerance_cm": 3
+      },
+      "observed": {
+        "screen": 1,
+        "map": [
+          303.488,
+          393.577
+        ],
+        "world": [
+          -183806.151,
+          393567.879,
+          98.15
+        ],
+        "yaw": 89.838,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    }
+  ],
+  "result": "FAIL",
+  "error": "Blocked after W input at {'screen': 1, 'map': [303.488, 393.577], 'world': [-183806.151, 393567.879, 98.15], 'yaw': 89.838, 'pitch': -18.0, 'radius': 28.0, 'move_ignored': False}, target {'screen': 1, 'map': [303.5, 400], 'warp_to': 439, 'tolerance_cm': 3}"
+}

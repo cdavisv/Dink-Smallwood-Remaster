@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "base": "c367bc8a4e6d20f37fa5c1835ae2f3fdbc7e8e81",
+  "frozen_payloads": 139,
+  "all_frozen_SHA_and_size_match": true,
+  "all_payloads_staged_including_ignored": true,
+  "all_destination_inodes_independent": true,
+  "prior_ledger_raw_bytes": 1957908,
+  "raw_prefix_unchanged": true,
+  "ledger_rows": 2182,
+  "audio_rows": 483,
+  "current_payload_bytes": 107661641,
+  "candidate_only": true,
+  "native_Content_Data_CPP_changes": []
+}

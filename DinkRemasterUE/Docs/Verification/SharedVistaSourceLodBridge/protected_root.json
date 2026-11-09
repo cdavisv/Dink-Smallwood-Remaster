@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-09T02:05:51.940243+00:00",
+  "receipt_sha256": "71445a18326bb089b234e58aa02fa188c84a3c5577833eac85dd8b83b9def2a9",
+  "results": {
+    "modules_from_preceding_full153_verified_now": {
+      "files": 13,
+      "mismatches": []
+    },
+    "older_scoped_saves_from_preceding_full153_verified_now": {
+      "files": 51,
+      "mismatches": []
+    },
+    "current_RootSaved_saves_mid_bridge_run": {
+      "files": 61,
+      "mismatches": []
+    }
+  },
+  "scope": "Module/older-save baseline precedes bridge build; current complete save inventory mid-run only, not original bridge full epoch. No foreign userdir/save claims."
+}

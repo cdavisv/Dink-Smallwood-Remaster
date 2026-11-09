@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "source_export_sha256": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+  "FBX_sha256": "03a2b2ffe6bdf881be8306bad9027c80093bfc31c0ea932c5339c33ba7a8df3c",
+  "triangles": 19644,
+  "cyclic_oriented_bijective_face_match": true,
+  "max_position_delta_m": 0,
+  "max_UV_delta": 0,
+  "minimum_geometric_front_dot": 0.9999997541308403,
+  "max_stored_normal_angle_radians": 0,
+  "source_and_roundtrip_material_slots": 2,
+  "collision_hulls": 1,
+  "actual_roundtrip_collision_bounds_m": [
+    [
+      -0.32047051191329956,
+      -0.25527223944664,
+      -0.015000004321336746
+    ],
+    [
+      0.32952946424484253,
+      0.26472774147987366,
+      0.7350000143051147
+    ]
+  ],
+  "render_scope": "Geometry/UV/fronts/corner normals and exact UCX through actual Blender FBX roundtrip. Native Unreal and final render acceptance pending.",
+  "max_collision_vertex_delta_m": 0.0,
+  "all_matched_triangle_material_ids_preserved": true,
+  "source_materials": [
+    "MI_FeedSack_Jute_PhotoBaked",
+    "MI_FeedSack_Cord_PhotoBaked"
+  ],
+  "material_IOR_and_specular": {
+    "MI_FeedSack_Jute_PhotoBaked": {
+      "IOR": 1.4600000381469727,
+      "Specular IOR Level": 0.2199999988079071
+    },
+    "MI_FeedSack_Cord_PhotoBaked": {
+      "IOR": 1.5,
+      "Specular IOR Level": 0.2199999988079071
+    }
+  }
+}

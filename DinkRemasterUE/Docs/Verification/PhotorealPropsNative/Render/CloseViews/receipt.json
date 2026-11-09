@@ -1,0 +1,105 @@
+{
+  "method": "Explicit teleport photo fixtures only; actual exit and return recorded separately. Normal player camera; no graphics override.",
+  "cases": [
+    {
+      "label": "table-game-distance",
+      "player": {
+        "screen": 1,
+        "map": [
+          353.0,
+          231.0
+        ],
+        "world": [
+          -183589.535,
+          392856.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "table-game-distance.png"
+    },
+    {
+      "label": "table-top",
+      "player": {
+        "screen": 1,
+        "map": [
+          346.0,
+          231.0
+        ],
+        "world": [
+          -183620.16,
+          392856.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -35.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "table-top.png"
+    },
+    {
+      "label": "bed-game-distance",
+      "player": {
+        "screen": 1,
+        "map": [
+          250.0,
+          287.0
+        ],
+        "world": [
+          -184040.16,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "bed-game-distance.png"
+    },
+    {
+      "label": "bed-cover",
+      "player": {
+        "screen": 1,
+        "map": [
+          250.0,
+          287.0
+        ],
+        "world": [
+          -184040.16,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -35.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "bed-cover.png"
+    },
+    {
+      "label": "chair-game-distance",
+      "player": {
+        "screen": 1,
+        "map": [
+          351.0,
+          201.0
+        ],
+        "world": [
+          -183598.285,
+          392725.355,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "chair-game-distance.png"
+    }
+  ]
+}

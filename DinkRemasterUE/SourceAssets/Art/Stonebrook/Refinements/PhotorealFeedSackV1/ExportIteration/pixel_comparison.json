@@ -1,0 +1,54 @@
+{
+  "measurements": {
+    "front": {
+      "ROI_xyxy": [
+        40,
+        40,
+        760,
+        760
+      ],
+      "mean_abs_RGB_255": 0.12369148433208466,
+      "p95_abs_RGB_255": 1.0,
+      "source_image_sha256": "142604eb423e7fa0e54f2bf7d6c217dab3de33b1ab2b4122fa1d470fd12591e7",
+      "roundtrip_image_sha256": "0e29783197be7b5852cec71742e143e6de5ddf3be8e320855a0e6993217c2db5"
+    },
+    "tie": {
+      "ROI_xyxy": [
+        150,
+        150,
+        680,
+        700
+      ],
+      "mean_abs_RGB_255": 0.8804082274436951,
+      "p95_abs_RGB_255": 3.0,
+      "source_image_sha256": "5a509722ff2ac6de794c28406addb2b2c247c169d63ec97046cf7fec11129262",
+      "roundtrip_image_sha256": "caddb8f2f520ab4c499e06f67e1eeafa04fd01f5e9f14b8af9926d273c8889a7"
+    },
+    "weave": {
+      "ROI_xyxy": [
+        40,
+        40,
+        760,
+        760
+      ],
+      "mean_abs_RGB_255": 0.5763747692108154,
+      "p95_abs_RGB_255": 2.0,
+      "source_image_sha256": "59fd8ebd3ab80534bc57cd80f3eb4e0b23348c0c8d5d55f3632e5cdeaa385b92",
+      "roundtrip_image_sha256": "f1182dc528c86eb3b7286ba350c8352b55bf55a2573c608c937d378596872c2c"
+    },
+    "game-distance": {
+      "ROI_xyxy": [
+        250,
+        250,
+        550,
+        550
+      ],
+      "mean_abs_RGB_255": 0.08403333276510239,
+      "p95_abs_RGB_255": 1.0,
+      "source_image_sha256": "dbda84ee671fde27987bc0c863f45d195551d731059854010c94a6d1fd1c95fe",
+      "roundtrip_image_sha256": "31dc2f9fa06c7e91dc6237a69d4ee316f1364a6b242d0ac4f5287c39c3cead33"
+    }
+  },
+  "scope": "Approved V3 procedural source versus actual FBX with two baked materials; identical CPU studio/cameras",
+  "limits": "Measurements are not universal approval thresholds or native acceptance."
+}

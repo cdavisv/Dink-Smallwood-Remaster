@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "PhotorealBarrelV1_Source.blend",
+      "sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+      "packed_images": 18,
+      "buffers_reopened_with_all_paths_absent": 18,
+      "passed": true
+    },
+    {
+      "file": "PhotorealBarrelV1_Export.blend",
+      "sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+      "packed_images": 23,
+      "buffers_reopened_with_all_paths_absent": 23,
+      "passed": true
+    },
+    {
+      "file": "Inputs/PhotorealPropsV1_Input.blend",
+      "sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+      "packed_images": 17,
+      "buffers_reopened_with_all_paths_absent": 17,
+      "passed": true
+    }
+  ],
+  "test": "Disposable copies set every image path to a nonexistent oldWork directory; all image data reopened from packed payloads. Original files hash unchanged."
+}

@@ -1,0 +1,35 @@
+{
+  "tool": "make_lods",
+  "ok": true,
+  "saved": "/home/davisc/Work/DinkQA/PhotorealSessions/Candle/V3_Finish/PhotorealCandleV1_LODs.blend",
+  "assets": [
+    {
+      "asset": "SM_Candle_Iron_01",
+      "class": "prop_small",
+      "log": [
+        {
+          "action": "rename",
+          "from": "SM_Candle_Iron_01",
+          "to": "SM_Candle_Iron_01_LOD0",
+          "why": "LOD chain needs _LOD0 suffix"
+        },
+        {
+          "action": "lod",
+          "name": "SM_Candle_Iron_01_LOD1",
+          "ratio_requested": 0.5,
+          "tris": 2434,
+          "tris_lod0": 4870,
+          "ratio_achieved": 0.4998
+        },
+        {
+          "action": "lod",
+          "name": "SM_Candle_Iron_01_LOD2",
+          "ratio_requested": 0.25,
+          "tris": 1218,
+          "tris_lod0": 4870,
+          "ratio_achieved": 0.2501
+        }
+      ]
+    }
+  ]
+}

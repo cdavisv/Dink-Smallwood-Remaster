@@ -8,6 +8,7 @@ class ADinkScreenVolume;
 class ADinkPlaceholderActor;
 class UDinkWarpComponent;
 class APawn;
+class ACharacter;
 class UPrimitiveComponent;
 DECLARE_MULTICAST_DELEGATE_OneParam(FDinkScreenChanged, ADinkScreenVolume*);
 
@@ -86,12 +87,22 @@ public:
 	/** Seconds after a warp during which the same pawn cannot warp again. */
 	static constexpr double WarpCooldownSeconds = 0.75;
 
+	virtual void Deinitialize() override;
+
 	// UTickableWorldSubsystem
 	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;
 	virtual bool DoesSupportWorldType(const EWorldType::Type WorldType) const override;
 
 private:
+    void ObserveDoorMovement(ACharacter* Character);
+    void RetryOverlappingDoor();
+    UFUNCTION()
+    void CaptureDoorMovement(float DeltaSeconds, FVector OldLocation, FVector OldVelocity);
+    TWeakObjectPtr<ACharacter> DoorMovementPawn;
+    FVector DoorMovementIntent=FVector::ZeroVector;
+    FVector DoorMovementLocation=FVector::ZeroVector;
+    uint64 DoorMovementFrame=MAX_uint64;
 	void UpdateLegacyCardVisibility(int32 ActiveScreenNumber);
 	TMap<TWeakObjectPtr<UPrimitiveComponent>, bool> LegacyCardVisibility;
 	TArray<TWeakObjectPtr<ADinkScreenVolume>> Screens;

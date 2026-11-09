@@ -1,0 +1,26 @@
+[
+  {
+    "LOD": 0,
+    "triangles": 24846,
+    "retained_leaves": 8505,
+    "bark_closed_tubes": 379,
+    "full_mesh_validate_changed": false,
+    "policy": "Source ring-center/radius samples, closed3Dtrunk/primary/whips. No decimate-collapsed oppositefaces."
+  },
+  {
+    "LOD": 1,
+    "triangles": 14072,
+    "retained_leaves": 4320,
+    "bark_closed_tubes": 379,
+    "full_mesh_validate_changed": false,
+    "policy": "Source ring-center/radius samples, closed3Dtrunk/primary/whips. No decimate-collapsed oppositefaces."
+  },
+  {
+    "LOD": 2,
+    "triangles": 7472,
+    "retained_leaves": 2160,
+    "bark_closed_tubes": 379,
+    "full_mesh_validate_changed": false,
+    "policy": "Source ring-center/radius samples, closed3Dtrunk/primary/whips. No decimate-collapsed oppositefaces."
+  }
+]

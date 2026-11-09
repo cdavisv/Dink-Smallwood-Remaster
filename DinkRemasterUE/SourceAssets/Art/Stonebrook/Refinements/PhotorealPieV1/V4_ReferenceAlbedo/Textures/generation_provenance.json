@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen.imagegen; default built-in mode, no CLI/API fallback",
+  "model": "not exposed by tool; not inferred",
+  "prompt_file": "prompt.txt",
+  "prompt_sha256": "5600279f9f1cc0bd4f672582479a23652474266f8e598de0190c3ae546fe92b9",
+  "source_tool_file": "/home/davisc/.local/state/omarchy/agents/accounts/codex/personal/generated_images/01a1bc9f-a893-7951-ad79-4bffc4914cb8/exec-91dc8235-c2cc-4757-9ed6-761fa3306efe.png",
+  "saved_project_file": "/home/davisc/Work/DinkQA/PhotorealSessions/Pie/GeneratedReferences/ShortcrustAlbedoV1/GeneratedShortcrust_Albedo_V1.png",
+  "image_sha256": "4b211bc541e2bdced47dc483c3378d03f4f64411823a2052d41537c0c3fe233b",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGB",
+  "created_utc": "2026-11-08T22:06:54.183571+00:00",
+  "generation_intent": "Original synthetic photographic shortcrust diffuse-color/albedo reference; not a measured material scan",
+  "copyright_attribution": "AI-generated original reference for project; do not mislabel as original Dink artwork or a third-party photo/CC0 scan",
+  "reference_inputs": [],
+  "hard_constraint": "BC only. No normal/height/roughness generation from this bitmap. Existing physical geometry and independently authored roughness/normal grain remain authoritative.",
+  "tile_edge_diagnostics_RGB255": {
+    "left_right_mean_abs_jump": 14.016480445861816,
+    "top_bottom_mean_abs_jump": 13.966506958007812,
+    "ordinary_adjacent_pixel_mean_abs_jump": 6.661313056945801
+  },
+  "seamless_claim": "Prompt requests tileability, but finite-edge diagnostics are measurements, not a mathematical proof; mapping seam review required.",
+  "native_imported": false
+}

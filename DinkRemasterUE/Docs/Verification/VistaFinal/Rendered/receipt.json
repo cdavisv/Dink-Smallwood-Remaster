@@ -1,0 +1,201 @@
+{
+  "method": "Fresh game; Space skips opening dialogue. Actual W exit and return precede all fixture teleports. Stationary outdoor immediate/settled native camera must remain 400cm. Window/door photographic fixture teleports are explicitly separate. Normal control yaw/pitch only; no camera-component, material, collision, fact or inventory setters. Debug overlays hidden for photographs.",
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 306643,
+    "backend": "private Xvfb :189 with XTest"
+  },
+  "initial": {
+    "screen": 1,
+    "map": [
+      314.0,
+      161.0
+    ],
+    "world": [
+      -183760.16,
+      392550.355,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "actual_route_final": {
+    "screen": 1,
+    "map": [
+      302.973,
+      387.727
+    ],
+    "world": [
+      -183808.402,
+      393542.284,
+      98.0
+    ],
+    "yaw": 315.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "final": {
+    "screen": 1,
+    "map": [
+      303.5,
+      345.0
+    ],
+    "world": [
+      -183806.097,
+      393355.355,
+      98.0
+    ],
+    "yaw": 90.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "records": [
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-03.45.27:223][497]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-03.45.27:223][497]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    },
+    {
+      "command": "dink.ScreenInfo 0",
+      "response": "[2026.11.08-03.45.28:308][564]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "DisableAllScreenMessages",
+      "response": "[2026.11.08-03.45.29:543][640]LogEngine: Onscreen warnings/messages are now DISABLED\n"
+    },
+    {
+      "command": "py exec(open('/home/davisc/Work/DinkQA/VistaFinal/read_context.py').read())",
+      "response": "[2026.11.08-03.45.31:816][779]LogPython: QA_VISTA_CONTEXT_READER_READY\n"
+    },
+    {
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='VistaFinal'; exec(open('/home/davisc/Work/DinkQA/read_native_camera.py').read())",
+      "response": "[2026.11.08-03.45.34:727][960]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
+    },
+    {
+      "command": "py qa_v_read('fresh-house',True)",
+      "response": "[2026.11.08-03.45.36:125][ 46]LogPython: QA_VISTA_CONTEXT_PASS fresh-house\n"
+    },
+    {
+      "command": "py qa_v_read('actual-outside',False)",
+      "response": "[2026.11.08-03.47.16:098][155]LogPython: QA_VISTA_CONTEXT_PASS actual-outside\n"
+    },
+    {
+      "command": "py qa_nc_read('outdoor-immediate')",
+      "response": "[2026.11.08-03.47.17:534][247]LogPython: QA_NATIVE_CAMERA_READ outdoor-immediate\n"
+    },
+    {
+      "command": "py qa_nc_read('outdoor-settled')",
+      "response": "[2026.11.08-03.47.21:228][481]LogPython: QA_NATIVE_CAMERA_READ outdoor-settled\n"
+    },
+    {
+      "command": "py qa_v_read('actual-return',True)",
+      "response": "[2026.11.08-03.48.16:001][970]LogPython: QA_VISTA_CONTEXT_PASS actual-return\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-225')",
+      "response": "[2026.11.08-03.48.19:517][186]LogPython: QA_NATIVE_CAMERA_READ actual-return-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-270')",
+      "response": "[2026.11.08-03.48.23:324][417]LogPython: QA_NATIVE_CAMERA_READ actual-return-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_nc_read('actual-return-315')",
+      "response": "[2026.11.08-03.48.27:096][645]LogPython: QA_NATIVE_CAMERA_READ actual-return-315\n"
+    },
+    {
+      "command": "dink.Goto 1 385 145",
+      "response": ""
+    },
+    {
+      "command": "dink.View 270 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_v_read('window-north',True)",
+      "response": "[2026.11.08-03.48.32:972][  8]LogPython: QA_VISTA_CONTEXT_PASS window-north\n"
+    },
+    {
+      "command": "py qa_nc_read('window-north')",
+      "response": "[2026.11.08-03.48.34:305][ 92]LogPython: QA_NATIVE_CAMERA_READ window-north\n"
+    },
+    {
+      "command": "dink.Goto 1 165 185",
+      "response": ""
+    },
+    {
+      "command": "dink.View 180 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_v_read('window-west',True)",
+      "response": "[2026.11.08-03.48.39:239][401]LogPython: QA_VISTA_CONTEXT_PASS window-west\n"
+    },
+    {
+      "command": "py qa_nc_read('window-west')",
+      "response": "[2026.11.08-03.48.40:548][483]LogPython: QA_NATIVE_CAMERA_READ window-west\n"
+    },
+    {
+      "command": "dink.Goto 1 435 185",
+      "response": ""
+    },
+    {
+      "command": "dink.View 0 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_v_read('window-east',True)",
+      "response": "[2026.11.08-03.48.45:408][780]LogPython: QA_VISTA_CONTEXT_PASS window-east\n"
+    },
+    {
+      "command": "py qa_nc_read('window-east')",
+      "response": "[2026.11.08-03.48.46:726][863]LogPython: QA_NATIVE_CAMERA_READ window-east\n"
+    },
+    {
+      "command": "dink.Goto 1 303.5 345",
+      "response": ""
+    },
+    {
+      "command": "dink.View 90 -18",
+      "response": ""
+    },
+    {
+      "command": "py qa_v_read('door-looking-out',True)",
+      "response": "[2026.11.08-03.48.51:746][169]LogPython: QA_VISTA_CONTEXT_PASS door-looking-out\n"
+    },
+    {
+      "command": "py qa_nc_read('door-looking-out')",
+      "response": "[2026.11.08-03.48.53:169][257]LogPython: QA_NATIVE_CAMERA_READ door-looking-out\n"
+    },
+    {
+      "command": "dink.Inventory",
+      "response": "[2026.11.08-03.48.54:516][343]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-03.48.54:516][343]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+    }
+  ]
+}

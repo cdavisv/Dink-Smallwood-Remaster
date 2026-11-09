@@ -1,0 +1,61 @@
+{
+  "method": "Read-only console queries, no assignments; actual directional/skylight properties are in Runtime/exposure-fixture-warp-outdoor.json.",
+  "queries": [
+    {
+      "query_only": "sg.GlobalIlluminationQuality",
+      "output": "[2026.11.08-08.10.53:633][157]\nHISTORY\n[2026.11.08-08.10.53:633][157]Constructor: 3\n[2026.11.08-08.10.53:633][157]Scalability: 3\n[2026.11.08-08.10.53:633][157]sg.GlobalIlluminationQuality = \"3\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "sg.PostProcessQuality",
+      "output": "[2026.11.08-08.10.54:808][237]\nHISTORY\n[2026.11.08-08.10.54:808][237]Constructor: 3\n[2026.11.08-08.10.54:808][237]Scalability: 3\n[2026.11.08-08.10.54:808][237]sg.PostProcessQuality = \"3\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "sg.EffectsQuality",
+      "output": "[2026.11.08-08.10.55:906][312]\nHISTORY\n[2026.11.08-08.10.55:906][312]Constructor: 3\n[2026.11.08-08.10.55:906][312]Scalability: 3\n[2026.11.08-08.10.55:906][312]sg.EffectsQuality = \"3\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "sg.ShadowQuality",
+      "output": "[2026.11.08-08.10.56:979][385]\nHISTORY\n[2026.11.08-08.10.56:979][385]Constructor: 3\n[2026.11.08-08.10.56:979][385]Scalability: 3\n[2026.11.08-08.10.56:979][385]sg.ShadowQuality = \"3\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.DynamicGlobalIlluminationMethod",
+      "output": "[2026.11.08-08.10.58:384][481]\nHISTORY\n[2026.11.08-08.10.58:384][481]Constructor: 0\n[2026.11.08-08.10.58:384][481]ProjectSetting: 1\n[2026.11.08-08.10.58:384][481]r.DynamicGlobalIlluminationMethod = \"1\"      LastSetBy: ProjectSetting\n"
+    },
+    {
+      "query_only": "r.Lumen.DiffuseIndirect.Allow",
+      "output": "[2026.11.08-08.10.59:729][572]\nHISTORY\n[2026.11.08-08.10.59:729][572]Constructor: 1\n[2026.11.08-08.10.59:729][572]Scalability: 1\n[2026.11.08-08.10.59:729][572]r.Lumen.DiffuseIndirect.Allow = \"1\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.Lumen.Reflections.Allow",
+      "output": "[2026.11.08-08.11.00:970][657]\nHISTORY\n[2026.11.08-08.11.00:970][657]Constructor: 1\n[2026.11.08-08.11.00:970][657]Scalability: 1\n[2026.11.08-08.11.00:970][657]r.Lumen.Reflections.Allow = \"1\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.EyeAdaptationQuality",
+      "output": "[2026.11.08-08.11.02:161][738]\nHISTORY\n[2026.11.08-08.11.02:161][738]Constructor: 2\n[2026.11.08-08.11.02:161][738]Scalability: 2\n[2026.11.08-08.11.02:161][738]r.EyeAdaptationQuality = \"2\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.DefaultFeature.AutoExposure",
+      "output": "[2026.11.08-08.11.03:497][829]r.DefaultFeature.AutoExposure = \"1\"      LastSetBy: Constructor\n"
+    },
+    {
+      "query_only": "r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange",
+      "output": "[2026.11.08-08.11.05:401][958]\nHISTORY\n[2026.11.08-08.11.05:401][958]Constructor: 0\n[2026.11.08-08.11.05:401][958]ProjectSetting: 1\n[2026.11.08-08.11.05:401][958]r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange = \"1\"      LastSetBy: ProjectSetting\n"
+    },
+    {
+      "query_only": "r.AmbientOcclusionLevels",
+      "output": "[2026.11.08-08.11.06:633][ 42]\nHISTORY\n[2026.11.08-08.11.06:633][ 42]Constructor: -1\n[2026.11.08-08.11.06:633][ 42]Scalability: -1\n[2026.11.08-08.11.06:633][ 42]r.AmbientOcclusionLevels = \"-1\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.SSGI.Quality",
+      "output": "[2026.11.08-08.11.07:656][112]\nHISTORY\n[2026.11.08-08.11.07:656][112]Constructor: 4\n[2026.11.08-08.11.07:656][112]Scalability: 3\n[2026.11.08-08.11.07:656][112]r.SSGI.Quality = \"3\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.Lumen.ScreenProbeGather.DownsampleFactor",
+      "output": "[2026.11.08-08.11.09:252][220]\nHISTORY\n[2026.11.08-08.11.09:252][220]Constructor: 16\n[2026.11.08-08.11.09:252][220]Scalability: 16\n[2026.11.08-08.11.09:252][220]r.Lumen.ScreenProbeGather.DownsampleFactor = \"16\"      LastSetBy: Scalability\n"
+    },
+    {
+      "query_only": "r.Lumen.ScreenProbeGather.Temporal.MaxFramesAccumulated",
+      "output": "[2026.11.08-08.11.11:110][346]r.Lumen.ScreenProbeGather.Temporal.MaxFramesAccumulated = \"10\"      LastSetBy: Constructor\n"
+    }
+  ]
+}

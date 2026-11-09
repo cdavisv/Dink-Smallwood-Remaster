@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "pid": 282208,
+  "scope": "ActualSaveSubsystem save/load API used in ownUser slot; realfeeding changed pig_story0to1, load restores earlierpickedupstate: screen1/fact0/onefeed/sackhidden; nofact/item/proceduremutation by fixture",
+  "before_player": {
+    "screen": 407,
+    "map": [
+      299.39,
+      250.06
+    ],
+    "world": [
+      97231.978,
+      32969.399,
+      98.35
+    ],
+    "yaw": -5.482,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "before_fact": "[2026.11.08-23.28.07:723][913]LogDinkNarrative: Display: pig_story = 1\n",
+  "before_inventory": "[2026.11.08-23.28.08:769][960]LogDinkNarrative: Display:   item 1: item-fst\n[2026.11.08-23.28.08:769][960]LogDinkNarrative: Display:   item 2: item-pig (armed)\n[2026.11.08-23.28.08:769][960]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "after_player": {
+    "screen": 1,
+    "map": [
+      450.631,
+      128.758
+    ],
+    "world": [
+      -183162.399,
+      392409.295,
+      98.15
+    ],
+    "yaw": -5.482,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "after_fact": "[2026.11.08-23.28.15:765][273]LogDinkNarrative: Display: pig_story = 0\n",
+  "after_inventory": "[2026.11.08-23.28.14:646][223]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.28.14:646][223]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-23.28.14:646][223]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "after_origin": "[2026.11.08-23.28.16:922][325]LogDink: Display: DINK ORIGIN: S001_P52 screen=1 map=448.000,130.000 world=-183173.910,392414.730,0.000 hidden=1\n",
+  "save_loaded": {
+    "passed": true,
+    "pid": 282208,
+    "slot": "FeedSackReviewed_Pickup_282208",
+    "saved_screen": 1,
+    "scope": "Actual game load API; saved picked-up inventory/world state after real feeding verified separately"
+  }
+}

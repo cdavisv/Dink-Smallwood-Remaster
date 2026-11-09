@@ -1,0 +1,134 @@
+{
+  "schema": "dink-shared-stonebrook-source-contract/1",
+  "status": "Canonical front-plane approved; latest architecture uses ordinary world-visible outdoor deltas and interior1 owner-only copy. Work-only source stage.",
+  "canonical_owner_screen": 439,
+  "shared_view_owner_screens": [
+    1
+  ],
+  "authoritative_visual_front_plane": {
+    "interior_world_cm": [
+      -183799.535,
+      393595.98,
+      0.0
+    ],
+    "exterior_world_cm": [
+      97661.61092968748,
+      37370.324198125,
+      0.0
+    ],
+    "outward_normal_UE": [
+      0,
+      1,
+      0
+    ],
+    "horizontal_tangent_UE": [
+      1,
+      0,
+      0
+    ],
+    "up_UE": [
+      0,
+      0,
+      1
+    ],
+    "scale": 1.0,
+    "yaw_deg": 0.0,
+    "canonical_439_to_interior1_translation_cm": [
+      -281461.1459296875,
+      356225.655801875,
+      -0.0
+    ],
+    "interior1_to_canonical439_translation_cm": [
+      281461.1459296875,
+      -356225.655801875,
+      0.0
+    ],
+    "interior_asset_origin_cm": [
+      -183999.535,
+      393595.98,
+      0
+    ],
+    "interior_asset_opening_local_cm": [
+      200,
+      0,
+      0
+    ],
+    "exterior_asset_origin_cm": [
+      97131.61092968748,
+      36920.324198125,
+      0
+    ],
+    "exterior_asset_opening_local_cm": [
+      530,
+      450,
+      0
+    ]
+  },
+  "separate_warp_volume_centers_cm": {
+    "interior": [
+      -183799.535,
+      393587.23,
+      150
+    ],
+    "exterior": [
+      97668.38554312498,
+      37364.90511275,
+      150
+    ],
+    "authority": "Original script/capsule transition behavior, NOT source art alignment pivot; preserve unchanged"
+  },
+  "blender_source_frame": {
+    "origin_UE_cm": [
+      97661.61092968748,
+      37370.324198125,
+      0.0
+    ],
+    "formula": "Blender=( (UE.X-origin.X)/100, -(UE.Y-origin.Y)/100, UE.Z/100 ); +X east,+Y north,+Z up; asset UE yaw=-Blender yaw",
+    "canonical_export_context": "Meshes own local metre geometry; placement translations use canonical439 worldcm; owner1 derived by exact front-plane rigidtranslation yaw0 scale1",
+    "root_approval": "Root message chose actual visual front-plane frames; no heuristic/warp-center anchoring"
+  },
+  "collision_authority": {
+    "near439": "Existing six real meadow meshes at manifestZ-9.8/top+0.2cm; preserve fitted authoritative cottage/fences/trees/warp opening. No blanket added colliding terrain.",
+    "438": "Existing fitted land and preservedLow pond ring; water/bank no collision, no invented filled pond.",
+    "471": "Existing fitted land and preservedLow stream envelope; no invented bridge or solid water sheet.",
+    "440": "Existing source/generated gameplay geometry until separately authored reviewed replacement; new decorative ground/horizon render-only.",
+    "horizon": "Render-only, no nav/overlap/hidden collision; never use raisedV3terrain over physicalwalkground"
+  },
+  "context_strategy": "Outdoor new deltas only use ordinary world-visible main art manifests at canonical actual-world coordinates. Do not use bounded screen_set for terrain. All560 existing439/438/471referenceinstances must be excluded from outdoor exports; any genuine material/mesh replacements require their own guarded main-manifest replacements. Interior1 owner-only context derives whole canonical composition by exact front-plane transform and replaces oldV4; it is a separate render-only copy and must not alter outdoor visibility. No global always-visible interior context.",
+  "pending_runtime_questions": [
+    "Exact list of render-only canonical pieces included perowner vs authoritative gameplay actors, preventing doubleground/selfcottage shells.",
+    "Whether owner1 source clipmask must exclude existing14.875x13.125m room shell while preserving actual canonical18x9m cottage footprint; no source scaling tohide mismatch.",
+    "Native camera aperture/occluder fade must keep sharedoutdoorcontext visible through windows, separate runtime task."
+  ],
+  "source_input_sha256": {
+    "ImportData/screens.json": "3ff7d14ab3d6a5d664c5b31b98f5154c4d583c8379972d0c71ae5270d2278fba",
+    "ImportData/placements.json": "6d21ad33e3f494e3ff501ca692fe21655e9b8e5f172daecd409729f266707cca",
+    "ImportData/warps.json": "d1508aa1e93d7afc55b96943cf933e7005d8db86468f4811c0a0c2c7dddcfa87",
+    "ImportData/collision.json": "a64d5ce8e5fcf5e1663a885ba2539e714326be9ea036950e7eca82bb9bb839b5",
+    "Content/Dink/Data/Art/stonebrook.json": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853",
+    "Content/Dink/Data/Art/stonebrook_exterior.json": "c574f9a66679de272fe803137ca20ec942513e31d61846d132be12a7886eaa5b",
+    "Content/Dink/Data/Art/stonebrook_fields_438.json": "ae3dff73df0bedc3399525dc396c7a03670c176ef13f44825d99a15e83b7f1a0",
+    "Content/Dink/Data/Art/stonebrook_fields_471.json": "5406b785f0af7f6bc11d347268e5f201d3989f4ebe7641f773a91be2f967f829",
+    "Content/Dink/Data/Art/stonebrook_vista_v4.json": "c6c83b57adb235668b5378e3965b8301512b4ae48f18aacab0155985f69c5c94",
+    "SourceAssets/Art/Stonebrook/InteriorVistaV3/placement_proposal.json": "c53f8eee003d158b8222d78fe91a4125be9b47663903878a14ab58d91696386b",
+    "SourceAssets/Art/Stonebrook/InteriorVistaV4/additions.json": "90b4fb33a648fdd8dc7deba8ea2a2e970c58f9853ff983bcffaaa689eaa0f5cb",
+    "SourceAssets/Art/Stonebrook/InteriorVistaV4/Stonebrook_HorizonV4.blend": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
+    "SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend": "bacd67375df36fff62152f8108e8b82dfde7a3b28a15fd1c979ee8844bfd9111",
+    "SourceAssets/Art/StonebrookFields/KIT_StonebrookFields.blend": "29bcc2d231c04efd8db793e0cd4f1f23e0cdf92eb278b0f4ac001e19de472846",
+    "SourceAssets/Art/StonebrookFields/PineRefinementV3/PineRefinementV3.blend": "a0dd5208286ae006bec964ba488c68b3e0a0b8ac0e05b9ef1d8d9ccebc78c94a"
+  },
+  "ordinary_world_coverage_screens": [
+    406,
+    407,
+    408,
+    438,
+    439,
+    440,
+    470,
+    471,
+    472,
+    502,
+    503,
+    504
+  ]
+}

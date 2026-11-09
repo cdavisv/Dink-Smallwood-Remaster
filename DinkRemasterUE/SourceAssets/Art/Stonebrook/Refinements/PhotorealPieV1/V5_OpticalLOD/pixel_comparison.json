@@ -1,0 +1,57 @@
+{
+  "status": "Matched actualsingleLOD studio views, no nativeLODdistance or universal acceptance threshold",
+  "results": {
+    "1": {
+      "front": {
+        "ROI_xyxy": [
+          110,
+          190,
+          610,
+          550
+        ],
+        "mean_abs_RGB_255": 2.299861111111111,
+        "prior_V4_mean_abs_RGB_255": 2.7054240703582764,
+        "p95_abs_RGB_255": 12.0,
+        "image_sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0"
+      },
+      "game-distance": {
+        "ROI_xyxy": [
+          240,
+          250,
+          480,
+          470
+        ],
+        "mean_abs_RGB_255": 0.8762689393939394,
+        "prior_V4_mean_abs_RGB_255": 1.0575695037841797,
+        "p95_abs_RGB_255": 5.0,
+        "image_sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d"
+      }
+    },
+    "2": {
+      "front": {
+        "ROI_xyxy": [
+          110,
+          190,
+          610,
+          550
+        ],
+        "mean_abs_RGB_255": 5.5331222222222225,
+        "prior_V4_mean_abs_RGB_255": 8.66445541381836,
+        "p95_abs_RGB_255": 28.0,
+        "image_sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353"
+      },
+      "game-distance": {
+        "ROI_xyxy": [
+          240,
+          250,
+          480,
+          470
+        ],
+        "mean_abs_RGB_255": 2.0201199494949496,
+        "prior_V4_mean_abs_RGB_255": 3.064046621322632,
+        "p95_abs_RGB_255": 12.0,
+        "image_sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779"
+      }
+    }
+  }
+}

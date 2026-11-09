@@ -1,0 +1,11 @@
+{
+  "file": "roundtrip_basket.py",
+  "change": "Remove trailing space from one blank line only",
+  "author_sha256": "825ca90f6da59ed6cfcad19d6c2850948555e604eea9bb7102e8e1b135674429",
+  "published_sha256": "b4b341f38a90979cbc2557843f425c091bc7ed2ddf7f4f9e7658111a09faa0f5",
+  "AST_equivalent": true,
+  "original_archive": "Inputs/AuthorRecipe/roundtrip_basket.py.zip",
+  "archived_original_sha256": "825ca90f6da59ed6cfcad19d6c2850948555e604eea9bb7102e8e1b135674429",
+  "archive_entry": "roundtrip_basket.py",
+  "archive_sha256": "534f4e216d8ff8a51f7392dff6eed419a35ec8dca293726b25e9b31cef9e1fa9"
+}

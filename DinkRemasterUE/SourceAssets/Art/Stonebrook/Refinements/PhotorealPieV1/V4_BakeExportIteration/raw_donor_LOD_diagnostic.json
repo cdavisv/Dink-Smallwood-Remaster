@@ -1,0 +1,23 @@
+[
+  {
+    "LOD": 0,
+    "polygons": 2342,
+    "triangles": 4844,
+    "duplicate_vertex_index_face_sets": 0,
+    "nonunit_corner_normals": 0
+  },
+  {
+    "LOD": 1,
+    "polygons": 2422,
+    "triangles": 2422,
+    "duplicate_vertex_index_face_sets": 20,
+    "nonunit_corner_normals": 60
+  },
+  {
+    "LOD": 2,
+    "polygons": 1210,
+    "triangles": 1210,
+    "duplicate_vertex_index_face_sets": 20,
+    "nonunit_corner_normals": 60
+  }
+]

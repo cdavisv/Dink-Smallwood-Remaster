@@ -1,0 +1,80 @@
+{
+  "Attempt01_preflight": {
+    "all_before_after_inventory_changes_match_terminal": true,
+    "before_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5450,
+      "modules": 7
+    },
+    "after_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5450,
+      "modules": 7
+    },
+    "changes": {
+      "source_tools_config": [],
+      "source_art": [],
+      "runtime_data": [],
+      "content": [],
+      "modules": []
+    }
+  },
+  "Attempt02_import": {
+    "all_before_after_inventory_changes_match_terminal": true,
+    "before_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5450,
+      "modules": 7
+    },
+    "after_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5455,
+      "modules": 7
+    },
+    "changes": {
+      "source_tools_config": [],
+      "source_art": [],
+      "runtime_data": [],
+      "content": [
+        "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset",
+        "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset",
+        "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset",
+        "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset",
+        "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset"
+      ],
+      "modules": []
+    }
+  },
+  "Attempt03_verify": {
+    "all_before_after_inventory_changes_match_terminal": true,
+    "before_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5455,
+      "modules": 7
+    },
+    "after_scope_file_counts": {
+      "source_tools_config": 364,
+      "source_art": 1238,
+      "runtime_data": 669,
+      "content": 5455,
+      "modules": 7
+    },
+    "changes": {
+      "source_tools_config": [],
+      "source_art": [],
+      "runtime_data": [],
+      "content": [],
+      "modules": []
+    }
+  }
+}

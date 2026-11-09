@@ -1,0 +1,38 @@
+{
+  "measurements": [
+    {
+      "view": "front",
+      "pixel_shape": [
+        850,
+        850,
+        3
+      ],
+      "bounded_ROI_mean_abs_RGB_255": 1.4995058275058275,
+      "bounded_ROI_95percent_abs_RGB_255": 4.0,
+      "scope": "Bounded fixed central ROI; not a universal perceptual quality assertion"
+    },
+    {
+      "view": "game-distance",
+      "pixel_shape": [
+        850,
+        850,
+        3
+      ],
+      "bounded_ROI_mean_abs_RGB_255": 0.46756367663344406,
+      "bounded_ROI_95percent_abs_RGB_255": 2.0,
+      "scope": "Bounded fixed central ROI; not a universal perceptual quality assertion"
+    },
+    {
+      "view": "head",
+      "pixel_shape": [
+        850,
+        850,
+        3
+      ],
+      "bounded_ROI_mean_abs_RGB_255": 2.017487819370172,
+      "bounded_ROI_95percent_abs_RGB_255": 6.0,
+      "scope": "Bounded fixed central ROI; not a universal perceptual quality assertion"
+    }
+  ],
+  "interpretation": "Same neutralstudio/camera framing; baked2048px maps can filter finegrain differently. Root visual approval required; quantitative differences not hidden."
+}

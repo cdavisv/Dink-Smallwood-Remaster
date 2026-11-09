@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "source_sha256": "f559cf4ab5c3d7c208da46064e63518b4d9d2137fb2ea37ab5eccc48e2058cb6",
+  "source_unchanged": true,
+  "packed_images_reopened": [
+    {
+      "image": "T_FeedSack_Jute_01_Photo_BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 2835063,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_FeedSack_Jute_01_Photo_Metal",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 55235,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_FeedSack_Jute_01_Photo_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 4597951,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_FeedSack_Jute_01_Photo_ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 1178498,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_FeedSack_Jute_01_Photo_Rough",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed_bytes": 1218744,
+      "pixels_reopened": 16777216
+    },
+    {
+      "image": "T_Stonebrook_Linen_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 802223,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Linen_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2777429,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Linen_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1248754,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1435537,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_N",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 2898185,
+      "pixels_reopened": 4194304
+    },
+    {
+      "image": "T_Stonebrook_Wicker_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_bytes": 1302556,
+      "pixels_reopened": 4194304
+    }
+  ],
+  "test": "Disposable copy only; all image paths nonexistent before saving and reopening",
+  "native_imported": false
+}

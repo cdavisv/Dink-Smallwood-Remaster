@@ -10,6 +10,9 @@
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "DinkStatsComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "HAL/IConsoleManager.h"
 #include "Camera/PlayerCameraManager.h"
@@ -251,10 +254,71 @@ void UDinkGreyboxSubsystem::RefreshCurrentScreen()
 	UpdateLegacyCardVisibility(Screen ? Screen->ScreenNumber : 0);
 }
 
+void UDinkGreyboxSubsystem::ObserveDoorMovement(ACharacter* Character)
+{
+    if (DoorMovementPawn.Get()==Character) return;
+    if (DoorMovementPawn.IsValid())
+        DoorMovementPawn->OnCharacterMovementUpdated.RemoveDynamic(this,&UDinkGreyboxSubsystem::CaptureDoorMovement);
+    DoorMovementPawn=Character; DoorMovementFrame=MAX_uint64; DoorMovementIntent=FVector::ZeroVector;
+    if (Character)
+        Character->OnCharacterMovementUpdated.AddDynamic(this,&UDinkGreyboxSubsystem::CaptureDoorMovement);
+}
+
+void UDinkGreyboxSubsystem::CaptureDoorMovement(float DeltaSeconds,FVector,FVector)
+{
+    ACharacter* Hero=DoorMovementPawn.Get();
+    const UCharacterMovementComponent* Movement=Hero ? Hero->GetCharacterMovement() : nullptr;
+    DoorMovementFrame=MAX_uint64; DoorMovementIntent=FVector::ZeroVector;
+    if (!Movement || DeltaSeconds<=SMALL_NUMBER) return;
+    DoorMovementIntent=Movement->GetCurrentAcceleration(); DoorMovementIntent.Z=0;
+    DoorMovementLocation=Hero->GetActorLocation(); DoorMovementFrame=GFrameCounter;
+}
+
+void UDinkGreyboxSubsystem::Deinitialize()
+{
+    ObserveDoorMovement(nullptr);
+    Super::Deinitialize();
+}
+
+void UDinkGreyboxSubsystem::RetryOverlappingDoor()
+{
+    ACharacter* Hero=DoorMovementPawn.Get();
+    const APlayerController* PC=GetWorld()->GetFirstPlayerController();
+    const UCharacterMovementComponent* Movement=Hero ? Hero->GetCharacterMovement() : nullptr;
+    if (!Hero || !PC || PC->GetPawn()!=Hero || !Hero->IsPlayerControlled() || PC->IsMoveInputIgnored() ||
+        !Movement || !Movement->IsActive() || !Movement->IsComponentTickEnabled() || Movement->MovementMode==MOVE_None ||
+        DoorMovementFrame!=GFrameCounter || DoorMovementIntent.IsNearlyZero() || !CanWarp(Hero) ||
+        FVector::DistSquared(Hero->GetActorLocation(),DoorMovementLocation)>1. ||
+        (WarpSuppressed && WarpSuppressed(Hero))) return;
+    const UDinkStatsComponent* Stats=Hero->FindComponentByClass<UDinkStatsComponent>();
+    if (Stats && Stats->IsDead()) return;
+    const ADinkScreenVolume* Physical=FindScreenAt(Hero->GetActorLocation());
+    if (!Physical) return;
+    const FVector Intent=DoorMovementIntent.GetSafeNormal2D();
+    TArray<UPrimitiveComponent*> Overlaps; Hero->GetOverlappingComponents(Overlaps);
+    UDinkWarpComponent* Best=nullptr; double BestDistance=TNumericLimits<double>::Max();
+    for (UPrimitiveComponent* Component:Overlaps)
+    {
+        auto* Warp=Cast<UDinkWarpComponent>(Component);
+        if (!IsValid(Warp) || !Warp->bTriggerEnabled || Warp->TriggerMode!=TEXT("walk_in") ||
+            (Warp->Kind!=TEXT("door") && Warp->Kind!=TEXT("exit")) || Warp->SourceScreen!=Physical->ScreenNumber ||
+            !Warp->IsOverlappingActor(Hero)) continue;
+        const FVector Approach=Warp->GetRetryApproachDirection(Hero);
+        if (Approach.IsNearlyZero() || FVector::DotProduct(Intent,Approach)<=.5f) continue;
+        const double Distance=FVector::DistSquared2D(Hero->GetActorLocation(),Warp->GetComponentLocation());
+        if (!Best || Distance<BestDistance || (Distance==BestDistance && Warp->WarpId.Compare(Best->WarpId)<0))
+        { Best=Warp; BestDistance=Distance; }
+    }
+    // Exactly one attempt, including failure: another overlapping destination must not be substituted.
+    if (Best) Best->TryWarp(Hero);
+}
+
 void UDinkGreyboxSubsystem::Tick(float DeltaTime)
 {
 	UWorld* World = GetWorld();
 	FaceCardsToCamera(*World);
+    APlayerController* IntentPC=World->GetFirstPlayerController();
+    ObserveDoorMovement(IntentPC ? Cast<ACharacter>(IntentPC->GetPawn()) : nullptr);
 	const double Now = World->GetTimeSeconds();
 	if (Now < NextScreenCheck)
 	{
@@ -262,6 +326,9 @@ void UDinkGreyboxSubsystem::Tick(float DeltaTime)
 	}
 	NextScreenCheck = Now + 0.25;
 	RefreshCurrentScreen();
+    // UWorld ticks tickable subsystems after actor movement. Only an actual movement
+    // callback from THIS frame supplies intent; no stale LastInput/velocity fallback.
+    if (DeltaTime>SMALL_NUMBER) RetryOverlappingDoor();
 	const APlayerController* PC = World->GetFirstPlayerController();
 	const APawn* Pawn = PC ? PC->GetPawn() : nullptr;
 	if (!Pawn)

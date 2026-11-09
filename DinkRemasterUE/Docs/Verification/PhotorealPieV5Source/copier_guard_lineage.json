@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "reviewed_parent_copier_sha256": "dfcc8e771d33cec17bb857168b960a85264a6ea13e4024dd85ef69ba7ca6a74b",
+  "adapted_copier_sha256": "751dabb9c4a466e6b2d7dc51821caccc34d90fe01f3d9c63d2bcd360b4ecea9d",
+  "identical_guard_functions_AST": {
+    "canonical_rel": true,
+    "bounded": true,
+    "fdbytes": true,
+    "ledger_info": true
+  },
+  "changes": "Inventory replaces single top-handoff discovery; prefix and candidate attribution customized for pie. Apply body retains original parent/dangling-target checks, exclusive lock/O_NOFOLLOW, O_APPEND fd locking, repeated baseline/inode/source checks and post-append exact audit. Never truncates/replaces ledger or silently rolls back external writes."
+}

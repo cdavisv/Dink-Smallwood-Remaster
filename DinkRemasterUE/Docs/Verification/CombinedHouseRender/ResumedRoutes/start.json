@@ -1,0 +1,19 @@
+{
+  "player": {
+    "screen": 1,
+    "map": [
+      323.283,
+      161.0
+    ],
+    "world": [
+      -183719.548,
+      392550.355,
+      98.15
+    ],
+    "yaw": -0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "qualification": "Prior driver interrupted after first route steps; resume actualW fromcurrentposition,no teleport or restart."
+}
