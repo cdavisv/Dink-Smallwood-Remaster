@@ -1,5 +1,12 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-verified 9 Nov 2026 (master 8175f75, twenty chapters).** All twenty probe chapters pass in the packaged Linux
+> Development build, one game process each, and every trace md5 equals the editor's: Ch1 b3760d52d7, Ch2 253e6f7268,
+> Ch3 e9fce770bc, Ch4 d431e6780f, Ch5 6c709d1069, Ch6 9e87080221, Ch7 d50e5111f6, Ch8 f5307af4fa, Ch9 4c4c432a45,
+> Ch10 809895c44e, Ch11 6a5dade988, Ch12 09476c84be, Ch13 ee634f9e54, Ch14 a1cbe40b59, Ch15 28cb65b182,
+> Ch16 8e95e960eb, Ch17 2ccc105f5e, Ch18 e4355a5505, Ch19 579f75b840, Ch20 eae2c35f54. The bot therefore completes
+> `&story` 0-16 on a packaged build (the alpha gate's first condition).
+
 Goal (alpha gate): "Bot completes &story 0-16 on a packaged build." The bot is the automation test family
 `Dink.Gameplay.Probe.*` (`Plugins/DinkParity/Source/DinkProbe/Private/DinkProbeTests.cpp`). This note began as a design written from
 the code on the morning of 7 Nov 2026; it was then carried out, and it now says what was done, what the design got wrong, and how

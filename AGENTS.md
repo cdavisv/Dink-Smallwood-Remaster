@@ -553,10 +553,10 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 144 automation tests (verified 8 Nov
-  2026: 144/144 in 727 s; the probe runs as eighteen save-slot chapters,
-  Ch1..Ch9 and ChA..ChI, deterministic across runs and identical packaged;
-  PIE tests run on a fixed 60 Hz step).
+  rows, 111 implemented, 35 recorded. 176 automation tests (verified 9 Nov
+  2026: 176/176 in 723 s; the probe runs as twenty save-slot chapters,
+  Ch1..Ch9 and ChA..ChK, deterministic across runs and identical packaged for all
+  twenty (9 Nov 2026); PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
   `DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
   `stonebrook_probe_trace.txt`): a scripted play-through from a new game with
@@ -664,6 +664,28 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   about 0.4; needs the bow with bow lore, 1500 gold, and a hold-the-key bow
   action that does not exist yet). Hashes in the UE AGENTS.md; packaged md5s
   identical to PIE for all eighteen.
+- Probe progress, 9 Nov 2026 (PR #35): the bow built from `dink.cpp` in
+  `UDinkGameplay` (`activate_bow`, the charge while the attack key is held: 7
+  power per 60 Hz frame after the first status tick, 500 is a full draw;
+  release fires an arrow of strength `(power/100) * max(1, strength/5)` with the
+  engine's missile damage; bow lore is `item-b1.c`'s one-in-three power shot,
+  x3), a `PlayerAttackPress/Release` API the input layer can bind to later.
+  Two parity fixes with citations and tests: `load_screen` into a warp trigger
+  no longer warps Dink back (`dink.cpp:15337`), and `init("load_sequence_now")`
+  gives a sequence `dink.ini` lacks its hardbox (`dink.cpp:2335-2344`,
+  `1899-1922`: Seth's bomb pose, which arrows passed through). Chapter 19
+  (`ChJBowLore`, 37 steps): six strength potions of the Edge, the Darklands
+  rooms again for gold, bow lore (1500), eleven elixirs, the bow armed
+  (strength 26, defense 9, magic 12, lifemax 65). Chapter 20 (`ChKSeth`, 5
+  steps): Seth (300 hp, defense 25) dies to 51 arrows in 139 s, Dink drinks all
+  eleven elixirs (not robust: the last one is gone when he dies), the machine,
+  the King: **`&story 16`, the end of the game**. Chapters 1-18 keep their
+  hashes; ch19 579f75b840, ch20 eae2c35f54. 176/176 tests. Packaged run from
+  master 8175f75 the same day: all twenty chapters PARITY OK, so the alpha
+  gate's first condition (bot completes &story 0-16 on a packaged build) holds;
+  conditions two (every origin ID final/placeholder/cut) and three (no original
+  audio) are the art backlog and already met respectively. Remaster gap noted:
+  `draw_hard_sprite`/`sp_hard` are only recorded (UE AGENTS.md pitfall 77).
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.
