@@ -9,6 +9,31 @@ the packaged run is kept identical to the editor's.
 `Scripts/run_packaged_tests.sh` runs the probe chapters in the packaged game, one process per chapter, headless. Each chapter's
 event trace is byte-identical to the editor's PIE trace (md5, first 10 digits; the probe prints it and writes `*_trace.txt`).
 
+**Update, 8 Nov 2026 (the build change and chapters 11-18): eighteen chapters, all `PARITY OK`.** `Scripts/package.sh` (26 s, incremental cook; a first attempt hung for 15 minutes at "Reading oplog from http://[::1]:8558/..." while another agent's UAT waited for the mutex: AGENTS.md pitfall 72) then `Scripts/run_packaged_tests.sh` (default chapter list now `Ch1Stonebrook .. Ch9Windemere ChAJoppa ChBKit ChCDragons ChDCastle ChEEdge ChFDarklands ChGSlayers ChHDucks ChISeth`; 4 + 2 + 2 + 12 + 2 + 2 + 1 + 3 + 3 + 3 + 1 s for chapters 8-18, the first seven as before). The editor's PIE traces were taken from the second of two full editor runs of `Dink.Gameplay.Probe` (20/20 both times, all eighteen traces byte-identical between the two runs). Chapters 1-7 kept their hashes, chapters 8-10 moved (level 4 on Attack instead of Defense; chapter 10 now ends in the basement), 11-18 are new:
+
+| Chapter | PIE trace md5 (run A = run B) | Packaged trace md5 | Events |
+|---|---|---|---|
+| 1 `Ch1Stonebrook` (47 steps) | b3760d52d7 | b3760d52d7 | 4338 |
+| 2 `Ch2Terris` | 253e6f7268 | 253e6f7268 | 3092 |
+| 3 `Ch3Roads` | e9fce770bc | e9fce770bc | 430 |
+| 4 `Ch4Gold` | d431e6780f | d431e6780f | 2121 |
+| 5 `Ch5Bow` | 6c709d1069 | 6c709d1069 | 120 |
+| 6 `Ch6Goblins` | 9e87080221 | 9e87080221 | 462 |
+| 7 `Ch7Sanctuary` | d50e5111f6 | d50e5111f6 | 2589 |
+| 8 `Ch8Knights` | f5307af4fa | f5307af4fa | 1443 |
+| 9 `Ch9Windemere` | 4c4c432a45 | 4c4c432a45 | 2323 |
+| 10 `ChAJoppa` | 809895c44e | 809895c44e | 309 |
+| 11 `ChBKit` | 6a5dade988 | 6a5dade988 | 3454 |
+| 12 `ChCDragons` | 09476c84be | 09476c84be | 706 |
+| 13 `ChDCastle` | ee634f9e54 | ee634f9e54 | 349 |
+| 14 `ChEEdge` | a1cbe40b59 | a1cbe40b59 | 157 |
+| 15 `ChFDarklands` | 28cb65b182 | 28cb65b182 | 1033 |
+| 16 `ChGSlayers` | 8e95e960eb | 8e95e960eb | 1149 |
+| 17 `ChHDucks` | 2ccc105f5e | 2ccc105f5e | 988 |
+| 18 `ChISeth` | e4355a5505 | e4355a5505 | 193 |
+
+**Re-verified 8 Nov 2026 (evening, after the probe grew to eighteen chapters): all eighteen `PARITY OK`, hashes unchanged from the table above.** `Scripts/build.sh` (2 s), `Scripts/package.sh` (55 s, 5,198 packages, staged 1.5 GB), `Scripts/run_packaged_tests.sh` (18 processes, 1-10 s each); every packaged md5 equals the editor's trace in `Saved/Narrative` (confirmed with md5sum beforehand).
+
 **Update, 7 Nov 2026 night (after the `sp_script` parity fix, AGENTS.md pitfall 53): nine chapters, all `PARITY OK`.** `Scripts/package.sh` (28 s, incremental cook) then
 `Scripts/run_packaged_tests.sh`; the chapters 7-9 were packaged for the first time (the script's default chapter list now ends with `Ch9Windemere`). Every hash moved with the fix (the
 mains of the scripts `sp_script` attaches now run in the caller's turn) and PIE and packaged moved together:
