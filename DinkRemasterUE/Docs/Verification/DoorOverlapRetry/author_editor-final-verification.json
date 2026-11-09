@@ -1,0 +1,10 @@
+{
+  "time_utc": "2026-11-08T23:42:05.305443+00:00",
+  "patch_sha256": "80cccee81efd1099d3a5897fc9bd57184fd132bf05c680732d7940b804559343",
+  "editor_build": "Succeeded0warnings",
+  "focused": "Door1/1PASS0warnings31s;ScriptNoHard1/1PASS0warnings26s",
+  "full": "153/153PASS0failed0warnings491s",
+  "frozen_inputs": 9241,
+  "changed_inputs": [],
+  "limitations": "Tangent/zeroapproach/blockednearest-two not exercised by new nativefixture; oneattempt property codeinspection. Actual private keyboard re-exit and standaloneGamebuild pending."
+}
