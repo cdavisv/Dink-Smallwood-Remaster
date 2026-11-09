@@ -130,6 +130,28 @@ class LFSMetadataAuditTests(unittest.TestCase):
         self.assertEqual(self.audit()[0], 0)
         self.assert_rejected(self.binary_path, metadata=False)
 
+    def test_metadata_accepts_explicit_lfs_diagnostics_in_nested_project(self):
+        attrs = b'DinkRemasterUE/SourceAssets/diagnostics/* filter=lfs\n'
+        oid = self.git('hash-object', '-w', '--stdin', data=attrs).decode().strip()
+        self.git('update-index', '--add', '--cacheinfo', '100644', oid, '.gitattributes')
+        for suffix in ['bin', 'json.gz', 'json']:
+            name = 'SourceAssets/diagnostics/report.' + suffix
+            data = ('reviewed diagnostic ' + suffix).encode()
+            self.stage(name, pointer(data))
+            self.write(name, pointer(data))
+            self.ledger[name] = digest(data)
+        self.write_ledger()
+        code, report = self.audit()
+        self.assertEqual(code, 0, report)
+        self.assertEqual(report['binary_files_metadata_only'], 3)
+
+    def test_worktree_attributes_cannot_promote_ordinary_source_pointer(self):
+        (self.repo/'.gitattributes').write_text('DinkRemasterUE/SourceAssets/source.json filter=lfs\n')
+        name = 'SourceAssets/source.json'
+        original = (self.project/name).read_bytes()
+        self.write(name, pointer(original))
+        self.assert_rejected(name)
+
 
 if __name__ == "__main__":
     unittest.main()
