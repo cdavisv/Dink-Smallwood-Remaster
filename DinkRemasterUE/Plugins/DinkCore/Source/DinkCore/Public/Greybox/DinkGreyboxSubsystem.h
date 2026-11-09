@@ -95,6 +95,16 @@ public:
 	/** Height of the solid prisms (DinkImport's CollisionHeightM, 3 m), cm. */
 	static constexpr float SolidPrismHeightCm = 300.f;
 
+	/**
+	 * sp_prop (DinkNarrative's UDinkGameplay::SetPlacementProp, owner decision OD1 of 9 Nov 2026) on a sprite warp: its placement's prop is no
+	 * longer 1 (off) or is 1 again (on). special_block runs only for prop 1 (dink.cpp:15337-15341), so a switched-off warp's trigger does not
+	 * fire (UDinkWarpComponent::TryWarp, the door retry); its hardbox stays solid. WarpId is the placement's origin text ("S419_P02").
+	 * RestoreSpriteWarps (a screen load: load_map reads map.dat's prop anew) switches every one back on.
+	 */
+	void SetSpriteWarpOn(const FString& WarpId, bool bOn);
+	bool IsSpriteWarpOn(const FString& WarpId) const { return !PropOffWarps.Contains(WarpId); }
+	void RestoreSpriteWarps() { PropOffWarps.Reset(); }
+
 	bool CanWarp(const APawn* Pawn) const;
 	/** Blocks nested overlaps while TeleportTo synchronously updates the pawn's overlaps. */
 	bool BeginWarp(APawn* Pawn);
@@ -129,6 +139,8 @@ private:
 	TWeakObjectPtr<ADinkScreenVolume> CurrentScreen;
 	int32 LockedScreen = 0;
 	double NextScreenCheck = 0.0;
+	/** Sprite warps an sp_prop switched off until the next screen load. */
+	TSet<FString> PropOffWarps;
 
 	ADinkGreyboxScreen* FindGreyboxScreen(int32 ScreenNumber) const;
 	/** Which map pixels the baked CollisionSolid covers with a prism, by line traces at the pixel centres (computed once per screen). */

@@ -133,6 +133,13 @@ struct DINKNARRATIVE_API FDinkPlacementInfo
 	int32 Sound = 0;
 	/** Draw order (0 = by y); it also orders the hardbox stamps (place_sprites_game D:5966, fill_back_sprites D:6832). */
 	int32 Que = 0;
+	/**
+	 * map.dat's prop flag (g_smallMap.sprite[n].prop): get_hard reads this placement's stamped hardbox as 0 when it is not 0 (walk-through,
+	 * dink.cpp:569-575) and special_block warps Dink to WarpMap when it is 1 (D:15337-15341). 1 on the 93 sprite warps, 0 elsewhere.
+	 */
+	int32 Prop = 0;
+	/** map.dat's warp_map: the screen special_block sends Dink to (process_warp_man D:15718); 0 for none. */
+	int32 WarpMap = 0;
 };
 
 /** The original's per-frame and per-placement data (Scripts/sync_gameplay_data.py; never hand-edited). */
@@ -427,8 +434,24 @@ public:
 	void DrawHardMap(int32 Screen);
 	/** The map a draw_hard_* left on Screen in this screen visit (what GetHard reads); null if no script redrew it since the screen loaded. */
 	const FDinkHardnessMap* GetLiveHardness(int32 Screen) const;
-	/** A screen load (load_map + place_sprites_game build g_hitmap anew, D:5966): drops the redrawn maps and the visit's sp_hard flags. */
+	/** A screen load (load_map + place_sprites_game build g_hitmap anew, D:5966): drops the redrawn maps and the visit's sp_hard and sp_prop flags. */
 	void OnScreenLoaded();
+
+	// ---- The placement's prop flag (sp_prop, owner decision OD1 of 9 Nov 2026) ----
+
+	/**
+	 * sp_prop on a placement's sprite: g_smallMap.sprite[n].prop = Prop until the screen loads again (load_map reads map.dat anew). No 1997
+	 * command writes prop; the remaster's director defines sp_prop to (doc/remaster/verbatim_review.md OD1). What the engine does with the flag:
+	 * get_hard reads a stamped hardbox (100 + n) of a placement with prop != 0 as 0, so it is walk-through (dink.cpp:569-575), and special_block
+	 * warps Dink when the walk code runs into one with prop == 1 (D:15337-15341, called from D:16906-16909). Here: on a sprite warp (map.dat
+	 * prop 1) 0 switches its greybox trigger off (its hardbox stays solid, as a prop-0 placement's stamped hardbox is) and 1 back on; on any other
+	 * placement a non-zero prop makes its stamped hardbox walk-through (GetHard, the greybox's solid collision) and warps nowhere: only the 93
+	 * map.dat warps have a trigger (the engine would also warp on prop 1 to the placement's warp_map, 0 for most). A value equal to map.dat's
+	 * drops the change. Not saved: a load is a screen load.
+	 */
+	void SetPlacementProp(const FDinkOriginId& Origin, int32 Prop);
+	/** The placement's prop now: what sp_prop set in this screen visit, else map.dat's (0 for an unknown placement). */
+	int32 GetPlacementProp(const FDinkOriginId& Origin) const;
 
 	/** screenlock(n) (D:10083): the flag, the greybox barriers of Dink's screen; a screen load clears it (D:1016). */
 	void SetScreenLock(bool bLocked);
@@ -514,6 +537,12 @@ private:
 	TMap<int32, FLiveHardness> LiveHardness;
 	/** sp_hard on placement sprites in this screen visit: g_smallMap.sprite[n].hard (D:9997). */
 	TMap<FDinkOriginId, int32> VisitPlacementHard;
+	/** sp_prop on placement sprites in this screen visit, only where it differs from map.dat: g_smallMap.sprite[n].prop. */
+	TMap<FDinkOriginId, int32> VisitPlacementProp;
+	/** A stamped hardbox code (100 + n) of Screen that an sp_prop of this visit made walk-through (prop != 0 where map.dat has 0, D:569). */
+	bool IsWalkThroughByProp(int32 Screen, int32 Code) const;
+	/** The loaded map of Screen as the engine holds it (removed placements' boxes show the tile layer); false without data. */
+	bool BuildLoadedCodes(int32 Screen, TArray<uint8>& OutCodes, int32& OutVision) const;
 
 	void SetFact(const TCHAR* Name, int32 Value);
 	int32 GetFact(const TCHAR* Name) const;

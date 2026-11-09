@@ -447,7 +447,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   run with a display.
 - `tools/dinkink` (built 5 Nov 2026, stdlib only) is pipeline stage 5: it
   converts the DinkC ASTs to Ink drafts. `cd tools/dinkink && python3 -m dinkink build --ast ../dinkc/out --out out`
-  (about 7 s); tests: `python3 -m unittest discover -s tests` (39 pass, 12-27 s).
+  (about 7 s); tests: `python3 -m unittest discover -s tests` (44 pass, 12-27 s; 9 Nov 2026).
   Output: 377 `.ink` files plus root `dink.ink` (all compile with inklecate,
   0 errors, 0 warnings), `names.csv`, `line_ids.csv`, `director_commands.csv`,
   `director_vocabulary.csv`, 103 shot lists, `review_queue.csv` (65 items,
@@ -783,7 +783,19 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   as in 1997). The converter now does rules C1-C7 of that review (new
   constants `fix_s2_man2_l25`, `fix_s1_h3_8_l13`, `fix_s1_wand2_l187`,
   `fix_s3_chick_l42`; the five empty ones are gone; `freeeze`/`unfreeeze` emit
-  `freeze`/`unfreeze`; `sp_prop` is still a no-op and every switch false, so
-  OD1 and OD2 stay open). Review-queue IDs were renumbered by that change, so
+  `freeze`/`unfreeze`; at that point `sp_prop` was a no-op and every switch false). Review-queue IDs were renumbered by that change, so
   the R-numbers in `verbatim_review.md` are the pre-fix ones (match by
-  script and line). `DinkRemasterUE` has not been synced with the new story.
+  script and line).
+- Owner decisions OD1 and OD2 (9 Nov 2026, done the same day): the four
+  pure-typo switches `fix_s2_jack_l171`, `fix_s4_sign3_l17`, `fix_s3_chick_l42`,
+  `fix_s1_h3_8_l13` are `true` in the shipped build, every other `fix_` switch
+  stays `false`. They are listed in `tools/dinkink/dinkink/overrides.py`
+  `OWNER_DECISIONS` (value, date, reason, dink.cpp citation); the converter
+  emits `CONST <name> = true // owner decision 9 Nov 2026: ...` for them and
+  stops if a decision names a switch it did not make; never hand-edit the
+  `.ink`. `DinkRemasterUE/Scripts/sync_story.py` accepts exactly that set.
+  OD1: the remaster's director defines `sp_prop <sprite> <0|1>` (set the
+  placement's map `prop` flag, warp / walk-through, until the screen loads
+  again; see the UE AGENTS.md gameplay row "placement prop"); its two 1997
+  calls stay behind `fix_s5_fguy_l6`/`fix_s5_end_l33` = false. The UE project
+  is synced with this story (`sync_story.py --rebuild`).
