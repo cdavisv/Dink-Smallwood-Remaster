@@ -1359,3 +1359,8 @@ Bridge follow-up: actual read-only Python null/three-LOD capability now passes w
 ## Hero native inspection bridge checkpoint (9 November 2026 UTC)
 
 Editor-only read-only Skeleton/skeletal LOD/texture inspectors add two synthetic tests. Isolated Editor/Game builds pass with no compiler diagnostics; focused2/2 and existing89-mesh/161-Skeleton reference checks pass. Full native156/156 passes with16 environment-warning tests; the Saved-only report postprocessor then fails on UTF-8 BOM, explicitly preserved alongside the separate hash-bound readback. No hero import or GPU/appearance approval. Root/assets/scoped saves and own7 Editor DLLs+6metadata remain unchanged. See `Docs/Verification/HeroNativeInspection`; base master24 is historical and later master audio/probe changes must survive integration.
+
+
+## Optional physical-element navigation policy (isolated candidate)
+
+Physical `elements` may provide boolean `can_affect_navigation`; omission preserves inherited navigation behavior. Invalid types reject the entire manifest before scene mutation. Explicit false is set before final transform/mesh setup; explicit true after setup. Collision stays BlockAll with existing collision=false override; overlap events remain false. Replacement cards and render-only contexts retain their existing behavior. No existing Data rows are changed. Candidate validation/publication status is in HANDOFF and Docs/Verification/ArtElementNavigation; merge requires coordinating independent review.

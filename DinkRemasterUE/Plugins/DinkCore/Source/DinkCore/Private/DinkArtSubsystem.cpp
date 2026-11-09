@@ -82,6 +82,11 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 		UE_LOG(LogDink, Warning, TEXT("Art: invalid manifest; retaining greybox"));
 		return;
 	}
+	ApplyManifest(World, Manifest, ManifestFile);
+}
+
+void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObject>& Manifest, const FString& ManifestFile)
+{
 	FString Schema;
 	if (!Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-art/1")) return;
 
@@ -103,6 +108,18 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			const TSharedPtr<FJsonObject> Row = Value->AsObject();
 			FString Path;
 			if (!Row.IsValid() || !Row->TryGetStringField(TEXT("mesh"), Path)) return;
+			// This optional policy belongs only to physical elements. Validate the entire
+			// manifest before replacements, hiding, or spawning can change the scene.
+			if (!Manifest->HasField(TEXT("context")) && FCString::Strcmp(Field, TEXT("elements")) == 0 &&
+				Row->HasField(TEXT("can_affect_navigation")))
+			{
+				const TSharedPtr<FJsonValue> Navigation = Row->TryGetField(TEXT("can_affect_navigation"));
+				if (!Navigation.IsValid() || Navigation->Type != EJson::Boolean)
+				{
+					UE_LOG(LogDink, Warning, TEXT("Art: can_affect_navigation must be a boolean; retaining scene (%s)"), *ManifestFile);
+					return;
+				}
+			}
 			if (!Meshes.Contains(Path))
 			{
 				UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *Path);
@@ -206,13 +223,23 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 		for (const TSharedPtr<FJsonValue>& Value : *Rows)
 		{
 			const TSharedPtr<FJsonObject> Row = Value->AsObject();
-			AStaticMeshActor* A = World.SpawnActor<AStaticMeshActor>(AStaticMeshActor::StaticClass(), RowTransform(Row, TEXT("world_cm")));
+			const TSharedPtr<FJsonValue> Navigation = Row->TryGetField(TEXT("can_affect_navigation"));
+			const bool bDisableNavigation = Navigation.IsValid() && !Navigation->AsBool();
+			const FTransform Transform = RowTransform(Row, TEXT("world_cm"));
+			AStaticMeshActor* A = bDisableNavigation
+				? World.SpawnActorDeferred<AStaticMeshActor>(AStaticMeshActor::StaticClass(), FTransform::Identity)
+				: World.SpawnActor<AStaticMeshActor>(AStaticMeshActor::StaticClass(), Transform);
 			if (!A) continue;
 			A->Tags.Add(TEXT("DinkAuthoredArt"));
 			A->Tags.Add(FName(*FString::Printf(TEXT("DinkArtScreen_%d"), TargetScreen)));
 			bool bCameraOccluder=false;
 			if (Row->TryGetBoolField(TEXT("camera_occluder"), bCameraOccluder) && bCameraOccluder) A->Tags.Add(TEXT("DinkCameraOccluder"));
 			UStaticMeshComponent* Component = A->GetStaticMeshComponent();
+			if (bDisableNavigation)
+			{
+				Component->SetCanEverAffectNavigation(false);
+				A->FinishSpawning(Transform);
+			}
 			Component->SetStaticMesh(Meshes.FindChecked(Row->GetStringField(TEXT("mesh"))));
 			// Per-triangle authored collision preserves openings and the visible prop footprint.
 			Component->SetCollisionProfileName(TEXT("BlockAll"));
@@ -220,6 +247,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			Row->TryGetBoolField(TEXT("collision"), bCollision);
 			if (!bCollision) Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			Component->SetGenerateOverlapEvents(false);
+			if (Navigation.IsValid() && !bDisableNavigation) Component->SetCanEverAffectNavigation(true);
 			Added++;
 		}
 	}
