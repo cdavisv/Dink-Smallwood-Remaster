@@ -70,11 +70,22 @@ for a voice file carries status `candidate` until then.
   by the owner: girl via the young-woman voice, goblin via Mog, dragon via
   monster: 43 lines, 1,483 credits; 48 girl lines from `s1-lg.talk.028` on are
   still to generate, the service's daily generation limit was reached on 8 Nov,
-  same flow `zWJTOGFXJNuoyOZVxqhB`). Ledger on 8 Nov 2026 night: 1413 voice
-  lines, about 47,161 credits, all `candidate`; every speaking part has a voice.
-  Still to generate: Dink's 567 lines outside Stonebrook (17,079
-  characters; duplicates of a text already generated can reuse the file) and the
-  48 girl lines, once the service's daily limit resets.
+  same flow `zWJTOGFXJNuoyOZVxqhB`). `dink_batch_03_manifest.json` (4 lines,
+  123 credits, flow `D7HsGNdqFFwIV56o2XwT`, plus 8 copies) and
+  `cast_batch_06_manifest.json` (no new generations, 48 copies of an identical
+  text in the same voice folder). Ledger on 8 Nov 2026 night: 1473 voice lines,
+  47,284 credits, all `candidate`; a copy is ledgered with credits 0 and notes
+  "copy of <source id>: identical text"; every speaking part has a voice.
+  The service's daily generation limit (HTTP 429 `daily_generation_limit_reached`)
+  came back after the fourth Dink line of batch 03, so the rest is listed under
+  `failed_generations` in both manifests. Still to generate (once the limit
+  resets): 531 Dink lines (16,363 characters; `dink_batch_03_manifest.json`),
+  the 48 girl lines from `s1-lg.talk.028` on (flow `zWJTOGFXJNuoyOZVxqhB`) and
+  10 Martridge letter lines `s1-mh-f.talk.003`-`.012` (`cast_batch_06_manifest.json`;
+  object lines that batch 01 never covered). 26 more duplicate lines (23 Dink,
+  3 girl) are listed under `pending_copies`: copy them from their source once
+  the source line exists. Four tag-only lines (`[chortles]`, `[sniffs]`, `[sobs]`,
+  `[groans]`) stay unvoiced.
 - A line that is only a stage direction (`<groan>` -> `[groans]`, s7-mil.talk.004;
   `<chortle>` -> `[chortles]`, s1-h2-o.talk.009)
   fails to generate: ElevenLabs needs words. Such lines stay unvoiced (the
