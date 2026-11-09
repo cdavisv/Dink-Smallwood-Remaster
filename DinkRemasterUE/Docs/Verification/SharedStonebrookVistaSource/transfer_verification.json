@@ -1,0 +1,13 @@
+{
+  "status": "PASS actualQAshadowtransfer; no repository/deliveryworktree applied",
+  "file_count": 379,
+  "all_file_hashes_exact": true,
+  "all_inodes_independent": true,
+  "baseline_ledger_rows": 1664,
+  "result_ledger_rows": 2043,
+  "append_candidate_rows": 379,
+  "all_1507333_prior_raw_bytes_preserved": true,
+  "all_483_audio_raw_rows_preserved": true,
+  "authoritative_after_PR20_merge": false,
+  "note": "Advisory snapshot only. Regenerate against confirmedmaster20 ledger before actualdeliverycopy; holdrepo work until coordinatorconfirmsmerge."
+}

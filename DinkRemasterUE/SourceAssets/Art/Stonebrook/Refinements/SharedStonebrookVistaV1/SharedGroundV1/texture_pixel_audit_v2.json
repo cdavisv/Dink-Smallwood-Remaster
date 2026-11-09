@@ -1,0 +1,243 @@
+{
+  "actual_saved_png_count": 12,
+  "textures": [
+    {
+      "file": "Textures/T_Shared_Ground_Meadow_BC.png",
+      "sha256": "e045d91a7662857aef030c061df27265f130a78187d692ff2181690a00698caf",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        18,
+        21,
+        1
+      ],
+      "channel_max": [
+        202,
+        215,
+        171
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_Meadow_N.png",
+      "sha256": "1dbb18a1ab790c2b02a2e2353f3f491ae1cd6cd3099ccabdf0ba1d8b374bcf23",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        108,
+        108,
+        253
+      ],
+      "channel_max": [
+        147,
+        149,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_Meadow_ORM.png",
+      "sha256": "15a89c2c3558f0a3c350d03cdcc18e3ec41d1b164e14ff8e482cb1c6a5d08f78",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        255,
+        224,
+        0
+      ],
+      "channel_max": [
+        255,
+        224,
+        0
+      ],
+      "AO255": true,
+      "metallic0": true
+    },
+    {
+      "file": "Textures/T_Shared_Ground_Water_BC.png",
+      "sha256": "ce4d0c68618b5e909ec2b2996fab2ccab1de4824431d0f6cba595beb7eabc0a4",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        31,
+        72,
+        77
+      ],
+      "channel_max": [
+        31,
+        72,
+        77
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_Water_N.png",
+      "sha256": "938f8979952790b4c21afd58f0c4a00f6e6bf802120667c520162d82c6727d5c",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        125,
+        124,
+        255
+      ],
+      "channel_max": [
+        131,
+        130,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_Water_ORM.png",
+      "sha256": "9e56cf1261038ca8d7a8f8eac0d6bdbce2f05f1aee97261c6f1d283fdcd989bd",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        255,
+        48,
+        0
+      ],
+      "channel_max": [
+        255,
+        48,
+        0
+      ],
+      "AO255": true,
+      "metallic0": true
+    },
+    {
+      "file": "Textures/T_Shared_Ground_WetBank_BC.png",
+      "sha256": "3af8754da208d20844ab154c408fd711c2aa77338c53cfe2394e1cd4bc32c431",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        57,
+        44,
+        28
+      ],
+      "channel_max": [
+        67,
+        51,
+        33
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_WetBank_N.png",
+      "sha256": "1975bf93d12c9fd9725721be41d39e52d03b59bd43b2ca48357b197749d06fec",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        60,
+        59,
+        232
+      ],
+      "channel_max": [
+        196,
+        197,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Ground_WetBank_ORM.png",
+      "sha256": "b8b777f42b4adfe65744bb07a0a88a0e1acfd7afb630e0240e52c182a1022b0f",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        255,
+        184,
+        0
+      ],
+      "channel_max": [
+        255,
+        184,
+        0
+      ],
+      "AO255": true,
+      "metallic0": true
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_BC.png",
+      "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        72,
+        99,
+        47
+      ],
+      "channel_max": [
+        72,
+        99,
+        47
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_N.png",
+      "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        128,
+        128,
+        255
+      ],
+      "channel_max": [
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "file": "Textures/T_Shared_Willow_Leaf_ORM.png",
+      "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "channel_min": [
+        255,
+        209,
+        0
+      ],
+      "channel_max": [
+        255,
+        209,
+        0
+      ],
+      "AO255": true,
+      "metallic0": true
+    }
+  ],
+  "normal_source": "Sourcegraphindependentnoise/bump, no basecolor-derivedheight",
+  "native_approval": false
+}

@@ -1,0 +1,204 @@
+{
+  "status": "PASS read-only portable source/actualFBX proof; NOT native/game acceptance",
+  "triangles": 114354,
+  "geometry_oriented_UV_material_missing": 0,
+  "extra": 0,
+  "UV_layers": 1,
+  "UV_degenerate": 0,
+  "UV_policy": "Intentional shared physical tiles, not unique/no-overlap",
+  "front_normal_min_dot": 0.09699095040559769,
+  "maximum_actual_authored_corner_normal_difference": 0,
+  "door_clear": 15,
+  "door_samples": 15,
+  "materials": [
+    {
+      "name": "MI_Shared_House440_Stone_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "transmission": 0.0,
+      "normal_strength": 1
+    },
+    {
+      "name": "MI_Shared_House440_Oak_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "transmission": 0.0,
+      "normal_strength": 1
+    },
+    {
+      "name": "MI_Shared_House440_Thatch_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.20000000298023224,
+      "transmission": 0.0,
+      "normal_strength": 1
+    },
+    {
+      "name": "MI_Shared_House440_Glass_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "transmission": 0.0,
+      "normal_strength": 1
+    },
+    {
+      "name": "MI_Shared_House440_Mortar_Tile",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "transmission": 0.0,
+      "normal_strength": 1
+    }
+  ],
+  "images": {
+    "T_Shared_House440_Fieldstone_BC": {
+      "role": "BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB",
+      "file": "//Textures/T_Shared_House440_Fieldstone_BC.png"
+    },
+    "T_Shared_House440_Fieldstone_N": {
+      "role": "N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Fieldstone_N.png"
+    },
+    "T_Shared_House440_Fieldstone_ORM": {
+      "role": "ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Fieldstone_ORM.png"
+    },
+    "T_Shared_House440_Oak_BC": {
+      "role": "BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB",
+      "file": "//Textures/T_Shared_House440_Oak_BC.png"
+    },
+    "T_Shared_House440_Oak_N": {
+      "role": "N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Oak_N.png"
+    },
+    "T_Shared_House440_Oak_ORM": {
+      "role": "ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Oak_ORM.png"
+    },
+    "T_Shared_House440_Thatch_BC": {
+      "role": "BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "sRGB",
+      "file": "//Textures/T_Shared_House440_Thatch_BC.png"
+    },
+    "T_Shared_House440_Thatch_N": {
+      "role": "N",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Thatch_N.png"
+    },
+    "T_Shared_House440_Thatch_ORM": {
+      "role": "ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Thatch_ORM.png"
+    },
+    "T_Shared_House440_Glass_BC": {
+      "role": "BC",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "sRGB",
+      "file": "//Textures/T_Shared_House440_Glass_BC.png"
+    },
+    "T_Shared_House440_Glass_N": {
+      "role": "N",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Glass_N.png"
+    },
+    "T_Shared_House440_Glass_ORM": {
+      "role": "ORM",
+      "size": [
+        256,
+        256
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Glass_ORM.png"
+    },
+    "T_Shared_House440_Mortar_BC": {
+      "role": "BC",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "sRGB",
+      "file": "//Textures/T_Shared_House440_Mortar_BC.png"
+    },
+    "T_Shared_House440_Mortar_N": {
+      "role": "N",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Mortar_N.png"
+    },
+    "T_Shared_House440_Mortar_ORM": {
+      "role": "ORM",
+      "size": [
+        512,
+        512
+      ],
+      "packed": true,
+      "colorspace": "Non-Color",
+      "file": "//Textures/T_Shared_House440_Mortar_ORM.png"
+    }
+  },
+  "packed_missing_path_reopen": true,
+  "input_hashes_retained": true
+}

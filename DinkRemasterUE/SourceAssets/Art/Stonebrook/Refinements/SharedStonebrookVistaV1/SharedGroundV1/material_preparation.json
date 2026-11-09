@@ -1,0 +1,62 @@
+{
+  "source_sha256": "fd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1",
+  "materials": [
+    {
+      "role": "Meadow",
+      "source_material": "MI_Shared_Meadow_PhotoStudy",
+      "prepared_material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "source_optics": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.2199999988079071,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.017599999904632572,
+      "native_standard_specular_F0_match_starting_value": 0.21999999880790713,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    },
+    {
+      "role": "WetBank",
+      "source_material": "MI_Shared_WetBank_PhotoStudy",
+      "prepared_material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2,
+      "source_optics": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.5,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.04000000000000001,
+      "native_standard_specular_F0_match_starting_value": 0.5000000000000001,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    },
+    {
+      "role": "Water",
+      "source_material": "MI_Fields_StreamWater",
+      "prepared_material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2,
+      "source_optics": {
+        "IOR": 1.3329999446868896,
+        "Specular IOR Level": 0.5,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.020373182039833234,
+      "native_standard_specular_F0_match_starting_value": 0.25466477549791544,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    }
+  ],
+  "AO_neutral": true,
+  "normal_height_origin": "Independentsource noise/bump, not basecolor-derived",
+  "water_is_opaque_in_actual_source": true,
+  "source_scale_note": "Meadowgeneratedalbedo1.25mperiod preserved; WetBank/Water2m sharednormal/macroperiod is an explicit samplingproposal, not globally identical source evaluation",
+  "native_approval": false,
+  "metadata_correction": "Libraryloading mutated caller list fromnames toMaterialobjects; recipe nowpasses listcopy. NormalMap input corrected fromStrength toColor; exact maps unchanged."
+}

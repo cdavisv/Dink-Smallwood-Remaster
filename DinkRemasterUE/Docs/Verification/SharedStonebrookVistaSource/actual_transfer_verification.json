@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "files": 379,
+  "all_source_SHA_identical": true,
+  "all_destination_inodes_independent": true,
+  "every_payload_path_staged": true,
+  "prior_raw_bytes_preserved": 1507333,
+  "prior_rows": 1664,
+  "new_rows": 379,
+  "total_rows": 2043,
+  "audio_rows": 483,
+  "ledger_sha256": "4bde11e38cf703774d080815e3de008d251fca7ab8b606618be1219123119faa",
+  "native_runtime_scope_changes": []
+}

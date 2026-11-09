@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T22:18:12Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Shared_Willow_01",
+      "class": "foliage",
+      "kind": "static",
+      "content_path": "/Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.fbx",
+        "glb": "Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.glb"
+      },
+      "source": {
+        "blend": "WillowGameV6.blend",
+        "sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+        "collection": "SM_Shared_Willow_01",
+        "note": "Original32_03/32_04-inspired authored V11willow gameLOD derivative; donorSHAfd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1"
+      },
+      "tris": {
+        "LOD0": 24846,
+        "LOD1": 14072,
+        "LOD2": 7472
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -488.882,
+          -537.366,
+          0.0
+        ],
+        "blender_max_cm": [
+          491.251,
+          493.738,
+          750.809
+        ],
+        "size_cm": [
+          980.133,
+          1031.104,
+          750.809
+        ],
+        "unreal_min_cm": [
+          -488.882,
+          -493.738,
+          0.0
+        ],
+        "unreal_max_cm": [
+          491.251,
+          537.366,
+          750.809
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ],
+      "textures": [
+        {
+          "name": "T_Shared_Willow_Bark_BC",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_Willow_Bark_N",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_Willow_Bark_ORM",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_Willow_Leaf_BC",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Shared_Willow_Leaf_N",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Shared_Willow_Leaf_ORM",
+          "file": "Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}
