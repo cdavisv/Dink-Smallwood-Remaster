@@ -80,10 +80,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Dink|Warp")
 	bool TryWarp(APawn* Pawn);
 
+    /** Direction into this overlap captured on entry, retained past its centre until exit. */
+    FVector GetRetryApproachDirection(const APawn* Pawn) const;
+
 protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
 	void HandleBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    UFUNCTION()
+    void HandleEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+private:
+    TMap<TWeakObjectPtr<APawn>, FVector> RetryApproachDirections;
 };

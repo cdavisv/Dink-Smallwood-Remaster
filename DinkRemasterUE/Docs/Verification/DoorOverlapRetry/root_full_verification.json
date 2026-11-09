@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "returncode": 0,
+  "seconds": 498.91725039482117,
+  "tests": 153,
+  "failed": 0,
+  "warning_tests": 0,
+  "frozen_inputs": 9241,
+  "changed_inputs": [],
+  "old_save_changes": [],
+  "new_saves": [
+    "User/Saved/SaveGames/probe_ch1.sav",
+    "User/Saved/SaveGames/probe_ch2.sav",
+    "User/Saved/SaveGames/probe_ch3.sav",
+    "User/Saved/SaveGames/probe_ch4.sav",
+    "User/Saved/SaveGames/probe_ch5.sav",
+    "User/Saved/SaveGames/probe_ch6.sav",
+    "User/Saved/SaveGames/probe_ch7.sav",
+    "User/Saved/SaveGames/probe_ch8.sav",
+    "User/Saved/SaveGames/probe_ch9.sav",
+    "User/Saved/SaveGames/probe_ch10.sav"
+  ],
+  "scope": "Merged master20 plus exact independently reviewed80cc doorway intent retry; source-only PR21 is not yet merged into this working tree; full NullRHI native suite. Native source/tools/art/ledger/content/import fixtures/modules/config unchanged throughout. Docs excluded."
+}

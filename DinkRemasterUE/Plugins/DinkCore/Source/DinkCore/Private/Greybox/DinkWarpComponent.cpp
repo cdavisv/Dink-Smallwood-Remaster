@@ -21,6 +21,7 @@ void UDinkWarpComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	OnComponentBeginOverlap.AddDynamic(this, &UDinkWarpComponent::HandleBeginOverlap);
+    OnComponentEndOverlap.AddDynamic(this, &UDinkWarpComponent::HandleEndOverlap);
 }
 
 void UDinkWarpComponent::HandleBeginOverlap(UPrimitiveComponent*, AActor* OtherActor, UPrimitiveComponent*, int32, bool, const FHitResult&)
@@ -37,8 +38,29 @@ void UDinkWarpComponent::HandleBeginOverlap(UPrimitiveComponent*, AActor* OtherA
 		{
 			return;
 		}
+        // Arrival can overlap the return door during the warp guard/cooldown. Keep
+        // the initial approach direction so deliberate movement past the centre is
+        // not mistaken for moving away. Nohard1 never arms this retry state.
+        if (bTriggerEnabled && TriggerMode==TEXT("walk_in") && (Kind==TEXT("door") || Kind==TEXT("exit")))
+        {
+            for (auto It=RetryApproachDirections.CreateIterator();It;++It)
+                if (!It.Key().IsValid()) It.RemoveCurrent();
+            RetryApproachDirections.Add(Pawn,(GetComponentLocation()-Pawn->GetActorLocation()).GetSafeNormal2D());
+        }
 		TryWarp(Pawn);
 	}
+}
+
+void UDinkWarpComponent::HandleEndOverlap(UPrimitiveComponent*,AActor* OtherActor,UPrimitiveComponent*,int32)
+{
+    if (APawn* Pawn=Cast<APawn>(OtherActor)) RetryApproachDirections.Remove(Pawn);
+}
+
+FVector UDinkWarpComponent::GetRetryApproachDirection(const APawn* Pawn) const
+{
+    if (!Pawn) return FVector::ZeroVector;
+    if (const FVector* Direction=RetryApproachDirections.Find(Pawn)) return *Direction;
+    return (GetComponentLocation()-Pawn->GetActorLocation()).GetSafeNormal2D();
 }
 
 bool UDinkWarpComponent::TryWarp(APawn* Pawn)
