@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_ONLY_CANDIDATE_ROOT_REVIEW_PENDING",
+  "base_commit": "c17793772ed2a80e6d0516c4062a29f18fcbb3c2",
+  "payload_count": 100,
+  "payload_manifest": "SHA256SUMS.json",
+  "source_blend_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "historical_source_review_index_sha256": "4a1886b3524b6f559772d6681b1af81944153e2a1a90e51fc97611bf26f6f200",
+  "historical_source_review": "SourceV12/ReviewV12d_Run01/REVIEW_INDEX.json",
+  "historical_source_native_receipts": "Old absolute paths and source-only/failed/intermediate statuses inside sealed payloads are historical records, not portable commands or current production approval.",
+  "historical_final_QA_native_receipt_sha256": "f2156c2f3f969aa4162ce8395dbef20070b97b252a7ab87d9e82ddf6fcb13bc3",
+  "historical_native_result": {
+    "LODs": 12,
+    "triangles": 48090,
+    "UCX": 312,
+    "texture_Source_checks": 25,
+    "graphs": 15
+  },
+  "historical_native_scope": "Isolated QA saved assets only; stored TangentY handedness, cooked/world/roof game/photoreal acceptance unproved here. No native packages included.",
+  "source_code": "18 location-dependent original/review recipe references remain in author QA, not part of these100 sealed payloads; no author scripts are copied or claimed portable.",
+  "external_dependencies": "10 installed-source prerequisites remain historical audit dependencies, not vendored Engine files.",
+  "future_native_namespace_proposal": "/Game/Dink/Refinements/RoofChimneyV12d",
+  "future_native_route": "Fresh bounded import from canonical source preferred; requires separate Root decision and execution clearance after world pass. Never filesystem-rename QA packages."
+}

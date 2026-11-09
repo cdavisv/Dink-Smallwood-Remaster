@@ -1,0 +1,459 @@
+{
+  "rows": [
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        260,
+        261
+      ],
+      "source_polygons": [
+        260,
+        261
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999286785889362,
+      "best_fit_coordinate_plane_residual_cm": 0.00025390008102021966,
+      "global_affine_UV_residual": 0.004268670024744736,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        262,
+        263
+      ],
+      "source_polygons": [
+        262,
+        263
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999686216668967,
+      "best_fit_coordinate_plane_residual_cm": 0.0002759506643315035,
+      "global_affine_UV_residual": 0.0024116425977267486,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1020,
+        1021
+      ],
+      "source_polygons": [
+        1020,
+        1021
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999994867991143,
+      "best_fit_coordinate_plane_residual_cm": 1.591597393257871e-05,
+      "global_affine_UV_residual": 0.0007074074349091575,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1022,
+        1023
+      ],
+      "source_polygons": [
+        1022,
+        1023
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999999999999999,
+      "best_fit_coordinate_plane_residual_cm": 1.4210854715202004e-14,
+      "global_affine_UV_residual": 2.220446049250313e-15,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1044,
+        1045
+      ],
+      "source_polygons": [
+        1044,
+        1045
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999999920747293,
+      "best_fit_coordinate_plane_residual_cm": 2.575127325599169e-06,
+      "global_affine_UV_residual": 0.0002557858365179744,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1046,
+        1047
+      ],
+      "source_polygons": [
+        1046,
+        1047
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999999658433595,
+      "best_fit_coordinate_plane_residual_cm": 4.470877570383891e-06,
+      "global_affine_UV_residual": 0.0006747724489013507,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1048,
+        1049
+      ],
+      "source_polygons": [
+        1048,
+        1049
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999979811399536,
+      "best_fit_coordinate_plane_residual_cm": 3.4207332987534755e-05,
+      "global_affine_UV_residual": 0.005170668669419287,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1080,
+        1081
+      ],
+      "source_polygons": [
+        1080,
+        1081
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999997028052935,
+      "best_fit_coordinate_plane_residual_cm": 1.589495377629646e-05,
+      "global_affine_UV_residual": 0.001371821289520625,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1082,
+        1083
+      ],
+      "source_polygons": [
+        1082,
+        1083
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.999999943214919,
+      "best_fit_coordinate_plane_residual_cm": 5.244003091320337e-06,
+      "global_affine_UV_residual": 0.0005646915919508277,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1084,
+        1085
+      ],
+      "source_polygons": [
+        1084,
+        1085
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999997496771054,
+      "best_fit_coordinate_plane_residual_cm": 8.449922347608663e-06,
+      "global_affine_UV_residual": 0.0004886556899639238,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1086,
+        1087
+      ],
+      "source_polygons": [
+        1086,
+        1087
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999991504584579,
+      "best_fit_coordinate_plane_residual_cm": 1.589506911159333e-05,
+      "global_affine_UV_residual": 0.001617221519758516,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1096,
+        1097
+      ],
+      "source_polygons": [
+        1096,
+        1097
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999999982890156,
+      "best_fit_coordinate_plane_residual_cm": 6.556948051184008e-07,
+      "global_affine_UV_residual": 6.509246547903302e-05,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1098,
+        1099
+      ],
+      "source_polygons": [
+        1098,
+        1099
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999990775487619,
+      "best_fit_coordinate_plane_residual_cm": 1.5894569401098124e-05,
+      "global_affine_UV_residual": 0.0013186981603761083,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1104,
+        1105
+      ],
+      "source_polygons": [
+        1104,
+        1105
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999999987981625,
+      "best_fit_coordinate_plane_residual_cm": 6.678816646399355e-07,
+      "global_affine_UV_residual": 2.576654294061953e-05,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1106,
+        1107
+      ],
+      "source_polygons": [
+        1106,
+        1107
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999990771819678,
+      "best_fit_coordinate_plane_residual_cm": 1.999642799432877e-05,
+      "global_affine_UV_residual": 0.003269572635204554,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1108,
+        1109
+      ],
+      "source_polygons": [
+        1108,
+        1109
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999992321043747,
+      "best_fit_coordinate_plane_residual_cm": 1.8180062625106075e-05,
+      "global_affine_UV_residual": 0.0025597855619210463,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "source_triangles": [
+        1110,
+        1111
+      ],
+      "source_polygons": [
+        1110,
+        1111
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 0.9999964554112593,
+      "best_fit_coordinate_plane_residual_cm": 3.621030657541269e-05,
+      "global_affine_UV_residual": 0.002757941662871133,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "source_triangles": [
+        6226,
+        6234
+      ],
+      "source_polygons": [
+        3911,
+        3915
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 4.547473508864641e-13,
+      "global_affine_UV_residual": 9.992007221626409e-16,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "source_triangles": [
+        6307,
+        6314
+      ],
+      "source_polygons": [
+        3954,
+        3960
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 2.2737367544323206e-13,
+      "global_affine_UV_residual": 7.450581041013038e-09,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "source_triangles": [
+        6312,
+        6318
+      ],
+      "source_polygons": [
+        3958,
+        3963
+      ],
+      "boundary_segments": 4,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 3.410605131648481e-13,
+      "global_affine_UV_residual": 7.771561172376096e-16,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "source_triangles": [
+        818,
+        819,
+        820,
+        821,
+        822,
+        823,
+        824,
+        825,
+        826,
+        827,
+        828,
+        829,
+        830,
+        831
+      ],
+      "source_polygons": [
+        775
+      ],
+      "boundary_segments": 16,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 5.684341886080802e-14,
+      "global_affine_UV_residual": 1.7763568394002505e-15,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "source_triangles": [
+        832,
+        833,
+        834,
+        835,
+        836,
+        837,
+        838,
+        839,
+        840,
+        841,
+        842,
+        843,
+        844,
+        845
+      ],
+      "source_polygons": [
+        776
+      ],
+      "boundary_segments": 16,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 1.4210854715202004e-14,
+      "global_affine_UV_residual": 8.881784197001252e-16,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "source_triangles": [
+        990,
+        991,
+        992,
+        993,
+        994,
+        995,
+        996,
+        997,
+        998
+      ],
+      "source_polygons": [
+        863
+      ],
+      "boundary_segments": 11,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 1.1283418643870391e-11,
+      "global_affine_UV_residual": 9.181544413650045e-14,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "source_triangles": [
+        2334,
+        2335,
+        2336,
+        2337,
+        2338,
+        2339,
+        2340,
+        2341,
+        2342,
+        2343,
+        2344,
+        2345,
+        2346,
+        2347,
+        2348,
+        2349,
+        2350,
+        2351,
+        2352,
+        2353,
+        2354,
+        2355
+      ],
+      "source_polygons": [
+        2145
+      ],
+      "boundary_segments": 24,
+      "boundary_all_degrees_two": true,
+      "minimum_geometric_normal_dot": 1.0,
+      "best_fit_coordinate_plane_residual_cm": 4.865796654485166e-11,
+      "global_affine_UV_residual": 8.759659664292485e-14,
+      "qualification": "Near-coplanarity/UV fit only. No field/closest-surface retessellation proof or repair authorization inferred."
+    }
+  ]
+}
