@@ -30,7 +30,11 @@ writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToA
                       vision, and the sprite fields place_sprites_game copies onto a live sprite
                       (brain, script, hitpoints, strength, defense, exp, nohit, touch_damage, speed,
                       timing, base_walk/idle/attack/hit/die, hard, sound, que: the draw order that also
-                      orders the hardbox stamps, D:5966 and fill_back_sprites D:6832).
+                      orders the hardbox stamps, D:5966 and fill_back_sprites D:6832), prop (map.dat's
+                      warp / walk-through flag: get_hard reads a hardbox of a placement with prop != 0 as
+                      0, D:569-575, and special_block warps Dink on prop == 1, D:15337-15341; 1 on the 93
+                      sprite warps; the director's sp_prop changes it until the screen loads again) and
+                      warp_map (the warp's destination screen, 0 for none).
     screens.csv       screen,base_script: the script whose `main` runs when the screen loads (headless
                       screen entry uses it when there is no ADinkScreenVolume)
     gameplay_manifest.json   data repo commit and sha256 of each file
@@ -57,7 +61,8 @@ DEST = HERE / "Content" / "Dink" / "Data" / "Gameplay"
 FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height"]
 PLACEMENT_COLS = ["origin", "screen", "index", "type", "x", "y", "seq", "frame", "size", "vision", "brain",
                   "script", "hitpoints", "strength", "defense", "exp", "nohit", "touch_damage", "speed", "timing",
-                  "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound", "que"]
+                  "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound", "que",
+                  "prop", "warp_map"]
 
 
 def git_commit(repo: pathlib.Path) -> str:

@@ -8,7 +8,7 @@ import re
 
 from . import names as N
 from . import text as T
-from .overrides import BRACE_TYPOS
+from .overrides import BRACE_TYPOS, OWNER_DECISIONS
 from .vocab import NOOP, SAY_CALLS, SAY_BLOCKS, BLOCKING
 
 PSEUDO = {"&current_sprite": "current_sprite", "&current_script": "current_script",
@@ -144,6 +144,23 @@ def expr_text(e):
 
 def comment_safe(s):
     return str(s).replace("\n", " ").replace("\r", " ")
+
+
+def fix_const_line(const, comment):
+    """`CONST fix_.. = false // review: ..`, or `= true` for a switch the owner turned on
+    (overrides.OWNER_DECISIONS); the engine's behaviour stays the default for every other."""
+    d = OWNER_DECISIONS.get(const)
+    if d and d["value"]:
+        return "CONST %s = true // owner decision %s: %s; dink.cpp: %s (review: %s)" % (
+            const, owner_date(d["decided"]), comment_safe(d["reason"]),
+            comment_safe(d["dink_cpp"]), comment_safe(comment))
+    return "CONST %s = false // review: %s" % (const, comment_safe(comment))
+
+
+def owner_date(iso):
+    """'2026-11-09' -> '9 Nov 2026'"""
+    y, m, d = (int(x) for x in iso.split("-"))
+    return "%d %s %d" % (d, ("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec").split()[m - 1], y)
 
 
 class ScriptEmitter:
@@ -1020,7 +1037,7 @@ class ScriptEmitter:
             tag = " // undeclared in the original (see review)" if l in self.undeclared else ""
             out.append("VAR %s = 0%s" % (N.local_ident(self.script, l), tag))
         for const, comment in self.fixes:
-            out.append("CONST %s = false // review: %s" % (const, comment_safe(comment)))
+            out.append(fix_const_line(const, comment))
         if locs or self.fixes:
             out.append("")
         out.append("=== %s ===" % self.knot)

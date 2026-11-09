@@ -25,6 +25,7 @@ from dinkink import names as N          # noqa: E402
 from dinkink import text as T           # noqa: E402
 from dinkink import inkjson             # noqa: E402
 from dinkink import convert as C        # noqa: E402
+from dinkink.overrides import OWNER_DECISIONS  # noqa: E402
 
 AST = ROOT.parent / "dinkc" / "out"
 INKLECATE = shutil.which("inklecate") or os.path.expanduser("~/.local/bin/inklecate")
@@ -52,6 +53,12 @@ def rows(path):
 
 def ink_src(script):
     return (OUT / "ink" / (script + ".ink")).read_text(encoding="utf-8")
+
+
+def const_decl(const):
+    """How a fix switch is declared: `= true` when the owner turned it on
+    (overrides.OWNER_DECISIONS), else `= false` (the engine's behaviour)."""
+    return "CONST %s = %s" % (const, "true" if const in OWNER_DECISIONS else "false")
 
 
 def unescape(src):
@@ -170,7 +177,7 @@ class TestLines(unittest.TestCase):
             self.assertRegex(lines[n - 1].strip(), r"^\{ fix_\w+:$")
             self.assertIn((r["script"], r["line"]), self.review)
             const = lines[n - 1].strip()[2:-1]
-            self.assertIn("CONST %s = false" % const, ink_src(script))
+            self.assertIn(const_decl(const), ink_src(script))
 
     def test_speaker_and_colour_tags(self):
         for r in self.dialog:
@@ -538,7 +545,7 @@ class TestFactsAndCoverage(unittest.TestCase):
             self.assertIn((d["script"], line, code), keys, d)
         for r in rq:
             if r["fix_const"]:
-                self.assertIn("CONST %s = false" % r["fix_const"], ink_src(r["script"]))
+                self.assertIn(const_decl(r["fix_const"]), ink_src(r["script"]))
 
 
 class TestGolden(unittest.TestCase):
@@ -767,7 +774,7 @@ class TestVerbatimFixes(unittest.TestCase):
         i = [k for k, l in enumerate(ls) if "#src:42" in l][0]
         self.assertEqual(ls[i - 1], "{ fix_s3_chick_l42:")
         self.assertEqual(ls[i + 1], "}")
-        self.assertIn("CONST fix_s3_chick_l42 = false", ink_src("s3-chick"))
+        self.assertIn("CONST fix_s3_chick_l42 = true // owner decision", ink_src("s3-chick"))
         lid = [r for r in rows(OUT / "line_ids.csv") if r["script"] == "s3-chick"
                and r["line"] == "42"][0]
         self.assertEqual(lid["live"], "0")
@@ -789,7 +796,7 @@ class TestVerbatimFixes(unittest.TestCase):
 
     def test_c4_brace_typo_hoists_nested_conditionals_behind_a_switch(self):
         src = ink_src("s1-h3-8")
-        self.assertIn("CONST fix_s1_h3_8_l13 = false", src)
+        self.assertIn("CONST fix_s1_h3_8_l13 = true // owner decision", src)
         ls = self.lines("s1-h3-8")
         i = ls.index("{ s1_h3_8__maybe == 1:")
         self.assertTrue(ls[i + 1].startswith("Libby's bed, ahh yeah. #id:s1-h3-8.talk.001"))
@@ -907,12 +914,111 @@ class TestVerbatimFixes(unittest.TestCase):
             t, k = re.subn(r"^(CONST fix_\w+) = false", r"\1 = true", t, flags=re.M)
             n += k
             f.write_text(t, encoding="utf-8")
-        self.assertGreater(n, 15)
+        self.assertGreater(n + len(OWNER_DECISIONS), 15)
         r = subprocess.run([INKLECATE, "-o", str(OUT / "t_true.json"), str(tmp / "dink.ink")],
                            capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         self.assertNotIn("ERROR", r.stdout + r.stderr)
         self.assertNotIn("WARNING", r.stdout + r.stderr)
+
+
+class TestOwnerDecisions(unittest.TestCase):
+    """Owner decision OD2 (doc/remaster/verbatim_review.md, 9 Nov 2026): the four pure-typo
+    switches are on in the shipped build, every other `fix_` switch stays false. Each enabled
+    switch carries its dink.cpp citation (overrides.OWNER_DECISIONS)."""
+
+    ENABLED = {"fix_s2_jack_l171", "fix_s4_sign3_l17", "fix_s3_chick_l42", "fix_s1_h3_8_l13"}
+
+    def consts(self):
+        got = {}
+        for f in sorted((OUT / "ink").glob("*.ink")):
+            for m in re.finditer(r"^CONST (fix_\w+) = (\w+)(.*)$", f.read_text(encoding="utf-8"),
+                                 flags=re.M):
+                got[m.group(1)] = (m.group(2), m.group(3), f.stem)
+        return got
+
+    def test_table_is_the_four_typos(self):
+        self.assertEqual(set(OWNER_DECISIONS), self.ENABLED)
+        for name, d in OWNER_DECISIONS.items():
+            self.assertIs(d["value"], True, name)
+            self.assertEqual(d["decided"], "2026-11-09", name)
+            self.assertRegex(d["dink_cpp"], r"dink\.cpp:\d+", name)
+            self.assertTrue(d["reason"].startswith("typo: "), name)
+
+    def test_the_four_are_true_and_every_other_false(self):
+        got = self.consts()
+        self.assertGreaterEqual(len(got), 16)
+        for name, (value, comment, script) in got.items():
+            if name in self.ENABLED:
+                self.assertEqual(value, "true", name)
+                self.assertTrue(comment.startswith(" // owner decision 9 Nov 2026: typo: "),
+                                comment)
+                self.assertIn("dink.cpp: ", comment)
+            else:
+                self.assertEqual(value, "false", name)
+                self.assertTrue(comment.startswith(" // review: "), comment)
+        self.assertTrue(self.ENABLED <= set(got))
+        # the OD1 switches stay off: sp_prop is defined in the director but not used
+        self.assertEqual(got["fix_s5_fguy_l6"][0], "false")
+        self.assertEqual(got["fix_s5_end_l33"][0], "false")
+
+    def test_fix_const_line(self):
+        self.assertTrue(C.fix_const_line("fix_s4_sign3_l17", "x").startswith(
+            "CONST fix_s4_sign3_l17 = true // owner decision 9 Nov 2026: "))
+        self.assertEqual(C.fix_const_line("fix_s2_cave_l117", "x"),
+                         "CONST fix_s2_cave_l117 = false // review: x")
+        self.assertEqual(C.owner_date("2026-11-09"), "9 Nov 2026")
+
+    def block(self, script, stitch):
+        ls = [l.strip(" \t") for l in ink_src(script).splitlines()]
+        i = ls.index("= " + stitch)
+        j = next((k for k in range(i + 1, len(ls)) if ls[k].startswith("= ")), len(ls))
+        return ls[i:j]
+
+    def gated(self, script, stitch, const, starts):
+        b = self.block(script, stitch)
+        i = b.index("{ %s:" % const)
+        for k, text in enumerate(starts):
+            self.assertTrue(any(l.startswith(text) for l in b[i + 1:]), (script, text))
+        return b, i
+
+    def test_lines_sit_in_their_knots(self):
+        b, i = self.gated("s2-jack", "p_die", "fix_s2_jack_l171", [])
+        self.assertTrue(b[i + 1].startswith("I guess I just killed your husband. "
+                                            "#id:s2-jack.die.002 #say:say_stop #spk:1 "))
+        self.assertEqual(b[i + 2], "}")
+        b, i = self.gated("s4-sign3", "p_talk", "fix_s4_sign3_l17", [])
+        self.assertTrue(b[i + 1].startswith("Long live the ducks. #id:s4-sign3.talk.005 "
+                                            "#say:say_stop #spk:current_sprite "))
+        b, i = self.gated("s3-chick", "p_talk", "fix_s3_chick_l42", [])
+        self.assertEqual(b[i + 1], "Hello Dink, I'm Christina. #id:s3-chick.talk.005 "
+                                   "#say:say_stop #spk:current_sprite #col:9 #src:42")
+        b, i = self.gated("s1-h3-8", "p_talk", "fix_s1_h3_8_l13", [
+            "Libby's bed, to dream the impossible dream... #id:s1-h3-8.talk.002",
+            "Libby's bed, looks lonely. #id:s1-h3-8.talk.003"])
+        self.assertEqual(b[i + 1], "{ s1_h3_8__maybe == 2:")
+
+    def test_compiled_story_has_the_switches_on(self):
+        # CONSTs are inlined by inklecate: with the four on, the compiled story holds four
+        # `true` literals the all-false build does not (the only booleans in the story are
+        # the fix switches and EXTERNAL fallbacks).
+        story = json.dumps(json.loads((OUT / "json" / "dink.json").read_text(encoding="utf-8-sig")))
+        self.assertIn("I guess I just killed your husband.", story)
+        self.assertIn("Long live the ducks.", story)
+        self.assertIn("Hello Dink, I'm Christina.", story)
+        tmp = OUT / "switches_default"
+        if tmp.exists():
+            shutil.rmtree(tmp)
+        shutil.copytree(OUT / "ink", tmp)
+        for f in tmp.glob("*.ink"):
+            t = f.read_text(encoding="utf-8")
+            f.write_text(re.sub(r"^(CONST fix_\w+) = true", r"\1 = false", t, flags=re.M),
+                         encoding="utf-8")
+        r = subprocess.run([INKLECATE, "-o", str(OUT / "t_false.json"), str(tmp / "dink.ink")],
+                           capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        off = json.dumps(json.loads((OUT / "t_false.json").read_text(encoding="utf-8-sig")))
+        self.assertEqual(story.count("true") - off.count("true"), 4)
 
 
 if __name__ == "__main__":
