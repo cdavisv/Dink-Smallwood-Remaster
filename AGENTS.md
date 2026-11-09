@@ -541,9 +541,9 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 136 automation tests (verified 8 Nov
-  2026: 136/136 in 508 s; the probe runs as ten save-slot chapters,
-  Ch1..Ch9 and ChAJoppa, deterministic across runs and identical packaged;
+  rows, 111 implemented, 35 recorded. 144 automation tests (verified 8 Nov
+  2026: 144/144 in 727 s; the probe runs as eighteen save-slot chapters,
+  Ch1..Ch9 and ChA..ChI, deterministic across runs and identical packaged;
   PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
   `DinkRemasterUE/Saved/Narrative/stonebrook_probe.txt`, every event in
@@ -640,6 +640,18 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   20+, i.e. level-ups into strength from chapter 7 on and the longsword
   (400 gold; Dink has 205), which re-tunes chapters 7-10. Ten chapters,
   packaged md5s identical to PIE; hashes in the UE AGENTS.md.
+- Probe progress, 8 Nov 2026 (kit): the level-4 menu now answers "Increase
+  Attack" (only Ch8 had chosen Defense); chapter 11 earns 508 gold with three
+  feud rounds, buys Pete's longsword and three elixirs; Dink reaches the
+  dragons with strength 20 (sword), defense 5, life 29 and wins in 9.4 s with
+  the family alive (`DuelFight` with `bCaster`, an elixir drunk when one more
+  `harm` would kill him; not robust: one more cast on Gwen loses it). Then the
+  castle gate and the King (`&story 14`), the castle potions, the Edge pit and
+  the ancients' machine, the Darklands rooms, Milder, and Seth appears:
+  eighteen chapters, stop at route step 53, Seth (300 hp: a sword hit nets
+  about 0.4; needs the bow with bow lore, 1500 gold, and a hold-the-key bow
+  action that does not exist yet). Hashes in the UE AGENTS.md; packaged md5s
+  identical to PIE for all eighteen.
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.
@@ -647,9 +659,11 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   empty, 1.5 GB staged, pak 575 MB, `Dink/Data` staged as UFS);
   `Scripts/run_packaged_tests.sh` runs each chapter in its own packaged game
   process (`-nullrhi`, fixed 60 Hz) and compares trace md5s with the editor's:
-  all six chapters match PIE (Ch1 50091fcc80, Ch2 103b0331f1, Ch3 e0b643193a,
-  Ch4 230f594539, Ch5 6c709d1069, Ch6 7471375e32), repeatably after a clean
-  cook. Three plumbing fixes were needed for parity: FName display case does
+  every chapter matches PIE (7 Nov: six chapters; re-verified 8 Nov 2026
+  evening with all eighteen chapters after the `sp_script`/`external`/`spawn`
+  parity fixes moved the early hashes: Ch1 b3760d52d7 ... Ch18 e4355a5505, the
+  table is in `packaged_probe.md`; 12 s cook of 5,198 packages, 55 s for
+  package.sh, 1.5 GB staged), repeatably after a clean cook. Three plumbing fixes were needed for parity: FName display case does
   not survive cooking (event texts lower-cased), the automation controller
   delays tests by 300 frames in a game (`; Now;` in the exec), and the game
   ticks the story and greybox subsystems in the reverse order from PIE
@@ -664,14 +678,24 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   that turns `<shiver>`-style stage directions into ElevenLabs v4 tags; system
   lines such as gold pickups are never voiced). Voices are designed from text
   (`eleven_ttv_v3`), never cloned, chosen by the owner from three previews, and
-  saved in the owner's ElevenLabs library (`voices_saved.csv`: Dink, Martridge,
-  Milder, Mother, King Daniel, Seth, Mog). Generated with `eleven_v4` at 1
-  credit per character: 359 lines on disk (Dink's Stonebrook dialogue 244/245,
-  all lines of the six others), 11,362 credits, every file in the asset ledger
-  as `candidate` until the owner confirms the plan's redistribution terms.
-  Lines that are only a stage direction (`<groan>`) cannot be generated.
-  Import into the game is the audio pipeline's job (Codex's
-  `import_approved_audio.py`); nothing is wired to play them yet.
+  saved in the owner's ElevenLabs library (`voices_saved.csv`). 8 Nov 2026:
+  18 voices saved (Dink, Martridge, Milder, Mother, King Daniel, Seth, Mog,
+  old woman, guard, middle-aged man, old man, young woman, merchant, monster,
+  duck, traveller, Chance Zands, narrator); 756 lines generated at 1 credit per
+  character (Dink's 244 Stonebrook lines, the six named NPCs, nine shared
+  voices), ledgered `candidate` with generation id, flow, credits, sha256 and
+  duration; then man_middle and merchant (357 lines, 11,673 credits): 1,113
+  voice lines in the ledger on 8 Nov 2026 evening. Eight more voices
+  (christina, nelson, villain, man_young, woman_middle, wizard_old, ghost, tree)
+  have previews awaiting the owner's picks. The service refuses to design a
+  child voice and refused the goblins' gibberish round, and the dragons have
+  only 46 characters of text: proposals, young woman for the girls, Mog for
+  the goblins, monster for the dragons. Lines that are only a stage direction
+  (`[groans]`, `[sniffs]`) cannot be generated and stay unvoiced.
+  `SourceAssets/Audio/REDISTRIBUTION.md` (7 Nov 2026) records the owner's
+  confirmation of redistribution rights for the generated audio. Import into
+  the game is the audio pipeline's job (Codex's `import_approved_audio.py`);
+  nothing is wired to play the lines yet.
 - Probe route (written 7 Nov 2026, script-verified):
   `DinkRemasterUE/Plugins/DinkParity/Docs/probe_route.md`, 56 steps from
   &story 7 to 16 with `file.c:line` for every fact (the &story setters:

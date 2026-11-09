@@ -146,6 +146,8 @@ namespace DinkProbeTest
 		double LastLogMs = -1000.0;
 				/** A value a step noted when it began (gold, strength...), to compare with what it should become; -1 = none. */
 				int32 Mark = -1;
+						/** Game time (ms) of the last elixir the probe drank (the dragons' fight): the use is a script, the new life shows a frame later. */
+						double LastDrinkMs = -100000.0;
 						/** Game time (ms) a wait step ends; -1 = not waiting. */
 						double WaitUntilMs = -1.0;
 						/** A monster has died and left loot on the screen of the current sweep (so the sweep did something). */
@@ -238,6 +240,11 @@ namespace DinkProbeTest
 		 */
 		/** Pull a peaceful target with a fireball first (Pull in the step: brain 16). */
 		bool bPull = true;
+		/**
+		 * The target never swings (the Joppa dragons, brain 10, cast `harm` from where they stand: en-drag.c `attack`): there is no blow's box to keep out
+		 * of, so every cell is safe from it; only its touch box (touch_damage) and the other sprites remain. Off = the melee duel of chapter 7 exactly.
+		 */
+		bool bCaster = false;
 		/**
 		 * Do not strike, wait or cast within AvoidR px (Chebyshev) of this point: the last goblin's death starts Mog's scene (s3-mog.c: Dink
 		 * frozen for ~5 s, Mog created at 317,301 with touch damage 8), and a Dink frozen next to him is touched every 0.4 s. 0 = off.
@@ -1553,7 +1560,9 @@ namespace DinkProbeTest
 				}
 				if (Pair.Key != Handle && O.GetProp(TEXT("nohit")) != 1 && (O.GetProp(TEXT("hitpoints")) > 0 || O.Script != NAME_None))
 				{
-					OtherBoxes.Add(FReach{ double(L), double(Tp), double(R), double(B) });
+					// (The family of Joppa walks about: against a caster the boxes get 10 px more, the sword's blow lands 0.2 s after the swing starts.)
+					const double Mg = Opt.bCaster ? 10.0 : 0.0;
+					OtherBoxes.Add(FReach{ L - Mg, Tp - Mg, R + Mg, B + Mg });
 				}
 				if (O.GetProp(TEXT("touch_damage")) == 0 || O.GetProp(TEXT("hitpoints")) <= 0)
 				{
@@ -1608,6 +1617,7 @@ namespace DinkProbeTest
 			// Would its blow land on Dink at q? (his picture while punching: -19..19 x -10..10, plus the margin)
 			auto BlowHits = [&](double Qx, double Qy)
 			{
+				if (Opt.bCaster) { return false; }
 				const int32 Dir = bAttacking ? CommittedDir : AttackDirFrom(Qx, Qy);
 				const double M = Opt.Margin;
 				return ReachBox(Qx - 19 - M, Qy - 10 - M, Qx + 19 + M, Qy + 10 + M, Dir, TRange).Has(Tx, Ty);
@@ -1862,6 +1872,8 @@ namespace DinkProbeTest
 				return;
 			}
 			// At the strike cell: face the target and swing (one punch per animation: 0.4 s, Dink cannot move meanwhile: sp_nocontrol).
+			// Against a caster the family wanders into the swing: hold it while the blow would reach one of them (or the other dragon).
+			if (Opt.bCaster && HitsOthers(Dk2.X, Dk2.Y)) { return; }
 			const int32 FaceDir = FaceDirTo(Dk2.X, Dk2.Y);
 			Face(Screen, Dk2.X, Dk2.Y, FaceDir);
 			if (Now >= P->NextPunchMs && ArmFists())
@@ -2415,7 +2427,13 @@ namespace DinkProbeTest
 		}
 		bool ArmFists() const
 		{
-			if (D->GetInventory()->GetArmedItem() != TEXT("item-fst"))
+			// A sword (chapter 11 buys and arms the longsword) is the melee weapon from then on: the fists are only armed over anything else (a bomb, the bow).
+			const FName Armed = D->GetInventory()->GetArmedItem();
+			if (Armed == TEXT("item-sw1") || Armed == TEXT("item-sw2") || Armed == TEXT("item-sw3"))
+			{
+				return true;
+			}
+			if (Armed != TEXT("item-fst"))
 			{
 				const int32 FistSlot = Slot(TEXT("item-fst"));
 				return FistSlot != 0 && G->ArmItemSlot(FistSlot);
@@ -2436,6 +2454,39 @@ namespace DinkProbeTest
 		bool Said(const TCHAR* Text) const
 		{
 			return S->Events.ContainsByPredicate([Text](const FDinkNarrativeEvent& E) { return E.Kind == TEXT("say") && E.Text == Text; });
+		}
+		/**
+		 * The harm casts of the dragons (en-drag.c, s7-drag.c `attack`) hurt for their strength - defense wherever Dink stands: no range, no dodge. He drinks an
+		 * elixir (item-eli, life +20, Terris 25 gold) as soon as one more cast would kill him (life <= Damage), and takes up the sword again afterwards.
+		 * Returns true when this frame was spent on the elixir.
+		 */
+		bool DrinkAndKeepSword(int32 CastStrength) const
+		{
+			const double NowMs = S->GetNowMs();
+			const int32 Damage = FMath::Max(1, CastStrength - Fact(TEXT("defense")));
+			if (Fact(TEXT("life")) > 0 && Fact(TEXT("life")) <= Damage && NowMs - P->LastDrinkMs > 500.0)
+			{
+				if (const int32 Eli = Slot(TEXT("item-eli")))
+				{
+					G->ArmItemSlot(Eli);
+					if (G->PlayerAttack()) { P->LastDrinkMs = NowMs; }
+					return true;
+				}
+			}
+			if (D->GetInventory()->GetArmedItem() != TEXT("item-sw1") && NowMs - P->LastDrinkMs > 200.0)
+			{
+				if (const int32 Sword = Slot(TEXT("item-sw1"))) { G->ArmItemSlot(Sword); }
+			}
+			return false;
+		}
+		int32 CountItem(FName Item) const
+		{
+			int32 N = 0;
+			for (int32 i = 0; i < FDinkInventoryState::NumItemSlots; ++i)
+			{
+				N += D->GetInventory()->GetItemAt(i) == Item ? 1 : 0;
+			}
+			return N;
 		}
 		int32 Slot(FName Item) const
 		{
@@ -2846,6 +2897,14 @@ namespace DinkProbeTest
 			case 8: BuildChapter8(); break;
 			case 9: BuildChapter9(); break;
 			case 10: BuildChapter10(); break;
+			case 11: BuildChapter11(); break;
+			case 12: BuildChapter12(); break;
+			case 13: BuildChapter13(); break;
+			case 14: BuildChapter14(); break;
+			case 15: BuildChapter15(); break;
+			case 16: BuildChapter16(); break;
+			case 17: BuildChapter17(); break;
+			case 18: BuildChapter18(); break;
 			default: break;
 			}
 		}
@@ -3053,14 +3112,90 @@ namespace DinkProbeTest
 		}
 
 		// ---- Chapter 4: gold for the bow (Act B step 15's missing 227): monsters that kill each other, collected after 5-minute waits ----
-		/** The loot a monster leaves (emake: mgold, lgold, gold200, sgold, 1gold, small heart, full heart) lying on the screen, or 0. */
+		/** The loot a monster leaves (emake: mgold, lgold, gold200, sgold, 1gold, small heart, full heart, food) lying on the screen, or 0. A food drop (1 in 20 of a large one) pays nothing, but a sweep that waited for gold that never came stood in a corner for 130 s (chapter 11). */
 		static int32 Drops(FCtx& C)
 		{
-			for (const TCHAR* Script : { TEXT("mgold"), TEXT("lgold"), TEXT("gold200"), TEXT("sgold"), TEXT("1gold"), TEXT("sheart"), TEXT("heart") })
+			for (const TCHAR* Script : { TEXT("mgold"), TEXT("lgold"), TEXT("gold200"), TEXT("sgold"), TEXT("1gold"), TEXT("sheart"), TEXT("heart"), TEXT("sfood") })
 			{
 				if (const int32 Drop = C.SpriteWithScript(Script)) { return Drop; }
 			}
 			return 0;
+		}
+
+		/**
+		 * One sweep of a monster screen for its loot (Feud: see BuildChapter4's comment), until gold reaches GoldTarget. Shared by chapters 4 and 11.
+		 * Level-up menus that open during it are answered LevelUps.
+		 */
+		void AddFeud(const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen, int32 GoldTarget, const TArray<FString>& LevelUps)
+		{
+			Add(Name,
+				[Screen, X, Y, Expected, bPen, GoldTarget](FCtx& C)
+				{
+					if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
+					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
+					const int32 Alive = C.Hostiles(Screen);
+					if (C.P->Mark < 0 && Alive >= Expected) { C.P->Mark = Alive; } // all of them have run their main
+					FFightOpts O;
+					// Two of them: let them fight (they walk 170 px/s on diagonals, as fast as he does: nothing could be kited). The
+					// survivor wanders (nobody has targeted Dink) and is shot only when the first fireball kills it (6 damage at least), else left.
+					O.bNoStrike = Alive >= 2 && !bPen;
+					O.StrikeMaxHp = bPen ? MAX_int32 : 6; // fenced in (low hardness, SCR_480): they cannot come out, he shoots them across the fence
+					O.bWalkReach = bPen;
+					O.WanderDist = Alive >= 2 ? 0.0 : 42.0;
+					O.StandDist = 170.0;
+					O.PaceFactor = Alive >= 2 ? 1.42 : 0.5; // a wanderer walks where it likes: it is not coming for him
+					O.MinEdge = 14.0; // the survivor sits in a corner: the only lines at it start at a wall
+					if (const int32 Drop = Drops(C))
+					{
+						C.P->bSawDrop = true;
+						if (C.P->LootSinceMs < 0.0) { C.P->LootSinceMs = C.S->GetNowMs(); }
+						O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0; // 10 s of waiting for the survivor to wander off is enough
+						const FDinkSprite* Loot = C.D->FindSprite(Drop);
+						O.bGoto = Loot != nullptr;
+						if (Loot)
+						{
+							O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
+							if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; } // the last steps
+						}
+					}
+					if (Alive == 0)
+					{
+						if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } // nothing left to fear: he walks onto it (a teleport stands in)
+						return;
+					}
+					C.KiteFight(NAME_None, 70, O);
+				},
+				[Screen, bPen, GoldTarget](FCtx& C)
+				{
+					const bool bGold = C.Fact(TEXT("gold")) >= GoldTarget;
+					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)));
+					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; return true; }
+					return false;
+				}, 150.0, LevelUps, 0.001, true);
+		}
+
+		// Waits in Arturous's shop (nothing there to hurt him) at 8x time dilation: game time is what the respawn clock counts, and
+		// nothing is fought meanwhile.
+		void AddShopWait(const TCHAR* Name, double Seconds, int32 GoldTarget)
+		{
+			Add(Name,
+				[Seconds, GoldTarget](FCtx& C)
+				{
+					if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
+					if (C.P->WaitUntilMs < 0.0) { C.P->WaitUntilMs = C.S->GetNowMs() + Seconds * 1000.0; }
+					if (!C.OnScreen(97)) { C.Goto(97, 300, 230); } // inside, clear of the door's warp
+					C.Dilate(8.0f);
+				},
+				[GoldTarget](FCtx& C)
+				{
+					if (C.Fact(TEXT("gold")) >= GoldTarget || C.S->GetNowMs() >= C.P->WaitUntilMs)
+					{
+						C.P->WaitUntilMs = -1.0;
+						C.Dilate(1.0f);
+						return true;
+					}
+					return false;
+				}, Seconds + 30.0);
 		}
 
 		void BuildChapter4()
@@ -3075,73 +3210,11 @@ namespace DinkProbeTest
 			// its `die` and drops its loot (en-bong.c:89 emake large). The screen's monsters come back 5 minutes after Dink leaves it.
 			auto Feud = [this, LevelUps, GoldTarget](const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen = false)
 			{
-				Add(Name,
-					[Screen, X, Y, Expected, bPen, GoldTarget](FCtx& C)
-					{
-						if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
-						if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
-						const int32 Alive = C.Hostiles(Screen);
-						if (C.P->Mark < 0 && Alive >= Expected) { C.P->Mark = Alive; } // all of them have run their main
-						FFightOpts O;
-						// Two of them: let them fight (they walk 170 px/s on diagonals, as fast as he does: nothing could be kited). The
-						// survivor wanders (nobody has targeted Dink) and is shot only when the first fireball kills it (6 damage at least), else left.
-						O.bNoStrike = Alive >= 2 && !bPen;
-						O.StrikeMaxHp = bPen ? MAX_int32 : 6; // fenced in (low hardness, SCR_480): they cannot come out, he shoots them across the fence
-						O.bWalkReach = bPen;
-						O.WanderDist = Alive >= 2 ? 0.0 : 42.0;
-						O.StandDist = 170.0;
-						O.PaceFactor = Alive >= 2 ? 1.42 : 0.5; // a wanderer walks where it likes: it is not coming for him
-						O.MinEdge = 14.0; // the survivor sits in a corner: the only lines at it start at a wall
-						if (const int32 Drop = Drops(C))
-						{
-							C.P->bSawDrop = true;
-							if (C.P->LootSinceMs < 0.0) { C.P->LootSinceMs = C.S->GetNowMs(); }
-							O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0; // 10 s of waiting for the survivor to wander off is enough
-							const FDinkSprite* Loot = C.D->FindSprite(Drop);
-							O.bGoto = Loot != nullptr;
-							if (Loot)
-							{
-								O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
-								if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; } // the last steps
-							}
-						}
-						if (Alive == 0)
-						{
-							if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } // nothing left to fear: he walks onto it (a teleport stands in)
-							return;
-						}
-						C.KiteFight(NAME_None, 70, O);
-					},
-					[Screen, bPen, GoldTarget](FCtx& C)
-					{
-						const bool bGold = C.Fact(TEXT("gold")) >= GoldTarget;
-						const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)));
-						if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; return true; }
-						return false;
-					}, 150.0, LevelUps, 0.001, true);
+				AddFeud(Name, Screen, X, Y, Expected, bPen, GoldTarget, LevelUps);
 			};
-			// Waits in Arturous's shop (nothing there to hurt him) at 8x time dilation: game time is what the respawn clock counts, and
-			// nothing is fought meanwhile.
 			auto Wait = [this, GoldTarget](const TCHAR* Name, double Seconds)
 			{
-				Add(Name,
-					[Seconds, GoldTarget](FCtx& C)
-					{
-						if (C.Fact(TEXT("gold")) >= GoldTarget) { return; }
-						if (C.P->WaitUntilMs < 0.0) { C.P->WaitUntilMs = C.S->GetNowMs() + Seconds * 1000.0; }
-						if (!C.OnScreen(97)) { C.Goto(97, 300, 230); } // inside, clear of the door's warp
-						C.Dilate(8.0f);
-					},
-					[GoldTarget](FCtx& C)
-					{
-						if (C.Fact(TEXT("gold")) >= GoldTarget || C.S->GetNowMs() >= C.P->WaitUntilMs)
-						{
-							C.P->WaitUntilMs = -1.0;
-							C.Dilate(1.0f);
-							return true;
-						}
-						return false;
-					}, Seconds + 30.0);
+				AddShopWait(Name, Seconds, GoldTarget);
 			};
 			for (int32 Round = 1; Round <= 3; ++Round)
 			{
@@ -3223,7 +3296,7 @@ namespace DinkProbeTest
 		// ---- Chapter 7: the other three goblins of the sanctuary one at a time in melee (Act B step 21), Mog (22), the Cast camp (23); the ambush (24) is the stop ----
 		void BuildChapter7()
 		{
-			const TArray<FString> LevelUps = { TEXT("Increase Defense"), TEXT("Increase Defense"), TEXT("Increase Defense") };
+			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
 			auto Heal = [this](const TCHAR* Name)
 			{
 				Add(Name,
@@ -3295,7 +3368,7 @@ namespace DinkProbeTest
 					O.CastFrom = 90.0;
 					C.SquadFight(O);
 				},
-				[](FCtx& C) { return C.SpriteWithScript(TEXT("s3-dorks")) == 0 && !C.D->bScreenLocked && C.Idle(); }, 150.0, { TEXT("Increase Defense"), TEXT("Increase Defense"), TEXT("Increase Defense") }, 0.001, true);
+				[](FCtx& C) { return C.SpriteWithScript(TEXT("s3-dorks")) == 0 && !C.D->bScreenLocked && C.Idle(); }, 150.0, { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") }, 0.001, true);
 			Add(TEXT("the knights' loot (emake.large: gold lying where each fell; the screen is unlocked)"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
 				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, {}, 0.5);
@@ -3381,6 +3454,20 @@ namespace DinkProbeTest
 				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
 		}
 
+		/** A permanent pickup (potion, heart) touched by standing on it, or a chest opened by a punch whose potion is then touched: Fact must rise by one. */
+		void AddPickup(const TCHAR* Name, int32 Screen, double X, double Y, const TCHAR* Script, const TCHAR* Fact, int32 ChestIndex)
+		{
+			Add(Name,
+				[=](FCtx& C)
+				{
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); }
+					if (!C.OnScreen(Screen)) { C.Goto(Screen, X, Y); return; }
+					if (const int32 Potion = C.SpriteWithScript(Script)) { C.StandBy(Potion, 0, true); return; }
+					if (ChestIndex && C.Placement(Screen, ChestIndex)) { C.StandBy(C.Placement(Screen, ChestIndex), 12); C.G->PlayerAttack(); }
+				},
+				[=](FCtx& C) { const bool bOk = C.P->Mark >= 0 && C.Fact(Fact) >= C.P->Mark + 1 && C.Idle() && !C.SpriteWithScript(Script); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, {}, 0.5);
+		}
+
 		// ---- Chapter 10 (test `ChAJoppa`, see the name rule in AGENTS.md): the rest of Windemere's errands and Joppa Isle (Acts C-D of Docs/probe_route.md, steps 28, 32-35) ----
 		void BuildChapter10()
 		{
@@ -3397,15 +3484,7 @@ namespace DinkProbeTest
 			// +1 strength (SCR_742 chest box2-sp, whose potion is make.spotion = rpotion). A pickup is touched by standing on it; the chest is opened by a punch.
 			auto Pickup = [this](const TCHAR* Name, int32 Screen, double X, double Y, const TCHAR* Script, const TCHAR* Fact, int32 ChestIndex)
 			{
-				Add(Name,
-					[=](FCtx& C)
-					{
-						if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); }
-						if (!C.OnScreen(Screen)) { C.Goto(Screen, X, Y); return; }
-						if (const int32 Potion = C.SpriteWithScript(Script)) { C.StandBy(Potion, 0, true); return; }
-						if (ChestIndex && C.Placement(Screen, ChestIndex)) { C.StandBy(C.Placement(Screen, ChestIndex), 12); C.G->PlayerAttack(); }
-					},
-					[=](FCtx& C) { const bool bOk = C.P->Mark >= 0 && C.Fact(Fact) >= C.P->Mark + 1 && C.Idle() && !C.SpriteWithScript(Script); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, {}, 0.5);
+				AddPickup(Name, Screen, X, Y, Script, Fact, ChestIndex);
 			};
 			Pickup(TEXT("the strength potion of the Windemere wilds (SCR_663 S663_P06 rpotion: strength +1)"), 663, 352, 100, TEXT("rpotion"), TEXT("strength"), 0);
 			Pickup(TEXT("the defense potion of the marshes (SCR_603 S603_P02 bpotion: defense +1)"), 603, 80, 300, TEXT("bpotion"), TEXT("defense"), 0);
@@ -3419,8 +3498,65 @@ namespace DinkProbeTest
 			Add(TEXT("the basement (SCR_229, s5-base creates s5-guy and s5-mom, the scene of the hiding parents): &s5-jop 1 -> 2"),
 				[](FCtx& C) { if (!C.OnScreen(229) && C.Fact(TEXT("s5-jop")) == 1) { C.Goto(229, 466, 160); } },
 				[](FCtx& C) { return C.OnScreen(229) && C.Fact(TEXT("s5-jop")) == 2 && C.Idle() && !C.Busy(); }, 90.0, {}, 0.5);
-			// Step 35: back up (stairs S229_P01 -> SCR_228 -> door S228_P20 -> SCR_419 at 422,264): s5-jops makes the family, s5-fguy's scene (about 15 s), then the two
-			// dragons (en-drag, screenlock) and the fight begins. The chapter ends there; the fight is chapter 11.
+			// Step 35 (back up to SCR_419: s5-jops makes the family, s5-fguy's scene, the two dragons) is the first step of chapter 12 (BuildChapter12): once the
+			// scene has run the dragons are alive and casting, so a chapter that ended there left no time for anything else. s5-jops does it again on every entry
+			// while &s5-jop is 2. Chapter 11 (BuildChapter11) is the kit the dragons need: the fourth level-up on Attack, two all-potions, the longsword.
+		}
+
+		// ---- Chapter 11 (test `ChBKit`): the kit for the Joppa dragons (probe_route.md 2.4/2.5): gold, two all-potions, Pete's longsword ----
+		void BuildChapter11()
+		{
+			// Strength at the dragons is 13 + 1 (the level-up of chapter 8, now Attack) + 2 (the two all-potions below) + 4 (the longsword armed, item-sw1.c:44).
+			// 400 gold for the sword (s4-st3p.c:36-49); this run has 205. One round of chapter 4's Feud pays about 200, a second (after the 5-minute wait) the rest.
+			const int32 GoldTarget = 480; // 400 + 3 elixirs of 25 + a little
+			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
+			for (int32 Round = 1; Round <= 3; ++Round)
+			{
+				if (Round > 1)
+				{
+					AddShopWait(*FString::Printf(TEXT("round %d: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)"), Round), 302.0, GoldTarget);
+				}
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_583, Bong and Boncd fight, he waits, then takes the loot"), Round), 583, 570, 60, 2, false, GoldTarget, LevelUps);
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_480, two Bongs"), Round), 480, 570, 60, 2, true, GoldTarget, LevelUps);
+				AddFeud(*FString::Printf(TEXT("round %d: SCR_632, two Bongs"), Round), 632, 60, 380, 2, false, GoldTarget, LevelUps);
+			}
+			// Route step 6/38 (probe_route.md 2.3): the all-potion chest of Murkwood (SCR_395 S395_P03 ch1-ap, with a flying pill bug beside it: touch 4) and the potion on the
+			// south coast (SCR_750 S750_P02): +1 strength, defense and magic each.
+			AddPickup(TEXT("the all-potion chest of Murkwood (SCR_395 S395_P03 ch1-ap: a punch, then the potion: strength, defense, magic +1)"), 395, 339, 262, TEXT("apotion"), TEXT("strength"), 3);
+			AddPickup(TEXT("the all-potion of the south coast (SCR_750 S750_P02: strength, defense, magic +1)"), 750, 174, 250, TEXT("apotion"), TEXT("strength"), 0);
+			Add(TEXT("Pete's (SCR_196, s4-st3p talk: \"See what's for sale\", \"Longsword - $400\": gold - 400, item-sw1)"),
+				[](FCtx& C)
+				{
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("gold")); }
+					if (!C.OnScreen(196)) { C.Goto(196, 300, 250); return; }
+					if (const int32 Pete = C.SpriteWithScript(TEXT("s4-st3p"))) { C.StandBy(Pete, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { const bool bOk = C.Slot(TEXT("item-sw1")) != 0 && C.P->Mark >= 400 && C.Fact(TEXT("gold")) == C.P->Mark - 400 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 60.0, { TEXT("See what's for sale"), TEXT("Longsword - $400") }, 4.0);
+			// The dragons' harm cannot be dodged (20 - defense 5 = 15 a cast, 29 life): elixirs (Terris healer SCR_033, "Buy a bottle of elixer for $25", life +20) drunk in the fight.
+			Add(TEXT("three elixirs from the Terris healer (SCR_033 s2-healp: \"Buy a bottle of elixer for $25\" x3)"),
+				[](FCtx& C)
+				{
+					if (C.CountItem(TEXT("item-eli")) >= 3) { return; }
+					if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
+					if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.CountItem(TEXT("item-eli")) >= 3 && C.Idle(); }, 60.0, { TEXT("Buy a bottle of elixer for $25"), TEXT("Buy a bottle of elixer for $25"), TEXT("Buy a bottle of elixer for $25") }, 0.5, true); // the healer's main loops on wait(500): Busy() is always true there
+			Add(TEXT("arm the longsword (item-sw1 arm: strength +4, sp_distance 50, sp_range 40)"),
+				[](FCtx& C) { if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("strength")); } C.G->ArmItemSlot(C.Slot(TEXT("item-sw1"))); },
+				[](FCtx& C) { const bool bOk = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") && C.P->Mark >= 0 && C.Fact(TEXT("strength")) == C.P->Mark + 4 && C.Idle(); if (bOk) { C.P->Mark = -1; } return bOk; }, 10.0);
+		}
+
+		// ---- Chapter 12 (test `ChCDragons`): the two dragons of Joppa (Act D step 36) and the epilogue (37, &story 12) ----
+		void BuildChapter12()
+		{
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
 			Add(TEXT("back to Joppa (SCR_419, s5-jops with &s5-jop 2: s5-fguy's scene, two dragons en-drag, screenlock): the fight can begin"),
 				[](FCtx& C) { if (!C.OnScreen(419)) { C.Goto(419, 422, 264); } },
 				[](FCtx& C)
@@ -3428,13 +3564,210 @@ namespace DinkProbeTest
 					int32 Dragons = 0;
 					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites()) { Dragons += (Pair.Value.bActive && Pair.Value.Script == FName(TEXT("en-drag"))) ? 1 : 0; }
 					return C.OnScreen(419) && Dragons == 2 && C.D->bScreenLocked && C.Idle(); }, 120.0, {}, 0.5);
-			// NEXT (design-level stop, 7 Nov 2026 night): Act D step 36, the two dragons of Joppa (en-drag: 80 hp, defense 8, touch 10, `hit` makes a dragon target Dink and its
-			// first `attack` is already due, so one punch earns a `harm` of 20 - defense 4 = 16; `attack_wait` then 3-8 s; the family dies to the same casts: father 100 hp, mother and Gwen 50,
-			// any death sets &life 0). Tried once as a throw-away chapter from this chapter's slot (strength 13, defense 4, magic 7, life 29, gold 205, fists, `KiteAndPunch` from
-			// 44 px): Dink dead after 1.4 s (two casts of 16 and a touch of 6), his punches did 1-4 (net of defense 8), the family was dead after 12-26 s. Not a tactic problem: 160 hp
-			// at about 8 net damage a second needs melee strength 20+ (Docs/probe_route.md 2.5/2.6: the route's three level-ups go to Attack, the 400-gold longsword adds 4 armed).
-			// This run's level-ups went to Defense (chapters 7 and 8) and gold is 205, so the next chapter first has to change that (a Feud round of chapter 4 pays about 200 gold,
-			// Pete's longsword is "Longsword - $400"; strength 13 + 4 = 17 only) or re-spend the level-ups.
+			Add(TEXT("the two dragons (en-drag: 80 hp, defense 8, touch 10, harm 20 by cast): DuelFight with the sword, family alive; the last death spawns s5-end: &story 12"),
+				[](FCtx& C)
+				{
+					// The dragon in front of him until it is dead, then the other.
+					int32 Target = C.P->Mark;
+					const FDinkSprite* T = Target > 0 ? C.D->FindSprite(Target) : nullptr;
+					if (!T || !T->bActive || T->GetProp(TEXT("hitpoints")) <= 0)
+					{
+						Target = 0;
+						double Best = 1e18;
+						const FDinkSprite& Dk = C.D->GetDink();
+						for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+						{
+							const FDinkSprite& O = Pair.Value;
+							if (O.bActive && O.Script == FName(TEXT("en-drag")) && O.GetProp(TEXT("hitpoints")) > 0)
+							{
+								const double Dist = FMath::Square(O.X - Dk.X) + FMath::Square(O.Y - Dk.Y);
+								if (Dist < Best) { Best = Dist; Target = Pair.Key; }
+							}
+						}
+						C.P->Mark = Target;
+					}
+					if (!Target) { return; }
+					// The harm cast (en-drag.c `attack`) hurts for 20 - defense wherever Dink stands (no range, no dodge), a dragon's first one the moment he first hits it
+					// (`hit` targets him and its attack_wait is long past) and then every 3-8 s while he keeps hitting it (the target callback, 0.5-2 s, re-rolls 1 in 9 for
+					// Dink): he drinks an elixir when one more cast would kill him (FCtx::DrinkAndKeepSword).
+					if (C.DrinkAndKeepSword(20)) { return; }
+					FDuelOpts O;
+					O.bCaster = true;
+					O.bPull = false;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					O.StageCheb = 40.0;
+					C.DuelFight(Target, O);
+				},
+				[](FCtx& C) { const bool bOk = C.Fact(TEXT("story")) == 12 && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 150.0, { TEXT("Increase Attack"), TEXT("I saved all of you, actually.") }, 0.001, true);
+		}
+
+		// ---- Chapter 13 (test `ChDCastle`): after the dragons: their loot, the level-up, the castle guard, the King (&story 12 -> 13 -> 14), the dungeon's potions (Act D end, Act E steps 39-41) ----
+		void BuildChapter13()
+		{
+			// The two dragons' death spots hold emake.xlarge (gold200 and the like); the second kill's 400 exp reach 1600 (100 * 4 * 4): level 5, the menu "YOU ARE NOW LEVEL 5".
+			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Fact(TEXT("level")) >= 5 && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
+			Add(TEXT("the castle gate (SCR_402, s2-ca-g talk at &story 12: \"Request an audience with King Daniel\": enter() -> SCR_102)"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(402)) { C.Goto(402, 321, 300); return; }
+					if (const int32 Guard = C.Placement(402, 5)) { C.StandBy(Guard, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.OnScreen(102) && C.Idle() && !C.Busy(); }, 60.0, { TEXT("Request an audience with King Daniel") }, 4.0);
+			Add(TEXT("the King (SCR_070, king.c talk at &story 12: the greeting sets 13, the menu: \"Offer to help Milder\": &story 14)"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(70)) { C.Goto(70, 300, 260); return; }
+					if (const int32 King = C.Placement(70, 3)) { C.StandBy(King, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("story")) == 14 && C.Idle() && !C.Busy(); }, 90.0, { TEXT("Offer to help Milder") }, 4.0);
+			AddPickup(TEXT("the defense potion of the King's hall (SCR_070 S070_P22 bpotion: defense +1)"), 70, 110, 240, TEXT("bpotion"), TEXT("defense"), 0);
+			AddPickup(TEXT("the magic chest of the castle's back rooms (SCR_069 S069_P02 ch1-mp: a punch, then the potion: magic +1)"), 69, 323, 255, TEXT("ppotion"), TEXT("magic"), 2);
+			AddPickup(TEXT("the gold-heart chest (SCR_101 S101_P02 ch1-gh: a punch, then the heart: lifemax +10)"), 101, 320, 255, TEXT("gheart"), TEXT("lifemax"), 2);
+		}
+
+		// ---- Chapter 14 (test `ChEEdge`): the Edge of the World and the ancients' machine to the Darklands (Act E steps 42-45) ----
+		void BuildChapter14()
+		{
+			AddPickup(TEXT("the defense potion at the Edge's entrance (SCR_243 S243_P01 bpotion: defense +1)"), 243, 330, 160, TEXT("bpotion"), TEXT("defense"), 0);
+			AddPickup(TEXT("the strength potion on the way to the machine (SCR_248 S248_P03 rpotion: strength +1)"), 248, 250, 140, TEXT("rpotion"), TEXT("strength"), 0);
+			Add(TEXT("the pit (SCR_243 S243_P13 s6-hole, there at &story > 13: touch: Dink falls, fade_down, &player_map = 182, load_screen)"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(243)) { C.Goto(243, 470, 360); return; }
+					// The pit's hardbox is 457-487 x 293-317 and its hardness stamp is solid (a wall of its own): touch -1 runs the script when Dink's point is within the
+					// box plus 2 + the capsule's margin (4) = 323 from the south. A ring search (`Goto`) stood at 326 and never touched it; asking for the exact pixel does
+					// (316 and 317 are refused, the capsule overlaps the stamp; 318 gets in and touches). UNVERIFIED: whether a walking Dink gets that close.
+					if (C.SpriteWithScript(TEXT("s6-hole")))
+					{
+						const int32 Attempt = FMath::Max(C.P->Mark, 0);
+						C.P->Mark = Attempt + 1;
+						C.GB->GotoScreen(243, 472.0 - 20.0, 318.0 + (Attempt % 5));
+						C.G->SyncDinkFromActor();
+					}
+				},
+				[](FCtx& C) { const bool bOk = C.OnScreen(182) && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 30.0, {}, 0.5);
+			Add(TEXT("the machine (SCR_253 s6-warp talk: \"Press the red button\": the spinner, fade_down, &player_map = 154, load_screen): the Darklands"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("player_map")) == 154) { return; } // arrived (the retry fires on the frame the scene ends)
+					if (!C.OnScreen(253)) { C.Goto(253, 263, 395); return; }
+					if (const int32 Machine = C.Placement(253, 6)) { C.StandBy(Machine, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.OnScreen(154) && C.D->GetDink().Screen == 154 && C.Idle() && !C.Busy() && C.Fact(TEXT("story")) == 14; }, 90.0, { TEXT("Press the red button") }, 4.0); // (player_map turns 154 before the script moves Dink and freezes him)
+		}
+
+		// ---- Chapter 15 (test `ChFDarklands`): the first Darklands room, SCR_156: the Bong, the Slayer and the Dragon (Act F step 47) ----
+		void BuildChapter15()
+		{
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+			Add(TEXT("SCR_156 (s7-bong 40 hp, s7-slay 100 hp, s7-drag 80 hp with harm 30; screenlock): the dragon first (it casts at him half the time), then the slayer and the bong"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(156)) { C.Goto(156, 60, 250); return; }
+					if (C.DrinkAndKeepSword(30)) { return; }
+					int32 Target = 0;
+					for (const TCHAR* Script : { TEXT("s7-drag"), TEXT("s7-slay"), TEXT("s7-bong") })
+					{
+						const int32 H = C.SpriteWithScript(Script);
+						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
+						if (T && T->GetProp(TEXT("hitpoints")) > 0) { Target = H; break; }
+					}
+					if (!Target) { return; }
+					FDuelOpts O;
+					O.bCaster = C.D->FindSprite(Target)->GetProp(TEXT("brain")) == 10;
+					O.bPull = false;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					O.StageCheb = 60.0;
+					C.DuelFight(Target, O);
+				},
+				[](FCtx& C) { return C.OnScreen(156) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && C.SpriteWithScript(TEXT("s7-bong")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 150.0, { TEXT("Increase Attack") }, 0.001, true);
+		}
+
+		// ---- Chapter 16 (test `ChGSlayers`): SCR_157, the four Slayers and the gold heart (Act F step 48) ----
+		void BuildChapter16()
+		{
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+			Add(TEXT("SCR_157: the four slayers (s7-slay 100 hp, defense 5, strength 20, range 45; screenlock): SquadFight with the sword"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(157)) { C.Goto(157, 60, 250); return; }
+					if (C.DrinkAndKeepSword(27)) { return; }
+					FSquadOpts O;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					C.SquadFight(O);
+				},
+				[](FCtx& C) { return C.OnScreen(157) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, { TEXT("Increase Attack") }, 0.001, true);
+		}
+
+		// ---- Chapter 17 (test `ChHDucks`): the slayers' loot and gold heart, SCR_190's three duck-bugs and the full heart (Act F steps 48-49) ----
+		void BuildChapter17()
+		{
+			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
+			AddPickup(TEXT("the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)"), 157, 267, 215, TEXT("gheart"), TEXT("lifemax"), 0);
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+			Add(TEXT("SCR_190: the three duck-bugs (s7-duck 50 hp, no defense, touch 25; screenlock): SquadFight with the sword"),
+				[](FCtx& C)
+				{
+					if (!C.OnScreen(190)) { C.Goto(190, 60, 250); return; }
+					if (C.DrinkAndKeepSword(27)) { return; }
+					FSquadOpts O;
+					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
+					C.SquadFight(O);
+				},
+				[](FCtx& C) { return C.OnScreen(190) && C.Hostiles(190) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, { TEXT("Increase Attack") }, 0.001, true);
+			Add(TEXT("the ducks' loot and the full heart (SCR_190 S190_P10 heart: life = lifemax)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
+		}
+
+		// ---- Chapter 18 (test `ChISeth`): Milder and the start of the Seth fight (Act F steps 51-52; the fight is the stop, step 53) ----
+		void BuildChapter18()
+		{
+			Add(TEXT("the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); return; }
+					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+			// The route goes SCR_222 (barrels), SCR_254 (save machine, the hole S254_P04) -> SCR_085 -> east to SCR_086; the probe teleports to SCR_086.
+			Add(TEXT("Milder (SCR_086 s7-mil talk at &story 14: \"Take his advice\", the dialogue, the explosion, Seth appears and gets s7-boss): the fight begins"),
+				[](FCtx& C)
+				{
+					if (C.SpriteWithScript(TEXT("s7-boss"))) { return; } // Seth is there: a second talk would only say "Milder, wake up!"
+					if (!C.OnScreen(86)) { C.Goto(86, 250, 300); return; }
+					if (const int32 Milder = C.SpriteWithScript(TEXT("s7-mil"))) { C.StandBy(Milder, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.OnScreen(86) && C.SpriteWithScript(TEXT("s7-boss")) != 0 && C.Idle() && !C.Busy(); }, 120.0, { TEXT("Take his advice") }, 4.0);
+			// NEXT (design-level stop, 8 Nov 2026): Act F step 53, Seth (s7-boss: 300 hp, defense 25, touch 30; every 2-6 s a bomb (strength 25) or "greater harm" 30 unless random(40,1) <= magic).
+			// Dink here: see the chapter's report line (strength 22 with the longsword, defense 7, magic 10, life 52, level 5, 1 elixir). Sword hits on defense 25 do 0.5 net (a pity point
+			// half the time): about 600 swings for 300 hp. The route needs the bow (b1 + bow lore 1500 gold, strength about 25, no hold-the-key action in the probe yet: `activate_bow`).
 		}
 
 		// ---- Chapter 3: preparation (Act B/C of Docs/probe_route.md): gold, strength and hearts on the roads, then the Mayor's errand ----
@@ -3690,9 +4023,65 @@ bool FDinkGameplayProbeCh9Test::RunTest(const FString& Parameters)
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh10Test, "Dink.Gameplay.Probe.ChAJoppa", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh10Test::RunTest(const FString& Parameters)
 {
-	// Named ChA..: the runner sorts by path, so a chapter 10 called Ch10 would run before Ch2 (AGENTS.md pitfall 33). A chapter 11 would be ChB...
+	// Named ChA..: the runner sorts by path, so a chapter 10 called Ch10 would run before Ch2 (AGENTS.md pitfall 33). Chapters 11-18 are ChBKit, ChCDragons, ChDCastle, ChEEdge, ChFDarklands, ChGSlayers, ChHDucks, ChISeth
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(10, TEXT("Windemere's errands and Joppa: the healer, three pickups, the basement scene, the family and the dragons")), 7, 0);
+	return RunChapterTest(*this, MakeChapter(10, TEXT("Windemere's errands and Joppa: the healer, three pickups, Joppa, the basement scene")), 6, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh11Test, "Dink.Gameplay.Probe.ChBKit", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh11Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(11, TEXT("The kit for the dragons: gold from the Bongs, two all-potions, Pete's longsword")), 16, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh12Test, "Dink.Gameplay.Probe.ChCDragons", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh12Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(12, TEXT("The two dragons of Joppa and the epilogue (&story 12)")), 3, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh13Test, "Dink.Gameplay.Probe.ChDCastle", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh13Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(13, TEXT("After the dragons: their loot, the castle, the King (&story 14), the back rooms' potions")), 6, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh14Test, "Dink.Gameplay.Probe.ChEEdge", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh14Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(14, TEXT("The Edge of the World: the pit, the machine to the Darklands")), 4, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh15Test, "Dink.Gameplay.Probe.ChFDarklands", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh15Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(15, TEXT("The Darklands: the first room, SCR_156")), 2, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh16Test, "Dink.Gameplay.Probe.ChGSlayers", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh16Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(16, TEXT("The Darklands: the four slayers of SCR_157")), 2, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh17Test, "Dink.Gameplay.Probe.ChHDucks", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh17Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(17, TEXT("The Darklands: the slayers' gold heart and the three duck-bugs of SCR_190")), 5, 0);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh18Test, "Dink.Gameplay.Probe.ChISeth", DINK_TEST_FLAGS)
+bool FDinkGameplayProbeCh18Test::RunTest(const FString& Parameters)
+{
+	using namespace DinkProbeTest;
+	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 2, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh4Test, "Dink.Gameplay.Probe.Ch4Gold", DINK_TEST_FLAGS)
