@@ -1323,3 +1323,9 @@ InstalledPython StaticMeshComponent hasget_world_transform, notget_component_tra
 ## Shared Stonebrook source-only checkpoint
 
 Branch art/shared-stonebrook-vista-source baseb9a3d74 publishes379 frozen house440/willow/terrain/reed source files and379candidate rows (1664→2043), prior483audio raw records unchanged. Source-only: no Content/runtime changes; raw guide errors/warnings,16deferred studies and560existing-reference exclusions retained. Native collision/warp/story/LOD/material/world composition remain unapproved. See Docs/Verification/SharedStonebrookVistaSource and source combined catalogue; IndoorRoofV6 is blocked and excluded.
+
+## Deliberate doorway re-exit (9 November 2026 UTC)
+
+Arrival can already overlap the return trigger while the warp guard suppresses BeginOverlap. Ordinary player movement now retries an enabled walk_in door/exit at the existing0.25s poll, using only this frame's OnCharacterMovementUpdated acceleration/location and retained approach direction. Idle, away, frozen, dead, stale, unpossessed and NPC cases cannot retry. Existing0.75s cooldown, nohard suppression, atomic recursion guard, other warp types, spawn and collider data are unchanged. Weak pawn bindings are removed on rebinding/deinitialization.
+
+Editor and standalone Development Game builds pass with zero compiler warnings. Root combined153/153 native tests pass with zero test warnings in498.917s,9,241inputs unchanged and51inventoried older saves stable. Independently reviewed author-stage real W proof confirms idle overlap does not bounce and deliberate re-exit works once without walking clear. Tangent/zero-approach/two-blocked-destination native cases are not claimed as tested. Source-only PR21 reconciliation changes authoring/status/ledger only; all runtime inputs retain tested bytes. SeeDocs/Verification/DoorOverlapRetry.
