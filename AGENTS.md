@@ -388,7 +388,19 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
 - Git remotes (set 5 Nov 2026): `origin` is the fork
   `cdavisv/Dink-Smallwood-Remaster` (master tracks origin/master); `upstream`
   is `SethRobinson/RTDink`, fetch-only (its push URL is set to DISABLED on
-  purpose). `gh` is installed and authenticated as cdavisv.
+  purpose). `gh` is installed and authenticated as cdavisv; because of the
+  `upstream` remote, `gh` must have `gh repo set-default
+  cdavisv/Dink-Smallwood-Remaster` (set 9 Nov 2026) or it aims PRs at RTDink.
+- Git LFS (checked 9 Nov 2026): a `git push` can succeed while its LFS upload
+  silently does not; the commit lands on master and any fresh checkout then
+  aborts on "object not found" (PR #31's 31 PhotorealTrousersV33 objects, and a
+  vista asset before it). After pushing LFS content, and before switching a
+  checkout to master, run `tools/lfs_audit.py [ref]` (asks GitHub's LFS batch
+  API which objects it holds; `--fix` uploads any that are in the local store).
+  Do NOT trust `git lfs fetch` as a check: it reports success for objects it
+  already has locally. Recovering an object that is not local: find the file
+  content (sha256 = the pointer's oid) in the committer's working copy, copy it
+  to `.git/lfs/objects/<2>/<2>/<oid>`, then `git lfs push --object-id origin <oid>`.
 - `tools/analyse` (built 5 Nov 2026) is pipeline stages 3 and 4: true
   connectivity, warp graph, interiors, regions and the 2D-to-3D world layout.
   `cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out`
