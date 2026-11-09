@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "role": "BC",
+      "bake": "EMIT",
+      "source_socket": "Base Color",
+      "seconds": 2.9509317874908447,
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784"
+    },
+    {
+      "role": "Rough",
+      "bake": "EMIT",
+      "source_socket": "Roughness",
+      "seconds": 2.5210249423980713,
+      "sha256": "27dcde37d88e638076bd19c8624ff5429c45db7070fa3f1c3bd4b5a1c37ed781"
+    },
+    {
+      "role": "Metal",
+      "bake": "EMIT",
+      "source_socket": "Metallic",
+      "seconds": 1.8617558479309082,
+      "sha256": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37"
+    },
+    {
+      "role": "N",
+      "bake": "NORMAL",
+      "source_socket": null,
+      "seconds": 25.23087501525879,
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555"
+    }
+  ],
+  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "source_unchanged": true,
+  "triangles": 4844,
+  "metallic_linear_range": [
+    0.0,
+    0.0
+  ],
+  "metallic_nonzero_texels": 0,
+  "R_AO": "neutral1",
+  "BC": "2048 emission bake of image-directed pastry/color and authored blueceramic/darkfruit; raw1254donor preserved separately, not resampled; independentN/ORM authored",
+  "normal": "tangent-space authored bump bake",
+  "ORM_sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47"
+}

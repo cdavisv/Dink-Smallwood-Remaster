@@ -1,0 +1,18 @@
+{
+  "schema": "dink-pie-independent-source-audit/1",
+  "passed": true,
+  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "input_sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+  "max_bounds_delta_m": 0.0,
+  "ground_center_pivot_preserved": true,
+  "collider_local_vertices_and_relative_transform_exact": true,
+  "collider_count": 0,
+  "source_triangles": 4844,
+  "finite_positions": true,
+  "native_imported": false,
+  "limits": [
+    "No universal intersection-free or native game acceptance claim.",
+    "Pastry lattice, crimp and filling contacts intentionally meet or overlap.",
+    "Dedicated glazed dish/pastry/fruit shaders need native material review; original food script and native references unchanged."
+  ]
+}

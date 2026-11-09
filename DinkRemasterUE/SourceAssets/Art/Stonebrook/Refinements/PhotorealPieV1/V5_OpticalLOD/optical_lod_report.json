@@ -1,0 +1,22 @@
+{
+  "source_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "LODs": [
+    {
+      "LOD": 1,
+      "triangles": 3046,
+      "retained_food_triangles": 2186,
+      "exact_LOD0_ceramic_triangles": 860,
+      "max_normal_angle_radians": 0.0,
+      "geometry_UV_materialIDs_point_attributes_preserved": true
+    },
+    {
+      "LOD": 2,
+      "triangles": 2048,
+      "retained_food_triangles": 1188,
+      "exact_LOD0_ceramic_triangles": 860,
+      "max_normal_angle_radians": 0.0,
+      "geometry_UV_materialIDs_point_attributes_preserved": true
+    }
+  ],
+  "reason": "Preserve ceramic silhouette/glaze normals through opticalLOD; food retains previous reductions. No new bake/material/LOD0 changes."
+}
