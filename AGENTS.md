@@ -688,8 +688,10 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   (9 Nov 2026: 143 final, all in Stonebrook on screens 1/407/438/439/471;
   6,459 placeholder; 5 cut; art binds by origin ID or screen only, never by
   sprite family, so delivered pillbug/duck sources dress one screen each;
-  101 placeholders can never be final: hardness proxies, never-set vision
-  variants, empty placements; report in `Plugins/DinkImport/Docs/art_coverage.md`). Remaster gap noted:
+  by owner decision the same day, 101 placements that can never be final are
+  `cut` with reasons: 64 hardness proxies, 33 never-set vision variants, 4 empty
+  placements, plus 46 warps on such proxies, so 143 final / 6,312 placeholder /
+  152 cut; report in `Plugins/DinkImport/Docs/art_coverage.md`). Remaster gap noted:
   `draw_hard_sprite`/`sp_hard` are only recorded (UE AGENTS.md pitfall 77).
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
