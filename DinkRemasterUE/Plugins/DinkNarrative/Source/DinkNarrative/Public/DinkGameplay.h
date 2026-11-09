@@ -146,6 +146,13 @@ public:
 	const FDinkHardnessMap* GetHardness(int32 Screen, int32 Vision) const;
 	/** Tests: replace a screen's hardness (all visions). Null removes the override. */
 	void SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map);
+	/**
+	 * A sequence a script's init("load_sequence_now ...") defines that dink.ini does not (s7-mil.c:13: Seth's pose 580): its hardbox, for every
+	 * frame (figure_out, dink.cpp:2335-2344: a sequence not yet active is read from the line, ReadFromLoadSequenceString 2216-2226, and every
+	 * frame gets the line's hardbox, LoadSpriteSingleFrame 1899-1922). Only the hardbox is known here (no pictures, no frame count).
+	 */
+	void AddInitSequence(int32 Seq, const FDinkFrameInfo& Box) { InitSequences.Add(Seq, Box); }
+	const FDinkFrameInfo* FindInitSequence(int32 Seq) const { return InitSequences.Find(Seq); }
 	/** Time from the start of Seq until its first special (hit) frame shows; INDEX_NONE if it has none. */
 	int32 HitFrameDelayMs(int32 Seq) const;
 	const FDinkPlacementInfo* FindPlacement(const FDinkOriginId& Origin) const;
@@ -164,6 +171,7 @@ private:
 	TMap<FDinkOriginId, FDinkPlacementInfo> Placements;
 	TMap<int32, TArray<FDinkOriginId>> ByScreen;
 	TMap<int32, FName> BaseScripts;
+	TMap<int32, FDinkFrameInfo> InitSequences;
 	/** Screen -> vision -> map (lazy; the files are ~9 KB each). */
 	mutable TMap<int32, TMap<int32, TSharedPtr<FDinkHardnessMap>>> Hardness;
 	TMap<int32, TSharedPtr<FDinkHardnessMap>> HardnessOverrides;
@@ -175,6 +183,27 @@ struct DINKNARRATIVE_API FDinkPendingHit
 	int32 Sprite = 0;
 	int32 Seq = 0;
 	double AtMs = 0.0;
+};
+
+/**
+ * The bow being drawn: the engine's attackinfo_struct g_dglos.g_bowStatus (dink.h:367-376), set by the DinkC command
+ * activate_bow (dink.cpp:9397-9408), charged and released by process_bow (dink.cpp:14564-14621) from Dink's brain while it is
+ * active (dink.cpp:14761-14766), `hitme` set by the 100 ms status timer (dink.cpp:17339-17344).
+ */
+struct DINKNARRATIVE_API FDinkBowStatus
+{
+	/** g_bowStatus.active: the bow is drawn; Dink's brain does nothing else (no walking, attack, magic or talk keys). */
+	bool bActive = false;
+	/** g_bowStatus.script: the script instance blocked in activate_bow (the item's `use`), run on at the release. */
+	int32 Instance = 0;
+	/** g_bowStatus.hitme: false until the first 100 ms status tick after activate_bow; the pull adds nothing before it. */
+	bool bHitMe = false;
+	/** g_bowStatus.time: the draw, 0..500 (7 per pull tick). */
+	int32 Time = 0;
+	/** g_bowStatus.last_power: the draw at the last release (get_last_bow_power). */
+	int32 LastPower = 0;
+	/** g_bowStatus.pull_wait: engine ms of the next pull (every 10 ms, i.e. every 60 Hz frame). */
+	double PullWaitMs = 0.0;
 };
 
 /**
@@ -238,6 +267,11 @@ public:
 
 	/** Copies map.dat's live-sprite fields onto a placement sprite (place_sprites_game, D:6080-6110). */
 	void InitPlacementSprite(FDinkSprite& Sprite) const;
+	/**
+	 * The DinkC init("load_sequence_now <file> <seq> <speed> <x> <y> <left> <top> <right> <bottom>") line, for a sequence the base data (dink.ini)
+	 * does not define: from now on its frames have that hardbox (FDinkGameplayData::AddInitSequence). False if the line defines nothing new.
+	 */
+	bool ApplyInitLine(const FString& Line);
 	/** Absolute hardbox of a sprite (getpic(): its current sequence/frame); false if no picture data. */
 	bool GetHardbox(const FDinkSprite& Sprite, int32& L, int32& T, int32& R, int32& B) const;
 	/** Script set sp_seq: a sequence with a hit frame schedules that sprite's melee test. */
@@ -245,8 +279,43 @@ public:
 
 	// ---- Player actions (keys, console, tests) ----
 
-	/** Attack key: the armed weapon's `use` (D:14819); the hit lands on the animation's hit frame. False if nothing ran. */
+	/**
+	 * Attack key, pressed and let go at once (a tap): the armed weapon's `use` (D:14819); the hit lands on the animation's hit frame.
+	 * False if nothing ran (also while the bow is drawn: Dink's brain only processes the bow then, D:14761-14766).
+	 */
 	bool PlayerAttack();
+	/**
+	 * Attack key down (the original's button 1, sjoy.joybit[1]): runs the armed weapon's `use` as PlayerAttack does and keeps the key held.
+	 * With the bow armed (item-b1/b2/b3 `use`: activate_bow) the draw grows while the key is held and the arrow leaves on
+	 * PlayerAttackRelease (process_bow, D:14564-14621). The input layer binds the key's press and release to these two.
+	 */
+	bool PlayerAttackPress();
+	/** Attack key up (sjoy.letgo[1], D:12091): a drawn bow is released at its next engine frame. */
+	void PlayerAttackRelease();
+	bool IsAttackHeld() const { return bAttackHeld; }
+
+	// ---- The bow (D:9397-9420, 14564-14621, 17344) ----
+
+	/** Most power a draw reaches (D:14604). */
+	static constexpr int32 BowMaxPower = 500;
+	/** Power per pull tick once `hitme` is set (D:14603). */
+	static constexpr int32 BowPullPerTick = 7;
+	/** A pull tick every 10 ms of engine time (D:14602): at the engine's 60 Hz, once a frame. */
+	static constexpr double BowPullTickMs = 10.0;
+	/** activate_bow (D:9397-9408), from the director: Dink stops (seq 0, pseq 100 + dir, pframe 1) and the bow is drawn for InstanceId. */
+	void ActivateBow(int32 InstanceId);
+	/** process_bow (D:14564-14621) for one engine frame at TickMs: aim, pull, and the release when the attack key is up. TickBrains calls it first in each frame. */
+	void ProcessBow(double TickMs);
+	/** The bow block of InstanceId ended without a release (instant mode): the draw so far becomes the last power, the bow is put down. */
+	void EndBowBlock(int32 InstanceId);
+	bool IsBowActive() const { return Bow.bActive; }
+	/** The instance waiting in activate_bow, 0 if the bow is not drawn. */
+	int32 GetBowInstance() const { return Bow.bActive ? Bow.Instance : 0; }
+	/** The current draw (0..500). */
+	int32 GetBowPower() const { return Bow.Time; }
+	/** get_last_bow_power (D:9410-9414). */
+	int32 GetLastBowPower() const { return Bow.LastPower; }
+	const FDinkBowStatus& GetBowStatus() const { return Bow; }
 	/** Magic key: the armed spell's `use` when &magic_level >= &magic_cost (D:14941). */
 	bool PlayerCastMagic();
 	/** Inventory screen stand-in: arm item slot N (1-based, &cur_weapon) as arm_weapon does. */
@@ -406,6 +475,9 @@ private:
 	int32 MagicInstance = 0;
 	int32 DeathInstance = 0;
 	TArray<FDinkPendingHit> PendingHits;
+	FDinkBowStatus Bow;
+	/** The attack key is held (PlayerAttackPress .. PlayerAttackRelease): the original's sjoy.joybit[1]. */
+	bool bAttackHeld = false;
 	double NowMs = 0.0;
 	double NextStatusMs = 100.0;
 	bool bPushActive = false;

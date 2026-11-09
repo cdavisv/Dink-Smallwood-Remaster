@@ -812,6 +812,15 @@ bool UDinkStorySubsystem::UpdateBlocks()
 		}
 		case EDinkBlock::Frame: bDone = bInstantMode || NowMs > I.BlockUntilMs; break;
 		case EDinkBlock::Button: bDone = bInstantMode; break;
+		case EDinkBlock::Bow:
+			// The release runs the script on itself (UDinkGameplay::ProcessBow). Instant mode (tests, smoke run) has no held key: the draw ends at
+			// once with the power it has (0). A bow that is no longer drawn for this instance (load, reset) lets it go on too.
+			bDone = bInstantMode || !Gameplay || Gameplay->GetBowInstance() != I.Id;
+			if (bDone && Gameplay)
+			{
+				Gameplay->EndBowBlock(I.Id);
+			}
+			break;
 		default: bDone = true; break;
 		}
 		if (bDone)
@@ -990,10 +999,11 @@ void UDinkStorySubsystem::PollScreenChange()
 	UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>();
 	if (Greybox && !Greybox->WarpSuppressed)
 	{
-		// A script that carries Dink through hardness (nohard 1) triggers no warp, as in the original (see UDinkWarpComponent).
+		// A script that carries Dink through hardness (nohard 1), or puts him somewhere (load_screen), triggers no warp, as in the original (see
+		// UDinkWarpComponent and UDinkDirector::IsDinkPlacedByScript).
 		Greybox->WarpSuppressed = [Weak = TWeakObjectPtr<UDinkDirector>(Director)](const APawn* Pawn)
 		{
-			return Weak.IsValid() && Weak->IsDinkCarriedThroughHardness();
+			return Weak.IsValid() && (Weak->IsDinkCarriedThroughHardness() || Weak->IsDinkPlacedByScript());
 		};
 	}
 	const ADinkScreenVolume* Screen = Greybox ? Greybox->GetCurrentScreen() : nullptr;
@@ -1203,7 +1213,8 @@ bool UDinkStorySubsystem::TryTalk(APawn* Pawn)
 	{
 		return false;
 	}
-	if (Director->GetDink().bFrozen)
+	// Frozen, or drawing the bow (Dink's brain runs process_bow and returns before the talk key, dink.cpp:14761-14766).
+	if (Director->GetDink().bFrozen || (Gameplay && Gameplay->IsBowActive()))
 	{
 		return false;
 	}
