@@ -1,3 +1,13 @@
+# Current roof and chimney source delivery
+
+Worktree `/home/artist/Work/DinkRoofSourceDelivery`, branch `art/roof-chimney-source`, exact master34 base `c17793772ed2a80e6d0516c4062a29f18fcbb3c2`. This branch prepares source-only `RoofChimneyV12d`:100 byte-identical reviewed payloads plus portable README/provenance/relative manifest;103 appended candidate ledger rows preserve4044 prior raw rows including2212audio. No native Content/Data/tools/Engine change. No commit/push/PR yet; independent source review pending.
+
+Full source audit passes; both actual relocated Blender5.2.2 scenes reopen normal0 with324objects/12LODs/312UCX/25packed images. Source12FBX/25PNG/48090triangles closure checked. Historical absolute author receipts remain provenance, not portable recipes. See `Docs/Verification/RoofChimneySource`. Root viewed/reviewed the original source and independently verified its final isolated50-package saved readback; world/cook/roof visual acceptance is still pending in separate `/Work/DinkRoofFirstPlaytest31`. Future canonical native import is separate.
+
+Root corrected this header after author REVIEW_READY receipt74f1dd45 was sealed; original receipt remains historical and a docs-only successor records this delta. Source100 payloads remain unchanged. Older source-delivery and runtime ownership notes below are historical, not this branch status.
+
+---
+
 # Current trousers source delivery
 
 Worktree /home/artist/Work/DinkTrouserSourceDelivery, branch art/photoreal-trousers-source, base master30 7c6e41e4035a41507a84b7e745851aa35d8cc425. Adds source-only PhotorealTrousersV33; no Content/runtime changes. Root integration runtime remains separate/frozen at /Work/DinkPhotorealArtIntegration. Source-only independent review has no blockers; commit/push/PR/CI/cold-LFS verification are in progress.
@@ -316,3 +326,11 @@ Report-helper qualification: Saved-only finalizer first raised a Python apostrop
 ## Label PR34 integration with current main
 
 Merged main33 `99f4e97ef6afefb1ee1988636209d4db4239212d` into fix/optional-screen-debug-labels after coordinating review. PR32 adds 615 candidate voice MP3 source files, two manifests, source ledger and documentation; PR33 adds tools/lfs_audit.py and root documentation. Runtime source, Content/Data, Config, dependencies and tests are unchanged relative to tested label head ea930739. All 6,941 recorded runtime files, both compiled source hashes and seven owned modules remain exact. The existing full168/168 evidence is retained by runtime equivalence; refreshed full source audit passes. GitHub batch readback:3,987 unique LFS objects,0missing;4,264 LFS files materialized locally. No build/native/GPU/usergame action. Docs/Verification/ScreenInfoDefault/upstream-equivalence.json records scope and qualified first partial merge checkout/authentication and prefix-filter guard failures; raw partial files/audit retained under Saved/ScreenLabels/MergeAttempt1. Only owned partial-checkout files were restored before the clean retry; no global credential change. Updated draftPR publication receipt remains Saved/ScreenLabels/publication.json.
+
+## Roof/chimney V12d source-only review candidate — 9 November2026
+
+Own worktree `/home/artist/Work/DinkRoofSourceDelivery`, branch `art/roof-chimney-source`, exact master34 base `c17793772ed2a80e6d0516c4062a29f18fcbb3c2`. Coordinating Root approved canonical `SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d` source layout and proposed future `/Game/Dink/Refinements/RoofChimneyV12d` namespace.100 sealed payloads copied byte-identically with original relative subpaths; portable README/relative SHA manifest/provenance add3 wrappers. Historical absolute receipts/statuses remain unchanged and explicitly historical, not portable recipes or approval. No location-dependent author tools/Engine/native Content/Data changes.
+
+Hydrated4264 existing LFS files from shared local storage; no remote/cold-LFS claim. Appended103 candidate ledger rows preserving4044 prior raw rows and2212 audio rows. Full source audit passes, zero missing/hash/secret errors; separate new-source closure verifies100 payloads and38 packet records (blend+12FBX+25PNG),48090 render triangles. Actual relocated Blender5.2.2LTS reopened both editable sources,324 exact object records/12renderLODs/312hulls and25 exact packed images/all active image nodes packed; no save/export/render. See `Docs/Verification/RoofChimneySource` and raw `Saved/RoofSourceDelivery`.
+
+No commit/push/PR yet: Root must review this concrete source-only result first. Native production route prefers fresh bounded import from canonical source/new namespace, to decide after ongoing temporary roof-world tests; never filesystem-rename the50QA packages. Existing saved-native25pixels/15graphs/312hulls PASS is qualified historical evidence, not storedTangentY/cook/world/roofgame/photographic approval. Earlier failures remain preserved in original QA. Source finish remains incomplete.

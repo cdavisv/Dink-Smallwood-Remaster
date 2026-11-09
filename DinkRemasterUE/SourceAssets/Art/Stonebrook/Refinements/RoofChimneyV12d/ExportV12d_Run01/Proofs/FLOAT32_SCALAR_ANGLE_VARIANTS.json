@@ -1,0 +1,2683 @@
+{
+  "scope": "CPU candidate positions rounded float32 before subtraction, explicit scalar dot and inverse/division normalization. Diagnostic only, no actualFBX/private Engine epsilon acceptance.",
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 3468,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 1074,
+              "parent": 1076,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 1082,
+              "parent": 1092,
+              "corner": 0,
+              "margin": 0.0
+            }
+          ]
+        },
+        "propagated_geometry": {
+          "corners": 267,
+          "minimum_worst_cosine_margin": 1.1920928955078125e-07,
+          "cosine_rounding_to_one": []
+        },
+        "artist": {
+          "corners": 723,
+          "minimum_worst_cosine_margin": 1.7881393432617188e-07,
+          "cosine_rounding_to_one": []
+        }
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 47736,
+          "minimum_worst_cosine_margin": -1.1920928955078125e-07,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 7912,
+              "parent": 7912,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 7912,
+              "parent": 7912,
+              "corner": 2,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 7913,
+              "parent": 7913,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 7913,
+              "parent": 7913,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 9616,
+              "parent": 9616,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 9616,
+              "parent": 9616,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 10878,
+              "parent": 10878,
+              "corner": 2,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 11793,
+              "parent": 11793,
+              "corner": 0,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 25899,
+          "minimum_worst_cosine_margin": -1.1920928955078125e-07,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 4122,
+              "parent": 4122,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 5393,
+              "parent": 5393,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 5963,
+              "parent": 5963,
+              "corner": 0,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 6222,
+              "parent": 6220,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 6388,
+              "parent": 6380,
+              "corner": 2,
+              "margin": -1.1920928955078125e-07
+            }
+          ]
+        },
+        "propagated_geometry": {
+          "corners": 117,
+          "minimum_worst_cosine_margin": 1.5497207641601562e-06,
+          "cosine_rounding_to_one": []
+        }
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 14094,
+          "minimum_worst_cosine_margin": -1.1920928955078125e-07,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 1709,
+              "parent": 1709,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2025,
+              "parent": 2025,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 4296,
+              "parent": 4296,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 4599,
+              "parent": 4599,
+              "corner": 0,
+              "margin": -1.1920928955078125e-07
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 14958,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 2477,
+              "parent": 2477,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2497,
+              "parent": 2497,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2872,
+              "parent": 2872,
+              "corner": 0,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 10422,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 2404,
+              "parent": 2404,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2410,
+              "parent": 2410,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2416,
+              "parent": 2416,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2417,
+              "parent": 2417,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2417,
+              "parent": 2417,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2418,
+              "parent": 2418,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2419,
+              "parent": 2419,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2419,
+              "parent": 2419,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2672,
+              "parent": 2672,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2674,
+              "parent": 2674,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2674,
+              "parent": 2674,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2675,
+              "parent": 2675,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2676,
+              "parent": 2676,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2676,
+              "parent": 2676,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2686,
+              "parent": 2686,
+              "corner": 2,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 798,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 25,
+              "parent": 25,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 25,
+              "parent": 25,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 26,
+              "parent": 26,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 30,
+              "parent": 30,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 34,
+              "parent": 34,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 34,
+              "parent": 34,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 36,
+              "parent": 36,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 37,
+              "parent": 37,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 38,
+              "parent": 38,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 42,
+              "parent": 42,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 43,
+              "parent": 43,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 62,
+              "parent": 62,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 64,
+              "parent": 64,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 68,
+              "parent": 68,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 69,
+              "parent": 69,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 70,
+              "parent": 70,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 71,
+              "parent": 71,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 71,
+              "parent": 71,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 72,
+              "parent": 72,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 73,
+              "parent": 73,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 73,
+              "parent": 73,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 75,
+              "parent": 75,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 76,
+              "parent": 76,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 77,
+              "parent": 77,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 78,
+              "parent": 78,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 78,
+              "parent": 78,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 164,
+              "parent": 164,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 165,
+              "parent": 165,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 165,
+              "parent": 165,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 166,
+              "parent": 166,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 167,
+              "parent": 167,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 167,
+              "parent": 167,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 169,
+              "parent": 169,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 170,
+              "parent": 170,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 170,
+              "parent": 170,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 171,
+              "parent": 171,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 172,
+              "parent": 172,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 172,
+              "parent": 172,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 174,
+              "parent": 174,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 174,
+              "parent": 174,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 176,
+              "parent": 176,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 176,
+              "parent": 176,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 177,
+              "parent": 177,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 178,
+              "parent": 178,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 179,
+              "parent": 179,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 179,
+              "parent": 179,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 181,
+              "parent": 181,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 181,
+              "parent": 181,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 183,
+              "parent": 183,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 204,
+              "parent": 204,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 209,
+              "parent": 209,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 211,
+              "parent": 211,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 211,
+              "parent": 211,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 216,
+              "parent": 216,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 216,
+              "parent": 216,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 1,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 798,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 26,
+              "parent": 26,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 28,
+              "parent": 28,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 33,
+              "parent": 33,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 38,
+              "parent": 38,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 40,
+              "parent": 40,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 43,
+              "parent": 43,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 44,
+              "parent": 44,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 45,
+              "parent": 45,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 46,
+              "parent": 46,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 46,
+              "parent": 46,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 48,
+              "parent": 48,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 49,
+              "parent": 49,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 49,
+              "parent": 49,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 50,
+              "parent": 50,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 51,
+              "parent": 51,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 51,
+              "parent": 51,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 53,
+              "parent": 53,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 54,
+              "parent": 54,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 55,
+              "parent": 55,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 56,
+              "parent": 56,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 56,
+              "parent": 56,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 58,
+              "parent": 58,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 58,
+              "parent": 58,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 61,
+              "parent": 61,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 62,
+              "parent": 62,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 66,
+              "parent": 66,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 164,
+              "parent": 164,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 165,
+              "parent": 165,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 165,
+              "parent": 165,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 166,
+              "parent": 166,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 167,
+              "parent": 167,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 167,
+              "parent": 167,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 169,
+              "parent": 169,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 170,
+              "parent": 170,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 170,
+              "parent": 170,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 171,
+              "parent": 171,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 172,
+              "parent": 172,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 172,
+              "parent": 172,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 174,
+              "parent": 174,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 174,
+              "parent": 174,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 176,
+              "parent": 176,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 176,
+              "parent": 176,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 177,
+              "parent": 177,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 178,
+              "parent": 178,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 179,
+              "parent": 179,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 179,
+              "parent": 179,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 181,
+              "parent": 181,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 181,
+              "parent": 181,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 183,
+              "parent": 183,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 204,
+              "parent": 204,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 209,
+              "parent": 209,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 211,
+              "parent": 211,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 211,
+              "parent": 211,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 216,
+              "parent": 216,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 216,
+              "parent": 216,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 1,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 798,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 25,
+              "parent": 25,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 25,
+              "parent": 25,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 26,
+              "parent": 26,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 30,
+              "parent": 30,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 34,
+              "parent": 34,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 34,
+              "parent": 34,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 36,
+              "parent": 36,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 37,
+              "parent": 37,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 38,
+              "parent": 38,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 42,
+              "parent": 42,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 43,
+              "parent": 43,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 62,
+              "parent": 62,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 64,
+              "parent": 64,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 68,
+              "parent": 68,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 69,
+              "parent": 69,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 70,
+              "parent": 70,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 71,
+              "parent": 71,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 71,
+              "parent": 71,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 72,
+              "parent": 72,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 73,
+              "parent": 73,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 73,
+              "parent": 73,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 75,
+              "parent": 75,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 76,
+              "parent": 76,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 77,
+              "parent": 77,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 78,
+              "parent": 78,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 78,
+              "parent": 78,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 180,
+              "parent": 180,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 180,
+              "parent": 180,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 183,
+              "parent": 183,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 184,
+              "parent": 184,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 185,
+              "parent": 185,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 185,
+              "parent": 185,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 187,
+              "parent": 187,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 187,
+              "parent": 187,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 188,
+              "parent": 188,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 189,
+              "parent": 189,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 190,
+              "parent": 190,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 191,
+              "parent": 191,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 191,
+              "parent": 191,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 192,
+              "parent": 192,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 193,
+              "parent": 193,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 193,
+              "parent": 193,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 195,
+              "parent": 195,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 196,
+              "parent": 196,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 196,
+              "parent": 196,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 197,
+              "parent": 197,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 198,
+              "parent": 198,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 198,
+              "parent": 198,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 201,
+              "parent": 201,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 201,
+              "parent": 201,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 206,
+              "parent": 206,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 206,
+              "parent": 206,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 214,
+              "parent": 214,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 219,
+              "parent": 219,
+              "corner": 1,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 798,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 24,
+              "parent": 24,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 26,
+              "parent": 26,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 27,
+              "parent": 27,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 28,
+              "parent": 28,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 29,
+              "parent": 29,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 31,
+              "parent": 31,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 32,
+              "parent": 32,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 33,
+              "parent": 33,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 38,
+              "parent": 38,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 39,
+              "parent": 39,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 40,
+              "parent": 40,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 41,
+              "parent": 41,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 43,
+              "parent": 43,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 44,
+              "parent": 44,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 45,
+              "parent": 45,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 46,
+              "parent": 46,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 46,
+              "parent": 46,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 48,
+              "parent": 48,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 49,
+              "parent": 49,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 49,
+              "parent": 49,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 50,
+              "parent": 50,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 51,
+              "parent": 51,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 51,
+              "parent": 51,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 53,
+              "parent": 53,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 54,
+              "parent": 54,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 55,
+              "parent": 55,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 56,
+              "parent": 56,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 56,
+              "parent": 56,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 58,
+              "parent": 58,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 58,
+              "parent": 58,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 60,
+              "parent": 60,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 61,
+              "parent": 61,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 62,
+              "parent": 62,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 63,
+              "parent": 63,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 65,
+              "parent": 65,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 66,
+              "parent": 66,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 67,
+              "parent": 67,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 180,
+              "parent": 180,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 180,
+              "parent": 180,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 182,
+              "parent": 182,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 183,
+              "parent": 183,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 184,
+              "parent": 184,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 185,
+              "parent": 185,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 185,
+              "parent": 185,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 187,
+              "parent": 187,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 187,
+              "parent": 187,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 188,
+              "parent": 188,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 189,
+              "parent": 189,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 190,
+              "parent": 190,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 191,
+              "parent": 191,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 191,
+              "parent": 191,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 192,
+              "parent": 192,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 193,
+              "parent": 193,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 193,
+              "parent": 193,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 195,
+              "parent": 195,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 196,
+              "parent": 196,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 196,
+              "parent": 196,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 197,
+              "parent": 197,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 198,
+              "parent": 198,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 198,
+              "parent": 198,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 200,
+              "parent": 200,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 201,
+              "parent": 201,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 201,
+              "parent": 201,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 202,
+              "parent": 202,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 203,
+              "parent": 203,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 205,
+              "parent": 205,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 206,
+              "parent": 206,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 206,
+              "parent": 206,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 207,
+              "parent": 207,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 208,
+              "parent": 208,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 210,
+              "parent": 210,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 212,
+              "parent": 212,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 213,
+              "parent": 213,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 214,
+              "parent": 214,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 215,
+              "parent": 215,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 217,
+              "parent": 217,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 218,
+              "parent": 218,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 219,
+              "parent": 219,
+              "corner": 1,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 14613,
+          "minimum_worst_cosine_margin": -1.1920928955078125e-07,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 881,
+              "parent": 909,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 888,
+              "parent": 916,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 888,
+              "parent": 916,
+              "corner": 2,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 905,
+              "parent": 933,
+              "corner": 0,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 905,
+              "parent": 933,
+              "corner": 2,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 2187,
+              "parent": 2224,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2194,
+              "parent": 2231,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2203,
+              "parent": 2240,
+              "corner": 0,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 2224,
+              "parent": 2261,
+              "corner": 0,
+              "margin": -1.1920928955078125e-07
+            },
+            {
+              "triangle": 2231,
+              "parent": 2268,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2246,
+              "parent": 2283,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2778,
+              "parent": 2837,
+              "corner": 2,
+              "margin": 0.0
+            }
+          ]
+        },
+        "propagated_geometry": {
+          "corners": 159,
+          "minimum_worst_cosine_margin": 0.0003635883331298828,
+          "cosine_rounding_to_one": []
+        }
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "categories": {
+        "inherited_exact_geometry": {
+          "corners": 8622,
+          "minimum_worst_cosine_margin": 0.0,
+          "cosine_rounding_to_one": [
+            {
+              "triangle": 2030,
+              "parent": 2030,
+              "corner": 1,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2292,
+              "parent": 2292,
+              "corner": 0,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2301,
+              "parent": 2301,
+              "corner": 2,
+              "margin": 0.0
+            },
+            {
+              "triangle": 2349,
+              "parent": 2349,
+              "corner": 2,
+              "margin": 0.0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "status": "CPU_CHART_PHASE_EXPERIMENT",
+  "whole_charts": 1051,
+  "explicitly_split_original_chart_triangles": [],
+  "translated_charts": [
+    {
+      "triangles": [
+        1163,
+        1164,
+        1165,
+        1166
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1169,
+        1170,
+        1171,
+        1172
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        245
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        247
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        255
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        259
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        317
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        319
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        431
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        656
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        696
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        739
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        740
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        745
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        746
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        759
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        760
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        763
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        764
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1126
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1127
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1130
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1131
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1144
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1147
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1149
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1167
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1168
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1212
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1213
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1214
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1215
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1219
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1223
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1225
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1230
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1238
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    }
+  ],
+  "zero_tangent_triangles": [],
+  "UV_weld_risks": {
+    "name": "SM_Chimney_Stonebrook_V8",
+    "compared_same_position_material_pairs": 11675,
+    "harmful_UV_weld_pairs": 0,
+    "examples": [],
+    "risks": []
+  }
+}

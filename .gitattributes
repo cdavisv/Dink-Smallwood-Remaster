@@ -11,3 +11,9 @@
 *.mp3 binary
 *.rttex binary
 *.rtfont binary
+
+# Roof/chimney source diagnostics: keep raw buffers and large frozen reports in LFS.
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/**/*.bin filter=lfs diff=lfs merge=lfs -text
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ChartSeparatedCandidateV6/CANDIDATE.json filter=lfs diff=lfs merge=lfs -text
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/PlanarPatchExperimentV6/PLANAR_PATCH_RESULT.json filter=lfs diff=lfs merge=lfs -text
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/**/*.gz filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,373 @@
+{
+  "passed": true,
+  "staged_LFS_paths": 72,
+  "staged_LFS_total_bytes": 273599347,
+  "all_stage_pointer_OID_size_match_materialized_source": true,
+  "full_source_audit_binary_files_verified": 4307,
+  "extra_LFS_diagnostics_outside_auditor_binary_suffix_inventory": 29,
+  "qualification": "Full source auditor checks known binary suffixes; all103 new ledger rows and source100 also hash checked. This separate check verifies all72 actual staged LFS pointers including24bin+3gz+2largeJSON. No remote/cold-fetch claim.",
+  "records": [
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Chimney_Stonebrook_V8_isaved.bin",
+      "sha256": "c4a60a3f33ae0798dbf44522eec4f72a257117d413cbc1dbd34ceb07a406a5ff",
+      "size": 142660
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Chimney_Stonebrook_V8_isaved.mikk.bin",
+      "sha256": "3f8dcdff9448977221421c8b1ab4e0e8b0932fb63a6dcd6d405af232fb6b592c",
+      "size": 71332
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD0_isaved.bin",
+      "sha256": "923ffba8939d98f31dcbaeedc968e99615f27d2800479ce742b4a4872a08d334",
+      "size": 1527556
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD0_isaved.mikk.bin",
+      "sha256": "170d092301f8b0b1fb08cf6d3fe9000d4b181e94d1250080d46d8605ca67f522",
+      "size": 763780
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD1_isaved.bin",
+      "sha256": "53700b2477dcfb01595a6977f358143ef13ffe4b2df40e1ccc087278e26869e6",
+      "size": 832516
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD1_isaved.mikk.bin",
+      "sha256": "025d842fb9fe924c13d1b2facc744d6ed95f42e3967a41358163a41b3ce3da80",
+      "size": 416260
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD2_isaved.bin",
+      "sha256": "54bcf9d8c77cb16fd359e48b464918c2c4e9a8c85e501c45a44edac55e3f6505",
+      "size": 451012
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_Fireplace_Stonebrook_V3Contact_LOD2_isaved.mikk.bin",
+      "sha256": "68594182c44fdf9537f4d35bc16947a9e35f67574df8b276ba337a0c8438a4b3",
+      "size": 225508
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_EN_01_isaved.bin",
+      "sha256": "6e3008185de8d30b82b8acec085a95954c878f4d3524233112222f9605752015",
+      "size": 478660
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_EN_01_isaved.mikk.bin",
+      "sha256": "1f1a50d25bb7ff5976163ba82a238e8c217750088cf2e27155da397d1ec147b3",
+      "size": 239332
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_ES_01_isaved.bin",
+      "sha256": "27176d1ca3715f4da1252e358d29ae47cd3d4c3c3852974e308cd5c61e03539b",
+      "size": 333508
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_ES_01_isaved.mikk.bin",
+      "sha256": "20a23641e782bd04877c6ef9bb432b95a7c7eacc3fd0d58b95137a169579a837",
+      "size": 166756
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_EN_01_isaved.bin",
+      "sha256": "d1fcf722976538794565d0ccc01f28e27913cb7d3ed7332af012c95e4bee6cc0",
+      "size": 25540
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_EN_01_isaved.mikk.bin",
+      "sha256": "e0355643980a325bffce1682c53e803719f4c96ddbfe117adb82db1abea1e110",
+      "size": 12772
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_ES_01_isaved.bin",
+      "sha256": "fa7652371436885db8915a0b0ba3e95468189d48b5cb9e7d1a05e8acb02d5511",
+      "size": 25540
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_ES_01_isaved.mikk.bin",
+      "sha256": "bb2d06ddbd75328e6ab92fbb49c85a6de07274134cbd1e18bc13e5a571308d03",
+      "size": 12772
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_WN_01_isaved.bin",
+      "sha256": "fb53b64f95561c4b2f610347ec96e92ba65746dad3fb625575400f6c694640b9",
+      "size": 25540
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_WN_01_isaved.mikk.bin",
+      "sha256": "ecb3207bef5d29a7650d42af66a376b946b9bf0963a1abf01974f4aa5f2b1571",
+      "size": 12772
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_WS_01_isaved.bin",
+      "sha256": "09f87e167107cd68efd7554958043a159ab959e1383228138d84b9f65ade48a2",
+      "size": 25540
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_Gable_WS_01_isaved.mikk.bin",
+      "sha256": "1a4fad492a75cbcba3535364d40668082a29f79ed69b225e7e79dbf9eff08a22",
+      "size": 12772
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_WN_01_isaved.bin",
+      "sha256": "b7370e3feface6e4039dc70b9920d9129c6cfdb0ee5c24afdf2db7dc64c155ca",
+      "size": 472708
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_WN_01_isaved.mikk.bin",
+      "sha256": "a46a8a1145397780f7b511a390e3abbc52600bcdef65733c6c1415a18cfab2b1",
+      "size": 236356
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_WS_01_isaved.bin",
+      "sha256": "aba8737cbeee32ac9ba52689958f87e30047c7f229c7fb4e4ecf6594a886606b",
+      "size": 275908
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/ActualSavedCPU/SM_IndoorRoof_WS_01_isaved.mikk.bin",
+      "sha256": "4c1ae93f68ba4d331e0570cb8078e4a6d07fa37556dea679ef61621d5e163cf9",
+      "size": 137956
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ActualFBXV12d/source_reference_v12.json.gz",
+      "sha256": "d980fdc1b6a89037efd8c27a5d7df757fe47b87afecd5a5cb9669eea90867cab",
+      "size": 3812903
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ChartSeparatedCandidateV6/CANDIDATE.json",
+      "sha256": "486f9acfc4a74b47babf43eae6bd4e9987453e77a3ddbe30dad951b1db183ab0",
+      "size": 29749834
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "sha256": "c7933e1d610c24bdc1b1df4e8510c6b302a810aae4d04799a571c02bf16ef184",
+      "size": 267820
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "sha256": "fc576e7241357c2b38c3325e979d6699b9bc5c09ecd377cf472007a84086a043",
+      "size": 732796
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "sha256": "ebd4193ee89dbe7fc5b79e9c49412ae7b0e717b766285275695e9a67ade0c43a",
+      "size": 440252
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "sha256": "707f4b3ad985426ec1fa0536db015cbf362a598e3c55438708b60b7f26ed137a",
+      "size": 252028
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_EN_01.fbx",
+      "sha256": "7b40cac294335a955a8fc795e5c580242b7a6e41ed2ae5a4483d3a6849f5ad2d",
+      "size": 258492
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_ES_01.fbx",
+      "sha256": "d5b0c8a8e9225b878fb66c8f38821ab3e5c094b95430f1b66b5a7949c06615bd",
+      "size": 198812
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+      "sha256": "23f6ee649697e34a99fd47bdb06018856311ea16f37a7343033dedede986f013",
+      "size": 30812
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+      "sha256": "277fc30e27714564e70fa4c64a618c6e75498bc3c7cbec698e86e8ef9f5b0f69",
+      "size": 30812
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+      "sha256": "ade212d8fda49912e9f2eb7dd1dcb64151e09f18c43b03dcd0e45e0eae057a81",
+      "size": 30812
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+      "sha256": "84aa4bee77c83062b9293d9a5bb97030973048e4da571fc85024d0b0337971f9",
+      "size": 30844
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_WN_01.fbx",
+      "sha256": "6a3b6c69adc4afd6427d5fc58310371a5a5e6f2347d5518f41ecb424ef475a9a",
+      "size": 286268
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/FBX/SM_IndoorRoof_WS_01.fbx",
+      "sha256": "c0c69468e822c3749afb8095190d6146f33c7f1bfcd828f7fe5159c8c969c942",
+      "size": 175308
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Proofs/source_reference_v12.json.gz",
+      "sha256": "7b60069e65783cb8fe87dfee714c002f4222aa90d00109f48b195faa3239000c",
+      "size": 3809357
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Source/RoofChimney_ArtistRepair_v12d.blend",
+      "sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+      "size": 64256752
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_FireplaceV2_Atlas_BC.png",
+      "sha256": "82bb4f9265b48ad0c4fa2be89a535e5d8a712c167f738477df5926ede66368a4",
+      "size": 3483434
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_FireplaceV2_Atlas_E.png",
+      "sha256": "235ac449c24ce2a3313664399f41a6bef1a49349af0997a5c1c621a45eaa12dc",
+      "size": 92351
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_FireplaceV2_Atlas_N.png",
+      "sha256": "8e713117312c74953120a13b96a323e0b224c812150f805e748a6ac903d94020",
+      "size": 5586501
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_FireplaceV2_Atlas_ORM.png",
+      "sha256": "4a1125a42582b6001a5f172c2848f205ec0f37f22623fc768b3a1f4311b81b7b",
+      "size": 2910653
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_GablePlaster_BC.png",
+      "sha256": "8f7e5151c6d9b0f691fc6022377c0c7422f80d95b41c3da3cf0b7386869d32bf",
+      "size": 1319946
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_GablePlaster_N.png",
+      "sha256": "0f29901676d3bc2fb1b53b0d90990017bbd25627e275ef53ae9a16431717697c",
+      "size": 5318081
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_GablePlaster_ORM.png",
+      "sha256": "d3e9e0e8c19180fe6a1229032afb4bc57ab6100e0b7460d7a77fb51e9babf458",
+      "size": 499120
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakEndgrain_BC.png",
+      "sha256": "12ead883bdbe823a5a7c1b4ec61b65834591754195918a1c3bdc9e25f088a79b",
+      "size": 5673794
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakEndgrain_N.png",
+      "sha256": "387c5d6386d19ce5eb68fd2c21b39ce9c07b041afcb29803eb622753cbf8fac2",
+      "size": 6234156
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakEndgrain_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "size": 871514
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakLonggrain_BC.png",
+      "sha256": "34cda85e0dc193a5b09d1a3b3cfc4444f0006ef6f836fc5a5191026dd44c2209",
+      "size": 4817062
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakLonggrain_N.png",
+      "sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "size": 1085751
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_OakLonggrain_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "size": 871514
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_RoofBoards_BC.png",
+      "sha256": "dea3622f23f398bda5603fd0a6bdbe09eddfef584d342b24010833e189971ac7",
+      "size": 5056023
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_RoofBoards_N.png",
+      "sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "size": 1085751
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_InteriorRoof_RoofBoards_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "size": 871514
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_CoursedLimestone_BC.png.png",
+      "sha256": "1446d731434535e15731cbb9d60175e340638a07ea9bc3fc7452dc4d1ba59408",
+      "size": 1891542
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_CoursedLimestone_N.png.png",
+      "sha256": "3c1029c7c1aa33bf71bc41f4701e52d2d49d4e24bca0917be558dec007f9e8d4",
+      "size": 5364595
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_CoursedLimestone_ORM.png.png",
+      "sha256": "8d87b04871a9ce9a973551154ae51dbc2532710546b03034189390a2b6b15794",
+      "size": 1070754
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_DullZinc_BC.png.png",
+      "sha256": "570f53d12f51b44894b48e15ed8ed941bd3ae5a34ac29df31005500e607348ac",
+      "size": 568016
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_DullZinc_N.png.png",
+      "sha256": "d57bb309f21c8933d6ae2f8ca1a65306705e1e042f91f08018e7e3a7210cfcdc",
+      "size": 1475217
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_DullZinc_ORM.png.png",
+      "sha256": "d1c92dc0195c85f36b26d1f880a26cc1102243d3a47203050e9170ad78c24012",
+      "size": 788413
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_SootLining_BC.png.png",
+      "sha256": "953b4920becc32ab3a91d49df59b55910ff685046591d677a2568903864ce6e0",
+      "size": 509381
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_SootLining_N.png.png",
+      "sha256": "7641460961a61d47784b20359d6ac7954920afb4c026efce15785870354a51ea",
+      "size": 4548880
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Textures/T_V8_SootLining_ORM.png.png",
+      "sha256": "1b52b4d9e2d8d5cb5000216b310ec800cf23098b6267536c4f3e4e069e92d9f0",
+      "size": 653409
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/MatchedViewsV12d/assembled-asset-source-v12d.png",
+      "sha256": "e17f779a56c7bdb156a492de15b608d3efb55ae461283919a87afdc90457de9c",
+      "size": 586872
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/MatchedViewsV12d/chimney-seated-apron-v12d.png",
+      "sha256": "734b1809ecdc9a130848e0f99fe682b12747b9ec4e2d8312f6949ba0f85a35a7",
+      "size": 504739
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/MatchedViewsV12d/firebox-lookup-source-v12d.png",
+      "sha256": "5f13c3aef95b34afaf2ddbb62de092d0babf1d1268d45173f06fbcba18e153de",
+      "size": 499045
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/MatchedViewsV12d/liner-channel-inspection-v12d.png",
+      "sha256": "d4d8e70e1590037913f350614bfbc2bbf0f4a75566aa169c2b09f635177fe3ef",
+      "size": 447098
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/PlanarPatchExperimentV6/PLANAR_PATCH_RESULT.json",
+      "sha256": "8ea84869b75b9abe680bd877656224707673ae9d0dc53fb7024f610a1fa801d7",
+      "size": 29559154
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/SavedCandidateV12d/RoofChimney_ArtistRepair_v12d.blend",
+      "sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+      "size": 64256752
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/SavedCandidateV12d/source_reference_v12.json.gz",
+      "sha256": "7b60069e65783cb8fe87dfee714c002f4222aa90d00109f48b195faa3239000c",
+      "size": 3809357
+    }
+  ],
+  "remote_uploaded": false,
+  "cold_fetch_verified": false
+}

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "base_commit": "c17793772ed2a80e6d0516c4062a29f18fcbb3c2",
+  "source_payloads_exact": 100,
+  "portable_wrapper_files": 3,
+  "payload_files_total": 103,
+  "manifest_packet_sources_verified": 38,
+  "FBX": 12,
+  "textures": 25,
+  "render_triangles": 48090,
+  "actual_reopen_hulls": 312,
+  "source_new_files_with_LFS_attribute": 72,
+  "existing_LFS_checkout_materialized": 4264,
+  "remote_or_coldclone_claim": false,
+  "prior_ledger_rows": 4044,
+  "candidate_rows_added": 103,
+  "prior_raw_ledger_preserved": true,
+  "prior_audio_rows_unchanged": 2212,
+  "native_Content_Data_Tools_Engine_changes": false,
+  "commit_push_PR_performed": false,
+  "root_LFS_successor": "Four scoped attributes preserve byte-identical source;72actual staged pointers independently match materialized SHA/size. See LFS_COVERAGE.json."
+}
