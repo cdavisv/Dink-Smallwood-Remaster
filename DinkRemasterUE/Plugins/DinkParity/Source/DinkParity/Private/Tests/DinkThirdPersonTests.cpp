@@ -1,6 +1,8 @@
 #include "DinkTestHelpers.h"
 #include "DinkBodyDynamics.h"
 #include "DinkHeroPhysicality.h"
+#include "DinkStatsComponent.h"
+#include "DinkEarlyPostureAnimInstance.h"
 #include "DinkHumanoidComponent.h"
 #include "Animation/BlendSpace.h"
 #include "Engine/Engine.h"
@@ -159,6 +161,96 @@ bool FDinkClumsyFrameRatesTest::RunTest(const FString&)
     for (int32 I=0;I<60;++I) Coarse.Update(1.f/30.f,200,true,true,150);
     TestTrue(TEXT("constant motion is stable across common frame rates"),
         Fine.GetRotation().Equals(Coarse.GetRotation(),.01) && Fine.GetOffset().Equals(Coarse.GetOffset(),.01));
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkHeroGrowthTest,"Dink.Movement.HeroGrowth",DINK_TEST_FLAGS)
+bool FDinkHeroGrowthTest::RunTest(const FString&)
+{
+    TestEqual(TEXT("new-game Dink has no confidence"),FDinkHeroPhysicality::ConfidenceFor(1,3,0),0.f);
+    float Previous=0.f;
+    for (int32 Level=2; Level<=14; ++Level)
+    {
+        const float C=FDinkHeroPhysicality::ConfidenceFor(Level,3+Level,Level/2);
+        TestTrue(TEXT("confidence never drops as Dink levels"),C>=Previous && C<=1.f);
+        Previous=C;
+    }
+    TestTrue(TEXT("a late-game hero is fully confident"),FDinkHeroPhysicality::ConfidenceFor(12,20,8)>.99f);
+    TestTrue(TEXT("mid-game Dink is visibly part-way"),
+        FMath::IsWithin(FDinkHeroPhysicality::ConfidenceFor(6,8,3),.25f,.75f));
+
+    FDinkHeroPhysicality Timid, Hero;
+    Hero.SetTargetConfidence(1.f,true);
+    TestTrue(TEXT("timid Dink hunches and looks down; the hero stands up"),
+        Timid.GetBaselinePitch()<-3.f && Hero.GetBaselinePitch()>0.f);
+    TestTrue(TEXT("scrawny frame fills out"),Timid.GetPhysiqueScale().X<.9 && Hero.GetPhysiqueScale().Equals(FVector::OneVector));
+    TestTrue(TEXT("landing stumbles become rare"),FMath::IsNearlyEqual(Hero.ScaleChance(.45f,.08f),.036f,1e-4f)
+        && FMath::IsNearlyEqual(Timid.ScaleChance(.45f,.08f),.45f));
+    auto Amplitude=[](FDinkHeroPhysicality& P,float Speed)
+    {
+        double Roll=0,Yaw=0;
+        for (int32 I=0;I<240;++I)
+        {
+            P.Update(1.f/60.f,Speed,true,true);
+            if (I>60) { Roll=FMath::Max(Roll,FMath::Abs(P.GetRotation().Roll)); Yaw=FMath::Max(Yaw,FMath::Abs(P.GetRotation().Yaw)); }
+        }
+        return FVector2D(Roll,Yaw);
+    };
+    const FVector2D TimidRun=Amplitude(Timid,600), HeroRun=Amplitude(Hero,600);
+    AddInfo(FString::Printf(TEXT("run roll/yaw timid %.2f/%.2f hero %.2f/%.2f"),TimidRun.X,TimidRun.Y,HeroRun.X,HeroRun.Y));
+    TestTrue(TEXT("timid Dink runs goofy, all wobble"),TimidRun.X>5. && TimidRun.Y>3.);
+    TestTrue(TEXT("confident Dink runs with an even, coordinated stride"),HeroRun.X<TimidRun.X*.45 && HeroRun.Y<TimidRun.Y*.5);
+
+    FDinkHeroPhysicality Easing;
+    Easing.SetTargetConfidence(1.f);
+    Easing.Update(1.f,0,true,true);
+    TestTrue(TEXT("a level-up straightens him gradually, not in one frame"),FMath::IsWithin(Easing.GetConfidence(),.2f,.5f));
+    Easing.Cancel();
+    TestTrue(TEXT("teleports and cutscenes keep the confidence he earned"),Easing.GetConfidence()>.2f);
+    for (int32 I=0;I<8;++I) Easing.Update(.5f,0,true,true);
+    TestEqual(TEXT("confidence settles at its target"),Easing.GetConfidence(),1.f);
+
+    FDinkHeroPhysicality Flail;
+    TestTrue(TEXT("a clumsy takeoff flails"),Flail.TakeOff(1.f));
+    double AirRoll=0;
+    for (int32 I=0;I<20;++I) { Flail.Update(1.f/60.f,300,false,true); AirRoll=FMath::Max(AirRoll,FMath::Abs(Flail.GetRotation().Roll)); }
+    TestTrue(TEXT("he pinwheels in the air"),Flail.IsFlailing() && AirRoll>3.);
+    TestTrue(TEXT("a flailing hop always lands badly, even at zero chance"),Flail.Land(300,.35f,0.f));
+    TestTrue(TEXT("the bad landing is a pratfall"),Flail.IsPratfall());
+    double Lowest=0, Furthest=0;
+    for (int32 I=0;I<120 && Flail.IsStumbling();++I)
+    {
+        Flail.Update(1.f/60.f,0,true,true);
+        Lowest=FMath::Min(Lowest,Flail.GetRotation().Pitch);
+        Furthest=FMath::Max(Furthest,Flail.GetOffset().Size());
+        TestTrue(TEXT("pratfall stays finite and bounded"),!Flail.GetRotation().ContainsNaN() &&
+            Flail.GetRotation().Pitch>=-40. && Flail.GetOffset().Size()<=24.001);
+    }
+    TestTrue(TEXT("pratfall faceplants well past an ordinary stumble"),Lowest<-25.);
+    TestTrue(TEXT("pratfall has a real forward fall"),Furthest>10.);
+    TestFalse(TEXT("he gets back up within two seconds"),Flail.IsStumbling());
+    FDinkHeroPhysicality Clean; TestFalse(TEXT("zero flail chance gives a clean takeoff"),Clean.TakeOff(0.f));
+    TestTrue(TEXT("landing a clean hop still needs its chance"),!Clean.Land(300,.35f,0.f));
+    FDinkHeroPhysicality Freeze; Freeze.TakeOff(1.f); Freeze.Update(.1f,0,false,false);
+    TestFalse(TEXT("a cutscene freeze clears the flail"),Freeze.IsFlailing());
+
+    FDinkHeroPhysicality Runner, Veteran;
+    Veteran.SetTargetConfidence(1.f,true);
+    int32 Trips=0, VeteranTrips=0;
+    for (int32 I=0;I<3600;++I)
+    {
+        const bool Was=Runner.IsStumbling(), VeteranWas=Veteran.IsStumbling();
+        Runner.Update(1.f/60.f,600,true,true,0,.2f); Veteran.Update(1.f/60.f,600,true,true,0,.2f);
+        Trips+=!Was && Runner.IsStumbling(); VeteranTrips+=!VeteranWas && Veteran.IsStumbling();
+    }
+    TestTrue(TEXT("timid Dink occasionally trips over his own feet running"),Trips>=2 && Trips<=20);
+    TestEqual(TEXT("the hero never trips running"),VeteranTrips,0);
+    FDinkHeroPhysicality Walker;
+    for (int32 I=0;I<3600;++I) { Walker.Update(1.f/60.f,200,true,true,0,.2f); TestFalse(TEXT("walking never trips"),Walker.IsStumbling()); if (Walker.IsStumbling()) break; }
+
+    TestTrue(TEXT("earned confidence relaxes the authored slouch too"),
+        FMath::IsNearlyEqual(UDinkEarlyPostureAnimInstance::TargetWeight(0,true,false,false,1.f),.15f,1e-4f));
+    TestEqual(TEXT("story-only relaxation is unchanged"),UDinkEarlyPostureAnimInstance::TargetWeight(7,true,false,false,0.f),.3f);
     return true;
 }
 
@@ -363,6 +455,31 @@ public:
             if (W->GetTimeSeconds()-At<.1) return false;
             Key(EKeys::SpaceBar,IE_Released);
             Test->TestTrue(TEXT("repossession restores usable jump mapping"),Move->IsFalling() && Move->Velocity.Z>0);
+            At=W->GetTimeSeconds(); Phase=12; return false;
+        }
+        if (Phase==12)
+        {
+            if (!Move->IsMovingOnGround() || W->GetTimeSeconds()-At<.3) return false;
+            Test->TestEqual(TEXT("new-game Dink has the timid hop"),Move->JumpZVelocity,ADinkGreyboxCharacter::TimidJumpZ);
+            Test->TestEqual(TEXT("new-game Dink has no confidence"),H->GetConfidence(),0.f);
+            TimidWidth=H->GetMesh()->GetRelativeScale3D().X;
+            // Level him up to a late-game hero; the body should grow into it over a few seconds.
+            H->Stats->Stats.Level=12; H->Stats->Stats.Strength=20; H->Stats->Stats.Defense=8;
+            At=W->GetTimeSeconds(); Phase=13; return false;
+        }
+        if (Phase==13)
+        {
+            if (W->GetTimeSeconds()-At<1.)
+            {
+                Test->TestTrue(TEXT("growth is gradual, not a one-frame snap"),H->GetConfidence()<.5f);
+                return false;
+            }
+            if (W->GetTimeSeconds()-At<3.5) return false;
+            Test->TestEqual(TEXT("levelled Dink is fully confident"),H->GetConfidence(),1.f);
+            Test->TestEqual(TEXT("levelled Dink hops higher"),Move->JumpZVelocity,ADinkGreyboxCharacter::ConfidentJumpZ);
+            const double Growth=H->GetMesh()->GetRelativeScale3D().X/TimidWidth;
+            Test->AddInfo(FString::Printf(TEXT("Mesh width grew by %.3f"),Growth));
+            Test->TestTrue(TEXT("scrawny frame fills out on the real mesh"),FMath::IsNearlyEqual(Growth,1./.86,.005));
             return true;
         }
         return false;
@@ -371,6 +488,7 @@ private:
     FAutomationTestBase* Test;
     double Began=0,At=0,StartZ=0,Peak=0;
     float TargetArm=0;
+    double TimidWidth=1;
     FVector RecoveryStart=FVector::ZeroVector;
     int32 Phase=0;
 };
