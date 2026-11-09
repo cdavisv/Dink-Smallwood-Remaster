@@ -1,0 +1,61 @@
+{
+  "branch": "controls/clumsier-dink",
+  "base": "0c44c344fff6f575498dde56d79c38f4c277c548",
+  "scope": "Player mesh presentation + CMC acceleration/braking/turn defaults; no skeletal/animation/physics assets or NPC changes",
+  "gait": {
+    "BaselinePitch_deg": -2.4,
+    "walk_run_caps_cm_s": [
+      200,
+      600
+    ],
+    "stride_cm": [
+      135,
+      215
+    ],
+    "uneven_phase": "phase + .22*sin(phase)",
+    "shoulder_roll_deg": "3.2*sin(gait)+.6*sin(2*gait+.6)",
+    "turn_rate_source": "observed actor yaw delta / gameDelta, wrapped across180; resets on200cm displacement",
+    "turn_lag_deg": 4,
+    "turn_roll_deg": 2,
+    "start_stop_pitch": "filtered -2.1*clampedStart -4.2*clampedStop; expattack12/release4",
+    "idle": "pitch .3*sin(time*1.3), roll .35*sin(time*.65)"
+  },
+  "landing": {
+    "chance": 0.45,
+    "min_impact_cm_s": 220,
+    "min_air_seconds": 0.18,
+    "duration_seconds": 0.85,
+    "cooldown_seconds": 1.8,
+    "form": "sin(pi*t) envelope, two correction beats, bounded forward catch",
+    "airborne": "freshjump cancels grounded recovery, retainscooldown"
+  },
+  "hero_layer_bounds": {
+    "pitch_deg": [
+      -20,
+      6
+    ],
+    "roll_deg": [
+      -9,
+      9
+    ],
+    "yaw_deg": [
+      -8,
+      8
+    ],
+    "offset_cm_max_norm": 12
+  },
+  "additional_existing_layer": "SharedBodyDynamics still contributes up to roughly5degpitch/4degroll plus tiny idle. Authoredboneposture replaces only baseline using BaselinePitch constant.",
+  "deformation_QA_samples": [
+    "idle",
+    "steadywalk200",
+    "steadyrun600",
+    "start0\u2192600 ramp900",
+    "release600\u21920",
+    "turn\u00b1300deg_s at200/600",
+    "landing t=0,.2125,.425,.6375,.85 with impact300/air.4",
+    "freeze",
+    "takeoffduringcatch",
+    "warp"
+  ],
+  "protected": "89 mesh reference bones,161 shared skeleton, all35 source poses/base locomotion clips, garment assets, NPC script roots/speeds/RNG, player capsule28/96 and low hop280/gravity1.45/hold.08 unchanged"
+}

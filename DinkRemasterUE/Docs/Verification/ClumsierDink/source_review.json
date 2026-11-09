@@ -1,0 +1,23 @@
+{
+  "scope": "Independent source review only; native build/tests/render pending",
+  "utc": "2026-11-09T05:36:20.898680+00:00",
+  "files_sha256": {
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp": "8c36e721631abba0cc10d95acfcfbfa674308e21fc831466fa51ec454a1c5151",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHeroPhysicality.h": "0d7ad3ee6bab5f5f8babaf34026e979ed5c830e9139dd522bc2ed77161ad0345",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h": "374f1e43beb7b9be55fc6aa1a4f6e8461d57f87bafe74ccc4faac7cf92224494",
+    "DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp": "a9c0a523f3cebe8d9f3335c567a2ab12624f7a4adb7e6ed4a59b2a21e7cb8811"
+  },
+  "material_blockers": [],
+  "checks": [
+    "Player-only secondary rotation/mesh offset; no new capsule/root writes or NPC dynamics edits. CMC acceleration/braking/turn rate changes intentional.",
+    "Private seeded cosmetic stream remains separate from story/combat RNG. Landing takeoff cancels grounded recovery while retaining debounce.",
+    "First observation/large location change reset and suppress turn response; yaw observation updates afterward.",
+    "Current Tick gates optional posture baseline removal with Allowed/nonteleport/positiveDelta.",
+    "Added tests address transitions, settling, left/right corners, finite bounded frame-rate responses, immediate actual player jump and stable capsule."
+  ],
+  "qualifications": [
+    "Static inspection does not establish compiled source identity, test passes or visual quality.",
+    "Earlier diff was observed before the added posture guard; final build receipt must match latest source hashes.",
+    "No new rig, skeleton or base animation acceptance; actual new-hero deformation still pending."
+  ]
+}

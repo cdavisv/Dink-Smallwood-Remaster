@@ -79,7 +79,7 @@ bool FDinkClumsyHeroTest::RunTest(const FString&)
     const FRotator Paused=A.GetRotation(); A.Update(0,200,true,true);
     TestTrue(TEXT("paused game time cannot advance stumble"),A.GetRotation().Equals(Paused));
     TestFalse(TEXT("bounce contacts cannot retrigger a stumble"),A.Land(300,.4f,1));
-    A.Update(.6f,0,true,true); TestFalse(TEXT("Dink recovers promptly"),A.IsStumbling());
+    A.Update(.8f,0,true,true); TestFalse(TEXT("Dink recovers within one second"),A.IsStumbling());
     A.Update(2,0,true,true); A.Land(300,.4f,1); A.Update(.1f,200,true,false);
     TestFalse(TEXT("cutscene freeze cancels recovery"),A.IsStumbling());
     TestTrue(TEXT("freeze removes cosmetic offset"),A.GetOffset().IsNearlyZero());
@@ -92,6 +92,73 @@ bool FDinkClumsyHeroTest::RunTest(const FString&)
     }
     TestTrue(TEXT("walking adds a visible uneven shoulder sway"),MaxWaddle>1.);
     A.Cancel(); TestTrue(TEXT("teleport/reset removes transient physicality"),A.GetOffset().IsNearlyZero() && A.GetRotation().IsNearlyZero());
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkClumsierResponseTest,"Dink.Movement.ClumsyTransitions",DINK_TEST_FLAGS)
+bool FDinkClumsierResponseTest::RunTest(const FString&)
+{
+    FDinkHeroPhysicality Moving, Stopping, Left, Right;
+    double Sway = 0.;
+    for (int32 I=0; I<180; ++I)
+    {
+        Moving.Update(1.f/60.f,200,true,true);
+        Stopping.Update(1.f/60.f,200,true,true);
+        Sway=FMath::Max(Sway,FMath::Abs(Moving.GetRotation().Roll));
+    }
+    TestTrue(TEXT("walking has a clearly visible uneven waddle"),Sway>3.);
+    for (int32 I=0; I<6; ++I)
+    {
+        Moving.Update(1.f/60.f,200,true,true);
+        Stopping.Update(1.f/60.f,0,true,true);
+    }
+    TestTrue(TEXT("an abrupt stop adds a forward catch instead of snapping upright"),
+        Stopping.GetRotation().Pitch < FDinkHeroPhysicality::BaselinePitch-.5f);
+    TestTrue(TEXT("stopping leaves a small forward weight shift"),Stopping.GetOffset().X>.2);
+    for (int32 I=0; I<180; ++I) Stopping.Update(1.f/60.f,0,true,true);
+    TestTrue(TEXT("stop reaction settles to a timid idle without residual travel"),Stopping.GetOffset().Size()<.01);
+    for (int32 I=0; I<60; ++I)
+    {
+        Left.Update(1.f/60.f,200,true,true,-300);
+        Right.Update(1.f/60.f,200,true,true,300);
+    }
+    TestTrue(TEXT("shoulders visibly lag the direction of a corner"),Left.GetRotation().Yaw-Right.GetRotation().Yaw>7.);
+    Left.Land(300,.4f,1); Left.Update(.1f,200,true,true,-300);
+    Left.Update(0,200,true,false);
+    TestTrue(TEXT("freeze cancels pose even if game time is paused"),Left.GetRotation().IsNearlyZero() && Left.GetOffset().IsNearlyZero());
+    FDinkHeroPhysicality Jump;
+    TestTrue(TEXT("landing fixture stumbles"),Jump.Land(300,.4f,1));
+    Jump.Update(.1f,200,true,true);
+    Jump.Update(1.f/60.f,200,false,true);
+    TestFalse(TEXT("jumping out of recovery removes the grounded catch-step"),Jump.IsStumbling());
+    TestFalse(TEXT("takeoff does not clear landing debounce"),Jump.Land(300,.4f,1));
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkClumsyFrameRatesTest,"Dink.Movement.ClumsyFrameRates",DINK_TEST_FLAGS)
+bool FDinkClumsyFrameRatesTest::RunTest(const FString&)
+{
+    for (const float Dt : {1.f/120.f,1.f/30.f,.125f})
+    {
+        FDinkHeroPhysicality Motion;
+        for (int32 I=0; I<240; ++I)
+        {
+            if (I%40==0) Motion.Land(300,.4f,1);
+            Motion.Update(Dt,I%60<30 ? 600.f : 0.f,true,true,I%2 ? 300.f : -300.f);
+            const FRotator Pose=Motion.GetRotation();
+            TestTrue(TEXT("hitches, starts, stops, turns and catches retain a bounded finite pose"),
+                !Pose.ContainsNaN() && Pose.Pitch>=-20. && Pose.Pitch<=6. &&
+                FMath::Abs(Pose.Roll)<=9. && FMath::Abs(Pose.Yaw)<=8. &&
+                !Motion.GetOffset().ContainsNaN() && Motion.GetOffset().Size()<=12.001);
+        }
+        Motion.Cancel(); Motion.Update(Dt,0,true,true);
+        TestTrue(TEXT("reset discards previous speed/turn impulses"),Motion.GetOffset().IsNearlyZero(.001));
+    }
+    FDinkHeroPhysicality Fine, Coarse;
+    for (int32 I=0;I<240;++I) Fine.Update(1.f/120.f,200,true,true,150);
+    for (int32 I=0;I<60;++I) Coarse.Update(1.f/30.f,200,true,true,150);
+    TestTrue(TEXT("constant motion is stable across common frame rates"),
+        Fine.GetRotation().Equals(Coarse.GetRotation(),.01) && Fine.GetOffset().Equals(Coarse.GetOffset(),.01));
     return true;
 }
 
@@ -234,6 +301,25 @@ public:
             Test->AddInfo(FString::Printf(TEXT("Measured Dink hop height %.2f cm; previous jump measured107.6cm"),Peak));
             Test->TestTrue(TEXT("eligible actual landing can trigger Dink stumble"),H->IsStumbling());
             Test->TestEqual(TEXT("walking and jumping retain narrow house capsule"),H->GetCapsuleComponent()->GetUnscaledCapsuleRadius(),28.f);
+            RecoveryStart=H->GetActorLocation(); At=W->GetTimeSeconds(); Phase=9; return false;
+        }
+        if (Phase==9)
+        {
+            if (W->GetTimeSeconds()-At<.12) return false;
+            Test->TestTrue(TEXT("idle catch-step never displaces the gameplay capsule"),FVector::Dist(H->GetActorLocation(),RecoveryStart)<.1);
+            Test->TestTrue(TEXT("recovery is still active before immediate player jump"),H->IsStumbling());
+            Key(EKeys::SpaceBar,IE_Pressed); At=W->GetTimeSeconds(); Phase=10; return false;
+        }
+        if (Phase==10)
+        {
+            if (W->GetTimeSeconds()-At<.1) return false;
+            Test->TestTrue(TEXT("player can jump immediately during a catch-step"),Move->IsFalling() && Move->Velocity.Z>0);
+            Test->TestFalse(TEXT("fresh jump cancels grounded stumble animation"),H->IsStumbling());
+            Key(EKeys::SpaceBar,IE_Released); Phase=11; return false;
+        }
+        if (Phase==11)
+        {
+            if (!Move->IsMovingOnGround() || W->GetTimeSeconds()-At<.3) return false;
             UDinkInteriorCameraComponent* Camera=H->FindComponentByClass<UDinkInteriorCameraComponent>();
             Camera->AddZoomInput(2);
             TargetArm=Camera->GetDesiredArmLength(); At=W->GetTimeSeconds(); Phase=6; return false;
@@ -285,6 +371,7 @@ private:
     FAutomationTestBase* Test;
     double Began=0,At=0,StartZ=0,Peak=0;
     float TargetArm=0;
+    FVector RecoveryStart=FVector::ZeroVector;
     int32 Phase=0;
 };
 }
