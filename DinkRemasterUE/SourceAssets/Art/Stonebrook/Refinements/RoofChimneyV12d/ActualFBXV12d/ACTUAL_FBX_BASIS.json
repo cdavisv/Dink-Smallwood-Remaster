@@ -1,0 +1,211 @@
+{
+  "passed": true,
+  "scope": "Actual decoded FBX corner fields plus exact installed Mikk CPU replay. CPU sign values are not native stored TangentZ.W/handedness, and no native/Nanite/render-buffer acceptance is asserted.",
+  "source_reference_sha256": "d980fdc1b6a89037efd8c27a5d7df757fe47b87afecd5a5cb9669eea90867cab",
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "used_corners": 4458,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998290046612,
+      "min_tangentX_length": 0.9999998774899624,
+      "min_unsigned_cross_length": 0.9999997799906091,
+      "max_abs_normalized_N_dot_T": 8.662269545642301e-08,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "3f8dcdff9448977221421c8b1ab4e0e8b0932fb63a6dcd6d405af232fb6b592c"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "used_corners": 47736,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998037485996,
+      "min_tangentX_length": 0.999999861204336,
+      "min_unsigned_cross_length": 0.9999997117647556,
+      "max_abs_normalized_N_dot_T": 1.582612475269073e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "170d092301f8b0b1fb08cf6d3fe9000d4b181e94d1250080d46d8605ca67f522"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "used_corners": 26016,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998247264833,
+      "min_tangentX_length": 0.999999846908325,
+      "min_unsigned_cross_length": 0.9999997627345308,
+      "max_abs_normalized_N_dot_T": 1.8275090213222164e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "025d842fb9fe924c13d1b2facc744d6ed95f42e3967a41358163a41b3ce3da80"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "used_corners": 14094,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998067857218,
+      "min_tangentX_length": 0.9999998616832922,
+      "min_unsigned_cross_length": 0.9999997791551979,
+      "max_abs_normalized_N_dot_T": 1.6177094204926018e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "68594182c44fdf9537f4d35bc16947a9e35f67574df8b276ba337a0c8438a4b3"
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "used_corners": 14958,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.999999828417708,
+      "min_tangentX_length": 0.9999998651219383,
+      "min_unsigned_cross_length": 0.9999997683327909,
+      "max_abs_normalized_N_dot_T": 2.1585743637706425e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "1f1a50d25bb7ff5976163ba82a238e8c217750088cf2e27155da397d1ec147b3"
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "used_corners": 10422,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998581368634,
+      "min_tangentX_length": 0.9999998738929206,
+      "min_unsigned_cross_length": 0.9999997775214704,
+      "max_abs_normalized_N_dot_T": 1.8741320226020148e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "20a23641e782bd04877c6ef9bb432b95a7c7eacc3fd0d58b95137a169579a837"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "used_corners": 798,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998536886149,
+      "min_tangentX_length": 0.9999999211717157,
+      "min_unsigned_cross_length": 0.9999998536896568,
+      "max_abs_normalized_N_dot_T": 8.481688139857052e-08,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "e0355643980a325bffce1682c53e803719f4c96ddbfe117adb82db1abea1e110"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "used_corners": 798,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998536886149,
+      "min_tangentX_length": 0.9999998971054778,
+      "min_unsigned_cross_length": 0.9999998435035877,
+      "max_abs_normalized_N_dot_T": 9.900366995384061e-08,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "bb2d06ddbd75328e6ab92fbb49c85a6de07274134cbd1e18bc13e5a571308d03"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "used_corners": 798,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998536886149,
+      "min_tangentX_length": 0.9999998971054778,
+      "min_unsigned_cross_length": 0.9999998435035877,
+      "max_abs_normalized_N_dot_T": 9.900366995384061e-08,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "ecb3207bef5d29a7650d42af66a376b946b9bf0963a1abf01974f4aa5f2b1571"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "used_corners": 798,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998536886149,
+      "min_tangentX_length": 0.9999999142634213,
+      "min_unsigned_cross_length": 0.9999998536896568,
+      "max_abs_normalized_N_dot_T": 8.481688139857052e-08,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "1a4fad492a75cbcba3535364d40668082a29f79ed69b225e7e79dbf9eff08a22"
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "used_corners": 14772,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.999999828417708,
+      "min_tangentX_length": 0.9999998709284413,
+      "min_unsigned_cross_length": 0.9999997687545618,
+      "max_abs_normalized_N_dot_T": 1.9748086187773778e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "a46a8a1145397780f7b511a390e3abbc52600bcdef65733c6c1415a18cfab2b1"
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "used_corners": 8622,
+      "all_P_UV_N_T_sign_values_finite": true,
+      "zero_normal": 0,
+      "zero_tangentX": 0,
+      "zero_unsigned_cross": 0,
+      "min_normal_length": 0.9999998581368634,
+      "min_tangentX_length": 0.9999998716357018,
+      "min_unsigned_cross_length": 0.9999997775214716,
+      "max_abs_normalized_N_dot_T": 1.6683655764823197e-07,
+      "CPU_Mikk_sign_values": [
+        -1.0,
+        1.0
+      ],
+      "Mikk_bytes_sha256": "4c1ae93f68ba4d331e0570cb8078e4a6d07fa37556dea679ef61621d5e163cf9"
+    }
+  ]
+}

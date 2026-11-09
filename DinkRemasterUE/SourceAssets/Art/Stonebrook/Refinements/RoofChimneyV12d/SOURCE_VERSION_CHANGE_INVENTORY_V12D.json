@@ -1,0 +1,853 @@
+{
+  "status": "V12D_SOURCE_REVIEW_READY_NOT_NATIVE_OR_GAMEPLAY_ACCEPTED",
+  "source_version": "V12d",
+  "source_blend": "/home/artist/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/SourceV12/SavedCandidateV12d/RoofChimney_ArtistRepair_v12d.blend",
+  "source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "previous_source_sha256": "0e9f1c05ff7a786c6535b93b0b5470d72e654830e212817193e820c7f72c7e41",
+  "render_triangles_before": 47784,
+  "render_triangles_after": 48090,
+  "changes_by_object": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "triangles_before": 1208,
+      "triangles_after": 1486,
+      "artist_strip_repair": {
+        "charts": [
+          {
+            "chart": 0,
+            "old_triangles": [
+              260,
+              261
+            ],
+            "old_material": "MI_V8_CoursedLimestone_StudyV1",
+            "new_U_direction": [
+              0.9999999999916777,
+              -1.1734542757139957e-06,
+              3.907414359198222e-06
+            ],
+            "new_V_direction": [
+              3.7498797752809154e-06,
+              0.6416712325046096,
+              -0.7669798102700968
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 21,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 1,
+            "old_triangles": [
+              262,
+              263
+            ],
+            "old_material": "MI_V8_CoursedLimestone_StudyV1",
+            "new_U_direction": [
+              0.9999999999922536,
+              -1.2645711990286822e-06,
+              3.7274439174237024e-06
+            ],
+            "new_V_direction": [
+              3.2500754113636807e-06,
+              -0.2689158209964573,
+              -0.9631636834968594
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 16,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 2,
+            "old_triangles": [
+              1020,
+              1021
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999777,
+              7.910781272653049e-11,
+              2.1122432983239038e-07
+            ],
+            "new_V_direction": [
+              5.9554674076325975e-08,
+              0.959323478128851,
+              -0.28230916441157305
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 13,
+            "max_new_corner_closest_original_surface_distance_cm": 1.4210854715202004e-14
+          },
+          {
+            "chart": 3,
+            "old_triangles": [
+              1022,
+              1023
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              1.0,
+              -3.1976041127237366e-11,
+              -5.707623207471389e-12
+            ],
+            "new_V_direction": [
+              3.248144345390521e-11,
+              0.9844402750331874,
+              0.1757195062950679
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 15,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 4,
+            "old_triangles": [
+              1044,
+              1045
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              -1.0130939259232607e-07,
+              0.8999120115877016,
+              0.4360715209689417
+            ],
+            "new_V_direction": [
+              -0.8352123474256745,
+              -0.2398078289945506,
+              0.4948863908622006
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 7,
+            "max_new_corner_closest_original_surface_distance_cm": 2.842170943040401e-14
+          },
+          {
+            "chart": 5,
+            "old_triangles": [
+              1046,
+              1047
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              -8.128102587127602e-08,
+              0.8999119843548747,
+              0.4360715771687774
+            ],
+            "new_V_direction": [
+              -0.9720923024086784,
+              -0.10230190137901644,
+              0.21111815784539387
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 9,
+            "max_new_corner_closest_original_surface_distance_cm": 1.4210854715202004e-14
+          },
+          {
+            "chart": 6,
+            "old_triangles": [
+              1048,
+              1049
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              -1.64675911276864e-06,
+              0.8999117476563337,
+              0.4360720656352701
+            ],
+            "new_V_direction": [
+              0.9718895107993561,
+              0.10266912240223283,
+              -0.21187220229030448
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 6,
+            "max_new_corner_closest_original_surface_distance_cm": 1.4210854715202004e-14
+          },
+          {
+            "chart": 7,
+            "old_triangles": [
+              1080,
+              1081
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              6.983757435583713e-12,
+              2.0395012997012419e-07
+            ],
+            "new_V_direction": [
+              -1.3838044443697577e-07,
+              0.7346223613700656,
+              0.6784762237359905
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 18,
+            "max_new_corner_closest_original_surface_distance_cm": 3.552713678800501e-14
+          },
+          {
+            "chart": 8,
+            "old_triangles": [
+              1082,
+              1083
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              -2.3106561481082638e-12,
+              2.0394149682413342e-07
+            ],
+            "new_V_direction": [
+              -1.9368265481283546e-07,
+              0.31315909140378617,
+              0.9497006809890776
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 16,
+            "max_new_corner_closest_original_surface_distance_cm": 5.3290705182007514e-14
+          },
+          {
+            "chart": 9,
+            "old_triangles": [
+              1084,
+              1085
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              2.2951137557441664e-12,
+              -2.0395260346857785e-07
+            ],
+            "new_V_direction": [
+              1.8012080104766026e-07,
+              -0.46910008316212987,
+              0.8831450118622935
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 20,
+            "max_new_corner_closest_original_surface_distance_cm": 8.526512829121202e-14
+          },
+          {
+            "chart": 10,
+            "old_triangles": [
+              1086,
+              1087
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              -1.1665758927297462e-11,
+              -2.0394335907401995e-07
+            ],
+            "new_V_direction": [
+              -1.5072364192769764e-08,
+              -0.9972695373022624,
+              -0.0738476131566292
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 19,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 11,
+            "old_triangles": [
+              1096,
+              1097
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              2.0395405440246078e-07,
+              4.253288250331593e-13
+            ],
+            "new_V_direction": [
+              -2.0378100380080875e-07,
+              0.9991514357467153,
+              0.04118747922896189
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 19,
+            "max_new_corner_closest_original_surface_distance_cm": 2.842170943040401e-14
+          },
+          {
+            "chart": 12,
+            "old_triangles": [
+              1098,
+              1099
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              0.9999999999999792,
+              2.0394339067226295e-07,
+              1.0753802414549696e-11
+            ],
+            "new_V_direction": [
+              -8.835784432184362e-08,
+              0.43329443489711933,
+              -0.9012524245111235
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 18,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 13,
+            "old_triangles": [
+              1104,
+              1105
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              4.614106770629013e-08,
+              0.8999121537853607,
+              0.4360712275183851
+            ],
+            "new_V_direction": [
+              -0.364920983394455,
+              -0.40599908345766417,
+              0.8378528630433631
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 11,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 14,
+            "old_triangles": [
+              1106,
+              1107
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              1.5792248360114204e-08,
+              0.8999120832863445,
+              0.43607137300587745
+            ],
+            "new_V_direction": [
+              -0.9161037751619684,
+              -0.17483898139254136,
+              0.36081186748721067
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 11,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 15,
+            "old_triangles": [
+              1108,
+              1109
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              -1.4909803443747135e-06,
+              0.8999117533424116,
+              0.43607205390160425
+            ],
+            "new_V_direction": [
+              0.9140433512489143,
+              -0.17687679757643834,
+              0.3650196577127835
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 11,
+            "max_new_corner_closest_original_surface_distance_cm": 1.1368683772161603e-13
+          },
+          {
+            "chart": 16,
+            "old_triangles": [
+              1110,
+              1111
+            ],
+            "old_material": "MI_V8_DullZinc_StudyV1",
+            "new_U_direction": [
+              -3.2951910312072435e-07,
+              0.8999117735980922,
+              0.43607201210284957
+            ],
+            "new_V_direction": [
+              0.3625398024901399,
+              -0.40640517947209603,
+              0.838689287942003
+            ],
+            "UV_metres_per_repeat": 2,
+            "UV_scale_orientation_phase": "New orthonormal fitted-strip chart: dot(native_assetlocal_cm,U/V)/200; no lighting bake",
+            "original_boundary_segments": 4,
+            "new_triangles": 11,
+            "max_new_corner_closest_original_surface_distance_cm": 2.842170943040401e-14
+          }
+        ],
+        "split_edges": 26,
+        "propagated_faces": 18,
+        "propagated_repaired_patch_triangles": 0,
+        "quality_method": "Two passes: union all requested boundary splits, then retessellate each complete strip with constrained fixed boundary and interior quality refinement."
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "triangles_before": 15912,
+      "triangles_after": 15912,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "triangles_before": 8644,
+      "triangles_after": 8672,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "triangles_before": 4698,
+      "triangles_after": 4698,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "triangles_before": 4986,
+      "triangles_after": 4986,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "triangles_before": 3474,
+      "triangles_after": 3474,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "triangles_before": 266,
+      "triangles_after": 266,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "triangles_before": 266,
+      "triangles_after": 266,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "triangles_before": 266,
+      "triangles_after": 266,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "triangles_before": 266,
+      "triangles_after": 266,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "triangles_before": 4924,
+      "triangles_after": 4924,
+      "artist_strip_repair": null
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "triangles_before": 2874,
+      "triangles_after": 2874,
+      "artist_strip_repair": null
+    }
+  ],
+  "UV_chart_phases": [
+    {
+      "triangles": [
+        1163,
+        1164,
+        1165,
+        1166
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1169,
+        1170,
+        1171,
+        1172
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        245
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        247
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        255
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        259
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        317
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        319
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        431
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        656
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        696
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        739
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        740
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        745
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        746
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        759
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        760
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        763
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        764
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1126
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1127
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1130
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1131
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1144
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1147
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1149
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1167
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1168
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1212
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1213
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1214
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1215
+      ],
+      "U_offset": -0.002,
+      "phase_texels_2048": -4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1219
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1223
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1225
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1230
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    },
+    {
+      "triangles": [
+        1238
+      ],
+      "U_offset": 0.002,
+      "phase_texels_2048": 4.096,
+      "scale_change": 0,
+      "orientation_change_degrees": 0
+    }
+  ],
+  "UV_chart_phase_scope": "37 whole-chart shifts +/-0.002U; maximum4.096texels@2048, no scale/orientation change.17 upper bevel strip charts deliberately reauthored in orthonormal2m repeat with explicit bases in changes_by_object.",
+  "normal_storage_scope": "Upper normal fans split + explicit custom corner normals. Other11 original fan mode. Saved-vs-CPU max normal component .00154504; re-encoding inherited normals is measured, not claimed bit-exact. Actual source and decoded FBX basis gates pass, native packed normals/TangentZ.W remain unproven.",
+  "material_scope": "8 used source shader node/default/link graphs and25 packed images/colorspaces/alpha exactly preserved. Reused upper PBR maps are generic2m tiling materials, not mesh-specific illumination bakes. Legacy lowerFP atlas remains unchanged and is not final photoreal facade approval.",
+  "geometry_scope": {
+    "all_original_upper_positions_retained": true,
+    "upper_bounds_exact": true,
+    "upper_closed_topology": {
+      "vertices": 743,
+      "triangles": 1486,
+      "edges": 2229,
+      "Euler": 0,
+      "edge_multiplicity": {
+        "2": 2229
+      }
+    },
+    "max_sample_source_distance_cm": 0.00019813489575426502,
+    "allowed_local_shape_distance_cm": 0.002,
+    "max_sample_normal_field_angle_degrees": 0.5545572828931296
+  },
+  "collision_scope": "312 original UCX geometry/polygons/TRS exact (204roof+92upper+16lowerFP). No native collision/Nanite settings changed. Preserve roof/upper mode1,NaniteFalse; lowerFP actual original SIMPLE_AS_COMPLEX2,NaniteTrue,fallbackPercent1/error0/target1,3LODs.",
+  "scene_scope": "No scene/Data/camera/gameplay/light/script mutation; existing lowerFP origin/script s1-h1-2/light150lm2700KZ90 retained by deferral. Roof scene admission still needs56oldCeiling retirements+8roof+1upper/existingFP replacement, nav/profile/component/world checks.",
+  "basis_scope": "All12 actual decodedFBX CPU Mikk0 zero N/TX/cross, allfinite; harmfulUVweld0. CPU signs not stored native handedness.",
+  "air_wall_scope": "27negativeair+28positivewall+5616dense line segments each3lowerLODs with all8roof+upper pass; allfirstdistance/hit states exactly unchangedfrom originalV11. Source triangle-line tests only, no Chaos/cooked/capsule/world proof.",
+  "remaining_gates": [
+    "Coordinating Root source/payload review",
+    "Fresh isolated native import/readback on new payload without mutating original50",
+    "All12 actual saved native positions/UV/N/slot/build/texture/graph/raw hull/basis checks",
+    "Actual cooked16FP hulls, channel/world negative+positive line/sphere/capsule controls",
+    "Private integrated room/default/upward/firebox/openflue views and game suite; camera/nav/overlap/physical architecture invariants",
+    "Broader all-assets final photoreal review remains active"
+  ]
+}

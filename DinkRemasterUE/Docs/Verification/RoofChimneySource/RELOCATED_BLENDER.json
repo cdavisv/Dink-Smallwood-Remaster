@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "scope": "Actual relocated source reopen and exact direct mesh/UV/normal/triangle/slot/frame fields plus packed bytes; no save/export/render/native",
+  "Blender": "5.2.2 LTS",
+  "rows": [
+    {
+      "file": "SavedCandidateV12d/RoofChimney_ArtistRepair_v12d.blend",
+      "objects_exact": 324,
+      "render_LODs": 12,
+      "hulls": 312,
+      "packed_images_exact": 25,
+      "active_image_nodes_packed": 25,
+      "source_unchanged": true,
+      "external_image_load_required": false
+    },
+    {
+      "file": "ExportV12d_Run01/Source/RoofChimney_ArtistRepair_v12d.blend",
+      "objects_exact": 324,
+      "render_LODs": 12,
+      "hulls": 312,
+      "packed_images_exact": 25,
+      "active_image_nodes_packed": 25,
+      "source_unchanged": true,
+      "external_image_load_required": false
+    }
+  ]
+}

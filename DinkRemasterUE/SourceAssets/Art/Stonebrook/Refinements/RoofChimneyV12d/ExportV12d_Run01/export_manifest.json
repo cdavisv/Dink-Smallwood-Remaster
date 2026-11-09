@@ -1,0 +1,296 @@
+{
+  "status": "SOURCE_EXPORTED_ONLY_INDEPENDENT_BINARY_AND_NATIVE_PROOF_PENDING",
+  "source": {
+    "file": "Source/RoofChimney_ArtistRepair_v12d.blend",
+    "sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec"
+  },
+  "FBX": [
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "file": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "sha256": "c7933e1d610c24bdc1b1df4e8510c6b302a810aae4d04799a571c02bf16ef184",
+      "bytes": 267820,
+      "matched_UCX": 92,
+      "render_triangles": 1486,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "sha256": "fc576e7241357c2b38c3325e979d6699b9bc5c09ecd377cf472007a84086a043",
+      "bytes": 732796,
+      "matched_UCX": 16,
+      "render_triangles": 15912,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "sha256": "ebd4193ee89dbe7fc5b79e9c49412ae7b0e717b766285275695e9a67ade0c43a",
+      "bytes": 440252,
+      "matched_UCX": 0,
+      "render_triangles": 8672,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "sha256": "707f4b3ad985426ec1fa0536db015cbf362a598e3c55438708b60b7f26ed137a",
+      "bytes": 252028,
+      "matched_UCX": 0,
+      "render_triangles": 4698,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_EN_01",
+      "file": "FBX/SM_IndoorRoof_EN_01.fbx",
+      "sha256": "7b40cac294335a955a8fc795e5c580242b7a6e41ed2ae5a4483d3a6849f5ad2d",
+      "bytes": 258492,
+      "matched_UCX": 48,
+      "render_triangles": 4986,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_ES_01",
+      "file": "FBX/SM_IndoorRoof_ES_01.fbx",
+      "sha256": "d5b0c8a8e9225b878fb66c8f38821ab3e5c094b95430f1b66b5a7949c06615bd",
+      "bytes": 198812,
+      "matched_UCX": 45,
+      "render_triangles": 3474,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_EN_01",
+      "file": "FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+      "sha256": "23f6ee649697e34a99fd47bdb06018856311ea16f37a7343033dedede986f013",
+      "bytes": 30812,
+      "matched_UCX": 3,
+      "render_triangles": 266,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_ES_01",
+      "file": "FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+      "sha256": "277fc30e27714564e70fa4c64a618c6e75498bc3c7cbec698e86e8ef9f5b0f69",
+      "bytes": 30812,
+      "matched_UCX": 3,
+      "render_triangles": 266,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_WN_01",
+      "file": "FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+      "sha256": "ade212d8fda49912e9f2eb7dd1dcb64151e09f18c43b03dcd0e45e0eae057a81",
+      "bytes": 30812,
+      "matched_UCX": 3,
+      "render_triangles": 266,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_WS_01",
+      "file": "FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+      "sha256": "84aa4bee77c83062b9293d9a5bb97030973048e4da571fc85024d0b0337971f9",
+      "bytes": 30844,
+      "matched_UCX": 3,
+      "render_triangles": 266,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "file": "FBX/SM_IndoorRoof_WN_01.fbx",
+      "sha256": "6a3b6c69adc4afd6427d5fc58310371a5a5e6f2347d5518f41ecb424ef475a9a",
+      "bytes": 286268,
+      "matched_UCX": 57,
+      "render_triangles": 4924,
+      "render_polygons_explicit_triangles": true
+    },
+    {
+      "source_object": "SM_IndoorRoof_WS_01",
+      "file": "FBX/SM_IndoorRoof_WS_01.fbx",
+      "sha256": "c0c69468e822c3749afb8095190d6146f33c7f1bfcd828f7fe5159c8c969c942",
+      "bytes": 175308,
+      "matched_UCX": 42,
+      "render_triangles": 2874,
+      "render_polygons_explicit_triangles": true
+    }
+  ],
+  "textures": [
+    {
+      "file": "Textures/T_FireplaceV2_Atlas_BC.png",
+      "sha256": "82bb4f9265b48ad0c4fa2be89a535e5d8a712c167f738477df5926ede66368a4",
+      "bytes": 3483434,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_FireplaceV2_Atlas_E.png",
+      "sha256": "235ac449c24ce2a3313664399f41a6bef1a49349af0997a5c1c621a45eaa12dc",
+      "bytes": 92351,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_FireplaceV2_Atlas_N.png",
+      "sha256": "8e713117312c74953120a13b96a323e0b224c812150f805e748a6ac903d94020",
+      "bytes": 5586501,
+      "colorspace": "Non-Color",
+      "native_flip_green": true
+    },
+    {
+      "file": "Textures/T_FireplaceV2_Atlas_ORM.png",
+      "sha256": "4a1125a42582b6001a5f172c2848f205ec0f37f22623fc768b3a1f4311b81b7b",
+      "bytes": 2910653,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_GablePlaster_BC.png",
+      "sha256": "8f7e5151c6d9b0f691fc6022377c0c7422f80d95b41c3da3cf0b7386869d32bf",
+      "bytes": 1319946,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_GablePlaster_N.png",
+      "sha256": "0f29901676d3bc2fb1b53b0d90990017bbd25627e275ef53ae9a16431717697c",
+      "bytes": 5318081,
+      "colorspace": "Non-Color",
+      "native_flip_green": false
+    },
+    {
+      "file": "Textures/T_InteriorRoof_GablePlaster_ORM.png",
+      "sha256": "d3e9e0e8c19180fe6a1229032afb4bc57ab6100e0b7460d7a77fb51e9babf458",
+      "bytes": 499120,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakEndgrain_BC.png",
+      "sha256": "12ead883bdbe823a5a7c1b4ec61b65834591754195918a1c3bdc9e25f088a79b",
+      "bytes": 5673794,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakEndgrain_N.png",
+      "sha256": "387c5d6386d19ce5eb68fd2c21b39ce9c07b041afcb29803eb622753cbf8fac2",
+      "bytes": 6234156,
+      "colorspace": "Non-Color",
+      "native_flip_green": false
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakEndgrain_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "bytes": 871514,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakLonggrain_BC.png",
+      "sha256": "34cda85e0dc193a5b09d1a3b3cfc4444f0006ef6f836fc5a5191026dd44c2209",
+      "bytes": 4817062,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakLonggrain_N.png",
+      "sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "bytes": 1085751,
+      "colorspace": "Non-Color",
+      "native_flip_green": false
+    },
+    {
+      "file": "Textures/T_InteriorRoof_OakLonggrain_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "bytes": 871514,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_RoofBoards_BC.png",
+      "sha256": "dea3622f23f398bda5603fd0a6bdbe09eddfef584d342b24010833e189971ac7",
+      "bytes": 5056023,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_InteriorRoof_RoofBoards_N.png",
+      "sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "bytes": 1085751,
+      "colorspace": "Non-Color",
+      "native_flip_green": false
+    },
+    {
+      "file": "Textures/T_InteriorRoof_RoofBoards_ORM.png",
+      "sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "bytes": 871514,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_CoursedLimestone_BC.png.png",
+      "sha256": "1446d731434535e15731cbb9d60175e340638a07ea9bc3fc7452dc4d1ba59408",
+      "bytes": 1891542,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_CoursedLimestone_N.png.png",
+      "sha256": "3c1029c7c1aa33bf71bc41f4701e52d2d49d4e24bca0917be558dec007f9e8d4",
+      "bytes": 5364595,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_CoursedLimestone_ORM.png.png",
+      "sha256": "8d87b04871a9ce9a973551154ae51dbc2532710546b03034189390a2b6b15794",
+      "bytes": 1070754,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_DullZinc_BC.png.png",
+      "sha256": "570f53d12f51b44894b48e15ed8ed941bd3ae5a34ac29df31005500e607348ac",
+      "bytes": 568016,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_DullZinc_N.png.png",
+      "sha256": "d57bb309f21c8933d6ae2f8ca1a65306705e1e042f91f08018e7e3a7210cfcdc",
+      "bytes": 1475217,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_DullZinc_ORM.png.png",
+      "sha256": "d1c92dc0195c85f36b26d1f880a26cc1102243d3a47203050e9170ad78c24012",
+      "bytes": 788413,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_SootLining_BC.png.png",
+      "sha256": "953b4920becc32ab3a91d49df59b55910ff685046591d677a2568903864ce6e0",
+      "bytes": 509381,
+      "colorspace": "sRGB",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_SootLining_N.png.png",
+      "sha256": "7641460961a61d47784b20359d6ac7954920afb4c026efce15785870354a51ea",
+      "bytes": 4548880,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    },
+    {
+      "file": "Textures/T_V8_SootLining_ORM.png.png",
+      "sha256": "1b52b4d9e2d8d5cb5000216b310ec800cf23098b6267536c4f3e4e069e92d9f0",
+      "bytes": 653409,
+      "colorspace": "Non-Color",
+      "native_flip_green": null
+    }
+  ],
+  "native_actions_performed": false,
+  "actual_FBX_independently_verified": false
+}

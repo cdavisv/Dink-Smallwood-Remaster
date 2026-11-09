@@ -1,0 +1,95 @@
+{
+  "source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "CPU_threads": 2,
+  "scope": "Matched V11 studio/source material/contact views. Not actual game camera/lighting, original legacy fireplace facade not final photoreal approval. Temporary inspection light only in liner diagnostic; source never resaved.",
+  "views": [
+    {
+      "image": "firebox-lookup-source-v12d.png",
+      "sha256": "5f13c3aef95b34afaf2ddbb62de092d0babf1d1268d45173f06fbcba18e153de",
+      "camera": [
+        -0.35,
+        -2.1,
+        0.65
+      ],
+      "target": [
+        0,
+        0.08,
+        0.95
+      ],
+      "lens_mm": 32,
+      "temporary20Winspectionlight": false,
+      "actorlocal_coordinates": true,
+      "resolution": [
+        700,
+        600
+      ],
+      "samples": 32
+    },
+    {
+      "image": "liner-channel-inspection-v12d.png",
+      "sha256": "d4d8e70e1590037913f350614bfbc2bbf0f4a75566aa169c2b09f635177fe3ef",
+      "camera": [
+        0,
+        0,
+        0.65
+      ],
+      "target": [
+        0,
+        0.115,
+        2.05
+      ],
+      "lens_mm": 24,
+      "temporary20Winspectionlight": true,
+      "actorlocal_coordinates": true,
+      "resolution": [
+        700,
+        600
+      ],
+      "samples": 32
+    },
+    {
+      "image": "assembled-asset-source-v12d.png",
+      "sha256": "e17f779a56c7bdb156a492de15b608d3efb55ae461283919a87afdc90457de9c",
+      "camera": [
+        -4,
+        1,
+        2
+      ],
+      "target": [
+        -0.5,
+        5.6,
+        2.65
+      ],
+      "lens_mm": 30,
+      "temporary20Winspectionlight": false,
+      "actorlocal_coordinates": false,
+      "resolution": [
+        700,
+        600
+      ],
+      "samples": 16
+    },
+    {
+      "image": "chimney-seated-apron-v12d.png",
+      "sha256": "734b1809ecdc9a130848e0f99fe682b12747b9ec4e2d8312f6949ba0f85a35a7",
+      "camera": [
+        -2,
+        4.55,
+        6.4
+      ],
+      "target": [
+        -0.7,
+        5.936875,
+        4.65
+      ],
+      "lens_mm": 40,
+      "temporary20Winspectionlight": false,
+      "actorlocal_coordinates": false,
+      "resolution": [
+        600,
+        600
+      ],
+      "samples": 16
+    }
+  ]
+}

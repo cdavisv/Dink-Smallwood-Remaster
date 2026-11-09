@@ -51,6 +51,22 @@ class InventoryTests(unittest.TestCase):
         self.assertIsNone(pointer_metadata(b'version https://git-lfs.github.com/spec/v1\noid sha256:no\nsize 17\n'))
         self.assertIsNone(pointer_metadata(b'actual binary asset'))
 
+    def test_explicit_lfs_diagnostics_use_staged_attributes(self):
+        self.stage('.gitattributes', b'Art/*.bin filter=lfs\nArt/*.gz filter=lfs\nArt/report.json filter=lfs\n')
+        pointer = b'version https://git-lfs.github.com/spec/v1\noid sha256:' + b'a'*64 + b'\nsize 17\n'
+        for name in ['Art/raw.bin', 'Art/snapshot.json.gz', 'Art/report.json']:
+            self.stage(name, pointer)
+        self.stage('Art/ordinary.json', b'{"source":true}\n')
+        (self.root/'.gitattributes').write_text('Art/* -filter\n')
+        self.assertEqual(set(inventory(self.root)),
+                         {'Art/raw.bin', 'Art/snapshot.json.gz', 'Art/report.json'})
+
+    def test_explicit_lfs_diagnostic_rejects_raw_index_blob(self):
+        self.stage('.gitattributes', b'Art/report.json filter=lfs\n')
+        self.stage('Art/report.json', b'{"unfiltered":true}\n')
+        with self.assertRaisesRegex(ValueError, 'Git LFS'):
+            inventory(self.root)
+
 
 if __name__ == '__main__':
     unittest.main()

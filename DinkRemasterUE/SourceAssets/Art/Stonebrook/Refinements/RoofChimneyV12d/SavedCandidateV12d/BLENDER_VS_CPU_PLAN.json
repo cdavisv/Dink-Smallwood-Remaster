@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "scope": "Direct ordered explicit triangles/corners/material roles in actual saved+reopened blend against CPU plan. No UV correspondence filter; no native run.",
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "triangles": 1486,
+      "max_corner_delta": {
+        "position_cm": 2.384185791015625e-05,
+        "UV0": 2.035475001882503e-07,
+        "normal": 0.000478595495223999
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "triangles": 15912,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.0008343314984813333
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "triangles": 8672,
+      "max_corner_delta": {
+        "position_cm": 2.9802322387695312e-06,
+        "UV0": 2.9802322387695312e-08,
+        "normal": 0.0015450371574843302
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "triangles": 4698,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.0005903375567868352
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "triangles": 4986,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 9.527802467346191e-05
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "triangles": 3474,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 9.527802467346191e-05
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "triangles": 266,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.00030997395515441895
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "triangles": 266,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.00030997395515441895
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "triangles": 266,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.00030997395515441895
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "triangles": 266,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 0.00030997395515441895
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "triangles": 4924,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 4.440892098500626e-16,
+        "normal": 0.00031197071075439453
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "triangles": 2874,
+      "max_corner_delta": {
+        "position_cm": 0.0,
+        "UV0": 0.0,
+        "normal": 9.527802467346191e-05
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "scope": "Actual saved+reopened Blender fields; installed CPU Mikk and conservative same-position UV/normal/tangent weld census. No actual FBX/native proof.",
+  "source_reference_sha256": "7b60069e65783cb8fe87dfee714c002f4222aa90d00109f48b195faa3239000c",
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_Chimney_Stonebrook_V8",
+        "compared_same_position_material_pairs": 11675,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+        "compared_same_position_material_pairs": 113595,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+        "compared_same_position_material_pairs": 58749,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+        "compared_same_position_material_pairs": 29034,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_EN_01",
+        "compared_same_position_material_pairs": 34408,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_ES_01",
+        "compared_same_position_material_pairs": 24911,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_Gable_EN_01",
+        "compared_same_position_material_pairs": 2364,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_Gable_ES_01",
+        "compared_same_position_material_pairs": 2364,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_Gable_WN_01",
+        "compared_same_position_material_pairs": 2364,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_Gable_WS_01",
+        "compared_same_position_material_pairs": 2364,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_WN_01",
+        "compared_same_position_material_pairs": 34090,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "zero_triangles": [],
+      "UV_weld_risks": {
+        "name": "SM_IndoorRoof_WS_01",
+        "compared_same_position_material_pairs": 20736,
+        "harmful_UV_weld_pairs": 0,
+        "examples": [],
+        "risks": []
+      }
+    }
+  ]
+}
