@@ -553,8 +553,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 185 automation tests (verified 9 Nov
-  2026 evening: 185/185 in 696 s on master 5d65ed8; the probe runs as twenty save-slot chapters,
+  rows, 111 implemented, 35 recorded. 188 automation tests (verified 9 Nov
+  2026 night: 188/188 in 677 s on master 72fa9c0; the probe runs as twenty save-slot chapters,
   Ch1..Ch9 and ChA..ChK, deterministic across runs and identical packaged for all
   twenty (9 Nov 2026); PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
@@ -797,5 +797,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   OD1: the remaster's director defines `sp_prop <sprite> <0|1>` (set the
   placement's map `prop` flag, warp / walk-through, until the screen loads
   again; see the UE AGENTS.md gameplay row "placement prop"); its two 1997
-  calls stay behind `fix_s5_fguy_l6`/`fix_s5_end_l33` = false. The UE project
+  calls stay behind `fix_s5_fguy_l6`/`fix_s5_end_l33` = false. Merged as PR
+  #44 (master 72fa9c0); packaged probe re-run from that master the same night:
+  all twenty chapters PARITY OK at the new hashes (ch1 bf7710e26c .. ch20
+  7fdc482332, `Plugins/DinkParity/Docs/packaged_probe.md`). The UE project
   is synced with this story (`sync_story.py --rebuild`).
