@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## Roof delivery and doorway capture (9 November 2026)
+
+Branch `art/roof-native-current` records its actual validation and limitations in `Docs/Verification/RoofNativeCurrent/README.md` and `results.json`. On its runtime base `5d65`, 187 native tests, fresh readback of 50 packages and real held-W exit/return pass. The cottage still retracts the outdoor camera to 106 cm and clips the head; the camera-height screenshot is a temporary study, not a shipped fix. Shared-material/source-record compliance, latest-master integration and cooking remain open.
+
+During the UE 5.8.4 camera experiment, the Vector returned by `get_editor_property('target_offset')` followed later property changes; assigning that saved object did not restore the original value. Preserve numeric x/y/z or construct a fresh Vector before a temporary change, then verify actual restoration. Explicit `Vector(0,0,0)` restored this measured baseline before the game exited.
+
 ## Clumsier movement follow-up (9 November2026 UTC)
 
 Current player physicality has stronger asymmetric gait sway, baseline−2.4deg hunch, start/stop catch and observed-yaw shoulder lag. Landing chance45%,duration850ms,cooldown1.8s; takeoff cancels grounded recovery, retains debounce. Input/capsule and NPC motion stay authoritative. Optional authored posture cancels only the exported BaselinePitch constant. Rig/clip assets are unchanged. Runtime layer caps pitch−20..6,roll±9,yaw±8,offset12cm in addition to shared dynamics. Editor/Game builds and focused 7/7 checks pass. Full native 164/164 passes (3 tests with warnings); actual private movement/landing checks and 490 Python checks pass. Publication status is recorded in HANDOFF. See Docs/Verification/ClumsierDink and HANDOFF for current delivery status.
