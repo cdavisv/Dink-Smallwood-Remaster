@@ -1,5 +1,6 @@
 #include "DinkEarlyPostureAnimInstance.h"
 #include "DinkFactSubsystem.h"
+#include "DinkHeroPhysicality.h"
 #include "DinkPlayerActionComponent.h"
 #include "DinkStatsComponent.h"
 #include "Engine/GameInstance.h"
@@ -7,11 +8,13 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 
-float UDinkEarlyPostureAnimInstance::TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne)
+float UDinkEarlyPostureAnimInstance::TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne, float Confidence)
 {
     if (!bAllowed) return 0.f;
-    // Timid in Stonebrook; later progress relaxes the pose without changing quest facts.
-    const float Mood = Story <= 2 ? 1.f : (Story < 7 ? .7f : .3f);
+    // Timid in Stonebrook; story progress or earned confidence (levels, strength) relaxes the
+    // pose without changing quest facts. Whichever has done more for him wins.
+    const float StoryMood = Story <= 2 ? 1.f : (Story < 7 ? .7f : .3f);
+    const float Mood = FMath::Min(StoryMood, 1.f - .85f * FMath::Clamp(Confidence, 0.f, 1.f));
     return Mood * (bAttacking ? .35f : (bAirborne ? .5f : 1.f));
 }
 
@@ -31,7 +34,8 @@ void UDinkEarlyPostureAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
     const UDinkFactSubsystem* Facts=GI ? GI->GetSubsystem<UDinkFactSubsystem>() : nullptr;
     const bool Allowed=Controller && !Controller->IsMoveInputIgnored() && (!Stats || !Stats->IsDead());
     const float Target=TargetWeight(Facts ? Facts->GetFact(TEXT("story")) : 0,Allowed,
-        Action && Action->IsActionActive(),Hero->GetCharacterMovement()->IsFalling());
+        Action && Action->IsActionActive(),Hero->GetCharacterMovement()->IsFalling(),
+        Stats ? FDinkHeroPhysicality::ConfidenceFor(Stats->Stats.Level,Stats->Stats.Strength,Stats->Stats.Defense) : 0.f);
     // A cutscene/death or observed warp drops the transient pose immediately.
     PostureWeight=(!Allowed || Teleported) ? 0.f : FMath::FInterpTo(PostureWeight,Target,DeltaSeconds,5.f);
 }
