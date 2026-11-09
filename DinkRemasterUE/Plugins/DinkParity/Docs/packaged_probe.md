@@ -1,6 +1,15 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
-> **Re-verified 9 Nov 2026, evening (master 5d65ed8: PR #40 art-family layer + PR #41 hardness parity and Seth margin).**
+> **Re-verified 9 Nov 2026, night (master 72fa9c0: PR #44 owner decisions OD1/OD2, four typo switches on and `sp_prop` defined).**
+> `Scripts/build.sh` (32 s), `Scripts/test.sh` (188/188 in 677 s, PIE traces rewritten), `Scripts/package.sh` (72 s),
+> `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Every hash moved, all through chapter 1's save
+> (Jack's newly spoken line ends his scene one frame later and the bar's `random(2,1)` then creates the thief on both visits; with
+> instance numbers masked chapters 2-20 are byte-identical to the evening traces): Ch1 bf7710e26c, Ch2 ce04e3bd3b, Ch3 f494822cad,
+> Ch4 ae86ef33c8, Ch5 86794bccac, Ch6 8517d2eced, Ch7 b5d649bc14, Ch8 d4b45b0834, Ch9 85eeac1fff, Ch10 8f29d08d8d, Ch11 5a5fa26db2,
+> Ch12 fee1bf79a6, Ch13 0ca00d888f, Ch14 df7e479d7b, Ch15 463bce5fed, Ch16 1604da6d56, Ch17 dba045baa4, Ch18 dbfaba7399,
+> Ch19 bec655a025, Ch20 7fdc482332. The alpha gate's first condition still holds.
+>
+> Before: **Re-verified 9 Nov 2026, evening (master 5d65ed8: PR #40 art-family layer + PR #41 hardness parity and Seth margin).**
 > `Scripts/build.sh` (31 s), `Scripts/test.sh` (185/185 in 696 s, the full suite in PIE, which rewrote the editor traces),
 > `Scripts/package.sh` (76 s) and `Scripts/run_packaged_tests.sh` (twenty processes, 1-13 s each): every chapter `PARITY OK`.
 > Chapters 1-8 kept their md5s; 9-20 moved with the hardness fix (`s4-rock.c` opens the duck pen) and the Seth margin:
