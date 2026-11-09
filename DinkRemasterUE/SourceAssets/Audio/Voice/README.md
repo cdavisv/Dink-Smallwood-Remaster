@@ -77,15 +77,18 @@ for a voice file carries status `candidate` until then.
   47,284 credits, all `candidate`; a copy is ledgered with credits 0 and notes
   "copy of <source id>: identical text"; every speaking part has a voice.
   The service's daily generation limit (HTTP 429 `daily_generation_limit_reached`)
-  came back after the fourth Dink line of batch 03, so the rest is listed under
-  `failed_generations` in both manifests. Still to generate (once the limit
-  resets): 531 Dink lines (16,363 characters; `dink_batch_03_manifest.json`),
-  the 48 girl lines from `s1-lg.talk.028` on (flow `zWJTOGFXJNuoyOZVxqhB`) and
-  10 Martridge letter lines `s1-mh-f.talk.003`-`.012` (`cast_batch_06_manifest.json`;
-  object lines that batch 01 never covered). 26 more duplicate lines (23 Dink,
-  3 girl) are listed under `pending_copies`: copy them from their source once
-  the source line exists. Four tag-only lines (`[chortles]`, `[sniffs]`, `[sobs]`,
-  `[groans]`) stay unvoiced.
+  came back on 8 Nov after the fourth Dink line of batch 03. On 9 Nov it had
+  reset and the rest was generated in one run, without hitting the limit:
+  `dink_batch_04_manifest.json` (531 Dink lines, 16,363 credits, flow
+  `D7HsGNdqFFwIV56o2XwT`, plus 23 copies of identical text) and
+  `cast_batch_07_manifest.json` (48 girl lines from `s1-lg.talk.028` on, flow
+  `zWJTOGFXJNuoyOZVxqhB`, 1,533 credits, plus 3 copies; 10 Martridge letter lines
+  `s1-mh-f.talk.003`-`.012`, flow `0ZWTOXXQL5g6QddRO6dD`, 382 credits; 1,915
+  credits in all). Ledger on 9 Nov 2026: 2088 voice lines, 65,562 credits, all
+  `candidate`; a copy is ledgered with credits 0 and notes "copy of <source id>:
+  identical text"; every speaking part has a voice and no voiced line is
+  outstanding. Four tag-only lines (`[chortles]`, `[sniffs]`, `[sobs]`,
+  `[groans]`) stay unvoiced and are listed under `skipped` in the manifests.
 - A line that is only a stage direction (`<groan>` -> `[groans]`, s7-mil.talk.004;
   `<chortle>` -> `[chortles]`, s1-h2-o.talk.009)
   fails to generate: ElevenLabs needs words. Such lines stay unvoiced (the
