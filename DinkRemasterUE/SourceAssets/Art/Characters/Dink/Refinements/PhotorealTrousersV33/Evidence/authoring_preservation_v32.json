@@ -1,0 +1,45 @@
+{
+  "scope": "Read-only independent reopened-source preservation; does not waive physical/appearance residuals or permit export/native",
+  "rows": [
+    {
+      "variant": "V22",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothAtlasV22/Dink_Trousers_13PanelUV_SOURCE.blend",
+      "V19_positions_weights_triangles_corner_normals_exact": true,
+      "other7_meshes_exact_to_frozen": true,
+      "other_material_graph_signatures_exact_to_frozen": true,
+      "canonical89_rest_flags_world_exact_to_frozen": true,
+      "UV01_exact_to_V22": true,
+      "UV0_tangent_frame_exact_to_V22": true
+    },
+    {
+      "variant": "V30",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
+      "V19_positions_weights_triangles_corner_normals_exact": true,
+      "other7_meshes_exact_to_frozen": true,
+      "other_material_graph_signatures_exact_to_frozen": true,
+      "canonical89_rest_flags_world_exact_to_frozen": true,
+      "UV01_exact_to_V22": true,
+      "UV0_tangent_frame_exact_to_V22": false
+    },
+    {
+      "variant": "V31",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Dink_Trousers_Homespun_BAKED2K_SOURCE.blend",
+      "V19_positions_weights_triangles_corner_normals_exact": true,
+      "other7_meshes_exact_to_frozen": true,
+      "other_material_graph_signatures_exact_to_frozen": true,
+      "canonical89_rest_flags_world_exact_to_frozen": true,
+      "UV01_exact_to_V22": true,
+      "UV0_tangent_frame_exact_to_V22": false
+    },
+    {
+      "variant": "V32",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "V19_positions_weights_triangles_corner_normals_exact": true,
+      "other7_meshes_exact_to_frozen": true,
+      "other_material_graph_signatures_exact_to_frozen": true,
+      "canonical89_rest_flags_world_exact_to_frozen": true,
+      "UV01_exact_to_V22": true,
+      "UV0_tangent_frame_exact_to_V22": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+import bpy,json,hashlib,sys
+from pathlib import Path
+D=Path(__file__).resolve().parents[1];P=D.parent;F=Path('/home/davisc/Work/DinkQA/PhotorealSessions/Hero/Candidates/V267PortableQAReview/Source/Dink_RealHero_QA_Procedural.blend');A=D/'Evidence/Authority';A.mkdir(parents=True,exist_ok=True);bpy.ops.wm.open_mainfile(filepath=str(F));arm=bpy.data.objects['Armature'];bones={b.name:{'parent':b.parent.name if b.parent else None,'matrix_local':[list(r)for r in b.matrix_local],'head':list(b.head_local),'tail':list(b.tail_local),'length':b.length,'use_deform':b.use_deform,'inherit_scale':b.inherit_scale,'use_inherit_rotation':b.use_inherit_rotation}for b in arm.data.bones};old=bpy.data.objects['NEW_Dink_Trousers_LOD0'];r=json.loads((P/'FourPanelCutV9/shell_receipt.json').read_text());anchors=[]
+for source,target in sorted((int(a),b)for a,b in r['retained_source_vertex_map'].items()):
+ v=old.data.vertices[source];weights={old.vertex_groups[g.group].name:g.weight for g in v.groups};family='waist'if v.co.z>.8 else('cuff_left'if v.co.x>0 else'cuff_right');anchors.append({'original_vertex':source,'candidate_vertex':target,'family':family,'position_m':list(v.co),'named_weights':weights})
+assert len(bones)==89 and len(anchors)==2790
+(A/'original89_rest.json').write_text(json.dumps({'original_source_sha256':hashlib.sha256(F.read_bytes()).hexdigest(),'scope':'Read-only original89 canonical source matrices/axes/head/tail. Existing native shared161 identity is separate and not packaged or modified.','bones':bones},indent=2)+'\n');(A/'original2790_anchors.json').write_text(json.dumps({'original_source_sha256':hashlib.sha256(F.read_bytes()).hexdigest(),'scope':'Only positions and named weights are immutable anchors; whole-trouser UV/frame refresh was approved.','anchors':anchors},indent=2)+'\n')
+checks=[]
+for file in ['Source/SK_Dink_Trousers_FitV19_Context.blend','Source/SK_Dink_Trousers_MetricArtV32_Context.blend','Source/Helpers/Trousers_CoarseProcedural.blend']:
+ bpy.ops.wm.open_mainfile(filepath=str(D/file));ob=bpy.data.objects['NEW_Dink_Trousers_LOD0'];aa=bpy.data.objects['Armature'];actual={b.name:{'parent':b.parent.name if b.parent else None,'matrix_local':[list(r)for r in b.matrix_local],'head':list(b.head_local),'tail':list(b.tail_local),'length':b.length,'use_deform':b.use_deform,'inherit_scale':b.inherit_scale,'use_inherit_rotation':b.use_inherit_rotation}for b in aa.data.bones};assert actual==bones
+ for a in anchors:
+  v=ob.data.vertices[a['candidate_vertex']];assert list(v.co)==a['position_m'];assert {ob.vertex_groups[g.group].name:g.weight for g in v.groups}==a['named_weights']
+ checks.append({'scene':file,'original89_rest_head_tail_axes_flags_exact':True,'original2790_anchor_positions_weights_exact':True})
+(A/'portable_authority_checks.json').write_text(json.dumps(checks,indent=2)+'\n');print('AUTHORITIES',len(bones),len(anchors),flush=True)

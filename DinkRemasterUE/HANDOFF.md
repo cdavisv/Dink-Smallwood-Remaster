@@ -1,3 +1,13 @@
+# Current trousers source delivery
+
+Worktree /home/davisc/Work/DinkTrouserSourceDelivery, branch art/photoreal-trousers-source, base master30 7c6e41e4035a41507a84b7e745851aa35d8cc425. Adds source-only PhotorealTrousersV33; no Content/runtime changes. Root integration runtime remains separate/frozen at /Work/DinkPhotorealArtIntegration. Source-only independent review has no blockers; commit/push/PR/CI/cold-LFS verification are in progress.
+
+Root independently verified133copied files against frozen131payload+2seals and actual Blender reopened all4relocated sources normal0; packed local images and core signatures pass. Guide22errors8warnings and walk11rise residuals intentionally disclosed. Full source audit passes3649binaries/471Python/22shell/3429ledger rows, zeroerrors/secrets. Independent source-candidate review has no blockers. Ledger133candidate rows preserve3296prior raw rows including1597audio. See Docs/Verification/PhotorealTrousersSource.
+
+---
+
+Earlier project handoff follows as historical context; it is not this source branch status.
+
 # Dink remaster continuity
 
 Updated 8 November 2026. The full goal remains active: realistic Blender art for the playable starting house, fitted collision, traversable exits and verified visuals. Lighting, the new hero and shared exterior are unfinished.

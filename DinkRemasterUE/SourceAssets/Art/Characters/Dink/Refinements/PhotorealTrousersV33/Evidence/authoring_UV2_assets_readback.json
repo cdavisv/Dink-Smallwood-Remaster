@@ -1,0 +1,55 @@
+{
+  "UV2_against_semantic_attributes_max_error_m": 1.4901161138336505e-09,
+  "UV_count": 3,
+  "UV2_minmax": [
+    0.0,
+    0.0,
+    0.18618431687355042,
+    1.27951180934906
+  ],
+  "compiled_internal_OSL_bytecode_present": true,
+  "internal_OSL_text_sha256": "b5631308625739f5bb84ecc5399f12d6f652b259671cb108fc43dbc7333b094d",
+  "images": [
+    {
+      "image": "T_Dink_Trousers_V31_BC.png",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_BC.png",
+      "packed_file_sha_exact": true,
+      "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "image": "T_Dink_Trousers_V31_N.png",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_N.png",
+      "packed_file_sha_exact": true,
+      "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "image": "T_Dink_Trousers_V31_ORM.png",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_ORM.png",
+      "packed_file_sha_exact": true,
+      "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "image": "T_Dink_Homespun_MetricWeave_N256.png",
+      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Homespun_MetricWeave_N256.png",
+      "packed_file_sha_exact": true,
+      "sha256": "b5599254d88eee53b01050e5a9cce8dbec4b69a8d7040e0b60f1003a36a85ad0",
+      "size": [
+        256,
+        256
+      ]
+    }
+  ],
+  "source_geometry_unchanged": "See art_source_preservation_v32.json; UV2 is data only, never tangent basis."
+}
