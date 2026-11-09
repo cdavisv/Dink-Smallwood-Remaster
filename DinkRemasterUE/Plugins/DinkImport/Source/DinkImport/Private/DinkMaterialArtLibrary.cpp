@@ -1,6 +1,8 @@
 #include "DinkMaterialArtLibrary.h"
 #include "Materials/Material.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/StaticMeshSourceData.h"
+#include "EditorFramework/AssetImportData.h"
 #include "PhysicsEngine/BodySetup.h"
 #include "MeshDescription.h"
 #include "StaticMeshAttributes.h"
@@ -272,3 +274,29 @@ bool FDinkMaterialSlotBindingInspectionTest::RunTest(const FString& Parameters)
 	return true;
 }
 #endif
+
+FString UDinkMaterialArtLibrary::InspectStaticMeshSourceLods(UStaticMesh* Mesh)
+{
+    TSharedRef<FJsonObject> Root = MakeShared<FJsonObject>();
+    Root->SetStringField(TEXT("schema"), TEXT("dink-static-mesh-source-lods/1"));
+    Root->SetBoolField(TEXT("valid"), Mesh != nullptr);
+    TArray<TSharedPtr<FJsonValue>> Rows;
+    if (Mesh)
+    {
+        Root->SetStringField(TEXT("mesh"), Mesh->GetPathName());
+        for (int32 Index = 0; Index < Mesh->GetNumSourceModels(); ++Index)
+        {
+            const FStaticMeshSourceModel& Source = Mesh->GetSourceModel(Index);
+            TSharedRef<FJsonObject> Row = MakeShared<FJsonObject>();
+            Row->SetNumberField(TEXT("lod"), Index);
+            Row->SetStringField(TEXT("stored_source"), Source.SourceImportFilename);
+            Row->SetStringField(TEXT("resolved_source"), Source.SourceImportFilename.IsEmpty()
+                ? FString() : UAssetImportData::ResolveImportFilename(Source.SourceImportFilename, Mesh->GetOutermost()));
+            Rows.Add(MakeShared<FJsonValueObject>(Row));
+        }
+    }
+    Root->SetArrayField(TEXT("lods"), Rows);
+    FString Result;
+    FJsonSerializer::Serialize(Root, TJsonWriterFactory<>::Create(&Result));
+    return Result;
+}

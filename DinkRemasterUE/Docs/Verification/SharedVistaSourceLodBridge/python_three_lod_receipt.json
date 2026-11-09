@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "null_record": {
+    "schema": "dink-static-mesh-source-lods/1",
+    "valid": false,
+    "lods": []
+  },
+  "existing_three_LOD_record": {
+    "schema": "dink-static-mesh-source-lods/1",
+    "valid": true,
+    "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+    "lods": [
+      {
+        "lod": 0,
+        "stored_source": "",
+        "resolved_source": ""
+      },
+      {
+        "lod": 1,
+        "stored_source": "../../../../../Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookExterior/Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD1.fbx",
+        "resolved_source": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookExterior/Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD1.fbx"
+      },
+      {
+        "lod": 2,
+        "stored_source": "../../../../../Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookExterior/Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD2.fbx",
+        "resolved_source": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/StonebrookExterior/Export/Game/Dink/Foliage/StonebrookExterior/SM_Oak_Stonebrook_01_LOD2.fbx"
+      }
+    ]
+  },
+  "actual_owned_custom_module_paths": [
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+    "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+  ],
+  "Content_unchanged": true,
+  "scope": "Read-only reflected API onNone+existing clonedmesh. No SharedVista assets/tasks/sourcefilename acceptance, no import/save/scene."
+}

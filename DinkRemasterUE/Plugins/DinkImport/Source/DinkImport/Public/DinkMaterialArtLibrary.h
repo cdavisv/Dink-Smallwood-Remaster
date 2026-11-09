@@ -28,6 +28,10 @@ class DINKIMPORT_API UDinkMaterialArtLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
+	/** Detached JSON per-LOD import metadata via public source-model accessors. Never edits/cooks/saves. */
+	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+	static FString InspectStaticMeshSourceLods(UStaticMesh* Mesh);
+
 	/** All connected property IDs, including pins hidden from Python's enum. Never edits the graph. */
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static TArray<int32> GetConnectedMaterialProperties(UMaterial* Material);
