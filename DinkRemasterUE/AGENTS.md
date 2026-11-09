@@ -107,6 +107,7 @@ Owner art direction update (8Nov2026 UTC): develop photorealistic art in Blender
 | Run a subset | `Scripts/test.sh Dink.Core.Combat` | ~13 s |
 | Regenerate the globals table | `python3 Scripts/regen_globals.py [data repo path]` | < 1 s |
 | Bring in the converted Ink story | `python3 Scripts/sync_story.py [--data <repo>] [--rebuild] [--check]` | < 1 s (`--rebuild` runs the converter first: ~9 s) |
+| `python3 -I Scripts/art_coverage.py` | Art state of every origin ID (final / placeholder / cut) from `Saved/Import/coverage.csv` and the art manifests; writes `Saved/Import/art_coverage.csv`, prints the backlog by sprite family (0.2 s). Report: `Plugins/DinkImport/Docs/art_coverage.md`. |
 | Bring in map.dat/dink.ini gameplay data | `python3 Scripts/sync_gameplay_data.py [--data <repo>] [--check]` | < 1 s (reads the data repo's `tools/dinkex/out`) |
 | Build the game (non-editor) target | `$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh DinkRemaster Linux Development -Project=<abs>/DinkRemaster.uproject -WaitMutex` | ~32 s (verified 6 Nov 2026 in the project dir; writes `Binaries/Linux/DinkRemaster`) |
 | Cook and package the game (Linux, Development) | `Scripts/package.sh [stage dir]` | ~40 s from an empty `Saved/Cooked` (cook 22-42 s, 5,189 packages; shaders from the shared DDC), 30-65 s incremental; stage `Saved/StagedBuilds` 1.5 GB (`Content/Paks` 575 MB, binary 300 MB + 296 MB `.debug`/`.sym`); verified 7 Nov 2026 |
