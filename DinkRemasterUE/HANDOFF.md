@@ -281,3 +281,16 @@ Preserved earlier failures: missing-RHI linker error; interrupted retry143 with 
 
 
 PR29 reconciliation: merged master28 `c4e3826c` into movement branch as `b5a5233`, preserving read-only inspector source/dependencies/docs and both complete handoff records. Combined Editor/Game builds pass0compilerwarnings; combined movement7/7+inspector2/2 native checks pass0warnings and all11735pins unchanged. Four movement source SHA remain exact. Earlier full164/render receipts retain pre-reconciliation scope; no full166 or second GPU run is claimed. See Docs/Verification/ClumsierDink/integration_results.json and final Saved/ClumsyV2/merge.json.
+
+
+## Optional physical-element navigation policy — active isolated delivery
+
+Root authorized implementation/build/tests/minimalcommit/push/DRAFTPR, with independentRootreview BEFOREmerge. New `/home/artist/Work/DinkArtNavPolicy`, branch `fix/art-element-navigation`, exactmaster29base3aefd6f2. QA29baseline stage left untouched. OptionaltypedBOOL can_affect_navigation onlyforphysicalelements; absentnoSetter/legacySpawn; invalidtype rejects wholemanifestpreflight; explicitfalse deferredfinish afternavdisable beforemesh/finaltransform; trueaftersetup. NoFP/replacement/context/collision/overlap policychange, assetData admission orGPU. Privatein-memorymanifest overload+testfriend exercise real loader withoutSourceData fixtures. Tests coverabsentdefaults/false/true, actualprofiles/allchannelresponses, replacementnavunchanged and seveninvalidtypes preventing earlierreplacement/hiding/spawns. Allsourcefixtures copiedhash-equal/distinctinodes, noDLLcopies. Fullsourceauditpasses. OwnEditor+Game/focused/fullnativevalidation pending; receipts Saved/NavPolicy/Run.
+
+
+Navcandidate preservedfailures: initialbuildexit6 TestEqual TObjectPtr/rawpointer deduction corrected tosameidentityTestTrue; Retry1focused1/2 failed an assumedCDOsubobject inheritance, Diagnostic1INFO provedabsenttemplatefalse/newcomponenttrue whileexplicitfalse/true bothpassed. Fixture nowcomparesactuallegacyspawn default; globalCDOmutationremoved. InvalidIsAtomic passedseveninvalidtypes. Production policy code unchanged through these fixture corrections. Final validation Saved/NavPolicy/Final; no fullnative run has yetoccurred.
+
+
+## Optional navigation validation complete — draft publication pending
+
+Isolated DinkArtNavPolicy/fix/art-element-navigation/master29base3aefd6f2. Final ownEditor/Game builds pass0compilerdiagnostics; focused2/2 and fullactual168/168 pass (0warningtests). All11738 nativepins +13582 source/fixturepins unchanged, seven ownEditorDLLs stable throughGame/full. Source3SHA and exactcommands/results in Docs/Verification/ArtElementNavigation/validation.json; rawfailures retain Run/Retry1/Diagnostic1 and Final receipts. NoGPU/Data/assets/FP/context changes. Documentation updated after frozenrun; runtime/testsource retains recordedSHA. Authorizednext: minimalcommit/push/DRAFTPR, independentRootreview BEFOREmerge. Publication receipt Saved/NavPolicy/publication.json.
