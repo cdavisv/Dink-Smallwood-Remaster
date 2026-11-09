@@ -146,6 +146,11 @@ Owner art direction update (8Nov2026 UTC): develop photorealistic art in Blender
 
 ### Packaged build (proven 7 Nov 2026)
 
+- **Re-verified 9 Nov 2026 (master 8175f75, all twenty chapters):** `Scripts/build.sh`, `Scripts/package.sh` and
+  `Scripts/run_packaged_tests.sh` from the shared checkout; every chapter `PARITY OK` against the editor's traces,
+  Ch1 b3760d52d7 ... Ch18 e4355a5505, Ch19 579f75b840 (7142 events), Ch20 eae2c35f54 (4519 events). With this the
+  alpha gate's first condition holds: the bot completes `&story` 0-16 on a packaged Linux build.
+
 The probe runs in a packaged game and plays the same game as in PIE. Full account, with what the first design got wrong: `Plugins/DinkParity/Docs/packaged_probe.md`.
 
 - **Modules.** The probe is its own module `DinkProbe` (`Plugins/DinkParity/Source/DinkProbe`, `DeveloperTool`: editor and Development game, never
