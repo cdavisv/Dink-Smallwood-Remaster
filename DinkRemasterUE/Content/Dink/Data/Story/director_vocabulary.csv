@@ -142,4 +142,4 @@ debug,other,str,0,0,0,59,0,0,32,
 load_sound,other,"str, int",0,0,0,49,0,0,1,
 make_global_int,other,"str, int",0,0,0,63,0,0,1,
 preload_seq,other,int,0,0,0,681,0,0,142,
-sp_prop,unknown-command,,0,0,0,0,2,0,2,"not an engine command: dink.cpp has no such name, so the engine logs it and skips the line; recorded only as a switched-off intent (see the unknown_call rows of review_queue.csv); the director need not run it"
+sp_prop,unknown-command,,0,0,0,0,2,0,2,"not an engine command: dink.cpp has no such name, so the engine logs it and skips the line; written only in a switched-off intent branch (see the unknown_call rows of review_queue.csv); the remaster's director defines `sp_prop <sprite> <0|1>` (owner decision OD1, 9 Nov 2026): set the placed sprite's map `prop` flag, the warp / walk-through flag that get_hard and special_block read (dink.cpp:569-575, 15337-15341; no 1997 command can change it), until the screen loads again"

@@ -71,6 +71,11 @@ bool UDinkWarpComponent::TryWarp(APawn* Pawn)
 	}
 	UWorld* World = GetWorld();
 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	if (Greybox && !Greybox->IsSpriteWarpOn(WarpId))
+	{
+		// sp_prop set the placement's prop to 0: special_block, which warps, runs only for prop 1 (dink.cpp:15337-15341).
+		return false;
+	}
 	if (Greybox && !Greybox->BeginWarp(Pawn))
 	{
 		return false;
