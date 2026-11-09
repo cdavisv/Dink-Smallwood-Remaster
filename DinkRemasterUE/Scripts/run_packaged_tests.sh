@@ -21,7 +21,7 @@
 #                         process per chapter (DINK_PROBE_CHAPTERS), because a packaged game cannot start a
 #                         second fresh GameInstance the way a second PIE session does; chapters hand over
 #                         through Saved/SaveGames/probe_chN.sav on disk, as they do in the editor.
-#   DINK_PROBE_CHAPTERS   chapter test names in order (default: Ch1Stonebrook .. Ch9Windemere, ChAJoppa)
+#   DINK_PROBE_CHAPTERS   chapter test names in order (default: Ch1Stonebrook .. Ch9Windemere, ChAJoppa, ChBKit .. ChISeth)
 #   DINK_SAVED_DIR        where the packaged game's Saved folder is (default <stage>/Linux/<target>/Saved; verified 7 Nov 2026: the staged Saved folder is used;
 #                         FPaths::ShouldSaveToUserDir() would move it to ~/.config/Epic/<project> for an "installed" build)
 #   DINK_NOW_CMD          default "Now; " (see above); set to "" to get the controller's 5 s delay back
@@ -87,7 +87,7 @@ if [[ $PARITY_ONLY -eq 1 ]]; then parity; exit 0; fi
 
 # ---- default for the probe: one game process per chapter, then one parity check ----
 if [[ "$FILTER" == "Dink.Gameplay.Probe" && "${DINK_PER_CHAPTER:-1}" != "0" && -z "$TAG" ]]; then
-	chapters=(${DINK_PROBE_CHAPTERS:-Ch1Stonebrook Ch2Terris Ch3Roads Ch4Gold Ch5Bow Ch6Goblins Ch7Sanctuary Ch8Knights Ch9Windemere ChAJoppa})
+	chapters=(${DINK_PROBE_CHAPTERS:-Ch1Stonebrook Ch2Terris Ch3Roads Ch4Gold Ch5Bow Ch6Goblins Ch7Sanctuary Ch8Knights Ch9Windemere ChAJoppa ChBKit ChCDragons ChDCastle ChEEdge ChFDarklands ChGSlayers ChHDucks ChISeth})
 	overall=0
 	first=1
 	for c in "${chapters[@]}"; do
