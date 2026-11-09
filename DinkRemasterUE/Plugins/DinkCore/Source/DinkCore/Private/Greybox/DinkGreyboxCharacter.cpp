@@ -33,12 +33,12 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 
 	UCharacterMovementComponent* Move = GetCharacterMovement();
 	Move->bOrientRotationToMovement = true;
-	Move->RotationRate = FRotator(0.f, 360.f, 0.f);
-	Move->MaxAcceleration = 1100.f;
+	Move->RotationRate = FRotator(0.f, 300.f, 0.f);
+	Move->MaxAcceleration = 900.f;
 	Move->GroundFriction = 6.f;
 	Move->MaxWalkSpeed = RunSpeed;
 	Move->MinAnalogWalkSpeed = 20.f;
-	Move->BrakingDecelerationWalking = 950.f;
+	Move->BrakingDecelerationWalking = 850.f;
 	Move->JumpZVelocity = 280.f;
 	Move->GravityScale = 1.45f;
 	Move->AirControl = .2f;
@@ -224,7 +224,10 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	if (!Allowed) AirSeconds = 0.f;
 	else if (!Grounded) AirSeconds += DeltaSeconds;
 	else AirSeconds = 0.f;
-	HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported);
+	const float TurnRate = !Teleported && DeltaSeconds > SMALL_NUMBER
+        ? FMath::FindDeltaAngleDegrees(PreviousBodyYaw, GetActorRotation().Yaw) / DeltaSeconds : 0.f;
+    HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported, TurnRate);
+    PreviousBodyYaw = GetActorRotation().Yaw;
 	PreviousBodyLocation = Location; bBodyLocationReady = true;
 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
 	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
@@ -233,7 +236,7 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
         Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
     {
         // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
-        AppliedBodyRotation = AppliedBodyRotation * FRotator(1.2f,0,0).Quaternion();
+        AppliedBodyRotation = AppliedBodyRotation * FRotator(-FDinkHeroPhysicality::BaselinePitch,0,0).Quaternion();
     }
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;

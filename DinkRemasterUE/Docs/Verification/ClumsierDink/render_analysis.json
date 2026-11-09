@@ -1,0 +1,159 @@
+{
+  "samples": 1360,
+  "phases": {
+    "corner": {
+      "count": 64,
+      "max_horizontal_speed": 600.0000000002178,
+      "zrange": [
+        98.3499893899879,
+        98.3499893899879
+      ],
+      "mesh_zrange": [
+        -97.29218341414496,
+        -96.0000000401326
+      ]
+    },
+    "end-move": {
+      "count": 288,
+      "max_horizontal_speed": 0.0,
+      "zrange": [
+        98.3499893899879,
+        98.3499893899879
+      ],
+      "mesh_zrange": [
+        -96.00000436889303,
+        -96.00000005521514
+      ]
+    },
+    "forced-landing-fixture": {
+      "count": 92,
+      "max_horizontal_speed": 0.0,
+      "zrange": [
+        98.3499893899879,
+        132.2559416018337
+      ],
+      "mesh_zrange": [
+        -98.99931069323392,
+        -96.00000005521514
+      ]
+    },
+    "idle": {
+      "count": 333,
+      "max_horizontal_speed": 0.0,
+      "zrange": [
+        98.34999561309814,
+        98.34999561309814
+      ],
+      "mesh_zrange": [
+        -96.0,
+        -96.0
+      ]
+    },
+    "normal-chance-restored": {
+      "count": 292,
+      "max_horizontal_speed": 0.0,
+      "zrange": [
+        98.34999687039003,
+        98.34999687039003
+      ],
+      "mesh_zrange": [
+        -96.00000005521514,
+        -96.00000005521514
+      ]
+    },
+    "run": {
+      "count": 82,
+      "max_horizontal_speed": 600.0000000003158,
+      "zrange": [
+        98.3499893899879,
+        98.34999561309814
+      ],
+      "mesh_zrange": [
+        -97.3037335009244,
+        -96.00000002371505
+      ]
+    },
+    "settled": {
+      "count": 86,
+      "max_horizontal_speed": 0.0,
+      "zrange": [
+        98.3499893899879,
+        98.3499893899879
+      ],
+      "mesh_zrange": [
+        -96.0000000401326,
+        -96.0000000401326
+      ]
+    },
+    "walk": {
+      "count": 123,
+      "max_horizontal_speed": 200.00000000000003,
+      "zrange": [
+        98.34999561309814,
+        98.34999561309814
+      ],
+      "mesh_zrange": [
+        -97.29966472132232,
+        -96.0
+      ]
+    }
+  },
+  "images": {
+    "corner.png": {
+      "sha256": "209786596706cdf541514b05c404a55e999a2159e34aa81a6c06bcf78bd6f8d4",
+      "bytes": 1007804
+    },
+    "final.png": {
+      "sha256": "0e0acef4fea1a7df31b8d3c2199e48d05db7b2f248da406b143a4251ae8b76c3",
+      "bytes": 1120766
+    },
+    "idle.png": {
+      "sha256": "bd9422df4753cf1119b2f224ed4c6a251e5e89bdbd5696432e619da2670638c7",
+      "bytes": 1099730
+    },
+    "jump.png": {
+      "sha256": "b64be6ec844686b36844beb5c06e0aeb6abc88c95a83f537b6d9684db670120a",
+      "bytes": 1053184
+    },
+    "landing.png": {
+      "sha256": "2f0b390f8bc1bfcd717965b310f1870f22f1f265b45e6fa7a89d59e10a666219",
+      "bytes": 1119100
+    },
+    "recovery.png": {
+      "sha256": "de6723148e85e7e52f7c93bb98bbe13ebfdbb0101440f3b630522033527c993e",
+      "bytes": 1124226
+    },
+    "run-1.png": {
+      "sha256": "637ac45ceb582dacebb6b02adc185aae24d4c7b6f36b3d119a1600a5cf3c4af3",
+      "bytes": 1010705
+    },
+    "run-2.png": {
+      "sha256": "10cc7b9c3567a7486c821893069c965e6f77dbbba9b8e091a24f825dde71b6a5",
+      "bytes": 1006139
+    },
+    "settled.png": {
+      "sha256": "946c8f49162fc1d87835ad901ba5bb95489b0fc755b60e205b685d167e32fd91",
+      "bytes": 1107264
+    },
+    "stop.png": {
+      "sha256": "cf6acf5fc651f31805dad087ecee7b9f8fa2589801068fa3c3e07fafd757e9d8",
+      "bytes": 1027788
+    },
+    "walk-1.png": {
+      "sha256": "83c45bdf08bbc421bd0349413feea4d1f200d842940dc54200b02afc272d1563",
+      "bytes": 1070708
+    },
+    "walk-2.png": {
+      "sha256": "3b72efb8451d6e9d5a219c59c3a67c2d726a6fe8ce16fb02fa9e896ce52a9bb2",
+      "bytes": 1003702
+    }
+  },
+  "limits": "Bounded real-input check on existing hero; forced probability1 for one landing only. No normal probability frequency estimate, bone deformation, new hero or world-art approval. Initial helper guard/property errors retained in logs.",
+  "landing_observed": {
+    "max_hop_cm": 33.905952211845815,
+    "grounded_mesh_dip_cm": 2.999310638018784,
+    "post_landing_capsule_xy_drift_cm": 0.0,
+    "falling_samples": 9
+  },
+  "action_receipt_limit": "actions.json retains only the final helper invocation because each chunk reset its local records; phase-labelled telemetry spans the movement and landing inputs. The helper source and raw console/game logs remain."
+}
