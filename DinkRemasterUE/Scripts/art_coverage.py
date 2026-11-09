@@ -20,14 +20,21 @@ States (one per coverage row; see Plugins/DinkImport/Docs/art_coverage.md):
                                      replace that screen's sprites (hide_origins,
                                      or an instance under hide_screen_visuals) -
                                      the mapping is per screen, not per ID.
+               Both are "final bespoke". A third grade is "final by family":
+                 "family-bound"      Data/Art/families.json binds the placement's
+                                     sprite family (class id, else sequence) to an
+                                     existing mesh and no origin or screen binding
+                                     handles it; UDinkArtFamilySubsystem dresses it
+                                     at screen activation (visual only).
   placeholder  still drawn by the greybox (card, block, volume, instance) or not
                drawn at all; no art binding. Also the conservative answer
                whenever the binding model is ambiguous.
   cut          coverage.csv marks it inactive/skipped; the reason is its detail.
 
-The runtime model mirrored here is UDinkArtSubsystem / UDinkCreatureSubsystem:
-bindings are by origin ID (or screen number), never by sprite sequence/frame;
-a dink-art manifest is discarded whole if any referenced mesh is missing.
+The runtime model mirrored here is UDinkArtSubsystem / UDinkCreatureSubsystem
+(bindings by origin ID or screen number; a dink-art manifest is discarded whole if
+any referenced mesh is missing) and UDinkArtFamilySubsystem (bindings by sprite
+family, for what those leave greybox; same precedence rules as its C++).
 """
 import argparse
 import collections
@@ -268,6 +275,66 @@ def load_source_candidates():
     return by_origin, by_class
 
 
+def load_families(assets, notes):
+    """families.json -> (rows, precedence origins, precedence screens), mirroring UDinkArtFamilySubsystem.
+
+    Rows whose mesh is missing are dropped (the runtime keeps those cards). The precedence is read from the raw
+    manifests, valid or not, exactly as FDinkFamilyPrecedence::AddManifest does."""
+    art_dir = os.path.join(PROJECT, "Content", "Dink", "Data", "Art")
+    rows, origins, screens = [], set(), set()
+    fam = read_json(os.path.join(art_dir, "families.json"))
+    if isinstance(fam, dict) and fam.get("schema") == "dink-art-families/1":
+        seen = set()
+        for r in fam.get("families") or []:
+            if not isinstance(r, dict) or not str(r.get("family", "")).strip() or not str(r.get("mesh", "")).startswith("/Game/"):
+                notes.append("families.json: row without family or /Game/ mesh skipped")
+                continue
+            name = r["family"].strip()
+            m = re.match(r"^(\d+)", name)
+            key = ("seq", int(m.group(1))) if m else ("class", name.lower())
+            if key in seen:
+                notes.append("families.json: %s bound twice, second row skipped" % name)
+                continue
+            seen.add(key)
+            ok, why = assets.resolve(r["mesh"])
+            if not ok:
+                notes.append("families.json: %s -> %s not bound at runtime (%s)" % (name, r["mesh"], why))
+                continue
+            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False))})
+    for fn in sorted(os.listdir(art_dir)):
+        if not fn.lower().endswith(".json") or fn.lower() == "families.json":
+            continue
+        d = read_json(os.path.join(art_dir, fn))
+        if not isinstance(d, dict):
+            continue
+        schema = d.get("schema")
+        if schema == "dink-art/1":
+            for field in ("replacements", "warp_overrides"):
+                origins.update(x["origin"] for x in d.get(field) or [] if isinstance(x, dict) and x.get("origin"))
+            origins.update(o for o in d.get("hide_origins") or [] if isinstance(o, str))
+            hv = d.get("hide_origins_by_vision")
+            for lst in (hv.values() if isinstance(hv, dict) else [hv] if isinstance(hv, list) else []):
+                origins.update(o for o in lst or [] if isinstance(o, str))
+            for field in ("hide_screen_visuals", "authored_collision_screens"):
+                screens.update(int(x) for x in d.get(field) or [] if isinstance(x, (int, float)))
+            if d.get("elements") and isinstance(d.get("screen"), (int, float)):
+                screens.add(int(d["screen"]))
+        elif schema in ("dink-creatures/1", "dink-characters/1"):
+            origins.update(x["origin"] for x in d.get("placements") or [] if isinstance(x, dict) and x.get("origin"))
+    return rows, origins, screens
+
+
+def family_binding(rows, seq, cls):
+    """Class row first, then sequence row (DinkArtFamily::Resolve)."""
+    for r in rows:
+        if r["key"] == ("class", (cls or "").lower()):
+            return r
+    for r in rows:
+        if seq is not None and r["key"] == ("seq", seq):
+            return r
+    return None
+
+
 def classify(args):
     notes = []
     assets = Assets()
@@ -284,11 +351,40 @@ def classify(args):
     with open(cov_path, newline="", encoding="utf-8") as f:
         cov = list(csv.DictReader(f))
 
-    seq_of = {}
+    seq_of, frame_of, scripted_of = {}, {}, {}
     gp = os.path.join(PROJECT, "Content", "Dink", "Data", "Gameplay", "placements.csv")
     with open(gp, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             seq_of[r["origin"]] = int(r["seq"])
+            frame_of[r["origin"]] = int(r["frame"])
+            scripted_of[r["origin"]] = bool(r["script"].strip())
+    fam_rows, fam_origins, fam_screens = load_families(assets, notes)
+    manifests["families"] = fam_rows
+
+    def family_decision(oid, screen_no, cls, detail):
+        """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
+        if not fam_rows or detail.startswith("hardness_only") or "no picture" in detail:
+            return None
+        if screen_no in fam_screens or oid in fam_origins:
+            return None
+        row = family_binding(fam_rows, seq_of.get(oid), cls)
+        if row is None or (scripted_of.get(oid) and not row["scripted"]):
+            return None
+        return row
+
+    # The runtime dresses an instance decor component (one sprite frame on one screen) only when every instance in it
+    # is bound to the same row; otherwise the whole component keeps its cards.
+    decor_ok = {}
+    for r in cov:
+        if r["type"] != "placement" or r["became"].startswith("actor"):
+            continue
+        oid = r["origin_id"]
+        if oid not in seq_of:
+            continue
+        group = (r["screen"], seq_of[oid], frame_of[oid])
+        row = family_decision(oid, int(r["screen"].split("_")[1]), parse_detail(r["detail"])[1], r["detail"])
+        prev = decor_ok.get(group, row)
+        decor_ok[group] = row if (row is not None and prev is not None and prev is row) else None
 
     place = {r["origin_id"]: r for r in cov if r["type"] == "placement"}
     for tag, ids in (("replacement", manifests["replace"]), ("hide_origins", manifests["hide"]),
@@ -371,6 +467,13 @@ def classify(args):
         if cut_reasons:
             # Owner decision, 9 Nov 2026: placements that can never meaningfully become final are cut, with the reason.
             return finish(r, fam, art_kind, "cut", "cut (owner decision 9 Nov 2026): " + "; ".join(cut_reasons) + "; " + base + " (%s)" % cls)
+        # --- final: family binding (what no origin or screen binding handles) ------------------------
+        row = family_decision(oid, screen_no, cls, r["detail"])
+        if row is not None and not is_actor:
+            row = decor_ok.get((r["screen"], seq_of.get(oid), frame_of.get(oid)))
+        if row is not None:
+            return finish(r, fam, art_kind, "final", "family-bound: %s -> %s; %s, card hidden at screen activation, collision and script unchanged; %s" % (
+                row["family"], row["mesh"], "actor" if is_actor else "instance", ledger_tag(row["mesh"])))
         return finish(r, fam, art_kind, "placeholder", "; ".join([base + " (%s)" % cls] + flags))
 
     # placements first (warps inherit their host)
@@ -430,6 +533,12 @@ def table(title, header, rows):
     print()
 
 
+def is_family_final(r):
+    """Final through families.json: the placement itself, or a warp row whose host is."""
+    return r["state"] == "final" and (r["evidence"].startswith("family-bound") or (
+        r["evidence"].startswith("warp trigger") and "family-bound:" in r["evidence"]))
+
+
 def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     states = ("final", "placeholder", "cut")
     by_state = collections.Counter(r["state"] for r in out)
@@ -438,6 +547,10 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     print("input: %s (%d bytes)" % (rel(cov_path), os.path.getsize(cov_path)))
     print()
     table("State", ["state", "rows"], [[s, by_state[s]] for s in states] + [["total", len(out)]])
+    by_family = sum(1 for r in out if is_family_final(r))
+    table("State, final split into bespoke and family art", ["state", "rows"],
+          [["final bespoke", by_state["final"] - by_family], ["final by family", by_family],
+           ["placeholder", by_state["placeholder"]], ["cut", by_state["cut"]], ["total", len(out)]])
 
     by_type = collections.Counter((r["type"], r["state"]) for r in out)
     table("Row type x state", ["type"] + list(states),
@@ -458,7 +571,9 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     direct = sum(1 for r in finals if r["evidence"].startswith("origin-bound"))
     dress = sum(1 for r in finals if r["evidence"].startswith("screen-dressing"))
     warp_final = sum(1 for r in finals if r["evidence"].startswith("warp trigger"))
-    print("Final grades: origin-bound %d, screen-dressing %d, warp rows inheriting a final host %d" % (direct, dress, warp_final))
+    family_final = sum(1 for r in finals if r["evidence"].startswith("family-bound"))
+    print("Final grades: origin-bound %d, screen-dressing %d, family-bound %d, warp rows inheriting a final host %d (%d of them family-bound)" % (
+        direct, dress, family_final, warp_final, sum(1 for r in finals if r["evidence"].startswith("warp trigger") and is_family_final(r))))
     ledger_final = collections.Counter()
     for r in (r for r in finals if r["evidence"].startswith("origin-bound")):
         m = re.search(r"ledger=(\S+?)(;|$| )", r["evidence"])
@@ -474,6 +589,12 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     print("Runtime manifests: %d dressed screens %s; %d render-only contexts; %d creature, %d character, %d replacement bindings" % (
         len(manifests["screen_dress"]), sorted(manifests["screen_dress"]), len(manifests["context"]),
         len(manifests["creature"]), len(manifests["character"]), len(manifests["replace"])))
+    fams = collections.Counter()
+    for r in out:
+        if r["type"] == "placement" and r["evidence"].startswith("family-bound"):
+            fams[r["evidence"][len("family-bound: "):].split(" -> ")[0]] += 1
+    print("Family bindings (families.json): %d rows with an existing mesh; placements turned final: %s" % (
+        len(manifests.get("families") or []), ", ".join("%s %d" % kv for kv in sorted(fams.items(), key=lambda kv: (-kv[1], kv[0]))) or "none"))
     for name, why in manifests["invalid"]:
         print("WARNING: manifest %s ignored: %s" % (name, why))
     for n in notes:
