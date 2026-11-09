@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "scope": "Binary FBX independent decode vs actual saved source; no native import.",
+  "parser_sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+  "render_meshes": 12,
+  "explicit_render_triangles": 48090,
+  "original_UCX_geometry_exact": 312,
+  "PNG_hashes_exact": 25,
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "FBX_sha256": "c7933e1d610c24bdc1b1df4e8510c6b302a810aae4d04799a571c02bf16ef184",
+      "explicit_triangles": 1486,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "FBX_sha256": "fc576e7241357c2b38c3325e979d6699b9bc5c09ecd377cf472007a84086a043",
+      "explicit_triangles": 15912,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "FBX_sha256": "ebd4193ee89dbe7fc5b79e9c49412ae7b0e717b766285275695e9a67ade0c43a",
+      "explicit_triangles": 8672,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "FBX_sha256": "707f4b3ad985426ec1fa0536db015cbf362a598e3c55438708b60b7f26ed137a",
+      "explicit_triangles": 4698,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "FBX_sha256": "7b40cac294335a955a8fc795e5c580242b7a6e41ed2ae5a4483d3a6849f5ad2d",
+      "explicit_triangles": 4986,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "FBX_sha256": "d5b0c8a8e9225b878fb66c8f38821ab3e5c094b95430f1b66b5a7949c06615bd",
+      "explicit_triangles": 3474,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "FBX_sha256": "23f6ee649697e34a99fd47bdb06018856311ea16f37a7343033dedede986f013",
+      "explicit_triangles": 266,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "FBX_sha256": "277fc30e27714564e70fa4c64a618c6e75498bc3c7cbec698e86e8ef9f5b0f69",
+      "explicit_triangles": 266,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "FBX_sha256": "ade212d8fda49912e9f2eb7dd1dcb64151e09f18c43b03dcd0e45e0eae057a81",
+      "explicit_triangles": 266,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "FBX_sha256": "84aa4bee77c83062b9293d9a5bb97030973048e4da571fc85024d0b0337971f9",
+      "explicit_triangles": 266,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "FBX_sha256": "6a3b6c69adc4afd6427d5fc58310371a5a5e6f2347d5518f41ecb424ef475a9a",
+      "explicit_triangles": 4924,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "FBX_sha256": "c0c69468e822c3749afb8095190d6146f33c7f1bfcd828f7fe5159c8c969c942",
+      "explicit_triangles": 2874,
+      "max_source_to_FBX_UV_delta": 0.0,
+      "max_source_to_FBX_normal_component_delta": 0.0,
+      "oriented_geometry_and_corner_material_roles_exact": true
+    }
+  ]
+}

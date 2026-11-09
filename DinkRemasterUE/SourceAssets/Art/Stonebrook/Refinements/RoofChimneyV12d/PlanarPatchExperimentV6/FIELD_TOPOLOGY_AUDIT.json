@@ -1,0 +1,69 @@
+{
+  "scope": "CPU source candidate only, modified/propagated triangles sampled at10 points; geometry-first nearest parent-domain correspondence, no UV or normal used to select source. Further actual FBX/native required.",
+  "rows": [
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "original_topology": {
+        "vertices": 4698,
+        "triangles": 8644,
+        "edges": 12966,
+        "Euler": 376,
+        "edge_multiplicity": {
+          "2": 12966
+        }
+      },
+      "candidate_topology": {
+        "vertices": 4712,
+        "triangles": 8672,
+        "edges": 13008,
+        "Euler": 376,
+        "edge_multiplicity": {
+          "2": 13008
+        }
+      },
+      "all_original_positions_retained": true,
+      "added_positions": 14,
+      "area_delta_cm2": 0.0,
+      "volume_delta_cm3": 1.862645149230957e-09,
+      "modified_surface_samples": 390,
+      "max_closest_original_surface_distance_cm": 5.684341886080802e-14,
+      "max_UV_field_delta": 1.4901161193847656e-08,
+      "max_normal_field_angle_degrees": 0.0017555319790656149,
+      "minimum_modified_triangle_angle_degrees": 0.10282135869956507,
+      "minimum_modified_float32_cosine_margin": 1.6093254089355469e-06
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "original_topology": {
+        "vertices": 2391,
+        "triangles": 4924,
+        "edges": 7080,
+        "Euler": 235,
+        "edge_multiplicity": {
+          "2": 6774,
+          "4": 306
+        }
+      },
+      "candidate_topology": {
+        "vertices": 2391,
+        "triangles": 4924,
+        "edges": 7080,
+        "Euler": 235,
+        "edge_multiplicity": {
+          "2": 6774,
+          "4": 306
+        }
+      },
+      "all_original_positions_retained": true,
+      "added_positions": 0,
+      "area_delta_cm2": 0.0,
+      "volume_delta_cm3": 1.1175870895385742e-08,
+      "modified_surface_samples": 590,
+      "max_closest_original_surface_distance_cm": 1.1368683772161603e-13,
+      "max_UV_field_delta": 8.881784197001252e-16,
+      "max_normal_field_angle_degrees": 0.0,
+      "minimum_modified_triangle_angle_degrees": 1.5448672428176078,
+      "minimum_modified_float32_cosine_margin": 0.00036340951919555664
+    }
+  ]
+}

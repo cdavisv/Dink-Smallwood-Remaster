@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "scope": "Actual FBX render-triangle CPU line segments in source-derived fixture frame, each lowerLOD separately with all8roof+upper, plus original V11 render baseline. No cooked hull, sphere/capsule sweep, Chaos/channel/profile/world/gameplay acceptance.",
+  "reference_sha256": "d980fdc1b6a89037efd8c27a5d7df757fe47b87afecd5a5cb9669eea90867cab",
+  "original_reference_sha256": "dab9eff7a2cced4f46c4239424e351d1766e73fb26f5d217dacc3ce2de08aa78",
+  "contract_sha256": "63b0c426b2e58a7051913ed82f625f33a2be71710185dd456913c20660e6ed8c",
+  "rows": [
+    {
+      "lower_LOD": 0,
+      "checks": [
+        {
+          "family": "negative_air_segments",
+          "segments": 27,
+          "hit_count": 0,
+          "max_first_distance_error_cm": 0.0,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "positive_wall_segments",
+          "segments": 28,
+          "hit_count": 28,
+          "max_first_distance_error_cm": 3.7789344787597656e-05,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "dense_lower_wall_segments",
+          "segments": 5616,
+          "hit_count": 5616,
+          "max_first_distance_error_cm": 0.020000278949739325,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        }
+      ]
+    },
+    {
+      "lower_LOD": 1,
+      "checks": [
+        {
+          "family": "negative_air_segments",
+          "segments": 27,
+          "hit_count": 0,
+          "max_first_distance_error_cm": 0.0,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "positive_wall_segments",
+          "segments": 28,
+          "hit_count": 28,
+          "max_first_distance_error_cm": 3.7789344787597656e-05,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "dense_lower_wall_segments",
+          "segments": 5616,
+          "hit_count": 5616,
+          "max_first_distance_error_cm": 0.020000278949739325,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        }
+      ]
+    },
+    {
+      "lower_LOD": 2,
+      "checks": [
+        {
+          "family": "negative_air_segments",
+          "segments": 27,
+          "hit_count": 0,
+          "max_first_distance_error_cm": 0.0,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "positive_wall_segments",
+          "segments": 28,
+          "hit_count": 28,
+          "max_first_distance_error_cm": 3.7789344787597656e-05,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        },
+        {
+          "family": "dense_lower_wall_segments",
+          "segments": 5616,
+          "hit_count": 5616,
+          "max_first_distance_error_cm": 0.020000278949739325,
+          "max_first_distance_change_from_original_V11_cm": 0.0,
+          "changed_original_hit_state": [],
+          "failures": []
+        }
+      ]
+    }
+  ]
+}

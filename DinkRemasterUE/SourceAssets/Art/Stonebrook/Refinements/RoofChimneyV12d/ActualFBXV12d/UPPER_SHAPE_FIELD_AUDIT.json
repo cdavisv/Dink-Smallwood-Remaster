@@ -1,0 +1,183 @@
+{
+  "scope": "Actual independently decoded FBX corner fields, sampled against original source parent domains; geometry-only nearest correspondence, artist UV changes explicitly deliberate. No native proof.",
+  "samples": 14860,
+  "original_topology": {
+    "vertices": 604,
+    "triangles": 1208,
+    "edges": 1812,
+    "Euler": 0,
+    "edge_multiplicity": {
+      "2": 1812
+    }
+  },
+  "candidate_topology": {
+    "vertices": 743,
+    "triangles": 1486,
+    "edges": 2229,
+    "Euler": 0,
+    "edge_multiplicity": {
+      "2": 2229
+    }
+  },
+  "all_original_positions_retained": true,
+  "added_positions": 139,
+  "bounds_original": [
+    [
+      -135.28097867965698,
+      -644.6454048156738,
+      -70.00000476837158
+    ],
+    [
+      43.373993039131165,
+      -555.1875114440918,
+      161.9999885559082
+    ]
+  ],
+  "bounds_candidate": [
+    [
+      -135.28097867965698,
+      -644.6454048156738,
+      -70.00000476837158
+    ],
+    [
+      43.373993039131165,
+      -555.1875114440918,
+      161.9999885559082
+    ]
+  ],
+  "area_delta_cm2": 0.00020389421842992306,
+  "volume_delta_cm3": 0.0017788795521482825,
+  "max_closest_original_surface_distance_cm": 0.00019813489575426502,
+  "allowed_local_shape_distance_cm": 0.002,
+  "max_deliberate_UV_delta": 7.216004943847656,
+  "max_normal_field_angle_degrees": 0.5545572828931296,
+  "minimum_triangle_angle_degrees": 0.020255908387269803,
+  "minimum_float32_cosine_margin": 5.960464477539063e-08,
+  "by_chart": {
+    "inherited": {
+      "triangles": 1245,
+      "max_surface_distance_cm": 9.356262125947978e-06,
+      "max_old_UV_delta": 0.002000093460083452,
+      "max_normal_field_angle_degrees": 0.02747555279507594
+    },
+    "0": {
+      "triangles": 21,
+      "max_surface_distance_cm": 0.00010523185756028397,
+      "max_old_UV_delta": 1.577929973602295,
+      "max_normal_field_angle_degrees": 0.5545572828931296
+    },
+    "1": {
+      "triangles": 16,
+      "max_surface_distance_cm": 0.00019813489575426502,
+      "max_old_UV_delta": 1.4909084141254425,
+      "max_normal_field_angle_degrees": 0.3651478340394251
+    },
+    "2": {
+      "triangles": 13,
+      "max_surface_distance_cm": 1.0974115781436922e-05,
+      "max_old_UV_delta": 1.2646903991699219,
+      "max_normal_field_angle_degrees": 0.019047535816617285
+    },
+    "3": {
+      "triangles": 15,
+      "max_surface_distance_cm": 1.1368683772161603e-13,
+      "max_old_UV_delta": 5.993117094039917,
+      "max_normal_field_angle_degrees": 0.0198117586180402
+    },
+    "4": {
+      "triangles": 7,
+      "max_surface_distance_cm": 6.95511643300506e-06,
+      "max_old_UV_delta": 0.37137460242956877,
+      "max_normal_field_angle_degrees": 0.02891806206482185
+    },
+    "5": {
+      "triangles": 9,
+      "max_surface_distance_cm": 7.803020181995635e-06,
+      "max_old_UV_delta": 1.9051973223686218,
+      "max_normal_field_angle_degrees": 0.022087891461168477
+    },
+    "6": {
+      "triangles": 6,
+      "max_surface_distance_cm": 1.7917995592142688e-05,
+      "max_old_UV_delta": 4.26863968372345,
+      "max_normal_field_angle_degrees": 0.015475237243374983
+    },
+    "7": {
+      "triangles": 18,
+      "max_surface_distance_cm": 7.714546313764004e-06,
+      "max_old_UV_delta": 3.1739872998008525,
+      "max_normal_field_angle_degrees": 0.03157503270246806
+    },
+    "8": {
+      "triangles": 16,
+      "max_surface_distance_cm": 5.960464321219661e-06,
+      "max_old_UV_delta": 0.07076013088226318,
+      "max_normal_field_angle_degrees": 0.22105433700711866
+    },
+    "9": {
+      "triangles": 20,
+      "max_surface_distance_cm": 5.960465202292653e-06,
+      "max_old_UV_delta": 4.091044902801514,
+      "max_normal_field_angle_degrees": 0.21804816984914024
+    },
+    "10": {
+      "triangles": 19,
+      "max_surface_distance_cm": 1.4225723063532314e-05,
+      "max_old_UV_delta": 1.2845332622528076,
+      "max_normal_field_angle_degrees": 0.045694798789279956
+    },
+    "11": {
+      "triangles": 19,
+      "max_surface_distance_cm": 2.38418583649036e-05,
+      "max_old_UV_delta": 7.216004943847656,
+      "max_normal_field_angle_degrees": 0.01905741319215869
+    },
+    "12": {
+      "triangles": 18,
+      "max_surface_distance_cm": 2.1578597511506814e-05,
+      "max_old_UV_delta": 1.2845153212547302,
+      "max_normal_field_angle_degrees": 0.21204049587457213
+    },
+    "13": {
+      "triangles": 11,
+      "max_surface_distance_cm": 6.371613380906638e-06,
+      "max_old_UV_delta": 3.0136396288871765,
+      "max_normal_field_angle_degrees": 0.021183272976022734
+    },
+    "14": {
+      "triangles": 11,
+      "max_surface_distance_cm": 1.5539074439629985e-05,
+      "max_old_UV_delta": 0.3182409666478634,
+      "max_normal_field_angle_degrees": 0.13901841607398718
+    },
+    "15": {
+      "triangles": 11,
+      "max_surface_distance_cm": 1.0164627767039747e-05,
+      "max_old_UV_delta": 1.9064530730247498,
+      "max_normal_field_angle_degrees": 0.06036658651440965
+    },
+    "16": {
+      "triangles": 11,
+      "max_surface_distance_cm": 2.822699025273323e-05,
+      "max_old_UV_delta": 2.143770918250084,
+      "max_normal_field_angle_degrees": 0.09061330594375373
+    }
+  },
+  "angle_categories": {
+    "inherited_exact_geometry": {
+      "triangles": 1156,
+      "minimum_angle_degrees": 0.020255908387269803,
+      "minimum_float32_cosine_margin": 5.960464477539063e-08
+    },
+    "propagated_geometry": {
+      "triangles": 89,
+      "minimum_angle_degrees": 0.03189758391702067,
+      "minimum_float32_cosine_margin": 1.7881393432617188e-07
+    },
+    "artist": {
+      "triangles": 241,
+      "minimum_angle_degrees": 0.03850456130045332,
+      "minimum_float32_cosine_margin": 2.384185791015625e-07
+    }
+  }
+}

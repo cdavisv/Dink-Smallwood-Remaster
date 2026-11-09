@@ -1,0 +1,12 @@
+{
+  "trigger": "PR36 originalhead0f71d3c CI42670303172 failed29 diagnostic pointer hash mismatches; sourcebytes and remoteobjects were intact",
+  "fix": "lfs_inventory includes mandatory suffixes plus paths explicitly filter=lfs in STAGED cached attributes; stagedpointerOID authority unchanged",
+  "focused_test_command": "python -B -m unittest discover -s Scripts/tests -p test_lfs_*.py -v",
+  "focused_tests": 14,
+  "result": "PASS normal0",
+  "full_audit_LFS_files": 4336,
+  "all_prior_ledger_rows_unchanged": 4044,
+  "ordinary_source_pointer_masquerade_rejected": true,
+  "working_attribute_cannot_promote_source": true,
+  "native_Content_Data_Engine_changed": false
+}
