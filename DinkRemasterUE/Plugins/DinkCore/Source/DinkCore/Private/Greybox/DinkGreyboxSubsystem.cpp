@@ -21,7 +21,7 @@
 #include "Misc/App.h"
 
 static TAutoConsoleVariable<int32> CVarDinkScreenInfo(
-	TEXT("dink.ScreenInfo"), 1, TEXT("Show the original screen the player is on (greybox). 0 = off."), ECVF_Default);
+	TEXT("dink.ScreenInfo"), 0, TEXT("Developer overlay showing the current original screen. 0 = off (default), 1 = on."), ECVF_Default);
 
 void UDinkGreyboxSubsystem::RegisterScreen(ADinkScreenVolume* Screen)
 {
