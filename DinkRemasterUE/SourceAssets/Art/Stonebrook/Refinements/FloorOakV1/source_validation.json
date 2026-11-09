@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "errors": [],
+  "clean_source_meshes": 1,
+  "source_convex_hulls": 1,
+  "source_geometry_vertices": 1408,
+  "source_geometry_triangles": 2624,
+  "source_geometry_UV_sha256": "b0f6f18b3fbe936ef3fec62fbb6d30dda12d390c5f16f0bf6456e6c60b18fa3e",
+  "geometry_UV_identical_to_original": true,
+  "per_polygon_material_indices_identical": true,
+  "material_slots": 2,
+  "preserved_nails_slot": 1,
+  "nail_polygons": 320,
+  "nails_material_graph_identical_to_original": true,
+  "nails_material_graph_sha256": "27bd7e9ee6af95e6162cf1d1bccd80a0e0b25b89a8e9a54c99d1f79ee934fd5d",
+  "all_required_images_packed_and_contained": true,
+  "packed_image_count": 7,
+  "roundtrip_pairs_same_camera_lights_exposure": true,
+  "portable_rebuild_all3PNG_bytes_identical": true,
+  "original_project_source_changes": [],
+  "clean_source_sha256": "a7dd05b547773ea77cca3837cbdc17a549f10a8567b0395bb7a34fce6cccac87"
+}

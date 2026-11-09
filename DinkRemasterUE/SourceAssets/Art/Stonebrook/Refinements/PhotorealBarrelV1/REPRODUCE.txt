@@ -1,0 +1,29 @@
+PhotorealBarrelV1 source candidate — Blender5.2.2LTS / CPU4
+
+Run all Blender scripts from any working directory; they resolve their own bundle.
+The editable approved source is frozen SHA0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6.
+Do not overwrite it during review. The separate Export.blend is triangulated and uses baked one-slot PBR.
+
+Read-only current payload audit (NumPy/Pillow):
+  python3 inspect_payload.py
+
+Disposable packed-image portability check (writes PortableCheck copies only):
+  blender -b -t 2 --python check_portable.py
+
+To reproduce native payload derivation in a COPY of this folder:
+  blender -b -t 4 --python bake_barrel.py
+  blender -b -t 4 --python export_barrel.py
+  blender -b -t 4 --python roundtrip_barrel.py
+The bake script reads approved source without altering its bytes, then writes Export.blend/Textures.
+The export script uses the bundled Pipeline/dinkasset guide. It refuses guide errors; no forced export.
+The roundtrip script reads the actual FBX, checks every oriented triangle/UV/corner normal, the one exact UCX, and renders the same neutral studio with the baked material.
+
+Authoring reproduction in a DISPOSABLE folder:
+  blender -b -t 4 --python build_barrel.py
+  blender -b -t 4 --python render_previews.py
+  blender -b -t 2 --python validate_source.py
+This recreates the scene from the immutable Inputs/PhotorealPropsV1_Input.blend and generated oak/reference payloads. Blender save metadata may differ; frozen approved bytes remain the publication input. Guide raw source result has0errors2warnings (soft6kprop target; reference-room orphans excluded). The export-only scene has0errors1softbudgetwarning, not forced. The saved editable scene is BarrelStudio; generic CLI validation needs selecting the actual source scene, as validate_source.py does explicitly.
+
+UV0 is smart-packed unique, 2048px BC/N/ORM. BC uses authored BaseColor emission rather than diffuse-only baking, retaining bareiron color. Normal is tangent-space(+YBlender); UE greenflip required. ORM is linear R=255neutralAO,Groughness,Bauthoredmetallic. Wood is dielectric, bareironhighmetallicity, oxidizedareasreduced. Specular0.35 constant. Nanite/full fallback should be verified in native import. Imported source normals, generated Mikk tangents, original complex-as-simple runtime query policy are expected; the UCX is retained exactly but not relabeled as active collision.
+
+No native import/runtime publication/ledger edits or final photoreal acceptance occur in this source task. All materials and geometry require root native inspection/camera/light acceptance. The old mesh/package must remain unchanged; new unique destination is /Game/Dink/Props/Stonebrook/PhotorealBarrelV1.

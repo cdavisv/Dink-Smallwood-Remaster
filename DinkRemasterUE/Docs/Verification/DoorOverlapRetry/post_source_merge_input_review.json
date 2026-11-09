@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "full153_inputs": 9241,
+  "changed_existing_inputs": [
+    "AGENTS.md",
+    "SourceAssets/asset_ledger.csv"
+  ],
+  "scope": "Post-suite source-only PR21 merge changes only AGENTS status and asset ledger among existing full-run inputs; adds379 unreferenced source-art files. All runtime C++/Content/Data/config/import fixtures/scripts/custom binaries and prior authoring files retain their tested bytes. Source-only delivery independently audited/reviewed separately."
+}

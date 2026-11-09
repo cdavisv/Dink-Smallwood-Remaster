@@ -35,6 +35,16 @@ class DINKCORE_API UDinkInteriorCameraComponent : public UActorComponent
     GENERATED_BODY()
 public:
     UDinkInteriorCameraComponent();
+    /** Historical cutaway mode for comparison fixtures only. Normal play keeps architecture opaque. */
+    UPROPERTY(Transient) bool bEnableWallCutaway = false;
+    /** Positive steps move closer. Kept separate from interior/outdoor base distances. */
+    void AddZoomInput(float Steps);
+    float GetZoomOffset() const { return ZoomOffset; }
+    float GetDesiredArmLength() const;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float ZoomStep = 35.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MinimumArmLength = 180.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MaximumOutdoorArmLength = 650.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MaximumInteriorArmLength = 320.f;
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction) override;
     UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorArmLength = 240.f;
     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorPivotOffset = FVector(0,0,52);
@@ -71,4 +81,6 @@ private:
     FVector OutdoorPivot = FVector::ZeroVector;
     FVector OutdoorSocket = FVector::ZeroVector;
     bool bSelectedScreen = false;
+    bool bAppliedCutaway = false;
+    float ZoomOffset = 0.f;
 };

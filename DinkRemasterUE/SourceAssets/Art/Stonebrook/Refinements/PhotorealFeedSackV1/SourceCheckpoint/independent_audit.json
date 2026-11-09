@@ -1,0 +1,18 @@
+{
+  "schema": "dink-feedsack-independent-source-audit/1",
+  "passed": true,
+  "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+  "input_sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+  "max_bounds_delta_m": 0.0,
+  "ground_center_pivot_preserved": true,
+  "collider_local_vertices_and_relative_transform_exact": true,
+  "collider_count": 1,
+  "source_triangles": 19644,
+  "finite_positions": true,
+  "native_imported": false,
+  "limits": [
+    "No universal intersection-free or native game acceptance claim.",
+    "Cloth/seam/stitch and knot/tie contacts intentionally meet or overlap.",
+    "Jute/cord source shaders are procedural; bake/export/native review remain required."
+  ]
+}

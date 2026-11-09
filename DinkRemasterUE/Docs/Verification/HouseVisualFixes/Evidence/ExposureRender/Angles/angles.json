@@ -1,0 +1,124 @@
+{
+  "method": "Normal camera rotation at actual returned doorway; no teleport.",
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 83428,
+    "backend": "private Xvfb :189 with XTest"
+  },
+  "launch": {
+    "display": ":189",
+    "server_pid": 83420,
+    "game_pid": 83428,
+    "log": "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/exposure-game.log",
+    "audio_enabled": false,
+    "pulse_sink": null,
+    "serial_rhi_diagnostic": true,
+    "serial_vulkan_submission_diagnostic": true,
+    "command": [
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/EngineWrapper/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-abslog=/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/exposure-game.log",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-nosound"
+    ],
+    "renderer_transport": "RADV with MESA_VK_WSI_DEBUG=sw; normal X11 swapchain, not nullrhi"
+  },
+  "commands": [
+    {
+      "command": "dink.ScreenInfo 0",
+      "output": "[2026.11.08-08.08.50:810][237]dink.ScreenInfo = \"0\"\n"
+    },
+    {
+      "command": "py exec(open('/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Scripts/Playtest/read_visual_qa.py').read())",
+      "output": "[2026.11.08-08.08.53:843][431]LogPython: QA_VISUAL_READER_READY\n"
+    },
+    {
+      "command": "dink.View 180 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-180')",
+      "output": "[2026.11.08-08.08.58:982][754]LogPython: QA_VISUAL_READ exposure-returned-180\n"
+    },
+    {
+      "command": "dink.View 225 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-225')",
+      "output": "[2026.11.08-08.09.04:382][ 93]LogPython: QA_VISUAL_READ exposure-returned-225\n"
+    },
+    {
+      "command": "dink.View 270 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-270')",
+      "output": "[2026.11.08-08.09.09:731][424]LogPython: QA_VISUAL_READ exposure-returned-270\n"
+    },
+    {
+      "command": "dink.View 315 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-315')",
+      "output": "[2026.11.08-08.09.15:117][757]LogPython: QA_VISUAL_READ exposure-returned-315\n"
+    },
+    {
+      "command": "dink.View 0 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-000')",
+      "output": "[2026.11.08-08.09.20:425][ 86]LogPython: QA_VISUAL_READ exposure-returned-000\n"
+    },
+    {
+      "command": "dink.View 45 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-045')",
+      "output": "[2026.11.08-08.09.25:781][419]LogPython: QA_VISUAL_READ exposure-returned-045\n"
+    },
+    {
+      "command": "dink.View 90 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-090')",
+      "output": "[2026.11.08-08.09.31:140][754]LogPython: QA_VISUAL_READ exposure-returned-090\n"
+    },
+    {
+      "command": "dink.View 135 -18",
+      "output": ""
+    },
+    {
+      "command": "py qa_v_read('exposure-returned-135')",
+      "output": "[2026.11.08-08.09.36:530][ 92]LogPython: QA_VISUAL_READ exposure-returned-135\n"
+    }
+  ],
+  "phase": "angles",
+  "qa_driver_sha256": "f17c8e0e698eaa5f3d4d734c39750da9d4a69065230a4a617c3815276e02da7c",
+  "qa_reader_sha256": "eeed281779bc0bdf6a624328ec6d91c690ca38a38e98afbcf308bc1aa197eb26"
+}

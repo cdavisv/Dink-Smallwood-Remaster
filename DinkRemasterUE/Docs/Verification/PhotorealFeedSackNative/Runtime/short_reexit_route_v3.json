@@ -1,0 +1,23 @@
+{
+  "name": "ActualW step clear of destination trigger then re-enter doorway",
+  "expected_screen": 439,
+  "waypoints": [
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        350
+      ],
+      "tolerance_cm": 6
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.5,
+        400
+      ],
+      "warp_to": 439,
+      "tolerance_cm": 3
+    }
+  ]
+}

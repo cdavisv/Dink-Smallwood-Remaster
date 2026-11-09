@@ -1,4 +1,9 @@
 #include "DinkArtSubsystem.h"
+#include "DinkArtContextActor.h"
+#include "DinkEarlyPostureAnimInstance.h"
+#include "DinkPostureComponent.h"
+#include "Animation/AnimBlueprintGeneratedClass.h"
+#include "DinkScreenExposureComponent.h"
 #include "DinkCoreModule.h"
 #include "DinkOriginComponent.h"
 #include "DinkHumanoidComponent.h"
@@ -110,6 +115,14 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			}
 		}
 	}
+
+    if (Manifest->HasField(TEXT("context")))
+    {
+        if (ADinkArtContextActor* Context=ADinkArtContextActor::CreateFromManifest(World,Manifest,Meshes,TargetScreen))
+            Context->Tags.Add(FName(*FString::Printf(TEXT("DinkArtManifest_%s"),*ManifestFile)));
+        else UE_LOG(LogDink,Warning,TEXT("Art: invalid render-only context %s; skipped without changing scene"),*ManifestFile);
+        return;
+    }
 
 	TMap<FString, ADinkPlaceholderActor*> Placements;
 	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It) Placements.Add(It->Origin->OriginId.ToString(), *It);
@@ -249,8 +262,8 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			Bounds->RegisterComponent();
 			UPostProcessComponent* PP = NewObject<UPostProcessComponent>(A, TEXT("ArtExposure"));
 			PP->SetupAttachment(Bounds);
+			PP->bEnabled = false;
 			PP->bUnbound = false;
-			PP->bEnabled = true;
 			PP->BlendRadius = 100.f;
 			PP->BlendWeight = 1.f;
 			PP->Priority = 10.f;
@@ -260,6 +273,10 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const FString& ManifestFile
 			PP->Settings.BloomIntensity = 0.15f;
 			A->AddInstanceComponent(PP);
 			PP->RegisterComponent();
+            UDinkScreenExposureComponent* Ownership=NewObject<UDinkScreenExposureComponent>(A,TEXT("ArtExposureOwner"));
+            Ownership->ConfigureExposure(PP,TargetScreen);
+            A->AddInstanceComponent(Ownership);
+            Ownership->RegisterComponent();
 			float Distance = 0.f;
 			UE_LOG(LogDink, Display, TEXT("Art exposure: bias %.1f, bounds contain centre %s"),
 				PP->Settings.AutoExposureBias, PP->EncompassesPoint(VectorField(Row, TEXT("world_cm")), 0.f, &Distance) ? TEXT("yes") : TEXT("no"));
@@ -346,6 +363,25 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
 	}
 	Component.SetSkeletalMesh(Mesh);
     ConfigurePlayerActions(Component);
+    FString PosturePath;
+    UClass* PostureClass=nullptr;
+    if ((*Row)->TryGetStringField(TEXT("posture_class"),PosturePath))
+    {
+        UClass* Candidate=LoadClass<UDinkEarlyPostureAnimInstance>(nullptr,*PosturePath);
+        const UAnimBlueprintGeneratedClass* Graph=Cast<UAnimBlueprintGeneratedClass>(Candidate);
+        if (Graph && Graph->GetTargetSkeleton()==Mesh->GetSkeleton()) PostureClass=Candidate;
+        else UE_LOG(LogDink,Warning,TEXT("Player posture class missing or incompatible: %s"),*PosturePath);
+    }
+    if (AActor* Owner=Component.GetOwner())
+    {
+        UDinkPostureComponent* Posture=Owner->FindComponentByClass<UDinkPostureComponent>();
+        if (!Posture && PostureClass)
+        {
+            Posture=NewObject<UDinkPostureComponent>(Owner,TEXT("PlayerPosture"));
+            Owner->AddInstanceComponent(Posture); Posture->RegisterComponent();
+        }
+        if (Posture) Posture->Configure(&Component,PostureClass);
+    }
 	UE_LOG(LogDink, Display, TEXT("DINK PLAYER ART OK: %s; existing locomotion and collision retained"), *Path);
 	return true;
 }

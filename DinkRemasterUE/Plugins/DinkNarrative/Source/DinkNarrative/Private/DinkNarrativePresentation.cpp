@@ -199,12 +199,12 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 		APlayerController* PC = World->GetFirstPlayerController();
 		return S->TryTalk(PC ? PC->GetPawn() : nullptr);
 	}
-	// The original's Ctrl (attack / use the armed item) and Shift (cast the armed spell).
+	// Shift now holds the third-person walk gait; Q remains the spell control.
 	if (Key == EKeys::F || Key == EKeys::LeftControl)
 	{
 		return S->GetGameplay()->PlayerAttack();
 	}
-	if (Key == EKeys::Q || Key == EKeys::LeftShift)
+	if (Key == EKeys::Q)
 	{
 		return S->GetGameplay()->PlayerCastMagic();
 	}

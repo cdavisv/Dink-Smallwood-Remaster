@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "export_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "exactly_3_packed_2048_POT_images": [
+    "T_Pie_Rustic_01_Photo_BC",
+    "T_Pie_Rustic_01_Photo_N",
+    "T_Pie_Rustic_01_Photo_ORM"
+  ],
+  "raw1254reference_and_source_graphs_not_in_game_ready_export": true,
+  "source_optics_all2slots_preserved": {
+    "MI_Pie_BlueCeramic_PhotoBaked": {
+      "IOR": 1.4800000190734863,
+      "Specular IOR Level": 0.5,
+      "Coat Weight": 0.18000000715255737,
+      "Coat Roughness": 0.18000000715255737,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ],
+      "Alpha": 1.0
+    },
+    "MI_Pie_PastryFruit_PhotoBaked": {
+      "IOR": 1.4600000381469727,
+      "Specular IOR Level": 0.30000001192092896,
+      "Coat Weight": 0.019999999552965164,
+      "Coat Roughness": 0.5,
+      "Subsurface Weight": 0.0,
+      "Subsurface Scale": 0.004999999888241291,
+      "Subsurface Radius": [
+        1.0,
+        0.20000000298023224,
+        0.10000000149011612
+      ],
+      "Alpha": 1.0
+    }
+  },
+  "native_imported": false
+}

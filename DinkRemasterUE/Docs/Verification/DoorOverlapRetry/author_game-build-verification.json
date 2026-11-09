@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "game_build": "Succeeded39.72s0compilerwarnings",
+  "editor_dll_count": 7,
+  "editor_dll_changes": [],
+  "frozen_full_run_inputs_after_gamebuild": 9241,
+  "changed_frozen_inputs": [],
+  "artifacts": {
+    "Binaries/Linux/DinkRemasterEditor.target": "61caaf2d8062ee7894fd5d5b55f5acc4c17dbe70cdff85d38aff924882f1b00b",
+    "Binaries/Linux/DinkRemaster.sym": "fe66c8b963fc5db3fe25215dd5dad1f58bb183243d39c2cf9b1a5949453aaf3f",
+    "Binaries/Linux/DinkRemaster.debug": "374bbc3c5d671d366186a4178ce10a3600b36b8eee05945f01341864d506addf",
+    "Binaries/Linux/DinkRemaster": "80e231c553ab7dce5816dd7e51b39d9e5d8b85cc843941c65452f81cf08e548d",
+    "Binaries/Linux/DinkRemaster.target": "c99ecbeb1dffed24c484fcbab456b45ce03a301c63655dc2335faa6f9dc1a40e"
+  },
+  "scope": "StandaloneDevelopmentGame compiles runtimeCore changes; no packaged gameplay acceptance asserted"
+}

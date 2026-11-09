@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "head": "7a22c2f608e4d848d823eb7870442eadf8c3618a",
+  "project": "/home/artist/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE",
+  "native_receipt_passed": true,
+  "native_receipt_sha256": "3e17b4d00dfa80e6590e24ce912977f3b4bae99478a6c359d5b259d96d906d6e",
+  "native_source_getter_roles": 12,
+  "all_native_sources_resolve_selected_relocated_bundle": true,
+  "candidate_packages_match_HEAD_LFS": 15,
+  "recorded_before_current_after_count": 3422,
+  "changed_inputs": [],
+  "fresh_build": {
+    "passed": true,
+    "seconds": 135,
+    "warnings": 0,
+    "actions": 143,
+    "copied_DLLs": false,
+    "module_sha256": {
+      "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "6066866c6fb0c6e7ff55a49a22b682f1083c972b161739e51d2203c3f5246151",
+      "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "5e5b538515403557cfb55a42881b3bf758072f77b34666be3ca06b5577da0934",
+      "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "048f43538266d76d2ae498e1dc435a6d793dc0e7d2e3de0c51b4a9b4b8738ca5",
+      "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "77dc620a3bb51c39c4dd5e29fefdcd258c8b6d1a7f9964b090eec413b8b48e7a",
+      "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "03fd93318ebeab68c419f70bfbfc327a32b68e342d21d07dd29e438fb4b4a067",
+      "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "5f03c98a0d7037d36c9741336754f7e01013b92bcbecf4db9fe91606d8fa7685",
+      "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "795ffcc49d828bd38de61b2fa79487ec12db427dc2ac108568052367b9a472ff"
+    },
+    "foreign_Work_dependencies": [],
+    "log_sha256": "431dbbb370d2d143b362b93bd0d709ae42a3600eb6f19911f42120ea88db77f3"
+  },
+  "author_private_receipts_present": false,
+  "ImportData_present": false,
+  "publisher_default_and_apply_zero_write": true,
+  "publisher_full_inventory_files": 3815,
+  "GPU_used": false,
+  "limits": [
+    "The original outer runner ended before writing its exit-code/time/after receipt. Native stdout records normal exit and the native passed receipt includes its own entry/exit package/source/Data guards. This closeout compares all3422 prelaunch recorded inputs with current files; it does not invent the missing outer process return code or exact duration.",
+    "No rendered/gameplay/lighting acceptance is implied by this NullRHI saved-asset portability check."
+  ],
+  "evidence": {
+    "receipt.json": "3e17b4d00dfa80e6590e24ce912977f3b4bae99478a6c359d5b259d96d906d6e",
+    "launch.json": "3d6626b4efa3331398fd0344b7bd4cae56b66a659ba91d59b39bc1ae15b246c3",
+    "before.json": "db8225ad4407ee00572dc3932194c82a878f6d56f9a67d1a3a45d2bd17356a5b",
+    "after_closeout.json": "a8682bee9c6e3c9f6fb81b3634507bc7a4fd4c63e171fcf2edcd6bf6a8e5eddf",
+    "stdout.log": "d609bd9fd7654cd2583490b7554ea9765e780031bf05363ccb8fdff3c82c46f1",
+    "fresh_build.json": "00deec722e4415e10a9e680e78656bcc6ceb43dff4df53ebc73cb197098751f9",
+    "clone_setup.json": "e23579ac0b738b3a2997bb534fca6d94ef5a9038dee74731365afcc5b3f8c448",
+    "publisher_noops.json": "107108d5bdeb9d834f384737dd58833dde68ee43ab31c518cffc910749b0ed79"
+  }
+}

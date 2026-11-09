@@ -1,0 +1,13 @@
+from pathlib import Path
+import sys,json,time,re
+sys.path.insert(0,str(Path('Scripts').resolve()));import playtest_desktop as d;import playtest_interactions as q
+r=Path.cwd();o=r/'Saved/FeedSackReviewed/Render';log=o/'game.log';d.use_private_display(':189');assert int(d.window()['pid'])==282208
+before_player=d.player(log);before_fact=q.command_output('dink.Fact pig_story',log);assert re.search(r'pig_story = 1',before_fact),before_fact
+before_inventory=q.command_output('dink.Inventory',log)
+d.console("py exec(open(%r).read())"%str(o/'load_current.py'));time.sleep(.5)
+loaded=json.loads((o/'save_loaded.json').read_text());assert loaded['passed'] and loaded['saved_screen']==1
+player=d.player(log);inventory=q.command_output('dink.Inventory',log);fact=q.command_output('dink.Fact pig_story',log);origin=q.command_output('dink.Origin S001_P52',log)
+assert player['screen']==1 and not player['move_ignored'] and inventory.count(': item-pig')==1 and re.search(r'pig_story = 0',fact) and 'hidden=1' in origin,(player,inventory,fact,origin)
+d.console("py exec(open(%r).read())"%str(o/'inspect_collected.py'));q.capture(o/'loaded-pickup-hidden.png')
+v=dict(passed=True,pid=282208,scope='ActualSaveSubsystem save/load API used in ownUser slot; realfeeding changed pig_story0to1, load restores earlierpickedupstate: screen1/fact0/onefeed/sackhidden; nofact/item/proceduremutation by fixture',before_player=before_player,before_fact=before_fact,before_inventory=before_inventory,after_player=player,after_fact=fact,after_inventory=inventory,after_origin=origin,save_loaded=loaded)
+(o/'save_load_verification.json').write_text(json.dumps(v,indent=2)+'\n');print('FEEDSACK_SAVE_LOAD_PASS',flush=True)

@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Real-input feed chore in an existing private game; never calls story procedures or sets facts."""
+import argparse,json,re,sys,time,subprocess
+from pathlib import Path
+sys.path.insert(0,'/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
+import playtest_desktop as d
+import playtest_interactions as q
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,required=True);args=p.parse_args();args.out.mkdir(parents=True,exist_ok=True)
+d.use_private_display(':189','/tmp/dink-qa-tools/xauthority');d.focus(d.window());log=Path('/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/FeedSackReviewed/Render/game.log')
+assert int(d.window()['pid'])==282208
+player=d.player(log);assert player['screen']==407 and 250<player['map'][0]<350 and 220<player['map'][1]<280,player
+inventory=q.command_output('dink.Inventory',log);assert re.search(r'item-pig \(armed\)',inventory),inventory
+fact=q.command_output('dink.Fact pig_story',log);assert re.search(r'pig_story = 0',fact),fact
+before=q.story(log);offset=log.stat().st_size
+burst=args.out/'feeding-burst'
+if (burst/'ready.json').exists():(burst/'ready.json').unlink()
+process=subprocess.Popen([sys.executable,str(Path('/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/Playtest/capture_private_burst.py')),'--out',str(burst)])
+for _ in range(100):
+ if (burst/'ready.json').exists():break
+ if process.poll() is not None:raise SystemExit('Private burst reader exited before F')
+ time.sleep(.02)
+else:raise SystemExit('Private capture did not become ready')
+f_time=time.monotonic();d.run('wtype','-k','f');code=process.wait(timeout=10)
+if code:raise SystemExit(f'Private burst capture failed:{code}')
+q.capture(args.out/'feed-thrown.png')
+observations=[];done=False
+for i in range(45):
+ if i%3==0:
+  fact=q.command_output('dink.Fact pig_story',log);observations.append({'step':i,'fact_log':fact})
+  if re.search(r'pig_story = 1',fact):done=True;break
+ d.run('wtype','-k','space');time.sleep(.55)
+ if i in [2,7,12,18,27]:q.capture(args.out/f'bully-{i:02}.png')
+after=q.story(log);final=d.player(log);q.capture(args.out/'feed-chore-complete.png')
+with log.open() as f:f.seek(offset);action=f.read()
+record={'backend':'private Xvfb:189/XTest','setup':'Actual W pickup/house exit/north/west-gate routes precede this fixture; no teleport or fact mutation','f_input_monotonic':f_time,'capture_burst':str(burst),'player_before':player,'inventory_before':inventory,'before':before,'after':after,'observations':observations,'player_after':final,'action_log':action,'result':'PASS' if done and not final['move_ignored'] and 'item-pig.use' in action and 's1-bul' in action else 'FAIL'}
+(args.out/'feed-scene.json').write_text(json.dumps(record,indent=2)+'\n');print('PIG FEED SCENE',record['result'],flush=True)
+if record['result']!='PASS':raise SystemExit(1)

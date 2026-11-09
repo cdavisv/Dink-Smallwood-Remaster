@@ -1,0 +1,28 @@
+{
+  "schema": "dink-photoreal-feedsack/1",
+  "passed": true,
+  "applied": false,
+  "apply_requested": false,
+  "already_published": false,
+  "verification_basis": "import_receipt",
+  "writer_scope": "two_mesh_paths",
+  "scene_data_approval": false,
+  "changed_mesh_references": 2,
+  "only_mesh_references_changed": true,
+  "asset_rows": 1,
+  "instance_rows": 1,
+  "before_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+  "after_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+  "proposed_sha256": "d616f46557a505648fad663e097dfa86b81cb2d23b6df52680aa5d6028d53b0d",
+  "verified_baseline_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
+  "verified_baseline_semantic_sha256": "6e9b59c47eeae8abcb264387ce9b800ac7715e5b660d8aedc53dd53c90219e02",
+  "verification_sha256": "bfa560672cc0933e5107f81d0195136bc7e6e64877b4564cd4065bd925e981dc",
+  "tool_sha256": {
+    "feedsack_contract.py": "ac5c7b28d6f5bc37beb08cc83907dadfaffa077b0f0be5e01e40fe374f314e17",
+    "import_photoreal_feedsack.py": "f6dd1b6991a8f65319e0fd4fd3c282489a20e60e49dc6cc66ad018340aae686e",
+    "publish_photoreal_feedsack.py": "2bc5435647971ecec885d225b169d780360ab21ceb4aa4b840820205582a693d",
+    "feedsack_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "prepare_photoreal_feedsack_plan.py": "32ef508315efee6965348e45e17a7afbd9c5a3f1173e23e6f539c73df8bf202a"
+  },
+  "plan_sha256": "b215b74f003e11a1046d71c85f58d0dab3ff734e2f7aed88768f0c6c3ba165e5"
+}

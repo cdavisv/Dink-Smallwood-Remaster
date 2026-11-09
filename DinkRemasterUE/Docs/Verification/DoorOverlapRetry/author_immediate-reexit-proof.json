@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "pid": 299254,
+  "input": "ActualWheld.6s after actualreturn+confirmedalready-overlappingidle; cameraYawonly, no post-setupteleport/transform/velocityassignment",
+  "before": {
+    "pid": 299254,
+    "game_time": 498.9510362492292,
+    "location": [
+      -183810.89669092422,
+      393547.6414288652,
+      98.0
+    ],
+    "overlapping_warps": [
+      {
+        "warp": "S001_P25",
+        "source": 1,
+        "kind": "exit",
+        "center": [
+          -183799.535,
+          393587.23,
+          150.0
+        ]
+      }
+    ],
+    "movement_ignored": false,
+    "current_acceleration": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scope": "Read-only actual game state; no pose, inventory, facts or transforms assigned"
+  },
+  "after": {
+    "screen": 439,
+    "map": [
+      344.729,
+      329.879
+    ],
+    "world": [
+      97729.07,
+      37731.069,
+      98.35
+    ],
+    "yaw": 90.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "warp_events": [
+    "Warp S001_P25 (exit) SCR_001 -> SCR_439 (345, 307): moved"
+  ],
+  "no_leave_before_retry": true,
+  "qualification": "Initialcontinuousreturncarriedclear and isexcluded; preciseoutsideapproach naturallyentered beforeplannednear-waypoint (retainedwaypointFAIL), actualreturnoverlap+idle independentlyverified."
+}

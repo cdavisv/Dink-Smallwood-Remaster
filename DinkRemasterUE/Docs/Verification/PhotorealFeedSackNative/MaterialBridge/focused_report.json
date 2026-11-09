@@ -1,0 +1,44 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "omarchy",
+			"instance": "01A1BD5F46A77C8A848F0CC6CC6B52EB",
+			"instanceName": "omarchy-11",
+			"platform": "LinuxEditor",
+			"oSVersion": "Omarchy 7.2.15-1-omarchy",
+			"model": "Default",
+			"gPU": "AMD PCI-id: 1002-164e (1458-d000)",
+			"cPUModel": "AMD Ryzen 5 7600X 6-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.11.08-22.55.13",
+	"succeeded": 1,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.0078088468872010708,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "MaterialSlotBindingInspection",
+			"fullTestPath": "Dink.Art.MaterialSlotBindingInspection",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A1BD5F46A77C8A848F0CC6CC6B52EB"
+			],
+			"duration": 0.0078088468872010708,
+			"dateTime": "2026.11.08-22.55.13",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}

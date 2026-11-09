@@ -1,0 +1,41 @@
+{
+  "source_export_sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a",
+  "files": [
+    {
+      "LOD": 0,
+      "file": "SM_Pie_Rustic_01_LOD0.fbx",
+      "sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "triangles": 4844,
+      "source_object": "SM_Pie_Rustic_01_LOD0",
+      "material_slots": [
+        "MI_Pie_BlueCeramic_PhotoBaked",
+        "MI_Pie_PastryFruit_PhotoBaked"
+      ]
+    },
+    {
+      "LOD": 1,
+      "file": "SM_Pie_Rustic_01_LOD1.fbx",
+      "sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "triangles": 3046,
+      "source_object": "SM_Pie_Rustic_01_LOD1",
+      "material_slots": [
+        "MI_Pie_BlueCeramic_PhotoBaked",
+        "MI_Pie_PastryFruit_PhotoBaked"
+      ]
+    },
+    {
+      "LOD": 2,
+      "file": "SM_Pie_Rustic_01_LOD2.fbx",
+      "sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "triangles": 2048,
+      "source_object": "SM_Pie_Rustic_01_LOD2",
+      "material_slots": [
+        "MI_Pie_BlueCeramic_PhotoBaked",
+        "MI_Pie_PastryFruit_PhotoBaked"
+      ]
+    }
+  ],
+  "units": "FBX UnitScaleFactor100; metres in Blender -> centimetres in Unreal",
+  "import_contract": "Import LOD0 alone; attach LOD1/LOD2 individually using StaticMeshEditorSubsystem.import_lod; never combine all three siblings",
+  "native_imported": false
+}

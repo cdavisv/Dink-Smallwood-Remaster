@@ -1,0 +1,33 @@
+{
+  "status": "No blockers found for bounded runtime-door PR22 delivery",
+  "findings": [],
+  "branch": "fix/arrival-door-reexit",
+  "reviewed_head": "da3aafc5fda78e66ae9b2a02fef32c4232af8e2f",
+  "staged_final_docs_included": true,
+  "independent_checks": {
+    "full_run_pins": 9241,
+    "full_run_before_equals_after": true,
+    "current_changed_existing_inputs": [
+      "AGENTS.md",
+      "SourceAssets/asset_ledger.csv"
+    ],
+    "manifest_entries": 16,
+    "manifest_hashes_all_match": true,
+    "lossless_patch_archive_SHA_matches": true,
+    "all_five_current_CPP_files_match_author_checkout": true,
+    "staged_whitespace_check_passed": true,
+    "final_source_audit": "PASS2400binaries410Python22shell2043ledger; no missing/hash errors/secret flags; approvedaudio unchanged"
+  },
+  "evidence_scope": [
+    "Root Editor59s/Game25.54s zero compiler warnings;Root native153/153zero test warnings498.917s9241stable inputs/51older save slots stable. These are inspected receipts, not independently rerun here.",
+    "Author actualreturn/confirmedalready-overlappingidle no bounce plus actualW.6s exactlyone exit without leaving overlap; normalclose9245stable. The docs accurately attribute this to the author stage, not a duplicate Root render.",
+    "Post-suite source21 merge changes only AGENTS status and ledger among prior full-run inputs, adds379unreferenced source-art files. RuntimeCPP/Content/Data/scripts/config/compiled modules remain full-run exact.",
+    "PR versus officialsource21 scope is five runtime/test files plus DoorOverlapRetry evidence and HANDOFF; no Data/geometry/spawn/cooldown changes. Historical80cc patch bytes remain losslessly base64 archived."
+  ],
+  "qualifications": [
+    "Tangent/zero-approach/two-blocked-candidate native cases remain explicitly untested. No universal overlap geometry or packaged rendered acceptance inferred.",
+    "Author continuous-return run that cleared the overlap is excluded; near-waypoint failure is retained and subsequent actualreturn overlap independently confirmed.",
+    "All historical process IDs/private paths describe prior evidence and do not authorize current input/signals.",
+    "No build/Unreal/game/GPU/input/signals or Root edits performed by this reviewer. Final source-audit completion was read from Saved/DoorReviewed/source_audit_final.log; README correctly describes final audit/review as subsequent to its checkpoint."
+  ]
+}

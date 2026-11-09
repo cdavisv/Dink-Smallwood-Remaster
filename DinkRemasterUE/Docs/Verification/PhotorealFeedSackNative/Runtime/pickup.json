@@ -1,0 +1,325 @@
+{
+  "passed": true,
+  "pid": 282208,
+  "baseline": "new19644triangle PhotorealFeedSackV1 plus merged wovenbasket18",
+  "scope": "Explicitphoto/interactionsetup at423/130, thenreal200msWtouchpickup+adaptive100msWwalkthroughremovedspace; no directscript/item/fact calls, no save",
+  "initial_inventory": "[2026.11.08-23.05.19:345][507]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.19:345][507]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "origin_before": "[2026.11.08-23.05.20:501][559]LogDink: Display: DINK ORIGIN: S001_P52 screen=1 map=448.000,130.000 world=-183173.910,392414.730,0.000 hidden=0\n",
+  "far": {
+    "screen": 1,
+    "map": [
+      423.0,
+      130.0
+    ],
+    "world": [
+      -183283.285,
+      392414.73,
+      98.0
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "far_inventory": "[2026.11.08-23.05.26:510][829]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.26:510][829]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "near": {
+    "screen": 1,
+    "map": [
+      429.912,
+      130.0
+    ],
+    "world": [
+      -183253.045,
+      392414.73,
+      98.0
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "near_inventory": "[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "after_pickup_story": {
+    "instances": {
+      "item-fst": {
+        "id": 3,
+        "procedure": "arm",
+        "sprite": 1000,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 17
+      },
+      "s1-h1-s": {
+        "id": 4,
+        "procedure": "main",
+        "sprite": 0,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-h1-2": {
+        "id": 6,
+        "procedure": "main",
+        "sprite": 11,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-h1-4": {
+        "id": 7,
+        "procedure": "main",
+        "sprite": 12,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-h1-1": {
+        "id": 8,
+        "procedure": "main",
+        "sprite": 13,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-h1-3": {
+        "id": 9,
+        "procedure": "main",
+        "sprite": 14,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-h1-m": {
+        "id": 10,
+        "procedure": "main",
+        "sprite": 15,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 15
+      },
+      "sfood": {
+        "id": 11,
+        "procedure": "main",
+        "sprite": 17,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 2
+      },
+      "s1-sack": {
+        "id": 12,
+        "procedure": "touch",
+        "sprite": 18,
+        "screen": 1,
+        "state": 0,
+        "block": 0,
+        "lines": 10
+      }
+    },
+    "log": "[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display: time 22745 ms, 10 instances\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #3 item-fst.arm sprite 1000 screen 1 state 0 block 0 lines 17\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #4 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #5 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #6 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #7 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #8 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #9 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #10 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 15\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #11 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #12 s1-sack.touch sprite 18 screen 1 state 0 block 0 lines 10\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio sound:10 speed=22050 random=0 sprite=0 repeat=0\n"
+  },
+  "origin_after": "[2026.11.08-23.05.31:771][ 66]LogDink: Display: DINK ORIGIN: S001_P52 screen=1 map=448.000,130.000 world=-183173.910,392414.730,0.000 hidden=1\n",
+  "passed_removed_space": {
+    "screen": 1,
+    "map": [
+      450.631,
+      128.758
+    ],
+    "world": [
+      -183162.399,
+      392409.295,
+      98.15
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "traverse_steps": [
+    {
+      "screen": 1,
+      "map": [
+        429.912,
+        130.0
+      ],
+      "world": [
+        -183253.045,
+        392414.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        432.271,
+        130.0
+      ],
+      "world": [
+        -183242.726,
+        392414.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        433.85,
+        130.0
+      ],
+      "world": [
+        -183235.814,
+        392414.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        436.209,
+        130.0
+      ],
+      "world": [
+        -183225.496,
+        392414.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        438.568,
+        130.0
+      ],
+      "world": [
+        -183215.177,
+        392414.73,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        440.749,
+        129.728
+      ],
+      "world": [
+        -183205.633,
+        392413.542,
+        98.0
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        442.85,
+        129.191
+      ],
+      "world": [
+        -183196.443,
+        392411.192,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        444.388,
+        129.0
+      ],
+      "world": [
+        -183189.712,
+        392410.356,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        446.682,
+        128.758
+      ],
+      "world": [
+        -183179.676,
+        392409.295,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        448.272,
+        128.758
+      ],
+      "world": [
+        -183172.718,
+        392409.295,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        450.631,
+        128.758
+      ],
+      "world": [
+        -183162.399,
+        392409.295,
+        98.15
+      ],
+      "yaw": 0.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "final_inventory": "[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "action_log": "[2026.11.08-23.05.27:347][867]LogDinkAudio: audio cue sound:10 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-23.05.28:371][913]LogDink: Display: DINK PLAYER: screen=1 map=429.912,130.000 world=-183253.045,392414.730,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-23.05.29:394][959]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display: time 22745 ms, 10 instances\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #3 item-fst.arm sprite 1000 screen 1 state 0 block 0 lines 17\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #4 s1-h1-s.main sprite 0 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #5 s1-h1-2.main sprite 10 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #6 s1-h1-2.main sprite 11 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #7 s1-h1-4.main sprite 12 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #8 s1-h1-1.main sprite 13 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #9 s1-h1-3.main sprite 14 screen 1 state 0 block 0 lines 1\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #10 s1-h1-m.main sprite 15 screen 1 state 0 block 0 lines 15\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #11 sfood.main sprite 17 screen 1 state 0 block 0 lines 2\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   #12 s1-sack.touch sprite 18 screen 1 state 0 block 0 lines 10\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio music:5.mid\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio sound:22 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-23.05.30:617][ 14]LogDinkNarrative: Display:   audio sound:10 speed=22050 random=0 sprite=0 repeat=0\n[2026.11.08-23.05.31:771][ 66]LogDink: Display: DINK ORIGIN: S001_P52 screen=1 map=448.000,130.000 world=-183173.910,392414.730,0.000 hidden=1\n[2026.11.08-23.05.33:087][125]LogDink: Display: DINK PLAYER: screen=1 map=432.271,130.000 world=-183242.726,392414.730,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.34:417][185]LogDink: Display: DINK PLAYER: screen=1 map=433.850,130.000 world=-183235.814,392414.730,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.35:731][244]LogDink: Display: DINK PLAYER: screen=1 map=436.209,130.000 world=-183225.496,392414.730,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.37:061][304]LogDink: Display: DINK PLAYER: screen=1 map=438.568,130.000 world=-183215.177,392414.730,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.38:376][363]LogDink: Display: DINK PLAYER: screen=1 map=440.749,129.728 world=-183205.633,392413.542,98.000 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.39:707][423]LogDink: Display: DINK PLAYER: screen=1 map=442.850,129.191 world=-183196.443,392411.192,98.150 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.41:020][482]LogDink: Display: DINK PLAYER: screen=1 map=444.388,129.000 world=-183189.712,392410.356,98.150 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.42:353][542]LogDink: Display: DINK PLAYER: screen=1 map=446.682,128.758 world=-183179.676,392409.295,98.150 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.43:665][601]LogDink: Display: DINK PLAYER: screen=1 map=448.272,128.758 world=-183172.718,392409.295,98.150 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.44:999][661]LogDink: Display: DINK PLAYER: screen=1 map=450.631,128.758 world=-183162.399,392409.295,98.150 yaw=0.000 pitch=-18.000 radius=28.0 move_ignored=0\n[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   item 1: item-fst (armed)\n[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   item 2: item-pig\n[2026.11.08-23.05.46:023][707]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n"
+}

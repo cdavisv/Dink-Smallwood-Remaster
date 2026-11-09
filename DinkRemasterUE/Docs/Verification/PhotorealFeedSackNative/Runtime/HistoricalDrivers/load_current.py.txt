@@ -1,0 +1,10 @@
+import unreal,json,os,hashlib
+from pathlib import Path
+r=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve();out=r/'Saved/FeedSackReviewed/Render'
+world=next(w for w in unreal.ObjectIterator(unreal.World) if unreal.GameplayStatics.get_player_pawn(w,0))
+pawn=unreal.GameplayStatics.get_player_pawn(world,0);gi=unreal.GameplayStatics.get_game_instance(world)
+ss=next(x for x in unreal.ObjectIterator(unreal.DinkSaveSubsystem) if x.get_outer()==gi)
+assert os.getpid()==282208
+slot='FeedSackReviewed_Pickup_282208';saved=ss.load_from_slot(slot,pawn);assert saved is not None
+(out/'save_loaded.json').write_text(json.dumps(dict(passed=True,pid=os.getpid(),slot=slot,saved_screen=saved.get_editor_property('current_screen'),scope='Actual game load API; saved picked-up inventory/world state after real feeding verified separately'),indent=2)+'\n')
+unreal.log('FEEDSACK_SAVE_LOADED_PASS')

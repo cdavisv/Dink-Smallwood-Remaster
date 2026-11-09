@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-11-08T20:23:08.169164+00:00",
+  "patch_sha256": "4bdffbc56eabe9cee9ef036a622ffd30f82234b0850cf1d4a119b2d5cdb62467",
+  "frozen_inputs": 8942,
+  "changed_inputs": [],
+  "build": "Succeeded;0warnings",
+  "focused": "Context2/2PASS;0warnings23s",
+  "full": "Dink151/151PASS;0failed;0warnings444s",
+  "report": "Saved/Automation/continuity_combined_full_v2/index.json",
+  "scope": "Camera/default opaque walls; optional posture runtime policy/ownership; strict shared context visibility. New character/posture/garment and canonical landscape assets not included."
+}

@@ -1,0 +1,103 @@
+{
+  "initial": {
+    "screen": 1,
+    "map": [
+      314.0,
+      161.0
+    ],
+    "world": [
+      -183760.16,
+      392550.355,
+      98.15
+    ],
+    "yaw": 180.0,
+    "pitch": 0.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "outside": {
+    "screen": 439,
+    "map": [
+      344.986,
+      307.706
+    ],
+    "world": [
+      97729.013,
+      37511.15,
+      98.35
+    ],
+    "yaw": 90.464,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "final": {
+    "screen": 1,
+    "map": [
+      302.909,
+      382.559
+    ],
+    "world": [
+      -183808.683,
+      393519.677,
+      98.0
+    ],
+    "yaw": -90.71,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "method": "Actual held W routes; no fixture teleports or property setters.",
+  "window": {
+    "address": "0x200063",
+    "id": 2097251,
+    "class": "UnrealEditor",
+    "title": "DinkRemaster (64-bit Development SF_VULKAN_SM6) ",
+    "at": [
+      0,
+      0
+    ],
+    "size": [
+      1280,
+      720
+    ],
+    "pid": 83428,
+    "backend": "private Xvfb :189 with XTest"
+  },
+  "launch": {
+    "display": ":189",
+    "server_pid": 83420,
+    "game_pid": 83428,
+    "log": "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/exposure-game.log",
+    "audio_enabled": false,
+    "pulse_sink": null,
+    "serial_rhi_diagnostic": true,
+    "serial_vulkan_submission_diagnostic": true,
+    "command": [
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/EngineWrapper/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-abslog=/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/exposure-game.log",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-nosound"
+    ],
+    "renderer_transport": "RADV with MESA_VK_WSI_DEBUG=sw; normal X11 swapchain, not nullrhi"
+  },
+  "commands": [
+    {
+      "command": "dink.ScreenInfo 0",
+      "output": "[2026.11.08-08.04.49:898][749]dink.ScreenInfo = \"0\"\n"
+    }
+  ],
+  "phase": "routes",
+  "qa_driver_sha256": "f17c8e0e698eaa5f3d4d734c39750da9d4a69065230a4a617c3815276e02da7c"
+}

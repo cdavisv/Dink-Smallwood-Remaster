@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "canonical_bake_normalization_function_reproduces_corrected_meshes_exactly": true,
+  "LODs": [
+    4844,
+    2542,
+    1330
+  ],
+  "raw_donor_and_maps_unchanged": true,
+  "verification_requires_only_portable_raw_donor_and_current_export": true,
+  "no_private_initial_bake_archive_dependency": true
+}

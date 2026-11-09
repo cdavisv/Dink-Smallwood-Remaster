@@ -1,0 +1,22 @@
+{
+  "verdict": "No blocking findings in reviewed two-file bridge diff",
+  "source_sha256": {
+    "Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h": "f136203d39c895a505837eaf7146f6f803f8807f62f569da2a2c268b83b0fe0e",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp": "06d7d773760aacb5797c3c0746bc3453299984e768034dde730fbfc6623c9751"
+  },
+  "diff_sha256": "ff4c989b3d827f501a38d9fffc69f8567bc92c137052c2aea7e514858f6fea11",
+  "reviewed_contract": [
+    "Null/invalidLOD/emptyGeometry fail closed before attribute indexing",
+    "FStaticMeshConstAttributes lookup checks IsValid and never registers missing attribute",
+    "Imported FName\u2192slot map rejects None/ambiguous names; no dense-ID fallback",
+    "Uses actual polygon-group and triangle element IDs; sparse IDs preserved, group resolution validates imported name",
+    "Reads const mesh description/static material references; creates detached JSON only; no build/cook/save/Modify/Register calls in inspector",
+    "Embedded focused test covers reversed mapping, sparse group ID, unknown/duplicate names, missing attribute, invalid LOD, detached JSON mutation, dirty-state preservation"
+  ],
+  "evidence": {
+    "focused": "1/1PASS0automationwarnings15.228s",
+    "actual_old_sack": "2588faces;Linen1724/Wicker864;original4d5597package unchanged;dirtycontent[] unchanged",
+    "native_runtime": "normalexit0 70.408s;9238pinsunchanged; no signal sent"
+  },
+  "qualification": "Actual native log includes sandbox UDP unicast denial and global EditorSettings.ini read-only shutdown warnings. Only focused automation report has zero warnings; do not claim native log warning-free. Inspector reads MeshDescription bindings, not a replacement for final loaded new-sack render/collision/pickup acceptance. Lazy read may populate in-memory caches; package/dirty preservation verified for tested actual asset."
+}

@@ -1,0 +1,3795 @@
+{
+  "schema": "dink-shared-ground-native-source-contract/1",
+  "status": "Publication/source reviewcandidate; no nativeacceptance",
+  "source_file": "SharedGroundGameV2.blend",
+  "source_sha256": "9ea680849a3125a33ef9868bb72533a889a69dcace7cd4957724dd60298ebbcc",
+  "assets": [
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        89007.62709815006,
+        33898.81755762132,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192453.51883153743,
+        390124.47335949633,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        89004.15222503366,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192456.9937046538,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM5_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        89002.60546484374,
+        30925.134813734418,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192458.54046484374,
+        387150.7906156094,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        33902.38336161158,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        390128.03916348657,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM4_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        30925.040299604556,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        387150.6961014795,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        33905.94916560184,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        390131.60496747686,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM3_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        30924.945785474694,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        387150.60158734967,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        93977.93046484374,
+        33907.0770990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187483.21546484373,
+        390132.7329009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        93974.46297438056,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187486.68295530693,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S406_XM2_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 406,
+      "role": "Land",
+      "triangles": 40,
+      "canonical_actor_UE_cm": [
+        93968.00285007172,
+        30924.917099062503,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187493.14307961578,
+        387150.5729009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        94974.46297438056,
+        33910.114219073665,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186486.68295530693,
+        390135.77002094866,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        94968.00285007172,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186493.14307961578,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM2_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        94965.12546484375,
+        30924.917099062503,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186496.02046484372,
+        387150.5729009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        33914.556528262445,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        390140.21233013744,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XM1_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        30927.06244544965,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        387152.71824732464,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        33918.998837451225,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        390144.6546393262,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP0_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        30930.142691191213,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        387155.7984930662,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        99933.60046484374,
+        33920.2070990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181527.54546484374,
+        390145.8629009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        99928.3306054791,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181532.81532420838,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S407_XP1_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 407,
+      "role": "Land",
+      "triangles": 40,
+      "canonical_actor_UE_cm": [
+        99918.7470025781,
+        30933.222936932776,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181542.39892710937,
+        387158.87873880775,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        100928.33060547909,
+        33923.24799503682,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180532.8153242084,
+        390148.9037969118,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        100918.7470025781,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180542.39892710937,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP1_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        100914.56546484373,
+        30934.002099062505,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180546.58046484375,
+        387159.6579009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        33927.4249899032,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        390153.08079177816,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP2_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        30937.93232252194,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        387163.5881243969,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        33931.60198476958,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        390157.25778664456,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP3_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        30943.1933456382,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        387168.8491475132,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        105886.68046484374,
+        33932.542099062506,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175574.46546484373,
+        390158.1979009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        105879.33180420537,
+        32370.324198125003,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175581.8141254821,
+        388595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S408_XP4_YP3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 408,
+      "role": "Land",
+      "triangles": 40,
+      "canonical_actor_UE_cm": [
+        105866.26096347599,
+        30948.454368754454,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175594.8849662115,
+        387174.11017062946,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        100949.3897765623,
+        37909.86754947739,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180511.7561531252,
+        394135.52335135237,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YP0_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP0_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        100938.50147538388,
+        36370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180522.6444543036,
+        392595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP1_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        100933.60046484374,
+        34920.2070990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180527.54546484374,
+        391145.8629009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        37913.64096821509,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        394139.29677009006,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YP0_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP0_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        36370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        392595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP2_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 76,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        34923.24799503682,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        391148.9037969118,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        37917.41438695279,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        394143.0701888278,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YP0_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP0_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        36370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        392595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP3_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        34927.4249899032,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        391153.08079177816,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        105907.46546484374,
+        37918.3420990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175553.68046484375,
+        394143.9979009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YP0_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP0_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        105901.72946319656,
+        36370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175559.41646649092,
+        392595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S440_XP4_YP1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 440,
+      "role": "Land",
+      "triangles": 40,
+      "canonical_actor_UE_cm": [
+        105891.26264881443,
+        34931.60198476958,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175569.88328087307,
+        391157.25778664456,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM5_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 72,
+      "canonical_actor_UE_cm": [
+        89246.53878072047,
+        39767.29462355775,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192214.607148967,
+        395992.95042543276,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM5_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 208,
+      "canonical_actor_UE_cm": [
+        89186.4133931808,
+        38872.58377288083,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192274.73253650666,
+        395098.23957475583,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 200,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        39768.305670834474,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        395993.9614727095,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM4_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 320,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        38878.57338699572,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        395104.2291888707,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 360,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        40094.36054035417,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        396320.01634222915,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 360,
+      "canonical_actor_UE_cm": [
+        92573.59614098772,
+        38895.71774258985,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188887.54978869978,
+        395121.3735444648,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S470_XM2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Bank",
+      "triangles": 276,
+      "canonical_actor_UE_cm": [
+        94381.6563519164,
+        40275.750802378505,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187079.48957777108,
+        396501.4066042535,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM5_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 52,
+      "canonical_actor_UE_cm": [
+        89391.2389622634,
+        40493.887357681226,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192069.9069674241,
+        396719.5431595562,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM5_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        89052.73546484373,
+        38675.2848980554,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192408.41046484374,
+        394900.9406999304,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 92,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        40493.319120292086,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        396718.9749221671,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM4_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 92,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        38699.05003766916,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        394924.7058395442,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 140,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        40177.21275766609,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        396402.86855954106,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 124,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        38864.98060492187,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        395090.63640679687,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 72,
+      "canonical_actor_UE_cm": [
+        94405.78546484374,
+        40171.15507342027,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187055.36046484375,
+        396396.81087529525,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S470_XM2_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Land",
+      "triangles": 56,
+      "canonical_actor_UE_cm": [
+        94155.53103969336,
+        38881.15246310972,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187305.61488999412,
+        395106.8082649847,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM5_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 92,
+      "canonical_actor_UE_cm": [
+        89246.98194147272,
+        39690.0079398125,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192214.16398821474,
+        395915.6637416875,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM5_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 212,
+      "canonical_actor_UE_cm": [
+        89243.27058191987,
+        39020.228175062504,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192217.8753477676,
+        395245.8839769375,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 300,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        39692.197789812504,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        395917.8535916875,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM4_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 296,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        39021.4060410625,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        395247.0618429375,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 288,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        40019.07905114583,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        396244.7348530208,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 304,
+      "canonical_actor_UE_cm": [
+        92455.19699734374,
+        39039.8592750625,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -189005.94893234374,
+        395265.5150769375,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S470_XM2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 470,
+      "role": "Water",
+      "triangles": 184,
+      "canonical_actor_UE_cm": [
+        94352.0488017646,
+        40339.04329941667,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187109.09712792287,
+        396564.69910129166,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 88,
+      "canonical_actor_UE_cm": [
+        101082.10344860962,
+        39611.573475604615,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180379.04248107786,
+        395837.2292774796,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP1_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 120,
+      "canonical_actor_UE_cm": [
+        101005.60103937288,
+        39091.05786711402,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180455.5448903146,
+        395316.713668989,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 240,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        40220.531941498506,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        396446.1877433735,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP2_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 200,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        38969.45160503654,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        395195.10740691156,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 324,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        40148.615476055755,
+        -82.00000000000001
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        396374.27127793076,
+        -82.00000000000001
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 108,
+      "canonical_actor_UE_cm": [
+        103941.08102352603,
+        39095.647988859855,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -177520.06490616145,
+        395321.30379073485,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Bank_S472_XP4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Bank",
+      "triangles": 152,
+      "canonical_actor_UE_cm": [
+        106205.50546484374,
+        40335.31037084643,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175255.64046484375,
+        396560.9661727214,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 56,
+      "canonical_actor_UE_cm": [
+        101148.19144026618,
+        40395.098690849096,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180312.9544894213,
+        396620.7544927241,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP1_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 24,
+      "canonical_actor_UE_cm": [
+        100955.23546484373,
+        38629.75409370321,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180505.91046484374,
+        394855.4098955782,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 124,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        40390.840926060235,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        396616.4967279352,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP2_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        38635.191340212245,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        394860.84714208724,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 104,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        40149.6446898727,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        396375.3004917477,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 92,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        38913.6409682151,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        395139.2967700901,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 24,
+      "canonical_actor_UE_cm": [
+        106063.18722516403,
+        39559.179150663746,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175397.95870452345,
+        395784.8349525387,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S472_XP4_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        106017.2959559544,
+        38917.41438695279,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175443.84997373307,
+        395143.0701888278,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 112,
+      "canonical_actor_UE_cm": [
+        101082.5577201657,
+        39539.93358689584,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180378.58820952178,
+        395765.5893887708,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP1_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 140,
+      "canonical_actor_UE_cm": [
+        101043.63901807783,
+        39225.48417339584,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180417.50691160967,
+        395451.13997527084,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 292,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        39998.1462275625,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        396223.8020294375,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP2_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 288,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        39226.4840400625,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        395452.1398419375,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 268,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        39997.087246229166,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        396222.74304810417,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP3_YM1_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM1_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        103820.11611914607,
+        39241.774341413075,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -177641.02981054143,
+        395467.43014328805,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Water_S472_XP4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 472,
+      "role": "Water",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        106130.55222945634,
+        40159.74143733239,
+        -82.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175330.59370023114,
+        396385.3972392074,
+        -82.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2.0
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        89539.24046484374,
+        44175.337099062504,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -191921.90546484373,
+        400400.9929009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        89540.88376081998,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -191920.2621688675,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM5_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 16,
+      "canonical_actor_UE_cm": [
+        89542.92508956682,
+        41183.270441911925,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -191918.22084012066,
+        397408.92624378693,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 92,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        44174.611354635934,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        400400.2671565109,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        90661.61092968748,
+        41177.21275766609,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -190799.535,
+        397402.86855954106,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 100,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        44168.680639021746,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        400394.33644089673,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 136,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        92661.61092968748,
+        41171.15507342027,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -188799.535,
+        397396.81087529525,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        94415.79046484374,
+        44162.74992340756,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187045.35546484374,
+        400388.40572528256,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 104,
+      "canonical_actor_UE_cm": [
+        94411.83216497183,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187049.31376471565,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S502_XM2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 502,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        94406.80864152621,
+        41166.6470990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187054.33728816127,
+        397392.3029009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 40,
+      "canonical_actor_UE_cm": [
+        95411.83216497183,
+        44158.2770990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186049.31376471565,
+        400383.9329009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        95406.80864152621,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186054.33728816127,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 20,
+      "canonical_actor_UE_cm": [
+        95405.78546484374,
+        41165.51706421737,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186055.36046484375,
+        397391.17286609235,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 112,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        44157.0521838833,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        400382.7079857583,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 136,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XM1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 52,
+      "canonical_actor_UE_cm": [
+        96661.61092968748,
+        41161.09985404706,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -184799.535,
+        397386.75565592205,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        44152.069217229255,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        400377.72501910425,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP0_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        98661.61092968748,
+        41156.68264387676,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -182799.535,
+        397382.33844575175,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        100308.64546484374,
+        44147.0862505752,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181152.50046484376,
+        400372.7420524502,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 104,
+      "canonical_actor_UE_cm": [
+        100304.02169464866,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181157.12423503882,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S503_XP1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 503,
+      "role": "Land",
+      "triangles": 36,
+      "canonical_actor_UE_cm": [
+        100298.04426265796,
+        41153.877099062505,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181163.10166702952,
+        397379.5329009375,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 28,
+      "canonical_actor_UE_cm": [
+        101304.02169464866,
+        44143.8620990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180157.12423503882,
+        400369.51790093747,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 48,
+      "canonical_actor_UE_cm": [
+        101298.04426265796,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180163.10166702952,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP1_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 20,
+      "canonical_actor_UE_cm": [
+        101296.75046484373,
+        41152.74567293934,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180164.39546484375,
+        397378.40147481434,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 88,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        44142.34298782863,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        400367.99878970365,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 136,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP2_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 52,
+      "canonical_actor_UE_cm": [
+        102661.61092968748,
+        41149.6446898727,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178799.535,
+        397375.3004917477,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 68,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        44138.03913551112,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        400363.6949373861,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 116,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP3_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 44,
+      "canonical_actor_UE_cm": [
+        104661.61092968748,
+        41146.54370680606,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -176799.535,
+        397372.1995086811,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM4_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM4_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 60,
+      "canonical_actor_UE_cm": [
+        106216.50546484374,
+        44133.73528319361,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175244.64046484375,
+        400359.3910850686,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM3_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM3_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 104,
+      "canonical_actor_UE_cm": [
+        106212.29137269611,
+        42370.324198125,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175248.85455699137,
+        398595.98,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Land_S504_XP4_YM2_01",
+      "FBX": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM2_01.fbx",
+      "class": "render_only_terrain",
+      "source_screen_provenance_only": 504,
+      "role": "Land",
+      "triangles": 36,
+      "canonical_actor_UE_cm": [
+        106206.75396752419,
+        41144.8570990625,
+        -2.0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -175254.3919621633,
+        397370.51290093747,
+        -2.0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM6_YM1_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM6_YM1_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        89245.51786633299,
+        38381.606212971805,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -192215.6280633545,
+        394607.2620148468,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        0
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM5_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM5_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        63,
+        42,
+        21
+      ],
+      "canonical_actor_UE_cm": [
+        90258.6514875488,
+        39527.36927640259,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -191202.49444213868,
+        395753.02507827757,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        1,
+        2,
+        3
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM4_YM1_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM4_YM1_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        91694.06923504637,
+        38547.98123013794,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -189767.07669464112,
+        394773.6370320129,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        4
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM3_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM3_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        63,
+        42,
+        21
+      ],
+      "canonical_actor_UE_cm": [
+        93478.02061291502,
+        39356.397310612796,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -187983.12531677246,
+        395582.0531124878,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        5,
+        6,
+        7
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM2_YM3_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM3_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        95106.8035528259,
+        40805.292192814944,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186354.34237686158,
+        397030.9479946899,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        10
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XM2_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        42,
+        28,
+        14
+      ],
+      "canonical_actor_UE_cm": [
+        94806.31775112913,
+        39862.896028874515,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -186654.82817855835,
+        396088.5518307495,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        8,
+        9
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP1_YM1_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP1_YM1_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        100352.3791715698,
+        38809.26605832398,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -181108.76675811768,
+        395034.92186019896,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        11
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP2_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP2_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        42,
+        28,
+        14
+      ],
+      "canonical_actor_UE_cm": [
+        101449.69534130857,
+        39853.43948972046,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -180011.4505883789,
+        396079.09529159544,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        12,
+        13
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP3_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        102652.02001782224,
+        39859.94784009278,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178809.12591186524,
+        396085.60364196775,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        15
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP3_YM1_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM1_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        103448.28886242674,
+        38817.88946759522,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -178012.85706726075,
+        395043.5452694702,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        14
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM3_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM3_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        104321.72750683592,
+        40927.882257817386,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -177139.41842285157,
+        397153.53805969236,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        18
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        104187.1240064697,
+        39243.785063145755,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -177274.02192321778,
+        395469.44086502073,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        17
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP4_YM1_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM1_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        104061.97771282957,
+        38867.82228123963,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -177399.1682168579,
+        395093.4780831146,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        16
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    },
+    {
+      "asset": "SM_Vista_Reeds_XP5_YM2_01",
+      "FBX_combined": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP5_YM2_01.fbx",
+      "LOD_FBX": [
+        "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD0.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD1.fbx",
+        "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD2.fbx"
+      ],
+      "class": "foliage",
+      "LOD_triangles": [
+        21,
+        14,
+        7
+      ],
+      "canonical_actor_UE_cm": [
+        106536.3728925781,
+        40045.81534039795,
+        0
+      ],
+      "interior1_derived_actor_UE_cm": [
+        -174924.77303710938,
+        396271.47114227293,
+        0.0
+      ],
+      "actual_original_banktop_root_indices": [
+        19
+      ],
+      "collision": false,
+      "navigation": false,
+      "overlap": false,
+      "ordinary_world_visible": true,
+      "screen_set": false,
+      "material": "MI_Shared_Ground_ReedLeaf",
+      "native_two_sided_required": true
+    }
+  ],
+  "new_original439_438_471_ground": false,
+  "outdoor_visibility": "Ordinaryworldvisiblemainmanifest, NEVERscreen_set orownerboundedterrain",
+  "interior1_copy": "Render-onlyderivedexactfrontplane translation/yaw0/scale1, samecanonicalUVphase. ReplacesoldV4 onlycoordinator-ownedruntimepublication.",
+  "existing560_reference_policy": "Not intheseexports. CoordinatorMUSTresolve CURRENTguardedfullmainmanifestassets, includingconcurrentbarrel changes; do notpublishstaleV11old-kit references.",
+  "actor_rotation_degrees": [
+    0,
+    0,
+    0
+  ],
+  "actor_scale": [
+    1,
+    1,
+    1
+  ],
+  "FBX_units": "Actualheader100cm/m, Zup/front-Y; nativeymirroronce, no forcefrontX",
+  "skin": "All3305originaltoptriangles preservedwithinmax4.72e-7m vertexstorage; only2cmdownwardbottom/sidesadded. Invertedinputordercorrected+Z, pointtouchvertexfanssplitatidenticalcoordinates. No raised/collidingground.",
+  "native_import_flags": [
+    "NoAutoCollision",
+    "NoUCX",
+    "NoNav/overlaps",
+    "NoGenerateLightmapUV",
+    "GroundNaniteopaque/fullfallbacksourceGeometry",
+    "ReedsNaniteoff,attachactualLOD1/2fromseparatefiles"
+  ],
+  "material_roles": [
+    {
+      "role": "Meadow",
+      "source_material": "MI_Shared_Meadow_PhotoStudy",
+      "prepared_material": "MI_Shared_Ground_Meadow",
+      "tile_period_m": 1.25,
+      "source_optics": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.2199999988079071,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.017599999904632572,
+      "native_standard_specular_F0_match_starting_value": 0.21999999880790713,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    },
+    {
+      "role": "WetBank",
+      "source_material": "MI_Shared_WetBank_PhotoStudy",
+      "prepared_material": "MI_Shared_Ground_WetBank",
+      "tile_period_m": 2,
+      "source_optics": {
+        "IOR": 1.5,
+        "Specular IOR Level": 0.5,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.04000000000000001,
+      "native_standard_specular_F0_match_starting_value": 0.5000000000000001,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    },
+    {
+      "role": "Water",
+      "source_material": "MI_Fields_StreamWater",
+      "prepared_material": "MI_Shared_Ground_Water",
+      "tile_period_m": 2,
+      "source_optics": {
+        "IOR": 1.3329999446868896,
+        "Specular IOR Level": 0.5,
+        "Transmission Weight": 0.0,
+        "Alpha": 1.0
+      },
+      "source_F0_estimate": 0.020373182039833234,
+      "native_standard_specular_F0_match_starting_value": 0.25466477549791544,
+      "native_mapping_verified": false,
+      "normal_image_on_Color_strength1_verified": true,
+      "explicit_material_proposal": "Source graph sampled over canonicalorigin tile; nonperiodicmacrovariation becomes shared repetition. Optical constants preserved; matched native/sourceviews pending."
+    }
+  ],
+  "baked_normal_strength": 1,
+  "normal_green_flip": true,
+  "image_colourspaces": "BCsRGB; NlinearNormalcompression; ORMlinearMasks R255/Gsourceroughness/B0",
+  "water": "Sourceandcandidateopaque, Transmission0/Alpha1, IOR1.333/specIOR0.5/rough.19 preserved. NativeF0matchspec\u2248.2546 is startingestimate, unverified. No panner/wind/WPOauthored.",
+  "reed_material": "Opaque individualbladegeometry, TWO-SIDED needed, sourceIOR1.5/specIOR.5/rough.82, noSSS/transmission. Introducingfoliagesubsurface is a separatevisualproposal.",
+  "UV_phase": "UV0authoredfromcanonicalcoordinates; translatedinteriorcopykeepssamephase, no runtimeAbsoluteWorldPosition resampling",
+  "raw_guide": "130errors=128intentionalrenderonlyCOLLISION_MISSING+2exactboundarySCALE_RANGE.49warningsretained.0unexpectederrorsonly, NEVERclaimrawzeroerrorpass.",
+  "native_gate": [
+    "Savedactualgeometry/UV/fronts/bounds/materialslots/Texture.Source/resolvedfilenames",
+    "COLLISION_NONE/nav/overlap/currentcollisionauthority unchanged inactualworld",
+    "Realdoor/window/exterior/transitionsandroute/lighting/camera/performance",
+    "Sharedtilesamplingproposal/visiblematerialseams/LODtransitionsvisualacceptance"
+  ],
+  "native_imported": false
+}

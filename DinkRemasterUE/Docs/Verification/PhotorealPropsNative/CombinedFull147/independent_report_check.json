@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "test_states": {
+    "Success": 147
+  },
+  "test_warning_events": 0,
+  "test_error_events": 0,
+  "raw_summary_matches_all_states": true,
+  "before_after_file_count": 8884,
+  "before_after_identical": true,
+  "old_saves_checked": 0,
+  "old_saves_unchanged": true,
+  "new_isolated_probe_slots": 10,
+  "notes": [
+    "Before/after maps are compared as recorded; this independently checks their equality, not a second temporal observation.",
+    "NullRHI native suite validates its enumerated checks, not final actual-RHI graphics, cloth or lighting acceptance.",
+    "Source files may change in later reviewed work; this evidence describes the recorded test snapshot."
+  ]
+}

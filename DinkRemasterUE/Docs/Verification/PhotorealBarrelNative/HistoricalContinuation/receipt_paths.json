@@ -1,0 +1,47 @@
+{
+  "status": "Historical continuation evidence; different importer/tool versions, not authority for reviewed assets",
+  "raw_README_sha256": "d4e95230f7cab9c8b4982a15117357d18460cca24bf17eb6e62d6b584652b06a",
+  "work_only_full_history": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative",
+  "external_immutable_archive": "/home/artist/Work/DinkQA/BarrelNative/ContinuationCandidateArchive_20261108",
+  "root_owned_exact_candidate_archive": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/PriorContinuationCandidate",
+  "archive_manifest_sha256": "e8044cc23f0cd4f39fa19758db4a60c42f8dbd5626050d224277c1b794572d8d",
+  "copied_small_receipts": {
+    "Saved/BarrelNative/Attempt01_preflight/receipt.json": {
+      "copied_to": "HistoricalContinuation/Attempt01_preflight/receipt.json",
+      "sha256": "9e17b5eb34e50071f28889b0198392bdc2aaeb52d73916dfcbfc64a90930870a"
+    },
+    "Saved/BarrelNative/Attempt01_preflight/terminal.json": {
+      "copied_to": "HistoricalContinuation/Attempt01_preflight/terminal.json",
+      "sha256": "d56516dd801e0a1d71ef92ae139744e05ab1b1ed33bbf012920ca86210fc7302"
+    },
+    "Saved/BarrelNative/Attempt01_preflight/launch.json": {
+      "copied_to": "HistoricalContinuation/Attempt01_preflight/launch.json",
+      "sha256": "161eb1ccac51d9ec9b3da8ec479abdda39b56bd054a45f31575d537ea5c035b6"
+    },
+    "Saved/BarrelNative/Attempt02_import/receipt.json": {
+      "copied_to": "HistoricalContinuation/Attempt02_import/receipt.json",
+      "sha256": "168662756451713812dc3701a8a04b3047afbae39b511a1452908a61720c241b"
+    },
+    "Saved/BarrelNative/Attempt02_import/terminal.json": {
+      "copied_to": "HistoricalContinuation/Attempt02_import/terminal.json",
+      "sha256": "0b053de52fb76b57434449fb3ad63763d64f2417c904007ef4866471dd8423d5"
+    },
+    "Saved/BarrelNative/Attempt02_import/launch.json": {
+      "copied_to": "HistoricalContinuation/Attempt02_import/launch.json",
+      "sha256": "d5c2859daf517381e14907f655deaa092c1ca0db6a240782b9b1ca0feb59f31b"
+    },
+    "Saved/BarrelNative/Attempt03_verify/receipt.json": {
+      "copied_to": "HistoricalContinuation/Attempt03_verify/receipt.json",
+      "sha256": "afeff01f64d47a64518b5925c2f9b936deba5d1f79d1e30ac82820129fd45641"
+    },
+    "Saved/BarrelNative/Attempt03_verify/terminal.json": {
+      "copied_to": "HistoricalContinuation/Attempt03_verify/terminal.json",
+      "sha256": "73da27e5e264bbab3ab769ced577e6c59ee49c37600a0040304a7489846b362b"
+    },
+    "Saved/BarrelNative/Attempt03_verify/launch.json": {
+      "copied_to": "HistoricalContinuation/Attempt03_verify/launch.json",
+      "sha256": "b5e86ddb4297d5444d56045b9bed64867e6d2a2a5631c44f3fade3ad23209a96"
+    }
+  },
+  "native_package_payloads_copied_to_docs": false
+}

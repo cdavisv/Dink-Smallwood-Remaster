@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Independent read-only fresh published receipt review plus default guarded no-op replay",
+  "verification_basis": "published_entry_state",
+  "writer_scope": "none",
+  "author_import_receipt": "absent; no import receipt hash in fresh native receipt",
+  "native_assets_and_all6package_hashes": "identical to independently reviewed author import/freshverify",
+  "root_default_and_apply": "both0writes;9256before/afterpinsidentical",
+  "independent_default_replay": "0writes,currentContentunchanged",
+  "source_receipt_sha256": "694d26855c632447f645aeb3193b19c731b74fe118f2fd926895c34b0669698c",
+  "runner": "exit0normal38.262s as root recorded",
+  "limitations": "No Unreal rerun by this reviewer; no live game input; native logs not claimed warning-free. Full regression/render/pickup acceptance remain root-owned."
+}

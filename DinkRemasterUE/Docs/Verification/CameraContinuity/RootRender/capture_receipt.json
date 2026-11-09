@@ -1,0 +1,25 @@
+{
+  "pid": 208615,
+  "fixtures": [
+    [
+      "opaque-north-corner-root",
+      [
+        178,
+        120
+      ],
+      180,
+      -25
+    ],
+    [
+      "opaque-room-root",
+      [
+        303,
+        350
+      ],
+      270,
+      -18
+    ]
+  ],
+  "scope": "photo teleport fixtures, not traversal route",
+  "passed": true
+}

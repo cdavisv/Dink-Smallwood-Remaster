@@ -1,0 +1,46 @@
+{
+  "status": "Bounded original-guide fieldstone-face and recessed-mortar source finish, pendingvisual/guide/export approval",
+  "V5checkpoint_sha256": "b1dc18fd2d9af916de38d9de6ee05da88f54298466befc03176c745fd3f4d79b",
+  "original_guide": "ImportData/sprites/63_04.png",
+  "albedo_provenance": "fieldstone_generation.json",
+  "independent_relief": "Deterministic600pocks+256squaregrid geometry and physicalshadernormal; neverfromBC",
+  "material_tiles": [
+    {
+      "role": "Fieldstone",
+      "physical_repeat_m": 1.0,
+      "texture_size": 2048,
+      "roughness_range": [
+        0.8156863451004028,
+        0.9254902601242065
+      ],
+      "metallic_range": [
+        0.0,
+        0.0
+      ],
+      "height_source": "Independent deterministic geometrypocks+shadernormal, notBCderived"
+    },
+    {
+      "role": "Mortar",
+      "physical_repeat_m": 2.0,
+      "texture_size": 512,
+      "roughness_range": [
+        0.960784375667572,
+        0.960784375667572
+      ],
+      "metallic_range": [
+        0.0,
+        0.0
+      ],
+      "height_source": "Independentshadernormal"
+    }
+  ],
+  "mortar_geometry_triangles": 372,
+  "mortar_recess_m": 0.03,
+  "window_door_openings": "Exact clipped source apertures with4cmclearance at windows andexpandeddoor;15/15source raysclear",
+  "source_door_clear": 15,
+  "triangles": 114354,
+  "stone_frame_roof_base_geometry": "V5retained; only actual mortar added, no fracturedcornerjitter",
+  "collision": false,
+  "native": false,
+  "V5checkpoint_unchanged": true
+}

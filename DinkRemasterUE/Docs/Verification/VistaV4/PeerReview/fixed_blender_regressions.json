@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "unchanged_actual_source",
+      "passed": true
+    },
+    {
+      "case": "added_transform",
+      "rejected": true,
+      "reason": "V4 instance transform differs from additions.json: VistaV4_CrestGrass_00"
+    },
+    {
+      "case": "added_mesh_identity",
+      "rejected": true,
+      "reason": "V4 instance mesh differs from source asset: VistaV4_CrestGrass_00"
+    },
+    {
+      "case": "original_face_material",
+      "rejected": true,
+      "reason": "V4 original/addition inventory changed: ['Vista_DirtPath0', 'Vista_DirtPath1', 'Vista_Street_0', 'Vista_Street_1', 'Vista_Street_2', 'Vista_Street_3', 'Vista_Street_4', 'Vista_Street_5', 'Vista_Street_6', 'Vista_Neighbor_Access']"
+    },
+    {
+      "case": "original_face_smooth",
+      "rejected": true,
+      "reason": "V4 original/addition inventory changed: ['Vista_DirtPath0', 'Vista_DirtPath1', 'Vista_Street_0', 'Vista_Street_1', 'Vista_Street_2', 'Vista_Street_3', 'Vista_Street_4', 'Vista_Street_5', 'Vista_Street_6', 'Vista_Neighbor_Access']"
+    },
+    {
+      "case": "original_corner_normal",
+      "rejected": true,
+      "reason": "V4 original/addition inventory changed: ['Vista_OakWest', 'Vista_OakEast', 'Vista_OakNorth', 'Vista_LayeredOak_0', 'Vista_LayeredOak_1']"
+    },
+    {
+      "case": "cached_world_coordinate",
+      "rejected": true,
+      "reason": "V4 world transform differs from Blender conversion: VistaV4_CrestGrass_00"
+    }
+  ],
+  "root_scene_untouched": true
+}

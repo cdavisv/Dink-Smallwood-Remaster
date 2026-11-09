@@ -1,0 +1,30 @@
+{
+  "origin": "S001_P51",
+  "sequence": 421,
+  "frame": 11,
+  "script": "sfood",
+  "source": {
+    "kind": "ff",
+    "file": "graphics/items/food/dir.ff",
+    "entry": "food-11.bmp",
+    "bytes": 1536,
+    "offset": 21404
+  },
+  "source_archive_sha256": "6fb491b0b47487ec6420953d0619adbe6fa16d7f174012c6bb07c913ac1c03c5",
+  "bmp_sha256": "1151def34dc55cf8ba4fd292fb6d179e29a6de91e7892c75d675833d35254e1d",
+  "transparency_key": "white",
+  "image_size": [
+    24,
+    19
+  ],
+  "extraction": "Fresh read of original dir.ff entry resolved by checked-in dinkex SequenceModel and BMP RGBA conversion",
+  "original_script_behavior": "Touch grants3life cappedlifemax, playsound10, brain12 removal and editor_type1 persistence; preserve these identities.",
+  "files": {
+    "Inputs/Original_421_11.png": "5146473a7fac110e60b89ae46672aa73746f660b724460b3cf569ddccd21a852",
+    "Inputs/food-11.bmp": "1151def34dc55cf8ba4fd292fb6d179e29a6de91e7892c75d675833d35254e1d",
+    "Inputs/sfood.c": "d0d1a724664811685876b47e5aad2dfe3ed11e9ac4ed7cc7b471b8e0bb45f5d0",
+    "Inputs/original_placement.json": "f122025c9793bbb5f9f4a44e2e1668793abeb7eef089c8b318ef94fcf3f7da94",
+    "Inputs/KIT_Stonebrook_Input.blend": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9"
+  },
+  "native_modified": false
+}

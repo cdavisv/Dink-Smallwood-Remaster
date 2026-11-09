@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "role": "BC",
+      "bake": "EMIT",
+      "source_socket": "Base Color",
+      "seconds": 4.094362735748291,
+      "sha256": "ef48c8d5d784f4696f4247fe078e2dff93ac41bbc126eff900f499c9ad372f0d"
+    },
+    {
+      "role": "Rough",
+      "bake": "EMIT",
+      "source_socket": "Roughness",
+      "seconds": 2.7485311031341553,
+      "sha256": "80f5a2d16f53b1aa6c5c036f122362d2bb64e27a39f2d31b020bfe2f0185d3ff"
+    },
+    {
+      "role": "Metal",
+      "bake": "EMIT",
+      "source_socket": "Metallic",
+      "seconds": 1.947378396987915,
+      "sha256": "5630edf42913f842e57308503a7e0977e721d09027a12c453b8878c22108cd37"
+    },
+    {
+      "role": "N",
+      "bake": "NORMAL",
+      "source_socket": null,
+      "seconds": 10.158680438995361,
+      "sha256": "4c9a18d659e3ff8ad09e14b1fb0465002d55f49a18df5f3d50d7150d19500771"
+    }
+  ],
+  "source_sha256": "4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94",
+  "source_unchanged": true,
+  "triangles": 19644,
+  "metallic_linear_range": [
+    0.0,
+    0.0
+  ],
+  "metallic_nonzero_texels": 0,
+  "R_AO": "neutral1",
+  "BC": "Emission bake of authored procedural jute and cord colour",
+  "normal": "tangent-space authored bump bake",
+  "ORM_sha256": "e348c500874177f070e2a7d5ed1a204715a2489d391d33079df648e2b07b8748"
+}

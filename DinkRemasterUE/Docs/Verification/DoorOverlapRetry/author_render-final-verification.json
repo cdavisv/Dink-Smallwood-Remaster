@@ -1,0 +1,25 @@
+{
+  "time_utc": "2026-11-08T23:56:00.228941+00:00",
+  "passed": true,
+  "private_game_pid": 299254,
+  "display_pid": 299246,
+  "normal_game_quit": true,
+  "display_stopped": true,
+  "frozen_inputs": 9245,
+  "changed_inputs": [],
+  "real_key_door_proof": "initialactualexit/return; actualalready-overlappingreturnidle throughcooldown no bounce; W.6sexactlyonewarp to439 withoutleavingoverlap",
+  "evidence": [
+    "Render/idle-proof.json",
+    "Render/immediate-reexit-proof.json",
+    "Render/state-idle-overlap.json",
+    "Render/state-after-immediate-exit.json",
+    "Render/after-immediate-exit.png"
+  ],
+  "qualifications": [
+    "Only initial fixture usesconsoleGoto1map303/350;screen scriptsdisabled forisolatedtest",
+    "Firstcontinuousreturncarriedclearandisexcluded",
+    "Preciseoutdoorapproachtriggeredentrybeforeplannednear-waypoint; helperFAILretained, actualreturn+overlapindependentlyconfirmed",
+    "StandaloneGamebuildcompiled; renderedruntimeusedEditor-game"
+  ],
+  "owner_game": "153304 not targeted, noinput/signals"
+}

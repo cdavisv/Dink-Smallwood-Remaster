@@ -1,0 +1,16 @@
+{
+  "confirmed": "OwnedBlender5.2.2CPUpreviewPID272193 segfaulted, matchingcoredumpcommandline preview_context_v2.py",
+  "signal": "SIGSEGV11",
+  "exit_code": 139,
+  "python_backtrace": "line5 recursivecollection.all_objects iteration whilevisibilitytoggling",
+  "C_frames": "Unsymbolized Blender offsets3fede7e/3fef389; no inventedfunction attribution",
+  "resources": "30GiRAM,22Giavailable; noOOMjournalentries; not evidence ofresourceexhaustion",
+  "other_threads": "IO/semaphore/TBB/Pulsethreads idle; no thirdpartyplugin blamed",
+  "inference": "Cached recursivecollection iterator invalidation is consistent with location and earlierNoneentries; not establishedBlenderinternalmechanism",
+  "workaround": "Resolve known434coverage objectIDs fromauthoritativeinventory individually; no all_objects iteration. Retry outcome pending.",
+  "source_asset_loss": false,
+  "source_exports_and_input_blends_unchanged": true,
+  "core_extracted": false,
+  "system_config_changed": false,
+  "workaround_retry": "ExplicitinventoryIDlookup succeeded,3actualcanonicalpreviews saved; originalinput/candidate/artifacthashes unchanged"
+}

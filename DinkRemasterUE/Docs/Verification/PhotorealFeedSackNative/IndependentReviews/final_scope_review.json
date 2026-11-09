@@ -1,0 +1,41 @@
+{
+  "status": "No definite functional blockers found; final documentation must carry completed runtime evidence and qualifications",
+  "branch": "art/photoreal-feedsack-native",
+  "head": "5040e632d53125571b1769b715fc54cfa521126d",
+  "findings": [],
+  "independently_checked": {
+    "full_suite_inputs": 9240,
+    "current_changes_from_full_suite_inputs": [
+      "Scripts/playtest_desktop.py"
+    ],
+    "all_six_packages_match_fresh_published_verify": true,
+    "all_tool_hashes_match": true,
+    "ledger_1658_raw_prefix_preserved": true,
+    "ledger_rows_now": 1664,
+    "route_helper_function_AST_matches_actually_used_driver_after_only_equivalent_screens_inventory_path_normalization": true,
+    "rerun_feedsack_python_tests": 126,
+    "rerun_python_failures": 0,
+    "render_6931_file_pins_before_after_identical": true,
+    "visual_6931_file_pins_before_after_identical": true
+  },
+  "code_review": [
+    "Native material bridge resolves imported names to unique slots, handles sparse groups, returns detached JSON and does not edit attributes/material assignments. Tests reject unknown/ambiguous/missing attributes.",
+    "Geometry/UV matching includes per-triangle material IDs; saved section order and two native graph/specular contracts are checked.",
+    "Published clone verifier pins entry state and validates assets; its publisher has writer_scope none and cannot retroactively approve scene data.",
+    "Post-suite helper changes only attempt budget35\u2192100 and maximum key hold.24\u2192.8 plus explanatory comments; collision/stall/fall checks remain. Saved real-route helper has equivalent route-function AST after its absolute screens path is normalized."
+  ],
+  "evidence_reviewed": {
+    "Full152": "152/152, zero warning tests,9240 stable inputs, old saves unchanged",
+    "Python": "490/490 complete receipt;126/126 feed-sack subset independently rerun",
+    "SourceAudit": "2117binary/379Python/22shell/1664ledger PASS/no hash errors/secrets",
+    "Gameplay": "Actual pickup/removal passage, house exit-return, later route continuation, real F feeding pig_story0\u21921, actual saved-state load restores screen1/feed item/pig_story0/hidden S001_P52",
+    "Lighting": "Default corner remains dark. Temporary diagnostic light is separately labeled and restored to original450lm/location/radius; no saved asset writes;6931 render/visual pins stable"
+  },
+  "qualifications": [
+    "At review time committed Docs README still reports feeding/load/closure pending. Parent is updating final docs; preserve failures and replace stale status before merge.",
+    "Initial interaction/photo setup uses explicitly documented teleport; subsequent held-key routes and feeding are ordinary gameplay. Do not describe the entire fresh-start route as teleport-free.",
+    "Raw shortcut re-exit failures and first yard-route budget exhaustion remain valid historical failures; successful detour/continuation does not erase them.",
+    "Default-lighting photoreal acceptance is not established by diagnostic-light images. Wider hero/house/exterior/lighting work remains unfinished.",
+    "Native152/build, complete490Python and cold-LFS/CI successes were inspected/reported, not rerun by this reviewer. No Unreal/game/GPU/process input/signals/build/package edits performed."
+  ]
+}

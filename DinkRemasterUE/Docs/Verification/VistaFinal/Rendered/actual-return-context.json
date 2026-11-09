@@ -1,0 +1,17 @@
+{
+  "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkArtContextActor_0",
+  "components": 359,
+  "meshes": 62,
+  "expected_visible": true,
+  "visible": 359,
+  "actor_hidden": false,
+  "collision_modes": [
+    "<CollisionEnabled.NO_COLLISION: 0>"
+  ],
+  "collision_profiles": [
+    "NoCollision"
+  ],
+  "overlap_enabled": 0,
+  "hidden_shadow": 0,
+  "hidden_GI": 0
+}

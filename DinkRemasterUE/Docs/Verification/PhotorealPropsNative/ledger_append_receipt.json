@@ -1,0 +1,27 @@
+{
+  "old_rows": 1338,
+  "new_rows": 15,
+  "total_rows": 1353,
+  "old_raw_bytes": 1187644,
+  "old_sha256": "6caa06193bb249c12adaa2f3ef08d6aaeeb33f0c7ff84b84a6ba6ac133542d7e",
+  "new_sha256": "9f352ac1d0c3a955a291f3376e60098c957975e00af7bdb6a3a21e83112a06cc",
+  "old_prefix_byte_identical": true,
+  "existing_audio_rows_unchanged": 483,
+  "new_paths": [
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Bed_Oak_01_PhotoBaked.uasset",
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Chair_Oak_01_PhotoBaked.uasset",
+    "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Table_Oak_01_PhotoBaked.uasset",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.uasset",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.uasset",
+    "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_BC.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_N.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_ORM.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_BC.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_N.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_ORM.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_BC.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_N.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_ORM.uasset"
+  ]
+}

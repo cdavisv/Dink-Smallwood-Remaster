@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "LOD0_all_mesh_corner_data_and_material_graphs_exact": true,
+  "nonLOD_material_graphs_and_packed_image_bytes_exact": true,
+  "LODs": [
+    {
+      "LOD": 1,
+      "food_corner_positions_UV_attributes_materials_exact": true,
+      "full_LOD0_dish_corner_positions_UV_attributes_exact": true,
+      "max_normal_angle_radians": 0
+    },
+    {
+      "LOD": 2,
+      "food_corner_positions_UV_attributes_materials_exact": true,
+      "full_LOD0_dish_corner_positions_UV_attributes_exact": true,
+      "max_normal_angle_radians": 0
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "runs": [
+    {
+      "filter": "Dink.Art.OutdoorCamera",
+      "exit": 0,
+      "passed": 1,
+      "warned": 0,
+      "failed": 0,
+      "seconds": 25.108643293380737
+    },
+    {
+      "filter": "Dink.Art",
+      "exit": 0,
+      "passed": 22,
+      "warned": 0,
+      "failed": 0,
+      "seconds": 48.96918320655823
+    }
+  ],
+  "tracked_inputs": 6868,
+  "changes": [],
+  "passed": true
+}

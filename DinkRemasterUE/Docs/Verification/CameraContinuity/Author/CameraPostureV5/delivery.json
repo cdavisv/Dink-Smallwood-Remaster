@@ -1,0 +1,23 @@
+{
+  "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+  "files": [
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkPostureComponent.h",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkPostureComponent.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkEarlyPostureAnimInstance.h",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkEarlyPostureAnimInstance.cpp",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkSolidWallsTests.cpp"
+  ],
+  "patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
+  "pins": 8941,
+  "scope": "Opaque walls by default, explicit historical cutaway fixture; optional skeleton-compatible native posture parent/weights. No new animation or garment/landscape assets published.",
+  "status": "FINALv5VERIFIED:150/150;1engineHTTPwarningtest;452s;8941pinsunchanged",
+  "verification_receipt": "final-verification.json"
+}

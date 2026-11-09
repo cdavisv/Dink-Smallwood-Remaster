@@ -1,0 +1,65 @@
+{
+  "method": "Explicit teleport photo fixtures only; actual exit and return recorded separately. Normal player camera; no graphics override.",
+  "cases": [
+    {
+      "label": "bed-three-quarter",
+      "player": {
+        "screen": 1,
+        "map": [
+          260.0,
+          309.0
+        ],
+        "world": [
+          -183996.41,
+          393197.855,
+          98.0
+        ],
+        "yaw": 210.0,
+        "pitch": -35.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "bed-three-quarter.png"
+    },
+    {
+      "label": "bed-side",
+      "player": {
+        "screen": 1,
+        "map": [
+          260.0,
+          287.0
+        ],
+        "world": [
+          -183996.41,
+          393101.605,
+          98.0
+        ],
+        "yaw": 180.0,
+        "pitch": -50.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "bed-side.png"
+    },
+    {
+      "label": "chair-side",
+      "player": {
+        "screen": 1,
+        "map": [
+          344.0,
+          211.0
+        ],
+        "world": [
+          -183628.91,
+          392769.105,
+          98.0
+        ],
+        "yaw": 160.0,
+        "pitch": -35.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "screenshot": "chair-side.png"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-08T21:30:40Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Candle_Iron_01",
+      "class": "prop_small",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.glb"
+      },
+      "source": {
+        "blend": "PhotorealCandleV1_Export.blend",
+        "sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c",
+        "collection": "SM_Candle_Iron_01",
+        "note": "Project-authored addedroomprop; wax melt/drips and iron/char; originalbounds/lightanchor retained"
+      },
+      "tris": {
+        "LOD0": 4870,
+        "LOD1": 2434,
+        "LOD2": 1218
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ],
+        "size_cm": [
+          20.0,
+          20.0,
+          45.05
+        ],
+        "unreal_min_cm": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          10.0,
+          10.0,
+          45.05
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [],
+      "material_slots": [
+        "MI_Candle_IronChar_PhotoBaked",
+        "MI_Candle_Wax_PhotoBaked"
+      ],
+      "textures": [
+        {
+          "name": "T_Candle_Iron_01_Photo_BC",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Candle_Iron_01_Photo_N",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Candle_Iron_01_Photo_ORM",
+          "file": "Game/Dink/Props/Stonebrook/PhotorealCandleV1/Textures/T_Candle_Iron_01_Photo_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": false,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

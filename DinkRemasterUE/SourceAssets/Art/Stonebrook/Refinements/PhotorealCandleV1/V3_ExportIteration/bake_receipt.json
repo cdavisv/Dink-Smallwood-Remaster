@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "role": "BC",
+      "bake": "EMIT",
+      "source_socket": "Base Color",
+      "seconds": 2.9586710929870605,
+      "sha256": "2f8aedbe2175593559cf5bdc717be7f4ef6200cdc549a814226d940e9094e01f"
+    },
+    {
+      "role": "Rough",
+      "bake": "EMIT",
+      "source_socket": "Roughness",
+      "seconds": 2.623483896255493,
+      "sha256": "dd2af0a998bee270c191cfded4dbb7857ead375e1c2ceb68ec791bcd286629bd"
+    },
+    {
+      "role": "Metal",
+      "bake": "EMIT",
+      "source_socket": "Metallic",
+      "seconds": 2.1459033489227295,
+      "sha256": "0d40deacde9d64ec850d5f134ec887d97ee19471eee3b9d09ce44d6dc46826f3"
+    },
+    {
+      "role": "N",
+      "bake": "NORMAL",
+      "source_socket": null,
+      "seconds": 10.859091520309448,
+      "sha256": "6fdf11a68ca5bbbe9d2a16e5f9ac8ff42a4baecc10ede8f8f6370809a9e19d42"
+    }
+  ],
+  "source_sha256": "a6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42",
+  "source_unchanged": true,
+  "triangles": 4870,
+  "metallic_linear_range": [
+    0.0,
+    0.9294118285179138
+  ],
+  "metallic_nonzero_texels": 1647795,
+  "R_AO": "neutral1",
+  "BC": "Emission bake of authored iron/char and wax colour; source wax SSS retained in baked Blender shader but native SSS/flame remain unproven",
+  "normal": "tangent-space authored bump bake",
+  "ORM_sha256": "1b7f839fe8a37206439dcf5f9e983d378c801eb86b3bbad232c60fb392570781"
+}

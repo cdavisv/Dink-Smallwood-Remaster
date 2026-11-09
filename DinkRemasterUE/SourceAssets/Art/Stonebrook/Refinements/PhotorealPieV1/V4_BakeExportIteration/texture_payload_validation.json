@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "textures": {
+    "BC": {
+      "name": "T_Pie_Rustic_01_Photo_BC",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_BC.png",
+      "role": "BC",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": true,
+      "normal_green_flip": false,
+      "range": [
+        [
+          0,
+          136
+        ],
+        [
+          0,
+          98
+        ],
+        [
+          0,
+          87
+        ]
+      ],
+      "sha256": "43deb97a3c6b07e8c5f3e63ac6c8db45ab091c343723c54332567e0f38568784",
+      "export_bytes_identical_to_bake": true
+    },
+    "N": {
+      "name": "T_Pie_Rustic_01_Photo_N",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_N.png",
+      "role": "N",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": false,
+      "normal_green_flip": true,
+      "range": [
+        [
+          116,
+          140
+        ],
+        [
+          113,
+          143
+        ],
+        [
+          254,
+          255
+        ]
+      ],
+      "sha256": "e0c2004812035af3f0637bf7689201e537dc2607ad62f5a0ec66c838a44fa555",
+      "export_bytes_identical_to_bake": true
+    },
+    "ORM": {
+      "name": "T_Pie_Rustic_01_Photo_ORM",
+      "file": "Game/Dink/Props/Stonebrook/PhotorealPieV1/Textures/T_Pie_Rustic_01_Photo_ORM.png",
+      "role": "ORM",
+      "size": [
+        2048,
+        2048
+      ],
+      "srgb": false,
+      "normal_green_flip": false,
+      "range": [
+        [
+          255,
+          255
+        ],
+        [
+          0,
+          185
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "sha256": "cc77770de668f4062cd8832c4760dfdb672b775bb4088dde1afd68a4d6523e47",
+      "export_bytes_identical_to_bake": true
+    }
+  },
+  "raw_generated_reference_resampled": false,
+  "maps_are_new_3D_UV_bakes": true,
+  "native_imported": false
+}

@@ -1,6 +1,7 @@
 """Build/check immutable camera-fade material variants from the existing Blender kit.
 DINK_CAMERA_CHECK=1 performs a read-only check. DINK_CAMERA_REVISION selects a new
 asset revision; existing material packages are validated and never overwritten.
+DINK_CAMERA_MATERIALS_ONLY=1 adds/checks variants without touching floor framing or room art.
 """
 import hashlib,json,math,os,re
 from pathlib import Path
@@ -9,6 +10,7 @@ assert '-game' not in unreal.SystemLibrary.get_command_line().split(), 'Camera m
 ROOT=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())).resolve()
 LIB=unreal.EditorAssetLibrary; EDIT=unreal.MaterialEditingLibrary
 CHECK=os.environ.get('DINK_CAMERA_CHECK')=='1'
+MATERIALS_ONLY=os.environ.get('DINK_CAMERA_MATERIALS_ONLY')=='1'
 REVISION=os.environ.get('DINK_CAMERA_REVISION','v1')
 assert re.fullmatch(r'[A-Za-z0-9_]+',REVISION),'Invalid revision'
 REPORT=ROOT/'Saved/Art/camera_materials_report.json'
@@ -46,9 +48,9 @@ def hull(points):
 try:
  runtime_path=ROOT/'Content/Dink/Data/Art/stonebrook.json'
  runtime=json.loads(runtime_path.read_text());require(runtime.get('schema')=='dink-art/1' and runtime.get('screen')==1,'Expected authored starting house')
- source_spec=json.loads((ROOT/runtime['source']).read_text())
+ source_spec=None if MATERIALS_ONLY else json.loads((ROOT/runtime['source']).read_text())
  variants={};originals={}
- for kind in ['Oak','Limewash']:
+ for kind in ['Oak','Limewash','Fieldstone','WroughtIron','Thatch']:
   source='/Game/Dink/Materials/Stonebrook/MI_Stonebrook_'+kind
   package=ROOT/'Content/Dink/Materials/Stonebrook'/('MI_Stonebrook_'+kind+'.uasset')
   originals[package]=sha(package)
@@ -69,27 +71,29 @@ try:
    EDIT.recompile_material(mat);graph(mat);require(LIB.save_loaded_asset(mat,only_if_is_dirty=False),'Cannot save new material')
   graph(mat);variants[source+'.MI_Stonebrook_'+kind]=mat.get_path_name()
   report['materials'].append({'original':source,'original_package_sha256':originals[package],'variant':mat.get_path_name(),'existing_package_kept':existing,'default_opacity':1,'shadow_opacity':1,'clip':.5})
- points=[];heights=[];floor_count=0;occluders=0
- for row in runtime['elements']:
-  name=row['mesh'].split('.')[-1];category=source_spec['assets'].get(name,{}).get('class')
-  occlude=row.get('camera_occluder',category in ('kit_wall','kit_ceiling','kit_piece'))
-  if occlude:
-   occluders+=1
-   if not CHECK:row['camera_occluder']=True
-   else:require(row.get('camera_occluder') is True,'Missing authored occluder tag '+row['name'])
-  if category!='kit_floor':continue
-  mesh=unreal.load_asset(row['mesh']);require(isinstance(mesh,unreal.StaticMesh),'Missing floor mesh')
-  bound=mesh.get_bounds();o,e=bound.origin,bound.box_extent
-  rotation=row.get('rotation_deg',[0,0,0]);location=row['world_cm'];scale=row.get('scale',[1,1,1])
-  transform=unreal.Transform(location=unreal.Vector(*location),rotation=unreal.Rotator(pitch=rotation[0],yaw=rotation[1],roll=rotation[2]),scale=unreal.Vector(*scale))
-  for x in [o.x-e.x,o.x+e.x]:
-   for y in [o.y-e.y,o.y+e.y]:
-    p=unreal.MathLibrary.transform_location(transform,unreal.Vector(x,y,o.z+e.z));points.append((float(p.x),float(p.y)));heights.append(float(p.z))
-  floor_count+=1
- require(floor_count>0,'No actual floor meshes')
- points=[(round(x,5),round(y,5)) for x,y in points];polygon=hull(points);report['observed_hull']=polygon;require(len(polygon)==4,'Current camera framing requires an authored convex quadrilateral room')
- require(max(heights)-min(heights)<.5,'Floor is not horizontal; author a separate framing policy')
- floor_z=sum(heights)/len(heights)
+ floor_count=0;occluders=0;polygon=None;floor_z=None
+ if not MATERIALS_ONLY:
+  points=[];heights=[];floor_count=0;occluders=0
+  for row in runtime['elements']:
+   name=row['mesh'].split('.')[-1];category=source_spec['assets'].get(name,{}).get('class')
+   occlude=row.get('camera_occluder',category in ('kit_wall','kit_ceiling','kit_piece'))
+   if occlude:
+    occluders+=1
+    if not CHECK:row['camera_occluder']=True
+    else:require(row.get('camera_occluder') is True,'Missing authored occluder tag '+row['name'])
+   if category!='kit_floor':continue
+   mesh=unreal.load_asset(row['mesh']);require(isinstance(mesh,unreal.StaticMesh),'Missing floor mesh')
+   bound=mesh.get_bounds();o,e=bound.origin,bound.box_extent
+   rotation=row.get('rotation_deg',[0,0,0]);location=row['world_cm'];scale=row.get('scale',[1,1,1])
+   transform=unreal.Transform(location=unreal.Vector(*location),rotation=unreal.Rotator(pitch=rotation[0],yaw=rotation[1],roll=rotation[2]),scale=unreal.Vector(*scale))
+   for x in [o.x-e.x,o.x+e.x]:
+    for y in [o.y-e.y,o.y+e.y]:
+     p=unreal.MathLibrary.transform_location(transform,unreal.Vector(x,y,o.z+e.z));points.append((float(p.x),float(p.y)));heights.append(float(p.z))
+   floor_count+=1
+  require(floor_count>0,'No actual floor meshes')
+  points=[(round(x,5),round(y,5)) for x,y in points];polygon=hull(points);report['observed_hull']=polygon;require(len(polygon)==4,'Current camera framing requires an authored convex quadrilateral room')
+  require(max(heights)-min(heights)<.5,'Floor is not horizontal; author a separate framing policy')
+  floor_z=sum(heights)/len(heights)
  config_path=ROOT/'Content/Dink/Data/Art/camera_materials.json'
  config=json.loads(config_path.read_text()) if config_path.exists() else {'schema':'dink-camera/1'}
  expected={'polygon_cm':polygon,'floor_z_cm':floor_z}
@@ -99,17 +103,17 @@ try:
  require(config.get('schema')=='dink-camera/1','Unsupported camera schema')
  if CHECK:
   require(config.get('material_variants')==variants,'Runtime fade mapping differs from approved variants')
-  require(same_polygon(current.get('polygon_cm',[]),polygon) and abs(current.get('floor_z_cm',1e9)-floor_z)<.02,'Framing footprint differs from actual floor meshes')
+  if not MATERIALS_ONLY:require(same_polygon(current.get('polygon_cm',[]),polygon) and abs(current.get('floor_z_cm',1e9)-floor_z)<.02,'Framing footprint differs from actual floor meshes')
  else:
   config['material_variants']=variants
-  if not same_polygon(current.get('polygon_cm',[]),polygon) or abs(current.get('floor_z_cm',1e9)-floor_z)>=.02:
+  if not MATERIALS_ONLY and (not same_polygon(current.get('polygon_cm',[]),polygon) or abs(current.get('floor_z_cm',1e9)-floor_z)>=.02):
    config.setdefault('floor_framing',{})['1']=expected
   # Leave byte-identical files alone on repeat runs.
   old=json.loads(config_path.read_text()) if config_path.exists() else None
   if old!=config:atom(config_path,config)
   if json.loads(runtime_path.read_text())!=runtime:atom(runtime_path,runtime)
  require(all(sha(p)==h for p,h in originals.items()),'An original material package changed')
- report.update(passed=True,floor_mesh_count=floor_count,floor_polygon_cm=polygon,floor_z_cm=floor_z,occluder_count=occluders,existing_variants_overwritten=0)
+ report.update(passed=True,materials_only=MATERIALS_ONLY,floor_policy_unchanged=MATERIALS_ONLY,floor_mesh_count=floor_count,floor_polygon_cm=polygon,floor_z_cm=floor_z,occluder_count=occluders,existing_variants_overwritten=0)
  atom(REPORT,report);unreal.log('DINK CAMERA MATERIALS CHECK PASS' if CHECK else 'DINK CAMERA MATERIALS READY')
 except Exception as error:
  report['error']=str(error);atom(REPORT,report);raise

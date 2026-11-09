@@ -1,0 +1,23 @@
+{
+  "scope": "Primary integration reviewer inspected frozen v2 source and regression tests after the independent v1 review requested changes.",
+  "base_commit": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+  "patch_sha256": "421f47fd4dfd422425e16579299bd4e24e36cf9662638009dca7ee0950cc8a7c",
+  "source_files_matching_frozen_pins": 13,
+  "v1_findings": [
+    {
+      "issue": "Screen boundary zoom snap",
+      "status": "Resolved in reviewed code",
+      "evidence": "SelectScreen initializes mode changes with GetDesiredArmLength and preserves the previous arm on same-mode transitions. Regression checks the exact next interpolation step across 439 to 471, selected bounded indoor zoom, and return outdoors."
+    },
+    {
+      "issue": "Humanoid stale lean on presentation reconfiguration",
+      "status": "Resolved in reviewed code",
+      "evidence": "Configure removes the last applied rotation only when the current relative rotation remains owned, then resets dynamics bookkeeping. Fresh authored transforms are preserved. Tests cover three fresh-transform reconfigurations and reconfiguration without replacing the transform."
+    }
+  ],
+  "additional_definite_findings": [],
+  "reviewer_checks": ["Full v2 changed code and new regression tests inspected", "git diff --check passed"],
+  "author_reported_focused_tests": "4/4 passed, zero warnings, 18 seconds; final full suite pending",
+  "limitations": "Reviewer did not independently rebuild this integration checkout or run v2 rendered controls. Actual earlier keyboard and wheel evidence remains scoped to unchanged control mappings. Full-suite receipts and input pins must pass verification before publication.",
+  "publication": "Code review cleared; publication still gated on final full-suite evidence and CI at the committed head."
+}

@@ -1,0 +1,17 @@
+{
+  "old_rows": 1409,
+  "new_rows": 5,
+  "total_rows": 1414,
+  "old_raw_bytes": 1282785,
+  "old_sha256": "126c8d93eac2bc2456462e36b87ec7f0ffd25fe2664f13e07ccbf70c29855b86",
+  "new_sha256": "5a54d21d1ffc81342393d471200c22ffb48acbea799c8b1f083450a0af785451",
+  "old_prefix_byte_identical": true,
+  "audio_rows_preserved": 483,
+  "paths": [
+    "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset",
+    "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset"
+  ]
+}

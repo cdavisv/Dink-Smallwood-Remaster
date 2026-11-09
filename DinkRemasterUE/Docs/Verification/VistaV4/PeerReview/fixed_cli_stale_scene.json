@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "actual_blender_scene_moved_m": 1,
+  "source_checker_exit": 1,
+  "generator_check_exit": 1,
+  "output_bytes_unchanged": true,
+  "reason": "Edited scene rejected both by actual transform comparison and receipt scene-SHA binding"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "dink-floor-material-refinement/1",
+  "resolution": 2048,
+  "textures": {
+    "BC": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_BC.png",
+      "sha256": "16dda3128958413f322a142c87960295c009a0686179d81553df481bc1f62050"
+    },
+    "N": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_N.png",
+      "sha256": "bbed06aaadafb9f1746cd0e68aefa80fc39be284f051b682d6bfcd0b9ca443c5"
+    },
+    "ORM": {
+      "file": "Textures/T_Stonebrook_FloorOakV1_ORM.png",
+      "sha256": "a935b96cea247b1c51596d76a26d5b589c252a46549dca71e4658b1065f1b271"
+    }
+  },
+  "normal_flip_green": true,
+  "normal_strength": 1.0,
+  "specular": 0.35,
+  "native_base_color_gain": 1.0,
+  "bc_calibration_already_baked": {
+    "linear_gain": 0.25,
+    "board_value_range": [
+      0.94,
+      1.06
+    ]
+  },
+  "ORM_channels": {
+    "R": "1 (no fake AO)",
+    "G": "accepted independent roughness",
+    "B": "0 for oak; nativeWroughtIron slot1 unchanged"
+  },
+  "normal_convention": "Tangent OpenGL/Y+; flip green only on Unreal import",
+  "normal_microrelief_already_baked": {
+    "distance_m": 0.00018,
+    "strength": 0.28
+  },
+  "source_image": {
+    "file": "Inputs/GeneratedOak_Albedo_V1.png",
+    "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
+    "coverage_art_directed_not_measured_m": [
+      1.0,
+      2.0
+    ]
+  },
+  "source_files": {
+    "editable_clean_source": {
+      "file": "WornOakFloorV5_Source.blend",
+      "sha256": "a7dd05b547773ea77cca3837cbdc17a549f10a8567b0395bb7a34fce6cccac87"
+    },
+    "portable_rebuild_script": {
+      "file": "rebake_from_clean_source.py",
+      "sha256": "73e416f4024afa5ebe63effb4ecd118ba996b4548e2da18f2575456a452e1b1c"
+    },
+    "generation_provenance": {
+      "file": "Inputs/generation.json",
+      "sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9"
+    },
+    "albedo_calibration": {
+      "file": "albedo_calibration.json",
+      "sha256": "18651aed96bca97e9409a3735e826196133b661478f7cae33f108808c456df95"
+    }
+  },
+  "geometry": {
+    "vertices": 1408,
+    "triangles": 2624,
+    "UV_count": 1,
+    "geometry_UV_sha256": "b0f6f18b3fbe936ef3fec62fbb6d30dda12d390c5f16f0bf6456e6c60b18fa3e",
+    "material_slots": 2,
+    "refined_slot": 0,
+    "preserved_slot": 1,
+    "preserved_material": "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron",
+    "per_polygon_material_indices_unchanged": true,
+    "nail_polygons": 320,
+    "source_convex_hulls": 1
+  },
+  "native_imported": false,
+  "roundtrip_visual_gate": "approved",
+  "passes": [
+    {
+      "role": "BC",
+      "kind": "EMIT",
+      "image_colorspace": "sRGB",
+      "margin_px": 4,
+      "original_mesh_unchanged": true
+    },
+    {
+      "role": "N",
+      "kind": "NORMAL",
+      "image_colorspace": "Non-Color",
+      "margin_px": 4,
+      "original_mesh_unchanged": true
+    },
+    {
+      "role": "ORM",
+      "kind": "EMIT",
+      "image_colorspace": "Non-Color",
+      "margin_px": 4,
+      "original_mesh_unchanged": true
+    }
+  ],
+  "limits": [
+    "Native duplicates original mesh; no mesh reimport or changed collision/UV/nails",
+    "Input generatedimage1254square preserved; derivedbakes2048power-of-two",
+    "No global light/exposure/sharedmaterial changes",
+    "Disposable bake fixture fills unused nail UV islands; actualslot1material/indices never modified in deliveredmeshes"
+  ],
+  "provenance": {
+    "accepted_procedural_SHA256": "9951616009005c2edecb9f20622bb7bba6c8848c1768285d172305a454ce13c5",
+    "historical_reference_only": true,
+    "complete_editable_procedural_master_embedded_in": "WornOakFloorV5_Source.blend",
+    "no_external_rebuild_dependency": true
+  },
+  "verification_artifacts": {
+    "rendered_scene": {
+      "file": "WornOakFloorV5_BakedPreview.blend",
+      "sha256": "aa5bfb87884e80a8143a6537a258568281fa490b5225215e9cbf4c5cc8356811"
+    },
+    "roundtrip_receipt": {
+      "file": "roundtrip_receipt.json",
+      "sha256": "5f6467b673abe0769f7071c1275f67c49839f2df8eead6045ac3dd6bac5f4e7a"
+    },
+    "source_validation": {
+      "file": "source_validation.json",
+      "sha256": "5902d11f67ccf16c3a2b12668573a555862df66e436972d85e141b04eb75628d"
+    },
+    "portable_rebuild_proof": {
+      "file": "portable_rebuild_receipt.json",
+      "sha256": "e4b90edd33221d9869478b3d6989528be2b6eca60221570a93ffa20285a5747e"
+    }
+  },
+  "roundtrip_review": {
+    "approved_by": "parent /root",
+    "recorded_utc": "2026-11-08T05:05:58.985898+00:00",
+    "basis": "Root explicitly viewed baked/procedural close and baked room-angle and approved native trial after source/rebuild proof and peer review; this records parent approval, not self-approval."
+  },
+  "portable_source_notes": "Clean asset library includes FloorOakV1_SourceAsset scene and complete M_Floor_WornOak_V5 procedural master; choose that scene when opening aslibrary. Rebuild needs only clean.blend+manifest and uses packed images. QA rendered scene is unchanged historicalevidence; its unusedunpacked bake buffers are not rebuild dependencies."
+}

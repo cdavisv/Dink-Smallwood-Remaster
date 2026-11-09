@@ -1,0 +1,122 @@
+{
+  "backend": "private Xvfb:189/XTest",
+  "setup": "Actual W pickup/house exit/north/west-gate routes precede this fixture; no teleport or fact mutation",
+  "f_input_monotonic": 61555.098497955,
+  "capture_burst": "Saved/FeedSackReviewed/Render/Feeding/feeding-burst",
+  "player_before": {
+    "screen": 407,
+    "map": [
+      299.39,
+      250.06
+    ],
+    "world": [
+      97231.978,
+      32969.399,
+      98.35
+    ],
+    "yaw": -5.482,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "inventory_before": "[2026.11.08-23.27.15:368][559]LogDinkNarrative: Display:   item 1: item-fst\n[2026.11.08-23.27.15:368][559]LogDinkNarrative: Display:   item 2: item-pig (armed)\n[2026.11.08-23.27.15:368][559]LogDinkNarrative: Display:   life 10/10 strength 3 defense 0 magic 0 exp 0 level 1 gold 0 magic_level 0/0\n",
+  "before": {
+    "instances": {
+      "item-pig": {
+        "id": 28,
+        "procedure": "arm",
+        "sprite": 1000,
+        "screen": 407,
+        "state": 0,
+        "block": 0,
+        "lines": 12
+      },
+      "die": {
+        "id": 33,
+        "procedure": "main",
+        "sprite": 11,
+        "screen": 407,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      }
+    },
+    "log": "[2026.11.08-23.27.16:768][622]LogDinkAudio: audio cue sound:5 speed=13000 sprite 6 (pig)\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display: time 1329586 ms, 6 instances\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #28 item-pig.arm sprite 1000 screen 407 state 0 block 0 lines 12\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #29 die.main sprite 3 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #30 die.main sprite 5 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #31 die.main sprite 6 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #32 die.main sprite 7 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   #33 die.main sprite 11 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   audio sound:2 speed=13000 sprite 6 (pig)\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   audio sound:2 speed=13000 sprite 7 (pig)\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   audio sound:4 speed=13000 sprite 7 (pig)\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   audio sound:3 speed=13000 sprite 3 (pig)\n[2026.11.08-23.27.17:457][653]LogDinkNarrative: Display:   audio sound:5 speed=13000 sprite 6 (pig)\n"
+  },
+  "after": {
+    "instances": {
+      "item-pig": {
+        "id": 28,
+        "procedure": "use",
+        "sprite": 1000,
+        "screen": 407,
+        "state": 0,
+        "block": 0,
+        "lines": 26
+      },
+      "die": {
+        "id": 33,
+        "procedure": "main",
+        "sprite": 11,
+        "screen": 407,
+        "state": 0,
+        "block": 0,
+        "lines": 1
+      },
+      "s1-bul": {
+        "id": 34,
+        "procedure": "main",
+        "sprite": 39,
+        "screen": 407,
+        "state": 0,
+        "block": 0,
+        "lines": 30
+      }
+    },
+    "log": "[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display: time 1348675 ms, 7 instances\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #28 item-pig.use sprite 1000 screen 407 state 0 block 0 lines 26\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #29 die.main sprite 3 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #30 die.main sprite 5 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #31 die.main sprite 6 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #32 die.main sprite 7 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #33 die.main sprite 11 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #34 s1-bul.main sprite 39 screen 407 state 0 block 0 lines 30\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:3 speed=13000 sprite 6 (pig)\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio music:bullythe.mid\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio music:stop\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:5 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.36:634][514]LogDinkAudio: audio cue sound:3 speed=13000 sprite 7 (pig)\n"
+  },
+  "observations": [
+    {
+      "step": 0,
+      "fact_log": "[2026.11.08-23.27.20:034][769]LogDinkAudio: audio cue sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:056][770]LogDinkAudio: audio cue sound:5 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:327][782]LogDinkAudio: audio cue sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:677][798]LogDinkNarrative: Display: pig_story = 0\n"
+    },
+    {
+      "step": 3,
+      "fact_log": "[2026.11.08-23.27.23:784][936]LogDinkNarrative: Display: pig_story = 0\n"
+    },
+    {
+      "step": 6,
+      "fact_log": "[2026.11.08-23.27.26:561][ 61]LogDinkNarrative: Display: pig_story = 0\n"
+    },
+    {
+      "step": 9,
+      "fact_log": "[2026.11.08-23.27.29:699][202]LogDinkNarrative: Display: pig_story = 0\n"
+    },
+    {
+      "step": 12,
+      "fact_log": "[2026.11.08-23.27.32:477][327]LogDinkNarrative: Display: pig_story = 0\n"
+    },
+    {
+      "step": 15,
+      "fact_log": "[2026.11.08-23.27.35:589][467]LogDinkNarrative: Display: pig_story = 1\n[2026.11.08-23.27.35:767][475]LogDinkAudio: audio cue sound:5 speed=13000 sprite 11 (pig)\n"
+    }
+  ],
+  "player_after": {
+    "screen": 407,
+    "map": [
+      299.39,
+      250.06
+    ],
+    "world": [
+      97231.978,
+      32969.399,
+      98.35
+    ],
+    "yaw": -5.482,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "action_log": "[2026.11.08-23.27.18:189][686]LogDinkAudio: audio cue sound:13 speed=8000 random=0 sprite=0 repeat=0\n[2026.11.08-23.27.20:034][769]LogDinkAudio: audio cue sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:056][770]LogDinkAudio: audio cue sound:5 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:327][782]LogDinkAudio: audio cue sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.20:677][798]LogDinkNarrative: Display: pig_story = 0\n[2026.11.08-23.27.21:079][816]LogStreaming: Display: FlushAsyncLoading(482): 1 QueuedPackages, 0 AsyncPackages\n[2026.11.08-23.27.21:136][816]LogSkinnedAsset: Display: Waiting for skinned assets to be ready 0/1 (SK_Milder) ...\n[2026.11.08-23.27.21:137][816]LogDink: Display: DINK SCRIPT CHARACTER ART OK: s1-bul /Game/Dink/NPC/Milder/SK_Milder.SK_Milder\n[2026.11.08-23.27.22:718][888]LogDinkAudio: audio cue sound:3 speed=13000 sprite 6 (pig)\n[2026.11.08-23.27.22:985][900]LogDinkAudio: audio cue music:bullythe.mid\n[2026.11.08-23.27.23:784][936]LogDinkNarrative: Display: pig_story = 0\n[2026.11.08-23.27.26:561][ 61]LogDinkNarrative: Display: pig_story = 0\n[2026.11.08-23.27.29:699][202]LogDinkNarrative: Display: pig_story = 0\n[2026.11.08-23.27.32:477][327]LogDinkNarrative: Display: pig_story = 0\n[2026.11.08-23.27.32:879][345]LogDinkAudio: audio cue music:stop\n[2026.11.08-23.27.35:589][467]LogDinkNarrative: Display: pig_story = 1\n[2026.11.08-23.27.35:767][475]LogDinkAudio: audio cue sound:5 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display: time 1348675 ms, 7 instances\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #28 item-pig.use sprite 1000 screen 407 state 0 block 0 lines 26\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #29 die.main sprite 3 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #30 die.main sprite 5 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #31 die.main sprite 6 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #32 die.main sprite 7 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #33 die.main sprite 11 screen 407 state 0 block 0 lines 1\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   #34 s1-bul.main sprite 39 screen 407 state 0 block 0 lines 30\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:3 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:3 speed=13000 sprite 6 (pig)\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio music:bullythe.mid\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio music:stop\n[2026.11.08-23.27.36:546][510]LogDinkNarrative: Display:   audio sound:5 speed=13000 sprite 11 (pig)\n[2026.11.08-23.27.36:634][514]LogDinkAudio: audio cue sound:3 speed=13000 sprite 7 (pig)\n[2026.11.08-23.27.37:502][553]LogDink: Display: DINK PLAYER: screen=407 map=299.390,250.060 world=97231.978,32969.399,98.350 yaw=-5.482 pitch=-18.000 radius=28.0 move_ignored=0\n",
+  "result": "PASS"
+}

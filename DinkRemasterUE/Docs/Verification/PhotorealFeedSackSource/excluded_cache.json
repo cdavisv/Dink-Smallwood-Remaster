@@ -1,0 +1,5 @@
+{
+  "excluded": "Extra copied Pipeline __pycache__/fbxparse.cpython-314.pyc",
+  "reason": "Generated cache is outside approved75file bundle and explicitly excluded from delivery; row removed before commit.",
+  "approved_payloads_changed": false
+}

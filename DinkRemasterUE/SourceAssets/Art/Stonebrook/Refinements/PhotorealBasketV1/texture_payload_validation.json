@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "textures": {
+    "BC": {
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_range": [
+        [
+          0,
+          137
+        ],
+        [
+          0,
+          95
+        ],
+        [
+          0,
+          53
+        ]
+      ],
+      "sha256": "e4a926f9768036dacfeb1ac09b149cd4aba56423c5368414a091fdffe926b91f",
+      "export_identical_to_bake": true,
+      "srgb": true,
+      "normal_green_flip": false
+    },
+    "N": {
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_range": [
+        [
+          119,
+          134
+        ],
+        [
+          113,
+          143
+        ],
+        [
+          254,
+          255
+        ]
+      ],
+      "sha256": "f69ac1782bfa0f3c695f5e5faac68edd9a2c5fd36ae966ed3c975af148bed51a",
+      "export_identical_to_bake": true,
+      "srgb": false,
+      "normal_green_flip": true
+    },
+    "ORM": {
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "channel_range": [
+        [
+          255,
+          255
+        ],
+        [
+          0,
+          201
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "sha256": "9bc62cbae9e82abdd9ec345622c400e679d32825ee118b9f83e29739608bff56",
+      "export_identical_to_bake": true,
+      "srgb": false,
+      "normal_green_flip": false
+    }
+  },
+  "native_verified": false
+}

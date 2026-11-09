@@ -1,0 +1,21 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/ExportV6",
+  "manifest": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/ExportV6/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Shared_Willow_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.fbx",
+        "glb": "Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.glb"
+      },
+      "tris": {
+        "LOD0": 24846,
+        "LOD1": 14072,
+        "LOD2": 7472
+      }
+    }
+  ],
+  "rejected": []
+}

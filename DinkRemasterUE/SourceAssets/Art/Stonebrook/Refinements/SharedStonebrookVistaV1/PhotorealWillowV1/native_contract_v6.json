@@ -1,0 +1,72 @@
+{
+  "source_file": "WillowGameV6.blend",
+  "native_asset": "/Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01",
+  "LOD_FBX_files": [
+    "LOD_V6/SM_Shared_Willow_01_LOD0.fbx",
+    "LOD_V6/SM_Shared_Willow_01_LOD1.fbx",
+    "LOD_V6/SM_Shared_Willow_01_LOD2.fbx"
+  ],
+  "expected_triangles": [
+    24846,
+    14072,
+    7472
+  ],
+  "axis_unit": "ActualFBXZup/front-Y/right-handed,UnitScaleFactor100; native mirrorsY once",
+  "root_blender_m": [
+    0,
+    0,
+    0
+  ],
+  "rotation_deg": [
+    0,
+    0,
+    0
+  ],
+  "scale": [
+    1,
+    1,
+    1
+  ],
+  "nanite": false,
+  "collision": false,
+  "navigation": false,
+  "overlap": false,
+  "UCX": [],
+  "world_visibility": "ordinarymainmanifest; no screen_set",
+  "material_roles": [
+    {
+      "slot": "MI_Shared_Willow_Bark",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "metallic": 0,
+      "roughness_png_G": 224,
+      "two_sided": "Closed bark at allLODs; source defaultbothsides, native front-only equivalent on closedgeometry"
+    },
+    {
+      "slot": "MI_Shared_Willow_Leaf",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "metallic": 0,
+      "roughness_png_G": 209,
+      "two_sided": true,
+      "blend": "Opaque",
+      "subsurface": 0,
+      "transmission": 0,
+      "normal": "Neutral quantizedflat"
+    }
+  ],
+  "normal_green_flip": true,
+  "PBR": [
+    "BCsRGB",
+    "NlinearNormalcompression",
+    "ORMlinearMask R=255,G=sourceRoughness,B=sourceMetallic0"
+  ],
+  "original_identity_policy": "S438_P01separateguardedmainreplacement; S439_P54/S472_P07newvisualsatexactroots; no560duplicates",
+  "native_acceptance": false,
+  "remaining": [
+    "Coordinating source visual acceptance",
+    "Native saved material graph/Texture.Source/sourcefilename andall3actualLODs",
+    "Originalcollisionauthority/route/camera/lighting/shadow/runtimeLOD transition/performance",
+    "Further photoreal bark/leafalbedo/veinfinish"
+  ]
+}

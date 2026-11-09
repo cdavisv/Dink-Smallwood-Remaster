@@ -1,0 +1,11 @@
+{
+  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "source_appearance_approved": true,
+  "reviewer_thread": "01a1b489-6b5b-7d03-a461-8e4363b7c168",
+  "review_evidence": [
+    "../V4_ReferenceAlbedo/Previews/PieSource-front.png",
+    "../V4_ReferenceAlbedo/Previews/PieSource-crust.png"
+  ],
+  "decision": "Approved bounded sourceappearance for ordinary3DUV-bake/exportiteration fromexact9eddc6e; preserveoriginal1254PNG/prompt/44pins/rawsourceerror; no PNGediting/resampling/CLI; game-readyExport only3POT2048maps; not native/gameapproval",
+  "native_approved": false
+}

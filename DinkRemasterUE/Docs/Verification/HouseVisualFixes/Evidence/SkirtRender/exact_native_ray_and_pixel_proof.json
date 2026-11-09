@@ -1,0 +1,138 @@
+{
+  "normal_convention": "UE left-handed/CW front uses negative right-handed cross(edge1,edge2). The importer proves exact oriented FBX triangle identity; FBX normals are imported without recomputation. Installed Python wrapper has no stored-normal getter, so this is geometric front orientation, not a stored shading-normal assertion. Initial RH-cross assertion failure is preserved as a convention error.",
+  "matched_camera_contract": {
+    "pawn_cm": [
+      -183760.15999999997,
+      392550.355,
+      98.0
+    ],
+    "camera_cm": [
+      -183715.15999999997,
+      392778.60856226814,
+      224.16407864998737
+    ],
+    "FOV": 70.0,
+    "arm_cm": 240.0,
+    "target_offset": [
+      0.0,
+      0.0,
+      52.0
+    ],
+    "socket_offset": [
+      0.0,
+      45.0,
+      0.0
+    ],
+    "floor_framing_shift": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      -18.0,
+      -90.0,
+      -0.0
+    ]
+  },
+  "exact_match_tolerance_cm": 1e-06,
+  "original7_escape_rays_hit_actual_native_skirt_front_faces": [
+    {
+      "pixel": [
+        656,
+        471
+      ],
+      "native_skirt_distance_cm": 544.4923619363568,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9064931203845429
+    },
+    {
+      "pixel": [
+        656,
+        472
+      ],
+      "native_skirt_distance_cm": 544.7659100053202,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9060379350690605
+    },
+    {
+      "pixel": [
+        656,
+        473
+      ],
+      "native_skirt_distance_cm": 545.0402935371227,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9055818185369086
+    },
+    {
+      "pixel": [
+        656,
+        474
+      ],
+      "native_skirt_distance_cm": 545.3155132076799,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9051247731682661
+    },
+    {
+      "pixel": [
+        656,
+        475
+      ],
+      "native_skirt_distance_cm": 545.5915696918424,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9046668013510876
+    },
+    {
+      "pixel": [
+        656,
+        476
+      ],
+      "native_skirt_distance_cm": 545.8684636633966,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9042079054810489
+    },
+    {
+      "pixel": [
+        656,
+        477
+      ],
+      "native_skirt_distance_cm": 546.1461957950689,
+      "native_triangle": 81,
+      "UE_CW_front_geometric_normal_dot_ray": -0.9037480879614952
+    }
+  ],
+  "pixel_checks": [
+    {
+      "image": "Baseline/north-floor-right.png",
+      "blue_pixels_in_bounded_roi": 23
+    },
+    {
+      "image": "ExposureRender/Route/fresh-house.png",
+      "blue_pixels_in_bounded_roi": 21
+    },
+    {
+      "image": "SkirtRender/Route/fresh-house.png",
+      "blue_pixels_in_bounded_roi": 0
+    },
+    {
+      "image": "SkirtRender/NorthFixtures/north-exact.png",
+      "blue_pixels_in_bounded_roi": 0
+    },
+    {
+      "image": "SkirtRender/NorthFixtures/skirt-north-pitch-10.png",
+      "blue_pixels_in_bounded_roi": 0
+    },
+    {
+      "image": "SkirtRender/NorthFixtures/skirt-north-pitch-25.png",
+      "blue_pixels_in_bounded_roi": 0
+    },
+    {
+      "image": "SkirtRender/NorthFixtures/skirt-north-pitch-35.png",
+      "blue_pixels_in_bounded_roi": 0
+    }
+  ],
+  "limits": [
+    "Bounded floor ROI plus normal pitch\u221210/\u221218/\u221225/\u221235 at one measured north position; not universal all-world/all-angle coverage.",
+    "Source triangle hits alone do not establish Nanite pixels; exact matched native screenshots independently confirm the formerly blue pixels are closed.",
+    "Accepted\u22122EV and all material/light/camera parameters are unchanged."
+  ]
+}
