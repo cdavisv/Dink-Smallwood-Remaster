@@ -23,7 +23,9 @@ public:
 protected:
 	virtual bool DoesSupportWorldType(EWorldType::Type WorldType) const override;
 private:
+	friend struct FDinkArtNavigationTestAccess;
 	void ApplyManifest(UWorld& World, const FString& ManifestFile);
+	void ApplyManifest(UWorld& World, const TSharedPtr<class FJsonObject>& Manifest, const FString& ManifestFile);
 	void ApplyCharacters(UWorld& World);
     void ConfigurePlayerActions(class USkeletalMeshComponent& Component);
 };
