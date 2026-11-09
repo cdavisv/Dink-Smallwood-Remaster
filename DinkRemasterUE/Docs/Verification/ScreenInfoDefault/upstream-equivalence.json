@@ -1,0 +1,41 @@
+{
+  "tested_head": "ea930739ffc1470a35d87208f9e001e8067d848f",
+  "upstream_merged": "99f4e97ef6afefb1ee1988636209d4db4239212d",
+  "compared_runtime_git_scopes": [
+    "DinkRemasterUE/Plugins",
+    "DinkRemasterUE/Source",
+    "DinkRemasterUE/Content",
+    "DinkRemasterUE/Config",
+    "DinkRemasterUE/ImportData",
+    "DinkRemasterUE/DinkRemaster.uproject"
+  ],
+  "runtime_git_differences": [],
+  "actual_runtime_files_checked": 6941,
+  "actual_runtime_changed_or_missing": [],
+  "compiled_source_sha256": {
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxSubsystem.cpp": "9cacc4e6402788e2fa4fd5f069a3cd979fa46a0fce78e51e92fbdf052768a7cf",
+    "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxSubsystem.h": "6082cf7a94b58a900820c41abd03195a99360eccb726415909aca3cfb788c29a"
+  },
+  "seven_tested_modules_unchanged": true,
+  "upstream_scope": "PR32 source-only candidate voice payloads/manifests/ledger/docs; PR33 tools/lfs_audit.py/root docs. No runtime source/Data/Content/Config/module dependency changes.",
+  "native_evidence_reused_by_exact_runtime_equivalence": true,
+  "new_build_native_GPU_or_visible_launch": false,
+  "refreshed_source_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 4264,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 471,
+    "shell_syntax_files": 22,
+    "ledger_rows": 4044,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "github_lfs_server_readback": "origin/master: 3987 LFS objects, 0 missing on the server",
+  "checkout_lfs_files_materialized": 4264,
+  "preserved_attempt_qualification": "First merge checkout stopped on LFS authentication after a fetch resolved old local master. Partial files were verified against upstream blobs, archived and restored. Fetching the exact upstream OID with command-scoped gh credentials and repeating the merge succeeded. An early runtime file filter also falsely included SourceAssets via string-prefix matching; the accepted check uses Path ancestry. No partial attempt or partial audit is accepted as evidence."
+}

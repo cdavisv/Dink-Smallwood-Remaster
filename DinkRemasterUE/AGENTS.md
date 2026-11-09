@@ -1369,3 +1369,8 @@ Physical `elements` may provide boolean `can_affect_navigation`; omission preser
 ## Photoreal trousers source candidate (9 November 2026 UTC)
 
 Branch art/photoreal-trousers-source base master30 7c6e41e4 adds portable SOURCE-ONLY V33 under SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33. Selected V19fit/V32metric stitches,2Kcoarse+256weave, pants/contextFBX20620/62964triangles,89rig/3trouserUV exact binary readback and independent Blender import. Actual relocated4-source reopening preserves packed relative images/core signatures. Rawguide22errors8warnings and knownwalk11rise residuals remain explicit; no production-guide/native/GPU/PhysicsAsset/all-motion approval.133candidateledgerrows preserve3296prior rows/1597audio raw bytes. NoContent/runtime/audiochanges. Read Docs/Verification/PhotorealTrousersSource and sourceREADME.
+
+
+## Screen-name developer overlay default (9 November2026)
+
+`dink.ScreenInfo` defaults to 0 to keep screen labels off during ordinary play. Explicit 1 enables the existing developer overlay; 0 disables it. Other warnings/messages are unaffected. Isolated builds and native console default/opt-in checks pass; warmed movement 7/7 and full 168/168 pass. The first cold movement PIE timeout remains qualified in Docs/Verification/ScreenInfoDefault. This change is separate from the running master31 playtest.
