@@ -1,0 +1,68 @@
+{
+  "source": "FrozenWillowdelivery copies of originalcompaniontools; identicalread-only copies for portableaudit",
+  "tools": [
+    {
+      "file": "Tools/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94"
+    },
+    {
+      "file": "Tools/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c"
+    },
+    {
+      "file": "Tools/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840"
+    },
+    {
+      "file": "Tools/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087"
+    },
+    {
+      "file": "Tools/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+    },
+    {
+      "file": "Tools/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf"
+    },
+    {
+      "file": "Tools/dinkasset/validate.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933"
+    }
+  ],
+  "current_tool_files": [
+    {
+      "file": "Tools/dinkasset/__init__.py",
+      "sha256": "5511766c9f3ab67cf7201c8735b0ea6278a0be52abc0d7a75055809d22436a94"
+    },
+    {
+      "file": "Tools/dinkasset/common.py",
+      "sha256": "352f6cb9b4a1c4dd3d2b96079ab23e1d2bc212d8156d982c9b2b30c2a357106c"
+    },
+    {
+      "file": "Tools/dinkasset/conventions.py",
+      "sha256": "a878ffbefa40f3a071230fa2fa82c555fe1e65d6ca8b8a7341878800f8e83840"
+    },
+    {
+      "file": "Tools/dinkasset/export_ue.py",
+      "sha256": "f46ae4edd203eea7e30d2f0c298538ed4b16de714aaef71cc44666c448549087"
+    },
+    {
+      "file": "Tools/dinkasset/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
+    },
+    {
+      "file": "Tools/dinkasset/fix.py",
+      "sha256": "fd50d42ba1a4797233ba85c1badccd388a92e86f0a1c42a60c037318eb887adf"
+    },
+    {
+      "file": "Tools/dinkasset/validate.py",
+      "sha256": "7780806d28a8c7734a711a31f2d80b750927e00b97b5cf590ace32fe81a23436"
+    },
+    {
+      "file": "Tools/dinkasset/validate_original.py",
+      "sha256": "d72776e9c9709433e0c396e62ecb17beba4a26c6aecb2d5ea1a051a82eb7d933"
+    }
+  ],
+  "correction": "validator_uv_broadphase_correction.json; actualoneassetandfull142assetoriginal/correctedfindingsidentical"
+}

@@ -1,0 +1,75 @@
+{
+  "status": "Actual independently parsed perLOD FBX geometry/front/normal/UV/material/header proofs",
+  "source_sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+  "source_unchanged": true,
+  "frozen_V11_unchanged": true,
+  "LODs": [
+    {
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD0.fbx",
+      "sha256": "5352d977533ca36d463ed675f25058d60bae72afac54f62b2f528159f8577093",
+      "triangles": 24846,
+      "unit_cm": 100,
+      "identity_model_transform": true,
+      "oriented_triangle_identity": true,
+      "UV_corner_max_error": 0,
+      "authored_normal_corner_max_error": 0,
+      "minimum_geometric_front_dot": 0.9999997597187757,
+      "UV_collapsed_triangles": 0,
+      "UV_note": "Branch cap/seam collapse is inherited shared trim UV; foliage UVoverlap intentional. Actual exported UVs match source every corner.",
+      "bounds_cm": [
+        980.1332950592041,
+        1031.1038970947266,
+        750.8089065551758
+      ],
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    },
+    {
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD1.fbx",
+      "sha256": "0d311d61efc55bcc296cbda61cc9254e83099eb33874d8f5706a3bdb667e932d",
+      "triangles": 14072,
+      "unit_cm": 100,
+      "identity_model_transform": true,
+      "oriented_triangle_identity": true,
+      "UV_corner_max_error": 0,
+      "authored_normal_corner_max_error": 0,
+      "minimum_geometric_front_dot": 0.9999997764825821,
+      "UV_collapsed_triangles": 0,
+      "UV_note": "Branch cap/seam collapse is inherited shared trim UV; foliage UVoverlap intentional. Actual exported UVs match source every corner.",
+      "bounds_cm": [
+        984.6672534942627,
+        1032.0569038391113,
+        750.7251262664795
+      ],
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    },
+    {
+      "file": "LOD_V6/SM_Shared_Willow_01_LOD2.fbx",
+      "sha256": "50c9f6f7d48ac18ec3f2c39931e3c248aa6f140938ee3fbf0d382261485c6a95",
+      "triangles": 7472,
+      "unit_cm": 100,
+      "identity_model_transform": true,
+      "oriented_triangle_identity": true,
+      "UV_corner_max_error": 0,
+      "authored_normal_corner_max_error": 0,
+      "minimum_geometric_front_dot": 0.9999997869629169,
+      "UV_collapsed_triangles": 0,
+      "UV_note": "Branch cap/seam collapse is inherited shared trim UV; foliage UVoverlap intentional. Actual exported UVs match source every corner.",
+      "bounds_cm": [
+        981.7343235015869,
+        1029.412031173706,
+        750.385856628418
+      ],
+      "materials": [
+        "MI_Shared_Willow_Bark",
+        "MI_Shared_Willow_Leaf"
+      ]
+    }
+  ],
+  "actual_native_imported": false
+}

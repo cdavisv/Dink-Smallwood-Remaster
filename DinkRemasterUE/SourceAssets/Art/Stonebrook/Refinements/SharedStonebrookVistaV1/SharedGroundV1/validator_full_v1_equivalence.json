@@ -1,0 +1,16 @@
+{
+  "actual_original_and_corrected_full_142asset_reports_equivalent": true,
+  "original_summary": {
+    "assets": 142,
+    "assets_passed": 14,
+    "errors": 251,
+    "warnings": 49
+  },
+  "corrected_summary": {
+    "assets": 142,
+    "assets_passed": 14,
+    "errors": 251,
+    "warnings": 49
+  },
+  "no_findings_waived": true
+}

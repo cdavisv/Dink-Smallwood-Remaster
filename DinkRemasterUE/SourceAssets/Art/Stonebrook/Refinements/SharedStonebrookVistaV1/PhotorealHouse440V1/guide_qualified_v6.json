@@ -1,0 +1,17 @@
+{
+  "status": "Qualified render-only source export; raw report remains1error/2warnings",
+  "raw_report": "guide_house_raw_v6.json",
+  "raw_errors": 1,
+  "approved_exception_codes": [
+    "COLLISION_MISSING"
+  ],
+  "remaining_errors": 0,
+  "retained_warnings": [
+    "TRIS_OVER_TARGET114354vssoft60000(<hard200000)",
+    "DUPLICATE_VERTS60atadjacentindependentclosedmortarboxes; do not blindly weld into nonmanifold interfaces"
+  ],
+  "UV_policy": "Intentional physical tiling; finite/noUVcollapsed; truncatedoverlapinfo retained, no uniqueatlasclaim",
+  "authorization": "Root approved bounded sourceappearance/exportcandidate and requires render-only art preserving originalnative collision; no fabricated UCX",
+  "export_force_required": true,
+  "manifest_must_retain_forced_true_and_raw_error_count": true
+}

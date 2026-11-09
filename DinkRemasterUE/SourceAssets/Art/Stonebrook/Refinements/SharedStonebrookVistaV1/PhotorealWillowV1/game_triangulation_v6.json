@@ -1,0 +1,20 @@
+[
+  {
+    "object": "SM_Shared_Willow_01_LOD0",
+    "triangles": 24846,
+    "source_triangles_explicit": true,
+    "reason": "Remove ambiguous nonplanar quad diagonal between source loop triangles and FBX exporter; frozenV11high remains editablequads"
+  },
+  {
+    "object": "SM_Shared_Willow_01_LOD1",
+    "triangles": 14072,
+    "source_triangles_explicit": true,
+    "reason": "Remove ambiguous nonplanar quad diagonal between source loop triangles and FBX exporter; frozenV11high remains editablequads"
+  },
+  {
+    "object": "SM_Shared_Willow_01_LOD2",
+    "triangles": 7472,
+    "source_triangles_explicit": true,
+    "reason": "Remove ambiguous nonplanar quad diagonal between source loop triangles and FBX exporter; frozenV11high remains editablequads"
+  }
+]

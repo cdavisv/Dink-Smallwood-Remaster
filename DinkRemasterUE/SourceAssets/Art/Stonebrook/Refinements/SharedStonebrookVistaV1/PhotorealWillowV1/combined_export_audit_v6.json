@@ -1,0 +1,204 @@
+{
+  "status": "Actual combinedFBX has exactly3realLODs; sixexporttextures match source bytes",
+  "combined_fbx": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.fbx",
+  "sha256": "fd07442b1e0fff273376539ae4e5a17652e2eab9cbb8119dfbb16730279077f8",
+  "unit_cm": 100.0,
+  "models": {
+    "SM_Shared_Willow_01_LOD0": {
+      "name": "SM_Shared_Willow_01_LOD0",
+      "type": "Mesh",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "parent": null,
+      "min": [
+        -4.888823509216309,
+        -5.3736572265625,
+        0.0
+      ],
+      "max": [
+        4.912509441375732,
+        4.937381744384766,
+        7.508089065551758
+      ],
+      "size": [
+        9.801332950592041,
+        10.311038970947266,
+        7.508089065551758
+      ],
+      "size_cm": [
+        980.1332950592041,
+        1031.1038970947266,
+        750.8089065551758
+      ],
+      "min_cm": [
+        -488.88235092163086,
+        -537.36572265625,
+        0.0
+      ],
+      "max_cm": [
+        491.25094413757324,
+        493.73817443847656,
+        750.8089065551758
+      ],
+      "tris": 24846
+    },
+    "SM_Shared_Willow_01_LOD1": {
+      "name": "SM_Shared_Willow_01_LOD1",
+      "type": "Mesh",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "parent": null,
+      "min": [
+        -4.926216125488281,
+        -5.349851608276367,
+        0.0
+      ],
+      "max": [
+        4.920456409454346,
+        4.970717430114746,
+        7.507251262664795
+      ],
+      "size": [
+        9.846672534942627,
+        10.320569038391113,
+        7.507251262664795
+      ],
+      "size_cm": [
+        984.6672534942627,
+        1032.0569038391113,
+        750.7251262664795
+      ],
+      "min_cm": [
+        -492.6216125488281,
+        -534.9851608276367,
+        0.0
+      ],
+      "max_cm": [
+        492.04564094543457,
+        497.0717430114746,
+        750.7251262664795
+      ],
+      "tris": 14072
+    },
+    "SM_Shared_Willow_01_LOD2": {
+      "name": "SM_Shared_Willow_01_LOD2",
+      "type": "Mesh",
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ],
+      "parent": null,
+      "min": [
+        -4.855005264282227,
+        -5.317129611968994,
+        0.0
+      ],
+      "max": [
+        4.962337970733643,
+        4.976990699768066,
+        7.50385856628418
+      ],
+      "size": [
+        9.81734323501587,
+        10.29412031173706,
+        7.50385856628418
+      ],
+      "size_cm": [
+        981.7343235015869,
+        1029.412031173706,
+        750.385856628418
+      ],
+      "min_cm": [
+        -485.50052642822266,
+        -531.7129611968994,
+        0.0
+      ],
+      "max_cm": [
+        496.23379707336426,
+        497.69906997680664,
+        750.385856628418
+      ],
+      "tris": 7472
+    }
+  },
+  "export_validation": {
+    "errors": 0,
+    "warnings": 4,
+    "forced": false
+  },
+  "texture_copies": [
+    {
+      "source": "Textures/T_Shared_Willow_Bark_BC.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_BC.png",
+      "sha256": "89cbacb59cbc46e0a581a4bc7b95e90818bc0cf1f66dcf7144b9999dbda00cb4",
+      "byte_identical": true
+    },
+    {
+      "source": "Textures/T_Shared_Willow_Bark_N.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_N.png",
+      "sha256": "b89389b632c7c250a95325b50d39fb388f533a6f28de14714e85160f1c0e0f06",
+      "byte_identical": true
+    },
+    {
+      "source": "Textures/T_Shared_Willow_Bark_ORM.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Bark_ORM.png",
+      "sha256": "15a89c2c3558f0a3c350d03cdcc18e3ec41d1b164e14ff8e482cb1c6a5d08f78",
+      "byte_identical": true
+    },
+    {
+      "source": "Textures/T_Shared_Willow_Leaf_BC.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_BC.png",
+      "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8",
+      "byte_identical": true
+    },
+    {
+      "source": "Textures/T_Shared_Willow_Leaf_N.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_N.png",
+      "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc",
+      "byte_identical": true
+    },
+    {
+      "source": "Textures/T_Shared_Willow_Leaf_ORM.png",
+      "export_copy": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/Textures/T_Shared_Willow_Leaf_ORM.png",
+      "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4",
+      "byte_identical": true
+    }
+  ]
+}
