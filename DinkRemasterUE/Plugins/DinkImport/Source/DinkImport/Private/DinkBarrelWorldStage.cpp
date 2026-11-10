@@ -777,7 +777,9 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  UStaticMesh* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));
  if(!TestNotNull(TEXT("real mesh for stock raw-record update fixture"),Cube))return false;
  ISMA->SetStaticMesh(Cube);NewISM->SetStaticMesh(Cube);NewISM->AddInstance(FTransform::Identity,false);
- ISMA->PerInstanceSMData[0].Transform.M[3][0]=205.62000000002445;
+ TArray<FInstancedStaticMeshInstanceData> DesiredSourceRecords=ISMA->PerInstanceSMData;
+ DesiredSourceRecords[0].Transform.M[3][0]=205.62000000002445;
+ TestTrue(TEXT("scratch-source raw authoring setup uses stock invalidation API before fingerprint"),ISMA->BatchUpdateInstancesData(0,DesiredSourceRecords.Num(),DesiredSourceRecords.GetData(),false,true));
  NewISM->PerInstanceSMData[0].Transform=ISMA->PerInstanceSMData[0].Transform;NewISM->PerInstanceSMData[0].Transform.M[3][0]=205.62;
  TMap<UObject*,UObject*> RepairMap;RepairMap.Add(ISMA,NewISM);FString RepairEvidence;
  // Fixture setup intentionally computes scratch-source caches BEFORE fingerprint;
