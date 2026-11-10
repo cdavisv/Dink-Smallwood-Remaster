@@ -1,0 +1,18 @@
+{
+  "prior_target_world_cm": [
+    97729.63625545749,
+    37512.61084546293,
+    98.34999561309814
+  ],
+  "actual_packaged_world_cm": [
+    97726.114,
+    37519.16,
+    98.35
+  ],
+  "distance_cm": 7.436242912809168,
+  "actual_yaw_pitch": [
+    86.171,
+    -18.0
+  ],
+  "qualification": "Physicallysettledderivednearbyfixture, NOTexactbeforeafterpixelpair. Nativeexact-posefixtureseparate."
+}
