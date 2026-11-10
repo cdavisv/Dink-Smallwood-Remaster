@@ -303,7 +303,9 @@ bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstanc
   if(!FMath::IsFinite(A)||!FMath::IsFinite(B)){Evidence=TEXT("nonfinite raw instance scalar");return false;}
   Different|=FMemory::Memcmp(&A,&B,sizeof(A))!=0;
  }
- if(!Different&&!bRootRestored)return true;
+ // TEXT duplication can round a valid cached payload while retaining its hash,
+ // even when raw matrices and root transform already match. Always rebuild
+ // NEW-target derived caches through the same stock raw-data update path.
  // Stock DuplicateActors is TEXT export/import. Restore authored indexed raw
  // records only on NEW target; never reconstruct FTransform or touch source.
  TArray<FInstancedStaticMeshInstanceData> Copy=Source.PerInstanceSMData;
@@ -320,7 +322,7 @@ bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstanc
  for(int I=0;I<Copy.Num();++I)for(int R=0;R<4;++R)for(int C=0;C<4;++C)
  {const auto& A=Source.PerInstanceSMData[I].Transform.M[R][C];const auto& B=Target.PerInstanceSMData[I].Transform.M[R][C];
   if(FMemory::Memcmp(&A,&B,sizeof(A))){Evidence=TEXT("stock raw instance update failed exact scalar postcondition");return false;}}
- Evidence=Different?FString::Printf(TEXT("RESTORED NEW TARGET %d indexed raw instance records through stock BatchUpdateInstancesData; exact16scalarpostcondition/source untouched; target normal bounds refresh"),Copy.Num()):TEXT("REFRESHED NEW TARGET normal bounds after exact root restoration; all raw16scalars unchanged");return true;
+ Evidence=Different?FString::Printf(TEXT("RESTORED NEW TARGET %d indexed raw instance records through stock BatchUpdateInstancesData; exact16scalarpostcondition/source untouched; target normal bounds refresh"),Copy.Num()):FString::Printf(TEXT("REFRESHED NEW TARGET normal bounds after TEXT duplication (rootRestored=%d); all raw16scalars unchanged"),int32(bRootRestored));return true;
 }
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
@@ -835,6 +837,8 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  SeededCache->CacheValue(WrongValue,CorrectHash);
  TestTrue(TEXT("scratch target seeded cache remains VALID with original hash"),SeededCache->IsValid()&&CacheHashProperty->GetPropertyValue_InContainer(SeededCache)==CorrectHash);
  TestTrue(TEXT("restored-actor flag refreshes bounds with already-exact raw matrices"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence,true));
+ SeededCache->CacheValue(WrongValue,CorrectHash);
+ TestTrue(TEXT("rawsame no-root-restoration refresh repairs TEXT-rounded valid matching-hash cache"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence,false));
  TestTrue(TEXT("source state after restored-actor refresh"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceAfter));
  TestTrue(TEXT("restored-actor refresh leaves all source slots unchanged"),RawSourceBefore==RawSourceAfter);
  for(int CacheIndex:{1,2})
