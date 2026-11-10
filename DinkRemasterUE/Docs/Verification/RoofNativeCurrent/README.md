@@ -1,3 +1,5 @@
+Current integrated builds: runtime `df3365c` (accepted camera/HeroGrowth/booth included) now passes own Editor/Game with unchanged protected inputs and normal closure. See [current build results](current-builds.json). The native/readback/GPU results below remain scoped to their earlier runtime; new combined art validation and shared-material activation are pending.
+
 # Current roof delivery validation
 
 The roof candidate passed its own Editor/Game builds, 187 native tests, fresh saved-asset readback and an actual-input doorway round trip. This proves the candidate on runtime base `5d65ed88`; integration with newer owner decisions and audio acceptance remains pending.
