@@ -189,9 +189,33 @@ void ADinkGreyboxCharacter::Jump()
 void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
 {
 	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
-	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds, LandingStumbleChance);
+	// Clumsy landings become rare as Dink grows into a hero; a flailing takeoff always lands badly.
+	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds,
+		HeroPhysicality.ScaleChance(LandingStumbleChance, .08f));
 	AirSeconds = 0.f;
 	Super::Landed(Hit);
+}
+
+void ADinkGreyboxCharacter::OnJumped_Implementation()
+{
+	Super::OnJumped_Implementation();
+	if (Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead())
+		HeroPhysicality.TakeOff(HeroPhysicality.ScaleChance(TakeoffFlailChance, 0.f));
+}
+
+void ADinkGreyboxCharacter::UpdateConfidence(bool bSnap)
+{
+	const FDinkStats& S = Stats->Stats;
+	HeroPhysicality.SetTargetConfidence(FDinkHeroPhysicality::ConfidenceFor(S.Level, S.Strength, S.Defense), bSnap);
+	// Player-only jump (the original has none): a stronger Dink hops higher and steers in the air.
+	const float C = HeroPhysicality.GetConfidence();
+	if (C != AppliedJumpConfidence || bSnap)
+	{
+		UCharacterMovementComponent* Move = GetCharacterMovement();
+		Move->JumpZVelocity = FMath::Lerp(TimidJumpZ, ConfidentJumpZ, C);
+		Move->AirControl = FMath::Lerp(TimidAirControl, ConfidentAirControl, C);
+		AppliedJumpConfidence = C;
+	}
 }
 
 void ADinkGreyboxCharacter::Zoom(const FInputActionValue& Value)
@@ -219,6 +243,8 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	const FVector Location = GetActorLocation();
 	const bool Teleported = !bBodyLocationReady || FVector::DistSquared(Location, PreviousBodyLocation) >= FMath::Square(200.);
 	if (Teleported) { HeroPhysicality.Cancel(); AirSeconds = 0.f; }
+	// Loads and warps show the earned build at once; a level-up straightens him over a few seconds.
+	UpdateConfidence(Teleported);
 	const bool Grounded = GetCharacterMovement()->IsMovingOnGround();
 	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
 	if (!Allowed) AirSeconds = 0.f;
@@ -226,7 +252,8 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	else AirSeconds = 0.f;
 	const float TurnRate = !Teleported && DeltaSeconds > SMALL_NUMBER
         ? FMath::FindDeltaAngleDegrees(PreviousBodyYaw, GetActorRotation().Yaw) / DeltaSeconds : 0.f;
-    HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported, TurnRate);
+    HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported, TurnRate,
+        RunTripsPerSecond);
     PreviousBodyYaw = GetActorRotation().Yaw;
 	PreviousBodyLocation = Location; bBodyLocationReady = true;
 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
@@ -235,13 +262,18 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
     if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
         Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
     {
-        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
-        AppliedBodyRotation = AppliedBodyRotation * FRotator(-FDinkHeroPhysicality::BaselinePitch,0,0).Quaternion();
+        // Bone-level authored slouch owns the timid hunch; keep shuffle/stumble and the upright
+        // lean confidence earns.
+        AppliedBodyRotation = AppliedBodyRotation * FRotator(-HeroPhysicality.GetHunchPitch(),0,0).Quaternion();
     }
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
 	AppliedBodyOffset = HeroPhysicality.GetOffset();
 	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
+	// Scrawny frame that fills out with confidence; composed on whatever scale art authored.
+	const FVector BaseScale = GetMesh()->GetRelativeScale3D() / AppliedPhysique;
+	AppliedPhysique = HeroPhysicality.GetPhysiqueScale();
+	GetMesh()->SetRelativeScale3D(BaseScale * AppliedPhysique);
 }
 
 void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)

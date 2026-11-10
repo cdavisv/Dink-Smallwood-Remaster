@@ -16,6 +16,7 @@ def load_table(path):
     t.setdefault("interior", [])
     t.setdefault("stretch", [])
     t.setdefault("sheets", {})
+    t.setdefault("join", [])
     for a in t["area"]:
         a.setdefault("cells", [])
         a.setdefault("screens", [])
