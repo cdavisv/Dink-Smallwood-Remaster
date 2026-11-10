@@ -1,0 +1,21 @@
+{
+  "tested_commit": "73ccdbe",
+  "engine": "Unreal Engine 5.8.4",
+  "native_run": "4263fa39322049bd80b611645496cc35",
+  "registered": 192,
+  "finished": 192,
+  "succeeded": 160,
+  "succeeded_with_warnings": 32,
+  "failed": 0,
+  "not_run": 0,
+  "in_process": 0,
+  "supervisor_exit_code": 0,
+  "immutable_source_inputs": 12618,
+  "immutable_changes": [],
+  "warnings": {
+    "LogHttp": 4283,
+    "LogEOSSDK": 18
+  },
+  "report_sha256": "03191067f977fb8c6317fc3a0971c2499716b06f84d30be940a06c046d88c64e",
+  "scope": "Full Dink automation with current e417 booth and HeroGrowth; warm cache. Does not establish final art or fitted barrel acceptance."
+}
