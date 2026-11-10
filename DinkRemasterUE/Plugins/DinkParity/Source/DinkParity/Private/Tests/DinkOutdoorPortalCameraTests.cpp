@@ -77,7 +77,7 @@ public:
         if(!C||!Rule||!Mesh.IsValid())
         {Test->AddError(TEXT("actual portal fixture lost its owned component"));if(Guard)Grey->EndWarp(H);return true;}
         if(FPlatformTime::Seconds()-At<.5)return false;
-        auto* Arm=H->CameraBoom;auto* Camera=H->FollowCamera;
+        auto* Arm=H->CameraBoom.Get();auto* Camera=H->FollowCamera.Get();
         if(Stage==1)
         {
             Test->TestFalse(TEXT("recorded bad frame is outdoor"),C->bInteriorMode);
