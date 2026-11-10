@@ -1,3 +1,9 @@
+## Stage38 owned navigation configuration
+
+Stage38 run 856bf443e5694b23a6ef4d8e92656089 reached the world settings guard with no saves. Its two 6041-byte streams matched. The target read refused the exact source-owned NavigationSystemConfig pointer, copied by CopyCompleteValue. Installed WorldSettings declares that field Instanced and its separate override Transient. The stage now skips this field in the shallow settings copy, duplicates the audited native NavigationSystemModuleConfig as one distinct target-owned object, and adds its canonical identity before the source fingerprint. The existing remap and forbidden-source-reference checks still apply. Before save the duplicate must retain its exact mapped owner, class/content and references, with the original config included in the source immutability check.
+
+BinaryControlCopy now authors a native config on the scratch source. It proves the same shallow alias fails the reference guard despite equal canonical bytes, then checks the stock duplicate, remap, copied contents and unchanged source. The original Stage38 failure is preserved. The change awaits C63 and focused native verification before the next full-world stage.
+
 ## Stage37 world settings diagnosis
 
 Stage37 run 27bffdc833c543a5a8104c7406fb1457 completed native execution with helper refusal and zero saves. It reached the final world settings gate after both shared live triangle verifiers. The existing result conflates a forbidden source-world reference, a serialization failure and differing canonical settings bytes. The source patch reports both State read results, actual settings/world paths, byte counts and first byte, and the existing first-property diagnostic with source-reference provenance. It preserves the same comparison and save ordering. The first differing property awaits a fresh staging measurement.
