@@ -473,3 +473,5 @@ C7 actualstage accepted and reported only the measured Sun Euler representation,
 
 
 C8 exact actual transform measurement: SCR_025:Screen Y source−158083.09999999998→target−158083.10000000001cm, one adjacent IEEE double (−2.9103830456733704e−11cm); quaternion/scale exact, finite/unit facts retained. Native0/31.21s/0packages/13318unchanged; HOST562905/562919/562999 closed. Root authorized only appended ACTOR-world translation comparison within ONE adjacent double per axis (nextafter), finite checks, Q/scale/nonspatial/source-beforeafter exact, every difference reported. Component properties/local/world transforms remain strict. This is a comparison representation only, not an object/geometry edit or arbitrary distance budget. Helpere3e1e2... ready for shortcompile then actualthree-package stage.
+
+Actor-translation qualification now has native functional regression Dink.Import.Foundation.ActorTranslationRepresentation invoking the shared production predicate: measured ONE-ULP passes; TWO-ULP, nonfinite, quaternion, one-bit-scale and component-scope refuse. No new comparison scope; native execution pending next own build/stage.
