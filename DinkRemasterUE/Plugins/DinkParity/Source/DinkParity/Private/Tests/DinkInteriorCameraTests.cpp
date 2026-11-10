@@ -39,24 +39,30 @@ const TSet<FString>& ExactOpaqueRoofAssets()
 {
     static const TSet<FString> Paths = {
         TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
+    };
+    return Paths;
+}
+const TSet<FString>& ExactSharedRoofAssets()
+{
+    static const TSet<FString> Paths = {
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
     };
     return Paths;
 }
 const TSet<FString>& ExactRoofPanelAssets()
 {
     static const TSet<FString> Paths = {
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
     };
     return Paths;
 }
@@ -133,8 +139,8 @@ public:
             CheckCamera(Hero,false); CheckInput(Hero,PC);
             Test->TestFalse(TEXT("outdoor camera mode"),C->bInteriorMode);
             // Derive supported membership independently from the committed full material
-            // mapping, never from the manager's post-state count. Exact new roof roles
-            // remain deliberately unmapped/opaque and receive separate invariants.
+            // mapping, never from the manager's post-state count. The eight shared
+            // roofs must be managed; only the legacy chimney remains unmapped.
             TMap<FString, UMaterialInterface*> Variants;
             if (!ReadCameraVariants(Variants)) return true;
             // Exercise a nonempty override array with the same original material, as well as the
@@ -158,6 +164,8 @@ public:
                         Test->TestFalse(TEXT("admitted roof has no unreviewed camera fade mapping"),Complete);
                         OpaqueRoofs.Emplace(M); continue;
                     }
+                    if (ExactSharedRoofAssets().Contains(Asset->GetPathName()))
+                        Test->TestTrue(TEXT("shared roof has its reviewed complete fade mapping"),Complete);
                     if (!Test->TestTrue(TEXT("every other tagged real occluder has a complete reviewed fade mapping"),Complete)) return true;
                     if (!OverrideFixture && M->GetNumMaterials()>0)
                     {
@@ -175,19 +183,28 @@ public:
             }
             Test->TestEqual(TEXT("actual house floor union contains56 authored floor tiles"),Floors.Num(),56);
             Test->TestTrue(TEXT("real house has multiple tagged wall/ceiling meshes"),Before.Num()>2);
-            if (!OpaqueRoofs.IsEmpty())
+            {
+                TSet<FString> Seen;
+                int32 Count=0;
+                for (const FMeshBefore& B : Before)
+                    if (ExactSharedRoofAssets().Contains(B.Asset->GetPathName()))
+                    { Seen.Add(B.Asset->GetPathName()); ++Count; }
+                Test->TestEqual(TEXT("all8 exact shared roof roles participate in fade and restore checks"),Count,8);
+                bool CompleteSet=Seen.Num()==8;
+                for (const FString& Path : ExactSharedRoofAssets()) CompleteSet &= Seen.Contains(Path);
+                Test->TestTrue(TEXT("shared roof identities are exact and unique"),CompleteSet);
+            }
             {
                 TSet<FString> Seen;
                 for (const FMeshBefore& B : OpaqueRoofs) Seen.Add(B.Asset->GetPathName());
-                Test->TestEqual(TEXT("all9 exact new roof roles are inventoried separately"),OpaqueRoofs.Num(),9);
-                bool CompleteSet=Seen.Num()==9;
+                Test->TestEqual(TEXT("only the exact legacy chimney remains opaque and separately inventoried"),OpaqueRoofs.Num(),1);
+                bool CompleteSet=Seen.Num()==1;
                 for (const FString& Path : ExactOpaqueRoofAssets()) CompleteSet &= Seen.Contains(Path);
                 Test->TestTrue(TEXT("opaque roof identities are exact and unique"),CompleteSet);
                 CheckOpaqueRoofs();
             }
             bool Wall=false, Ceiling=false, Door=false;
-            for (const FMeshBefore& B : Before) { Wall|=B.Asset && B.Asset->GetName().Contains(TEXT("Wall")); Ceiling|=B.Asset && B.Asset->GetName().Contains(TEXT("Ceiling")); Door|=B.Asset && B.Asset->GetName().Contains(TEXT("Doorway")); }
-            for (const FMeshBefore& B : OpaqueRoofs) Ceiling |= ExactRoofPanelAssets().Contains(B.Asset->GetPathName());
+            for (const FMeshBefore& B : Before) { Wall|=B.Asset && B.Asset->GetName().Contains(TEXT("Wall")); Ceiling|=B.Asset && (B.Asset->GetName().Contains(TEXT("Ceiling")) || ExactRoofPanelAssets().Contains(B.Asset->GetPathName())); Door|=B.Asset && B.Asset->GetName().Contains(TEXT("Doorway")); }
             Test->TestTrue(TEXT("fixture includes real walls"),Wall); Test->TestTrue(TEXT("fixture includes real ceiling"),Ceiling); Test->TestTrue(TEXT("returned-door lintel is explicitly tagged for camera management"),Door);
             UnknownActor=W->SpawnActor<AActor>(); Unknown=NewObject<UStaticMeshComponent>(UnknownActor,TEXT("UnknownCameraMaterial"));
             UnknownActor->SetRootComponent(Unknown); UnknownActor->AddInstanceComponent(Unknown);
@@ -252,7 +269,7 @@ public:
             const FVector Eye=Hero->FollowCamera->GetComponentLocation();
             Test->TestTrue(TEXT("adaptive camera preserves readable180cm view depth"),FVector::DotProduct(Hero->GetActorLocation()-Eye,Hero->FollowCamera->GetForwardVector())>=179.9);
             Test->TestTrue(TEXT("adaptive camera remains over180cm from pawn"),FVector::Distance(Eye,Hero->GetActorLocation())>180);
-            Test->TestEqual(TEXT("adaptive framing retains ownership of85 architectural surfaces"),C->ManagedOccluderCount,Before.Num());
+            Test->TestEqual(TEXT("adaptive framing retains ownership of all mapped architectural surfaces"),C->ManagedOccluderCount,Before.Num());
             for (const FMeshBefore& B : Before)
             {
                 CheckGeometry(B); FCollisionResponseContainer Responses=B.Responses; Responses.SetResponse(ECC_Camera,ECR_Ignore);
