@@ -1044,7 +1044,7 @@ bool EligibleVisualization(UBillboardComponent& B,USceneComponent& C)
  int32 Count=0;TInlineComponentArray<UBillboardComponent*> Components(C.GetOwner());for(auto* Other:Components)if(Other&&Other->GetAttachParent()==&C&&Other->IsVisualizationComponent())++Count;
  return Count==1;
 }
-bool CaptureVisualizationRead(USceneComponent& C,TArray<uint8>& Bytes)
+bool CaptureVisualizationReflected(USceneComponent& C,TArray<uint8>& Bytes)
 {
  if(!C.GetOwner()||!C.GetOwner()->GetLevel())return false;
  FBinaryControlLifetime Local;Local.SourceActors.Add(C.GetOwner());Local.SourceLevels.Add(C.GetOwner()->GetLevel());TArray<uint8> Topology;
@@ -1054,6 +1054,29 @@ bool CaptureVisualizationRead(USceneComponent& C,TArray<uint8>& Bytes)
  Objects.Sort([](const UObject& A,const UObject& B){return A.GetPathName()<B.GetPathName();});const TMap<const UObject*,FString> None;const TSet<const UPackage*> NoForbidden;
  for(UObject* O:Objects){Pointer(O);uint32 Flags=static_cast<uint32>(O->GetFlags());FName Name=O->GetFName();W<<Flags<<Name;Pointer(O->GetOuter());Pointer(O->GetArchetype());Pointer(O->GetClass());TArray<uint8> StateBytes;if(!State(*O,None,NoForbidden,false,StateBytes))return false;W<<StateBytes;}
  return !W.IsError();
+}
+// Low-level native read brackets reflected metadata/topology only. It never
+// calls CaptureVisualizationRead or ReadPrivateVisualization, preventing any
+// recursive snapshot/collector path. Empty IDs below mean literal native data.
+bool VisualizationNativePass(UBillboardComponent& B,USceneComponent& C,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Bytes,FString& Versions)
+{
+ TArray<uint8> Before,After;if(B.GetClass()!=UBillboardComponent::StaticClass()||B.GetOwner()!=C.GetOwner()||!CaptureVisualizationReflected(C,Before))return false;
+ FStateWriter W(Bytes,IDs,Forbidden,Target);B.Serialize(W);Versions=PrivateBodyVersions(W);
+ return !W.IsError()&&!W.SourceReference&&W.IsSaving()&&!W.IsLoading()&&!W.IsCooking()&&!W.IsPersistent()&&!W.IsByteSwapping()&&W.GetPortFlags()==0&&CaptureVisualizationReflected(C,After)&&Before==After;
+}
+bool CaptureVisualizationRead(USceneComponent& C,TArray<uint8>& Bytes)
+{
+ TArray<uint8> Before,After;if(!CaptureVisualizationReflected(C,Before))return false;
+ TArray<UBillboardComponent*> Sprites;ForEachObjectWithOuter(C.GetOwner(),[&](UObject* O){if(auto* B=Cast<UBillboardComponent>(O))Sprites.Add(B);},EGetObjectsFlags::IncludeNestedObjects);
+ Sprites.Sort([](const UBillboardComponent& A,const UBillboardComponent& B){return A.GetPathName()<B.GetPathName();});
+ const TMap<const UObject*,FString> LiteralIDs;const TSet<const UPackage*> None;FObjectWriter W(Bytes);W<<Before;int32 Count=Sprites.Num();W<<Count;
+ for(auto* B:Sprites)
+ {
+  TArray<uint8> NativeBefore,NativeAfter;FString ConfigBefore,ConfigAfter;
+  if(!VisualizationNativePass(*B,C,LiteralIDs,None,false,NativeBefore,ConfigBefore)||!VisualizationNativePass(*B,C,LiteralIDs,None,false,NativeAfter,ConfigAfter)||NativeBefore!=NativeAfter||ConfigBefore!=ConfigAfter)return false;
+  UPTRINT Identity=reinterpret_cast<UPTRINT>(B);W.Serialize(&Identity,sizeof(Identity));W<<NativeBefore<<ConfigBefore;
+ }
+ return !W.IsError()&&CaptureVisualizationReflected(C,After)&&Before==After;
 }
 UBillboardComponent* ReadPrivateVisualization(USceneComponent& C,FString& Error,FString* Evidence=nullptr)
 {
@@ -1077,8 +1100,8 @@ bool VerifyPendingVisualizations(const FBinaryControlLifetime& Lifetime,FString&
 bool NativeVisualizationBytes(UBillboardComponent& B,USceneComponent& C,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Bytes,FString& Versions)
 {
  FString RoleError;TArray<uint8> Before,After;if(ReadPrivateVisualization(C,RoleError)!=&B||!CaptureVisualizationRead(C,Before))return false;
- FStateWriter W(Bytes,IDs,Forbidden,Target);B.Serialize(W);Versions=PrivateBodyVersions(W);
- return ReadPrivateVisualization(C,RoleError)==&B&&!W.IsError()&&!W.SourceReference&&W.IsSaving()&&!W.IsLoading()&&!W.IsCooking()&&!W.IsPersistent()&&!W.IsByteSwapping()&&W.GetPortFlags()==0&&CaptureVisualizationRead(C,After)&&Before==After;
+ if(!VisualizationNativePass(B,C,IDs,Forbidden,Target,Bytes,Versions))return false;
+ return ReadPrivateVisualization(C,RoleError)==&B&&CaptureVisualizationRead(C,After)&&Before==After;
 }
 bool CompareVisualizationRole(UBillboardComponent& A,UBillboardComponent& B,USceneComponent& S,USceneComponent& T,
  const TMap<UObject*,UObject*>& Remap,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,FString& Error,FString* Evidence=nullptr)
@@ -1667,6 +1690,26 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  TestFalse(TEXT("source visualization literal metadata mutation refuses after baseline"),VerifyBinarySourceTopology(Lifetime,Error));if(SpriteWasTransactional)SourceVisualization->SetFlags(RF_Transactional);else SourceVisualization->ClearFlags(RF_Transactional);
  TestTrue(TEXT("source literal visualization metadata/State/topology restored exactly"),VerifyBinarySourceTopology(Lifetime,Error));
  TestTrue(TEXT("target full visualization state restored after nonidentity negatives"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Remap,IDs,Forbidden,Error));
+ // Native-only sparse payload coverage stays OUTSIDE transported worlds and
+ // actual private sprites. Public SCS authoring classification precedes baseline.
+ auto* NativeOnlyActor=LightAuthorWorld->SpawnActor<AActor>();if(!TestNotNull(TEXT("isolated native-only snapshot actor"),NativeOnlyActor))return false;
+ TStrongObjectPtr<AActor> HoldNativeOnlyActor(NativeOnlyActor);
+ auto* NativeOnlyRoot=NewObject<USceneComponent>(NativeOnlyActor);NativeOnlyActor->AddInstanceComponent(NativeOnlyRoot);NativeOnlyActor->SetRootComponent(NativeOnlyRoot);NativeOnlyRoot->RegisterComponent();
+ TStrongObjectPtr<UBillboardComponent> NativeOnlySprite(NewObject<UBillboardComponent>(NativeOnlyActor));NativeOnlyActor->AddInstanceComponent(NativeOnlySprite.Get());NativeOnlySprite->CreationMethod=EComponentCreationMethod::SimpleConstructionScript;
+ NativeOnlySprite->ScreenSize=0.5f;NativeOnlySprite->SetupAttachment(NativeOnlyRoot);NativeOnlySprite->RegisterComponent();
+ TSet<const FProperty*> OriginalUCS;NativeOnlySprite->GetUCSModifiedProperties(OriginalUCS);if(!TestEqual(TEXT("isolated scratch sparse payload starts empty"),OriginalUCS.Num(),0))return false;
+ TArray<uint8> NativeBaseline,NativeChanged,NativeRestored,ReflectedBaseline,ReflectedChanged,FullBaseline,FullChanged,FullRestored;FString ConfigBaseline,ConfigChanged,ConfigRestored;
+ if(!TestTrue(TEXT("isolated literal native baseline captures real serialized data/config"),VisualizationNativePass(*NativeOnlySprite,*NativeOnlyRoot,EmptyIDs,EmptyForbidden,false,NativeBaseline,ConfigBaseline)&&CaptureVisualizationReflected(*NativeOnlyRoot,ReflectedBaseline)&&CaptureVisualizationRead(*NativeOnlyRoot,FullBaseline)))return false;
+ NativeOnlySprite->DetermineUCSModifiedProperties();TSet<const FProperty*> ChangedUCS;NativeOnlySprite->GetUCSModifiedProperties(ChangedUCS);
+ const auto* ScreenProperty=FindFProperty<FFloatProperty>(UBillboardComponent::StaticClass(),TEXT("ScreenSize"));
+ TestTrue(TEXT("public stock Determine creates actual native sparse authored-property payload"),ScreenProperty&&ChangedUCS.Contains(ScreenProperty));
+ TestTrue(TEXT("native-only mutation leaves full reflected State/metadata/topology unchanged"),CaptureVisualizationReflected(*NativeOnlyRoot,ReflectedChanged)&&ReflectedBaseline==ReflectedChanged);
+ TestTrue(TEXT("literal native serializer detects sparse payload while config remains exact"),VisualizationNativePass(*NativeOnlySprite,*NativeOnlyRoot,EmptyIDs,EmptyForbidden,false,NativeChanged,ConfigChanged)&&NativeBaseline!=NativeChanged&&ConfigBaseline==ConfigChanged);
+ TestTrue(TEXT("combined production source snapshot refuses native-only payload mutation"),CaptureVisualizationRead(*NativeOnlyRoot,FullChanged)&&FullBaseline!=FullChanged);
+ NativeOnlySprite->ClearUCSModifiedProperties();TSet<const FProperty*> RestoredUCS;NativeOnlySprite->GetUCSModifiedProperties(RestoredUCS);
+ TestTrue(TEXT("public Clear restores literal native stream/config and combined baseline exactly"),RestoredUCS.IsEmpty()&&VisualizationNativePass(*NativeOnlySprite,*NativeOnlyRoot,EmptyIDs,EmptyForbidden,false,NativeRestored,ConfigRestored)&&NativeBaseline==NativeRestored&&ConfigBaseline==ConfigRestored&&CaptureVisualizationRead(*NativeOnlyRoot,FullRestored)&&FullBaseline==FullRestored);
+ NativeOnlyActor->RemoveInstanceComponent(NativeOnlySprite.Get());NativeOnlySprite->DestroyComponent();NativeOnlyActor->Destroy();
+ TestTrue(TEXT("actual source visualization lifecycle unaffected by isolated native-only negative"),VerifyBinarySourceTopology(Lifetime,Error));
  TMap<UObject*,UObject*> MissingMap=Remap;MissingMap.Remove(Second);TestFalse(TEXT("missing cross-actor mapping refuses before deferred PostLoad"),FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,MissingMap,Created,IDs,Forbidden,Lifetime,Error));
  TMap<UObject*,UObject*> ConflictingMap;ConflictingMap.Add(First,First);TMap<UObject*,UObject*> BadCreated;TArray<AActor*> BadCopies;TestFalse(TEXT("source actor as its own copy refuses"),BinaryCopyControls({First},*TargetWorld->PersistentLevel,ConflictingMap,BadCreated,BadCopies,BadLifetime,Error));
  TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
