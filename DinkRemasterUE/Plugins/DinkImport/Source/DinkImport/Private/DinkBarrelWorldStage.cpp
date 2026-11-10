@@ -348,8 +348,35 @@ bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWo
   Restored=true;Evidence=FString::Printf(TEXT("RESTORED NEW TARGET root Euler and source position via independently exact stock TEXT proof location={%s} flags=%d export={%s} sourceEuler=(%.17g,%.17g,%.17g) targetBefore=(%.17g,%.17g,%.17g) sourceDirectQ=(%.17g,%.17g,%.17g,%.17g) sourceReadonlyCacheQ=(%.17g,%.17g,%.17g,%.17g); exactlocal/actor/worldpostconditions; source untouched"),*LocationText,Flags,*Text,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll,Direct.X,Direct.Y,Direct.Z,Direct.W,Cached.X,Cached.Y,Cached.Z,Cached.W);return true;
  }
  FTransform Canonical;FString Proof;
- // Ineligible changes remain untouched and fail the later strict comparison.
- if(!MeasuredRootTranslation(*A,*B,&Source,&Target,Canonical,Proof))return true;
+ // Keep the original ONE-ULP predicate unchanged. A separate position-only
+ // path admits only the actual stock TEXT roundtrip measured at Stage29.
+ if(!MeasuredRootTranslation(*A,*B,&Source,&Target,Canonical,Proof))
+ {
+  const FVector SL=A->GetRelativeLocation(),TL=B->GetRelativeLocation();
+  if(RotationDiff||ExactVectorBytes(SL,TL))return true;
+  if(A->GetOwner()!=&Source||B->GetOwner()!=&Target||A->GetClass()!=B->GetClass()||Remap.FindRef(A)!=B||
+     A->GetAttachParent()||B->GetAttachParent()||!A->IsRegistered()||!B->IsRegistered()||
+     SR.ContainsNaN()||TR.ContainsNaN()||SL.ContainsNaN()||TL.ContainsNaN()||
+     A->GetRelativeScale3D().ContainsNaN()||B->GetRelativeScale3D().ContainsNaN()||
+     !ExactVectorBytes(SL,Source.GetActorLocation())||!ExactVectorBytes(TL,Target.GetActorLocation())||
+     !ExactTransformBytes(A->GetComponentTransform(),Source.GetActorTransform())||!ExactTransformBytes(B->GetComponentTransform(),Target.GetActorTransform())||
+     !ExactTransformBytes(A->GetRelativeTransform(),A->GetComponentTransform())||!ExactTransformBytes(B->GetRelativeTransform(),B->GetComponentTransform())||
+     !ExactQuaternion(A->GetComponentQuat(),B->GetComponentQuat())||
+     !ExactQuaternion(A->GetRelativeRotationCache().RotatorToQuat_ReadOnly(SR),B->GetRelativeRotationCache().RotatorToQuat_ReadOnly(TR))||
+     !ExactVectorBytes(A->GetRelativeScale3D(),B->GetRelativeScale3D())||
+     A->IsUsingAbsoluteLocation()!=B->IsUsingAbsoluteLocation()||A->IsUsingAbsoluteRotation()!=B->IsUsingAbsoluteRotation()||A->IsUsingAbsoluteScale()!=B->IsUsingAbsoluteScale())
+  {Evidence=TEXT("position-only stock TEXT root repair requires exact mapped registered unattached finite local/actor/world Q/Euler/scale/absolute proof");return false;}
+  auto* RootPositionProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
+  if(!RootPositionProperty||RootPositionProperty->Struct!=TBaseStructure<FVector>::Get()||RootPositionProperty->ArrayDim!=1)return false;
+  constexpr int RootPositionFlags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+  FString RootPositionText;RootPositionProperty->ExportTextItem_Direct(RootPositionText,RootPositionProperty->ContainerPtrToValuePtr<void>(A),nullptr,A,RootPositionFlags);
+  FVector ExpectedRootPosition=FVector::ZeroVector;FOutputDeviceNull RootPositionErrors;
+  const TCHAR* RootPositionTail=RootPositionProperty->ImportText_Direct(*RootPositionText,&ExpectedRootPosition,B,RootPositionFlags,&RootPositionErrors);
+  if(RootPositionTail)while(*RootPositionTail&&FChar::IsWhitespace(*RootPositionTail))++RootPositionTail;
+  if(!RootPositionTail||*RootPositionTail||!ExactVectorBytes(ExpectedRootPosition,TL))
+  {Evidence=TEXT("position-only root difference is NOT exact stock TEXT roundtrip: ")+RootPositionText;return false;}
+  Proof=FString::Printf(TEXT("POSITION-only exact stock TEXT flags=%d export={%s} sourceP=(%.17g,%.17g,%.17g) targetBefore=(%.17g,%.17g,%.17g); exactQ/Euler/scale/absolute/local-actor-world guards; no ULP-budget extension"),RootPositionFlags,*RootPositionText,SL.X,SL.Y,SL.Z,TL.X,TL.Y,TL.Z);
+ }
  if(Remap.FindRef(A)!=B){Evidence=TEXT("root restoration requires exact root mapping");return false;}
  B->SetRelativeLocation_Direct(A->GetRelativeLocation());
  B->UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);
@@ -1206,6 +1233,27 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestFalse(TEXT("combined S144 arbitrary nonTEXT Euler refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));
  TestTrue(TEXT("refused arbitrary S144 Euler leaves target position unchanged"),ExactVectorBytes(EulerRootT->GetRelativeLocation(),S144TargetP));
  TestTrue(TEXT("S144 source raw after"),State(*EulerRootS,TestIDs,NoForbidden,false,S144After));TestTrue(TEXT("S144 source raw bytes unchanged"),S144Before==S144After);
+ // Actual Stage29 parent Bounds position-only TWO-ULP stock TEXT case.
+ const FVector Stage29ParentP(585.82000000000005,55656.424999999988,500);
+ RootPose(*EulerRootS,Stage29ParentP,FRotator::ZeroRotator);
+ FString Stage29ParentText;S144LocationProperty->ExportTextItem_Direct(Stage29ParentText,S144LocationProperty->ContainerPtrToValuePtr<void>(EulerRootS),nullptr,EulerRootS,EulerFlags);
+ FVector Stage29ParentTarget=FVector::ZeroVector;
+ const TCHAR* Stage29Tail=S144LocationProperty->ImportText_Direct(*Stage29ParentText,&Stage29ParentTarget,EulerRootT,EulerFlags,&EulerErrors);
+ if(!TestTrue(TEXT("Stage29 parent fixture actual stock parse complete"),Stage29Tail&&!*Stage29Tail))return false;
+ TestEqual(TEXT("actual measured Stage29 parent target Y"),Stage29ParentTarget.Y,55656.425000000003);
+ const double Stage29A[]={Stage29ParentP.X,Stage29ParentP.Y,Stage29ParentP.Z},Stage29B[]={Stage29ParentTarget.X,Stage29ParentTarget.Y,Stage29ParentTarget.Z};
+ TestFalse(TEXT("Stage29 measured parent remains outside unchanged ONE-ULP predicate"),AdjacentTranslationValues(Stage29A,Stage29B));
+ RootPose(*EulerRootT,Stage29ParentTarget,FRotator::ZeroRotator);
+ TArray<uint8> ParentBefore,ParentAfter;TestTrue(TEXT("Stage29 source raw before"),State(*EulerRootS,TestIDs,NoForbidden,false,ParentBefore));
+ const bool ParentOK=RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence);
+ TestTrue(TEXT("Stage29 position-only stock TEXT parent repair succeeds: ")+EulerEvidence,ParentOK);TestTrue(TEXT("Stage29 parent repair performed"),EulerRestored);
+ TestTrue(TEXT("Stage29 repaired parent actor and root bytes exact"),ExactTransformBytes(EulerOwnerS->GetActorTransform(),EulerOwnerT->GetActorTransform())&&ExactTransformBytes(EulerRootS->GetComponentTransform(),EulerRootT->GetComponentTransform()));AddInfo(EulerEvidence);
+ FVector NonTextParent=Stage29ParentTarget;NonTextParent.Y=std::nextafter(std::nextafter(Stage29ParentP.Y,-std::numeric_limits<double>::infinity()),-std::numeric_limits<double>::infinity());RootPose(*EulerRootT,NonTextParent,FRotator::ZeroRotator);
+ TestFalse(TEXT("position-only arbitrary nonTEXT TWO-ULP refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));TestFalse(TEXT("nonTEXT parent never restored"),EulerRestored);TestTrue(TEXT("nonTEXT parent target untouched"),ExactVectorBytes(EulerRootT->GetRelativeLocation(),NonTextParent));
+ RootPose(*EulerRootT,Stage29ParentTarget,FRotator(0,.1,0));TestFalse(TEXT("position-only changed Q/Euler not restored"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));
+ RootPose(*EulerRootT,Stage29ParentTarget,FRotator::ZeroRotator);EulerRootT->SetRelativeScale3D(FVector(1,1,2));TestFalse(TEXT("position-only changed scale refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerRootT->SetRelativeScale3D(FVector::OneVector);
+ RootPose(*EulerRootT,Stage29ParentTarget,FRotator::ZeroRotator);TMap<UObject*,UObject*> WrongParentOwnerMap=EulerMap;WrongParentOwnerMap.Remove(EulerOwnerS);TestFalse(TEXT("position-only wrong owner mapping refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,WrongParentOwnerMap,EulerRestored,EulerEvidence));
+ TestTrue(TEXT("Stage29 source raw after"),State(*EulerRootS,TestIDs,NoForbidden,false,ParentAfter));TestTrue(TEXT("Stage29 parent source bytes unchanged"),ParentBefore==ParentAfter);
  AActor* LocalOwnerS=World->SpawnActor<AActor>();AActor* LocalOwnerT=NewWorld->SpawnActor<AActor>();
  auto* ParentS=NewObject<USceneComponent>(LocalOwnerS);auto* ParentT=NewObject<USceneComponent>(LocalOwnerT);
  LocalOwnerS->SetRootComponent(ParentS);LocalOwnerT->SetRootComponent(ParentT);ParentS->RegisterComponent();ParentT->RegisterComponent();
