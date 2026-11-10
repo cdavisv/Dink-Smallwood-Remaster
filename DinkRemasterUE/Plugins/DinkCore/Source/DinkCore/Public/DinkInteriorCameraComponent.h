@@ -50,6 +50,8 @@ public:
     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorPivotOffset = FVector(0,0,52);
     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorShoulderOffset = FVector(0,45,0);
     UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorFieldOfView = 70.f;
+    /** Collision-safe outdoor lift only; zero in interiors and an unobstructed view. */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float OutdoorHeadroomLift = 0.f;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bInteriorMode = false;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 FadingOccluderCount = 0;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 ManagedOccluderCount = 0;
@@ -64,6 +66,7 @@ private:
     void RestoreOccluders();
     void RestoreCamera();
     void UpdateFraming(float DeltaTime);
+    void UpdateOutdoorHeadroom();
     bool CalculateFraming(float ShoulderY, const FMatrix& Projection, FVector2D& Shift) const;
     UPROPERTY() TObjectPtr<USpringArmComponent> Arm;
     UPROPERTY() TObjectPtr<UCameraComponent> Camera;

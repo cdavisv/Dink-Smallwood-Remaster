@@ -355,7 +355,6 @@ void UDinkDirector::RegisterCommands()
 		{ TEXT("sound"), S::Recorded, TEXT("looping sprite sound, recorded for the audio layer") },
 		{ TEXT("disabled"), S::Recorded, TEXT("sprite disabled flag, recorded") },
 		{ TEXT("editor_num"), S::Recorded, TEXT("read-only in practice (placement number); a write is recorded") },
-		{ TEXT("prop"), S::Recorded, TEXT("not a DinkC built-in (the engine ignores it); only behind a fix switch") },
 		{ TEXT("mx"), S::Implemented, TEXT("x pixels per think of the sprite's brain movement (missiles, bounce; changedir sets it from speed and dir)") },
 		{ TEXT("my"), S::Implemented, TEXT("y pixels per think of the sprite's brain movement (missiles, bounce; changedir sets it from speed and dir)") },
 		{ TEXT("attack_hit_sound"), S::Recorded, TEXT("sound of the sprite's hits, recorded for the audio layer (the audio stub logs a hit cue)") },
@@ -389,6 +388,22 @@ void UDinkDirector::RegisterCommands()
 		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1)
 		{
 			Game->SetPlacementHard(Sprite->Origin, Now);
+		}
+		return FDinkCommandResult();
+	});
+	Register(TEXT("sp_prop"), S::Implemented, TEXT("not a 1997 command (the engine logs and skips it; s5-fguy.c:6 and s5-end.c:33 call it behind fix switches that stay false). Defined by owner decision OD1 (9 Nov 2026): sp_prop(sprite, 0|1) sets a placement's map prop flag, the warp / walk-through flag no 1997 command can change, until the screen loads again: get_hard reads a stamped hardbox of a placement with prop != 0 as 0 (dink.cpp:569-575) and special_block warps on prop 1 (15337-15341). On a sprite warp 0 switches its trigger off (the hardbox stays solid, as a prop-0 one is) and 1 back on; on another placement 1 only makes its hardbox walk-through (no warp: only map.dat's warps have a destination trigger); a sprite that is no placement only records it"), [this](FDinkCommandContext& Ctx)
+	{
+		static const FName PropProp(TEXT("prop"));
+		const int32 Handle = Ctx.Int(0);
+		// get_parms gives a missing argument 0 (dink.cpp:4206-4225).
+		const int32 Value = Ctx.Int(1, 0);
+		SpriteProperty(&Ctx.Instance, PropProp, Handle, Value);
+		const FDinkSprite* Sprite = FindSprite(Handle);
+		UDinkGameplay* Game = Story->GetGameplay();
+		// The flag lives on the loaded map's placement (g_smallMap.sprite[sp_index].prop), as sp_hard's map flag does (D:9993-9998).
+		if (Game && Sprite && Sprite->Origin.IsValid())
+		{
+			Game->SetPlacementProp(Sprite->Origin, Value);
 		}
 		return FDinkCommandResult();
 	});

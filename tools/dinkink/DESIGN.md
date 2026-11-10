@@ -13,7 +13,8 @@ Two rules decide every case below:
 2. **The words are untouched, and the default is what the 1997 engine did.** Where the
    engine does something other than what the author wrote, the engine behaviour is the
    live branch and the author's intent sits next to it behind a `CONST fix_<script>_l<line> = false`
-   switch, listed in `review_queue.csv`.
+   switch, listed in `review_queue.csv`. Only an owner decision turns a switch on (section 9,
+   "Owner decisions").
 
 Unreal Engine and Inkpot are not available to the converter, so runtime behaviour in
 Unreal is unverified. Only plain Ink features are used (knots, stitches, tunnels,
@@ -340,7 +341,7 @@ deleting the branch). Cases:
 | missing comma after a string (`s3-chick.c:42`): `get_parms` returns early with the speaker 0 (dink.cpp 4206-4225), `say_stop` rejects it (7908) | nothing; the line is never spoken | the line, with its ID |
 | a `{` typed for a `}` (`s1-h3-8.c:13`): the engine nests the later tests inside the first, so two of three lines cannot run (curated in `overrides.py`) | the nesting, which hoisted behind the switch cannot run | the nested tests hoisted out and run |
 | unknown call, a misspelt command (`freeeze`, `unfreeeze`) | nothing | the corrected command (`freeze`), the written spelling in a comment; the misspelling is not a vocabulary entry |
-| unknown call, no known command (`sp_prop`) | nothing | the call as written (meaning undecided, `director_vocabulary.csv` row category `unknown-command`) |
+| unknown call, no known command (`sp_prop`) | nothing | the call as written (`director_vocabulary.csv` row category `unknown-command`; the remaster's director gives `sp_prop` a meaning by owner decision OD1, see below) |
 | `reutrn;` | nothing, execution continues | `->->` |
 | `wait(200:` read as a label | nothing | `>> wait 200` |
 | `goto` to a missing label (`mainloop` in five shop procedures) | the procedure ends (`->->`) | none: no target exists, so no switch and no `fix_` constant; review row category `engine-matches-intent` |
@@ -354,9 +355,31 @@ deleting the branch). Cases:
 
 Spoken lines the 1997 engine never speaks (`s2-jack.c:171`, `s4-sign3.c:17`, `s3-chick.c:42`,
 and `s1-h3-8.c:16`/`:20` through one row at line 13) have review category `never-spoken`, so
-they can be listed together. With every switch false they stay silent, as in 1997
-(`line_ids.csv` column `live` is 0 for them). Whether to ship them silent is the owner's
-decision (OD2 in `doc/remaster/verbatim_review.md`).
+they can be listed together. `line_ids.csv` column `live` stays 0 for them: it says whether a
+line sits behind a fix switch, not whether the switch is on.
+
+### Owner decisions (switches turned on)
+
+The default is the engine's behaviour; a switch is turned on only by an owner decision, recorded
+in `dinkink/overrides.py` `OWNER_DECISIONS` (switch -> value, date, reason, the `dink.cpp` lines
+that make the 1997 engine skip the author's text). The converter emits those as
+`CONST <name> = true // owner decision 9 Nov 2026: <reason>; dink.cpp: <citation> (review: ..)`
+and every other switch as `= false // review: ..`; it stops if a decision names a switch it did not
+make. `DinkRemasterUE/Scripts/sync_story.py` accepts exactly these as `true` and every other
+`false`. Tests: `TestOwnerDecisions` here, `Dink.Narrative.OwnerDecisions.TypoLinesSpoken` in
+Unreal (the lines are spoken by the right speaker in the right procedure).
+
+| Switch | Decided | What is now spoken | Why the 1997 engine skipped it |
+|---|---|---|---|
+| `fix_s2_jack_l171` | 9 Nov 2026 (OD2) | "I guess I just killed your husband." (Jack's `die`) | stray leading `'`: `get_parms` reads a string only between two `"` (dink.cpp:4164), returns early with the speaker 0 (4206-4225); `say_stop` rejects sprite 0 (7908-7913) |
+| `fix_s4_sign3_l17` | 9 Nov 2026 (OD2) | "Long live the ducks." (the sign's `talk`, `&story` <= 10) | missing `)`: the speaker reads 0 (4141-4186), rejected (7908-7913) |
+| `fix_s3_chick_l42` | 9 Nov 2026 (OD2) | "Hello Dink, I'm Christina." (her `talk`, "Say hi") | missing comma: `get_parms` returns early (4206-4225), rejected (7908-7913) |
+| `fix_s1_h3_8_l13` | 9 Nov 2026 (OD2) | "Libby's bed, to dream the impossible dream..." and "Libby's bed, looks lonely." (one of three at random) | `{` for `}`: the `== 2` and `== 3` tests nest inside the `== 1` block (7289-7360) |
+
+Every other switch stays `false`, among them `fix_s5_fguy_l6` and `fix_s5_end_l33` (OD1: the
+director defines `sp_prop <sprite> <0|1>` as setting the placement's map `prop` flag, the
+warp / walk-through flag of dink.cpp:569-575 and 15337-15341, but the 1997 behaviour, the SCR_419
+door staying a warp through the dragon fight, is kept).
 
 ## 10. Outputs
 

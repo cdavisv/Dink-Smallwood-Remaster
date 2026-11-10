@@ -77,7 +77,15 @@ Guard robbery, Boots booth `s1-boot.c`, rock `s1-roc`); **the prisoner's cave / 
 Goblin George (`s3-gob.c`); Windemere's other houses and shops; Joppa's axe shop and healer; the Hellfire teacher (`s6-vend.c`,
 1500 gold); the massive sword / massive bow at the Edge church (`s6-st1p.c:26-39, 63-76`, 4000 / 5000 gold; **used in the Seth kit
 table, 2.6 and step 53**); Koka Isle (duck arena `s8-da.c`, FlameBow 25,000 gold `s8-guy.c:47-77`) and the snow castle (`sc-*`); the
-sealed "East Wilds" treasure screen SCR_352 (15 `lgold` + potions; unreachable on foot per `connectivity.json`, UNVERIFIED).
+15 `lgold` of the "East Wilds" treasure screen SCR_352. **SCR_352 itself is on the route** (chapter 1 takes its `ppotion`, chapter 19 its
+`bpotion`, `rpotion`, `gheart`, `apotion`). Since the owner's designed join of 9 Nov 2026 (`tools/analyse/regions.toml` `[[join]]
+cobbler_booth_doorway`) it is reached on foot, as designed (`connectivity.json`, no script warp): Koka Isle bridge SCR_727 -> SCR_759 -> the
+Koka beaches -> door S734_P31 on SCR_734 -> SCR_290 (the booth's Koka room) -> the doorway -> SCR_289 -> door S289_P19 -> SCR_350 -> SCR_351
+-> SCR_352. Before it the 1997 data had no designed way in (the engine's only routes were sequence breaks). **Chapter 1 (after the
+teacher, before Acid Rain):** a player can do it then: the toll is paid (`&story 7`), nothing on the way is gated by story or stats, and
+the Slayers of SCR_663/695 can be bypassed by SCR_566-726; but it is a long detour (27 screens from the SCR_597 potion, through Windemere's
+marshes, over the bridge and across Koka) to a part of the map nothing has sent the player to yet, so it is possible rather than sensible.
+The probe's teleport stands in for that walk (the walk itself is not played: UNVERIFIED on foot), and the potion stays in chapter 1.
 
 The one hard blocker is **Seth** (hp 300, defense 25): see 2.6. The cult, goblins, knights, dragons and the Darklands rooms are winnable only
 by kiting / ranged play or by far higher stats than the route hands out; see 2.5.
@@ -596,7 +604,7 @@ here, steps 38-41 are skipped (section 1).
     do: watch; menu "Pshaw, twasn't nuthin!" or "I saved all of you, actually." (either)
     needs: both dragons dead and `&life > 0` (`en-drag.c:113`)
     result: `screenlock(0)` (`s5-end.c:9`), **`&story 11 -> 12`**, **`&s5-jop = 4`** (`:36-37`), the door `sp(2)` opened (`:32-33`); +1 healer on SCR_226 (`s5-heals.c:5`: vision 2 at story 12)
-    hazards: `s5-fguy.c:6` calls the nonexistent `sp_prop` (does nothing in the engine); heart/gold drops of the dragons spawn at their death spots (pick up quickly)
+    hazards: `s5-fguy.c:6` calls the nonexistent `sp_prop` (does nothing in the engine; the remaster's director defines it since 9 Nov 2026, owner decision OD1, but the call sits behind `fix_s5_fguy_l6`, which stays false, so the door stays a warp); heart/gold drops of the dragons spawn at their death spots (pick up quickly)
 
 ### Act E. Bow lore, the castle, the Edge of the World (&story 12 -> 14): 8 steps
 
@@ -830,7 +838,7 @@ Bible vs script (script wins):
 Not verified (flagged "UNVERIFIED" above): the geometry of every kite (reach vs `sp_distance` / `sp_range`); how many screens of the Edge plateau a real
 walk crosses safely; whether the bomb explosion hurts the thrower; the item-slot count behind `free_items()`; the unopened scripts `box2-sp.c`, `bar-dp.c` beyond the `external`
 lines; the exact attack cadence and animation lengths of the monsters (the Monte Carlo uses `random(4000,0)` + 0.5 s); whether `SCR_680` is walkable from the north with the gate shut
-(`connectivity.json` says yes; the data is advisory because `tools/analyse` is being edited); the hop lists in the steps (same source); SCR_352 reachability; the Terris healer's and
+(`connectivity.json` says yes; the data is advisory because `tools/analyse` is being edited); the hop lists in the steps (same source); the walk to SCR_352 (designed since 9 Nov 2026, through the cobbler's booth; teleported); the Terris healer's and
 Windemere healer's exact price lines (`s2-healp.c`, `s4-healp.c`, read from `shops.json` and a partial read); the Hellfire and massive-sword/bow timing for Seth (kits B and C are computed, not
 played); the probe's current implementation of every blocked-script check named in section 4.
 
@@ -904,3 +912,20 @@ before later fixes), so the bow needs 276 more; a large drop (`lgold`) is 50-74 
 
 **Gold, the real shortfall:** 276 at the end of chapter 3; chapter 4 earns 348 in two rounds (13 + 61 + 65 + 67, then 14 + 58 + 70). The pill
 bugs (speed 180 px/s) were not needed: the Bongs kill each other.
+
+### 8.1 Lines spoken since the owner decision of 9 Nov 2026 (OD2)
+
+The four pure-typo fix switches are on in the shipped story (`doc/remaster/verbatim_review.md` OD2; `tools/dinkink/dinkink/overrides.py`
+`OWNER_DECISIONS`), so lines the 1997 engine dropped are spoken. Where the route meets them:
+
+| Switch | Line | Where | On the probe's route |
+|---|---|---|---|
+| `fix_s2_jack_l171` | "I guess I just killed your husband." (Dink, `say_stop`) | Jack's `die` (`s2-jack.c:171`), SCR_036, Act A step 2 here (optional: kill Jack; probe step 37 of the old numbering) | **yes**, chapter 1 (`Ch1Stonebrook`, "kill Jack with fireballs"): between "Dink!  What have you done!" and Maria's "Jack wasn't always like that..." at about 137.5 s of game time; the probe skips it like every text (one frame), so the scene is one frame longer |
+| `fix_s3_chick_l42` | "Hello Dink, I'm Christina." (Christina, `say_stop`) | her `talk`, option "Say hi" (`s3-chick.c:42`), SCR_586 | no: route step 17 (chapter 3) answers "Tell her about the planned assault" |
+| `fix_s4_sign3_l17` | "Long live the ducks." (the sign) | the Windemere sign's `talk` while `&story` <= 10 (`s4-sign3.c:17`), SCR_504 | no: the probe never reads that sign |
+| `fix_s1_h3_8_l13` | "Libby's bed, to dream the impossible dream..." / "Libby's bed, looks lonely." (one of three at random) | Libby's bed's `talk` (`s1-h3-8.c:16`, `:20`), SCR_004 | no: the probe never talks to the bed |
+
+What moved in the probe (9 Nov 2026, night): chapter 1 only through Jack's line, all other chapters only through chapter 1's save (see
+DinkRemasterUE/AGENTS.md "The probe, in chapters", the hashes of 9 Nov 2026, night). The two `sp_prop` calls of the dragon fight
+(route steps 35-37, `s5-fguy.c:6`, `s5-end.c:33`) stay off (OD1: the director defines `sp_prop`, the switches stay false): the SCR_419
+door is a warp throughout, as in 1997.
