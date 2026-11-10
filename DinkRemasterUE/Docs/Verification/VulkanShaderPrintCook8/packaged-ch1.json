@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "elapsed": 13.529430710012093,
+  "actual": {
+    "test": "Dink.Gameplay.Probe.Ch1Stonebrook",
+    "success": true,
+    "trace_sha256": "20227a637e1b3872c7b82494023a8224225b285462739113e9f3e799524c1d02",
+    "trace_md5": "0ba0ba5b7eff0487579457237d94c16d",
+    "warnings": 0
+  },
+  "monolithic_game": {
+    "712625": {
+      "pid": 712625,
+      "start_ticks": 6937006,
+      "exe": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate8/Runs/566fbbc6cce54e3d8ec5989da3040b72/Stage/Linux/DinkRemaster/Binaries/Linux/DinkRemaster",
+      "sha256": "21a609bc9916e3e7a11faeb44def1e9acc446a622bfb586433536a0fc84438c4",
+      "pid_namespace": "pid:[4026533177]"
+    }
+  },
+  "stage_unchanged": true,
+  "Root_source_unchanged": true,
+  "scope": "Packaged CH1headless story/trace; no renderedroof/GPUproof"
+}
