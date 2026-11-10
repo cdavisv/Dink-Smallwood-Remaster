@@ -328,7 +328,33 @@ bool RestoreNewTargetChildPose(USceneComponent& Source,USceneComponent& Target,A
     !ExactTransformBytes(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()))||
     !ExactVectorBytes(Source.GetRelativeScale3D(),Target.GetRelativeScale3D())||
     Source.IsUsingAbsoluteLocation()!=Target.IsUsingAbsoluteLocation()||Source.IsUsingAbsoluteRotation()!=Target.IsUsingAbsoluteRotation()||Source.IsUsingAbsoluteScale()!=Target.IsUsingAbsoluteScale())
- {Evidence=TEXT("child pose repair parent/socket/frame/scale/absolute policy differs");return false;}
+ {
+  const FVector SS=Source.GetRelativeScale3D(),TS=Target.GetRelativeScale3D();
+  Evidence=FString::Printf(TEXT("child pose guard DIFFERENCE parentPresent=%d ownerMatch=%d parentMap=%d socketSame=%d parentWorldExact=%d socketWorldExact=%d scaleExact=%d absoluteExact=%d sourceOwner=%s targetOwner=%s expectedOwners=%s/%s sourceParent=%s targetParent=%s sockets=%s/%s localScale17 source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) absoluteSource=%d/%d/%d absoluteTarget=%d/%d/%d"),
+   int32(SourceParent&&TargetParent),int32(SourceParent&&TargetParent&&SourceParent->GetOwner()==ExpectedSource&&TargetParent->GetOwner()==ExpectedTarget),
+   int32(SourceParent&&TargetParent&&Remap.FindRef(SourceParent)==TargetParent),int32(Source.GetAttachSocketName()==Target.GetAttachSocketName()),
+   int32(SourceParent&&TargetParent&&ExactTransformBytes(SourceParent->GetComponentTransform(),TargetParent->GetComponentTransform())),
+   int32(SourceParent&&TargetParent&&ExactTransformBytes(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()))),
+   int32(ExactVectorBytes(SS,TS)),int32(Source.IsUsingAbsoluteLocation()==Target.IsUsingAbsoluteLocation()&&Source.IsUsingAbsoluteRotation()==Target.IsUsingAbsoluteRotation()&&Source.IsUsingAbsoluteScale()==Target.IsUsingAbsoluteScale()),
+   *GetPathNameSafe(Source.GetOwner()),*GetPathNameSafe(Target.GetOwner()),*GetPathNameSafe(ExpectedSource),*GetPathNameSafe(ExpectedTarget),*GetPathNameSafe(SourceParent),*GetPathNameSafe(TargetParent),*Source.GetAttachSocketName().ToString(),*Target.GetAttachSocketName().ToString(),
+   SS.X,SS.Y,SS.Z,TS.X,TS.Y,TS.Z,int32(Source.IsUsingAbsoluteLocation()),int32(Source.IsUsingAbsoluteRotation()),int32(Source.IsUsingAbsoluteScale()),int32(Target.IsUsingAbsoluteLocation()),int32(Target.IsUsingAbsoluteRotation()),int32(Target.IsUsingAbsoluteScale()));
+  if(SourceParent&&TargetParent)
+  {Evidence+=TEXT(" PARENT WORLD ")+TransformDifference(SourceParent->GetComponentTransform(),TargetParent->GetComponentTransform());
+   Evidence+=TEXT(" SOCKET WORLD ")+TransformDifference(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()));}
+  Evidence+=FString::Printf(TEXT(" CHILD localPosition17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localEuler17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) CHILD WORLD "),SourceLocation.X,SourceLocation.Y,SourceLocation.Z,TargetLocation.X,TargetLocation.Y,TargetLocation.Z,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll)+TransformDifference(Source.GetComponentTransform(),Target.GetComponentTransform());
+  constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+  for(const TCHAR* Name:{TEXT("RelativeLocation"),TEXT("RelativeRotation"),TEXT("RelativeScale3D")})
+  {auto* P=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),Name);if(!P)continue;FString Text,TargetText;
+   P->ExportTextItem_Direct(Text,P->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,Flags);P->ExportTextItem_Direct(TargetText,P->ContainerPtrToValuePtr<void>(&Target),nullptr,&Target,Flags);
+   FOutputDeviceNull Errors;
+   if(P->Struct==TBaseStructure<FRotator>::Get())
+   {FRotator Expected=FRotator::ZeroRotator;const TCHAR* Tail=P->ImportText_Direct(*Text,&Expected,&Target,Flags,&Errors);
+    Evidence+=FString::Printf(TEXT(" stock%s source={%s} target={%s} parsed=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),Name,*Text,*TargetText,int32(Tail!=nullptr),Expected.Pitch,Expected.Yaw,Expected.Roll,Flags);}
+   else if(P->Struct==TBaseStructure<FVector>::Get())
+   {FVector Expected=FVector::ZeroVector;const TCHAR* Tail=P->ImportText_Direct(*Text,&Expected,&Target,Flags,&Errors);
+    Evidence+=FString::Printf(TEXT(" stock%s source={%s} target={%s} parsed=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),Name,*Text,*TargetText,int32(Tail!=nullptr),Expected.X,Expected.Y,Expected.Z,Flags);}}
+  return false;
+ }
  // Exact stock CopyActors -> LevelExporterT3D COPY -> ExportProperties flags:
  // EditorActor.cpp423, EditorExporters.cpp637, UnrealExporter.cpp1142.
  constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
