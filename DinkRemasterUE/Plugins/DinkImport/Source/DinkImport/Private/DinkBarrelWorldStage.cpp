@@ -663,6 +663,7 @@ FString RawInstanceMatrixDifference(UObject& Source,UObject& Target)
  Result+=FString::Printf(TEXT(" reconstructedCanonicalDifferingInstances=%d first8HexReported"),CanonicalDifferences);
  return Result;
 }
+bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation,FTransform* ActorComparisonTransform,FTransform* RootComparisonTransform,FTransform* ChildComparisonTransform,FKAggregateGeom* AggregateComparison);
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
  const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
@@ -684,6 +685,37 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
    FString Numeric=NestedPropertyDifference(*P,P->ContainerPtrToValuePtr<void>(&Source,StaticIndex),P->ContainerPtrToValuePtr<void>(&Target,StaticIndex),Source,Target,IDs,Forbidden,P->GetName()+FString::Printf(TEXT("[%d]"),StaticIndex),0);
    Numeric+=RawInstanceMatrixDifference(Source,Target);
    Numeric+=TEXT(" sourceCache:")+BoundsCacheDiagnostic(Source,*P,StaticIndex)+TEXT(" targetCache:")+BoundsCacheDiagnostic(Target,*P,StaticIndex);
+   if(const auto* BoxProperty=CastField<FStructProperty>(P);BoxProperty&&P->GetOwnerClass()==UBoxComponent::StaticClass()&&P->GetFName()==TEXT("BoxExtent")&&BoxProperty->Struct==TBaseStructure<FVector>::Get()&&P->ArrayDim==1&&StaticIndex==0)
+   {
+    auto* SourceBox=Cast<UBoxComponent>(&Source);auto* TargetBox=Cast<UBoxComponent>(&Target);
+    if(SourceBox&&TargetBox)
+    {
+     const FVector SourceExtent=*BoxProperty->ContainerPtrToValuePtr<FVector>(&Source),TargetExtent=*BoxProperty->ContainerPtrToValuePtr<FVector>(&Target);
+     constexpr int BoxFlags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+     FString BoxText;BoxProperty->ExportTextItem_Direct(BoxText,BoxProperty->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,BoxFlags);
+     FVector ExpectedExtent=FVector::ZeroVector;FOutputDeviceNull BoxErrors;
+     const TCHAR* BoxTail=BoxProperty->ImportText_Direct(*BoxText,&ExpectedExtent,&Target,BoxFlags,&BoxErrors);
+     if(BoxTail)while(*BoxTail&&FChar::IsWhitespace(*BoxTail))++BoxTail;
+     Numeric+=FString::Printf(TEXT(" BOX_EXTENT_STOCK_TEXT source17=(%.17g,%.17g,%.17g) target17=(%.17g,%.17g,%.17g) export={%s} flags=%d parseComplete=%d exactActualTarget=%d expected17=(%.17g,%.17g,%.17g) classSame=%d source=%s target=%s sourceOwner=%s targetOwner=%s sourceWorld=%s targetWorld=%s registered=%d/%d exactWorldTRS=%d exactRelativeTRS=%d"),SourceExtent.X,SourceExtent.Y,SourceExtent.Z,TargetExtent.X,TargetExtent.Y,TargetExtent.Z,*BoxText,BoxFlags,int32(BoxTail&&!*BoxTail),int32(BoxTail&&!*BoxTail&&ExactVectorBytes(ExpectedExtent,TargetExtent)),ExpectedExtent.X,ExpectedExtent.Y,ExpectedExtent.Z,int32(SourceBox->GetClass()==TargetBox->GetClass()),*SourceBox->GetPathName(),*TargetBox->GetPathName(),*GetPathNameSafe(SourceBox->GetOwner()),*GetPathNameSafe(TargetBox->GetOwner()),*GetPathNameSafe(SourceBox->GetWorld()),*GetPathNameSafe(TargetBox->GetWorld()),int32(SourceBox->IsRegistered()),int32(TargetBox->IsRegistered()),int32(ExactTransformBytes(SourceBox->GetComponentTransform(),TargetBox->GetComponentTransform())),int32(ExactTransformBytes(SourceBox->GetRelativeTransform(),TargetBox->GetRelativeTransform())));
+     auto BoxDetails=[&](const TCHAR* Side,UBoxComponent& Box)
+     {
+      FString Responses;for(int I=0;I<64;++I)Responses+=FString::FromInt(int32(Box.GetCollisionResponseToChannels().GetResponse(static_cast<ECollisionChannel>(I))));
+      Numeric+=FString::Printf(TEXT(" %sPolicy profile=%s enabled=%d objectType=%d responses64=%s nav=%d overlap=%d shadow=%d hiddenShadow=%d physicsCreated=%d"),Side,*Box.GetCollisionProfileName().ToString(),int32(Box.GetCollisionEnabled()),int32(Box.GetCollisionObjectType()),*Responses,int32(Box.CanEverAffectNavigation()),int32(Box.GetGenerateOverlapEvents()),int32(Box.CastShadow),int32(Box.bCastHiddenShadow),int32(Box.IsPhysicsStateCreated()));
+      const FBoxSphereBounds CachedBounds=Box.Bounds,CalculatedBounds=Box.CalcBounds(Box.GetComponentTransform());
+      Numeric+=FString::Printf(TEXT(" %sBounds cachedOrigin17=(%.17g,%.17g,%.17g) extent17=(%.17g,%.17g,%.17g) radius17=%.17g calcOrigin17=(%.17g,%.17g,%.17g) extent17=(%.17g,%.17g,%.17g) radius17=%.17g"),Side,CachedBounds.Origin.X,CachedBounds.Origin.Y,CachedBounds.Origin.Z,CachedBounds.BoxExtent.X,CachedBounds.BoxExtent.Y,CachedBounds.BoxExtent.Z,double(CachedBounds.SphereRadius),CalculatedBounds.Origin.X,CalculatedBounds.Origin.Y,CalculatedBounds.Origin.Z,CalculatedBounds.BoxExtent.X,CalculatedBounds.BoxExtent.Y,CalculatedBounds.BoxExtent.Z,double(CalculatedBounds.SphereRadius));
+      // Read the existing pointer through reflection; GetBodySetup could create one.
+      const auto* BodyProperty=FindFProperty<FObjectPropertyBase>(UShapeComponent::StaticClass(),TEXT("ShapeBodySetup"));
+      auto* Body=BodyProperty?Cast<UBodySetup>(BodyProperty->GetObjectPropertyValue_InContainer(&Box)):nullptr;
+      Numeric+=FString::Printf(TEXT(" %sExistingBodySetup=%s pointerPropertyPresent=%d"),Side,*GetPathNameSafe(Body),int32(BodyProperty!=nullptr));
+      if(Body)
+      {
+       TArray<uint8> BodyBytes;const bool BodyStateOK=State(*Body,IDs,Forbidden,false,BodyBytes,nullptr,nullptr,nullptr,nullptr,nullptr);uint8 Digest[FSHA1::DigestSize];FSHA1::HashBuffer(BodyBytes.GetData(),BodyBytes.Num(),Digest);
+       Numeric+=FString::Printf(TEXT(" %sBody guid=%s trace=%d boxes=%d spheres=%d capsules=%d convex=%d stateOK=%d canonicalBytes=%d canonicalSHA1=%s"),Side,*Body->BodySetupGuid.ToString(),int32(Body->CollisionTraceFlag),Body->AggGeom.BoxElems.Num(),Body->AggGeom.SphereElems.Num(),Body->AggGeom.SphylElems.Num(),Body->AggGeom.ConvexElems.Num(),int32(BodyStateOK),BodyBytes.Num(),*BytesToHex(Digest,FSHA1::DigestSize));
+      }
+     };
+     BoxDetails(TEXT("SOURCE"),*SourceBox);BoxDetails(TEXT("TARGET"),*TargetBox);
+    }
+   }
    if(const auto* Struct=CastField<FStructProperty>(P);Struct&&Struct->Struct==TBaseStructure<FRotator>::Get())
    {
     const auto* R=P->ContainerPtrToValuePtr<FRotator>(&Source);const auto* T=P->ContainerPtrToValuePtr<FRotator>(&Target);
