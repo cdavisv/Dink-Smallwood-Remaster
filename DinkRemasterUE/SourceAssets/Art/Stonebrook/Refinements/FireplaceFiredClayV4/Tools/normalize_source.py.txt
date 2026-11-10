@@ -1,0 +1,52 @@
+"""Root-authorized V4 successor: clamp only unrepresentable source RGB."""
+import bpy, numpy as np, json, hashlib, os, sys
+from pathlib import Path
+
+O=Path(__file__).resolve().parent
+SRC=O.parent/'FiredClayV3/Fireplace_FiredClayV3.blend'
+DST=O/'Fireplace_FiredClayV4.blend'
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+source_sha=sha(SRC)
+bpy.ops.wm.open_mainfile(filepath=str(SRC))
+
+def digest(v):return hashlib.sha256(repr(v).encode()).hexdigest()
+def snapshot():
+ out={}
+ for o in bpy.data.objects:
+  rec=dict(type=o.type,matrix=[list(r)for r in o.matrix_world],parent=o.parent.name if o.parent else None)
+  if o.type=='MESH':
+   m=o.data
+   rec.update(vertices=[tuple(v.co)for v in m.vertices],edges=[tuple(e.vertices)for e in m.edges],polygons=[(tuple(p.vertices),p.material_index,p.use_smooth)for p in m.polygons],normals=[tuple(n.vector)for n in m.corner_normals],materials=[x.name if x else None for x in m.materials],uv=[(u.name,[tuple(d.uv)for d in u.data])for u in m.uv_layers])
+   rec['colors']={a.name:[tuple(d.color)for d in a.data]for a in m.color_attributes}
+  out[o.name]=rec
+ return out
+
+before=snapshot();changes=[]
+for o in bpy.data.objects:
+ if o.type!='MESH' or not o.name.startswith('SM_Fireplace'):continue
+ assert o.data.users==1
+ a=o.data.color_attributes['SharedSurfaceData'];arr=np.array([d.color[:]for d in a.data]);fixed=arr.copy();fixed[:,:3]=np.clip(fixed[:,:3],0,1)
+ delta=np.abs(arr-fixed);changed=np.any(delta>0,axis=1);channels=(delta>0).sum(axis=0)
+ roles={}
+ for p in o.data.polygons:
+  count=sum(bool(changed[i])for i in p.loop_indices)
+  if count:
+   role=o.data.materials[p.material_index].name;roles[role]=roles.get(role,0)+count
+ for i in np.flatnonzero(changed):a.data[int(i)].color=fixed[i]
+ changes.append(dict(name=o.name,corners=len(arr),changed_corners=int(changed.sum()),changed_channels=channels.tolist(),max_delta=float(delta.max()),by_role=roles,alpha_exact=bool(np.array_equal(arr[:,3],fixed[:,3])),before_range=[[float(arr[:,i].min()),float(arr[:,i].max())]for i in range(4)],after_range=[[float(fixed[:,i].min()),float(fixed[:,i].max())]for i in range(4)]))
+after=snapshot();expected=json.loads(json.dumps(before))
+# Compare all scene mesh geometry, transforms, slots and UVs without color exclusions.
+for name in before:
+ b=before[name];a=after[name]
+ for key in b:
+  if key!='colors':assert b[key]==a[key],(name,key)
+ if 'colors' in b:
+  for key,old in b['colors'].items():
+   target=[tuple(min(1.,max(0.,v))if i<3 else v for i,v in enumerate(row))for row in old]if name.startswith('SM_Fireplace')and key=='SharedSurfaceData'else old
+   assert a['colors'][key]==target,(name,key)
+bpy.ops.wm.save_as_mainfile(filepath=str(DST),relative_remap=False)
+bpy.ops.wm.open_mainfile(filepath=str(DST));assert snapshot()==after
+assert sha(SRC)==source_sha
+json.dump(dict(status='PASS_SOURCE_RGB_CLAMP_ONLY',source=str(SRC),source_sha256=source_sha,successor_sha256=sha(DST),all_objects=len(before),mesh_objects=sum(r['type']=='MESH'for r in before.values()),UCX=sum(n.startswith('UCX_')for n in before),noncolor_scene_mesh_snapshot_sha256=digest({n:{k:v for k,v in r.items()if k!='colors'}for n,r in before.items()}),all_noncolor_scene_mesh_fields_exact=True,all_other_colors_exact=True,alpha_exact=True,source_unchanged=True,changes=changes),open(O/'SOURCE_NORMALIZATION_PROOF.json','w'),indent=2)
+print('V4_RGB_CLAMP_ONLY_PASS',changes,flush=True)
+sys.stdout.flush();os._exit(0)

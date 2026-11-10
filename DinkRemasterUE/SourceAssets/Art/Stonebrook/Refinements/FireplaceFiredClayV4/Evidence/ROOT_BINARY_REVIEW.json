@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "compared_to": "actual accepted fcb5d0b source exports",
+  "scope": "Four actual FBX geometry/model/material/global-settings/semantic-connections; only RGB clamp on exact three fireplaces, alpha unchanged; no native or Blender source reopen proof.",
+  "rows": [
+    {
+      "file": "SM_Chimney_Stonebrook_V8.fbx",
+      "affected_corners": 0,
+      "max_channel_delta": 0,
+      "sha256": "8a9968629c92853641e0426f86555d783c1fde644009d07c08193509a6060dd3"
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "affected_corners": 8988,
+      "max_channel_delta": 0.01975429058074951,
+      "sha256": "f72b2b5b6170f2d4d5e39f4f85c13b74f13b0b2246b5c07dc52518e9a58db55d"
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "affected_corners": 6396,
+      "max_channel_delta": 0.01975429058074951,
+      "sha256": "fe4089f22b345343fe7c2fad41011e4c7e2e62e9e946b9d0948c69a989a776db"
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "affected_corners": 3132,
+      "max_channel_delta": 0.01975429058074951,
+      "sha256": "2a53fbffae8498f8b62c08cbdff0627375def56a07a421f489f116c19d0e0441"
+    }
+  ]
+}

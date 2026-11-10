@@ -1,0 +1,214 @@
+{
+  "schema": "dink-shared-materials/1",
+  "status": "source_registered_native_pending",
+  "materials": {
+    "OakLonggrain2m": {
+      "material": "MI_Shared_OakLonggrain2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "general oak timber, frames, boards, furniture"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_BC.png",
+          "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_N_GL.png",
+          "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_ORM.png",
+          "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.020000000000000004,
+      "unreal_specular": 0.25000000000000006,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "OakEndgrain2m": {
+      "material": "MI_Shared_OakEndgrain2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "general timber cut ends and pegs"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_BC.png",
+          "sha256": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_N_GL.png",
+          "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_ORM.png",
+          "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.020000000000000004,
+      "unreal_specular": 0.25000000000000006,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "LimePlaster2m": {
+      "material": "MI_Shared_LimePlaster2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "lime plaster, wall and gable infill"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_BC.png",
+          "sha256": "631382152572c1f129a162a81f30126676a5d0270e5aa3e07af4749552855b17",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_N_GL.png",
+          "sha256": "bf0a609a48956d2b36b5c2509b4d9040d1ea752dbcdddf0e6e6060eaaedce4c3",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_ORM.png",
+          "sha256": "21a8d7a9a18a20cd05373089ae2e9ca7825c08a8b38b9e04413c1a44fb84d70b",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.4600000381469727,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.01748298206529641,
+      "unreal_specular": 0.21853727581620513,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "OakLonggrain2m_CameraMasked": {
+      "material": "MI_Shared_OakLonggrain2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_OakLonggrain2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "OakLonggrain2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "OakEndgrain2m_CameraMasked": {
+      "material": "MI_Shared_OakEndgrain2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_OakEndgrain2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "OakEndgrain2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "LimePlaster2m_CameraMasked": {
+      "material": "MI_Shared_LimePlaster2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_LimePlaster2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "LimePlaster2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    }
+  },
+  "normal_standard": "OpenGL +Y, flip green on UE import; Non-Color N/ORM; sRGB BC"
+}

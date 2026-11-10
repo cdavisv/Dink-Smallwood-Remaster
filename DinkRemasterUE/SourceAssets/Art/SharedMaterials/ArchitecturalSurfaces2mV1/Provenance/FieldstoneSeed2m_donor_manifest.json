@@ -1,0 +1,25 @@
+{
+  "status": "Genericsharedsourcecandidate_notadmitted",
+  "source": "https://polyhaven.com/a/rock_boulder_dry",
+  "license": "CC0; actualsourcefilehashes/downloadreceipt retainedCandidateV21/Sources/rock_boulder_dry",
+  "published_dimension": "1.8mheight; squareimagewidth1.8massumedisotropic, notindependentlymeasured",
+  "recipe": "1.2msquarecrop fromsourceoffset.2m,registered.2moverlap yields1mrepeat;2x2repeat into2m1024px;BClinear/Ndecoded/Rsameweights;2xsupersamplingareaaverage. No houseUVbake.",
+  "normal_finish": "Afterblendnormalize thenmixdecodednormal65pctwithflat35pct andnormalize; intendedsource.65strengthapproximation, actualrendercomparisonneeded.",
+  "ORM": "AO1/Rsource/M0",
+  "shader_colour_field": "FuturegenericVertexColorRGBseed mustretainoldindividualrockcolourfactor.94+.10seed; noprivateattributeinfinalshader. Notyetimplemented.",
+  "native": "NOT_RUN",
+  "files": [
+    {
+      "file": "T_IndividualStone_BC.png",
+      "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db"
+    },
+    {
+      "file": "T_IndividualStone_N_GL.png",
+      "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4"
+    },
+    {
+      "file": "T_IndividualStone_ORM.png",
+      "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693"
+    }
+  ]
+}
