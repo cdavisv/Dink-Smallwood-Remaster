@@ -1,0 +1,17 @@
+{
+  "branch": "art/interior-roof-shared-library",
+  "worktree": "/home/davisc/Work/DinkInteriorSharedMaterialsAdmission",
+  "fix": "Configure raw-relative mesh source filenames before mesh_check; persist mesh without repeating setup.",
+  "native_failure": "Root run 057887d4e6f3490c94e810ffd888209f saved 15 shared packages then failed first mesh source-filename check. Root reports protected inputs unchanged and no finalization crash.",
+  "validation": {
+    "original_order_regression": "FAIL: Verifier observed an absolute/raw import filename",
+    "fixed_shared_roof_tests": "15/15 PASS",
+    "entry_scope_tests": "4/4 PASS",
+    "full_source_audit": "PASS: 4419 binaries, 4255 ledger rows, zero errors/secrets"
+  },
+  "native_execution": "None in this fix checkout. Root owns preserved partial outputs and fresh retry; C++ unchanged.",
+  "sha256": {
+    "Scripts/RoofNative/shared_roof_native.py": "18cd7b16a937c39f2c032ef666801f4a2b162b992c67849c928503211e2efcb5",
+    "Scripts/RoofNative/test_shared_roof.py": "28206907f340f714a42ab213c9783b0fab11d662aaeeb7bc95aeb292a50c6d52"
+  }
+}

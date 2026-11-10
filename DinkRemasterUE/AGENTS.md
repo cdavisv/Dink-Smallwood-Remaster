@@ -1,3 +1,7 @@
+## Shared roof first native trial: ordering fix ready
+
+Actual trial057887d4e6f3490c94e810ffd888209f exited255/292.04s after verifying/saving9textures+6materials. All12796inputs and oldContent unchanged. Firstmesh geometry/UCX checks passed, then rawrelative-source metadata check failed because conversion occurred later in persist(). No mesh saved. All15new partial packages were hash-verified and archived under that run/PartialOutputs after native/wrapper closure; no oldContent moved. Narrow5c1ee69 fix configuresmesh relative filenames BEFORE verification and avoids duplicateconversion. Regression reproduces oldfailure; fresh trial/readback remain required, no assertions waived. C++ unchangedfromownC4build.
+
 ## Shared roof native capability builds complete
 
 Runtime/source f3c84a1 (c07aa88 import support) passed own Editor/Game13.291s/13.261s;12790inputs unchanged,bothkernelproofPASS,7ownmodules/14Editorfilesfreshlyrehashed,preservedthroughGame. Ownedhostprocesses537870/537878/538158closednormally. Current merge also adds3343fe2 fourphase caller/cleanup template; noCPP/asset/Data delta fromcompiledf3. Native23trial/readback/production8bindings+3cameraaliases andGPU remain pending. Old 'extension not compiled' checkpoints below are superseded; no imported material acceptance yet.
@@ -9,6 +13,10 @@ The reviewed c07aa88 importer and narrow shared-source filename metadata support
 ## Current integrated house builds passed
 
 Branch `art/roof-native-current`, runtime df3365c integrating accepted master52dabc/camera/HeroGrowth/booth. Own Editor/Game builds passed83.251s/44.020s; both mount proofs pass,12708protectedinputs unchanged,7ownEditor modules/14Editorfiles preservedthroughGame and freshlyrehashed. HOST514488/514496/515594 absent after normal0,zero signals. Current ignored controls refreshed5415 exactfiles from closed full192camera checkout; priorcontrols archived, noCode/DLL/trackedData/audio overlay, notfreshimport. Docs/Verification/RoofNativeCurrent/current-builds.json pins results. Copied offline cold-only assertion was stale for explicit ownincremental recipe; preserved failure, replaced with exactprior14Editor receipt/baseline check,15offlinePASS. No assertion/runtimepolicy changes. Newcombined native/GPU/cook and sharedmaterial productionactivation remain pending; older187/readback/GPUproof below is prior-base evidence.
+
+## Shared roof mesh metadata ordering fix — 9 November 2026
+
+In `art/interior-roof-shared-library` at `/home/davisc/Work/DinkInteriorSharedMaterialsAdmission`, configure relative mesh import-source filenames before `mesh_check`; that verifier inspects filenames before save. `persist(mesh)` then saves without repeating metadata setup. Root actual trial `057887d4e6f3490c94e810ffd888209f` stopped after 15 shared saves at this ordering bug; Root owns partial-output preservation and a fresh trial. No UE launch or C++ change here. Regression proves original order fails at filename readiness; fixed full shared suite 15/15 and entry-scope 4/4 pass. Full source audit passes (4419 binaries,4255 ledger rows,zero errors/secrets). See `Docs/Verification/InteriorRoofSharedNativePreparation/metadata-order-fix.json`; prior preparation/native-pending statements remain historical.
 
 ## Shared roof native preparation (not executed)
 
