@@ -1,3 +1,133 @@
+## Normal package helper: Cook10, shaders and rendered door round trip pass
+
+At8913871, ordinary Scripts/package.sh completed actual Cook10 in308.248s with12938 immutable inputs unchanged, seven own Editor modules,433 cooker shader-overlay observations and unchanged host Engine header/stage. All four FSubsurfaceDebugCS shaders validate as Vulkan1.3 and match the successful Cook8 shader bytes. Actual containers contain73roof packages/sevenmaps/three exact ArtJSON files. There are96 changed logical chunks versus Cook8 despite unchanged source; derived byte cause remains unestablished, so containers are not claimed identical.
+
+This actual Cook10 package passes CH1 (one clean success, exact accepted narrative trace) and rendered gameplay (seven captures, real held-W exit1→439 and return439→1, normal shutdown,12977 inputs unchanged). Zero log errors/four warnings retained: two unused bindless settings and two Vulkan shutdown resource/leak warnings. CH1 PLAN/index changed during launch; reconstructed original packet matches its known SHA and all execution code/kernel/policy remained exact, but continuous complete packet identity is not claimed. Cook10 evidence retains that qualification and all previous failed attempts.
+
+Runtime remainsf973/C6; helper/scripts/docs only since that build. Visibility683 focused11 and rendered203V3 pass, full196 repeat remains required. Separate generated-debug-prism split0236131 is committed but not built/imported/tested; oversized visible cream blocks originate in combined Visual debug geometry. Distant greybox geometry, global collision rollout, new fireplace/exterior native imports and final photoreal art remain unfinished. PR45 scoped delivery review/merge next; no whole-goal completion claim.
+
+## Normal helper device-scope correction; actual UAT retry pending
+
+Actual normal-helper Cook9 exited134 before cooker creation: .NET Guid.NewGuid crypto initialization failed. All12937 source/Editor inputs and Engine header/staging preimages unchanged; no assets/cooker created. Three-mode namespace probe reproduces random/urandom EACCES and the same libSystem.Native crypto return-1/errno13 only under plain nested rootbind. Binding the existing /dev restores reads/nativecrypto success. Helper now preserves baseline /dev with one dev-bind; one shaderRO overlay unchanged. Regression/proof retained in VulkanShaderPrintCook8 docs, all prior failures preserved. New real normal-helper cook required before merge; Cook8 shader/render/realW success remains valid for unchanged runtime/header bytes.
+
+## Packaged renderer and real-input door round trip passed; reproducible shader workaround
+
+Source runtime remains f973/C6; new changes are Scripts/package.sh, a narrow Vulkan ShaderPrint helper/tests, and evidence/status only. Three earlier packaged attempts crashed on invalid FSubsurfaceDebugCS SPIR-V; exact core/archive matching and all four validator failures identified ShaderPrint resource copies in a local struct. Cook8 privately selects the existing global-resource Vulkan path, keeps graphics/PSO features enabled, and leaves the installed Engine header unchanged. All four regenerated shaders validate; actual roof73/maps7/ArtJSON3 inventory and packaged CH1 pass.
+
+Actual packaged GPU Cook8 passes on installed RADV26.2.5 with original normal-pool arguments: seven captures, real W exit1→439→1, normal exit/display cleanup,12957inputs unchanged,zero log errors. Four warnings retained (unused bindless settings and Vulkan shutdown image-resource/leak warnings). Docs/Verification/VulkanShaderPrintCook8 contains exact receipts/captures/minimalpatch. New normal package helper reproduces exact one-file read-only overlay without Engine host edits; actual fake-Engine mount and five unit tests pass. Full normal-helper UAT cook is not yet claimed; QA Cook8 tested the identical shader bytes through its stricter wrapper.
+
+Visibility PR55 at683a4c1 has eleven focused checks passing after missing54templatefiles and oldprobecontext setup were corrected; full196 repeat and GPU203 remain required. Initial full10fail report preserved. Runtime fd3 C41/Native28 pass, Stage26 source-preservation refusal saveszeroassets; diagnostic7cd uncompiled. Fireplace combinede683 native35 unrun; cottage V33 material work unaccepted. PR45 review/merge follows packaging delivery checks; no whole-goal completion claim.
+
+## Combined roof/hero native, Editor visuals and package data verified; packaged renderer fails
+
+Tested f97349ed95b05b81a1f24d117279b97ed152126e with own C6 builds. Current full195 PASS (163clean/32HTTP-EOSwarning successes/zero failures-skips), GPU20117screenshots/23camera-headroom-input states and realW exit1→439→1 PASS. Cook7 passes; actual container inventory proves23shared+50retained roof packages/sevenmaps/threeexactArtJSON. PackagedCH1 exact1clean PASS and native traceSHA20227a637e1b3872c7b82494023a8224225b285462739113e9f3e799524c1d02 matches.
+
+Packaged rendered startup NOT accepted: both actualGPU202 attempts crashed before input/photos in Radeon Vulkan compute PSO path, including verifiedsingleprecacheworker. Source/stage12940unchanged and private displays closed normally. Exactdriver symbols unavailable; no driverrootcauseclaim. Private newer-driver comparison preparation only, no systemdriver update. Docs/Verification/RoofNativeCurrent/combined-f973 contains indexedactualreceipts/fivecurrentcaptures/diagnosis, no cores/authfiles. PR45 remainsdraft pendingpackagedpixels; inheritedjunction/tangentlimits, separatevisibilityfix, globalbarrelrollout andnewfireplace/exterior/finalart remainopen.
+
+Separatevisibility branch3fa6e05 fixes scratchcontroller registration after firstfocused exact1failedbeforebehavior; originalassertions retained, rebuild/native/renderpending. RuntimeStage25native0/helperguardFAIL/zeroassets/source13318unchanged; exactrootEulerTEXT roundingdiagnosed, no tolerancewaiver. No whole-goalcompletionclaim.
+
+## Accepted hero source history validated; combined runtime rebuild pending
+
+At accepted-master mergebd35802, preserve11exactpriorhero source preimages under DefectFixes_9Nov2026/History/<oldsha>/<basename>, verified against oldGit/LFS. Append11historyrows after exact4314-row mergedprefix =>4325. Narrow frozen11revision validator proves oldarchive+currentacceptedbytes and laterroworder; metadata mode admits only exact stagedpointerpath/OID/size and reports it separately. No oldrow rewrite, genericlatestrow exemption or runtime changes in this history fix.
+
+All531Python tests pass (27history executions/17distinct cases). Sequential full source audit passes4470actualbinaries/517Python/22shell/4325ledger/11binaryhistory, zero missing/hash/syntax/secrets. Prior failed audit retained; a concurrent testtemp scan was rerun sequentially aftertests. Isolated metadata-only CI-style checkout verification and own combined Editor/Game rebuild remain pending. Prior194full success remains scopedbee8f2b; accepted af6hero+roof snapshot is not yet runtime-validated. Runtime stage18raw repair succeeded at exactmatrix stage, next normaltarget-only cacheNav/Localrefresh underC31 tests; no saved candidateworld/default/GPU yet.
+
+## Accepted hero fixes integrated; new build and source-history validation pending
+
+Current branch merges accepted master af6f6c4 (PR51 hero wall clearance/cuffs/chest/belt and PR54 packaged parity) after the closed194-test roof run. Exact25 changed LFS files match accepted master OIDs. Only conflict was append-only ledger: preserve all4278Rootrows byte-for-byte, then append exact36masterrows =>4314; independent review passed. Roof Data/native packages remain unchanged. The prior194/194 and20-photo GPU evidence is scoped to bee8f2b/e65b19b and does not validate this combined snapshot. Own rebuild/current checks/cook remain required.
+
+First full source audit correctly exposed11 historical hero rows now referring to replaced source paths; everycurrentbinary matches acceptedGit/LFS, but current verifier compares oldrows to currentbytes. Preserve failure; add exact archived oldsource preimages and narrow explicit history validation before accepting source audit. Do not delete/rewrite oldrows or accept arbitrary latest-row overrides. Historical frozen roof activation epoch remains immutable and intentionally rejects unrelated accepted hero Content changes; use an explicit reviewed successor proof when needed. Root performs offline merge/audit only while Runtime stage18 ownsUEslot.
+
+## Current shared-roof full native validation passed
+
+Branch `art/roof-native-current`, tested bee8f2b with own C5 Editor/Game builds. Actual full Dink run375ed1554f6140c18684b6c59dfe8e80 passed194/194:161clean+33HTTP/EOSwarning successes,0failed/notrun, native0/709.754s,12845protectedinputsunchanged,7ownmodules. Focused camera test passed1/1/0warnings34.322s; originalfailedfull and prelaunchCPUrefusal retained. See Docs/Verification/InteriorRoofSharedActivationGameplay/full-native-current.json. Root UE slot released to Runtime stage18. These results exclude newly accepted masteraf6f6c4 hero fixes; integrate them only after this closed epoch with exact append-only ledger conflict resolution, own rebuild and appropriate current verification. Cook/package, fireplace/exterior import, finalart and globalbarrelrollout remain pending; no whole-goal completion claim.
+
+## Full native suite: stale camera inventory fixture correction
+
+Actualcurrent742b3c9 fullDink completed194/194:161clean+32warning successes,1failed FadesAndRestoresPhysicalHouse (native255/751.237s/12844unchanged/7ownmodules). Onlyerrors: expectedall9legacyopaque got1, legacyroofidentityset incomplete, nolegacyceilingfound. Activated8sharedroofs alreadyenteredmappedfade/restorechecks; oldteststillcountedthembyoldpaths. Correctedfixture explicitlyrequires8exactsharedmappedroofs+1exactlegacyunmappedchimney andfoursharedroofpanelsasceiling. All materialrestore/geometry/collision/input/unknownmaterialassertions/timeouts retained; production/runtime/Data unchanged. C5compile/focused/full checks pending; rawfailurepreserved in Docs/Verification/InteriorRoofSharedActivationGameplay/full-native-first.json. No current full-green claim.
+
+## Active shared roof: rendered door traversal passed
+
+At e65b19b, postactivation saved23 readback passed/native0/79.430s/import0/save0/12813unchanged/7ownmodules. Current GPU captured20photos, actualWdoor1→439→1PASS, active8sharedroofmeshesconfirmed,26camera/headroom/inputstates0errors; normalgame/private199closure0/564.327s/12852inputsunchanged. Source lighting/material/physics were not temporarily changed. Exitheadvisible, lift51.3356cm/projectedcapsuletopY73.959px/samecottageCameraBLOCK/error0; interior and unblocked exterior lift0. See Docs/Verification/InteriorRoofSharedActivationGameplay for exact hashes/5screenshots. Current fullnative/cook, newerbrickfireplace/exterior, broaderbarrelrollout and finalart/lighting remain pending. StoredroofTangentYhandedness NOT_PROVEN byhistoricalinspector. Do not use these boundedchecks as whole-game approval.
+
+## Shared roof Data activation candidate — review before native execution
+
+Isolated `/home/artist/Work/DinkInteriorRoofSharedActivation`, branch`art/shared-roof-data-activation`, base5ad5cd1. Exact8roofelement mesh paths select actualsaved InteriorRoofSharedV1 packages;3opaque→separate masked aliases added. All other Data semantics,oldnativepackages,old35sourcefiles and4,255ledgerprefixrows unchanged;23actualreadback-hash candidate rows appended. Additive2JSON NativeDelivery registration supersedes historicaltrial-only labels without altering oldsource metadata/currenthash rows. Explicitpostepoch pins alloldArt/library/Content preimages andexact5reviewedPythonhelper deltas; oldtrialcontract stillrefusesactivatedepoch.
+
+Ownsource-only validation:12activation tests+15shared+4lifetimePASS; fullbinary/sourceaudit4,442binaries/4,278ledger,0hash/missing/secrets. Global artstandardstill202assetviolations(23family/186material), exactlybaselinecounts;newdeliveryrecords only3softtri warnings. No artwaiver. NoC++/Configchanges,UE/build/import/save/GPU/cook executed here. Root must reviewcommit, then merge/measurefresh allContentRO postactivationreadback,wholeGame native/GPU199/door/cook; allremainpending. Docs/Verification/InteriorRoofSharedActivation holds exactepoch/delta/rawproofs. Rootdelivery checkout remained untouched.
+
+## Shared roof native import and saved readback passed
+
+Delivery4d43bab: fresh23 import passed/native0/393.540s and separate read-only fresh23 readback passed/native0/75.447s (imports0/saves0). Both retained12797protectedinputs, existingContent and verified7owncustommodules. Exact8roofmeshes+9textures+6materials hashes: Docs/Verification/InteriorRoofSharedNativeTrial/results.json. First failed metadata-order attempt and15quarantinedoutputs remain preserved externally; no oldContent overwritten. Production activation/camera aliases/GPU/cook pending; stored tangent-Y handedness NOT_PROVEN. Root released UE slot to RuntimeHardness Current staging.
+
+## Shared roof first native trial: ordering fix ready
+
+Actual trial057887d4e6f3490c94e810ffd888209f exited255/292.04s after verifying/saving9textures+6materials. All12796inputs and oldContent unchanged. Firstmesh geometry/UCX checks passed, then rawrelative-source metadata check failed because conversion occurred later in persist(). No mesh saved. All15new partial packages were hash-verified and archived under that run/PartialOutputs after native/wrapper closure; no oldContent moved. Narrow5c1ee69 fix configuresmesh relative filenames BEFORE verification and avoids duplicateconversion. Regression reproduces oldfailure; fresh trial/readback remain required, no assertions waived. C++ unchangedfromownC4build.
+
+## Shared roof native capability builds complete
+
+Runtime/source f3c84a1 (c07aa88 import support) passed own Editor/Game13.291s/13.261s;12790inputs unchanged,bothkernelproofPASS,7ownmodules/14Editorfilesfreshlyrehashed,preservedthroughGame. Ownedhostprocesses537870/537878/538158closednormally. Current merge also adds3343fe2 fourphase caller/cleanup template; noCPP/asset/Data delta fromcompiledf3. Native23trial/readback/production8bindings+3cameraaliases andGPU remain pending. Old 'extension not compiled' checkpoints below are superseded; no imported material acceptance yet.
+
+## Shared roof native preparation integrated
+
+The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.
+
+## Current integrated house builds passed
+
+Branch `art/roof-native-current`, runtime df3365c integrating accepted master52dabc/camera/HeroGrowth/booth. Own Editor/Game builds passed83.251s/44.020s; both mount proofs pass,12708protectedinputs unchanged,7ownEditor modules/14Editorfiles preservedthroughGame and freshlyrehashed. HOST514488/514496/515594 absent after normal0,zero signals. Current ignored controls refreshed5415 exactfiles from closed full192camera checkout; priorcontrols archived, noCode/DLL/trackedData/audio overlay, notfreshimport. Docs/Verification/RoofNativeCurrent/current-builds.json pins results. Copied offline cold-only assertion was stale for explicit ownincremental recipe; preserved failure, replaced with exactprior14Editor receipt/baseline check,15offlinePASS. No assertion/runtimepolicy changes. Newcombined native/GPU/cook and sharedmaterial productionactivation remain pending; older187/readback/GPUproof below is prior-base evidence.
+
+## Shared roof mesh metadata ordering fix — 9 November 2026
+
+In `art/interior-roof-shared-library` at `/home/artist/Work/DinkInteriorSharedMaterialsAdmission`, configure relative mesh import-source filenames before `mesh_check`; that verifier inspects filenames before save. `persist(mesh)` then saves without repeating metadata setup. Root actual trial `057887d4e6f3490c94e810ffd888209f` stopped after 15 shared saves at this ordering bug; Root owns partial-output preservation and a fresh trial. No UE launch or C++ change here. Regression proves original order fails at filename readiness; fixed full shared suite 15/15 and entry-scope 4/4 pass. Full source audit passes (4419 binaries,4255 ledger rows,zero errors/secrets). See `Docs/Verification/InteriorRoofSharedNativePreparation/metadata-order-fix.json`; prior preparation/native-pending statements remain historical.
+
+Root-requested four-phase caller template added separately after c07aa88 freeze. It uses the existing Root guard/save-tracker callback boundary and reviewed VistaV7 function-scope/chained-traceback cleanup; releases verifier/CDO closures before Python shutdown.4cycle-surrogate tests pass; actual UE teardown untested. No newlauncher/framework/UE execution. Entry and underlying importer hashes are indexed in the native preparation docs.
+
+Native preparation validation:14offline importer/profile/slot/alias/geometry-source regressions and10architecture tests pass. Full actual source audit4419binaries/507Python/22shell/4255ledger,0errors/secrets. The first post-merge audit saw3new camera PNG LFS pointers; hydrated exact local objects and reran successfully. Current Root df3365c raw ledger prefix is exact; no Content/Data/native ledger mutations. Source helpers remain uncompiled/unexecuted in UE pending Root review.
+
+# Shared roof native adapter prepared — no native execution
+
+Branch`art/interior-roof-shared-library` at merged5237868 plus this preparation. Source/library5260f1b and policy39b617d are already available to Root. `Scripts/RoofNative/shared_roof_{contract,native,verify}.py` implements23fresh trial,fresh readback,8existing production material-only bindings+exact3camera aliases,and fresh final23production readback. Fourteen offline regressions pass; all17322 source triangles remain uniquely oriented/matched after role consolidation. Existing204authored UCX and production geometry/UV/normals/source filenames/build/collision policy must stay exact. Temporary8trial meshes are not production delivery.
+
+Small editor-only filename scope extension (exact8roof+9texture names/source roots) is UNCOMPILED. `supports_shared_roof_source_filenames` fails oldDLLs before any import. Root must review then build/launch through its normal guarded private runner. No UE/build/asset import/save/Content/Data/nativeledger activation has occurred here. Concrete callback factories and caller/save/guard obligations are documented in Docs/Verification/InteriorRoofSharedNativePreparation. Actual23import/readback,8productionbindings+3aliases,finalreadback/currentGPU and candidate native ledger updates remain outstanding; source preparation alone is not whole-goal completion.
+
+---
+
+## Current roof integration — accepted camera merged
+
+This branch now integrates accepted master `52dabc60e0ed3b11b88c7e3974344838dd58b997` (camera PR49, HeroGrowth, East Wilds booth and audio/owner decisions). Merge conflicts were documentation additions only; both histories are retained below. The camera fix has full192/latestGPU acceptance on its own branch. Roof-specific187/readback/GPU evidence below is historical on its prior runtime base; it does not prove this combined roof snapshot. Rebuild, compatible current generated controls, shared material/source admission, native/GPU/cook and PR45 review/merge remain unfinished. Interior shared-material source work uses a separate worktree based on2ba4570; do not overwrite it. No active Root UE process.
+
+Full source registration audit:4416 actual binaries,501 Python/22shell source files,4255ledger rows,zero missing/hash/syntax/secret errors. All4197prior raw rows remain exact;58new source rows are candidate. Full art-standard exit1 remains qualified by existing186material/23family errors,not waived.
+
+# Shared interior roof source registration (isolated lane)
+
+Worktree `/home/artist/Work/DinkInteriorSharedMaterialsAdmission`, branch `art/interior-roof-shared-library`, base`2ba4570`, policy commit`39b617d`. Registers3generic2m surfaces plus3derived shared camera variants using9identical approved maps and8explicit roof source records. Name-normalized source5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745 preserves all geometry/UV/normals/TRS/312UCX and approved shader/pixels; actual8FBX17322tri/204UCX/TBN checks pass. Actual relocated source/library/reuse reopening passes. Root accepted source appearance for a native trial, not final game appearance. See Docs/Verification/InteriorRoofSharedSource and new source README/proofs.
+
+The narrow architecture policy passed10 tests and actual8roof declaration/use checks. The global checker still reports existing186material/23family errors, with zero new roof errors and3roof soft-triangle warnings. No invented sprite families. Original gable dark junction slivers remain OPEN: west gable roughlyX-7.4375m,Y3.28..4.10/Z4.92..5.33m andY4.46..4.84/Z4.55..4.71m (projected image bounds, not certified openings). Central source rays hit roof/plaster surfaces; later construction owner must distinguish closure from shading before changing frozen geometry. Inherited is not final-art acceptance.
+
+No UE/native/Content/Data/gameplay/collision changes. Native preparation must produce23trial packages(8mesh+3opaque+3masked+9textures), then actually update the8production mesh material bindings and exact3camera aliases after Root approval/validation; do not stop at unused trial assets. Existing imported slot names must map semantically to registered roles; no copied old slot indices. Keep separate opaque/masked camera convention withDinkCameraOpacity1/shadow1,N_GLgreenfliptrue,sourceF0. Current master cameraPR49/52dabc60 and accepted owner/audio changes must survive integration. Root owns native/build/GPU launch.
+
+---
+
+# Authored architecture family policy (isolated source lane)
+
+Worktree `/home/artist/Work/DinkInteriorSharedMaterialsAdmission`, branch `art/interior-roof-shared-library`, base`2ba4570`. Root authorized a narrow no-sprite identity exemption for declared authored screen architecture. Ten focused checker regressions pass; no runtime/native change. `Docs/Verification/AuthoredArchitectureFamilyPolicy` records the exact declaration/use constraints and baseline error counts. Companion shared roof source/library registration is being prepared in this worktree; no UE launch, native import or Data activation has occurred. Preserve current master camera/owner/audio changes when this source-only branch is integrated.
+
+---
+
+# Roof delivery: current verified state
+
+Worktree `/home/artist/Work/DinkRoofNativeDelivery`, branch `art/roof-native-current`, runtime base `5d65ed88`. Read [current validation](Docs/Verification/RoofNativeCurrent/README.md) and its `results.json`. The active coordination record is `/home/artist/Work/DinkQA/RoofV12dRootReview/HANDOFF.md`. Older headers below are historical.
+
+Own Editor/Game builds pass; all 494 Python tests and stable source audits pass. Native suite: 187/187 success, including 30 cases with HTTP/EOS warnings; the first cold focused readiness timeout is preserved. Fresh readback passed for all 50 saved roof packages (10 meshes, 12 LODs, 48,090 triangles, 312 hulls, 25 textures, 15 materials), without imports, saves or protected-input changes. Tangent-Y handedness remains unproven.
+
+Actual held-W exit `1 -> 439` and return `439 -> 1` passed with scripts enabled and movement unlocked. GPU run `6db9b610-72fe-43bb-9f25-8c554844c039` produced 26 screenshots, preserved 12,703 inputs and exited normally; Root verified game, wrappers and private display closed. No Root game remains running.
+
+The current exterior cottage blocks the camera: a matching Camera-channel sweep hits `SM_Cottage_Stonebrook_01` and retracts the 400 cm arm to 106 cm, clipping Dink's head. Vertical camera-height experiments improved framing while retaining collision; a lateral offset entered the unlit exterior shell and was rejected. Original numeric camera offset was restored and verified before quit. Adaptive outdoor headroom source work develops separately; no camera fix is shipped here yet.
+
+Current remote master is `fbf060bb77ad0652a41e45e13c2c8855a14e1f86` (runtime `72fa9c0` plus packaged-parity docs). This branch must preserve its accepted voice ledger and owner-decision changes when integrating. Runtime fitted collision work is separate in `/home/artist/Work/DinkRuntimeHardnessIntegrationCurrent`; it still requires compilation, native acceptance and actual two-origin activation. Do not copy mutable source blindly into this roof-only lane.
+
+The roof PR is draft/unmerged. Current cook/package, shared material and source-record art-standard reconciliation, final photoreal art and PR review/merge remain open. Existing art-standard violations and ten missing mesh source records are not waived by successful runtime tests. The new exterior cottage source and hero refinement are unfinished. Preserve the frozen source payloads and all historical failure evidence.
+
 ## Outdoor camera final validation — ready for merge
 
 Branch `fix/outdoor-camera-headroom` tested at73ccdbe including mastere417/HeroGrowth/booth. Full192/192 completed,0failed (160clean+32HTTP/EOSwarningtests); focused3/3clean, own Editor/Game pass. Latest actualGPU147.32s/8PNGs/12634unchanged: realWexit1→439/return439→1 PASS, scripts/input enabled; lift49.2714cm/fullhead visible, samecottageCameraBLOCK/sweep error0, interior/free0lift/free400cm. Ownprocess/displaynormalclosure verified. Four source-file review hashes unchanged. Docs/Verification/OutdoorCameraHeadroom contains portable summaries/latest3screenshots. Earlier sections below are historical checkpoints; their pending statements are superseded here. PR49 publication/merge to be checked on GitHub. Final art and actual fitted barrels remain separate unfinished work.

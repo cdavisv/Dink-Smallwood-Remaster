@@ -1,0 +1,67 @@
+{
+  "status": "SOURCE_ONLY_ROOT_REVIEW_PENDING",
+  "source": "InteriorRoof_Shared2mCandidate.blend",
+  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "FBX": [
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "file": "FBX/SM_IndoorRoof_EN_01.fbx",
+      "sha256": "8823d9b55719d670be3d70b5209c333e58fc35652d1af18011cfb705cd044d4e",
+      "triangles": 4986,
+      "UCX": 48
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "file": "FBX/SM_IndoorRoof_ES_01.fbx",
+      "sha256": "0b35b102a4dcf51a5f28188337e9cd12a1bbcae0d373256530ae6ffcc35123a0",
+      "triangles": 3474,
+      "UCX": 45
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "file": "FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+      "sha256": "93468600b8ac9a0e0b9a8ad7a9184634b2919c34f98af6dfc5674e3174562641",
+      "triangles": 266,
+      "UCX": 3
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "file": "FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+      "sha256": "76892690915fc36da76e4cd942163e38cc45a82652d97456cf6115854a6460c1",
+      "triangles": 266,
+      "UCX": 3
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "file": "FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+      "sha256": "a18c185fcd6c9c4d9592fd1732aa2f617bbd3f6266edc220753f9f983bf8333b",
+      "triangles": 266,
+      "UCX": 3
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "file": "FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+      "sha256": "ad5700626e11ae1f264bbded919b7e0efc578ad498b4120be6f9477f2069f356",
+      "triangles": 266,
+      "UCX": 3
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "file": "FBX/SM_IndoorRoof_WN_01.fbx",
+      "sha256": "9991ce10083f14b1a5f84cea6806d14206792becb3b803584962a0434ef2c61a",
+      "triangles": 4924,
+      "UCX": 57
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "file": "FBX/SM_IndoorRoof_WS_01.fbx",
+      "sha256": "fedea101d1dbef12c3bc32f5c7f6977ad05f750e56c230eb21566e71a03a1f8c",
+      "triangles": 2874,
+      "UCX": 42
+    }
+  ],
+  "render_triangles": 17322,
+  "UCX": 204,
+  "textures": "../../../SharedMaterials/manifest.json",
+  "native_run": false
+}

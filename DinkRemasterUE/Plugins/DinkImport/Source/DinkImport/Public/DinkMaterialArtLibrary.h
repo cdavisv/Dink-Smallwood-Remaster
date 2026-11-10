@@ -6,6 +6,7 @@
 
 class UMaterial;
 class UStaticMesh;
+class UPrimitiveComponent;
 
 /** Detached read-only snapshot; modifying this value cannot mutate its source body. */
 USTRUCT(BlueprintType)
@@ -28,6 +29,10 @@ class DINKIMPORT_API UDinkMaterialArtLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
+	/** Detached live responses for all64 serialized channels, including hidden enum values. No writes. */
+	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+	static TArray<int32> InspectPrimitiveCollisionResponses(UPrimitiveComponent* Component);
+
 	/** Detached JSON per-LOD import metadata via public source-model accessors. Never edits/cooks/saves. */
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static FString InspectStaticMeshSourceLods(UStaticMesh* Mesh);

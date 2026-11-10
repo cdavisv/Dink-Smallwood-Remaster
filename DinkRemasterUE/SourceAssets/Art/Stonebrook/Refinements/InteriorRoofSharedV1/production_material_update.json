@@ -1,0 +1,125 @@
+{
+  "status": "PREPARATION_ONLY_NOT_EXECUTED",
+  "trial_package_count": 23,
+  "production_changed_packages_after_trial": 23,
+  "production_scope": "Eight existing roof mesh packages +fifteen shared texture/material packages. Trial-only8meshes are not admitted as unused production payload.",
+  "meshes": [
+    {
+      "mesh": "SM_IndoorRoof_EN_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01",
+      "expected_existing_package_sha256": "9f4dee8b2f6d7bd11212f6332e64f5c22c477ed140ef6b9d0cf119f6e7ed2aca",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_OakLonggrain_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_RoofBoards_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_OakEndgrain_Baked": "MI_Shared_OakEndgrain2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 48,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_ES_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01",
+      "expected_existing_package_sha256": "bb8f16975c63e37b1ca42e9c5c53edc9d0c40ecea813ddd65b82322b93981279",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_OakLonggrain_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_RoofBoards_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_OakEndgrain_Baked": "MI_Shared_OakEndgrain2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 45,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_Gable_EN_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "expected_existing_package_sha256": "bad935ee06b09dc6dd41d26549ef62df265159e1224fb517c025f8368184ef33",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_GablePlaster_Baked": "MI_Shared_LimePlaster2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 3,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_Gable_ES_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "expected_existing_package_sha256": "044dc7d53e91861afd89728f51793362ea082158eb76fa1ef3818f73600ce0ac",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_GablePlaster_Baked": "MI_Shared_LimePlaster2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 3,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_Gable_WN_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "expected_existing_package_sha256": "005d304eef902abea5dc4d77ce30ddf3c3e26a95dc51c8171d9f019b8b809f8a",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_GablePlaster_Baked": "MI_Shared_LimePlaster2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 3,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_Gable_WS_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "expected_existing_package_sha256": "69adec1662938a5e2eb1607151d86bd252d9e8750669d263b1e57645634b3efd",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_GablePlaster_Baked": "MI_Shared_LimePlaster2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 3,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_WN_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01",
+      "expected_existing_package_sha256": "f3b8316aac12b49f8dcfb5c1290f6e82b50467bba2aa9c9a2722a42904acfce7",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_OakLonggrain_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_RoofBoards_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_OakEndgrain_Baked": "MI_Shared_OakEndgrain2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 57,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    },
+    {
+      "mesh": "SM_IndoorRoof_WS_01",
+      "existing_package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01",
+      "expected_existing_package_sha256": "ec85cf0c28906a17644f0aad750fdb4685326eb57a634e3e40eec2dfa7493a8c",
+      "trial_package": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01",
+      "material_bindings_by_imported_slot_name": {
+        "MI_InteriorRoof_OakLonggrain_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_RoofBoards_Baked": "MI_Shared_OakLonggrain2m",
+        "MI_InteriorRoof_OakEndgrain_Baked": "MI_Shared_OakEndgrain2m"
+      },
+      "geometry_change": false,
+      "UCX_expected": 42,
+      "production_strategy": "Material binding update only on existing native mesh. Do not reimport or replace geometry/collision. Retain existing geometry import filenames; record shared material source separately."
+    }
+  ],
+  "camera_material_aliases_at_final_activation": {
+    "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.MI_Shared_OakLonggrain2m": "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m_CameraMasked.MI_Shared_OakLonggrain2m_CameraMasked",
+    "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.MI_Shared_OakEndgrain2m": "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m_CameraMasked.MI_Shared_OakEndgrain2m_CameraMasked",
+    "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m.MI_Shared_LimePlaster2m": "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m_CameraMasked.MI_Shared_LimePlaster2m_CameraMasked"
+  },
+  "camera_alias_activation": "Only after validated trial, Root review and exact existing Data preimage guard. Preserve all original mapping keys/values; append exactly these3. No other Data/gameplay/transform/collision changes.",
+  "required_checks": [
+    "Exact original native geometry/UV/normals/TRS/204UCX before/after material assignments",
+    "Bind imported FBX slot names using explicit aliases, never old dense slot indices",
+    "Saved shared PBR graph/source pixels/normal green-flip/F0 and separate masked shadow1 contract",
+    "Fresh readback and actual GPU/camera/door traversal before publication"
+  ],
+  "native_run": false
+}

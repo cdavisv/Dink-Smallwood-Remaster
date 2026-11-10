@@ -1,0 +1,179 @@
+{
+  "schema": "dink-shared-roof-activation-gameplay/1",
+  "tested_commit": "e65b19bc0a0566265b90ca043eeaee1cdbb7d6e3",
+  "native_saved_readback": {
+    "passed": true,
+    "phase": "activated23_saved_readback",
+    "contract_digest": "e1c82b92a6948a4bfdf26fd8003ed5ea2a2128654120fe9e99fb5a1059910f71",
+    "elapsed_seconds": 79.42999232900183,
+    "source_files_unchanged": 12813,
+    "custom_modules_verified": 7,
+    "imports": 0,
+    "saves": 0,
+    "packages": {
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_BC.uasset": "084d57bc6030e4686edd9e6acdb4a249046a9aede878cc5618b9299f31f46aaf",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_N_GL.uasset": "1601591736fc259d0e1419fec69566b6c74ee78e02b72bae20cfb36fe5f6b480",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_ORM.uasset": "441278952ccd6770ba24803599f995d3fe7baa9ab05f7161fa48dd7eb5e0ac29",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_BC.uasset": "34c0dab03a8ce11b099f2e501139cd634e9dfa26eb60276184fb64ea6ae2219e",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_N_GL.uasset": "fe703122a3a49d3af2651a36cf4b66e06ce127b1516e3e84938dbbd3c8c897de",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_ORM.uasset": "f715cfb768b54573b4387c683abd98e7f2c0fd1db232621c2448c785446e8275",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_BC.uasset": "8fd888b93d01cefd5e232d8a4bfd7f8c5fb609dae2c7a6ec0e3d8931484c3602",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_N_GL.uasset": "af24cb9a65b0bb08eb01796b0915c78c7ba01dcafc0dc6ea16d5bd5ef09d0470",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_ORM.uasset": "e01db4e30069694955afa0ec218730be916521f8d06b71abf090f2a2b391c6df",
+      "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.uasset": "641e84ee13527605f4405ce89c69ca48953a120241c4482ee0549a7251741f6d",
+      "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m_CameraMasked.uasset": "58cc09ab9dd734aa816df91675795253e273441c2b7905bb0c4dc2aba8660742",
+      "Content/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.uasset": "360e3381e0aac0bd549cb4b2db4a73a96c7544ef3c7afde12a98301296641511",
+      "Content/Dink/Materials/Shared/MI_Shared_OakEndgrain2m_CameraMasked.uasset": "385f351590ce1b381cc7485917241b5fabdf7ac0890f4005d5c7ebf27c41cbe4",
+      "Content/Dink/Materials/Shared/MI_Shared_LimePlaster2m.uasset": "bc8dbb30f9749f6e5abdae01edf1ba11f87dfcf58407acec1adf1ddd33d15484",
+      "Content/Dink/Materials/Shared/MI_Shared_LimePlaster2m_CameraMasked.uasset": "d3c195a24e5f3eb9f44ee6eaff4ad6b022f06fb505e555b38bb9f38610ef742b",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.uasset": "dd9eabf1a7910cf4575694aca59028bdf376f0b2eac127fc5608a54db951ae5d",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.uasset": "bdc611910954b0b0c11e01cf2a0a20fa9cc8ac164f3694c9ff1622eec6b4344a",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.uasset": "a848b5457fa90d140809a3fbff6fa94670b9c9a8314184949231f9fdc2d3e030",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.uasset": "95a3f86bf402b7317035034ccc595c585089586d4e119bccc682b3cc85b7f7cf",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.uasset": "2a6c5fccbecaa56d444e03765f88189ccb75663c11ae54466421674c3157bbfe",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.uasset": "2fa2abcf448ea2b01d5e6d6a7185b8fa34df9bf5a59c8c8d7132daa9c7c28087",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.uasset": "44abbfe740090ef4b85d80208bcf498f43af76449d7b392b868773c5c20375d8",
+      "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.uasset": "f02f1f033bc865e53ff7d5a42eb70b75a043618f88a1114fd5e231be98f7b465"
+    },
+    "raw_report_sha256": "9e6f47d75ce3c0e7f461a4723adcc44b8bf88d61a5cdd1e689e3687ff428d5a6"
+  },
+  "gpu": {
+    "run_id": "52f47837-f032-4b74-9c8d-826f65d4e562",
+    "exit_code": 0,
+    "elapsed_seconds": 564.3270759750012,
+    "inputs_unchanged": 12852,
+    "screenshots": {
+      "door-before.png": "128331f809b19ed397e1a0e7191f78a189a90802691af3f051940d976f3afb0e",
+      "door-exit.png": "67a4568d21d8909c793cf9d33f62a513f531ef6bb933a62daec6907e885592c6",
+      "door-return-settled.png": "339a4e314437411a2493d036da64fa343d1766666cf6925611676209e77c5228",
+      "door-return.png": "704fcd14761445a98007e36ed30e26906d97ddbcf0f1047f6942285e58227475",
+      "final.png": "691dc7ab400e5b38fbd6f5a2f804da64bf8abc36e988c4719a98c4bf97600472",
+      "fireplace-actual-join.png": "2da38e46249abb7091c526561f978a754c5cbf5c0724acd47b84997ebaa60b25",
+      "house-close.png": "b95dc310e968c742e5b82901046cc476e5b5c5bc5160629e6791b752c6075c31",
+      "house-props.png": "e526fd592f7cf70e38191680591541be306e9c216969a75c2a8288105a3abbd6",
+      "house-room.png": "bb5503e7fd55ed1cfe9d5626ddd9aa58e6ed9dce7601dae45a9c552a20be6d21",
+      "house-wall.png": "5776cee8936bd009e91c4756fa2bf90b507829611c69d87b4a109adc5b692a3e",
+      "house-wide.png": "9ac91688a1e1abde93a8917928cb07473a8e08541df5c12aaf29f71d103279fe",
+      "outside-arrival.png": "b98283adfe467221a66d5a0f2e7fa85f90c86672ac96276b3d84542365829f1d",
+      "outside-matched.png": "e6bf195f3b019ac33f038f7085775c952465efe3ed81bf7ebd2b55c7cba3932a",
+      "prop-after.png": "8c87941cea52ef592d0605fb5bbc1a9617b8324c2b8993e3bef8674c3c8adc2e",
+      "prop-before.png": "40315d22d767310622cd16cfe59489cd4c690f1ad0025f94a5e49ea8dd3d443a",
+      "roof-clear-0.png": "5f42f028b3ae82cf2daabe75e145ba647e271630963642fefe87459fce320631",
+      "roof-clear-180.png": "daafda64c6c37667e955ea340b06ce5d2e254edec85322216e7f9eef0bbe709d",
+      "roof-clear-270.png": "912ac4396c03da881e5f912ce278d185c7b62716624ec9dad7ce6f5755aa4dd9",
+      "roof-clear-90.png": "facba439cb10852da73d3af859aee6750243a07a49eff4d86aa64338296fe19c",
+      "roof-near-door.png": "95803cee77c0a26ad9ee3f21e08fbce18c0759b41e38318552e923691e4063d1"
+    },
+    "published_screenshots": [
+      "door-exit.png",
+      "door-return-settled.png",
+      "roof-clear-0.png",
+      "roof-clear-270.png",
+      "house-room.png"
+    ],
+    "observer_states": 26,
+    "camera_headroom_input_errors": 0,
+    "active_shared_roof_meshes": [
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
+      "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"
+    ],
+    "routes": {
+      "door-exit": {
+        "result": "PASS",
+        "readbacks": 9,
+        "arrival_screen": 439,
+        "input": "Actual held W and camera orientation, no route teleports"
+      },
+      "door-return": {
+        "result": "PASS",
+        "readbacks": 3,
+        "arrival_screen": 1,
+        "input": "Actual held W and camera orientation, no route teleports"
+      }
+    },
+    "camera": {
+      "door-exit": {
+        "headroom": {
+          "outdoor_headroom_lift": 51.3355598449707,
+          "capsule_top_world": [
+            97729.15523458144,
+            37512.6740236109,
+            194.34999561309814
+          ],
+          "projected_capsule_top_pixel": [
+            639.9999389648438,
+            73.95933532714844
+          ],
+          "viewport": [
+            1280,
+            720
+          ]
+        },
+        "blocking": true,
+        "blocking_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+        "predicted_vs_actual_camera_error_cm": 0.0,
+        "target_arm_cm": 400.0
+      },
+      "door-return-settled": {
+        "headroom": {
+          "outdoor_headroom_lift": 0.0,
+          "capsule_top_world": [
+            -183809.65528327855,
+            393544.28342246165,
+            194.0
+          ],
+          "projected_capsule_top_pixel": [
+            458.330078125,
+            191.06112670898438
+          ],
+          "viewport": [
+            1280,
+            720
+          ]
+        },
+        "blocking": false,
+        "blocking_mesh": null,
+        "predicted_vs_actual_camera_error_cm": 0.0,
+        "target_arm_cm": 240.0
+      },
+      "outside-matched": {
+        "headroom": {
+          "outdoor_headroom_lift": 0.0,
+          "capsule_top_world": [
+            97729.073415625,
+            37504.14577374997,
+            194.34999561309814
+          ],
+          "projected_capsule_top_pixel": [
+            640.0,
+            202.2157745361328
+          ],
+          "viewport": [
+            1280,
+            720
+          ]
+        },
+        "blocking": false,
+        "blocking_mesh": null,
+        "predicted_vs_actual_camera_error_cm": 0.0,
+        "target_arm_cm": 400.0
+      }
+    },
+    "normal_game_and_private_display_closure": true,
+    "raw_terminal_sha256": "d81dabc8df6c736b6e211df47597da054d6ca3f3e3568bb655c3220c9f4e5c02",
+    "raw_display_closure_sha256": "48410f90eaf220db81a0b872eecba5438d192ce5c2b71c1c51401e6078dd7c8d"
+  },
+  "limitations": [
+    "Current full native suite/cook pending",
+    "Stored roof tangent-Y handedness NOT_PROVEN by historical inspector",
+    "New fireplace and exterior candidates not accepted in game",
+    "Broader fitted barrel collision/default activation pending",
+    "Whole-game photorealism and final lighting not approved"
+  ]
+}

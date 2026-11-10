@@ -8,6 +8,8 @@
 # First run 7 Nov 2026 (see Plugins/DinkParity/Docs/packaged_probe.md): 40 s from an empty Saved/Cooked (cook 22 s, shaders came from the DDC),
 # 30-65 s when only code changed; stage ~1.5 GB (Content/Paks: 575 MB .ucas + 11 MB .pak of raw Dink/Data; binary 300 MB + 296 MB debug files).
 #
+# Linux Vulkan packaging also needs Python 3 and bubblewrap for the reviewed
+# ShaderPrint workaround; it overlays one temporary header without Engine host edits.
 # Needs: an imported greybox (Scripts/import_greybox.sh --region all: GameDefaultMap is the
 # git-ignored L_Greybox_World), Content/Characters (Scripts/copy_template_content.sh), and a built
 # editor (Scripts/build.sh): the cook runs UnrealEditor-Cmd, and by default UAT is told NOT to
@@ -148,7 +150,7 @@ if [[ ${#EXTRA_ARGS[@]} -gt 0 ]]; then UAT_ARGS+=("${EXTRA_ARGS[@]}"); fi
 echo "package: $TARGET Linux $CONFIG -> $STAGE (log: $LOG)"
 start=$(date +%s)
 rc=0
-env -u WAYLAND_DISPLAY -u DISPLAY "$RUN_UAT" "${UAT_ARGS[@]}" >"$LOG" 2>&1 || rc=$?
+env -u WAYLAND_DISPLAY -u DISPLAY python3 "$PROJECT_DIR/Scripts/shaderprint_vulkan_workaround.py" --engine "$UE_ROOT/Engine" -- "$RUN_UAT" "${UAT_ARGS[@]}" >"$LOG" 2>&1 || rc=$?
 secs=$(( $(date +%s) - start ))
 
 ERR_RE='(: |^)(fatal )?error|Error: |LogCook: Error'

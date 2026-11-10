@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_POLICY_TESTED_NATIVE_NOT_RUN",
+  "focused_tests": 10,
+  "focused_passed": true,
+  "combined_candidate_assets": 441,
+  "baseline_assets": 433,
+  "baseline_counts": {
+    "material": 186,
+    "family": 23
+  },
+  "records_before_policy_counts": {
+    "material": 186,
+    "family": 31
+  },
+  "combined_after_policy_counts": {
+    "material": 186,
+    "family": 23
+  },
+  "new_roof_violations": [],
+  "baseline_unrelated_violations_retained": true,
+  "companion_source_records": "SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/manifest.json",
+  "companion_records_sha256": "21a41579cce18af33ca3630b4abe73133cffac1b94cb6ab7e7a71d1dca4a05af"
+}

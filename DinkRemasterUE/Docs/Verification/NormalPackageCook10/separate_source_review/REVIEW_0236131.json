@@ -1,0 +1,46 @@
+{
+  "status": "NO_SOURCE_REVIEW_BLOCKER; actualbuild/native/regeneration/GPU pending",
+  "head": "0236131d9335f3e0210121a38c8f6fd58091e8a2",
+  "baseline": "6a85afc7523e04b1cc9516dcfa84b67de307ad2a",
+  "tracked_files": {
+    "DinkRemasterUE/AGENTS.md": "2ce43073cfade7846f158f13bf6eb5efcfe9c6311c8b12787b2877ec020e37b1",
+    "DinkRemasterUE/Docs/Verification/GeneratedBlockerVisualSplit/README.md": "1e8f33b342c7a10968dc9fc3af39bcfb72ac6d13324deebae150b842528a3b82",
+    "DinkRemasterUE/Docs/Verification/GeneratedBlockerVisualSplit/source-diagnosis.json": "e47d147cf2ede32334074b6e898aee0a7f98e6f9a5bab60e7d9051e8b29d0d31",
+    "DinkRemasterUE/HANDOFF.md": "8fafe6d78902018ff02efb0ba0daa3cb64f260555a547d36c5880f6198f0db53",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkPlaceholderActor.cpp": "cdc6935cfbd70442d9d686a0e011856a3b6b848e28f03656b5c4f03febfaae3d",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkPlaceholderActor.h": "2965909b0e5928db10a178e12a5c49600133a3bdc90b110088da26273407d466",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp": "7dd2ad87e4d0914430d3f89ebe7eda7900ac00092a6a96ce806c3a37718fdea5",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.h": "e5501d51614af482b6a6c493f2c2cf88470d42984116a0f29ff890790b75900d",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxImporter.cpp": "cc2f910733ee938d02690e4c128ebeb324691c48a11248d18a6941c2a2b65a99",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkGreyboxPresentationTests.inl": "d8892b9f6f6b2fc469470c09a967bd15e8bda2889ff60150c027823a3ffcbf05",
+    "DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkGreyboxDebugBlockersTests.cpp": "88d33b6130329280aff0a781475fbff97ee86135f295c60a24d8452b77e5c750",
+    "DinkRemasterUE/Scripts/tests/test_greybox_presentation_inventory.py": "2bfe5264036d597383f32dc39c0b278de6afa906c35c80063c53d1fd0b4bbdeb"
+  },
+  "checks": [
+    "ActualproductionWriteScreenPresentation retains192groundtriangles andwaterheight/topgeometry; onlysolid/low/sprite/warpprisms routed toDebug",
+    "CollisionGeoHash/builders/actorcollisionconstructor exactbytes held by4actualportabletestsPASS",
+    "Visualgroundwatercachehash and Greyboxactorsalt changed; physicalmeshhash unchanged",
+    "DebugNoCollision/navfalse/overlapfalse/castshadowfalse/casthiddenshadowfalse; normalgroundwater remainsvisible",
+    "Consolevariable sink modifiesonlyDebugHiddenInGame; globalexistinggameworldactors refreshedonvaluechange; BeginPlay supportsnewactors whenvalueunchanged",
+    "InstalledWorld.cppCreateWorld initializesGamephysics/trace scene; installedMeshDescriptionpolygonAPIs andPrimitiveSetCastHiddenShadow signatures present",
+    "Nativefixture exercises realWorldtrace,originalcomponent/bodypointer/response/sourceidentity/transform preservation,consoletoggleandlateBeginPlay; notcompiledorperformedbythisreview"
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "P1",
+      "path": "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp",
+      "line": 828,
+      "finding": "Prune handles disappearedCollLow only. IfpreviouslynonemptyDebug becomesempty, EnsureScreen omitsMarkBuilt andScreenMesh returnsnullptr correctly, butPrune keepsprior_DebugBlockers package/manifestrow. Staleunreferencedgeneratedasset persists; noactivepresentation/collisionauthority.",
+      "recommendation": "Boundedfollowup optionallyprune_DebugBlockers whenall4debugclassesempty; regressionnonempty\u2192empty\u2192nonempty."
+    }
+  ],
+  "remaining_actual_proofs": [
+    "OwnEditor/Gamecompile",
+    "Productionwriter+physics/toggle2nativefixtures",
+    "Actualnormalgenerationandsecondincrementalrun withsavedVisual192+water and optionalDebugcontents; save/readback/defaultHidden/shadows/oldcollisions",
+    "GPUrooms2/3/4defaultboxesabsent,explicitdebugtoggle/restoration,originalcards/decorretained andrealWdoor",
+    "Fullcurrentnative/packagecontrols asrequiredbyowner"
+  ],
+  "no_UE_build_GPU_or_project_edits": true,
+  "worktree_qualification": "HEAD/code review only. Packaging-owner approvedLFS hydration/control staging concurrent; initialstatusclean, finalbinaryLFS modifications expected. No reviewercode/assets writes."
+}

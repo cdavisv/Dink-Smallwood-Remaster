@@ -1,0 +1,317 @@
+{
+  "passed": true,
+  "source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "candidate_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "mesh_objects": 328,
+  "UCX_objects": 312,
+  "geometry_TRS_parent_modifiers_smooth_corner_normals_exact": true,
+  "all_original_UVs_exact": true,
+  "protected_material_slots_exact": true,
+  "UV_scope": "All original roof UVs retained exactly after failed metric-chart experiment. Nominal 2m scale on broad faces; inherited bevel/edge compression explicitly measured. Intentional repeat/overlap allowed.",
+  "UV_rows": [
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "polygons": 4986,
+      "materials_before": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "UV_per_m_min_max": [
+        0.15992003861683537,
+        0.5002089916543427
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.4998885392956397,
+          0.15992003861683537
+        ],
+        [
+          0.5000002041256297,
+          0.47934235838178196
+        ],
+        [
+          0.5000199943771099,
+          0.5
+        ],
+        [
+          0.5002089916543427,
+          0.5000028478993893
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 2736,
+      "area_fraction_over_1pct": 0.0009602504085926951,
+      "UV0_sha256": "668331b1ff062f5ece80790a4d98aed687396062625afaf5dc2ad4b11a40d287"
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "polygons": 3474,
+      "materials_before": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "UV_per_m_min_max": [
+        0.15992004199979615,
+        0.5010663565972894
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.4998885392956397,
+          0.15992004199979615
+        ],
+        [
+          0.5000002602176756,
+          0.49997274355643234
+        ],
+        [
+          0.5000223326988508,
+          0.5
+        ],
+        [
+          0.5010663565972894,
+          0.5000027581017532
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 1632,
+      "area_fraction_over_1pct": 0.0008054599386480977,
+      "UV0_sha256": "181e4ae8482fa806dd0295fc06d191c0cdb6ef28b7fabca709a187f4a45ab32c"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "polygons": 266,
+      "materials_before": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "UV_per_m_min_max": [
+        0.14086019927850948,
+        0.500099424332201
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.49996068228485535,
+          0.14086019927850948
+        ],
+        [
+          0.5000000441582327,
+          0.4619502867422146
+        ],
+        [
+          0.5000647952868946,
+          0.5
+        ],
+        [
+          0.500099424332201,
+          0.500000031972604
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 162,
+      "area_fraction_over_1pct": 0.037009863782001204,
+      "UV0_sha256": "d5afbfe51d3f9b97d425a43037bacf34656f4b7795d6f06e5837fbb4281b8313"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "polygons": 266,
+      "materials_before": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "UV_per_m_min_max": [
+        0.14086019927850948,
+        0.50009954481048
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.49998757398577054,
+          0.14086019927850948
+        ],
+        [
+          0.5000000377020042,
+          0.4619307564371137
+        ],
+        [
+          0.5000599108576154,
+          0.5
+        ],
+        [
+          0.50009954481048,
+          0.500000031972604
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 162,
+      "area_fraction_over_1pct": 0.037009863782001204,
+      "UV0_sha256": "9db668cee984b354001f1026886e589ccc02850db27369da4b6f1ef8f702b07b"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "polygons": 266,
+      "materials_before": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "UV_per_m_min_max": [
+        0.14086019927850948,
+        0.5000996683880025
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.49998757398577054,
+          0.14086019927850948
+        ],
+        [
+          0.5000000395878237,
+          0.46193074132098233
+        ],
+        [
+          0.5000617026149936,
+          0.4999999994469046
+        ],
+        [
+          0.5000996683880025,
+          0.5000000039771189
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 162,
+      "area_fraction_over_1pct": 0.03700986378200121,
+      "UV0_sha256": "e5c01dd029d328bb1a69d5d7e169ea38ba573bc889f978a84ebd369cac6679bf"
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "polygons": 266,
+      "materials_before": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "UV_per_m_min_max": [
+        0.14086019927850948,
+        0.5000997953865487
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.49998757398577054,
+          0.14086019927850948
+        ],
+        [
+          0.5000000359057665,
+          0.46193074132098233
+        ],
+        [
+          0.5000599108576155,
+          0.49999998596971873
+        ],
+        [
+          0.5000997953865487,
+          0.5000000039771189
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 162,
+      "area_fraction_over_1pct": 0.03700986378200121,
+      "UV0_sha256": "02f778bda3253b00ea057b863b1f6186e67d5304ca58a16e7dcf774af2fd6701"
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "polygons": 4924,
+      "materials_before": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "UV_per_m_min_max": [
+        0.15992004228170412,
+        0.5015459717610847
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.4998885392956397,
+          0.15992004228170412
+        ],
+        [
+          0.5000001534797218,
+          0.4986425028010518
+        ],
+        [
+          0.5000201262788677,
+          0.5
+        ],
+        [
+          0.5015459717610847,
+          0.5000027171844762
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 2457,
+      "area_fraction_over_1pct": 0.006225919780674042,
+      "UV0_sha256": "0be0f5867ec6b35d95e9a9db7c57b055f2a95bcc442a16cf578ee0c71a0a4f60"
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "polygons": 2874,
+      "materials_before": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ],
+      "materials_after": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "UV_per_m_min_max": [
+        0.15992003861683537,
+        0.5004984331145298
+      ],
+      "nominal_texels_per_m": 512,
+      "UV_per_m_percentile": [
+        [
+          0.499893515502578,
+          0.15992003861683537
+        ],
+        [
+          0.500000204770339,
+          0.49998175396592137
+        ],
+        [
+          0.500020963507699,
+          0.5
+        ],
+        [
+          0.5004984331145298,
+          0.5000026699056775
+        ]
+      ],
+      "triangles_over_1pct_metric_error": 1289,
+      "area_fraction_over_1pct": 0.0007023078936229512,
+      "UV0_sha256": "a47c01a371a6542d2cdae2d881308fd7057b7ac3893a47091bae53eb70180b41"
+    }
+  ]
+}
