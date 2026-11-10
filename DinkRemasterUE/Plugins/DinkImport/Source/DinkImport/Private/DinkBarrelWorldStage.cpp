@@ -102,6 +102,18 @@ bool MeasuredNearZeroRotation(UObject& A,UObject& B,FRotator& Canonical,FString&
  Evidence=FString::Printf(TEXT("RelativeRotation machine-zero ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) budgetDeg=%.17g; nonzeroangles/nonspatialbytes unchanged"),XS[0],XS[1],XS[2],YS[0],YS[1],YS[2],Budget);
  return true;
 }
+FString TransformDifference(const FTransform& Source,const FTransform& Target)
+{
+ FTransform S=Source,T=Target;TArray<uint8> A,B;FObjectWriter WA(A),WB(B);WA<<S;WB<<T;
+ const FVector SP=S.GetTranslation(),TP=T.GetTranslation(),SS=S.GetScale3D(),TS=T.GetScale3D();
+ const FQuat SQ=S.GetRotation(),TQ=T.GetRotation();
+ return FString::Printf(TEXT("TRS17 sourceP=(%.17g,%.17g,%.17g) targetP=(%.17g,%.17g,%.17g) deltaP=(%.17g,%.17g,%.17g) sourceQ=(%.17g,%.17g,%.17g,%.17g) targetQ=(%.17g,%.17g,%.17g,%.17g) deltaQ=(%.17g,%.17g,%.17g,%.17g) sourceS=(%.17g,%.17g,%.17g) targetS=(%.17g,%.17g,%.17g) deltaS=(%.17g,%.17g,%.17g) finite=%d/%d Qnorm2=%.17g/%.17g bytes=%d/%d hexA=%s hexB=%s"),
+  SP.X,SP.Y,SP.Z,TP.X,TP.Y,TP.Z,TP.X-SP.X,TP.Y-SP.Y,TP.Z-SP.Z,
+  SQ.X,SQ.Y,SQ.Z,SQ.W,TQ.X,TQ.Y,TQ.Z,TQ.W,TQ.X-SQ.X,TQ.Y-SQ.Y,TQ.Z-SQ.Z,TQ.W-SQ.W,
+  SS.X,SS.Y,SS.Z,TS.X,TS.Y,TS.Z,TS.X-SS.X,TS.Y-SS.Y,TS.Z-SS.Z,
+  int32(!S.ContainsNaN()),int32(!T.ContainsNaN()),double(SQ.SizeSquared()),double(TQ.SizeSquared()),A.Num(),B.Num(),
+  *BytesToHex(A.GetData(),A.Num()),*BytesToHex(B.GetData(),B.Num()));
+}
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
  const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
@@ -132,16 +144,16 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
   }
  }
  if(auto* A=Cast<AActor>(&Source))
- {auto* B=CastChecked<AActor>(&Target);return FString::Printf(TEXT("nonpropertyActorState sourceTRS={%s} targetTRS={%s} hidden=%d/%d collision=%d/%d"),
-  *A->GetActorTransform().ToString(),*B->GetActorTransform().ToString(),int32(A->IsHidden()),int32(B->IsHidden()),int32(A->GetActorEnableCollision()),int32(B->GetActorEnableCollision()));}
+ {auto* B=CastChecked<AActor>(&Target);return FString::Printf(TEXT("nonpropertyActorState hidden=%d/%d collision=%d/%d "),
+  int32(A->IsHidden()),int32(B->IsHidden()),int32(A->GetActorEnableCollision()),int32(B->GetActorEnableCollision()))+TransformDifference(A->GetActorTransform(),B->GetActorTransform());}
  if(auto* A=Cast<UInstancedStaticMeshComponent>(&Source))
  {
   auto* B=CastChecked<UInstancedStaticMeshComponent>(&Target);
   if(A->GetInstanceCount()!=B->GetInstanceCount())return FString::Printf(TEXT("ISM count %d/%d"),A->GetInstanceCount(),B->GetInstanceCount());
   for(int32 I=0;I<A->GetInstanceCount();++I){FTransform X,Y;A->GetInstanceTransform(I,X,false);B->GetInstanceTransform(I,Y,false);
-   if(!X.Equals(Y,0))return FString::Printf(TEXT("ISM firstIndex=%d source={%s} target={%s}"),I,*X.ToString(),*Y.ToString());}
+   if(!X.Equals(Y,0))return FString::Printf(TEXT("ISM firstIndex=%d "),I)+TransformDifference(X,Y);}
  }
- if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS source={")+A->GetComponentTransform().ToString()+TEXT("} target={")+CastChecked<USceneComponent>(&Target)->GetComponentTransform().ToString()+TEXT("}");
+ if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS ")+TransformDifference(A->GetComponentTransform(),CastChecked<USceneComponent>(&Target)->GetComponentTransform());
  return TEXT("state serialization differs outside filtered properties; no comparison waived");
 }
 bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr)
