@@ -266,6 +266,9 @@ bool MeasuredBoxRotationZero(UObject& Source,UObject& Target,AActor* ExpectedSou
  if(L!=R||LW.IsError()||RW.IsError()||RW.SourceReference)return false;
  Canonical=Left;Evidence+=TEXT(" entire canonical aggregate exact; mapped UBoxComponent-owned body; original source bytes unchanged");return true;
 }
+bool ExactTransformBytes(FTransform A,FTransform B);
+bool ExactVectorBytes(const FVector& A,const FVector& B);
+FString TransformDifference(const FTransform& Source,const FTransform& Target);
 bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWorld,
  const TMap<UObject*,UObject*>& Remap,bool& Restored,FString& Evidence)
 {
@@ -275,6 +278,42 @@ bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWo
  {Evidence=TEXT("root restoration requires exact mapped actor in distinct NEW world");return false;}
  auto* A=Source.GetRootComponent();auto* B=Target.GetRootComponent();
  if(!A||!B)return true;
+ const FRotator SR=A->GetRelativeRotation(),TR=B->GetRelativeRotation();
+ const double EulerSource[]={SR.Pitch,SR.Yaw,SR.Roll},EulerTarget[]={TR.Pitch,TR.Yaw,TR.Roll};
+ FRotator QualifiedRotation;FString RotationProof;
+ const bool RotationDiff=FMemory::Memcmp(EulerSource,EulerTarget,sizeof(EulerSource))!=0;
+ // The Stage25 root position was already exact; translation-only admission
+ // must not skip genuine Euler loss from stock TEXT duplication.
+ if(RotationDiff&&!MeasuredRotation(*A,*B,QualifiedRotation,RotationProof))
+ {
+  const FVector SL=A->GetRelativeLocation(),TL=B->GetRelativeLocation();
+  if(A->GetOwner()!=&Source||B->GetOwner()!=&Target||A->GetClass()!=B->GetClass()||Remap.FindRef(A)!=B||
+     A->GetAttachParent()||B->GetAttachParent()||!A->IsRegistered()||!B->IsRegistered()||
+     SR.ContainsNaN()||TR.ContainsNaN()||SL.ContainsNaN()||TL.ContainsNaN()||
+     A->GetRelativeScale3D().ContainsNaN()||B->GetRelativeScale3D().ContainsNaN()||
+     !ExactVectorBytes(SL,TL)||!ExactVectorBytes(SL,Source.GetActorLocation())||!ExactVectorBytes(TL,Target.GetActorLocation())||
+     !ExactVectorBytes(A->GetRelativeScale3D(),B->GetRelativeScale3D())||
+     A->IsUsingAbsoluteLocation()!=B->IsUsingAbsoluteLocation()||A->IsUsingAbsoluteRotation()!=B->IsUsingAbsoluteRotation()||A->IsUsingAbsoluteScale()!=B->IsUsingAbsoluteScale())
+  {Evidence=TEXT("root Euler repair requires registered mapped unattached roots with exact finite position/scale/absolute policy");return false;}
+  auto* Property=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation"));
+  if(!Property||Property->Struct!=TBaseStructure<FRotator>::Get()||Property->ArrayDim!=1)return false;
+  constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+  FString Text;Property->ExportTextItem_Direct(Text,Property->ContainerPtrToValuePtr<void>(A),nullptr,A,Flags);
+  FRotator Expected=FRotator::ZeroRotator;FOutputDeviceNull Errors;
+  const TCHAR* Tail=Property->ImportText_Direct(*Text,&Expected,B,Flags,&Errors);
+  if(Tail)while(*Tail&&FChar::IsWhitespace(*Tail))++Tail;
+  const double Parsed[]={Expected.Pitch,Expected.Yaw,Expected.Roll};
+  if(!Tail||*Tail||FMemory::Memcmp(Parsed,EulerTarget,sizeof(Parsed)))
+  {Evidence=TEXT("root Euler difference is NOT exact stock TEXT roundtrip: ")+Text;return false;}
+  const FQuat Direct=SR.Quaternion(),Cached=A->GetRelativeRotationCache().RotatorToQuat_ReadOnly(SR);
+  B->SetRelativeRotation_Direct(SR);
+  B->UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);
+  const FRotator After=B->GetRelativeRotation();const double Actual[]={After.Pitch,After.Yaw,After.Roll};
+  if(FMemory::Memcmp(EulerSource,Actual,sizeof(Actual))||!ExactVectorBytes(SL,B->GetRelativeLocation())||
+     !ExactTransformBytes(Source.GetActorTransform(),Target.GetActorTransform())||!ExactTransformBytes(A->GetComponentTransform(),B->GetComponentTransform()))
+  {Evidence=TEXT("root Euler exact source-local/actor/world postcondition failed WORLD ")+TransformDifference(A->GetComponentTransform(),B->GetComponentTransform());return false;}
+  Restored=true;Evidence=FString::Printf(TEXT("RESTORED NEW TARGET root Euler ONLY via exact stock TEXT proof flags=%d export={%s} sourceEuler=(%.17g,%.17g,%.17g) targetBefore=(%.17g,%.17g,%.17g) sourceDirectQ=(%.17g,%.17g,%.17g,%.17g) sourceReadonlyCacheQ=(%.17g,%.17g,%.17g,%.17g); exactlocal/actor/worldpostconditions; source untouched"),Flags,*Text,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll,Direct.X,Direct.Y,Direct.Z,Direct.W,Cached.X,Cached.Y,Cached.Z,Cached.W);return true;
+ }
  FTransform Canonical;FString Proof;
  // Ineligible changes remain untouched and fail the later strict comparison.
  if(!MeasuredRootTranslation(*A,*B,&Source,&Target,Canonical,Proof))return true;
@@ -1023,6 +1062,49 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  RepairTargetRoot->SetRelativeScale3D(FVector::OneVector);RepairTargetRoot->SetRelativeRotation(FRotator(0,.01,0));
  RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
  TestFalse(TEXT("changed quaternion target root not restored"),RootRestored);
+ // Actual Stage25 parent-root quaternion measurement, converted by the
+ // installed native quaternion/rotator path; actual stage remains separate.
+ AActor* EulerOwnerS=World->SpawnActor<AActor>();AActor* EulerOwnerT=NewWorld->SpawnActor<AActor>();
+ auto* EulerRootS=NewObject<USceneComponent>(EulerOwnerS);auto* EulerRootT=NewObject<USceneComponent>(EulerOwnerT);
+ EulerOwnerS->SetRootComponent(EulerRootS);EulerOwnerT->SetRootComponent(EulerRootT);EulerRootS->RegisterComponent();EulerRootT->RegisterComponent();
+ const FQuat Stage25RootQ(-0.,0.,-1.2370370394624901e-6,.99999999999923483);
+ const FRotator EulerS=Stage25RootQ.Rotator();
+ auto* EulerProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation"));
+ if(!TestNotNull(TEXT("actual native root rotation property"),EulerProperty))return false;
+ auto RootPose=[](USceneComponent& C,const FVector& L,const FRotator& R){C.SetRelativeLocation_Direct(L);C.SetRelativeRotation_Direct(R);C.UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);};
+ const FVector Stage25RootP(-86633.889999999999,423474.72999999998,0);
+ RootPose(*EulerRootS,Stage25RootP,EulerS);
+ constexpr int EulerFlags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+ FString EulerText;EulerProperty->ExportTextItem_Direct(EulerText,EulerProperty->ContainerPtrToValuePtr<void>(EulerRootS),nullptr,EulerRootS,EulerFlags);
+ FRotator EulerT=FRotator::ZeroRotator;FOutputDeviceNull EulerErrors;
+ if(!TestNotNull(TEXT("actual native Euler TEXT parse"),EulerProperty->ImportText_Direct(*EulerText,&EulerT,EulerRootT,EulerFlags,&EulerErrors)))return false;
+ RootPose(*EulerRootT,Stage25RootP,EulerT);
+ TestTrue(TEXT("Stage25 root Euler fixture world positions already byteexact"),ExactVectorBytes(EulerOwnerS->GetActorLocation(),EulerOwnerT->GetActorLocation()));
+ TestTrue(TEXT("Stage25 root Euler fixture genuinely different quaternion before repair"),!ExactQuaternion(EulerRootS->GetComponentQuat(),EulerRootT->GetComponentQuat()));
+ TestEqual(TEXT("Stage25 target rounded yaw"),EulerT.Yaw,-.000142);
+ TMap<UObject*,UObject*> EulerMap;EulerMap.Add(EulerOwnerS,EulerOwnerT);EulerMap.Add(EulerRootS,EulerRootT);
+ TArray<uint8> EulerBefore,EulerAfter;TestTrue(TEXT("Euler source before repair raw state"),State(*EulerRootS,TestIDs,NoForbidden,false,EulerBefore));
+ bool EulerRestored=false;FString EulerEvidence;
+ const bool EulerOK=RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence);
+ TestTrue(TEXT("same-position Stage25 TEXT-only root Euler repair succeeds: ")+EulerEvidence,EulerOK);
+ TestTrue(TEXT("same-position root Euler repair performed"),EulerRestored);
+ TestTrue(TEXT("root Euler repair actor/world byteexact"),ExactTransformBytes(EulerOwnerS->GetActorTransform(),EulerOwnerT->GetActorTransform()));AddInfo(EulerEvidence);
+ FRotator ArbitraryRoot=EulerT;ArbitraryRoot.Yaw+=.0000001;RootPose(*EulerRootT,Stage25RootP,ArbitraryRoot);
+ TestFalse(TEXT("arbitrary nonTEXT root yaw refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));
+ RootPose(*EulerRootT,Stage25RootP,EulerT);TMap<UObject*,UObject*> InvalidEulerMap=EulerMap;InvalidEulerMap.Remove(EulerRootS);
+ TestFalse(TEXT("root Euler wrong root mapping refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,InvalidEulerMap,EulerRestored,EulerEvidence));
+ InvalidEulerMap=EulerMap;InvalidEulerMap.Remove(EulerOwnerS);
+ TestFalse(TEXT("root Euler wrong actor mapping refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,InvalidEulerMap,EulerRestored,EulerEvidence));
+ TestFalse(TEXT("root Euler wrong NEW world refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,World,EulerMap,EulerRestored,EulerEvidence));
+ EulerRootT->SetRelativeScale3D(FVector(1,1,2));
+ TestFalse(TEXT("root Euler changed scale refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerRootT->SetRelativeScale3D(FVector::OneVector);
+ SetExact(*EulerRootT,Stage25RootP+FVector(1,0,0));
+ TestFalse(TEXT("root Euler changed position refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));SetExact(*EulerRootT,Stage25RootP);
+ auto* ExtraEulerParent=NewObject<USceneComponent>(EulerOwnerT);ExtraEulerParent->RegisterComponent();EulerRootT->AttachToComponent(ExtraEulerParent,FAttachmentTransformRules::KeepRelativeTransform);
+ TestFalse(TEXT("attached root Euler refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerRootT->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
+ RootPose(*EulerRootT,Stage25RootP,EulerT);EulerProperty->ContainerPtrToValuePtr<FRotator>(EulerRootT)->Yaw=std::numeric_limits<double>::quiet_NaN();
+ TestFalse(TEXT("nonfinite root Euler refuses before setter"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerProperty->ContainerPtrToValuePtr<FRotator>(EulerRootT)->Yaw=EulerT.Yaw;
+ TestTrue(TEXT("Euler source after all cases raw state"),State(*EulerRootS,TestIDs,NoForbidden,false,EulerAfter));TestTrue(TEXT("root Euler source raw state unchanged"),EulerBefore==EulerAfter);
  AActor* LocalOwnerS=World->SpawnActor<AActor>();AActor* LocalOwnerT=NewWorld->SpawnActor<AActor>();
  auto* ParentS=NewObject<USceneComponent>(LocalOwnerS);auto* ParentT=NewObject<USceneComponent>(LocalOwnerT);
  LocalOwnerS->SetRootComponent(ParentS);LocalOwnerT->SetRootComponent(ParentT);ParentS->RegisterComponent();ParentT->RegisterComponent();
