@@ -1,0 +1,40 @@
+{
+  "status": "OFF_TREE_PUBLICATION_DRAFT_COMPLETE_SCOPED_COOK10",
+  "cook_exit": 0,
+  "cook_seconds": 308.2480328620004,
+  "mapped_module_count": 7,
+  "immutable_changes": [],
+  "four_shader_validation": true,
+  "roof_packages": 73,
+  "maps": 7,
+  "ArtJSON": 3,
+  "same_chunk_ID_count": 7989,
+  "logical_chunk_changes": 96,
+  "logical_change_types": {
+    "ExportBundleData": 67,
+    "BulkData": 29
+  },
+  "classification": "Not byte-identical cookedcontent. Sourceunchanged perterminal; derivedcookbytecause unestablished.",
+  "CH1": {
+    "test": "Dink.Gameplay.Probe.Ch1Stonebrook",
+    "success": true,
+    "trace_sha256": "20227a637e1b3872c7b82494023a8224225b285462739113e9f3e799524c1d02",
+    "trace_md5": "0ba0ba5b7eff0487579457237d94c16d",
+    "warnings": 0
+  },
+  "CH1_seconds": 13.532684352001525,
+  "packet_race": "OriginalPLAN/index changed duringlaunch; originalindex reconstructedtoknownSHA; code/kernel/policybytesoriginal. Notcontinuouscompletepacketidentity.",
+  "GPU": {
+    "exit_code": 0,
+    "seconds": 147.2355875899957,
+    "protected_inputs_unchanged": 12977,
+    "screenshots": 7,
+    "all_viewed": true,
+    "realWexit_return": "PASS",
+    "warnings": 4,
+    "errors": 0,
+    "normaldisplaycleanup": true
+  },
+  "separate_review": "0236131 code-only source review; separate candidate unbuilt/unrun, approvedhydration concurrent; not partCook10runtimeproof",
+  "predecessor_draft_INDEX_sha256": "c2ad7833bdc42e7cd2b6d9d7e488b17e068cae05efcb77493aecbf45b73011ae"
+}
