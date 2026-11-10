@@ -346,7 +346,8 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
             URectLightComponent* Rect = CastChecked<URectLightComponent>(C);
             Rect->SetSourceWidth(Row.Width);
             Rect->SetSourceHeight(Row.Height);
-            Rect->SetBarnDoorLength(0.f);
+            // Installed setter clamps even a zero request to0.1cm.
+            Rect->SetBarnDoorLength(0.1f);
         }
         else CastChecked<UPointLightComponent>(C)->SetSourceRadius(18.f);
 	}
