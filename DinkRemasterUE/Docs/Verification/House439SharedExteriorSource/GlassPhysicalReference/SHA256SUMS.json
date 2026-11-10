@@ -1,0 +1,21 @@
+{
+  "ActualCottagePane_OpticalReference.blend": "a4ee1a063d7c9084257cdcd1778f50bd26e6f5a2b0961886af6458c67eabdd60",
+  "ActualCottagePane_ReflectionControl.blend": "6819eba4ed4ef26912fb7bd80851a1a1455c09e0242b08fcc7692ab7f87f8456",
+  "PACKED_RESOURCE_CHECK.json": "c1997382992769b4cffbb1f2ab4b60e61263e31bd6b99f2478366cc073f1ef69",
+  "README.md": "1f9666051f9fee80c4a0644dc74448b9ea0b7f50bf6711bf6ad82d7eada2451d",
+  "REFERENCE.json": "a88c44fd5976e11fd4953967d1d965fc1910107ffc9c5fe46f08a318409454fd",
+  "REFLECTION_CONTROL.json": "c3cc7a39f0adae600a1a1737b986c5ca25ea65861a9a78c1a11674871833c87e",
+  "RELOCATION_CHECK.json": "232492938380dce1e95ea9c47bfc37955526fde7e1419c9a1d74a9d8e8a9cd6c",
+  "inside_card_bare.png": "a920b80f7521b9e310c7b76b1bf15e595d785909a74a8e8e999af7c79450afc6",
+  "inside_card_glass.png": "87780997dc6f0b7dfc39f618597ebf1a7e63b9427d29b655e851715755e16e5a",
+  "localize_study.py": "4eefd2cf8e552cbbf196b060d0db2b627a9a1ce5d853ff5ebd4f774f2328358f",
+  "outside_card_bare.png": "329c0c1baa20c22d41ce8bfb8a2346c2aec137c01d39f913cdd294eea06baeac",
+  "outside_card_glass.png": "c8be21277acb8c51544a8d7043bf442ac67c437d88fcf6fc43433f160160c155",
+  "outside_grazing_bare.png": "863401549175e41aed29c1f0e2eea4597dee75652f9b670bb69a1fb3326e6ad2",
+  "outside_grazing_glass.png": "7bd0c2aab71f873ceaf20cc22c53f9f5dedccec4feabf741a484d19c298a8bf4",
+  "outside_grazing_reflection_bare.png": "0b48f21aa6a87b28d4703c9873fe95b54df0da3a05b468f26f6367f3945a33c9",
+  "outside_grazing_reflection_glass.png": "a01114039eb748ceda6bee7c3c814f3d6183b244e07a8f61e04e1fd4a6fc73aa",
+  "render_actual_pane.py": "70e0eb93aec817fe652061c7ecd674c2517a7d2efbb4e5834a32001927ea4884",
+  "render_reflection_control.py": "4b44dc1fcd624906a7060acb148e2a5723726b70afd9f3ee90f15ded3d01c88a",
+  "verify_packed_scene.py": "0c3a1e65665687098023bfa7c6a1cdb178645c0875d7393366c2a118eee7c264"
+}

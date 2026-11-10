@@ -1,0 +1,23 @@
+{
+  "status": "PASS_actual_relocated_scene_reopen_without_local_texture_files",
+  "rows": [
+    {
+      "scene": "ActualCottagePane_OpticalReference.blend",
+      "sha256": "a4ee1a063d7c9084257cdcd1778f50bd26e6f5a2b0961886af6458c67eabdd60",
+      "packed_maps_exact": 3,
+      "pane_polygons": 54,
+      "source_transmission": 1,
+      "IOR": 1.48
+    },
+    {
+      "scene": "ActualCottagePane_ReflectionControl.blend",
+      "sha256": "6819eba4ed4ef26912fb7bd80851a1a1455c09e0242b08fcc7692ab7f87f8456",
+      "packed_maps_exact": 3,
+      "pane_polygons": 54,
+      "source_transmission": 1,
+      "IOR": 1.48
+    }
+  ],
+  "scope": "SourceCPUreference only; no native validation",
+  "inspection_note": "Initial has_data assertion preceded Blender lazyimage decode and failed. Verification now forces fullpixelaccess, then checks decodedsize/has_data plus unchangedpackedbytehash; actualrerunPASS."
+}

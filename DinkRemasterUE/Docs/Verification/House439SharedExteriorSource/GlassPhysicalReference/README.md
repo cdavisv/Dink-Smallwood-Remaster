@@ -1,0 +1,9 @@
+# Actual cottage pane optical source reference
+
+Eight CPU Cycles views use the exact InsetGlassPane.009 mesh/UV/world transform from the registered cottage source, with its original closed 12 mm geometry and registered ThinWavyGlass2m surface. Front, rear and grazing patterned-card pairs change only pane render visibility within each pair. Additional card-hidden grazing reflection/bare controls separate reflection from backdrop transmission. All eight images were inspected.
+
+The blue/gold backdrop transmits in front and rear views, with tint and softened edges. At grazing the pattern remains visible with stronger blur/reflection. The separate reflection control shows a bright softbox on the pane and none in the bare control. That reflection clips in the display output; these images are functional source references, not measured transmittance or Fresnel curves.
+
+Original cottage/library source bytes remain unchanged. The two study scenes pack the exact three registered map payloads; relative image paths are normalized for this proof directory. REFERENCE.json and PACKED_RESOURCE_CHECK.json pin evidence. Pane geometry/world transform/UVs were compared before/after scene isolation. This is a thin-wall Cycles shader on the original closed pane, distinct from the proposed native one-sided thin-sheet policy. Actual Unreal outside/inside/backdrop/grazing proof, compression and final optical/game acceptance remain required.
+
+Recipes are CPU-only and refuse to overwrite frozen report files. From this checkout, use render_actual_pane.py with --out pointing to a fresh output folder, then render_reflection_control.py and localize_study.py with the same --out folder. Use Blender background/noaudio/2threads/--python-exit-code 1. They neither execute Unreal nor change the source cottage. Do not rerun recipes in the frozen proof directory.
