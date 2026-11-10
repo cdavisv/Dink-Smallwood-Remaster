@@ -1,0 +1,28 @@
+{
+  "exit_code": 0,
+  "elapsed": 315.2738834109914,
+  "immutable_changes": [],
+  "immutable_count": 13703,
+  "own_mapped_Editor_modules": 7,
+  "normal_helper_observations": {
+    "845221": 439
+  },
+  "normal_helper_errors": {},
+  "warnings": 11,
+  "errors": 0,
+  "warning_lines": [
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)",
+    "LogInit: Display: LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "LogInit: Display: LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Build/') failed: errno=30 (Read-only file system)"
+  ],
+  "error_lines": [],
+  "qualification": "ActualnormalScripts/package.sh; privateShaderPrinthelper/VT/EngineStage/UBA; Enginehostpreimagesunchanged. GeneratedGamebuildoutputsallowed, notallgeneratedfilesunchanged."
+}

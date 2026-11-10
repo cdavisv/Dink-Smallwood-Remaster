@@ -1,0 +1,20 @@
+{
+  "actual": {
+    "screen": 1,
+    "map": [
+      302.684,
+      388.184
+    ],
+    "world": [
+      -183809.666,
+      393544.285,
+      98.0
+    ],
+    "yaw": -99.897,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "scripts_log": "[2026.11.10-17.01.00:722][756]LogDinkNarrative: Display: dink.ScreenScripts 1\r\n",
+  "scope": "Actualpackagedruntime Player/scripts console, no nativePython/camera trace claim"
+}

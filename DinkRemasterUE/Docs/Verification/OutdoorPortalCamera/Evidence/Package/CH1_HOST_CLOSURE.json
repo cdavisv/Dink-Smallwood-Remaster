@@ -1,0 +1,18 @@
+{
+  "observed_process_exists": {
+    "848960": false,
+    "848937": false,
+    "848978": false
+  },
+  "actual_result_sha256": "26aa8ee9aafe20e226661927d342018af62eeba6feac4b2509390e2d00c74aa8",
+  "actual_report_sha256": "e165d7aa492302c5377ac5eebf59bd83330ea75b295f3f43fa633bea0bb9e8e3",
+  "actual_one_success": {
+    "test": "Dink.Gameplay.Probe.Ch1Stonebrook",
+    "success": true,
+    "trace_sha256": "20227a637e1b3872c7b82494023a8224225b285462739113e9f3e799524c1d02",
+    "trace_md5": "0ba0ba5b7eff0487579457237d94c16d",
+    "warnings": 0
+  },
+  "stage39_unchanged": true,
+  "source13703_unchanged": true
+}

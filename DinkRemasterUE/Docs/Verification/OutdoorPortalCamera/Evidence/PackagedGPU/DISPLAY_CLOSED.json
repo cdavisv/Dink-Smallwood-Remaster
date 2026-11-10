@@ -1,0 +1,22 @@
+{
+  "identity": {
+    "pid": 854699,
+    "start_ticks": 9120647,
+    "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+    "argv": [
+      "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      ":209",
+      "-screen",
+      "0",
+      "1280x720x24",
+      "-nolisten",
+      "tcp",
+      "-auth",
+      "/home/artist/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
+      "-noreset"
+    ]
+  },
+  "exit_code": 0,
+  "stale_artifacts_preserved": [],
+  "normal_cleanup_before_supervisor_return": true
+}

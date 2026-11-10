@@ -50,8 +50,13 @@ public:
     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorPivotOffset = FVector(0,0,52);
     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorShoulderOffset = FVector(0,45,0);
     UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorFieldOfView = 70.f;
-    /** Collision-safe outdoor lift only; zero in interiors and an unobstructed view. */
+    /** Collision-validated outdoor lift for a real blocker or authored portal; zero in interiors/free views. */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float OutdoorHeadroomLift = 0.f;
+    /** Presentation-only portal cap; requested user zoom remains separate. Zero means no authored cap. */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float OutdoorPortalArmCap = 0.f;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bOutdoorPortalFramingFeasible = true;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") FString OutdoorPortalOwner;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") FString OutdoorPortalMeshSHA;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bInteriorMode = false;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 FadingOccluderCount = 0;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 ManagedOccluderCount = 0;
@@ -80,6 +85,7 @@ private:
     float CurrentShoulderY = 45.f;
     bool bSnapFraming = true;
     float OutdoorArm = 400.f;
+    float UncappedOutdoorArm = 400.f;
     float OutdoorFOV = 90.f;
     FVector OutdoorPivot = FVector::ZeroVector;
     FVector OutdoorSocket = FVector::ZeroVector;

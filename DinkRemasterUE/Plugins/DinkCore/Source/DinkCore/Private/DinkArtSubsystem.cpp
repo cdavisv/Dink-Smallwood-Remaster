@@ -64,6 +64,7 @@ bool UDinkArtSubsystem::DoesSupportWorldType(EWorldType::Type WorldType) const
 void UDinkArtSubsystem::OnWorldBeginPlay(UWorld& World)
 {
 	Super::OnWorldBeginPlay(World);
+    LoadExteriorCameraRules();
 	if (!CVarDinkArtEnabled.GetValueOnGameThread()) return;
 	TArray<FString> DressingFiles;
 	IFileManager::Get().FindFiles(DressingFiles, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/*.json")), true, false);
@@ -248,6 +249,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 			if (!bCollision) Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			Component->SetGenerateOverlapEvents(false);
 			if (Navigation.IsValid() && !bDisableNavigation) Component->SetCanEverAffectNavigation(true);
+			RegisterExteriorCameraRule(ManifestFile,Row,TargetScreen,Component);
 			Added++;
 		}
 	}
@@ -533,4 +535,88 @@ bool UDinkArtSubsystem::PlayPlayerSequence(AActor* Actor, int32 Sequence)
     if (!Actor || !CVarDinkArtEnabled.GetValueOnGameThread()) return false;
     UDinkPlayerActionComponent* Action = Actor->FindComponentByClass<UDinkPlayerActionComponent>();
     return Action && Action->PlaySequence(Sequence);
+}
+
+void UDinkArtSubsystem::LoadExteriorCameraRules()
+{
+    ExteriorCameraRules.Reset();
+    FString Text;TSharedPtr<FJsonObject> Config;
+    if(!FFileHelper::LoadFileToString(Text,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/camera_exteriors.json")))||
+       !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Config)||!Config)return;
+    FString Schema;const TArray<TSharedPtr<FJsonValue>>* Rows=nullptr;
+    if(!Config->TryGetStringField(TEXT("schema"),Schema)||Schema!=TEXT("dink-camera-exteriors/1")||!Config->TryGetArrayField(TEXT("rules"),Rows))return;
+    TArray<FDinkExteriorCameraRule> Parsed;TSet<FString> Keys;
+    auto Numbers=[](const TSharedPtr<FJsonObject>& O,const TCHAR* Name,int32 Count,TArray<double>& Values)
+    {
+        const TArray<TSharedPtr<FJsonValue>>* A=nullptr;Values.Reset();
+        if(!O->TryGetArrayField(Name,A)||A->Num()!=Count)return false;
+        for(const auto& V:*A){double N=0;if(!V->TryGetNumber(N)||!FMath::IsFinite(N))return false;Values.Add(N);}return true;
+    };
+    for(const auto& Value:*Rows)
+    {
+        if(Value->Type!=EJson::Object)return;const auto Row=Value->AsObject();if(!Row)return;
+        FDinkExteriorCameraRule R;double Screen=0;
+        if(!Row->TryGetStringField(TEXT("owner_manifest"),R.Manifest)||R.Manifest.IsEmpty()||FPaths::GetCleanFilename(R.Manifest)!=R.Manifest||
+           !Row->TryGetStringField(TEXT("owner_element"),R.Element)||R.Element.IsEmpty()||
+           !Row->TryGetStringField(TEXT("expected_mesh"),R.Mesh)||!R.Mesh.StartsWith(TEXT("/Game/"))||
+           !Row->TryGetNumberField(TEXT("owner_screen"),Screen)||Screen<1||Screen>768||Screen!=FMath::FloorToDouble(Screen))return;
+        R.Screen=int32(Screen);const FString Key=R.Manifest+TEXT(":")+R.Element;
+        if(Keys.Contains(Key))return;Keys.Add(Key);
+        TArray<double> V;
+        if(!Row->TryGetStringField(TEXT("native_mesh_package_sha256"),R.NativeMeshSHA)||R.NativeMeshSHA.Len()!=64)return;
+        for(const TCHAR Ch:R.NativeMeshSHA)if(!FChar::IsHexDigit(Ch))return;
+        if(!Numbers(Row,TEXT("native_bounds_min_cm"),3,V))return;R.NativeBoundsMin=FVector(V[0],V[1],V[2]);
+        if(!Numbers(Row,TEXT("native_bounds_max_cm"),3,V))return;R.NativeBoundsMax=FVector(V[0],V[1],V[2]);
+        if(!Numbers(Row,TEXT("portal_point_cm"),3,V))return;R.Definition.Point=FVector(V[0],V[1],V[2]);
+        if(!Numbers(Row,TEXT("outward_normal"),3,V))return;R.Definition.Normal=FVector(V[0],V[1],V[2]);
+        if(!Numbers(Row,TEXT("tangent"),3,V))return;R.Definition.Tangent=FVector(V[0],V[1],V[2]);
+        if(!Numbers(Row,TEXT("aperture_min_cm"),2,V))return;R.Definition.Minimum=FVector2D(V[0],V[1]);
+        if(!Numbers(Row,TEXT("aperture_max_cm"),2,V))return;R.Definition.Maximum=FVector2D(V[0],V[1]);
+        if(!Numbers(Row,TEXT("interior_point_cm"),3,V))return;R.Definition.InteriorPoint=FVector(V[0],V[1],V[2]);
+        const TArray<TSharedPtr<FJsonValue>>* Planes=nullptr;if(!Row->TryGetArrayField(TEXT("interior_planes"),Planes))return;
+        for(const auto& Plane:*Planes)
+        {
+            const TArray<TSharedPtr<FJsonValue>>* A=nullptr;if(!Plane->TryGetArray(A)||A->Num()!=4)return;
+            V.Reset();for(const auto& N:*A){double Number=0;if(!N->TryGetNumber(Number)||!FMath::IsFinite(Number))return;V.Add(Number);}
+            R.Definition.InteriorPlanes.Add(FPlane(V[0],V[1],V[2],V[3]));
+        }
+        if(!R.Definition.IsValid())return;Parsed.Add(MoveTemp(R));
+    }
+    ExteriorCameraRules=MoveTemp(Parsed);
+}
+
+void UDinkArtSubsystem::RegisterExteriorCameraRule(const FString& Manifest,const TSharedPtr<FJsonObject>& Row,
+                                                int32 Screen,UStaticMeshComponent* Component)
+{
+    FString Name;if(!Row->TryGetStringField(TEXT("name"),Name))return;
+    for(FDinkExteriorCameraRule& R:ExteriorCameraRules)
+    {
+        if(R.Manifest!=FPaths::GetCleanFilename(Manifest)||R.Element!=Name||R.Screen!=Screen)continue;
+        // Bind only this actual authored element. Duplicate matches invalidate the rule, never pick an arbitrary actor.
+        if(R.Component.IsValid()){R.Definition.InteriorPlanes.Reset();R.Component.Reset();continue;}
+        if(Component&&Component->GetStaticMesh()&&Component->GetStaticMesh()->GetPathName()==R.Mesh&&R.Definition.IsValid())
+        {
+            // Bounds are an explicit source-version sanity check only, never the framing authority.
+            // Native package SHA is verified against the source/LFS inventory before build/cook.
+            const FBox Box=Component->GetStaticMesh()->GetBounds().GetBox();
+            if(Box.Min.Equals(R.NativeBoundsMin,1.)&&Box.Max.Equals(R.NativeBoundsMax,1.))R.Component=Component;
+        }
+    }
+}
+
+bool UDinkArtSubsystem::ExteriorCameraLimit(const ADinkScreenVolume& Screen,const FVector& Pivot,const FVector& Desired,
+                                         double ProbeRadius,double FrustumClearance,DinkCameraPortal::FLimit& Out) const
+{
+    bool Found=false;Out=DinkCameraPortal::FLimit();
+    if(Screen.bIndoor||Screen.GetWorld()!=GetWorld()||!Screen.ContainsWorldLocation(Pivot))return false;
+    for(const FDinkExteriorCameraRule& R:ExteriorCameraRules)
+    {
+        const UStaticMeshComponent* C=R.Component.Get();
+        if(R.Screen!=Screen.ScreenNumber||!C||!C->IsRegistered()||C->GetWorld()!=GetWorld()||!C->GetStaticMesh()||C->GetStaticMesh()->GetPathName()!=R.Mesh)continue;
+        DinkCameraPortal::FLimit Candidate;
+        const bool Limited=DinkCameraPortal::Limit(R.Definition,C->GetComponentTransform(),Pivot,Desired,ProbeRadius,Candidate,FrustumClearance);
+        if((Limited||Candidate.bInfeasible)&&Candidate.Fraction<Out.Fraction)
+        {Candidate.Owner=R.Manifest+TEXT(":")+R.Element;Candidate.MeshSourceSHA=R.NativeMeshSHA;Out=Candidate;Found=true;}
+    }
+    return Found;
 }

@@ -1,0 +1,765 @@
+{
+  "source_HEAD": "bac00294966efbc0af013cc443eb70e8a6f6e946",
+  "terminal": {
+    "exit_code": 0,
+    "elapsed": 54.1093395880016,
+    "source_files": 13645,
+    "immutable_changes": []
+  },
+  "actual_cases": 9,
+  "counts": {
+    "succeeded": 7,
+    "succeededWithWarnings": 2,
+    "failed": 0,
+    "notRun": 0
+  },
+  "tests": [
+    {
+      "fullTestPath": "Dink.Art.Camera.ExteriorPortalGeometry",
+      "state": "Success",
+      "duration": 0.007951291278004646,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.ExteriorPortalOwnership",
+      "state": "Success",
+      "duration": 0.008342956192791462,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorDoorHeadroom",
+      "state": "Success",
+      "duration": 6.260582447052002,
+      "warnings": 4,
+      "errors": 0,
+      "entries": [
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: Retry 1 on https://www.google.com/generate_204",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.30.54"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: HTTP request timed out after 3.00 seconds URL=https://www.google.com/generate_204",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.30.54"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x613bcd9cb00: request failed, libcurl error: 7 (Could not connect to server)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.30.56"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: HttpRetry: Resetting log verbosity to Display due to requests being retried",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.30.56"
+        }
+      ]
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorHeadroomGeometry",
+      "state": "Success",
+      "duration": 0.0055990382097661495,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorPortalCamera",
+      "state": "Success",
+      "duration": 5.404954433441162,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+      "state": "Success",
+      "duration": 9.384483337402344,
+      "warnings": 0,
+      "errors": 0,
+      "entries": [
+        {
+          "event": {
+            "type": "Info",
+            "message": "Real PIE viewport prior1280x720 initialized1280x720 LocalPlayerSizeX=1.000 Y=1.000",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.07"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Clear-aperture fixture pawnV(X=-183806.10, Y=393355.35, Z=98.00) eyeV(X=-183761.10, Y=393595.35, Z=150.00) insideDoorBounds1 geometricSphereClear1 opacity1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.09"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Actual-return foreground pawnV(X=-183808.48, Y=393536.18, Z=98.00) eyeV(X=-183763.48, Y=393764.44, Z=224.16) controlR(P=-18.00, Y=-90.00) independentPixelHits9 endDepth228.069",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.09"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Camera fixture phase2 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed37 fading2",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.10"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.10"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.0 floorHitV(X=-183967.54, Y=393590.98) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw225.0 viewport1280x720 fraction0.5 floorHitV(X=-183805.18, Y=393428.62) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw225.0 viewport1280x720 fraction1.0 floorHitV(X=-183642.82, Y=393266.27) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Adaptive382 yaw225.0 shoulder45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183612.88, Y=393620.92, Z=224.16)",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.0 floorHitV(X=-183969.37, Y=393266.27) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw315.0 viewport1280x720 fraction0.5 floorHitV(X=-183807.02, Y=393428.62) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Floor-frustum yaw315.0 viewport1280x720 fraction1.0 floorHitV(X=-183644.66, Y=393590.98) insideUnionMargin3=1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Adaptive382 yaw315.0 shoulder-45.0 panX=0.000 Y=-25.887 actualEyeV(X=-183999.32, Y=393620.92, Z=224.16)",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.11"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Camera fixture phase4 pawnV(X=-183806.10, Y=393464.73, Z=98.00) actualEyeV(X=-183612.88, Y=393594.31, Z=224.16) desiredEyeV(X=-183612.88, Y=393594.31, Z=224.16) rotationR(P=-18.00, Y=225.00) managed37 fading2",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.13"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Occluder SM_Doorway_Limewash_4m_01 boundsV(X=-183799.53, Y=393595.98, Z=175.00) extentV(X=200.00, Y=16.00, Z=175.00) containsEye1 boxRay1 actualTrace0",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.13"
+        }
+      ]
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.ForegroundProjection",
+      "state": "Success",
+      "duration": 0.00428087217733264,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.MinimumTranslation",
+      "state": "Success",
+      "duration": 0.007828176952898502,
+      "warnings": 0,
+      "errors": 0,
+      "entries": []
+    },
+    {
+      "fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+      "state": "Success",
+      "duration": 9.237607955932617,
+      "warnings": 38,
+      "errors": 0,
+      "entries": [
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogEOSSDK: LogEOS: SDK Config Platform Update Request Failed, Result Code: EOS_TimedOut, Retrying after 3.731882 seconds",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.17"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "actual outdoor exit pawnV(X=97729.07, Y=37504.15, Z=98.35) eyeV(X=97729.07, Y=37123.73, Z=221.96) distance400.000 requested400.000",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.18"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Input/control phase2 actualP=-18.000000 Y=90.000000 R=0.000000 expectedP=-18.000000 Y=90.000000 R=0.000000 inputmatches1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.18"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: request failed, libcurl error: 7 (Could not connect to server)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 0 (Hostname www.google.com was found in DNS cache)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 1 (  Trying [2001:4860:4829:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 2 (Immediate connect fail for 2001:4860:4829:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 3 (  Trying [2001:4860:4826:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 4 (Immediate connect fail for 2001:4860:4826:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 5 (  Trying [2001:4860:482c:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 6 (Immediate connect fail for 2001:4860:482c:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 7 (  Trying [2001:4860:4827:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 8 (Immediate connect fail for 2001:4860:4827:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 9 (  Trying [2001:4860:482d:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 10 (Immediate connect fail for 2001:4860:482d:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 11 (  Trying [2001:4860:482a:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 12 (Immediate connect fail for 2001:4860:482a:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 13 (  Trying [2001:4860:482b:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 14 (Immediate connect fail for 2001:4860:482b:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 15 (  Trying [2001:4860:4828:7700::]:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 16 (Immediate connect fail for 2001:4860:4828:7700::: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 17 (  Trying 142.251.156.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 18 (Immediate connect fail for 142.251.156.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 19 (  Trying 142.251.153.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 20 (Immediate connect fail for 142.251.153.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 21 (  Trying 142.251.157.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 22 (Immediate connect fail for 142.251.157.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 23 (  Trying 142.251.151.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 24 (Immediate connect fail for 142.251.151.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 25 (  Trying 142.251.152.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 26 (Immediate connect fail for 142.251.152.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 27 (  Trying 142.251.150.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 28 (Immediate connect fail for 142.251.150.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 29 (  Trying 142.251.155.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 30 (Immediate connect fail for 142.251.155.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 31 (  Trying 142.251.154.119:443...)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 32 (Immediate connect fail for 142.251.154.119: Network is unreachable)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 33 (Failed to connect to www.google.com port 443 after 0 ms: Could not connect to server)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00: libcurl info message cache 34 (closing connection #2)",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Warning",
+            "message": "LogHttp: 0x6141a5c3f00 GET https://www.google.com/generate_204 completed with reason 'ConnectionError' after 0.00s",
+            "context": "log",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.21"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Post-Possess fixture baseline: controlP=0.000000 Y=90.000000 R=-0.000000 actorP=0.000000 Y=90.000000 R=-0.000000 inputPawnInputComponent0",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.22"
+        },
+        {
+          "event": {
+            "type": "Info",
+            "message": "Input/control phase6 actualP=0.000000 Y=90.000000 R=-0.000000 expectedP=0.000000 Y=90.000000 R=-0.000000 inputmatches1",
+            "context": "",
+            "artifact": "00000000000000000000000000000000"
+          },
+          "filename": "",
+          "lineNumber": -1,
+          "timestamp": "2026.11.10-15.31.22"
+        }
+      ]
+    }
+  ],
+  "qualification": "Actualcompletedcases; unchangedsource/assertions/timeouts betweenruns, sameOWNC2DDC device50/inode6704932. Coldreadinesstimeoutsretained, warmnotcoldproof."
+}

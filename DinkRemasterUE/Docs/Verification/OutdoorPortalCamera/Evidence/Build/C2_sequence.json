@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "phases": {
+    "editor": {
+      "exit_code": 0,
+      "elapsed": 11.658136503989226,
+      "source_files": 13645,
+      "source_changes": [],
+      "kernel_present": true
+    },
+    "game": {
+      "exit_code": 0,
+      "elapsed": 68.6875104339997,
+      "source_files": 13645,
+      "source_changes": [],
+      "kernel_present": true
+    }
+  },
+  "fresh_modules": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "87a87d5a809d4a62305818b801c269692d330e8075d9e9106ff1fde6a2d10e97",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "7ad1d8462c4680bbcc50fa61b049af8660018847b0fcca2cd7d9694e878501cf",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "283a8c2865aacce310e3192fbd8445a8331e9e8ab90262ba94224fb5cec98684",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "0b2112c01a9f408c0400b25dc22e5f45c717c7c23384fd15d89e0eecdad9c3a9",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "8ef20699a4536b0d4f9d3f577085002f80fea80cd652698d6067ee8fe48d1136",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "48f55e263d0013507fd3b26e9ebdf3eeb641ea9f7c9f3d31cb08e623410cbc37",
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "82861f22a0636e548c2509405dafbf917c7db39fefd9aa04eaa26a695c1c91c2"
+  },
+  "Editor_unchanged_through_Game": true,
+  "no_foreign_DLL_copy": true,
+  "qualified_own_partial_recovery": true,
+  "prior_failed_epoch": "b4627fc2b392cae29ff4e888af6a8b4b5436a85b3e434a91a1c90c9734098965",
+  "native_tests_not_run": true
+}
