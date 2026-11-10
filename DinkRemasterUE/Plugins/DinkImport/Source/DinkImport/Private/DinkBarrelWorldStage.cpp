@@ -245,6 +245,32 @@ FString TransformDifference(const FTransform& Source,const FTransform& Target)
   int32(!S.ContainsNaN()),int32(!T.ContainsNaN()),double(SQ.SizeSquared()),double(TQ.SizeSquared()),A.Num(),B.Num(),
   *BytesToHex(A.GetData(),A.Num()),*BytesToHex(B.GetData(),B.Num()));
 }
+FString NestedPropertyDifference(FProperty& P,void* SourceValue,void* TargetValue,UObject& Source,UObject& Target,
+ const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,const FString& Path,int Depth)
+{
+ TArray<uint8> A,B;FStateWriter SA(A,IDs,Forbidden,false),SB(B,IDs,Forbidden,true);
+ P.SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),SourceValue,nullptr);
+ P.SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),TargetValue,nullptr);
+ if(A==B&&!SA.IsError()&&!SB.IsError()&&!SB.SourceReference)return FString();
+ if(Depth<6)
+ {
+  if(auto* S=CastField<FStructProperty>(&P))
+   for(TFieldIterator<FProperty> It(S->Struct);It;++It)
+   {auto* Child=*It;if(!Child->ShouldSerializeValue(SA))continue;for(int I=0;I<Child->ArrayDim;++I)
+    {FString D=NestedPropertyDifference(*Child,Child->ContainerPtrToValuePtr<void>(SourceValue,I),Child->ContainerPtrToValuePtr<void>(TargetValue,I),Source,Target,IDs,Forbidden,Path+TEXT(".")+Child->GetName()+FString::Printf(TEXT("[%d]"),I),Depth+1);if(!D.IsEmpty())return D;}}
+  if(auto* Array=CastField<FArrayProperty>(&P))
+  {FScriptArrayHelper Left(Array,SourceValue),Right(Array,TargetValue);
+   if(Left.Num()==Right.Num())for(int I=0;I<Left.Num();++I)
+   {FString D=NestedPropertyDifference(*Array->Inner,Left.GetRawPtr(I),Right.GetRawPtr(I),Source,Target,IDs,Forbidden,Path+FString::Printf(TEXT("[%d]"),I),Depth+1);if(!D.IsEmpty())return D;}}
+ }
+ int Offset=0;while(Offset<FMath::Min(A.Num(),B.Num())&&A[Offset]==B[Offset])++Offset;
+ const int Start=FMath::Max(0,Offset-32),AN=FMath::Max(0,FMath::Min(A.Num()-Start,65)),BN=FMath::Max(0,FMath::Min(B.Num()-Start,65));
+ const FString AH=AN?BytesToHex(A.GetData()+Start,AN):TEXT("empty"),BH=BN?BytesToHex(B.GetData()+Start,BN):TEXT("empty");
+ FString X,Y;P.ExportTextItem_Direct(X,SourceValue,nullptr,&Source,PPF_None);P.ExportTextItem_Direct(Y,TargetValue,nullptr,&Target,PPF_None);
+ FString Numeric;if(auto* N=CastField<FNumericProperty>(&P);N&&N->IsFloatingPoint())
+ {const double L=N->GetFloatingPointPropertyValue(SourceValue),R=N->GetFloatingPointPropertyValue(TargetValue);Numeric=FString::Printf(TEXT(" numeric17=%.17g/%.17g delta=%.17g"),L,R,R-L);}
+ return FString::Printf(TEXT(" nestedFirst=%s depth=%d propertyClass=%s flags=0x%llx canonicalBytes=%d/%d firstByte=%d hexStart=%d hexA=%s hexB=%s source={%s} target={%s}%s"),*Path,Depth,*P.GetClass()->GetName(),static_cast<unsigned long long>(P.GetPropertyFlags()),A.Num(),B.Num(),Offset,Start,*AH,*BH,*X.Left(384),*Y.Left(384),*Numeric);
+}
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
  const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
@@ -261,11 +287,11 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
    P->ExportTextItem_Direct(Y,P->ContainerPtrToValuePtr<void>(&Target),nullptr,&Target,PPF_None);
    const FString AH=A.Num()<=128?BytesToHex(A.GetData(),A.Num()):TEXT("over128bytes");
    const FString BH=B.Num()<=128?BytesToHex(B.GetData(),B.Num()):TEXT("over128bytes");
-   FString Numeric;
+   FString Numeric=NestedPropertyDifference(*P,P->ContainerPtrToValuePtr<void>(&Source),P->ContainerPtrToValuePtr<void>(&Target),Source,Target,IDs,Forbidden,P->GetName(),0);
    if(const auto* Struct=CastField<FStructProperty>(P);Struct&&Struct->Struct==TBaseStructure<FRotator>::Get())
    {
     const auto* R=P->ContainerPtrToValuePtr<FRotator>(&Source);const auto* T=P->ContainerPtrToValuePtr<FRotator>(&Target);
-    Numeric=FString::Printf(TEXT(" rotator17 source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) delta=(%.17g,%.17g,%.17g)"),
+    Numeric+=FString::Printf(TEXT(" rotator17 source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) delta=(%.17g,%.17g,%.17g)"),
      double(R->Pitch),double(R->Yaw),double(R->Roll),double(T->Pitch),double(T->Yaw),double(T->Roll),
      double(T->Pitch-R->Pitch),double(T->Yaw-R->Yaw),double(T->Roll-R->Roll));
     if(auto* SC=Cast<USceneComponent>(&Source))
