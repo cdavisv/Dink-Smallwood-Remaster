@@ -1,3 +1,7 @@
+# Authored screen architecture identity
+
+`ART_STANDARD.md` permits an explicit no-sprite `authored_architecture {screens,purpose}` declaration only for kit_ceiling/kit_wall/kit_piece when every actual runtime use is direct dink-art/1 elements on declared screens. Do not fabricate sprite families or generalize this to props, context/replacements/family rows or name-only exemptions. Tests and baseline qualifications: Docs/Verification/AuthoredArchitectureFamilyPolicy. This source checker policy grants no native/collision/gameplay approval.
+
 # AGENTS.md
 
 ## Roof delivery and doorway capture (9 November 2026)
