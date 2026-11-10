@@ -102,7 +102,8 @@ bool FDinkAuthoredLightKinds::RunTest(const FString&)
             if (!TestNotNull(TEXT("actual rectangle component"), Rect)) return false;
             TestEqual(TEXT("source width"), Rect->SourceWidth, 80.f);
             TestEqual(TEXT("source height"), Rect->SourceHeight, 130.f);
-            TestEqual(TEXT("no fictional barn-door extension"), Rect->BarnDoorLength, 0.f);
+            TestEqual(TEXT("installed minimum barn-door length"), Rect->BarnDoorLength, 0.1f);
+            TestEqual(TEXT("retained default maximum barn-door angle"), Rect->BarnDoorAngle, 88.f);
             TestTrue(TEXT("local +X emits toward authored +Y"), Light->GetActorForwardVector().Equals(FVector(0, 1, 0), 1e-6));
         }
         else

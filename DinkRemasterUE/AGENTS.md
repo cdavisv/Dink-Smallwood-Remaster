@@ -1603,3 +1603,10 @@ Branch art/photoreal-trousers-source base master30 7c6e41e4 adds portable SOURCE
 ## Screen-name developer overlay default (9 November2026)
 
 `dink.ScreenInfo` defaults to 0 to keep screen labels off during ordinary play. Explicit 1 enables the existing developer overlay; 0 disables it. Other warnings/messages are unaffected. Isolated builds and native console default/opt-in checks pass; warmed movement 7/7 and full 168/168 pass. The first cold movement PIE timeout remains qualified in Docs/Verification/ScreenInfoDefault. This change is separate from the running master31 playtest.
+
+
+## Lighting native fixture correction (10 November 2026)
+
+Own C2 Editor/Game builds passed (11.564s/71.709s). Focused Native1 completed two tests: invalid-input preflight passed; legacy/rect failed only because installed RectLight clamps barn-door length to0.1cm while the fixture expected0. Explicitly requesting the same engine minimum0.1cm and asserting the retained88degree default documents the existing native behavior. Manifest, placements, intensity and optics remain unchanged. Native1 exited255 with no warnings; no appearance acceptance follows.
+
+Native1 packet postflight also rejected19 files generated under its own RunDDC because that directory was omitted from the immutable-membership exclusion. Original17 payloads and all13,749 source inputs remained unchanged, independently checked by Root. Preserve that failure and packet; a successor must exclude only its exact physical owned RunDDC and verify directory identity/no aliases. New source needs a reviewed C3 build using only own successful C2 outputs, then new focused native evidence. No automatic execution, foreign DLL/cache copy, activation or push.
