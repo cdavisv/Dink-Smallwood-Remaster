@@ -1,5 +1,6 @@
 #include "DinkInteriorCameraComponent.h"
 #include "DinkCoreModule.h"
+#include "DinkArtSubsystem.h"
 #include "DinkCameraFraming.h"
 #include "DinkCameraHeadroom.h"
 #include "DinkCameraOcclusion.h"
@@ -37,7 +38,7 @@ void UDinkInteriorCameraComponent::BeginPlay()
     Arm = GetOwner()->FindComponentByClass<USpringArmComponent>();
     Camera = GetOwner()->FindComponentByClass<UCameraComponent>();
     if (!Arm || !Camera) { SetComponentTickEnabled(false); return; }
-    OutdoorArm = Arm->TargetArmLength; OutdoorPivot = Arm->TargetOffset;
+    OutdoorArm = Arm->TargetArmLength; UncappedOutdoorArm=OutdoorArm; OutdoorPivot = Arm->TargetOffset;
     OutdoorSocket = Arm->SocketOffset; OutdoorFOV = Camera->FieldOfView;
     Arm->AddTickPrerequisiteComponent(this);
     FString Text; TSharedPtr<FJsonObject> Config;
@@ -98,7 +99,7 @@ void UDinkInteriorCameraComponent::AddZoomInput(float Steps)
 
 void UDinkInteriorCameraComponent::RestoreCamera()
 {
-    OutdoorHeadroomLift=0.f;
+    OutdoorHeadroomLift=0.f; OutdoorPortalArmCap=0.f; bOutdoorPortalFramingFeasible=true; OutdoorPortalOwner.Reset(); OutdoorPortalMeshSHA.Reset(); UncappedOutdoorArm=OutdoorArm;
     FloorFramingShift=FVector::ZeroVector; bFloorFramingAvailable=false; bFloorFramingFeasible=true;
     if (Arm) { Arm->TargetArmLength=OutdoorArm; Arm->TargetOffset=OutdoorPivot; Arm->SocketOffset=OutdoorSocket; }
     if (Camera) Camera->SetFieldOfView(OutdoorFOV);
@@ -151,7 +152,7 @@ void UDinkInteriorCameraComponent::RestoreOccluders()
 void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
 {
     const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
-    const float PreviousArm = Arm->TargetArmLength;
+    const float PreviousArm = OutdoorPortalArmCap>0 ? UncappedOutdoorArm : Arm->TargetArmLength;
     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
     bAppliedCutaway=bEnableWallCutaway;
     bInteriorMode = Screen && Screen->bIndoor;
@@ -164,6 +165,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
     else { RestoreCamera(); Arm->TargetArmLength=GetDesiredArmLength(); }
     // Adjacent screens must not restart an in-progress zoom or flash the unzoomed preset.
     if (SameMode) Arm->TargetArmLength=PreviousArm;
+    UncappedOutdoorArm=Arm->TargetArmLength;
     // Outdoor meshes participate only through the same explicit tag and complete
     // authored material mapping. Their physical collision and outdoor camera stay intact.
     // Normal play retracts the camera against solid architecture instead of removing it.
@@ -308,7 +310,7 @@ void UDinkInteriorCameraComponent::UpdateFraming(float DeltaTime)
 
 void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
 {
-    OutdoorHeadroomLift=0.f;
+    OutdoorHeadroomLift=0.f; OutdoorPortalArmCap=0.f; bOutdoorPortalFramingFeasible=true; OutdoorPortalOwner.Reset(); OutdoorPortalMeshSHA.Reset();
     Arm->TargetOffset=OutdoorPivot;
     // Match the native spring-arm sweep rather than extending through a blocker.
     // Lag/custom camera-local offsets need a different trajectory; leave their policy alone.
@@ -322,12 +324,9 @@ void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
     if (!Capsule || Width<=0 || Height<=0) return;
     const FRotator Rotation=Arm->GetTargetRotation();
     const FVector Pivot=Arm->GetComponentLocation()+OutdoorPivot;
-    const FVector Desired=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
+    FVector Desired=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
     const FCollisionShape Shape=FCollisionShape::MakeSphere(Arm->ProbeSize);
     FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkOutdoorHeadroom),false,GetOwner());
-    FHitResult BaseHit;
-    if (!GetWorld()->SweepSingleByChannel(BaseHit,Pivot,Desired,FQuat::Identity,Arm->ProbeChannel,Shape,Params) ||
-        BaseHit.bStartPenetrating || BaseHit.Time>=1.f) return;
     FMinimalViewInfo View; Camera->GetCameraView(0.f,View);
     if (View.ProjectionMode!=ECameraProjectionMode::Perspective) return;
     const FIntRect Rect(0,0,Width,Height);
@@ -341,31 +340,62 @@ void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
     const FVector Top=Capsule->GetComponentLocation()+FVector(0,0,Capsule->GetScaledCapsuleHalfHeight());
     const double Maximum=Capsule->GetScaledCapsuleHalfHeight();
     constexpr double MarginNDC=.2; // Keep the capsule top within the upper90% of screen height.
-    FVector Eye=BaseHit.Location;
+    // A clear physical door aperture can put an outdoor camera in the hollow shell.
+    // This is an authored presentation boundary, never a fabricated collision hit.
+    DinkCameraPortal::FLimit Portal;
+    bool PortalActive=false;
+    const ADinkScreenVolume* Screen=CurrentScreen.Get();
+    UDinkArtSubsystem* Art=GetWorld()->GetSubsystem<UDinkArtSubsystem>();
+    const double Near=View.GetFinalPerspectiveNearClipPlane();
+    const double PX=Projection.ProjectionMatrix.M[0][0],PY=Projection.ProjectionMatrix.M[1][1];
+    if(!bEnableWallCutaway&&Screen&&Art&&Arm->SocketOffset.IsNearlyZero()&&Camera->GetRelativeRotation().IsNearlyZero()&&PX>0&&PY>0&&Near>0)
+    {
+        const double Corner=Near*FMath::Sqrt(FMath::Square((1.+FMath::Abs(Projection.ProjectionMatrix.M[2][0]))/PX)+
+                                           FMath::Square((1.+FMath::Abs(Projection.ProjectionMatrix.M[2][1]))/PY));
+        const double Clearance=FMath::Max(double(Arm->ProbeSize),Corner);
+        const bool Registered=Art->ExteriorCameraLimit(*Screen,Pivot,Desired,Arm->ProbeSize,Clearance,Portal);
+        PortalActive=Registered&&!Portal.bInfeasible;
+        if(Registered&&Portal.bInfeasible){OutdoorPortalOwner=Portal.Owner; OutdoorPortalMeshSHA=Portal.MeshSourceSHA;bOutdoorPortalFramingFeasible=false;}
+        if(PortalActive)
+        {
+            OutdoorPortalOwner=Portal.Owner; OutdoorPortalMeshSHA=Portal.MeshSourceSHA;
+            Arm->TargetArmLength*=Portal.Fraction;OutdoorPortalArmCap=Arm->TargetArmLength;
+            Desired=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
+        }
+    }
+    FHitResult BaseHit;
+    const bool PhysicalHit=GetWorld()->SweepSingleByChannel(BaseHit,Pivot,Desired,FQuat::Identity,Arm->ProbeChannel,Shape,Params)&&BaseHit.Time<1.f;
+    if(PhysicalHit&&BaseHit.bStartPenetrating){if(PortalActive)bOutdoorPortalFramingFeasible=false;return;}
+    if(!PhysicalHit&&!PortalActive)return;
+    FVector Eye=PhysicalHit ? BaseHit.Location : Desired;
     double Lift=0;
     for (int32 Attempt=0; Attempt<3; ++Attempt)
     {
         double More=0;
         if (!DinkCameraHeadroom::MinimumLift(Top,Eye,Forward,Up,Projection.ProjectionMatrix.M[1][1],
-            Projection.ProjectionMatrix.M[2][1],MarginNDC,Maximum-Lift,More)) return;
+            Projection.ProjectionMatrix.M[2][1],MarginNDC,Maximum-Lift,More)) { if(PortalActive)bOutdoorPortalFramingFeasible=false; return; }
         if (More<=1.e-5)
         {
+            const bool Readable=FVector::DotProduct(Top-Eye,Forward)>Near+1.e-4;
+            if(PortalActive&&(!Portal.Outside(Eye)||!Readable)){bOutdoorPortalFramingFeasible=false;return;}
             if (Lift>0) { OutdoorHeadroomLift=Lift; Arm->TargetOffset=OutdoorPivot+FVector(0,0,Lift); }
             return;
         }
         Lift+=More+.25; // Numerical clearance, still inside the capsule-derived bound.
-        if (Lift>Maximum) return;
+        if (Lift>Maximum) { if(PortalActive)bOutdoorPortalFramingFeasible=false; return; }
         const FVector Offset(0,0,Lift);
         FHitResult PivotHit,Candidate;
-        if (GetWorld()->SweepSingleByChannel(PivotHit,Pivot,Pivot+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params)) return;
-        if (!GetWorld()->SweepSingleByChannel(Candidate,Pivot+Offset,Desired+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params) ||
-            Candidate.bStartPenetrating || Candidate.GetComponent()!=BaseHit.GetComponent() ||
-            FVector::DotProduct(Candidate.ImpactNormal,BaseHit.ImpactNormal)<.5 ||
-            !DinkCameraHeadroom::PreservesExteriorFace(BaseHit.Location,Candidate.Location,BaseHit.ImpactPoint,BaseHit.ImpactNormal)) return;
-        // Stay on the original wall's exterior side. A clear route into an unlit shell
-        // is not an acceptable headroom fix, even if it yields the full arm length.
-        Eye=Candidate.Location;
+        if (GetWorld()->SweepSingleByChannel(PivotHit,Pivot,Pivot+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params)) { if(PortalActive)bOutdoorPortalFramingFeasible=false; return; }
+        const bool CandidateHit=GetWorld()->SweepSingleByChannel(Candidate,Pivot+Offset,Desired+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params)&&Candidate.Time<1.f;
+        if(CandidateHit&&Candidate.bStartPenetrating){if(PortalActive)bOutdoorPortalFramingFeasible=false;return;}
+        if(PhysicalHit&&(!CandidateHit||Candidate.GetComponent()!=BaseHit.GetComponent()||
+           FVector::DotProduct(Candidate.ImpactNormal,BaseHit.ImpactNormal)<.5||
+           !DinkCameraHeadroom::PreservesExteriorFace(BaseHit.Location,Candidate.Location,BaseHit.ImpactPoint,BaseHit.ImpactNormal)))
+        {if(PortalActive)bOutdoorPortalFramingFeasible=false;return;}
+        Eye=CandidateHit ? Candidate.Location : Desired+Offset;
+        if(PortalActive&&!Portal.Outside(Eye)){bOutdoorPortalFramingFeasible=false;return;}
     }
+    if(PortalActive)bOutdoorPortalFramingFeasible=false;
 }
 
 void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction)
@@ -375,13 +405,15 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     const APawn* Pawn=Cast<APawn>(GetOwner());
     if (!Pawn || !Pawn->IsLocallyControlled() || Pawn->GetController()!=GetWorld()->GetFirstPlayerController())
     {
-        if (bInteriorMode || !Occluders.IsEmpty() || OutdoorHeadroomLift>0) SelectScreen(nullptr);
+        if (bInteriorMode || !Occluders.IsEmpty() || OutdoorHeadroomLift>0 || OutdoorPortalArmCap>0 || !bOutdoorPortalFramingFeasible) SelectScreen(nullptr);
         return;
     }
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
     if (!bSelectedScreen || Screen!=CurrentScreen.Get() || bAppliedCutaway!=bEnableWallCutaway) SelectScreen(Screen);
-    Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
+    const float PreviousNominal=OutdoorPortalArmCap>0 ? UncappedOutdoorArm : Arm->TargetArmLength;
+    Arm->TargetArmLength = FMath::FInterpTo(PreviousNominal, GetDesiredArmLength(), DeltaTime, 10.f);
+    UncappedOutdoorArm=Arm->TargetArmLength;
     if (bInteriorMode) { OutdoorHeadroomLift=0.f; UpdateFraming(DeltaTime); }
     else UpdateOutdoorHeadroom();
     if (Occluders.IsEmpty()) return;
