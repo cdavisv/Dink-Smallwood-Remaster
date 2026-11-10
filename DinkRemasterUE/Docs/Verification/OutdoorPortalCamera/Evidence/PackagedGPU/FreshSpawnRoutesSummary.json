@@ -43,9 +43,10 @@
         400
       ],
       "expected_screen": 439,
-      "actual_W_pulses": 0,
+      "actual_W_pulses": null,
       "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
-      "original_sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3"
+      "original_sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3",
+      "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
     },
     "route-spawn-door-return.json": {
       "result": "PASS",
@@ -88,9 +89,10 @@
         271
       ],
       "expected_screen": 1,
-      "actual_W_pulses": 0,
+      "actual_W_pulses": null,
       "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
-      "original_sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061"
+      "original_sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061",
+      "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
     },
     "walk-corridor-east.json": {
       "result": "PASS",
@@ -318,5 +320,5 @@
       "original_sha256": "fabea96331dcd2b6fc4498ec0124c02aeedc4eb0c44aef9a6aecb8098362611a"
     }
   },
-  "qualification": "Originaldoorwarpsaregameplay, noConsoleGoto onfreshroute; fullpulse/positionreceiptsretainedatraworigins. Noglobalcollisionclaim."
+  "qualification": "Original door warps are gameplay, with no ConsoleGoto on the fresh route. Waypoint receipts include pulse arrays. Door transition receipts record positions and actual held-W method but omit pulse counts; no count is inferred. No global collision claim."
 }
