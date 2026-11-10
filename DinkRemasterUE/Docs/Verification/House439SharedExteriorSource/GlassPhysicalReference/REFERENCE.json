@@ -1,0 +1,160 @@
+{
+  "status": "ACTUAL_CLOSED_PANE_SOURCE_REFERENCE_RENDERED_AND_INSPECTED",
+  "source_sha256_unchanged": "a88249598c9ae742630941e284cfa45d42599c8cca276b2348138321acd97910",
+  "pane": "InsetGlassPane.009",
+  "pane_geometry_UV_world_transform_exact": true,
+  "dimensions_m": [
+    0.35,
+    0.012,
+    0.56
+  ],
+  "source_material": "MI_Shared_ThinWavyGlass2m",
+  "CPU_threads": 2,
+  "samples": 64,
+  "views": [
+    {
+      "file": "outside_card_glass.png",
+      "camera": [
+        -3.015000104904175,
+        -6.439947605133057,
+        2.609999895095825
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.23994779586792,
+        2.609999895095825
+      ],
+      "glass_visible": true,
+      "sha256": "c8be21277acb8c51544a8d7043bf442ac67c437d88fcf6fc43433f160160c155"
+    },
+    {
+      "file": "outside_card_bare.png",
+      "camera": [
+        -3.015000104904175,
+        -6.439947605133057,
+        2.609999895095825
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.23994779586792,
+        2.609999895095825
+      ],
+      "glass_visible": false,
+      "sha256": "329c0c1baa20c22d41ce8bfb8a2346c2aec137c01d39f913cdd294eea06baeac"
+    },
+    {
+      "file": "inside_card_glass.png",
+      "camera": [
+        -3.015000104904175,
+        -2.4399476051330566,
+        2.609999895095825
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.639947414398193,
+        2.609999895095825
+      ],
+      "glass_visible": true,
+      "sha256": "87780997dc6f0b7dfc39f618597ebf1a7e63b9427d29b655e851715755e16e5a"
+    },
+    {
+      "file": "inside_card_bare.png",
+      "camera": [
+        -3.015000104904175,
+        -2.4399476051330566,
+        2.609999895095825
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.639947414398193,
+        2.609999895095825
+      ],
+      "glass_visible": false,
+      "sha256": "a920b80f7521b9e310c7b76b1bf15e595d785909a74a8e8e999af7c79450afc6"
+    },
+    {
+      "file": "outside_grazing_glass.png",
+      "camera": [
+        -1.2150001525878906,
+        -5.089947700500488,
+        2.759999990463257
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.23994779586792,
+        2.609999895095825
+      ],
+      "glass_visible": true,
+      "sha256": "7bd0c2aab71f873ceaf20cc22c53f9f5dedccec4feabf741a484d19c298a8bf4"
+    },
+    {
+      "file": "outside_grazing_bare.png",
+      "camera": [
+        -1.2150001525878906,
+        -5.089947700500488,
+        2.759999990463257
+      ],
+      "target": [
+        -3.015000104904175,
+        -4.439947605133057,
+        2.609999895095825
+      ],
+      "card_center": [
+        -3.015000104904175,
+        -4.23994779586792,
+        2.609999895095825
+      ],
+      "glass_visible": false,
+      "sha256": "863401549175e41aed29c1f0e2eea4597dee75652f9b670bb69a1fb3326e6ad2"
+    }
+  ],
+  "qualification": "Cycles thinwall material on originalclosed12mmgeometry, not native one-sided policy parity. Bare controls remove only pane fromrender; emittercard andreflectionsoftbox fixed perpair. Finewaviness mayremain subtle. No native/cottage source edit or finalapproval.",
+  "visual_review": {
+    "outside": "Blue/gold pattern visibly transmits through actual pane; slight tint and edgeblur, subtle waviness.",
+    "inside": "Pattern also transmits from rear, with similar source thin-wall response. This does not prove native one-sided response.",
+    "grazing": "Pattern transmits with stronger blur/reflection and visiblebevelededge.",
+    "controls": "All8actualimages inspected. Barecontrols preservecamera/card/light and removeonlypane. Card-hidden reflectioncontrol shows a brightsoftboxreflection onlywithpane; reflection is display-clipped and does not measureF0 or angularradiometry."
+  },
+  "display_image_comparison": {
+    "outside_card": {
+      "mean_absolute_8bit": 2.380983203125,
+      "max_absolute_8bit": 176.0,
+      "qualification": "Display-encoded control difference only; not physical transmittance/reflectance."
+    },
+    "inside_card": {
+      "mean_absolute_8bit": 2.39099921875,
+      "max_absolute_8bit": 171.0,
+      "qualification": "Display-encoded control difference only; not physical transmittance/reflectance."
+    },
+    "outside_grazing": {
+      "mean_absolute_8bit": 1.97333203125,
+      "max_absolute_8bit": 134.0,
+      "qualification": "Display-encoded control difference only; not physical transmittance/reflectance."
+    }
+  }
+}

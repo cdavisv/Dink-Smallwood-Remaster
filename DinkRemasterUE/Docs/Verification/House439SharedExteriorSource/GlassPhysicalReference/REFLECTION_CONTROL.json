@@ -1,0 +1,34 @@
+{
+  "status": "ACTUAL_GRAZING_REFLECTION_AND_BARE_CONTROL_INSPECTED",
+  "card_visible": false,
+  "camera": [
+    -1.2150001525878906,
+    -5.089947700500488,
+    2.759999990463257
+  ],
+  "target": [
+    -3.015000104904175,
+    -4.439947605133057,
+    2.609999895095825
+  ],
+  "light_location": [
+    -4.815000057220459,
+    -5.089947700500488,
+    2.4599997997283936
+  ],
+  "light_policy": "Softbox placed on idealreflectiondirection opposite camera X/Z, samefrontY. Barecontrolremoveonlypane.",
+  "views": [
+    {
+      "file": "outside_grazing_reflection_glass.png",
+      "glass_visible": true,
+      "sha256": "a01114039eb748ceda6bee7c3c814f3d6183b244e07a8f61e04e1fd4a6fc73aa"
+    },
+    {
+      "file": "outside_grazing_reflection_bare.png",
+      "glass_visible": false,
+      "sha256": "0b48f21aa6a87b28d4703c9873fe95b54df0da3a05b468f26f6367f3945a33c9"
+    }
+  ],
+  "qualification": "CPUclosedpane/thinwall sourceonly; not nativeone-sidedopticalparity.",
+  "visual_review": "Brightwhite softboxreflection visible acrosspane atgrazing, disappearswhenpanehidden. Reflectionclipsindisplayoutput; functionalreflectionevidence only, notquantitativeradiometry/nativeparity."
+}
