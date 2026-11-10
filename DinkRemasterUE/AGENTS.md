@@ -1,3 +1,7 @@
+## Fireplace V4 delivery staged on merged window lighting
+
+Worktree /home/davisc/Work/DinkFireplaceV4Delivery, branch art/fireplace-fired-clay-v4-delivery, base 8ea3d06. Staged 33 verified native packages, two house manifest edits, the V4 authoring packet and three shared libraries. Existing lighting and ledger prefix are preserved. The prior trial and assembly reloads and real-input walkthrough evidence are recorded in Docs/Verification/FireplaceV4Delivery. The gameplay captures precede the lighting merge. Combined regenerated and rendered validation and remote LFS publication proof remain pending.
+
 ## Window lighting C1 compiler fixture correction — no native acceptance
 
 Own C1 Editor build exited6 after142.097801458s with13,749 inputs unchanged and private kernelPASS; Game did not run. Negative world_cm fixture151 used nonexistent FJsonValueBool; installed JsonValue.h253 defines public FJsonValueBoolean(bool), already included through JsonObject.h10. Exactly that fixture identifier is corrected; production core/runtime/profile/practicals/ledger stay exact6e38. Six own partial DLLs remain historical C1 outputs (DinkParity did not link), not a complete7module baseline. No native tests/rendering/package approval. Root reviewed new disabled C2 and explicit own-partial lineage are required before any further build.

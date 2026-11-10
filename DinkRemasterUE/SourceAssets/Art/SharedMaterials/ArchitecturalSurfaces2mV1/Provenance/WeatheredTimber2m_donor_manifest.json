@@ -1,0 +1,50 @@
+{
+  "status": "Openlylicensed photograph-based material test; NOTmeasuredPBR/notadopted",
+  "source": "https://libreshot.com/beautiful-wood-structure/",
+  "author": "Martin Vorel",
+  "provenance": "EndgrainPhotoSourceReviewV1/PROVENANCE.json, unchangedphotobytesSHA andauthorlicensingHTML retained",
+  "license": "Authorallowscommercialuse/modification, describespublicdomain; exactlicensehrefPDcertification1.0USrecorded. Userexplicitlyauthorizesmatchingopenlicenses. NotrelabeledCC0deed.",
+  "source_crop_px": [
+    576,
+    376,
+    2048,
+    2048
+  ],
+  "artist_source_crop_width_m": 0.5,
+  "repeat_recipe": "Cropartistwidth0.5m, registered0.1moverlap =>0.4mrepeat,5repeatsacross2m;linearBCsameweights. Unknownphotoactualscale/species, notconfirmedOak.",
+  "colour_adjustment": "GlobalRGBgain matchespreviousdarkartistendgrainmean, notmeasureddelightedalbedo",
+  "RGB_gain": [
+    0.17116492736851327,
+    0.1827254781756847,
+    0.20679991518914442
+  ],
+  "PBR": "EndnormalflatGL(0,0,1);AO1/R.86/M0 artistconstants. Nounfoundednormalfromcolor, photographilluminationstillembedded.",
+  "longgrain": "V1all3mapfilesBYTEEXACT",
+  "files": [
+    {
+      "file": "T_WeatheredTimberEnd_BC.png",
+      "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792"
+    },
+    {
+      "file": "T_WeatheredTimberEnd_N_GL.png",
+      "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54"
+    },
+    {
+      "file": "T_WeatheredTimberEnd_ORM.png",
+      "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99"
+    },
+    {
+      "file": "T_WeatheredTimberLong_BC.png",
+      "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200"
+    },
+    {
+      "file": "T_WeatheredTimberLong_N_GL.png",
+      "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d"
+    },
+    {
+      "file": "T_WeatheredTimberLong_ORM.png",
+      "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f"
+    }
+  ],
+  "native": "NOT_RUN"
+}
