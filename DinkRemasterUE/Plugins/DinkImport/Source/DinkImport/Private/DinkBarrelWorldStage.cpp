@@ -21,6 +21,7 @@
 #include "Editor/UnrealEdEngine.h"
 #include "UnrealEdGlobals.h"
 #include "GameFramework/WorldSettings.h"
+#include "AI/NavigationSystemConfig.h"
 #include "Engine/DirectionalLight.h"
 #include "Components/LightComponentBase.h"
 #include "Components/LightComponent.h"
@@ -782,6 +783,95 @@ bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const U
   for(int Row=0;Row<4;++Row)for(int Column=0;Column<4;++Column){auto Scalar=C->PerInstanceSMData[I].Transform.M[Row][Column];W.Serialize(&Scalar,sizeof(Scalar));}}}
  return !W.SourceReference&&!W.IsError();
 }
+const FObjectPropertyBase* WorldNavigationConfigProperty()
+{
+ const auto* Property = FindFProperty<FObjectPropertyBase>(
+  AWorldSettings::StaticClass(), TEXT("NavigationSystemConfig"));
+ return Property && Property->GetOwnerClass() == AWorldSettings::StaticClass() &&
+  Property->PropertyClass == UNavigationSystemConfig::StaticClass() &&
+  Property->ArrayDim == 1 && Property->HasAllPropertyFlags(CPF_InstancedReference | CPF_PersistentInstance)
+  ? Property : nullptr;
+}
+
+bool CopyOwnedWorldNavigationConfig(AWorldSettings& Source, AWorldSettings& Target,
+ const FObjectPropertyBase& Property, TMap<UObject*, UObject*>& Remap, FString& Error)
+{
+ UObject* SourceConfig = Property.GetObjectPropertyValue_InContainer(&Source);
+ if (!SourceConfig)
+ {
+  Property.SetObjectPropertyValue_InContainer(&Target, nullptr);
+  return true;
+ }
+
+ UClass* ConfigClass = SourceConfig->GetClass();
+ if (SourceConfig->GetOuter() != &Source || SourceConfig->IsTemplate() ||
+  ConfigClass->GetClass() != UClass::StaticClass() ||
+  ConfigClass->GetPathName() != TEXT("/Script/NavigationSystem.NavigationSystemModuleConfig") ||
+  SourceConfig->GetArchetype() != ConfigClass->GetDefaultObject() ||
+  Source.GetOutermost() == Target.GetOutermost() || Remap.Contains(SourceConfig))
+ {
+  Error = TEXT("unsupported source-owned navigation config identity: ") + SourceConfig->GetPathName();
+  return false;
+ }
+ bool bHasChildren = false;
+ ForEachObjectWithOuter(SourceConfig, [&](UObject*) { bHasChildren = true; },
+  EGetObjectsFlags::IncludeNestedObjects);
+ if (bHasChildren)
+ {
+  Error = TEXT("source navigation config has unaudited owned descendants");
+  return false;
+ }
+
+ // This native config has scalar settings and a soft navigation class path.
+ // A local empty seed does not admit other source-world objects into the copy.
+ FObjectDuplicationParameters Parameters(SourceConfig, &Target);
+ Parameters.DestName = MakeUniqueObjectName(&Target, ConfigClass, SourceConfig->GetFName());
+ Parameters.DestClass = ConfigClass;
+ Parameters.DuplicateMode = EDuplicateMode::World;
+ Parameters.bAssignExternalPackages = false;
+ TMap<UObject*, UObject*> Created;
+ Parameters.CreatedObjects = &Created;
+ TStrongObjectPtr<UObject> Copy(StaticDuplicateObjectEx(Parameters));
+ if (!Copy.IsValid() || Copy.Get() == SourceConfig || Created.Num() != 1 ||
+  Created.FindRef(SourceConfig) != Copy.Get() || Copy->GetOuter() != &Target ||
+  Copy->GetClass() != ConfigClass || Copy->IsTemplate() ||
+  Copy->GetArchetype() != SourceConfig->GetArchetype())
+ {
+  Error = TEXT("navigation config duplication did not produce one distinct target-owned instance");
+  return false;
+ }
+ Property.SetObjectPropertyValue_InContainer(&Target, Copy.Get());
+ Remap.Add(SourceConfig, Copy.Get());
+ return true;
+}
+
+bool VerifyWorldNavigationConfig(AWorldSettings& Target, const FObjectPropertyBase& Property,
+ UObject* SourceConfig, const TMap<UObject*, UObject*>& Remap,
+ const TMap<const UObject*, FString>& IDs, const TSet<const UPackage*>& SourcePackages,
+ const TArray<uint8>* SourceConfigBytes, FString& Error)
+{
+ UObject* Actual = Property.GetObjectPropertyValue_InContainer(&Target);
+ if (!SourceConfig && !Actual)
+ {
+  return true;
+ }
+ if (!SourceConfig || !Actual || Actual == SourceConfig || Remap.FindRef(SourceConfig) != Actual ||
+  Actual->GetOuter() != &Target || SourcePackages.Contains(Actual->GetOutermost()) ||
+  !SourceConfigBytes)
+ {
+  Error = TEXT("world settings navigation config is not the exact distinct mapped target instance");
+  return false;
+ }
+ TArray<uint8> TargetBytes;
+ if (!State(*Actual, IDs, SourcePackages, true, TargetBytes) || TargetBytes != *SourceConfigBytes)
+ {
+  Error = TEXT("target-owned navigation config contents or references differ: ") +
+   FirstStateDifference(*SourceConfig, *Actual, IDs, SourcePackages);
+  return false;
+ }
+ return true;
+}
+
 void AddObjects(AActor& A,const FString& K,TMap<const UObject*,FString>& IDs,TMap<FString,UObject*>& ByRelative)
 {
  IDs.Add(&A,K);ByRelative.Add(TEXT(""),&A);
@@ -1541,11 +1631,22 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   Controls.Add(A);
  }
  if(OldHosts.Num()!=2||OldVolumes.Num()!=2)return Fail(TEXT("actual031/209 hosts and volumes required"));
- const auto* Settings=SourceWorld->GetWorldSettings();
+ auto* Settings=SourceWorld->GetWorldSettings();
+ const auto* NavigationProperty = WorldNavigationConfigProperty();
+ if (!NavigationProperty) return Fail(TEXT("world settings navigation config property is not the audited instanced field"));
+ UObject* SourceNavigationConfig = NavigationProperty->GetObjectPropertyValue_InContainer(Settings);
  IDs.Add(SourceWorld,TEXT("@World"));IDs.Add(Settings,TEXT("@WorldSettings"));
+ if (SourceNavigationConfig) IDs.Add(SourceNavigationConfig, TEXT("@WorldSettings/NavigationSystemConfig"));
  for(const auto* L:SourceWorld->GetLevels())IDs.Add(L,TEXT("@Level"));
  TMap<UObject*,TArray<uint8>> Before;
- {TArray<uint8> B;if(!State(*const_cast<AWorldSettings*>(Settings),IDs,SourcePackages,false,B))return Fail(TEXT("source settings fingerprint failed"));Before.Add(const_cast<AWorldSettings*>(Settings),MoveTemp(B));}
+ {TArray<uint8> B;if(!State(*Settings,IDs,SourcePackages,false,B))return Fail(TEXT("source settings fingerprint failed"));Before.Add(Settings,MoveTemp(B));}
+ if (SourceNavigationConfig)
+ {
+  TArray<uint8> Bytes;
+  if (!State(*SourceNavigationConfig, IDs, SourcePackages, false, Bytes))
+   return Fail(TEXT("source navigation config fingerprint failed"));
+  Before.Add(SourceNavigationConfig, MoveTemp(Bytes));
+ }
  for(const auto& P:SourceObjects)for(const auto& O:P.Value)
  {TArray<uint8> B;if(!State(*O.Value,IDs,SourcePackages,false,B))return Fail(TEXT("source fingerprint failed"));Before.Add(O.Value,MoveTemp(B));}
  TArray<UStaticMesh*> Foundations;
@@ -1565,11 +1666,13 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  World->SetFlags(RF_Public|RF_Standalone);
  auto* NewSettings=World->GetWorldSettings();
  for(TFieldIterator<FProperty> It(Settings->GetClass());It;++It)
-  if(It->GetOwnerClass()==AWorldSettings::StaticClass()&&!It->HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization))
+  if(*It != NavigationProperty && It->GetOwnerClass()==AWorldSettings::StaticClass()&&!It->HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization))
    It->CopyCompleteValue(It->ContainerPtrToValuePtr<void>(NewSettings),It->ContainerPtrToValuePtr<void>(Settings));
- TMap<UObject*,UObject*> Remap;Remap.Add(SourceWorld,World.Get());Remap.Add(const_cast<AWorldSettings*>(Settings),NewSettings);
+ TMap<UObject*,UObject*> Remap;Remap.Add(SourceWorld,World.Get());Remap.Add(Settings,NewSettings);
  for(const auto* L:SourceWorld->GetLevels())Remap.Add(const_cast<ULevel*>(L),World->PersistentLevel);
  TArray<AActor*> Copies;TMap<UObject*,UObject*> BinaryCreated;FString BinaryError;
+ if (!CopyOwnedWorldNavigationConfig(*Settings, *NewSettings, *NavigationProperty, Remap, BinaryError))
+  return Fail(BinaryError);
  if(!BinaryCopyControls(Controls,*World->PersistentLevel,Remap,BinaryCreated,Copies,BinaryLifetime,BinaryError))return Fail(BinaryError);
  TMap<FString,AActor*> Targets;for(AActor* A:Copies){const FString K=Key(*A);if(!Sources.Contains(K)||Targets.Contains(K))return Fail(TEXT("copied control identity missing/duplicate"));if(A->GetWorld()!=World.Get()||SourcePackages.Contains(A->GetArchetype()->GetOutermost()))return Fail(TEXT("copied actor retained source world/archetype"));Targets.Add(K,A);A->SetActorLabel(Sources[K]->GetActorLabel(),false);}
  TMap<int32,ADinkGreyboxScreen*> NewHosts;
@@ -1681,7 +1784,10 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  }
  for(const auto& P:Before){TArray<uint8> B;if(!State(*P.Key,IDs,SourcePackages,false,B)||B!=P.Value)return Fail(TEXT("source actor/component changed during staging"));}
  for(const auto& P:Dirty)if(P.Key->IsDirty()!=P.Value)return Fail(TEXT("source package dirty state changed"));
- auto& SourceSettings = *const_cast<AWorldSettings*>(Settings);
+ if (!VerifyWorldNavigationConfig(*NewSettings, *NavigationProperty, SourceNavigationConfig,
+  Remap, IDs, SourcePackages, Before.Find(SourceNavigationConfig), BinaryError))
+  return Fail(BinaryError);
+ auto& SourceSettings = *Settings;
  TArray<uint8> SourceSettingsBytes, TargetSettingsBytes;
  const bool bSourceSettingsRead = State(SourceSettings, IDs, SourcePackages, false, SourceSettingsBytes);
  const bool bTargetSettingsRead = bSourceSettingsRead &&
@@ -1735,6 +1841,74 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  FBinaryControlLifetime Lifetime,BadLifetime;
  TStrongObjectPtr<UWorld> HoldSourceWorld(SourceWorld),HoldTargetWorld(TargetWorld);
  ON_SCOPE_EXIT{TargetWorld->DestroyWorld(false);TargetWorld->MarkObjectsPendingKill();SourceWorld->DestroyWorld(false);SourceWorld->MarkObjectsPendingKill();};
+ {
+  auto* SourceSettings = SourceWorld->GetWorldSettings();
+  auto* TargetSettings = TargetWorld->GetWorldSettings();
+  const auto* Property = WorldNavigationConfigProperty();
+  UClass* ConfigClass = LoadClass<UNavigationSystemConfig>(
+   nullptr, TEXT("/Script/NavigationSystem.NavigationSystemModuleConfig"));
+  if (!TestTrue(TEXT("actual native instanced world navigation field and config class"),
+    SourceSettings && TargetSettings && Property && ConfigClass))
+  {
+   return false;
+  }
+  auto* SourceConfig = NewObject<UNavigationSystemConfig>(SourceSettings, ConfigClass, TEXT("AuthoredNavigationFixture"));
+  SourceConfig->DefaultAgentName = TEXT("DinkNavigationOwnershipFixture");
+  Property->SetObjectPropertyValue_InContainer(SourceSettings, SourceConfig);
+
+  TMap<const UObject*, FString> ConfigIDs;
+  ConfigIDs.Add(SourceConfig, TEXT("@WorldSettings/NavigationSystemConfig"));
+  const TSet<const UPackage*> ConfigSourcePackages = {SourcePackage};
+  TArray<uint8> Before, After, SourceReference, AliasedReference;
+  if (!TestTrue(TEXT("source navigation config captured before copy"),
+    State(*SourceConfig, ConfigIDs, ConfigSourcePackages, false, Before)))
+  {
+   return false;
+  }
+
+  // Reproduce the original shallow property copy and prove that matching
+  // canonical bytes still refuse the actual source-owned object pointer.
+  FStateWriter SourceWriter(SourceReference, ConfigIDs, ConfigSourcePackages, false);
+  Property->SerializeItem(FStructuredArchiveFromArchive(SourceWriter).GetSlot(),
+   Property->ContainerPtrToValuePtr<void>(SourceSettings), nullptr);
+  UObject* OriginalTargetConfig = Property->GetObjectPropertyValue_InContainer(TargetSettings);
+  Property->SetObjectPropertyValue_InContainer(TargetSettings, SourceConfig);
+  FStateWriter AliasWriter(AliasedReference, ConfigIDs, ConfigSourcePackages, true);
+  Property->SerializeItem(FStructuredArchiveFromArchive(AliasWriter).GetSlot(),
+   Property->ContainerPtrToValuePtr<void>(TargetSettings), nullptr);
+  Property->SetObjectPropertyValue_InContainer(TargetSettings, OriginalTargetConfig);
+  TestTrue(TEXT("world settings alias refuses even with identical canonical bytes"),
+   !SourceWriter.IsError() && !AliasWriter.IsError() &&
+   SourceReference == AliasedReference && AliasWriter.SourceReference);
+
+  TMap<UObject*, UObject*> ConfigRemap;
+  FString ConfigError;
+  if (!TestTrue(TEXT("stock duplication produces one target-owned navigation config"),
+    CopyOwnedWorldNavigationConfig(*SourceSettings, *TargetSettings, *Property, ConfigRemap, ConfigError)))
+  {
+   AddError(ConfigError);
+   return false;
+  }
+  UObject* TargetConfig = ConfigRemap.FindRef(SourceConfig);
+  if (!TestNotNull(TEXT("owned navigation config has a remap entry"), TargetConfig))
+  {
+   return false;
+  }
+  ConfigIDs.Add(TargetConfig, ConfigIDs.FindRef(SourceConfig));
+  TestTrue(TEXT("target navigation config matches authored contents with distinct ownership"),
+   VerifyWorldNavigationConfig(*TargetSettings, *Property, SourceConfig, ConfigRemap,
+    ConfigIDs, ConfigSourcePackages, &Before, ConfigError));
+  TArray<uint8> TargetReference;
+  FStateWriter TargetWriter(TargetReference, ConfigIDs, ConfigSourcePackages, true);
+  Property->SerializeItem(FStructuredArchiveFromArchive(TargetWriter).GetSlot(),
+   Property->ContainerPtrToValuePtr<void>(TargetSettings), nullptr);
+  TestTrue(TEXT("mapped navigation reference preserves canonical bytes and passes source guard"),
+   !TargetWriter.IsError() && !TargetWriter.SourceReference && TargetReference == SourceReference);
+  TestTrue(TEXT("source navigation ownership and contents remain exact"),
+   Property->GetObjectPropertyValue_InContainer(SourceSettings) == SourceConfig &&
+   SourceConfig->GetOuter() == SourceSettings &&
+   State(*SourceConfig, ConfigIDs, ConfigSourcePackages, false, After) && After == Before);
+ }
  {
   // Read the actual saved source wall. Its native default subobject starts
   // NoCollision, while the saved instance owns the importer HardSolid profile.
