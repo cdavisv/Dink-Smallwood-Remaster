@@ -1100,7 +1100,11 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestFalse(TEXT("root Euler changed scale refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerRootT->SetRelativeScale3D(FVector::OneVector);
  SetExact(*EulerRootT,Stage25RootP+FVector(1,0,0));
  TestFalse(TEXT("root Euler changed position refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));SetExact(*EulerRootT,Stage25RootP);
- auto* ExtraEulerParent=NewObject<USceneComponent>(EulerOwnerT);ExtraEulerParent->RegisterComponent();EulerRootT->AttachToComponent(ExtraEulerParent,FAttachmentTransformRules::KeepRelativeTransform);
+ AActor* ExtraEulerParentActor=NewWorld->SpawnActor<AActor>();
+ if(!TestNotNull(TEXT("separate root Euler attachment fixture parent actor"),ExtraEulerParentActor))return false;
+ auto* ExtraEulerParent=NewObject<USceneComponent>(ExtraEulerParentActor);ExtraEulerParentActor->SetRootComponent(ExtraEulerParent);ExtraEulerParent->RegisterComponent();
+ const bool ActualRootAttachment=EulerRootT->AttachToComponent(ExtraEulerParent,FAttachmentTransformRules::KeepRelativeTransform);
+ if(!TestTrue(TEXT("root Euler negative has an actual different-actor parent attachment"),ActualRootAttachment&&EulerRootT->GetAttachParent()==ExtraEulerParent))return false;
  TestFalse(TEXT("attached root Euler refuses"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerRootT->DetachFromComponent(FDetachmentTransformRules::KeepRelativeTransform);
  RootPose(*EulerRootT,Stage25RootP,EulerT);EulerProperty->ContainerPtrToValuePtr<FRotator>(EulerRootT)->Yaw=std::numeric_limits<double>::quiet_NaN();
  TestFalse(TEXT("nonfinite root Euler refuses before setter"),RestoreNewTargetRootTranslation(*EulerOwnerS,*EulerOwnerT,NewWorld,EulerMap,EulerRestored,EulerEvidence));EulerProperty->ContainerPtrToValuePtr<FRotator>(EulerRootT)->Yaw=EulerT.Yaw;
