@@ -1,6 +1,13 @@
 ## Outdoor portal camera — source-only isolated checkpoint
 
 New optional exact-owner portal presentation cap and projected headroom candidate on `fix/outdoor-portal-camera` in `/home/davisc/Work/DinkOutdoorPortalCamera`, based on2b68300. Existing cottage generator/export/native package provenance only; no V77, collision/material/asset changes or UE launch. Four metadata tests pass; new native geometry/ownership/doorway/reset fixtures are UNCOMPILED/UNRUN. Native/render/full validation and accepted-master integration remain pending. Read `Docs/Verification/OutdoorPortalCamera/README.md`. Frozen blocker and Root worktrees were not edited.
+## Generated blocker graphics verified; evidence publication
+
+Branch `fix/generated-blocker-visuals` at `/home/davisc/Work/DinkGeneratedBlockerVisuals`, tested source `2b683008675e3181b294a474e5cfd187158dacd9`, based on accepted master `c608c303`. Own Editor/Game builds, warm focused5 and full198 native cases pass (164clean/34warning successes). Ordinary regeneration separates644Visual/612Debug; saved readback passes; all2425physical/ground preimages unchanged and second import byte-idempotent across4818generated files. Actual Editor15 captures, new-game original-spawn held-W path around correctly sized chair to door, and packaged9 captures with debug0/1/0 and realW exit/return pass. Normal cook, four Vulkan shader validations, actual cooked inventory and packagedCH1 pass. Packaged run75a271d5-f482-45bf-b11c-606e32c69249 closed0/302.911685s/13647unchanged; four warnings/zeroerrors and normal private202 closure retained.
+
+See `Docs/Verification/GeneratedBlockerVisualSplit` for source diagnosis, bounded evidence and original receipt hashes. Publication changes docs/proof only after all own guarded runs closed. Prior compile, cold-readiness, importer-startup and navigation failures remain recorded. Older pending statements below are historical. PR56 review/CI/merge follows publication; PR55 is superseded only after merge.
+
+Global fitted-collision rollout, the outdoor cottage-shell camera defect, native newer fireplace/cottage art, remaining original2D assets and final photoreal lighting/art remain unfinished. Shared lighting/window findings are received with permission: historical/offline Blender geometry and glass tests do not establish active native material optics. Runtime collision work remains isolated at `/home/davisc/Work/DinkRuntimeHardnessIntegrationCurrent`; its Stage28 refusal saved no assets and needs separate diagnosis, not a tolerance waiver.
 
 ## First split Editor compile preserved; fixture-only compiler correction
 

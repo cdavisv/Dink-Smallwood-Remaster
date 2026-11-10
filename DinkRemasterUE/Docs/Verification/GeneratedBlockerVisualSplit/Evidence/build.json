@@ -1,0 +1,42 @@
+{
+  "own_C2": {
+    "success": true,
+    "phases": {
+      "editor": {
+        "exit_code": 0,
+        "elapsed": 13.620939269007067,
+        "source_files": 12982,
+        "source_changes": [],
+        "kernel_present": true
+      },
+      "game": {
+        "exit_code": 0,
+        "elapsed": 69.49506863900751,
+        "source_files": 12982,
+        "source_changes": [],
+        "kernel_present": true
+      }
+    },
+    "fresh_modules": {
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "9e542a4fe4cfc8e16f0f6567945885d65251067f675027a6a307e9bdda76ceab",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "cc2e7b09bf4d6055b327c10f6b87108c77507004eb000582ab581e56d088d9e5",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "664c1b18fca2ef628ed1d5c027f0ed2429bca6653143dd684ee576960f32ac0c",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "07b5fc214dfd8553d410f19ec4cd37f9670a4d04a25deead2da5bde5169254af",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "467c7e033cd11e5cb5d0e45d76d03f8a35c6d2dc97b94207de36969dd049073d",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "e56e26845a551080549f19e20abbf26aa7e8fbef34be5222d7614d51cf89668b",
+      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "f23db9bc2f00cd482b83be0c140598b0338b5f2483d23cf6073f36ac99afa2ab"
+    },
+    "Editor_unchanged_through_Game": true,
+    "no_foreign_DLL_copy": true,
+    "qualified_own_partial_recovery": true,
+    "prior_failed_epoch": "c46edb444fe5a731479148fb16207b4ca5454b4dbb1aa0b1393b0b5239c6c96c",
+    "native_tests_not_run": true
+  },
+  "failed_C1_excerpt": [
+    {
+      "line": 2,
+      "text": "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkGreyboxPresentationTests.inl:57:23: error: loop variable 'Suffix' creates a copy from type 'const FString' [-Werror,-Wrange-loop-construct]"
+    }
+  ],
+  "qualification": "First compile failed Werror range-loop FString copy; successor const-reference fix retained actualfailedlog. Own Editor/Game thenpassed."
+}

@@ -1,0 +1,145 @@
+{
+  "status": "SPAWN_PATH_INCONCLUSIVE_CONTROL_BOUND; NOT_DOORPASS",
+  "driver_tool": 58963,
+  "driver_terminal": 0,
+  "scope": "Orchestratorexit0onlynormalquit; spawnFAIL retained separately",
+  "outer": {
+    "exit_code": 0,
+    "elapsed": 451.8523726909916,
+    "inputs_unchanged": 13610,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "actual_startup": {
+    "actual": {
+      "screen": 1,
+      "map": [
+        314.0,
+        161.0
+      ],
+      "world": [
+        -183760.16,
+        392550.355,
+        98.15
+      ],
+      "yaw": 180.0,
+      "pitch": 0.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    "expected_bundle_spawn": [
+      1,
+      314,
+      161
+    ],
+    "before_any_Goto": true,
+    "qualification": "Actual privatefreshgame start; no initial relocation"
+  },
+  "no_Goto_commands": true,
+  "three_PNGs_personally_viewed": true,
+  "screenshots_sha256": {
+    "spawn-initial.png": "87ebbe946a97af59254f11708c5440dcb70ff695985f4a5117c0dedf079e2106",
+    "spawn-west.png": "272f112b68254d79c0cdc290c4d980234a396bc1448037b77c914c604f1b682d",
+    "final.png": "5ece4815097c2cc4df331ab2366285d4e161724d1dec81b1b1c7c7c86ffad454"
+  },
+  "walks": {
+    "walk-west.json": {
+      "result": "PASS",
+      "pulses": 43,
+      "last": {
+        "screen": 1,
+        "map": [
+          248.967,
+          161.0
+        ],
+        "world": [
+          -184044.677,
+          392550.355,
+          98.15
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "last_pulse": {
+        "seconds": 0.025,
+        "goal_error_before_px": 4.068999999999988,
+        "goal_error_after_px": 3.967000000000013,
+        "actual_world_delta_cm": 0.4439999999885913,
+        "actual_map_delta_px": 0.10199999999997544
+      }
+    },
+    "walk-corridor-west.json": {
+      "result": "FAIL",
+      "pulses": 60,
+      "last": {
+        "screen": 1,
+        "map": [
+          245.102,
+          256.476
+        ],
+        "world": [
+          -184061.588,
+          392968.064,
+          98.15
+        ],
+        "yaw": 92.32,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "last_pulse": {
+        "seconds": 0.014368011888373812,
+        "goal_error_before_px": 2.62713931872674,
+        "goal_error_after_px": 2.5260601734717256,
+        "actual_world_delta_cm": 0.44436471508779757,
+        "actual_map_delta_px": 0.10107917688623974
+      }
+    }
+  },
+  "failure": {
+    "error": "AssertionError(('waypoint60pulsebound', {'screen': 1, 'map': [245.102, 256.476], 'world': [-184061.588, 392968.064, 98.15], 'yaw': 92.32, 'pitch': -18.0, 'radius': 28.0, 'move_ignored': False}))",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 18, in <module>\n  File \"/home/davisc/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/drive_gpu.py\", line 107, in execute\n    ok=walk_to(1,x,y,world(screen,x,y),player,lambda yaw:cmd(f'dink.View {yaw:.4f} -18'),hold,lambda i:cmd('py qa_read('+repr('spawn-'+name+'-step-'+str(i))+')'),time.sleep,steps,arrival=.5 if name.startswith('corridor-')else 4,pulses=pulses)\n  File \"/home/davisc/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/drive_gpu.py\", line 32, in walk_to\n    raise AssertionError(('waypoint60pulsebound',steps[-1]))\nAssertionError: ('waypoint60pulsebound', {'screen': 1, 'map': [245.102, 256.476], 'world': [-184061.588, 392968.064, 98.15], 'yaw': 92.32, 'pitch': -18.0, 'radius': 28.0, 'move_ignored': False})\n",
+    "scope": "ActualchosenpathFAILED/INCONCLUSIVE; no collisionconclusion/teleport/retry"
+  },
+  "door": "NOT_RUN",
+  "diagnosis": "Linearworlddistance/800seconds underconverges fromrest; corridor60bound stillmoving, notphysicalcontactproof. NextRootauthorizedofflineV2sqrtpulseonly; no midpointretry.",
+  "warning_lines": [
+    "[2026.11.10-13.39.00:492][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+    "[2026.11.10-13.39.00:492][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+    "[2026.11.10-13.39.03:191][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.03:191][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.03:191][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.03:191][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.03:191][  0]LogVTDiskCache: Warning: Fail to write to /home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/VT, derived data cache to this directory will be read only.",
+    "[2026.11.10-13.39.03:858][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.03:858][  0]LogUnixPlatformFile: Warning: create dir('/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'ActorLayersWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'UObjectLabelWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'FolderCompatibilityWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DiskSizeWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataItemTypeWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataLabelWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataVirtualPathWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetNameWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:456][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'StaticMeshTrianglesWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertHeaderWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedHeaderConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'SocketWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'TypeInfoWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.39.05:457][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'VisibilityWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-13.46.23:661][854]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0xb917553ab00 has unfreed Image resources ",
+    "[2026.11.10-13.46.23:662][854]LogVulkanRHI: Warning:  ** LEAK 000 [07000000-004d0008] 5046280  ImageRT "
+  ],
+  "error_lines": [],
+  "closure_sha256": "f994679a4894695022c1f3d109d5ef217e0e7e37a4b200344168d7cb99d00a7f",
+  "source_physics_tolerance_changes": false
+}
