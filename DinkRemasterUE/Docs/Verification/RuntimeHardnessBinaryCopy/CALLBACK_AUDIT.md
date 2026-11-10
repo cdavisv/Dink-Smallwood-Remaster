@@ -1,3 +1,7 @@
+## Current loaded-state/cache correction (source-only, not native acceptance)
+
+Native32 measured a Stationary scratch light: World PostDuplicate preserved both GUIDs, but registration legitimately re-derived LightGuid from the new actor identity. Thus earlier blanket final-light-GUID wording below was incomplete. The supported importer Movable fixture is now initialized with stock public GUID lifecycle before baselines; its actual invalid/invalid GUIDs must remain exact. Non-Movable light controls refuse this bounded transport. Public ISM post-population initializes the source persistent seed before snapshots. Immediate callback timing/class audit is unchanged. See PRIVATE_CACHE_ROLE.md for the narrowly eligible derived ShapeBodySetup role identity contract and literal source/native proof; no target GUID forging or arbitrary normalization.
+
 # Native binary Controls-copy lifecycle contract (source review, unrun)
 
 The first 6aef5fd checkpoint overstated callback isolation. `bSkipPostLoad` defers only `ConditionalPostLoad`. Installed UObjectGlobals.cpp2991 invokes source `PreDuplicate`; 3134 invokes target `PostDuplicate`; 3160 invokes class `PostInitInstance` before `StaticDuplicateObjectEx` returns. Those immediate hooks are allowed only for the exact audited native classes below. No universal callback-deferral claim is made. This checkpoint has not been compiled or run.
