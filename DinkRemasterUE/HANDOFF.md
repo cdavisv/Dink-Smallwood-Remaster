@@ -1,3 +1,7 @@
+## Portal cold Editor failure preserved; fixture pointer deduction fix only
+
+Own BuildC1 Root46745 failed Editor6 after140.59913s/kernelPASS/13645inputs unchanged; Game did not run. Exact failure: fixture `auto*` cannot deduce from TObjectPtr CameraBoom/FollowCamera. Fixed only `.Get()` at that declaration; assertions and production runtime bytes unchanged. Cold log/partial outputs preserved in `/home/davisc/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3`. C2 must qualify actual OWN failed-C1 partial modules/metadata, never claim successfulbaseline or copyDLLs. No retry/build/native launched by this sourcefix.
+
 ## Portal candidate merged/hydrated; own cold build NOT launched
 
 Merged accepted86891199 into source-reviewed401e5fb as8565bf6; onlyAGENTS/HANDOFF conflicts retained both sections. Actual4505localLFS objects fullSHA restored including16publishedscreens; independent current20b generated4818+1272ignoredcontrols (54Characters/9Input/1209ImportData) copied with source/destination fullhashes/independentinodes, noDLL/DDC/codecopy. FullsourceauditPASS4505/521Python/4327ledger/11history/zeroerrors and4portalmetadata testsPASS. External exactreceipts: `/home/davisc/Work/DinkQA/OutdoorPortalCameraHydrationPlan/HYDRATION.json`. Prepared-only own cold Editor/Game packet `/home/davisc/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1`; no UE/build/native/GPU launched. Source-reviewed checkpoint still needs own compiled/native/actualpixels proof.
