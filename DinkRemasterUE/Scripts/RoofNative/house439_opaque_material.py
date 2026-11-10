@@ -59,6 +59,7 @@ def build_graph(U,material,recipe,graph,textures,guard):
     nodes,edges,root=validate_graph(graph)
     require(callable(guard),'Root isolation guard required')
     require(recipe.get('source_graph_reviewed')is True,'Reviewed source graph recipe required')
+    require(recipe.get('uv1_semantic_decode')=='U,1-V','Explicit imported semantic UV1 V decode required')
     require(material.get_path_name().split('.')[0]==recipe['package'],'Unexpected material target')
     images={n['image']['name']for n in nodes.values()if n['type']=='TEX_IMAGE'}
     require(set(textures)==images and set(recipe['textures'])==images,'Actual source image set differs')
@@ -94,6 +95,13 @@ def build_graph(U,material,recipe,graph,textures,guard):
         require(key not in active,'Cyclic source graph');active.add(key);n=nodes[name];t=n['type']
         if t=='UVMAP':
             o=new('TextureCoordinate');setp(o,'coordinate_index',0 if n['uv_map']=='UV0' else 1);v=(o,'')
+            if n['uv_map']=='UV1_SharedData':
+                # Legacy FBX imports every V as1-sourceV. This channel is data,
+                # not image coordinates: restore original bias before source DAG.
+                def component(red):
+                    mask=new('ComponentMask');setp(mask,'r',red);setp(mask,'g',not red);setp(mask,'b',False);setp(mask,'a',False);connect(v,mask,'Input');return(mask,'')
+                u=component(True);native_v=component(False)
+                v=op('AppendVector',{'A':u,'B':op('OneMinus',{'Input':native_v})})
         elif t=='VERTEX_COLOR':v=(new('VertexColor'),'RGB'if index==0 else'A')
         elif t=='TEX_IMAGE':
             o=new('TextureSample');image=n['image']['name'];setp(o,'texture',textures[image]);setp(o,'const_coordinate',0);kind='N'if '_N_GL'in image else'ORM'if '_ORM'in image else'BC';setp(o,'sampler_type',{'BC':U.MaterialSamplerType.SAMPLERTYPE_COLOR,'N':U.MaterialSamplerType.SAMPLERTYPE_NORMAL,'ORM':U.MaterialSamplerType.SAMPLERTYPE_MASKS}[kind]);connect(input_value(name,0),o,'UVs');v=(o,'RGB'if index==0 else'A')

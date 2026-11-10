@@ -137,10 +137,10 @@
     "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/VERIFY_REGISTERED.json": "373244f5db0f14fe128faeb9bd724dee12626fa10ec7394e26aba22a08be4537",
     "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/registry.json": "69bc3b8d0c7eb706c4dbe5092c25e41465cfe561f6c279c10b380b96c1241d8b",
     "SourceAssets/Art/SharedMaterials/manifest.json": "b8d977abdda49a4cfadbba4fd5fd3bad02ba2d7d38b7817733a0dd274302dad5",
-    "Scripts/RoofNative/house439_contract.py": "a2b9d28092c36ce630f0b9e11f80e8ccca3f9f0da5d0dcb48869e405aa50e45a",
+    "Scripts/RoofNative/house439_contract.py": "9464615c3dbce8fe1be4343a9fcb6b344fd3d895c983a1770ace185a63b3d4f9",
     "Scripts/RoofNative/house439_native.py": "4d404d2d6994fbd367edfd11b1c66ce3b0faad43dca9bc93834134aba2e70c40",
     "Scripts/RoofNative/house439_glass_material.py": "e190def7aa1172dd3fc13072353d1e55d5a692d43c035fe42c0d1e4ad1ed5598",
-    "Scripts/RoofNative/house439_opaque_material.py": "fd46d4fba93aa5d22219030b848a1414aa9d8d702892c7fc41cec786a7e41798",
+    "Scripts/RoofNative/house439_opaque_material.py": "8e3f32f5531c94885447af71508e7474ed76d7a333fb46d53751d78f052e84d5",
     "Scripts/RoofNative/native_mesh_tools_v11c.py": "80b1c1b6463db1d7b20a0ccab99f91d8165958b35862db43ba48c8addacd0757",
     "Scripts/RoofNative/native_texture_tools_v11.py": "a6062257d3d9ed0f42ee5bf7f27409a170cc3be78604c7b235b043e204e9757e",
     "Scripts/RoofNative/shared_roof_native.py": "e45f002697a43ee8177677b3883c3ef953277ba40b5476a3da31058d61032f7a",
@@ -492,6 +492,7 @@
       },
       "profile": "opaque_surface_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -1095,6 +1096,7 @@
       },
       "profile": "opaque_surface_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -1585,6 +1587,7 @@
       },
       "profile": "opaque_variant_tint_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -2412,6 +2415,7 @@
       },
       "profile": "opaque_variant_tint_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -3239,6 +3243,7 @@
       },
       "profile": "opaque_variant_tint_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -4163,6 +4168,7 @@
       },
       "profile": "opaque_surface_2m",
       "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
       "source_graph": {
         "nodes": [
           {
@@ -4677,6 +4683,7 @@
       ],
       "color0": "SharedSurfaceData",
       "normal_tangent_basis": "UV0",
+      "native_UV_convention": "LegacyFBX imports V=1-sourceV on allchannels; semanticUV1Y decoded byOneMinus inmaterial, UV0 stays texture convention",
       "collision": "SIMPLE_AND_COMPLEX",
       "nanite": false
     }
@@ -4723,5 +4730,5 @@
   },
   "production_activated": false,
   "native_review_required": true,
-  "digest": "bc40bee6a563ec27edcab12d568195f96a95a0c1316eb0a9c3608d0d58424eca"
+  "digest": "f5a57da479d4af488ce93e4330bd32c60ae2dbd2496dc8f0a04ad3d2c4b86de9"
 }

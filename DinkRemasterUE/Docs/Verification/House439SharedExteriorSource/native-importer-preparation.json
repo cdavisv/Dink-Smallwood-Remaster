@@ -1,7 +1,7 @@
 {
   "status": "PREPARED_UNCOMPILED_UNEXECUTED_IN_UNREAL",
   "source_commit": "61d03de",
-  "contract_digest": "bc40bee6a563ec27edcab12d568195f96a95a0c1316eb0a9c3608d0d58424eca",
+  "contract_digest": "f5a57da479d4af488ce93e4330bd32c60ae2dbd2496dc8f0a04ad3d2c4b86de9",
   "fresh_packages": {
     "mesh": 1,
     "materials": 7,
@@ -19,7 +19,9 @@
     "actual_copy_contract": 8,
     "glass_recipe_guards": 9,
     "opaque_source_graph_guards": 6,
-    "existing_shared_roof_regressions": 14
+    "existing_shared_roof_regressions": 14,
+    "constructed_source_graph_semantics": 4,
+    "current_house439_total": 27
   },
   "native_gates": [
     "RootreviewofnewC++source/driver/recipes",
@@ -36,5 +38,8 @@
     "full": "importer-prep-full-source-audit.json",
     "metadata": "importer-prep-metadata-source-audit.json",
     "passed": true
-  }
+  },
+  "superseded_contract_digest": "bc40bee6a563ec27edcab12d568195f96a95a0c1316eb0a9c3608d0d58424eca",
+  "uv1_semantic_correction": "InstalledlegacyFBX importer Vflip requires UV1_SharedData decode(U,1-nativeV) before sourceDAG. UV0texture/nativeTBN untouched; allsource/library/FBXbytes unchanged.",
+  "actual_native_validation": "UNEXECUTED; actualgraphreadbackmustverify UV1OneMinus/AppendVector plus sourceDAG. Priorreviewreceiptdigest invalidated."
 }
