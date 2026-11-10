@@ -131,5 +131,28 @@
       "yaw_from_sprite": true,
       "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
     }
-  ]
+  ],
+  "collision_fit": {
+    "schema": "dink-family-collision-fit/1",
+    "origins": [
+      {
+        "origin": "S031_P03",
+        "family": "barrel",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+        "geometry_sha1": "5eb85050e7e90d1a1dd8b97554077af688f66732",
+        "anchor": "sprite_ground",
+        "geometry": "cooked_complex",
+        "raster": "cell_center"
+      },
+      {
+        "origin": "S209_P13",
+        "family": "barrel",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+        "geometry_sha1": "5eb85050e7e90d1a1dd8b97554077af688f66732",
+        "anchor": "sprite_ground",
+        "geometry": "cooked_complex",
+        "raster": "cell_center"
+      }
+    ]
+  }
 }
