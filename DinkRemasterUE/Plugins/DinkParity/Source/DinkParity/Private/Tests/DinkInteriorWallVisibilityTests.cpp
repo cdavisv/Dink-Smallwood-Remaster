@@ -69,6 +69,10 @@ bool FDinkInteriorWallOwnershipTest::RunTest(const FString&)
     auto* Greybox=World->GetSubsystem<UDinkGreyboxSubsystem>();
     if(!TestNotNull(TEXT("real screen subsystem"),Greybox)||!TestNotNull(TEXT("real physics scene"),World->GetPhysicsScene()))return false;
     auto* PC=World->SpawnActor<APlayerController>();auto* Pawn=World->SpawnActor<APawn>();
+    if(!TestNotNull(TEXT("scratch controller"),PC)||!TestNotNull(TEXT("scratch pawn"),Pawn))return false;
+    // A bare scratch world has not initialized level actors for play. Follow
+    // the existing visibility/save fixtures' explicit controller registration.
+    World->AddController(PC);
     auto* Root=NewObject<USceneComponent>(Pawn);Root->SetMobility(EComponentMobility::Movable);Pawn->SetRootComponent(Root);Root->RegisterComponent();PC->Possess(Pawn);
     if(!TestTrue(TEXT("actual first controller possesses scratch pawn"),World->GetFirstPlayerController()==PC&&PC->GetPawn()==Pawn))return false;
     auto Make=[&](int32 Number,double X,bool Indoor,FName Interior,FName Sheet)
