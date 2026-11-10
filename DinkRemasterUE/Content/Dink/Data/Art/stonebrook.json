@@ -2126,7 +2126,7 @@
     },
     {
       "name": "IndoorRoof_EN_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2148,7 +2148,7 @@
     },
     {
       "name": "IndoorRoof_ES_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2170,7 +2170,7 @@
     },
     {
       "name": "IndoorRoof_Gable_EN_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2192,7 +2192,7 @@
     },
     {
       "name": "IndoorRoof_Gable_ES_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2214,7 +2214,7 @@
     },
     {
       "name": "IndoorRoof_Gable_WN_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2236,7 +2236,7 @@
     },
     {
       "name": "IndoorRoof_Gable_WS_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2258,7 +2258,7 @@
     },
     {
       "name": "IndoorRoof_WN_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
       "world_cm": [
         -183821.41,
         392939.73,
@@ -2280,7 +2280,7 @@
     },
     {
       "name": "IndoorRoof_WS_01",
-      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01",
       "world_cm": [
         -183821.41,
         392939.73,

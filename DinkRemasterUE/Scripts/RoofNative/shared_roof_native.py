@@ -155,6 +155,31 @@ def import_trial(U, root, contract, guard, save, pixel_check, mesh_check, emit_r
         emit_receipt(report)
 
 
+def verify_saved23_assets(U, root, contract, report, guard, pixel_check, mesh_check):
+    """Shared unchanged saved23 verification body; phase-specific preflight stays with caller."""
+    verify_package_hashes(root, report['packages'])
+    for recipe in contract['textures']:
+        guard()
+        texture = U.load_asset(recipe['package'])
+        configure_shared_texture(U, texture, recipe, guard)
+        inspect_relative_sources(U, texture, [root / recipe['source_file']], root / 'SourceAssets/Art')
+        report['textures'].append(pixel_check(texture, root / recipe['source_file'], recipe))
+    for recipe in contract['materials']:
+        for masked in (False, True):
+            guard()
+            report['materials'].append(inspect_graph(U, U.load_asset(recipe['masked' if masked else 'opaque']),
+                                                    recipe, masked))
+    roles = {r['source_material']: r['opaque'] for r in contract['materials']}
+    for record in contract['meshes']:
+        guard()
+        mesh = U.load_asset(record['package'])
+        inspect_relative_sources(U, mesh, [root / SOURCE / record['file']], root / 'SourceAssets/Art')
+        inspect_slots(U, mesh, 0, record['material_slots'], roles, record['triangles'])
+        report['meshes'].append(checked_mesh_result(mesh_check(mesh, record), record))
+    guard()
+    require(all(sha(root / p) == h for p, h in report['packages'].items()), 'Readback changed saved packages')
+
+
 def verify_trial_readback(U, root, contract, imported, guard, pixel_check, mesh_check, emit_receipt):
     """Separate fresh-process saved readback. No imports, setters or saves."""
     root = Path(root)
@@ -166,27 +191,7 @@ def verify_trial_readback(U, root, contract, imported, guard, pixel_check, mesh_
     report = dict(passed=False, phase='fresh23_saved_readback', contract_digest=contract['digest'],
                   packages=dict(imported['packages']), textures=[], materials=[], meshes=[], imports=0, saves=0)
     try:
-        verify_package_hashes(root, report['packages'])
-        for recipe in contract['textures']:
-            guard()
-            texture = U.load_asset(recipe['package'])
-            configure_shared_texture(U, texture, recipe, guard)
-            inspect_relative_sources(U, texture, [root / recipe['source_file']], root / 'SourceAssets/Art')
-            report['textures'].append(pixel_check(texture, root / recipe['source_file'], recipe))
-        for recipe in contract['materials']:
-            for masked in (False, True):
-                guard()
-                report['materials'].append(inspect_graph(U, U.load_asset(recipe['masked' if masked else 'opaque']),
-                                                        recipe, masked))
-        roles = {r['source_material']: r['opaque'] for r in contract['materials']}
-        for record in contract['meshes']:
-            guard()
-            mesh = U.load_asset(record['package'])
-            inspect_relative_sources(U, mesh, [root / SOURCE / record['file']], root / 'SourceAssets/Art')
-            inspect_slots(U, mesh, 0, record['material_slots'], roles, record['triangles'])
-            report['meshes'].append(checked_mesh_result(mesh_check(mesh, record), record))
-        guard()
-        require(all(sha(root / p) == h for p, h in report['packages'].items()), 'Readback changed saved packages')
+        verify_saved23_assets(U, root, contract, report, guard, pixel_check, mesh_check)
         report['passed'] = True
         return report
     except BaseException as error:
