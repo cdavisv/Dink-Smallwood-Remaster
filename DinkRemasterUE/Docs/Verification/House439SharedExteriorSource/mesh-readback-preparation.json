@@ -1,6 +1,6 @@
 {
   "status": "SOURCE_PREPARATION_CPP_UNCOMPILED_NATIVE_UNEXECUTED",
-  "contract_digest": "a9cc41ca321af4f22cf0e490bcf4cc1c3027b28e1a740c18114833d422a017bb",
+  "contract_digest": "273dd93ff8e5c049bc8afeb3dde6b5b5983eff4d33e52b1f20d8965affe05d0c",
   "bridge": "UDinkMaterialArtLibrary::InspectStaticMeshGeometry",
   "schema": "dink-static-mesh-geometry/1",
   "native_test_to_run": "Dink.Art.StaticMeshGeometryInspection",
@@ -31,5 +31,11 @@
     "full": "mesh-readback-full-source-audit.json",
     "metadata": "mesh-readback-metadata-source-audit.json",
     "passed": true
+  },
+  "cpp_safety_guards": {
+    "compiling_mesh": "Reject beforeRAW/render reads",
+    "data_pointers": "Position/Tangent/TexCoord pointers mandatory; Color pointer mandatory whenColorCountnonzero",
+    "native_pointer_regressions": "Sixpositive/negative bufferpointer cases added to nativefunctionaltest; UNCOMPILED/UNRUN here",
+    "qualification": "Preventive concrete safety, no observednativecrash andnoactualruntimeexecution"
   }
 }

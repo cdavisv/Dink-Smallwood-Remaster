@@ -18,6 +18,10 @@ FValues Numbers(std::initializer_list<double> Values)
  for (double Value : Values) Result.Add(MakeShared<FJsonValueNumber>(Value));
  return Result;
 }
+bool VertexDataPresent(const void* Position,const void* Tangent,const void* UV,const void* Color,bool HasColors)
+{
+ return Position&&Tangent&&UV&&(!HasColors||Color);
+}
 void Number(FValues& Values,double Value) { Values.Add(MakeShared<FJsonValueNumber>(Value)); }
 bool Finite(const FValues& Values)
 {
@@ -37,6 +41,7 @@ FString UDinkMaterialArtLibrary::InspectStaticMeshGeometry(UStaticMesh* Mesh,int
   FString Result;FJsonSerializer::Serialize(Root,TJsonWriterFactory<>::Create(&Result));return Result;
  };
  if (!Mesh) return Finish(TEXT("null_mesh"));
+ if (Mesh->IsCompiling()) return Finish(TEXT("mesh_still_compiling"));
  Root->SetStringField(TEXT("mesh"),Mesh->GetPathName());
  if (LODIndex<0||LODIndex>=Mesh->GetNumSourceModels()) return Finish(TEXT("invalid_lod"));
  const FMeshDescription* Description=Mesh->GetMeshDescription(LODIndex);
@@ -52,6 +57,7 @@ FString UDinkMaterialArtLibrary::InspectStaticMeshGeometry(UStaticMesh* Mesh,int
  const uint32 Count=Position.GetNumVertices();
  if (Count==0||Vertex.GetNumVertices()!=Count||Vertex.GetNumTexCoords()==0) return Finish(TEXT("incomplete_built_attributes"));
  if (Color.GetNumVertices()!=0&&(Color.GetNumVertices()!=Count||!Color.GetAllowCPUAccess())) return Finish(TEXT("incomplete_built_colors"));
+ if (!VertexDataPresent(Position.GetVertexData(),Vertex.GetTangentData(),Vertex.GetTexCoordData(),Color.GetVertexData(),Color.GetNumVertices()!=0)) return Finish(TEXT("missing_cpu_vertex_data"));
  const FStaticMeshConstAttributes Attributes(*Description);
  const auto P=Attributes.GetVertexPositions();const auto N=Attributes.GetVertexInstanceNormals();
  const auto T=Attributes.GetVertexInstanceTangents();const auto S=Attributes.GetVertexInstanceBinormalSigns();
@@ -125,6 +131,13 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkStaticMeshGeometryInspectionTest,"Dink.Art
 bool FDinkStaticMeshGeometryInspectionTest::RunTest(const FString& Parameters)
 {
  auto Parse=[](const FString& Text) { TSharedPtr<FJsonObject> Data;FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Data);return Data; };
+ int32 MemoryCookie=1;const void* Present=&MemoryCookie;
+ TestTrue(TEXT("all retained buffer pointers accepted"),VertexDataPresent(Present,Present,Present,Present,true));
+ TestFalse(TEXT("missing position CPU data refused"),VertexDataPresent(nullptr,Present,Present,Present,true));
+ TestFalse(TEXT("missing tangent CPU data refused"),VertexDataPresent(Present,nullptr,Present,Present,true));
+ TestFalse(TEXT("missing UV CPU data refused"),VertexDataPresent(Present,Present,nullptr,Present,true));
+ TestFalse(TEXT("present color count with missing CPU colors refused"),VertexDataPresent(Present,Present,Present,nullptr,true));
+ TestTrue(TEXT("absent optional color buffer distinguished"),VertexDataPresent(Present,Present,Present,nullptr,false));
  const auto Null=Parse(UDinkMaterialArtLibrary::InspectStaticMeshGeometry(nullptr));
  if (!TestTrue(TEXT("null rejected"),Null.IsValid()&&!Null->GetBoolField(TEXT("valid")))) return false;
  UStaticMesh* Mesh=NewObject<UStaticMesh>(GetTransientPackage(),NAME_None,RF_Transient);Mesh->AddSourceModel();Mesh->bAllowCPUAccess=true;
@@ -141,6 +154,7 @@ bool FDinkStaticMeshGeometryInspectionTest::RunTest(const FString& Parameters)
  Description->CreateTriangle(Group,Corners);
  UStaticMesh::FBuildMeshDescriptionsParams Build;Build.bFastBuild=true;Build.bAllowCpuAccess=true;Build.bCommitMeshDescription=true;Build.bMarkPackageDirty=false;
  Mesh->BuildFromMeshDescriptions({Description},Build);const bool Dirty=Mesh->GetOutermost()->IsDirty();
+ TestFalse(TEXT("scratch fixture build has completed"),Mesh->IsCompiling());
  const FString Before=UDinkMaterialArtLibrary::InspectStaticMeshGeometry(Mesh);const auto Result=Parse(Before);
  if (!TestTrue(TEXT("actual scratch mesh RAW+built snapshot valid"),Result.IsValid()&&Result->GetBoolField(TEXT("valid")))) return false;
  const auto Raw=Result->GetObjectField(TEXT("raw"));const auto Built=Result->GetObjectField(TEXT("built"));
