@@ -6,6 +6,23 @@
 #include "DinkInstanceOriginsComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/World.h"
+#include "HAL/IConsoleManager.h"
+#include "UObject/UObjectIterator.h"
+
+namespace
+{
+TAutoConsoleVariable<int32> CVarDinkGreyboxBlockers(TEXT("dink.GreyboxBlockers"), 0,
+	TEXT("Show generated hardness presentation prisms (0 default off, 1 debug only); never changes collision."));
+FAutoConsoleVariableSink DebugBlockerSink(FConsoleCommandDelegate::CreateLambda([]
+{
+	static int32 Previous = 0;
+	const int32 Value = CVarDinkGreyboxBlockers.GetValueOnGameThread();
+	if (Value == Previous) return;
+	Previous = Value;
+	for (TObjectIterator<ADinkGreyboxScreen> It; It; ++It)
+		if (IsValid(*It) && It->GetWorld() && It->GetWorld()->IsGameWorld()) It->RefreshDebugBlockers();
+}));
+}
 
 ADinkPlaceholderActor::ADinkPlaceholderActor()
 {
@@ -71,6 +88,16 @@ ADinkGreyboxScreen::ADinkGreyboxScreen()
 	Visual->SetCanEverAffectNavigation(false);
 	Visual->SetGenerateOverlapEvents(false);
 
+	DebugBlockers = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DebugBlockers"));
+	DebugBlockers->SetupAttachment(RootComponent);
+	DebugBlockers->SetMobility(EComponentMobility::Static);
+	DebugBlockers->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+	DebugBlockers->SetCanEverAffectNavigation(false);
+	DebugBlockers->SetGenerateOverlapEvents(false);
+	DebugBlockers->SetHiddenInGame(true);
+	DebugBlockers->SetCastShadow(false);
+	DebugBlockers->SetCastHiddenShadow(false);
+
 	CollisionSolid = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CollisionSolid"));
 	CollisionSolid->SetupAttachment(RootComponent);
 	CollisionSolid->SetMobility(EComponentMobility::Static);
@@ -90,4 +117,15 @@ ADinkGreyboxScreen::ADinkGreyboxScreen()
 	CollisionLow->SetGenerateOverlapEvents(false);
 
 	InstanceOrigins = CreateDefaultSubobject<UDinkInstanceOriginsComponent>(TEXT("InstanceOrigins"));
+}
+
+void ADinkGreyboxScreen::BeginPlay()
+{
+	Super::BeginPlay();
+	RefreshDebugBlockers();
+}
+
+void ADinkGreyboxScreen::RefreshDebugBlockers()
+{
+	DebugBlockers->SetHiddenInGame(CVarDinkGreyboxBlockers.GetValueOnGameThread() == 0);
 }

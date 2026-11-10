@@ -1,0 +1,76 @@
+{
+  "status": "PROVEN_GENERATED_DEBUG_PRISMS_RENDERED_IN_NORMAL_GAME",
+  "actual_capture": "/home/artist/Work/DinkQA/GeneratedInteriorVisibilityGPUPreparation203V3/Runs/5bc560cc-5360-4ed9-bee5-a2da1101238c/joined3-context.png",
+  "capture_sha256": "a4babdf77300ceb1abbe102da818623c81a35ef2bb5b995c5a6a530b28d15f55",
+  "actual_player": {
+    "screen": 3,
+    "map": [
+      300.0,
+      298.6
+    ],
+    "world": [
+      -170571.41,
+      393152.355,
+      98.0
+    ],
+    "yaw": 0.0,
+    "pitch": -18.0,
+    "radius": 28.0,
+    "move_ignored": false
+  },
+  "inside_prisms": [
+    {
+      "class": "sprite",
+      "rect": [
+        293,
+        262,
+        453,
+        305
+      ]
+    }
+  ],
+  "specific_prism": {
+    "width_cm": 700.0,
+    "depth_cm": 188.125,
+    "height_cm": 100,
+    "world_min_cm": [
+      -170602.035,
+      392992.23,
+      0
+    ],
+    "world_max_cm": [
+      -169902.035,
+      393180.355,
+      100
+    ]
+  },
+  "visible_prism_counts": {
+    "solid": 3,
+    "low": 0,
+    "sprite": 18,
+    "warp": 2
+  },
+  "source_predicted_ground_triangles": 192,
+  "source_predicted_blocker_triangles": 230,
+  "actual_asset_string_slot_evidence": [
+    "Ground",
+    "Solid",
+    "Sprite",
+    "Warp",
+    "MI_DinkBlocker_Solid",
+    "MI_DinkBlocker_Sprite",
+    "MI_DinkBlocker_Warp"
+  ],
+  "asset_evidence_limit": "Package name table/material slot metadata strings read offline. Triangle counts/bounds derived from exact actual importer inputs and source, not a fresh native mesh readback.",
+  "physical_evidence_limit": "Fixture used console placement into hard pixel. Does not prove real walk entered a solid collider. Separate hidden physical components and exact rectangle demonstrate render/collision separation.",
+  "files_sha256": {
+    "ImportData/screens.json": "5edf879ede078a30c5ab6129bb4272655f5a2dbb9b2811f1bd66cc214453daca",
+    "ImportData/collision.json": "13f89b207ea2120ce0970486b6d69967cad04bd87cb2a3f3a528ac21f15cce53",
+    "Content/Dink/_Generated/Screens/SCR_003/SM_SCR_003_Visual.uasset": "5c6abc56d2bb2393f7154b74ec73dbc56c76e06db8fa62dff5507a8f8877b1ea",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp": "d26c9a09564b98db3fffc034344a3ecb64d1fe7bc634cd8d4670bce61e1e6cc5",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.h": "534e159f0d03ad7fdcfb277aeb5e5b542ccc750401c6b892f388eb98e795d952",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxImporter.cpp": "1725569b46cd665553117ed955b6622b23d2246ca97baf3e7a7f12dc2d0ff73d",
+    "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkPlaceholderActor.cpp": "f25719b3fe184cfc6d0bddda1ab01fedbd3b7f6eeb7f948ff88d3177f1c30c10"
+  },
+  "no_source_changes_no_native_launch": true
+}
