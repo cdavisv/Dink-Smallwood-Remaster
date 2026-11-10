@@ -296,6 +296,7 @@ bool ExactVectorBytes(const FVector& A,const FVector& B)
 {
  const double L[]={A.X,A.Y,A.Z},R[]={B.X,B.Y,B.Z};return FMemory::Memcmp(L,R,sizeof(L))==0;
 }
+FString TransformDifference(const FTransform& Source,const FTransform& Target);
 bool RestoreNewTargetChildLocation(USceneComponent& Source,USceneComponent& Target,AActor* ExpectedSource,AActor* ExpectedTarget,
  UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,bool& Restored,FString& Evidence)
 {
@@ -326,7 +327,19 @@ bool RestoreNewTargetChildLocation(USceneComponent& Source,USceneComponent& Targ
  const FRotator SR=Source.GetRelativeRotation(),TR=Target.GetRelativeRotation();
  const double A[]={SR.Pitch,SR.Yaw,SR.Roll},B[]={TR.Pitch,TR.Yaw,TR.Roll};FRotator Qualified;FString RotationProof;
  if(FMemory::Memcmp(A,B,sizeof(A))&&!MeasuredRotation(Source,Target,Qualified,RotationProof))
- {Evidence=TEXT("child local repair rotation differs beyond existing qualified representation");return false;}
+ {
+  const FQuat SQ=SR.Quaternion(),TQ=TR.Quaternion();
+  const FQuat SC=Source.GetRelativeRotationCache().RotatorToQuat_ReadOnly(SR),TC=Target.GetRelativeRotationCache().RotatorToQuat_ReadOnly(TR);
+  Evidence=FString::Printf(TEXT("child local repair rotation differs beyond existing qualification; sourceLoc=(%.17g,%.17g,%.17g) targetLoc=(%.17g,%.17g,%.17g) relativeEuler17 source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) directQ source=(%.17g,%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g,%.17g) readonlyCacheQ source=(%.17g,%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g,%.17g)"),
+   SourceLocation.X,SourceLocation.Y,SourceLocation.Z,TargetLocation.X,TargetLocation.Y,TargetLocation.Z,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll,
+   SQ.X,SQ.Y,SQ.Z,SQ.W,TQ.X,TQ.Y,TQ.Z,TQ.W,SC.X,SC.Y,SC.Z,SC.W,TC.X,TC.Y,TC.Z,TC.W);
+  constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+  if(auto* RotationProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation")))
+  {FString Text;RotationProperty->ExportTextItem_Direct(Text,RotationProperty->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,Flags);
+   FRotator Expected=FRotator::ZeroRotator;FOutputDeviceNull Errors;const TCHAR* Tail=RotationProperty->ImportText_Direct(*Text,&Expected,&Target,Flags,&Errors);
+   Evidence+=FString::Printf(TEXT(" stockRotatorExport={%s} parsed=%d expectedEuler17=(%.17g,%.17g,%.17g) flags=%d"),*Text,int32(Tail!=nullptr),Expected.Pitch,Expected.Yaw,Expected.Roll,Flags);}
+  Evidence+=TEXT(" WORLD ")+TransformDifference(Source.GetComponentTransform(),Target.GetComponentTransform());return false;
+ }
  auto* Property=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
  if(!Property||Property->Struct!=TBaseStructure<FVector>::Get()||Property->ArrayDim!=1)return false;
  // Exact stock CopyActors -> LevelExporterT3D COPY -> ExportProperties flags:
