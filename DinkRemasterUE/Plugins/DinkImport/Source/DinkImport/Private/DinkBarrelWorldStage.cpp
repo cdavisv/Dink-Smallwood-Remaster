@@ -1036,6 +1036,124 @@ bool ObserveCollisionPolicy(const TCHAR* Phase,FBinaryControlLifetime& Lifetime,
 }
 FString CollisionPolicyRows(const FBinaryControlLifetime& Lifetime)
 {FString Rows;for(const FString& Row:Lifetime.CollisionPolicyWitness)Rows+=TEXT("\nCOLLISION_POLICY_WITNESS ")+Row;return Rows;}
+struct FStoredCollisionPolicy
+{
+ FName ProfileName;
+ ECollisionEnabled::Type Enabled = ECollisionEnabled::NoCollision;
+ ECollisionChannel ObjectType = ECC_WorldStatic;
+ TArray<uint8> ResponseArray;
+
+ bool operator==(const FStoredCollisionPolicy& Other) const
+ {
+  return ProfileName.IsEqual(Other.ProfileName, ENameCase::CaseSensitive) && Enabled == Other.Enabled &&
+   ObjectType == Other.ObjectType && ResponseArray == Other.ResponseArray;
+ }
+};
+
+bool ReadStoredCollisionPolicy(FBodyInstance& Body, FStoredCollisionPolicy& Policy)
+{
+ const UScriptStruct* BodyStruct = FBodyInstance::StaticStruct();
+ const auto* Name = FindFProperty<FNameProperty>(BodyStruct, TEXT("CollisionProfileName"));
+ const auto* Responses = FindFProperty<FStructProperty>(BodyStruct, TEXT("CollisionResponses"));
+ const auto* Array = Responses ? FindFProperty<FArrayProperty>(Responses->Struct, TEXT("ResponseArray")) : nullptr;
+ const auto* Element = Array ? CastField<FStructProperty>(Array->Inner) : nullptr;
+ if (!Name || !Responses || Responses->Struct->GetPathName() != TEXT("/Script/Engine.CollisionResponse") ||
+  !Element || Element->Struct->GetPathName() != TEXT("/Script/Engine.ResponseChannel"))
+ {
+  return false;
+ }
+
+ Policy.ProfileName = Name->GetPropertyValue_InContainer(&Body);
+ Policy.Enabled = Body.GetCollisionEnabled(false);
+ Policy.ObjectType = Body.GetObjectType();
+ FObjectWriter Writer(Policy.ResponseArray);
+ Array->SerializeItem(FStructuredArchiveFromArchive(Writer).GetSlot(),
+  Array->ContainerPtrToValuePtr<void>(Responses->ContainerPtrToValuePtr<void>(&Body)), nullptr);
+ return !Writer.IsError();
+}
+
+bool UsesAssetCollisionProfile(const UPrimitiveComponent& Component)
+{
+ if (!Component.IsA<UStaticMeshComponent>())
+ {
+  return false;
+ }
+
+ // Default mesh collision can bind an external BodySetup profile. The
+ // private weak pointer is not reflected, so refuse this known route.
+ const auto* UseDefault = FindFProperty<FBoolProperty>(UStaticMeshComponent::StaticClass(), TEXT("bUseDefaultCollision"));
+ return !UseDefault || UseDefault->GetPropertyValue_InContainer(&Component);
+}
+
+// Called only on audited Created primitive pairs after reference fixup and
+// deferred callbacks, while the target has no registration or physics body.
+bool HydrateNamedCollisionResponses(UPrimitiveComponent& Source, UPrimitiveComponent& Target,
+ bool& Hydrated, FString& Error)
+{
+ Hydrated = false;
+ FBodyInstance& SourceBody = Source.BodyInstance;
+ FBodyInstance& TargetBody = Target.BodyInstance;
+ const FCollisionResponseContainer ExpectedResponses = SourceBody.GetResponseToChannels();
+ if (ExpectedResponses == TargetBody.GetResponseToChannels())
+ {
+  return true;
+ }
+
+ const FName Name = SourceBody.GetCollisionProfileName();
+ const UCollisionProfile* Profiles = UCollisionProfile::Get();
+ const FString Pair = Source.GetPathName() + TEXT(" -> ") + Target.GetPathName();
+ if (&Source == &Target || Source.GetClass() != Target.GetClass() ||
+  Source.IsTemplate() || Target.IsTemplate() || Target.IsRegistered() || Target.IsPhysicsStateCreated() ||
+  TargetBody.GetPhysicsActorHandle() || TargetBody.WeldParent ||
+  !SourceBody.DoesUseCollisionProfile() || !TargetBody.DoesUseCollisionProfile() ||
+  !TargetBody.GetCollisionProfileName().IsEqual(Name, ENameCase::CaseSensitive) || !Profiles ||
+  Profiles->LookForProfileRedirect(Name) ||
+  UsesAssetCollisionProfile(Source) || UsesAssetCollisionProfile(Target))
+ {
+  Error = TEXT("unqualified named collision response cache mismatch: ") + Pair;
+  return false;
+ }
+
+ const TMap<const UObject*, FString> LiteralIDs;
+ const TSet<const UPackage*> NoForbidden;
+ TArray<uint8> SourceBefore, SourceAfter;
+ FStoredCollisionPolicy SourcePolicy, TargetBefore, TargetAfter;
+ FCollisionResponseTemplate Template;
+ if (!State(Source, LiteralIDs, NoForbidden, false, SourceBefore) ||
+  !ReadStoredCollisionPolicy(SourceBody, SourcePolicy) ||
+  !ReadStoredCollisionPolicy(TargetBody, TargetBefore) ||
+  !SourcePolicy.ProfileName.IsEqual(Name, ENameCase::CaseSensitive) || !(SourcePolicy == TargetBefore) ||
+  !Profiles->GetProfileTemplate(Name, Template) || !Template.Name.IsEqual(Name, ENameCase::CaseSensitive) ||
+  Template.CollisionEnabled.GetValue() != SourcePolicy.Enabled ||
+  Template.ObjectType.GetValue() != SourcePolicy.ObjectType ||
+  Template.ResponseToChannels != ExpectedResponses)
+ {
+  Error = TEXT("stored collision policy or resolved source template differs: ") + Pair;
+  return false;
+ }
+
+ // A source external pointer with the same name is not exposed by public
+ // getters. The guard proves the full effective source policy against the
+ // named template. Target loading takes the verified, non-redirected named
+ // ReadConfig path, with the known asset-default binding route refused.
+ TargetBody.LoadProfileData(false);
+
+ const bool SourceUnchanged = State(Source, LiteralIDs, NoForbidden, false, SourceAfter) &&
+  SourceBefore == SourceAfter && SourceBody.GetResponseToChannels() == ExpectedResponses;
+ if (!SourceUnchanged || !ReadStoredCollisionPolicy(TargetBody, TargetAfter) ||
+  !(TargetAfter == TargetBefore) || !TargetBody.GetCollisionProfileName().IsEqual(Name, ENameCase::CaseSensitive) ||
+  TargetBody.GetResponseToChannels() != ExpectedResponses ||
+  Target.IsRegistered() || Target.IsPhysicsStateCreated() ||
+  TargetBody.GetPhysicsActorHandle() || TargetBody.WeldParent)
+ {
+  Error = TEXT("named collision response hydration did not preserve exact stored policy/source state: ") + Pair;
+  return false;
+ }
+
+ Hydrated = true;
+ return true;
+}
+
 void CaptureBinaryImmediateActors(AActor& Actor,FBinaryControlLifetime& Immediate)
 {
  Immediate.SourceActors.Add(&Actor);auto Add=[&](AActor* A){if(A&&!Immediate.SourceActors.Contains(A))Immediate.SourceActors.Add(A);};
@@ -1312,6 +1430,46 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<
   if(!ObserveCollisionPolicy(TEXT("afterDeferredPostLoad"),Lifetime,Remap,Error))return false;
  }
  if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
+ int32 HydratedPolicies = 0;
+ bool PoliciesReady = true;
+ for (const auto& Pair : Created)
+ {
+  if (auto* Source = Cast<UPrimitiveComponent>(Pair.Key))
+  {
+   // Created pairs were audited and checked for exact class/mapping above.
+   auto* Target = CastChecked<UPrimitiveComponent>(Pair.Value);
+   bool Hydrated = false;
+   if (!HydrateNamedCollisionResponses(*Source, *Target, Hydrated, Error))
+   {
+    PoliciesReady = false;
+    break;
+   }
+   HydratedPolicies += Hydrated ? 1 : 0;
+  }
+ }
+ if ((HydratedPolicies || !PoliciesReady) && !VerifyBinarySourceTopology(Lifetime, Error))
+ {
+  return false;
+ }
+ if (!PoliciesReady)
+ {
+  Error += CollisionPolicyRows(Lifetime);
+  return false;
+ }
+ if (HydratedPolicies)
+ {
+  if (!ObserveCollisionPolicy(TEXT("afterProfileHydration"), Lifetime, Remap, Error))
+  {
+   return false;
+  }
+  Lifetime.CacheEvidence.Add(FString::Printf(
+   TEXT("namedProfileResponseHydration count=%d all64Exact=1 storedPolicyExact=1 sourceLiteralStateAndTopologyExact=1"),
+   HydratedPolicies));
+  if (!Lifetime.CollisionPolicyWitness.IsEmpty())
+  {
+   Lifetime.CacheEvidence.Add(Lifetime.CollisionPolicyWitness.Last());
+  }
+ }
  NewLevel.AddLoadedActors(Copies,nullptr);
  // New editor worlds may not yet have level-wide registration enabled.
  // This is the same public target-only registration used by the staging pass.
@@ -1558,6 +1716,82 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  FBinaryControlLifetime Lifetime,BadLifetime;
  TStrongObjectPtr<UWorld> HoldSourceWorld(SourceWorld),HoldTargetWorld(TargetWorld);
  ON_SCOPE_EXIT{TargetWorld->DestroyWorld(false);TargetWorld->MarkObjectsPendingKill();SourceWorld->DestroyWorld(false);SourceWorld->MarkObjectsPendingKill();};
+ {
+  // Read the actual saved source wall. Its native default subobject starts
+  // NoCollision, while the saved instance owns the importer HardSolid profile.
+  TStrongObjectPtr<UBoxComponent> LoadedWall(Cast<UBoxComponent>(FSoftObjectPath(PolicyWitnessPath).TryLoad()));
+  if (!TestNotNull(TEXT("loaded SnowIsle named-profile fixture component"), LoadedWall.Get()))
+  {
+   return false;
+  }
+  AActor* LoadedOwner = LoadedWall->GetOwner();
+  if (!TestTrue(TEXT("fixture is actual package-loaded wall and native owning actor"),
+    LoadedWall->GetPathName() == PolicyWitnessPath && LoadedWall->GetLinker() &&
+    !LoadedWall->HasAnyFlags(RF_NeedLoad | RF_NeedPostLoad | RF_NeedPostLoadSubobjects) &&
+    LoadedWall->GetClass() == UBoxComponent::StaticClass() && LoadedOwner &&
+    LoadedOwner->GetClass() == ADinkScreenVolume::StaticClass() && LoadedOwner->GetLevel() &&
+    LoadedWall->GetCollisionProfileName() == FName(TEXT("DinkHardSolid"))))
+  {
+   return false;
+  }
+
+  FBinaryControlLifetime LoadedSourceLifetime;
+  LoadedSourceLifetime.SourceLevels.Add(LoadedOwner->GetLevel());
+  LoadedSourceLifetime.SourceActors.Add(LoadedOwner);
+  if (!TestTrue(TEXT("loaded wall source topology and literal body baseline"),
+    CaptureBinarySourceTopology(LoadedSourceLifetime, LoadedSourceLifetime.SourceTopology)))
+  {
+   return false;
+  }
+  FStoredCollisionPolicy SourcePolicy, TargetPolicyBefore, TargetPolicyAfter;
+  if (!TestTrue(TEXT("actual loaded named-profile persistent policy readable"),
+    ReadStoredCollisionPolicy(LoadedWall->BodyInstance, SourcePolicy)))
+  {
+   return false;
+  }
+
+  FObjectDuplicationParameters ProfileCopy(LoadedOwner, TargetWorld->PersistentLevel);
+  ProfileCopy.DestName = MakeUniqueObjectName(TargetWorld->PersistentLevel, LoadedOwner->GetClass(), TEXT("LoadedNamedProfileCopy"));
+  ProfileCopy.DestClass = LoadedOwner->GetClass();
+  ProfileCopy.DuplicateMode = EDuplicateMode::World;
+  ProfileCopy.bSkipPostLoad = true;
+  ProfileCopy.bAssignExternalPackages = false;
+  TMap<UObject*, UObject*> ProfileCreated;
+  ProfileCopy.CreatedObjects = &ProfileCreated;
+  TStrongObjectPtr<AActor> CopiedOwner(Cast<AActor>(StaticDuplicateObjectEx(ProfileCopy)));
+  for (const auto& Pair : ProfileCreated)
+  {
+   if (Pair.Value)
+   {
+    LoadedSourceLifetime.Targets.Emplace(Pair.Value);
+   }
+  }
+  auto* CopiedWall = Cast<UBoxComponent>(ProfileCreated.FindRef(LoadedWall.Get()));
+  if (!TestTrue(TEXT("stock binary copy naturally loses effective cache while preserving persistent named policy"),
+    CopiedOwner.IsValid() && CopiedWall && CopiedWall != LoadedWall.Get() &&
+    CopiedWall->GetOwner() == CopiedOwner.Get() && !CopiedWall->IsRegistered() &&
+    CopiedWall->GetCollisionResponseToChannels() != LoadedWall->GetCollisionResponseToChannels() &&
+    ReadStoredCollisionPolicy(CopiedWall->BodyInstance, TargetPolicyBefore) &&
+    TargetPolicyBefore == SourcePolicy))
+  {
+   return false;
+  }
+
+  bool Hydrated = false;
+  FString PolicyError;
+  const bool Restored = HydrateNamedCollisionResponses(*LoadedWall, *CopiedWall, Hydrated, PolicyError);
+  if (!TestTrue(TEXT("production hydration restores all 64 responses on a bodyless target"), Restored && Hydrated))
+  {
+   AddError(PolicyError);
+   return false;
+  }
+  TestTrue(TEXT("hydrated loaded wall preserves persistent policy and matches all source responses"),
+   ReadStoredCollisionPolicy(CopiedWall->BodyInstance, TargetPolicyAfter) &&
+   TargetPolicyAfter == TargetPolicyBefore &&
+   CopiedWall->GetCollisionResponseToChannels() == LoadedWall->GetCollisionResponseToChannels());
+  TestTrue(TEXT("loaded named-profile source topology and literal body unchanged"),
+   VerifyBinarySourceTopology(LoadedSourceLifetime, PolicyError));
+ }
  ULevel* ExtraLevel=NewObject<ULevel>(SourceWorld,TEXT("BinaryExtraLevel"));ExtraLevel->OwningWorld=SourceWorld;SourceWorld->AddLevel(ExtraLevel);
  FActorSpawnParameters FirstParams;FirstParams.Name=TEXT("BinarySameName");FirstParams.OverrideLevel=SourceWorld->PersistentLevel;
  FActorSpawnParameters SecondParams;SecondParams.Name=TEXT("BinarySameName");SecondParams.OverrideLevel=ExtraLevel;
