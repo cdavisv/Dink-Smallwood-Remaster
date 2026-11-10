@@ -1,0 +1,39 @@
+# Native binary Controls-copy lifecycle contract (source review, unrun)
+
+The first 6aef5fd checkpoint overstated callback isolation. `bSkipPostLoad` defers only `ConditionalPostLoad`. Installed UObjectGlobals.cpp2991 invokes source `PreDuplicate`; 3134 invokes target `PostDuplicate`; 3160 invokes class `PostInitInstance` before `StaticDuplicateObjectEx` returns. Those immediate hooks are allowed only for the exact audited native classes below. No universal callback-deferral claim is made. This checkpoint has not been compiled or run.
+
+The copied objects use `EDuplicateMode::World`: UObjectGlobals.h130–142 explicitly describes objects copied as part of world duplication, and WorldPartitionRenameDuplicateBuilder.cpp224 uses that mode. No PIE or verbatim property flags are enabled. `ULightComponentBase::PostDuplicate`, LightComponent.cpp210–222, calls `UpdateLightGUIDs` only for Normal, so World retains original `LightGuid` and `OriginalLightGuid` under unchanged strict property checks. `AActor::Serialize`, Actor.cpp1018, still gives non-PIE duplicate actors new identities; Actor.h1096 marks ActorGuid NonPIEDuplicateTransient, already excluded by the existing tracked-state contract. New fixture assertions require distinct actor GUIDs and unchanged source GUIDs, while real light GUIDs remain exact. No field is normalized to achieve this.
+
+## Audited exact classes
+
+Production preflight inspects every source control actor and every contained UObject before duplication. It accepts native `UClass` class objects only and exact class paths, not arbitrary subclasses:
+
+- Importer actors: Engine Actor, PlayerStart, DirectionalLight, SkyLight, ExponentialHeightFog; DinkGreyboxScreen, DinkScreenVolume, DinkPlaceholderActor, DinkWarpPlaceholderActor, DinkScriptWarpActor.
+- Components: SceneComponent, StaticMeshComponent, InstancedStaticMeshComponent, BoxComponent, CapsuleComponent, ArrowComponent, BillboardComponent, DirectionalLightComponent, SkyLightComponent, SkyAtmosphereComponent, ExponentialHeightFogComponent; DinkOriginComponent, DinkInstanceOriginsComponent, DinkWarpComponent.
+- Contained shape objects: BodySetup.
+
+This list comes from DinkGreyboxImporter.cpp341–754 and native default/instance constructors. A later unsupported nested class refuses instead of silently inheriting the audit. No Blueprint-generated class or custom subclass is accepted. Every source-instance archetype chain is rejected before constructing its duplicate. Externally shared ordinary assets are not duplicated by this actor-contained graph; source-map property references remain forbidden before deferred loading.
+
+`UObject::PreDuplicate` is empty by default (Object.h532); accepted actor/component classes and their inherited native headers declare no additional PreDuplicate override. Native `UClass::PostInitInstance` is empty (Class.h4568); Blueprint/Verse/custom class implementations are excluded by exact native-UClass checks. Dink accepted classes have no duplication callbacks or OnConstruction override in the pinned source. Engine native construction executes on target objects; strict post-state gates remain authoritative after loaded-level registration.
+
+Immediate post-duplicate differences are explicit:
+
+- PrimitiveComponent.cpp1855–1862 resets only the target's VisibilityId, then calls its superclass.
+- StaticMeshComponent.cpp787–796 recreates MeshPaintTexture when present and calls NotifyIfStaticMeshChanged. Production preflight requires the reflected MeshPaintTexture property to exist and be null. `KnownStaticMesh` is an unreflected raw member initialized null (StaticMeshComponent.h139), not copied source cache. NotifyIfStaticMeshChanged (cpp715–738) records the target's mesh, notifies object-cache/streaming systems for the target, and does not change source actor ownership/attachments/body state. Rejected paint data is not cloned speculatively.
+- InstancedStaticMeshComponent inherits that mesh callback; the other accepted scene/shape components inherit the audited primitive/default implementation. BodySetup adds no PreDuplicate/PostDuplicate override. Accepted light subclasses inherit the World-mode LightComponentBase callback above.
+
+Global Engine editor/cache notifications can occur; the contract does not claim the entire Engine is inert. It requires exact source scene topology/body evidence and unchanged project/asset bytes. Unknown hooks/classes refuse.
+
+## Retention and observable source proof
+
+A context holds explicit `TStrongObjectPtr` references to **every created target** immediately after each duplication call returns, before another call/callback stage, through complete reference remap, deferred loading, supported AddLoadedActors registration and failure teardown. It also strongly retains source worlds. The context is declared before teardown guards so unpublished actors remain retained while the scratch world is destroyed. Outer alone and raw Created/Copies/Remap arrays are not treated as ownership. The supported Engine API's own immediate callback implementation still runs within the duplication call; no unaudited custom callback capable of collection is allowed there.
+
+Before duplication, snapshot source level actor membership, Owner and transient Children arrays, source actor/component ownership/outer/attachment children and parents, relative/world transforms, all64 collision responses/profile/objecttype/enabled, physics-created state and exact existing physics actor handle, plus existing shape BodySetup pointer/GUID/tracked canonical state (including shared archetype shape bodies). No lazy GetBodySetup is used for these snapshots.
+
+Each immediate duplication call brackets exact snapshots of its source actor, Owner/Children actors and attachment peers—the observable scene objects the audited immediate native hooks can reach. Full source graph snapshots are additionally compared after the entire copy batch, before deferred loading, after the complete deferred-load batch and after loaded-level registration. This avoids quadratic full-world serialization after every individual subobject callback while retaining direct callback-stage and complete before/after evidence. Any difference refuses; it is not waived as callback behavior. Existing whole-source tracked-state and physical/source file proofs remain intact.
+
+Before deferred PostLoad, every created object is strongly retained, global actor/subobject/new-host mappings are complete, and actual target references/archetypes are checked. This specifically prevents AActor::PostLoad (Actor.cpp1094–1106) from adding the target to a source Owner.Children array. After registration, every copied actor must occur exactly once in its target level, each copied owner's Children must contain its mapped child exactly once, and copied Children entries must be distinct target copies with the correct Owner, never source actors.
+
+## Native fixture requirements (source only)
+
+The same production helper fixture adds forced `CollectGarbage` between binary copy and finalization and checks every weak target remains valid. It explicitly checks source transient Children after immediate hooks, forced GC, deferred load/registration and refusal cases; target Children and level membership/uniqueness; real light LightGuid/OriginalLightGuid; native/instance CreationMethod; exact keyed placement/script/material identity; exact warp vectors/BoxExtent/raw instances; source tracked bytes, body state/GUID and all64 policy. Null controls refuse before pointer Sort; source-instance archetypes refuse before binary construction; missing peer maps and source refs refuse before deferred PostLoad. Previous precision fixtures remain byte-for-byte unchanged. These tests still need actual compilation/execution and do not prove real full-world save/reload behavior by themselves.
