@@ -265,6 +265,34 @@ bool MeasuredBoxRotationZero(UObject& Source,UObject& Target,AActor* ExpectedSou
  if(L!=R||LW.IsError()||RW.IsError()||RW.SourceReference)return false;
  Canonical=Left;Evidence+=TEXT(" entire canonical aggregate exact; mapped UBoxComponent-owned body; original source bytes unchanged");return true;
 }
+bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstancedStaticMeshComponent& Target,
+ AActor* ExpectedSource,AActor* ExpectedTarget,UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,FString& Evidence)
+{
+ Evidence.Reset();
+ if(&Source==&Target||!ExpectedSource||!ExpectedTarget||!NewWorld||Source.GetOwner()!=ExpectedSource||Target.GetOwner()!=ExpectedTarget||
+    Target.GetWorld()!=NewWorld||Source.GetWorld()==NewWorld||Remap.FindRef(&Source)!=&Target||
+    Source.GetClass()!=UInstancedStaticMeshComponent::StaticClass()||Target.GetClass()!=Source.GetClass()||
+    !Source.GetStaticMesh()||Source.GetStaticMesh()!=Target.GetStaticMesh()||Source.PerInstanceSMData.Num()!=Target.PerInstanceSMData.Num())
+ {Evidence=TEXT("raw instance repair requires exact mapped base-ISM/new-world owners, mesh and indexed count");return false;}
+ bool Different=false;
+ for(int I=0;I<Source.PerInstanceSMData.Num();++I)for(int R=0;R<4;++R)for(int C=0;C<4;++C)
+ {
+  const auto& A=Source.PerInstanceSMData[I].Transform.M[R][C];const auto& B=Target.PerInstanceSMData[I].Transform.M[R][C];
+  if(!FMath::IsFinite(A)||!FMath::IsFinite(B)){Evidence=TEXT("nonfinite raw instance scalar");return false;}
+  Different|=FMemory::Memcmp(&A,&B,sizeof(A))!=0;
+ }
+ if(!Different)return true;
+ // Stock DuplicateActors is TEXT export/import. Restore authored indexed raw
+ // records only on NEW target; never reconstruct FTransform or touch source.
+ TArray<FInstancedStaticMeshInstanceData> Copy=Source.PerInstanceSMData;
+ if(!Target.BatchUpdateInstancesData(0,Copy.Num(),Copy.GetData(),true,true))
+ {Evidence=TEXT("stock raw instance update refused");return false;}
+ Target.UpdateBounds(); // normal target-only derived cache refresh
+ for(int I=0;I<Copy.Num();++I)for(int R=0;R<4;++R)for(int C=0;C<4;++C)
+ {const auto& A=Source.PerInstanceSMData[I].Transform.M[R][C];const auto& B=Target.PerInstanceSMData[I].Transform.M[R][C];
+  if(FMemory::Memcmp(&A,&B,sizeof(A))){Evidence=TEXT("stock raw instance update failed exact scalar postcondition");return false;}}
+ Evidence=FString::Printf(TEXT("RESTORED NEW TARGET %d indexed raw instance records through stock BatchUpdateInstancesData; exact16scalarpostcondition/source untouched; target UpdateBounds"),Copy.Num());return true;
+}
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
  FTransform S=Source,T=Target;TArray<uint8> A,B;FObjectWriter WA(A),WB(B);WA<<S;WB<<T;
@@ -435,7 +463,8 @@ bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const U
  if(auto* A=Cast<AActor>(&O)){FTransform T=ActorComparisonTransform?*ActorComparisonTransform:A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
  if(auto* C=Cast<USceneComponent>(&O)){FTransform T=RootComparisonTransform?*RootComparisonTransform:ChildComparisonTransform?*ChildComparisonTransform:C->GetComponentTransform();W<<T;}
  if(auto* C=Cast<UInstancedStaticMeshComponent>(&O))
- {int32 N=C->GetInstanceCount();W<<N;for(int32 I=0;I<N;++I){FTransform T;if(!C->GetInstanceTransform(I,T,false))return false;W<<T;}}
+ {int32 N=C->GetInstanceCount();W<<N;for(int32 I=0;I<N;++I){FTransform T;if(!C->GetInstanceTransform(I,T,false))return false;W<<T;
+  for(int Row=0;Row<4;++Row)for(int Column=0;Column<4;++Column){auto Scalar=C->PerInstanceSMData[I].Transform.M[Row][Column];W.Serialize(&Scalar,sizeof(Scalar));}}}
  return !W.SourceReference&&!W.IsError();
 }
 void AddObjects(AActor& A,const FString& K,TMap<const UObject*,FString>& IDs,TMap<FString,UObject*>& ByRelative)
@@ -548,6 +577,10 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    UObject* New=Remap.FindRef(O.Value);if(!New){if(Host)continue;return Fail(TEXT("candidate reference map incomplete"));}
    if(Host&&O.Value!=OldHosts[CastChecked<ADinkGreyboxScreen>(Src)->ScreenNumber]->Visual&&
       !Cast<UInstancedStaticMeshComponent>(O.Value)&&O.Value!=CastChecked<ADinkGreyboxScreen>(Src)->InstanceOrigins)continue;
+   if(auto* SourceISM=Cast<UInstancedStaticMeshComponent>(O.Value))
+   {auto* TargetISM=CastChecked<UInstancedStaticMeshComponent>(New);FString Repair;
+    if(!RestoreNewTargetRawInstances(*SourceISM,*TargetISM,Src,Dst,World.Get(),Remap,Repair))return Fail(TEXT("raw instance repair refused: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+Repair);
+    if(!Repair.IsEmpty())Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+Repair);}
    TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
    if(A!=B)
    {
@@ -730,6 +763,35 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestFalse(TEXT("box count change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
  BodyB->AggGeom.BoxElems.Pop();BodyB->AggGeom.SphereElems.Add(FKSphereElem(1));
  TestFalse(TEXT("other geometry type change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ UWorld* NewWorld=UWorld::CreateWorld(EWorldType::Game,false);
+ if(!TestNotNull(TEXT("owned separate NEW target world"),NewWorld))return false;
+ ON_SCOPE_EXIT{NewWorld->DestroyWorld(false);NewWorld->MarkObjectsPendingKill();};
+ AActor* NewOwner=NewWorld->SpawnActor<AActor>();auto* NewISM=NewObject<UInstancedStaticMeshComponent>(NewOwner);NewOwner->SetRootComponent(NewISM);
+ UStaticMesh* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));
+ if(!TestNotNull(TEXT("real mesh for stock raw-record update fixture"),Cube))return false;
+ ISMA->SetStaticMesh(Cube);NewISM->SetStaticMesh(Cube);NewISM->AddInstance(FTransform::Identity,false);
+ ISMA->PerInstanceSMData[0].Transform.M[3][0]=205.62000000002445;
+ NewISM->PerInstanceSMData[0].Transform=ISMA->PerInstanceSMData[0].Transform;NewISM->PerInstanceSMData[0].Transform.M[3][0]=205.62;
+ TMap<UObject*,UObject*> RepairMap;RepairMap.Add(ISMA,NewISM);FString RepairEvidence;
+ TArray<uint8> RawSourceBefore,RawSourceAfter;
+ TestTrue(TEXT("raw source state before NEW-target restoration"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceBefore));
+ TestTrue(TEXT("measured indexed matrix drift restored through stock NEW-target API"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence));
+ TestEqual(TEXT("target raw scalar equals exact source authored value"),NewISM->PerInstanceSMData[0].Transform.M[3][0],ISMA->PerInstanceSMData[0].Transform.M[3][0]);
+ TestTrue(TEXT("raw source state after NEW-target restoration"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceAfter));
+ TestTrue(TEXT("source all cache slots/raw matrices unchanged by target API"),RawSourceBefore==RawSourceAfter);
+ TestFalse(TEXT("raw restoration wrong target owner refuses"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,Wrong,NewWorld,RepairMap,RepairEvidence));
+ TestFalse(TEXT("raw restoration rejects source world as NEW world"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,World,RepairMap,RepairEvidence));
+ NewISM->SetStaticMesh(nullptr);
+ TestFalse(TEXT("raw restoration different mesh refuses"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence));
+ NewISM->SetStaticMesh(Cube);NewISM->AddInstance(FTransform::Identity,false);
+ TestFalse(TEXT("raw restoration different indexed count refuses"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence));
+ ISMA->PerInstanceSMData[0].Transform.M[0][1]=0.;
+ TArray<uint8> RawFingerprintBefore,RawFingerprintAfter;
+ TestTrue(TEXT("raw matrix fingerprint before signedzero scalar mutation"),State(*ISMA,TestIDs,NoForbidden,false,RawFingerprintBefore));
+ ISMA->PerInstanceSMData[0].Transform.M[0][1]=-0.;
+ TestTrue(TEXT("raw matrix fingerprint after signedzero scalar mutation"),State(*ISMA,TestIDs,NoForbidden,false,RawFingerprintAfter));
+ TestTrue(TEXT("raw16scalar State detects signedzero matrix mutation"),RawFingerprintBefore!=RawFingerprintAfter);
+
 
 
 
