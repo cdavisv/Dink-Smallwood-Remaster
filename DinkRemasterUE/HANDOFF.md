@@ -1,3 +1,7 @@
+## Window lighting importer checks the generated window positions before asset work
+
+The PR59 review follow-up shares the screen transform and element-row builder between the early lighting preflight and manifest generation. A changed screen-1 corner now fails the exact window binding check before AssetTools is accessed. The inert-Unreal entry regression covers that refusal and still checks that the canonical inputs reach AssetTools. The runtime manifest, C++ and lighting profile are byte-identical to the packaged 38476d3 source. This is an importer ordering change. No Unreal import or build was run for it.
+
 ## Window lighting C1 compiler fixture correction — no native acceptance
 
 Own C1 Editor build exited6 after142.097801458s with13,749 inputs unchanged and private kernelPASS; Game did not run. Negative world_cm fixture151 used nonexistent FJsonValueBool; installed JsonValue.h253 defines public FJsonValueBoolean(bool), already included through JsonObject.h10. Exactly that fixture identifier is corrected; production core/runtime/profile/practicals/ledger stay exact6e38. Six own partial DLLs remain historical C1 outputs (DinkParity did not link), not a complete7module baseline. No native tests/rendering/package approval. Root reviewed new disabled C2 and explicit own-partial lineage are required before any further build.
