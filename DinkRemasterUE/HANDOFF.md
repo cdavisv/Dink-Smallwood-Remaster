@@ -1,3 +1,7 @@
+## Outdoor camera final validation — ready for merge
+
+Branch `fix/outdoor-camera-headroom` tested at73ccdbe including mastere417/HeroGrowth/booth. Full192/192 completed,0failed (160clean+32HTTP/EOSwarningtests); focused3/3clean, own Editor/Game pass. Latest actualGPU147.32s/8PNGs/12634unchanged: realWexit1→439/return439→1 PASS, scripts/input enabled; lift49.2714cm/fullhead visible, samecottageCameraBLOCK/sweep error0, interior/free0lift/free400cm. Ownprocess/displaynormalclosure verified. Four source-file review hashes unchanged. Docs/Verification/OutdoorCameraHeadroom contains portable summaries/latest3screenshots. Earlier sections below are historical checkpoints; their pending statements are superseded here. PR49 publication/merge to be checked on GitHub. Final art and actual fitted barrels remain separate unfinished work.
+
 ## Combined target frozen for rebuild (9 November2026)
 
 Camera branch now includes approved masterb3abb418 HeroGrowth and e417231 PR50 booth doorway by routine merge, preserving both source changes and notes. Runtime target is fixed at e417 plus camera; later unrelatedmaster changes do not automatically restart this epoch. Earlier focused3/GPU8 evidence remains scopedfbf camera base. Rebuild, newfocusedcamera, fullDink and quickdoor verification are pending on this combinedtarget.
