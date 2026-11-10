@@ -415,6 +415,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				HashParts.Add(P->Hash);
 			}
 			FDesiredActor D;
+			HashParts.Add(TEXT("greybox-ground-water-debug-split/1"));
 			D.Key = S.Id + TEXT(":Greybox");
 			D.Hash = HashStrings(HashParts);
 			D.Group = S.Group;
@@ -430,6 +431,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				const FDinkBundleScreen& S = *SP;
 				A->ScreenNumber = S.Screen;
 				A->Visual->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("Visual")));
+				A->DebugBlockers->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("DebugBlockers")));
 				A->CollisionSolid->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollSolid")));
 				A->CollisionLow->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollLow")));
 				const FVector Pivot = T.GetLocation();

@@ -1,0 +1,17 @@
+# Generated blocker visuals and interior visibility
+
+Oversized cream prisms in joined interiors were debug geometry baked into the normal scenery mesh. Normal scenery now contains ground and water; an optional separate DebugBlockers component defaults hidden, has no collision, navigation, overlaps or shadows, and is shown only with `dink.GreyboxBlockers 1`. The original collision builders, collision hashes, sprite cards and decor remain unchanged. Generated interior proxy walls also follow their owning active/joined-room context.
+
+This candidate was built and tested at `2b683008675e3181b294a474e5cfd187158dacd9` in `/home/artist/Work/DinkGeneratedBlockerVisuals`, branch `fix/generated-blocker-visuals`, based on accepted master `c608c303`. Evidence publication changes documentation only after those tests.
+
+Own Editor and Game builds pass. The full native suite passes 198/198 (164 clean successes, 34 successes with retained warnings). Both production mesh-writer and real-physics debug-toggle fixtures pass. The first compiler failure and cold PIE-readiness timeout are preserved; the unchanged warm focused repeat passes all five cases.
+
+The ordinary importer regenerated 644 normal meshes, created 612 nonempty debug meshes, updated six maps and the manifest. Fresh saved readback verifies ground/water/debug material and geometry separation and default component policies. All 2,425 pinned physical/ground assets retain their bytes. The second ordinary import changes nothing across the complete 4,818 generated-file set. The first startup failure from read-only ShaderAutogen is retained; the successful run used a private empty Intermediate directory with unchanged importer arguments and protected inputs.
+
+Actual Editor screenshots and packaged screenshots reproduce the same joined-room pose with debug off/on/off. The cream prisms appear only when requested; normal ground and water remain visible. Actual held-W tests pass door exit and return. A separate new-game test starts at the original spawn and walks around an ordinary correctly sized chair to the door without relocation; earlier failed navigation attempts and the corrected read-only chair-contact probe are retained.
+
+Ordinary BuildCookRun passes. All four relevant Vulkan shader variants validate, actual containers include 644 normal meshes, 612 debug meshes, 73 roof packages, seven world maps and three exact Art JSON files. Packaged CH1 passes with the accepted narrative trace. The packaged rendered test passes nine captures, fresh debug console readings 0/1/0, scripts enabled, unlocked movement and the held-W door round trip. Normal game/display closure and unchanged inputs are recorded.
+
+`Evidence/INDEX.json` lists portable evidence hashes; `Evidence/ORIGINS.json` links original local receipts. Selected screenshots preserve their original bytes. Old receipt text describes its capture-time state; the final status records the completed validation. No generated world, Engine source, executable, cache, credential or core dump is published here. Regenerate ignored worlds with the normal import script after building this change.
+
+Remaining work includes broader fitted-collision rollout, the camera passing through a doorway into the dark exterior cottage shell, native admission of newer fireplace/cottage art, remaining 2D assets and final photorealistic lighting/art. These tests approve this bounded presentation change, not whole-game completion.

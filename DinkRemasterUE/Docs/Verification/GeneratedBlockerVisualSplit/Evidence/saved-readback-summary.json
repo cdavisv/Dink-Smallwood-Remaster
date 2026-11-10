@@ -1,0 +1,528 @@
+{
+  "ok": true,
+  "terminal": {
+    "exit_code": 0,
+    "elapsed": 30.566183408998768,
+    "success": true,
+    "immutable_changes": [],
+    "actual": {
+      "success": true,
+      "readback_sha256": "cd3f7f1ae9ee1dc76c0078efce898e76d0ee84b6ca1ae06754a28e822e756a55",
+      "selected_screens": [
+        "276",
+        "3"
+      ],
+      "maps": 7,
+      "scope": "Fresh saved editor query only; no BeginPlay/physical movement/GPU claim"
+    }
+  },
+  "raw_readback_sha256": "cd3f7f1ae9ee1dc76c0078efce898e76d0ee84b6ca1ae06754a28e822e756a55",
+  "raw_readback_bytes": 21707889,
+  "screens": {
+    "276": {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Mainland.L_Greybox_World_Mainland:PersistentLevel.DinkGreyboxScreen_535",
+      "visual": {
+        "path": "/Game/Dink/_Generated/Maps/L_Greybox_World_Mainland.L_Greybox_World_Mainland:PersistentLevel.DinkGreyboxScreen_535.Visual",
+        "class_name": "StaticMeshComponent",
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_Visual.SM_SCR_276_Visual",
+        "hidden": false,
+        "visible": true,
+        "collision": 0,
+        "profile": "NoCollision",
+        "nav": false,
+        "overlap": false,
+        "cast_shadow": true,
+        "cast_hidden_shadow": false,
+        "responses": [
+          2,
+          2,
+          2,
+          0,
+          0,
+          2,
+          2,
+          2,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "world_transform": "<Struct 'Transform' (0x7fd97a9dec40) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 81171.940000, y: 19029.585000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "relative_transform": "<Struct 'Transform' (0x7fd97a9dec40) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 0.000000, y: 0.000000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "materials": [
+          "/Game/Dink/_Generated/Screens/SCR_276/MI_Ground_SCR_276.MI_Ground_SCR_276",
+          "/Game/Dink/_Generated/Shared/MI_DinkWater.MI_DinkWater"
+        ]
+      },
+      "debug": {
+        "path": "/Game/Dink/_Generated/Maps/L_Greybox_World_Mainland.L_Greybox_World_Mainland:PersistentLevel.DinkGreyboxScreen_535.DebugBlockers",
+        "class_name": "StaticMeshComponent",
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_DebugBlockers.SM_SCR_276_DebugBlockers",
+        "hidden": true,
+        "visible": true,
+        "collision": 0,
+        "profile": "NoCollision",
+        "nav": false,
+        "overlap": false,
+        "cast_shadow": false,
+        "cast_hidden_shadow": false,
+        "responses": [
+          2,
+          2,
+          2,
+          0,
+          0,
+          2,
+          2,
+          2,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "world_transform": "<Struct 'Transform' (0x7fd97a9decd0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 81171.940000, y: 19029.585000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "relative_transform": "<Struct 'Transform' (0x7fd97a9decd0) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 0.000000, y: 0.000000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "materials": [
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Solid.MI_DinkBlocker_Solid",
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Low.MI_DinkBlocker_Low",
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Sprite.MI_DinkBlocker_Sprite"
+        ]
+      },
+      "visual_mesh": {
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_Visual.SM_SCR_276_Visual",
+        "triangle_count": 196,
+        "triangle_groups": {
+          "Ground": 192,
+          "Water": 4
+        },
+        "slots": [
+          {
+            "slot_index": 0,
+            "slot_name": "Ground",
+            "imported_slot_name": "Ground"
+          },
+          {
+            "slot_index": 1,
+            "slot_name": "Water",
+            "imported_slot_name": "Water"
+          }
+        ],
+        "source_lods": {
+          "schema": "dink-static-mesh-source-lods/1",
+          "valid": true,
+          "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_Visual.SM_SCR_276_Visual",
+          "lods": [
+            {
+              "lod": 0,
+              "stored_source": "",
+              "resolved_source": ""
+            }
+          ]
+        }
+      },
+      "debug_mesh": {
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_DebugBlockers.SM_SCR_276_DebugBlockers",
+        "triangle_count": 1640,
+        "triangle_groups": {
+          "Solid": 810,
+          "Low": 770,
+          "Sprite": 60
+        },
+        "slots": [
+          {
+            "slot_index": 0,
+            "slot_name": "Solid",
+            "imported_slot_name": "Solid"
+          },
+          {
+            "slot_index": 1,
+            "slot_name": "Low",
+            "imported_slot_name": "Low"
+          },
+          {
+            "slot_index": 2,
+            "slot_name": "Sprite",
+            "imported_slot_name": "Sprite"
+          }
+        ],
+        "source_lods": {
+          "schema": "dink-static-mesh-source-lods/1",
+          "valid": true,
+          "mesh": "/Game/Dink/_Generated/Screens/SCR_276/SM_SCR_276_DebugBlockers.SM_SCR_276_DebugBlockers",
+          "lods": [
+            {
+              "lod": 0,
+              "stored_source": "",
+              "resolved_source": ""
+            }
+          ]
+        }
+      }
+    },
+    "3": {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkGreyboxScreen_66",
+      "visual": {
+        "path": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkGreyboxScreen_66.Visual",
+        "class_name": "StaticMeshComponent",
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_Visual.SM_SCR_003_Visual",
+        "hidden": false,
+        "visible": true,
+        "collision": 0,
+        "profile": "NoCollision",
+        "nav": false,
+        "overlap": false,
+        "cast_shadow": true,
+        "cast_hidden_shadow": false,
+        "responses": [
+          2,
+          2,
+          2,
+          0,
+          0,
+          2,
+          2,
+          2,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "world_transform": "<Struct 'Transform' (0x7fd97a094e70) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -170571.410000, y: 392720.980000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "relative_transform": "<Struct 'Transform' (0x7fd97a094e70) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 0.000000, y: 0.000000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "materials": [
+          "/Game/Dink/_Generated/Screens/SCR_003/MI_Ground_SCR_003.MI_Ground_SCR_003"
+        ]
+      },
+      "debug": {
+        "path": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkGreyboxScreen_66.DebugBlockers",
+        "class_name": "StaticMeshComponent",
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_DebugBlockers.SM_SCR_003_DebugBlockers",
+        "hidden": true,
+        "visible": true,
+        "collision": 0,
+        "profile": "NoCollision",
+        "nav": false,
+        "overlap": false,
+        "cast_shadow": false,
+        "cast_hidden_shadow": false,
+        "responses": [
+          2,
+          2,
+          2,
+          0,
+          0,
+          2,
+          2,
+          2,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "world_transform": "<Struct 'Transform' (0x7fd97a094f00) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: -170571.410000, y: 392720.980000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "relative_transform": "<Struct 'Transform' (0x7fd97a094f00) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 0.000000, y: 0.000000, z: 0.000000}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "materials": [
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Solid.MI_DinkBlocker_Solid",
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Sprite.MI_DinkBlocker_Sprite",
+          "/Game/Dink/_Generated/Shared/MI_DinkBlocker_Warp.MI_DinkBlocker_Warp"
+        ]
+      },
+      "visual_mesh": {
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_Visual.SM_SCR_003_Visual",
+        "triangle_count": 192,
+        "triangle_groups": {
+          "Ground": 192
+        },
+        "slots": [
+          {
+            "slot_index": 0,
+            "slot_name": "Ground",
+            "imported_slot_name": "Ground"
+          }
+        ],
+        "source_lods": {
+          "schema": "dink-static-mesh-source-lods/1",
+          "valid": true,
+          "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_Visual.SM_SCR_003_Visual",
+          "lods": [
+            {
+              "lod": 0,
+              "stored_source": "",
+              "resolved_source": ""
+            }
+          ]
+        }
+      },
+      "debug_mesh": {
+        "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_DebugBlockers.SM_SCR_003_DebugBlockers",
+        "triangle_count": 230,
+        "triangle_groups": {
+          "Solid": 30,
+          "Sprite": 180,
+          "Warp": 20
+        },
+        "slots": [
+          {
+            "slot_index": 0,
+            "slot_name": "Solid",
+            "imported_slot_name": "Solid"
+          },
+          {
+            "slot_index": 1,
+            "slot_name": "Sprite",
+            "imported_slot_name": "Sprite"
+          },
+          {
+            "slot_index": 2,
+            "slot_name": "Warp",
+            "imported_slot_name": "Warp"
+          }
+        ],
+        "source_lods": {
+          "schema": "dink-static-mesh-source-lods/1",
+          "valid": true,
+          "mesh": "/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_DebugBlockers.SM_SCR_003_DebugBlockers",
+          "lods": [
+            {
+              "lod": 0,
+              "stored_source": "",
+              "resolved_source": ""
+            }
+          ]
+        }
+      }
+    }
+  },
+  "maps": {
+    "/Game/Dink/_Generated/Maps/L_Greybox_World": {
+      "actor_count": 5522
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors": {
+      "actor_count": 1217
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_Mainland": {
+      "actor_count": 3696
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_Darklands": {
+      "actor_count": 412
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_Fragments": {
+      "actor_count": 6
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_Joppa": {
+      "actor_count": 130
+    },
+    "/Game/Dink/_Generated/Maps/L_Greybox_World_SnowIsle": {
+      "actor_count": 56
+    }
+  },
+  "qualification": "Actualsavededitor query, noBeginPlay/setters/save. Raw full actor/card/decor inventory retained off-tree and hashpinned, not copied giantJSON. Trianglebindings sourceMeshDescription, notpixelcoverage."
+}
