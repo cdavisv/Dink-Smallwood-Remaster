@@ -13,7 +13,7 @@ class Tests(unittest.TestCase):
    self.assertEqual(W._classify(base),('private_overlay',fixed));self.assertEqual(W._classify(fixed),('already_fixed',None));self.assertRaises(ValueError,W._classify,base+b'extra')
  def test_only_temp_file_overlay_and_argv_preserved(self):
   e=Path('/engine');private=Path('/tmp/owned/ShaderPrint.ush');command=['/engine/Build/BatchFiles/RunUAT.sh','BuildCookRun','-project=a b.uproject']
-  c=W._namespace_command(e,private,command,Path('/project'));self.assertEqual(c[c.index('--')+1:],command);self.assertEqual(c[c.index('--ro-bind')+1:c.index('--ro-bind')+3],[str(private),'/engine/Shaders/Private/ShaderPrint.ush']);self.assertEqual(c.count('--ro-bind'),1);self.assertNotIn('--unshare-net',c)
+  c=W._namespace_command(e,private,command,Path('/project'));self.assertEqual(c[c.index('--')+1:],command);self.assertEqual(c[c.index('--ro-bind')+1:c.index('--ro-bind')+3],[str(private),'/engine/Shaders/Private/ShaderPrint.ush']);self.assertEqual(c.count('--ro-bind'),1);self.assertEqual(c[c.index('--dev-bind')+1:c.index('--dev-bind')+3],['/dev','/dev']);self.assertNotIn('--unshare-net',c)
  def test_execute_overlay_normal_return_and_immutable_host(self):
   with tempfile.TemporaryDirectory()as t:
    e=Path(t);f=e/'Shaders/Private/ShaderPrint.ush';f.parent.mkdir(parents=True);base=self.source();f.write_bytes(base);(e/'Build/BatchFiles').mkdir(parents=True);(e/'Build/Build.version').write_text(json.dumps(dict(MajorVersion=5,MinorVersion=8,PatchVersion=4)));fixed=base.replace(W.ORIGINAL_CONDITION,W.FIXED_CONDITION,1);before=W._snapshot(f);fake_bwrap=e/'mock_bwrap';fake_bwrap.write_bytes(b'not executed')

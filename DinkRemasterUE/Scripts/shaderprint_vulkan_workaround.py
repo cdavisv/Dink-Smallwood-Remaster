@@ -23,6 +23,7 @@ def _classify(data):
     return 'private_overlay',patched
 def _namespace_command(engine,private,command,cwd):
     return [str(BWRAP),'--die-with-parent','--cap-drop','ALL','--bind','/','/',
+            '--dev-bind','/dev','/dev',
             '--ro-bind',str(private),str(engine/'Shaders/Private/ShaderPrint.ush'),
             '--chdir',str(cwd),'--',*command]
 def execute(engine,command):

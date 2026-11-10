@@ -1,3 +1,7 @@
+## Normal helper device-scope correction; actual UAT retry pending
+
+Actual normal-helper Cook9 exited134 before cooker creation: .NET Guid.NewGuid crypto initialization failed. All12937 source/Editor inputs and Engine header/staging preimages unchanged; no assets/cooker created. Three-mode namespace probe reproduces random/urandom EACCES and the same libSystem.Native crypto return-1/errno13 only under plain nested rootbind. Binding the existing /dev restores reads/nativecrypto success. Helper now preserves baseline /dev with one dev-bind; one shaderRO overlay unchanged. Regression/proof retained in VulkanShaderPrintCook8 docs, all prior failures preserved. New real normal-helper cook required before merge; Cook8 shader/render/realW success remains valid for unchanged runtime/header bytes.
+
 ## Packaged renderer and real-input door round trip passed; reproducible shader workaround
 
 Source runtime remains f973/C6; new changes are Scripts/package.sh, a narrow Vulkan ShaderPrint helper/tests, and evidence/status only. Three earlier packaged attempts crashed on invalid FSubsurfaceDebugCS SPIR-V; exact core/archive matching and all four validator failures identified ShaderPrint resource copies in a local struct. Cook8 privately selects the existing global-resource Vulkan path, keeps graphics/PSO features enabled, and leaves the installed Engine header unchanged. All four regenerated shaders validate; actual roof73/maps7/ArtJSON3 inventory and packaged CH1 pass.
