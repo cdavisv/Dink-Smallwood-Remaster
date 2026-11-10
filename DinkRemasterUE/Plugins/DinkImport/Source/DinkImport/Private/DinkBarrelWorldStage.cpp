@@ -6,6 +6,8 @@
 #include "Greybox/DinkWarpComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/BillboardComponent.h"
+#include "Components/ArrowComponent.h"
 #include "PhysicsEngine/BodySetup.h"
 #include "PhysicsEngine/BodyInstance.h"
 #include "Engine/Level.h"
@@ -46,6 +48,7 @@
 #include "UObject/LazyObjectPtr.h"
 #include "UObject/UObjectHash.h"
 #include "UObject/UnrealType.h"
+#include "UObject/UObjectGlobals.h"
 #include "UObject/UObjectThreadContext.h"
 #include "UObject/NoExportTypes.h"
 #include <limits>
@@ -934,6 +937,8 @@ struct FBinaryControlLifetime
  TArray<ULevel*> SourceLevels;
  TArray<AActor*> SourceActors;
  TArray<FString> CacheEvidence;
+ TMap<UBillboardComponent*,USceneComponent*> PendingVisualizations;
+ TMap<UBillboardComponent*,TArray<uint8>> VisualizationSourceBefore;
  TArray<UBodySetup*> PendingCaches; // eligible source roles established BEFORE immediate duplicate callbacks
  TArray<uint8> SourceTopology;
 };
@@ -965,10 +970,11 @@ bool CaptureBinarySourceTopology(const FBinaryControlLifetime& Lifetime,TArray<u
  }
  return !W.IsError();
 }
+bool VerifyPendingVisualizations(const FBinaryControlLifetime& Lifetime,FString& Error);
 bool VerifyBinarySourceTopology(const FBinaryControlLifetime& Lifetime,FString& Error)
 {
  TArray<uint8> Now;if(!CaptureBinarySourceTopology(Lifetime,Now)||Now!=Lifetime.SourceTopology)
- {Error=TEXT("binary copy callback changed source owner/Children/level/attachment/body topology");return false;}return true;
+ {Error=TEXT("binary copy callback changed source owner/Children/level/attachment/body topology");return false;}return VerifyPendingVisualizations(Lifetime,Error);
 }
 void CaptureBinaryImmediateActors(AActor& Actor,FBinaryControlLifetime& Immediate)
 {
@@ -996,12 +1002,113 @@ bool AuditedBinaryObject(UObject& Object,const TSet<const UPackage*>& SourcePack
  {const auto* Paint=FindFProperty<FObjectPropertyBase>(UStaticMeshComponent::StaticClass(),TEXT("MeshPaintTexture"));if(!Paint||Paint->GetObjectPropertyValue_InContainer(&Object)){Error=TEXT("binary static mesh callback requires audited null mesh-paint texture");return false;}}
  return true;
 }
+bool VisualizationPrimaryPins()
+{
+ static const bool Valid=[](){const TPair<const TCHAR*,const TCHAR*> Pins[]={
+  {TEXT("Runtime/Engine/Private/Components/SceneComponent.cpp"),TEXT("85E163CD0D425AF8CCDEF9B409DDAB671EF37A31")},
+  {TEXT("Runtime/Engine/Classes/Components/SceneComponent.h"),TEXT("105724E87A69706A25BE8BAFC9BE8FE6DB6E771B")},
+  {TEXT("Runtime/Engine/Private/Components/ActorComponent.cpp"),TEXT("1432D4EF5D28E56F8F73194B09B1998B3ED2B91D")},
+  {TEXT("Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"),TEXT("5717E45B1C0E6D35671F86A065D3ABBD0E4A3618")},
+  {TEXT("Runtime/CoreUObject/Private/UObject/GarbageCollection.cpp"),TEXT("E4CE0716F77B104314B98D0AC20DAC87D2F809AA")},
+  {TEXT("Runtime/Engine/Private/Light.cpp"),TEXT("C8B9AC4FAC963830F513CA5DD35A4A5E713D7D04")},
+  {TEXT("Runtime/Engine/Private/Components/LightComponent.cpp"),TEXT("EB7C6EAA19EE0CB7E19D72823BD74475ECDB6BFF")},
+ };for(const auto& Pin:Pins){TArray<uint8> Bytes;uint8 H[FSHA1::DigestSize];if(!FFileHelper::LoadFileToArray(Bytes,*(FPaths::EngineSourceDir()/Pin.Key)))return false;FSHA1::HashBuffer(Bytes.GetData(),Bytes.Num(),H);if(BytesToHex(H,FSHA1::DigestSize)!=Pin.Value)return false;}return true;}();return Valid;
+}
+// Observer only: count the literal FIRST event, including null. The public
+// native callback dispatches only already-resolved TObjectPtr handles. Never
+// dereference an unresolved handle or select a later reference as a fallback.
+class FFirstVisualizationReference final:public FReferenceCollector
+{
+public:
+ int32 Events=0;UObject* First=nullptr;UPTRINT FirstSlot=0;
+ bool IsIgnoringArchetypeRef()const override{return false;}
+ bool IsIgnoringTransient()const override{return false;}
+ UBillboardComponent* FirstBillboard()const{return Events>0&&IsValid(First)&&First->GetClass()==UBillboardComponent::StaticClass()?static_cast<UBillboardComponent*>(First):nullptr;}
+protected:
+ void HandleObjectReference(UObject*& Object,const UObject*,const FProperty*)override
+ {if(Events++==0){First=Object;FirstSlot=reinterpret_cast<UPTRINT>(&Object);}} // NO assignment to Object
+};
+bool IsVisualizationLight(const USceneComponent& C)
+{
+ if(!C.GetOwner()||C.GetOwner()->GetRootComponent()!=&C||!C.GetWorld()||C.GetWorld()->WorldType!=EWorldType::Editor||C.GetWorld()->IsGameWorld()||!C.IsRegistered()||!C.bVisualizeComponent)return false;
+ const FString Component=C.GetClass()->GetPathName(),Actor=C.GetOwner()->GetClass()->GetPathName();
+ return C.GetClass()->GetClass()==UClass::StaticClass()&&C.GetOwner()->GetClass()->GetClass()==UClass::StaticClass()&&
+  ((Component==TEXT("/Script/Engine.DirectionalLightComponent")&&Actor==TEXT("/Script/Engine.DirectionalLight"))||
+   (Component==TEXT("/Script/Engine.SkyLightComponent")&&Actor==TEXT("/Script/Engine.SkyLight")));
+}
+bool EligibleVisualization(UBillboardComponent& B,USceneComponent& C)
+{
+ if(!IsValid(&B)||!IsValid(&C)||!IsVisualizationLight(C)||B.GetClass()!=UBillboardComponent::StaticClass()||!B.HasAllFlags(RF_Transient|RF_TextExportTransient)||
+  B.HasAnyFlags(RF_Public|RF_Standalone|RF_DefaultSubObject|RF_ClassDefaultObject|RF_ArchetypeObject)||B.GetOuter()!=C.GetOwner()||B.GetOwner()!=C.GetOwner()||
+  B.GetWorld()!=C.GetWorld()||B.GetAttachParent()!=&C||!B.IsRegistered()||!B.IsVisualizationComponent()||!B.IsEditorOnly())return false;
+ int32 Count=0;TInlineComponentArray<UBillboardComponent*> Components(C.GetOwner());for(auto* Other:Components)if(Other&&Other->GetAttachParent()==&C&&Other->IsVisualizationComponent())++Count;
+ return Count==1;
+}
+bool CaptureVisualizationRead(USceneComponent& C,TArray<uint8>& Bytes)
+{
+ if(!C.GetOwner()||!C.GetOwner()->GetLevel())return false;
+ FBinaryControlLifetime Local;Local.SourceActors.Add(C.GetOwner());Local.SourceLevels.Add(C.GetOwner()->GetLevel());TArray<uint8> Topology;
+ if(!CaptureBinarySourceTopology(Local,Topology))return false;
+ FObjectWriter W(Bytes);FGuid ActorGuid=C.GetOwner()->GetActorGuid(),InstanceGuid=C.GetOwner()->GetActorInstanceGuid();W<<Topology<<ActorGuid<<InstanceGuid;auto Pointer=[&](const void* P){UPTRINT V=reinterpret_cast<UPTRINT>(P);W.Serialize(&V,sizeof(V));};
+ TArray<UObject*> Objects;Objects.Add(C.GetOwner());ForEachObjectWithOuter(C.GetOwner(),[&](UObject* O){Objects.Add(O);},EGetObjectsFlags::IncludeNestedObjects);
+ Objects.Sort([](const UObject& A,const UObject& B){return A.GetPathName()<B.GetPathName();});const TMap<const UObject*,FString> None;const TSet<const UPackage*> NoForbidden;
+ for(UObject* O:Objects){Pointer(O);uint32 Flags=static_cast<uint32>(O->GetFlags());FName Name=O->GetFName();W<<Flags<<Name;Pointer(O->GetOuter());Pointer(O->GetArchetype());Pointer(O->GetClass());TArray<uint8> StateBytes;if(!State(*O,None,NoForbidden,false,StateBytes))return false;W<<StateBytes;}
+ return !W.IsError();
+}
+UBillboardComponent* ReadPrivateVisualization(USceneComponent& C,FString& Error,FString* Evidence=nullptr)
+{
+ if(!VisualizationPrimaryPins()||!IsVisualizationLight(C)){Error=TEXT("unsupported private light visualization callback/class");return nullptr;}
+ TArray<uint8> Before,After;if(!CaptureVisualizationRead(C,Before)){Error=TEXT("cannot snapshot visualization collector read");return nullptr;}
+ FFirstVisualizationReference Collector;USceneComponent::AddReferencedObjects(&C,Collector);
+ if(!CaptureVisualizationRead(C,After)||Before!=After){Error=TEXT("visualization collector changed literal State/metadata/topology");return nullptr;}
+ auto* B=Collector.FirstBillboard();
+ if(!B||!Collector.FirstSlot||!EligibleVisualization(*B,C)){Error=TEXT("first visualization callback event absent/null/unknown or role ambiguous");return nullptr;}
+ if(Evidence)*Evidence=FString::Printf(TEXT("callback=USceneComponent::AddReferencedObjects firstSlot=%llu firstObject=%s events=%d"),static_cast<unsigned long long>(Collector.FirstSlot),*B->GetPathName(),Collector.Events);
+ return B;
+}
+bool VerifyPendingVisualizations(const FBinaryControlLifetime& Lifetime,FString& Error)
+{
+ for(const auto& Pair:Lifetime.PendingVisualizations)
+ {TArray<uint8> Now;const auto* Before=Lifetime.VisualizationSourceBefore.Find(Pair.Key);
+  if(ReadPrivateVisualization(*Pair.Value,Error)!=Pair.Key||!Before||!CaptureVisualizationRead(*Pair.Value,Now)||*Before!=Now)
+  {Error=TEXT("source private visualization literal State/metadata/topology/role changed during binary lifecycle: ")+Error;return false;}}
+ return true;
+}
+bool NativeVisualizationBytes(UBillboardComponent& B,USceneComponent& C,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Bytes,FString& Versions)
+{
+ FString RoleError;TArray<uint8> Before,After;if(ReadPrivateVisualization(C,RoleError)!=&B||!CaptureVisualizationRead(C,Before))return false;
+ FStateWriter W(Bytes,IDs,Forbidden,Target);B.Serialize(W);Versions=PrivateBodyVersions(W);
+ return ReadPrivateVisualization(C,RoleError)==&B&&!W.IsError()&&!W.SourceReference&&W.IsSaving()&&!W.IsLoading()&&!W.IsCooking()&&!W.IsPersistent()&&!W.IsByteSwapping()&&W.GetPortFlags()==0&&CaptureVisualizationRead(C,After)&&Before==After;
+}
+bool CompareVisualizationRole(UBillboardComponent& A,UBillboardComponent& B,USceneComponent& S,USceneComponent& T,
+ const TMap<UObject*,UObject*>& Remap,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,FString& Error,FString* Evidence=nullptr)
+{
+ FString AS,BS;if(&A==&B||S.GetWorld()==T.GetWorld()||Remap.FindRef(&S)!=&T||Remap.FindRef(S.GetOwner())!=T.GetOwner()||Remap.FindRef(&A)!=&B||
+  !EligibleVisualization(A,S)||!EligibleVisualization(B,T)||A.GetFlags()!=B.GetFlags()||A.GetArchetype()!=B.GetArchetype()||A.GetAttachSocketName()!=B.GetAttachSocketName()||
+  ReadPrivateVisualization(S,Error,&AS)!=&A||ReadPrivateVisualization(T,Error,&BS)!=&B||Forbidden.Contains(B.GetOutermost()))
+ {Error=TEXT("private visualization role mapping/identity/provenance refused: ")+Error;return false;}
+ int N=0;for(const auto& P:Remap)if(P.Value==&B)++N;if(N!=1){Error=TEXT("private visualization mapping not bijective");return false;}
+ TArray<uint8> X,Y,NX,NY;FString VX,VY;
+ if(!State(A,IDs,Forbidden,false,X)||!State(B,IDs,Forbidden,true,Y)||X!=Y||
+  !NativeVisualizationBytes(A,S,IDs,Forbidden,false,NX,VX)||!NativeVisualizationBytes(B,T,IDs,Forbidden,true,NY,VY)||NX!=NY||VX!=VY)
+ {int First=0;while(First<NX.Num()&&First<NY.Num()&&NX[First]==NY[First])++First;
+  Error=FString::Printf(TEXT("private visualization full reflected/native nonidentity state differs source=%s target=%s reflectedBytes=%d/%d nativeBytes=%d/%d nativeFirstByte=%d "),*A.GetPathName(),*B.GetPathName(),X.Num(),Y.Num(),NX.Num(),NY.Num(),First)+FirstStateDifference(A,B,IDs,Forbidden);return false;}
+ const auto AB=A.CalcBounds(A.GetComponentTransform()),BB=B.CalcBounds(B.GetComponentTransform());
+ if(!ExactVectorBytes(AB.Origin,BB.Origin)||!ExactVectorBytes(AB.BoxExtent,BB.BoxExtent)||AB.SphereRadius!=BB.SphereRadius||
+  A.GetCollisionEnabled()!=B.GetCollisionEnabled()||A.GetCollisionObjectType()!=B.GetCollisionObjectType()||A.GetCollisionProfileName()!=B.GetCollisionProfileName()||A.GetCollisionResponseToChannels()!=B.GetCollisionResponseToChannels()||
+  A.CanEverAffectNavigation()!=B.CanEverAffectNavigation()||A.GetGenerateOverlapEvents()!=B.GetGenerateOverlapEvents()||A.CastShadow!=B.CastShadow||A.bCastHiddenShadow!=B.bCastHiddenShadow||
+  A.IsVisible()!=B.IsVisible()||A.IsPhysicsStateCreated()!=B.IsPhysicsStateCreated()||A.GetMaterial(0)!=B.GetMaterial(0)||A.Sprite!=B.Sprite)
+ {Error=TEXT("private visualization bounds/render/physics/all64 policy differs");return false;}
+ if(A.BodyInstance.GetPhysicsActorHandle()&&A.BodyInstance.GetPhysicsActorHandle()==B.BodyInstance.GetPhysicsActorHandle()){Error=TEXT("private visualization shared source physics actor");return false;}
+ if(Evidence)*Evidence=TEXT("privateVisualizationRole source={")+AS+TEXT("} target={")+BS+TEXT("} nativeBytes=")+LexToString(NX.Num())+TEXT(" archive={")+VX+TEXT("}");return true;
+}
+
 // Binary loaded-actor transport: never clipboard/TEXT, never reparent sources.
 bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UObject*,UObject*>& Remap,
  TMap<UObject*,UObject*>& Created,TArray<AActor*>& Copies,FBinaryControlLifetime& Lifetime,FString& Error)
 {
  if(!NewLevel.GetWorld()){Error=TEXT("binary target level requires an owning world");return false;}
- Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.SourceTopology.Reset();
+ Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.PendingVisualizations.Reset();Lifetime.VisualizationSourceBefore.Reset();Lifetime.SourceTopology.Reset();
  TSet<AActor*> PreflightActors;TSet<const UPackage*> SourcePackages;TSet<UWorld*> Worlds;
  for(AActor* Actor:Controls)
  {
@@ -1013,7 +1120,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  {if(!Lifetime.SourceLevels.Contains(Level))Lifetime.SourceLevels.Add(Level);SourcePackages.Add(Level->GetOutermost());for(const auto& Actor:Level->Actors)if(Actor&&!Lifetime.SourceActors.Contains(Actor.Get()))Lifetime.SourceActors.Add(Actor.Get());}
  Lifetime.SourceLevels.Sort([](const ULevel& A,const ULevel& B){return A.GetPathName()<B.GetPathName();});Lifetime.SourceActors.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
  for(AActor* Actor:Controls)
- {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;if(OK&&PendingPrivateBody(*O))Lifetime.PendingCaches.AddUnique(CastChecked<UBodySetup>(O));},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
+ {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;if(OK&&PendingPrivateBody(*O))Lifetime.PendingCaches.AddUnique(CastChecked<UBodySetup>(O));if(OK)if(auto* C=Cast<USceneComponent>(O);C&&IsVisualizationLight(*C)){auto* B=ReadPrivateVisualization(*C,Error);if(!B||Lifetime.PendingVisualizations.Contains(B))OK=false;else{TArray<uint8> Before;if(!CaptureVisualizationRead(*C,Before))OK=false;else{Lifetime.PendingVisualizations.Add(B,C);Lifetime.VisualizationSourceBefore.Add(B,MoveTemp(Before));}}}},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
  if(!CaptureBinarySourceTopology(Lifetime,Lifetime.SourceTopology)){Error=TEXT("cannot snapshot source topology before immediate callbacks");return false;}
  TArray<AActor*> Ordered=Controls;
  Ordered.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
@@ -1031,6 +1138,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
    Parameters.bAssignExternalPackages=false;Parameters.bSkipPostLoad=true;
    Parameters.DuplicationSeed=Remap;TMap<UObject*,UObject*> CallCreated;Parameters.CreatedObjects=&CallCreated;
    FBinaryControlLifetime Immediate;CaptureBinaryImmediateActors(*SourceActor,Immediate);
+   for(const auto& Role:Lifetime.PendingVisualizations)if(Immediate.SourceActors.Contains(Role.Value->GetOwner())){Immediate.PendingVisualizations.Add(Role.Key,Role.Value);Immediate.VisualizationSourceBefore.Add(Role.Key,Lifetime.VisualizationSourceBefore[Role.Key]);}
    if(!CaptureBinarySourceTopology(Immediate,Immediate.SourceTopology)){Error=TEXT("cannot snapshot audited immediate-callback source peers");return false;}
    Copy=Cast<AActor>(StaticDuplicateObjectEx(Parameters));
    // GC-visible retention immediately after the supported API returns, before
@@ -1125,6 +1233,15 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<
   const FString RoleIdentity=*Identity;Remap.Add(A,B);IDs.Add(B,RoleIdentity);
   FString CacheAudit;if(!ComparePrivateBodyRole(*A,*B,*S,*T,Remap,IDs,SourcePackages,Error,&CacheAudit))return false;Lifetime.CacheEvidence.Add(CacheAudit);
  }
+ for(const auto& Pair:Lifetime.PendingVisualizations)
+ {
+  auto* S=Pair.Value;auto* T=Cast<USceneComponent>(Remap.FindRef(S));auto* B=T?ReadPrivateVisualization(*T,Error):nullptr;
+  if(!T||!B||B==Pair.Key||(Remap.Contains(Pair.Key)&&Remap.FindRef(Pair.Key)!=B)){Error=TEXT("pending visualization did not regenerate as exact mapped target role: ")+Error;return false;}
+  for(const auto& Other:Remap)if(Other.Key!=Pair.Key&&Other.Value==B){Error=TEXT("private visualization target aliases another mapping");return false;}
+  const auto* SourceID=IDs.Find(Pair.Key);if(!SourceID){Error=TEXT("pending visualization missing literal source identity");return false;}
+  const FString ID=*SourceID;Remap.Add(Pair.Key,B);IDs.Add(B,ID);FString Audit;
+  if(!CompareVisualizationRole(*Pair.Key,*B,*S,*T,Remap,IDs,SourcePackages,Error,&Audit))return false;Lifetime.CacheEvidence.Add(Audit);
+ }
  if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
  return true;
 }
@@ -1214,7 +1331,7 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   for(const auto& O:SourceObjects[Src])
   {
    if(auto* H=Cast<ADinkGreyboxScreen>(Src);H&&Selected(H->ScreenNumber))continue;
-   if(PendingPrivateBody(*O.Value)&&!Remap.Contains(O.Value))continue; // explicit post-registration cache role
+   if((PendingPrivateBody(*O.Value)||BinaryLifetime.PendingVisualizations.Contains(Cast<UBillboardComponent>(O.Value)))&&!Remap.Contains(O.Value))continue; // explicit post-registration cache role
    UObject** New=Objects.Find(O.Key);if(!New||(*New)->GetClass()!=O.Value->GetClass()||(Remap.Contains(O.Value)&&Remap.FindRef(O.Value)!=*New))return Fail(TEXT("source descendant missing/conflicting binary mapping"));Remap.Add(O.Value,*New);
   }
  }
@@ -1340,10 +1457,38 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  if(!TestNotNull(TEXT("binary native/defaultsubobject actor first"),First)||!TestNotNull(TEXT("binary same-name other-level actor second"),Second))return false;
  TestEqual(TEXT("source names deliberately collide across levels"),First->GetFName(),Second->GetFName());First->SetOwner(Second);
  First->Tags.Add(TEXT("DinkKey=S031_P03"));FDinkOriginId::Parse(TEXT("S031_P03"),First->Origin->OriginId);First->Origin->ScriptName=TEXT("bar-f1");First->Origin->SourceHash=TEXT("binary-copy-fixture-source");
- auto* Light=SourceWorld->SpawnActor<ADirectionalLight>();if(!TestNotNull(TEXT("actual native directional light for World-mode GUID fidelity"),Light))return false;
- auto* LightComponent=Cast<ULightComponentBase>(Light->GetLightComponent());if(!TestNotNull(TEXT("actual light component"),LightComponent))return false;
- LightComponent->SetMobility(EComponentMobility::Movable);LightComponent->UpdateLightGUIDs();
  auto GuidValue=[](ULightComponentBase& C,const TCHAR* Name){const auto* Property=FindFProperty<FStructProperty>(ULightComponentBase::StaticClass(),Name);check(Property&&Property->Struct==TBaseStructure<FGuid>::Get());return *Property->ContainerPtrToValuePtr<FGuid>(&C);};
+ // Source actor must have genuinely completed the same loaded-light lifecycle.
+ // The isolated authoring world has no external controls or cross-actor refs.
+ UPackage* LightAuthorPackage=CreatePackage(*(TEXT("/Temp/DinkBinaryLightAuthor_")+Token));
+ TStrongObjectPtr<UWorld> LightAuthorWorld(UWorld::CreateWorld(EWorldType::Editor,false,FName(TEXT("LightAuthor")),LightAuthorPackage,false));
+ if(!TestNotNull(TEXT("isolated strongly retained light authoring world"),LightAuthorWorld.Get()))return false;
+ ON_SCOPE_EXIT{LightAuthorWorld->DestroyWorld(false);LightAuthorWorld->MarkObjectsPendingKill();};
+ auto* AuthorLight=LightAuthorWorld->SpawnActor<ADirectionalLight>();if(!TestNotNull(TEXT("actual native authoring light"),AuthorLight))return false;
+ TStrongObjectPtr<ADirectionalLight> HoldAuthorLight(AuthorLight);auto* AuthorComponent=Cast<ULightComponentBase>(AuthorLight->GetLightComponent());
+ if(!TestNotNull(TEXT("actual authoring light component"),AuthorComponent))return false;
+ AuthorComponent->SetMobility(EComponentMobility::Movable);AuthorComponent->UpdateLightGUIDs();
+ TSet<const UPackage*> AuthorForbidden;AuthorForbidden.Add(LightAuthorPackage);FString AuthorAuditError;bool AuthorAudited=AuditedBinaryObject(*AuthorLight,AuthorForbidden,AuthorAuditError);
+ ForEachObjectWithOuter(AuthorLight,[&](UObject* O){if(AuthorAudited&&!AuditedBinaryObject(*O,AuthorForbidden,AuthorAuditError))AuthorAudited=false;},EGetObjectsFlags::IncludeNestedObjects);
+ if(!TestTrue(TEXT("isolated authoring light retains exact audited native callback/archetype guards: ")+AuthorAuditError,AuthorAudited))return false;
+ const FGuid AuthorActorGuid=AuthorLight->GetActorGuid(),AuthorLightGuid=GuidValue(*AuthorComponent,TEXT("LightGuid")),AuthorOriginalGuid=GuidValue(*AuthorComponent,TEXT("OriginalLightGuid"));
+ TArray<uint8> AuthorBefore,AuthorAfter;if(!TestTrue(TEXT("entire authoring light State/literal metadata/topology snapshot"),CaptureVisualizationRead(*AuthorComponent,AuthorBefore)))return false;
+ FObjectDuplicationParameters LightLoad(AuthorLight,SourceWorld->PersistentLevel);LightLoad.DestName=MakeUniqueObjectName(SourceWorld->PersistentLevel,ADirectionalLight::StaticClass(),TEXT("BinaryLoadedLight"));LightLoad.DestClass=ADirectionalLight::StaticClass();
+ LightLoad.DuplicateMode=EDuplicateMode::World;LightLoad.bSkipPostLoad=false;LightLoad.bAssignExternalPackages=false;
+ LightLoad.DuplicationSeed.Add(LightAuthorWorld.Get(),SourceWorld);LightLoad.DuplicationSeed.Add(LightAuthorWorld->PersistentLevel,SourceWorld->PersistentLevel);LightLoad.DuplicationSeed.Add(LightAuthorWorld->GetWorldSettings(),SourceWorld->GetWorldSettings());
+ TMap<UObject*,UObject*> LoadedLightObjects;LightLoad.CreatedObjects=&LoadedLightObjects;
+ TStrongObjectPtr<ADirectionalLight> HoldLoadedLight(Cast<ADirectionalLight>(StaticDuplicateObjectEx(LightLoad)));TArray<TStrongObjectPtr<UObject>> HoldLoadedLightObjects;
+ for(const auto& Pair:LoadedLightObjects)if(Pair.Value)HoldLoadedLightObjects.Emplace(Pair.Value);
+ auto* Light=HoldLoadedLight.Get();if(!TestNotNull(TEXT("actual native directional light for World-mode GUID fidelity"),Light))return false;
+ SourceWorld->PersistentLevel->AddLoadedActors({Light},nullptr);Light->RegisterAllComponents();
+ if(!TestTrue(TEXT("loaded light exact actor/level membership and finished PostLoad"),Light->GetClass()==ADirectionalLight::StaticClass()&&Light->GetOuter()==SourceWorld->PersistentLevel&&Light->GetLevel()==SourceWorld->PersistentLevel&&!Light->HasAnyFlags(RF_NeedLoad|RF_NeedPostLoad|RF_NeedPostLoadSubobjects)&&SourceWorld->PersistentLevel->Actors.FilterByPredicate([&](const auto& A){return A.Get()==Light;}).Num()==1))return false;
+ auto* LightComponent=Cast<ULightComponentBase>(Light->GetLightComponent());if(!TestNotNull(TEXT("actual light component"),LightComponent))return false;
+ if(!TestTrue(TEXT("loaded light ArrowColor is naturally stock PostLoad light color"),Light->GetArrowComponent()&&Light->GetArrowComponent()->ArrowColor==Light->GetLightColor().ToFColor(true)))return false;
+ const TMap<const UObject*,FString> NoAuthorIDs;TArray<UObject*> LoadedSourceGraph;LoadedSourceGraph.Add(Light);ForEachObjectWithOuter(Light,[&](UObject* O){LoadedSourceGraph.Add(O);},EGetObjectsFlags::IncludeNestedObjects);
+ for(UObject* Loaded:LoadedSourceGraph)
+ {TArray<uint8> Bytes;if(!TestTrue(TEXT("loaded light including regenerated descendants contains no author-world instance archetype or property refs"),Loaded&&State(*Loaded,NoAuthorIDs,AuthorForbidden,true,Bytes)))return false;
+  TSet<const UObject*> Seen;for(const UObject* A=Loaded->GetArchetype();A;A=A->GetArchetype()){if(!TestTrue(TEXT("loaded light archetype is not author-instance/cyclic"),!AuthorForbidden.Contains(A->GetOutermost())&&!Seen.Contains(A)))return false;Seen.Add(A);if(A->HasAnyFlags(RF_ClassDefaultObject))break;}}
+ if(!TestTrue(TEXT("authoring light full State/metadata/topology/GUIDs unchanged by loaded-source creation"),CaptureVisualizationRead(*AuthorComponent,AuthorAfter)&&AuthorBefore==AuthorAfter&&AuthorActorGuid==AuthorLight->GetActorGuid()&&AuthorLightGuid==GuidValue(*AuthorComponent,TEXT("LightGuid"))&&AuthorOriginalGuid==GuidValue(*AuthorComponent,TEXT("OriginalLightGuid"))))return false;
  const FGuid LightGuidBefore=GuidValue(*LightComponent,TEXT("LightGuid")),OriginalLightGuidBefore=GuidValue(*LightComponent,TEXT("OriginalLightGuid"));
  const TArray<TObjectPtr<AActor>> FirstChildrenBefore=First->Children,SecondChildrenBefore=Second->Children;const FGuid FirstActorGuidBefore=First->GetActorGuid(),SecondActorGuidBefore=Second->GetActorGuid();
  auto* Warp=NewObject<UDinkWarpComponent>(First,TEXT("BinaryWarp"));First->AddInstanceComponent(Warp);Warp->SetupAttachment(First->GetRootComponent());
@@ -1491,6 +1636,37 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.Serialize(reinterpret_cast<uint8*>(const_cast<FGuid*>(&CoverageGuid))+1,4);TestFalse(TEXT("partial GUID storage overlap refuses"),W.Complete());}
  {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.SetByteSwapping(true);Feed(W,CoverageGuid);TestFalse(TEXT("unknown byte-swapping serialization refuses"),W.Complete());}
  {TArray<uint8> X,Y;FGuid UnrelatedA=CoverageGuid,UnrelatedB=OtherGuid;FPrivateBodyWriter A(X,EmptyIDs,EmptyForbidden,false,CoverageGuid,true),B(Y,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);Feed(A,CoverageGuid);Feed(B,CoverageGuid);Feed(A,UnrelatedA);Feed(B,UnrelatedB);TestTrue(TEXT("unrelated GUID numeric data remains literal at other addresses"),A.Complete()&&B.Complete()&&X!=Y);}
+ auto* SourceVisualization=ReadPrivateVisualization(*LightComponent,Error);auto* TargetVisualization=ReadPrivateVisualization(*LightComponentCopy,Error);
+ if(!TestNotNull(TEXT("actual source native private visualization"),SourceVisualization)||!TestNotNull(TEXT("actual regenerated target native private visualization"),TargetVisualization))return false;
+ TestTrue(TEXT("every regenerated visualization descendant remains explicitly mapped"),SourceVisualization!=TargetVisualization&&Remap.FindRef(SourceVisualization)==TargetVisualization);
+ TestTrue(TEXT("full reflected/native visualization data and policy preserved without any numeric substitution"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Remap,IDs,Forbidden,Error));
+ TestTrue(TEXT("loaded source and loaded target arrow colors remain exact naturally"),Light->GetArrowComponent()->ArrowColor==LightCopy->GetArrowComponent()->ArrowColor);
+ FFirstVisualizationReference NoEvents;TestTrue(TEXT("absent first collector event refuses"),NoEvents.Events==0&&!NoEvents.FirstBillboard());
+ TObjectPtr<UObject> NullEvent=nullptr,LaterBillboard=SourceVisualization,WrongFirst=LightComponent;
+ FFirstVisualizationReference NullThenBillboard;NullThenBillboard.AddReferencedObject(NullEvent);NullThenBillboard.AddReferencedObject(LaterBillboard);
+ TestTrue(TEXT("literal null FIRST event is counted and never skipped for later billboard"),NullThenBillboard.Events==2&&NullThenBillboard.First==nullptr&&!NullThenBillboard.FirstBillboard());
+ FFirstVisualizationReference WrongThenBillboard;WrongThenBillboard.AddReferencedObject(WrongFirst);WrongThenBillboard.AddReferencedObject(LaterBillboard);
+ TestTrue(TEXT("nonbillboard FIRST event never falls back to later reference"),WrongThenBillboard.Events==2&&WrongThenBillboard.First==LightComponent&&!WrongThenBillboard.FirstBillboard());
+ TestFalse(TEXT("ordinary scene component class cannot acquire private light role"),IsVisualizationLight(*First->GetRootComponent()));
+ TestFalse(TEXT("source visualization alias cannot acquire target role"),CompareVisualizationRole(*SourceVisualization,*SourceVisualization,*LightComponent,*LightComponent,Remap,IDs,Forbidden,Error));
+ {auto Wrong=Remap;Wrong.Remove(SourceVisualization);TestFalse(TEXT("missing private visualization map refuses"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Wrong,IDs,Forbidden,Error));}
+ {auto Wrong=Remap;Wrong.Add(Second,TargetVisualization);TestFalse(TEXT("nonbijective private visualization map refuses"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Wrong,IDs,Forbidden,Error));}
+ TestFalse(TEXT("default billboard is not a generated private visualization role"),EligibleVisualization(*GetMutableDefault<UBillboardComponent>(),*LightComponentCopy));
+ auto* PersistentSprite=NewObject<UBillboardComponent>(LightCopy,NAME_None,RF_Public|RF_Standalone);LightCopy->AddInstanceComponent(PersistentSprite);PersistentSprite->SetIsVisualizationComponent(true);PersistentSprite->SetupAttachment(LightComponentCopy);PersistentSprite->RegisterComponent();
+ TestFalse(TEXT("authored persistent billboard cannot acquire regenerated role"),EligibleVisualization(*PersistentSprite,*LightComponentCopy));LightCopy->RemoveInstanceComponent(PersistentSprite);PersistentSprite->ClearFlags(RF_Public|RF_Standalone);PersistentSprite->DestroyComponent();
+ {auto Wrong=Remap;Wrong.Add(Light,FirstCopy);TestFalse(TEXT("wrong mapped owning light actor refuses visualization role"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Wrong,IDs,Forbidden,Error));}
+ auto* WrongOwnerSprite=NewObject<UBillboardComponent>(FirstCopy,NAME_None,RF_Transient|RF_TextExportTransient|RF_Transactional);FirstCopy->AddInstanceComponent(WrongOwnerSprite);WrongOwnerSprite->SetIsVisualizationComponent(true);WrongOwnerSprite->SetupAttachment(LightComponentCopy);WrongOwnerSprite->RegisterComponent();
+ TestFalse(TEXT("cross-actor billboard attachment cannot acquire private role"),EligibleVisualization(*WrongOwnerSprite,*LightComponentCopy));FirstCopy->RemoveInstanceComponent(WrongOwnerSprite);WrongOwnerSprite->DestroyComponent();
+ const float OriginalScreenSize=TargetVisualization->ScreenSize;TargetVisualization->ScreenSize=OriginalScreenSize+1.f;
+ TestFalse(TEXT("a changed nonidentity sprite field is never normalized"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Remap,IDs,Forbidden,Error));TargetVisualization->ScreenSize=OriginalScreenSize;
+ TargetVisualization->AttachToComponent(FirstCopy->GetRootComponent(),FAttachmentTransformRules::KeepRelativeTransform);
+ TestFalse(TEXT("wrong visualization parent refuses despite private pointer identity"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Remap,IDs,Forbidden,Error));TargetVisualization->AttachToComponent(LightComponentCopy,FAttachmentTransformRules::KeepRelativeTransform);
+ auto* Ambiguous=NewObject<UBillboardComponent>(LightCopy,NAME_None,RF_Transient|RF_TextExportTransient|RF_Transactional);LightCopy->AddInstanceComponent(Ambiguous);Ambiguous->SetIsVisualizationComponent(true);Ambiguous->SetupAttachment(LightComponentCopy);Ambiguous->RegisterComponent();
+ TestFalse(TEXT("second visualization child refuses ambiguous actual first role"),EligibleVisualization(*TargetVisualization,*LightComponentCopy));LightCopy->RemoveInstanceComponent(Ambiguous);Ambiguous->DestroyComponent();
+ const bool SpriteWasTransactional=SourceVisualization->HasAnyFlags(RF_Transactional);if(SpriteWasTransactional)SourceVisualization->ClearFlags(RF_Transactional);else SourceVisualization->SetFlags(RF_Transactional);
+ TestFalse(TEXT("source visualization literal metadata mutation refuses after baseline"),VerifyBinarySourceTopology(Lifetime,Error));if(SpriteWasTransactional)SourceVisualization->SetFlags(RF_Transactional);else SourceVisualization->ClearFlags(RF_Transactional);
+ TestTrue(TEXT("source literal visualization metadata/State/topology restored exactly"),VerifyBinarySourceTopology(Lifetime,Error));
+ TestTrue(TEXT("target full visualization state restored after nonidentity negatives"),CompareVisualizationRole(*SourceVisualization,*TargetVisualization,*LightComponent,*LightComponentCopy,Remap,IDs,Forbidden,Error));
  TMap<UObject*,UObject*> MissingMap=Remap;MissingMap.Remove(Second);TestFalse(TEXT("missing cross-actor mapping refuses before deferred PostLoad"),FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,MissingMap,Created,IDs,Forbidden,Lifetime,Error));
  TMap<UObject*,UObject*> ConflictingMap;ConflictingMap.Add(First,First);TMap<UObject*,UObject*> BadCreated;TArray<AActor*> BadCopies;TestFalse(TEXT("source actor as its own copy refuses"),BinaryCopyControls({First},*TargetWorld->PersistentLevel,ConflictingMap,BadCreated,BadCopies,BadLifetime,Error));
  TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
