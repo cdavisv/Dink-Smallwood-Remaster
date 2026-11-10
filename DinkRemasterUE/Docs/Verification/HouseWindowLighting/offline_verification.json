@@ -1,0 +1,67 @@
+{
+  "base": "cbdd4f60514653e2f8a8c714272612096d368748",
+  "source_only_candidate": true,
+  "manifest_changed_members": [
+    "lights"
+  ],
+  "every_nonlight_manifest_field_equal": true,
+  "exact_practical_points_retained": true,
+  "old_points": 5,
+  "new_points": 2,
+  "new_rects": 6,
+  "nominal_lumens_before": 1110,
+  "nominal_lumens_after": 1110,
+  "no_native_execution_here": true,
+  "no_binary_or_mesh_change": true,
+  "pure_focused_tests": 14,
+  "full_python_tests": 558,
+  "full_python_result": {
+    "exit_code": 0,
+    "elapsed_seconds": 5.7626578449999215,
+    "log_sha256": "22bda951b556cafac8dc9ac9024dc2135a32248243f86bdbba71b2a47140f947",
+    "command": "python3 -B -m unittest discover -s Scripts/tests -v",
+    "UE_executed": false
+  },
+  "native_fixture_source_added": [
+    "Dink.Art.Lighting.LegacyPointAndRect",
+    "Dink.Art.Lighting.PreflightBeforeSceneMutation"
+  ],
+  "native_fixtures": "UNCOMPILED_UNRUN",
+  "GPU_appearance_performance_package": "PENDING",
+  "source_audits": {
+    "full": {
+      "verification_mode": "full",
+      "binary_files_verified": 4519,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 523,
+      "shell_syntax_files": 22,
+      "ledger_rows": 4329,
+      "historical_rows_binary_verified": 11,
+      "historical_rows_metadata_only": 0,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    },
+    "metadata": {
+      "verification_mode": "metadata",
+      "binary_files_verified": 4519,
+      "binary_files_metadata_only": 0,
+      "python_syntax_files": 523,
+      "shell_syntax_files": 22,
+      "ledger_rows": 4329,
+      "historical_rows_binary_verified": 11,
+      "historical_rows_metadata_only": 0,
+      "missing_assets": 0,
+      "hash_errors": 0,
+      "secret_flags": [],
+      "errors": [],
+      "layout_cases_passed": 3,
+      "approved_audio_runtime_matches": true,
+      "passed": true
+    }
+  }
+}

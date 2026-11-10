@@ -18,11 +18,13 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Components/PointLightComponent.h"
+#include "Components/RectLightComponent.h"
 #include "Components/PostProcessComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/PointLight.h"
+#include "Engine/RectLight.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/StaticMeshActor.h"
 #include "Engine/World.h"
@@ -54,6 +56,71 @@ namespace
 		const FVector R = VectorField(Row, TEXT("rotation_deg"));
 		return FTransform(FRotator(R.X, R.Y, R.Z), VectorField(Row, LocationKey), VectorField(Row, TEXT("scale"), FVector::OneVector));
 	}
+
+    struct FAuthoredLight
+    {
+        bool bRect = false;
+        FVector Position = FVector::ZeroVector;
+        FRotator Rotation = FRotator::ZeroRotator;
+        float Lumens = 0, Kelvin = 0, Radius = 0, Width = 0, Height = 0;
+    };
+
+    bool LightNumber(const TSharedPtr<FJsonObject>& Row, const TCHAR* Key, float& Out)
+    {
+        const auto Value = Row->TryGetField(Key);
+        if (!Value.IsValid() || Value->Type != EJson::Number) return false;
+        const double Number = Value->AsNumber();
+        if (!FMath::IsFinite(Number) || Number > double(MAX_flt) || Number < -double(MAX_flt)) return false;
+        Out = static_cast<float>(Number);
+        return FMath::IsFinite(Out);
+    }
+
+    bool LightVector(const TSharedPtr<FJsonObject>& Row, const TCHAR* Key, FVector& Out)
+    {
+        const TArray<TSharedPtr<FJsonValue>>* Values = nullptr;
+        if (!Row->TryGetArrayField(Key, Values) || Values->Num() != 3) return false;
+        for (int32 Index = 0; Index != 3; ++Index)
+        {
+            const auto& Value = (*Values)[Index];
+            if (!Value.IsValid() || Value->Type != EJson::Number || !FMath::IsFinite(Value->AsNumber())) return false;
+            Out[Index] = Value->AsNumber();
+        }
+        return true;
+    }
+
+    // Parse the entire light list before replacing/hiding/spawning any scene actor.
+    // An omitted kind remains the original isotropic point-light path.
+    bool ReadAuthoredLights(const TSharedPtr<FJsonObject>& Manifest, TArray<FAuthoredLight>& Out)
+    {
+        const auto Field = Manifest->TryGetField(TEXT("lights"));
+        if (!Field.IsValid()) return true;
+        if (Field->Type != EJson::Array) return false;
+        for (const auto& Value : Field->AsArray())
+        {
+            if (!Value.IsValid() || Value->Type != EJson::Object) return false;
+            const auto Row = Value->AsObject();
+            FString Kind = TEXT("point");
+            if (Row->HasField(TEXT("kind")) && !Row->TryGetStringField(TEXT("kind"), Kind)) return false;
+            if (Kind != TEXT("point") && Kind != TEXT("rect")) return false;
+            FAuthoredLight Light;
+            Light.bRect = Kind == TEXT("rect");
+            if (!LightVector(Row, TEXT("world_cm"), Light.Position) ||
+                !LightNumber(Row, TEXT("lumens"), Light.Lumens) || Light.Lumens < 0 ||
+                !LightNumber(Row, TEXT("kelvin"), Light.Kelvin) || Light.Kelvin <= 0 ||
+                !LightNumber(Row, TEXT("radius_cm"), Light.Radius) || Light.Radius <= 0) return false;
+            if (Light.bRect)
+            {
+                FVector Rotation;
+                if (!LightVector(Row, TEXT("rotation_deg"), Rotation) ||
+                    !LightNumber(Row, TEXT("source_width_cm"), Light.Width) || Light.Width <= 0 ||
+                    !LightNumber(Row, TEXT("source_height_cm"), Light.Height) || Light.Height <= 0) return false;
+                Light.Rotation = FRotator(Rotation.X, Rotation.Y, Rotation.Z);
+            }
+            else if (Row->HasField(TEXT("source_width_cm")) || Row->HasField(TEXT("source_height_cm"))) return false;
+            Out.Add(Light);
+        }
+        return true;
+    }
 }
 
 bool UDinkArtSubsystem::DoesSupportWorldType(EWorldType::Type WorldType) const
@@ -97,6 +164,13 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 	bool bHasScreen = false;
 	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It) bHasScreen |= It->ScreenNumber == TargetScreen;
 	if (!bHasScreen) return;
+
+    TArray<FAuthoredLight> Lights;
+    if (!ReadAuthoredLights(Manifest, Lights))
+    {
+        UE_LOG(LogDink, Warning, TEXT("Art: invalid lights; retaining scene (%s)"), *ManifestFile);
+        return;
+    }
 
 	// Validate all referenced assets before hiding anything: an incomplete checkout stays playable.
 	TMap<FString, UStaticMesh*> Meshes;
@@ -253,23 +327,29 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 			Added++;
 		}
 	}
-	if (Manifest->TryGetArrayField(TEXT("lights"), Rows))
+    for (const FAuthoredLight& Row : Lights)
 	{
-		for (const TSharedPtr<FJsonValue>& Value : *Rows)
-		{
-			const TSharedPtr<FJsonObject> Row = Value->AsObject();
-			APointLight* Light = World.SpawnActor<APointLight>(VectorField(Row, TEXT("world_cm")), FRotator::ZeroRotator);
-			if (!Light) continue;
-			Light->Tags.Add(TEXT("DinkAuthoredArt"));
-			UPointLightComponent* C = CastChecked<UPointLightComponent>(Light->GetLightComponent());
-			C->SetMobility(EComponentMobility::Movable);
-			C->SetIntensityUnits(ELightUnits::Lumens);
-			C->SetIntensity(Row->GetNumberField(TEXT("lumens")));
-			C->SetUseTemperature(true);
-			C->SetTemperature(Row->GetNumberField(TEXT("kelvin")));
-			C->SetAttenuationRadius(Row->GetNumberField(TEXT("radius_cm")));
-			C->SetSourceRadius(18.f);
-		}
+        ALight* Light = Row.bRect
+            ? static_cast<ALight*>(World.SpawnActor<ARectLight>(Row.Position, Row.Rotation))
+            : static_cast<ALight*>(World.SpawnActor<APointLight>(Row.Position, FRotator::ZeroRotator));
+        if (!Light) continue;
+        Light->Tags.Add(TEXT("DinkAuthoredArt"));
+        ULocalLightComponent* C = CastChecked<ULocalLightComponent>(Light->GetLightComponent());
+        C->SetMobility(EComponentMobility::Movable);
+        C->SetIntensityUnits(ELightUnits::Lumens);
+        C->SetIntensity(Row.Lumens);
+        C->SetUseTemperature(true);
+        C->SetTemperature(Row.Kelvin);
+        C->SetAttenuationRadius(Row.Radius);
+        if (Row.bRect)
+        {
+            URectLightComponent* Rect = CastChecked<URectLightComponent>(C);
+            Rect->SetSourceWidth(Row.Width);
+            Rect->SetSourceHeight(Row.Height);
+            // Installed setter clamps even a zero request to0.1cm.
+            Rect->SetBarnDoorLength(0.1f);
+        }
+        else CastChecked<UPointLightComponent>(C)->SetSourceRadius(18.f);
 	}
 	if (Manifest->TryGetArrayField(TEXT("postprocess"), Rows))
 	{

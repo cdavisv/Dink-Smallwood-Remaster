@@ -1,0 +1,34 @@
+{
+  "review_source": "/home/davisc/Work/DinkQA/HouseWindowLightingIndependentReview/REVIEW_aa13e40.json",
+  "review_sha256": "532f7f321fb005ea2e521ed6ff9f7bca0a2272540288121f09e7600c729a8048",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "medium",
+      "title": "Complete lighting preflight before native importer mutations",
+      "locations": [
+        {
+          "path": "DinkRemasterUE/Scripts/house_lighting.py",
+          "line": 54
+        },
+        {
+          "path": "DinkRemasterUE/Scripts/house_lighting.py",
+          "line": 113
+        },
+        {
+          "path": "DinkRemasterUE/Scripts/import_stonebrook_art.py",
+          "line": 33
+        },
+        {
+          "path": "DinkRemasterUE/Scripts/import_stonebrook_art.py",
+          "line": 347
+        }
+      ],
+      "problem": "The early importer invokes only load_profile/validate_source_layout. Those accept a source_width_cm of82.5 even though the current North openings are81.8125cm. The scaled-width refusal is deferred to light_rows/apply_lighting at importer347, after earlier material mutation, replace_existing/save=True import tasks and package saves. Unsupported scalar profiles can also be emitted: lumens1e300 and radius1e-300 pass Python validation, but core LightNumber/positive-after-float conversion rejects them (source inspection, not native execution). This leaves a predictable invalid lighting edit to fail after unrelated native kit work, contrary to the new early-preflight guarantee.",
+      "reproduction": "REPRODUCE_PREFLIGHT_GAP.py reads exact aa13 Git blobs without Unreal/source edits; REPRODUCER.json contains all early/late outcomes. Width82.5 passes both pre-import checks then late derivation raises; lumens1e300 overflows float32 and positive radius1e-300 becomes0.",
+      "requested_change": "Make the complete pure authoring preflight validate every generated light specification and scaled aperture, including actual runtime-compatible float scalar bounds/positive-after-conversion requirements, before the importer can reach native asset/material work. Reuse this same preflight at importer entry and standalone authoring. Add functional coverage proving these invalid profiles are rejected at that early entry; the existing AST call-order assertion alone does not prove completeness. Preserve the current valid170/80x130 profile and runtime behavior."
+    }
+  ],
+  "resolution": "Complete shared preflight derives/validates all8runtime specs and scaled apertures, models finite native float range and positive-after-conversion before asset work. Functional actual importer-entry and standalone-entry tests reject the three reproductions without native access or file writes; valid importer control reaches first native sentinel. Current valid profile/runtime/core/ledger held exactaa13.",
+  "native_rendering_status": "UNRUN"
+}

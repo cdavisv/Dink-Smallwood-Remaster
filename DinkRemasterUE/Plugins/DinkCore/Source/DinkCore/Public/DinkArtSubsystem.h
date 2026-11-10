@@ -36,6 +36,7 @@ protected:
 	virtual bool DoesSupportWorldType(EWorldType::Type WorldType) const override;
 private:
 	friend struct FDinkArtNavigationTestAccess;
+    friend struct FDinkArtLightTestAccess;
     friend struct FDinkExteriorPortalTestAccess;
     void LoadExteriorCameraRules();
     void RegisterExteriorCameraRule(const FString& Manifest,const TSharedPtr<class FJsonObject>& Row,
