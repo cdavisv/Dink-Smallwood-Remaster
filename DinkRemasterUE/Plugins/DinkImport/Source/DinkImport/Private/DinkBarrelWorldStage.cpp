@@ -106,7 +106,7 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  TMap<FString,AActor*> Sources;TMap<const UObject*,FString> IDs;TMap<AActor*,TMap<FString,UObject*>> SourceObjects;
  for(TActorIterator<AActor> It(SourceWorld);It;++It)
  {
-  AActor* A=*It;if(A->IsA<AWorldSettings>()||A==SourceWorld->GetDefaultBrush()||A->IsA<ADefaultPhysicsVolume>())continue;
+  AActor* A=*It;if(A->IsA<AWorldSettings>()||A==A->GetLevel()->GetDefaultBrush()||A->IsA<ADefaultPhysicsVolume>())continue;
   if(A->IsA<ALevelScriptActor>()){if(A->GetClass()!=ALevelScriptActor::StaticClass())return Fail(TEXT("custom level script requires explicit preservation"));continue;}
   if(A->HasAnyFlags(RF_Transient))continue;
   const FString K=Key(*A);if(K.IsEmpty()||Sources.Contains(K)||!A->GetClass()->HasAnyClassFlags(CLASS_Native))return Fail(TEXT("unidentified/duplicate/non-native source control actor"));

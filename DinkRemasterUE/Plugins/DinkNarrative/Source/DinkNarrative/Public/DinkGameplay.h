@@ -315,6 +315,8 @@ public:
     bool RedrawRuntimeHardness(int32 Handle, FString& Error);
     bool RedrawRuntimeHardnessMap(int32 Screen,FString& Error);
     void InvalidateRuntimeHardnessForScreenLoad(bool bResetTransientEditorHard=true);
+    /** Release owned world bodies/caches on GI shutdown; never rebuild or admit. */
+    void ShutdownRuntimeHardness();
     void RecordEditorHardness(const FDinkOriginId& Origin, int32 Value);
     int32 EditorHardnessPicture(const FDinkOriginId& Origin, bool bSequence, int32 Value);
     bool TryRuntimeHardnessCode(int32 Screen, int32 Vision, int32 MapX, int32 MapY, int32& Code) const;

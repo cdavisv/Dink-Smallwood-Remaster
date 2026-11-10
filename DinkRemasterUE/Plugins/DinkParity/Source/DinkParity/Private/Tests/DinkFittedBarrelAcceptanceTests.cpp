@@ -1,5 +1,6 @@
 // Actual generated-template/marked-world acceptance. No private admission seam.
 #include "DinkTestHelpers.h"
+#include "GameMapsSettings.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
 #include "DinkStorySubsystem.h"
@@ -164,7 +165,7 @@ void FDinkRealFittedBarrels::GetTests(TArray<FString>& Names,TArray<FString>& Co
 bool FDinkRealFittedBarrels::RunTest(const FString& Parameters)
 {
     FString Kind,Number;if(!Parameters.Split(TEXT(":"),&Kind,&Number))return false;
-    const FString Package=Kind==TEXT("Candidate")?TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Barrel031209V1"):TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World");
+    const FString Package=Kind==TEXT("Candidate")?TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Barrel031209V1"):UGameMapsSettings::GetGameDefaultMap();
     const FString File=FPackageName::LongPackageNameToFilename(Package,FPackageName::GetMapPackageExtension());
     if(!TestTrue(TEXT("actual staged/default world exists, no fixture-only skip"),IFileManager::Get().FileExists(*File))||!TestNotNull(TEXT("actual acceptance world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
     FAssetCompilingManager::Get().FinishAllCompilation();

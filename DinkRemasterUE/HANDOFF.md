@@ -447,3 +447,8 @@ Next: coherent own Editor/Game build then repeat broader26test sequence includin
 
 
 First combined helper/real-case compile failed24s/8fixture errors and1new helperwarning, raw Candidate12/run8a155... preserved. Narrow successor: real-map fixture read-only privatefriend access to fitted primitive (no public API/path/admission bypass), public Director.GetSprites enumeration, constFString loop reference; helper uses installed nondeprecated IncludeNestedObjects enum. Helper itself compiled in the failed batch; no UE/native/assets executed. Fresh Editor/Game retry required.
+
+
+### Retained physical-owner shutdown correction
+
+Combined Editor/Game Candidate13 passed61.969/40.821s with12670immutable inputs and no warnings; broader26 native Candidate7 then reproduced the same later-mapload fatal (22completed, native245/72.25s), despite owned-world pendingkill flags. Actual new geometry diagnostic confirms effective policy SHA1 5eb85050e7e90d1a1dd8b97554077af688f66732. Root reviewed a production lifetime fix: Story.Deinitialize explicitly releases retained Gameplay physics owners/session/projection/slot/editor caches and its own move gate, without Reset/OnScreenLoaded/re-admission. Fixture now leaves an actual registered dynamic owner body active, checks GI shutdown releases owner/components before World GC, and retains the later real Prop mapload regression. Raw failures remain preserved; no lifetime/GC acceptance yet. Also corrected only per-level default builderbrush exclusion in candidate helper and made Default acceptance resolve actual UGameMapsSettings (private EngineSettings test dependency), not the historical source control map. No Data/native candidate/default activation written. Fresh own compile and same26 run next.

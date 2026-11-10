@@ -799,6 +799,19 @@ void UDinkGameplay::RefuseOriginalHardnessProjection()
     if(HardnessProjection.IsValid())
     {HardnessProjection->Phase=EOriginalHardnessPhase::Refused;SetHardnessLoading(true);}
 }
+void UDinkGameplay::ShutdownRuntimeHardness()
+{
+    // Screen changes intentionally retain providers. World/GI shutdown must
+    // release the strong registered-component owners before UObject GC.
+    for(auto& Pair:HardnessOwners)if(Pair.Value.IsValid())Pair.Value->InvalidateForScreenRebuild();
+    RuntimeHardness.Reset();
+    HardnessOwners.Reset();
+    HardnessProjection.Reset();
+    OriginalSlotHistory.Reset();
+    EditorHardness.Reset();
+    SetHardnessLoading(false);
+}
+
 void UDinkGameplay::InvalidateRuntimeHardnessForScreenLoad(bool bResetTransientEditorHard)
 {
     RefuseOriginalHardnessProjection();

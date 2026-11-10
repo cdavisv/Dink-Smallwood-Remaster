@@ -72,6 +72,7 @@ void UDinkStorySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UDinkStorySubsystem::Deinitialize()
 {
+	if (Gameplay) Gameplay->ShutdownRuntimeHardness();
 	bAutoTick = false;
 	AHUD::OnHUDPostRender.Remove(HudHandle);
 	if (InputProcessor.IsValid() && FSlateApplication::IsInitialized())
