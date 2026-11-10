@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "scope": "Actual fresh Blender reopen of relocated registered source and3library/reuse scenes. All needed image dependencies packed; shared/donor relative paths resolve inside relocation and match exact PNG bytes. No rendering/native actions.",
+  "rows": [
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
+      "sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+      "needed_packed_images": 22,
+      "relative_shared_files_exact": true
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "sha256": "b72854e46183ba4f462b601ebefae7d6069ce233e8e0198cab5114b6b694cc02",
+      "needed_packed_images": 1,
+      "relative_shared_files_exact": true
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "sha256": "bcff2725b32ecfeea8d85f03a7324b120d1fdfea00aec7ba34a600911eb27dda",
+      "needed_packed_images": 10,
+      "relative_shared_files_exact": true
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/GenericReuse_2m4m.blend",
+      "sha256": "18de1f6de925e79ad4b8eb3f1061a557777ea9a050261d427446dcc939afe383",
+      "needed_packed_images": 9,
+      "relative_shared_files_exact": true
+    }
+  ]
+}

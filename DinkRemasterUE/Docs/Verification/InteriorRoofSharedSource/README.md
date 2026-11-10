@@ -1,0 +1,9 @@
+# Shared interior roof source registration
+
+Eight explicit source records now reference the registered reusable2m oak/endgrain/plaster library. Three derived camera variants reuse the same9 textures and established opacity/shadow contract. Root accepted the pre-name-normalization appearance for a native trial; complete named-source equivalence and actual binaryFBX UV/N/T/B checks pass. Editable material sources,independent2m/4m reuse,exact PNGs and roof geometry are included. No native Content/Data is changed.
+
+Art checker: eight new roof records have zero violations; three timber parts retain soft-triangle warnings. Global preexisting186material/23family violations remain (433baseline→441candidate source assets). The separate authored-architecture policy commit supplies the explicit no-sprite screen1 declaration checks; props and other uses do not gain a waiver. Full checker exit1 is retained and not described as a global pass.
+
+Actual importer/runtime work is pending. A fresh23-package trial must be followed by reviewed integration into the eight production roof meshes (or exact8Data mappings) and exactly3camera aliases; do not ship unused trial packages as the completed task. Separate masked camera variants must keep DinkCameraOpacity1/shadow1 and use the same9maps. Import filename metadata guards currently need exact new-source/package support before a trial can execute. Root owns native/build/GPU coordination; this branch has not launched UE.
+
+Inherited duplicate faces/UV compression and unresolved gable junction slivers remain documented; see GEOMETRY_ISSUE.json. Its measurements are image bounds projected onto the west gable plane,not certified through-hole dimensions. Central rays hit existing roof/plaster surfaces,so the later geometry owner must distinguish closure from unlit/shading defects before altering the frozen construction.

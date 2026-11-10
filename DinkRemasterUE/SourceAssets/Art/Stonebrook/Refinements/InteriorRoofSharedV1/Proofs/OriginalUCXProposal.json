@@ -1,0 +1,2281 @@
+{
+  "schema": "dink.roof_chimney.export_scene.proposal.v11",
+  "status": "REVIEW_ONLY; actual trianglebindings PASS; correctedV11 appearance views pending review; no FBX/native action",
+  "source": {
+    "file": "RoofChimney_MaterialRoles_v11.blend",
+    "sha256": "0e9f1c05ff7a786c6535b93b0b5470d72e654830e212817193e820c7f72c7e41",
+    "inventory": "source_export_inventory_v11.json",
+    "triangle_role_audit": "triangle_role_audit_v11.json",
+    "full_triangle_role_records": "triangle_role_bindings_v11.json",
+    "role_records_sha256": "298529132374de585ab171efc4dcb645f24c2bb8303421b7bf2e8e6a28dcb36e"
+  },
+  "packet_files": [
+    {
+      "source_object": "SM_Chimney_Stonebrook_V8",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Chimney_Stonebrook_V8",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_Chimney_Stonebrook_V8",
+        "vertices": 604,
+        "triangles": 1208,
+        "bounds_local_m": [
+          [
+            -1.3528097867965698,
+            5.551875114440918,
+            -0.7000000476837158
+          ],
+          [
+            0.43373993039131165,
+            6.446454048156738,
+            1.619999885559082
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_V8_CoursedLimestone_StudyV1",
+          "MI_V8_SootLining_StudyV1",
+          "MI_V8_DullZinc_StudyV1"
+        ],
+        "UCX_names": [
+          "UCX_SM_Chimney_Stonebrook_V8_00",
+          "UCX_SM_Chimney_Stonebrook_V8_01",
+          "UCX_SM_Chimney_Stonebrook_V8_02",
+          "UCX_SM_Chimney_Stonebrook_V8_03",
+          "UCX_SM_Chimney_Stonebrook_V8_04",
+          "UCX_SM_Chimney_Stonebrook_V8_05",
+          "UCX_SM_Chimney_Stonebrook_V8_06",
+          "UCX_SM_Chimney_Stonebrook_V8_07",
+          "UCX_SM_Chimney_Stonebrook_V8_08",
+          "UCX_SM_Chimney_Stonebrook_V8_09",
+          "UCX_SM_Chimney_Stonebrook_V8_10",
+          "UCX_SM_Chimney_Stonebrook_V8_11",
+          "UCX_SM_Chimney_Stonebrook_V8_12",
+          "UCX_SM_Chimney_Stonebrook_V8_13",
+          "UCX_SM_Chimney_Stonebrook_V8_14",
+          "UCX_SM_Chimney_Stonebrook_V8_15",
+          "UCX_SM_Chimney_Stonebrook_V8_16",
+          "UCX_SM_Chimney_Stonebrook_V8_17",
+          "UCX_SM_Chimney_Stonebrook_V8_18",
+          "UCX_SM_Chimney_Stonebrook_V8_19",
+          "UCX_SM_Chimney_Stonebrook_V8_20",
+          "UCX_SM_Chimney_Stonebrook_V8_21",
+          "UCX_SM_Chimney_Stonebrook_V8_22",
+          "UCX_SM_Chimney_Stonebrook_V8_23",
+          "UCX_SM_Chimney_Stonebrook_V8_24",
+          "UCX_SM_Chimney_Stonebrook_V8_25",
+          "UCX_SM_Chimney_Stonebrook_V8_26",
+          "UCX_SM_Chimney_Stonebrook_V8_27",
+          "UCX_SM_Chimney_Stonebrook_V8_28",
+          "UCX_SM_Chimney_Stonebrook_V8_29",
+          "UCX_SM_Chimney_Stonebrook_V8_30",
+          "UCX_SM_Chimney_Stonebrook_V8_31",
+          "UCX_SM_Chimney_Stonebrook_V8_32",
+          "UCX_SM_Chimney_Stonebrook_V8_33",
+          "UCX_SM_Chimney_Stonebrook_V8_34",
+          "UCX_SM_Chimney_Stonebrook_V8_35",
+          "UCX_SM_Chimney_Stonebrook_V8_36",
+          "UCX_SM_Chimney_Stonebrook_V8_37",
+          "UCX_SM_Chimney_Stonebrook_V8_38",
+          "UCX_SM_Chimney_Stonebrook_V8_39",
+          "UCX_SM_Chimney_Stonebrook_V8_40",
+          "UCX_SM_Chimney_Stonebrook_V8_41",
+          "UCX_SM_Chimney_Stonebrook_V8_42",
+          "UCX_SM_Chimney_Stonebrook_V8_43",
+          "UCX_SM_Chimney_Stonebrook_V8_44",
+          "UCX_SM_Chimney_Stonebrook_V8_45",
+          "UCX_SM_Chimney_Stonebrook_V8_46",
+          "UCX_SM_Chimney_Stonebrook_V8_47",
+          "UCX_SM_Chimney_Stonebrook_V8_48",
+          "UCX_SM_Chimney_Stonebrook_V8_49",
+          "UCX_SM_Chimney_Stonebrook_V8_50",
+          "UCX_SM_Chimney_Stonebrook_V8_51",
+          "UCX_SM_Chimney_Stonebrook_V8_52",
+          "UCX_SM_Chimney_Stonebrook_V8_53",
+          "UCX_SM_Chimney_Stonebrook_V8_54",
+          "UCX_SM_Chimney_Stonebrook_V8_55",
+          "UCX_SM_Chimney_Stonebrook_V8_56",
+          "UCX_SM_Chimney_Stonebrook_V8_57",
+          "UCX_SM_Chimney_Stonebrook_V8_58",
+          "UCX_SM_Chimney_Stonebrook_V8_59",
+          "UCX_SM_Chimney_Stonebrook_V8_60",
+          "UCX_SM_Chimney_Stonebrook_V8_61",
+          "UCX_SM_Chimney_Stonebrook_V8_62",
+          "UCX_SM_Chimney_Stonebrook_V8_63",
+          "UCX_SM_Chimney_Stonebrook_V8_64",
+          "UCX_SM_Chimney_Stonebrook_V8_65",
+          "UCX_SM_Chimney_Stonebrook_V8_66",
+          "UCX_SM_Chimney_Stonebrook_V8_67",
+          "UCX_SM_Chimney_Stonebrook_V8_68",
+          "UCX_SM_Chimney_Stonebrook_V8_69",
+          "UCX_SM_Chimney_Stonebrook_V8_70",
+          "UCX_SM_Chimney_Stonebrook_V8_71",
+          "UCX_SM_Chimney_Stonebrook_V8_72",
+          "UCX_SM_Chimney_Stonebrook_V8_73",
+          "UCX_SM_Chimney_Stonebrook_V8_74",
+          "UCX_SM_Chimney_Stonebrook_V8_75",
+          "UCX_SM_Chimney_Stonebrook_V8_76",
+          "UCX_SM_Chimney_Stonebrook_V8_77",
+          "UCX_SM_Chimney_Stonebrook_V8_78",
+          "UCX_SM_Chimney_Stonebrook_V8_79",
+          "UCX_SM_Chimney_Stonebrook_V8_80",
+          "UCX_SM_Chimney_Stonebrook_V8_81",
+          "UCX_SM_Chimney_Stonebrook_V8_82",
+          "UCX_SM_Chimney_Stonebrook_V8_83",
+          "UCX_SM_Chimney_Stonebrook_V8_84",
+          "UCX_SM_Chimney_Stonebrook_V8_85",
+          "UCX_SM_Chimney_Stonebrook_V8_86",
+          "UCX_SM_Chimney_Stonebrook_V8_87",
+          "UCX_SM_Chimney_Stonebrook_V8_88",
+          "UCX_SM_Chimney_Stonebrook_V8_89",
+          "UCX_SM_Chimney_Stonebrook_V8_90",
+          "UCX_SM_Chimney_Stonebrook_V8_91"
+        ],
+        "triangle_material_counts": {
+          "0": 584,
+          "1": 176,
+          "2": 448
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Rootapproved newupper"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "negative local upperZ preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+        "vertices": 8332,
+        "triangles": 15912,
+        "bounds_local_m": [
+          [
+            -1.254823923110962,
+            -0.5574382543563843,
+            -0.0021025463938713074
+          ],
+          [
+            1.2557871341705322,
+            0.5577954053878784,
+            2.799999952316284
+          ]
+        ],
+        "display_translation_m": [
+          -0.4593749940395355,
+          5.971875190734863,
+          0.0
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_FireplaceV2_Atlas",
+          "MI_V8_CoursedLimestone_StudyV1",
+          "MI_V8_SootLining_StudyV1"
+        ],
+        "UCX_names": [
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_01",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_02",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_03",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_04",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_05",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_06",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_07",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_08",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_09",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_10",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_11",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_12",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_13",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_14",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_15",
+          "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_16"
+        ],
+        "triangle_material_counts": {
+          "0": 15330,
+          "2": 526,
+          "1": 56
+        }
+      },
+      "collision_policy": {
+        "collision": "COMPLEX_AS_SIMPLE",
+        "nanite": "PRESERVE_ENABLED_FULL_FALLBACK",
+        "source_policy": "OriginalFPV2policyunchanged"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+      "native_LOD_index": 1,
+      "native_import_operation": "ExplicitLODIntoExistingBase",
+      "source_inventory": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+        "vertices": 4698,
+        "triangles": 8644,
+        "bounds_local_m": [
+          [
+            -1.254823923110962,
+            -0.5572593212127686,
+            -0.00159493088722229
+          ],
+          [
+            1.2541403770446777,
+            0.5576765537261963,
+            2.799999952316284
+          ]
+        ],
+        "display_translation_m": [
+          -0.4593749940395355,
+          5.971875190734863,
+          0.0
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_FireplaceV2_Atlas",
+          "MI_V8_CoursedLimestone_StudyV1",
+          "MI_V8_SootLining_StudyV1"
+        ],
+        "UCX_names": [],
+        "triangle_material_counts": {
+          "0": 8182,
+          "2": 410,
+          "1": 52
+        }
+      },
+      "collision_policy": {
+        "collision": "COMPLEX_AS_SIMPLE",
+        "nanite": "PRESERVE_ENABLED_FULL_FALLBACK",
+        "source_policy": "OriginalFPV2policyunchanged"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+      "native_LOD_index": 2,
+      "native_import_operation": "ExplicitLODIntoExistingBase",
+      "source_inventory": {
+        "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+        "vertices": 2725,
+        "triangles": 4698,
+        "bounds_local_m": [
+          [
+            -1.252771258354187,
+            -0.5546301603317261,
+            -0.0010135695338249207
+          ],
+          [
+            1.2541403770446777,
+            0.5554819107055664,
+            2.799999952316284
+          ]
+        ],
+        "display_translation_m": [
+          -0.4593749940395355,
+          5.971875190734863,
+          0.0
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_FireplaceV2_Atlas",
+          "MI_V8_CoursedLimestone_StudyV1",
+          "MI_V8_SootLining_StudyV1"
+        ],
+        "UCX_names": [],
+        "triangle_material_counts": {
+          "0": 4393,
+          "2": 282,
+          "1": 23
+        }
+      },
+      "collision_policy": {
+        "collision": "COMPLEX_AS_SIMPLE",
+        "nanite": "PRESERVE_ENABLED_FULL_FALLBACK",
+        "source_policy": "OriginalFPV2policyunchanged"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_EN_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_EN_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_EN_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_EN_01",
+        "vertices": 2607,
+        "triangles": 4986,
+        "bounds_local_m": [
+          [
+            -0.15600000321865082,
+            -0.12999999523162842,
+            0.0
+          ],
+          [
+            7.593500137329102,
+            6.682499885559082,
+            3.75
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_OakLonggrain_Baked",
+          "MI_InteriorRoof_RoofBoards_Baked",
+          "MI_InteriorRoof_OakEndgrain_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_EN_01_00",
+          "UCX_SM_IndoorRoof_EN_01_01",
+          "UCX_SM_IndoorRoof_EN_01_02",
+          "UCX_SM_IndoorRoof_EN_01_03",
+          "UCX_SM_IndoorRoof_EN_01_04",
+          "UCX_SM_IndoorRoof_EN_01_05",
+          "UCX_SM_IndoorRoof_EN_01_06",
+          "UCX_SM_IndoorRoof_EN_01_07",
+          "UCX_SM_IndoorRoof_EN_01_08",
+          "UCX_SM_IndoorRoof_EN_01_09",
+          "UCX_SM_IndoorRoof_EN_01_10",
+          "UCX_SM_IndoorRoof_EN_01_11",
+          "UCX_SM_IndoorRoof_EN_01_12",
+          "UCX_SM_IndoorRoof_EN_01_13",
+          "UCX_SM_IndoorRoof_EN_01_14",
+          "UCX_SM_IndoorRoof_EN_01_15",
+          "UCX_SM_IndoorRoof_EN_01_16",
+          "UCX_SM_IndoorRoof_EN_01_17",
+          "UCX_SM_IndoorRoof_EN_01_18",
+          "UCX_SM_IndoorRoof_EN_01_19",
+          "UCX_SM_IndoorRoof_EN_01_20",
+          "UCX_SM_IndoorRoof_EN_01_21",
+          "UCX_SM_IndoorRoof_EN_01_22",
+          "UCX_SM_IndoorRoof_EN_01_23",
+          "UCX_SM_IndoorRoof_EN_01_24",
+          "UCX_SM_IndoorRoof_EN_01_25",
+          "UCX_SM_IndoorRoof_EN_01_26",
+          "UCX_SM_IndoorRoof_EN_01_27",
+          "UCX_SM_IndoorRoof_EN_01_28",
+          "UCX_SM_IndoorRoof_EN_01_29",
+          "UCX_SM_IndoorRoof_EN_01_30",
+          "UCX_SM_IndoorRoof_EN_01_31",
+          "UCX_SM_IndoorRoof_EN_01_32",
+          "UCX_SM_IndoorRoof_EN_01_33",
+          "UCX_SM_IndoorRoof_EN_01_34",
+          "UCX_SM_IndoorRoof_EN_01_35",
+          "UCX_SM_IndoorRoof_EN_01_36",
+          "UCX_SM_IndoorRoof_EN_01_37",
+          "UCX_SM_IndoorRoof_EN_01_38",
+          "UCX_SM_IndoorRoof_EN_01_39",
+          "UCX_SM_IndoorRoof_EN_01_40",
+          "UCX_SM_IndoorRoof_EN_01_41",
+          "UCX_SM_IndoorRoof_EN_01_42",
+          "UCX_SM_IndoorRoof_EN_01_43",
+          "UCX_SM_IndoorRoof_EN_01_44",
+          "UCX_SM_IndoorRoof_EN_01_45",
+          "UCX_SM_IndoorRoof_EN_01_46",
+          "UCX_SM_IndoorRoof_EN_01_47"
+        ],
+        "triangle_material_counts": {
+          "1": 560,
+          "2": 932,
+          "0": 3494
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_ES_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_ES_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_ES_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_ES_01",
+        "vertices": 1833,
+        "triangles": 3474,
+        "bounds_local_m": [
+          [
+            -0.15000000596046448,
+            -6.682499885559082,
+            0.0
+          ],
+          [
+            7.587501049041748,
+            0.04958966001868248,
+            3.75
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_OakLonggrain_Baked",
+          "MI_InteriorRoof_RoofBoards_Baked",
+          "MI_InteriorRoof_OakEndgrain_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_ES_01_00",
+          "UCX_SM_IndoorRoof_ES_01_01",
+          "UCX_SM_IndoorRoof_ES_01_02",
+          "UCX_SM_IndoorRoof_ES_01_03",
+          "UCX_SM_IndoorRoof_ES_01_04",
+          "UCX_SM_IndoorRoof_ES_01_05",
+          "UCX_SM_IndoorRoof_ES_01_06",
+          "UCX_SM_IndoorRoof_ES_01_07",
+          "UCX_SM_IndoorRoof_ES_01_08",
+          "UCX_SM_IndoorRoof_ES_01_09",
+          "UCX_SM_IndoorRoof_ES_01_10",
+          "UCX_SM_IndoorRoof_ES_01_11",
+          "UCX_SM_IndoorRoof_ES_01_12",
+          "UCX_SM_IndoorRoof_ES_01_13",
+          "UCX_SM_IndoorRoof_ES_01_14",
+          "UCX_SM_IndoorRoof_ES_01_15",
+          "UCX_SM_IndoorRoof_ES_01_16",
+          "UCX_SM_IndoorRoof_ES_01_17",
+          "UCX_SM_IndoorRoof_ES_01_18",
+          "UCX_SM_IndoorRoof_ES_01_19",
+          "UCX_SM_IndoorRoof_ES_01_20",
+          "UCX_SM_IndoorRoof_ES_01_21",
+          "UCX_SM_IndoorRoof_ES_01_22",
+          "UCX_SM_IndoorRoof_ES_01_23",
+          "UCX_SM_IndoorRoof_ES_01_24",
+          "UCX_SM_IndoorRoof_ES_01_25",
+          "UCX_SM_IndoorRoof_ES_01_26",
+          "UCX_SM_IndoorRoof_ES_01_27",
+          "UCX_SM_IndoorRoof_ES_01_28",
+          "UCX_SM_IndoorRoof_ES_01_29",
+          "UCX_SM_IndoorRoof_ES_01_30",
+          "UCX_SM_IndoorRoof_ES_01_31",
+          "UCX_SM_IndoorRoof_ES_01_32",
+          "UCX_SM_IndoorRoof_ES_01_33",
+          "UCX_SM_IndoorRoof_ES_01_34",
+          "UCX_SM_IndoorRoof_ES_01_35",
+          "UCX_SM_IndoorRoof_ES_01_36",
+          "UCX_SM_IndoorRoof_ES_01_37",
+          "UCX_SM_IndoorRoof_ES_01_38",
+          "UCX_SM_IndoorRoof_ES_01_39",
+          "UCX_SM_IndoorRoof_ES_01_40",
+          "UCX_SM_IndoorRoof_ES_01_41",
+          "UCX_SM_IndoorRoof_ES_01_42",
+          "UCX_SM_IndoorRoof_ES_01_43",
+          "UCX_SM_IndoorRoof_ES_01_44"
+        ],
+        "triangle_material_counts": {
+          "1": 560,
+          "2": 662,
+          "0": 2252
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_EN_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_Gable_EN_01",
+        "vertices": 139,
+        "triangles": 266,
+        "bounds_local_m": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            7.517499923706055,
+            6.662499904632568,
+            3.4800000190734863
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_GablePlaster_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_Gable_EN_01_00",
+          "UCX_SM_IndoorRoof_Gable_EN_01_01",
+          "UCX_SM_IndoorRoof_Gable_EN_01_02"
+        ],
+        "triangle_material_counts": {
+          "0": 266
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_ES_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_Gable_ES_01",
+        "vertices": 139,
+        "triangles": 266,
+        "bounds_local_m": [
+          [
+            0.0,
+            -6.662499904632568,
+            0.0
+          ],
+          [
+            7.517499923706055,
+            0.0,
+            3.4800000190734863
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_GablePlaster_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_Gable_ES_01_00",
+          "UCX_SM_IndoorRoof_Gable_ES_01_01",
+          "UCX_SM_IndoorRoof_Gable_ES_01_02"
+        ],
+        "triangle_material_counts": {
+          "0": 266
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_WN_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_Gable_WN_01",
+        "vertices": 139,
+        "triangles": 266,
+        "bounds_local_m": [
+          [
+            -7.517499923706055,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.662499904632568,
+            3.4800000190734863
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_GablePlaster_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_Gable_WN_01_00",
+          "UCX_SM_IndoorRoof_Gable_WN_01_01",
+          "UCX_SM_IndoorRoof_Gable_WN_01_02"
+        ],
+        "triangle_material_counts": {
+          "0": 266
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_Gable_WS_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_Gable_WS_01",
+        "vertices": 139,
+        "triangles": 266,
+        "bounds_local_m": [
+          [
+            -7.517499923706055,
+            -6.662499904632568,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            3.4800000190734863
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_GablePlaster_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_Gable_WS_01_00",
+          "UCX_SM_IndoorRoof_Gable_WS_01_01",
+          "UCX_SM_IndoorRoof_Gable_WS_01_02"
+        ],
+        "triangle_material_counts": {
+          "0": 266
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_WN_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_WN_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_WN_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_WN_01",
+        "vertices": 2580,
+        "triangles": 4924,
+        "bounds_local_m": [
+          [
+            -7.593500137329102,
+            -0.12999999523162842,
+            0.0
+          ],
+          [
+            0.2400004267692566,
+            6.682499885559082,
+            3.75
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_OakLonggrain_Baked",
+          "MI_InteriorRoof_RoofBoards_Baked",
+          "MI_InteriorRoof_OakEndgrain_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_WN_01_00",
+          "UCX_SM_IndoorRoof_WN_01_01",
+          "UCX_SM_IndoorRoof_WN_01_02",
+          "UCX_SM_IndoorRoof_WN_01_03",
+          "UCX_SM_IndoorRoof_WN_01_04",
+          "UCX_SM_IndoorRoof_WN_01_05",
+          "UCX_SM_IndoorRoof_WN_01_06",
+          "UCX_SM_IndoorRoof_WN_01_07",
+          "UCX_SM_IndoorRoof_WN_01_08",
+          "UCX_SM_IndoorRoof_WN_01_09",
+          "UCX_SM_IndoorRoof_WN_01_10",
+          "UCX_SM_IndoorRoof_WN_01_11",
+          "UCX_SM_IndoorRoof_WN_01_12",
+          "UCX_SM_IndoorRoof_WN_01_13",
+          "UCX_SM_IndoorRoof_WN_01_14",
+          "UCX_SM_IndoorRoof_WN_01_15",
+          "UCX_SM_IndoorRoof_WN_01_16",
+          "UCX_SM_IndoorRoof_WN_01_17",
+          "UCX_SM_IndoorRoof_WN_01_18",
+          "UCX_SM_IndoorRoof_WN_01_19",
+          "UCX_SM_IndoorRoof_WN_01_20",
+          "UCX_SM_IndoorRoof_WN_01_21",
+          "UCX_SM_IndoorRoof_WN_01_22",
+          "UCX_SM_IndoorRoof_WN_01_27",
+          "UCX_SM_IndoorRoof_WN_01_28",
+          "UCX_SM_IndoorRoof_WN_01_29",
+          "UCX_SM_IndoorRoof_WN_01_30",
+          "UCX_SM_IndoorRoof_WN_01_31",
+          "UCX_SM_IndoorRoof_WN_01_32",
+          "UCX_SM_IndoorRoof_WN_01_33",
+          "UCX_SM_IndoorRoof_WN_01_34",
+          "UCX_SM_IndoorRoof_WN_01_35",
+          "UCX_SM_IndoorRoof_WN_01_36",
+          "UCX_SM_IndoorRoof_WN_01_37",
+          "UCX_SM_IndoorRoof_WN_01_39",
+          "UCX_SM_IndoorRoof_WN_01_40",
+          "UCX_SM_IndoorRoof_WN_01_41",
+          "UCX_SM_IndoorRoof_WN_01_42",
+          "UCX_SM_IndoorRoof_WN_01_43",
+          "UCX_SM_IndoorRoof_WN_01_44",
+          "UCX_SM_IndoorRoof_WN_01_45",
+          "UCX_SM_IndoorRoof_WN_01_46",
+          "UCX_SM_IndoorRoof_WN_01_47",
+          "UCX_SM_IndoorRoof_WN_01_48",
+          "UCX_SM_IndoorRoof_WN_01_49",
+          "UCX_SM_IndoorRoof_WN_01_50",
+          "UCX_SM_IndoorRoof_WN_01_51",
+          "UCX_SM_IndoorRoof_WN_01_52",
+          "UCX_SM_IndoorRoof_WN_01_53",
+          "UCX_SM_IndoorRoof_WN_01_54",
+          "UCX_SM_IndoorRoof_WN_01_55",
+          "UCX_SM_IndoorRoof_WN_01_56",
+          "UCX_SM_IndoorRoof_WN_01_57",
+          "UCX_SM_IndoorRoof_WN_01_58",
+          "UCX_SM_IndoorRoof_WN_01_59",
+          "UCX_SM_IndoorRoof_WN_01_60",
+          "UCX_SM_IndoorRoof_WN_01_61"
+        ],
+        "triangle_material_counts": {
+          "1": 674,
+          "2": 986,
+          "0": 3264
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    },
+    {
+      "source_object": "SM_IndoorRoof_WS_01",
+      "proposed_file": "ProposedExportPacketV11/FBX/SM_IndoorRoof_WS_01.fbx",
+      "native_asset_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_WS_01",
+      "native_LOD_index": 0,
+      "native_import_operation": "NewStaticMesh",
+      "source_inventory": {
+        "name": "SM_IndoorRoof_WS_01",
+        "vertices": 1525,
+        "triangles": 2874,
+        "bounds_local_m": [
+          [
+            -7.587500095367432,
+            -6.682499885559082,
+            0.0
+          ],
+          [
+            0.0,
+            0.04958966001868248,
+            3.75
+          ]
+        ],
+        "display_translation_m": [
+          0.0,
+          0.0,
+          3.5
+        ],
+        "rotation_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material_slots": [
+          "MI_InteriorRoof_OakLonggrain_Baked",
+          "MI_InteriorRoof_RoofBoards_Baked",
+          "MI_InteriorRoof_OakEndgrain_Baked"
+        ],
+        "UCX_names": [
+          "UCX_SM_IndoorRoof_WS_01_00",
+          "UCX_SM_IndoorRoof_WS_01_01",
+          "UCX_SM_IndoorRoof_WS_01_02",
+          "UCX_SM_IndoorRoof_WS_01_03",
+          "UCX_SM_IndoorRoof_WS_01_04",
+          "UCX_SM_IndoorRoof_WS_01_05",
+          "UCX_SM_IndoorRoof_WS_01_06",
+          "UCX_SM_IndoorRoof_WS_01_07",
+          "UCX_SM_IndoorRoof_WS_01_08",
+          "UCX_SM_IndoorRoof_WS_01_09",
+          "UCX_SM_IndoorRoof_WS_01_10",
+          "UCX_SM_IndoorRoof_WS_01_11",
+          "UCX_SM_IndoorRoof_WS_01_12",
+          "UCX_SM_IndoorRoof_WS_01_13",
+          "UCX_SM_IndoorRoof_WS_01_14",
+          "UCX_SM_IndoorRoof_WS_01_15",
+          "UCX_SM_IndoorRoof_WS_01_16",
+          "UCX_SM_IndoorRoof_WS_01_17",
+          "UCX_SM_IndoorRoof_WS_01_18",
+          "UCX_SM_IndoorRoof_WS_01_19",
+          "UCX_SM_IndoorRoof_WS_01_20",
+          "UCX_SM_IndoorRoof_WS_01_21",
+          "UCX_SM_IndoorRoof_WS_01_22",
+          "UCX_SM_IndoorRoof_WS_01_23",
+          "UCX_SM_IndoorRoof_WS_01_24",
+          "UCX_SM_IndoorRoof_WS_01_25",
+          "UCX_SM_IndoorRoof_WS_01_26",
+          "UCX_SM_IndoorRoof_WS_01_27",
+          "UCX_SM_IndoorRoof_WS_01_28",
+          "UCX_SM_IndoorRoof_WS_01_29",
+          "UCX_SM_IndoorRoof_WS_01_30",
+          "UCX_SM_IndoorRoof_WS_01_31",
+          "UCX_SM_IndoorRoof_WS_01_32",
+          "UCX_SM_IndoorRoof_WS_01_33",
+          "UCX_SM_IndoorRoof_WS_01_34",
+          "UCX_SM_IndoorRoof_WS_01_35",
+          "UCX_SM_IndoorRoof_WS_01_36",
+          "UCX_SM_IndoorRoof_WS_01_37",
+          "UCX_SM_IndoorRoof_WS_01_38",
+          "UCX_SM_IndoorRoof_WS_01_39",
+          "UCX_SM_IndoorRoof_WS_01_40",
+          "UCX_SM_IndoorRoof_WS_01_41"
+        ],
+        "triangle_material_counts": {
+          "1": 560,
+          "2": 550,
+          "0": 1764
+        }
+      },
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "source_display_translation_removal": "Clear object translation ONLY on detached exportcopy, leave all assetlocal vertices unchanged; same clear for matchedUCX",
+      "independent_FBX_checks_required": [
+        "actual model units/axis/oriented triangles/UV/materials/normals flags",
+        "source-matched convex hulls, no filled aperture",
+        "assetlocal bounds preserved",
+        "Actualpertriangle materialsemantic role, not only slots/shaderavailability"
+      ],
+      "native_all_LOD_build_requirements": {
+        "use_full_precision_u_vs": true
+      }
+    }
+  ],
+  "shader_texture_files": [
+    {
+      "name": "T_FireplaceV2_Atlas_BC",
+      "source_PNG_sha256": "82bb4f9265b48ad0c4fa2be89a535e5d8a712c167f738477df5926ede66368a4",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 3483434,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_FireplaceV2_Atlas_BC.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_FireplaceV2_Atlas_BC",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_E",
+      "source_PNG_sha256": "235ac449c24ce2a3313664399f41a6bef1a49349af0997a5c1c621a45eaa12dc",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 92351,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_FireplaceV2_Atlas_E.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_FireplaceV2_Atlas_E",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_N",
+      "source_PNG_sha256": "8e713117312c74953120a13b96a323e0b224c812150f805e748a6ac903d94020",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5586501,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_FireplaceV2_Atlas_N.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_FireplaceV2_Atlas_N",
+      "normal_convention": "OpenGL_Yplus",
+      "native_flip_green": true,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_ORM",
+      "source_PNG_sha256": "4a1125a42582b6001a5f172c2848f205ec0f37f22623fc768b3a1f4311b81b7b",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 2910653,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_FireplaceV2_Atlas_ORM.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_FireplaceV2_Atlas_ORM",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_GablePlaster_BC",
+      "source_PNG_sha256": "8f7e5151c6d9b0f691fc6022377c0c7422f80d95b41c3da3cf0b7386869d32bf",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1319946,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_GablePlaster_BC.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_GablePlaster_BC",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_InteriorRoof_GablePlaster_N",
+      "source_PNG_sha256": "0f29901676d3bc2fb1b53b0d90990017bbd25627e275ef53ae9a16431717697c",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5318081,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_GablePlaster_N.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_GablePlaster_N",
+      "normal_convention": "DirectX_Yminus",
+      "native_flip_green": false,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_GablePlaster_ORM",
+      "source_PNG_sha256": "d3e9e0e8c19180fe6a1229032afb4bc57ab6100e0b7460d7a77fb51e9babf458",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 499120,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_GablePlaster_ORM.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_GablePlaster_ORM",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_OakEndgrain_BC",
+      "source_PNG_sha256": "12ead883bdbe823a5a7c1b4ec61b65834591754195918a1c3bdc9e25f088a79b",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5673794,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakEndgrain_BC.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakEndgrain_BC",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_InteriorRoof_OakEndgrain_N",
+      "source_PNG_sha256": "387c5d6386d19ce5eb68fd2c21b39ce9c07b041afcb29803eb622753cbf8fac2",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 6234156,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakEndgrain_N.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakEndgrain_N",
+      "normal_convention": "DirectX_Yminus",
+      "native_flip_green": false,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_OakEndgrain_ORM",
+      "source_PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 871514,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakEndgrain_ORM.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakEndgrain_ORM",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_OakLonggrain_BC",
+      "source_PNG_sha256": "34cda85e0dc193a5b09d1a3b3cfc4444f0006ef6f836fc5a5191026dd44c2209",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 4817062,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakLonggrain_BC.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakLonggrain_BC",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_InteriorRoof_OakLonggrain_N",
+      "source_PNG_sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1085751,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakLonggrain_N.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakLonggrain_N",
+      "normal_convention": "DirectX_Yminus",
+      "native_flip_green": false,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_OakLonggrain_ORM",
+      "source_PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 871514,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_OakLonggrain_ORM.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_OakLonggrain_ORM",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_RoofBoards_BC",
+      "source_PNG_sha256": "dea3622f23f398bda5603fd0a6bdbe09eddfef584d342b24010833e189971ac7",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5056023,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_RoofBoards_BC.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_RoofBoards_BC",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_InteriorRoof_RoofBoards_N",
+      "source_PNG_sha256": "0c5e91ef3f1db2816ff786742bc13dc684068aef7228d165577ff1a78b030b12",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1085751,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_RoofBoards_N.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_RoofBoards_N",
+      "normal_convention": "DirectX_Yminus",
+      "native_flip_green": false,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_InteriorRoof_RoofBoards_ORM",
+      "source_PNG_sha256": "f8b98d142b0d86f9614cb9fd772cead9de882d1c41dbde8184fd7892eaf90d61",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 871514,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_InteriorRoof_RoofBoards_ORM.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_InteriorRoof_RoofBoards_ORM",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_CoursedLimestone_BC.png",
+      "source_PNG_sha256": "1446d731434535e15731cbb9d60175e340638a07ea9bc3fc7452dc4d1ba59408",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1891542,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_CoursedLimestone_BC.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_CoursedLimestone_BC.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_V8_CoursedLimestone_N.png",
+      "source_PNG_sha256": "3c1029c7c1aa33bf71bc41f4701e52d2d49d4e24bca0917be558dec007f9e8d4",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5364595,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_CoursedLimestone_N.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_CoursedLimestone_N.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_CoursedLimestone_ORM.png",
+      "source_PNG_sha256": "8d87b04871a9ce9a973551154ae51dbc2532710546b03034189390a2b6b15794",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1070754,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_CoursedLimestone_ORM.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_CoursedLimestone_ORM.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_DullZinc_BC.png",
+      "source_PNG_sha256": "570f53d12f51b44894b48e15ed8ed941bd3ae5a34ac29df31005500e607348ac",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 568016,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_DullZinc_BC.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_DullZinc_BC.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_V8_DullZinc_N.png",
+      "source_PNG_sha256": "d57bb309f21c8933d6ae2f8ca1a65306705e1e042f91f08018e7e3a7210cfcdc",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1475217,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_DullZinc_N.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_DullZinc_N.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_DullZinc_ORM.png",
+      "source_PNG_sha256": "d1c92dc0195c85f36b26d1f880a26cc1102243d3a47203050e9170ad78c24012",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 788413,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_DullZinc_ORM.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_DullZinc_ORM.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_SootLining_BC.png",
+      "source_PNG_sha256": "953b4920becc32ab3a91d49df59b55910ff685046591d677a2568903864ce6e0",
+      "colorspace": "sRGB",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 509381,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_SootLining_BC.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_SootLining_BC.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": true
+    },
+    {
+      "name": "T_V8_SootLining_N.png",
+      "source_PNG_sha256": "7641460961a61d47784b20359d6ac7954920afb4c026efce15785870354a51ea",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 4548880,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_SootLining_N.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_SootLining_N.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    },
+    {
+      "name": "T_V8_SootLining_ORM.png",
+      "source_PNG_sha256": "1b52b4d9e2d8d5cb5000216b310ec800cf23098b6267536c4f3e4e069e92d9f0",
+      "colorspace": "Non-Color",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 653409,
+      "proposed_file": "ProposedExportPacketV11/Textures/T_V8_SootLining_ORM.png.png",
+      "native_texture_proposal": "/Game/Dink/QA/IndoorRoofV8/Textures/T_V8_SootLining_ORM.png",
+      "normal_convention": null,
+      "native_flip_green": null,
+      "native_address": "Wrap",
+      "native_sRGB": false
+    }
+  ],
+  "materials": [
+    {
+      "source_material": "MI_FireplaceV2_Atlas",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_FireplaceV2_Atlas",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_FireplaceV2_Atlas_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.5,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 1.2000000476837158,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_FireplaceV2_Atlas_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_FireplaceV2_Atlas_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_FireplaceV2_Atlas_ORM",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.003",
+            "image": "T_FireplaceV2_Atlas_E",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_InteriorRoof_GablePlaster_Baked",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_GablePlaster_Baked",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_GablePlaster_Baked_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.4600000381469727,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_GablePlaster_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_GablePlaster_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_GablePlaster_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_InteriorRoof_OakEndgrain_Baked",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_OakEndgrain_Baked",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_OakEndgrain_Baked_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakEndgrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakEndgrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakEndgrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_InteriorRoof_OakLonggrain_Baked",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_OakLonggrain_Baked",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_OakLonggrain_Baked_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakLonggrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakLonggrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakLonggrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_InteriorRoof_RoofBoards_Baked",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_RoofBoards_Baked",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_InteriorRoof_RoofBoards_Baked_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_RoofBoards_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_RoofBoards_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_RoofBoards_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_V8_CoursedLimestone_StudyV1",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_V8_CoursedLimestone_StudyV1",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_V8_CoursedLimestone_StudyV1_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_CoursedLimestone_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_CoursedLimestone_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_CoursedLimestone_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    },
+    {
+      "source_material": "MI_V8_DullZinc_StudyV1",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_V8_DullZinc_StudyV1",
+      "masked_native_proposal": null,
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_DullZinc_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_DullZinc_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_DullZinc_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "No fadevariant required for permanentlyopaquezinc architecture"
+    },
+    {
+      "source_material": "MI_V8_SootLining_StudyV1",
+      "opaque_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_V8_SootLining_StudyV1",
+      "masked_native_proposal": "/Game/Dink/QA/IndoorRoofV8/Materials/MI_V8_SootLining_StudyV1_CameraMasked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_SootLining_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_SootLining_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_SootLining_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      },
+      "shading_model": "DefaultLit",
+      "UV0_scale": [
+        1,
+        1
+      ],
+      "UV0_offset": [
+        0,
+        0
+      ],
+      "no_hidden_parameter_overrides": true,
+      "DinkCameraOpacity_default": 1,
+      "masked_usage": "Authoredcompletevariant for existingmanaged materialmapping, no sourcegeometry hiding; newupper alwaysopaque"
+    }
+  ],
+  "proposed_private_native_namespace": "/Game/Dink/QA/IndoorRoofV8",
+  "expected_counts": {
+    "FBX_files": 12,
+    "source_roof_objects": 8,
+    "native_mesh_assets": 10,
+    "source_FP_LODs": 3,
+    "upper_render_meshes": 1,
+    "roof_UCX": 204,
+    "upper_UCX": 92,
+    "FP_UCX": 16,
+    "total_UCX": 312,
+    "shader_PNGs": 25,
+    "opaque_materials": 8,
+    "masked_variants": 7,
+    "standalone_private_native_packages_if_no_reuse": 50
+  },
+  "export_recipe_proposed": {
+    "reference": "../V7_CollisionFix/build_corrected_hulls.py:102 (NOT archived generic exporter)",
+    "global_scale": 1,
+    "apply_unit_scale": true,
+    "apply_scale_options": "FBX_SCALE_NONE",
+    "axis_forward": "-Y",
+    "axis_up": "Z",
+    "use_selection": true,
+    "object_types": [
+      "MESH"
+    ],
+    "use_mesh_modifiers": true,
+    "mesh_smooth_type": "OFF",
+    "bake_anim": false,
+    "add_leaf_bones": false,
+    "use_custom_props": false,
+    "path_mode": "AUTO",
+    "expected_actual_FBX_UnitScaleFactor": 1,
+    "expected_model_scale": [
+      100,
+      100,
+      100
+    ],
+    "native_import_uniform_scale": 1,
+    "warning": "Actualserializedsettingsmustbeproved; never add another100scale or flip PNGgreen/UVs blindly"
+  },
+  "native_import_proposed": {
+    "normal_import_method": "FBXNIM_IMPORT_NORMALS",
+    "recompute_normals": false,
+    "recompute_tangents": true,
+    "use_mikk_t_space": true,
+    "remove_degenerates": false,
+    "generate_lightmap_u_vs": false,
+    "auto_generate_collision": false,
+    "one_convex_hull_per_ucx": true,
+    "combine_meshes": false,
+    "import_mesh_lods": false,
+    "convert_scene": true,
+    "convert_scene_unit": true,
+    "force_front_x_axis": false,
+    "import_uniform_scale": 1,
+    "transform_vertex_to_absolute": true,
+    "bake_pivot_in_vertex": false,
+    "material_texture_autoimport": false,
+    "use_full_precision_u_vs": true,
+    "full_precision_UV_scope": "EVERYnewLOD, including explicitFPLOD1/2 afterLODimport; do notmodifyoldV7nativepackages"
+  },
+  "actor_placement_proposal": [
+    {
+      "identity": "SM_Chimney_Stonebrook_V8",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Chimney_Stonebrook_V8",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "S001_P19",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+      "actor_world_cm": [
+        -183867.3475,
+        392342.5425,
+        0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "ExistingScriptedFireplaceBody",
+      "owner_screen": 1,
+      "camera_channel_response": "PRESERVE_EXISTING_BODY_RESPONSE",
+      "collision_enabled": "PRESERVE_EXISTING_BODY_PROFILE_AND_RESPONSES",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "Preserve existing S001_P19/story/offset/interactions; replace mesh only",
+      "camera_tags_proposal": "PRESERVE_ALL_EXISTING_BODY_TAGS",
+      "fade_management": "Preserve originalbodybehavior; complete masked variants for all3slots if cutawaydebug exercised",
+      "scene_operation": "Replace existing S001_P19 mesh only, retaining actor/component ownership, transform, scripts, interactions, collision profile/responses, navigation and overlap settings; bind complete3material roles without dropping originallegacy behavior"
+    },
+    {
+      "identity": "SM_IndoorRoof_EN_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_EN_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_ES_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_ES_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_Gable_EN_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_Gable_ES_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_Gable_WN_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_Gable_WS_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_WN_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_WN_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    },
+    {
+      "identity": "SM_IndoorRoof_WS_01",
+      "native_mesh_proposal": "/Game/Dink/QA/IndoorRoofV8/Meshes/SM_IndoorRoof_WS_01",
+      "actor_world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "classification": "PhysicalOpaqueArchitecture",
+      "owner_screen": 1,
+      "camera_channel_response": "Block",
+      "collision_enabled": "QueryAndPhysics",
+      "casts_shadows": true,
+      "context_only": false,
+      "script_identity": "No story identity, interactions or inventory callbacks",
+      "camera_tags_proposal": [
+        "DinkArtScreen_1",
+        "DinkPhotorealArchitecture"
+      ],
+      "fade_management": "Alwaysopaque/camerablocker in normalarchitecturemode; do not register newupper as fade-only/render-onlycontext"
+    }
+  ],
+  "camera_scene_contract": {
+    "normal_camera_default": "Retain existing90/-18; privateinspectionviews are not gamecamera changes",
+    "architecture_mode": "Opaque; physically retract/probe against actualtriangle/hulls, no roof fade/hiding",
+    "roof_component_count": 8,
+    "upper_component_count": 1,
+    "lower_body_components": 1,
+    "old_ceiling_visual_and350cm_slab_count": 0,
+    "classification_not_name_workaround": "Newupper is explicitphysicalchimney, never renamed to match oldCeiling/testsubstring",
+    "context_manifest_rejected": "DinkArtContextActor.cpp:184-185 requires collision=false AND camera_occluder=false; this physicalarchitecture must NOT use ContextOnly route",
+    "native_tests": [
+      "source-to-native actualgeometry/hull correspondence",
+      "sharedanchor upperminLocalZ~-70cm andworld280cmneckjoin",
+      "near-eye/foreground componentpositive andempty-space controls",
+      "default+upward+firebox+openflue views",
+      "door/W2/idle-overlap retry/feeding/save/full suite as applicable"
+    ],
+    "new_material_role_integrity": "Everytriangle mustretain expected semantic\u2192slot\u2192graph/image mapping; materiallistclear resets must notpass"
+  },
+  "remaining_approval_gates": [
+    "Root viewcorrectedV11 lookup/channel/interior/top andfulltrianglebindings",
+    "Root reviewthis exact12file/scene-camera proposal before actualFBXexport",
+    "IndependentactualserializedFBX units/axis/orientedgeometry/UV/roles/hulls/sourceanchorverification",
+    "ReviewnewprivateQA nativepaths/flags/plugins beforeimport",
+    "ActualbuiltallLODUV buffers +native reopen/material/collision/camera/runtimeproof"
+  ],
+  "source_H_maps": "Three16bitHmaps remain artistreferenceinputs in MaterialStudyV1, notshader/nativeimportpayload; no displacementclaim",
+  "native_actual_built_UV_gate": {
+    "required": true,
+    "source_estimate": "source_uv_precision_v11.json",
+    "half_worst_texels_at2048": 3.994140625,
+    "half_new_degenerate_UV_triangles": 3378,
+    "source_float32_loss": 0,
+    "builtin": "unreal.ProceduralMeshLibrary.get_section_from_static_mesh",
+    "installed_CPP": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
+    "actual_data": "StaticMesh->GetRenderData()->LODResources[LOD].VertexBuffers.StaticMeshVertexBuffer.GetVertexUV(index,0), with actual section index buffer",
+    "not_sufficient": [
+      "MeshDescriptionUV alone",
+      "importsettingsalone",
+      "sourcefloat32estimatealone"
+    ],
+    "verification_scope": "PrivateQA actualbuilt StaticMeshLODResources; legacyFP Naniteinternalstream not additionallyasserted",
+    "plugin_availability": "Resolvebuiltin innewprivateQAproject; no newC++bridge, no liveRootchanges",
+    "python_alias_provenance": "Installed KismetProceduralMeshLibrary.h UCLASS(meta=(ScriptName=\"ProceduralMeshLibrary\")); never infer Python class name from C++ prefix"
+  },
+  "reviewable_exporter": {
+    "file": "export_source_packet_v11b.py",
+    "default": "Dry-run only",
+    "actual_run_requires": "Separate explicit Root authorization after image/packet review",
+    "material_integrity_guard": "Meshdata copies preserve perface IDs; materialslots nevercleared; allselectedrender/hulls names preserved; no native actions",
+    "sha256": "395edce6504b3bdc7a00cf22c5f29daa8490cc35a4249fcd97e8ccdbbfed984a",
+    "shutdown": "main()/return +normalBlenderCLI, noos._exit",
+    "original_draft_preserved": {
+      "scope": "Review-only successor; no exportexecution",
+      "original_file": "export_source_packet_v11.py",
+      "original_sha256": "e788e1c6489ccda189fd1145dfb841b1ad9c56d88f10804bec0a4848d6d9cb95",
+      "successor_file": "export_source_packet_v11b.py",
+      "successor_sha256": "395edce6504b3bdc7a00cf22c5f29daa8490cc35a4249fcd97e8ccdbbfed984a",
+      "change": "Both forcedexit paths replaced by main()/return and normal Blender CLI shutdown; no other behavior changes",
+      "actual_run_recommendation": "Blender --python-exit-code 1 for errors, perprocessALSOFTnull; no forceexit aroundshutdown"
+    }
+  }
+}

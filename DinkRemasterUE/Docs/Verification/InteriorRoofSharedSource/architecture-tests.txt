@@ -1,0 +1,15 @@
+test_absent_runtime_uses_and_conflicting_declarations_refuse (test_art_standard_architecture.ArchitecturePolicy.test_absent_runtime_uses_and_conflicting_declarations_refuse) ... ok
+test_another_manifest_on_undeclared_screen_refuses (test_art_standard_architecture.ArchitecturePolicy.test_another_manifest_on_undeclared_screen_refuses) ... ok
+test_context_and_family_uses_do_not_qualify_for_this_exemption (test_art_standard_architecture.ArchitecturePolicy.test_context_and_family_uses_do_not_qualify_for_this_exemption) ... ok
+test_declaration_shape_and_values_are_strict (test_art_standard_architecture.ArchitecturePolicy.test_declaration_shape_and_values_are_strict) ... ok
+test_different_or_malformed_runtime_screen_refuses (test_art_standard_architecture.ArchitecturePolicy.test_different_or_malformed_runtime_screen_refuses) ... ok
+test_name_and_source_record_without_declaration_are_not_enough (test_art_standard_architecture.ArchitecturePolicy.test_name_and_source_record_without_declaration_are_not_enough) ... ok
+test_other_schema_and_nested_element_use_refuse (test_art_standard_architecture.ArchitecturePolicy.test_other_schema_and_nested_element_use_refuse) ... ok
+test_prop_and_building_classes_never_qualify (test_art_standard_architecture.ArchitecturePolicy.test_prop_and_building_classes_never_qualify) ... ok
+test_replacement_or_asset_list_use_refuses_even_with_valid_element (test_art_standard_architecture.ArchitecturePolicy.test_replacement_or_asset_list_use_refuses_even_with_valid_element) ... ok
+test_three_kit_classes_require_actual_matching_elements (test_art_standard_architecture.ArchitecturePolicy.test_three_kit_classes_require_actual_matching_elements) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.014s
+
+OK

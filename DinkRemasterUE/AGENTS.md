@@ -14,6 +14,14 @@ Branch `fix/outdoor-camera-headroom` tested at73ccdbe including mastere417/HeroG
 
 Branch `fix/outdoor-camera-headroom`, isolated worktree `/home/artist/Work/DinkOutdoorCameraHeadroom`, basefbf060bb. Bounded projection-derived outdoor vertical pivot lift preserves Camera collision/exterior face clearance; no lateral wall bypass or Data/art/warp changes. Own Editor/Game compiled, focused3/3passed (39HTTPwarnings ondoor), actualGPU8photos/realWexitreturnPASS. Exit52.1176cm lift/fullhead visible/samecottageCameraBLOCK; indoor+free0lift/free400cm. Cache-store diagnostics retained. See Docs/Verification/OutdoorCameraHeadroom and screenshot hashes. Full baseline is pending before merge; do not equate focused/GPU success with fullsuite completion. Runtime source frozen after this local commit; native verification may reuse actual compiled bytes with fresh source/doc epoch.
 
+## Shared interior roof source (source registered, native pending)
+
+SharedMaterials/manifest.json is authoritative for3oak/endgrain/plaster2m roles and3derived camera variants sharing9maps. InteriorRoofSharedV1 records8screen1 roof adaptations. All original geometry/UVs/normals/312UCX and approved pixels are exact; FBX17322tri/204roofUCX and name-based roles are verified. Root accepted source appearance only for native trial. No Content/Data/native activation yet. Preserve inherited duplicate/UV caveats and unresolved west-gable slivers documented in GEOMETRY_ISSUE.json; no final geometry approval. Existing camera-material dictionary requires exact3new aliases only at final activation, separate opaque/masked materials withDinkCameraOpacity1/shadow1; masked defaults alone do not register fades. See Docs/Verification/InteriorRoofSharedSource.
+
+# Authored screen architecture identity
+
+`ART_STANDARD.md` permits an explicit no-sprite `authored_architecture {screens,purpose}` declaration only for kit_ceiling/kit_wall/kit_piece when every actual runtime use is direct dink-art/1 elements on declared screens. Do not fabricate sprite families or generalize this to props, context/replacements/family rows or name-only exemptions. Tests and baseline qualifications: Docs/Verification/AuthoredArchitectureFamilyPolicy. This source checker policy grants no native/collision/gameplay approval.
+
 # AGENTS.md
 
 ## Roof delivery and doorway capture (9 November 2026)
