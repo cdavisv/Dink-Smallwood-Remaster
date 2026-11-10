@@ -1,0 +1,19 @@
+test_actual_binary_shared_roles_have_unique_oriented_source_correspondence (test_shared_roof.SharedRoofTests.test_actual_binary_shared_roles_have_unique_oriented_source_correspondence) ... ok
+test_exact23_with15_shared_and8_existing_production_delivery (test_shared_roof.SharedRoofTests.test_exact23_with15_shared_and8_existing_production_delivery) ... ok
+test_existing_trial_destination_refuses (test_shared_roof.SharedRoofTests.test_existing_trial_destination_refuses) ... ok
+test_gameplay_data_add_remove_or_edit_is_not_hidden (test_shared_roof.SharedRoofTests.test_gameplay_data_add_remove_or_edit_is_not_hidden) ... ok
+test_imported_slot_order_does_not_choose_the_material_role (test_shared_roof.SharedRoofTests.test_imported_slot_order_does_not_choose_the_material_role) ... ok
+test_incomplete_actual_mesh_verification_is_not_accepted (test_shared_roof.SharedRoofTests.test_incomplete_actual_mesh_verification_is_not_accepted) ... ok
+test_legacy_entry_points_still_reach_their_original_native_boundary (test_shared_roof.SharedRoofTests.test_legacy_entry_points_still_reach_their_original_native_boundary) ... ok
+test_low_level_profiles_cannot_cross_namespaces (test_shared_roof.SharedRoofTests.test_low_level_profiles_cannot_cross_namespaces) ... ok
+test_missing_old_DLL_capability_refuses_before_import (test_shared_roof.SharedRoofTests.test_missing_old_DLL_capability_refuses_before_import) ... ok
+test_normal_green_and_material_F0_are_explicit (test_shared_roof.SharedRoofTests.test_normal_green_and_material_F0_are_explicit) ... ok
+test_old_2048_and_new_1024_dimension_checks_stay_distinct (test_shared_roof.SharedRoofTests.test_old_2048_and_new_1024_dimension_checks_stay_distinct) ... ok
+test_only_three_camera_aliases_are_added_and_existing_values_survive (test_shared_roof.SharedRoofTests.test_only_three_camera_aliases_are_added_and_existing_values_survive) ... ok
+test_pixel_diagnostics_refuse_nonempty_directory_before_native_export (test_shared_roof.SharedRoofTests.test_pixel_diagnostics_refuse_nonempty_directory_before_native_export) ... ok
+test_trial_parent_symlink_and_hardlinked_saved_package_refuse (test_shared_roof.SharedRoofTests.test_trial_parent_symlink_and_hardlinked_saved_package_refuse) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.608s
+
+OK

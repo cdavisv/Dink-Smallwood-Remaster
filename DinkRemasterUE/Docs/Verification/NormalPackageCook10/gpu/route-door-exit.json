@@ -1,0 +1,156 @@
+{
+  "result": "PASS",
+  "steps": [
+    {
+      "screen": 1,
+      "map": [
+        303.0,
+        350.0
+      ],
+      "world": [
+        -183808.285,
+        393377.23,
+        98.0
+      ],
+      "yaw": 90.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.144,
+        364.433
+      ],
+      "world": [
+        -183807.654,
+        393440.374,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.144,
+        364.433
+      ],
+      "world": [
+        -183807.654,
+        393440.374,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.24,
+        374.004
+      ],
+      "world": [
+        -183807.235,
+        393482.246,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.24,
+        374.004
+      ],
+      "world": [
+        -183807.235,
+        393482.246,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.322,
+        382.157
+      ],
+      "world": [
+        -183806.878,
+        393517.916,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        303.322,
+        382.157
+      ],
+      "world": [
+        -183806.878,
+        393517.916,
+        98.0
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 439,
+      "map": [
+        344.997,
+        308.222
+      ],
+      "world": [
+        97729.191,
+        37516.267,
+        98.35
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 439,
+      "map": [
+        344.997,
+        308.222
+      ],
+      "world": [
+        97729.191,
+        37516.267,
+        98.35
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "target": [
+    1,
+    303.5,
+    400
+  ],
+  "expected_screen": 439,
+  "input": "Only actual held W and camera orientation; no route teleports"
+}

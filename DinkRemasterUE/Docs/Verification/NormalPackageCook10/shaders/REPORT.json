@@ -1,0 +1,49 @@
+{
+  "archive": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User/Saved/Shaders/SF_VULKAN_SM6-VULKAN_SM6/ShaderCode-Global-SF_VULKAN_SM6-VULKAN_SM6.ushaderbytecode",
+  "archive_sha256": "2eb16d1df8039d8ea5f76278e055874204d8cbadef5d83e5363acd4001fed00e",
+  "shader_type_hash": "54DF63AF790DF1E7",
+  "actual_typed_count": 4,
+  "all_vulkan13_valid": true,
+  "rows": [
+    {
+      "index": 6553,
+      "shader_hash": "BCEFF2D799E37774",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71040,
+      "SPIRV_sha256": "dce28ee86941d822af9c6006889d7a4e34bd91632b4df68b20b6534e25961a2c",
+      "raw_offset": 255,
+      "validator_exit": 0,
+      "error": ""
+    },
+    {
+      "index": 6793,
+      "shader_hash": "C365EC84ECA13802",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71064,
+      "SPIRV_sha256": "b5e0a7a66c6847aa0c08a72b5ecaeab909d8f5e868a6de575ec3bb6e33bdca5c",
+      "raw_offset": 255,
+      "validator_exit": 0,
+      "error": ""
+    },
+    {
+      "index": 7519,
+      "shader_hash": "D94DA625A2676ED0",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71040,
+      "SPIRV_sha256": "52099a9f8be0c99d4eac495d8b6c037ae84ec8a8c9ad847d44714203751ab6cb",
+      "raw_offset": 255,
+      "validator_exit": 0,
+      "error": ""
+    },
+    {
+      "index": 8634,
+      "shader_hash": "F8EB059835E53D4E",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 70496,
+      "SPIRV_sha256": "718bb2c31c11d1b01e4942c29766c72317e94e77ca093e03d12163ecd54b7365",
+      "raw_offset": 255,
+      "validator_exit": 0,
+      "error": ""
+    }
+  ]
+}

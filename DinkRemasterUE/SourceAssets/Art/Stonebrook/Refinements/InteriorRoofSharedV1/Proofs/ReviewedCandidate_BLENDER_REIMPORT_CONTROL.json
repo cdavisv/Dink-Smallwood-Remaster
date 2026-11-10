@@ -1,0 +1,434 @@
+{
+  "status": "INHERITED_BLENDER_IMPORTER_DUPLICATE_REMOVAL_QUALIFIED_NOT_FULL_TRIANGLE_TRANSPORT_PASS",
+  "scope": "Baseline frozen FBX and new candidate FBX have identical imported geometry/UV/normals. Blender validation removes the same inherited duplicate-index faces. Source and binary payload retain those faces as required by frozen geometry scope. Binary P/UV/N/T/B proof is the complete transport claim; clean Blender importer is not full-triangle preservation.",
+  "rows": [
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "serialized_triangles": 4986,
+      "imported_triangles_baseline": 4883,
+      "imported_triangles_candidate": 4883,
+      "inherited_duplicate_index_faces": 103,
+      "dropped_by_Blender_validation": 103,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            5.5998700402093326e-05,
+            0.003182979110212938,
+            0.005493618653159337
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            1.2074182697257333e-06,
+            0.003180938218717957,
+            0.005494042570408675
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            1.7075472925031877e-06,
+            0.0033859601931942656,
+            0.004686861255655919
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "serialized_triangles": 3474,
+      "imported_triangles_baseline": 3371,
+      "imported_triangles_candidate": 3371,
+      "inherited_duplicate_index_faces": 103,
+      "dropped_by_Blender_validation": 103,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0027467149508433055,
+            0.0031838990191426606,
+            0.005493618653159337
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            7.091976543484069e-06,
+            0.0031814132225720625,
+            0.005494042570408675
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            2.699869328381916e-06,
+            0.0034361776089740304,
+            0.00445391675044691
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "serialized_triangles": 266,
+      "imported_triangles_baseline": 266,
+      "imported_triangles_candidate": 266,
+      "inherited_duplicate_index_faces": 0,
+      "dropped_by_Blender_validation": 0,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0027473750099225123,
+            0.0031803432754423165,
+            0.01922729277666209
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            8.537736462515939e-07,
+            0.0031811847804637467,
+            0.008656537232784377
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.000663839618828258,
+            0.003178596648173987,
+            0.019227270143671347
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "serialized_triangles": 266,
+      "imported_triangles_baseline": 266,
+      "imported_triangles_candidate": 266,
+      "inherited_duplicate_index_faces": 0,
+      "dropped_by_Blender_validation": 0,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.002747373948648274,
+            0.003180343160843138,
+            0.019227298785583966
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            8.537736462515939e-07,
+            0.0031811847804637467,
+            0.008656537232784377
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0006637995387743171,
+            0.003178600317360609,
+            0.019227270143671347
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "serialized_triangles": 266,
+      "imported_triangles_baseline": 266,
+      "imported_triangles_candidate": 266,
+      "inherited_duplicate_index_faces": 0,
+      "dropped_by_Blender_validation": 0,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.002747373948648274,
+            0.003180343160843138,
+            0.019227298785583966
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            8.537736462515939e-07,
+            0.0031811847804637467,
+            0.008656537232784377
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0006637995387743171,
+            0.003178600317360609,
+            0.019227270143671347
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "serialized_triangles": 266,
+      "imported_triangles_baseline": 266,
+      "imported_triangles_candidate": 266,
+      "inherited_duplicate_index_faces": 0,
+      "dropped_by_Blender_validation": 0,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0027473750099225123,
+            0.0031803635594318358,
+            0.01922729277666209
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            8.537736462515939e-07,
+            0.0031811847804637467,
+            0.008656537232784377
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.000663839618828258,
+            0.00317776822086077,
+            0.019227270143671347
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "serialized_triangles": 4924,
+      "imported_triangles_baseline": 4783,
+      "imported_triangles_candidate": 4783,
+      "inherited_duplicate_index_faces": 141,
+      "dropped_by_Blender_validation": 141,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            1.2074182697257333e-06,
+            0.003182995140771262,
+            0.01922761103842579
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            1.2074182697257333e-06,
+            0.003180489408952682,
+            0.008244208319049068
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            1.2074182697257333e-06,
+            0.0033859914732513405,
+            0.01922761103842579
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "serialized_triangles": 2874,
+      "imported_triangles_baseline": 2751,
+      "imported_triangles_candidate": 2751,
+      "inherited_duplicate_index_faces": 123,
+      "dropped_by_Blender_validation": 123,
+      "baseline_candidate_import_geometry_UV_normals_exact": true,
+      "retained_source_to_import_max_UV_delta": 0.0,
+      "retained_serialized_to_recalculated_frames": {
+        "N": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            0.0027465340868739205,
+            0.003184483684315889,
+            0.005493618653159337
+          ]
+        },
+        "T": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            5.399738656763834e-06,
+            0.0031817681116259305,
+            0.005494042570408675
+          ]
+        },
+        "B": {
+          "zero_either": 0,
+          "deg_p50_p95_max": [
+            2.4148365394514667e-06,
+            0.0034364255844440634,
+            0.00445391675044691
+          ]
+        }
+      },
+      "baseline_candidate_Mikk_T": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "baseline_candidate_Mikk_B": {
+        "zero_either": 0,
+        "deg_p50_p95_max": [
+          0.0,
+          1.2074182697257333e-06,
+          1.2074182697257333e-06
+        ]
+      },
+      "source_binary_geometry_changed": false
+    }
+  ],
+  "UCX_baseline_candidate_geometry_exact": 204,
+  "total_inherited_duplicate_faces": 470,
+  "geometry_repair_performed": false,
+  "native_run": false
+}

@@ -52,7 +52,19 @@ for name, row in pack_files.items():
     else:
         verified_binary += 1
 rows = list(csv.DictReader((root / 'SourceAssets/asset_ledger.csv').open()))
-for row in rows:
+from hero_source_history import AUTHORITY, validate_history
+history_proof = {'indices': set(), 'historical_rows_binary_verified': 0,
+                 'historical_rows_metadata_only': 0}
+if any(row['asset_path'] in {entry['asset_path'] for entry in AUTHORITY} for row in rows):
+    try:
+        history_proof = validate_history(root, rows, json.loads(
+            (root / 'Docs/Verification/RoofNativeCurrent/AcceptedHeroSourceHistory.json').read_text()),
+            metadata_only=args.metadata_only, inventory=pack_files)
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        errors.append({'accepted_hero_history_error': str(exc)})
+for row_index, row in enumerate(rows):
+    if row_index in history_proof['indices']:
+        continue  # Exact archived/current binary or pointer proof already checked.
     p = root / row['asset_path']
     if not p.is_file():
         expected = pack_files.get(row['asset_path'])
@@ -84,6 +96,6 @@ with tempfile.TemporaryDirectory(prefix='dink-layout-') as temp:
 selection = json.loads((root / 'SourceAssets/Audio/selection_manifest.json').read_text())
 assert selection['runtime'] == json.loads((root / 'Content/Dink/Data/Audio/approved.json').read_text())
 assert selection['counts'] == {'sfx': 44, 'music': 28, 'rejected': 4}
-report = {'verification_mode': 'metadata' if args.metadata_only else 'full', 'binary_files_verified': verified_binary, 'binary_files_metadata_only': metadata_binary, 'python_syntax_files': python_count, 'shell_syntax_files': shell_count, 'ledger_rows': len(rows), 'missing_assets': len(missing), 'hash_errors': len(bad), 'secret_flags': secret_flags, 'errors': errors, 'layout_cases_passed': 3, 'approved_audio_runtime_matches': True, 'passed': not errors and (not secret_flags)}
+report = {'verification_mode': 'metadata' if args.metadata_only else 'full', 'binary_files_verified': verified_binary, 'binary_files_metadata_only': metadata_binary, 'python_syntax_files': python_count, 'shell_syntax_files': shell_count, 'ledger_rows': len(rows), 'historical_rows_binary_verified': history_proof['historical_rows_binary_verified'], 'historical_rows_metadata_only': history_proof['historical_rows_metadata_only'], 'missing_assets': len(missing), 'hash_errors': len(bad), 'secret_flags': secret_flags, 'errors': errors, 'layout_cases_passed': 3, 'approved_audio_runtime_matches': True, 'passed': not errors and (not secret_flags)}
 print(json.dumps(report, indent=2), flush=True)
 sys.exit(0 if report['passed'] else 1)

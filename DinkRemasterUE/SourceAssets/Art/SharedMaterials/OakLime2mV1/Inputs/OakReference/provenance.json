@@ -1,0 +1,16 @@
+{
+  "mode": "built-in image_gen",
+  "model": "not exposed by tool",
+  "intent": "generate; albedo reference only",
+  "raw_file": "AgedOak_Albedo_Raw.png",
+  "sha256": "2475c5a8a57e5d85570934d76b4a6566486a88dddfd7dff085a52c3e4209799f",
+  "size": [
+    1254,
+    1254
+  ],
+  "raw_preserved": true,
+  "png_resampling": false,
+  "tool_prompt": "actual_tool_prompt.txt",
+  "initial_prompt_draft": "prompt.txt",
+  "limitations": "Generated material reference, not measured scan; physical scale inferred. No normal, height or roughness derived from BC. Raw non-POT donor remains reference, final maps require 3D UV bake."
+}

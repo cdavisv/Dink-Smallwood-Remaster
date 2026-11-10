@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "phases": {
+    "editor": {
+      "exit_code": 0,
+      "elapsed": 13.290987497995957,
+      "source_files": 12790,
+      "source_changes": [],
+      "kernel_present": true
+    },
+    "game": {
+      "exit_code": 0,
+      "elapsed": 13.260971326999424,
+      "source_files": 12790,
+      "source_changes": [],
+      "kernel_present": true
+    }
+  },
+  "Editor_unchanged_through_Game": true,
+  "no_copied_DLLs": true,
+  "own_incremental_baseline": true,
+  "native_tests_not_run": true,
+  "tested_commit": "f3c84a14ab6b83e9e512560b9b4d4cbf3b913d6d",
+  "normal_host_closure": true,
+  "native_import_not_yet_run": true
+}

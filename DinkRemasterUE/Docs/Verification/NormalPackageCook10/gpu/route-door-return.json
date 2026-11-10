@@ -1,0 +1,60 @@
+{
+  "result": "PASS",
+  "steps": [
+    {
+      "screen": 439,
+      "map": [
+        344.997,
+        308.222
+      ],
+      "world": [
+        97729.191,
+        37516.267,
+        98.35
+      ],
+      "yaw": 89.427,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        302.69,
+        388.183
+      ],
+      "world": [
+        -183809.643,
+        393544.281,
+        98.0
+      ],
+      "yaw": -99.731,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        302.69,
+        388.183
+      ],
+      "world": [
+        -183809.643,
+        393544.281,
+        98.0
+      ],
+      "yaw": -99.731,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "target": [
+    439,
+    339,
+    271
+  ],
+  "expected_screen": 1,
+  "input": "Only actual held W and camera orientation; no route teleports"
+}
