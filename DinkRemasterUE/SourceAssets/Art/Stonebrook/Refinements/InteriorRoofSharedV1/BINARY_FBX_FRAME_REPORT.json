@@ -1,0 +1,304 @@
+{
+  "passed": true,
+  "scope": "Independent actual binary FBX decoding vs saved Blender corner fields. T/B serialized with use_tspace=True, not inferred from normals or borrowed CPU signs. Header cm/model100/Rz180 explicit. Native engine interpretation not run.",
+  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "parser_sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+  "rows": [
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "triangles": 4986,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.9090959104164224e-06,
+        4.597711793052988e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "triangles": 3474,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.9090959104164224e-06,
+        4.517745487845102e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "triangles": 266,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.7075472925031877e-06,
+        2.699869328381916e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "triangles": 266,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        2.2588727439225506e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "triangles": 266,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.2481224292875318e-06,
+        2.2588727439225506e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "triangles": 266,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.7075472925031877e-06,
+        2.699869328381916e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "triangles": 4924,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.9090959104164224e-06,
+        4.676310850554341e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "triangles": 2874,
+      "actual_binary_fields": [
+        "positions",
+        "oriented_polygons",
+        "UV",
+        "normal",
+        "tangent",
+        "binormal"
+      ],
+      "max_UV_delta": 0.0,
+      "N_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "T_angle_deg_p50_p95_max": [
+        0.0,
+        1.2074182697257333e-06,
+        1.2074182697257333e-06
+      ],
+      "B_angle_deg_p50_p95_max": [
+        0.0,
+        1.9090959104164224e-06,
+        4.517745487845102e-06
+      ],
+      "bitangent_sign_changes": 0,
+      "geometry_positions_indices_exact": true,
+      "material_roles_exact": true,
+      "source_and_payload_all_finite": true,
+      "serialized_handedness_values": [
+        -1.0,
+        1.0
+      ],
+      "frame_pass": true
+    }
+  ]
+}

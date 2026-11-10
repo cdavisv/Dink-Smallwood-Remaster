@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "scope": "Fresh Blender process reopened both actual saved sources. Protected meshes include geometry/TRS/corner normals plus nonroof UV/material IDs. Protected node graphs/default socket values/links and original nonroof packed PNG bytes match.",
+  "mesh_objects": 328,
+  "UCX_objects": 312,
+  "protected_material_graphs": 6,
+  "protected_images": 14,
+  "roof_objects": 8,
+  "all_original_roof_UVs_exact": true,
+  "new_shared_images": [
+    {
+      "image": "T_SharedCandidate_LimePlaster2m_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_LimePlaster2m_BC.png",
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_SharedCandidate_LimePlaster2m_N_GL",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_LimePlaster2m_N_GL.png",
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_SharedCandidate_LimePlaster2m_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_LimePlaster2m_ORM.png",
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_SharedCandidate_OakEndgrain2m_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakEndgrain2m_BC.png",
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_SharedCandidate_OakEndgrain2m_N_GL",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakEndgrain2m_N_GL.png",
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_SharedCandidate_OakEndgrain2m_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakEndgrain2m_ORM.png",
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_SharedCandidate_OakLonggrain2m_BC",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakLonggrain2m_BC.png",
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_SharedCandidate_OakLonggrain2m_N_GL",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakLonggrain2m_N_GL.png",
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_SharedCandidate_OakLonggrain2m_ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_png_exact": true,
+      "relative_path": "//Textures/T_SharedCandidate_OakLonggrain2m_ORM.png",
+      "colorspace": "Non-Color"
+    }
+  ],
+  "source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "candidate_sha256": "54abf083265417dd5c83406e3103522140a36ba9d46ef2f80e8c803f18bf33d8"
+}

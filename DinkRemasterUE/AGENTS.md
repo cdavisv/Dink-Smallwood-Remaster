@@ -1,3 +1,7 @@
+## Shared interior roof source (source registered, native pending)
+
+SharedMaterials/manifest.json is authoritative for3oak/endgrain/plaster2m roles and3derived camera variants sharing9maps. InteriorRoofSharedV1 records8screen1 roof adaptations. All original geometry/UVs/normals/312UCX and approved pixels are exact; FBX17322tri/204roofUCX and name-based roles are verified. Root accepted source appearance only for native trial. No Content/Data/native activation yet. Preserve inherited duplicate/UV caveats and unresolved west-gable slivers documented in GEOMETRY_ISSUE.json; no final geometry approval. Existing camera-material dictionary requires exact3new aliases only at final activation, separate opaque/masked materials withDinkCameraOpacity1/shadow1; masked defaults alone do not register fades. See Docs/Verification/InteriorRoofSharedSource.
+
 # Authored screen architecture identity
 
 `ART_STANDARD.md` permits an explicit no-sprite `authored_architecture {screens,purpose}` declaration only for kit_ceiling/kit_wall/kit_piece when every actual runtime use is direct dink-art/1 elements on declared screens. Do not fabricate sprite families or generalize this to props, context/replacements/family rows or name-only exemptions. Tests and baseline qualifications: Docs/Verification/AuthoredArchitectureFamilyPolicy. This source checker policy grants no native/collision/gameplay approval.
