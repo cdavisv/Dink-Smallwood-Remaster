@@ -1,3 +1,5 @@
+Root-requested four-phase caller template added separately after c07aa88 freeze. It uses the existing Root guard/save-tracker callback boundary and reviewed VistaV7 function-scope/chained-traceback cleanup; releases verifier/CDO closures before Python shutdown.4cycle-surrogate tests pass; actual UE teardown untested. No newlauncher/framework/UE execution. Entry and underlying importer hashes are indexed in the native preparation docs.
+
 Native preparation validation:14offline importer/profile/slot/alias/geometry-source regressions and10architecture tests pass. Full actual source audit4419binaries/507Python/22shell/4255ledger,0errors/secrets. The first post-merge audit saw3new camera PNG LFS pointers; hydrated exact local objects and reran successfully. Current Root df3365c raw ledger prefix is exact; no Content/Data/native ledger mutations. Source helpers remain uncompiled/unexecuted in UE pending Root review.
 
 # Shared roof native adapter prepared — no native execution
