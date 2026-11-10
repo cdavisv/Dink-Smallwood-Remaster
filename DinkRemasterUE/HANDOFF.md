@@ -1,3 +1,15 @@
+Full source registration audit:4416 actual binaries,501 Python/22shell source files,4255ledger rows,zero missing/hash/syntax/secret errors. All4197prior raw rows remain exact;58new source rows are candidate. Full art-standard exit1 remains qualified by existing186material/23family errors,not waived.
+
+# Shared interior roof source registration (isolated lane)
+
+Worktree `/home/artist/Work/DinkInteriorSharedMaterialsAdmission`, branch `art/interior-roof-shared-library`, base`2ba4570`, policy commit`39b617d`. Registers3generic2m surfaces plus3derived shared camera variants using9identical approved maps and8explicit roof source records. Name-normalized source5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745 preserves all geometry/UV/normals/TRS/312UCX and approved shader/pixels; actual8FBX17322tri/204UCX/TBN checks pass. Actual relocated source/library/reuse reopening passes. Root accepted source appearance for a native trial, not final game appearance. See Docs/Verification/InteriorRoofSharedSource and new source README/proofs.
+
+The narrow architecture policy passed10 tests and actual8roof declaration/use checks. The global checker still reports existing186material/23family errors, with zero new roof errors and3roof soft-triangle warnings. No invented sprite families. Original gable dark junction slivers remain OPEN: west gable roughlyX-7.4375m,Y3.28..4.10/Z4.92..5.33m andY4.46..4.84/Z4.55..4.71m (projected image bounds, not certified openings). Central source rays hit roof/plaster surfaces; later construction owner must distinguish closure from shading before changing frozen geometry. Inherited is not final-art acceptance.
+
+No UE/native/Content/Data/gameplay/collision changes. Native preparation must produce23trial packages(8mesh+3opaque+3masked+9textures), then actually update the8production mesh material bindings and exact3camera aliases after Root approval/validation; do not stop at unused trial assets. Existing imported slot names must map semantically to registered roles; no copied old slot indices. Keep separate opaque/masked camera convention withDinkCameraOpacity1/shadow1,N_GLgreenfliptrue,sourceF0. Current master cameraPR49/52dabc60 and accepted owner/audio changes must survive integration. Root owns native/build/GPU launch.
+
+---
+
 # Authored architecture family policy (isolated source lane)
 
 Worktree `/home/artist/Work/DinkInteriorSharedMaterialsAdmission`, branch `art/interior-roof-shared-library`, base`2ba4570`. Root authorized a narrow no-sprite identity exemption for declared authored screen architecture. Ten focused checker regressions pass; no runtime/native change. `Docs/Verification/AuthoredArchitectureFamilyPolicy` records the exact declaration/use constraints and baseline error counts. Companion shared roof source/library registration is being prepared in this worktree; no UE launch, native import or Data activation has occurred. Preserve current master camera/owner/audio changes when this source-only branch is integrated.
