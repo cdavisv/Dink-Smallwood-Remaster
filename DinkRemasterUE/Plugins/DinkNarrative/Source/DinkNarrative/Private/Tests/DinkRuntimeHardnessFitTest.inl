@@ -31,7 +31,22 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
 #endif
     if(!TestNotNull(TEXT("real native barrel required"),Barrel)||!TestNotNull(TEXT("engine cube"),Cube))return false;
     UGameInstance* GI=NewObject<UGameInstance>(GEngine);GI->InitializeStandalone();UWorld* W=GI->GetWorld();
-    ON_SCOPE_EXIT {GI->Shutdown();GEngine->DestroyWorldContext(W);W->DestroyWorld(false);
+    TWeakPtr<FDinkRegisteredHardnessOwner> ShutdownOwner;
+    TWeakObjectPtr<AActor> ShutdownHost;
+    ON_SCOPE_EXIT {
+        TArray<TWeakObjectPtr<UDinkHardnessPrismComponent>> RegisteredBodies;
+        if(auto* H=ShutdownHost.Get())
+        {TArray<UDinkHardnessPrismComponent*> Bodies;H->GetComponents(Bodies);for(auto* B:Bodies)if(B->IsRegistered())RegisteredBodies.Add(B);}
+        const bool HadOwner=ShutdownOwner.IsValid();
+        GI->Shutdown();
+        if(HadOwner)
+        {
+            TestTrue(TEXT("shutdown fixture had actual registered owned bodies"),RegisteredBodies.Num()>0);
+            TestFalse(TEXT("actual GI shutdown releases retained physical owner before World GC"),ShutdownOwner.IsValid());
+            for(const auto& Weak:RegisteredBodies)if(auto* B=Weak.Get())
+                TestFalse(TEXT("actual GI shutdown retires owned component registration/physics before World GC"),B->IsRegistered()||B->IsPhysicsStateCreated());
+        }
+        GEngine->DestroyWorldContext(W);W->DestroyWorld(false);
         // The standalone fixture owns this entire game world. Match the engine
         // game-unload lifecycle so later real editor map loads can collect it.
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*W->GetPathName(),W->IsRooted(),uint32(W->GetFlags())));
@@ -72,6 +87,7 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     FDinkHardnessWorldDefinition Definition;Definition.Host=Host;Definition.Screen=Volume;Definition.SolidPolicy=Solid;Definition.LowPolicy=Low;Definition.ImmutableFloorFill.Add(Floor);Definition.Vision=0;
     Definition.IsAuthoredCollisionScreen=[](){return false;};Definition.VerifyImmutableFoundation=[=](FString& E){const bool Ok=Floor->GetStaticMesh()==Fixed&&Floor->GetComponentTransform().Equals(FloorTransform,0)&&Floor->GetCollisionResponseToChannels()==FloorResponses&&Fixed->GetBodySetup()!=nullptr;if(!Ok)E=TEXT("scratch immutable floor changed");return Ok;};
     FString Error;auto Owner=FDinkRegisteredHardnessOwner::Create(MoveTemp(Definition),Error);
+    ShutdownOwner=Owner;ShutdownHost=Host;
     if(!TestTrue(FString(TEXT("actual registered owner: "))+Error,Owner.IsValid()))return false;
     const FVector Ground=DinkLayout::MapPixelToUnreal(Volume->Corners,Placement->X-20,Placement->Y);
     auto* Actor=W->SpawnActorDeferred<ADinkPlaceholderActor>(ADinkPlaceholderActor::StaticClass(),FTransform(Ground));
@@ -138,5 +154,10 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     TestEqual(TEXT("persisted broken background stays nonblocking"),G->GetHard(209,Cell.X+20,Cell.Y),0);
     TestTrue(TEXT("immutable floor unchanged"),Floor->GetComponentTransform().Equals(FloorTransform,0)&&Floor->GetCollisionResponseToChannels()==FloorResponses&&Floor->GetStaticMesh()==Fixed);
     TestTrue(TEXT("script/drop coordinates and original source identity preserved"),D->FindSprite(Handle)->X==Placement->X&&D->FindSprite(Handle)->Y==Placement->Y&&Actor->Origin->OriginId==Id);
+    // Leave a real owned body active to exercise production shutdown, rather
+    // than qualifying cleanup only after a final empty broken-barrel map.
+    const int32 Extra=D->CreateVirtualSprite(209,Placement->X+70,Placement->Y);
+    auto* ExtraSprite=D->FindSprite(Extra);ExtraSprite->Props.Add(TEXT("pseq"),173);ExtraSprite->Props.Add(TEXT("pframe"),1);ExtraSprite->Props.Add(TEXT("hard"),0);
+    if(!TestTrue(TEXT("prepare controlled final registered body for shutdown lifetime proof"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
     return true;
 }
