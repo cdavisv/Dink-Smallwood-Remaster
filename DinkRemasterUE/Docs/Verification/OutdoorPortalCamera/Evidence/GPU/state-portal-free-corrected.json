@@ -1,0 +1,531 @@
+{
+  "portal": {
+    "cap": 0.0,
+    "feasible": true,
+    "owner": "",
+    "mesh_sha": "",
+    "actual_target_arm": 400.0,
+    "zoom_scope": "No zoom input issued; requested zoom verified by native fixture, not exposed as Python getter",
+    "near_clip": 10.0,
+    "near_clip_authority": "/Engine/Transient.GameEngine_0.NearClipPlane (no runtime nearclip command issued)",
+    "head_depth": 370.3343685400064,
+    "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_242.StaticMeshComponent0",
+    "native_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+    "camera_local": [
+      597.4624859375181,
+      964.2441821430548,
+      221.9567933630771
+    ],
+    "signed_lip_clearance_cm": 484.7441821430548,
+    "outside": true,
+    "inside_hull": false,
+    "physical_profile": "BlockAll",
+    "physical_camera_response": "<CollisionResponseType.ECR_BLOCK: 2>",
+    "physical_enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+    "visible": true,
+    "hidden": false,
+    "materials": [
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.MI_Stonebrook_Fieldstone",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.MI_Stonebrook_Limewash",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Oak.MI_Stonebrook_Oak",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.MI_Stonebrook_WroughtIron",
+      "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Thatch.MI_Stonebrook_Thatch"
+    ]
+  },
+  "pawn_contact": null,
+  "headroom": {
+    "outdoor_headroom_lift": 0.0,
+    "capsule_top_world": [
+      97729.073415625,
+      37504.145773749995,
+      194.34999561309814
+    ],
+    "projected_capsule_top_pixel": [
+      640.0,
+      202.2157745361328
+    ],
+    "projection_return": "<Struct 'Vector2D' (0x7f6787ba5760) {x: 640.000000, y: 202.215775}>",
+    "projection_api_signature": "x.project_world_location_to_screen(world_location, player_viewport_relative=False) -> Vector2D or None\nConvert a World Space 3D position into a 2D Screen Space position.\n\nArgs:\n    world_location (Vector): \n    player_viewport_relative (bool): \n\nReturns:\n    Vector2D or None: true if the world coordinate was successfully projected to the screen.\n\n    screen_location (Vector2D):",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "door_camera": {
+    "passed": true,
+    "actual": {
+      "blocking": false,
+      "initial_overlap": false,
+      "scope": "Documented sphere_trace_single None means NOHIT",
+      "start_cm": [
+        97729.073415625,
+        37504.145773749995,
+        98.34999561309814
+      ],
+      "unfixed_end_cm": [
+        97729.073415625,
+        37884.56838026806,
+        221.9567933630771
+      ],
+      "actual_camera_cm": [
+        97729.073415625,
+        37884.56838026806,
+        221.9567933630771
+      ],
+      "target_arm_cm": 400.0,
+      "native_collision_fix_applied": false,
+      "predicted_vs_actual_camera_error_cm": 0.0,
+      "api_signature": "X.sphere_trace_single(world_context_object, start, end, radius, trace_channel, trace_complex, actors_to_ignore, draw_debug_type, ignore_self=True, trace_color=[1.000000, 0.000000, 0.000000, 1.000000], trace_hit_color=[0.000000, 1.000000, 0.000000, 1.000000], draw_time=5.000000) -> HitResult or None\nSweeps a sphere along the given line and returns the first blocking hit encountered.\nThis trace finds the objects that RESPONDS to the given TraceChannel\n\nArgs:\n    world_context_object (Object): \n    start (Vector): Start of line segment.\n    end (Vector): End of line segment.\n    radius (float): Radius of the sphere to sweep\n    trace_channel (TraceTypeQuery): \n    trace_complex (bool): True to test against complex collision, false to test against simplified collision.\n    actors_to_ignore (Array[Actor]): \n    draw_debug_type (DrawDebugTrace): \n    ignore_self (bool): \n    trace_color (LinearColor): \n    trace_hit_color (LinearColor): \n    draw_time (float): \n\nReturns:\n    HitResult or None: True if there was a hit, false otherwise.\n\n    out_hit (HitResult): Properties of the trace hit."
+    }
+  },
+  "binding": {
+    "pid": 828353,
+    "start_ticks": 8647351,
+    "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "argv": [
+      "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-NoCompile",
+      "-nosound",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-ExecCmds=t.MaxFPS 45",
+      "-DinkQARunId=af1a4101-de2c-4829-887f-8fbd16b432e3",
+      "-nowrite",
+      "-notraceserver",
+      "-DDC=InstalledNoZenLocalFallback",
+      "-DDC-NoDefaultGraph",
+      "-LocalDataCachePath=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+      "-SharedDataCachePath=None",
+      "-ZenSharedDataCacheHost=None",
+      "-UserDir=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
+      "-abslog=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
+    ],
+    "nonce": "af1a4101-de2c-4829-887f-8fbd16b432e3",
+    "namespace_pid": 2
+  },
+  "label": "portal-free-corrected",
+  "game_time": 660.4156099585234,
+  "location": [
+    97729.073415625,
+    37504.145773749995,
+    98.34999561309814
+  ],
+  "velocity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "actor_rotation": [
+    0.0,
+    -146.12498474121094,
+    0.0
+  ],
+  "control_rotation": [
+    -18.0,
+    270.0,
+    0.0
+  ],
+  "camera_location": [
+    97729.073415625,
+    37884.56838026806,
+    221.9567933630771
+  ],
+  "camera_rotation": [
+    -18.000000000000004,
+    -90.00000000000003,
+    1.6721165498415313e-15
+  ],
+  "fov": 90.0,
+  "spring_arm": {
+    "target_arm_length": "400.0",
+    "target_offset": "<Struct 'Vector' (0x5982df4feb0) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+    "socket_offset": "<Struct 'Vector' (0x5982df4fe98) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+    "do_collision_test": "True"
+  },
+  "move_ignored": false,
+  "overlapping_warps": [],
+  "point_lights": [
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_0",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_0.LightComponent0",
+      "location": [
+        -183821.41,
+        392856.60500000004,
+        150.0
+      ],
+      "intensity": "50.0",
+      "intensity_units": "<LightUnits.LUMENS: 2>",
+      "temperature": "2700.0",
+      "use_temperature": "True",
+      "light_color": "<Struct 'Color' (0x598359bd4b8) {b: 255, g: 255, r: 255, a: 255}>",
+      "visible": "True"
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_1",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_1.LightComponent0",
+      "location": [
+        -183869.535,
+        392353.48000000004,
+        55.0
+      ],
+      "intensity": "40.0",
+      "intensity_units": "<LightUnits.LUMENS: 2>",
+      "temperature": "2000.0",
+      "use_temperature": "True",
+      "light_color": "<Struct 'Color' (0x598359bdeb8) {b: 255, g: 255, r: 255, a: 255}>",
+      "visible": "True"
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_2",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_2.LightComponent0",
+      "location": [
+        -184390.15999999997,
+        392480.355,
+        250.0
+      ],
+      "intensity": "450.0",
+      "intensity_units": "<LightUnits.LUMENS: 2>",
+      "temperature": "5000.0",
+      "use_temperature": "True",
+      "light_color": "<Struct 'Color' (0x598359be8b8) {b: 255, g: 255, r: 255, a: 255}>",
+      "visible": "True"
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_3",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_3.LightComponent0",
+      "location": [
+        -183252.66,
+        392786.605,
+        260.0
+      ],
+      "intensity": "450.0",
+      "intensity_units": "<LightUnits.LUMENS: 2>",
+      "temperature": "5000.0",
+      "use_temperature": "True",
+      "light_color": "<Struct 'Color' (0x598359bf2b8) {b: 255, g: 255, r: 255, a: 255}>",
+      "visible": "True"
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_4",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.PointLight_4.LightComponent0",
+      "location": [
+        -183821.41,
+        393289.73,
+        270.0
+      ],
+      "intensity": "120.0",
+      "intensity_units": "<LightUnits.LUMENS: 2>",
+      "temperature": "4000.0",
+      "use_temperature": "True",
+      "light_color": "<Struct 'Color' (0x598359bfcb8) {b: 255, g: 255, r: 255, a: 255}>",
+      "visible": "True"
+    }
+  ],
+  "expected_light_Data": [
+    {
+      "world_cm": [
+        -183821.41,
+        392856.60500000004,
+        150.0
+      ],
+      "lumens": 50,
+      "kelvin": 2700,
+      "radius_cm": 520
+    },
+    {
+      "world_cm": [
+        -183869.535,
+        392353.48000000004,
+        55
+      ],
+      "lumens": 40,
+      "kelvin": 2000,
+      "radius_cm": 390
+    },
+    {
+      "world_cm": [
+        -184390.15999999997,
+        392480.355,
+        250.0
+      ],
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 420
+    },
+    {
+      "world_cm": [
+        -183252.66,
+        392786.605,
+        260.0
+      ],
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 440
+    },
+    {
+      "world_cm": [
+        -183821.41,
+        393289.73,
+        270.0
+      ],
+      "lumens": 120,
+      "kelvin": 4000,
+      "radius_cm": 480
+    }
+  ],
+  "roof_components": [
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_227",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_227.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_CoursedLimestone_StudyV1.MI_V8_CoursedLimestone_StudyV1",
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_SootLining_StudyV1.MI_V8_SootLining_StudyV1",
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_DullZinc_StudyV1.MI_V8_DullZinc_StudyV1"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_228",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_228.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.MI_Shared_OakLonggrain2m",
+        "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_229",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_229.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.MI_Shared_OakLonggrain2m",
+        "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_230",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_230.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m.MI_Shared_LimePlaster2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_231",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_231.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m.MI_Shared_LimePlaster2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_232",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_232.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m.MI_Shared_LimePlaster2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_233",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_233.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_LimePlaster2m.MI_Shared_LimePlaster2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_234",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_234.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.MI_Shared_OakLonggrain2m",
+        "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_235",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_235.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01",
+      "location": [
+        -183821.41,
+        392939.73,
+        350.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.MI_Shared_OakLonggrain2m",
+        "/Game/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_10",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World_Interiors.L_Greybox_World_Interiors:PersistentLevel.DinkPlaceholderActor_10.Card",
+      "mesh": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Fireplace_Stonebrook_V3Contact.SM_Fireplace_Stonebrook_V3Contact",
+      "location": [
+        -183867.3475,
+        392342.54250000004,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "visible": "True",
+      "hidden_in_game": "False",
+      "materials": [
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_FireplaceV2_Atlas.MI_FireplaceV2_Atlas",
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_CoursedLimestone_StudyV1.MI_V8_CoursedLimestone_StudyV1",
+        "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_SootLining_StudyV1.MI_V8_SootLining_StudyV1"
+      ]
+    }
+  ],
+  "Data_SHA256": {
+    "Content/Dink/Data/Art/stonebrook.json": "ea52c9aeb01ea49606cb16818954ee7278146bc385743c744b49d8d414956e2d",
+    "Content/Dink/Data/Art/camera_materials.json": "9edc7991b2b185819979429b0ce8bebb7b9e228a550473ebb3bf79f5a58d5a3a",
+    "Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json": "d633db201c94339ce11edc666aa152ea7202ee905df1970985558de198382154"
+  },
+  "CVars": {
+    "t.MaxFPS": "45",
+    "dink.ScreenInfo": "0",
+    "r.Lumen.Visualize": "0",
+    "r.EyeAdaptationQuality": "2",
+    "r.DefaultFeature.AutoExposure.Bias": "1",
+    "sg.GlobalIlluminationQuality": "3"
+  },
+  "scope": "Actual read-only camera/light/roof state; colliding camera response preserved, no source/Data/geometry/material/light/physics/fact mutation.",
+  "debug_blockers_summary": {
+    "components": 644,
+    "hidden_count": 644,
+    "collision_modes": {
+      "<CollisionEnabled.NO_COLLISION: 0>": 644
+    },
+    "cast_shadow_count": 0,
+    "cast_hidden_shadow_count": 0
+  },
+  "generated_interior_walls_summary": {
+    "owner_count": 644,
+    "wall_owner_count": 73,
+    "wall_count": 230,
+    "errors": [],
+    "scope": "Actual read-only generated InteriorWall hidden/visible flags and owning screen metadata; no setters or inferred pixel/shadow/collision acceptance."
+  },
+  "publication_summary": {
+    "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-free-corrected.json",
+    "original_sha256": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
+    "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
+  }
+}

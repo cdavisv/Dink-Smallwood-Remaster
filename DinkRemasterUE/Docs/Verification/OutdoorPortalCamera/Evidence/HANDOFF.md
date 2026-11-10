@@ -1,0 +1,1 @@
+Off-treepackageevidencesuccessorready. Allactualcook/shader/inventory/UFS/CH1/GPU+full201facts included withcompactGETALL/route/propertysummaries; bothouter143unknowncausespreserved. NoSourcewrites/UElaunch. Rootpublication/review/CI/PR57mergenext. OriginalrawV2andallrunreceiptsimmutable.

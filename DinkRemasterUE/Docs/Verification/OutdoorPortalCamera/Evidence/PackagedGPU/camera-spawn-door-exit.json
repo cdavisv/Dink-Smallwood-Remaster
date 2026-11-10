@@ -1,0 +1,16 @@
+{
+  "owner": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+  "values": {
+    "OutdoorPortalArmCap": 106.318535,
+    "OutdoorHeadroomLift": 52.361626,
+    "OutdoorPortalOwner": "stonebrook_exterior.json:DinksCottage",
+    "OutdoorPortalMeshSHA": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+    "bOutdoorPortalFramingFeasible": true,
+    "TargetArmLength": 106.318535
+  },
+  "engine": {
+    "path": "/Engine/Transient.GameEngine_2147482589",
+    "NearClipPlane": 10.0
+  },
+  "scope": "Actualpackagednativepropertyinstancevalues; noPython/sweep/hull/projectionclaim"
+}

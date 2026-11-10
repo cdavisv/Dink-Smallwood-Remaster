@@ -1,0 +1,531 @@
+{
+  "all56_actual_success": true,
+  "queries": [
+    {
+      "name": "getall-final-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 154926,
+      "end": 155141,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorHeadroomLift.json",
+      "original_sha256": "33546084bccd19eb577735c0898c23830f5f3406c767e9ef9ec7fb2bc4e1eaba"
+    },
+    {
+      "name": "getall-final-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 154711,
+      "end": 154926,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalArmCap.json",
+      "original_sha256": "268d0c922acfac7f7209bd7389040731621fdfa78c59a859762549600d53f099"
+    },
+    {
+      "name": "getall-final-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 155347,
+      "end": 155555,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalMeshSHA.json",
+      "original_sha256": "5eef0adc7f0ebe8706e9558992353653292332171b35f538ddefaa0367ed87bb"
+    },
+    {
+      "name": "getall-final-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 155141,
+      "end": 155347,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalOwner.json",
+      "original_sha256": "3d7ef654a68c7e5212c0d080b68fc5cd8eb6c73599d322724757acf0d4a6befe"
+    },
+    {
+      "name": "getall-final-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 155776,
+      "end": 155976,
+      "parsed": 240.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-TargetArmLength.json",
+      "original_sha256": "a61508926fd83045ca01edeaead8862512d8c7370ee4ac3d2fd13434de502d55"
+    },
+    {
+      "name": "getall-final-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 155555,
+      "end": 155776,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "432f151f3ae2f92ab4963c03c9e9bc1b92fc3a0a565e8d50cefe902832e19efe"
+    },
+    {
+      "name": "getall-final-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 154549,
+      "end": 154711,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-hero.json",
+      "original_sha256": "48a150249d059a4d119a48112322b81697af6f17ffc5f180c5eec2681190ce48"
+    },
+    {
+      "name": "getall-final-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 155976,
+      "end": 156087,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-near.json",
+      "original_sha256": "56d36d6dd6af9fc479ff6a9335778d4e9dc03f9567088669bbe6b8586c2e29d9"
+    },
+    {
+      "name": "getall-portal-derived-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 148893,
+      "end": 149109,
+      "parsed": 49.557419,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorHeadroomLift.json",
+      "original_sha256": "23d3b005ea7395c2b85954108beede15428980e907985a663028b9af4fcfa8b5"
+    },
+    {
+      "name": "getall-portal-derived-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 148676,
+      "end": 148893,
+      "parsed": 113.111664,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalArmCap.json",
+      "original_sha256": "58cb91f2a8d0d10a0ba0d59293f53ec30dd1d518c8964b51bf86d4459d6793f9"
+    },
+    {
+      "name": "getall-portal-derived-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 149352,
+      "end": 149624,
+      "parsed": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalMeshSHA.json",
+      "original_sha256": "0ff02aae118c92d30d5068e29a01e4a01a54555c8250455b71bae64cd123277c"
+    },
+    {
+      "name": "getall-portal-derived-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 149109,
+      "end": 149352,
+      "parsed": "stonebrook_exterior.json:DinksCottage",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalOwner.json",
+      "original_sha256": "c9992148e3fb2e2a8699c06dae5e62c8ca1d7a57ab85ddb334011d909cef0ed6"
+    },
+    {
+      "name": "getall-portal-derived-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 149845,
+      "end": 150045,
+      "parsed": 113.111664,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-TargetArmLength.json",
+      "original_sha256": "25f910d1d9bb7a1157f77bb2eba27964e47fbd08ec1fc46d54d119e1631b1f94"
+    },
+    {
+      "name": "getall-portal-derived-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 149624,
+      "end": 149845,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "bb6d0854aa3b7164b206c0fe61b39504b25bad83dd6824ddbf9e8ce18b995e35"
+    },
+    {
+      "name": "getall-portal-derived-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 148514,
+      "end": 148676,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-hero.json",
+      "original_sha256": "6bbe8c77ab45213e9dac8647410f644c319d01e9bf88e53b4c5b00ad1c8f7617"
+    },
+    {
+      "name": "getall-portal-derived-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 150045,
+      "end": 150156,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-near.json",
+      "original_sha256": "23cf88b431b0a4b7805f6c465c42bb52bc84f5c0a9f459bdcd463c5fc8b163ce"
+    },
+    {
+      "name": "getall-portal-free-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 150969,
+      "end": 151184,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorHeadroomLift.json",
+      "original_sha256": "0571469c6dfddfac45b72108c950e069c5924d7ba2dfbda92b668efe9dbf276f"
+    },
+    {
+      "name": "getall-portal-free-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 150754,
+      "end": 150969,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalArmCap.json",
+      "original_sha256": "8bd4acdbafbb3f43f45ffb924f3138c335be30bab787690695b761c675437263"
+    },
+    {
+      "name": "getall-portal-free-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 151390,
+      "end": 151598,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalMeshSHA.json",
+      "original_sha256": "a93c81087674dd61eba6fbd8db94b9ba5149d6afe0e37fdc9ce18a42d820e934"
+    },
+    {
+      "name": "getall-portal-free-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 151184,
+      "end": 151390,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalOwner.json",
+      "original_sha256": "fdda3849f4d6d8a1ce161afefba5f6757bbe97594126c5ae4bea8186f51075ba"
+    },
+    {
+      "name": "getall-portal-free-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 151819,
+      "end": 152019,
+      "parsed": 400.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-TargetArmLength.json",
+      "original_sha256": "2de432649018da54adbeaa90dcaf7bbf0f785974cb00b45dc09aea71f1636747"
+    },
+    {
+      "name": "getall-portal-free-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 151598,
+      "end": 151819,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "44bdd44bc24b5c9d95a0abe9b1d2489deff6da07a46b26f4b98ca366732ff1b3"
+    },
+    {
+      "name": "getall-portal-free-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 150592,
+      "end": 150754,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-hero.json",
+      "original_sha256": "acf5c9865bb1cffa394e506fcd474b53c710a583ce8c9893783642d20cb9cbb1"
+    },
+    {
+      "name": "getall-portal-free-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 152019,
+      "end": 152130,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-near.json",
+      "original_sha256": "e99a4a42ddaf11e49ee13ac8034384bb133a70d69a4e3eab4ab7231098aa868d"
+    },
+    {
+      "name": "getall-portal-indoor-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 153071,
+      "end": 153286,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorHeadroomLift.json",
+      "original_sha256": "e7be4e1b64fa34c73eaf66b71b737b7aeb1149e787a63e251f8a8d3bf458c11c"
+    },
+    {
+      "name": "getall-portal-indoor-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 152856,
+      "end": 153071,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalArmCap.json",
+      "original_sha256": "2fad13918215a24c7a5542a696748f2724d39bfc9290101ae2e3b39e83f46f66"
+    },
+    {
+      "name": "getall-portal-indoor-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 153492,
+      "end": 153700,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalMeshSHA.json",
+      "original_sha256": "cebc779bd5ea6051e183edf3a4c1b21ef2701fc71dcac6e02380408ba017c3b6"
+    },
+    {
+      "name": "getall-portal-indoor-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 153286,
+      "end": 153492,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalOwner.json",
+      "original_sha256": "0f6ea65612f2127d66e81823defc06221f0ac69fcf128aca7c9bac08b5ef1f42"
+    },
+    {
+      "name": "getall-portal-indoor-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 153921,
+      "end": 154121,
+      "parsed": 240.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-TargetArmLength.json",
+      "original_sha256": "59ee799ff73bd408a342000a7e8703517e398264930feae9ecced3c54306eecc"
+    },
+    {
+      "name": "getall-portal-indoor-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 153700,
+      "end": 153921,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "461460f5d9fed0935d280952d7a1c5a3d0be5966cd399d77eb80fbfd01d16b3c"
+    },
+    {
+      "name": "getall-portal-indoor-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 152694,
+      "end": 152856,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-hero.json",
+      "original_sha256": "87b64e468802c5bc27ed3c9142f280d701ab8c7f177dd55c89c93724e2075728"
+    },
+    {
+      "name": "getall-portal-indoor-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 154121,
+      "end": 154232,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-near.json",
+      "original_sha256": "08b368e6570e14528b99825cf3f40707255e5736af2a82a082ee36581f2612c9"
+    },
+    {
+      "name": "getall-spawn-door-exit-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 144129,
+      "end": 144345,
+      "parsed": 52.361626,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorHeadroomLift.json",
+      "original_sha256": "fd72490bf787a0f9e1f2a1058709a7d362baacf71bd8f92cee133984f4a65c15"
+    },
+    {
+      "name": "getall-spawn-door-exit-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 143912,
+      "end": 144129,
+      "parsed": 106.318535,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalArmCap.json",
+      "original_sha256": "8b78b73ce55dda779ddb819ffe29492fd11903dd8712ef010cbfe6b8eee76033"
+    },
+    {
+      "name": "getall-spawn-door-exit-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 144588,
+      "end": 144860,
+      "parsed": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalMeshSHA.json",
+      "original_sha256": "9f010d725092bf242d3037623da6d8addb080b147f8c1b18b31620d37524deaf"
+    },
+    {
+      "name": "getall-spawn-door-exit-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 144345,
+      "end": 144588,
+      "parsed": "stonebrook_exterior.json:DinksCottage",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalOwner.json",
+      "original_sha256": "f713b52bdf4b3d74b2a2997310073ee1922d92fdbd187ad8ff487ad57ad196b9"
+    },
+    {
+      "name": "getall-spawn-door-exit-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 145081,
+      "end": 145281,
+      "parsed": 106.318535,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-TargetArmLength.json",
+      "original_sha256": "0eed2ff69c58e110aaf6b5295ca09f4275dea92248d71c163c1c0233001fe75f"
+    },
+    {
+      "name": "getall-spawn-door-exit-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 144860,
+      "end": 145081,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "427c20f4910bbe134d9e818b1be81eb245d54e84632cda6dfff400663c6787e3"
+    },
+    {
+      "name": "getall-spawn-door-exit-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 143750,
+      "end": 143912,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-hero.json",
+      "original_sha256": "8be5906288d6f72e125985920eb4ded1b55cd541d760b8c865044a65e03a72d6"
+    },
+    {
+      "name": "getall-spawn-door-exit-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 145281,
+      "end": 145392,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-near.json",
+      "original_sha256": "36d90660807cfdad087bb9848cb8032aeab88c7e97e77c148434941e26112b18"
+    },
+    {
+      "name": "getall-spawn-door-return-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 146788,
+      "end": 147003,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorHeadroomLift.json",
+      "original_sha256": "cbfff546391679d42417749625e614aac9c7aa80a81b4dec1013f519404dcb8c"
+    },
+    {
+      "name": "getall-spawn-door-return-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 146573,
+      "end": 146788,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalArmCap.json",
+      "original_sha256": "d3e65666063d8bd615a12751debc614062d7c38fce20cc0b42f0a35f50a1a199"
+    },
+    {
+      "name": "getall-spawn-door-return-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 147209,
+      "end": 147417,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalMeshSHA.json",
+      "original_sha256": "5f4d936e740d122a52a6b4a00e39adf4a24986681721f0679ac7dfcc21305131"
+    },
+    {
+      "name": "getall-spawn-door-return-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 147003,
+      "end": 147209,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalOwner.json",
+      "original_sha256": "c72219f6d51264a2d52a56711a2139d30c3d1e96a6690b51f4d53892b791adf0"
+    },
+    {
+      "name": "getall-spawn-door-return-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 147638,
+      "end": 147838,
+      "parsed": 240.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-TargetArmLength.json",
+      "original_sha256": "84b567d6b6575429975ffed9c312dbf9751595709b60720e4647dd311b82ce7b"
+    },
+    {
+      "name": "getall-spawn-door-return-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 147417,
+      "end": 147638,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "9e3837e0fbe8b67e734ee265c34eb1f12141a9e8e9caa8c45b1b48810f362425"
+    },
+    {
+      "name": "getall-spawn-door-return-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 146411,
+      "end": 146573,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-hero.json",
+      "original_sha256": "c3ed0eed87cb7201505e56708a273604dcaf6f241ba4b7ff54af92a318c6f03e"
+    },
+    {
+      "name": "getall-spawn-door-return-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 147838,
+      "end": 147949,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-near.json",
+      "original_sha256": "9f02276236c5a234981e48d678e6f4f2a5450bb4349ea965e31e2d4cadb7a222"
+    },
+    {
+      "name": "getall-spawn-initial-OutdoorHeadroomLift.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorHeadroomLift OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 119816,
+      "end": 120031,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorHeadroomLift.json",
+      "original_sha256": "1b0aa275e4af246073221c9e03ea531c4e09ec9ba1672cf23b51b888dbb0b340"
+    },
+    {
+      "name": "getall-spawn-initial-OutdoorPortalArmCap.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalArmCap OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 119601,
+      "end": 119816,
+      "parsed": 0.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalArmCap.json",
+      "original_sha256": "f080f80fccc89b57f8c3ff0c85410915ef5035a7b65a56a138e321e81317e770"
+    },
+    {
+      "name": "getall-spawn-initial-OutdoorPortalMeshSHA.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalMeshSHA OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 120237,
+      "end": 120445,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalMeshSHA.json",
+      "original_sha256": "fe9eacb00eaa87c84a1d3c9b45f60679cabf4ab410cf15575e2baa60aaa0c8de"
+    },
+    {
+      "name": "getall-spawn-initial-OutdoorPortalOwner.json",
+      "command": "GETALL DinkInteriorCameraComponent OutdoorPortalOwner OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 120031,
+      "end": 120237,
+      "parsed": "",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalOwner.json",
+      "original_sha256": "cca6a98e79f0c67dadd6b52fd1155eab698fed5fba6de0ca82d4ef17ccce4078"
+    },
+    {
+      "name": "getall-spawn-initial-TargetArmLength.json",
+      "command": "GETALL SpringArmComponent TargetArmLength OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=CameraBoom",
+      "offset": 120666,
+      "end": 120866,
+      "parsed": 240.0,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-TargetArmLength.json",
+      "original_sha256": "f34b7e2d248af12eae60804105f5e021d0b6e4ad890828569743a5fccca01840"
+    },
+    {
+      "name": "getall-spawn-initial-bOutdoorPortalFramingFeasible.json",
+      "command": "GETALL DinkInteriorCameraComponent bOutdoorPortalFramingFeasible OUTER=/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169 NAME=InteriorCamera",
+      "offset": 120445,
+      "end": 120666,
+      "parsed": true,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-bOutdoorPortalFramingFeasible.json",
+      "original_sha256": "eeba0e0d8f5375a20b2716b8e9fcb5b398ea47a305ab54891f100dda3327fb80"
+    },
+    {
+      "name": "getall-spawn-initial-hero.json",
+      "command": "GETALL DinkGreyboxCharacter",
+      "offset": 119439,
+      "end": 119601,
+      "parsed": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-hero.json",
+      "original_sha256": "3db561086b4e30213a13b61762ceb3004e79c9a6727e4d1051532b6e2069cb46"
+    },
+    {
+      "name": "getall-spawn-initial-near.json",
+      "command": "GETALL GameEngine NearClipPlane",
+      "offset": 120866,
+      "end": 120977,
+      "parsed": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-near.json",
+      "original_sha256": "a63c2b0cdb99c930f8abfe5682a1cf92c0b6c059597c20cde675c9ec02cc91e6"
+    }
+  ],
+  "qualification": "EachONEcommand/freshlogoffset/uniqueactualinstance; missingpropertyobjectlistingrefused. NoPython/defaultconstantfallback. Nopackagedsweep/hull/headprojectionclaim."
+}

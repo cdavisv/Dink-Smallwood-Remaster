@@ -1,0 +1,1428 @@
+{
+  "source_HEAD": "bac00294966efbc0af013cc443eb70e8a6f6e946",
+  "Root_tool": 27515,
+  "Root_tool_terminal": 0,
+  "terminal": {
+    "exit_code": 0,
+    "elapsed": 721.8731872729986,
+    "source_files": 13645,
+    "immutable_changes": []
+  },
+  "actual_registered": 201,
+  "actually_finished": 201,
+  "succeeded_clean": 169,
+  "succeeded_with_warnings": 32,
+  "failed": 0,
+  "notRun": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "fullTestPath": "Dink.AI.Adaptation.WindUpAndAttackerCap",
+      "state": "Success",
+      "duration": 0.2704651653766632,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Animals.DuckAndPig",
+      "state": "Success",
+      "duration": 0.1937389224767685,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Attack.DamageFormula",
+      "state": "Success",
+      "duration": 0.14275877177715302,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Bonca.AttackingDinkWins",
+      "state": "Success",
+      "duration": 0.14470843970775604,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Bonca.KillsIdleDink",
+      "state": "Success",
+      "duration": 0.14799648523330688,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Determinism.SameSeedSameOutcome",
+      "state": "Success",
+      "duration": 0.4526123106479645,
+      "warnings": 38,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Missile.WallsAndLowHardness",
+      "state": "Success",
+      "duration": 0.14634357392787933,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Monster.PillbugChasesWithinHardness",
+      "state": "Success",
+      "duration": 0.17003367841243744,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Override.FrozenAndScriptedMove",
+      "state": "Success",
+      "duration": 0.1384238600730896,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.People.VillagerWandersInBounds",
+      "state": "Success",
+      "duration": 0.23647698760032654,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Screenlock.BarrierBlocksExits",
+      "state": "Success",
+      "duration": 0.014969994314014912,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.AI.Screenlock.FightsLockAndUnlock",
+      "state": "Success",
+      "duration": 0.15110421180725098,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.ExteriorPortalGeometry",
+      "state": "Success",
+      "duration": 0.009135660715401173,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.ExteriorPortalOwnership",
+      "state": "Success",
+      "duration": 0.0077059632167220116,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorDoorHeadroom",
+      "state": "Success",
+      "duration": 6.660766124725342,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorHeadroomGeometry",
+      "state": "Success",
+      "duration": 0.008179433643817902,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.OutdoorPortalCamera",
+      "state": "Success",
+      "duration": 5.560596466064453,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Camera.WallsRemainSolid",
+      "state": "Success",
+      "duration": 3.921135902404785,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Context.OwnerScreenVisibility",
+      "state": "Success",
+      "duration": 6.021090984344482,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Context.SharedOutdoorVisibility",
+      "state": "Success",
+      "duration": 3.872908115386963,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CreaturePresentation.ActorLocomotionAndPhysicalFood",
+      "state": "Success",
+      "duration": 0.0141087481752038,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CreaturePresentation.OriginalPigActorsAndDeathPersistence",
+      "state": "Success",
+      "duration": 0.15237900614738464,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CreaturePresentation.OriginalPillbugVisionTouchDeathAndMixedFood",
+      "state": "Success",
+      "duration": 0.15793265402317047,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CreaturePresentation.VisibleGroundGrainOcclusion",
+      "state": "Success",
+      "duration": 0.009442975744605064,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Exposure.OwnerScreenLifecycle",
+      "state": "Success",
+      "duration": 8.354762077331543,
+      "warnings": 37,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Family.FootprintFitMaths",
+      "state": "Success",
+      "duration": 0.004113651812076569,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Family.ManifestMeshesExist",
+      "state": "Success",
+      "duration": 0.007777147926390171,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Family.ResolverPrecedence",
+      "state": "Success",
+      "duration": 0.010250250808894634,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Family.ScreenActivationDressesBoundPlacement",
+      "state": "Success",
+      "duration": 2.819310188293457,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.GeneratedInteriorWalls.OwnerAndJoinedRooms",
+      "state": "Success",
+      "duration": 0.010995046235620975,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Greybox.DebugBlockersStayPresentationOnly",
+      "state": "Success",
+      "duration": 0.007950427941977978,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+      "state": "Success",
+      "duration": 2.8132925033569336,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+      "state": "Success",
+      "duration": 2.726468563079834,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.HumanoidPresentation.ActorOwnedLocomotion",
+      "state": "Success",
+      "duration": 0.009329509921371937,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.HumanoidPresentation.BrainTurnsHumanoidButNotFurniture",
+      "state": "Success",
+      "duration": 0.15147194266319275,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.HumanoidPresentation.OptionalPlayerMeshKeepsAnimationAndCapsule",
+      "state": "Success",
+      "duration": 0.009554428048431873,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+      "state": "Success",
+      "duration": 9.366055488586426,
+      "warnings": 23,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.ForegroundProjection",
+      "state": "Success",
+      "duration": 0.004506819881498814,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.InteriorCamera.MinimumTranslation",
+      "state": "Success",
+      "duration": 0.0082790432497859,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.MotionEstimate.ClassicBrainAcrossRenderCadences",
+      "state": "Success",
+      "duration": 0.8353639841079712,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Navigation.InvalidIsAtomic",
+      "state": "Success",
+      "duration": 0.020467527210712433,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Navigation.OptionalPolicy",
+      "state": "Success",
+      "duration": 0.01011831033974886,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.OutdoorCamera.ReadableExitAndOwnership",
+      "state": "Success",
+      "duration": 9.227787971496582,
+      "warnings": 80,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.PlayerAction.ApprovedFistTimingSaveAndLocomotion",
+      "state": "Success",
+      "duration": 0.9979667663574219,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Posture.EarlyMoodWeight",
+      "state": "Success",
+      "duration": 0.002059004968032241,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Posture.OverrideOwnership",
+      "state": "Success",
+      "duration": 0.008308708667755127,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.ScriptCharacter.MarkerScaleSizeAndSavedFacing",
+      "state": "Success",
+      "duration": 0.6132173538208008,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.Underfloor.PerimeterSkirtOwnership",
+      "state": "Success",
+      "duration": 4.981266021728516,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CharacterBindPoseAndMaterials",
+      "state": "Success",
+      "duration": 0.4515809714794159,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.ConvexTransformInspection",
+      "state": "Success",
+      "duration": 0.008230459876358509,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.CreatureRigMaterialsAndMotion",
+      "state": "Success",
+      "duration": 0.007886845618486404,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.ExteriorAssetScaleAndMaterials",
+      "state": "Success",
+      "duration": 0.009954757988452911,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.ImportedAssetScaleAndMaterials",
+      "state": "Success",
+      "duration": 0.22475972771644592,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.MaterialPropertyInspection",
+      "state": "Success",
+      "duration": 0.008373351767659187,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.MaterialSlotBindingInspection",
+      "state": "Success",
+      "duration": 0.00820419006049633,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Art.PigPenFeedScatterLODAndMaterial",
+      "state": "Success",
+      "duration": 0.008272480219602585,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Audio.ApprovedAssets",
+      "state": "Success",
+      "duration": 0.03362271189689636,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Audio.ApprovedLookupAndCueParity",
+      "state": "Success",
+      "duration": 0.007695592939853668,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Combat.DefenseRule",
+      "state": "Success",
+      "duration": 0.008098899386823177,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Combat.Magic",
+      "state": "Success",
+      "duration": 0.008297036401927471,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Combat.Melee",
+      "state": "Success",
+      "duration": 0.008089350536465645,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Combat.Missile",
+      "state": "Success",
+      "duration": 0.008050257340073586,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Combat.Touch",
+      "state": "Success",
+      "duration": 0.008135358802974224,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Facts.Conditions",
+      "state": "Success",
+      "duration": 0.00799298845231533,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Facts.Delegates",
+      "state": "Success",
+      "duration": 0.008053944446146488,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Facts.GetSetAdd",
+      "state": "Success",
+      "duration": 0.00837058573961258,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Facts.LoadAndRestore",
+      "state": "Success",
+      "duration": 0.008107304573059082,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Facts.ShippedTable",
+      "state": "Success",
+      "duration": 0.007851488888263702,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Greybox.LegacyCardsCurrentScreen",
+      "state": "Success",
+      "duration": 0.15219534933567047,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Inventory.ArmDisarm",
+      "state": "Success",
+      "duration": 0.002787240082398057,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Inventory.Limits",
+      "state": "Success",
+      "duration": 0.00843123160302639,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Inventory.SanitizeLoadedState",
+      "state": "Success",
+      "duration": 0.00725249107927084,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.OriginId.Format",
+      "state": "Success",
+      "duration": 0.008144446648657322,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.OriginId.Parse",
+      "state": "Success",
+      "duration": 0.008475306443870068,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.OriginId.RoundTripAndHash",
+      "state": "Success",
+      "duration": 0.00841701403260231,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Progression.Experience",
+      "state": "Success",
+      "duration": 0.008022153750061989,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Progression.LevelUp",
+      "state": "Success",
+      "duration": 0.008322935551404953,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Save.GameInstanceSlotRoundTrip",
+      "state": "Success",
+      "duration": 0.1500730663537979,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Save.Migration",
+      "state": "Success",
+      "duration": 0.008513268083333969,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Save.MigrationV1ToV2",
+      "state": "Success",
+      "duration": 0.008108577691018581,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Save.RoundTrip",
+      "state": "Success",
+      "duration": 0.007988099940121174,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Save.ScreenCacheBeforeNarrativeRestore",
+      "state": "Success",
+      "duration": 0.1493319869041443,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.DamageAndDeath",
+      "state": "Success",
+      "duration": 0.008198720403015614,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.FactMirror",
+      "state": "Success",
+      "duration": 0.008288831450045109,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.FactMirrorTwoWay",
+      "state": "Success",
+      "duration": 0.008390664122998714,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.NewGameDefaults",
+      "state": "Success",
+      "duration": 0.008625230751931667,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.ProgressionAndMagic",
+      "state": "Success",
+      "duration": 0.008151921443641186,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.Stats.SeededRandomIsDeterministic",
+      "state": "Success",
+      "duration": 0.008307316340506077,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.WorldState.ClockSkewGuard",
+      "state": "Success",
+      "duration": 0.008352712728083134,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.WorldState.ExportImport",
+      "state": "Success",
+      "duration": 0.008333095349371433,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.WorldState.RespawnTiming",
+      "state": "Success",
+      "duration": 0.007987777702510357,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.WorldState.SetGetClear",
+      "state": "Success",
+      "duration": 0.008719860576093197,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Core.WorldState.TypeRules",
+      "state": "Success",
+      "duration": 0.008200222626328468,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.CreatureBrainSweepsRotatedFootprint",
+      "state": "Success",
+      "duration": 0.147907093167305,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.HiddenCreatureBoxUsesPhysicalEdge",
+      "state": "Success",
+      "duration": 0.14585356414318085,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.HitAndPushUsePhysicalEdge",
+      "state": "Success",
+      "duration": 0.14562080800533295,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.HumanoidBrainAvoidsNewChair",
+      "state": "Success",
+      "duration": 0.14917470514774323,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.PickupUsesRenderedComponentOffset",
+      "state": "Success",
+      "duration": 0.14667847752571106,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.PillbugEscapesPondTurnAtActualPose",
+      "state": "Success",
+      "duration": 2.8631014823913574,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.RestoredInactiveActorCannotBlock",
+      "state": "Success",
+      "duration": 0.15147097408771515,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.TabletopPickupPreservesGroundAndWallLimits",
+      "state": "Success",
+      "duration": 0.1520664542913437,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.AuthoredGeometry.TalkUsesVisibleGeometryAndBodyProxy",
+      "state": "Success",
+      "duration": 0.14895415306091309,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Bow.ArrowDamageAndBowLore",
+      "state": "Success",
+      "duration": 0.7020662426948547,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Bow.ArrowRespectsHardness",
+      "state": "Success",
+      "duration": 0.2819505035877228,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Bow.ChargeTiming",
+      "state": "Success",
+      "duration": 0.14254732429981232,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Bow.InitSequenceHardbox",
+      "state": "Success",
+      "duration": 0.14708565175533295,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Bow.ItemUseAndDisarm",
+      "state": "Success",
+      "duration": 0.14546115696430206,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Combat.DropTableOdds",
+      "state": "Success",
+      "duration": 1.8984262943267822,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Combat.PillbugDiesAndDrops",
+      "state": "Success",
+      "duration": 0.459354043006897,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.EastWilds.BoothDoorwayLeadsToTheEastWilds",
+      "state": "Success",
+      "duration": 20.778547286987305,
+      "warnings": 77,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hardness.DrawHardMapRebuildsTheLoadedMap",
+      "state": "Success",
+      "duration": 0.8773609399795532,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hardness.DrawHardMapRestores",
+      "state": "Success",
+      "duration": 0.14782153069972992,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hardness.GreyboxCollisionFollows",
+      "state": "Success",
+      "duration": 0.18422427773475647,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hardness.HardSpriteBlocks",
+      "state": "Success",
+      "duration": 0.14475397765636444,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hardness.SoftSpriteLetsDinkThrough",
+      "state": "Success",
+      "duration": 0.14657574892044067,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Hit.SceneryLines",
+      "state": "Success",
+      "duration": 0.14545726776123047,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Items.EatNutKillCurItem",
+      "state": "Success",
+      "duration": 0.14101721346378326,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Items.SwordChangesDamage",
+      "state": "Success",
+      "duration": 0.14869877696037292,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Magic.CastFacesThePawn",
+      "state": "Success",
+      "duration": 0.15269243717193604,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Magic.RechargeSteps",
+      "state": "Success",
+      "duration": 0.43010640144348145,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Magic.SpellFliesOnTheCurrentScreen",
+      "state": "Success",
+      "duration": 0.147446408867836,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch1Stonebrook",
+      "state": "Success",
+      "duration": 41.33449172973633,
+      "warnings": 366,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch2Terris",
+      "state": "Success",
+      "duration": 29.73642921447754,
+      "warnings": 212,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch3Roads",
+      "state": "Success",
+      "duration": 12.647799491882324,
+      "warnings": 116,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch4Gold",
+      "state": "Success",
+      "duration": 31.035186767578125,
+      "warnings": 303,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch5Bow",
+      "state": "Success",
+      "duration": 4.23604154586792,
+      "warnings": 39,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch6Goblins",
+      "state": "Success",
+      "duration": 5.302505970001221,
+      "warnings": 37,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch7Sanctuary",
+      "state": "Success",
+      "duration": 33.73746109008789,
+      "warnings": 333,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch8Knights",
+      "state": "Success",
+      "duration": 13.668293952941895,
+      "warnings": 74,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Ch9Windemere",
+      "state": "Success",
+      "duration": 12.812784194946289,
+      "warnings": 75,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChAJoppa",
+      "state": "Success",
+      "duration": 6.3478851318359375,
+      "warnings": 58,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChBKit",
+      "state": "Success",
+      "duration": 68.4500961303711,
+      "warnings": 556,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChCDragons",
+      "state": "Success",
+      "duration": 10.456100463867188,
+      "warnings": 42,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChDCastle",
+      "state": "Success",
+      "duration": 7.61552095413208,
+      "warnings": 76,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChEEdge",
+      "state": "Success",
+      "duration": 5.659610748291016,
+      "warnings": 37,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChFDarklands",
+      "state": "Success",
+      "duration": 6.799979209899902,
+      "warnings": 76,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChGSlayers",
+      "state": "Success",
+      "duration": 12.291006088256836,
+      "warnings": 77,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChHDucks",
+      "state": "Success",
+      "duration": 7.270988464355469,
+      "warnings": 74,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChISeth",
+      "state": "Success",
+      "duration": 6.052479267120361,
+      "warnings": 23,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChJBowLore",
+      "state": "Success",
+      "duration": 38.27796936035156,
+      "warnings": 304,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.ChKSeth",
+      "state": "Success",
+      "duration": 27.772098541259766,
+      "warnings": 248,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.Repeatable",
+      "state": "Success",
+      "duration": 28.83113670349121,
+      "warnings": 269,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Probe.RepeatableChapter",
+      "state": "Success",
+      "duration": 57.830318450927734,
+      "warnings": 514,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Prop.FlagFollowsTheMapRules",
+      "state": "Success",
+      "duration": 0.1633012443780899,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Prop.Scr419DoorWarpFollowsProp",
+      "state": "Success",
+      "duration": 11.119695663452148,
+      "warnings": 39,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Push.Rock",
+      "state": "Success",
+      "duration": 0.16612666845321655,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Restart.DeathMenuCreatesFreshPlayableWorldTwice",
+      "state": "Success",
+      "duration": 15.143714904785156,
+      "warnings": 25,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Status.LevelUpAndDeath",
+      "state": "Success",
+      "duration": 0.16469547152519226,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Stonebrook.DuckQuestAndKill",
+      "state": "Success",
+      "duration": 0.1722903549671173,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Stonebrook.PigFeeding",
+      "state": "Success",
+      "duration": 0.15782909095287323,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Texts.ExpiredTextKeepsARecycledHandle",
+      "state": "Success",
+      "duration": 0.15658527612686157,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Touch.DamageHurtsDink",
+      "state": "Success",
+      "duration": 0.15700607001781464,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.Touch.GoldAndHeart",
+      "state": "Success",
+      "duration": 0.16097316145896912,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Gameplay.World.EditorTypePersistence",
+      "state": "Success",
+      "duration": 0.7872604131698608,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Fields.RetainedLowWaterAndDryCorridors",
+      "state": "Success",
+      "duration": 2.9150235652923584,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.DoorOverlapIntentRetry",
+      "state": "Success",
+      "duration": 18.390117645263672,
+      "warnings": 1,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.GroundWaterAndDebugMeshSplit",
+      "state": "Success",
+      "duration": 0.0022637220099568367,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.LoadScreenPlacementDoesNotWarp",
+      "state": "Success",
+      "duration": 3.227856397628784,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.Meshes",
+      "state": "Success",
+      "duration": 0.0021991711109876633,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.ScriptNoHardWarpOverlap",
+      "state": "Success",
+      "duration": 12.064923286437988,
+      "warnings": 79,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.StonebrookCollision",
+      "state": "Success",
+      "duration": 0.052172284573316574,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.StonebrookContent",
+      "state": "Success",
+      "duration": 0.12811799347400665,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.StonebrookPlay",
+      "state": "Success",
+      "duration": 33.49468994140625,
+      "warnings": 98,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.WorldCollision",
+      "state": "Success",
+      "duration": 1.0375871658325195,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Greybox.WorldContent",
+      "state": "Success",
+      "duration": 0.1216331273317337,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Inspection.HeroSkeletalReadback",
+      "state": "Success",
+      "duration": 0.008371121250092983,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Inspection.HeroTextureReadback",
+      "state": "Success",
+      "duration": 0.00822383165359497,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Inspection.PrimitiveCollisionResponses",
+      "state": "Success",
+      "duration": 0.008746852166950703,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Inspection.RoofRelativeSourceFilenames",
+      "state": "Success",
+      "duration": 0.0074567911215126514,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Inspection.SourceLODRecords",
+      "state": "Success",
+      "duration": 0.008507920429110527,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Layout.AxisMapping",
+      "state": "Success",
+      "duration": 0.008403581567108631,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Layout.Continuity",
+      "state": "Success",
+      "duration": 0.04734953120350838,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Layout.MatchesWorldLayout",
+      "state": "Success",
+      "duration": 0.134491965174675,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Import.Layout.NoOverlap",
+      "state": "Success",
+      "duration": 2.2845816612243652,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.ClumsyFrameRates",
+      "state": "Success",
+      "duration": 0.007653773762285709,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.ClumsyHero",
+      "state": "Success",
+      "duration": 0.008263107389211655,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.ClumsyTransitions",
+      "state": "Success",
+      "duration": 0.008297542110085487,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.HeroGrowth",
+      "state": "Success",
+      "duration": 0.008164089173078537,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.HumanoidReconfigure",
+      "state": "Success",
+      "duration": 0.009210941381752491,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.PlayableControls",
+      "state": "Success",
+      "duration": 8.539168357849121,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.SecondaryMotion",
+      "state": "Success",
+      "duration": 0.0020994730293750763,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.WallClearance",
+      "state": "Success",
+      "duration": 0.17178691923618317,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Movement.ZoomLimits",
+      "state": "Success",
+      "duration": 0.008247748017311096,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Clock.FollowsWorldTime",
+      "state": "Success",
+      "duration": 0.16697503626346588,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.BlockingOrder",
+      "state": "Success",
+      "duration": 0.1634378433227539,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.ExternalAndSpawnRunAtOnce",
+      "state": "Success",
+      "duration": 0.16803614795207977,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.SpritesAndWorldState",
+      "state": "Success",
+      "duration": 0.16196835041046143,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.SpScriptRunsMainAtOnce",
+      "state": "Success",
+      "duration": 0.16258768737316132,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.UnknownCommand",
+      "state": "Success",
+      "duration": 0.16220709681510925,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Director.Vocabulary",
+      "state": "Success",
+      "duration": 0.16404402256011963,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Display.Nbsp",
+      "state": "Success",
+      "duration": 0.16026924550533295,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Facts.OneSourceOfTruth",
+      "state": "Success",
+      "duration": 0.1597033441066742,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Greybox.IntroAndTalk",
+      "state": "Success",
+      "duration": 2.1679294109344482,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.OwnerDecisions.TypoLinesSpoken",
+      "state": "Success",
+      "duration": 0.16858693957328796,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Save.MidConversation",
+      "state": "Success",
+      "duration": 0.3216690123081207,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Smoke.AllEntryPoints",
+      "state": "Success",
+      "duration": 4.273425102233887,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Story.KnotsResolve",
+      "state": "Success",
+      "duration": 0.16174189746379852,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Story.Loads",
+      "state": "Success",
+      "duration": 0.15883024036884308,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Talk.Mother",
+      "state": "Success",
+      "duration": 0.16283610463142395,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Talk.SmileStein",
+      "state": "Success",
+      "duration": 0.1659986823797226,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "Dink.Narrative.Talk.TollBridge",
+      "state": "Success",
+      "duration": 0.16744168102741241,
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
+  "qualification": "ActualfullDink201completed, noautomaticretry/assertion/timeout/sourcechanges; priorcold9failureandGPUouter143remainqualifiedseparately. Normalcurrentcook/package+CH1+packagedcameraGPUTESTremainpendingbeforemerge."
+}

@@ -1,0 +1,759 @@
+{
+  "result": "PASS",
+  "target": [
+    1,
+    245,
+    259
+  ],
+  "arrival_map_distance_max": 0.5,
+  "max_W_pulse_seconds": 0.25,
+  "max_pulses": 60,
+  "stall_stop": 3,
+  "steps": [
+    {
+      "screen": 1,
+      "map": [
+        248.63,
+        161.0
+      ],
+      "world": [
+        -184046.155,
+        392550.355,
+        98.15
+      ],
+      "yaw": 180.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        248.328,
+        169.148
+      ],
+      "world": [
+        -184047.475,
+        392586.002,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        248.328,
+        169.148
+      ],
+      "world": [
+        -184047.475,
+        392586.002,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.974,
+        178.712
+      ],
+      "world": [
+        -184049.025,
+        392627.847,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.974,
+        178.712
+      ],
+      "world": [
+        -184049.025,
+        392627.847,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.672,
+        186.86
+      ],
+      "world": [
+        -184050.345,
+        392663.493,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.672,
+        186.86
+      ],
+      "world": [
+        -184050.345,
+        392663.493,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.37,
+        195.008
+      ],
+      "world": [
+        -184051.666,
+        392699.14,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.37,
+        195.008
+      ],
+      "world": [
+        -184051.666,
+        392699.14,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.068,
+        203.156
+      ],
+      "world": [
+        -184052.986,
+        392734.787,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        247.068,
+        203.156
+      ],
+      "world": [
+        -184052.986,
+        392734.787,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.714,
+        212.72
+      ],
+      "world": [
+        -184054.536,
+        392776.632,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.714,
+        212.72
+      ],
+      "world": [
+        -184054.536,
+        392776.632,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.412,
+        220.868
+      ],
+      "world": [
+        -184055.856,
+        392812.278,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.412,
+        220.868
+      ],
+      "world": [
+        -184055.856,
+        392812.278,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.058,
+        230.433
+      ],
+      "world": [
+        -184057.406,
+        392854.123,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        246.058,
+        230.433
+      ],
+      "world": [
+        -184057.406,
+        392854.123,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.756,
+        238.581
+      ],
+      "world": [
+        -184058.726,
+        392889.77,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.756,
+        238.581
+      ],
+      "world": [
+        -184058.726,
+        392889.77,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.505,
+        245.375
+      ],
+      "world": [
+        -184059.827,
+        392919.496,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.505,
+        245.375
+      ],
+      "world": [
+        -184059.827,
+        392919.496,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.337,
+        249.903
+      ],
+      "world": [
+        -184060.561,
+        392939.304,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.337,
+        249.903
+      ],
+      "world": [
+        -184060.561,
+        392939.304,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.239,
+        252.547
+      ],
+      "world": [
+        -184060.989,
+        392950.872,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.239,
+        252.547
+      ],
+      "world": [
+        -184060.989,
+        392950.872,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.168,
+        254.453
+      ],
+      "world": [
+        -184061.298,
+        392959.211,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.168,
+        254.453
+      ],
+      "world": [
+        -184061.298,
+        392959.211,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.121,
+        255.722
+      ],
+      "world": [
+        -184061.504,
+        392964.764,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.121,
+        255.722
+      ],
+      "world": [
+        -184061.504,
+        392964.764,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.074,
+        256.991
+      ],
+      "world": [
+        -184061.709,
+        392970.317,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.074,
+        256.991
+      ],
+      "world": [
+        -184061.709,
+        392970.317,
+        98.15
+      ],
+      "yaw": 92.121,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.047,
+        257.728
+      ],
+      "world": [
+        -184061.829,
+        392973.54,
+        98.15
+      ],
+      "yaw": 92.124,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.047,
+        257.728
+      ],
+      "world": [
+        -184061.829,
+        392973.54,
+        98.15
+      ],
+      "yaw": 92.124,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.034,
+        258.086
+      ],
+      "world": [
+        -184061.887,
+        392975.104,
+        98.15
+      ],
+      "yaw": 92.12,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.034,
+        258.086
+      ],
+      "world": [
+        -184061.887,
+        392975.104,
+        98.15
+      ],
+      "yaw": 92.12,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.021,
+        258.443
+      ],
+      "world": [
+        -184061.945,
+        392976.669,
+        98.15
+      ],
+      "yaw": 92.118,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.021,
+        258.443
+      ],
+      "world": [
+        -184061.945,
+        392976.669,
+        98.15
+      ],
+      "yaw": 92.118,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    {
+      "screen": 1,
+      "map": [
+        245.007,
+        258.801
+      ],
+      "world": [
+        -184062.002,
+        392978.233,
+        98.15
+      ],
+      "yaw": 92.116,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  ],
+  "pulses": [
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 98.06720603749247,
+      "goal_error_after_px": 89.91361124991033,
+      "actual_world_delta_cm": 35.67143127209531,
+      "actual_map_delta_px": 8.153594790029729
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 89.91361124991033,
+      "goal_error_after_px": 80.3430620526751,
+      "actual_world_delta_cm": 41.87369729319943,
+      "actual_map_delta_px": 9.57054920054225
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 80.3430620526751,
+      "goal_error_after_px": 72.18946726496877,
+      "actual_world_delta_cm": 35.67043195702265,
+      "actual_map_delta_px": 8.153594790029757
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 72.18946726496877,
+      "goal_error_after_px": 64.03587247785416,
+      "actual_world_delta_cm": 35.67146829049501,
+      "actual_map_delta_px": 8.153594790029729
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 64.03587247785416,
+      "goal_error_after_px": 55.8822776915902,
+      "actual_world_delta_cm": 35.67143127209531,
+      "actual_map_delta_px": 8.153594790029729
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 55.8822776915902,
+      "goal_error_after_px": 46.31172849289908,
+      "actual_world_delta_cm": 41.87369729314126,
+      "actual_map_delta_px": 9.57054920054225
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 46.31172849289908,
+      "goal_error_after_px": 38.15813370698311,
+      "actual_world_delta_cm": 35.67043195702265,
+      "actual_map_delta_px": 8.153594790029729
+    },
+    {
+      "seconds": 0.25,
+      "goal_error_before_px": 38.15813370698311,
+      "goal_error_after_px": 28.586585193058657,
+      "actual_world_delta_cm": 41.87369729319943,
+      "actual_map_delta_px": 9.57154851630602
+    },
+    {
+      "seconds": 0.24711982868963267,
+      "goal_error_before_px": 28.586585193058657,
+      "goal_error_after_px": 20.43299040767162,
+      "actual_world_delta_cm": 35.67143127209531,
+      "actual_map_delta_px": 8.153594790029729
+    },
+    {
+      "seconds": 0.20892706545936493,
+      "goal_error_before_px": 20.43299040767162,
+      "goal_error_after_px": 13.634355503653262,
+      "actual_world_delta_cm": 29.74638258676117,
+      "actual_map_delta_px": 6.798634936514841
+    },
+    {
+      "seconds": 0.17066317062877487,
+      "goal_error_before_px": 13.634355503653262,
+      "goal_error_after_px": 9.10323997266908,
+      "actual_world_delta_cm": 19.821594789540814,
+      "actual_map_delta_px": 4.531115535935927
+    },
+    {
+      "seconds": 0.13945395200468125,
+      "goal_error_before_px": 9.10323997266908,
+      "goal_error_after_px": 6.457424409158812,
+      "actual_world_delta_cm": 11.575914996203231,
+      "actual_map_delta_px": 2.645815564244799
+    },
+    {
+      "seconds": 0.11745255421031783,
+      "goal_error_before_px": 6.457424409158812,
+      "goal_error_after_px": 4.550102526317398,
+      "actual_world_delta_cm": 8.344723003228504,
+      "actual_map_delta_px": 1.9073219445075398
+    },
+    {
+      "seconds": 0.09859275182136805,
+      "goal_error_before_px": 4.550102526317398,
+      "goal_error_after_px": 3.28023246127465,
+      "actual_world_delta_cm": 5.556819683969477,
+      "actual_map_delta_px": 1.2698700720939973
+    },
+    {
+      "seconds": 0.08370925788241436,
+      "goal_error_before_px": 3.28023246127465,
+      "goal_error_after_px": 2.010362405139944,
+      "actual_world_delta_cm": 5.556782702204626,
+      "actual_map_delta_px": 1.2698700720939688
+    },
+    {
+      "seconds": 0.06552836849788746,
+      "goal_error_before_px": 2.010362405139944,
+      "goal_error_after_px": 1.272868021438192,
+      "actual_world_delta_cm": 3.2252331698633627,
+      "actual_map_delta_px": 0.737494406758475
+    },
+    {
+      "seconds": 0.05214543333147116,
+      "goal_error_before_px": 1.272868021438192,
+      "goal_error_after_px": 0.9146321665019093,
+      "actual_world_delta_cm": 1.565075078083995,
+      "actual_map_delta_px": 0.35823595576100825
+    },
+    {
+      "seconds": 0.044214809784265174,
+      "goal_error_before_px": 0.9146321665019093,
+      "goal_error_after_px": 0.5573957301594781,
+      "actual_world_delta_cm": 1.566074391594953,
+      "actual_map_delta_px": 0.3572366162643177
+    },
+    {
+      "seconds": 0.034500212257348783,
+      "goal_error_before_px": 0.5573957301594781,
+      "goal_error_after_px": 0.1991230775174112,
+      "actual_world_delta_cm": 1.5650383382016122,
+      "actual_map_delta_px": 0.35827363843855775
+    }
+  ],
+  "failure_scope": "Onstall: controls/contact INCONCLUSIVE; micro pulses maymissinputpoll; no physics acceptance",
+  "input": "Actual held W and camera only; no route teleport/collision setters"
+}
