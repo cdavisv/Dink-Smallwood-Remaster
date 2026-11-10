@@ -10,7 +10,7 @@ Use the existing packaging command from `DinkRemasterUE`:
 UE_ROOT=/path/to/UE_5.8.4 Scripts/package.sh /path/to/dink-stage
 ```
 
-Python 3 and bubblewrap are required for this Linux workaround (`bubblewrap` is the Arch package). Existing greybox import, template-content and Editor-build prerequisites still apply. The helper preserves the original UAT arguments and working directory. It checks the host header's content, inode, mode and modification time before and after packaging. Its temporary directory is removed after UAT exits.
+Python 3 and bubblewrap are required for this Linux workaround (`bubblewrap` is the Arch package). Existing greybox import, template-content and Editor-build prerequisites still apply. The helper preserves the original UAT arguments, working directory and existing `/dev` scope. A real normal-helper attempt exposed `nodev` restrictions from a plain root bind: random-device reads and .NET crypto initialization failed before cooking. The retained three-mode probe reproduces that error and shows that binding the existing `/dev` restores both device reads and the same .NET native crypto function. It checks the host header's content, inode, mode and modification time before and after packaging. Its temporary directory is removed after UAT exits.
 
 Actual validation:
 

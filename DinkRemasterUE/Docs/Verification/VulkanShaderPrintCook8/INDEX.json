@@ -63,13 +63,17 @@
       "sha256": "d11e49abfa6662c6dc43c7043851797673adfa95e6e1caceaec23bc92f428cca"
     },
     "README.md": {
-      "sha256": "44e081633d749ae2d71b616375e8cea82089fa5c00158dc13804cc8bba760519"
+      "sha256": "7f914da3ff57fdff23eef3d4b3fb8995564d6e4dded260a09ae0cf2c4fb96148"
+    },
+    "device-entropy-regression.json": {
+      "source_directory": "/home/artist/Work/DinkQA/C9EntropyDiagnosis",
+      "sha256": "b8120182967d905df25deeba5e7fc9c803a95936316b1e6d1ee4e252acc3be71"
     }
   },
   "no_engine_header_core_auth_or_raw_spirv_published": true,
   "delivery_code": {
-    "Scripts/shaderprint_vulkan_workaround.py": "72be9fd66b2917c0ccd9cc191211e079d044948b41f4d55f64b129c9261a077d",
+    "Scripts/shaderprint_vulkan_workaround.py": "a17c3c2e7f8dc9ca4ebc3b7ebdc36b8c947e7b3cd8c6cfd76fedc1df90351106",
     "Scripts/package.sh": "3f05d05c9e101be6b453da07515eea45c6c3b9b8e1f56ce07c9883eb6a02d7d4",
-    "Scripts/tests/test_shaderprint_vulkan_workaround.py": "bcf50eeef4c649c354eeb4293d42a81ca5a31ecbb679c96bc867c03910646f74"
+    "Scripts/tests/test_shaderprint_vulkan_workaround.py": "1ddb49f89f73c43a516e6c3a2f285da23627b8160e3c99910fae0609509db8c0"
   }
 }
