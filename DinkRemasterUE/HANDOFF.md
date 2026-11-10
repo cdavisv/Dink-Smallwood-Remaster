@@ -1,3 +1,7 @@
+## Native37 fixture lifecycle correction
+
+Native37 run fb6ca4f11f1747b7a068ef9a8c77fc3f recorded one pass and one failure. The BinaryControlCopy log points to the existing forced GC collecting the saved SnowIsle world while its WorldPartitionSubsystem was still initialized. The fixture now holds the loaded UWorld explicitly and tears down its newly loaded, context-free world with DestroyWorld before releasing it for GC. An already loaded world or one owned by an engine context stays with its owner. The actual SnowIsle component, stock duplicate, cache mismatch and exact restoration assertions are retained. Installed World.cpp DestroyWorld and CleanupWorldInternal route subsystem deinitialization before GC. The correction awaits a fresh Editor/Game build and the same two native tests.
+
 ## Current runtime named-profile response cache hydration
 
 Stage34 actual run797280fbc5d444d5bd4f5deb350bd004 ended native0/helperfalse with 13324 inputs unchanged and zero outputs. Root88122 postflight verified closure and protected inputs. All eight witness rows show matching stored DinkHardSolid name, Camera Ignore response array, enabled3 and object type15. The global template exactly matches the source. The target already differs at channel3 immediately after duplication and through registration. Both deferred load flags are clear throughout. The Stage34 result and its witnesses remain preserved.

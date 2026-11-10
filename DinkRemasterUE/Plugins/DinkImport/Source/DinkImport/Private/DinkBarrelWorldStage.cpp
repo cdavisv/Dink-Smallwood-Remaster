@@ -1719,7 +1719,28 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  {
   // Read the actual saved source wall. Its native default subobject starts
   // NoCollision, while the saved instance owns the importer HardSolid profile.
-  TStrongObjectPtr<UBoxComponent> LoadedWall(Cast<UBoxComponent>(FSoftObjectPath(PolicyWitnessPath).TryLoad()));
+  const FSoftObjectPath WallPath(PolicyWitnessPath);
+  const FSoftObjectPath WorldPath = FSoftObjectPath::ConstructFromAssetPath(WallPath.GetAssetPath());
+  const bool WorldWasLoaded = WorldPath.ResolveObject() != nullptr;
+  TStrongObjectPtr<UWorld> LoadedWorld(Cast<UWorld>(WorldPath.TryLoad()));
+  if (!TestNotNull(TEXT("actual SnowIsle fixture world"), LoadedWorld.Get()))
+  {
+   return false;
+  }
+
+  // This package load can initialize tickable world subsystems. Release an
+  // owned world through normal teardown before the fixture's forced GC.
+  const bool OwnsLoadedWorld = !WorldWasLoaded &&
+   (!GEngine || !GEngine->GetWorldContextFromWorld(LoadedWorld.Get()));
+  ON_SCOPE_EXIT
+  {
+   if (OwnsLoadedWorld)
+   {
+    LoadedWorld->DestroyWorld(false);
+    LoadedWorld->MarkObjectsPendingKill();
+   }
+  };
+  TStrongObjectPtr<UBoxComponent> LoadedWall(Cast<UBoxComponent>(WallPath.TryLoad()));
   if (!TestNotNull(TEXT("loaded SnowIsle named-profile fixture component"), LoadedWall.Get()))
   {
    return false;
