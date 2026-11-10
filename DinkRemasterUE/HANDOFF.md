@@ -1,3 +1,7 @@
+## Stage37 world settings diagnosis
+
+Stage37 run 27bffdc833c543a5a8104c7406fb1457 completed native execution with helper refusal and zero saves. It reached the final world settings gate after both shared live triangle verifiers. The existing result conflates a forbidden source-world reference, a serialization failure and differing canonical settings bytes. The source patch reports both State read results, actual settings/world paths, byte counts and first byte, and the existing first-property diagnostic with source-reference provenance. It preserves the same comparison and save ordering. The first differing property awaits a fresh staging measurement.
+
 ## Stage36 shared live triangle verifier
 
 Stage36 run 50c647afd9f14495ba3a9bde0f82bb3b passed the Import geometry read and reached a second checked Chaos triangle cast in DinkHardnessFoundationSource.cpp. The project-wide C++ audit found this remaining call. The two verifiers now share DinkCore's live shape reader and triangle signature. Import retains the exact source-mesh triangle expectation. Narrative retains the descriptor-derived floor and fill expectation and checks the locked body pose against the component transform. The shared read enforces one valid query/simulation shape, typed triangle unwrapping, unit scale, zero margin and valid indices. Both callers still compare sorted oriented triangle signatures exactly and enforce their existing profile, channel and component checks. The prior crash is preserved. The shared implementation awaits a build and another actual staging attempt.

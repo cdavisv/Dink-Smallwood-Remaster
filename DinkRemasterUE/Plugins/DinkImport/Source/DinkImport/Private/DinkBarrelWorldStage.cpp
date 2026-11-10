@@ -1681,7 +1681,26 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  }
  for(const auto& P:Before){TArray<uint8> B;if(!State(*P.Key,IDs,SourcePackages,false,B)||B!=P.Value)return Fail(TEXT("source actor/component changed during staging"));}
  for(const auto& P:Dirty)if(P.Key->IsDirty()!=P.Value)return Fail(TEXT("source package dirty state changed"));
- TArray<uint8> SA,SB;if(!State(*const_cast<AWorldSettings*>(Settings),IDs,SourcePackages,false,SA)||!State(*NewSettings,IDs,SourcePackages,true,SB)||SA!=SB)return Fail(TEXT("world settings or source-world references changed"));
+ auto& SourceSettings = *const_cast<AWorldSettings*>(Settings);
+ TArray<uint8> SourceSettingsBytes, TargetSettingsBytes;
+ const bool bSourceSettingsRead = State(SourceSettings, IDs, SourcePackages, false, SourceSettingsBytes);
+ const bool bTargetSettingsRead = bSourceSettingsRead &&
+  State(*NewSettings, IDs, SourcePackages, true, TargetSettingsBytes);
+ if (!bSourceSettingsRead || !bTargetSettingsRead || SourceSettingsBytes != TargetSettingsBytes)
+ {
+  int32 FirstByte = 0;
+  while (FirstByte < SourceSettingsBytes.Num() && FirstByte < TargetSettingsBytes.Num() &&
+   SourceSettingsBytes[FirstByte] == TargetSettingsBytes[FirstByte])
+  {
+   ++FirstByte;
+  }
+  return Fail(FString::Printf(
+   TEXT("world settings or source-world references changed source=%s target=%s sourceWorld=%s targetWorld=%s sourceRead=%d targetRead=%d bytes=%d/%d firstByte=%d "),
+   *SourceSettings.GetPathName(), *NewSettings->GetPathName(),
+   *GetPathNameSafe(SourceSettings.GetWorld()), *GetPathNameSafe(NewSettings->GetWorld()),
+   int32(bSourceSettingsRead), int32(bTargetSettingsRead), SourceSettingsBytes.Num(), TargetSettingsBytes.Num(), FirstByte)
+   + FirstStateDifference(SourceSettings, *NewSettings, IDs, SourcePackages));
+ }
  // All source/control/native proofs precede any save. Only newly owned paths.
  for(UStaticMesh* M:Foundations)
  {
