@@ -1,0 +1,20 @@
+import bpy,json,hashlib,os,math
+from pathlib import Path
+O=Path(__file__).resolve().parent;P=O/'Fireplace_SharedContractV2.blend';bpy.ops.wm.open_mainfile(filepath=str(P));s=bpy.context.scene
+r=[];F=O/'FBX';F.mkdir(exist_ok=True)
+def summary(o):
+ m=o.data;m.calc_loop_triangles();return dict(vertices=len(m.vertices),triangles=len(m.loop_triangles),dimensions=list(o.dimensions),materials=[x.name if x else None for x in m.materials],uv_layers=len(m.uv_layers),uv_finite=all(math.isfinite(t)for u in m.uv_layers for l in u.data for t in l.uv))
+for o in list(bpy.data.objects):
+ if o.type!='MESH'or not o.name.startswith(('SM_Fireplace','SM_Chimney')):continue
+ bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o
+ hulls=[h for h in bpy.data.objects if h.type=='MESH'and h.name.startswith('UCX_'+o.name+'_')]
+ for h in hulls:h.select_set(True)
+ p=F/(o.name+'.fbx');bpy.ops.export_scene.fbx(filepath=str(p),use_selection=True,object_types={'MESH'},apply_unit_scale=True,axis_forward='-Y',axis_up='Z',use_mesh_modifiers=False,use_tspace=True,colors_type='LINEAR',add_leaf_bones=False,path_mode='AUTO',bake_anim=False)
+ r.append(dict(name=o.name,file=str(p.relative_to(O)),source=summary(o),hulls=len(hulls),sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+# Reopen separately to ensure packed dependencies and strict geometry hashes survive save.
+bpy.ops.wm.open_mainfile(filepath=str(P));base=json.load(open(O.parent/'SOURCE_PRESERVATION.json'));reopened={}
+# Actual FBX importer into clean scene for each file.
+for item in r:
+ bpy.ops.wm.read_factory_settings(use_empty=True);bpy.ops.import_scene.fbx(filepath=str(O/item['file']),use_custom_normals=True)
+ o=bpy.data.objects.get(item['name']);assert o and o.type=='MESH';a=summary(o);h=[x for x in bpy.data.objects if x.name.startswith('UCX_')];b=item['source'];item['actual_reimport']=a;item['reimport_hulls']=len(h);item['checks']=dict(triangles=a['triangles']==b['triangles'],hulls=len(h)==item['hulls'],dimensions=all(abs(a['dimensions'][i]-b['dimensions'][i])<1e-4 for i in range(3)),uv_finite=a['uv_finite'],materials=a['materials']==b['materials']);assert all(item['checks'].values()),item
+json.dump(r,open(O/'FBX_ROUNDTRIP.json','w'),indent=2);print('ROUNDTRIP_PASS',len(r),flush=True);os._exit(0)

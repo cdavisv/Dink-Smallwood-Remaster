@@ -1,0 +1,68 @@
+import bpy,json,hashlib,os,math,shutil
+from pathlib import Path
+from mathutils import Vector
+D=Path(__file__).resolve().parent;O=D.parent;E=O.parent/'House439Facade';SRC=O/'Fireplace_Shared2mCandidate.blend';DONOR=E/'RoofWeatheredBundleCandidateV6/House439_RoofWeatheredBundleCandidateV6.blend';OAK=Path('/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend')
+bpy.ops.wm.open_mainfile(filepath=str(SRC))
+def graph(m):
+ nodes=[]
+ for n in m.node_tree.nodes:
+  r=dict(name=n.name,type=n.bl_idname,inputs={i.identifier:list(i.default_value)if hasattr(i.default_value,'__len__')and not isinstance(i.default_value,str)else i.default_value for i in n.inputs if hasattr(i,'default_value')and isinstance(i.default_value,(int,float,str))or hasattr(i,'default_value')and hasattr(i.default_value,'__len__')})
+  for k in ['uv_map','layer_name','attribute_name','operation','blend_type','use_clamp','extension','interpolation']:
+   if hasattr(n,k):r[k]=getattr(n,k)
+  if n.type=='TEX_IMAGE'and n.image:r['image']=dict(packed_sha256=hashlib.sha256(n.image.packed_file.data).hexdigest(),colour_space=n.image.colorspace_settings.name)
+  nodes.append(r)
+ return dict(nodes=nodes,links=[(l.from_node.name,l.from_socket.identifier,l.to_node.name,l.to_socket.identifier)for l in m.node_tree.links])
+with bpy.data.libraries.load(str(DONOR),link=False)as(src,dst):dst.materials=['MI_Candidate_IndividualStone_2m','MI_Candidate_Metalwork_2Role']
+stone,metal=dst.materials;stone.name='MI_Shared_FieldstoneSeed2m';metal.name='MI_Shared_IronLead2m'
+# Free the old QA oak name so registered material keeps its actual name.
+bpy.data.materials['MI_Shared_OakLonggrain2m'].name='ARCHIVE_QA_OakLonggrain2m'
+with bpy.data.libraries.load(str(OAK),link=False)as(src,dst):dst.materials=['MI_Shared_OakLonggrain2m']
+oak=dst.materials[0];fingerprints={m.name:graph(m)for m in [stone,metal,oak]}
+# Uniform generic parent for newly authored maps, not a private fireplace variant.
+new=[]
+for name in ['LimeMortar2m','Soot2m','FieldstoneCoursed2m']:
+ m=bpy.data.materials['MI_Shared_'+name]
+ for n in m.node_tree.nodes:
+  if n.type=='NORMAL_MAP':n.inputs['Strength'].default_value=1;n.uv_map='UV0'
+  if n.type=='BSDF_PRINCIPLED':n.inputs['IOR'].default_value=1.5;n.inputs['Specular IOR Level'].default_value=.5
+ m['uniform_parent_contract']='Opaque Principled IOR1.5/specIOR.5/normal1/BCdirect/ORM.GB; no vertex tint';new.append(m)
+materials=[stone,new[0],new[1],oak,metal,new[2]]
+def groups(mesh):
+ par=list(range(len(mesh.vertices)))
+ def root(a):
+  while par[a]!=a:par[a]=par[par[a]];a=par[a]
+  return a
+ for e in mesh.edges:par[root(e.vertices[0])]=root(e.vertices[1])
+ g={}
+ for p in mesh.polygons:g.setdefault(root(p.vertices[0]),[]).append(p)
+ return list(g.values())
+ref=[];reference=bpy.data.objects['SM_Fireplace_Stonebrook_V3Contact_LOD0']
+for ps in groups(reference.data):
+ ids={v for p in ps for v in p.vertices};center=sum((reference.data.vertices[i].co for i in ids),Vector())/len(ids);seed=int(hashlib.sha256((','.join(f'{v:.3f}'for v in center)).encode()).hexdigest()[:8],16)/0xffffffff;ref.append((center,seed))
+rows=[]
+for o in bpy.data.objects:
+ if o.type!='MESH'or not o.name.startswith(('SM_Fireplace','SM_Chimney')):continue
+ m=o.data;indices=[p.material_index for p in m.polygons];uv=m.uv_layers.active;original=[tuple(q.uv)for q in uv.data];uv.name='UV0';role=m.uv_layers.new(name='UV1_SharedData');alias=m.uv_layers.new(name='UVMap')
+ for i,q in enumerate(original):alias.data[i].uv=q
+ m.uv_layers.active_index=0;uv.active_render=True
+ color=m.color_attributes.new(name='SharedSurfaceData',type='FLOAT_COLOR',domain='CORNER');m.color_attributes.active_color=color;m.color_attributes.render_color_index=list(m.color_attributes).index(color)
+ for ps in groups(m):
+  ids={v for p in ps for v in p.vertices};center=sum((m.vertices[i].co for i in ids),Vector())/len(ids)
+  seed=min(ref,key=lambda r:(r[0]-center).length_squared)[1]if 'Fireplace'in o.name else .5
+  for p in ps:
+   for li in p.loop_indices:color.data[li].color=(seed,seed,seed,1)
+ m.materials.clear()
+ for mat in materials:m.materials.append(mat)
+ for p,idx in zip(m.polygons,indices):
+  p.material_index={0:0,1:1,2:2,3:3,4:4,5:4,6:5}[idx]
+  for li in p.loop_indices:role.data[li].uv=(1. if idx==5 else 0.,0.)
+ m.calc_tangents(uvmap='UV0');zeros=[l.index for l in m.loops if l.tangent.length<1e-8]
+ assert [tuple(q.uv)for q in uv.data]==original
+ rows.append(dict(name=o.name,zero_T_loop_ids=zeros,UV0_coordinates_exact=True,uv_layers=[u.name for u in m.uv_layers],material_slots=[x.name for x in m.materials]))
+for mat in materials:
+ for n in mat.node_tree.nodes:
+  if n.type=='TEX_IMAGE'and n.image:n.image.pack()
+for mat in [stone,metal,oak]:assert graph(mat)==fingerprints[mat.name],mat.name
+P=D/'Fireplace_SharedContractV2.blend';bpy.ops.wm.save_as_mainfile(filepath=str(P),compress=True)
+json.dump(dict(status='EXACT_APPENDED_DONOR_GRAPHS',source_sha256=hashlib.sha256(SRC.read_bytes()).hexdigest(),donor=str(DONOR),donor_sha256=hashlib.sha256(DONOR.read_bytes()).hexdigest(),oak_donor=str(OAK),oak_donor_sha256=hashlib.sha256(OAK.read_bytes()).hexdigest(),graphs=fingerprints,target_meshes=rows,UV='UV0 original coordinates; UV1_SharedData.x iron0/lead1; UVMap exact UV0 alias for registered oak normal graph',seed='FLOAT_COLOR CORNER LINEAR; stable per LOD0 construction component, nearest-component seed reused across other LODs; alpha1',generic_parent='uniform IOR1.5/specIOR.5/normal1/BCdirect/ORMGB'),open(D/'SHARED_CONTRACT.json','w'),indent=2)
+print('SUCCESSOR_SAVED',rows,flush=True);os._exit(0)

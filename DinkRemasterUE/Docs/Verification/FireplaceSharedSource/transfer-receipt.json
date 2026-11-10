@@ -1,0 +1,346 @@
+{
+  "base": "4d3a660363611508e69eb2b558aaa0ec7344a0d7",
+  "files": [
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Fireplace_SharedContractV2.blend",
+      "sha256": "ba9b8ab76d0416092e4f152569e293cca52eb17216ac5bb39325eb15741dfde0",
+      "bytes": 91426809
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/SharedContract_LibraryReuse2m4m.blend",
+      "sha256": "3b83b7ffd4a938da39d44d80a466dd330bd2715f5616e3a35654c29c229e3057",
+      "bytes": 30933676
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/References/64_05.png",
+      "sha256": "0ea319149e3ecff64b01a7b9286be9dcdb4639087e80ab58110f8d0c0d34d043",
+      "bytes": 20273
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/References/PROVENANCE.json",
+      "sha256": "8723af56a3cfa56776165f3338a5b32cea20f2dce2cff8027985b84a28f2e488",
+      "bytes": 1565
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "sha256": "d29cf7f949e996490d85558e52c11a0f1702f8b068deaceda21955611ea7ecd7",
+      "bytes": 438492
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "sha256": "842cb9ffe77a074171c7b3147cff9c791328ecc021f7d4a7cc52339df3d754e5",
+      "bytes": 2438316
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "sha256": "4551f144fd2443d2f3291bfdfed5911823962cbdeea06d26e3361f3d6d4e5a38",
+      "bytes": 1477756
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "sha256": "d6ebc093d545c8ae58f956e4a6c77c9a78755df10978ad9238ed37d7ba6e0ba1",
+      "bytes": 787340
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/shared_reuse_2m4m.png",
+      "sha256": "5bec770d24b9eef27817262c5b7c3587f7556acbc8da7c9a75a2180cfb986c30",
+      "bytes": 973835
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/audit_binary.py.txt",
+      "sha256": "e7d4ca266322c89cb87482ffd7e356a571d698347f7dc774d49c26085765d66a",
+      "bytes": 4092
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/audit_reopen.py.txt",
+      "sha256": "f8565fd93cfcc35548c69fe662318d41a555de3b00dbeea0a852444eeb1bdb35",
+      "bytes": 2823
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/build_successor.py.txt",
+      "sha256": "57719b416c41cd2a6157a57afea71672b03fcc39f1b67516400ab28251fc0b02",
+      "bytes": 5637
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/export_verify.py.txt",
+      "sha256": "0a91b62a7188d84b76d00e7fa45a827c482b2d9d10b944ea4f72ccdb0782abf3",
+      "bytes": 2310
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/probe_cm_frames.py.txt",
+      "sha256": "caf024c5f4f03edb2569ca452b27ce53b98ddb7f25fcb6f658801ab8b2ce57d4",
+      "bytes": 1392
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/probe_cm_fixed_normals.py.txt",
+      "sha256": "016609be60c85d0c6e4af83fb248f5aaa9a38c0cb3030b12dcadf7c8169fd491",
+      "bytes": 1434
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/test_uv_frames.py.txt",
+      "sha256": "117f1b68603cd01fb0859837d2e77aaad5f3c8f0cc57fdd546f2de0c7254efed",
+      "bytes": 1458
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/render_review.py.txt",
+      "sha256": "6fc821e1a919e35e852d01895ab2ff98e8840f70660664319947d4b1fd84a017",
+      "bytes": 2264
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/audit_contract_reopen.py.txt",
+      "sha256": "54bd16547bf634e399d74211402acf63ba7fae79efb6cee5ac2316af54070d2b",
+      "bytes": 1691
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/compare_registered.py.txt",
+      "sha256": "8f6a15d55e9f6daaf792ecdabfb2e0c7821d05582fc43f5299f4ae9d044b95b0",
+      "bytes": 988
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/fbxparse.py.txt",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "bytes": 6994
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Provenance/stone_donor_manifest.json",
+      "sha256": "3fb14404627139c0dd2e7732c66b70e08ab2d36aed5b8d9f63259dea7dd43ded",
+      "bytes": 1321
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Provenance/metal_donor_manifest.json",
+      "sha256": "e44caedc34edf0755245058e04a2c2c3ca83d55e0c7997e9e5d6a23aa4ee6317",
+      "bytes": 4101
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Provenance/oak_donor_provenance.md",
+      "sha256": "8faf4f1efd308d2dadeccaa5703380bb6195f76e82dc589b383d3e20374700cd",
+      "bytes": 1735
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/candidate/hearth.png",
+      "sha256": "4d5587b0eeea2f16812ce6e61bcc41ba0631a3e87d1bebc0a9cbc451301d5613",
+      "bytes": 1007558
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/candidate/cavity.png",
+      "sha256": "85d10be2892dc70ca55965ddf40fcf1789c6a944e9b0c106b9e48b308027b6c6",
+      "bytes": 977548
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/candidate/chimney.png",
+      "sha256": "557f8c046b06a1444c6a68b8b884a11d6aa8209c0927baa684887a0053d6097b",
+      "bytes": 785866
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/candidate/receipt.json",
+      "sha256": "d1903604b0ef58a8f59b9625f55452c591011e46cc5cefe3b2f6adb3045941a1",
+      "bytes": 709
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/baseline/hearth.png",
+      "sha256": "c0d7a047b8621d6bc75f910d65142ced5046589baeef47d6c5aa0f05dcc9ce6d",
+      "bytes": 1005802
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/baseline/cavity.png",
+      "sha256": "fc7168e49b990af3ba6faeb4608f4d0719497d303a37e0f0a4aad2902ef12e4b",
+      "bytes": 974238
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/baseline/chimney.png",
+      "sha256": "985caf7c8a67a5e982c99d66ac4911e2e2486ec1fe1a69393603e3e1538d586c",
+      "bytes": 785463
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Review/baseline/receipt.json",
+      "sha256": "54f577a9a3826517befd546cc4576efb331baf82c059110613048b52518bf75a",
+      "bytes": 709
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/SHARED_CONTRACT.json",
+      "sha256": "6b42a17f9fa0a820ccaf3bfb251c7fa9d0fb65bbe9ba2f8fc3b7ab022319ac42",
+      "bytes": 25797
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/CONTRACT_REOPEN.json",
+      "sha256": "24e9bc2e4772292144705b447c151036cd265b31c28d8de03a5e93a30faf1223",
+      "bytes": 462
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/REGISTERED_GRAPH_COMPARISON.json",
+      "sha256": "39b00e68345e07c9b81dafbe08a6e9c4cc176592277e3a989d25dc57213318b4",
+      "bytes": 387
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/REOPEN_GEOMETRY_UV.json",
+      "sha256": "99d902d458f3025f2791dae6f56fc69cb2b0607f22fd436d891780f239e2e223",
+      "bytes": 86312
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/FBX_ROUNDTRIP.json",
+      "sha256": "41bfb60c64c42da6c581b75788e762580f0cbb650ea790e68c89f13036e1fc49",
+      "bytes": 5328
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/BINARY_FBX_FRAME_REPORT.json",
+      "sha256": "908f45ac0ce895260aa91371513495f08532547ed28210b4f8787cb4a087f154",
+      "bytes": 2530
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/ACTUAL_BINARY_FBX_CORNERS.json.gz",
+      "sha256": "a397a8af991a50a972e7a436e73cf40034c0eb30aae81dd24d98f1c294379abb",
+      "bytes": 4162707
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/ZERO_FRAME_DIAGNOSIS.json",
+      "sha256": "ad4dcf253bf25068b46654dfa60a25af32bc22c3fb4cc5b3abe72c36263dff81",
+      "bytes": 5534
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/UV_REPAIR_EXPERIMENT.json",
+      "sha256": "dfae578a13359a966cb96c42e553fbc82481c2080390ea7028b23a3097818cde",
+      "bytes": 580
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/CM_NUMERIC_FRAME_DIAGNOSIS.json",
+      "sha256": "2265b21e4a9d74c072cddfe199f48b5c86b07c0946a5ae5c4c8538eea41544d3",
+      "bytes": 1061
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/CM_FIXED_INPUT_NORMAL_FRAME_DIAGNOSIS.json",
+      "sha256": "b9dfaacb635f2406ccb556debd63c7cf73a37bcbbe20fe41291c325c822fabcf",
+      "bytes": 1111
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/material_manifest.json",
+      "sha256": "98f07dc892319ffaf48b8dd22b4dccfef9dd0229f7fd2abfd4381caa26c37a21",
+      "bytes": 8102
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/export_manifest.json",
+      "sha256": "30255ea6a42d6aaa7c967d43893f1b95dbec1f28c2a236aed763e94b862726a8",
+      "bytes": 1596
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/REUSE.json",
+      "sha256": "c048b351d10c9f557a9d3c7c6be23314704ac2365c52536ca5defe733a7d5da8",
+      "bytes": 309
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/HANDOFF.md",
+      "sha256": "e93f724cc1ffa24e9b921f5dc74b6d38b343a2d977c1e12f6217c74084a44a06",
+      "bytes": 5671
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/uv-experiment.log.txt",
+      "sha256": "953e4c33b1704bb1f604b39a41da39d66f51f8ebc95aa8aaf93cc379cfd78fda",
+      "bytes": 632
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/probe-cm.log.txt",
+      "sha256": "67f31b16f646d40643bebf9c532fb87c46bb721f97b9a6326e0ef2d465fb4c7a",
+      "bytes": 1008
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V2/probe-cm-fixed-normals.log.txt",
+      "sha256": "baf480ddaabc67b4831d4581693256c8cfa7501a4ce022ed2e7afb9791e43114",
+      "bytes": 1054
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/SOURCE_PRESERVATION.json",
+      "sha256": "d8a9d7d84eebdabc456b3d4c4254aaab91180c07b8164a8cb599c09c85c37304",
+      "bytes": 373276
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/BASELINE_ZERO_FRAMES.json",
+      "sha256": "462cb10175a3028d8c6e2ea01ef43e74f116b348d4cd3ec24482ff698e8fe880",
+      "bytes": 460
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/PROVENANCE.md",
+      "sha256": "b05bcb9d1897c8d682002a655267494c668904c4c4a33b9a5d6ac00f2ad1211d",
+      "bytes": 3359
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/COORDINATION_ADDENDUM.md",
+      "sha256": "0c017289a43f1f91f68975e59dfc59f1f49b94943a57ae2b3bcb4e3874886390",
+      "bytes": 1545
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/HANDOFF.md",
+      "sha256": "76a77417e625bf71ede1b89c2b63f01dd593c0d2e5806d6dd8312e4a3b7b3ec1",
+      "bytes": 5088
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/binary.log.txt",
+      "sha256": "f5c0d293bd13a4a10076794161b062867d4dab6e676f8c4648351e376297e779",
+      "bytes": 840
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/binary-v2.log.txt",
+      "sha256": "fd86064bae11501aac3559c133fd39dc8116f43041e65ec3836325d7b0e48210",
+      "bytes": 1294
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Evidence/V1/binary-zero-frame-failure.log.txt",
+      "sha256": "fd86064bae11501aac3559c133fd39dc8116f43041e65ec3836325d7b0e48210",
+      "bytes": 1294
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_BC.png",
+      "sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+      "bytes": 513800
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_N_GL.png",
+      "sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+      "bytes": 416364
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_ORM.png",
+      "sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+      "bytes": 183994
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png",
+      "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+      "bytes": 222282
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png",
+      "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+      "bytes": 414130
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png",
+      "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+      "bytes": 181079
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_BC.png",
+      "sha256": "f90ff36926b7990f7702810e8ecd86971b37659960178b8d82ecf0559330a15f",
+      "bytes": 1783147
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_N_GL.png",
+      "sha256": "a8c6e1270cef5033a0ccb998fd880afad639536364c65eb73dae30c9d24d4067",
+      "bytes": 720346
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_ORM.png",
+      "sha256": "6a360d2e6de2a11e02ce432fef0187b7a661fb192137abf888a0c03a627cb7c0",
+      "bytes": 486680
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Tools/build_textures.py.txt",
+      "sha256": "4aa339b3815416c15110c84cf283e3c503ff071e7b22d6a419990e913d3ee571",
+      "bytes": 1331
+    },
+    {
+      "file": "SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Tools/build_masonry.py.txt",
+      "sha256": "d52ae04e5c7c562e8aa8b6d3cd8159e6290426b7eaeb483a067efd1af7c18dc8",
+      "bytes": 1477
+    }
+  ],
+  "scope": "byte-exact copied final payloads; new wrapper/library registration follows; no hardlinks"
+}

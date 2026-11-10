@@ -1,0 +1,148 @@
+{
+  "schema": "dink-source-fireplace-shared/1",
+  "status": "source_registered_for_native_trial_not_final_appearance",
+  "source": "Fireplace_SharedContractV2.blend",
+  "source_sha256": "ba9b8ab76d0416092e4f152569e293cca52eb17216ac5bb39325eb15741dfde0",
+  "generic_reuse": "SharedContract_LibraryReuse2m4m.blend",
+  "assets": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "dimensions_m": [
+        1.786549687385559,
+        0.8945789337158203,
+        2.319999933242798
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "triangles": 1486,
+      "fbx": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "collision_hulls": 92,
+      "source_only": true,
+      "class": "kit_piece",
+      "identity": {
+        "kind": "structural_continuation",
+        "assembly_origin": "S001_P19",
+        "sprite_counterpart": null,
+        "note": "Existing chimney continuation of starting-house fireplace assembly; no standalone family invented. No new runtime or family binding here."
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "dimensions_m": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "triangles": 15912,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "collision_hulls": 16,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "dimensions_m": [
+        2.5089643001556396,
+        1.1149358749389648,
+        2.8015949726104736
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "triangles": 8672,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "collision_hulls": 0,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "dimensions_m": [
+        2.5069117546081543,
+        1.1101120710372925,
+        2.801013469696045
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "triangles": 4698,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "collision_hulls": 0,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    }
+  ],
+  "shared_material_registry": "../../../SharedMaterials/manifest.json",
+  "shared_roles": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_LimeMortar2m",
+    "MI_Shared_Soot2m",
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_FieldstoneCoursed2m"
+  ],
+  "protection": "Full328mesh scene preserves312UCX androof8; only4targetmeshes proposed here. Protectedroof materials remain historicalcontext, not a second roofadmission.",
+  "native": false,
+  "known_invalid_frames": {
+    "mesh": "SM_Chimney_Stonebrook_V8",
+    "loop_ids": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ],
+    "scope": "5nonzero3Dslivers; UV/cmnumerictrialsnotadopted; actualnativeinspectionrequired"
+  }
+}
