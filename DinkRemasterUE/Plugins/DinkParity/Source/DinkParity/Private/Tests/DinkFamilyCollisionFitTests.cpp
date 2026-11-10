@@ -35,6 +35,7 @@ bool FDinkFamilyFitGeometryTest::RunTest(const FString&)
     Mesh->GetBodySetup()->CreatePhysicsMeshes();
     FDinkFamilyFittedGeometry G;FString Error;
     if(!TestTrue(TEXT("read actual reviewed cooked triangles"),DinkFamilyCollisionFit::ReadCookedGeometry(*Mesh,G,Error))){AddError(Error);return false;}
+    AddInfo(FString::Printf(TEXT("ACTUAL reviewed effective cooked geometry SHA1=%s"),*G.CookedGeometrySha1));
     FBox CookedBounds(ForceInit);for(const auto& V:G.Vertices)CookedBounds+=FVector(V);
     FTriMeshCollisionData Selected;const bool SelectedReady=Mesh->GetPhysicsTriMeshData(&Selected,Mesh->GetBodySetup()->bMeshCollideAll);
     FBox SelectedBounds(ForceInit);for(const auto& V:Selected.Vertices)SelectedBounds+=FVector(V);
