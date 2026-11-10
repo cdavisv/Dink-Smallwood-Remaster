@@ -1,0 +1,24 @@
+{
+  "prior_target_world_cm": [
+    97729.63625545749,
+    37512.61084546293,
+    98.34999561309814
+  ],
+  "current_actual_world_cm": [
+    97726.1138697628,
+    37519.1596679113,
+    98.34999561309814
+  ],
+  "translation_delta_cm": 7.4360121330180595,
+  "actual_control_rotation_pitch_yaw_roll": [
+    -18.0,
+    86.1711,
+    0.0
+  ],
+  "actual_actor_rotation_pitch_yaw_roll": [
+    0.0,
+    -146.12498474121094,
+    0.0
+  ],
+  "qualification": "Currentrenderfixturederivedfrompriorbadposeandphysicallysettledabout7.44cmaway. NOTexactbefore/afterpixelpose; actualnativeexact-posefixtureisseparateproof."
+}
