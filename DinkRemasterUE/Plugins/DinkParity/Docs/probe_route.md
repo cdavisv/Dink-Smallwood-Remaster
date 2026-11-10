@@ -77,7 +77,15 @@ Guard robbery, Boots booth `s1-boot.c`, rock `s1-roc`); **the prisoner's cave / 
 Goblin George (`s3-gob.c`); Windemere's other houses and shops; Joppa's axe shop and healer; the Hellfire teacher (`s6-vend.c`,
 1500 gold); the massive sword / massive bow at the Edge church (`s6-st1p.c:26-39, 63-76`, 4000 / 5000 gold; **used in the Seth kit
 table, 2.6 and step 53**); Koka Isle (duck arena `s8-da.c`, FlameBow 25,000 gold `s8-guy.c:47-77`) and the snow castle (`sc-*`); the
-sealed "East Wilds" treasure screen SCR_352 (15 `lgold` + potions; unreachable on foot per `connectivity.json`, UNVERIFIED).
+15 `lgold` of the "East Wilds" treasure screen SCR_352. **SCR_352 itself is on the route** (chapter 1 takes its `ppotion`, chapter 19 its
+`bpotion`, `rpotion`, `gheart`, `apotion`). Since the owner's designed join of 9 Nov 2026 (`tools/analyse/regions.toml` `[[join]]
+cobbler_booth_doorway`) it is reached on foot, as designed (`connectivity.json`, no script warp): Koka Isle bridge SCR_727 -> SCR_759 -> the
+Koka beaches -> door S734_P31 on SCR_734 -> SCR_290 (the booth's Koka room) -> the doorway -> SCR_289 -> door S289_P19 -> SCR_350 -> SCR_351
+-> SCR_352. Before it the 1997 data had no designed way in (the engine's only routes were sequence breaks). **Chapter 1 (after the
+teacher, before Acid Rain):** a player can do it then: the toll is paid (`&story 7`), nothing on the way is gated by story or stats, and
+the Slayers of SCR_663/695 can be bypassed by SCR_566-726; but it is a long detour (27 screens from the SCR_597 potion, through Windemere's
+marshes, over the bridge and across Koka) to a part of the map nothing has sent the player to yet, so it is possible rather than sensible.
+The probe's teleport stands in for that walk (the walk itself is not played: UNVERIFIED on foot), and the potion stays in chapter 1.
 
 The one hard blocker is **Seth** (hp 300, defense 25): see 2.6. The cult, goblins, knights, dragons and the Darklands rooms are winnable only
 by kiting / ranged play or by far higher stats than the route hands out; see 2.5.
@@ -830,7 +838,7 @@ Bible vs script (script wins):
 Not verified (flagged "UNVERIFIED" above): the geometry of every kite (reach vs `sp_distance` / `sp_range`); how many screens of the Edge plateau a real
 walk crosses safely; whether the bomb explosion hurts the thrower; the item-slot count behind `free_items()`; the unopened scripts `box2-sp.c`, `bar-dp.c` beyond the `external`
 lines; the exact attack cadence and animation lengths of the monsters (the Monte Carlo uses `random(4000,0)` + 0.5 s); whether `SCR_680` is walkable from the north with the gate shut
-(`connectivity.json` says yes; the data is advisory because `tools/analyse` is being edited); the hop lists in the steps (same source); SCR_352 reachability; the Terris healer's and
+(`connectivity.json` says yes; the data is advisory because `tools/analyse` is being edited); the hop lists in the steps (same source); the walk to SCR_352 (designed since 9 Nov 2026, through the cobbler's booth; teleported); the Terris healer's and
 Windemere healer's exact price lines (`s2-healp.c`, `s4-healp.c`, read from `shops.json` and a partial read); the Hellfire and massive-sword/bow timing for Seth (kits B and C are computed, not
 played); the probe's current implementation of every blocked-script check named in section 4.
 
