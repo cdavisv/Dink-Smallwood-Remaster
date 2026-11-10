@@ -1,5 +1,7 @@
 {
-  "path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraft",
-  "INDEX_sha256": "9a9ecf57d09fb12d58ea3660701442f15225a1d7c64e4a122cdc58b4a268e984",
-  "qualification": "Originalpending-full draft retainedimmutable; V2addsactualfullresult/currentpendingpackagedgatesonly"
+  "origin": "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Docs/Verification/OutdoorPortalCamera/Evidence",
+  "published_source_HEAD": "1dc16ba6d87e031e7b3075e4e59f57df64f2cc8b",
+  "published_compact_INDEX_sha256": "68bbc45bc43778c8a10993a55db8f119b887d57e71a4f9a7a89b6d8660f9e55e",
+  "raw_offtree_predecessor": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2",
+  "qualification": "PublishedcompactEditor/nativeevidencecopiedexact; rawV2immutable. This successoraddsactualpackageproofs only, notrawsceneinventory."
 }

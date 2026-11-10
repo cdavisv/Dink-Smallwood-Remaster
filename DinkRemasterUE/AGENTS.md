@@ -1,3 +1,9 @@
+## Outdoor camera: packaged validation complete; review/CI/merge pending
+
+PR57, branch `fix/outdoor-portal-camera`, checkout `/home/davisc/Work/DinkOutdoorPortalCamera`. Production remains exact testedbac0029; later commits are docs/proof only. Own builds, native9/full201 (169clean+32warning successes), Editor real-W spawn/door checks, normal cook315.274s/13703unchanged, four validated Vulkan shaders, actual UFS/container inventory and packagedCH1 pass. Actual package retains644Visual/612Debug/73roof/7worldmaps/cottage and five exact UFS Art JSON files.
+
+PackagedGPU209 run086c11ca-55d7-4bf1-9767-00fbe48db2e3 passes five real-W waypoints and exit/return before Goto, seven screenshots reviewed by both Root/driver and56 fresh native GETALL reads. Owner/SHA, near10, cap/lift/feasibility and free400/indoor240 restore are proven. Both GPU sessions record actual game/display0 but outer-tool143 after completion; cause unproven, independently reviewed and explicitly qualified. Original failures/warnings/observer correction and7.44cm pose qualification remain. Evidence has complete INDEX/origins; raw off-tree packets are unchanged. Older pending statements below are historical. Final review/CI/merge remain; broader collision and final art/lighting are unfinished, MotherPR58 unactivated.
+
 ## Outdoor doorway camera: Editor/native/real-input validation passed; package pending
 
 Branch `fix/outdoor-portal-camera` at `/home/davisc/Work/DinkOutdoorPortalCamera`, PR57. Runtime tested at `bac00294966efbc0af013cc443eb70e8a6f6e946` after accepted master868911; this publication changes docs/proof only. Own Editor/Game builds pass. All201 current native tests complete successfully (169 clean,32 with retained warnings), with13645 inputs unchanged. Focused9 warm cases pass; the first cold run retains two readiness failures during distance-field compilation, with assertions/timeouts unchanged.

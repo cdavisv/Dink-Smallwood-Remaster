@@ -1,3 +1,13 @@
+# Outdoor doorway camera: packaged validation complete
+
+Own builds, focused9/full201 native regression, Editor real-input checks, normal cook, four shader validations, exact UFS/container inventory, packagedCH1 and packaged real-input camera testing pass. The packaged run includes original-spawn traversal before any fixture relocation, seven reviewed screenshots and56 native property reads proving portal binding and camera reset. See Evidence/INDEX.json and ORIGINS.json.
+
+Both GPU outer tools returned143 after recording game/display0; causes remain unproven and qualified, with independent review finding no concrete sender/cause. Failures, warnings and settled-pose qualifications remain explicit. Final exact-head review/CI/merge are pending. This is a bounded camera improvement; broader collision and final house art/lighting are incomplete.
+
+## Historical validation record
+
+Earlier pending wording below is superseded by this summary and current evidence.
+
 # Outdoor doorway camera
 
 A clear collision sweep through the cottage doorway could leave an outdoor camera inside the dark shell. The optional sidecar binds the exact authored cottage component, mesh/source provenance and physical doorway envelope. It limits presentation distance at the exterior lip and reuses physically swept head framing. Original collision, materials, controls and requested zoom remain unchanged; ownership, reset and infeasible paths are explicit.
