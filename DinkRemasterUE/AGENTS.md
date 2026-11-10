@@ -1,3 +1,11 @@
+## Outdoor camera final validation — ready for merge
+
+Branch `fix/outdoor-camera-headroom` tested at73ccdbe including mastere417/HeroGrowth/booth. Full192/192 completed,0failed (160clean+32HTTP/EOSwarningtests); focused3/3clean, own Editor/Game pass. Latest actualGPU147.32s/8PNGs/12634unchanged: realWexit1→439/return439→1 PASS, scripts/input enabled; lift49.2714cm/fullhead visible, samecottageCameraBLOCK/sweep error0, interior/free0lift/free400cm. Ownprocess/displaynormalclosure verified. Four source-file review hashes unchanged. Docs/Verification/OutdoorCameraHeadroom contains portable summaries/latest3screenshots. Earlier sections below are historical checkpoints; their pending statements are superseded here. PR49 publication/merge to be checked on GitHub. Final art and actual fitted barrels remain separate unfinished work.
+
+## Outdoor headroom camera fix (9 November2026)
+
+Branch `fix/outdoor-camera-headroom`, isolated worktree `/home/davisc/Work/DinkOutdoorCameraHeadroom`, basefbf060bb. Bounded projection-derived outdoor vertical pivot lift preserves Camera collision/exterior face clearance; no lateral wall bypass or Data/art/warp changes. Own Editor/Game compiled, focused3/3passed (39HTTPwarnings ondoor), actualGPU8photos/realWexitreturnPASS. Exit52.1176cm lift/fullhead visible/samecottageCameraBLOCK; indoor+free0lift/free400cm. Cache-store diagnostics retained. See Docs/Verification/OutdoorCameraHeadroom and screenshot hashes. Full baseline is pending before merge; do not equate focused/GPU success with fullsuite completion. Runtime source frozen after this local commit; native verification may reuse actual compiled bytes with fresh source/doc epoch.
+
 # AGENTS.md
 
 ## Hero growth: Dink's body language follows his level (9 November 2026 UTC)

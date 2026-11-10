@@ -1,0 +1,95 @@
+{
+  "tested_commit": "73ccdbe",
+  "run": "566fd899-559a-40e0-9c4a-831349c14346",
+  "result": {
+    "exit_code": 0,
+    "elapsed": 147.3194486900029,
+    "inputs_unchanged": 12634,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "routes": {
+    "door-exit": {
+      "result": "PASS",
+      "samples": 9
+    },
+    "door-return": {
+      "result": "PASS",
+      "samples": 3
+    }
+  },
+  "camera": {
+    "door-exit": {
+      "headroom": {
+        "outdoor_headroom_lift": 49.27143096923828,
+        "capsule_top_world": [
+          97729.20277042112,
+          37517.42792293769,
+          194.34999561309814
+        ],
+        "projected_capsule_top_pixel": [
+          639.9999389648438,
+          73.86772155761719
+        ],
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      "blocking": true,
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "trace_prediction_error_cm": 0.0,
+      "camera_distance_cm": 137.31245289378464
+    },
+    "door-return-settled": {
+      "headroom": {
+        "outdoor_headroom_lift": 0.0,
+        "capsule_top_world": [
+          -183808.99641683913,
+          393548.0398453504,
+          194.0
+        ],
+        "projected_capsule_top_pixel": [
+          458.330078125,
+          191.06112670898438
+        ],
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      "blocking": false,
+      "mesh": null,
+      "trace_prediction_error_cm": 0.0,
+      "camera_distance_cm": 264.65461351828293
+    },
+    "outside-free": {
+      "headroom": {
+        "outdoor_headroom_lift": 0.0,
+        "capsule_top_world": [
+          98271.87933333335,
+          37636.58733333333,
+          194.34999561309814
+        ],
+        "projected_capsule_top_pixel": [
+          640.0,
+          202.2157745361328
+        ],
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      "blocking": false,
+      "mesh": null,
+      "trace_prediction_error_cm": 0.0,
+      "camera_distance_cm": 399.99999999999443
+    }
+  },
+  "normal_process_and_display_closure": true,
+  "screenshots": {
+    "door-exit.png": "140ae7780115e84f2aa53543086bf1a9997b8405425dc662f5d9a73b36938cd1",
+    "door-return-settled.png": "da0f32f3c1a2bae122d141bd147c185b55ebd58859f3ec2b4b3a251f5f6b8d00",
+    "outside-free.png": "78f19bbed226316e5af3a3cad94c5cfd61750f4deb3ffb284bc67434b52185bd"
+  }
+}
