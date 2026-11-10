@@ -47,11 +47,11 @@ By region:
 | edge_of_the_world | 0 | 166 | 565 | 18 | 749 | 22.2 |
 | terris_wilds | 0 | 148 | 397 | 12 | 557 | 26.6 |
 | windemere | 0 | 156 | 314 | 13 | 483 | 32.3 |
-| koka_isle | 0 | 41 | 409 | 4 | 454 | 9.0 |
+| koka_isle | 0 | 43 | 432 | 6 | 481 | 8.9 |
 | darklands | 0 | 12 | 430 | 1 | 443 | 2.7 |
 | terris | 0 | 51 | 370 | 21 | 442 | 11.5 |
 | kernsin | 0 | 33 | 368 | 15 | 416 | 7.9 |
-| east_wilds | 0 | 187 | 201 | 6 | 394 | 47.5 |
+| east_wilds | 0 | 185 | 178 | 4 | 367 | 50.4 |
 | joppa_isle | 0 | 23 | 350 | 10 | 383 | 6.0 |
 | windemere_wilds | 0 | 103 | 160 | 6 | 269 | 38.3 |
 | snow_castle | 0 | 1 | 254 | 4 | 259 | 0.4 |
@@ -64,6 +64,8 @@ By region:
 | unattached_interiors | 0 | 44 | 3 | 0 | 47 | 93.6 |
 | cast_camp | 0 | 8 | 35 | 0 | 43 | 18.6 |
 | fragments | 0 | 0 | 1 | 0 | 1 | 0.0 |
+
+**East Wilds and the booth (9 Nov 2026, owner decision):** the cobbler's booth is one interior since `tools/analyse` regions.toml `[[join]] cobbler_booth_doorway` (a doorway between SCR_290, the Koka room, and SCR_289, whose door S289_P19 leads to the East Wilds). SCR_289 and its 27 rows moved from `east_wilds` to `koka_isle` with the booth (east_wilds 394 -> 367 rows, koka_isle 454 -> 481; totals unchanged). The East Wilds' placeholders are now legitimately reachable content, not sealed-off scenery: 22 of its 55 screens (the meadows of rows 8-11, SCR_352's treasure, the SCR_349 save machine) are reached by design through the booth; the 24 river/coast screens of rows 12-20 are still reached only by wading in the 1997 engine and 9 by nothing.
 
 All 143 bespoke finals are in Stonebrook, on five screens: 1 (Dink's house), 407 (pig pen), 438 and 471 (fields), 439 (cottage yard). The 1,326 family finals are spread over every region but the one-placement `fragments`.
 

@@ -191,7 +191,7 @@ signs = ["To Edge Of The World Village"]
 
 [[area]]
 region = "east_wilds"
-name = "East Wilds (no designed entrance)"
+name = "East Wilds (entered from the cobbler's booth)"
 sub_area = "Cobbler's meadows"
 kind = "wilderness"
 sheet = "mainland"
@@ -367,11 +367,12 @@ screens = [163, 257, 258, 259]
 name = "Joppa tunnel (Windemere house cellar to Joppa)"
 kind = "dungeon"
 [[interior]]
-screens = [289]
-name = "Cobbler's booth, west room (door out to the East Wilds)"
-[[interior]]
-screens = [290]
-name = "Cobbler's booth (door from Koka Isle)"
+# One interior since the designed join below (owner decision, 9 Nov 2026). Region koka_isle: the
+# booth is entered from Koka Isle (S734_P31 -> SCR_290); its west room's door S289_P19 is the exit
+# that leads to the East Wilds (SCR_350). The two outdoor doors tie the region vote, hence explicit.
+screens = [289, 290]
+name = "Cobbler's booth (Koka door east room, East Wilds door west room)"
+region = "koka_isle"
 [[interior]]
 screens = [73]
 name = "Snow castle"
@@ -384,3 +385,49 @@ kind = "dungeon"
 [[interior]]
 screens = [6]
 name = "Martridge's house"
+
+# ---------------------------------------------------------------------------
+# Designed joins: owner decisions that change the 1997 map data for the remaster. The build
+# applies them to its in-memory copy of the stage-1 IR before anything else (tile numbers and
+# hardness of the named screens; tools/dinkex/out is never written) and writes the resolved join
+# to connectivity.json `designed_joins`, which Scripts/export_import_bundle.py applies to the
+# greybox the same way. Each side names
+#   tiles = [[col, row, tile], ...]  tiles that become floor: each must be a void tile in the
+#                                    1997 data and `tile` a non-void tile used on the same screen
+#   open  = [x0, y0, x1, y1]         map pixels (half-open) set to hardness 0: the passage. It must
+#                                    lie on floor tiles (after the change), touch the shared edge
+#                                    and hold no warp hardness (code 200)
+# The hardness-0 pixels of the named tiles within 2 px of the passage become code 1 (solid): the
+# doorway's jambs, so the passage does not open into the void around the rooms (the rest of the
+# void is untouched). The build stops on any violation, and when the join does not produce a
+# walkable crossing between the two screens.
+[[join]]
+id = "cobbler_booth_doorway"
+decided = "2026-11-09"
+decided_by = "owner"
+screens = [289, 290]
+reason = """Owner decision, 9 Nov 2026: reconnect the East Wilds through the cobbler's booth. The 1997 data \
+gives the East Wilds (cols 27-31, rows 8-20) no designed entrance: its only door is S289_P19 in \
+the booth's west room (SCR_289), a room nothing leads to except that door's own return \
+(S350_P09); the engine reaches it only by the cliff/row-wrap and sea-leak sequence breaks. The \
+two booth rooms SCR_289 and SCR_290 are grid neighbours whose wood floors are two void tiles \
+apart (SCR_289 col 11, SCR_290 col 0). The remaster makes the booth one interior with a doorway \
+there, keeps all East Wilds content and rewards, and leaves the glitch routes as they are. The \
+doorway: rows 1-3 are wood on both sides (SCR_289's floor is cols 1-10 only in rows 1-3), and \
+SCR_289's door S289_P19 fills its east wall at y 125-176 (warp hardness x 521-600), so the \
+passage runs below the door: y 176-214, which also floors SCR_289 (9-11, 4) and SCR_290 (0, 4) \
+(coordinator, 9 Nov 2026: the decision is a usable doorway, the rows are a working detail; 22 px \
+under the door left only about 2 px clear of the greybox's door trigger, the hardbox plus 30 \
+cm). On SCR_289 it cuts the wall hardboxes S289_P11 and S289_P12; on SCR_290 the west wall \
+(S290_P10 and the top of S290_P14) is cut from y 125 to 214, so the opening faces the door and \
+the passage. 2 px jambs keep it apart from the void."""
+
+[[join.side]]
+screen = 289
+tiles = [[11, 1, 18], [11, 2, 6], [11, 3, 18], [9, 4, 18], [10, 4, 19], [11, 4, 6]]   # the room's 6/7/18/19 floor pattern
+open = [480, 176, 600, 214]
+
+[[join.side]]
+screen = 290
+tiles = [[0, 1, 19], [0, 2, 7], [0, 3, 19], [0, 4, 7]]
+open = [0, 125, 97, 214]     # the wall's whole height facing the door, and the passage

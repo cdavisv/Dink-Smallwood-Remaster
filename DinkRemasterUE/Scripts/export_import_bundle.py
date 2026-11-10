@@ -10,7 +10,8 @@ byte-identical files, so the importer's hashes (and therefore its "no drift" che
 Inputs (all regenerable, git-ignored `out/` folders of the data repo's tools; see its AGENTS.md):
   tools/dinkex/out/screens/*.json, hardness/*.png, tiles/*.png, sprites/<seq>/<NN>.png
   tools/analyse/out/world_layout.json, warps.json, interiors.json, encounters.json,
-                    vision_variants.json, regions.csv, connectivity.json
+                    vision_variants.json, regions.csv, connectivity.json (incl. `designed_joins`: owner
+                    decisions such as the cobbler's booth doorway, applied to tiles and hardness here)
   tools/data/sprite_classes.csv, tile_classes.csv
   tools/dinkc/out/script_kinds.csv, ast/*.json
 
@@ -210,6 +211,47 @@ def label_components(mask: np.ndarray):
     return labels, len(remap)
 
 
+# Designed joins (tools/analyse regions.toml [[join]], resolved in connectivity.json `designed_joins`): owner
+# decisions that change the 1997 map for the remaster, applied here exactly as tools/analyse/analyse/joins.py applies
+# them to its own copy, so components, fills and collision agree with the analysis. Per side: the named void tiles
+# take the named floor tile (number, tileset cell and source rectangle of that tile elsewhere on the screen); the
+# `open` rectangle becomes hardness 0 (the passage); free pixels of the named tiles within JAMB_PX of it become
+# hardness 1 (the jambs that keep the passage apart from the void, which is still filled solid).
+JOIN_JAMB_PX = 2
+
+
+def join_tiles(scr: dict, side: dict) -> None:
+    by_num = {}
+    for t in scr["tiles"]:
+        by_num.setdefault(t["num"], t)
+    for jt in side["tiles"]:
+        i = jt["row"] * 12 + jt["col"]
+        old = scr["tiles"][i]
+        if old["num"] != jt["from"]:
+            raise SystemExit(f"EXPORT FAILED: designed join on {scr['id']}: tile ({jt['col']}, {jt['row']}) is {old['num']}, "
+                             f"connectivity.json says {jt['from']} (stale tools/analyse output?)")
+        new = dict(by_num[jt["to"]])
+        for k in ("id", "index", "col", "row", "x", "y"):
+            new[k] = old[k]
+        scr["tiles"][i] = new
+
+
+def join_hardness(hard: np.ndarray, side: dict) -> np.ndarray:
+    x0, y0, x1, y1 = side["open"]
+    out = hard.copy()
+    opened = np.zeros(hard.shape, bool)
+    opened[y0:y1, x0:x1] = True
+    tiles = np.zeros(hard.shape, bool)
+    for jt in side["tiles"]:
+        tiles[jt["row"] * 50:(jt["row"] + 1) * 50, jt["col"] * 50:(jt["col"] + 1) * 50] = True
+    ring = np.zeros(hard.shape, bool)
+    ring[max(0, y0 - JOIN_JAMB_PX):min(400, y1 + JOIN_JAMB_PX), max(0, x0 - JOIN_JAMB_PX):min(600, x1 + JOIN_JAMB_PX)] = True
+    closed = tiles & (hard == 0) & ring & ~opened
+    out[opened] = 0
+    out[closed] = 1
+    return out
+
+
 def read_index_png(path: Path) -> np.ndarray:
     img = Image.open(path)
     if img.mode != "P" and img.mode != "L":
@@ -389,6 +431,10 @@ def main(argv=None) -> int:
     reached_centroids = {}
     for sid, comps in connectivity["components"].items():
         reached_centroids[sid] = [c for c in comps if c.get("reached")]
+    join_sides = {}
+    for j in connectivity.get("designed_joins", []):
+        for side in j["sides"]:
+            join_sides.setdefault(side["screen"], []).append(side)
 
     def group_of(sheet: str) -> str:
         if sheet.startswith("interior:"):
@@ -435,6 +481,8 @@ def main(argv=None) -> int:
             continue
         corners = lay["corners"]
         reg = regions_csv.get(sid, {})
+        for side in join_sides.get(sid, []):
+            join_tiles(scr, side)
 
         # --- ground image from the tile layer
         ground = Image.new("RGB", (600, 400), (255, 0, 255))
@@ -455,6 +503,8 @@ def main(argv=None) -> int:
         hard = read_index_png(dinkex / scr["hardness"]["image"])
         if hard.shape != (400, 600):
             problems.append(f"{sid}: hardness image is {hard.shape}, expected (400, 600)")
+        for side in join_sides.get(sid, []):
+            hard = join_hardness(hard, side)
         walk = hard == 0
         labels, ncomp = label_components(walk)
         # terrain group per pixel (tile = 50x50), class per component = group with most pixels
@@ -855,6 +905,9 @@ def main(argv=None) -> int:
         "rect_total": rect_total,
         "seams_in_links": len(seams),
         "fill_conflicts": fill_conflicts,
+        "designed_joins": [{"id": j["id"], "decided": j["decided"], "screens": j["screens"],
+                            "open": {sd["screen"]: sd["open"] for sd in j["sides"]}}
+                           for j in connectivity.get("designed_joins", [])],
         "overlaps": [{"area_m2": a, "a": x, "b": y} for a, x, y in overlaps],
         "excluded_screens": excluded,
         "problems": problems,
