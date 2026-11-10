@@ -1,0 +1,10 @@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+[ALSOFT] (EE) Failed to connect PipeWire event context (errno: 1)
+00:00.219  blend            | Read blend: "/home/artist/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/SuccessorV2/Fireplace_SharedContractV2.blend"
+00:00.589  blend            | Read blend: "/home/artist/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/FiredClayV3/Fireplace_FiredClayV3.blend"
+Traceback (most recent call last):
+  File "/home/artist/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/FiredClayV3/verify_source.py", line 36, in <module>
+    assert not flue,flue
+           ^^^^^^^^
+AssertionError: [{'x': -0.25, 'y': 0.02, 'hit': [-0.25, 0.019999999552965164, 1.6389999389648438]}, {'x': -0.25, 'y': 0.115, 'hit': [-0.25, 0.11500000208616257, 1.6599998474121094]}, {'x': -0.25, 'y': 0.22, 'hit': [-0.25, 0.2199999988079071, 1.639337182044983]}, {'x': 0, 'y': 0.02, 'hit': [0.0, 0.019999999552965164, 1.6599998474121094]}, {'x': 0, 'y': 0.115, 'hit': [0.0, 0.11500000208616257, 1.6599998474121094]}, {'x': 0, 'y': 0.22, 'hit': [0.0, 0.2199999988079071, 1.6599998474121094]}, {'x': 0.25, 'y': 0.02, 'hit': [0.25, 0.019999999552965164, 1.6389999389648438]}, {'x': 0.25, 'y': 0.115, 'hit': [0.25, 0.11500000208616257, 1.6599998474121094]}, {'x': 0.25, 'y': 0.22, 'hit': [0.25, 0.2199999988079071, 1.6389999389648438]}]
+pa_write() failed while trying to wake up the mainloop: Operation not permitted

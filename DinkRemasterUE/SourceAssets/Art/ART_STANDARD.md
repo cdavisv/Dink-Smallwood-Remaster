@@ -50,8 +50,11 @@ Static meshes (props, kit modules, foliage, buildings, doors, weapons) use mater
 | `MI_Shared_LimeMortar2m` | reusable lime mortar and masonry backing | `SharedMaterials/manifest.json` |
 | `MI_Shared_Soot2m` | reusable soot, carbonized fuel and fire-exposed lining | `SharedMaterials/manifest.json` |
 | `MI_Shared_FieldstoneCoursed2m` | reusable continuous coursed fieldstone masonry | `SharedMaterials/manifest.json` |
+| `MI_Shared_FiredClay2m` | reusable joint-free fired clay with generic soot coverage | `SharedMaterials/manifest.json` |
+| `MI_Shared_FiredClayMasonry2m` | reusable coursed fired-clay masonry with generic soot coverage | `SharedMaterials/manifest.json` |
 
-The architectural roles use `ArchitecturalSurfaces2mV1`; the three direct mineral/masonry roles `LimeMortar2m`, `Soot2m` and `FieldstoneCoursed2m` use `MineralMasonry2mV1`. Multi-variant parents use explicit ordinary UV/color selectors declared in the library; no house-position lookup or prop UV atlas is permitted. Source registration grants no native or final appearance approval.
+
+The architectural roles use `ArchitecturalSurfaces2mV1`; the three direct mineral/masonry roles `LimeMortar2m`, `Soot2m` and `FieldstoneCoursed2m` use `MineralMasonry2mV1`. The fired-clay roles use `FiredClay2mV1`; their standard vertex-color alpha controls soot coverage while surface opacity remains1. Multi-variant parents use explicit ordinary UV/color selectors declared in the library; no house-position lookup or prop UV atlas is permitted. Source registration grants no native or final appearance approval.
 
 The derived shared camera variants `MI_Shared_OakLonggrain2m_CameraMasked`, `MI_Shared_OakEndgrain2m_CameraMasked` and `MI_Shared_LimePlaster2m_CameraMasked` use those same three texture sets and the existing opacity/shadow convention. Native import and final camera alias activation remain separate review gates.
 

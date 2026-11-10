@@ -1,0 +1,255 @@
+asset (package:name)                                                    class               delivered  tris/hard cap    tex/cap    violations
+Characters:SK_Dink                                                      character_hero      yes        31,688/70,000    -/4096     family: delivered (/Game/Dink/Hero/SK_Dink), declares no sprite family
+Characters:SK_Dink_Hands                                                character_hero      yes        31,688/70,000    -/4096     family: delivered (/Game/Dink/Hero/Refinements/SK_Dink_Hands), declares no sprite family
+Characters:SK_Milder                                                    character_humanoid  yes        32,674/35,000    -/4096     family: delivered (/Game/Dink/NPC/Milder/SK_Milder), declares no sprite family
+Characters:SK_Mother                                                    character_humanoid  yes        32,164/35,000    -/4096     family: delivered (/Game/Dink/NPC/Mother/SK_Mother), declares no sprite family
+Creatures/Pig:SK_Pig                                                    creature_quadruped  yes        19,266/30,000    -/2048     family: delivered (/Game/Dink/Creatures/Pig/SK_Pig), declares no sprite family
+Creatures/Pillbug:SK_Pillbug                                            creature            yes        24,000/60,000    -/4096     family: delivered (/Game/Dink/Creatures/Pillbug/SK_Pillbug), declares no sprite family
+PigPen:SM_FeedScatter_Wheat_01                                          prop_small          yes        1,280/5,000      -/2048     material: not in the library: MI_PigPen_Wheat; family: delivered (/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01), declares no sprite family
+Stonebrook:SM_Candle_Iron_01                                            prop_small          yes        1,020/5,000      1024/2048  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01), declares no sprite family
+Stonebrook:SM_Ceiling_Oak_2m_01                                         kit_ceiling         yes        972/4,000        1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01), declares no sprite family
+Stonebrook:SM_Doorway_Limewash_4m_01                                    kit_piece           yes        972/10,000       1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01), declares no sprite family
+Stonebrook:SM_FeedSack_Jute_01                                          prop                yes        2,588/20,000     1024/2048  family: delivered (/Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01), declares no sprite family
+Stonebrook:SM_Fireplace_Fieldstone_01                                   prop_large          yes        13,216/60,000    1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Fireplace_Fieldstone_01), declares no sprite family
+Stonebrook:SM_Floor_Oak_2m_01                                           kit_floor           yes        2,624/4,000      1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01), declares no sprite family
+Stonebrook:SM_Pie_Rustic_01                                             prop_small          yes        4,196/5,000      1024/2048  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01), declares no sprite family
+Stonebrook:SM_Wall_Limewash_2m_01                                       kit_wall            yes        864/8,000        1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01), declares no sprite family
+Stonebrook:SM_Window_Limewash_2m_01                                     kit_wall            yes        1,296/8,000      1024/4096  family: delivered (/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01), declares no sprite family
+Stonebrook/Refinements/FireplaceV2:SM_Fireplace_Stonebrook_V2           prop_large          no         15,484/60,000    2048/4096  material: not in the library: MI_FireplaceV2_Atlas
+Stonebrook/Refinements/PhotorealBarrelV1:SM_Barrel_Oak_01               prop                yes        16,648/20,000    2048/2048  material: not in the library: MI_Barrel_Oak_01_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01), declares no sprite family
+Stonebrook/Refinements/PhotorealBasketV1:SM_Basket_Wicker_01            prop                yes        19,680/20,000    2048/2048  material: not in the library: MI_Basket_Wicker_01_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01), declares no sprite family
+Stonebrook/Refinements/PhotorealCandleV1:SM_Candle_Iron_01              prop_small          no         4,870/5,000      2048/2048  material: not in the library: MI_Candle_IronChar_PhotoBaked, MI_Candle_Wax_PhotoBaked
+Stonebrook/Refinements/PhotorealFeedSackV1:SM_FeedSack_Jute_01          prop                yes        19,644/20,000    2048/2048  material: not in the library: MI_FeedSack_Cord_PhotoBaked, MI_FeedSack_Jute_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01), declares no sprite family
+Stonebrook/Refinements/PhotorealPieV1:SM_Pie_Rustic_01                  prop_small          no         4,844/5,000      2048/2048  material: not in the library: MI_Pie_BlueCeramic_PhotoBaked, MI_Pie_PastryFruit_PhotoBaked
+Stonebrook/Refinements/PhotorealPropsV1:SM_Bed_Oak_01                   prop                yes        19,588/20,000    2048/2048  material: not in the library: MI_Bed_Oak_01_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01), declares no sprite family
+Stonebrook/Refinements/PhotorealPropsV1:SM_Chair_Oak_01                 prop                yes        6,064/20,000     2048/2048  material: not in the library: MI_Chair_Oak_01_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01), declares no sprite family
+Stonebrook/Refinements/PhotorealPropsV1:SM_Table_Oak_01                 prop                yes        9,232/20,000     2048/2048  material: not in the library: MI_Table_Oak_01_PhotoBaked; family: delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01), declares no sprite family
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_House440_01    building            no         114,354/200,000  2048/4096  material: not in the library: MI_Shared_House440_Glass_Tile, MI_Shared_House440_Mortar_Tile, MI_Shared_House440_Oak_Tile, MI_Shared_House440_Stone_Tile, MI_Shared_House440_Thatch_Tile
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_Willow_01      foliage             no         24,846/25,000    2048/2048  material: not in the library: MI_Shared_Willow_Bark, MI_Shared_Willow_Leaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM2_YM2_01  building            no         276/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM3_YM1_01  building            no         360/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM3_YM2_01  building            no         360/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM4_YM1_01  building            no         320/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM4_YM2_01  building            no         200/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM5_YM1_01  building            no         208/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM5_YM2_01  building            no         72/200,000       2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP1_YM1_01  building            no         120/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP1_YM2_01  building            no         88/200,000       2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP2_YM1_01  building            no         200/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP2_YM2_01  building            no         240/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP3_YM1_01  building            no         108/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP3_YM2_01  building            no         324/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP4_YM2_01  building            no         152/200,000      2048/4096  material: not in the library: MI_Shared_Ground_WetBank
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP2_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP3_01  building            no         40/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP1_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP2_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP3_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP1_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP2_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP3_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP1_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP2_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP3_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP1_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP2_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP3_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP1_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP2_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP3_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP1_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP2_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP3_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP2_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP3_01  building            no         40/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP1_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP2_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP3_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP1_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP2_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP3_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP1_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP2_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP3_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP2_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP3_01  building            no         40/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YM1_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YP0_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YP1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YM1_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YP0_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YP1_01  building            no         76/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YM1_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YP0_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YP1_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YM1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YP0_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YP1_01  building            no         40/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM2_YM1_01  building            no         56/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM2_YM2_01  building            no         72/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM3_YM1_01  building            no         124/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM3_YM2_01  building            no         140/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM4_YM1_01  building            no         92/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM4_YM2_01  building            no         92/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM5_YM1_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM5_YM2_01  building            no         52/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP1_YM1_01  building            no         24/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP1_YM2_01  building            no         56/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP2_YM1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP2_YM2_01  building            no         124/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP3_YM1_01  building            no         92/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP3_YM2_01  building            no         104/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP4_YM1_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP4_YM2_01  building            no         24/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM2_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM3_01  building            no         104/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM4_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM2_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM3_01  building            no         136/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM4_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM2_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM3_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM4_01  building            no         92/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM2_01  building            no         16/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM3_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM4_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM2_01  building            no         52/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM3_01  building            no         136/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM4_01  building            no         112/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM2_01  building            no         20/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM3_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM4_01  building            no         40/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM2_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM3_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM4_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM2_01  building            no         36/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM3_01  building            no         104/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM4_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM2_01  building            no         20/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM3_01  building            no         48/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM4_01  building            no         28/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM2_01  building            no         52/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM3_01  building            no         136/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM4_01  building            no         88/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM2_01  building            no         44/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM3_01  building            no         116/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM4_01  building            no         68/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM2_01  building            no         36/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM3_01  building            no         104/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM4_01  building            no         60/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Meadow
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM2_YM2_01  foliage             no         42/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM2_YM3_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM3_YM2_01  foliage             no         63/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM4_YM1_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM5_YM2_01  foliage             no         63/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM6_YM1_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP1_YM1_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP2_YM2_01  foliage             no         42/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP3_YM1_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP3_YM2_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM1_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM2_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM3_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP5_YM2_01  foliage             no         21/25,000        1024/2048  material: not in the library: MI_Shared_Ground_ReedLeaf
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM2_YM2_01  building            no         184/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM3_YM1_01  building            no         304/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM3_YM2_01  building            no         288/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM4_YM1_01  building            no         296/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM4_YM2_01  building            no         300/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM5_YM1_01  building            no         212/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM5_YM2_01  building            no         92/200,000       2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP1_YM1_01  building            no         140/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP1_YM2_01  building            no         112/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP2_YM1_01  building            no         288/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP2_YM2_01  building            no         292/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP3_YM1_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP3_YM2_01  building            no         268/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP4_YM2_01  building            no         100/200,000      2048/4096  material: not in the library: MI_Shared_Ground_Water
+StonebrookExterior:SM_Cottage_Stonebrook_01                             building            yes        113,788/200,000  1024/4096  family: delivered (/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01), declares no sprite family
+StonebrookFields:SM_Fields_438_Water_05_04_00                           kit_floor           yes        28/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_438_Water_05_05_00                           kit_floor           yes        28/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_438_Water_06_04_00                           kit_floor           yes        72/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_438_Water_06_05_00                           kit_floor           yes        48/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_438_Water_07_04_00                           kit_floor           yes        72/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_438_Water_07_05_00                           kit_floor           yes        48/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_00_02_00                           kit_floor           yes        20/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_00_03_00                           kit_floor           yes        8/4,000          -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_01_02_00                           kit_floor           yes        64/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_01_03_00                           kit_floor           yes        36/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_02_02_00                           kit_floor           yes        36/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_02_03_00                           kit_floor           yes        40/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_03_02_00                           kit_floor           yes        64/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_03_03_00                           kit_floor           yes        40/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_04_01_00                           kit_floor           yes        88/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_04_02_00                           kit_floor           yes        80/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_04_03_00                           kit_floor           yes        44/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_05_01_00                           kit_floor           yes        48/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_05_02_00                           kit_floor           yes        12/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_05_03_00                           kit_floor           yes        36/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_06_01_00                           kit_floor           yes        52/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_06_02_00                           kit_floor           yes        68/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_06_03_00                           kit_floor           yes        72/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_07_01_00                           kit_floor           yes        52/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_07_02_00                           kit_floor           yes        40/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_08_01_00                           kit_floor           yes        44/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_08_02_00                           kit_floor           yes        40/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_09_01_00                           kit_floor           yes        60/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_09_02_00                           kit_floor           yes        44/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_10_01_00                           kit_floor           yes        16/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Fields_471_Water_10_02_00                           kit_floor           yes        20/4,000         -/4096     material: not in the library: MI_Fields_StreamWater
+StonebrookFields:SM_Pine_Stonebrook_V3                                  foliage             yes        22,270/25,000    -/2048     material: not in the library: MI_PineV3_Bark, MI_PineV3_Sprays
+
+By violation (assets):
+   100  material not in the library: MI_Shared_Ground_Meadow
+    31  material not in the library: MI_Fields_StreamWater
+    23  family   delivered (...), declares no sprite family
+    14  material not in the library: MI_Shared_Ground_ReedLeaf
+    14  material not in the library: MI_Shared_Ground_Water
+    14  material not in the library: MI_Shared_Ground_WetBank
+     1  material not in the library: MI_Barrel_Oak_01_PhotoBaked
+     1  material not in the library: MI_Basket_Wicker_01_PhotoBaked
+     1  material not in the library: MI_Bed_Oak_01_PhotoBaked
+     1  material not in the library: MI_Candle_IronChar_PhotoBaked, MI_Candle_Wax_PhotoBaked
+     1  material not in the library: MI_Chair_Oak_01_PhotoBaked
+     1  material not in the library: MI_FeedSack_Cord_PhotoBaked, MI_FeedSack_Jute_PhotoBaked
+     1  material not in the library: MI_FireplaceV2_Atlas
+     1  material not in the library: MI_Pie_BlueCeramic_PhotoBaked, MI_Pie_PastryFruit_PhotoBaked
+     1  material not in the library: MI_PigPen_Wheat
+     1  material not in the library: MI_PineV3_Bark, MI_PineV3_Sprays
+     1  material not in the library: MI_Shared_House440_Glass_Tile, MI_Shared_House440_Mortar_Tile, MI_Shared_House440_Oak_Tile, MI_Shared_House440_Stone_Tile, MI_Shared_House440_Thatch_Tile
+     1  material not in the library: MI_Shared_Willow_Bark, MI_Shared_Willow_Leaf
+     1  material not in the library: MI_Table_Oak_01_PhotoBaked
+
+Checked 446 source assets from 162 JSON files under SourceAssets/Art; 293 delivered meshes matched; library 29 materials; 18 family bindings.
+Violations: 202 assets, family 23, material 186
+Warnings (over the soft target, under the hard cap): 27
+WARNING: Characters:SK_Milder: 32,674 LOD0 triangles > character_humanoid soft target 20,000 (hard cap 35,000)
+WARNING: Characters:SK_Mother: 32,164 LOD0 triangles > character_humanoid soft target 20,000 (hard cap 35,000)
+WARNING: Creatures/Pig:SK_Pig: 19,266 LOD0 triangles > creature_quadruped soft target 15,000 (hard cap 30,000)
+WARNING: Stonebrook:SM_Barrel_Oak_01: 10,472 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook:SM_Basket_Wicker_01: 9,692 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook:SM_Bed_Oak_01: 7,744 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook:SM_Floor_Oak_2m_01: 2,624 LOD0 triangles > kit_floor soft target 1,000 (hard cap 4,000)
+WARNING: Stonebrook:SM_Pie_Rustic_01: 4,196 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)
+WARNING: Stonebrook/Refinements/FireplaceFiredClayV3:SM_Fireplace_Stonebrook_V3Contact: 57,296 LOD0 triangles > prop_large soft target 20,000 (hard cap 60,000)
+WARNING: Stonebrook/Refinements/House439SharedExteriorV1:SM_Cottage_Stonebrook_01: 194,192 LOD0 triangles > building soft target 60,000 (hard cap 200,000)
+WARNING: Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_EN_01: 4,986 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)
+WARNING: Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_ES_01: 3,474 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)
+WARNING: Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_WN_01: 4,924 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)
+WARNING: Stonebrook/Refinements/PhotorealBarrelV1:SM_Barrel_Oak_01: 16,648 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/PhotorealBasketV1:SM_Basket_Wicker_01: 19,680 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/PhotorealCandleV1:SM_Candle_Iron_01: 4,870 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)
+WARNING: Stonebrook/Refinements/PhotorealFeedSackV1:SM_FeedSack_Jute_01: 19,644 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/PhotorealPieV1:SM_Pie_Rustic_01: 4,844 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)
+WARNING: Stonebrook/Refinements/PhotorealPropsV1:SM_Bed_Oak_01: 19,588 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/PhotorealPropsV1:SM_Chair_Oak_01: 6,064 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/PhotorealPropsV1:SM_Table_Oak_01: 9,232 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)
+WARNING: Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_House440_01: 114,354 LOD0 triangles > building soft target 60,000 (hard cap 200,000)
+WARNING: Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_Willow_01: 24,846 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)
+WARNING: StonebrookExterior:SM_Cottage_Stonebrook_01: 113,788 LOD0 triangles > building soft target 60,000 (hard cap 200,000)
+WARNING: StonebrookExterior:SM_Oak_Stonebrook_01: 19,076 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)
+WARNING: StonebrookFields:SM_Pine_Stonebrook_01: 22,444 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)
+WARNING: StonebrookFields:SM_Pine_Stonebrook_V3: 22,270 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)

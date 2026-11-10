@@ -1,0 +1,63 @@
+{
+  "status": "GENERIC_REUSE",
+  "planes": [
+    {
+      "name": "MI_Shared_FiredClay2m_Soot0.0_2.0m",
+      "size_m": 2.0,
+      "repeat_m": 2,
+      "UV_span": 1.0,
+      "soot_coverage": 0.0
+    },
+    {
+      "name": "MI_Shared_FiredClay2m_Soot0.0_4.0m",
+      "size_m": 4.0,
+      "repeat_m": 2,
+      "UV_span": 2.0,
+      "soot_coverage": 0.0
+    },
+    {
+      "name": "MI_Shared_FiredClay2m_Soot0.65_2.0m",
+      "size_m": 2.0,
+      "repeat_m": 2,
+      "UV_span": 1.0,
+      "soot_coverage": 0.65
+    },
+    {
+      "name": "MI_Shared_FiredClay2m_Soot0.65_4.0m",
+      "size_m": 4.0,
+      "repeat_m": 2,
+      "UV_span": 2.0,
+      "soot_coverage": 0.65
+    },
+    {
+      "name": "MI_Shared_FiredClayMasonry2m_Soot0.0_2.0m",
+      "size_m": 2.0,
+      "repeat_m": 2,
+      "UV_span": 1.0,
+      "soot_coverage": 0.0
+    },
+    {
+      "name": "MI_Shared_FiredClayMasonry2m_Soot0.0_4.0m",
+      "size_m": 4.0,
+      "repeat_m": 2,
+      "UV_span": 2.0,
+      "soot_coverage": 0.0
+    },
+    {
+      "name": "MI_Shared_FiredClayMasonry2m_Soot0.4_2.0m",
+      "size_m": 2.0,
+      "repeat_m": 2,
+      "UV_span": 1.0,
+      "soot_coverage": 0.4
+    },
+    {
+      "name": "MI_Shared_FiredClayMasonry2m_Soot0.4_4.0m",
+      "size_m": 4.0,
+      "repeat_m": 2,
+      "UV_span": 2.0,
+      "soot_coverage": 0.4
+    }
+  ],
+  "source_library_sha256": "2b48a1e74603dafb7a057e0638dffeda7434c3b338d8060029c47235ed6061db",
+  "scope": "actual independent2m/4m panels; RGBclaytint andAsootcoverage; no prop bake"
+}
