@@ -1,3 +1,7 @@
+## Portal candidate merged/hydrated; own cold build NOT launched
+
+Merged accepted86891199 into source-reviewed401e5fb as8565bf6; onlyAGENTS/HANDOFF conflicts retained both sections. Actual4505localLFS objects fullSHA restored including16publishedscreens; independent current20b generated4818+1272ignoredcontrols (54Characters/9Input/1209ImportData) copied with source/destination fullhashes/independentinodes, noDLL/DDC/codecopy. FullsourceauditPASS4505/521Python/4327ledger/11history/zeroerrors and4portalmetadata testsPASS. External exactreceipts: `/home/artist/Work/DinkQA/OutdoorPortalCameraHydrationPlan/HYDRATION.json`. Prepared-only own cold Editor/Game packet `/home/artist/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1`; no UE/build/native/GPU launched. Source-reviewed checkpoint still needs own compiled/native/actualpixels proof.
+
 ## Outdoor portal camera — source-only isolated checkpoint
 
 New optional exact-owner portal presentation cap and projected headroom candidate on `fix/outdoor-portal-camera` in `/home/artist/Work/DinkOutdoorPortalCamera`, based on2b68300. Existing cottage generator/export/native package provenance only; no V77, collision/material/asset changes or UE launch. Four metadata tests pass; new native geometry/ownership/doorway/reset fixtures are UNCOMPILED/UNRUN. Native/render/full validation and accepted-master integration remain pending. Read `Docs/Verification/OutdoorPortalCamera/README.md`. Frozen blocker and Root worktrees were not edited.
