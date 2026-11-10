@@ -619,6 +619,8 @@ private:
     friend class FDinkHardnessRetainedLegacyOwner;
     friend class FDinkHardnessEditorCarryActor;
     friend class FDinkHardnessFittedLifecycle;
+    // Read-only access for real-map acceptance; no admission/path override.
+    friend class FDinkRealBarrelCheck;
     bool ValidateRetainedLegacyEditorFlags(int32 Screen,FString& Error) const;
     int32 InspectOriginalShadowSlot(int32 Handle) const;
     bool ReserveOriginalEditorSlot(int32 Owner);

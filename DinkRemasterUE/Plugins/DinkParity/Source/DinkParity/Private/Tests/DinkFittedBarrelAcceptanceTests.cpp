@@ -24,8 +24,6 @@
 #include "Misc/PackageName.h"
 #include "Tests/AutomationEditorCommon.h"
 
-namespace
-{
 class FDinkRealBarrelCheck : public IAutomationLatentCommand
 {
 public:
@@ -112,7 +110,7 @@ public:
         {
             Test->TestEqual(TEXT("actual hit persisted original editor_type3"),int32(Story->GetWorldState()->GetOverrideType(Id)),3);
             bool Drop=false;
-            for(int32 H:G->LiveSprites(Screen))if(auto* S=D->FindSprite(H))if(S->bActive&&S->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
+            for(const auto& Pair:D->GetSprites())if(const auto* S=&Pair.Value;S->Screen==Screen&&S->bActive&&S->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
                 Drop|=S->X==P->X&&S->Y==P->Y&&S->GetProp(TEXT("pseq"))==(Screen==31?53:421);
             Test->TestTrue(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates"),Drop);
             const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
@@ -156,12 +154,11 @@ public:
 private:
     FAutomationTestBase* Test;int32 Screen,Index,Phase=0;double Began,Until=0;FVector Ground;FString Intact,Broken;
 };
-}
 
 IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkRealFittedBarrels,"Dink.Gameplay.FittedBarrelAcceptance",DINK_TEST_FLAGS)
 void FDinkRealFittedBarrels::GetTests(TArray<FString>& Names,TArray<FString>& Commands) const
 {
-    for(const FString Kind:{FString(TEXT("Candidate")),FString(TEXT("Default"))})for(int32 N:{31,209})
+    for(const FString& Kind:{FString(TEXT("Candidate")),FString(TEXT("Default"))})for(int32 N:{31,209})
     {Names.Add(FString::Printf(TEXT("%s%03d"),*Kind,N));Commands.Add(FString::Printf(TEXT("%s:%d"),*Kind,N));}
 }
 bool FDinkRealFittedBarrels::RunTest(const FString& Parameters)
