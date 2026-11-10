@@ -4,9 +4,18 @@
 #include "UObject/Object.h"
 #include "DinkOriginId.h"
 #include "DinkRandom.h"
+#include <vector>
+#include <array>
 #include "DinkGameplay.generated.h"
 
+class APlayerController;
+class UPrimitiveComponent;
 class UDinkStorySubsystem;
+struct FDinkRuntimeHardnessState;
+struct FDinkHardnessProjection;
+struct FDinkOriginalSlotHistory;
+struct FDinkHardnessFitSet;
+namespace DinkHardness { struct PhysicsOwner; struct Stamp; }
 class UDinkDirector;
 class FJsonObject;
 struct FDinkSprite;
@@ -131,8 +140,8 @@ struct DINKNARRATIVE_API FDinkPlacementInfo
 	/** map.dat's hard flag, inverted: 0 = the hardbox is stamped into the hardness (D:6136), 1 = none. */
 	int32 Hard = 0;
 	int32 Sound = 0;
-	/** Draw order (0 = by y); it also orders the hardbox stamps (place_sprites_game D:5966, fill_back_sprites D:6832). */
 	int32 Que = 0;
+	bool bHasQueSource = false;
 	/**
 	 * map.dat's prop flag (g_smallMap.sprite[n].prop): get_hard reads this placement's stamped hardbox as 0 when it is not 0 (walk-through,
 	 * dink.cpp:569-575) and special_block warps Dink to WarpMap when it is 1 (D:15337-15341). 1 on the 93 sprite warps, 0 elsewhere.
@@ -164,6 +173,7 @@ public:
 	void SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map);
 	/** The screen's tile layer (get_hard_map, D:582: what fill_hardxy and fill_whole_hard copy back); null without data or with a test override. */
 	const FDinkHardnessMap* GetTileHardness(int32 Screen) const;
+    const std::array<int,100>* GetEditorHardFlags(int32 Screen) const;
 	/**
 	 * A sequence a script's init("load_sequence_now ...") defines that dink.ini does not (s7-mil.c:13: Seth's pose 580): its hardbox, for every
 	 * frame (figure_out, dink.cpp:2335-2344: a sequence not yet active is read from the line, ReadFromLoadSequenceString 2216-2226, and every
@@ -183,6 +193,8 @@ public:
 	int32 NumPlacements() const { return Placements.Num(); }
 
 private:
+    friend class FDinkHardnessRetainedLegacyOwner;
+    mutable TMap<int32,std::array<int,100>> EditorHardFlags;
 	static int64 Key(int32 Seq, int32 Frame) { return static_cast<int64>(Seq) * 1000 + Frame; }
 	TMap<int64, FDinkFrameInfo> Frames;
 	TMap<int32, int32> FrameCounts;
@@ -268,6 +280,45 @@ public:
 	void Init(UDinkStorySubsystem* InStory);
 	const FDinkGameplayData& GetData() const { return Data; }
 	bool HasData() const { return Data.IsLoaded(); }
+
+    // Explicit staged-world admission only; legacy aggregate collision is never toggled here.
+    // Observes original birth/rank phases without changing UE script handles.
+    void ResetOriginalSlotHistory();
+    void BeginOriginalIdentityScreen(int32 Screen);
+    void PrepareLegacyOriginalIdentity(int32 Screen);
+    void BindLegacyOriginalIdentity(const FDinkOriginId& Origin,int32 Handle);
+    void RebuildOriginalIdentityFromActualSprites();
+    bool HasSelectedOriginalHardness() const;
+    bool HasOriginalIdentityOnScreen(int32 Screen) const;
+    bool BeginOriginalHardnessScreen(int32 Screen, FString& Error, int32 InitialVision=0);
+    void RestartOriginalSavedRuntime();
+    void FinishLegacyHardnessLoad(int32 Screen) { if(!RequiresOriginalHardnessScreen(Screen))SetHardnessLoading(false); }
+    void GateOriginalHardnessTransition() { SetHardnessLoading(true); }
+    bool IsHardnessLoading() const { return bHardnessLoading; }
+    bool UsesOriginalHardnessProjection(int32 Screen) const;
+    bool RequiresOriginalHardnessScreen(int32 Screen) const;
+    FDinkOriginId OriginalHardnessOwnerOrigin(const FDinkSprite& Sprite) const;
+    bool ValidateOriginalEditorCarry(int32 Screen,int32 Vision,FString& Error) const;
+    bool OriginalEditorHardFlag(int32 Screen,int32 Index,int32& Hard) const;
+    void ApplyOriginalHardnessVision(int32 Screen,int32 Vision,bool bBackgroundOnly);
+    bool PrepareOriginalHardnessPlacements(int32 Screen, FString& Error);
+    TArray<int32> OriginalHardnessPlacementOrder(int32 Screen) const;
+    void BindOriginalHardnessPlacement(const FDinkOriginId& Origin, int32 Handle);
+    bool FinishOriginalHardnessPlacements(int32 Screen, FString& Error);
+    int32 EffectiveHardnessPlacementType(const FDinkPlacementInfo& Placement) const;
+    void RecordOriginalHardnessBirth(int32 Handle);
+    void RecordOriginalHardnessRelease(int32 Handle);
+    void RecordOriginalHardnessReactivation(int32 Handle);
+    void OriginalHardnessVisionChanged(int32 Vision);
+    bool AdmitRuntimeHardness(int32 Screen, int32 Vision, TSharedPtr<DinkHardness::PhysicsOwner> Owner, FString& Error);
+    bool GetDisplayedHardnessBox(const FDinkSprite& Sprite, int32& L, int32& T, int32& R, int32& B) const;
+    bool RedrawRuntimeHardness(int32 Handle, FString& Error);
+    bool RedrawRuntimeHardnessMap(int32 Screen,FString& Error);
+    void InvalidateRuntimeHardnessForScreenLoad(bool bResetTransientEditorHard=true);
+    void RecordEditorHardness(const FDinkOriginId& Origin, int32 Value);
+    int32 EditorHardnessPicture(const FDinkOriginId& Origin, bool bSequence, int32 Value);
+    bool TryRuntimeHardnessCode(int32 Screen, int32 Vision, int32 MapX, int32 MapY, int32& Code) const;
+
 
 	// ---- Random ----
 
@@ -551,6 +602,38 @@ private:
 	UPROPERTY()
 	TObjectPtr<UDinkStorySubsystem> Story;
 
+    void SaveEditorPictures(TSharedRef<FJsonObject> State) const;
+    void LoadEditorPictures(const TSharedPtr<FJsonObject>& State);
+    void RefuseOriginalHardnessProjection();
+    bool AdmitRuntimeHardnessFromSourceFile(int32 Screen,int32 Vision,TSharedPtr<DinkHardness::PhysicsOwner> Owner,const FString& SourceFile,FString& Error);
+    int32 EffectiveHardnessFlag(const FDinkPlacementInfo& Placement) const;
+    void EffectiveHardnessPicture(const FDinkPlacementInfo& Placement, int32& Seq, int32& Frame) const;
+    bool BuildHardnessDrawStamps(int32 Screen, int32 Vision, std::vector<DinkHardness::Stamp>& Out, FString& Error, bool bWholeMap=false, FDinkHardnessFitSet* Fits=nullptr) const;
+    bool PrepareHardnessFit(const FDinkSprite& Sprite, uint8 Code, bool bPrebirth, FDinkHardnessFitSet& Fits, std::vector<DinkHardness::Stamp>& Runs, bool& Replaced, FString& Error) const;
+    bool RefreshOriginalHardnessProp(int32 Screen,FString& Error);
+    bool PublishHardnessFitVisuals(const TSharedPtr<FDinkHardnessFitSet>& Before, FString& Error);
+    bool FittedMissileMatches(const FDinkSprite& Missile,const FDinkSprite& Target,int32 Range) const;
+    bool HasHardnessFitInstance(const FDinkSprite& Sprite) const;
+    UPrimitiveComponent* FindHardnessFitPrimitive(const FDinkSprite& Sprite) const;
+    friend class FDinkHardnessShadowRoundTrip;
+    friend class FDinkHardnessRetainedLegacyOwner;
+    friend class FDinkHardnessEditorCarryActor;
+    friend class FDinkHardnessFittedLifecycle;
+    bool ValidateRetainedLegacyEditorFlags(int32 Screen,FString& Error) const;
+    int32 InspectOriginalShadowSlot(int32 Handle) const;
+    bool ReserveOriginalEditorSlot(int32 Owner);
+    TSharedPtr<FDinkOriginalSlotHistory> OriginalSlotHistory;
+    void SetHardnessLoading(bool Loading);
+    bool bHardnessLoading=false;
+    TWeakObjectPtr<APlayerController> HardnessBlockedController;
+    TSharedPtr<FDinkHardnessProjection> HardnessProjection;
+    // Retain registered physical bodies independently of transient map/session lifetime.
+    TMap<int32, TSharedPtr<DinkHardness::PhysicsOwner>> HardnessOwners;
+    struct FEditorHardnessState { int32 Hard = 0, Seq = 0, Frame = 0; bool bHardSet = false; };
+    TMap<FDinkOriginId, FEditorHardnessState> EditorHardness;
+    TMap<int64, TSharedPtr<FDinkRuntimeHardnessState>> RuntimeHardness;
+    static int64 RuntimeHardnessKey(int32 Screen, int32 Vision)
+    { return (static_cast<int64>(Screen) << 32) | static_cast<uint32>(Vision); }
 	FDinkGameplayData Data;
 	TSharedPtr<IDinkRandomSource> RandomSource;
 	/** The seeded stream (RandomSource points at it unless a test injected another source). */

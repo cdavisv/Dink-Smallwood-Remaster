@@ -1,6 +1,7 @@
 #include "DinkStorySubsystem.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
+#include "Hardness/DinkHardnessActivation.h"
 #include "DinkNarrativeInput.h"
 #include "DinkFactSubsystem.h"
 #include "DinkOriginComponent.h"
@@ -183,7 +184,8 @@ void UDinkStorySubsystem::HandleFactChanged(FName Fact, int32 OldValue, int32 Ne
 	// Side effects of engine-bound facts, whoever wrote them.
 	if (Fact == NAME_Vision)
 	{
-		if (UWorld* World = GetWorld())
+        if (Gameplay) Gameplay->OriginalHardnessVisionChanged(NewValue);
+		if (UWorld* World = GetWorld();World&&DinkHardness::ApplyFactVisionImmediately(Gameplay&&Gameplay->RequiresOriginalHardnessScreen(Director->GetCurrentScreen())))
 		{
 			if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
 			{
@@ -441,6 +443,8 @@ void UDinkStorySubsystem::RemoveFinishedInstances()
 
 void UDinkStorySubsystem::SwapIn(FDinkScriptInstance& I)
 {
+    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    I.Vars.Add(TEXT("current_script"),I.Id);
 	TGuardValue<bool> Guard(bSyncingFacts, true);
 	for (const TPair<FString, int32>& Var : I.Vars)
 	{
@@ -454,6 +458,12 @@ void UDinkStorySubsystem::SwapOut(FDinkScriptInstance& I)
 	{
 		Var.Value = Story.GetInt(Var.Key, Var.Value);
 	}
+    // Original decipher/var_equals resolves these from the live instance,
+    // not a cached local that predates force_vision's sprite1000 reassignment.
+    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    I.Vars.Add(TEXT("current_script"),I.Id);
+    Story.SetInt(TEXT("current_sprite"),I.Sprite);
+    Story.SetInt(TEXT("current_script"),I.Id);
 }
 
 void UDinkStorySubsystem::TakeInkErrors(const FDinkScriptInstance* I)
@@ -474,7 +484,7 @@ int32 UDinkStorySubsystem::StepInstance(int32 InstanceId, int32 MaxLines)
 	TGuardValue<int32> Current(CurrentInstanceId, InstanceId);
 	SwapIn(*I);
 	int32 Lines = 0;
-	while (Lines < MaxLines && I->State == EDinkInstanceState::Running)
+	while (Lines < MaxLines && I->State == EDinkInstanceState::Running && (!Gameplay||!Gameplay->IsHardnessLoading()))
 	{
 		Story.SwitchFlow(I->FlowName());
 		if (!Story.CanContinue())
@@ -664,6 +674,7 @@ int32 UDinkStorySubsystem::ShowText(const FDinkStoryLine& Line, int32 Speaker, i
 	// strlen of the original string, which still had its 2-character colour code when it had a colour.
 	const int32 Length = Line.Text.Len() + (Line.Color != 14 ? 2 : 0);
 	T.ExpireMs = NowMs + DinkNarrative::TextDurationMs(Length);
+    if(Gameplay)Gameplay->RecordOriginalHardnessBirth(T.Handle);
 	ActiveTexts.Add(T);
 	return T.Handle;
 }
@@ -685,6 +696,7 @@ void UDinkStorySubsystem::RemoveTextSprite(int32 Handle)
 	{
 		if (const FDinkSprite* Sprite = Director->FindSprite(Handle); Sprite && Sprite->bText)
 		{
+            if(Gameplay)Gameplay->RecordOriginalHardnessRelease(Handle);
 			Director->Sprites.Remove(Handle);
 		}
 	}
@@ -697,6 +709,7 @@ void UDinkStorySubsystem::RemoveText(int32 Handle)
 	{
 		if (const FDinkSprite* S = Director->FindSprite(Handle); S && S->bText)
 		{
+            if(Gameplay)Gameplay->RecordOriginalHardnessRelease(Handle);
 			Director->Sprites.Remove(Handle);
 		}
 	}
@@ -850,6 +863,10 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 	{
 		return;
 	}
+    // Keep screen/load entry available while a previous capability is gated;
+    // stop simulation only after giving the new screen its admission boundary.
+    if(Gameplay&&Gameplay->IsHardnessLoading())
+    {PollScreenChange();if(Gameplay->IsHardnessLoading())return;}
 	const double DeltaMs = FMath::Max(0.0, DeltaSeconds * 1000.0);
 	NowMs += DeltaMs;
 	// The world-state clock (respawn timers) is game time too.
@@ -861,6 +878,7 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 		World->AdvanceGameTime(Whole);
 	}
 	PollScreenChange();
+    if(Gameplay&&Gameplay->IsHardnessLoading())return;
 	Director->Tick(DeltaMs, NowMs);
 	UpdatePlayerPush();
 	Gameplay->Tick(DeltaMs, NowMs);
@@ -1019,12 +1037,32 @@ void UDinkStorySubsystem::PollScreenChange()
 	}
 }
 
-void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
+bool UDinkStorySubsystem::ForceOriginalHardnessVision(FDinkScriptInstance& Caller,int32 Vision)
 {
-	if (Screen == LastScreen)
+    if(!Gameplay||!Gameplay->UsesOriginalHardnessProjection(Caller.Screen))return false;
+    // Original force_vision moves the caller to sprite1000 before kill_all_scripts.
+    DinkHardness::PreserveForceVisionCaller(Caller,UDinkDirector::HandleNoSprite);
+    if(Facts.IsValid())Facts->SetFact(NAME_Vision,Vision);
+    // This is nested script execution just like RunNow: save caller locals
+    // before base/placement mains and restore its Ink flow afterwards.
+    SwapOut(Caller);
+    OnScreenEntered(Caller.Screen,true,Vision);
+    if(Caller.IsAlive()){Story.SwitchFlow(Caller.FlowName());SwapIn(Caller);}
+    return true;
+}
+
+void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,int32 InitialVision,bool bRestartSavedRuntime)
+{
+	if (Screen == LastScreen && !bForceVisionRebuild)
 	{
 		return;
 	}
+    const bool OriginalTransition=Gameplay&&(Gameplay->RequiresOriginalHardnessScreen(Screen)||Gameplay->RequiresOriginalHardnessScreen(LastScreen)||Gameplay->HasSelectedOriginalHardness());
+    if (Gameplay)
+    {
+        Gameplay->InvalidateRuntimeHardnessForScreenLoad(!bForceVisionRebuild);
+        if(Gameplay->RequiresOriginalHardnessScreen(Screen))Gameplay->GateOriginalHardnessTransition();
+    }
 	const int32 Previous = LastScreen;
 	LastScreen = Screen;
 	AddEvent(TEXT("screen"), FString::FromInt(Screen), FString::Printf(TEXT("from %d"), Previous));
@@ -1035,7 +1073,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
 	}
 	// Respawn clock: leaving a screen stamps its time (update_screen_time, D:1602); entering one clears
 	// the timed overrides (editor_type 6/7/8) whose time is up (fix_dead_sprites, D:917).
-	if (UDinkWorldStateSubsystem* World = WorldState.Get())
+	if (UDinkWorldStateSubsystem* World = bForceVisionRebuild?nullptr:WorldState.Get())
 	{
 		if (Previous > 0)
 		{
@@ -1080,7 +1118,18 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
 		}
 	}
 	RemoveFinishedInstances();
+    // kill_last_sprite preserves every live sprite, independently of whether
+    // its old script survives kill_all_scripts.
+    if(OriginalTransition)for(const auto& Pair:Director->GetSprites())if(Pair.Value.bActive&&Pair.Value.GetProp(TEXT("live")))Keep.Add(Pair.Key);
+    FString HardnessError;
+    if(OriginalTransition&&
+        ((Gameplay->RequiresOriginalHardnessScreen(Screen)&&!Gameplay->ValidateOriginalEditorCarry(Screen,InitialVision,HardnessError))||!Director->CarryOriginalLiveSprites(Screen,HardnessError)))
+    {Gameplay->GateOriginalHardnessTransition();UE_LOG(LogDinkNarrative,Error,TEXT("original live carry refused: %s"),*HardnessError);return;}
 	Director->ReleaseScreenSprites(Screen, Keep);
+    Gameplay->BeginOriginalIdentityScreen(Screen);
+    if(!Gameplay->BeginOriginalHardnessScreen(Screen,HardnessError,InitialVision))
+    {UE_LOG(LogDinkNarrative,Error,TEXT("hardness screen admission refused: %s"),*HardnessError);return;}
+    if(bRestartSavedRuntime){Gameplay->ArmWeapon();Gameplay->ArmMagic();}
 	Gameplay->SyncDinkFromActor();
 	// Remaster safety rule: the original cannot change screens while Dink is frozen, but a warp or
 	// dink.Goto can. If no surviving script is running (one that could unfreeze him), do it here.
@@ -1091,14 +1140,14 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
 	}
 
 	// load_map clears screenlock (D:1016): a lock never outlives its screen.
-	if (Director->bScreenLocked)
+	if (!bForceVisionRebuild && Director->bScreenLocked)
 	{
 		Gameplay->SetScreenLock(false);
 	}
 	// &vision is 0 when a screen loads; the base script may change it in main.
 	if (UDinkFactSubsystem* F = Facts.Get())
 	{
-		F->SetFact(NAME_Vision, 0);
+		F->SetFact(NAME_Vision, InitialVision);
 	}
 	// The screen's base script (map.dat): from its screen volume, or from the data table when headless.
 	const ADinkScreenVolume* Volume = GetWorld() ? Director->FindScreenVolume(Screen) : nullptr;
@@ -1115,6 +1164,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
 
 void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 {
+    if(Gameplay&&Gameplay->IsHardnessLoading())return;
 	const int32 Vision = Facts.IsValid() ? Facts->GetFact(NAME_Vision) : 0;
 	UWorld* World = GetWorld();
 	TMap<int32, AActor*> Actors;
@@ -1163,10 +1213,23 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 	// place_sprites_game (D:6040-6140): every active live placement (type 1) of the current vision becomes
 	// a sprite with map.dat's fields, and its script is loaded; then every script's main runs.
 	// Placements without an actor in this world (headless tests, other maps) become virtual sprites.
+    // Only migrated layered sources enter the original mixed-placement phase.
+    // Legacy data/UE script handles retain their existing path.
+    const bool Projected=Gameplay->UsesOriginalHardnessProjection(Screen);
+    if(!Projected)Gameplay->PrepareLegacyOriginalIdentity(Screen);
+    FString ProjectionError;
+    if(Projected&&!Gameplay->PrepareOriginalHardnessPlacements(Screen,ProjectionError))
+    {UE_LOG(LogDinkNarrative,Error,TEXT("original hardness placement phase refused: %s"),*ProjectionError);return;}
+    // Allocate/reuse actual UE handles in the existing data order. The separate
+    // original-slot plan controls hardness ties and original main dispatch only.
+    const auto Placements=Gameplay->GetData().GetPlacementsOnScreen(Screen);
+    const auto OriginalOrder=Projected?Gameplay->OriginalHardnessPlacementOrder(Screen):TArray<int32>();
+    TMap<int32,int32> OriginalMains;
 	TArray<int32> Mains;
-	for (const FDinkPlacementInfo* P : Gameplay->GetData().GetPlacementsOnScreen(Screen))
+	for (const FDinkPlacementInfo* P : Placements)
 	{
-		if (P->Type != 1 || (P->Vision != 0 && P->Vision != Vision))
+        const int32 Type=Projected?Gameplay->EffectiveHardnessPlacementType(*P):P->Type;
+		if (Type != 1 || (P->Vision != 0 && P->Vision != Vision) || (Projected&&!OriginalOrder.Contains(P->Origin.Placement)))
 		{
 			continue;
 		}
@@ -1185,8 +1248,13 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 			Actor->SetActorHiddenInGame(false);
 			Actor->SetActorEnableCollision(true);
 		}
+        if(Projected){Gameplay->BindOriginalHardnessPlacement(P->Origin,Handle);OriginalMains.Add(P->Origin.Placement,Handle);}
+        else Gameplay->BindLegacyOriginalIdentity(P->Origin,Handle);
 		Mains.Add(Handle);
 	}
+    if(Projected){Mains.Reset();for(int32 Owner:OriginalOrder)if(const auto* H=OriginalMains.Find(Owner))Mains.Add(*H);}
+    if(Projected&&!Gameplay->FinishOriginalHardnessPlacements(Screen,ProjectionError))
+    {UE_LOG(LogDinkNarrative,Error,TEXT("original hardness bindings refused: %s"),*ProjectionError);return;}
 	for (const int32 Handle : Mains)
 	{
 		const FDinkSprite* S = Director->FindSprite(Handle);
@@ -1502,6 +1570,7 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 		ReportError(TEXT("narrative save state does not parse (version 1 expected)"));
 		return false;
 	}
+    if(Gameplay&&Gameplay->RequiresOriginalHardnessScreen(Root->GetIntegerField(TEXT("lastScreen"))))Gameplay->GateOriginalHardnessTransition();
 	ResetRuntime();
 	if (!Story.LoadStateJson(Root->GetStringField(TEXT("ink"))))
 	{
@@ -1511,7 +1580,26 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 	NowMs = Root->GetNumberField(TEXT("nowMs"));
 	NextInstanceId = Root->GetIntegerField(TEXT("nextInstanceId"));
 	LastScreen = Root->GetIntegerField(TEXT("lastScreen"));
-	Director->LoadState(Root->GetObjectField(TEXT("director")));
+    bool SavedOriginal=false;
+    const TSharedPtr<FJsonObject>* SavedGameplayPtr=nullptr;
+    const auto SavedGameplay=Root->TryGetObjectField(TEXT("gameplay"),SavedGameplayPtr)?*SavedGameplayPtr:TSharedPtr<FJsonObject>();
+    if(SavedGameplay.IsValid())
+    {
+        const auto Policy=SavedGameplay->TryGetField(TEXT("originalHardnessVisitV1"));
+        if(Policy.IsValid()&&Policy->Type!=EJson::Boolean)
+        {Gameplay->GateOriginalHardnessTransition();ReportError(TEXT("original hardness visit policy must be bool"));return false;}
+        SavedGameplay->TryGetBoolField(TEXT("originalHardnessVisitV1"),SavedOriginal);
+    }
+    const bool RestartOriginalLoad=Gameplay->RequiresOriginalHardnessScreen(LastScreen)||SavedOriginal;
+    if(RestartOriginalLoad)
+    {
+        auto DirectorState=MakeShared<FJsonObject>(*Root->GetObjectField(TEXT("director")));
+        TArray<TSharedPtr<FJsonValue>> DinkOnly;
+        for(const auto& V:DirectorState->GetArrayField(TEXT("sprites")))
+            if(V->AsObject()->GetIntegerField(TEXT("handle"))==1)DinkOnly.Add(V);
+        DirectorState->SetArrayField(TEXT("sprites"),DinkOnly);Director->LoadState(DirectorState);
+    }
+    else Director->LoadState(Root->GetObjectField(TEXT("director")));
 	const TSharedPtr<FJsonObject>* GameplayState = nullptr;
 	Gameplay->LoadState(Root->TryGetObjectField(TEXT("gameplay"), GameplayState) ? *GameplayState : nullptr);
 	for (const TSharedPtr<FJsonValue>& V : Root->GetArrayField(TEXT("instances")))
@@ -1583,6 +1671,23 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 	}
 	// The fact store is the source of truth: whatever the Ink state held, facts win.
 	PushAllFactsToInk();
+    Gameplay->RebuildOriginalIdentityFromActualSprites();
+    if(DinkHardness::RestartOriginalScreenOnLoad(RestartOriginalLoad))
+    {
+        const int32 LoadedScreen=LastScreen;
+        for(const auto& Instance:Instances)if(Instance->IsAlive())FinishInstance(*Instance,TEXT("original marked-world load rebuild"));
+        RemoveFinishedInstances();
+        for(const auto& Text:ActiveTexts)RemoveTextSprite(Text.Handle);
+        ActiveTexts.Reset();Menu=FDinkMenu();
+        // Original load_game kills all runtime sprites, reloads smallMap and
+        // restarts the screen. Saved editor overrides/pictures remain loaded.
+        Director->ReleaseScreenSprites(LoadedScreen,{});
+        Gameplay->RestartOriginalSavedRuntime();
+        OnScreenEntered(LoadedScreen,true,0,true);
+        if(Gameplay->IsHardnessLoading())
+        {ReportError(TEXT("marked-world saved screen admission failed; gameplay remains gated"));return false;}
+    }
+    else Gameplay->FinishLegacyHardnessLoad(LastScreen);
 	AddEvent(TEXT("load"), FString::Printf(TEXT("%d instances, %d texts"), Instances.Num(), ActiveTexts.Num()));
 	return true;
 }

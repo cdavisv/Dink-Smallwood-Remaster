@@ -328,6 +328,10 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 	if (!FFileHelper::LoadFileToString(Text, *DinkArtFamily::DefaultFamiliesPath())) return;
 	TArray<FString> Errors;
 	DinkArtFamily::ParseFamilies(Text, Bindings, Errors);
+    FString CollisionFitError;
+    bCollisionFitPolicyError=!DinkFamilyCollisionFit::ParsePolicy(Text,CollisionFitRules,CollisionFitError);
+    if(bCollisionFitPolicyError)
+        UE_LOG(LogDink,Warning,TEXT("Family collision fit policy refused: %s"),*CollisionFitError);
 	for (const FString& Error : Errors) UE_LOG(LogDink, Warning, TEXT("Family art: %s"), *Error);
 	if (Bindings.IsEmpty()) return;
 	// No greybox screens (a test or an unrelated map): nothing to dress.
