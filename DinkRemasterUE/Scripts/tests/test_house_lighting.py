@@ -6,8 +6,13 @@ import hashlib
 import importlib.util
 import json
 import math
+import os
+import runpy
+import sys
 import tempfile
+import types
 import unittest
+from unittest import mock
 
 P = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location('house_lighting_under_test', P / 'Scripts/house_lighting.py')
@@ -127,13 +132,84 @@ class HouseLighting(unittest.TestCase):
     def test_importer_preflight_precedes_any_asset_import_and_overlay_precedes_metadata_save(self):
         tree = ast.parse((P / 'Scripts/import_stonebrook_art.py').read_text())
         calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)]
-        validate = next(n.lineno for n in calls if n.func.attr == 'validate_source_layout')
+        validate = next(n.lineno for n in calls if n.func.attr == 'preflight_source')
         first_tools = min(n.lineno for n in calls if n.func.attr in ['get_asset_tools', 'execute_console_command'])
         self.assertLess(validate, first_tools)
         overlay = next(n for n in calls if n.func.attr == 'apply_lighting')
         self.assertTrue(any(k.arg == 'generated_from_legacy_layout' and isinstance(k.value, ast.Constant) and k.value.value is True for k in overlay.keywords))
         metadata = max(n.lineno for n in calls if n.func.attr == 'write_text')
         self.assertLess(overlay.lineno, metadata)
+
+    def test_complete_preflight_rejects_runtime_float_and_scaled_aperture_mismatches(self):
+        invalid = [('source_width_cm', 82.5), ('source_width_cm', 81.812499999),
+                   ('source_height_cm', 135.999999999), ('lumens_per_window', 1e300),
+                   ('radius_cm', 1e-300), ('kelvin', 1e-300)]
+        for key, value in invalid:
+            with self.subTest(key=key, value=value):
+                profile = copy.deepcopy(self.profile); profile['daylight'][key] = value
+                with self.assertRaises(ValueError): lighting.preflight_source(profile, self.layout)
+        rows = lighting.preflight_source(self.profile, self.layout)
+        self.assertEqual(rows, self.manifest['lights'])
+
+    def test_complete_preflight_validates_generated_practical_specs(self):
+        profile = copy.deepcopy(self.profile)
+        for group in ['practical_points', 'legacy_lights']: profile[group][0]['kind'] = 'unsupported'
+        with self.assertRaises(ValueError): lighting.preflight_source(profile, self.layout)
+
+    def _entry_fixture(self, root, profile):
+        """Only text/hash witnesses; no FBX/model/native processing is claimed."""
+        for relative in profile['source_files_sha256']:
+            path = root / relative; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b'entry-preflight source hash witness')
+            profile['source_files_sha256'][relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+        source = root / 'SourceAssets/Art/Stonebrook'
+        (source / 'room_layout.json').write_text(json.dumps(self.layout))
+        (source / 'art_manifest.json').write_text(json.dumps({'assets': {}, 'materials': {}}))
+        path = root / lighting.PROFILE; path.parent.mkdir(parents=True); path.write_text(json.dumps(profile))
+        scripts = root / 'Scripts'; scripts.mkdir()
+        (scripts / 'house_lighting.py').write_bytes((P / 'Scripts/house_lighting.py').read_bytes())
+        data = root / 'Content/Dink/Data/Art/stonebrook.json'; data.parent.mkdir(parents=True)
+        data.write_text(json.dumps(self.manifest))
+        return data
+
+    def test_actual_importer_entry_rejects_invalid_lighting_before_any_native_work(self):
+        class NativeWorkReached(RuntimeError): pass
+        variants = [(None, None), ('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300)]
+        for key, value in variants:
+            with self.subTest(key=key, value=value), tempfile.TemporaryDirectory() as name:
+                root = Path(name); profile = copy.deepcopy(self.profile)
+                if key: profile['daylight'][key] = value
+                data = self._entry_fixture(root, profile); before = data.read_bytes(); native_calls = []
+                stub = types.ModuleType('unreal')
+                stub.Paths = types.SimpleNamespace(project_dir=lambda: str(root), convert_relative_path_to_full=lambda x: x)
+                def native_access():
+                    native_calls.append('get_asset_tools')
+                    raise NativeWorkReached('First native access; import/material/save must not run for invalid input')
+                stub.AssetToolsHelpers = types.SimpleNamespace(get_asset_tools=native_access)
+                def unexpected(attribute):
+                    native_calls.append(attribute)
+                    raise NativeWorkReached('Unexpected native access: ' + attribute)
+                stub.__getattr__ = unexpected
+                environment = {k:v for k,v in os.environ.items() if not k.startswith('DINK_ART_')}
+                with mock.patch.dict(sys.modules, {'unreal': stub}), mock.patch.dict(os.environ, environment, clear=True):
+                    if key is None:
+                        with self.assertRaises(NativeWorkReached): runpy.run_path(str(P / 'Scripts/import_stonebrook_art.py'), run_name='__main__')
+                        self.assertEqual(native_calls, ['get_asset_tools'])  # Positive control actually traversed preflight.
+                    else:
+                        with self.assertRaisesRegex(ValueError, 'scaled clear aperture|runtime float'):
+                            runpy.run_path(str(P / 'Scripts/import_stonebrook_art.py'), run_name='__main__')
+                        self.assertEqual(native_calls, [])
+                self.assertEqual(data.read_bytes(), before)
+
+    def test_actual_standalone_apply_entry_rejects_same_invalid_profiles_without_writes(self):
+        for key, value in [('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300)]:
+            with self.subTest(key=key), tempfile.TemporaryDirectory() as name:
+                root = Path(name); profile = copy.deepcopy(self.profile); profile['daylight'][key] = value
+                data = self._entry_fixture(root, profile); before = data.read_bytes()
+                with mock.patch.object(sys, 'argv', ['house_lighting.py', '--apply']):
+                    with self.assertRaisesRegex(ValueError, 'scaled clear aperture|runtime float'):
+                        runpy.run_path(str(root / 'Scripts/house_lighting.py'), run_name='__main__')
+                self.assertEqual(data.read_bytes(), before)
 
 
 if __name__ == '__main__': unittest.main()

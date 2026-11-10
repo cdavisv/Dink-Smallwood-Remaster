@@ -31,7 +31,7 @@ if (LAYOUT_SCREEN == 1 and OUTPUT_NAME == 'stonebrook' and
     _lighting = importlib.util.module_from_spec(_lighting_spec)
     _lighting_spec.loader.exec_module(_lighting)
     HOUSE_LIGHTING = _lighting.load_profile(ROOT)
-    _lighting.validate_source_layout(HOUSE_LIGHTING, LAYOUT)
+    _lighting.preflight_source(HOUSE_LIGHTING, LAYOUT)
 ASSETS = '/Game/Dink/Kits/' + SOURCE.name
 MATS = os.environ.get('DINK_ART_MATERIAL_FOLDER', '/Game/Dink/Materials/Stonebrook')
 TEX = os.environ.get('DINK_ART_TEXTURE_FOLDER', '/Game/Dink/Textures/Stonebrook')

@@ -9,6 +9,7 @@ import copy
 import hashlib
 import json
 import math
+import struct
 
 PROFILE = 'SourceAssets/Art/Stonebrook/LightingV1/lighting.json'
 WINDOW_NAMES = {'NorthWall_1', 'NorthWall_6', 'WestWall_2', 'WestWall_4', 'EastWall_2', 'EastWall_4'}
@@ -22,9 +23,20 @@ def canonical(value):
 
 
 def _number(value, positive=True):
-    if type(value) not in (int, float) or not math.isfinite(value) or (value <= 0 if positive else value < 0):
-        raise ValueError('Expected finite positive number' if positive else 'Expected finite nonnegative number')
-    return value
+    if type(value) not in (int, float):
+        raise ValueError('Expected numeric runtime float scalar')
+    try:
+        number = float(value)
+        # Match core LightNumber's finite double/range gate BEFORE conversion.
+        if not math.isfinite(number) or abs(number) > float.fromhex('0x1.fffffep+127'):
+            raise ValueError('Scalar is outside finite runtime float range')
+        converted = struct.unpack('=f', struct.pack('=f', number))[0]
+    except (OverflowError, struct.error) as error:
+        raise ValueError('Scalar is outside finite runtime float range') from error
+    invalid = (number <= 0 or converted <= 0) if positive else (number < 0 or converted < 0)
+    if invalid:
+        raise ValueError('Expected positive runtime float scalar' if positive else 'Expected nonnegative runtime float scalar')
+    return converted
 
 
 def _vector(value):
@@ -68,6 +80,9 @@ def validate_profile(profile):
         _vector(row['world_cm'])
         for key in ['kelvin', 'radius_cm']: _number(row[key])
         _number(row['lumens'], positive=False)
+    # Complete derivation belongs in the early preflight, not just metadata output
+    # after a native importer has already changed materials/packages.
+    _derive_rows(profile)
     return profile
 
 
@@ -95,22 +110,19 @@ def validate_source_layout(profile, layout):
         raise ValueError('Source window placement changed')
 
 
-def light_rows(profile, manifest):
-    validate_profile(profile)
-    if (manifest.get('schema') != 'dink-art/1' or type(manifest.get('screen')) is not int or
-            manifest['screen'] != 1 or 'context' in manifest):
-        raise ValueError('Wrong physical starting-house manifest')
-    expected = {b['expected_runtime']['name']: b['expected_runtime'] for b in profile['windows']}
-    actual = [x for x in manifest['elements'] if x.get('mesh') == WINDOW_MESH]
-    if len(actual) != 6 or {x['name'] for x in actual} != set(expected):
-        raise ValueError('Runtime window membership changed')
-    if any(canonical(x) != canonical(expected[x['name']]) for x in actual):
-        raise ValueError('Runtime window placement changed')
+def preflight_source(profile, layout):
+    """Validate source identity AND every derived runtime light before native work."""
+    validate_source_layout(profile, layout)
+    return _derive_rows(profile)
+
+
+def _derive_rows(profile):
     result = copy.deepcopy(profile['practical_points'])
     d = profile['daylight']; aperture = profile['source_aperture']
+    width = _number(d['source_width_cm']); height = _number(d['source_height_cm'])
     for binding in profile['windows']:
         w = binding['expected_runtime']; name = w['name']
-        if d['source_width_cm'] >= aperture['clear_width_unscaled_cm'] * w['scale'][0]:
+        if width >= aperture['clear_width_unscaled_cm'] * w['scale'][0] or height >= aperture['clear_height_cm']:
             raise ValueError('Source rectangle exceeds scaled clear aperture')
         angle = math.radians(w['rotation_deg'][1])
         local = aperture['center_local_cm']
@@ -124,7 +136,33 @@ def light_rows(profile, manifest):
                            rotation_deg=[0, yaw, 0], lumens=d['lumens_per_window'], kelvin=d['kelvin'],
                            radius_cm=d['radius_cm'], source_width_cm=d['source_width_cm'],
                            source_height_cm=d['source_height_cm']))
+    for row in result:
+        kind = row.get('kind', 'point')
+        if kind not in ('point', 'rect'):
+            raise ValueError('Unsupported generated runtime light kind')
+        _vector(row['world_cm'])
+        _number(row['lumens'], positive=False)
+        for key in ['kelvin', 'radius_cm']: _number(row[key])
+        if kind == 'rect':
+            _vector(row['rotation_deg'])
+            for key in ['source_width_cm', 'source_height_cm']: _number(row[key])
+        elif 'source_width_cm' in row or 'source_height_cm' in row:
+            raise ValueError('Point light cannot have rectangle dimensions')
     return result
+
+
+def light_rows(profile, manifest):
+    validate_profile(profile)
+    if (manifest.get('schema') != 'dink-art/1' or type(manifest.get('screen')) is not int or
+            manifest['screen'] != 1 or 'context' in manifest):
+        raise ValueError('Wrong physical starting-house manifest')
+    expected = {b['expected_runtime']['name']: b['expected_runtime'] for b in profile['windows']}
+    actual = [x for x in manifest['elements'] if x.get('mesh') == WINDOW_MESH]
+    if len(actual) != 6 or {x['name'] for x in actual} != set(expected):
+        raise ValueError('Runtime window membership changed')
+    if any(canonical(x) != canonical(expected[x['name']]) for x in actual):
+        raise ValueError('Runtime window placement changed')
+    return _derive_rows(profile)
 
 
 def apply_lighting(profile, manifest, *, generated_from_legacy_layout=False):
@@ -149,7 +187,7 @@ def main():
     args = parser.parse_args()
     project = Path(__file__).resolve().parents[1]
     profile = load_profile(project)
-    validate_source_layout(profile, json.loads((project / 'SourceAssets/Art/Stonebrook/room_layout.json').read_text()))
+    preflight_source(profile, json.loads((project / 'SourceAssets/Art/Stonebrook/room_layout.json').read_text()))
     path = project / 'Content/Dink/Data/Art' / profile['owner_manifest']
     old = json.loads(path.read_text()); new = apply_lighting(profile, old)
     if args.apply:
