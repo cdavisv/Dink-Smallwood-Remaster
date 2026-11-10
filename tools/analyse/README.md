@@ -11,7 +11,7 @@ belongs to, and where every screen, tile and placement goes in one continuous
 ```
 cd tools/analyse
 python3 -m analyse build --ir ../dinkex/out --out out   # ~24 s, 16 MB
-python3 -m unittest discover -s tests                   # 49 tests, ~14 s
+python3 -m unittest discover -s tests                   # 57 tests, ~14 s
 ```
 
 Options: `--table regions.toml`, `--story ../../bin/dink/story`,
@@ -241,8 +241,27 @@ of them.
   and expected evidence `prefixes`, `music`, `signs`.
 - `[[interior]]`: `screens` (any screen of the set), `name`, optional `kind`
   and `region`.
+- `[[join]]` with two `[[join.side]]` (added 9 Nov 2026): a **designed join**, an
+  owner decision that changes the 1997 map data. `id`, `decided`, `reason`,
+  `screens` (two grid neighbours, both indoor or both outdoor); each side names
+  `tiles = [[col, row, tile], ...]` (void tiles that become floor; `tile` is a
+  floor tile already used on that screen) and `open = [x0, y0, x1, y1]` (map
+  pixels, half-open, set to hardness 0: the passage; it must lie on floor
+  tiles, reach the shared edge and hold no warp hardness). The free pixels of
+  the named tiles within 2 px of the passage become hardness 1 (the jambs, so
+  the passage stays apart from the void around the rooms; the rest of the void
+  is untouched). `analyse/joins.py` applies this to the build's in-memory IR
+  (tile records and hardness images; `tools/dinkex/out` is never written)
+  before anything else, so connectivity, warps, interiors, regions and layout
+  all see the joined map, and writes the resolved joins (tiles changed, pixels
+  opened/closed, hardboxes cut, the crossing they produce) to
+  `connectivity.json` → `designed_joins`. `DinkRemasterUE/Scripts/export_import_bundle.py`
+  applies the same patch to the greybox from there. The build stops on any
+  violation and when a join produces no walkable crossing. The one join today
+  is `cobbler_booth_doorway` (see Surprises, East Wilds).
 
-The build stops if an outdoor screen is unassigned or a quad goes non-convex.
+The build stops if an outdoor screen is unassigned, a quad goes non-convex or a
+`[[join]]` does not fit the data.
 After editing, rerun the build and the tests, check `regions.png`, the low
 confidence rows of `regions.csv`, and `summary.json` → `seams_cut_between_sheets`.
 
@@ -250,10 +269,10 @@ confidence rows of `regions.csv`, and `summary.json` → `seams_cut_between_shee
 
 | File | Content |
 |---|---|
-| `connectivity.json` | rules; counts; `start_component`; `walk_groups` (reached; screens, area, `entered_by` warps, `warp_only`, `reached_without_script_warps`, regions); `pockets` (unreached land ≥ `min_pocket_px`, with scripted placements inside → `secret_candidate` or `dead_space`); `unreached_screens`; `screen_links` (per grid pair: walkable, reached, px, `needs_obstacle_removal`, `vision_dependent`); `grid_neighbours_not_walk_linked`; `crossings`, `wrap_crossings`, `edge_leaks` (reached land meeting water/canopy/void at a screen edge); `water_bodies` (sea/lake/puddle); `components` per screen (`k`, area, class, `water_kind` sea/lake/river, bbox, centroid, reached, walk group, `split_by_obstacles`). Component IDs are `SCR_nnn#k`. |
+| `connectivity.json` | rules; counts; `start_component`; `designed_joins` (the resolved `[[join]]` overrides: sides with tiles from/to, `open`, `opened_px`, `closed_px`, `cut_hardboxes`, and the walkable `crossings` they make); `walk_groups` (reached; screens, area, `entered_by` warps, `warp_only`, `reached_without_script_warps`, regions); `pockets` (unreached land ≥ `min_pocket_px`, with scripted placements inside → `secret_candidate` or `dead_space`); `unreached_screens`; `screen_links` (per grid pair: walkable, reached, px, `needs_obstacle_removal`, `vision_dependent`); `grid_neighbours_not_walk_linked`; `crossings`, `wrap_crossings`, `edge_leaks` (reached land meeting water/canopy/void at a screen edge); `water_bodies` (sea/lake/puddle); `components` per screen (`k`, area, class, `water_kind` sea/lake/river, bbox, centroid, reached, walk group, `split_by_obstacles`). Component IDs are `SCR_nnn#k`. |
 | `connectivity.png` | world at 1/5 scale: reached land tinted per walk group, red = unreached land, blues = sea/lake/river, white edge ticks = reached crossings, yellow = sprite warps, magenta = script warps. |
 | `warps.json` | `sprite_warps` (93) and `script_warps` (19): id, source screen/position, `src_components`, destination screen/position/component, `dst_screen_exists`, `dst_in_bounds`, `dst_valid`, `dst_engine`, `anim_seq` (parm_seq), sound, vision, trigger, kind (script warps also `proc`, `entry_procs`, `triggers`, `player_triggered`), `return_warps`, `has_return_warp`, `one_way`, src/dst region. Positions are map pixels. |
-| `interiors.json` | 47 interior sets: id `INT_nnn`, screens, rooms, entrances, exits, region, `settlement` (if that region is a settlement), floor, base scripts, kind, name. |
+| `interiors.json` | 46 interior sets (47 before the booth's two rooms were joined): id `INT_nnn`, screens, rooms, entrances, exits, region, `settlement` (if that region is a settlement), floor, base scripts, kind, name. |
 | `regions.csv` | one row per used screen: region, name, sub_area, kind, sheet, confidence, evidence, contradictions, prefixes, music, signs, walk group, reached (design), `reach_level` (design / engine_dry / engine_wading / none), reached without script warps, land fraction, `vision_states`. |
 | `engine_reach.json` | design vs engine reach (see method 2): counts, screens reached only by the engine, the wrap crossings in the dry reach, and per region the screen counts and a step-by-step route to its largest land component that the design does not reach. |
 | `regions.png` | regions over the tile map; white frames settlements, red frames dungeons, red ticks low confidence. |
@@ -263,14 +282,16 @@ confidence rows of `regions.csv`, and `summary.json` → `seams_cut_between_shee
 | `vision_variants.json` | the 37 screens / 164 vision-gated placements grouped by vision value; `vision_setting_scripts` (scripts that run while the screen is loaded, base/random/load script, placement scripts and everything they `spawn`, `external` or `sp_script`, transitively, that assign `&vision` or call `force_vision`), `vision_set_by` per value, `visions_never_set`, the hardness variant images, and crossings closed in some vision. Top level: `never_set` (16 screens, 17 values: no script sets them, so the shipped game never draws those placements, because the engine zeroes `&vision` in `load_map`). |
 | `summary.json` | layout numbers (areas, settlement sizes, sheets, gaps, run times), connectivity counts, seams. |
 
-## Findings (from the shipped data, 5 Nov 2026)
+## Findings (from the shipped data, 5 Nov 2026; numbers updated for the designed join of 9 Nov 2026)
 
 ### Numbers
 
-- 2,814 walkable components on 644 screens; 1,671 walkable crossings; 680
-  components on **498 screens are reachable** from a new game; 146 used
-  screens are never reached (sea-only screens, the sealed east, most of the
-  snowfield, the northern snow ledge, three orphan rooms, screen 10).
+- 2,814 walkable components on 644 screens; 1,672 walkable crossings (1,671
+  in the 1997 data; the booth doorway is the extra one); 705 components on
+  **513 screens are reachable** from a new game (680 on 498 before the join);
+  131 used screens are never reached (sea-only screens, the East Wilds' river
+  and coast screens that only wading reaches, most of the snowfield, the
+  northern snow ledge, three orphan rooms, screen 10).
 - Layout: outdoor 0.895 km² (0.613 km² land); mainland 0.768 km² (0.519 km²
   land); reached land to dress 0.524 km²; interiors 0.045 km².
 - Mainland 1,413 × 709 m: straight run **236 s east-west, 118 s north-south**
@@ -287,13 +308,14 @@ confidence rows of `regions.csv`, and `summary.json` → `seams_cut_between_shee
 ### Regions (screens; outdoor + indoor)
 
 Terris wilds 66, Stonebrook 61 (15 settlement), Edge of the World 56, East
-Wilds 56, Darklands 52, Koka Isle 36, Snow castle isle 34 (9 castle rooms),
+Wilds 55 (56 before the join: SCR_289 now belongs to the booth, koka_isle),
+Darklands 52, Koka Isle 37 (36), Snow castle isle 34 (9 castle rooms),
 West Seas 33, South coast 32, Windemere wilds 28, KernSin 27, Murkwood 27,
 Terris 24, KernSin wilds 24, Joppa Isle 23, Windemere 22, Goblin Sanctuary 17,
 Goodheart Castle 16, Cast camp 6, unattached interiors 3, orphan fragment 1.
 By kind: 415 wilderness, 125 settlement, 30 sea, 38 interior, 36 dungeon.
-Confidence: 231 high, 288 medium, 125 low (mostly unreached sea/east-wilds
-screens with no evidence either way).
+Confidence: 231 high, 302 medium, 111 low (mostly unreached sea/east-wilds
+screens with no evidence either way; 288 medium and 125 low before the join).
 
 ### How the true regions connect
 
@@ -319,28 +341,60 @@ screens with no evidence either way).
 
 ### Surprises
 
-- **East Wilds, no designed entrance** (checked against the engine 7 Nov
-  2026): 56 screens (cols 27-31, rows 8-20). No sprite warp, script warp or
-  `&player_map` assignment lands there except the booth door S289_P19, and no
-  grid edge is open from reached ground: a river about 80 px wide (shoreline
-  outline, hardness 2 and 1, no gap at pixel level) runs down columns 25/26, a
-  second water channel cuts the meadows at rows 11/12, and the cliff face of
-  rows 7-8 has a closed foot outline. SCR_290 (door from Koka, SCR_734) and
-  SCR_289 (door to SCR_350) are side by side but their rooms are not joined. The
-  engine still has two routes in, both sequence breaks (`engine_reach.json`):
-  (1) dry: push the rock S277_P03 (`s1-roc`, needs `&strength` 4, it moves east)
-  to open the cliff-foot outline on SCR_277 (the hole S277_P02 beside it is a
-  pit to the cave, SCR_131, but the gap is wide enough to pass it), walk the
-  hardness-0 cliff face east through SCR_246-252 and 284-288, leave SCR_288
-  by its right edge: the row wrap loads SCR_289, the booth's west room, on its
-  black void, whose east-wall door S289_P19 (609, 167) lands on SCR_350
-  (351, 241): 15 more screens, the booth room and the meadows of rows 8-11; (2)
-  wading: the shoreline outline is cut at some screen edges (`edge_leaks`), the
-  sea inside is hardness 0 and the row wrap carries it round the world, so 24
-  more screens (rows 12-20) are reachable on foot through water; nine stay
-  closed (SCR_509/510, 541/542, 573/574, 605/606, 637). Contains `s1-h1-4` placements on SCR_414/446, a save
-  machine on SCR_349 and the cobbler (`s1-booth`/`s1-boot`). The design reach
-  still says 8 of 56 (cliff and coast fragments).
+- **East Wilds, no designed entrance: resolved 9 Nov 2026 by owner decision**
+  (regions.toml `[[join]] cobbler_booth_doorway`): the cobbler's booth is one
+  interior (`INT_289`, SCR_289 + SCR_290, region koka_isle, name "Cobbler's
+  booth (Koka door east room, East Wilds door west room)") with a doorway
+  between its rooms, all East Wilds content and rewards stay, and the 1997
+  sequence breaks are left as they are. The designed route is now: Koka bridge
+  SCR_727 → SCR_759 → the Koka beaches → door S734_P31 on SCR_734 → SCR_290 →
+  the doorway → SCR_289 → door S289_P19 → SCR_350 (351, 241) → the meadows. It
+  needs no script warp and no Slayer screen (SCR_663/695 can be bypassed by
+  SCR_566-726). East Wilds (now 55 outdoor screens; SCR_289 went with the
+  booth): **22 reached by design** (8 before: the cliff and coast fragments
+  284-288, 575, 607, 639; now also 316-320, 348-352 and 380-383, the meadows of
+  rows 8-11 with SCR_352's treasure and the save machine on SCR_349), none
+  engine-only dry; the river and coast screens of rows 12-20 are still reached
+  only by wading (24) or not at all (9, SCR_509/510, 541/542, 573/574, 605/606,
+  637), because the second water channel at rows 11/12 still closes them off.
+  The doorway: rows 1-3 are the rows that are wood on both sides (SCR_289's
+  floor is cols 1-10 in rows 1-3 and cols 1-8 below); the void tiles SCR_289
+  (11, 1-3) and (9-11, 4) and SCR_290 (0, 1-4) become wood floor (tiles
+  18/6/18 and 18/19/6, 19/7/19/7, continuing each room's floor pattern). The booth's walls are sprites (seq 31,
+  hard), not tiles, and SCR_289's East Wilds door S289_P19 sits in the middle of
+  the shared wall (warp hardness x 521-600, y 125-176, rows 2-3), so on
+  SCR_289 the passage runs below the door, y 176-214 (≈ 1.66 m at the
+  interior scale), cutting the wall hardboxes S289_P11 and S289_P12 there,
+  and on SCR_290 the west wall (S290_P10, top of S290_P14) is cut from y 125
+  to 214 (`open` [0, 125, 97, 214]): the opening faces the door and the
+  passage; 2 px jambs (hardness 1) wall it off from the void. The analysis's
+  crossing is SCR_289#2 ↔ SCR_290#2, y 176-214 (38 px). Row 4 was added the
+  same night (coordinator: a usable doorway is the decision, the rows a
+  working detail): with rows 1-3 alone the passage was 22 px and only about
+  2 px of it lay clear of the greybox's door trigger (the hardbox plus 30 cm),
+  so walking between the rooms nearly always landed in the East Wilds. Now
+  about 18 px of the band (map y 189-208) is clear for the 28 cm capsule: a
+  player walks west along it into the west room, then north into the door
+  alcove and east into the door; a player walking west at mid-height through
+  the opening walks into the door directly. The original data (checked against the
+  engine 7 Nov 2026): no sprite warp, script warp or `&player_map` assignment
+  lands in the East Wilds except S289_P19, and no grid edge is open from
+  reached ground: a river about 80 px wide (shoreline outline, hardness 2 and
+  1, no gap at pixel level) runs down columns 25/26, a second water channel
+  cuts the meadows at rows 11/12, and the cliff face of rows 7-8 has a closed
+  foot outline. The engine's two sequence-break routes, unchanged by the join
+  (`engine_reach.json`): (1) dry: push the rock S277_P03 (`s1-roc`, needs
+  `&strength` 4, it moves east) to open the cliff-foot outline on SCR_277 (the
+  hole S277_P02 beside it is a pit to the cave, SCR_131, but the gap is wide
+  enough to pass it), walk the hardness-0 cliff face east through SCR_246-252
+  and 284-288, leave SCR_288 by its right edge: the row wrap loads SCR_289, the
+  booth's west room, on its black void, which still touches the door S289_P19
+  (609, 167) (the jambs close only the passage); (2) wading: the shoreline
+  outline is cut at some screen edges (`edge_leaks`), the sea inside is
+  hardness 0 and the row wrap carries it round the world, so the 24 screens of
+  rows 12-20 are reachable on foot through water. Contains `s1-h1-4`
+  placements on SCR_414/446 (wading-only), a save machine on SCR_349 and the
+  cobbler (`s1-booth`/`s1-boot`, SCR_289).
 - **Grid neighbours that are not connected**: 240 of 1,184 grid-adjacent
   pairs share no walkable edge. Indoor blocks are packed in the top-left
   (54 screens) with only void between them; the Darklands, snowfield and
@@ -348,8 +402,8 @@ screens with no evidence either way).
 - **Big unreached pockets**: most of the snowfield (25 screens, 5.2 M px),
   the East Wilds (several groups, ~9 M px), the northern snow ledge
   (SCR_120/149-153, which even holds an `s7-warp` placement on SCR_153),
-  areas in the cave blocks (SCR_069…198) and inside the Darklands. 405 land
-  pockets ≥ 1,500 px are listed; those with scripted placements are tagged
+  areas in the cave blocks (SCR_069…198) and inside the Darklands. 403 land
+  pockets ≥ 1,500 px are listed (405 before the booth join); those with scripted placements are tagged
   `secret_candidate`.
 - **Interiors with no entrance**: SCR_133, SCR_134, SCR_197 (no warp in or
   out); SCR_132 has only an exit (to SCR_534, Windemere) and `s1-hole`, so it
@@ -374,11 +428,12 @@ screens with no evidence either way).
 
 ### Open questions for a human
 
-1. East Wilds: restore a designed way in (and where: the booth door
-   S289_P19 and the river at SCR_443/444 are the natural places), or cut it? It
-   is 0.07 km² of finished-looking map with a save machine, and the engine
-   already lets players in by the cliff, the row wrap and the sea; a cut must
-   also close those (the rock S277_P03, the wrap SCR_288 to SCR_289, the leaks).
+1. ~~East Wilds: restore a designed way in or cut it?~~ **Answered 9 Nov 2026
+   by the owner**: restore it through the cobbler's booth (one interior, a
+   doorway between SCR_290 and SCR_289), keep all East Wilds content, leave
+   the glitch routes as they are (see Surprises). Still open: the river and
+   coast screens of rows 12-20 (24 wading-only, 9 closed) have no designed way
+   in; the river at SCR_443/444 would be the natural place if wanted.
 2. Koka: keep the bridge (data) or move Koka out to sea as the plan says
    (needs the bridge cut, i.e. a new warp or ferry)?
 3. The snowfield: is the unreached 80% scenery, or was there meant to be a
