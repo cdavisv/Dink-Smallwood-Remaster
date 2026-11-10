@@ -1,0 +1,151 @@
+{
+  "tested_commit": "f97349ed95b05b81a1f24d117279b97ed152126e",
+  "run": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c",
+  "passed": true,
+  "native_exit": 0,
+  "elapsed_includes_manual_review_seconds": 1625.1733768740014,
+  "immutable_inputs_unchanged": 12903,
+  "actual_PNG_count": 17,
+  "diagnostic_state_count": 23,
+  "camera_headroom_input_errors": 0,
+  "roof_supplement_sha256": "da68a9b20ac25a99c2f89051563d28181b84da8dc8a15a8c97770436ed90c5dc",
+  "routes": {
+    "route-door-exit": {
+      "result": "PASS",
+      "samples": 9,
+      "from": 1,
+      "to": 439,
+      "input": "Only actual held W and camera orientation; no route teleports"
+    },
+    "route-door-return": {
+      "result": "PASS",
+      "samples": 3,
+      "from": 439,
+      "to": 1,
+      "input": "Only actual held W and camera orientation; no route teleports"
+    }
+  },
+  "exit_headroom": {
+    "outdoor_headroom_lift": 52.26179504394531,
+    "capsule_top_world": [
+      97729.13389986179,
+      37510.5404101034,
+      194.34999561309814
+    ],
+    "projected_capsule_top_pixel": [
+      639.9999389648438,
+      74.0018539428711
+    ],
+    "projection_return": "<Struct 'Vector2D' (0x7f8c0a587360) {x: 639.999939, y: 74.001854}>",
+    "projection_api_signature": "x.project_world_location_to_screen(world_location, player_viewport_relative=False) -> Vector2D or None\nConvert a World Space 3D position into a 2D Screen Space position.\n\nArgs:\n    world_location (Vector): \n    player_viewport_relative (bool): \n\nReturns:\n    Vector2D or None: true if the world coordinate was successfully projected to the screen.\n\n    screen_location (Vector2D):",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "camera_exit": {
+    "passed": true,
+    "actual": {
+      "scope": "Actual Camera-channel sweep matching base spring-arm query parameters; read-only",
+      "game_time": 295.7169843883603,
+      "pawn": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0",
+      "pawn_location_cm": [
+        97729.13389986179,
+        37510.5404101034,
+        98.34999561309814
+      ],
+      "pawn_velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "arm": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0.CameraBoom",
+      "target_arm_cm": 400.0,
+      "start_cm": [
+        97729.13389986179,
+        37510.5404101034,
+        150.61179164478517
+      ],
+      "unfixed_end_cm": [
+        97725.33012091898,
+        37130.13682072003,
+        274.21858939476414
+      ],
+      "actual_camera_cm": [
+        97728.12017578383,
+        37409.1611544473,
+        183.55355533907743
+      ],
+      "probe_radius_cm": 12.0,
+      "probe_channel": "<CollisionChannel.ECC_CAMERA: 4>",
+      "trace_query": "<TraceTypeQuery.ECC_CAMERA: 1>",
+      "trace_complex": false,
+      "ignored_actors": [
+        "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_0"
+      ],
+      "native_collision_fix_applied": true,
+      "blocking": true,
+      "initial_overlap": false,
+      "hit_time": 0.2665044665336609,
+      "hit_distance_cm": 106.60179138183594,
+      "hit_location_cm": [
+        97728.12017578383,
+        37409.1611544473,
+        183.55355533907743
+      ],
+      "impact_point_cm": [
+        97734.96938916013,
+        37399.30781018555,
+        183.54615783691406
+      ],
+      "impact_normal": [
+        -0.026597311720252037,
+        0.9996457099914551,
+        0.0009870317298918962
+      ],
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_242",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_242.StaticMeshComponent0",
+      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "component_state": {
+        "profile": "BlockAll",
+        "enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+        "object_type": "<CollisionChannel.ECC_WORLD_STATIC: 0>",
+        "Camera_response": "<CollisionResponseType.ECR_BLOCK: 2>",
+        "world_location_cm": [
+          97131.61092968748,
+          36920.324198125,
+          0.0
+        ]
+      },
+      "predicted_vs_actual_camera_error_cm": 0.0,
+      "api_signature": "X.sphere_trace_single(world_context_object, start, end, radius, trace_channel, trace_complex, actors_to_ignore, draw_debug_type, ignore_self=True, trace_color=[1.000000, 0.000000, 0.000000, 1.000000], trace_hit_color=[0.000000, 1.000000, 0.000000, 1.000000], draw_time=5.000000) -> HitResult or None\nSweeps a sphere along the given line and returns the first blocking hit encountered.\nThis trace finds the objects that RESPONDS to the given TraceChannel\n\nArgs:\n    world_context_object (Object): \n    start (Vector): Start of line segment.\n    end (Vector): End of line segment.\n    radius (float): Radius of the sphere to sweep\n    trace_channel (TraceTypeQuery): \n    trace_complex (bool): True to test against complex collision, false to test against simplified collision.\n    actors_to_ignore (Array[Actor]): \n    draw_debug_type (DrawDebugTrace): \n    ignore_self (bool): \n    trace_color (LinearColor): \n    trace_hit_color (LinearColor): \n    draw_time (float): \n\nReturns:\n    HitResult or None: True if there was a hit, false otherwise.\n\n    out_hit (HitResult): Properties of the trace hit.",
+      "qualification": "Native API reachability and blocker match still require the owned current GPU run; custom BlendLocations or camera-relative offsets can differ."
+    }
+  },
+  "screenshots": {
+    "door-before.png": "669e3a90ffc4a23de3b18a05c1ab56756f7a8b59bc9391099d0c4434e413f001",
+    "door-exit.png": "bbed19aa6e4717dfc5148cc87c4a9f67674beb948c50ed800145f2d5f4a7b073",
+    "door-return-settled.png": "af4ef88f2f684b5006f54bf65af66e1e552dde1e843167d7b34512cf6eca14be",
+    "door-return.png": "09da041c84a9f48282908653654fffa7c541275c4228a75510abdbb1fcbc49d1",
+    "final.png": "7d085724508b42a767f391378f9f7fb892eadd7dce843a40c749bba953c57534",
+    "fireplace-actual-join.png": "3dc95b6adc55cec81ab93edc84acee52144139b6de7424d7a9c7c36a3db5dd95",
+    "house-close.png": "a00b9e9614ae406f870f9d0da25f16a76c848d8c4f3698f007f43dd34cf24fed",
+    "house-props.png": "d54264121eaabf3c719b2278542e9397f492f33af0a1a2c805b7e94a72ee35cf",
+    "house-room.png": "eb82ead1f60257c3bf2a429e2e4a92b667a277178e55fa687d9431663adf462f",
+    "house-wall.png": "cc9dd4126ce70a7a3dcffe6ac45aa69d69cb9891b6a7ee955aae2ece49220769",
+    "house-wide.png": "21fd0c303ca3f86fee7f7ec120c4fa143b038387e46e8d2b67f6bd941409bebf",
+    "outside-arrival.png": "9f4b9103a526a071407894a8450819e877f0fa09b39f8c1ec323a51dcd7c179f",
+    "roof-clear-0.png": "8775f4d2ac44e6cf152716d8d2e1847c728c19ad387699ec05ed061b9436b430",
+    "roof-clear-180.png": "eb7faf8c326294b9e128adc62fb770dcba371d63b9693825f9240b8b48e501ab",
+    "roof-clear-270.png": "943b555036c6f98ee8524fd76d818b56a9842faec3ac657c215395e2bdfca740",
+    "roof-clear-90.png": "62898d7da18489847307217403e8fd72536b85c53c10dbd056a80703281e1084",
+    "roof-near-door.png": "7f0b0c1ebdfacf5287a30689065aaed1e04f1c33b6de2a8e0adce55b219533cd"
+  },
+  "closure": {
+    "game_absent": true,
+    "display_absent": true,
+    "display_socket_and_lock_absent": true,
+    "display_exit": 0
+  },
+  "limits": "Current editor-hosted game, not packaged proof. Distant noncurrent interior placeholder walls remain a separately identified visual bug; new FP/exterior/globalbarrels/finalart are unaccepted."
+}

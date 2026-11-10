@@ -1,0 +1,69 @@
+{
+  "tested_commit": "f97349ed95b05b81a1f24d117279b97ed152126e",
+  "scope": "Editor195/currentGPU17/cook inventory/packagedCH1 PASS; packaged rendered startup fails SIGSEGV, not accepted",
+  "files": {
+    "current-builds.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/RoofNativeDeliveryBuildPreparation/Candidate6/Runs/079e501c773c4d4aa5b3574993afc385/SEQUENCE_RESULT.json",
+      "sha256": "2cf8feac123fdcbee30102f4da6f03153956d61480310a7e532a0a41b566913e"
+    },
+    "current-full-native.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/SharedRoofCurrentFullNativePreparation/Candidate3/Runs/aaf9758850d74d4f90177dc82e80e3b6/HOST_TERMINAL.json",
+      "sha256": "a5faad8ed6296d68fe7ac4d17bd069fe137d7e766651fb30defe3f71aa6d26a8"
+    },
+    "current-gpu-review.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUReview/ACTUAL_ROOT_REVIEW.json",
+      "sha256": "a6865354efbdc21e85b3c390818095b1d224263b6ca61b99200d95802892a2fd"
+    },
+    "cook7-terminal.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate7/Runs/63a96d9622664e74bf64258405b4cadb/HOST_TERMINAL.json",
+      "sha256": "a27533e0e4777205d8ed7d9f9b43ecb405b9198ff30c4d5e95a079a5acff76da"
+    },
+    "cooked-roof-inventory.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/RoofCook7Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
+      "sha256": "90a07d7247f996f3a1f627fc140b9e5d08053a4a9a01802094a5f1610655e96c"
+    },
+    "packaged-ch1.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/SharedRoofPackagedCH1Preparation/Runs/e6dfa5fccc4044bd9d41d41df0b5989e/RESULT.json",
+      "sha256": "9f470fbb51aa6922ab63ada6d4fdc833214a3a5fc76d98a1b5620db0ade27b58"
+    },
+    "packaged-gpu-first-failure.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/SharedRoofPackagedGPUPreparation/Runs/c29f365e-fa25-4e0c-a5f1-cbc7c9fcb9b7/result.json",
+      "sha256": "6dec8abc52de3916e6b57a63962ddfe4f04d9bb81f23150901ea3455475c3c5e"
+    },
+    "packaged-gpu-single-worker-failure.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/SharedRoofPackagedGPUPreparationV2/Runs/a0b4a53b-9e45-461d-956a-bd1639046bc9/result.json",
+      "sha256": "f8f7195e56ff8c3265f63c94eaa86a40b2f17003d7563bcaccfb75f8faf098b4"
+    },
+    "house-wide.png": {
+      "source_capture": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/house-wide.png",
+      "sha256": "21fd0c303ca3f86fee7f7ec120c4fa143b038387e46e8d2b67f6bd941409bebf"
+    },
+    "door-exit.png": {
+      "source_capture": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-exit.png",
+      "sha256": "bbed19aa6e4717dfc5148cc87c4a9f67674beb948c50ed800145f2d5f4a7b073"
+    },
+    "door-return.png": {
+      "source_capture": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-return.png",
+      "sha256": "09da041c84a9f48282908653654fffa7c541275c4228a75510abdbb1fcbc49d1"
+    },
+    "roof-clear-0.png": {
+      "source_capture": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-0.png",
+      "sha256": "8775f4d2ac44e6cf152716d8d2e1847c728c19ad387699ec05ed061b9436b430"
+    },
+    "roof-clear-270.png": {
+      "source_capture": "/home/artist/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-270.png",
+      "sha256": "943b555036c6f98ee8524fd76d818b56a9842faec3ac657c215395e2bdfca740"
+    },
+    "README.md": {
+      "sha256": "5f45ecd1b9dd9829deffe0ed3fa2fb606363940fcd2a4589715cbb90d7885940"
+    },
+    "packaged-crash-diagnosis.md": {
+      "source_receipt": "/home/artist/Work/DinkQA/PackagedVulkanCrashDiagnosis/REPORT.md",
+      "sha256": "171918afe1b0d4873c293bf69b91bf076a7fd7ef77cd9e46f319d15da9b69211"
+    },
+    "packaged-crash-evidence.json": {
+      "source_receipt": "/home/artist/Work/DinkQA/PackagedVulkanCrashDiagnosis/EVIDENCE.json",
+      "sha256": "e7cfa978135a2df1cd4462ca43cd0ad2a7be05f15542cf14b69eba537e6e06b2"
+    }
+  }
+}

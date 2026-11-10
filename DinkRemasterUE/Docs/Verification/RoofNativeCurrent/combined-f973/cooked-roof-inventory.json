@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "actual_container_csv_sha256": "b60680a7803625796f8a0c2adbdc71e2e461d81b9bf598ca9de0ab98cb7a199d",
+  "shared_packages": 23,
+  "actual_data_extracted_from_pak": {
+    "Content/Dink/Data/Art/stonebrook.json": "ea52c9aeb01ea49606cb16818954ee7278146bc385743c744b49d8d414956e2d",
+    "Content/Dink/Data/Art/camera_materials.json": "9edc7991b2b185819979429b0ce8bebb7b9e228a550473ebb3bf79f5a58d5a3a",
+    "Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json": "d633db201c94339ce11edc666aa152ea7202ee905df1970985558de198382154"
+  },
+  "scope": "ActualIoStore entries +extractedpakArtJSONbyteagreement, notruntimeorGPUproof.",
+  "retained_canonical_packages": 50,
+  "default_map_and_streamed_maps": [
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Darklands.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Fragments.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Interiors.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Joppa.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Mainland.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_SnowIsle.umap"
+  ],
+  "all_required_roof_packages": 73
+}

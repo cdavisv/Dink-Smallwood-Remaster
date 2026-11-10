@@ -1,3 +1,11 @@
+## Combined roof/hero native, Editor visuals and package data verified; packaged renderer fails
+
+Tested f97349ed95b05b81a1f24d117279b97ed152126e with own C6 builds. Current full195 PASS (163clean/32HTTP-EOSwarning successes/zero failures-skips), GPU20117screenshots/23camera-headroom-input states and realW exit1→439→1 PASS. Cook7 passes; actual container inventory proves23shared+50retained roof packages/sevenmaps/threeexactArtJSON. PackagedCH1 exact1clean PASS and native traceSHA20227a637e1b3872c7b82494023a8224225b285462739113e9f3e799524c1d02 matches.
+
+Packaged rendered startup NOT accepted: both actualGPU202 attempts crashed before input/photos in Radeon Vulkan compute PSO path, including verifiedsingleprecacheworker. Source/stage12940unchanged and private displays closed normally. Exactdriver symbols unavailable; no driverrootcauseclaim. Private newer-driver comparison preparation only, no systemdriver update. Docs/Verification/RoofNativeCurrent/combined-f973 contains indexedactualreceipts/fivecurrentcaptures/diagnosis, no cores/authfiles. PR45 remainsdraft pendingpackagedpixels; inheritedjunction/tangentlimits, separatevisibilityfix, globalbarrelrollout andnewfireplace/exterior/finalart remainopen.
+
+Separatevisibility branch3fa6e05 fixes scratchcontroller registration after firstfocused exact1failedbeforebehavior; originalassertions retained, rebuild/native/renderpending. RuntimeStage25native0/helperguardFAIL/zeroassets/source13318unchanged; exactrootEulerTEXT roundingdiagnosed, no tolerancewaiver. No whole-goalcompletionclaim.
+
 ## Accepted hero source history validated; combined runtime rebuild pending
 
 At accepted-master mergebd35802, preserve11exactpriorhero source preimages under DefectFixes_9Nov2026/History/<oldsha>/<basename>, verified against oldGit/LFS. Append11historyrows after exact4314-row mergedprefix =>4325. Narrow frozen11revision validator proves oldarchive+currentacceptedbytes and laterroworder; metadata mode admits only exact stagedpointerpath/OID/size and reports it separately. No oldrow rewrite, genericlatestrow exemption or runtime changes in this history fix.

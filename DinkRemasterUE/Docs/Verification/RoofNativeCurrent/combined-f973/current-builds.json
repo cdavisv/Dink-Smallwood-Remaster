@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "phases": {
+    "editor": {
+      "exit_code": 0,
+      "elapsed": 34.868513246001385,
+      "source_files": 12887,
+      "source_changes": [],
+      "kernel_present": true
+    },
+    "game": {
+      "exit_code": 0,
+      "elapsed": 17.13915313799953,
+      "source_files": 12887,
+      "source_changes": [],
+      "kernel_present": true
+    }
+  },
+  "fresh_modules": {
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "7f582e2f23ed81044606a77d5dfb6cad349dcdbb5b44a7eb1c26f83bca31ea7c",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "2d4fe81e8a83cc7cd1029de34812b8fa366a3406984bc7d160afd67886d7a3ea",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "b334b9efe1acec6725a38aa8c41a6bb8316d258ecca6158b5bfa81662b7d1180",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "b267bf90501868c5f90b3768a6134447a194cea6a8be776f9f4208703f06ba1b",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "62390feddda8009762e5b35e70b1de2d2ba528b04f8e964530c5cceb02686882",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "fafd3cc71626885e52e814e536b8f010cfeecf9889d6e4e51fbb21f31b0f025c",
+    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6365ba6a23742e4daca10eaf59c8348e56aadd1fa34d9a12848f5cada7fb6181"
+  },
+  "Editor_unchanged_through_Game": true,
+  "no_copied_DLLs": true,
+  "own_incremental_baseline": true,
+  "native_tests_not_run": true
+}
