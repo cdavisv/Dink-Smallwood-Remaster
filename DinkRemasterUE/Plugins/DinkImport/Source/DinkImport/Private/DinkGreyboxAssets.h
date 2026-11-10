@@ -51,7 +51,7 @@ namespace DinkGreybox
 		/** Texture + material instance of one sprite picture. */
 		bool EnsureSprite(const FString& Key, FString& OutError);
 
-		/** Ground texture/material and the three meshes of one screen. */
+		/** Ground texture/material, presentation, optional debug and collision meshes of one screen. */
 		bool EnsureScreen(const FDinkBundleScreen& Screen, FString& OutError);
 
 		/** Removes generated screen/sprite assets whose screen or sprite is no longer in the bundle. */
@@ -62,7 +62,7 @@ namespace DinkGreybox
 
 		UStaticMesh* CardMesh() const;
 		UMaterialInterface* SpriteMaterial(const FString& Key) const;
-		UStaticMesh* ScreenMesh(int32 Screen, const TCHAR* Which) const;  // Visual | CollSolid | CollLow
+		UStaticMesh* ScreenMesh(int32 Screen, const TCHAR* Which) const;  // Visual | DebugBlockers (nullable) | CollSolid | CollLow
 
 		static FString ScreenFolder(int32 Screen);
 		static FString SpritePackage(const TCHAR* Prefix, const FString& Key);
