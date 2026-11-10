@@ -148,6 +148,21 @@ def load_contract(root):
                   trial_only_meshes=[TRIAL + name for name in NAMES],
                   production_delivery_packages=[p for p, k in packages.items() if k != 'StaticMesh'] +
                                                [PRODUCTION + name for name in NAMES])
+    # Additive production registration. Frozen source manifests/current-hash ledger rows remain untouched.
+    delivery = SOURCE.parent / 'InteriorRoofSharedV1NativeDelivery'
+    if (root / delivery).exists():
+        sums = root / delivery / 'SHA256SUMS.json'
+        manifest = root / delivery / 'manifest.json'
+        require(sums.is_file() and not sums.is_symlink() and manifest.is_file() and not manifest.is_symlink(),
+                'Explicit delivery registration files required')
+        require(json.loads(sums.read_text()) == {'manifest.json': sha(manifest)}, 'Delivery registration checksums differ')
+        registration = json.loads(manifest.read_text())
+        require(registration.get('schema') == 'dink-shared-roof-native-delivery/1' and
+                set(registration.get('assets', {})) == set(NAMES) and
+                all(registration['assets'][n]['content_path'] == TRIAL + n for n in NAMES),
+                'Exact eight explicit delivery paths required')
+        pins[str(sums.relative_to(root))] = sha(sums)
+        pins[str(manifest.relative_to(root))] = sha(manifest)
     result['digest'] = hashlib.sha256(json.dumps(result, sort_keys=True).encode()).hexdigest()
     return result
 

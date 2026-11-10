@@ -7,7 +7,7 @@ import gc
 import json
 import traceback
 
-PHASES = ('trial_import', 'trial_readback', 'production_bindings', 'production_readback')
+PHASES = ('trial_import', 'trial_readback', 'production_bindings', 'production_readback', 'data_activation_readback')
 
 
 def _native_scope(root, phase, contract, guard, record_saved, emit_receipt,
@@ -56,6 +56,14 @@ def _native_scope(root, phase, contract, guard, record_saved, emit_receipt,
         guard()
         return True
 
+    if phase == 'data_activation_readback':
+        from shared_roof_activation import verify_activated_readback
+        from readback_sequence import TOLERANCES
+        require(tolerances == TOLERANCES, 'Exact previously accepted native tolerances required')
+        require(diagnostic_root is not None and tolerances is not None, 'Fresh diagnostics and unchanged tolerances required')
+        return verify_activated_readback(U, root, contract, guard,
+            make_pixel_verifier(U, Path(diagnostic_root), guard),
+            make_mesh_verifier(U, root, contract, tolerances), emit_receipt)
     if phase == 'production_bindings':
         require(trial_readback is not None, 'Saved23 trial acceptance required')
         return apply_production_bindings(U, root, contract, trial_readback, guard, save, emit_receipt)
