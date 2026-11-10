@@ -904,7 +904,10 @@ bool ComparePrivateBodyRole(UBodySetup& A,UBodySetup& B,UShapeComponent& S,UShap
   BeforeA!=AfterA||BeforeB!=AfterB||AG!=A.BodySetupGuid||BG!=B.BodySetupGuid||X!=Y||AX!=BX||AV!=BV)
  {Error=TEXT("private cache native serialization/coverage/literal immutability refused");return false;}
  TArray<uint8> PS,PT;if(!State(S,IDs,Forbidden,false,PS)||!State(T,IDs,Forbidden,true,PT)||PS!=PT)
- {Error=TEXT("private cache owning component persistent state differs");return false;}
+ {Error=FString::Printf(TEXT("private cache owning component persistent state differs SOURCE path=%s class=%s flags=0x%x outer=%s owner=%s archetype=%s registered=%d TARGET path=%s class=%s flags=0x%x outer=%s owner=%s archetype=%s registered=%d PSbytes=%d PTbytes=%d firstDifference=%s"),
+  *S.GetPathName(),*S.GetClass()->GetPathName(),static_cast<uint32>(S.GetFlags()),*GetPathNameSafe(S.GetOuter()),*GetPathNameSafe(S.GetOwner()),*GetPathNameSafe(S.GetArchetype()),S.IsRegistered(),
+  *T.GetPathName(),*T.GetClass()->GetPathName(),static_cast<uint32>(T.GetFlags()),*GetPathNameSafe(T.GetOuter()),*GetPathNameSafe(T.GetOwner()),*GetPathNameSafe(T.GetArchetype()),T.IsRegistered(),
+  PS.Num(),PT.Num(),*FirstStateDifference(S,T,IDs,Forbidden));return false;}
  const auto SB=S.CalcBounds(S.GetComponentTransform()),TB=T.CalcBounds(T.GetComponentTransform());
  if(!ExactVectorBytes(SB.Origin,TB.Origin)||!ExactVectorBytes(SB.BoxExtent,TB.BoxExtent)||SB.SphereRadius!=TB.SphereRadius||
   S.GetCollisionEnabled()!=T.GetCollisionEnabled()||S.GetCollisionObjectType()!=T.GetCollisionObjectType()||S.GetCollisionProfileName()!=T.GetCollisionProfileName()||
