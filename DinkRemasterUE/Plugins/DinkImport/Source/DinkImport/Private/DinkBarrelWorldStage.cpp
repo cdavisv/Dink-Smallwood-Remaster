@@ -1350,11 +1350,29 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  Warp->WarpId=TEXT("S254_P04");Warp->SourceScreen=254;Warp->DestScreen=418;Warp->DestLocation=FVector(-184172.03999999998,55656.424999999988,0);Warp->DestMapPixel=FVector2D(303.00000000000006,389.99999999999994);
  Warp->SetBoxExtent(FVector(180,145.00000000000341,150),false);Warp->SetCollisionProfileName(TEXT("BlockAll"));Warp->RegisterComponent();
  auto* Nested=NewObject<USceneComponent>(First->GetRootComponent(),TEXT("BinaryNested"));First->AddInstanceComponent(Nested);Nested->SetupAttachment(Second->GetRootComponent());Nested->SetRelativeLocation(FVector(205.62000000002445,7929.4799999999996,-0.));Nested->RegisterComponent();
- auto* Instances=NewObject<UInstancedStaticMeshComponent>(First,TEXT("BinaryInstances"));First->AddInstanceComponent(Instances);Instances->SetupAttachment(First->GetRootComponent());Instances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
- auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));if(!TestNotNull(TEXT("actual cube for raw instance binary proof"),Cube))return false;Instances->SetStaticMesh(Cube);First->Card->SetStaticMesh(Cube);First->Card->SetMaterial(0,Cube->GetMaterial(0));Instances->AddInstance(FTransform::Identity,false);Instances->RegisterComponent();
- TArray<FInstancedStaticMeshInstanceData> SourceRecords=Instances->PerInstanceSMData;SourceRecords[0].Transform.M[3][0]=205.62000000002445;
- if(!TestTrue(TEXT("source raw setup uses stock invalidation API"),Instances->BatchUpdateInstancesData(0,SourceRecords.Num(),SourceRecords.GetData(),false,true)))return false;
- Instances->OnPostPopulatePerInstanceData(); // stock loaded-source seed initialization BEFORE every baseline
+ // Genuine binary-deserialize/PostLoad fixture setup; no deprecated wrapper,
+ // fabricated seed/load flags, private API or source-actor subtree template.
+ TStrongObjectPtr<UInstancedStaticMeshComponent> AuthoringInstances(NewObject<UInstancedStaticMeshComponent>(GetTransientPackage(),NAME_None,RF_Transient));
+ AuthoringInstances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+ auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));if(!TestNotNull(TEXT("actual cube for raw instance binary proof"),Cube))return false;
+ AuthoringInstances->SetStaticMesh(Cube);First->Card->SetStaticMesh(Cube);First->Card->SetMaterial(0,Cube->GetMaterial(0));AuthoringInstances->AddInstance(FTransform::Identity,false);
+ TArray<FInstancedStaticMeshInstanceData> SourceRecords=AuthoringInstances->PerInstanceSMData;SourceRecords[0].Transform.M[3][0]=205.62000000002445;
+ if(!TestTrue(TEXT("source raw setup uses stock invalidation API"),AuthoringInstances->BatchUpdateInstancesData(0,SourceRecords.Num(),SourceRecords.GetData(),false,true)))return false;
+ const TMap<const UObject*,FString> AuthoringIDs;const TSet<const UPackage*> AuthoringForbidden;TArray<uint8> AuthoringBefore,AuthoringAfter;
+ const EObjectFlags AuthoringFlags=AuthoringInstances->GetFlags();const UObject* AuthoringOuter=AuthoringInstances->GetOuter();const UObject* AuthoringArchetype=AuthoringInstances->GetArchetype();const UClass* AuthoringClass=AuthoringInstances->GetClass();const FName AuthoringName=AuthoringInstances->GetFName();
+ if(!TestTrue(TEXT("unowned unattached exact-class authoring template before load"),AuthoringClass==UInstancedStaticMeshComponent::StaticClass()&&!AuthoringInstances->GetOwner()&&!AuthoringInstances->GetAttachParent()&&!AuthoringInstances->IsRegistered()&&AuthoringOuter==GetTransientPackage()))return false;
+ if(!TestTrue(TEXT("authoring template full tracked State before genuine load"),State(*AuthoringInstances,AuthoringIDs,AuthoringForbidden,false,AuthoringBefore)))return false;
+ FObjectDuplicationParameters LoadParameters(AuthoringInstances.Get(),First);
+ LoadParameters.DestName=MakeUniqueObjectName(First,UInstancedStaticMeshComponent::StaticClass(),TEXT("BinaryInstances"));LoadParameters.DestClass=UInstancedStaticMeshComponent::StaticClass();
+ LoadParameters.DuplicateMode=EDuplicateMode::World;LoadParameters.bSkipPostLoad=false;LoadParameters.bAssignExternalPackages=false;
+ TStrongObjectPtr<UInstancedStaticMeshComponent> LoadedSourceInstances(Cast<UInstancedStaticMeshComponent>(StaticDuplicateObjectEx(LoadParameters)));
+ auto* Instances=LoadedSourceInstances.Get();if(!TestNotNull(TEXT("stock binary-read/PostLoad source ISM"),Instances))return false;
+ if(!TestTrue(TEXT("actual loaded ISM owns correct actor/outer/class and completed PostLoad"),Instances->GetOwner()==First&&Instances->GetOuter()==First&&Instances->GetClass()==UInstancedStaticMeshComponent::StaticClass()&&!Instances->HasAnyFlags(RF_NeedPostLoad|RF_NeedPostLoadSubobjects|RF_NeedLoad)&&Instances->InstancingRandomSeed!=0&&Instances->GetStaticMesh()==Cube))return false;
+ if(!TestTrue(TEXT("authoring template full State and literal metadata unchanged by supported load"),State(*AuthoringInstances,AuthoringIDs,AuthoringForbidden,false,AuthoringAfter)&&AuthoringBefore==AuthoringAfter&&AuthoringFlags==AuthoringInstances->GetFlags()&&AuthoringOuter==AuthoringInstances->GetOuter()&&AuthoringArchetype==AuthoringInstances->GetArchetype()&&AuthoringClass==AuthoringInstances->GetClass()&&AuthoringName==AuthoringInstances->GetFName()))return false;
+ if(!TestEqual(TEXT("loaded source and unchanged authoring template raw instance counts"),Instances->PerInstanceSMData.Num(),SourceRecords.Num())||!TestEqual(TEXT("authoring raw count unchanged"),AuthoringInstances->PerInstanceSMData.Num(),SourceRecords.Num()))return false;
+ for(int I=0;I<SourceRecords.Num();++I)for(int Row=0;Row<4;++Row)for(int Col=0;Col<4;++Col)
+ {const auto A=SourceRecords[I].Transform.M[Row][Col],B=Instances->PerInstanceSMData[I].Transform.M[Row][Col],C=AuthoringInstances->PerInstanceSMData[I].Transform.M[Row][Col];if(!TestTrue(TEXT("genuine loaded source and unchanged template preserve every raw matrix scalar bit"),FMemory::Memcmp(&A,&B,sizeof(A))==0&&FMemory::Memcmp(&A,&C,sizeof(A))==0))return false;}
+ First->AddInstanceComponent(Instances);Instances->SetupAttachment(First->GetRootComponent());Instances->RegisterComponent();
  TMap<const UObject*,FString> IDs;TMap<FString,UObject*> FirstObjects,SecondObjects,LightObjects;AddObjects(*First,TEXT("First"),IDs,FirstObjects);AddObjects(*Second,TEXT("Second"),IDs,SecondObjects);AddObjects(*Light,TEXT("Light"),IDs,LightObjects);
  IDs.Add(SourceWorld,TEXT("World"));IDs.Add(SourceWorld->PersistentLevel,TEXT("Level"));IDs.Add(ExtraLevel,TEXT("Level"));IDs.Add(SourceWorld->GetWorldSettings(),TEXT("Settings"));
  TSet<const UPackage*> Forbidden;Forbidden.Add(SourcePackage);
