@@ -288,6 +288,13 @@ bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstanc
  if(!Target.BatchUpdateInstancesData(0,Copy.Num(),Copy.GetData(),true,true))
  {Evidence=TEXT("stock raw instance update refused");return false;}
  Target.UpdateBounds(); // normal target-only derived cache refresh
+ auto* CacheProperty=FindFProperty<FStructProperty>(UInstancedStaticMeshComponent::StaticClass(),TEXT("CachedBounds"));
+ if(!CacheProperty||CacheProperty->ArrayDim!=3||CacheProperty->Struct!=FBoundsCacheElement::StaticStruct())
+ {Evidence=TEXT("installed three-slot bounds cache schema differs");return false;}
+ // Read source validity ONLY. Stock APIs recompute NEW-target slots invalidated
+ // by BatchUpdateInstancesData; source cached hash/value/payload remain untouched.
+ if(CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(&Source,1)->IsValid())Target.GetNavigationBounds();
+ if(CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(&Source,2)->IsValid())Target.CalcBounds(FTransform::Identity);
  for(int I=0;I<Copy.Num();++I)for(int R=0;R<4;++R)for(int C=0;C<4;++C)
  {const auto& A=Source.PerInstanceSMData[I].Transform.M[R][C];const auto& B=Target.PerInstanceSMData[I].Transform.M[R][C];
   if(FMemory::Memcmp(&A,&B,sizeof(A))){Evidence=TEXT("stock raw instance update failed exact scalar postcondition");return false;}}
@@ -773,12 +780,29 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  ISMA->PerInstanceSMData[0].Transform.M[3][0]=205.62000000002445;
  NewISM->PerInstanceSMData[0].Transform=ISMA->PerInstanceSMData[0].Transform;NewISM->PerInstanceSMData[0].Transform.M[3][0]=205.62;
  TMap<UObject*,UObject*> RepairMap;RepairMap.Add(ISMA,NewISM);FString RepairEvidence;
+ // Fixture setup intentionally computes scratch-source caches BEFORE fingerprint;
+ // production RestoreNewTargetRawInstances only reads these validity flags.
+ ISMA->UpdateBounds();ISMA->GetNavigationBounds();ISMA->CalcBounds(FTransform::Identity);
+ NewISM->SetWorldTransform(ISMA->GetComponentTransform());
+ TestTrue(TEXT("scratch source navigation cache valid before repair"),CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(ISMA,1)->IsValid());
+ TestTrue(TEXT("scratch source local cache valid before repair"),CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(ISMA,2)->IsValid());
  TArray<uint8> RawSourceBefore,RawSourceAfter;
  TestTrue(TEXT("raw source state before NEW-target restoration"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceBefore));
  TestTrue(TEXT("measured indexed matrix drift restored through stock NEW-target API"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence));
  TestEqual(TEXT("target raw scalar equals exact source authored value"),NewISM->PerInstanceSMData[0].Transform.M[3][0],ISMA->PerInstanceSMData[0].Transform.M[3][0]);
  TestTrue(TEXT("raw source state after NEW-target restoration"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceAfter));
  TestTrue(TEXT("source all cache slots/raw matrices unchanged by target API"),RawSourceBefore==RawSourceAfter);
+ for(int CacheIndex:{1,2})
+ {
+  auto* SourceCache=CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(ISMA,CacheIndex);
+  auto* TargetCache=CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(NewISM,CacheIndex);
+  TestTrue(FString::Printf(TEXT("target cache%d refreshed valid through normal API"),CacheIndex),TargetCache->IsValid());
+  TArray<uint8> ExpectedCache,ActualCache;FObjectWriter ExpectedWriter(ExpectedCache),ActualWriter(ActualCache);
+  CacheProperty->SerializeItem(FStructuredArchiveFromArchive(ExpectedWriter).GetSlot(),SourceCache,nullptr);
+  CacheProperty->SerializeItem(FStructuredArchiveFromArchive(ActualWriter).GetSlot(),TargetCache,nullptr);
+  TestTrue(FString::Printf(TEXT("target cache%d actual recomputed fields equal exact own source-aligned geometry"),CacheIndex),ExpectedCache==ActualCache);
+ }
+
  TestFalse(TEXT("raw restoration wrong target owner refuses"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,Wrong,NewWorld,RepairMap,RepairEvidence));
  TestFalse(TEXT("raw restoration rejects source world as NEW world"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,World,RepairMap,RepairEvidence));
  NewISM->SetStaticMesh(nullptr);
