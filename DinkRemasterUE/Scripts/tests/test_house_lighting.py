@@ -164,7 +164,10 @@ class HouseLighting(unittest.TestCase):
             profile['source_files_sha256'][relative] = hashlib.sha256(path.read_bytes()).hexdigest()
         source = root / 'SourceAssets/Art/Stonebrook'
         (source / 'room_layout.json').write_text(json.dumps(self.layout))
-        (source / 'art_manifest.json').write_text(json.dumps({'assets': {}, 'materials': {}}))
+        (source / 'art_manifest.json').write_text(json.dumps({
+            'assets': {'SM_Window_Limewash_2m_01': {'class': 'kit_wall'}}, 'materials': {}}))
+        screens = root / 'ImportData/screens.json'; screens.parent.mkdir()
+        screens.write_bytes((P / 'ImportData/screens.json').read_bytes())
         path = root / lighting.PROFILE; path.parent.mkdir(parents=True); path.write_text(json.dumps(profile))
         scripts = root / 'Scripts'; scripts.mkdir()
         (scripts / 'house_lighting.py').write_bytes((P / 'Scripts/house_lighting.py').read_bytes())
@@ -174,12 +177,19 @@ class HouseLighting(unittest.TestCase):
 
     def test_actual_importer_entry_rejects_invalid_lighting_before_any_native_work(self):
         class NativeWorkReached(RuntimeError): pass
-        variants = [(None, None), ('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300)]
+        variants = [(None, None), ('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300), ('screen_corners', None)]
         for key, value in variants:
             with self.subTest(key=key, value=value), tempfile.TemporaryDirectory() as name:
                 root = Path(name); profile = copy.deepcopy(self.profile)
-                if key: profile['daylight'][key] = value
+                if key and key != 'screen_corners':
+                    profile['daylight'][key] = value
                 data = self._entry_fixture(root, profile); before = data.read_bytes(); native_calls = []
+                if key == 'screen_corners':
+                    path = root / 'ImportData/screens.json'
+                    screens = json.loads(path.read_text())
+                    screen = next(row for row in screens['screens'] if row['screen'] == 1)
+                    screen['corners']['nw'][0] += 0.01
+                    path.write_text(json.dumps(screens))
                 stub = types.ModuleType('unreal')
                 stub.Paths = types.SimpleNamespace(project_dir=lambda: str(root), convert_relative_path_to_full=lambda x: x)
                 def native_access():
@@ -196,7 +206,7 @@ class HouseLighting(unittest.TestCase):
                         with self.assertRaises(NativeWorkReached): runpy.run_path(str(P / 'Scripts/import_stonebrook_art.py'), run_name='__main__')
                         self.assertEqual(native_calls, ['get_asset_tools'])  # Positive control actually traversed preflight.
                     else:
-                        with self.assertRaisesRegex(ValueError, 'scaled clear aperture|runtime float'):
+                        with self.assertRaisesRegex(ValueError, 'scaled clear aperture|runtime float|Runtime window placement changed'):
                             runpy.run_path(str(P / 'Scripts/import_stonebrook_art.py'), run_name='__main__')
                         self.assertEqual(native_calls, [])
                 self.assertEqual(data.read_bytes(), before)

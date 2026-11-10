@@ -22,6 +22,36 @@ LAYOUT_SCREEN = int(LAYOUT.get('screen', 1))
 OUTPUT_NAME = os.environ.get('DINK_ART_OUTPUT_NAME', {1:'stonebrook',439:'stonebrook_exterior'}.get(LAYOUT_SCREEN, f'screen_{LAYOUT_SCREEN}'))
 if not OUTPUT_NAME.replace('_','').isalnum():
     raise RuntimeError('Invalid art output name')
+# Read the canonical layout transform before any native asset work.
+screens = json.loads((ROOT / 'ImportData/screens.json').read_text())['screens']
+by_screen = {row['screen']: row for row in screens}
+
+
+def world_pixel(pixel, screen=None, height_m=0):
+    corners = by_screen[LAYOUT_SCREEN if screen is None else screen]['corners']
+    x, y = pixel[0] / 600, pixel[1] / 400
+    nw, ne, se, sw = [corners[k] for k in ('nw', 'ne', 'se', 'sw')]
+    out = [(nw[i]*(1-x)*(1-y) + ne[i]*x*(1-y) + se[i]*x*y + sw[i]*(1-x)*y) * 100 for i in range(2)]
+    return out + [height_m * 100]
+
+def runtime_element(row, mesh):
+    location = world_pixel(row['source_pixel'], row.get('screen', LAYOUT_SCREEN), row.get('height_cm', 0) / 100)
+    rotation = row.get('rotation_deg', [0, row.get('yaw', 0), 0])
+    scale = row.get('scale', [1, 1, 1])
+    if LAYOUT_SCREEN == 1 and SPEC['assets'][row['mesh']]['class'] in ('kit_floor', 'kit_ceiling'):
+        # The documented FBX handedness conversion negates local Y. These grid
+        # modules start at NW in the source layout; move their imported -Y span
+        # south by one 2m grid cell (including scaling and actor yaw).
+        import math
+        offset = 200.0 * scale[1]
+        location[0] -= math.sin(math.radians(rotation[1])) * offset
+        location[1] += math.cos(math.radians(rotation[1])) * offset
+    camera_occluder = row.get('camera_occluder', SPEC['assets'].get(row['mesh'], {}).get('class') in ('kit_wall', 'kit_ceiling', 'kit_piece'))
+    return {'name': row['name'], 'mesh': mesh, 'world_cm': location,
+            'rotation_deg': rotation, 'scale': scale,
+            'collision': row.get('collision', True), 'camera_occluder': camera_occluder}
+
+
 HOUSE_LIGHTING = None
 if (LAYOUT_SCREEN == 1 and OUTPUT_NAME == 'stonebrook' and
         SOURCE.resolve() == (ROOT / 'SourceAssets/Art/Stonebrook').resolve()):
@@ -32,6 +62,10 @@ if (LAYOUT_SCREEN == 1 and OUTPUT_NAME == 'stonebrook' and
     _lighting_spec.loader.exec_module(_lighting)
     HOUSE_LIGHTING = _lighting.load_profile(ROOT)
     _lighting.preflight_source(HOUSE_LIGHTING, LAYOUT)
+    windows = [runtime_element(row, _lighting.WINDOW_MESH) for row in LAYOUT['elements']
+               if row['mesh'] == 'SM_Window_Limewash_2m_01']
+    _lighting.light_rows(HOUSE_LIGHTING, {'schema': 'dink-art/1', 'screen': LAYOUT_SCREEN,
+                                         'elements': windows})
 ASSETS = '/Game/Dink/Kits/' + SOURCE.name
 MATS = os.environ.get('DINK_ART_MATERIAL_FOLDER', '/Game/Dink/Materials/Stonebrook')
 TEX = os.environ.get('DINK_ART_TEXTURE_FOLDER', '/Game/Dink/Textures/Stonebrook')
@@ -291,18 +325,8 @@ for name in {r['mesh'] for r in LAYOUT.get('replacements', []) + LAYOUT.get('ele
     meshes[name] = LIB.load_asset(path).get_path_name()
 
 # Dressing is described in map pixels to stay coupled to the canonical layout transform.
-screens = json.loads((ROOT / 'ImportData/screens.json').read_text())['screens']
-by_screen = {r['screen']: r for r in screens}
 placements = json.loads((ROOT / 'ImportData/placements.json').read_text())['placements']
 by_origin = {r['id']: r for r in placements}
-
-
-def world_pixel(pixel, screen=None, height_m=0):
-    corners = by_screen[LAYOUT_SCREEN if screen is None else screen]['corners']
-    x, y = pixel[0] / 600, pixel[1] / 400
-    nw, ne, se, sw = [corners[k] for k in ('nw', 'ne', 'se', 'sw')]
-    out = [(nw[i]*(1-x)*(1-y) + ne[i]*x*(1-y) + se[i]*x*y + sw[i]*(1-x)*y) * 100 for i in range(2)]
-    return out + [height_m * 100]
 
 
 runtime = {'schema': 'dink-art/1', 'screen': LAYOUT_SCREEN, 'assets': checks,
@@ -326,20 +350,7 @@ for row in LAYOUT['replacements']:
                                     'rotation_deg': [0, row.get('yaw', 0), 0],
                                     'scale': row.get('scale', [1, 1, 1])})
 for row in LAYOUT.get('elements', []):
-    location = world_pixel(row['source_pixel'], row.get('screen', LAYOUT_SCREEN), row.get('height_cm', 0) / 100)
-    rotation = row.get('rotation_deg', [0, row.get('yaw', 0), 0])
-    scale = row.get('scale', [1, 1, 1])
-    if LAYOUT_SCREEN == 1 and SPEC['assets'][row['mesh']]['class'] in ('kit_floor', 'kit_ceiling'):
-        # The documented FBX handedness conversion negates local Y. These grid
-        # modules start at NW in the source layout; move their imported -Y span
-        # south by one 2m grid cell (including scaling and actor yaw).
-        import math
-        offset = 200.0 * scale[1]
-        location[0] -= math.sin(math.radians(rotation[1])) * offset
-        location[1] += math.cos(math.radians(rotation[1])) * offset
-    camera_occluder = row.get('camera_occluder', SPEC['assets'].get(row['mesh'], {}).get('class') in ('kit_wall', 'kit_ceiling', 'kit_piece'))
-    runtime['elements'].append({'name': row['name'], 'mesh': meshes[row['mesh']],
-                                'world_cm': location, 'rotation_deg': rotation, 'scale': scale, 'collision': row.get('collision', True), 'camera_occluder': camera_occluder})
+    runtime['elements'].append(runtime_element(row, meshes[row['mesh']]))
 for row in LAYOUT.get('lights', []):
     runtime['lights'].append({'world_cm': world_pixel(row['source_pixel'], row.get('screen', LAYOUT_SCREEN), row['height_cm'] / 100),
                               'lumens': row['lumens'], 'kelvin': row['kelvin'], 'radius_cm': row['radius_cm']})
