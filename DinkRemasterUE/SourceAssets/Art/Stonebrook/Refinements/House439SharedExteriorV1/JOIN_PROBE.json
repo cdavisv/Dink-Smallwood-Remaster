@@ -1,0 +1,62 @@
+{
+  "scope": "Temporary copy triangulation+one-mesh join only; original source notsaved, no native/FBX/shader interpretation proof",
+  "source_sha256_unchanged": "a88249598c9ae742630941e284cfa45d42599c8cca276b2348138321acd97910",
+  "source_mesh_objects": 298,
+  "triangles": 194192,
+  "unique_source_corners": 582576,
+  "joined_UV_layers": [
+    "UV0",
+    "UV1_SharedData"
+  ],
+  "joined_color_layers": [
+    "House439StoneSeed",
+    "SharedSurfaceData"
+  ],
+  "material_roles": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_WeatheredTimber2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_DressedReed2m"
+  ],
+  "max_world_position_error_m": 0.0,
+  "normal_angle_degrees_p50_p95_max": [
+    0.0,
+    0.0028213414876818916,
+    0.0402123556719523
+  ],
+  "max_UV0_error": 0.0,
+  "max_UV1_SharedData_error": 0.0,
+  "max_SharedSurfaceData_RGBA_error": 0.0,
+  "material_role_mismatches": 0,
+  "joined_world_TRS": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "explicit_postjoin_normals_restored": true,
+  "data_join_pass": true
+}

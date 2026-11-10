@@ -1,0 +1,140 @@
+{
+  "scope": "Read-only source shader inspection and unchanged packed-image extraction",
+  "source_sha256": "06392aa842f55340e0c9baa58a4f965574ab349fd72946d3511f84fa55467d52",
+  "source_material": "MI_Stonebrook_WroughtIron",
+  "nodes": [
+    {
+      "name": "Principled BSDF",
+      "type": "ShaderNodeBsdfPrincipled",
+      "inputs": {
+        "Base Color": {
+          "value": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "linked": true
+        },
+        "Metallic": {
+          "value": 0.8199999928474426,
+          "linked": true
+        },
+        "Roughness": {
+          "value": 0.5799999833106995,
+          "linked": true
+        },
+        "Alpha": {
+          "value": 1.0,
+          "linked": false
+        }
+      }
+    },
+    {
+      "name": "Material Output",
+      "type": "ShaderNodeOutputMaterial"
+    },
+    {
+      "name": "Image Texture",
+      "type": "ShaderNodeTexImage",
+      "image": "T_Stonebrook_WroughtIron_BC"
+    },
+    {
+      "name": "Image Texture.001",
+      "type": "ShaderNodeTexImage",
+      "image": "T_Stonebrook_WroughtIron_N"
+    },
+    {
+      "name": "Normal Map",
+      "type": "ShaderNodeNormalMap",
+      "uv_map": "",
+      "strength": 0.3799999952316284
+    },
+    {
+      "name": "Image Texture.002",
+      "type": "ShaderNodeTexImage",
+      "image": "T_Stonebrook_WroughtIron_ORM"
+    },
+    {
+      "name": "Separate Color",
+      "type": "ShaderNodeSeparateColor"
+    }
+  ],
+  "links": [
+    [
+      "Principled BSDF",
+      "BSDF",
+      "Material Output",
+      "Surface"
+    ],
+    [
+      "Image Texture",
+      "Color",
+      "Principled BSDF",
+      "Base Color"
+    ],
+    [
+      "Image Texture.001",
+      "Color",
+      "Normal Map",
+      "Color"
+    ],
+    [
+      "Normal Map",
+      "Normal",
+      "Principled BSDF",
+      "Normal"
+    ],
+    [
+      "Image Texture.002",
+      "Color",
+      "Separate Color",
+      "Color"
+    ],
+    [
+      "Separate Color",
+      "Green",
+      "Principled BSDF",
+      "Roughness"
+    ],
+    [
+      "Separate Color",
+      "Blue",
+      "Principled BSDF",
+      "Metallic"
+    ]
+  ],
+  "files": [
+    {
+      "path": "Sources/T_Stonebrook_WroughtIron_BC.png",
+      "sha256": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+      "colorspace": "sRGB",
+      "size": [
+        1024,
+        1024
+      ],
+      "image": "T_Stonebrook_WroughtIron_BC"
+    },
+    {
+      "path": "Sources/T_Stonebrook_WroughtIron_N.png",
+      "sha256": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ],
+      "image": "T_Stonebrook_WroughtIron_N"
+    },
+    {
+      "path": "Sources/T_Stonebrook_WroughtIron_ORM.png",
+      "sha256": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ],
+      "image": "T_Stonebrook_WroughtIron_ORM"
+    }
+  ],
+  "provenance_qualification": "Existing project-authored Stonebrook library maps, not a newly sourced photographic scan. No unrelated scan or private house bake is claimed."
+}

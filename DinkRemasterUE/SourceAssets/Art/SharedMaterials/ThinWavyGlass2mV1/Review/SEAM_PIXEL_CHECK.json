@@ -1,0 +1,48 @@
+{
+  "status": "PASS_no_outlier_repeat_boundary_jump",
+  "maps": {
+    "BC": [
+      {
+        "repeat_jump_max": 0.0,
+        "interior_neighbor_jump_max": 0.0,
+        "interior_neighbor_jump_p99": 0.0,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      },
+      {
+        "repeat_jump_max": 0.0,
+        "interior_neighbor_jump_max": 0.0,
+        "interior_neighbor_jump_p99": 0.0,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      }
+    ],
+    "N_GL": [
+      {
+        "repeat_jump_max": 0.0001220703125,
+        "interior_neighbor_jump_max": 0.0003814697265625,
+        "interior_neighbor_jump_p99": 0.0001678466796875,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      },
+      {
+        "repeat_jump_max": 0.0001373291015625,
+        "interior_neighbor_jump_max": 0.0003814697265625,
+        "interior_neighbor_jump_p99": 0.00018310546875,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      }
+    ],
+    "ORM": [
+      {
+        "repeat_jump_max": 0.005508504807949066,
+        "interior_neighbor_jump_max": 0.008102543652057648,
+        "interior_neighbor_jump_p99": 0.0034332871437072754,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      },
+      {
+        "repeat_jump_max": 0.00643930584192276,
+        "interior_neighbor_jump_max": 0.008636608719825745,
+        "interior_neighbor_jump_p99": 0.0035858675837516785,
+        "criterion": "repeat jump <=1.5 * observed max interior neighbor jump +2/65535"
+      }
+    ]
+  },
+  "qualification": "Sampled adjacent texel values only; not proof of visual/native mip or derivative equivalence."
+}

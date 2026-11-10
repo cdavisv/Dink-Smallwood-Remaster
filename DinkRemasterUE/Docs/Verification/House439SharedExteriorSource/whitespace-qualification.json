@@ -1,0 +1,273 @@
+{
+  "status": "QUALIFIED_VERBATIM_PUBLIC_LICENSE_SNAPSHOTS_ONLY",
+  "reason": "Preserve exact frozen publisher receipt bytes and hashes; do not rewrite external evidence to satisfy formatting. No code/generated metadata whitespace errors.",
+  "paths": {
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/EndgrainPublisher.html": [
+      {
+        "line": 102,
+        "warning": "trailing whitespace."
+      },
+      {
+        "line": 183,
+        "warning": "trailing whitespace."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FineGrainedWood/polyhaven_asset_license.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FineGrainedWood/publisher.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 78,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 82,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 84,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 152,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 156,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 158,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 226,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 230,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 232,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/CC0_license_snapshot.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/metal_plate_02_publisher.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 78,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 82,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 84,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 152,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 156,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 158,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 226,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 230,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 232,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/RockBoulderDry/polyhaven_asset_license.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/RockBoulderDry/publisher.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 78,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 82,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 84,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 152,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 156,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 158,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 226,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 230,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 232,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/StoneWallPublisher.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 78,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 82,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 84,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 152,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 156,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 158,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 226,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 230,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 232,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/StoneWall_CC0.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      }
+    ]
+  },
+  "warning_count": 62
+}

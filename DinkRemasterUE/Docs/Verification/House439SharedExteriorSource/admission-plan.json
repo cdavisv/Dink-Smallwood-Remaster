@@ -1,0 +1,39 @@
+{
+  "status": "SEVEN_MATERIAL_ROLES_SOURCE_REGISTERED_MESH_AND_NATIVE_PENDING",
+  "base": "f3c84a14ab6b83e9e512560b9b4d4cbf3b913d6d",
+  "branch": "art/house439-shared-exterior-source",
+  "owned_worktree": "/home/artist/Work/DinkHouseExteriorSourceAdmission",
+  "review_scope": "Root accepted direction for nativegameTRIAL, not finalphotorealapproval; reviewbeforeUE",
+  "full_house_QA": {
+    "path": "/home/artist/Work/DinkQA/PhotorealSessions/House439Facade/FullHouseAssemblyQA_V2/House439_FullJoined_With6UCX_QA.fbx",
+    "sha256": "5093359851fe2be8b8bc49b808a3989c76cda92a7fe8e11e023f4dfa699186d7",
+    "triangles": 194192,
+    "hulls": 6,
+    "pass": true,
+    "material_names": "Historical source names; not library admission artifact yet"
+  },
+  "proposed_role_keys": {
+    "MI_Candidate_IndividualStone_2m": "FieldstoneSeed2m",
+    "MI_Candidate_StoneWallFull_2m": "FieldstoneWall2m",
+    "MI_Candidate_WeatheredTimber_2Role": "WeatheredTimber2m",
+    "MI_Candidate_Metalwork_2Role": "IronLead2m",
+    "MI_Candidate_Mineral_2Role": "LimeMortarSoot2m",
+    "MI_Shared_WeatheredDressedReed_2m": "DressedReed2m",
+    "MI_House439_OpticalGlass_SourceV21": "ThinWavyGlass2m"
+  },
+  "required_next": [
+    "Register genuinely reusable material/map/source/provenance/reuse records in SharedMaterials manifest/table before adapted mesh declares uses",
+    "Coordinate existing stone/metal donors with FireplaceSharedV1; no fakezinc claim or duplicate licensed-source attribution",
+    "Adapt only material identities/sourcepack paths in new portable cottage source; prove geometry/UV/normals/TRS/colors/6UCX unchanged fromreviewed candidate",
+    "Regenerate fullFBX with registered library names and rawColor0/frame/role/6UCX proof",
+    "Implement isolated existingimporter extension with physicalthin transmissiveglass; noopaquegrayfallback, actualnativeRootreviewbeforeUE",
+    "Run applicable source/artstandard/offlinechecks and preserve preexistingbaseline errors; sourceledgerappendpreservesrawrows",
+    "Commitreviewablesource whenchecksready, no push/mergeclaim yet"
+  ],
+  "source_glass_observation": "Actual source Principled transmission1/IOR1.48 plus absorption density.4; roughness linked. Glass looksgray inreview; this is not proof of final nativeoptics. Physicalthin nativeprofile needs explicit contract/review.",
+  "canonical_mutations": false,
+  "glass_derivative": "ThinWavyGlass2mV1 shared UV-scaled periodic thin-wall derivative explicitly replaces volumetric/world-space source optics. Closed panes front/back review and native verification required before acceptance.",
+  "glass_mapping_correction": "Actual glass triangle metrics show main panes exactly2m/UV, areaweighted2.0045m/UV; prior wholeobjectbounds inference was wrong. ExistingUV0 already physical and tangent-compatible; owner notified, no UV mutation.",
+  "glass_uv_owner_decision": "KEEP originalUV0/sampler0, NOnewUV2; actual2m pane metrics andmatchingUV0TBN. Supersedes earlierconditionalUV2approval.",
+  "glass_native_owner_decision": "Closed12mmpanes/two_sidedfalse/rootOpacity0/surfaceCoverage1 approved as explicitthin-sheet GAME TRIAL only; actualoutside/inside/card/reflection still required."
+}

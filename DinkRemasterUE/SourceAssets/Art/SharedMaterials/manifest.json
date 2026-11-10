@@ -208,6 +208,882 @@
       "dither_opacity_mask": true,
       "opacity_mask_clip_value": 0.5,
       "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "FieldstoneSeed2m": {
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generalmodeledindividualfieldstoneblocks,boulders,hearthblocks withstablevertexcolorvariation"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_surface_2m",
+      "variants": {
+        "Stone": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+              "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+              "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+              "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "SharedSurfaceData.R": "stablevariation factor .94+.10R",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/FieldstoneSeed2m_donor_manifest.json"
+    },
+    "FieldstoneWall2m": {
+      "material": "MI_Shared_FieldstoneWall2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "genericcontinuousstonewall/chimneymasonry; avoiddoublejoints onmodeledblocks"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png",
+          "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 8,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+          "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 8,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png",
+          "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 8,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_surface_2m",
+      "variants": {
+        "Wall": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png",
+              "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 8,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+              "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 8,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png",
+              "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 8,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/FieldstoneWall2m_donor_manifest.json"
+    },
+    "WeatheredTimber2m": {
+      "material": "MI_Shared_WeatheredTimber2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "weathered timberbeams/planks/endcuts,unknownendphoto species"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+          "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+          "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+          "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_variant_tint_2m",
+      "variants": {
+        "Longgrain": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+              "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+              "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+              "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        },
+        "Endgrain": {
+          "selector": 1,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC.png",
+              "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL.png",
+              "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM.png",
+              "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "UV1_SharedData.x": "0longgrain/1endgrain constant perface",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/WeatheredTimber2m_donor_manifest.json"
+    },
+    "IronLead2m": {
+      "material": "MI_Shared_IronLead2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generalforgedfittings andleadsheet/flashing,notzincscan"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png",
+          "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+          "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png",
+          "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_variant_tint_2m",
+      "variants": {
+        "BlackenedIron": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png",
+              "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+              "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png",
+              "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        },
+        "DullLead": {
+          "selector": 1,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png",
+              "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png",
+              "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png",
+              "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "UV1_SharedData.x": "0iron/1lead constant perface",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/IronLead2m_donor_manifest.json"
+    },
+    "LimeMortarSoot2m": {
+      "material": "MI_Shared_LimeMortarSoot2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic mortar/bedding/plaster/soot withsurface tint/bias"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png",
+          "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+          "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+          "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_variant_tint_2m",
+      "variants": {
+        "Lime": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png",
+              "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+              "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+              "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        },
+        "Soot": {
+          "selector": 1,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC.png",
+              "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL.png",
+              "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM.png",
+              "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "UV1_SharedData.x": "0lime/1soot",
+        "UV1_SharedData.y": "roughnessbias, clamp final roughness",
+        "SharedSurfaceData.RGB": "generic surface tint; Alphaunused",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/LimeMortarSoot2m_donor_manifest.json"
+    },
+    "DressedReed2m": {
+      "material": "MI_Shared_DressedReed2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "general dressedthatch roofsurfaces,panels,reedcoverings"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png",
+          "sha256": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png",
+          "sha256": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png",
+          "sha256": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_surface_2m",
+      "variants": {
+        "Reed": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png",
+              "sha256": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png",
+              "sha256": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png",
+              "sha256": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2, localrake direction inV",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/DressedReed2m_donor_manifest.json"
+    },
+    "ThinWavyGlass2m": {
+      "material": "MI_Shared_ThinWavyGlass2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "General near-clear wavy glass surfaces with reviewed thin-wall front/back policy"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "thin_transmissive_surface_2m",
+      "mesh_contract": {
+        "UV0": "metres/2 in pane plane; no private attributes",
+        "normal_strength": 1,
+        "geometry_policy": "Closed pane geometry requires explicit front/back handling review; no automatic opaque fallback"
+      },
+      "IOR": 1.48,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.037460978147762745,
+      "unreal_specular": 0.46826222684703434,
+      "transmission": 1,
+      "thin_wall": true,
+      "linear_tint": [
+        0.96,
+        0.985,
+        0.97
+      ],
+      "volume_absorption": "None in this derivative; replaces historical volumetric source explicitly",
+      "source": "ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend",
+      "library": "ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend",
+      "reuse_proof": "ThinWavyGlass2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ThinWavyGlass2mV1/PROVENANCE.md",
+      "native_requirements": [
+        "Physical thin-translucent shading with transmission and reflection; fail closed if unavailable",
+        "OpenGL normal import green flip and actual readback",
+        "Review closed-pane front/back response before cottage application",
+        "Root review before UE execution; native optical appearance unproven"
+      ]
     }
   },
   "normal_standard": "OpenGL +Y, flip green on UE import; Non-Color N/ORM; sRGB BC"
