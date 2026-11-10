@@ -11,6 +11,7 @@
 #include "PhysicsEngine/BodySetup.h"
 #include "PhysicsEngine/BodyInstance.h"
 #include "Engine/Level.h"
+#include "Engine/CollisionProfile.h"
 #include "Engine/LevelStreaming.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
@@ -941,6 +942,7 @@ struct FBinaryControlLifetime
  TArray<ULevel*> SourceLevels;
  TArray<AActor*> SourceActors;
  TArray<FString> CacheEvidence;
+ TArray<FString> CollisionPolicyWitness; // exact observed path only; diagnostics, never admission authority
  TMap<UBillboardComponent*,USceneComponent*> PendingVisualizations;
  TMap<UBillboardComponent*,TArray<uint8>> VisualizationSourceBefore;
  TArray<UBodySetup*> PendingCaches; // eligible source roles established BEFORE immediate duplicate callbacks
@@ -980,6 +982,60 @@ bool VerifyBinarySourceTopology(const FBinaryControlLifetime& Lifetime,FString& 
  TArray<uint8> Now;if(!CaptureBinarySourceTopology(Lifetime,Now)||Now!=Lifetime.SourceTopology)
  {Error=TEXT("binary copy callback changed source owner/Children/level/attachment/body topology");return false;}return VerifyPendingVisualizations(Lifetime,Error);
 }
+// The selector is ONLY a diagnostic witness for the actual Stage33 first pair.
+// It neither chooses copied objects nor changes any acceptance/physics policy.
+constexpr const TCHAR* PolicyWitnessPath=TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World_SnowIsle.L_Greybox_World_SnowIsle:PersistentLevel.DinkScreenVolume_0.EdgeWall_W");
+TSharedRef<FJsonObject> CollisionPolicyFacts(UShapeComponent& C)
+{
+ TSharedRef<FJsonObject> J=MakeShared<FJsonObject>();const FBodyInstance& B=C.BodyInstance;
+ J->SetStringField(TEXT("path"),C.GetPathName());J->SetStringField(TEXT("class"),C.GetClass()->GetPathName());
+ J->SetStringField(TEXT("owner"),GetPathNameSafe(C.GetOwner()));J->SetStringField(TEXT("outer"),GetPathNameSafe(C.GetOuter()));
+ J->SetStringField(TEXT("archetype"),GetPathNameSafe(C.GetArchetype()));J->SetNumberField(TEXT("flags"),static_cast<uint32>(C.GetFlags()));
+ J->SetBoolField(TEXT("registered"),C.IsRegistered());J->SetBoolField(TEXT("physicsState"),C.IsPhysicsStateCreated());
+ J->SetBoolField(TEXT("needPostLoad"),C.HasAnyFlags(RF_NeedPostLoad));J->SetBoolField(TEXT("needPostLoadSubobjects"),C.HasAnyFlags(RF_NeedPostLoadSubobjects));
+ const FPackageFileVersion Version=C.GetLinkerUEVersion();J->SetNumberField(TEXT("linkerUEVersion"),Version.ToValue());J->SetNumberField(TEXT("linkerUE4Version"),Version.FileVersionUE4);J->SetNumberField(TEXT("linkerUE5Version"),Version.FileVersionUE5);J->SetNumberField(TEXT("linkerLicenseeVersion"),C.GetLinkerLicenseeUEVersion());
+ J->SetBoolField(TEXT("hasLinker"),C.GetLinker()!=nullptr);J->SetStringField(TEXT("package"),C.GetOutermost()->GetPathName());
+ if(const AActor* A=C.GetOwner())
+ {J->SetNumberField(TEXT("ownerFlags"),static_cast<uint32>(A->GetFlags()));J->SetBoolField(TEXT("ownerNeedPostLoad"),A->HasAnyFlags(RF_NeedPostLoad));
+  J->SetNumberField(TEXT("ownerLinkerUEVersion"),A->GetLinkerUEVersion().ToValue());J->SetBoolField(TEXT("ownerHasLinker"),A->GetLinker()!=nullptr);}
+ const FName Profile=B.GetCollisionProfileName();J->SetStringField(TEXT("profile"),Profile.ToString());J->SetBoolField(TEXT("usesProfile"),B.DoesUseCollisionProfile());
+ J->SetNumberField(TEXT("enabled"),static_cast<int32>(C.GetCollisionEnabled()));J->SetNumberField(TEXT("objectType"),static_cast<int32>(C.GetCollisionObjectType()));
+ auto Responses=[](const FCollisionResponseContainer& R){TArray<TSharedPtr<FJsonValue>> V;for(int I=0;I<64;++I)V.Add(MakeShared<FJsonValueNumber>(static_cast<int32>(R.GetResponse(static_cast<ECollisionChannel>(I)))));return V;};
+ J->SetArrayField(TEXT("actualResponses64"),Responses(C.GetCollisionResponseToChannels()));
+ // Read existing reflected storage; never call LoadProfileData/FixupData or
+ // any response setter, including on the target. Export does not reconstruct.
+ const auto* CR=FindFProperty<FStructProperty>(FBodyInstance::StaticStruct(),TEXT("CollisionResponses"));
+ const auto* RA=CR?FindFProperty<FArrayProperty>(CR->Struct,TEXT("ResponseArray")):nullptr;
+ J->SetBoolField(TEXT("responseArrayPropertyFound"),RA!=nullptr);
+ if(RA)
+ {const void* Container=CR->ContainerPtrToValuePtr<void>(&B);const void* Array=RA->ContainerPtrToValuePtr<void>(Container);FScriptArrayHelper Helper(RA,Array);
+  FString Export;RA->ExportTextItem_Direct(Export,Array,nullptr,nullptr,PPF_None);J->SetNumberField(TEXT("responseArrayCount"),Helper.Num());J->SetStringField(TEXT("responseArrayFullExport"),Export);}
+ for(const TCHAR* Name:{TEXT("bPendingCollisionProfileSetup"),TEXT("CollisionProfileName"),TEXT("ExternalCollisionProfileBodySetup")})
+ {const FProperty* P=FindFProperty<FProperty>(FBodyInstance::StaticStruct(),Name);J->SetBoolField(FString(Name)+TEXT("_propertyFound"),P!=nullptr);
+  if(P){FString Export;P->ExportTextItem_Direct(Export,P->ContainerPtrToValuePtr<void>(&B),nullptr,nullptr,PPF_None);J->SetStringField(Name,Export);}}
+ FCollisionResponseTemplate Template;const bool Resolved=UCollisionProfile::Get()->GetProfileTemplate(Profile,Template);J->SetBoolField(TEXT("templateResolved"),Resolved);
+ if(Resolved)
+ {J->SetStringField(TEXT("templateName"),Template.Name.ToString());J->SetNumberField(TEXT("templateEnabled"),static_cast<int32>(Template.CollisionEnabled));
+  J->SetNumberField(TEXT("templateObjectType"),static_cast<int32>(Template.ObjectType));J->SetArrayField(TEXT("templateResponses64"),Responses(Template.ResponseToChannels));
+  J->SetBoolField(TEXT("actualMatchesTemplate"),Template.IsEqual(C.GetCollisionEnabled(),C.GetCollisionObjectType(),C.GetCollisionResponseToChannels()));}
+ return J;
+}
+bool ObserveCollisionPolicy(const TCHAR* Phase,FBinaryControlLifetime& Lifetime,const TMap<UObject*,UObject*>& Remap,FString& Error)
+{
+ UShapeComponent* S=nullptr;UShapeComponent* T=nullptr;
+ for(const auto& Pair:Remap)if(Pair.Key&&Pair.Key->GetPathName()==PolicyWitnessPath){S=Cast<UShapeComponent>(Pair.Key);T=Cast<UShapeComponent>(Pair.Value);break;}
+ if(!S||!T)return true; // absent witness is NOT an admission condition
+ TArray<uint8> Before,After,SourceBefore,SourceAfter,TargetBefore,TargetAfter;const TMap<const UObject*,FString> IDs;const TSet<const UPackage*> None;
+ if(!CaptureBinarySourceTopology(Lifetime,Before)||!State(*S,IDs,None,false,SourceBefore)||!State(*T,IDs,None,false,TargetBefore))
+ {Error=TEXT("collision policy witness cannot bracket literal source/target reads");return false;}
+ TSharedRef<FJsonObject> J=MakeShared<FJsonObject>();J->SetStringField(TEXT("phase"),Phase);J->SetObjectField(TEXT("source"),CollisionPolicyFacts(*S));J->SetObjectField(TEXT("target"),CollisionPolicyFacts(*T));
+ FString Row;TSharedRef<TJsonWriter<>> Writer=TJsonWriterFactory<>::Create(&Row);const bool Written=FJsonSerializer::Serialize(J,Writer);
+ if(!Written||!CaptureBinarySourceTopology(Lifetime,After)||Before!=After||!State(*S,IDs,None,false,SourceAfter)||SourceBefore!=SourceAfter||!State(*T,IDs,None,false,TargetAfter)||TargetBefore!=TargetAfter)
+ {Error=TEXT("collision policy witness changed literal State/source topology");return false;}
+ Lifetime.CollisionPolicyWitness.Add(MoveTemp(Row));return true;
+}
+FString CollisionPolicyRows(const FBinaryControlLifetime& Lifetime)
+{FString Rows;for(const FString& Row:Lifetime.CollisionPolicyWitness)Rows+=TEXT("\nCOLLISION_POLICY_WITNESS ")+Row;return Rows;}
 void CaptureBinaryImmediateActors(AActor& Actor,FBinaryControlLifetime& Immediate)
 {
  Immediate.SourceActors.Add(&Actor);auto Add=[&](AActor* A){if(A&&!Immediate.SourceActors.Contains(A))Immediate.SourceActors.Add(A);};
@@ -1142,7 +1198,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  TMap<UObject*,UObject*>& Created,TArray<AActor*>& Copies,FBinaryControlLifetime& Lifetime,FString& Error)
 {
  if(!NewLevel.GetWorld()){Error=TEXT("binary target level requires an owning world");return false;}
- Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.PendingVisualizations.Reset();Lifetime.VisualizationSourceBefore.Reset();Lifetime.SourceTopology.Reset();
+ Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.PendingVisualizations.Reset();Lifetime.VisualizationSourceBefore.Reset();Lifetime.SourceTopology.Reset();Lifetime.CollisionPolicyWitness.Reset();
  TSet<AActor*> PreflightActors;TSet<const UPackage*> SourcePackages;TSet<UWorld*> Worlds;TMap<AActor*,TSet<UObject*>> AuditedOwned;
  for(AActor* Actor:Controls)
  {
@@ -1192,6 +1248,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
     {Error=TEXT("binary created-object outside preflight owned tree or map/class/identity conflict");return false;}
     Remap.Add(Pair.Key,Pair.Value);Created.Add(Pair.Key,Pair.Value);
    }
+   if(SourceActor->GetPathName()+TEXT(".EdgeWall_W")==PolicyWitnessPath&&!ObserveCollisionPolicy(TEXT("afterDuplicate"),Lifetime,Remap,Error))return false;
   }
   if(Copy==SourceActor||Copy->GetClass()!=SourceActor->GetClass()||Copy->GetOuter()!=&NewLevel||Copy->GetLevel()!=&NewLevel||Copies.Contains(Copy))
   {Error=TEXT("binary actor copy has wrong target level/class/identity");return false;}
@@ -1239,13 +1296,24 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<
  // Owner and every nested/cross-actor reference point at the complete copies.
  {
   TGuardValue<bool> RoutingPostLoad(FUObjectThreadContext::Get().IsRoutingPostLoad,true);
-  for(UObject* Target:TargetObjects)if(!Target->IsTemplate())Target->ConditionalPostLoad();
+  if(!ObserveCollisionPolicy(TEXT("beforeDeferredPostLoad"),Lifetime,Remap,Error))return false;
+  for(UObject* Target:TargetObjects)if(!Target->IsTemplate())
+  {
+   bool WitnessComponent=false,WitnessOwner=false;
+   for(const auto& Pair:Remap)if(Pair.Key&&Pair.Key->GetPathName()==PolicyWitnessPath)
+   {WitnessComponent=Target==Pair.Value;if(const auto* C=Cast<UActorComponent>(Pair.Value))WitnessOwner=Target==C->GetOwner();break;}
+   if((WitnessComponent||WitnessOwner)&&!ObserveCollisionPolicy(WitnessComponent?TEXT("beforeComponentPostLoad"):TEXT("beforeOwnerPostLoad"),Lifetime,Remap,Error))return false;
+   Target->ConditionalPostLoad();
+   if((WitnessComponent||WitnessOwner)&&!ObserveCollisionPolicy(WitnessComponent?TEXT("afterComponentPostLoad"):TEXT("afterOwnerPostLoad"),Lifetime,Remap,Error))return false;
+  }
+  if(!ObserveCollisionPolicy(TEXT("afterDeferredPostLoad"),Lifetime,Remap,Error))return false;
  }
  if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
  NewLevel.AddLoadedActors(Copies,nullptr);
  // New editor worlds may not yet have level-wide registration enabled.
  // This is the same public target-only registration used by the staging pass.
  for(AActor* Copy:Copies)if(IsValid(Copy))Copy->RegisterAllComponents();
+ if(!ObserveCollisionPolicy(TEXT("afterRegistration"),Lifetime,Remap,Error))return false;
  for(AActor* Copy:Copies)if(!IsValid(Copy)||Copy->GetLevel()!=&NewLevel||!NewLevel.Actors.Contains(Copy))
  {Error=TEXT("supported loaded-level registration lost a binary actor");return false;}
  if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
@@ -1268,7 +1336,7 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<
   for(const auto& Pair:Remap)if(Pair.Key!=A&&Pair.Value==B){Error=TEXT("regenerated private cache aliases existing mapping");return false;}
   const auto* Identity=IDs.Find(A);if(!Identity){Error=TEXT("pending private cache missing source canonical identity");return false;}
   const FString RoleIdentity=*Identity;Remap.Add(A,B);IDs.Add(B,RoleIdentity);
-  FString CacheAudit;if(!ComparePrivateBodyRole(*A,*B,*S,*T,Remap,IDs,SourcePackages,Error,&CacheAudit))return false;Lifetime.CacheEvidence.Add(CacheAudit);
+  FString CacheAudit;if(!ComparePrivateBodyRole(*A,*B,*S,*T,Remap,IDs,SourcePackages,Error,&CacheAudit)){Error+=CollisionPolicyRows(Lifetime);return false;}Lifetime.CacheEvidence.Add(CacheAudit);
  }
  for(const auto& Pair:Lifetime.PendingVisualizations)
  {
