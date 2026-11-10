@@ -1,3 +1,5 @@
+Current C5 full native suite:194/194 completed with zero failures (161clean+33HTTP/EOSwarning successes),709.754s; focused camera regression1/1clean. Tested bee8f2b. See [full-native-current.json](full-native-current.json). This excludes accepted-master hero updates pending integration and does not prove cook/globalcollision/finalart.
+
 # Active shared roof gameplay verification
 
 The starting house now uses eight saved shared roof meshes and three opaque-to-masked camera aliases. Placement, collision and navigation fields are unchanged; old packages and ledger rows remain intact.
