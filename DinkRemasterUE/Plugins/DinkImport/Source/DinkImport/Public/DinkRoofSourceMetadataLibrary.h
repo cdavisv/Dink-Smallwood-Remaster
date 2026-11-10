@@ -12,9 +12,12 @@ public:
  /** Detached raw+resolved AssetImportData and all explicit mesh LOD filenames. Never mutates. */
  UFUNCTION(BlueprintPure, Category="Dink|Art|Roof")
  static FString InspectRoofSourceFilenames(UObject* Asset);
- /** Only exact canonical roof mesh/texture identity and existing canonical source files.
+ /** Read-only capability for the exact shared8roof/9texture source contracts. */
+ UFUNCTION(BlueprintPure, Category="Dink|Art|Roof")
+ static bool SupportsSharedRoofSourceFilenames();
+ /** Only exact canonical roof or shared8roof/9texture identity and existing canonical source files.
   * Validates every path before mutation. Changes filenames only, preserves timestamp/MD5,
-  * refuses already-saved canonical packages; marks the new owned package dirty but never saves/builds/reimports. Caller enforces exact50/SHA. */
+  * refuses already-saved canonical packages; marks the new owned package dirty but never saves/builds/reimports. Caller enforces exact50 legacy or exact23 shared trial/SHA. */
  UFUNCTION(BlueprintCallable, Category="Dink|Art|Roof")
  static bool SetRoofSourceFilenamesRelative(UObject* Asset, const TArray<FString>& ExpectedAbsoluteFiles);
 private:

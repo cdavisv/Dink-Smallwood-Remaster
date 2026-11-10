@@ -1,6 +1,14 @@
+## Shared roof native preparation integrated
+
+The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.
+
 ## Current integrated house builds passed
 
 Branch `art/roof-native-current`, runtime df3365c integrating accepted master52dabc/camera/HeroGrowth/booth. Own Editor/Game builds passed83.251s/44.020s; both mount proofs pass,12708protectedinputs unchanged,7ownEditor modules/14Editorfiles preservedthroughGame and freshlyrehashed. HOST514488/514496/515594 absent after normal0,zero signals. Current ignored controls refreshed5415 exactfiles from closed full192camera checkout; priorcontrols archived, noCode/DLL/trackedData/audio overlay, notfreshimport. Docs/Verification/RoofNativeCurrent/current-builds.json pins results. Copied offline cold-only assertion was stale for explicit ownincremental recipe; preserved failure, replaced with exactprior14Editor receipt/baseline check,15offlinePASS. No assertion/runtimepolicy changes. Newcombined native/GPU/cook and sharedmaterial productionactivation remain pending; older187/readback/GPUproof below is prior-base evidence.
+
+## Shared roof native preparation (not executed)
+
+Use only Root-reviewed caller with shared_roof_contract/native/verify. Exact23fresh trial then exact8existing mesh material edits+3camera aliases and fresh final23readback; no production geometry reimport or collision change. The new exact8/9editor metadata scope/capability is source-only/uncompiled. Old DLLs must refuse before imports. Existing2048/legacy helpers remain strict; new closed1024/shared profiles are explicit.14offline tests pass; no UE/native/GPU approval. Docs/Verification/InteriorRoofSharedNativePreparation defines recovery/save/guard and actual-output ledger obligations.
 
 ## Current roof integration — accepted camera merged
 

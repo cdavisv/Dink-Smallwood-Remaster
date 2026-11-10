@@ -1,0 +1,133 @@
+{
+  "status": "REVIEW_READY_NO_NATIVE_LAUNCH",
+  "base_HEAD": "5237868f901d981fa86d42cd8184a7767f7bc611",
+  "entry": "Scripts/RoofNative/shared_roof_native.py",
+  "phases": [
+    "import_trial",
+    "verify_trial_readback",
+    "apply_production_bindings",
+    "verify_production_readback"
+  ],
+  "files": [
+    {
+      "file": "Scripts/RoofNative/audit_position_tolerance_v11.py",
+      "sha256": "fc8a1e30f8606db4946f3d55854326a6327cdcb7082723e039ab43b13ee8a167"
+    },
+    {
+      "file": "Scripts/RoofNative/canonical_contract.py",
+      "sha256": "5d41c59470f75d2e6874112f269525b620c4aac3d2a443b8227caf0130f642a4"
+    },
+    {
+      "file": "Scripts/RoofNative/geometry_only_match_v11.py",
+      "sha256": "ab00adbfc9e41094d4b1e340822bdcabc5f7ddeb5b8b40e56defe6cc98a614f5"
+    },
+    {
+      "file": "Scripts/RoofNative/native_asset_readback_v12.py",
+      "sha256": "882ac4e7df1225b4872b57da86f4041a43cbed1d5bbc327228e66316d1135488"
+    },
+    {
+      "file": "Scripts/RoofNative/native_buffer_capture_v11d.py",
+      "sha256": "56ad3e0a7d5f3b181383d6a5c7800b8a4a35d29ba6fa954f172703fdd092bcb9"
+    },
+    {
+      "file": "Scripts/RoofNative/native_built_buffer_reader_v11.py",
+      "sha256": "84316a67795da9d63e5e7d562c2b00e952f90eafe6dbdfff35d1c54ff6c0ad15"
+    },
+    {
+      "file": "Scripts/RoofNative/native_collision_readback_v11.py",
+      "sha256": "1bfa89bb5abaa038f04008cd13c0958701e129a3f72d2b04390c2edf035a854b"
+    },
+    {
+      "file": "Scripts/RoofNative/native_fp_baseline_v11.py",
+      "sha256": "8a00c9ecc18594919e15002a98bbad85ce62a38fef1f7c36c83234cd181ec445"
+    },
+    {
+      "file": "Scripts/RoofNative/native_import_metadata_v11.py",
+      "sha256": "9c72b645a4a160678a684ecf39b38711f1b129deefa4423d0cda1d8f417ed44a"
+    },
+    {
+      "file": "Scripts/RoofNative/native_import_sequence_v12.py",
+      "sha256": "0622dbb0bcc16a68d82091ebdf40b368efdf5ac039693a5c894542d47dfcf11e"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_builder_v11.py",
+      "sha256": "2662fdcf074510b253788e6448ee6571510633fc8cff5318571ce1bdeab5d9b2"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_builder_v12.py",
+      "sha256": "271172ae514cd9d1469a334af65ede1162cc0a16a9ed8e48217e40095254a764"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_readback_v11.py",
+      "sha256": "6eaeb768e4b5cbe6d61d913acf053fa700f60008fb46027e71b68feec31f3bba"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_readback_v12.py",
+      "sha256": "7f39daae8db220d991622747e81b470cce4daeaf0977f72b9e9d5c9ad80d1603"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_slots_v11.py",
+      "sha256": "2c1b441784e52ab35fb2d7013ed8b4c67e44259db11fd02f74922b44731c5a11"
+    },
+    {
+      "file": "Scripts/RoofNative/native_material_usage_v12.py",
+      "sha256": "9891f616db7c0c9123c4341bc44ad4954f75515bac2851247ed2c82f57515503"
+    },
+    {
+      "file": "Scripts/RoofNative/native_mesh_tools_v11c.py",
+      "sha256": "1afd527fa6204ff3afac16a8c9bc9cd8b7fe61d676cd9317285fb32500786b8e"
+    },
+    {
+      "file": "Scripts/RoofNative/native_texture_tools_v11.py",
+      "sha256": "a6062257d3d9ed0f42ee5bf7f27409a170cc3be78604c7b235b043e204e9757e"
+    },
+    {
+      "file": "Scripts/RoofNative/png_source_v11.py",
+      "sha256": "b76774c8425fe9c4d4cc2dcd22fd8831f12a33080c6789152c99596cd4717473"
+    },
+    {
+      "file": "Scripts/RoofNative/readback_sequence.py",
+      "sha256": "d033e7218523f271811b79e55faaf203e2d31e5a1010aec29fdb6dae0c8d8204"
+    },
+    {
+      "file": "Scripts/RoofNative/relative_source_metadata.py",
+      "sha256": "4835d97a0d7b85e7913c2449305b1ecafa4d06d65771d6b2cedeec5d557b4e33"
+    },
+    {
+      "file": "Scripts/RoofNative/shared_roof_contract.py",
+      "sha256": "5c15c2bb5fbacdba87beec977a0877f30b8e48061653fe1585746564da4179df"
+    },
+    {
+      "file": "Scripts/RoofNative/shared_roof_native.py",
+      "sha256": "e45f002697a43ee8177677b3883c3ef953277ba40b5476a3da31058d61032f7a"
+    },
+    {
+      "file": "Scripts/RoofNative/shared_roof_verify.py",
+      "sha256": "47f736ae45d708a6954ccb400e705b2d6ee1d9d7fd39908bc3c4ad815a71c02a"
+    },
+    {
+      "file": "Scripts/RoofNative/test_offline.py",
+      "sha256": "084e17479fc2abe5135007f9e126d85cf0c38b94781b49591fc2e6988173be4a"
+    },
+    {
+      "file": "Scripts/RoofNative/test_shared_roof.py",
+      "sha256": "507f6a7294d3de9adb14f52aa1126dea5558fe1bdfb6de4eca9e7d6b501b9e02"
+    },
+    {
+      "file": "Scripts/RoofNative/vista_geometry.py",
+      "sha256": "d19f854006836828a3abc02f302663d00a1deb6a3af1addcdb1b5cbaff5d6bce"
+    },
+    {
+      "file": "Plugins/DinkImport/Source/DinkImport/Private/DinkRoofSourceMetadataLibrary.cpp",
+      "sha256": "ea89143e2223d6804b3f45dfb7b1391a31ca04ce8bd45e009e603dbe617fe3bc"
+    },
+    {
+      "file": "Plugins/DinkImport/Source/DinkImport/Public/DinkRoofSourceMetadataLibrary.h",
+      "sha256": "4ba5406d1df8240b4bd60871cb891d1d43902ffe86dfc2a5b09d695ed4e11f12"
+    }
+  ],
+  "native_imports": 0,
+  "native_saves": 0,
+  "Data_changed": false,
+  "editor_metadata_compiled": false
+}

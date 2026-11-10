@@ -1,6 +1,20 @@
+## Shared roof native preparation integrated
+
+The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.
+
 ## Current integrated house builds passed
 
 Branch `art/roof-native-current`, runtime df3365c integrating accepted master52dabc/camera/HeroGrowth/booth. Own Editor/Game builds passed83.251s/44.020s; both mount proofs pass,12708protectedinputs unchanged,7ownEditor modules/14Editorfiles preservedthroughGame and freshlyrehashed. HOST514488/514496/515594 absent after normal0,zero signals. Current ignored controls refreshed5415 exactfiles from closed full192camera checkout; priorcontrols archived, noCode/DLL/trackedData/audio overlay, notfreshimport. Docs/Verification/RoofNativeCurrent/current-builds.json pins results. Copied offline cold-only assertion was stale for explicit ownincremental recipe; preserved failure, replaced with exactprior14Editor receipt/baseline check,15offlinePASS. No assertion/runtimepolicy changes. Newcombined native/GPU/cook and sharedmaterial productionactivation remain pending; older187/readback/GPUproof below is prior-base evidence.
+
+Native preparation validation:14offline importer/profile/slot/alias/geometry-source regressions and10architecture tests pass. Full actual source audit4419binaries/507Python/22shell/4255ledger,0errors/secrets. The first post-merge audit saw3new camera PNG LFS pointers; hydrated exact local objects and reran successfully. Current Root df3365c raw ledger prefix is exact; no Content/Data/native ledger mutations. Source helpers remain uncompiled/unexecuted in UE pending Root review.
+
+# Shared roof native adapter prepared — no native execution
+
+Branch`art/interior-roof-shared-library` at merged5237868 plus this preparation. Source/library5260f1b and policy39b617d are already available to Root. `Scripts/RoofNative/shared_roof_{contract,native,verify}.py` implements23fresh trial,fresh readback,8existing production material-only bindings+exact3camera aliases,and fresh final23production readback. Fourteen offline regressions pass; all17322 source triangles remain uniquely oriented/matched after role consolidation. Existing204authored UCX and production geometry/UV/normals/source filenames/build/collision policy must stay exact. Temporary8trial meshes are not production delivery.
+
+Small editor-only filename scope extension (exact8roof+9texture names/source roots) is UNCOMPILED. `supports_shared_roof_source_filenames` fails oldDLLs before any import. Root must review then build/launch through its normal guarded private runner. No UE/build/asset import/save/Content/Data/nativeledger activation has occurred here. Concrete callback factories and caller/save/guard obligations are documented in Docs/Verification/InteriorRoofSharedNativePreparation. Actual23import/readback,8productionbindings+3aliases,finalreadback/currentGPU and candidate native ledger updates remain outstanding; source preparation alone is not whole-goal completion.
+
+---
 
 ## Current roof integration — accepted camera merged
 
