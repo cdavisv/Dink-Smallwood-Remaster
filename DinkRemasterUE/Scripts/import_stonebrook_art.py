@@ -22,6 +22,16 @@ LAYOUT_SCREEN = int(LAYOUT.get('screen', 1))
 OUTPUT_NAME = os.environ.get('DINK_ART_OUTPUT_NAME', {1:'stonebrook',439:'stonebrook_exterior'}.get(LAYOUT_SCREEN, f'screen_{LAYOUT_SCREEN}'))
 if not OUTPUT_NAME.replace('_','').isalnum():
     raise RuntimeError('Invalid art output name')
+HOUSE_LIGHTING = None
+if (LAYOUT_SCREEN == 1 and OUTPUT_NAME == 'stonebrook' and
+        SOURCE.resolve() == (ROOT / 'SourceAssets/Art/Stonebrook').resolve()):
+    # Validate the lighting-only authority before any native import or scene work.
+    import importlib.util
+    _lighting_spec = importlib.util.spec_from_file_location('dink_house_lighting', ROOT / 'Scripts/house_lighting.py')
+    _lighting = importlib.util.module_from_spec(_lighting_spec)
+    _lighting_spec.loader.exec_module(_lighting)
+    HOUSE_LIGHTING = _lighting.load_profile(ROOT)
+    _lighting.validate_source_layout(HOUSE_LIGHTING, LAYOUT)
 ASSETS = '/Game/Dink/Kits/' + SOURCE.name
 MATS = os.environ.get('DINK_ART_MATERIAL_FOLDER', '/Game/Dink/Materials/Stonebrook')
 TEX = os.environ.get('DINK_ART_TEXTURE_FOLDER', '/Game/Dink/Textures/Stonebrook')
@@ -333,6 +343,8 @@ for row in LAYOUT.get('elements', []):
 for row in LAYOUT.get('lights', []):
     runtime['lights'].append({'world_cm': world_pixel(row['source_pixel'], row.get('screen', LAYOUT_SCREEN), row['height_cm'] / 100),
                               'lumens': row['lumens'], 'kelvin': row['kelvin'], 'radius_cm': row['radius_cm']})
+if HOUSE_LIGHTING is not None:
+    runtime = _lighting.apply_lighting(HOUSE_LIGHTING, runtime, generated_from_legacy_layout=True)
 replaced_origins = {r['origin'] for r in runtime['replacements']}
 runtime['hide_origins'] = [origin for origin in LAYOUT.get('hide_origins', []) if origin not in replaced_origins]
 runtime['warp_overrides'] = [{'origin': 'S001_P25', 'world_cm': world_pixel([305, 398], height_m=1.5), 'extent_cm': [65, 30, 150]}] if LAYOUT_SCREEN == 1 else []
