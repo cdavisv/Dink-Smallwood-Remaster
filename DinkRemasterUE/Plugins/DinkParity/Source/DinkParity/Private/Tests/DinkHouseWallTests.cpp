@@ -48,6 +48,7 @@ public:
         if (Test->TestNotNull(TEXT("deferred indoor visual probe exists"), Probe))
         {
             Probe->bIndoor = true;
+            Probe->ScreenNumber = 768; // positive owner identity for this isolated lifecycle probe
             Probe->EdgeWalls[0]->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
             Probe->EdgeWalls[0]->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
             Probe->EdgeWalls[0]->SetBoxExtent(FVector(100, 10, 160));
@@ -65,8 +66,13 @@ public:
                 ++ProbeWalls;
                 Test->TestTrue(TEXT("choice before BeginPlay creates hidden cubes"), Mesh->bHiddenInGame);
                 Test->TestEqual(TEXT("lifecycle cube never blocks"), Mesh->GetCollisionEnabled(), ECollisionEnabled::NoCollision);
+                Probe->RefreshInteriorWallVisuals(Probe); // explicitly active owner context
                 Probe->SetInteriorWallVisualsHidden(false);
-                Test->TestFalse(TEXT("setter after BeginPlay restores cube"), Mesh->bHiddenInGame);
+                Test->TestFalse(TEXT("setter after BeginPlay restores cube in active owner context"), Mesh->bHiddenInGame);
+                Probe->RefreshInteriorWallVisuals(nullptr);
+                Test->TestTrue(TEXT("inactive context hides cube even with authored hide cleared"), Mesh->bHiddenInGame);
+                Probe->RefreshInteriorWallVisuals(Probe);
+                Test->TestFalse(TEXT("returning active owner context restores unhidden cube"), Mesh->bHiddenInGame);
                 Probe->SetInteriorWallVisualsHidden(true);
                 Test->TestTrue(TEXT("setter after BeginPlay hides existing cube"), Mesh->bHiddenInGame);
             }
