@@ -12,6 +12,17 @@ import vista_geometry
 
 PARSER=Path('SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/fbxparse.py')
 
+def fbx_color_to_raw_linear(rgba):
+    """Legacy importer: truncate clamped FBX channels to FColor, then sRGB RGB->linear.
+    Alpha is normalized directly. This is RAW storage only; shader Color0 bytes
+    are re-encoded by the mesh builder and retain the original semantic values.
+    """
+    require(len(rgba)==4 and all(math.isfinite(v)for v in rgba),'Invalid source FBX color')
+    values=[int(max(0.,min(1.,float(v)))*255)/255 for v in rgba]
+    def decode(v):return v/12.92 if v<=.04045 else ((v+.055)/1.055)**2.4
+    return [decode(v)for v in values[:3]]+[values[3]]
+
+
 def decode_source(root,record):
     root=Path(root);file=root/SOURCE/record['file'];require(hashlib.sha256(file.read_bytes()).hexdigest()==record['source_sha256'],'Actual source FBX bytes differ')
     spec=importlib.util.spec_from_file_location('house439_binary_source',root/PARSER);F=importlib.util.module_from_spec(spec);spec.loader.exec_module(F);_,nodes=F.parse(file);top={n.name:n for n in nodes};objects={n.props[0]:n for n in top['Objects'].children};connections=top['Connections'].children
@@ -43,7 +54,7 @@ def decode_source(root,record):
         for i,polygon in enumerate(polys):
             corners=[]
             for k,vi in enumerate(polygon):
-                j=3*i+k;n=normals[j];corners.append(dict(position_cm=points[vi],normal=[n[0],-n[1],n[2]],UV0=[u0[j][0],1-u0[j][1]],UV1=[u1[j][0],1-u1[j][1]],color=colors[j]))
+                j=3*i+k;n=normals[j];corners.append(dict(position_cm=points[vi],normal=[n[0],-n[1],n[2]],UV0=[u0[j][0],1-u0[j][1]],UV1=[u1[j][0],1-u1[j][1]],color=colors[j],raw_color=fbx_color_to_raw_linear(colors[j])))
             source.append(dict(material=names[ids[i]],corners=corners))
     require(len(source)==194192 and len(hulls)==6,'Actual full-cottage FBX inventory differs');return source,hulls
 
@@ -88,8 +99,8 @@ def compare_snapshot(snapshot,source,roles,tolerances):
             item=match[0];corners=source[item['source_index']]['corners'];r=item['rotation'];corners=corners[r:]+corners[:r];errors['position_cm']=max(errors['position_cm'],item['position_error_cm'])
             for a,b in zip(triangle['corners'],corners):
                 for key,field in [('normal_component','normal'),('UV0','UV0'),('UV1','UV1'),('color','color')]:
-                    require(len(a[field])==len(b[field])and all(math.isfinite(x)for x in a[field]+b[field]),'Nonfinite/missing corner attribute');errors[key]=max(errors[key],max(abs(x-y)for x,y in zip(a[field],b[field])))
-        require(errors['normal_component']<=tolerances['normal_component']and max(errors['UV0'],errors['UV1'])<=tolerances['UV']and errors['color']<=color_tol,'Actual native corner attributes differ from raw FBX');reports[label]=dict(triangles=len(actual),UV_independent_bijection=True,errors=errors)
+                    expected=b['raw_color']if field=='color'and label=='raw'else b[field];require(len(a[field])==len(expected)and all(math.isfinite(x)for x in a[field]+expected),'Nonfinite/missing corner attribute');errors[key]=max(errors[key],max(abs(x-y)for x,y in zip(a[field],expected)))
+        require(errors['normal_component']<=tolerances['normal_component']and max(errors['UV0'],errors['UV1'])<=tolerances['UV']and errors['color']<=color_tol,'Actual native corner attributes differ from raw FBX');reports[label]=dict(triangles=len(actual),UV_independent_bijection=True,errors=errors,color_reference='FColor-truncated then sRGB-decoded RAW RGB, linearAlpha'if label=='raw'else'original FBX semantic Color0 versus normalized builtRGBA8')
     return dict(passed=True,source_correspondence_passed=True,raw_Color0_import_passed=True,geometry=reports,stored_signed_TBN_valid=True,source_Mikk_tangent_direction='NOT_INDEPENDENTLY_COMPARED',scope='Actual RAW/built source position/material/UV0/UV1/Color0/normal correspondence and signed-frame validity only; source Mikk direction/GPU optics/cooked collision remain separate')
 
 

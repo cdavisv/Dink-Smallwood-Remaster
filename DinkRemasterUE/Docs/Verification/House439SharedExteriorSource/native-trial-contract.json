@@ -140,9 +140,9 @@
     "Scripts/RoofNative/house439_contract.py": "a63f65ae58d2db23a1928cb1ad5c2ea94bfe35e7009b6d81c63d83b0b3cf77f1",
     "Scripts/RoofNative/house439_native.py": "13aeefbcfe1fe14839d217d49f755b096005e6058c41257858cf65d175561b09",
     "Scripts/RoofNative/house439_material_readback.py": "1e5f0b6f80f3448edaf36cab7f5e4782404fe84967a5656c4eb42024daa3e41f",
-    "Scripts/RoofNative/house439_mesh_readback.py": "48bd96ce6e960a0d44561967fd228f4e25ff9ebf13838e83f748aed77d8d828b",
+    "Scripts/RoofNative/house439_mesh_readback.py": "70444a2518278af8071313e393889646fbf994048278df6191e5bb6f8557881f",
     "Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h": "a19f2c37c0d5a23409bd2a099cfd029ad8fdfca8b827c7fbcfc64c51e5fdad1b",
-    "Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp": "713bd46951856dad392db7ef20580442ce886d16fc182354c8b1290165df6ec1",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp": "e2a9e6abb7b3661f8ffbddde16fbe1805afe4cc4caccd1700f4681df302e5614",
     "SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
     "Scripts/RoofNative/house439_glass_material.py": "e190def7aa1172dd3fc13072353d1e55d5a692d43c035fe42c0d1e4ad1ed5598",
     "Scripts/RoofNative/house439_opaque_material.py": "8e3f32f5531c94885447af71508e7474ed76d7a333fb46d53751d78f052e84d5",
@@ -4735,5 +4735,5 @@
   },
   "production_activated": false,
   "native_review_required": true,
-  "digest": "273dd93ff8e5c049bc8afeb3dde6b5b5983eff4d33e52b1f20d8965affe05d0c"
+  "digest": "33c49c4a804ef7c9fb8a00dde8c170f049f3cfb93394f5a40df88db7da4193f3"
 }

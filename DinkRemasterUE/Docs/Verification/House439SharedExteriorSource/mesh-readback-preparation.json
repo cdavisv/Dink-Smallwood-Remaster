@@ -1,6 +1,6 @@
 {
   "status": "SOURCE_PREPARATION_CPP_UNCOMPILED_NATIVE_UNEXECUTED",
-  "contract_digest": "273dd93ff8e5c049bc8afeb3dde6b5b5983eff4d33e52b1f20d8965affe05d0c",
+  "contract_digest": "33c49c4a804ef7c9fb8a00dde8c170f049f3cfb93394f5a40df88db7da4193f3",
   "bridge": "UDinkMaterialArtLibrary::InspectStaticMeshGeometry",
   "schema": "dink-static-mesh-geometry/1",
   "native_test_to_run": "Dink.Art.StaticMeshGeometryInspection",
@@ -22,8 +22,8 @@
   ],
   "tests": {
     "metadata_ordering": 3,
-    "raw_built_attribute_corruption": 7,
-    "current_house439_total": 48,
+    "raw_built_attribute_corruption": 11,
+    "current_house439_total": 52,
     "existing_roof_regressions": 14
   },
   "pixel_callback": "Concretebounded30Texture.Source PNG checkerprovided; passedflagonlyafteractualpixelbytes/settings checks. Noarbitraryassertioncallbacksubstitute.",
@@ -37,5 +37,7 @@
     "data_pointers": "Position/Tangent/TexCoord pointers mandatory; Color pointer mandatory whenColorCountnonzero",
     "native_pointer_regressions": "Sixpositive/negative bufferpointer cases added to nativefunctionaltest; UNCOMPILED/UNRUN here",
     "qualification": "Preventive concrete safety, no observednativecrash andnoactualruntimeexecution"
-  }
+  },
+  "raw_color_reference": "LegacyFbx importer truncatesbyteFColor then FLinearColor sRGBdecodesRGB; alphaunchanged. CompareRAWagainstthisspecificrepresentation, builtagainstoriginalsemanticvalues.",
+  "native_color_regressions": "Scratchnativefunctionaltest includesactualFColor/FLinearColor/ToFColor(true) RGB/Alpha roundtripcontrols;UNCOMPILED/UNRUN here."
 }
