@@ -157,6 +157,53 @@ bool MeasuredRootTranslation(UObject& Source,UObject& Target,AActor* ExpectedSou
  Evidence=TEXT("ROOT/noattach RelativeLocation+world ONLY correspondingowner ")+OwnerEvidence;
  return true;
 }
+bool DerivedWorldDelta(const FTransform& S,const FTransform& T,const FTransform& OwnerS,const FTransform& OwnerT)
+{
+ if(S.ContainsNaN()||T.ContainsNaN())return false;
+ const FQuat Q=S.GetRotation(),R=T.GetRotation();const FVector K=S.GetScale3D(),L=T.GetScale3D();
+ const double QR[]={Q.X,Q.Y,Q.Z,Q.W,K.X,K.Y,K.Z},RR[]={R.X,R.Y,R.Z,R.W,L.X,L.Y,L.Z};
+ if(FMemory::Memcmp(QR,RR,sizeof(QR)))return false;
+ const FVector A=S.GetTranslation(),B=T.GetTranslation(),X=OwnerS.GetTranslation(),Y=OwnerT.GetTranslation();
+ const double V[]={A.X,A.Y,A.Z},W[]={B.X,B.Y,B.Z},OS[]={X.X,X.Y,X.Z},OT[]={Y.X,Y.Y,Y.Z};
+ bool Difference=false;
+ for(int I=0;I<3;++I){if(!FMath::IsFinite(V[I])||!FMath::IsFinite(W[I]))return false;
+  const double D=OT[I]-OS[I];
+  if(D==0){if(FMemory::Memcmp(&V[I],&W[I],sizeof(double)))return false;}
+  else if(W[I]-V[I]!=D)return false;
+  Difference|=FMemory::Memcmp(&V[I],&W[I],sizeof(double))!=0;
+ }
+ return Difference;
+}
+bool MeasuredChildTranslation(UObject& Source,UObject& Target,AActor* ExpectedSource,AActor* ExpectedTarget,
+ const TMap<UObject*,UObject*>& Remap,FTransform& Canonical,FString& Evidence)
+{
+ auto* A=Cast<USceneComponent>(&Source);auto* B=Cast<USceneComponent>(&Target);
+ if(!A||!B||
+    !ExpectedSource||!ExpectedTarget||A->GetClass()!=B->GetClass()||A->GetOwner()!=ExpectedSource||B->GetOwner()!=ExpectedTarget||
+    A==ExpectedSource->GetRootComponent()||B==ExpectedTarget->GetRootComponent())return false;
+ FTransform RootCanonical;FString RootEvidence;
+ if(!ExpectedSource->GetRootComponent()||!ExpectedTarget->GetRootComponent()||
+    !MeasuredRootTranslation(*ExpectedSource->GetRootComponent(),*ExpectedTarget->GetRootComponent(),ExpectedSource,ExpectedTarget,RootCanonical,RootEvidence))return false;
+ TSet<const USceneComponent*> Seen;
+ for(auto* P=A,*Q=B;P!=ExpectedSource->GetRootComponent();)
+ {
+  if(!P||!Q||Seen.Contains(P)||P->GetOwner()!=ExpectedSource||Q->GetOwner()!=ExpectedTarget||P->GetClass()!=Q->GetClass())return false;
+  Seen.Add(P);
+  // Exact local reflected TRS plus socket; every other reflected field remains
+  // checked by State. Never normalize local transforms or instance transforms.
+  FVector PL=P->GetRelativeLocation(),QL=Q->GetRelativeLocation(),PS=P->GetRelativeScale3D(),QS=Q->GetRelativeScale3D();
+  FRotator PR=P->GetRelativeRotation(),QR=Q->GetRelativeRotation();
+  TArray<uint8> Left,Right;FObjectWriter LW(Left),RW(Right);LW<<PL<<PR<<PS;RW<<QL<<QR<<QS;
+  if(Left!=Right||P->GetAttachSocketName()!=Q->GetAttachSocketName()||!P->GetAttachParent()||
+     Remap.FindRef(P->GetAttachParent())!=Q->GetAttachParent())return false;
+  P=P->GetAttachParent();Q=Q->GetAttachParent();
+  if(P==ExpectedSource->GetRootComponent()&&Q!=ExpectedTarget->GetRootComponent())return false;
+ }
+ if(!DerivedWorldDelta(A->GetComponentTransform(),B->GetComponentTransform(),ExpectedSource->GetActorTransform(),ExpectedTarget->GetActorTransform()))return false;
+ Canonical=A->GetComponentTransform();const FVector From=Canonical.GetTranslation(),To=B->GetComponentLocation();
+ Evidence=FString::Printf(TEXT("DERIVED CHILD world ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) delta=(%.17g,%.17g,%.17g); exact owner delta; mapped attachment chain/local TRS/Q/scale strict; "),From.X,From.Y,From.Z,To.X,To.Y,To.Z,To.X-From.X,To.Y-From.Y,To.Z-From.Z)+RootEvidence;
+ return true;
+}
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
  FTransform S=Source,T=Target;TArray<uint8> A,B;FObjectWriter WA(A),WB(B);WA<<S;WB<<T;
@@ -211,7 +258,7 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
  if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS ")+TransformDifference(A->GetComponentTransform(),CastChecked<USceneComponent>(&Target)->GetComponentTransform());
  return TEXT("state serialization differs outside filtered properties; no comparison waived");
 }
-bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr,FTransform* ActorComparisonTransform=nullptr,FTransform* RootComparisonTransform=nullptr)
+bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr,FTransform* ActorComparisonTransform=nullptr,FTransform* RootComparisonTransform=nullptr,FTransform* ChildComparisonTransform=nullptr)
 {
  FStateWriter W(Out,IDs,Forbidden,Target);FString Class=O.GetClass()->GetPathName();W<<Class;
  for(TFieldIterator<FProperty> It(O.GetClass());It;++It)
@@ -221,7 +268,7 @@ bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const U
   FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):RootComparisonTransform&&RootLocationProperty(*P,O)?static_cast<void*>(&RootLocation):P->ContainerPtrToValuePtr<void>(&O),nullptr);
  }
  if(auto* A=Cast<AActor>(&O)){FTransform T=ActorComparisonTransform?*ActorComparisonTransform:A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
- if(auto* C=Cast<USceneComponent>(&O)){FTransform T=RootComparisonTransform?*RootComparisonTransform:C->GetComponentTransform();W<<T;}
+ if(auto* C=Cast<USceneComponent>(&O)){FTransform T=RootComparisonTransform?*RootComparisonTransform:ChildComparisonTransform?*ChildComparisonTransform:C->GetComponentTransform();W<<T;}
  if(auto* C=Cast<UInstancedStaticMeshComponent>(&O))
  {int32 N=C->GetInstanceCount();W<<N;for(int32 I=0;I<N;++I){FTransform T;if(!C->GetInstanceTransform(I,T,false))return false;W<<T;}}
  return !W.SourceReference&&!W.IsError();
@@ -339,19 +386,22 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
    if(A!=B)
    {
-    FRotator Rotation;FTransform ActorTransform,RootTransform;FString REvidence,TEvidence,RootEvidence;
+    FRotator Rotation;FTransform ActorTransform,RootTransform,ChildTransform;FString REvidence,TEvidence,RootEvidence,ChildEvidence;
     const bool R=MeasuredNearZeroRotation(*O.Value,*New,Rotation,REvidence);
     const bool T=MeasuredActorTranslation(*O.Value,*New,ActorTransform,TEvidence);
     const bool Root=MeasuredRootTranslation(*O.Value,*New,Src,Dst,RootTransform,RootEvidence);
-    if(!R&&!T&&!Root)return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
+    const bool Child=MeasuredChildTranslation(*O.Value,*New,Src,Dst,Remap,ChildTransform,ChildEvidence);
+    if(!R&&!T&&!Root&&!Child)return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
     // Pair comparison ONLY; only qualified root location/world share the owner delta.
-    // Source before/after, nonroot/ISM transforms and Q/scale remain strict.
+    // Source before/after, local/instance transforms and Q/scale remain strict;
+    // derived component-world translation only may share the exact owner delta.
     if(R)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+REvidence);
     if(T)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+TEvidence);
     if(Root)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+RootEvidence);
+    if(Child)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+ChildEvidence);
     A.Reset();B.Reset();
-    if(!State(*O.Value,IDs,SourcePackages,false,A,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr)||
-       !State(*New,IDs,SourcePackages,true,B,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr)||A!=B)
+    if(!State(*O.Value,IDs,SourcePackages,false,A,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr)||
+       !State(*New,IDs,SourcePackages,true,B,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr)||A!=B)
      return Fail(TEXT("copied control/component mismatch after measured representation: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages,R?&Rotation:nullptr));
    }
    if(auto* C=Cast<UActorComponent>(New);C&&(!C->IsIn(Dst)||C->GetOwner()!=Dst))return Fail(TEXT("component ownership escaped candidate"));
@@ -432,6 +482,33 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestEqual(TEXT("two-ULP fixture stores exact world scalar"),RootTwo->GetComponentLocation().Y,Two);
  TestEqual(TEXT("two-ULP fixture stores exact owner scalar"),OwnerTwo->GetActorLocation().Y,Two);
  TestFalse(TEXT("two-ULP actual root and owner refuse"),MeasuredRootTranslation(*RootA,*RootTwo,OwnerA,OwnerTwo,Canonical,Evidence));
+ RootB->SetupAttachment(nullptr);
+ auto* ChildA=NewObject<USceneComponent>(OwnerA);auto* ChildB=NewObject<USceneComponent>(OwnerB);
+ ChildA->SetupAttachment(RootA);ChildB->SetupAttachment(RootB);
+ ChildA->SetRelativeLocation(FVector(0,0,10));ChildB->SetRelativeLocation(FVector(0,0,10));
+ TMap<UObject*,UObject*> Mapping;Mapping.Add(RootA,RootB);
+ TestTrue(TEXT("mapped child exact owner delta qualifies"),MeasuredChildTranslation(*ChildA,*ChildB,OwnerA,OwnerB,Mapping,Canonical,Evidence));
+ TestFalse(TEXT("child wrong corresponding owner refuses"),MeasuredChildTranslation(*ChildA,*ChildB,OwnerA,Wrong,Mapping,Canonical,Evidence));
+ TMap<UObject*,UObject*> WrongMapping;WrongMapping.Add(RootA,RootTwo);
+ TestFalse(TEXT("child mismatched attachment mapping refuses"),MeasuredChildTranslation(*ChildA,*ChildB,OwnerA,OwnerB,WrongMapping,Canonical,Evidence));
+ ChildB->SetRelativeLocation(FVector(0,0,11));
+ TestFalse(TEXT("child local change refuses"),MeasuredChildTranslation(*ChildA,*ChildB,OwnerA,OwnerB,Mapping,Canonical,Evidence));
+ FTransform Different=ChildA->GetComponentTransform();Different.AddToTranslation(FVector(0,Two-Y,0));
+ TestFalse(TEXT("derived child different world delta refuses"),DerivedWorldDelta(ChildA->GetComponentTransform(),Different,OwnerA->GetActorTransform(),OwnerB->GetActorTransform()));
+ auto* ISMA=NewObject<UInstancedStaticMeshComponent>(OwnerA);auto* ISMB=NewObject<UInstancedStaticMeshComponent>(OwnerB);
+ ISMA->SetupAttachment(RootA);ISMB->SetupAttachment(RootB);
+ ISMA->SetRelativeLocation(FVector(0,0,10));ISMB->SetRelativeLocation(FVector(0,0,10));
+ TestTrue(TEXT("ISM component derived world delta qualifies while instances remain raw"),MeasuredChildTranslation(*ISMA,*ISMB,OwnerA,OwnerB,Mapping,Canonical,Evidence));
+ ISMA->AddInstance(FTransform::Identity,false);
+ TestEqual(TEXT("actual raw-instance fixture has one instance"),ISMA->GetInstanceCount(),1);
+ TMap<const UObject*,FString> TestIDs;TestIDs.Add(OwnerA,TEXT("owner"));TestIDs.Add(RootA,TEXT("root"));
+ TSet<const UPackage*> NoForbidden;TArray<uint8> BeforeInstance,AfterInstance;
+ TestTrue(TEXT("actual ISM state serializes before instance change"),State(*ISMA,TestIDs,NoForbidden,false,BeforeInstance,nullptr,nullptr,nullptr,&Canonical));
+ TestTrue(TEXT("actual raw-instance mutation succeeds"),ISMA->UpdateInstanceTransform(0,FTransform(FVector(0,0,1)),false,false,false));
+ TestTrue(TEXT("actual ISM state serializes after instance change"),State(*ISMA,TestIDs,NoForbidden,false,AfterInstance,nullptr,nullptr,nullptr,&Canonical));
+ TestTrue(TEXT("changed instance bytes refuse even with identical component world override"),BeforeInstance!=AfterInstance);
+
+
 
  return true;
 }
