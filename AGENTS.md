@@ -404,7 +404,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
 - `tools/analyse` (built 5 Nov 2026) is pipeline stages 3 and 4: true
   connectivity, warp graph, interiors, regions and the 2D-to-3D world layout.
   `cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out`
-  (about 24 s); tests: `python3 -m unittest discover -s tests` (49 pass).
+  (about 24 s); tests: `python3 -m unittest discover -s tests` (57 pass, 9 Nov 2026).
   It reads `tools/data/tile_classes.csv` and `tools/dinkc/out/calls.csv`.
   `tools/analyse/regions.toml` is the hand-tuned region and scale table: edit
   it and rebuild. World position of any original point is the bilinear blend
@@ -418,17 +418,38 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `s6-warp` machine (SCR_253 to SCR_154); the Edge of the World plateau only
   by pits and caves; the snow isle only by the hole on SCR_144. The toll
   bridge is SCR_404 (base script `s1-brg`); the `s1-nopas` barrier is on
-  SCR_346. East Wilds (cols 27-31, rows 8-20, 56 screens), checked 7 Nov 2026
-  against the data and `dink.cpp`: no designed way in (no warp or script
+  SCR_346. East Wilds (cols 27-31, rows 8-20): the 1997 data has no designed
+  way in (checked 7 Nov 2026 against the data and `dink.cpp`: no warp or script
   targets it except the booth door S289_P19; the river along cols 25/26, a
-  channel at rows 11/12 and the cliff foot are closed outlines). The engine
-  has two sequence-break routes, listed in `out/engine_reach.json`: push the
-  rock S277_P03 (`s1-roc`, strength 4), walk the hardness-0 cliff face east to
-  SCR_288, leave its right edge (the row wrap loads SCR_289, the booth's black
-  void), take the booth door to SCR_350 (23 of the 56 screens); and wade
-  through sea reached by screen-edge leaks (24 more; 9 stay closed). A cut
-  must close the rock, the wrap and the leaks; a reconnection can use the
-  booth door and the river at SCR_443/444.
+  channel at rows 11/12 and the cliff foot are closed outlines). **Owner
+  decision 9 Nov 2026: reconnected through the cobbler's booth.**
+  `tools/analyse/regions.toml` `[[join]] cobbler_booth_doorway` (a designed
+  join: `analyse/joins.py` patches the build's in-memory tiles and hardness,
+  `connectivity.json` `designed_joins` carries it to the UE exporter) makes
+  SCR_289 + SCR_290 one interior `INT_289` (region koka_isle) with a doorway:
+  void tiles SCR_289 (11, 1-3), (9-11, 4) and SCR_290 (0, 1-4) become wood
+  floor; on SCR_289 the passage is map y 176-214 (below the door S289_P19,
+  which fills its east wall at y 125-176; wall hardboxes S289_P11/P12 cut), on
+  SCR_290 the west wall (S290_P10, top of S290_P14) is cut over y 125-214,
+  facing the door and the passage; 2 px jambs close it off from the void. The
+  passage was first 22 px (rows 1-3 only) and left about 2 px clear of the
+  greybox's door trigger (hardbox + 30 cm); the coordinator widened it into
+  row 4 the same night (38 px crossing, about 18 px of free band for the
+  capsule), so the walk both ways between the rooms misses the door. Designed route: Koka bridge
+  SCR_727 -> SCR_759 -> SCR_734 door S734_P31 -> SCR_290 -> doorway -> SCR_289
+  -> door S289_P19 -> SCR_350 (351, 241) -> meadows. The region is now 55
+  outdoor screens (SCR_289 went with the booth), 22 reached by design (the
+  meadows of rows 8-11 with SCR_352's treasure and the SCR_349 save machine);
+  the 24 river/coast screens of rows 12-20 are still reached only by wading
+  and 9 by nothing. The engine's sequence breaks are left as they are
+  (`out/engine_reach.json`): push the rock S277_P03 (`s1-roc`, strength 4),
+  walk the hardness-0 cliff face east to SCR_288, leave its right edge (the row
+  wrap loads SCR_289's black void, which still touches the door); and wading
+  through sea reached by screen-edge leaks. In the greybox neither leads in:
+  the rock and the hardness-0 cliff face still work (cliff faces are open
+  ground there), but SCR_288's east side gets an edge wall (no grid neighbour;
+  there is no row wrap, SCR_289 lies on the interior sheet), and water
+  components are filled `DinkHardLow`, so nobody wades.
 - Unreal Engine 5.8.4 (Epic's prebuilt Linux build, CL 58902052) is installed
   at `~/UnrealEngine/UE_5.8.4` (73 GB) with Epic's Fab plugin for Linux
   unpacked into `Engine/Plugins/Fab`. The editor MCP plugins ship with it under
