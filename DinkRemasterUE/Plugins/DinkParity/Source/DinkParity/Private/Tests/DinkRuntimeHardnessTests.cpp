@@ -145,7 +145,7 @@ bool FDinkHardnessMarkedLoadAndVision::RunTest(const FString& Parameters)
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*World->GetPathName(),World->IsRooted(),uint32(World->GetFlags())));
         TestFalse(TEXT("owned scratch world released from root"),World->IsRooted());
         World->MarkObjectsPendingKill();
-        TestTrue(TEXT("owned scratch world marked for collection"),World->IsGarbage());};
+        TestTrue(TEXT("owned scratch world marked for collection"),World->HasAnyInternalFlags(EInternalObjectFlags::Garbage));};
     auto* Story=GI->GetSubsystem<UDinkStorySubsystem>();
     if(!TestNotNull(TEXT("actual initialized story"),Story)||!TestTrue(TEXT("actual story dataset ready"),Story->IsReady()&&Story->GetGameplay()->HasData()))return false;
     Story->bNewGamePending=false;Story->bRunScreenScripts=true;
@@ -208,7 +208,7 @@ bool FDinkHardnessEditorCarryActor::RunTest(const FString& Parameters)
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*World->GetPathName(),World->IsRooted(),uint32(World->GetFlags())));
         TestFalse(TEXT("owned scratch world released from root"),World->IsRooted());
         World->MarkObjectsPendingKill();
-        TestTrue(TEXT("owned scratch world marked for collection"),World->IsGarbage());};
+        TestTrue(TEXT("owned scratch world marked for collection"),World->HasAnyInternalFlags(EInternalObjectFlags::Garbage));};
     auto* Story=GI->GetSubsystem<UDinkStorySubsystem>();if(!TestNotNull(TEXT("story"),Story)||!TestTrue(TEXT("story dataset ready"),Story->IsReady()&&Story->GetGameplay()->HasData()))return false;
     Story->bRunScreenScripts=false;Story->bNewGamePending=false;
     auto* D=Story->GetDirector();auto* G=Story->GetGameplay();
@@ -342,7 +342,7 @@ bool FDinkHardnessShadowRoundTrip::RunTest(const FString& Parameters)
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*World->GetPathName(),World->IsRooted(),uint32(World->GetFlags())));
         TestFalse(TEXT("owned scratch world released from root"),World->IsRooted());
         World->MarkObjectsPendingKill();
-        TestTrue(TEXT("owned scratch world marked for collection"),World->IsGarbage());};
+        TestTrue(TEXT("owned scratch world marked for collection"),World->HasAnyInternalFlags(EInternalObjectFlags::Garbage));};
     auto* Story=GI->GetSubsystem<UDinkStorySubsystem>();if(!TestNotNull(TEXT("actual story"),Story)||!TestTrue(TEXT("actual dataset ready"),Story->IsReady()&&Story->GetGameplay()->HasData()))return false;
     Story->bRunScreenScripts=true;Story->bNewGamePending=false;
     auto* D=Story->GetDirector();auto* G=Story->GetGameplay();
@@ -400,7 +400,7 @@ bool FDinkHardnessRetainedLegacyOwner::RunTest(const FString& Parameters)
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*World->GetPathName(),World->IsRooted(),uint32(World->GetFlags())));
         TestFalse(TEXT("owned scratch world released from root"),World->IsRooted());
         World->MarkObjectsPendingKill();
-        TestTrue(TEXT("owned scratch world marked for collection"),World->IsGarbage());};
+        TestTrue(TEXT("owned scratch world marked for collection"),World->HasAnyInternalFlags(EInternalObjectFlags::Garbage));};
     auto* Story=GI->GetSubsystem<UDinkStorySubsystem>();
     if(!TestNotNull(TEXT("story"),Story)||!TestTrue(TEXT("actual dataset"),Story->IsReady()&&Story->GetGameplay()->HasData()))return false;
     Story->bRunScreenScripts=false;Story->bNewGamePending=false;
