@@ -1,0 +1,34 @@
+{
+  "status": "SOURCE_REGISTERED_NATIVE_PENDING",
+  "approved_QA_source_sha256": "54abf083265417dd5c83406e3103522140a36ba9d46ef2f80e8c803f18bf33d8",
+  "registered_source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "geometry_UV_normals_TRS_pixels_shader_equivalence": true,
+  "registered_roofs": 8,
+  "base_shared_roles": 3,
+  "derived_camera_variants": 3,
+  "textures": 9,
+  "FBX": 8,
+  "triangles": 17322,
+  "roof_UCX": 204,
+  "full_scene_UCX_preserved": 312,
+  "authored_architecture_tests": 10,
+  "global_art_standard_exit": 1,
+  "global_art_standard_counts": {
+    "family": 23,
+    "material": 186
+  },
+  "new_roof_violations": [],
+  "soft_budget_roof_warnings": 3,
+  "native_launched": false,
+  "Data_changed": false,
+  "production_activation_pending": true,
+  "full_source_audit": {
+    "actual_binaries": 4416,
+    "python_files": 501,
+    "shell_files": 22,
+    "ledger_rows": 4255,
+    "errors": 0,
+    "secret_flags": 0,
+    "passed": true
+  }
+}

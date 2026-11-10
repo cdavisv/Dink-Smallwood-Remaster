@@ -1,0 +1,400 @@
+{
+  "schema": "dink-interior-roof-shared-source/1",
+  "status": "source_registered_native_pending",
+  "source": "InteriorRoof_Shared2mCandidate.blend",
+  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "shared_material_manifest": "../../../SharedMaterials/manifest.json",
+  "assets": {
+    "SM_IndoorRoof_EN_01": {
+      "name": "SM_IndoorRoof_EN_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.749500140547752,
+        6.8124998807907104,
+        3.75
+      ],
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "material_slots": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "triangles": 4986,
+      "fbx": "FBX/SM_IndoorRoof_EN_01.fbx",
+      "fbx_sha256": "8823d9b55719d670be3d70b5209c333e58fc35652d1af18011cfb705cd044d4e",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01",
+      "UCX_count": 48,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakLonggrain2m"
+        },
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakEndgrain2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_ES_01": {
+      "name": "SM_IndoorRoof_ES_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.7375010550022125,
+        6.7320895455777645,
+        3.75
+      ],
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "material_slots": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "triangles": 3474,
+      "fbx": "FBX/SM_IndoorRoof_ES_01.fbx",
+      "fbx_sha256": "0b35b102a4dcf51a5f28188337e9cd12a1bbcae0d373256530ae6ffcc35123a0",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01",
+      "UCX_count": 45,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakLonggrain2m"
+        },
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakEndgrain2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_Gable_EN_01": {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.517499923706055,
+        6.662499904632568,
+        3.4800000190734863
+      ],
+      "materials": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "material_slots": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "triangles": 266,
+      "fbx": "FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+      "fbx_sha256": "93468600b8ac9a0e0b9a8ad7a9184634b2919c34f98af6dfc5674e3174562641",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "UCX_count": 3,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_LimePlaster2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_Gable_ES_01": {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.517499923706055,
+        6.662499904632568,
+        3.4800000190734863
+      ],
+      "materials": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "material_slots": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "triangles": 266,
+      "fbx": "FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+      "fbx_sha256": "76892690915fc36da76e4cd942163e38cc45a82652d97456cf6115854a6460c1",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "UCX_count": 3,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_LimePlaster2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_Gable_WN_01": {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.517499923706055,
+        6.662499904632568,
+        3.4800000190734863
+      ],
+      "materials": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "material_slots": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "triangles": 266,
+      "fbx": "FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+      "fbx_sha256": "a18c185fcd6c9c4d9592fd1732aa2f617bbd3f6266edc220753f9f983bf8333b",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "UCX_count": 3,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_LimePlaster2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_Gable_WS_01": {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.517499923706055,
+        6.662499904632568,
+        3.4800000190734863
+      ],
+      "materials": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "material_slots": [
+        "MI_Shared_LimePlaster2m"
+      ],
+      "triangles": 266,
+      "fbx": "FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+      "fbx_sha256": "ad5700626e11ae1f264bbded919b7e0efc578ad498b4120be6f9477f2069f356",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "UCX_count": 3,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_LimePlaster2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_WN_01": {
+      "name": "SM_IndoorRoof_WN_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.833500564098358,
+        6.8124998807907104,
+        3.75
+      ],
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "material_slots": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "triangles": 4924,
+      "fbx": "FBX/SM_IndoorRoof_WN_01.fbx",
+      "fbx_sha256": "9991ce10083f14b1a5f84cea6806d14206792becb3b803584962a0434ef2c61a",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01",
+      "UCX_count": 57,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakLonggrain2m"
+        },
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakEndgrain2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    },
+    "SM_IndoorRoof_WS_01": {
+      "name": "SM_IndoorRoof_WS_01",
+      "class": "kit_piece",
+      "dimensions_m": [
+        7.587500095367432,
+        6.7320895455777645,
+        3.75
+      ],
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "material_slots": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "triangles": 2874,
+      "fbx": "FBX/SM_IndoorRoof_WS_01.fbx",
+      "fbx_sha256": "fedea101d1dbef12c3bc32f5c7f6977ad05f750e56c230eb21566e71a03a1f8c",
+      "source": "InteriorRoof_Shared2mCandidate.blend",
+      "content_path": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01",
+      "proposed_trial_path": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01",
+      "UCX_count": 42,
+      "families": [],
+      "source_identity": "Screen1 authored exposed roof adaptation; not a sprite family and not a family binding. Existing screen/placement/collision policies retained.",
+      "family_policy_status": "Explicit no-sprite authored-architecture declaration; checker must verify exclusive screen1 dink-art/1 element uses.",
+      "shared_materials_manifest": "../../../SharedMaterials/manifest.json",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakLonggrain2m"
+        },
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_material": "MI_Shared_OakEndgrain2m"
+        }
+      ],
+      "native_status": "NOT_IMPORTED_OR_ACTIVATED",
+      "notes": "Geometry/UVs/normals/TRS/UCX exact to frozen v12d;470 inherited duplicate faces across timber pieces and localized bevel UV compression retained. Three timber parts exceed soft3000 target but remain below10000 hardcap; no geometry edits in material lane.",
+      "authored_architecture": {
+        "screens": [
+          1
+        ],
+        "purpose": "exposed interior roof adaptation"
+      }
+    }
+  },
+  "native_plan": {
+    "trial_packages": 23,
+    "mesh_count": 8,
+    "base_materials": 3,
+    "derived_camera_materials": 3,
+    "textures": 9,
+    "production_integration": "After validated trial and Root review, update exact8existing roof mesh package material bindings or exact8existing stonebrook roof mesh references. Add exact3shared camera-material aliases only at final activation; keep all other Data bytes/rows unchanged.",
+    "collision_policy": "Preserve all204roof UCX,geometry,room clearance,query policy and noNanite; fireplace/chimney excluded.",
+    "camera_policy": "Existing opaque+separate masked variant convention; same9maps, parameterDinkCameraOpacity1,shadow1. No self-mapped masked ordinary surfaces.",
+    "native_launched": false
+  }
+}

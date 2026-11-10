@@ -1,0 +1,330 @@
+[
+  {
+    "name": "SM_IndoorRoof_EN_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.4998885392956397,
+        0.15992003861683537
+      ],
+      [
+        0.49998103315334785,
+        0.1913059375727349
+      ],
+      [
+        0.5000002041256297,
+        0.47934235838178196
+      ],
+      [
+        0.5000199943771099,
+        0.5
+      ],
+      [
+        0.5002089916543427,
+        0.5000028478993893
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_ES_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.4998885392956397,
+        0.15992004199979618
+      ],
+      [
+        0.49997879193639916,
+        0.191321646608762
+      ],
+      [
+        0.5000002602176756,
+        0.4999727435564322
+      ],
+      [
+        0.5000223327085377,
+        0.5
+      ],
+      [
+        0.5010663473327034,
+        0.5000027581017532
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_Gable_EN_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.4999606822848552,
+        0.14086019927850946
+      ],
+      [
+        0.49999938551989936,
+        0.1408978304958094
+      ],
+      [
+        0.5000000441582326,
+        0.46195028613326633
+      ],
+      [
+        0.5000647952868946,
+        0.5
+      ],
+      [
+        0.500099424332201,
+        0.500000031972604
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_Gable_ES_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.49998757398577054,
+        0.14086019927850946
+      ],
+      [
+        0.49999905035392567,
+        0.1408953562865315
+      ],
+      [
+        0.5000000377020042,
+        0.4619307564371152
+      ],
+      [
+        0.5000599108576154,
+        0.5
+      ],
+      [
+        0.50009954481048,
+        0.500000031972604
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_Gable_WN_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.49998757398577054,
+        0.14086019927850946
+      ],
+      [
+        0.49999905035392567,
+        0.1408978304958094
+      ],
+      [
+        0.5000000395878237,
+        0.46193074132098433
+      ],
+      [
+        0.5000617026149936,
+        0.4999999994467307
+      ],
+      [
+        0.5000996683880025,
+        0.5000000039771189
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_Gable_WS_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.49998757398577054,
+        0.14086019927850946
+      ],
+      [
+        0.49999905035392567,
+        0.14089535628653144
+      ],
+      [
+        0.5000000359057665,
+        0.46193074132098433
+      ],
+      [
+        0.5000599108576154,
+        0.49999998596971873
+      ],
+      [
+        0.5000997953865487,
+        0.5000000039771189
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_WN_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.4998885392956397,
+        0.1599200422817041
+      ],
+      [
+        0.4999838276115697,
+        0.19131683811174965
+      ],
+      [
+        0.5000001540341035,
+        0.4986425028010518
+      ],
+      [
+        0.5000201262831003,
+        0.5
+      ],
+      [
+        0.5015459717610847,
+        0.5000027171844762
+      ]
+    ],
+    "collapsed": 0
+  },
+  {
+    "name": "SM_IndoorRoof_WS_01",
+    "attributes": [
+      ".select_vert",
+      "position",
+      ".corner_vert",
+      ".corner_edge",
+      ".select_poly",
+      "sharp_face",
+      ".edge_verts",
+      ".select_edge",
+      "UVMap",
+      "material_index",
+      "custom_normal",
+      "sharp_edge"
+    ],
+    "custom_properties": [],
+    "singular_values_per_m_percentiles": [
+      [
+        0.499893515502578,
+        0.15992003861683537
+      ],
+      [
+        0.4999773347776635,
+        0.1913216466049116
+      ],
+      [
+        0.500000204770339,
+        0.4999817539621795
+      ],
+      [
+        0.500020963507699,
+        0.5
+      ],
+      [
+        0.5004984331145298,
+        0.5000026699056775
+      ]
+    ],
+    "collapsed": 0
+  }
+]

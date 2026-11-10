@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "scope": "Decoded final PNG pixels. Seam differences are pixel-center samples, not theoretical continuous-edge values. No mesh AO/lighting baked into library. V2 changes endgrain source only; other six maps PNG byte-exact.",
+  "rows": [
+    {
+      "file": "Textures/T_SharedCandidate_LimePlaster2m_BC.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.0003893484477124175,
+        0.0039215686274510775
+      ],
+      "seam_difference_y_mean_max": [
+        0.00034339256535947634,
+        0.0039215686274510775
+      ],
+      "sha256": "631382152572c1f129a162a81f30126676a5d0270e5aa3e07af4749552855b17",
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_LimePlaster2m_N_GL.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.0036190257352941104,
+        0.03137254901960779
+      ],
+      "seam_difference_y_mean_max": [
+        0.003704554738562084,
+        0.0313725490196079
+      ],
+      "sha256": "bf0a609a48956d2b36b5c2509b4d9040d1ea752dbcdddf0e6e6060eaaedce4c3",
+      "normal_length_min_max": [
+        1.0000153785822494,
+        1.0019204934149974
+      ],
+      "normal_finite": true,
+      "normal_positive_Z": true,
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_LimePlaster2m_ORM.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.00019020629084967283,
+        0.0039215686274510775
+      ],
+      "seam_difference_y_mean_max": [
+        0.00019148284313725463,
+        0.0039215686274510775
+      ],
+      "sha256": "21a8d7a9a18a20cd05373089ae2e9ca7825c08a8b38b9e04413c1a44fb84d70b",
+      "AO_all255": true,
+      "metallic_all0": true,
+      "roughness_8bit_min_max": [
+        215,
+        233
+      ],
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakEndgrain2m_BC.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.002417790032679738,
+        0.01568627450980392
+      ],
+      "seam_difference_y_mean_max": [
+        0.0024662990196078426,
+        0.011764705882352955
+      ],
+      "sha256": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+      "matches_V1_PNG_bytes": false
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakEndgrain2m_N_GL.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        8.935866013071864e-06,
+        0.007843137254901933
+      ],
+      "seam_difference_y_mean_max": [
+        1.5318627450980338e-05,
+        0.007843137254901933
+      ],
+      "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+      "normal_length_min_max": [
+        1.0000153785822494,
+        1.0001383987273944
+      ],
+      "normal_finite": true,
+      "normal_positive_Z": true,
+      "matches_V1_PNG_bytes": false
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakEndgrain2m_ORM.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.00028467116013071973,
+        0.0039215686274510775
+      ],
+      "seam_difference_y_mean_max": [
+        0.00028850081699346346,
+        0.0039215686274510775
+      ],
+      "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+      "AO_all255": true,
+      "metallic_all0": true,
+      "roughness_8bit_min_max": [
+        185,
+        209
+      ],
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakLonggrain2m_BC.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.021014603758169933,
+        0.10196078431372546
+      ],
+      "seam_difference_y_mean_max": [
+        0.009540951797385622,
+        0.06666666666666671
+      ],
+      "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakLonggrain2m_N_GL.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.00038296568627450844,
+        0.0117647058823529
+      ],
+      "seam_difference_y_mean_max": [
+        0.00026679942810457427,
+        0.007843137254901933
+      ],
+      "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+      "normal_length_min_max": [
+        1.0000153785822494,
+        1.0003843936332626
+      ],
+      "normal_finite": true,
+      "normal_positive_Z": true,
+      "matches_V1_PNG_bytes": true
+    },
+    {
+      "file": "Textures/T_SharedCandidate_OakLonggrain2m_ORM.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "channels": "RGB",
+      "seam_difference_x_mean_max": [
+        0.0003497753267973856,
+        0.0039215686274510775
+      ],
+      "seam_difference_y_mean_max": [
+        0.0003114787581699344,
+        0.0039215686274510775
+      ],
+      "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+      "AO_all255": true,
+      "metallic_all0": true,
+      "roughness_8bit_min_max": [
+        174,
+        202
+      ],
+      "matches_V1_PNG_bytes": true
+    }
+  ]
+}

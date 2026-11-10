@@ -1,0 +1,97 @@
+{
+  "status": "OPEN_GEOMETRY_ISSUE_NOT_FIXED",
+  "view": "Review/gable_plaster.png from Root-approved material source study",
+  "camera": {
+    "location_m": [
+      2,
+      0,
+      4.15
+    ],
+    "target_m": [
+      -7,
+      1.5,
+      5.2
+    ],
+    "lens_mm": 32,
+    "resolution": [
+      960,
+      720
+    ]
+  },
+  "issue": "Black triangular slivers at west gable infill / sloped board underside junction, visible in original and shared-material source. Inherited geometry is preserved, not accepted as final art.",
+  "measurements": [
+    {
+      "image_bbox_px": [
+        625,
+        357,
+        691,
+        391
+      ],
+      "projection_plane_X_m": -7.4375,
+      "projected_bbox_world_m": [
+        [
+          -7.4375,
+          3.2792587280273438,
+          4.916532039642334
+        ],
+        [
+          -7.4375,
+          4.098732948303223,
+          5.328473091125488
+        ]
+      ],
+      "projected_YZ_size_cm": [
+        81.94742202758789,
+        41.19410514831543
+      ],
+      "center_actual_roof_hit": {
+        "object": "SM_IndoorRoof_WN_01",
+        "polygon": 1360,
+        "point_world_m": [
+          -7.357499122619629,
+          3.6052417755126953,
+          5.099984645843506
+        ],
+        "distance_m": 10.072885513305664
+      }
+    },
+    {
+      "image_bbox_px": [
+        722,
+        410,
+        752,
+        423
+      ],
+      "projection_plane_X_m": -7.4375,
+      "projected_bbox_world_m": [
+        [
+          -7.4375,
+          4.4604902267456055,
+          4.554910659790039
+        ],
+        [
+          -7.4375,
+          4.8437604904174805,
+          4.711069107055664
+        ]
+      ],
+      "projected_YZ_size_cm": [
+        38.3270263671875,
+        15.6158447265625
+      ],
+      "center_actual_roof_hit": {
+        "object": "SM_IndoorRoof_Gable_WN_01",
+        "polygon": 127,
+        "point_world_m": [
+          -7.357499122619629,
+          4.611705780029297,
+          4.626028537750244
+        ],
+        "distance_m": 10.443046569824219
+      }
+    }
+  ],
+  "measurement_limit": "Projected image-region bounds onto west room-end gable plane; bounds include antialias/shadow around the sliver, not a certified through-hole aperture width. BVH reports nearest render-roof source surface at each central pixel. Source only; actual native room leak requires later section/ray/GPU validation.",
+  "likely_owner": "Interior roof/chimney construction geometry owner coordinated by Root. Exterior material artist does not own this junction. Current material-only admission cannot close gaps or change204UCX.",
+  "next_action": "After native material review, inspect end-board/plaster/heel interface at these coordinates; fit opaque gable closure to existing roof envelope, preserve room clearance/openings and204UCX policy unless independently reviewed. No extra style studies needed."
+}
