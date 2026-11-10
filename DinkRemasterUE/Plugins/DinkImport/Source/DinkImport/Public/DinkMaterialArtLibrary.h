@@ -37,6 +37,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static FString InspectStaticMeshSourceLods(UStaticMesh* Mesh);
 
+	/** Detached RAW MeshDescription and built LOD buffers: all UVs, Color0, signed TBN and named sections. Never builds or saves. */
+	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+	static FString InspectStaticMeshGeometry(UStaticMesh* Mesh, int32 LODIndex = 0);
+
 	/** All connected property IDs, including pins hidden from Python's enum. Never edits the graph. */
 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
 	static TArray<int32> GetConnectedMaterialProperties(UMaterial* Material);

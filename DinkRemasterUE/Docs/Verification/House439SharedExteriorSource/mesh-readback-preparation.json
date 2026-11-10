@@ -1,0 +1,35 @@
+{
+  "status": "SOURCE_PREPARATION_CPP_UNCOMPILED_NATIVE_UNEXECUTED",
+  "contract_digest": "a9cc41ca321af4f22cf0e490bcf4cc1c3027b28e1a740c18114833d422a017bb",
+  "bridge": "UDinkMaterialArtLibrary::InspectStaticMeshGeometry",
+  "schema": "dink-static-mesh-geometry/1",
+  "native_test_to_run": "Dink.Art.StaticMeshGeometryInspection",
+  "reader_outputs": [
+    "RAWMeshDescription allUVs/linearColor0/position/normal/tangent/binormalsign",
+    "BuiltallUVs/Color0RGBA8/position/TangentX/TangentY/TangentZ.XYZ+storedW",
+    "Materialslots byactualimportedname, rawtriangleIDs andbuiltindices/sections"
+  ],
+  "reader_mutation_policy": "NoModify/build/cook/save. GetMeshDescription mayreadcachedbulkdata. Scratchnativefunctionaltest buildsONLYitsRF_Transientfixture.",
+  "metadata_order_fix": "Configureverifiedrelative sourcefilenames BEFORE concrete meshcheck; saveonlyafterproofpasses. Threeorderingregressionspass.",
+  "source_matcher": "house439_mesh_readback.decode_source/compare_snapshot/make_mesh_verifier",
+  "source_decode": "full-corner-source-decode.json",
+  "matching_policy": "Geometry+materialcyclicbijection only; UV/normals/colours cannotselectmatches. BothRAWandbuilt compareeverycorner, UV1Vflip expected, normalizedRGBA8 cappedbytequantization. SignedTBNactualstoredZ.W andTangentYchecked.",
+  "tolerances": "ExplicitRootapproval.geometry_tolerances required; noacceptance defaults. Nativevaluesnotyetmeasured.",
+  "limitations": [
+    "SourceMikktangentDIRECTION notindependentlycompared; actualUV0recomputeMikkflagsandstoredframevaliditychecked",
+    "Authoredconvexcloud/closedindices checksareseparatefromcookedworldcollision",
+    "NoactualC++compile/API execution/nativegraph/sourcepixels/saved38/GPUacceptance yet"
+  ],
+  "tests": {
+    "metadata_ordering": 3,
+    "raw_built_attribute_corruption": 7,
+    "current_house439_total": 48,
+    "existing_roof_regressions": 14
+  },
+  "pixel_callback": "Concretebounded30Texture.Source PNG checkerprovided; passedflagonlyafteractualpixelbytes/settings checks. Noarbitraryassertioncallbacksubstitute.",
+  "actual_source_audits": {
+    "full": "mesh-readback-full-source-audit.json",
+    "metadata": "mesh-readback-metadata-source-audit.json",
+    "passed": true
+  }
+}
