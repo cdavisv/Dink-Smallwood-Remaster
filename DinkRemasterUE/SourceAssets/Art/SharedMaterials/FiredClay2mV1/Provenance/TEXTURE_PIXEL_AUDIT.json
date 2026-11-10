@@ -1,0 +1,229 @@
+{
+  "status": "PASS",
+  "files": {
+    "T_Shared_FiredClay2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "e5cbb13c9fcb0031c17ad2b216afea746508ae0129d7655c3c656f4ba439622d",
+      "channel_min": [
+        94,
+        57,
+        39
+      ],
+      "channel_max": [
+        112,
+        75,
+        58
+      ]
+    },
+    "T_Shared_FiredClay2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "ec06f6e3e64ae8259673b1bda2d2915b7acb1308677ed23b0539b08f49984ac3",
+      "channel_min": [
+        88,
+        82,
+        245
+      ],
+      "channel_max": [
+        177,
+        174,
+        255
+      ],
+      "decoded_normal_length_minmax": [
+        0.9949584563554026,
+        1.0049244378165338
+      ]
+    },
+    "T_Shared_FiredClay2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+      "channel_min": [
+        255,
+        238,
+        0
+      ],
+      "channel_max": [
+        255,
+        239,
+        0
+      ]
+    },
+    "T_Shared_LimeMortar2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+      "channel_min": [
+        82,
+        79,
+        64
+      ],
+      "channel_max": [
+        131,
+        127,
+        113
+      ]
+    },
+    "T_Shared_LimeMortar2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+      "channel_min": [
+        126,
+        126,
+        255
+      ],
+      "channel_max": [
+        129,
+        129,
+        255
+      ],
+      "decoded_normal_length_minmax": [
+        1.0000153785822494,
+        1.000076890546421
+      ]
+    },
+    "T_Shared_LimeMortar2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+      "channel_min": [
+        255,
+        230,
+        0
+      ],
+      "channel_max": [
+        255,
+        252,
+        0
+      ]
+    },
+    "T_Shared_Soot2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+      "channel_min": [
+        7,
+        6,
+        4
+      ],
+      "channel_max": [
+        15,
+        13,
+        11
+      ]
+    },
+    "T_Shared_Soot2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+      "channel_min": [
+        127,
+        127,
+        255
+      ],
+      "channel_max": [
+        128,
+        128,
+        255
+      ],
+      "decoded_normal_length_minmax": [
+        1.0000153785822494,
+        1.0000153785822494
+      ]
+    },
+    "T_Shared_Soot2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+      "channel_min": [
+        255,
+        238,
+        0
+      ],
+      "channel_max": [
+        255,
+        255,
+        0
+      ]
+    },
+    "T_Shared_FiredClayMasonry2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "1ad8700f05582506c22b081bbcbb41e753a36799c9c83fd31e17ae1cc83c9fa9",
+      "channel_min": [
+        57,
+        43,
+        29
+      ],
+      "channel_max": [
+        119,
+        86,
+        77
+      ]
+    },
+    "T_Shared_FiredClayMasonry2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "a8edca91ca3532920567795cdca4cb23b171be17047aa62b0927d6961f010aba",
+      "channel_min": [
+        50,
+        46,
+        225
+      ],
+      "channel_max": [
+        209,
+        210,
+        255
+      ],
+      "decoded_normal_length_minmax": [
+        0.994463721329812,
+        1.005475207131863
+      ]
+    },
+    "T_Shared_FiredClayMasonry2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+      "channel_min": [
+        255,
+        238,
+        0
+      ],
+      "channel_max": [
+        255,
+        239,
+        0
+      ]
+    }
+  },
+  "source_roughness": "16bit grayscale decoded /65535 before normalization; no saturation-to8bit",
+  "joint_free_clay": "SelectedClayOnlyCrop.png excludes mortar boundary; mappedmodeledbricks useFiredClay2m only",
+  "normal": "OpenGL +Y; native greenfliprequired",
+  "generic_period": "integer17x98croppatchcycles normalizedto2m; even28masonrycourses maintainsstaggeracrosstileedge"
+}

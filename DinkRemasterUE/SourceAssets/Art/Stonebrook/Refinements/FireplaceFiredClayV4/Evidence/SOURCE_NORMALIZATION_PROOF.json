@@ -1,0 +1,175 @@
+{
+  "status": "PASS_SOURCE_RGB_CLAMP_ONLY",
+  "source": "/home/artist/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/FiredClayV3/Fireplace_FiredClayV3.blend",
+  "source_sha256": "28a5c007c16a7647510bf7fcd34c429ceae3471cdf44422c6504cf21d698fed7",
+  "successor_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12",
+  "all_objects": 331,
+  "mesh_objects": 328,
+  "UCX": 312,
+  "noncolor_scene_mesh_snapshot_sha256": "24f60ef7ded0fe191fcf7e0b348dad6e5427108fd8d77e83f8d39ed73688c948",
+  "all_noncolor_scene_mesh_fields_exact": true,
+  "all_other_colors_exact": true,
+  "alpha_exact": true,
+  "source_unchanged": true,
+  "changes": [
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "corners": 171888,
+      "changed_corners": 8988,
+      "changed_channels": [
+        8988,
+        168,
+        0,
+        0
+      ],
+      "max_delta": 0.01975429058074951,
+      "by_role": {
+        "MI_Shared_FiredClay2m": 8808,
+        "MI_Shared_LimeMortar2m": 180
+      },
+      "alpha_exact": true,
+      "before_range": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "after_range": [
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "corners": 113724,
+      "changed_corners": 6396,
+      "changed_channels": [
+        6396,
+        72,
+        0,
+        0
+      ],
+      "max_delta": 0.01975429058074951,
+      "by_role": {
+        "MI_Shared_FiredClay2m": 6216,
+        "MI_Shared_LimeMortar2m": 180
+      },
+      "alpha_exact": true,
+      "before_range": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "after_range": [
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "corners": 59994,
+      "changed_corners": 3132,
+      "changed_channels": [
+        3132,
+        72,
+        0,
+        0
+      ],
+      "max_delta": 0.01975429058074951,
+      "by_role": {
+        "MI_Shared_FiredClay2m": 2952,
+        "MI_Shared_LimeMortar2m": 180
+      },
+      "alpha_exact": true,
+      "before_range": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "after_range": [
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          1.0
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ]
+}

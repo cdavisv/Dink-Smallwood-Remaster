@@ -1,0 +1,38 @@
+{
+  "status": "Genericmineralrole_sourceproposal_notadmitted",
+  "source": "InteriorRoofSharedV1 authoredgenericLimePlaster2m; notphotographic/mineralBRDFmeasurement",
+  "repeat_m": 2,
+  "resolution": 1024,
+  "density_px_m": 512,
+  "lime_recipe": "BClinearRGBnormalizedtomean.5eachchannel; Nsamepixelvalues; roughnesssamefieldrecentered.96; AO1/M0.",
+  "soot_recipe": "ArtistconstantBClinear(.018,.015,.012), flatGLnormal,AO1/R.96/M0; nofalsephotographicscanclaim.",
+  "future_shader_contract": "OneMI/twoBC-N-ORMsets,UV0physicalmetres/2;UV1_SharedData.x0lime/1soot,yroughnessbias(-.01mortar,+.01bed/soot);SharedSurfaceDataRGBtint sourcecolour/mean.5forlime,1forsoot; clampRafterbias. Notimplemented/adoptedyet.",
+  "bedding_qualification": "Existingworldnoisecolorramp.065/.06/.048to.13/.12/.10 and.675mmeffectivebump cannotbeclaimedexactlyretained bythisgenericfield; targetmean.0975/.09/.074estimated. Needsactualcomparison.",
+  "files": [
+    {
+      "file": "T_MineralLime_BC.png",
+      "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2"
+    },
+    {
+      "file": "T_MineralLime_N_GL.png",
+      "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9"
+    },
+    {
+      "file": "T_MineralLime_ORM.png",
+      "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2"
+    },
+    {
+      "file": "T_MineralSoot_BC.png",
+      "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857"
+    },
+    {
+      "file": "T_MineralSoot_N_GL.png",
+      "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54"
+    },
+    {
+      "file": "T_MineralSoot_ORM.png",
+      "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133"
+    }
+  ],
+  "native": "NOT_RUN"
+}

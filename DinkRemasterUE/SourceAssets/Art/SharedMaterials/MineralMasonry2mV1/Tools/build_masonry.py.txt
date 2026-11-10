@@ -1,0 +1,14 @@
+from pathlib import Path
+from PIL import Image
+import numpy as np
+O=Path(__file__).resolve().parent;T=O/'Textures';n=1024;y,x=np.mgrid[:n,:n];rng=np.random.default_rng(7304)
+stone=np.array(Image.open(T/'T_Shared_Fieldstone2m_BC.png')).astype(float)/255;normal=np.array(Image.open(T/'T_Shared_Fieldstone2m_N_GL.png')).astype(float)/255;orm=np.array(Image.open(T/'T_Shared_Fieldstone2m_ORM.png')).astype(float)/255
+mortar=np.array(Image.open(T/'T_Shared_LimeMortar2m_BC.png')).astype(float)/255
+rows=y*10/n;row=np.floor(rows).astype(int);xs=(x*5/n+(row%2)*.5);fracx=xs%1;fracy=rows%1
+# 10 courses at .2m; staggered .4m blocks; physically 8mm mortar bedding.
+dx=np.minimum(fracx,1-fracx)*.4;dy=np.minimum(fracy,1-fracy)*.2;dist=np.minimum(dx,dy);mask=np.clip((dist-.003)/.004,0,1);bevel=np.clip((dist-.004)/.007,0,1)
+variation=np.random.default_rng(77).uniform(.87,1.02,(10,6))[row,np.floor(xs).astype(int)%6];bc=stone*variation[:,:,None]*mask[:,:,None]+mortar*(1-mask[:,:,None]);height=bevel*.0018
+ndx=(np.roll(height,-1,1)-np.roll(height,1,1))*n/4;ndy=(np.roll(height,-1,0)-np.roll(height,1,0))*n/4
+normal=normal*2-1;normal[:,:,0]-=ndx;normal[:,:,1]+=ndy;normal[:,:,0:2]*=(mask*.7)[:,:,None];normal/=np.linalg.norm(normal,axis=2)[:,:,None]
+orm[:,:,1]=orm[:,:,1]*mask+.94*(1-mask);orm[:,:,0]=1;orm[:,:,2]=0
+for suffix,a in [('BC',bc),('N_GL',normal*.5+.5),('ORM',orm)]:Image.fromarray((np.clip(a,0,1)*255+.5).astype('uint8')).save(T/f'T_Shared_FieldstoneCoursed2m_{suffix}.png')

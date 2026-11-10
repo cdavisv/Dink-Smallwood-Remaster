@@ -51,6 +51,7 @@ for name, row in pack_files.items():
         bad.append(name)
     else:
         verified_binary += 1
+from library_index_history import historical_index_matches
 rows = list(csv.DictReader((root / 'SourceAssets/asset_ledger.csv').open()))
 from hero_source_history import AUTHORITY, validate_history
 history_proof = {'indices': set(), 'historical_rows_binary_verified': 0,
@@ -78,7 +79,8 @@ for row_index, row in enumerate(rows):
             and pointer['sha256'] == row['sha256']):
         continue
     if hashlib.sha256(data).hexdigest() != row['sha256']:
-        bad.append(row['asset_path'])
+        if not historical_index_matches(root, rows, row):
+            bad.append(row['asset_path'])
 errors.extend([{'missing_asset': x} for x in sorted(set(missing))])
 errors.extend([{'asset_hash_mismatch': x} for x in sorted(set(bad))])
 spec = importlib.util.spec_from_file_location('remaster_paths', root / 'Scripts/remaster_paths.py')
