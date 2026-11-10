@@ -1,3 +1,7 @@
+## Shared roof native import and saved readback passed
+
+Delivery4d43bab: fresh23 import passed/native0/393.540s and separate read-only fresh23 readback passed/native0/75.447s (imports0/saves0). Both retained12797protectedinputs, existingContent and verified7owncustommodules. Exact8roofmeshes+9textures+6materials hashes: Docs/Verification/InteriorRoofSharedNativeTrial/results.json. First failed metadata-order attempt and15quarantinedoutputs remain preserved externally; no oldContent overwritten. Production activation/camera aliases/GPU/cook pending; stored tangent-Y handedness NOT_PROVEN. Root released UE slot to RuntimeHardness Current staging.
+
 ## Shared roof first native trial: ordering fix ready
 
 Actual trial057887d4e6f3490c94e810ffd888209f exited255/292.04s after verifying/saving9textures+6materials. All12796inputs and oldContent unchanged. Firstmesh geometry/UCX checks passed, then rawrelative-source metadata check failed because conversion occurred later in persist(). No mesh saved. All15new partial packages were hash-verified and archived under that run/PartialOutputs after native/wrapper closure; no oldContent moved. Narrow5c1ee69 fix configuresmesh relative filenames BEFORE verification and avoids duplicateconversion. Regression reproduces oldfailure; fresh trial/readback remain required, no assertions waived. C++ unchangedfromownC4build.
