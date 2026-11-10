@@ -265,8 +265,30 @@ bool MeasuredBoxRotationZero(UObject& Source,UObject& Target,AActor* ExpectedSou
  if(L!=R||LW.IsError()||RW.IsError()||RW.SourceReference)return false;
  Canonical=Left;Evidence+=TEXT(" entire canonical aggregate exact; mapped UBoxComponent-owned body; original source bytes unchanged");return true;
 }
+bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWorld,
+ const TMap<UObject*,UObject*>& Remap,bool& Restored,FString& Evidence)
+{
+ Restored=false;Evidence.Reset();
+ if(&Source==&Target||!NewWorld||Target.GetWorld()!=NewWorld||Source.GetWorld()==NewWorld||
+    Source.GetClass()!=Target.GetClass()||Remap.FindRef(&Source)!=&Target)
+ {Evidence=TEXT("root restoration requires exact mapped actor in distinct NEW world");return false;}
+ auto* A=Source.GetRootComponent();auto* B=Target.GetRootComponent();
+ if(!A||!B)return true;
+ FTransform Canonical;FString Proof;
+ // Ineligible changes remain untouched and fail the later strict comparison.
+ if(!MeasuredRootTranslation(*A,*B,&Source,&Target,Canonical,Proof))return true;
+ if(Remap.FindRef(A)!=B){Evidence=TEXT("root restoration requires exact root mapping");return false;}
+ B->SetRelativeLocation_Direct(A->GetRelativeLocation());
+ B->UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);
+ auto ExactTransform=[](FTransform L,FTransform R){TArray<uint8> X,Y;FObjectWriter LX(X),RY(Y);LX<<L;RY<<R;return X==Y;};
+ const FVector L=A->GetRelativeLocation(),R=B->GetRelativeLocation();const double X[]={L.X,L.Y,L.Z},Y[]={R.X,R.Y,R.Z};
+ if(FMemory::Memcmp(X,Y,sizeof(X))||!ExactTransform(Source.GetActorTransform(),Target.GetActorTransform())||
+    !ExactTransform(A->GetComponentTransform(),B->GetComponentTransform()))
+ {Evidence=TEXT("target root exact source-local/world postcondition failed");return false;}
+ Restored=true;Evidence=TEXT("RESTORED NEW TARGET root exact source position via Direct+TeleportPhysics; ")+Proof;return true;
+}
 bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstancedStaticMeshComponent& Target,
- AActor* ExpectedSource,AActor* ExpectedTarget,UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,FString& Evidence)
+ AActor* ExpectedSource,AActor* ExpectedTarget,UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,FString& Evidence,bool bRootRestored=false)
 {
  Evidence.Reset();
  if(&Source==&Target||!ExpectedSource||!ExpectedTarget||!NewWorld||Source.GetOwner()!=ExpectedSource||Target.GetOwner()!=ExpectedTarget||
@@ -281,11 +303,11 @@ bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstanc
   if(!FMath::IsFinite(A)||!FMath::IsFinite(B)){Evidence=TEXT("nonfinite raw instance scalar");return false;}
   Different|=FMemory::Memcmp(&A,&B,sizeof(A))!=0;
  }
- if(!Different)return true;
+ if(!Different&&!bRootRestored)return true;
  // Stock DuplicateActors is TEXT export/import. Restore authored indexed raw
  // records only on NEW target; never reconstruct FTransform or touch source.
  TArray<FInstancedStaticMeshInstanceData> Copy=Source.PerInstanceSMData;
- if(!Target.BatchUpdateInstancesData(0,Copy.Num(),Copy.GetData(),true,true))
+ if(Copy.Num()>0&&!Target.BatchUpdateInstancesData(0,Copy.Num(),Copy.GetData(),true,true))
  {Evidence=TEXT("stock raw instance update refused");return false;}
  Target.UpdateBounds(); // normal target-only derived cache refresh
  auto* CacheProperty=FindFProperty<FStructProperty>(UInstancedStaticMeshComponent::StaticClass(),TEXT("CachedBounds"));
@@ -298,7 +320,7 @@ bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstanc
  for(int I=0;I<Copy.Num();++I)for(int R=0;R<4;++R)for(int C=0;C<4;++C)
  {const auto& A=Source.PerInstanceSMData[I].Transform.M[R][C];const auto& B=Target.PerInstanceSMData[I].Transform.M[R][C];
   if(FMemory::Memcmp(&A,&B,sizeof(A))){Evidence=TEXT("stock raw instance update failed exact scalar postcondition");return false;}}
- Evidence=FString::Printf(TEXT("RESTORED NEW TARGET %d indexed raw instance records through stock BatchUpdateInstancesData; exact16scalarpostcondition/source untouched; target UpdateBounds"),Copy.Num());return true;
+ Evidence=Different?FString::Printf(TEXT("RESTORED NEW TARGET %d indexed raw instance records through stock BatchUpdateInstancesData; exact16scalarpostcondition/source untouched; target normal bounds refresh"),Copy.Num()):TEXT("REFRESHED NEW TARGET normal bounds after exact root restoration; all raw16scalars unchanged");return true;
 }
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
@@ -575,6 +597,15 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   for(auto* C:Components)if(!C->IsRegistered()){if(C!=P.Value->GetRootComponent()&&!C->GetAttachParent())C->SetupAttachment(P.Value->GetRootComponent());C->RegisterComponent();}
  }
  FArchiveReplaceObjectRef<UObject> FixSettings(NewSettings,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);
+ TSet<AActor*> RestoredActors;
+ // Restore every measured target root BEFORE any target State comparison.
+ for(const auto& Pair:Targets)
+ {AActor* Src=Sources[Pair.Key];AActor* Dst=Pair.Value;
+  const bool Host=Cast<ADinkGreyboxScreen>(Src)&&Selected(CastChecked<ADinkGreyboxScreen>(Src)->ScreenNumber);
+  if(Host)continue;bool Restored=false;FString Repair;
+  if(!RestoreNewTargetRootTranslation(*Src,*Dst,World.Get(),Remap,Restored,Repair))return Fail(Pair.Key+TEXT(" ")+Repair);
+  if(Restored){RestoredActors.Add(Dst);Equivalences.Add(Pair.Key+TEXT(" ")+Repair);}}
+
  for(const auto& P:Targets)
  {
   AActor* Src=Sources[P.Key];AActor* Dst=P.Value;const bool Host=Cast<ADinkGreyboxScreen>(Src)&&Selected(CastChecked<ADinkGreyboxScreen>(Src)->ScreenNumber);
@@ -586,7 +617,7 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
       !Cast<UInstancedStaticMeshComponent>(O.Value)&&O.Value!=CastChecked<ADinkGreyboxScreen>(Src)->InstanceOrigins)continue;
    if(auto* SourceISM=Cast<UInstancedStaticMeshComponent>(O.Value))
    {auto* TargetISM=CastChecked<UInstancedStaticMeshComponent>(New);FString Repair;
-    if(!RestoreNewTargetRawInstances(*SourceISM,*TargetISM,Src,Dst,World.Get(),Remap,Repair))return Fail(TEXT("raw instance repair refused: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+Repair);
+    if(!RestoreNewTargetRawInstances(*SourceISM,*TargetISM,Src,Dst,World.Get(),Remap,Repair,RestoredActors.Contains(Dst)))return Fail(TEXT("raw instance repair refused: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+Repair);
     if(!Repair.IsEmpty())Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+Repair);}
    TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
    if(A!=B)
@@ -794,6 +825,18 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestEqual(TEXT("target raw scalar equals exact source authored value"),NewISM->PerInstanceSMData[0].Transform.M[3][0],ISMA->PerInstanceSMData[0].Transform.M[3][0]);
  TestTrue(TEXT("raw source state after NEW-target restoration"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceAfter));
  TestTrue(TEXT("source all cache slots/raw matrices unchanged by target API"),RawSourceBefore==RawSourceAfter);
+ // Seed a VALID correct-hash but wrong-value target cache: force refresh must
+ // invalidate through the stock raw API even when every matrix is already exact.
+ auto* SeededCache=CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(NewISM,1);
+ auto* CacheHashProperty=FindFProperty<FUInt32Property>(FBoundsCacheElement::StaticStruct(),TEXT("Hash"));
+ if(!TestNotNull(TEXT("actual cache Hash property for stale-valid fixture"),CacheHashProperty))return false;
+ const uint32 CorrectHash=CacheHashProperty->GetPropertyValue_InContainer(SeededCache);
+ FBoxSphereBounds WrongValue=SeededCache->GetValue(false);WrongValue.Origin.X=std::nextafter(WrongValue.Origin.X,std::numeric_limits<double>::infinity());
+ SeededCache->CacheValue(WrongValue,CorrectHash);
+ TestTrue(TEXT("scratch target seeded cache remains VALID with original hash"),SeededCache->IsValid()&&CacheHashProperty->GetPropertyValue_InContainer(SeededCache)==CorrectHash);
+ TestTrue(TEXT("restored-actor flag refreshes bounds with already-exact raw matrices"),RestoreNewTargetRawInstances(*ISMA,*NewISM,OwnerA,NewOwner,NewWorld,RepairMap,RepairEvidence,true));
+ TestTrue(TEXT("source state after restored-actor refresh"),State(*ISMA,TestIDs,NoForbidden,false,RawSourceAfter));
+ TestTrue(TEXT("restored-actor refresh leaves all source slots unchanged"),RawSourceBefore==RawSourceAfter);
  for(int CacheIndex:{1,2})
  {
   auto* SourceCache=CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(ISMA,CacheIndex);
@@ -827,6 +870,39 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  ISMA->PerInstanceSMData[0].Transform.M[0][1]=-0.;
  TestTrue(TEXT("raw matrix fingerprint after signedzero scalar mutation"),State(*ISMA,TestIDs,NoForbidden,false,RawFingerprintAfter));
  TestTrue(TEXT("raw16scalar State detects signedzero matrix mutation"),RawFingerprintBefore!=RawFingerprintAfter);
+ AActor* RootSourceOwner=World->SpawnActor<AActor>();AActor* RootTargetOwner=NewWorld->SpawnActor<AActor>();
+ auto* RepairSourceRoot=NewObject<USceneComponent>(RootSourceOwner);auto* RepairTargetRoot=NewObject<USceneComponent>(RootTargetOwner);
+ RootSourceOwner->SetRootComponent(RepairSourceRoot);RootTargetOwner->SetRootComponent(RepairTargetRoot);
+ auto SetExact=[](USceneComponent& C,const FVector& P){C.SetRelativeLocation_Direct(P);C.UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);};
+ SetExact(*RepairSourceRoot,FVector(5,Y,8));SetExact(*RepairTargetRoot,FVector(5,One,8));
+ TestEqual(TEXT("root repair fixture stores exact source endpoint"),RootSourceOwner->GetActorLocation().Y,Y);
+ TestEqual(TEXT("root repair fixture stores exact target endpoint"),RootTargetOwner->GetActorLocation().Y,One);
+ TMap<UObject*,UObject*> RootMap;RootMap.Add(RootSourceOwner,RootTargetOwner);RootMap.Add(RepairSourceRoot,RepairTargetRoot);
+ TArray<uint8> RootSourceBefore,RootSourceAfter;TestTrue(TEXT("root source state before repair serializes"),State(*RepairSourceRoot,TestIDs,NoForbidden,false,RootSourceBefore));
+ bool RootRestored=false;FString RootRepairEvidence;
+ TestTrue(TEXT("measured NEW-target root restoration succeeds"),RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence));
+ TestTrue(TEXT("measured NEW-target root actually restored"),RootRestored);
+ TestEqual(TEXT("restored actual target actor endpoint exactsource"),RootTargetOwner->GetActorLocation().Y,Y);
+ TestTrue(TEXT("root source state after repair serializes"),State(*RepairSourceRoot,TestIDs,NoForbidden,false,RootSourceAfter));TestTrue(TEXT("root source raw state unchanged"),RootSourceBefore==RootSourceAfter);
+ SetExact(*RepairTargetRoot,FVector(5,One,8));TMap<UObject*,UObject*> BadRootMap=RootMap;BadRootMap.Remove(RepairSourceRoot);
+ TestFalse(TEXT("root restoration wrong root mapping refuses"),RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,BadRootMap,RootRestored,RootRepairEvidence));
+ TMap<UObject*,UObject*> BadActorMap=RootMap;BadActorMap.Remove(RootSourceOwner);
+ TestFalse(TEXT("root restoration wrong actor mapping refuses"),RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,BadActorMap,RootRestored,RootRepairEvidence));
+ TestFalse(TEXT("root restoration wrong NEW world refuses"),RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,World,RootMap,RootRestored,RootRepairEvidence));
+ auto* Attach=NewObject<USceneComponent>(RootTargetOwner);RepairTargetRoot->SetupAttachment(Attach);
+ RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
+ TestFalse(TEXT("attached target root not restored"),RootRestored);RepairTargetRoot->SetupAttachment(nullptr);
+ SetExact(*RepairTargetRoot,FVector(5,Two,8));
+ RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
+ TestFalse(TEXT("two-ULP target root not restored"),RootRestored);TestEqual(TEXT("two-ULP target unchanged"),RootTargetOwner->GetActorLocation().Y,Two);
+ SetExact(*RepairTargetRoot,FVector(5,One,8));RepairTargetRoot->SetRelativeScale3D(FVector(1,1,2));
+ RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
+ TestFalse(TEXT("changed scale target root not restored"),RootRestored);
+ RepairTargetRoot->SetRelativeScale3D(FVector::OneVector);RepairTargetRoot->SetRelativeRotation(FRotator(0,.01,0));
+ RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
+ TestFalse(TEXT("changed quaternion target root not restored"),RootRestored);
+
+
 
 
 
