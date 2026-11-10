@@ -1,3 +1,7 @@
+## First split Editor compile preserved; fixture-only compiler correction
+
+Actual own cold BuildCandidate1 run7e629cf99ac5445d948a7f9470f1026e failed Editor6 after137.335s,12982inputs unchanged/kernelPASS; Game did not run. Only error was native fixture copying FString in a range loop underWerror; one deprecated polygon-group API warning also recorded. Fix only constFString& and installed MeshDescription.GetPolygonGroupPolygonIDs (same polygon membership/iteration); no production geometry, collision or test assertions changed. Rebuild/native/import remain pending. Preserve first failure and permit only exact pinned own partial outputs for incremental retry; Root4fb remains protected.
+
 ## Accepted roof baseline merged; combined visual build pending
 
 Accepted master c608c303 (PR45) is merged here before the isolated build. Both local visual-fix and accepted packaging records below are retained. The combined visibility/debug-prism candidate still needs its own compilation, regeneration/readback, full native regression and rendered checks; previous tests do not prove this new candidate complete.
