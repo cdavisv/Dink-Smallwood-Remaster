@@ -22,7 +22,8 @@ class Tests(unittest.TestCase):
  def test_normal_material_inventory_excludes_blocker_materials(self):
   s=(I/'DinkGreyboxAssets.cpp').read_text();a=s.index('const FString VisualHash =');b=s.index('// An empty debug mesh',a);normal=s[a:b]
   self.assertIn('TEXT("Ground")',normal);self.assertIn('TEXT("Water")',normal);self.assertNotIn('MI_DinkBlocker',normal)
-  self.assertIn('if (Debug.Triangles > 0)',s);self.assertIn('if (!bHasBlockers) return nullptr;',s)
+  self.assertIn('ShouldPruneUnusedDebugMesh(Pair.Key, C)',s);self.assertIn('bKeep = !bLowGone && !bDebugGone;',s)
+  self.assertIn('if (Debug.Triangles > 0)',s);self.assertIn('if (!HasDebugBlockers(Coll)) return nullptr;',s)
  def test_no_physical_or_shadow_debug_authority(self):
   s=(C/'Private/Greybox/DinkPlaceholderActor.cpp').read_text();a=s.index('DebugBlockers =');b=s.index('CollisionSolid =',a);debug=s[a:b]
   for text in ['NoCollision_ProfileName','SetGenerateOverlapEvents(false)','SetHiddenInGame(true)','SetCastShadow(false)','SetCastHiddenShadow(false)','SetCanEverAffectNavigation(false)']:self.assertIn(text,debug)

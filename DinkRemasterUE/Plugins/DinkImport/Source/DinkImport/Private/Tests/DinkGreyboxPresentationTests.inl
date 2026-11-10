@@ -48,5 +48,13 @@ bool FDinkGreyboxPresentationSplitTest::RunTest(const FString&)
     WriteScreenPresentation(Screen,Empty,FVector::ZeroVector,EmptyVisual,EmptyDebug);
     TestEqual(TEXT("empty-hardness screen still has original ground"),EmptyVisual.Triangles,192);
     TestEqual(TEXT("empty debug has no dummy geometry"),EmptyDebug.Triangles,0);
+    const FString DebugPackage=TEXT("/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_DebugBlockers");
+    TestFalse(TEXT("nonempty debug asset retained"),ShouldPruneUnusedDebugMesh(DebugPackage,&Collision));
+    TestTrue(TEXT("nonempty-to-empty debug asset is pruned"),ShouldPruneUnusedDebugMesh(DebugPackage,&Empty));
+    FDinkBundleCollision WaterOnly;WaterOnly.ByClass.Add(TEXT("fill_water"),{FIntRect(0,0,10,10)});
+    TestTrue(TEXT("water-only does not retain obsolete debug asset"),ShouldPruneUnusedDebugMesh(DebugPackage,&WaterOnly));
+    TestFalse(TEXT("missing collision record never authorizes deletion"),ShouldPruneUnusedDebugMesh(DebugPackage,nullptr));
+    for(const FString Suffix:{FString(TEXT("CollSolid")),FString(TEXT("CollLow")),FString(TEXT("Visual"))})
+        TestFalse(TEXT("debug pruning cannot delete physical/normal assets"),ShouldPruneUnusedDebugMesh(TEXT("/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_")+Suffix,&Empty));
     return true;
 }
