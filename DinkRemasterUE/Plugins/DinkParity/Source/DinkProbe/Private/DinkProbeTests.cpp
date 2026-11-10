@@ -3605,7 +3605,8 @@ namespace DinkProbeTest
 				[](FCtx& C) { return C.Fact(TEXT("caveguy")) >= 3 && C.Idle() && !C.Busy(); }, 60.0, {}, 6.0);
 			// The teacher wants &magic > 4 and Dink has 2: each ppotion (ppotion.c: &magic += 1) is a pickup the probe walks
 			// onto. The three nearest Terris: the fields east of the castle (SCR_273), the southern dam country (SCR_597),
-			// the cobbler's meadows (SCR_352).
+			// the cobbler's meadows (SCR_352: on foot since the owner's booth doorway of 9 Nov 2026, over the Koka bridge,
+			// SCR_734's door, the booth's two rooms and S289_P19; a long detour but open at this point; probe_route.md 1).
 			auto TouchPotion = [](FCtx& C, int32 Screen, double X, double Y)
 			{
 				const int32 Potion = C.OnScreen(Screen) ? C.SpriteWithScript(TEXT("ppotion")) : 0;

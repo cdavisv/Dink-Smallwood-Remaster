@@ -43,6 +43,7 @@ class IR:
         self.used = sorted(self.screens)
         self._seq = None
         self._hard = {}
+        self.hard_patches = {}      # screen -> designed-join sides (joins.install)
         here = os.path.dirname(os.path.abspath(__file__))
         repo = os.path.normpath(os.path.join(here, "..", "..", ".."))
         self.data_dir = data_dir or os.path.join(repo, "bin", "dink")
@@ -63,16 +64,26 @@ class IR:
     def indoor(self, n):
         return bool(self.screens[n]["indoor"])
 
+    def raw_hardness(self, n, vision=0):
+        """uint8 (400, 600) code image for screen n at a vision value, as tools/dinkex wrote it."""
+        s = self.screens[n]
+        if vision == 0:
+            rel = s["hardness"]["image"]
+        else:
+            rel = s["hardness"]["vision_variants"][str(vision)]
+        return np.array(Image.open(os.path.join(self.dir, rel)))
+
     def hardness(self, n, vision=0):
-        """uint8 (400, 600) code image for screen n at a vision value."""
+        """uint8 (400, 600) code image for screen n at a vision value, with the designed joins of
+        regions.toml applied (joins.apply_patch)."""
         key = (n, vision)
         if key not in self._hard:
-            s = self.screens[n]
-            if vision == 0:
-                rel = s["hardness"]["image"]
-            else:
-                rel = s["hardness"]["vision_variants"][str(vision)]
-            self._hard[key] = np.array(Image.open(os.path.join(self.dir, rel)))
+            h = self.raw_hardness(n, vision)
+            if n in self.hard_patches:
+                from .joins import apply_patch
+                for side in self.hard_patches[n]:
+                    h = apply_patch(h, side)[0]
+            self._hard[key] = h
         return self._hard[key]
 
     def owner(self, n, vision=0):
