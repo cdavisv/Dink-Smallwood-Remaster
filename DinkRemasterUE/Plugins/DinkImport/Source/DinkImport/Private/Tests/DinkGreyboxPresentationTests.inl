@@ -38,7 +38,7 @@ bool FDinkGreyboxPresentationSplitTest::RunTest(const FString&)
     TestEqual(TEXT("original100cm debug prism height retained"),DebugMax,100.f);
     FBox3f SpriteBox(ForceInit);
     const auto Group=Debug.Groups.FindChecked(TEXT("Sprite"));
-    for(const FPolygonID P:Debug.Desc.GetPolygonGroupPolygons(Group))
+    for(const FPolygonID P:Debug.Desc.GetPolygonGroupPolygonIDs(Group))
         for(const FVertexInstanceID VI:Debug.Desc.GetPolygonVertexInstances(P))
             SpriteBox+=Debug.Positions[Debug.Desc.GetVertexInstanceVertex(VI)];
     TestEqual(TEXT("actual old oversized width preserved only in debug"),SpriteBox.GetSize().X,700.f);
@@ -54,7 +54,7 @@ bool FDinkGreyboxPresentationSplitTest::RunTest(const FString&)
     FDinkBundleCollision WaterOnly;WaterOnly.ByClass.Add(TEXT("fill_water"),{FIntRect(0,0,10,10)});
     TestTrue(TEXT("water-only does not retain obsolete debug asset"),ShouldPruneUnusedDebugMesh(DebugPackage,&WaterOnly));
     TestFalse(TEXT("missing collision record never authorizes deletion"),ShouldPruneUnusedDebugMesh(DebugPackage,nullptr));
-    for(const FString Suffix:{FString(TEXT("CollSolid")),FString(TEXT("CollLow")),FString(TEXT("Visual"))})
+    for(const FString& Suffix:{FString(TEXT("CollSolid")),FString(TEXT("CollLow")),FString(TEXT("Visual"))})
         TestFalse(TEXT("debug pruning cannot delete physical/normal assets"),ShouldPruneUnusedDebugMesh(TEXT("/Game/Dink/_Generated/Screens/SCR_003/SM_SCR_003_")+Suffix,&Empty));
     return true;
 }
