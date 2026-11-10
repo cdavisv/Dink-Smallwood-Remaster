@@ -68,13 +68,49 @@ public:
  FArchive& operator<<(FSoftObjectPtr& O)override
  {if(UObject* P=O.Get())return *this<<P;FString S=O.ToSoftObjectPath().ToString();for(const auto* P:Forbidden)if(S.StartsWith(P->GetName()+TEXT(".")))SourceReference|=Target;FArchive& A=*this;A<<S;return A;}
 };
+bool TrackedProperty(const FProperty& P,const UObject& O)
+{
+ return (!O.IsA<AWorldSettings>()||P.GetOwnerClass()==AWorldSettings::StaticClass())&&
+  !P.HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization|CPF_Deprecated);
+}
+FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
+ const TSet<const UPackage*>& Forbidden)
+{
+ if(Source.GetClass()!=Target.GetClass())return TEXT("class mismatch ")+Source.GetClass()->GetPathName()+TEXT(" / ")+Target.GetClass()->GetPathName();
+ for(TFieldIterator<FProperty> It(Source.GetClass());It;++It)
+ {
+  auto* P=*It;if(!TrackedProperty(*P,Source))continue;
+  TArray<uint8> A,B;FStateWriter SA(A,IDs,Forbidden,false),SB(B,IDs,Forbidden,true);
+  P->SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),P->ContainerPtrToValuePtr<void>(&Source),nullptr);
+  P->SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),P->ContainerPtrToValuePtr<void>(&Target),nullptr);
+  if(A!=B||SB.SourceReference||SA.IsError()||SB.IsError())
+  {
+   FString X,Y;P->ExportTextItem_Direct(X,P->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,PPF_None);
+   P->ExportTextItem_Direct(Y,P->ContainerPtrToValuePtr<void>(&Target),nullptr,&Target,PPF_None);
+   return FString::Printf(TEXT("firstProperty=%s flags=0x%llx ownerClass=%s propertyClass=%s canonicalBytes=%d/%d targetSourceReference=%d source={%s} target={%s}"),
+    *P->GetName(),static_cast<unsigned long long>(P->GetPropertyFlags()),*P->GetOwnerClass()->GetPathName(),
+    *P->GetClass()->GetName(),A.Num(),B.Num(),int32(SB.SourceReference),*X.Left(384),*Y.Left(384));
+  }
+ }
+ if(auto* A=Cast<AActor>(&Source))
+ {auto* B=CastChecked<AActor>(&Target);return FString::Printf(TEXT("nonpropertyActorState sourceTRS={%s} targetTRS={%s} hidden=%d/%d collision=%d/%d"),
+  *A->GetActorTransform().ToString(),*B->GetActorTransform().ToString(),int32(A->IsHidden()),int32(B->IsHidden()),int32(A->GetActorEnableCollision()),int32(B->GetActorEnableCollision()));}
+ if(auto* A=Cast<UInstancedStaticMeshComponent>(&Source))
+ {
+  auto* B=CastChecked<UInstancedStaticMeshComponent>(&Target);
+  if(A->GetInstanceCount()!=B->GetInstanceCount())return FString::Printf(TEXT("ISM count %d/%d"),A->GetInstanceCount(),B->GetInstanceCount());
+  for(int32 I=0;I<A->GetInstanceCount();++I){FTransform X,Y;A->GetInstanceTransform(I,X,false);B->GetInstanceTransform(I,Y,false);
+   if(!X.Equals(Y,0))return FString::Printf(TEXT("ISM firstIndex=%d source={%s} target={%s}"),I,*X.ToString(),*Y.ToString());}
+ }
+ if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS source={")+A->GetComponentTransform().ToString()+TEXT("} target={")+CastChecked<USceneComponent>(&Target)->GetComponentTransform().ToString()+TEXT("}");
+ return TEXT("state serialization differs outside filtered properties; no comparison waived");
+}
 bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out)
 {
  FStateWriter W(Out,IDs,Forbidden,Target);FString Class=O.GetClass()->GetPathName();W<<Class;
  for(TFieldIterator<FProperty> It(O.GetClass());It;++It)
  {
-  auto* P=*It;if(Cast<AWorldSettings>(&O)&&P->GetOwnerClass()!=AWorldSettings::StaticClass())continue;
-  if(P->HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization|CPF_Deprecated))continue;
+  auto* P=*It;if(!TrackedProperty(*P,O))continue;
   FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),P->ContainerPtrToValuePtr<void>(&O),nullptr);
  }
  if(auto* A=Cast<AActor>(&O)){FTransform T=A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
@@ -193,7 +229,7 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    UObject* New=Remap.FindRef(O.Value);if(!New){if(Host)continue;return Fail(TEXT("candidate reference map incomplete"));}
    if(Host&&O.Value!=OldHosts[CastChecked<ADinkGreyboxScreen>(Src)->ScreenNumber]->Visual&&
       !Cast<UInstancedStaticMeshComponent>(O.Value)&&O.Value!=CastChecked<ADinkGreyboxScreen>(Src)->InstanceOrigins)continue;
-   TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B)||A!=B)return Fail(TEXT("copied control/component properties or scene reference mismatch: ")+P.Key+TEXT("/")+O.Key);
+   TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B)||A!=B)return Fail(TEXT("copied control/component properties or scene reference mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
    if(auto* C=Cast<UActorComponent>(New);C&&(!C->IsIn(Dst)||C->GetOwner()!=Dst))return Fail(TEXT("component ownership escaped candidate"));
   }
  }
