@@ -118,9 +118,25 @@ void ADinkScreenVolume::SetLockBarriers(bool bLocked)
 void ADinkScreenVolume::SetInteriorWallVisualsHidden(bool bHideVisuals)
 {
 	bInteriorWallVisualsHidden = bHideVisuals;
+	ApplyInteriorWallVisibility();
+}
+
+void ADinkScreenVolume::RefreshInteriorWallVisuals(const ADinkScreenVolume* ActiveScreen)
+{
+	const bool bIndoorOwner = bIndoor && ScreenNumber > 0 && ActiveScreen &&
+		ActiveScreen->bIndoor && ActiveScreen->ScreenNumber > 0 && ActiveScreen->GetWorld() == GetWorld();
+	const bool bJoinedInterior = bIndoorOwner && !InteriorId.IsNone() && !Sheet.IsNone() &&
+		Sheet.ToString().StartsWith(TEXT("interior:")) && InteriorId == ActiveScreen->InteriorId && Sheet == ActiveScreen->Sheet;
+	bInteriorWallContextVisible = bIndoorOwner && (ActiveScreen == this || bJoinedInterior);
+	ApplyInteriorWallVisibility();
+}
+
+void ADinkScreenVolume::ApplyInteriorWallVisibility()
+{
+	const bool bHidden = bInteriorWallVisualsHidden || !bInteriorWallContextVisible;
 	for (UStaticMeshComponent* Visual : InteriorWallVisuals)
 	{
-		if (Visual) Visual->SetHiddenInGame(bHideVisuals);
+		if (Visual) Visual->SetHiddenInGame(bHidden);
 	}
 }
 
@@ -148,7 +164,7 @@ void ADinkScreenVolume::BeginPlay()
 			Shown->SetStaticMesh(Cube);
 			Shown->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			Shown->SetCanEverAffectNavigation(false);
-			Shown->SetHiddenInGame(bInteriorWallVisualsHidden);
+			Shown->SetHiddenInGame(bInteriorWallVisualsHidden || !bInteriorWallContextVisible);
 			InteriorWallVisuals.Add(Shown);
 			Shown->SetupAttachment(RootComponent);
 			Shown->RegisterComponent();

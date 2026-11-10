@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "complete_generated_files": 4818,
+  "C3_after_equals_saved_readback_pins_equals_C4_before_equals_C4_after": true,
+  "C4_exit": 0,
+  "C4_elapsed": 17.416571768000722,
+  "C4_success": true,
+  "C4_generated_delta": [],
+  "C4_actual_import": {
+    "success": true,
+    "report": {
+      "region": "all",
+      "map": "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "bundle_commit": "fbf060b",
+      "screens": 644,
+      "placement_actors": 4206,
+      "placement_instances": 1640,
+      "warps": 116,
+      "actors": {
+        "created": 0,
+        "updated": 0,
+        "deleted": 0,
+        "unchanged": 5522,
+        "moved_by_hand": 0,
+        "foreign": 0
+      },
+      "assets": {
+        "created": 0,
+        "updated": 0,
+        "deleted": 0,
+        "unchanged": 4807
+      },
+      "levels_saved": 0,
+      "drift": 0,
+      "seconds": 1.8,
+      "coverage_rows": 6607
+    },
+    "report_sha256": "acf141cce83c51b2de30aa8b7033f661811473a4b01147e05027aad5cdb674e5",
+    "coverage_sha256": "30c62e8f56d87572bd2380070777207c522c7d7a0e5e22f8d7250caca855dde8",
+    "log_sha256": "a69084eb66348be7ea69c124a85efbe30c99649e4f8e1940a68c3ffd475a46bd",
+    "scope": "Ordinary generated-world import only; freshreadback/idempotence/runtime acceptance separate"
+  },
+  "scope": "Entire4818file membership+SHA exact equality, not summarycounter-only."
+}
