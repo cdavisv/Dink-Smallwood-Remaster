@@ -1,0 +1,11 @@
+{
+  "base_rows": 4327,
+  "new_rows": 2,
+  "base_prefix_bytes": 3865335,
+  "base_prefix_sha256": "7b2bbf7dd8b510fc69bad8716b363afa4664e936544054144d9e9d76da2a65a0",
+  "current_prefix_exact": true,
+  "new_paths": [
+    "SourceAssets/Art/Stonebrook/LightingV1/lighting.json",
+    "SourceAssets/Art/Stonebrook/LightingV1/README.md"
+  ]
+}

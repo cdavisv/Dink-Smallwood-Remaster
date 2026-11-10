@@ -1,3 +1,15 @@
+## Window lighting C1 compiler fixture correction — no native acceptance
+
+Own C1 Editor build exited6 after142.097801458s with13,749 inputs unchanged and private kernelPASS; Game did not run. Negative world_cm fixture151 used nonexistent FJsonValueBool; installed JsonValue.h253 defines public FJsonValueBoolean(bool), already included through JsonObject.h10. Exactly that fixture identifier is corrected; production core/runtime/profile/practicals/ledger stay exact6e38. Six own partial DLLs remain historical C1 outputs (DinkParity did not link), not a complete7module baseline. No native tests/rendering/package approval. Root reviewed new disabled C2 and explicit own-partial lineage are required before any further build.
+
+## Window lighting R1 — complete early authoring preflight
+
+On owned fix/house-window-lighting, R1 from exact-aa13 independent source review is addressed: every generated light/aperture and runtime-float conversion is validated before native importer work. Width82.5, lumens1e300 and positive-radius1e-300 now reject at actual importer entry before asset/material/import/save access, with a valid-entry positive control; standalone --apply also rejects without writes.18focused/562fullPython tests pass; full+metadata audits4519binary/523Python/22shell/4329ledger pass0errors/secrets. Core CPP/native-fixture source, valid170/80x130 profile, runtime8rows/practicals/nonlylights and all4329ledger rawbytes are EXACTaa13. Source-only; no UE/build/push or new appearance/performance claim. Re-review this successor before native execution. See Docs/Verification/HouseWindowLighting/R1.
+
+## Starting-house window lighting — source candidate, native validation pending
+
+Owned /home/artist/Work/DinkHouseWindowLighting, branch fix/house-window-lighting, base accepted mastercbdd4f6. Optional strict kind=rect lighting adds six source-window emitters at170lm5000K80x130cm,30cm outside, inward; exact50/40lm practicals and all nonlights manifest fields/exposure/globalSunSky unchanged. Authoritative LightingV1 profile binds held window placements/source fingerprints; pure authoring/import hook avoids historical150lm fireplace regression. No mesh/optics/collision/camera/Engine/config/map/binary changes or DLL/DDC copy.14 focused/558 fullPython tests pass; sequential full+metadata audits4519binary/523Python/22shell/4329ledger pass0missing/hash/secrets, prior4327rawledgerrows/audio unchanged. Two native fixtures are UNCOMPILED/UNRUN; no UE/build/import/save/GPU/package/default-delivery activation here. Root source review and actual native/readback/multiangle/real-key/performance/package gates remain; do not claim visual acceptance. See Docs/Verification/HouseWindowLighting and SourceAssets/Art/Stonebrook/LightingV1.
+
 ## Outdoor camera: packaged validation complete; review/CI/merge pending
 
 PR57, branch `fix/outdoor-portal-camera`, checkout `/home/artist/Work/DinkOutdoorPortalCamera`. Production remains exact testedbac0029; later commits are docs/proof only. Own builds, native9/full201 (169clean+32warning successes), Editor real-W spawn/door checks, normal cook315.274s/13703unchanged, four validated Vulkan shaders, actual UFS/container inventory and packagedCH1 pass. Actual package retains644Visual/612Debug/73roof/7worldmaps/cottage and five exact UFS Art JSON files.
@@ -1591,3 +1603,10 @@ Branch art/photoreal-trousers-source base master30 7c6e41e4 adds portable SOURCE
 ## Screen-name developer overlay default (9 November2026)
 
 `dink.ScreenInfo` defaults to 0 to keep screen labels off during ordinary play. Explicit 1 enables the existing developer overlay; 0 disables it. Other warnings/messages are unaffected. Isolated builds and native console default/opt-in checks pass; warmed movement 7/7 and full 168/168 pass. The first cold movement PIE timeout remains qualified in Docs/Verification/ScreenInfoDefault. This change is separate from the running master31 playtest.
+
+
+## Lighting native fixture correction (10 November 2026)
+
+Own C2 Editor/Game builds passed (11.564s/71.709s). Focused Native1 completed two tests: invalid-input preflight passed; legacy/rect failed only because installed RectLight clamps barn-door length to0.1cm while the fixture expected0. Explicitly requesting the same engine minimum0.1cm and asserting the retained88degree default documents the existing native behavior. Manifest, placements, intensity and optics remain unchanged. Native1 exited255 with no warnings; no appearance acceptance follows.
+
+Native1 packet postflight also rejected19 files generated under its own RunDDC because that directory was omitted from the immutable-membership exclusion. Original17 payloads and all13,749 source inputs remained unchanged, independently checked by Root. Preserve that failure and packet; a successor must exclude only its exact physical owned RunDDC and verify directory identity/no aliases. New source needs a reviewed C3 build using only own successful C2 outputs, then new focused native evidence. No automatic execution, foreign DLL/cache copy, activation or push.
