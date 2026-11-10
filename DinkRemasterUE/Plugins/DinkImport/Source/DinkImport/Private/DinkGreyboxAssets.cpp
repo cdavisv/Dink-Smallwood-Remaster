@@ -1,4 +1,12 @@
 #include "DinkGreyboxAssets.h"
+#include "DinkHardnessFoundationBuilder.h"
+#include "Hardness/DinkHardnessShell.h"
+#include "UObject/MetaData.h"
+#include "DinkCollision.h"
+#include "Components/StaticMeshComponent.h"
+#include "Engine/CollisionProfile.h"
+#include "Chaos/TriangleMeshImplicitObject.h"
+#include "Physics/PhysicsInterfaceCore.h"
 #include "DinkImportLog.h"
 #include "AssetCompilingManager.h"
 #include "AssetRegistry/AssetRegistryModule.h"
@@ -868,4 +876,210 @@ namespace DinkGreybox
 	{
 		return Cast<UStaticMesh>(LoadGenerated(FString::Printf(TEXT("%s/SM_SCR_%03d_%s"), *ScreenFolder(Screen), Screen, Which)));
 	}
+    bool BuildRuntimeHardnessFoundationV1(const FDinkBundle& Bundle, int32 ScreenNumber,
+        FDinkHardnessFoundationCandidate& Out, FString& Error)
+    {
+        const FDinkBundleScreen* Screen = Bundle.FindScreen(ScreenNumber);
+        const FDinkBundleCollision* Collision = Screen ? Bundle.Collision.Find(Screen->Id) : nullptr;
+        if (!Screen || !Collision) { Error = TEXT("source screen/collision missing"); return false; }
+        const FString Folder = FString::Printf(TEXT("/Game/Dink/RuntimeHardnessV1/SCR_%03d"), ScreenNumber);
+        const FString SolidPath = Folder / FString::Printf(TEXT("SM_SCR_%03d_FixedSolidV1"), ScreenNumber);
+        const FString LowPath = Folder / FString::Printf(TEXT("SM_SCR_%03d_FixedLowV1"), ScreenNumber);
+        // Refuse all targets before creating anything. A changed candidate needs
+        // a declared successor generation, never overwrite historical packages.
+        for (const FString& Path : {SolidPath, LowPath})
+            if (FindPackage(nullptr, *Path) || FPackageName::DoesPackageExist(Path))
+            { Error = TEXT("foundation candidate target already exists: ") + Path; return false; }
+        const FVector Pivot = FAssetSet::ScreenPivot(*Screen);
+        auto At = [&](double X, double Y, double HeightM) {
+            return FVector3f(DinkLayout::MapPixelToUnreal(Screen->Corners, X, Y, HeightM) - Pivot);
+        };
+        auto AddFill = [&](FMeshWriter& Writer, const TCHAR* Class) {
+            if (const auto* Rects = Collision->ByClass.Find(Class))
+                for (const auto& R : *Rects)
+                {
+                    FVector3f Points[4] = {At(R.Min.X,R.Min.Y,0),At(R.Max.X,R.Min.Y,0),
+                        At(R.Max.X,R.Max.Y,0),At(R.Min.X,R.Max.Y,0)};
+                    Writer.Prism(TEXT("Collision"), Points, float(CollisionHeightM * 100.0));
+                }
+        };
+        FMeshWriter Solid;
+        FVector3f Ground[4] = {At(0,0,0),At(600,0,0),At(600,400,0),At(0,400,0)};
+        FVector2f UVs[4] = {{0,0},{1,0},{1,1},{0,1}};
+        Solid.Quad(TEXT("Collision"), Ground, UVs, FVector3f(0,0,1));
+        AddFill(Solid, TEXT("fill_solid"));
+        FDinkHardnessFoundationCandidate Candidate;
+        Candidate.Screen = ScreenNumber; Candidate.Pivot = Pivot;
+        Candidate.CollisionSourceHash = Screen->CollisionHash;
+        bool Existed = false;
+        Candidate.FixedSolid = CommitMesh(SolidPath, Solid, {}, true, Existed);
+        if (!Candidate.FixedSolid || Existed) { Error = TEXT("new solid foundation creation failed"); return false; }
+        const auto* Water = Collision->ByClass.Find(TEXT("fill_water"));
+        if (Water && !Water->IsEmpty())
+        {
+            FMeshWriter Low; AddFill(Low, TEXT("fill_water"));
+            Candidate.FixedLow = CommitMesh(LowPath, Low, {}, true, Existed);
+            if (!Candidate.FixedLow || Existed) { Error = TEXT("new low foundation creation failed"); return false; }
+        }
+        auto Provenance = [&](UStaticMesh* Mesh, const TCHAR* Role) {
+            if (!Mesh) return;
+            auto& Meta = Mesh->GetOutermost()->GetMetaData();
+            Meta.SetValue(Mesh, TEXT("DinkHardnessSchema"), TEXT("foundation/1"));
+            Meta.SetValue(Mesh, TEXT("DinkHardnessRole"), Role);
+            Meta.SetValue(Mesh, TEXT("DinkHardnessScreen"), *FString::FromInt(ScreenNumber));
+            Meta.SetValue(Mesh, TEXT("DinkHardnessCollisionSource"), *Screen->CollisionHash);
+        };
+        Provenance(Candidate.FixedSolid, TEXT("ground+fill_solid"));
+        Provenance(Candidate.FixedLow, TEXT("fill_water"));
+        if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle, Candidate, Error)) return false;
+        Out = Candidate; Error.Reset(); return true;
+        // Deliberately no SavePackage, old manifest update, orphan deletion or
+        // default importer call. Stage/geometry/profile verification precedes save.
+    }
+
+    bool VerifyRuntimeHardnessFoundationSourceV1(const FDinkBundle& Bundle,
+        const FDinkHardnessFoundationCandidate& Candidate, FString& Error)
+    {
+        const auto* Screen = Bundle.FindScreen(Candidate.Screen);
+        const auto* Collision = Screen ? Bundle.Collision.Find(Screen->Id) : nullptr;
+        if (!Screen || !Collision || Candidate.CollisionSourceHash != Screen->CollisionHash ||
+            !Candidate.Pivot.Equals(FAssetSet::ScreenPivot(*Screen), 0))
+        { Error = TEXT("foundation source binding mismatch"); return false; }
+        auto Signature = [](FVector3f A, FVector3f B, FVector3f C) {
+            FString Best;
+            const FVector3f V[3] = {A,B,C};
+            for (int32 Rotation=0;Rotation<3;++Rotation)
+            {
+                FString S;
+                for (int32 I=0;I<3;++I)
+                {
+                    const auto& P=V[(I+Rotation)%3];
+                    S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"), P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z);
+                }
+                if (Rotation==0 || S<Best) Best=MoveTemp(S);
+            }
+            return Best;
+        };
+        auto At = [&](double X,double Y,double HeightM) {
+            return FVector3f(DinkLayout::MapPixelToUnreal(Screen->Corners,X,Y,HeightM)-Candidate.Pivot);
+        };
+        auto Verify = [&](UStaticMesh* Mesh, const TCHAR* Role, const TCHAR* FillClass, bool Floor) {
+            TArray<FString> Expected;
+            if (Floor)
+            {
+                FVector3f P[4]={At(0,0,0),At(600,0,0),At(600,400,0),At(0,400,0)};
+                if (FVector3f::CrossProduct(P[1]-P[0],P[3]-P[0]).Z<0) Swap(P[1],P[3]);
+                Expected.Add(Signature(P[0],P[2],P[1])); Expected.Add(Signature(P[0],P[3],P[2]));
+            }
+            if (const auto* Rects=Collision->ByClass.Find(FillClass))
+                for (const auto& R:*Rects)
+                {
+                    std::array<DinkHardness::ShellPoint,8> Points;
+                    const FVector3f P[4]={At(R.Min.X,R.Min.Y,0),At(R.Max.X,R.Min.Y,0),
+                        At(R.Max.X,R.Max.Y,0),At(R.Min.X,R.Max.Y,0)};
+                    for (int32 I=0;I<4;++I)
+                    {
+                        Points[I]={P[I].X,P[I].Y,P[I].Z};
+                        Points[I+4]={P[I].X,P[I].Y,P[I].Z+float(CollisionHeightM*100.0)};
+                    }
+                    const auto Shell=DinkHardness::OpenPrismShell(Points);
+                    if (!Shell) return false;
+                    for (const auto& T:*Shell)
+                    {
+                        auto V=[](const DinkHardness::ShellPoint& P) { return FVector3f(P.X,P.Y,P.Z); };
+                        // Source MeshDescription precedes StaticMesh's cooking flip.
+                        Expected.Add(Signature(V(T[1]),V(T[0]),V(T[2])));
+                    }
+                }
+            if (Expected.IsEmpty()) return Mesh==nullptr;
+            if (!Mesh || !Mesh->GetPathName().Contains(TEXT("/RuntimeHardnessV1/")) ||
+                !Mesh->GetBodySetup() || Mesh->GetBodySetup()->CollisionTraceFlag!=CTF_UseComplexAsSimple ||
+                Mesh->GetNaniteSettings().bEnabled) return false;
+            auto& Meta=Mesh->GetOutermost()->GetMetaData();
+            if (Meta.GetValue(Mesh,TEXT("DinkHardnessSchema"))!=TEXT("foundation/1") ||
+                Meta.GetValue(Mesh,TEXT("DinkHardnessRole"))!=Role ||
+                Meta.GetValue(Mesh,TEXT("DinkHardnessScreen"))!=FString::FromInt(Candidate.Screen) ||
+                Meta.GetValue(Mesh,TEXT("DinkHardnessCollisionSource"))!=Screen->CollisionHash) return false;
+            const FMeshDescription* Description=Mesh->GetMeshDescription(0);
+            if (!Description || Description->Triangles().Num()!=Expected.Num()) return false;
+            const FStaticMeshConstAttributes Attributes(*Description);
+            const auto Positions=Attributes.GetVertexPositions();
+            TArray<FString> Actual;
+            for (const FTriangleID Triangle:Description->Triangles().GetElementIDs())
+            {
+                const auto Instances=Description->GetTriangleVertexInstances(Triangle);
+                Actual.Add(Signature(Positions[Description->GetVertexInstanceVertex(Instances[0])],
+                    Positions[Description->GetVertexInstanceVertex(Instances[1])],Positions[Description->GetVertexInstanceVertex(Instances[2])]));
+            }
+            Expected.Sort(); Actual.Sort(); return Actual==Expected;
+        };
+        if (!Verify(Candidate.FixedSolid,TEXT("ground+fill_solid"),TEXT("fill_solid"),true) ||
+            !Verify(Candidate.FixedLow,TEXT("fill_water"),TEXT("fill_water"),false))
+        { Error = TEXT("actual source triangles/provenance do not match floor/fill-only authority"); return false; }
+        Error.Reset(); return true;
+    }
+
+    bool VerifyRuntimeHardnessFoundationInstanceV1(const FDinkBundle& Bundle,
+        const FDinkHardnessFoundationCandidate& Candidate, UStaticMeshComponent& Solid,
+        UStaticMeshComponent* Low, FString& Error)
+    {
+        if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle,Candidate,Error)) return false;
+        auto Signature=[](const FVector3f& A,const FVector3f& B,const FVector3f& C) {
+            const FVector3f V[3]={A,B,C}; FString Best;
+            for(int32 R=0;R<3;++R)
+            {
+                FString S;
+                for(int32 I=0;I<3;++I) { const auto& P=V[(I+R)%3];
+                    S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"),P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z); }
+                if(R==0 || S<Best) Best=MoveTemp(S);
+            }
+            return Best;
+        };
+        auto Verify=[&](UStaticMeshComponent* C,UStaticMesh* Mesh,FName Profile,ECollisionChannel Channel,const TCHAR* RoleTag) {
+            if(!Mesh) return C==nullptr || C->GetStaticMesh()==nullptr;
+            FCollisionResponseTemplate Template;
+            if(!C || C->GetStaticMesh()!=Mesh || !C->IsRegistered() || !C->IsPhysicsStateCreated() ||
+                !C->GetBodyInstance() || !C->GetBodyInstance()->IsValidBodyInstance() || C->GetBodyInstance()->bSimulatePhysics ||
+                !C->ComponentHasTag(RoleTag) || C->Mobility!=EComponentMobility::Static ||
+                !C->GetComponentTransform().Equals(FTransform(Candidate.Pivot),0) || C->GetGenerateOverlapEvents() ||
+                !C->CanEverAffectNavigation() || !UCollisionProfile::Get()->GetProfileTemplate(Profile,Template) ||
+                C->GetCollisionProfileName()!=Profile || C->GetCollisionEnabled()!=ECollisionEnabled::QueryAndPhysics ||
+                C->GetCollisionObjectType()!=Channel || Template.ObjectType!=Channel ||
+                C->GetCollisionResponseToChannels()!=Template.ResponseToChannels) return false;
+            const FMeshDescription* Description=Mesh->GetMeshDescription(0);
+            if(!Description) return false;
+            const FStaticMeshConstAttributes Attributes(*Description);
+            const auto Positions=Attributes.GetVertexPositions();
+            TArray<FString> Expected;
+            for(const FTriangleID T:Description->Triangles().GetElementIDs())
+            {
+                const auto VI=Description->GetTriangleVertexInstances(T);
+                // StaticMesh cooks by swapping first two vertices.
+                Expected.Add(Signature(Positions[Description->GetVertexInstanceVertex(VI[1])],
+                    Positions[Description->GetVertexInstanceVertex(VI[0])],Positions[Description->GetVertexInstanceVertex(VI[2])]));
+            }
+            TArray<FString> Actual; bool Read=false;
+            FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),[&](const FPhysicsActorHandle& Actor) {
+                TArray<FPhysicsShapeHandle> Shapes;
+                if(FPhysicsInterface::GetAllShapes_AssumedLocked(Actor,Shapes)!=1 ||
+                    FPhysicsInterface::GetShapeType(Shapes[0])!=ECollisionShapeType::Trimesh ||
+                    !FPhysicsInterface::IsQueryShape(Shapes[0]) || !FPhysicsInterface::IsSimulationShape(Shapes[0])) return;
+                const auto Geometry=FPhysicsInterface::GetGeometryCollection(Shapes[0]);
+                const auto& MeshGeometry=Geometry.GetTriMeshGeometry();
+                auto ReadIndices=[&](const auto& Indices) {
+                    for(const auto& Index:Indices) Actual.Add(Signature(FVector3f(MeshGeometry.Particles().GetX(Index[0])),
+                        FVector3f(MeshGeometry.Particles().GetX(Index[1])),FVector3f(MeshGeometry.Particles().GetX(Index[2]))));
+                };
+                if(MeshGeometry.Elements().RequiresLargeIndices()) ReadIndices(MeshGeometry.Elements().GetLargeIndexBuffer());
+                else ReadIndices(MeshGeometry.Elements().GetSmallIndexBuffer());
+                Read=true;
+            });
+            Expected.Sort(); Actual.Sort(); return Read && Actual==Expected;
+        };
+        if(!Verify(&Solid,Candidate.FixedSolid,DinkCollision::ProfileHardSolid,DinkCollision::HardSolid,TEXT("DinkHardnessFixedFloorFillV1")) ||
+            !Verify(Low,Candidate.FixedLow,DinkCollision::ProfileHardLow,DinkCollision::HardLow,TEXT("DinkHardnessFixedWaterV1")))
+        { Error=TEXT("actual foundation instance geometry/channel/profile/nav/overlap proof failed"); return false; }
+        Error.Reset(); return true;
+    }
+
 }

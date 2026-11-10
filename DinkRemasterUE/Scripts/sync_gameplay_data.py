@@ -35,6 +35,7 @@ writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToA
                       0, D:569-575, and special_block warps Dink on prop == 1, D:15337-15341; 1 on the 93
                       sprite warps; the director's sp_prop changes it until the screen loads again) and
                       warp_map (the warp's destination screen, 0 for none).
+    Hardness/*_layers.json additive exact source packets; *_editor_hard.json independent raw99 flags.
     screens.csv       screen,base_script: the script whose `main` runs when the screen loads (headless
                       screen entry uses it when there is no ADinkScreenVolume)
     gameplay_manifest.json   data repo commit and sha256 of each file
@@ -52,6 +53,7 @@ import hashlib
 import io
 import json
 import pathlib
+import re
 import subprocess
 import sys
 
@@ -168,6 +170,58 @@ def hardness(dinkex: pathlib.Path, tiles=None):
     return out
 
 
+def validate_editor_hard_flags(packet):
+    flags=packet.get('editor_hard_flags')
+    if type(flags) is not list or len(flags)!=99 or any(type(v) is not int or not -(2**31)<=v<2**31 for v in flags):
+        raise ValueError('all99 explicit signed int32 raw editor hard flags required')
+    return flags
+
+
+def editor_hard_flags_files(dinkex):
+    """Independent raw99 metadata, usable without layered-map activation."""
+    out={}
+    for path in sorted((dinkex/'screens').glob('SCR_*.json')):
+        packet=json.loads(path.read_text())
+        if 'editor_hard_flags' not in packet:
+            continue # historical extraction: no bridge data, never invent flags
+        screen=packet.get('screen');record=packet.get('map_record')
+        if (type(screen)is not int or not 1<=screen<=768 or path.stem!=f'SCR_{screen:03d}'
+                or type(record)is not int or not 1<=record<2**31):
+            raise ValueError('invalid raw editor source screen/record')
+        flags=validate_editor_hard_flags(packet)
+        data=dict(schema='dinkex.editor-hard/1',screen=screen,map_record=record,editor_hard_flags=flags)
+        out[f'Hardness/SCR_{screen:03d}_editor_hard.json']=(json.dumps(data,sort_keys=True)+'\n').encode()
+    return out
+
+
+def hardness_layers(dinkex: pathlib.Path):
+    """Copy additive source sidecars byte-exact; never synthesize layers from PNGs.
+
+    Legacy extractions without sidecars stay legacy. Unsupported envelopes refuse
+    before the writer starts; runtime consumers additionally validate every run.
+    """
+    out = {}
+    for path in sorted((dinkex / "hardness").glob("SCR_*_layers.json")):
+        match = re.fullmatch(r"SCR_(\d{3})(?:_v(-?\d+))?_layers\.json", path.name)
+        if not match or not 1 <= int(match[1]) <= 768:
+            raise ValueError(f"invalid runtime hardness filename: {path.name}")
+        expected_vision = int(match[2]) if match[2] is not None else 0
+        raw = path.read_bytes()
+        packet = json.loads(raw)
+        if not isinstance(packet, dict):
+            raise ValueError(f"invalid runtime hardness object: {path.name}")
+        if (packet.get("schema") != "dinkex.runtime-hardness/2"
+                or type(packet.get("width")) is not int or packet["width"] != 600
+                or type(packet.get("height")) is not int or packet["height"] != 400
+                or type(packet.get("vision")) is not int or packet["vision"] != expected_vision
+                or not -(2**31) <= expected_vision < 2**31
+                or packet.get("skipped_tile_indices") != []):
+            raise ValueError(f"unsupported runtime hardness envelope: {path.name}")
+        validate_editor_hard_flags(packet)
+        out[f"Hardness/{path.name}"] = raw
+    return out
+
+
 def placements(dinkex: pathlib.Path):
     rows = []
     for path in sorted((dinkex / "screens").glob("SCR_*.json")):
@@ -194,6 +248,8 @@ def main() -> int:
     files = {"frames.csv": to_csv(FRAME_COLS, f_rows), "placements.csv": to_csv(PLACEMENT_COLS, p_rows),
              "screens.csv": to_csv(["screen", "base_script"], s_rows)}
     files.update(hardness(dinkex, tile_layers(args.data, dinkex)))
+    files.update(hardness_layers(dinkex))
+    files.update(editor_hard_flags_files(dinkex))
     manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/); bin/dink/hard.dat (tile layers)",
                 "data_repo_commit": git_commit(args.data),
                 "files": {n: hashlib.sha256(b).hexdigest() for n, b in sorted(files.items())},

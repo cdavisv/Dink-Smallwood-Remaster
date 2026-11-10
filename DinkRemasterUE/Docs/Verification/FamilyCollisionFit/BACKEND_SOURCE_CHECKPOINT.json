@@ -1,0 +1,65 @@
+{
+  "worktree": "/home/artist/Work/DinkRuntimeHardnessIntegrationCurrent",
+  "head": "fbf060bb77ad0652a41e45e13c2c8855a14e1f86",
+  "status": "SOURCE ONLY; combined consumer still being finalized independently; no native/build execution",
+  "source_sha256": {
+    "Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessSession.h": "5c0fa223ecf769cb9679c68072f9689c46e4848d984ebd2df7a139b6216f773a",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessLayers.h": "9e8aa0fe50378853e0624449239f70a9837c71ae730d726fbc1ef64187357e43",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRegisteredHardnessOwner.h": "943274f1ae0c142b4cf0e455f43724fa011d732e169d0f70a723896cb2e6ef01",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRegisteredHardnessOwner.cpp": "81426a0ef6dbedbef1e590dadb380cca6392afb3f5dc2d75f7bd6678b9e11e1c",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessPrismComponent.h": "18e1ecd15cc2145f9bdf075f593e670e792147e429357ea0f4ddc2a2fcc759e0",
+    "Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkHardnessPrismComponent.cpp": "8cf2b50eddab5f3287c427aabf9c5b15deb6f99e1f3be027bd102ea64074ce38",
+    "Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkFamilyCollisionFit.h": "6bd3daeb07fb5341f5bc99f1c1cdbcc1bc5fecb98ccea6d53c2f80e30d38d55f",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkFamilyCollisionFit.cpp": "9a206e7966fdf11420a82f5ecf0443117a1e605fa2ac7efef2da7f6dc18a66a7",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h": "c812bf8631ae2bfe9dbcb2bc9fdeada4c513b872195bf9e095301f349a2eacb5",
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp": "b8a38307441b1d01598fc46fb49f1511aae03072db72ea495ef99daee682f47e",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkFamilyFittedBodyTests.cpp": "255933597bde8bbeac98b06e3d3c149201e0241f74dfa55641822b26ee5b793e",
+    "Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkFamilyFitMath.h": "983faf441e2a69aefe5f6ff1c775a9502748a25841c52617db0d13047da2eeb0",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkFamilyCollisionFitTests.cpp": "6d441cb0e84049733bc03c1c83e2abd25801d0a8576335d79e39f180c02e12d4",
+    "Scripts/tests/native/family_collision_fit.cpp": "d59d3109b8ebacd82a0a956ebe751b5de4956eac2ca54eadc89d74d635cf18fb",
+    "Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs": "6757ab56ea3f88447f5da1696888701e8a69688a340632d69d6dff4e9efed658"
+  },
+  "portable_exit_code": 0,
+  "portable_output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.264s\n\nOK\n",
+  "qualified_initial_failures": [
+    "Current original barrel FBX was LFS pointer; initial actual FBX test refused not binary; Root authorized local exact LFS checkout then unchanged test passed",
+    "New portable fixture initially failed -Werror misleading indentation; formatting corrected, assertions unchanged"
+  ],
+  "native_tests": "CollisionFitExactInertBody source added, UNCOMPILED/UNRUN; roof owns actual lifecycle/interaction test source",
+  "activation": "None: no families.json optin, no Data/assets runtime change; one original tracked FBX hydrated from existing local LFS object",
+  "prebirth_successor": "Declared lifecycle fix: producer can capture hidden/disabled source actor ONLY for bPrebirth; validation accepts exact captured actor flags or intended active birth visible+actorcollisiontrue under coordinator loading gate. Regular and retained snapshots exact. No actor mutation in producer.",
+  "compiler_successor": "First combined Current2 Editor build native exit6 naturally terminal, source7174 unchanged. Added exact installed Physics/Experimental/PhysScene_Chaos.h include in Prism and RegisteredOwner to complete FPhysScene for UpdateActorInAccelerationStructure. No semantic/assertion change; failed run preserved by build owner.",
+  "native_diagnostic_successor": {
+    "failure_run": "/home/artist/Work/DinkQA/RuntimeHardnessNativePreparation/Candidate2/Runs/887b6c343ed04ddb8f0b838192b88e21",
+    "status": "Both native geometry tests failed strict ReadCookedGeometry, actual reason hidden by generic error. No geometry acceptance. Diagnostic-only source successor awaiting coordinated build/native execution.",
+    "acceptance_predicates": "UNCHANGED: referenced finite vertices within render bounds+0.01cm, exact zero-float-area rejection, nonempty triangles; new safe invalid-index guards refuse. No dropped faces/tolerance relaxation/UCX substitute.",
+    "diagnostics": "Full counts/cooked bounds/max bounds excess +first bad triangle raw indices/XYZ/float and double areas. ExactInertBody now prints reader Error.",
+    "source_FBX_not_cooked": {
+      "triangles": 10472,
+      "vertices": 5392,
+      "zero_area_double": 0,
+      "zero_area_float32": 0
+    },
+    "portable_family_tests": {
+      "count": 5,
+      "exit_code": 0,
+      "native_claim": false
+    }
+  },
+  "measured_envelope_successor": {
+    "actual_native": "Candidate3/312af... completed actual measurements supplied by Roof:2208particles/4104triangles;0invalid/NaN/zeroarea;8referenced vertices outside source/render bounds only minZ; maxexcess0.012601472437381744cm. Exact original FBX5392/10472 differs from cooked fallback; not claimed identical.",
+    "approval": "Root approved measured0.02cm envelope ONLY after actual HOST closure; Roof granted closure of tool45811/HOST440047.",
+    "contract": "Kit-only0.02cm source/render envelope; exact cooked body retains every face/vertex/material/cull value and hash. No UCX substitute or triangle filtering. Other reader predicates unchanged.",
+    "native_tests_pending": "Selected actual collisionLOD/CPU collision-data bounds logging and equality; actual cooked transformed height rather than source constant; about101cm safety. Native rebuilt run still pending.",
+    "portable_tests": "6PASS family5+fitted-session1; production envelope positive measured minZ/exact0.02; negative >0.02 inZ/X and NaN."
+  },
+  "exact_owned_copy_successor": {
+    "actual_native": "Targeted native4/34.90s: CookedGeometry PASS verifies LOD0/Nanite1 selected4104=cooked4104 boundsmatch; ExactInertBody capsule/inert/world/highclearance assertions PASS but source digest mutation FAIL.",
+    "primary_cause": "Engine ChaosInterfaceUtils.cpp:325 mutates TriMesh cull at registration, so shared implicit violated source memory invariance despite filesystem hashes unchanged.",
+    "approved_contract": "Root and Roof grant after tool59633/HOST458198 closure: exact DeepCopyGeometry into OWN Setup; stock own activecull=!BodySetup.DoubleSided. Source raw cache tracked only through our registration invariance, never lifetime policy. Canonical digest uses effective derived cull. No recook/soup/filter/cookdata change.",
+    "validation": "Copy particle float bits, index width/indices, materials, external-face remap exact. Installed DeepCopyGeometry copies vertex remap when per-poly support enabled; preparation refuses if that support is disabled. Source pointer separate from owned implicit.",
+    "native_test": "Checks source rawcull unchanged during OUR registration and direct queries. Actual ordinary component registration then initializes source cache normally; effective policy SHA must remain stable. No direct shared/source setter in test or production.",
+    "portable": "6PASS family5+fitted-session1; native rebuild/run pending.",
+    "ABI": "No existing method removed; new raw diagnostic field and exact-geometry validator. No shipped Data activation."
+  }
+}

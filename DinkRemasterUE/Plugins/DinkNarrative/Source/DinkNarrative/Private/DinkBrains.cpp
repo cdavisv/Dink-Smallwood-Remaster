@@ -277,7 +277,8 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 		if (Y1 < 0 && Y1 > -5) { Y1 = 0; }
 		else if (Y1 > 399 && X1 < 405) { Y1 = 399; }
 	}
-	if (const FLiveHardness* Live = LiveHardness.Find(Screen))
+    if(IsHardnessLoading())return 1;
+	if (!RequiresOriginalHardnessScreen(Screen))if (const FLiveHardness* Live = LiveHardness.Find(Screen))
 	{
 		// A script redrew the map in this screen visit (draw_hard_sprite / draw_hard_map): g_hitmap as they left it.
 		const int32 Code = Live->Map->Get(X1, Y1);
@@ -285,6 +286,11 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 		return IsWalkThroughByProp(Screen, Code) ? 0 : Code;
 	}
 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+    int32 RuntimeCode = 0;
+    if (TryRuntimeHardnessCode(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0, X1, Y1, RuntimeCode)) return IsWalkThroughByProp(Screen, RuntimeCode) ? 0 : RuntimeCode;
+    // A failed marked-world admission is a stopped loading state, never a
+    // license to read the legacy composed map while new bodies are unready.
+    if (IsHardnessLoading()) return 1;
 	const FDinkHardnessMap* Map = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
 	const int32 Code = Map ? Map->Get(X1, Y1) : 0;
 	if (Code > 100)
@@ -1179,7 +1185,8 @@ void UDinkGameplay::MissileBrain(FDinkSprite& S, bool bRepeat)
 		}
 		int32 L, Tp, R, B;
 		const int32 Range = M->GetProp(B_Range);
-		if (!GetHardbox(*T, L, Tp, R, B) || !Inside(Px(M->X), Px(M->Y), L - Range, Tp - Range, R + Range, B + Range))
+		if (HasHardnessFitInstance(*T) ? !FittedMissileMatches(*M,*T,Range) :
+            (!GetHardbox(*T, L, Tp, R, B) || !Inside(Px(M->X), Px(M->Y), L - Range, Tp - Range, R + Range, B + Range)))
 		{
 			continue;
 		}
