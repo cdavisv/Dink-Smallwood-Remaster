@@ -825,11 +825,11 @@ public:
   }
   FObjectWriter::Serialize(Data,Num);
  }
- bool Complete()const{return !IsError()&&!SourceReference&&(!Role||Hits==4)&&IsSaving()&&!IsLoading()&&!IsCooking()&&!IsPersistent()&&!IsByteSwapping()&&GetPortFlags()==0;}
+ bool Complete(){return !IsError()&&!SourceReference&&(!Role||Hits==4)&&IsSaving()&&!IsLoading()&&!IsCooking()&&!IsPersistent()&&!IsByteSwapping()&&GetPortFlags()==0;}
  // Dedicated low-level tests call Serialize on exact typed addresses; production
  // always calls actual Body.Serialize and requires the same four-call coverage.
 };
-FString PrivateBodyVersions(const FArchive& Ar)
+FString PrivateBodyVersions(FArchive& Ar)
 {
  TArray<FString> Versions;for(const auto& V:Ar.GetCustomVersions().GetAllVersions())Versions.Add(V.Key.ToString()+TEXT(":")+LexToString(V.Version));
  Versions.Sort();return FString::Printf(TEXT("UE=%d Licensee=%d port=%u saving=%d loading=%d cooking=%d persistent=%d swapping=%d custom="),Ar.UEVer().ToValue(),Ar.LicenseeUEVer(),Ar.GetPortFlags(),int32(Ar.IsSaving()),int32(Ar.IsLoading()),int32(Ar.IsCooking()),int32(Ar.IsPersistent()),int32(Ar.IsByteSwapping()))+FString::Join(Versions,TEXT(";"));
