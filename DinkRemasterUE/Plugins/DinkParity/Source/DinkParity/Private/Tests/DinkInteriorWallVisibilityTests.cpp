@@ -78,7 +78,7 @@ bool FDinkInteriorWallOwnershipTest::RunTest(const FString&)
         V->SetActorLocation(FVector((X+6)*100,400,100));V->Bounds->SetBoxExtent(FVector(600,400,200));
         const FVector2D Mid[4]={{300,0},{600,200},{300,400},{0,200}};
         for(int E=0;E<4;++E)
-        {auto* Wall=V->EdgeWalls[E];Wall->SetCollisionProfileName(TEXT("BlockAll"));Wall->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+        {UBoxComponent* Wall=V->EdgeWalls[E];Wall->SetCollisionProfileName(TEXT("BlockAll"));Wall->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
          Wall->SetBoxExtent(E%2?FVector(10,400,100):FVector(600,10,100));Wall->SetWorldLocation(V->MapPixelToWorld(Mid[E].X,Mid[E].Y)+FVector(0,0,100));}
         return V;
     };
@@ -99,7 +99,7 @@ bool FDinkInteriorWallOwnershipTest::RunTest(const FString&)
     TestEqual(TEXT("real booth west group creates three closed-edge visuals"),GeneratedWalls(*BoothW).Num(),3);
     TestEqual(TEXT("real booth east group creates three closed-edge visuals"),GeneratedWalls(*BoothE).Num(),3);
     TArray<FWallPhysics> Physics;
-    for(auto* V:{Home,Other,JoinedA,JoinedB,Yard,BoothW,BoothE}){Physics.Emplace(V->Bounds);for(auto* Wall:V->EdgeWalls)Physics.Emplace(Wall);for(auto* Visual:GeneratedWalls(*V))Physics.Emplace(Visual);}
+    for(auto* V:{Home,Other,JoinedA,JoinedB,Yard,BoothW,BoothE}){Physics.Emplace(V->Bounds);for(UBoxComponent* Wall:V->EdgeWalls)Physics.Emplace(Wall);for(auto* Visual:GeneratedWalls(*V))Physics.Emplace(Visual);}
     auto* Ordinary=World->SpawnActor<AStaticMeshActor>();auto* OrdinaryMesh=Ordinary->GetStaticMeshComponent();
     OrdinaryMesh->SetStaticMesh(LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube")));OrdinaryMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     const FTransform OrdinaryPose=Ordinary->GetActorTransform();
