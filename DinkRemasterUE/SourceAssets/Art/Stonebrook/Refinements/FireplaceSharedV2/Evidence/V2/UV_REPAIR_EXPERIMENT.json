@@ -1,0 +1,46 @@
+[
+  {
+    "mode": "local_orthogonal",
+    "zero_loops": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ],
+    "zero_count": 5
+  },
+  {
+    "mode": "seam_offset",
+    "zero_loops": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ],
+    "zero_count": 5
+  },
+  {
+    "mode": "chart_min_height",
+    "zero_loops": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ],
+    "zero_count": 5
+  },
+  {
+    "mode": "large_scale",
+    "zero_loops": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ],
+    "zero_count": 5
+  }
+]

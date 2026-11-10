@@ -823,3 +823,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   all twenty chapters PARITY OK at the new hashes (ch1 bf7710e26c .. ch20
   7fdc482332, `Plugins/DinkParity/Docs/packaged_probe.md`). The UE project
   is synced with this story (`sync_story.py --rebuild`).
+
+## Fireplace shared-source admission continuity
+
+See DinkRemasterUE/Docs/Verification/FireplaceSharedSource for this isolated art/fireplace-shared-source candidate based on4d3a660. Source-only local commit is authorized; UE/push and final colour/light remain separate Root review gates. Preserve existing shared-index history and all prior ledger raw bytes.

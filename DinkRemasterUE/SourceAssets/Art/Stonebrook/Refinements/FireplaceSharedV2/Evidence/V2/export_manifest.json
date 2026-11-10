@@ -1,0 +1,45 @@
+{
+  "status": "ROOT_SOURCE_REVIEW_SUCCESSOR_NOT_NATIVE",
+  "source": "Fireplace_SharedContractV2.blend",
+  "source_sha256": "ba9b8ab76d0416092e4f152569e293cca52eb17216ac5bb39325eb15741dfde0",
+  "FBX": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "file": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "sha256": "d29cf7f949e996490d85558e52c11a0f1702f8b068deaceda21955611ea7ecd7",
+      "triangles": 1486,
+      "UCX": 92
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "sha256": "842cb9ffe77a074171c7b3147cff9c791328ecc021f7d4a7cc52339df3d754e5",
+      "triangles": 15912,
+      "UCX": 16
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "sha256": "4551f144fd2443d2f3291bfdfed5911823962cbdeea06d26e3361f3d6d4e5a38",
+      "triangles": 8672,
+      "UCX": 0
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "sha256": "d6ebc093d545c8ae58f956e4a6c77c9a78755df10978ad9238ed37d7ba6e0ba1",
+      "triangles": 4698,
+      "UCX": 0
+    }
+  ],
+  "class_": "prop_large",
+  "identity": {
+    "origin": "S001_P19",
+    "sprite": "64_05",
+    "class_id": "fireplace_brick",
+    "script": "s1-h1-2"
+  },
+  "chimney": "structural continuation; no invented sprite family",
+  "native": false,
+  "invalid_frames": "5 baseline chimney sliver corners retained; UV and cm-only attempted fixes not adopted; actual native inspection required"
+}

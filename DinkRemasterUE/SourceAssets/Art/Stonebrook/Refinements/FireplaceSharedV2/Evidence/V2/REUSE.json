@@ -1,0 +1,18 @@
+{
+  "order_left_right": [
+    "FieldstoneSeed2m",
+    "LimeMortar2m",
+    "Soot2m",
+    "OakLonggrain2m",
+    "IronLead2m_Iron",
+    "IronLead2m_Lead",
+    "FieldstoneCoursed2m"
+  ],
+  "bottom_row_m": 2,
+  "top_row_m": 4,
+  "uv_repeats": [
+    1,
+    2
+  ],
+  "geometry": "generic planes, no fireplace bake"
+}

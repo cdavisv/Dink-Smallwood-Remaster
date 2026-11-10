@@ -1,0 +1,210 @@
+[
+  {
+    "name": "SM_Chimney_Stonebrook_V8",
+    "file": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+    "source": {
+      "vertices": 743,
+      "triangles": 1486,
+      "dimensions": [
+        1.786549687385559,
+        0.8945789337158203,
+        2.319999933242798
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "hulls": 92,
+    "sha256": "d29cf7f949e996490d85558e52c11a0f1702f8b068deaceda21955611ea7ecd7",
+    "actual_reimport": {
+      "vertices": 743,
+      "triangles": 1486,
+      "dimensions": [
+        1.786549687385559,
+        0.8945789337158203,
+        2.319999933242798
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "reimport_hulls": 92,
+    "checks": {
+      "triangles": true,
+      "hulls": true,
+      "dimensions": true,
+      "uv_finite": true,
+      "materials": true
+    }
+  },
+  {
+    "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+    "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+    "source": {
+      "vertices": 8332,
+      "triangles": 15912,
+      "dimensions": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "hulls": 16,
+    "sha256": "842cb9ffe77a074171c7b3147cff9c791328ecc021f7d4a7cc52339df3d754e5",
+    "actual_reimport": {
+      "vertices": 8332,
+      "triangles": 15912,
+      "dimensions": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "reimport_hulls": 16,
+    "checks": {
+      "triangles": true,
+      "hulls": true,
+      "dimensions": true,
+      "uv_finite": true,
+      "materials": true
+    }
+  },
+  {
+    "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+    "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+    "source": {
+      "vertices": 4712,
+      "triangles": 8672,
+      "dimensions": [
+        2.5089643001556396,
+        1.1149358749389648,
+        2.8015949726104736
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "hulls": 0,
+    "sha256": "4551f144fd2443d2f3291bfdfed5911823962cbdeea06d26e3361f3d6d4e5a38",
+    "actual_reimport": {
+      "vertices": 4712,
+      "triangles": 8672,
+      "dimensions": [
+        2.5089643001556396,
+        1.1149358749389648,
+        2.8015949726104736
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "reimport_hulls": 0,
+    "checks": {
+      "triangles": true,
+      "hulls": true,
+      "dimensions": true,
+      "uv_finite": true,
+      "materials": true
+    }
+  },
+  {
+    "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+    "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+    "source": {
+      "vertices": 2725,
+      "triangles": 4698,
+      "dimensions": [
+        2.5069117546081543,
+        1.1101120710372925,
+        2.801013469696045
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "hulls": 0,
+    "sha256": "d6ebc093d545c8ae58f956e4a6c77c9a78755df10978ad9238ed37d7ba6e0ba1",
+    "actual_reimport": {
+      "vertices": 2725,
+      "triangles": 4698,
+      "dimensions": [
+        2.5069117546081543,
+        1.1101120710372925,
+        2.801013469696045
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FieldstoneCoursed2m"
+      ],
+      "uv_layers": 3,
+      "uv_finite": true
+    },
+    "reimport_hulls": 0,
+    "checks": {
+      "triangles": true,
+      "hulls": true,
+      "dimensions": true,
+      "uv_finite": true,
+      "materials": true
+    }
+  }
+]

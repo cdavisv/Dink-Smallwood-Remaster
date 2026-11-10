@@ -1,0 +1,13 @@
+{
+  "status": "PASS_NO_NEW_VIOLATIONS_OR_WARNINGS",
+  "baseline_violation_assets": 202,
+  "after_violation_assets": 202,
+  "counts": {
+    "family": 23,
+    "material": 186
+  },
+  "warnings": 26,
+  "baseline_global_exit": 1,
+  "after_global_exit": 1,
+  "qualifier": "202 inherited violating assets remain; package adds no violations/warnings, no global PASS"
+}
