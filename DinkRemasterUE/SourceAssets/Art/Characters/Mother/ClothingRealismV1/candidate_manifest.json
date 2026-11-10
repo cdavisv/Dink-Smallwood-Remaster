@@ -32,9 +32,11 @@
   "activation_gates": [
     "Native89bone reference comparison and4actualLODs",
     "Idle/walk/talk/elbow/waist extreme deformation, clothing penetration andLOD pops",
+    "Independently establish normal-bake/export/native tangent basis consistency across142 changed LOD0 wardrobe triangle-index records and lowerLOD reuse; source UV equality alone is insufficient",
     "Native imported textile colour/normal orientation under actual starting-house/daylight lighting",
     "GPU texture residency/mips/compression/draw calls: separate3x4K maps add memory; consolidate shared atlas before memory approval",
     "Original actor/source/script/save/capsule/animation bindings preserved"
   ],
-  "unchanged_runtime": "No production Content, native assets, runtime manifests, gameplay inputs or imports are changed."
+  "unchanged_runtime": "No production Content, native assets, runtime manifests, gameplay inputs or imports are changed.",
+  "export_topology_qualification": "Editable polygon arrays unchanged; independent inspection found142 changed LOD0 wardrobe FBX triangle-index records, LOD1\u20133 raw triangle indices exact. No binary full-triangle identity claim."
 }
