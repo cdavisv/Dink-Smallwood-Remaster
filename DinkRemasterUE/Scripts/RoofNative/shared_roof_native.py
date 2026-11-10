@@ -137,9 +137,12 @@ def import_trial(U, root, contract, guard, save, pixel_check, mesh_check, emit_r
             configure_policy(U, mesh, dict(collision='SIMPLE_AND_COMPLEX', nanite=False), guard)
             roles = {name: role_packages[name] for name in record['material_slots']}
             bind_named_materials(U, mesh, roles, record['triangles'], guard)
+            # The verifier inspects raw-relative source filenames before any save.
+            configure_relative_sources(U, mesh, [root / SOURCE / record['file']],
+                                       root / 'SourceAssets/Art', guard)
             result = checked_mesh_result(mesh_check(mesh, record), record)
             report['meshes'].append(result)
-            persist(mesh, [root / SOURCE / record['file']])
+            persist(mesh)
         require(len(report['packages']) == 23, 'Incomplete fresh23 save set')
         guard()
         require(load_contract(root)['digest'] == contract['digest'], 'Source/Data/production preimages changed')

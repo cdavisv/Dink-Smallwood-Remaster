@@ -1,3 +1,7 @@
+## Shared roof mesh metadata ordering fix — 9 November 2026
+
+In `art/interior-roof-shared-library` at `/home/davisc/Work/DinkInteriorSharedMaterialsAdmission`, configure relative mesh import-source filenames before `mesh_check`; that verifier inspects filenames before save. `persist(mesh)` then saves without repeating metadata setup. Root actual trial `057887d4e6f3490c94e810ffd888209f` stopped after 15 shared saves at this ordering bug; Root owns partial-output preservation and a fresh trial. No UE launch or C++ change here. Regression proves original order fails at filename readiness; fixed full shared suite 15/15 and entry-scope 4/4 pass. Full source audit passes (4419 binaries,4255 ledger rows,zero errors/secrets). See `Docs/Verification/InteriorRoofSharedNativePreparation/metadata-order-fix.json`; prior preparation/native-pending statements remain historical.
+
 ## Shared roof native preparation (not executed)
 
 Use only Root-reviewed caller with shared_roof_contract/native/verify. Exact23fresh trial then exact8existing mesh material edits+3camera aliases and fresh final23readback; no production geometry reimport or collision change. The new exact8/9editor metadata scope/capability is source-only/uncompiled. Old DLLs must refuse before imports. Existing2048/legacy helpers remain strict; new closed1024/shared profiles are explicit.14offline tests pass; no UE/native/GPU approval. Docs/Verification/InteriorRoofSharedNativePreparation defines recovery/save/guard and actual-output ledger obligations.
