@@ -1,6 +1,15 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
-> **Re-verified 9 Nov 2026, night (master 72fa9c0: PR #44 owner decisions OD1/OD2, four typo switches on and `sp_prop` defined).**
+> **Re-verified 9 Nov 2026, late night (master 9758852: PR #50 East Wilds doorway, Codex's PRs #47-#49 hero growth and camera headroom, PR #51 hero defect fixes).**
+> `Scripts/build.sh`, `Scripts/test.sh` (193/193 in 719 s), `Scripts/package.sh` (239 s, first cook after the hero meshes changed) and
+> `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Only chapter 1 moved, with the booth doorway
+> (merging the two booth interiors removed a 40 m gap in the interior layout, so the SCR_579 teleport lands one frame earlier; same
+> end state): Ch1 0ba0ba5b7e; Ch2-Ch20 as below. The hero fixes moved nothing. An intermediate run on e417231 (PR #50 alone) gave
+> 190/190 and the same twenty packaged hashes. Two false starts on 9758852 are recorded as UE AGENTS.md pitfalls 81 and 82:
+> a quiet `git lfs pull` left the new hero meshes as pointer files (22 tests and the cook failed on an unloadable `SK_Dink`), and a
+> `pgrep -f` editor gate counted Codex's sandbox command lines as engines for four hours.
+>
+> Before: **Re-verified 9 Nov 2026, night (master 72fa9c0: PR #44 owner decisions OD1/OD2, four typo switches on and `sp_prop` defined).**
 > `Scripts/build.sh` (32 s), `Scripts/test.sh` (188/188 in 677 s, PIE traces rewritten), `Scripts/package.sh` (72 s),
 > `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Every hash moved, all through chapter 1's save
 > (Jack's newly spoken line ends his scene one frame later and the bar's `random(2,1)` then creates the thief on both visits; with
