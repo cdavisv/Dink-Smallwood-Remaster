@@ -1,0 +1,31 @@
+{
+  "tested_commit": "df3365c4e5a52f468d30a7acfe0b2c442d33dbd0",
+  "engine": "Unreal5.8.4",
+  "run": "9f86da8ba06946bdb8af85decce04335",
+  "phases": {
+    "editor": {
+      "exit_code": 0,
+      "elapsed": 83.25055092499679,
+      "source_files": 12708,
+      "source_changes": [],
+      "kernel_present": true
+    },
+    "game": {
+      "exit_code": 0,
+      "elapsed": 44.01962659900164,
+      "source_files": 12708,
+      "source_changes": [],
+      "kernel_present": true
+    }
+  },
+  "Editor_unchanged_through_Game": true,
+  "fresh_Editor_file_rehash_count": 14,
+  "owned_Editor_modules": 7,
+  "kernel_mount_proofs_passed": true,
+  "normal_host_closure": true,
+  "copied_DLLs": false,
+  "control_refresh_files": 5415,
+  "control_source": "Closed current camera checkout; exact compatible e417 controls, not fresh import",
+  "native_GPU_cook_on_combined_roof": "PENDING",
+  "sequence_result_sha256": "cffc912958665f731c8812206e424008070dbad0d2c0dc43f2403e1b8fea69b8"
+}
