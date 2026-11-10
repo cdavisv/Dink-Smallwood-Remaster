@@ -397,3 +397,6 @@ Current7 source/docs committed locally as 26fb460; its four targeted native PASS
 
 
 Latest control refresh completed: exactly5415 ImportData/generated files copied independently from frozen camera73ccdbe e417-derived controls, all source/destination SHA256 matched before/after; prior5415 archived with verified original hashes. Retained63 Character/Input controls also match. Full5478 fixture ledger `/home/artist/Work/DinkQA/RuntimeHardnessCurrentFixtureRefresh/CURRENT_FIXTURES.json`; refresh receipt alongside it. No code/DLL/productionData overlay; these remain UNMARKED controls, not actual031/209 acceptance.
+
+
+Latest e417 combined build Candidate9/run097c044b passed Editor44.67s/Game24.02s,12659inputs unchanged/Editor14stable/no warnings. Broader native Candidate6/rune9bc98dd completed22tests successfully then fatally refused later Prop.Scr419DoorWarp mapload due uncollected Temp/Untitled_4 scratch world, native245. Raw logs/core preserved; no overallPASS. Narrow fixture-only successor matches Engine game unload: after ordinary shutdown/context removal/DestroyWorld, mark OWN scratch world/nested objects pendingkill, assert no root and garbage marking. Production gameplay, geometry, policy and later real-map assertions unchanged. Rebuild and same broader sequence required before real031/209 stage.
