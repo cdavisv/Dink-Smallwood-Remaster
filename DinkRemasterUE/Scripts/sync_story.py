@@ -17,7 +17,10 @@ Steps:
      Without it the existing out/ is used; a missing out/ also triggers the converter.
   2. If any out/ink/*.ink is newer than out/json/dink.json, the story is recompiled with inklecate
      into a temporary directory (out/ is never modified by this script except through step 1).
-  3. The JSON is checked (inkVersion 21, root container present, every knot of names.csv present).
+  3. The JSON is checked (inkVersion 21, root container present, every knot of names.csv present), and
+     every CONST fix_* switch in out/ink is false except the ones the owner turned on, which must be
+     exactly the data repo's tools/dinkink/dinkink/overrides.py OWNER_DECISIONS (9 Nov 2026: the four
+     pure-typo switches of OD2, doc/remaster/verbatim_review.md).
   4. Files are copied only when their content changed; the manifest is rewritten only when a hash
      changed, so a re-run with unchanged input leaves the project byte-identical.
 
@@ -29,6 +32,7 @@ from __future__ import annotations
 from remaster_paths import default_data_repo
 
 import argparse
+import ast
 import csv
 import hashlib
 import json
@@ -69,6 +73,17 @@ def inklecate_version() -> str:
         if part.startswith("v") and part[1:2].isdigit():
             return part
     return "unknown"
+
+
+def owner_decisions(tool: pathlib.Path) -> set[str]:
+    """Names of the fix switches the owner turned on: the keys of OWNER_DECISIONS in the converter's
+    overrides.py whose value is True. Read as a literal (the data repo's code is never imported)."""
+    tree = ast.parse((tool / "dinkink" / "overrides.py").read_text(encoding="utf-8"))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(getattr(t, "id", "") == "OWNER_DECISIONS" for t in node.targets):
+            table = ast.literal_eval(node.value)
+            return {name for name, d in table.items() if d.get("value") is True}
+    return set()
 
 
 def compile_story(ink_dir: pathlib.Path) -> bytes:
@@ -131,19 +146,26 @@ def main() -> int:
         print(f"{len(missing)} knots of names.csv are not in the story: {missing[:10]}", file=sys.stderr)
         return 1
     entries = sum(1 for r in rows if r["kind"] == "entry")
-    # Engine-bug intent stays behind CONST fix_<script>_l<line> = false (DESIGN.md 9); a reviewer flips
-    # one deliberately in the data repo, never by accident here.
-    fix_true = []
+    # Engine-bug intent stays behind CONST fix_<script>_l<line> = false (DESIGN.md 9); only the owner's decisions
+    # (overrides.py OWNER_DECISIONS, each with its dink.cpp citation) are true, never one flipped by accident.
+    decided = owner_decisions(tool)
+    wrong = []
+    enabled = []
     fixes = 0
     for ink in ink_files:
         for line in ink.read_text(encoding="utf-8").splitlines():
             m = re.match(r"\s*CONST\s+(fix_\w+)\s*=\s*(\w+)", line)
             if m:
                 fixes += 1
-                if m.group(2) != "false":
-                    fix_true.append(f"{ink.name}: {m.group(1)} = {m.group(2)}")
-    if fix_true:
-        print("fix switches that are not false (engine behaviour must stay live):\n  " + "\n  ".join(fix_true), file=sys.stderr)
+                want = "true" if m.group(1) in decided else "false"
+                if m.group(2) == "true" and want == "true":
+                    enabled.append(m.group(1))
+                if m.group(2) != want:
+                    wrong.append(f"{ink.name}: {m.group(1)} = {m.group(2)} (expected {want})")
+    missing = sorted(decided - set(enabled))
+    if wrong or missing:
+        print("fix switches that differ from the owner's decisions (every other switch must stay false):\n  "
+              + "\n  ".join(wrong + [f"{name}: owner decision not in out/ink" for name in missing]), file=sys.stderr)
         return 1
 
     files = {"dink.json": story_bytes}
@@ -157,7 +179,8 @@ def main() -> int:
         "ink_version": version,
         "knots": len(knots),
         "entry_points": entries,
-        "fix_switches_all_false": fixes,
+        "fix_switches": fixes,
+        "fix_switches_enabled_by_owner": sorted(enabled),
         "files": {name: sha256(data) for name, data in sorted(files.items())},
     }
     manifest_path = DEST / "story_manifest.json"
@@ -179,7 +202,7 @@ def main() -> int:
     for name in changed:
         (DEST / name).write_bytes(files[name])
     print(f"STORY SYNC OK: {len(knots)} knots, {entries} entry points, inkVersion {version}, "
-          f"{fixes} fix switches all false, data repo {manifest['data_repo_commit']}; {len(changed)} file(s) written to {DEST.relative_to(HERE)}"
+          f"{fixes} fix switches ({len(enabled)} enabled by owner decision, the rest false), data repo {manifest['data_repo_commit']}; {len(changed)} file(s) written to {DEST.relative_to(HERE)}"
           + (f" ({', '.join(changed)})" if changed else " (no change)"))
     return 0
 

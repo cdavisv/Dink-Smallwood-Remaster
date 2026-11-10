@@ -100,6 +100,7 @@ Format per entry: queue row, original line(s) quoted exactly (line numbers are t
 ```
 
 - **Class:** AUTHOR-INTENT-SWITCH. Switch: missing (`fix_s1_h3_8_l13`).
+- **Status:** enabled 9 Nov 2026 by owner decision (OD2): `fix_s1_h3_8_l13` is `true` in the shipped build (`tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS`, with its dink.cpp citation; tests `TestOwnerDecisions` and `Dink.Narrative.OwnerDecisions.TypoLinesSpoken`). The converter does what the Action below asked. Lines 16 and 20 are spoken; one of the three bed lines at random.
 - **Action:** Create `CONST fix_s1_h3_8_l13 = false` (log: `s1-h3-8.c:13`, `{` should be `}`). In the Ink, hoist the two nested conditionals out to the level of the first one and gate them: `{ fix_s1_h3_8_l13 and s1_h3_8__maybe == 2: ... }` and the same for 3. With the switch false they cannot run, exactly as in the engine; with it true all three lines speak. Keep IDs `s1-h3-8.talk.002` and `.003`. Needs converter rule C4. One switch covers R0001 and R0002. Switch does not exist yet.
 
 ### R0002: s1-h3-8.c line 11, `talk` (high) - AUTHOR-INTENT-SWITCH
@@ -148,6 +149,7 @@ Format per entry: queue row, original line(s) quoted exactly (line numbers are t
 ```
 
 - **Class:** AUTHOR-INTENT-SWITCH. Switch: missing (`fix_s1_h3_8_l13`).
+- **Status:** enabled 9 Nov 2026 by owner decision (OD2): `fix_s1_h3_8_l13` is `true` in the shipped build (`tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS`, with its dink.cpp citation; tests `TestOwnerDecisions` and `Dink.Narrative.OwnerDecisions.TypoLinesSpoken`). The converter does what the Action below asked.
 - **Action:** Same defect and same switch as R0001; no separate action.
 
 ### R0003: s2-jack.c line 171, `die` (high) - AUTHOR-INTENT-SWITCH
@@ -190,6 +192,7 @@ I know.  It's ok, I'm here now. #id:s2-jack.die.004 #say:say_stop #spk:1 #col:1
 ```
 
 - **Class:** AUTHOR-INTENT-SWITCH. Switch: exists.
+- **Status:** enabled 9 Nov 2026 by owner decision (OD2): `fix_s2_jack_l171` is `true` in the shipped build (`tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS`, with its dink.cpp citation; tests `TestOwnerDecisions` and `Dink.Narrative.OwnerDecisions.TypoLinesSpoken`). The converter does what the Action below asked. "I guess I just killed your husband." is spoken.
 - **Action:** None to the Ink. Switch exists (`fix_s2_jack_l171`) and the intent text correctly drops the stray leading `'` (log that typo too: the original is `'I guess ... husband."`). Default build stays silent here. This is one of three never-spoken lines, see Owner decision OD2.
 
 ### R0004: s2-man2.c line 25, `main` (high) - AUTHOR-INTENT-SWITCH
@@ -306,6 +309,7 @@ This also applies to food donations. #id:s4-sign3.talk.004 #say:say_stop #spk:cu
 ```
 
 - **Class:** AUTHOR-INTENT-SWITCH. Switch: exists.
+- **Status:** enabled 9 Nov 2026 by owner decision (OD2): `fix_s4_sign3_l17` is `true` in the shipped build (`tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS`, with its dink.cpp citation; tests `TestOwnerDecisions` and `Dink.Narrative.OwnerDecisions.TypoLinesSpoken`). The converter does what the Action below asked. "Long live the ducks." is spoken.
 - **Action:** None. Switch exists (`fix_s4_sign3_l17`); default false matches the engine. Log typo: missing `)`. Second never-spoken line, OD2.
 
 ### R0007: s4-st1p.c line 166, `sell` (high) - RESOLVED-CORRECT
@@ -914,6 +918,7 @@ CONST fix_s5_end_l33 = false // review: unknown command sp_prop()
 ```
 
 - **Class:** OWNER-DECISION. Switch: exists.
+- **Status:** decided 9 Nov 2026 (OD1): the director defines `sp_prop <sprite> <0|1>` as setting the placement's map `prop` flag (warp / walk-through: get_hard dink.cpp:569-575, special_block 15337-15341) until the screen loads again (`UDinkGameplay::SetPlacementProp`, test `Dink.Gameplay.Prop.*`). `fix_s5_end_l33` stays `false`, so the door stays a warp as in 1997. The vocabulary note no longer claims a `-1` rule.
 - **Action:** See Owner decision OD1. Whatever is decided, correct the vocabulary note (the `-1 = leave unchanged` rule is unverified; the only evidence points to a 0/1 map `prop` flag). Switch exists (`fix_s5_end_l33`).
 
 ### R0027: s5-fguy.c line 6, `main` (medium) - OWNER-DECISION
@@ -940,6 +945,7 @@ CONST fix_s5_fguy_l6 = false // review: unknown command sp_prop()
 ```
 
 - **Class:** OWNER-DECISION. Switch: exists.
+- **Status:** decided 9 Nov 2026 (OD1): the director defines `sp_prop <sprite> <0|1>` as setting the placement's map `prop` flag (warp / walk-through: get_hard dink.cpp:569-575, special_block 15337-15341) until the screen loads again (`UDinkGameplay::SetPlacementProp`, test `Dink.Gameplay.Prop.*`). `fix_s5_fguy_l6` stays `false`, so the door stays a warp as in 1997. The vocabulary note no longer claims a `-1` rule.
 - **Action:** See Owner decision OD1. Whatever is decided, correct the vocabulary note (the `-1 = leave unchanged` rule is unverified; the only evidence points to a 0/1 map `prop` flag). Switch exists (`fix_s5_fguy_l6`).
 
 ### R0028: mag-star.c line 26, `main` (low) - RESOLVED-CORRECT
@@ -1461,6 +1467,7 @@ Oh, NOW YOU'VE DONE IT! #id:s2-jack.hit.001 #say:say #spk:current_sprite #col:6 
 ```
 
 - **Class:** CONVERTER-BUG. Switch: missing (`fix_s3_chick_l42`).
+- **Status:** enabled 9 Nov 2026 by owner decision (OD2): `fix_s3_chick_l42` is `true` in the shipped build (`tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS`, with its dink.cpp citation; tests `TestOwnerDecisions` and `Dink.Narrative.OwnerDecisions.TypoLinesSpoken`). The converter does what the Action below asked. "Hello Dink, I'm Christina." is spoken (her `talk`, "Say hi").
 - **Action:** Make it an engine-never-runs row: engine live = nothing; `{ fix_s3_chick_l42: Hello Dink, I'm Christina. #id:s3-chick.talk.005 #say:say_stop #spk:current_sprite #col:9 #src:42 }`, CONST declared, queue row with `fix_const`. Converter rule C3 (model the early return of `get_parms` for every call, not just this one) and correct `DESIGN.md` and the `conversion` text. Third never-spoken line, see OD2.
 
 ### R0045: s3-dorks.c line 56, `attack` (low) - RESOLVED-CORRECT
@@ -1996,7 +2003,7 @@ VAR s7_boss__speed = 0
 
 ## Fix switch ledger
 
-Every fix, logged against the original file. All constants default to `false` (the engine's behaviour).
+Every fix, logged against the original file. All constants default to `false` (the engine's behaviour); the four pure-typo switches are `true` by owner decision of 9 Nov 2026 (OD2).
 
 | Constant | Original | What the fix does | Status |
 |---|---|---|---|
@@ -2007,15 +2014,15 @@ Every fix, logged against the original file. All constants default to `false` (t
 | `fix_s1_sack_l33` | `s1-sack.c:33` | same | exists |
 | `fix_s2_cave_l117` | `s2-cave.c:117` | `wait(200:` -> `wait(200);` | exists |
 | `fix_s2_crock_l5` | `s2-crock.c:5` | undeclared `&mcrap` (dead script) | exists |
-| `fix_s2_jack_l171` | `s2-jack.c:171` | `'I guess ... husband."` quotes | exists |
+| `fix_s2_jack_l171` | `s2-jack.c:171` | `'I guess ... husband."` quotes | exists; **true** (OD2, 9 Nov 2026) |
 | `fix_s4_h2p2_l43` | `s4-h2p2.c:43` | `reutrn;` -> `return;` | exists |
-| `fix_s4_sign3_l17` | `s4-sign3.c:17` | missing `)` | exists |
-| `fix_s5_end_l33` | `s5-end.c:33` | `sp_prop` (no such command) | exists, meaning undecided (OD1) |
-| `fix_s5_fguy_l6` | `s5-fguy.c:6` | `sp_prop` (no such command) | exists, meaning undecided (OD1) |
-| `fix_s1_h3_8_l13` | `s1-h3-8.c:13` | `{` should be `}` | TO CREATE (C4) |
+| `fix_s4_sign3_l17` | `s4-sign3.c:17` | missing `)` | exists; **true** (OD2, 9 Nov 2026) |
+| `fix_s5_end_l33` | `s5-end.c:33` | `sp_prop` (no such command) | exists; `sp_prop` defined in the director (OD1, 9 Nov 2026), switch false |
+| `fix_s5_fguy_l6` | `s5-fguy.c:6` | `sp_prop` (no such command) | exists; `sp_prop` defined in the director (OD1, 9 Nov 2026), switch false |
+| `fix_s1_h3_8_l13` | `s1-h3-8.c:13` | `{` should be `}` | exists (C4); **true** (OD2, 9 Nov 2026) |
 | `fix_s2_man2_l25` | `s2-man2.c:25` | bare `current_sprite` -> `&current_sprite` | TO CREATE (C1) |
 | `fix_s1_wand2_l187` | `s1-wand2.c:187` | stray backtick in `Chance `Zands` | TO CREATE (C5) |
-| `fix_s3_chick_l42` | `s3-chick.c:42` | missing comma after the string | TO CREATE (C3) |
+| `fix_s3_chick_l42` | `s3-chick.c:42` | missing comma after the string | exists (C3); **true** (OD2, 9 Nov 2026) |
 | `fix_s4_st1p_l166, fix_s4_st3p_l74/_l82/_l91/_l98` | `s4-st1p.c:166; s4-st3p.c:74, 82, 91, 98` | `goto mainloop` (no label, no target) | REMOVE: nothing behind them (C6) |
 
 ## Converter fixes to make
@@ -2031,6 +2038,9 @@ Deduplicated rules for `tools/dinkink` (and `DESIGN.md`):
 - **C7, house-keeping.** Correct the invented `sp_prop` vocabulary note after OD1; add the never-spoken lines (R0003, R0006, R0044) to the queue as one category (`never-spoken`) so they can be listed for OD2; teach `coverage.csv` that `s1-h1-1c.d` is dead data (optional `.d` fallback).
 
 ## Owner decisions
+
+**Decided 9 Nov 2026 by the owner, and done the same day:** OD1 = define `sp_prop <sprite> <0|1>` in the director as "set the placed sprite's `prop` (warp / walk-through) flag", with `fix_s5_fguy_l6` and `fix_s5_end_l33` left `false` (the shipped game keeps the 1997 behaviour: the SCR_419 door stays a warp during the dragon fight). OD2 = **enable the pure-typo switches** in the shipped build: `fix_s2_jack_l171`, `fix_s4_sign3_l17`, `fix_s3_chick_l42` and `fix_s1_h3_8_l13` become `true`, so "I guess I just killed your husband.", "Long live the ducks.", Christina's reply and the two bed lines are heard; every other `fix_` switch stays `false`. The converter records each enabled switch with its `dink.cpp` citation and a test (the parity rule), and the change is logged against the original file. Implemented: `tools/dinkink/dinkink/overrides.py` `OWNER_DECISIONS` (converter emits `CONST ... = true // owner decision 9 Nov 2026: ...`; `DinkRemasterUE/Scripts/sync_story.py` accepts exactly those), `sp_prop` in `DinkDirector.cpp` / `UDinkGameplay::SetPlacementProp` / `UDinkGreyboxSubsystem::SetSpriteWarpOn`; see the Status lines of R0001-R0003, R0006, R0026, R0027, R0044 and the ledger.
+
 
 - **OD1 (R0026, R0027): what should `sp_prop` do?** The 1997 scripts call a command that never existed to close and reopen the warp door on SCR_419 during the dragon fight (inferred from the map `prop` flag, not stated). Option A: leave both switches as recorded no-ops, so the door stays a warp throughout, as in 1997. Option B: define `sp_prop <sprite> <0|1>` in the director as 'set the placed sprite's `prop` (warp/walk-through) flag' and let the two existing switches turn the locking on. **Recommendation: B, with both switches left `false`**, so the default build is the 1997 behaviour and the intent is one flip away; confirm that the inferred meaning is what you want before it is written into the vocabulary.
 - **OD2 (policy confirmation, R0003, R0006, R0044, plus R0001/R0002): ship with every `fix_` switch `false`?** Four typo bugs make written dialogue or behaviour unreachable in the 1997 engine: `s2-jack:171` ("I guess I just killed your husband."), `s4-sign3:17` ("Long live the ducks."), `s3-chick:42` (Christina's reply) and `s1-h3-8` (two of the three bed lines). Option A: ship them silent, per the policy that the engine's live behaviour is the default. Option B: enable the pure-typo ones in the shipped build. **Recommendation: A**, and reconsider after a playtest; the policy already says reachable lines only, and none of these is reachable in 1997.

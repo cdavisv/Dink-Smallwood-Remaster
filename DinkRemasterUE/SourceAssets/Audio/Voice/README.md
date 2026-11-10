@@ -56,6 +56,16 @@ for a voice file carries status `candidate` until then.
   has only 46 characters of lines, below the design minimum, proposal: the
   monster voice.
 - `voices_saved.csv`: the saved library voices (voice -> ElevenLabs voice id).
+- Listening review (9 Nov 2026): `tools/build_takes_review.py` writes
+  `voice_takes_review.html` (all 2,088 takes by voice, keep/redo per take with a
+  note, kept in the browser and exported as CSV; serve the folder with
+  `python3 -m http.server 8765` and open `/voice_takes_review.html`). Then
+  `tools/apply_verdicts.py <exported csv>` merges into `voice_verdicts.csv` and sets
+  the ledger `status` (keep -> `approved`, redo -> `rejected`) and prints the redo list
+  for the next batch. 9 Nov 2026: the owner accepted all voice work ("accept all
+  voicework"), so every one of the 2,088 takes is `approved` in the ledger and
+  `voice_verdicts.csv` holds a keep for each; a later listening pass can still
+  mark single takes for regeneration through the same tools.
 - Manifests per batch: `pilot_dink_manifest.json` (10 lines, 288 credits),
   `dink_batch_01_manifest.json` (60, 1,545), `dink_batch_02_manifest.json`
   (174, 5,336: with these Dink's Stonebrook dialogue is 244 of 245 lines),

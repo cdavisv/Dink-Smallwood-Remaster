@@ -110,6 +110,19 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 	return Pawn->TeleportTo(Target, Pawn->GetActorRotation());
 }
 
+void UDinkGreyboxSubsystem::SetSpriteWarpOn(const FString& WarpId, bool bOn)
+{
+	if (bOn)
+	{
+		PropOffWarps.Remove(WarpId);
+	}
+	else
+	{
+		PropOffWarps.Add(WarpId);
+	}
+	UE_LOG(LogDink, Log, TEXT("Warp %s %s by sp_prop"), *WarpId, bOn ? TEXT("on") : TEXT("off"));
+}
+
 bool UDinkGreyboxSubsystem::CanWarp(const APawn* Pawn) const
 {
 	if (WarpingPawns.Contains(Pawn))
@@ -300,7 +313,7 @@ void UDinkGreyboxSubsystem::RetryOverlappingDoor()
     for (UPrimitiveComponent* Component:Overlaps)
     {
         auto* Warp=Cast<UDinkWarpComponent>(Component);
-        if (!IsValid(Warp) || !Warp->bTriggerEnabled || Warp->TriggerMode!=TEXT("walk_in") ||
+        if (!IsValid(Warp) || !Warp->bTriggerEnabled || !IsSpriteWarpOn(Warp->WarpId) || Warp->TriggerMode!=TEXT("walk_in") ||
             (Warp->Kind!=TEXT("door") && Warp->Kind!=TEXT("exit")) || Warp->SourceScreen!=Physical->ScreenNumber ||
             !Warp->IsOverlappingActor(Hero)) continue;
         const FVector Approach=Warp->GetRetryApproachDirection(Hero);

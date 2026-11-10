@@ -280,7 +280,9 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 	if (const FLiveHardness* Live = LiveHardness.Find(Screen))
 	{
 		// A script redrew the map in this screen visit (draw_hard_sprite / draw_hard_map): g_hitmap as they left it.
-		return Live->Map->Get(X1, Y1);
+		const int32 Code = Live->Map->Get(X1, Y1);
+		// sp_prop made the placement walk-through (get_hard D:569-575 reads the flag at every call).
+		return IsWalkThroughByProp(Screen, Code) ? 0 : Code;
 	}
 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
 	const FDinkHardnessMap* Map = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
@@ -290,6 +292,10 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 		// A placement's hardbox: gone if the placement was removed (the engine never stamps removed ones).
 		const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr;
 		if (World && World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100)))
+		{
+			return 0;
+		}
+		if (IsWalkThroughByProp(Screen, Code))
 		{
 			return 0;
 		}

@@ -1,6 +1,23 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
-> **Re-verified 9 Nov 2026 (master 8175f75, twenty chapters).** All twenty probe chapters pass in the packaged Linux
+> **Re-verified 9 Nov 2026, night (master 72fa9c0: PR #44 owner decisions OD1/OD2, four typo switches on and `sp_prop` defined).**
+> `Scripts/build.sh` (32 s), `Scripts/test.sh` (188/188 in 677 s, PIE traces rewritten), `Scripts/package.sh` (72 s),
+> `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Every hash moved, all through chapter 1's save
+> (Jack's newly spoken line ends his scene one frame later and the bar's `random(2,1)` then creates the thief on both visits; with
+> instance numbers masked chapters 2-20 are byte-identical to the evening traces): Ch1 bf7710e26c, Ch2 ce04e3bd3b, Ch3 f494822cad,
+> Ch4 ae86ef33c8, Ch5 86794bccac, Ch6 8517d2eced, Ch7 b5d649bc14, Ch8 d4b45b0834, Ch9 85eeac1fff, Ch10 8f29d08d8d, Ch11 5a5fa26db2,
+> Ch12 fee1bf79a6, Ch13 0ca00d888f, Ch14 df7e479d7b, Ch15 463bce5fed, Ch16 1604da6d56, Ch17 dba045baa4, Ch18 dbfaba7399,
+> Ch19 bec655a025, Ch20 7fdc482332. The alpha gate's first condition still holds.
+>
+> Before: **Re-verified 9 Nov 2026, evening (master 5d65ed8: PR #40 art-family layer + PR #41 hardness parity and Seth margin).**
+> `Scripts/build.sh` (31 s), `Scripts/test.sh` (185/185 in 696 s, the full suite in PIE, which rewrote the editor traces),
+> `Scripts/package.sh` (76 s) and `Scripts/run_packaged_tests.sh` (twenty processes, 1-13 s each): every chapter `PARITY OK`.
+> Chapters 1-8 kept their md5s; 9-20 moved with the hardness fix (`s4-rock.c` opens the duck pen) and the Seth margin:
+> Ch9 ddb1e8e0ca, Ch10 14ca319593, Ch11 c8b2f7a4e8, Ch12 046bb827cd, Ch13 5fed08d60c, Ch14 1c3d697ab4, Ch15 c7c4af9aab,
+> Ch16 69a1ea6352, Ch17 9c6e339f47, Ch18 7f3c7355c6, Ch19 cec10fd7f8, Ch20 2298aad2ce. Seth now dies with 8 of 11 elixirs
+> left (30/95 life, 41 arrows, 100 s). The alpha gate's first condition still holds.
+>
+> Before: **Re-verified 9 Nov 2026 (master 8175f75, twenty chapters).** All twenty probe chapters pass in the packaged Linux
 > Development build, one game process each, and every trace md5 equals the editor's: Ch1 b3760d52d7, Ch2 253e6f7268,
 > Ch3 e9fce770bc, Ch4 d431e6780f, Ch5 6c709d1069, Ch6 9e87080221, Ch7 d50e5111f6, Ch8 f5307af4fa, Ch9 4c4c432a45,
 > Ch10 809895c44e, Ch11 6a5dade988, Ch12 09476c84be, Ch13 ee634f9e54, Ch14 a1cbe40b59, Ch15 28cb65b182,
