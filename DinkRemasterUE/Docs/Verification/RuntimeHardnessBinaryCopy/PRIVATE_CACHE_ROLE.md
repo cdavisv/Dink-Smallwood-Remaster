@@ -1,3 +1,7 @@
+## Independent R1 successor
+
+f378 exact-head source review requested one change: saving streams and reflected State do not encode literal object flags/archetype. Added an explicit FBodyLiteralMetadata snapshot (flags, outer, archetype, class, name) around EVERY native Body.Serialize pass and to source topology, including existing external/shared source shape bodies. Values remain literal; role identity comparison does not canonicalize metadata. The source-only SAME-helper negative toggles transactional metadata after baseline, asserts refusal using the production metadata matcher and source topology, restores the exact original flag state and requires complete recovery. No other reviewed behavior changes; native execution remains pending.
+
 # Private shape-cache role implementation — source review checkpoint
 
 Base382fe7a; V3 design INDEXaa18f280e7bf36009285592b7114da44b668e690f0d8bb20a07e4f170d799e21 and independent design review e922b533cb0422f098295fb71cb02beafb315bd3453c6fec87272e15a1eed950. No UE/build/native or saved-asset run in this checkpoint. Native31/32 failures and held Stage32 remain intact. This implementation needs independent exact-head code review, compilation and actual focused/full-world validation.

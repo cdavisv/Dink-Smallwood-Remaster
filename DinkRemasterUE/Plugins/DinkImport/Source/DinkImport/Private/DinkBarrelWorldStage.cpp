@@ -834,14 +834,24 @@ FString PrivateBodyVersions(const FArchive& Ar)
  TArray<FString> Versions;for(const auto& V:Ar.GetCustomVersions().GetAllVersions())Versions.Add(V.Key.ToString()+TEXT(":")+LexToString(V.Version));
  Versions.Sort();return FString::Printf(TEXT("UE=%d Licensee=%d port=%u saving=%d loading=%d cooking=%d persistent=%d swapping=%d custom="),Ar.UEVer().ToValue(),Ar.LicenseeUEVer(),Ar.GetPortFlags(),int32(Ar.IsSaving()),int32(Ar.IsLoading()),int32(Ar.IsCooking()),int32(Ar.IsPersistent()),int32(Ar.IsByteSwapping()))+FString::Join(Versions,TEXT(";"));
 }
+// Literal object metadata is independent of reflected/native save streams.
+struct FBodyLiteralMetadata
+{
+ EObjectFlags Flags;const UObject* Outer;const UObject* Archetype;const UClass* Class;FName Name;
+ explicit FBodyLiteralMetadata(const UBodySetup& Body)
+ :Flags(Body.GetFlags()),Outer(Body.GetOuter()),Archetype(Body.GetArchetype()),Class(Body.GetClass()),Name(Body.GetFName()){}
+ bool Matches(const UBodySetup& Body)const
+ {return Flags==Body.GetFlags()&&Outer==Body.GetOuter()&&Archetype==Body.GetArchetype()&&Class==Body.GetClass()&&Name==Body.GetFName();}
+};
 bool NativeBodyPass(UBodySetup& Body,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,bool Role,TArray<uint8>& Bytes,TArray<int64>* Offsets,FString* Versions,FString* Audit)
 {
  const TMap<const UObject*,FString> LiteralIDs;const TSet<const UPackage*> None;
- TArray<uint8> Before,After;const FGuid GuidBefore=Body.BodySetupGuid;
+ TArray<uint8> Before,After;const FGuid GuidBefore=Body.BodySetupGuid;const FBodyLiteralMetadata MetadataBefore(Body);
  if(!State(Body,LiteralIDs,None,false,Before))return false;
  FPrivateBodyWriter W(Bytes,IDs,Forbidden,Target,Body.BodySetupGuid,Role);
- if(W.IsError())return false;Body.Serialize(W);
- if(!State(Body,LiteralIDs,None,false,After)||Before!=After||GuidBefore!=Body.BodySetupGuid)return false;
+ if(W.IsError()||!MetadataBefore.Matches(Body))return false;Body.Serialize(W);
+ if(!MetadataBefore.Matches(Body))return false;
+ if(!State(Body,LiteralIDs,None,false,After)||Before!=After||GuidBefore!=Body.BodySetupGuid||!MetadataBefore.Matches(Body))return false;
  if(Offsets)*Offsets=W.Offsets;if(Versions)*Versions=PrivateBodyVersions(W);
  if(Audit){*Audit=PrivateBodyVersions(W);for(int I=0;I<W.LiteralWords.Num();++I)*Audit+=FString::Printf(TEXT(" word%d=%08x@%lld"),I,W.LiteralWords[I],static_cast<long long>(W.Offsets[I]));}
  return W.Complete();
@@ -947,9 +957,10 @@ bool CaptureBinarySourceTopology(const FBinaryControlLifetime& Lifetime,TArray<u
    {int32 Enabled=int32(C->GetCollisionEnabled()),Type=int32(C->GetCollisionObjectType());FName Profile=C->GetCollisionProfileName();bool Physics=C->IsPhysicsStateCreated();W<<Enabled<<Type<<Profile<<Physics;const FBodyInstance& ExistingInstance=C->BodyInstance;Pointer(ExistingInstance.GetPhysicsActorHandle());for(int I=0;I<64;++I){int32 Response=int32(C->GetCollisionResponseToChannels().GetResponse(static_cast<ECollisionChannel>(I)));W<<Response;}
     const auto* ShapeBody=FindFProperty<FObjectPropertyBase>(UShapeComponent::StaticClass(),TEXT("ShapeBodySetup"));
     auto* ExistingBody=C->IsA<UShapeComponent>()&&ShapeBody?Cast<UBodySetup>(ShapeBody->GetObjectPropertyValue_InContainer(C)):nullptr;Pointer(ExistingBody);
-    if(ExistingBody){FGuid Guid=ExistingBody->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*ExistingBody,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*ExistingBody,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}}
+    if(ExistingBody){const FBodyLiteralMetadata Metadata(*ExistingBody);uint32 Flags=static_cast<uint32>(Metadata.Flags);FName Name=Metadata.Name;W<<Flags<<Name;Pointer(Metadata.Outer);Pointer(Metadata.Archetype);Pointer(Metadata.Class);FGuid Guid=ExistingBody->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*ExistingBody,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*ExistingBody,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}}
    if(auto* Body=Cast<UBodySetup>(Object))
-   {FGuid Guid=Body->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*Body,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*Body,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}
+   {const FBodyLiteralMetadata Metadata(*Body);uint32 Flags=static_cast<uint32>(Metadata.Flags);FName Name=Metadata.Name;W<<Flags<<Name;Pointer(Metadata.Outer);Pointer(Metadata.Archetype);Pointer(Metadata.Class);
+    FGuid Guid=Body->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*Body,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*Body,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}
   }
  }
  return !W.IsError();
@@ -1423,6 +1434,14 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  if(SourceBody->AggGeom.BoxElems.Num()==1&&CopyBody->AggGeom.BoxElems.Num()==1)
  {TestEqual(TEXT("copied physical box X"),CopyBody->AggGeom.BoxElems[0].X,SourceBody->AggGeom.BoxElems[0].X);TestEqual(TEXT("copied physical box Y"),CopyBody->AggGeom.BoxElems[0].Y,SourceBody->AggGeom.BoxElems[0].Y);TestEqual(TEXT("copied physical box Z"),CopyBody->AggGeom.BoxElems[0].Z,SourceBody->AggGeom.BoxElems[0].Z);}
  TestEqual(TEXT("copied physics readiness matches source"),WarpCopy->IsPhysicsStateCreated(),Warp->IsPhysicsStateCreated());
+ const FBodyLiteralMetadata SourceMetadata(*SourceBody);
+ const bool HadTransactional=SourceBody->HasAnyFlags(RF_Transactional);
+ if(HadTransactional)SourceBody->ClearFlags(RF_Transactional);else SourceBody->SetFlags(RF_Transactional);
+ TestFalse(TEXT("literal source metadata detects a flag mutation independently of save streams"),SourceMetadata.Matches(*SourceBody));
+ TestFalse(TEXT("source topology refuses metadata flag mutation after baseline"),VerifyBinarySourceTopology(Lifetime,Error));
+ if(HadTransactional)SourceBody->SetFlags(RF_Transactional);else SourceBody->ClearFlags(RF_Transactional);
+ TestTrue(TEXT("source flags/outer/archetype/class/name restored to exact original metadata"),SourceMetadata.Matches(*SourceBody));
+ TestTrue(TEXT("source topology exactly restored after metadata negative"),VerifyBinarySourceTopology(Lifetime,Error));
  TestTrue(TEXT("loaded Movable source has exact stock invalid light GUIDs"),!LightGuidBefore.IsValid()&&!OriginalLightGuidBefore.IsValid());
  TestTrue(TEXT("loaded ISM public post-population initializes persistent seed before baseline"),Instances->InstancingRandomSeed!=0);
  TestTrue(TEXT("actual private source/target cache GUIDs valid, independent and not forged"),SourceBody->BodySetupGuid.IsValid()&&CopyBody->BodySetupGuid.IsValid()&&SourceBody->BodySetupGuid!=CopyBody->BodySetupGuid);
