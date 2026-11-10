@@ -1,3 +1,9 @@
+## Stage35 live Chaos triangle read
+
+Stage35 run 7ad72463ca5645cf87e83225c19b9477 ended native245 with zero packages and protected inputs unchanged. The symbolized stack reaches DinkGreyboxAssets.cpp through GetTriMeshGeometry and the checked CastHelper in CastingUtilities.h. Installed ChaosInterfaceUtils.cpp307–325 creates an instanced triangle mesh for a unit-scale complex shape. GetShapeType strips wrapper bits, but GetTriMeshGeometry delegates to a dispatcher without triangle cases.
+
+The verifier now reads the live shape under its physics read lock and uses Chaos::UnwrapImplicit with explicit unit scale and zero margin checks. Unsupported geometry, transforms and invalid triangle indices return a stage error. Source mesh provenance, component transform, one query/simulation shape, collision/profile, overlap/navigation and exact oriented triangle comparisons remain required. The patch awaits build and a new stage run. The original failed run is preserved.
+
 ## Native37 fixture lifecycle correction
 
 Native37 run fb6ca4f11f1747b7a068ef9a8c77fc3f recorded one pass and one failure. The BinaryControlCopy log points to the existing forced GC collecting the saved SnowIsle world while its WorldPartitionSubsystem was still initialized. The fixture now holds the loaded UWorld explicitly and tears down its newly loaded, context-free world with DestroyWorld before releasing it for GC. An already loaded world or one owned by an engine context stays with its owner. The actual SnowIsle component, stock duplicate, cache mismatch and exact restoration assertions are retained. Installed World.cpp DestroyWorld and CleanupWorldInternal route subsystem deinitialization before GC. The correction awaits a fresh Editor/Game build and the same two native tests.

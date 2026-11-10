@@ -5,6 +5,8 @@
 #include "DinkCollision.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/CollisionProfile.h"
+#include "Chaos/ImplicitObjectScaled.h"
+#include "Chaos/ShapeInstance.h"
 #include "Chaos/TriangleMeshImplicitObject.h"
 #include "Physics/PhysicsInterfaceCore.h"
 #include "DinkImportLog.h"
@@ -1035,6 +1037,7 @@ namespace DinkGreybox
             }
             return Best;
         };
+        FString GeometryFailure;
         auto Verify=[&](UStaticMeshComponent* C,UStaticMesh* Mesh,FName Profile,ECollisionChannel Channel,const TCHAR* RoleTag) {
             if(!Mesh) return C==nullptr || C->GetStaticMesh()==nullptr;
             FCollisionResponseTemplate Template;
@@ -1058,27 +1061,93 @@ namespace DinkGreybox
                 Expected.Add(Signature(Positions[Description->GetVertexInstanceVertex(VI[1])],
                     Positions[Description->GetVertexInstanceVertex(VI[0])],Positions[Description->GetVertexInstanceVertex(VI[2])]));
             }
-            TArray<FString> Actual; bool Read=false;
-            FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),[&](const FPhysicsActorHandle& Actor) {
+            TArray<FString> Actual;
+            bool bReadTriangles = false;
+            FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),
+                [&](const FPhysicsActorHandle& Actor)
+            {
                 TArray<FPhysicsShapeHandle> Shapes;
-                if(FPhysicsInterface::GetAllShapes_AssumedLocked(Actor,Shapes)!=1 ||
-                    FPhysicsInterface::GetShapeType(Shapes[0])!=ECollisionShapeType::Trimesh ||
-                    !FPhysicsInterface::IsQueryShape(Shapes[0]) || !FPhysicsInterface::IsSimulationShape(Shapes[0])) return;
-                const auto Geometry=FPhysicsInterface::GetGeometryCollection(Shapes[0]);
-                const auto& MeshGeometry=Geometry.GetTriMeshGeometry();
-                auto ReadIndices=[&](const auto& Indices) {
-                    for(const auto& Index:Indices) Actual.Add(Signature(FVector3f(MeshGeometry.Particles().GetX(Index[0])),
-                        FVector3f(MeshGeometry.Particles().GetX(Index[1])),FVector3f(MeshGeometry.Particles().GetX(Index[2]))));
+                if (FPhysicsInterface::GetAllShapes_AssumedLocked(Actor, Shapes) != 1 ||
+                    Shapes.Num() != 1 || !Shapes[0].IsValid() ||
+                    !FPhysicsInterface::IsQueryShape(Shapes[0]) ||
+                    !FPhysicsInterface::IsSimulationShape(Shapes[0]))
+                {
+                    GeometryFailure = FString::Printf(TEXT("%s requires one live query and simulation shape"), RoleTag);
+                    return;
+                }
+
+                // Unit-scale static meshes are registered as instanced triangle
+                // meshes. The physics collection's checked getter uses a cast
+                // dispatcher that does not handle triangle meshes in this engine.
+                const Chaos::FImplicitObjectRef Geometry = Shapes[0].Shape->GetGeometry();
+                if (!Geometry)
+                {
+                    GeometryFailure = FString::Printf(TEXT("%s live shape has no geometry"), RoleTag);
+                    return;
+                }
+
+                Chaos::FVec3 Scale(1);
+                Chaos::FReal Margin = 0;
+                const auto* TriangleMesh = Chaos::UnwrapImplicit<Chaos::FTriangleMeshImplicitObject>(
+                    *Geometry, Scale, Margin);
+                // Fixed geometry is already in the expected local frame.
+                // Reject transformed/unknown wrappers and any actual scale or margin.
+                if (!TriangleMesh || Scale != Chaos::FVec3(1) || Margin != 0)
+                {
+                    GeometryFailure = FString::Printf(
+                        TEXT("%s unsupported live triangle geometry type=%u scale=(%.17g,%.17g,%.17g) margin=%.17g"),
+                        RoleTag, static_cast<uint32>(Geometry->GetType()),
+                        double(Scale.X), double(Scale.Y), double(Scale.Z), double(Margin));
+                    return;
+                }
+
+                const uint64 ParticleCount = TriangleMesh->Particles().Size();
+                auto ReadIndices = [&](const auto& Indices)
+                {
+                    for (const auto& Index : Indices)
+                    {
+                        if (uint64(Index[0]) >= ParticleCount || uint64(Index[1]) >= ParticleCount ||
+                            uint64(Index[2]) >= ParticleCount)
+                        {
+                            GeometryFailure = FString::Printf(TEXT("%s live triangle has an invalid vertex index"), RoleTag);
+                            return false;
+                        }
+                        Actual.Add(Signature(FVector3f(TriangleMesh->Particles().GetX(Index[0])),
+                            FVector3f(TriangleMesh->Particles().GetX(Index[1])),
+                            FVector3f(TriangleMesh->Particles().GetX(Index[2]))));
+                    }
+                    return true;
                 };
-                if(MeshGeometry.Elements().RequiresLargeIndices()) ReadIndices(MeshGeometry.Elements().GetLargeIndexBuffer());
-                else ReadIndices(MeshGeometry.Elements().GetSmallIndexBuffer());
-                Read=true;
+                const auto& Elements = TriangleMesh->Elements();
+                bReadTriangles = Elements.RequiresLargeIndices()
+                    ? ReadIndices(Elements.GetLargeIndexBuffer())
+                    : ReadIndices(Elements.GetSmallIndexBuffer());
             });
-            Expected.Sort(); Actual.Sort(); return Read && Actual==Expected;
+            if (!bReadTriangles)
+            {
+                if (GeometryFailure.IsEmpty())
+                {
+                    GeometryFailure = FString::Printf(TEXT("%s live physics read did not complete"), RoleTag);
+                }
+                return false;
+            }
+            Expected.Sort();
+            Actual.Sort();
+            if (Actual != Expected)
+            {
+                GeometryFailure = FString::Printf(TEXT("%s live oriented triangle mismatch expected=%d actual=%d"),
+                    RoleTag, Expected.Num(), Actual.Num());
+                return false;
+            }
+            return true;
         };
         if(!Verify(&Solid,Candidate.FixedSolid,DinkCollision::ProfileHardSolid,DinkCollision::HardSolid,TEXT("DinkHardnessFixedFloorFillV1")) ||
             !Verify(Low,Candidate.FixedLow,DinkCollision::ProfileHardLow,DinkCollision::HardLow,TEXT("DinkHardnessFixedWaterV1")))
-        { Error=TEXT("actual foundation instance geometry/channel/profile/nav/overlap proof failed"); return false; }
+        {
+            Error = TEXT("actual foundation instance geometry/channel/profile/nav/overlap proof failed");
+            if (!GeometryFailure.IsEmpty()) Error += TEXT(": ") + GeometryFailure;
+            return false;
+        }
         Error.Reset(); return true;
     }
 
