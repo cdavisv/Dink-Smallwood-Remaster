@@ -1,3 +1,9 @@
+## Stage29 exact stock-TEXT parent position restoration — source-only pending independent review
+
+Actual Stage29 native0/helperrefusal31.142s/13318unchanged/zerooutputs now proves Bounds parent root/unattached/registered/local-ownactor/world-ownactor/relative-world alltrue. Actual RelativeLocation property source Y55656.424999999988 exported/imported withstockflags2565 exactlyequals target55656.425000000003; Euler0/scale1exact. The difference is twoULP, so unchanged maxONEULP generic predicates correctly refused it. Actual receipt at RuntimeHardnessActualStage/Candidate29/Runs/b394283db90e47e8b86a035db079a953 is preserved.
+
+New narrow position-only fallback requires exact mapped distinct-world actor/root/class, registered/unattached finite pose, byte-exact Euler/Q/cache-derivedQ/scale/absolute flags, per-side local==ownactor and relative==world==ownactor TRS. Only a complete typed stockRelativeLocation export/temporaryimport that exactlymatches actualtarget bits qualifies. Restore exactsource position withoneTeleport and existingexactlocal/actor/worldpostconditions. No ULPbudget increase/epsilon/quaternion/cache waiver/parent guard bypass. Old oneULP predicates and allnegativefixtures untouched; actual measured twoULP-positive/nonTEXTtwoULP/Q/scale/owner negatives and sourcebytesame fixture added. Diffcheck passes; uncompiled/unrun. No assets/UE/source2b/Root4fb writes. Root independent review beforebuild.
+
 ## Stage28 mapped-parent diagnostic checkpoint — source-only, no repair
 
 Runtime8c3 actual Stage28 native0/helperFAIL30.6449s/13318unchanged/zerooutputs. DinkScreenVolume_340.EdgeWall_S child refusal showed parent Bounds Y55656.424999999988→55656.425000000003 (two ULP) with exactQ/scale. All-root repair already precedes sorted-child repair; old one-ULP roottranslation left this root unchanged. No ordering or parent-equality waiver is justified.
