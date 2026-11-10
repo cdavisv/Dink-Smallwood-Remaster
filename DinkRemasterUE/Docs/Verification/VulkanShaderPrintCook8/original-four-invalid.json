@@ -1,0 +1,49 @@
+{
+  "archive": "DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate7/Runs/63a96d9622664e74bf64258405b4cadb/User/Saved/Shaders/SF_VULKAN_SM6-VULKAN_SM6/ShaderCode-Global-SF_VULKAN_SM6-VULKAN_SM6.ushaderbytecode",
+  "archive_sha256": "6fe535953882c8ff98bbb4e472362087e4dda7a00c287b38342092410595b116",
+  "shader_type_hash": "54DF63AF790DF1E7",
+  "actual_typed_count": 4,
+  "all_vulkan13_valid": false,
+  "rows": [
+    {
+      "index": 1631,
+      "shader_hash": "2F68F410CFB8F1FC",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71588,
+      "SPIRV_sha256": "4f6cc89a2a0a09dce1b4869864c4a49c32f2f0fc6387e2412e9d5a76def76b15",
+      "raw_offset": 255,
+      "validator_exit": 1,
+      "error": "error: line 844: [VUID-StandaloneSpirv-OpTypeImage-06924] Cannot store to OpTypeImage, OpTypeSampler, OpTypeSampledImage, or OpTypeAccelerationStructureKHR objects\n  OpStore %187 %232"
+    },
+    {
+      "index": 3960,
+      "shader_hash": "7118AC4F7A33D041",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71020,
+      "SPIRV_sha256": "f3b53d3c06a77b244c07dd84c721748266c12dd7ddcb291fd1b737aceb2145de",
+      "raw_offset": 255,
+      "validator_exit": 1,
+      "error": "error: line 819: [VUID-StandaloneSpirv-OpTypeImage-06924] Cannot store to OpTypeImage, OpTypeSampler, OpTypeSampledImage, or OpTypeAccelerationStructureKHR objects\n  OpStore %181 %226"
+    },
+    {
+      "index": 6733,
+      "shader_hash": "C2756A4CAE5FEC70",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71564,
+      "SPIRV_sha256": "1b4a793178a0c0d5010c7349c289d0a85caf6201b7aed1ce46cbe71dd0493fe0",
+      "raw_offset": 255,
+      "validator_exit": 1,
+      "error": "error: line 799: [VUID-StandaloneSpirv-OpTypeImage-06924] Cannot store to OpTypeImage, OpTypeSampler, OpTypeSampledImage, or OpTypeAccelerationStructureKHR objects\n  OpStore %181 %226"
+    },
+    {
+      "index": 7802,
+      "shader_hash": "E17A8A912E00A31E",
+      "shader_type": "FSubsurfaceDebugCS",
+      "SPIRV_size": 71564,
+      "SPIRV_sha256": "9c5bbc97262b0d88bfa0e786b169f7e343bea0cb85ca310294377c4c022d3e19",
+      "raw_offset": 255,
+      "validator_exit": 1,
+      "error": "error: line 799: [VUID-StandaloneSpirv-OpTypeImage-06924] Cannot store to OpTypeImage, OpTypeSampler, OpTypeSampledImage, or OpTypeAccelerationStructureKHR objects\n  OpStore %181 %226"
+    }
+  ]
+}

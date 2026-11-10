@@ -1,0 +1,107 @@
+{
+  "status": "PACKAGED_RENDERED_SMOKE_PASS_WITH_4_WARNINGS",
+  "result": {
+    "exit_code": 0,
+    "elapsed": 247.61042278600507,
+    "inputs_unchanged": 12957,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "driver_tools": {
+    "init_photos": 21671,
+    "door": 92555,
+    "quit": 7929
+  },
+  "backend": "ActualVulkan/RADV26.2.5/PSOPrecaching1/originalV1normalpoolargs; noVKoverride",
+  "source_files_unchanged": 12957,
+  "stage_files_unchanged": 39,
+  "photo_SHA256": {
+    "door-before.png": "1b31c93f83196b44b06abbd6a7544514310252676a19b5f767263bdc5daf70fe",
+    "door-exit.png": "788101d73aee097afc3918b65e75f04884688a9e93d011cc1c3e2d0adadd9747",
+    "door-return.png": "0831c17e50e48d76c1cdf41b4ed1c434e832accf298f9d28620e3888d4a704d0",
+    "final.png": "d11e49abfa6662c6dc43c7043851797673adfa95e6e1caceaec23bc92f428cca",
+    "roof-0.png": "1e0931abb232248dd8b1a85179fa900f56645009dcb190b6742814804398ed70",
+    "roof-270.png": "8bc7717250552427f612b01fa14db8754ad3c5bce1ea5fc33d297799517c0683",
+    "room.png": "c7f776abd9534e3e87d11931e4b825e103332494edf4454565d8f94e248e0945"
+  },
+  "actual_player_receipts": [
+    "player-room.json",
+    "player-roof-0.json",
+    "player-roof-270.json",
+    "player-door-before.json",
+    "player-door-exit.json",
+    "player-door-return.json",
+    "player-final.json"
+  ],
+  "screenshots_visually_reviewed": [
+    "door-before.png",
+    "door-exit.png",
+    "door-return.png",
+    "final.png",
+    "roof-0.png",
+    "roof-270.png",
+    "room.png"
+  ],
+  "real_W_routes": {
+    "route-door-exit.json": {
+      "result": "PASS",
+      "input": "Only actual held W and camera orientation; no route teleports",
+      "expected_screen": 439,
+      "first_screen": 1,
+      "last_screen": 439
+    },
+    "route-door-return.json": {
+      "result": "PASS",
+      "input": "Only actual held W and camera orientation; no route teleports",
+      "expected_screen": 1,
+      "first_screen": 439,
+      "last_screen": 1
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "[2026.11.10-11.03.52:617][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+    "[2026.11.10-11.03.52:617][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+    "[2026.11.10-11.07.51:723][476]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0x7fe75c121800 has unfreed Image resources ",
+    "[2026.11.10-11.07.51:724][476]LogVulkanRHI: Warning:  ** LEAK 000 [07800000-004d0008] 5046280  ImageRT "
+  ],
+  "closure": [
+    {
+      "pid": 716483,
+      "recorded_start_ticks": 7017565,
+      "exists": false
+    },
+    {
+      "pid": 716494,
+      "recorded_start_ticks": 7017914,
+      "exists": false
+    },
+    {
+      "pid": 716501,
+      "recorded_start_ticks": 7017925,
+      "exists": false
+    },
+    {
+      "pid": 716503,
+      "recorded_start_ticks": 7017926,
+      "exists": false
+    }
+  ],
+  "limitations": [
+    "Sevenboundedphotos/2actualdoor routes only, notallworldcontacts/finalart",
+    "NoPythoncamera/mesh diagnostics inpackagedgame; runtimeconsole/pixels only",
+    "Knowninheritedroofdarkgable/tangentlimits notresolved",
+    "4actualwarningsretained inclshutdownImageRTresourceleak warning"
+  ],
+  "source_feature_material_physics_setters": false,
+  "approved_runtime_setup_commands": [
+    "dink.Goto initial photo/door fixture only",
+    "dink.View camera orientation",
+    "dink.ScreenScripts 1",
+    "dink.ScreenInfo 0"
+  ],
+  "clarifies_previous_receipt_field": {
+    "previous_sha256": "dd97cacceda206d6feede9f63baa79545b16f4d9f0170ac22c8d7ba94e3c4bd5",
+    "reason": "Originalfieldlabelruntime_setterswasoverbroad: approvedGoto/View/scriptdebugcommandswererun; noSource/feature/material/physicssetters. Actualresults/hashes unchanged."
+  }
+}

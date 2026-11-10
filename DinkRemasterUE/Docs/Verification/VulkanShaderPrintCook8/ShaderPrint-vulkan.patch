@@ -1,0 +1,11 @@
+--- Engine/Shaders/Private/ShaderPrint.ush
++++ Engine/Shaders/Private/ShaderPrint.ush
+@@ -10,7 +10,7 @@
+ // ES3.1 doesn't support buffers in structs.
+ // FXC compiler can't unroll the Print loops correctly when the buffers are in structs.
+ // FXC compiler can't use buffers which are conditionally initialized.
+-#if ES3_1_PROFILE || (COMPILER_HLSL && !COMPILER_DXC)
++#if ES3_1_PROFILE || (COMPILER_HLSL && !COMPILER_DXC) || COMPILER_VULKAN
+ #define SHADER_PRINT_USE_GLOBAL_RESOURCE 1
+ #else
+ #define SHADER_PRINT_USE_GLOBAL_RESOURCE 0
