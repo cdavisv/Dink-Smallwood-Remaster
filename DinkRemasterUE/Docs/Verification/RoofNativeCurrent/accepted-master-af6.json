@@ -1,5 +1,5 @@
 {
-  "status": "ACCEPTED_MASTER_MERGED_SOURCE_HISTORY_FIX_AND_REBUILD_PENDING",
+  "status": "ACCEPTED_MASTER_AND_EXACT_SOURCE_HISTORY_VERIFIED_REBUILD_PENDING",
   "base": "52dabc60e0ed3b11b88c7e3974344838dd58b997",
   "accepted_master": "af6f6c4d62859531112c2bd0a388ea00c2b43ae4",
   "roof": "bee8f2b8aeadfe040fb50cb5810fc8c7e4701671",
@@ -58,5 +58,31 @@
     "layout_cases_passed": 3,
     "approved_audio_runtime_matches": true,
     "passed": false
-  }
+  },
+  "source_audit_final": {
+    "verification_mode": "full",
+    "binary_files_verified": 4470,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 517,
+    "shell_syntax_files": 22,
+    "ledger_rows": 4325,
+    "historical_rows_binary_verified": 11,
+    "historical_rows_metadata_only": 0,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "history_ledger_rows_appended": 11,
+  "current_ledger_sha256": "f35572950cd1f4b56251c966ba0357bcea749d6bd75b9509f9dcfc7e35b9ebca",
+  "python_regressions": {
+    "executed": 531,
+    "passed": true,
+    "hero_history_executions": 27,
+    "hero_history_distinct_cases": 17
+  },
+  "history_validation": "Only frozen11 accepted hero revisions; real archive/current bytes required in full mode, exact staged path/OID/size required for metadata pointers. Prior rows unchanged; no generic latest-row waiver."
 }

@@ -1,3 +1,9 @@
+## Accepted hero source history validated; combined runtime rebuild pending
+
+At accepted-master mergebd35802, preserve11exactpriorhero source preimages under DefectFixes_9Nov2026/History/<oldsha>/<basename>, verified against oldGit/LFS. Append11historyrows after exact4314-row mergedprefix =>4325. Narrow frozen11revision validator proves oldarchive+currentacceptedbytes and laterroworder; metadata mode admits only exact stagedpointerpath/OID/size and reports it separately. No oldrow rewrite, genericlatestrow exemption or runtime changes in this history fix.
+
+All531Python tests pass (27history executions/17distinct cases). Sequential full source audit passes4470actualbinaries/517Python/22shell/4325ledger/11binaryhistory, zero missing/hash/syntax/secrets. Prior failed audit retained; a concurrent testtemp scan was rerun sequentially aftertests. Isolated metadata-only CI-style checkout verification and own combined Editor/Game rebuild remain pending. Prior194full success remains scopedbee8f2b; accepted af6hero+roof snapshot is not yet runtime-validated. Runtime stage18raw repair succeeded at exactmatrix stage, next normaltarget-only cacheNav/Localrefresh underC31 tests; no saved candidateworld/default/GPU yet.
+
 ## Accepted hero fixes integrated; new build and source-history validation pending
 
 Current branch merges accepted master af6f6c4 (PR51 hero wall clearance/cuffs/chest/belt and PR54 packaged parity) after the closed194-test roof run. Exact25 changed LFS files match accepted master OIDs. Only conflict was append-only ledger: preserve all4278Rootrows byte-for-byte, then append exact36masterrows =>4314; independent review passed. Roof Data/native packages remain unchanged. The prior194/194 and20-photo GPU evidence is scoped to bee8f2b/e65b19b and does not validate this combined snapshot. Own rebuild/current checks/cook remain required.
