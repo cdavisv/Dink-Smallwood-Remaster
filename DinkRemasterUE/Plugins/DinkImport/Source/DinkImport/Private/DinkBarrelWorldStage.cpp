@@ -103,26 +103,35 @@ bool MeasuredNearZeroRotation(UObject& A,UObject& B,FRotator& Canonical,FString&
  Evidence=FString::Printf(TEXT("RelativeRotation machine-zero ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) budgetDeg=%.17g; nonzeroangles/nonspatialbytes unchanged"),XS[0],XS[1],XS[2],YS[0],YS[1],YS[2],Budget);
  return true;
 }
-bool MeasuredActorTranslation(UObject& Source,UObject& Target,FTransform& Canonical,FString& Evidence)
+bool AdjacentTranslationValues(const double (&A)[3],const double (&B)[3])
 {
- auto* A=Cast<AActor>(&Source);auto* B=Cast<AActor>(&Target);if(!A||!B||A->GetClass()!=B->GetClass())return false;
- const FTransform S=A->GetActorTransform(),T=B->GetActorTransform();if(S.ContainsNaN()||T.ContainsNaN())return false;
+ bool Difference=false;
+ for(int I=0;I<3;++I)
+ {
+  if(!FMath::IsFinite(A[I])||!FMath::IsFinite(B[I]))return false;
+  if(FMemory::Memcmp(&A[I],&B[I],sizeof(double))==0)continue;
+  if(std::nextafter(A[I],B[I])!=B[I])return false;
+  Difference=true;
+ }
+ return Difference;
+}
+bool MeasuredWorldTranslation(const FTransform& S,const FTransform& T,FTransform& Canonical,FString& Evidence)
+{
+ if(S.ContainsNaN()||T.ContainsNaN())return false;
  const FQuat SQ=S.GetRotation(),TQ=T.GetRotation();const FVector SS=S.GetScale3D(),TS=T.GetScale3D();
  const double Q1[]={SQ.X,SQ.Y,SQ.Z,SQ.W},Q2[]={TQ.X,TQ.Y,TQ.Z,TQ.W};
  const double K1[]={SS.X,SS.Y,SS.Z},K2[]={TS.X,TS.Y,TS.Z};
  if(FMemory::Memcmp(Q1,Q2,sizeof(Q1))||FMemory::Memcmp(K1,K2,sizeof(K1)))return false;
- const FVector X=S.GetTranslation(),Y=T.GetTranslation();const double V1[]={X.X,X.Y,X.Z},V2[]={Y.X,Y.Y,Y.Z};bool Difference=false;
- for(int I=0;I<3;++I)
- {
-  if(!FMath::IsFinite(V1[I])||!FMath::IsFinite(V2[I]))return false;
-  if(FMemory::Memcmp(&V1[I],&V2[I],sizeof(double))==0)continue;
-  if(std::nextafter(V1[I],V2[I])!=V2[I])return false;
-  Difference=true;
- }
- if(!Difference)return false;
+ const FVector X=S.GetTranslation(),Y=T.GetTranslation();const double V1[]={X.X,X.Y,X.Z},V2[]={Y.X,Y.Y,Y.Z};
+ if(!AdjacentTranslationValues(V1,V2))return false;
  Canonical=S;
  Evidence=FString::Printf(TEXT("ACTOR-world translation ONLY maxONE adjacent-double peraxis source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) deltaCm=(%.17g,%.17g,%.17g); Q/scale/nonspatial/sourcebytes strict"),V1[0],V1[1],V1[2],V2[0],V2[1],V2[2],V2[0]-V1[0],V2[1]-V1[1],V2[2]-V1[2]);
  return true;
+}
+bool MeasuredActorTranslation(UObject& Source,UObject& Target,FTransform& Canonical,FString& Evidence)
+{
+ auto* A=Cast<AActor>(&Source);auto* B=Cast<AActor>(&Target);
+ return A&&B&&A->GetClass()==B->GetClass()&&MeasuredWorldTranslation(A->GetActorTransform(),B->GetActorTransform(),Canonical,Evidence);
 }
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
@@ -349,3 +358,32 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   Saved.Add(File);
  Count=Targets.Num();return Reply(true,TEXT(""),Saved,Count,Equivalences);
 }
+
+#if WITH_DEV_AUTOMATION_TESTS
+#include "Misc/AutomationTest.h"
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkStageActorTranslationRegression,
+ "Dink.Import.Foundation.ActorTranslationRepresentation",EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
+bool FDinkStageActorTranslationRegression::RunTest(const FString&)
+{
+ const double Y=-158083.09999999998;
+ const double One=std::nextafter(Y,-std::numeric_limits<double>::infinity());
+ const double Two=std::nextafter(One,-std::numeric_limits<double>::infinity());
+ const FTransform Source(FQuat::Identity,FVector(5,Y,8),FVector::OneVector);
+ FTransform Target=Source,Canonical;FString Evidence;
+ Target.SetTranslation(FVector(5,One,8));
+ TestTrue(TEXT("actual measured one-adjacent-double actorworld translation qualifies"),MeasuredWorldTranslation(Source,Target,Canonical,Evidence));
+ TestTrue(TEXT("canonical is exactsource transform"),Canonical.Equals(Source,0));
+ Target.SetTranslation(FVector(5,Two,8));
+ TestFalse(TEXT("two adjacent doubles refuse"),MeasuredWorldTranslation(Source,Target,Canonical,Evidence));
+ Target=Source;Target.SetTranslation(FVector(5,One,8));Target.SetRotation(FQuat(FVector::UpVector,.001));
+ TestFalse(TEXT("rotation change refuses even with one-ULP translation"),MeasuredWorldTranslation(Source,Target,Canonical,Evidence));
+ Target=Source;Target.SetTranslation(FVector(5,One,8));Target.SetScale3D(FVector(1,1,std::nextafter(1.,2.)));
+ TestFalse(TEXT("one-bit scale change refuses"),MeasuredWorldTranslation(Source,Target,Canonical,Evidence));
+ const double A[]={5,Y,8},NaN[]={5,std::numeric_limits<double>::quiet_NaN(),8},Infinity[]={5,std::numeric_limits<double>::infinity(),8};
+ TestFalse(TEXT("nonfinite NaN translation refuses in actual production predicate"),AdjacentTranslationValues(A,NaN));
+ TestFalse(TEXT("nonfinite infinity translation refuses in actual production predicate"),AdjacentTranslationValues(A,Infinity));
+ auto* Component=NewObject<USceneComponent>();
+ TestFalse(TEXT("component cannot use actorworld exception"),MeasuredActorTranslation(*Component,*Component,Canonical,Evidence));
+ return true;
+}
+#endif
