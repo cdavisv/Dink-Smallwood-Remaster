@@ -37,7 +37,7 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
         AddInfo(FString::Printf(TEXT("Owned scratch teardown %s rooted=%d flags=%u"),*W->GetPathName(),W->IsRooted(),uint32(W->GetFlags())));
         TestFalse(TEXT("owned scratch world released from root"),W->IsRooted());
         W->MarkObjectsPendingKill();
-        TestTrue(TEXT("owned scratch world marked for collection"),W->IsGarbage());};
+        TestTrue(TEXT("owned scratch world marked for collection"),W->HasAnyInternalFlags(EInternalObjectFlags::Garbage));};
     auto* Story=GI->GetSubsystem<UDinkStorySubsystem>();
     if(!TestTrue(TEXT("actual story dataset ready"),Story&&Story->IsReady()&&Story->GetGameplay()->HasData()))return false;
     Story->bRunScreenScripts=false;Story->bNewGamePending=false;
