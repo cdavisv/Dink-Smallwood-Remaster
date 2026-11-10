@@ -334,6 +334,38 @@ FString BoundsCacheDiagnostic(UObject& O,FProperty& Property,int Index)
  Result+=FString::Printf(TEXT(" mesh=%s meshBounds17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) rawInstanceMatrices=%d SHA1=%s ownComponentHash=%u hashMatch=%d ownValue17 origin=(%.17g,%.17g,%.17g) extent=(%.17g,%.17g,%.17g) radius=%.17g ownValueHex=%s ownValueBitMatch=%d"),*ISM->GetStaticMesh()->GetPathName(),MeshBounds.Min.X,MeshBounds.Min.Y,MeshBounds.Min.Z,MeshBounds.Max.X,MeshBounds.Max.Y,MeshBounds.Max.Z,ISM->PerInstanceSMData.Num(),*BytesToHex(MatrixDigest,20),ExpectedHash,int32(ExpectedHash==StoredHash),Expected.Origin.X,Expected.Origin.Y,Expected.Origin.Z,Expected.BoxExtent.X,Expected.BoxExtent.Y,Expected.BoxExtent.Z,double(Expected.SphereRadius),*BytesToHex(ExpectedBytes.GetData(),ExpectedBytes.Num()),int32(ExpectedBytes==StoredBytes));
  return Result;
 }
+FString RawInstanceMatrixDifference(UObject& Source,UObject& Target)
+{
+ auto* A=Cast<UInstancedStaticMeshComponent>(&Source);auto* B=Cast<UInstancedStaticMeshComponent>(&Target);
+ if(!A||!B)return FString();
+ if(A->PerInstanceSMData.Num()!=B->PerInstanceSMData.Num())return FString::Printf(TEXT(" rawMatrixCounts=%d/%d"),A->PerInstanceSMData.Num(),B->PerInstanceSMData.Num());
+ int Changed=0,ChangedMatrices=0,FirstInstance=INDEX_NONE;double MaxDelta=0;FString First;
+ for(int I=0;I<A->PerInstanceSMData.Num();++I)
+ {
+  bool MatrixChanged=false;
+  for(int R=0;R<4;++R)for(int C=0;C<4;++C)
+  {
+   const auto& X=A->PerInstanceSMData[I].Transform.M[R][C];const auto& Y=B->PerInstanceSMData[I].Transform.M[R][C];
+   if(FMemory::Memcmp(&X,&Y,sizeof(X))==0)continue;
+   ++Changed;MatrixChanged=true;MaxDelta=FMath::Max(MaxDelta,FMath::Abs(double(Y)-double(X)));
+   if(FirstInstance==INDEX_NONE)
+   {FirstInstance=I;
+    First=FString::Printf(TEXT(" firstRawMatrix instance=%d row=%d col=%d scalarBytes=%d source=%.17g target=%.17g delta=%.17g signedzero=%d/%d sourceHex=%s targetHex=%s"),I,R,C,int(sizeof(X)),double(X),double(Y),double(Y)-double(X),int32(X==0&&std::signbit(double(X))),int32(Y==0&&std::signbit(double(Y))),*BytesToHex(reinterpret_cast<const uint8*>(&X),sizeof(X)),*BytesToHex(reinterpret_cast<const uint8*>(&Y),sizeof(Y)));}
+  }
+  ChangedMatrices+=MatrixChanged?1:0;
+ }
+ FString Result=FString::Printf(TEXT(" rawInstanceMatrixDiff instances=%d differingMatrices=%d differingScalars=%d maxAbsDelta=%.17g"),A->PerInstanceSMData.Num(),ChangedMatrices,Changed,MaxDelta)+First;
+ int CanonicalDifferences=0;
+ for(int InstanceIndex=0;InstanceIndex<A->PerInstanceSMData.Num();++InstanceIndex)
+ {
+  FTransform X,Y;const bool AX=A->GetInstanceTransform(InstanceIndex,X,false),BY=B->GetInstanceTransform(InstanceIndex,Y,false);
+  TArray<uint8> L,R;if(AX&&BY){FObjectWriter LW(L),RW(R);LW<<X;RW<<Y;}
+  CanonicalDifferences+=(!AX||!BY||L!=R)?1:0;
+  if(InstanceIndex<8)Result+=FString::Printf(TEXT(" reconstructedLocalTransform instance=%d available=%d/%d canonicalBytes=%d/%d exactByteEqual=%d hexA=%s hexB=%s"),InstanceIndex,int32(AX),int32(BY),L.Num(),R.Num(),int32(AX&&BY&&L==R),*BytesToHex(L.GetData(),L.Num()),*BytesToHex(R.GetData(),R.Num()));
+ }
+ Result+=FString::Printf(TEXT(" reconstructedCanonicalDifferingInstances=%d first8HexReported"),CanonicalDifferences);
+ return Result;
+}
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
  const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
@@ -353,6 +385,7 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
    const FString AH=A.Num()<=128?BytesToHex(A.GetData(),A.Num()):TEXT("over128bytes");
    const FString BH=B.Num()<=128?BytesToHex(B.GetData(),B.Num()):TEXT("over128bytes");
    FString Numeric=NestedPropertyDifference(*P,P->ContainerPtrToValuePtr<void>(&Source,StaticIndex),P->ContainerPtrToValuePtr<void>(&Target,StaticIndex),Source,Target,IDs,Forbidden,P->GetName()+FString::Printf(TEXT("[%d]"),StaticIndex),0);
+   Numeric+=RawInstanceMatrixDifference(Source,Target);
    Numeric+=TEXT(" sourceCache:")+BoundsCacheDiagnostic(Source,*P,StaticIndex)+TEXT(" targetCache:")+BoundsCacheDiagnostic(Target,*P,StaticIndex);
    if(const auto* Struct=CastField<FStructProperty>(P);Struct&&Struct->Struct==TBaseStructure<FRotator>::Get())
    {
