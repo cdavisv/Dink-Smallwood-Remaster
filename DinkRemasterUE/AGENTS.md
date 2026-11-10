@@ -1,3 +1,7 @@
+## Accepted roof baseline merged; combined visual build pending
+
+Accepted master c608c303 (PR45) is merged here before the isolated build. Both local visual-fix and accepted packaging records below are retained. The combined visibility/debug-prism candidate still needs its own compilation, regeneration/readback, full native regression and rendered checks; previous tests do not prove this new candidate complete.
+
 ## Local inputs ready; optional debug-asset pruning corrected
 
 Exact local4482LFS objects and5478ignored legacy controls (including54templateCharacters) are hydrated with matchingSHA/independentinodes; no network/code/DLL/cache copy.2425physical/ground asset and1210source/manifest preimages are recorded externally in DinkQA/GeneratedBlockerVisualSplitPreparation. Hydration-only Git LFS stat entries refreshed with cached diff EMPTY. Independent review found optional DebugBlockers cleanup missing for nonempty→empty: the narrow shared production predicate now prunes only known-empty debug packages, retains missing-record refusal/physical assets and leaves original CollLow pruning unchanged; native positive/negative cases added, unrun. All540portable tests pass; no UE/build/import/native execution. Root is publishing newer C10 proof, so build Root protection must be freshly measured after its HEAD settles, not reused from891.
@@ -5,6 +9,13 @@ Exact local4482LFS objects and5478ignored legacy controls (including54templateCh
 ## Generated blocker presentation split — source-only, native/import pending
 
 Isolated `fix/generated-blocker-visuals` at `/home/davisc/Work/DinkGeneratedBlockerVisuals`, merged8913871+visibility683a4c1. Actual joined3 cream platform is a700×188.125×100cm generated Sprite debug prism embedded in Visual. Ground/water now have a separate normal mesh; new optional DebugBlockers mesh/component is hidden by default, NoCollision/no navigation/overlaps/shadows and exposed only by `dink.GreyboxBlockers`. Collision GeoHash/builders and original card/decor inputs are byte-preserved; visual-only cache/actor salts force actual regeneration. Four portable inventory invariants pass; two production-writer/real-physics native fixtures are added, uncompiled/unrun. Existing generated worlds still have baked boxes until import; build/native/import/readback/render/cook/full regression remain required. See Docs/Verification/GeneratedBlockerVisualSplit. Root/visibility/Runtime source untouched; no asset edits or UE launch here.
+## Normal package helper: Cook10, shaders and rendered door round trip pass
+
+At8913871, ordinary Scripts/package.sh completed actual Cook10 in308.248s with12938 immutable inputs unchanged, seven own Editor modules,433 cooker shader-overlay observations and unchanged host Engine header/stage. All four FSubsurfaceDebugCS shaders validate as Vulkan1.3 and match the successful Cook8 shader bytes. Actual containers contain73roof packages/sevenmaps/three exact ArtJSON files. There are96 changed logical chunks versus Cook8 despite unchanged source; derived byte cause remains unestablished, so containers are not claimed identical.
+
+This actual Cook10 package passes CH1 (one clean success, exact accepted narrative trace) and rendered gameplay (seven captures, real held-W exit1→439 and return439→1, normal shutdown,12977 inputs unchanged). Zero log errors/four warnings retained: two unused bindless settings and two Vulkan shutdown resource/leak warnings. CH1 PLAN/index changed during launch; reconstructed original packet matches its known SHA and all execution code/kernel/policy remained exact, but continuous complete packet identity is not claimed. Cook10 evidence retains that qualification and all previous failed attempts.
+
+Runtime remainsf973/C6; helper/scripts/docs only since that build. Visibility683 focused11 and rendered203V3 pass, full196 repeat remains required. Separate generated-debug-prism split0236131 is committed but not built/imported/tested; oversized visible cream blocks originate in combined Visual debug geometry. Distant greybox geometry, global collision rollout, new fireplace/exterior native imports and final photoreal art remain unfinished. PR45 scoped delivery review/merge next; no whole-goal completion claim.
 
 ## Normal helper device-scope correction; actual UAT retry pending
 
