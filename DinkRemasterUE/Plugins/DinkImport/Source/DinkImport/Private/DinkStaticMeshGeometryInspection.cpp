@@ -131,6 +131,11 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkStaticMeshGeometryInspectionTest,"Dink.Art
 bool FDinkStaticMeshGeometryInspectionTest::RunTest(const FString& Parameters)
 {
  auto Parse=[](const FString& Text) { TSharedPtr<FJsonObject> Data;FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Data);return Data; };
+ const FColor ImportedBytes(127,112,255,127);const FLinearColor ImportedRaw(ImportedBytes);const FColor Reencoded=ImportedRaw.ToFColor(true);
+ TestTrue(TEXT("FBX byte RGB is decoded in raw linear storage"),FMath::IsNearlyEqual(double(ImportedRaw.R),.21223075741405523,1.e-6));
+ TestTrue(TEXT("alpha is normalized without sRGB conversion"),FMath::IsNearlyEqual(double(ImportedRaw.A),127.0/255.0,1.e-6));
+ TestEqual(TEXT("mesh build re-encodes semantic RGB byte"),Reencoded.R,uint8(127));
+ TestEqual(TEXT("mesh build preserves alpha byte"),Reencoded.A,uint8(127));
  int32 MemoryCookie=1;const void* Present=&MemoryCookie;
  TestTrue(TEXT("all retained buffer pointers accepted"),VertexDataPresent(Present,Present,Present,Present,true));
  TestFalse(TEXT("missing position CPU data refused"),VertexDataPresent(nullptr,Present,Present,Present,true));
