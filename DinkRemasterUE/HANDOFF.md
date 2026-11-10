@@ -437,3 +437,10 @@ Latest e417 combined build Candidate9/run097c044b passed Editor44.67s/Game24.02s
 
 
 Fixture teardown correction93934b6 compiled in Candidate11/run44c117b7: Editor0/19.35s and Game0/21.77s,12659inputs unchanged, bothkernelPASS/Editor14stable. Before repeating native, cleanly merged accepted camera master52dabc60 (PR49/full192/GPU proofs owned by camera lane). Preserve those source/evidence bytes; own previousnativePASS remains scopedearlierbaseline and latestbroaderfatal remainspreserved. Newcombinedbuild/focus stillrequired.
+
+
+### Actual two-origin candidate source, before native acceptance
+
+After accepted camera master merge ea4bd5a, Root reviewed new StageTwoBarrelWorldV1 source79e1835... and actualpair acceptance3d51ecc... . The bounded editor helper copies actual full generated controls into an absent candidate world, excludes the two old aggregate hosts, creates fresh031/209 Visual/Decor/Origins-only hosts, verifies strict source/foundation/art authority and unchanged control properties/source references before saving only the new world+two fixedsolid assets. No generated world/Data/policy/native asset has yet been written. Mandatory candidate/default031/209 PIE cases cover actual initial birth, measuredXY/contact+oldboxgap controls, delayedhard/prop, productionhitresolver and goldHEART/food drops, ordinary reentry and broken/intact save-load. Card visibility/persistent173/6 are checked; rendered broken appearance remains separate GPU evidence. Normal/default generation integration and defaultactivation remain required after candidate acceptance. All644 original raw editor flag sidecars and selected2layers/2descriptors are prepared externally under FamilyFitActual031209Source, not admitted.
+
+Next: coherent own Editor/Game build then repeat broader26test sequence including later real Prop mapload to qualify scratch cleanup. New4actualpair tests deliberately require staged/default map+policy/markers and are not claimed passing. Root source review does not constitute runtime acceptance.
