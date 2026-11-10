@@ -131,6 +131,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Dink|Screen")
 	void SetInteriorWallVisualsHidden(bool bHideVisuals);
 
+	/** Presentation only: show generated indoor walls for the physically occupied
+	 * interior (including its joined layout screens), subject to authored hiding. */
+	void RefreshInteriorWallVisuals(const ADinkScreenVolume* ActiveScreen);
+
 	/** Exact test against the screen quad (ignores Z). */
 	UFUNCTION(BlueprintPure, Category = "Dink|Screen")
 	bool ContainsWorldLocation(const FVector& Location) const;
@@ -144,6 +148,8 @@ public:
 
 protected:
 	bool bInteriorWallVisualsHidden = false;
+	bool bInteriorWallContextVisible = false;
+	void ApplyInteriorWallVisibility();
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UStaticMeshComponent>> InteriorWallVisuals;
 
