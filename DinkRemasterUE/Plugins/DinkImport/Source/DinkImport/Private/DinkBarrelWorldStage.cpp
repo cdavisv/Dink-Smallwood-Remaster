@@ -294,7 +294,27 @@ bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWo
      !ExactVectorBytes(SL,TL)||!ExactVectorBytes(SL,Source.GetActorLocation())||!ExactVectorBytes(TL,Target.GetActorLocation())||
      !ExactVectorBytes(A->GetRelativeScale3D(),B->GetRelativeScale3D())||
      A->IsUsingAbsoluteLocation()!=B->IsUsingAbsoluteLocation()||A->IsUsingAbsoluteRotation()!=B->IsUsingAbsoluteRotation()||A->IsUsingAbsoluteScale()!=B->IsUsingAbsoluteScale())
-  {Evidence=TEXT("root Euler repair requires registered mapped unattached roots with exact finite position/scale/absolute policy");return false;}
+  {
+   const FVector SS=A->GetRelativeScale3D(),TS=B->GetRelativeScale3D();
+   Evidence=FString::Printf(TEXT("root Euler guard DIFFERENCE ownerMatch=%d classSame=%d rootMap=%d unattached=%d registered=%d finitePose=%d positionExact=%d sourceLocalWorldP=%d targetLocalWorldP=%d scaleExact=%d absoluteExact=%d rootSource=%s rootTarget=%s parents=%s/%s localP17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localEuler17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localScale17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) absoluteSource=%d/%d/%d absoluteTarget=%d/%d/%d"),
+    int32(A->GetOwner()==&Source&&B->GetOwner()==&Target),int32(A->GetClass()==B->GetClass()),int32(Remap.FindRef(A)==B),int32(!A->GetAttachParent()&&!B->GetAttachParent()),int32(A->IsRegistered()&&B->IsRegistered()),
+    int32(!SR.ContainsNaN()&&!TR.ContainsNaN()&&!SL.ContainsNaN()&&!TL.ContainsNaN()&&!SS.ContainsNaN()&&!TS.ContainsNaN()),
+    int32(ExactVectorBytes(SL,TL)),int32(ExactVectorBytes(SL,Source.GetActorLocation())),int32(ExactVectorBytes(TL,Target.GetActorLocation())),int32(ExactVectorBytes(SS,TS)),
+    int32(A->IsUsingAbsoluteLocation()==B->IsUsingAbsoluteLocation()&&A->IsUsingAbsoluteRotation()==B->IsUsingAbsoluteRotation()&&A->IsUsingAbsoluteScale()==B->IsUsingAbsoluteScale()),
+    *GetPathNameSafe(A),*GetPathNameSafe(B),*GetPathNameSafe(A->GetAttachParent()),*GetPathNameSafe(B->GetAttachParent()),SL.X,SL.Y,SL.Z,TL.X,TL.Y,TL.Z,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll,SS.X,SS.Y,SS.Z,TS.X,TS.Y,TS.Z,
+    int32(A->IsUsingAbsoluteLocation()),int32(A->IsUsingAbsoluteRotation()),int32(A->IsUsingAbsoluteScale()),int32(B->IsUsingAbsoluteLocation()),int32(B->IsUsingAbsoluteRotation()),int32(B->IsUsingAbsoluteScale()));
+   Evidence+=TEXT(" ROOT WORLD ")+TransformDifference(A->GetComponentTransform(),B->GetComponentTransform());
+   constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+   for(const TCHAR* Name:{TEXT("RelativeLocation"),TEXT("RelativeRotation"),TEXT("RelativeScale3D")})
+   {auto* P=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),Name);if(!P)continue;FString Text;P->ExportTextItem_Direct(Text,P->ContainerPtrToValuePtr<void>(A),nullptr,A,Flags);FOutputDeviceNull Errors;
+    if(P->Struct==TBaseStructure<FRotator>::Get())
+    {FRotator Expected=FRotator::ZeroRotator;const TCHAR* Tail=P->ImportText_Direct(*Text,&Expected,B,Flags,&Errors);if(Tail)while(*Tail&&FChar::IsWhitespace(*Tail))++Tail;const double X[]={Expected.Pitch,Expected.Yaw,Expected.Roll};
+     Evidence+=FString::Printf(TEXT(" stock%s source={%s} parseComplete=%d matchesActualTarget=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),Name,*Text,int32(Tail&&!*Tail),int32(Tail&&!*Tail&&!FMemory::Memcmp(X,EulerTarget,sizeof(X))),Expected.Pitch,Expected.Yaw,Expected.Roll,Flags);}
+    else if(P->Struct==TBaseStructure<FVector>::Get())
+    {FVector Expected=FVector::ZeroVector;const TCHAR* Tail=P->ImportText_Direct(*Text,&Expected,B,Flags,&Errors);if(Tail)while(*Tail&&FChar::IsWhitespace(*Tail))++Tail;const FVector Actual=FString(Name)==TEXT("RelativeLocation")?TL:TS;
+     Evidence+=FString::Printf(TEXT(" stock%s source={%s} parseComplete=%d matchesActualTarget=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),Name,*Text,int32(Tail&&!*Tail),int32(Tail&&!*Tail&&ExactVectorBytes(Expected,Actual)),Expected.X,Expected.Y,Expected.Z,Flags);}}
+   return false;
+  }
   auto* Property=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation"));
   if(!Property||Property->Struct!=TBaseStructure<FRotator>::Get()||Property->ArrayDim!=1)return false;
   constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
