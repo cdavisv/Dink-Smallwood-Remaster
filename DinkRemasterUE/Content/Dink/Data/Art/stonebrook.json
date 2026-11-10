@@ -2353,34 +2353,118 @@
       "radius_cm": 390
     },
     {
+      "name": "Daylight_NorthWall_1",
+      "kind": "rect",
       "world_cm": [
-        -184390.15999999997,
-        392480.355,
-        250.0
+        -184286.25375,
+        392253.48,
+        185
       ],
-      "lumens": 450,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
       "kelvin": 5000,
-      "radius_cm": 420
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     },
     {
+      "name": "Daylight_NorthWall_6",
+      "kind": "rect",
       "world_cm": [
-        -183252.66,
-        392786.605,
-        260.0
+        -183356.56625,
+        392253.48,
+        185
       ],
-      "lumens": 450,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
       "kelvin": 5000,
-      "radius_cm": 440
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     },
     {
+      "name": "Daylight_WestWall_2",
+      "kind": "rect",
       "world_cm": [
-        -183821.41,
-        393289.73,
-        270.0
+        -184595.15999999997,
+        392752.23,
+        185
       ],
-      "lumens": 120,
-      "kelvin": 4000,
-      "radius_cm": 480
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_WestWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -184595.15999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_2",
+      "kind": "rect",
+      "world_cm": [
+        -183047.66,
+        392752.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -183047.65999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     }
   ],
   "warp_overrides": [
