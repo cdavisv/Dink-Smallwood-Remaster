@@ -1,0 +1,20 @@
+{
+  "status": "ACTUAL_FULL_FBX_SOURCE_DECODE_PASS",
+  "fbx_sha256": "bfcb1eedea117819747e27977d40d13631d19b0aa32c31fef99c94c05fabdf4f",
+  "triangles": 194192,
+  "corners": 582576,
+  "UCX": 6,
+  "roles": [
+    "MI_Shared_DressedReed2m",
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_WeatheredTimber2m"
+  ],
+  "raw_color0": "SharedSurfaceData linearRGBA read from actualserializedLayer0",
+  "UV_convention": "Both serializedUV0/UV1 convertedV=1-V toexpectednativebuffer; materialUV1decode remainsseparate",
+  "seconds": 2.579238923994126,
+  "qualification": "Actualsourcebinarydecode, notnativebuffer/correspondence/compile/GPUproof"
+}

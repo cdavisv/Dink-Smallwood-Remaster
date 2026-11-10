@@ -1,0 +1,35 @@
+{
+  "status": "READ_ONLY_SOURCE_SELF_MATCH_AMBIGUITY_SWEEP",
+  "fbx_sha256": "bfcb1eedea117819747e27977d40d13631d19b0aa32c31fef99c94c05fabdf4f",
+  "triangles": 194192,
+  "rows": [
+    {
+      "position_tolerance_cm": 0.0001,
+      "missing_matches": 0,
+      "ambiguous_triangles": 0,
+      "max_candidates": 1,
+      "self_indices_exact": true,
+      "example_ambiguous_triangle_indices": [],
+      "seconds": 4.841841469002247
+    },
+    {
+      "position_tolerance_cm": 0.001,
+      "missing_matches": 0,
+      "ambiguous_triangles": 0,
+      "max_candidates": 1,
+      "self_indices_exact": true,
+      "example_ambiguous_triangle_indices": [],
+      "seconds": 4.597487357001228
+    },
+    {
+      "position_tolerance_cm": 0.005,
+      "missing_matches": 0,
+      "ambiguous_triangles": 0,
+      "max_candidates": 1,
+      "self_indices_exact": true,
+      "example_ambiguous_triangle_indices": [],
+      "seconds": 4.595629720002762
+    }
+  ],
+  "qualification": "Illustrative source-self sweep only, not Root-approved native tolerances. No UV/normal/color attributes choose correspondences. Actual native counts/attributes/frame/collision and numeric import error remain unproven."
+}

@@ -7,10 +7,22 @@ from house439_contract import load_contract,assert_trial_absent,require,sha,SOUR
 from house439_glass_material import build_graph as build_glass
 from house439_opaque_material import build_graph as build_opaque
 from house439_material_readback import inspect_graph as inspect_house_graph
+from house439_mesh_readback import make_mesh_verifier
 from native_texture_tools_v11 import _import_profile,_configure_profile
 from native_mesh_tools_v11c import import_house439_base,append_lods,configure_policy
 from shared_roof_native import bind_named_materials
 from relative_source_metadata import inspect_relative_sources
+
+
+
+def checked_mesh_before_save(mesh,record,configure_metadata,mesh_check,persist):
+    """Configure all relative metadata before the actual mesh verifier can inspect it."""
+    configure_metadata(mesh,record)
+    result=mesh_check(mesh,record)
+    require(isinstance(result,dict)and result.get('passed')is True,'Actual native mesh verification failed')
+    require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete whole-cottage native source proof')
+    persist(mesh)
+    return result
 
 
 def import_trial(U,root,contract,approval,guard,save,pixel_check,graph_check,mesh_check,emit_receipt):
@@ -28,17 +40,23 @@ def import_trial(U,root,contract,approval,guard,save,pixel_check,graph_check,mes
     require(U.SystemLibrary.get_console_variable_int_value('Interchange.FeatureFlags.Import.FBX')==0,'Legacy FBX importer required')
     capability=getattr(getattr(U,'DinkRoofSourceMetadataLibrary',None),'supports_house439_shared_source_filenames',None)
     require(callable(capability)and capability()is True,'House439 metadata scope not compiled/loaded; refuse before imports')
+    require(callable(getattr(getattr(U,'DinkMaterialArtLibrary',None),'inspect_static_mesh_geometry',None)),'RAW/all-UV/Color0 bridge not compiled; refuse before imports')
+    concrete_mesh_check=make_mesh_verifier(U,root,contract,approval.get('geometry_tolerances'))
     assert_trial_absent(root,contract)
     require(all(not U.EditorAssetLibrary.does_asset_exist(p)for p in contract['trial_packages']),'Loaded trial target already exists')
-    report=dict(passed=False,phase='fresh38_house439_import',contract_digest=contract['digest'],packages={},textures=[],materials=[],meshes=[],production_activated=False)
+    report=dict(passed=False,phase='fresh38_house439_import',contract_digest=contract['digest'],geometry_tolerances=dict(approval['geometry_tolerances']),packages={},textures=[],materials=[],meshes=[],production_activated=False)
     def checked(result,label):
         require(isinstance(result,dict)and result.get('passed')is True,'Actual native '+label+' verification failed');return result
+    def metadata(asset,files):
+        expected=[str(Path(p).resolve())for p in files];guard();require(U.DinkRoofSourceMetadataLibrary.set_house439_source_filenames_relative(asset,expected)is True,'House439 relative metadata setter refused')
+        inspect_relative_sources(U,asset,files,root/'SourceAssets/Art')
     def persist(asset,files=None):
         package=asset.get_path_name().split('.')[0];require(package in contract['trial_packages'],'Unexpected package save');file=root/('Content/'+package.removeprefix('/Game/')+'.uasset');require(not file.exists()and not file.is_symlink(),'Refusing package overwrite')
         if files:
-            expected=[str(Path(p).resolve())for p in files];guard();require(U.DinkRoofSourceMetadataLibrary.set_house439_source_filenames_relative(asset,expected)is True,'House439 relative metadata setter refused')
-            inspect_relative_sources(U,asset,files,root/'SourceAssets/Art')
+            metadata(asset,files)
         guard();require(save(asset,overwrite=False)is True,'Fresh package save failed');require(file.is_file()and not file.is_symlink()and file.stat().st_nlink==1,'Saved package missing/aliased');report['packages'][file.relative_to(root).as_posix()]=sha(file)
+    def combined_mesh_check(mesh,record):
+        actual=concrete_mesh_check(mesh,record);actual['additional_review']=checked(mesh_check(mesh,record),'additional mesh/frame');return actual
     try:
         imported={}
         for recipe in contract['textures']:
@@ -56,7 +74,7 @@ def import_trial(U,root,contract,approval,guard,save,pixel_check,graph_check,mes
             actual_graph=inspect_house_graph(U,material,recipe);actual_graph['additional_review']=checked(graph_check(material,recipe),'additional graph/shader');report['materials'].append(actual_graph);persist(material)
         role_packages={r['source_material']:r['package']for r in contract['materials']};subsystem=U.get_default_object(U.StaticMeshEditorSubsystem)
         for record in contract['meshes']:
-            native_record=dict(record,sha256=record['source_sha256']);mesh=import_house439_base(U,root/SOURCE,native_record,record['package'],guard);append_lods(U,mesh,root/SOURCE,[dict(index=0)],subsystem,guard);configure_policy(U,mesh,record,guard);bind_named_materials(U,mesh,role_packages,194192,guard);result=checked(mesh_check(mesh,record),'source mesh/frame/colour/collision');require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete whole-cottage native source proof');report['meshes'].append(result);persist(mesh,[root/SOURCE/record['file']])
+            native_record=dict(record,sha256=record['source_sha256']);mesh=import_house439_base(U,root/SOURCE,native_record,record['package'],guard);append_lods(U,mesh,root/SOURCE,[dict(index=0)],subsystem,guard);configure_policy(U,mesh,record,guard);bind_named_materials(U,mesh,role_packages,194192,guard);result=checked_mesh_before_save(mesh,record,lambda asset,r:metadata(asset,[root/SOURCE/r['file']]),combined_mesh_check,persist);report['meshes'].append(result)
         require(len(report['packages'])==38,'Incomplete fresh38 save set');guard();require(load_contract(root)['digest']==contract['digest'],'Source changed during trial');report['passed']=True;return report
     except BaseException as error:
         report['error']=repr(error);raise
@@ -72,6 +90,7 @@ def verify_trial_readback(U,root,contract,imported,guard,pixel_check,graph_check
     require(all(callable(x)for x in (guard,pixel_check,graph_check,mesh_check,emit_receipt)),'Reviewed read-only native callbacks required')
     root=Path(root);require(imported.get('passed')is True and imported.get('contract_digest')==contract['digest']and imported.get('phase')=='fresh38_house439_import','Successful matching native import receipt required')
     require(imported.get('production_activated')is False,'Production activation outside trial scope')
+    concrete_mesh_check=make_mesh_verifier(U,root,contract,imported.get('geometry_tolerances'))
     expected={'Content/'+p.removeprefix('/Game/')+'.uasset'for p in contract['trial_packages']};require(set(imported['packages'])==expected,'Saved package coverage differs')
     report=dict(passed=False,phase='saved38_house439_readback',contract_digest=contract['digest'],textures=[],materials=[],meshes=[],production_activated=False)
     def hashes():
@@ -86,7 +105,7 @@ def verify_trial_readback(U,root,contract,imported,guard,pixel_check,graph_check
             guard();material=U.load_asset(recipe['package']);require(isinstance(material,U.Material),'Saved material missing');actual_graph=inspect_house_graph(U,material,recipe);actual_graph['additional_review']=checked(graph_check(material,recipe),'additional saved graph/shader');report['materials'].append(actual_graph)
         roles={r['source_material']:r['package']for r in contract['materials']}
         for record in contract['meshes']:
-            guard();mesh=U.load_asset(record['package']);require(isinstance(mesh,U.StaticMesh),'Saved whole cottage missing');inspect_relative_sources(U,mesh,[root/SOURCE/record['file']],root/'SourceAssets/Art');names=[str(s.get_editor_property('imported_material_slot_name'))for s in mesh.get_editor_property('static_materials')];require(len(names)==7 and set(names)==set(roles),'Saved semantic slot set differs');inspect_slots(U,mesh,0,names,roles,194192);result=checked(mesh_check(mesh,record),'mesh/frame/colour/collision');require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete saved whole-cottage proof');report['meshes'].append(result)
+            guard();mesh=U.load_asset(record['package']);require(isinstance(mesh,U.StaticMesh),'Saved whole cottage missing');inspect_relative_sources(U,mesh,[root/SOURCE/record['file']],root/'SourceAssets/Art');names=[str(s.get_editor_property('imported_material_slot_name'))for s in mesh.get_editor_property('static_materials')];require(len(names)==7 and set(names)==set(roles),'Saved semantic slot set differs');inspect_slots(U,mesh,0,names,roles,194192);result=concrete_mesh_check(mesh,record);result['additional_review']=checked(mesh_check(mesh,record),'additional saved mesh/frame');require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete saved whole-cottage proof');report['meshes'].append(result)
         guard();hashes();require(load_contract(root)['digest']==contract['digest'],'Source changed during saved readback');report['passed']=True;return report
     except BaseException as error:report['error']=repr(error);raise
     finally:emit_receipt(report)
