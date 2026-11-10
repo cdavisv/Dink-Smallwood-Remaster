@@ -119,3 +119,67 @@ bool UDinkRoofSourceMetadataLibrary::ApplyFilenameTransaction(UObject* Asset,con
  if (Mesh) for (int32 Index=0;Index<Count;++Index) Mesh->GetSourceModel(Index).SourceImportFilename=Relative[Index];
  Asset->MarkPackageDirty();return true;
 }
+
+bool UDinkRoofSourceMetadataLibrary::SupportsHouse439SharedSourceFilenames()
+{
+ return true; // Capability only; old editor modules refuse before imports.
+}
+
+bool UDinkRoofSourceMetadataLibrary::SetHouse439SourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
+{
+ UAssetImportData* Data=ImportData(Asset);
+ if (!Data||Data->GetSourceFileCount()!=1||ExpectedAbsoluteFiles.Num()!=1) return false;
+ const UStaticMesh* Mesh=Cast<UStaticMesh>(Asset);
+ const UTexture2D* Texture=Cast<UTexture2D>(Asset);
+ if ((!Mesh&&!Texture)||(Mesh&&Mesh->GetNumSourceModels()!=1)) return false;
+ const FString Name=Asset->GetName();
+ const FString Namespace=TEXT("/Game/Dink/Refinements/House439SharedExteriorV1/");
+ const FString Package=Asset->GetOutermost()->GetName();
+ if (Package!=Namespace+(Mesh?TEXT("Meshes/"):TEXT("Textures/"))+Name||FPackageName::DoesPackageExist(Package)) return false;
+ static const TMap<FString,FString> Textures={
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png")},
+ };
+ FString RelativeSource;
+ if (Mesh)
+ {
+  if (Name!=TEXT("SM_Cottage_Stonebrook_01")) return false;
+  RelativeSource=TEXT("SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/FBX/SM_Cottage_Stonebrook_01.fbx");
+ }
+ else
+ {
+  const FString* Source=Textures.Find(Name);if (!Source) return false;
+  RelativeSource=*Source;
+ }
+ const FString Expected=Full(FPaths::ProjectDir()/RelativeSource);
+ if (ExpectedAbsoluteFiles[0]!=Expected||!FPaths::FileExists(Expected)) return false;
+ return ApplyFilenameTransaction(Asset,ExpectedAbsoluteFiles);
+}

@@ -1,0 +1,40 @@
+{
+  "status": "PREPARED_UNCOMPILED_UNEXECUTED_IN_UNREAL",
+  "source_commit": "61d03de",
+  "contract_digest": "bc40bee6a563ec27edcab12d568195f96a95a0c1316eb0a9c3608d0d58424eca",
+  "fresh_packages": {
+    "mesh": 1,
+    "materials": 7,
+    "textures": 30,
+    "total": 38
+  },
+  "source_and_importer_code_pins": 147,
+  "entrypoints": {
+    "import": "Scripts/RoofNative/house439_native.py:import_trial",
+    "saved_readback": "Scripts/RoofNative/house439_native.py:verify_trial_readback"
+  },
+  "new_metadata_scope": "SeparateexactHouse43931sourcefilenameentry+capability; originalroof/sharedroofentryscopeunchanged",
+  "vertex_colors": "Existingmeshhelper defaultunchanged; boundedhouse439branch explicitlyREPLACE imports rawColor0SharedSurfaceData. Actualnative correspondenceunproven.",
+  "offline_tests": {
+    "actual_copy_contract": 8,
+    "glass_recipe_guards": 9,
+    "opaque_source_graph_guards": 6,
+    "existing_shared_roof_regressions": 14
+  },
+  "native_gates": [
+    "RootreviewofnewC++source/driver/recipes",
+    "Editorcompileandcapabilityloaded",
+    "Rootguardedcallerandmatchingexplicitapprovalreceipt",
+    "ActualsourcePNG/compressednormalreadback callbacks",
+    "Actualsavednativegraph topology andsourceDAGcorrespondence callbacks",
+    "Actualwholemesh/UV0Mikk/linearColor0/6UCX verifier",
+    "Separatefreshprocesssaved38readback",
+    "Actualoutside/inside/backdropcard/grazingreflectionoptics",
+    "Productionactivationandfinalgameappearance separatelyreviewed"
+  ],
+  "actual_source_audits": {
+    "full": "importer-prep-full-source-audit.json",
+    "metadata": "importer-prep-metadata-source-audit.json",
+    "passed": true
+  }
+}
