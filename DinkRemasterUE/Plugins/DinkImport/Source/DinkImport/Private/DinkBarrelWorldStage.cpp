@@ -35,6 +35,7 @@
 #include "UObject/UObjectHash.h"
 #include "UObject/UnrealType.h"
 #include "UObject/NoExportTypes.h"
+#include <limits>
 
 namespace
 {
@@ -42,9 +43,10 @@ constexpr const TCHAR* TargetName=TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Ba
 bool Selected(int32 S){return S==31||S==209;}
 FString Key(const AActor& A)
 {for(FName T:A.Tags){FString V=T.ToString();if(V.StartsWith(TEXT("DinkKey=")))return V.Mid(8);}return {};}
-FString Reply(bool OK,const FString& Error,const TArray<FString>& Saved,int32 Actors)
+FString Reply(bool OK,const FString& Error,const TArray<FString>& Saved,int32 Actors,const TArray<FString>& Equivalences)
 {
  auto O=MakeShared<FJsonObject>();O->SetBoolField(TEXT("ok"),OK);O->SetStringField(TEXT("error"),Error);
+ TArray<TSharedPtr<FJsonValue>> E;for(const auto& V:Equivalences)E.Add(MakeShared<FJsonValueString>(V));O->SetArrayField(TEXT("measured_rotation_representations"),E);
  O->SetStringField(TEXT("world"),TargetName);O->SetNumberField(TEXT("actor_controls"),Actors);
  O->SetStringField(TEXT("scope"),TEXT("actual_full_generated_controls_only_two_new_foundations_not_gameplay_acceptance"));
  TArray<TSharedPtr<FJsonValue>> Files;for(const auto& F:Saved)Files.Add(MakeShared<FJsonValueString>(F));O->SetArrayField(TEXT("saved_new_packages"),Files);
@@ -74,16 +76,42 @@ bool TrackedProperty(const FProperty& P,const UObject& O)
  return (!O.IsA<AWorldSettings>()||P.GetOwnerClass()==AWorldSettings::StaticClass())&&
   !P.HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization|CPF_Deprecated);
 }
+bool RotationProperty(const FProperty& P,const UObject& O)
+{
+ const auto* Struct=CastField<FStructProperty>(&P);
+ return O.IsA<USceneComponent>()&&P.GetFName()==TEXT("RelativeRotation")&&
+  P.GetOwnerClass()==USceneComponent::StaticClass()&&Struct&&Struct->Struct==TBaseStructure<FRotator>::Get();
+}
+bool MeasuredNearZeroRotation(UObject& A,UObject& B,FRotator& Canonical,FString& Evidence)
+{
+ if(!A.IsA<USceneComponent>()||A.GetClass()!=B.GetClass())return false;
+ auto* P=FindFProperty<FStructProperty>(A.GetClass(),TEXT("RelativeRotation"));
+ if(!P||!RotationProperty(*P,A))return false;
+ const auto& X=*P->ContainerPtrToValuePtr<FRotator>(&A);const auto& Y=*P->ContainerPtrToValuePtr<FRotator>(&B);
+ const double XS[]={X.Pitch,X.Yaw,X.Roll},YS[]={Y.Pitch,Y.Yaw,Y.Roll};double Scale=1;
+ for(int I=0;I<3;++I){if(!FMath::IsFinite(XS[I])||!FMath::IsFinite(YS[I]))return false;Scale=FMath::Max(Scale,FMath::Max(FMath::Abs(XS[I]),FMath::Abs(YS[I])));}
+ const double Budget=16*std::numeric_limits<double>::epsilon()*Scale;
+ Canonical=X;double* C[]={&Canonical.Pitch,&Canonical.Yaw,&Canonical.Roll};bool Difference=false;
+ for(int I=0;I<3;++I)
+ {
+  if(FMemory::Memcmp(&XS[I],&YS[I],sizeof(double))==0)continue;
+  if(FMath::Abs(XS[I])>Budget||FMath::Abs(YS[I])>Budget)return false;
+  *C[I]=0;Difference=true;
+ }
+ if(!Difference)return false;
+ Evidence=FString::Printf(TEXT("RelativeRotation machine-zero ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) budgetDeg=%.17g; nonzeroangles/nonspatialbytes unchanged"),XS[0],XS[1],XS[2],YS[0],YS[1],YS[2],Budget);
+ return true;
+}
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
- const TSet<const UPackage*>& Forbidden)
+ const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
  if(Source.GetClass()!=Target.GetClass())return TEXT("class mismatch ")+Source.GetClass()->GetPathName()+TEXT(" / ")+Target.GetClass()->GetPathName();
  for(TFieldIterator<FProperty> It(Source.GetClass());It;++It)
  {
   auto* P=*It;if(!TrackedProperty(*P,Source))continue;
   TArray<uint8> A,B;FStateWriter SA(A,IDs,Forbidden,false),SB(B,IDs,Forbidden,true);
-  P->SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),P->ContainerPtrToValuePtr<void>(&Source),nullptr);
-  P->SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),P->ContainerPtrToValuePtr<void>(&Target),nullptr);
+  P->SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),ComparisonRotation&&RotationProperty(*P,Source)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Source),nullptr);
+  P->SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),ComparisonRotation&&RotationProperty(*P,Target)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Target),nullptr);
   if(A!=B||SB.SourceReference||SA.IsError()||SB.IsError())
   {
    FString X,Y;P->ExportTextItem_Direct(X,P->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,PPF_None);
@@ -116,13 +144,13 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
  if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS source={")+A->GetComponentTransform().ToString()+TEXT("} target={")+CastChecked<USceneComponent>(&Target)->GetComponentTransform().ToString()+TEXT("}");
  return TEXT("state serialization differs outside filtered properties; no comparison waived");
 }
-bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out)
+bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr)
 {
  FStateWriter W(Out,IDs,Forbidden,Target);FString Class=O.GetClass()->GetPathName();W<<Class;
  for(TFieldIterator<FProperty> It(O.GetClass());It;++It)
  {
   auto* P=*It;if(!TrackedProperty(*P,O))continue;
-  FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),P->ContainerPtrToValuePtr<void>(&O),nullptr);
+  FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&O),nullptr);
  }
  if(auto* A=Cast<AActor>(&O)){FTransform T=A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
  if(auto* C=Cast<USceneComponent>(&O)){FTransform T=C->GetComponentTransform();W<<T;}
@@ -141,7 +169,7 @@ bool Fresh(const FString& P){return !FindPackage(nullptr,*P)&&!FPackageName::Doe
 FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorld,const FString& BundleDir,
  const FString& DescriptorDir,const FString& TargetWorldPackage,const TArray<FString>& ArtManifestFiles)
 {
- TArray<FString> Saved;int32 Count=0;auto Fail=[&](const FString& E){return Reply(false,E,Saved,Count);};
+ TArray<FString> Saved,Equivalences;int32 Count=0;auto Fail=[&](const FString& E){return Reply(false,E,Saved,Count,Equivalences);};
  if(!IsInGameThread()||!GEditor||!GUnrealEd||GEditor->PlayWorld||!SourceWorld||SourceWorld->WorldType!=EWorldType::Editor||
     SourceWorld->GetPackage()->GetName()!=TEXT("/Game/Dink/_Generated/Maps/L_Greybox_World")||TargetWorldPackage!=TargetName||!Fresh(TargetWorldPackage))
   return Fail(TEXT("requires actual loaded canonical generated editor world, no PIE, and absent exact candidate target"));
@@ -240,7 +268,18 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    UObject* New=Remap.FindRef(O.Value);if(!New){if(Host)continue;return Fail(TEXT("candidate reference map incomplete"));}
    if(Host&&O.Value!=OldHosts[CastChecked<ADinkGreyboxScreen>(Src)->ScreenNumber]->Visual&&
       !Cast<UInstancedStaticMeshComponent>(O.Value)&&O.Value!=CastChecked<ADinkGreyboxScreen>(Src)->InstanceOrigins)continue;
-   TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B)||A!=B)return Fail(TEXT("copied control/component properties or scene reference mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
+   TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
+   if(A!=B)
+   {
+    FRotator Rotation;FString Evidence;
+    if(!MeasuredNearZeroRotation(*O.Value,*New,Rotation,Evidence))return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
+    // ONLY the pair-comparison serialization receives this measured override.
+    // Source before/after fingerprints and every appended transform remain raw.
+    Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+Evidence);
+    A.Reset();B.Reset();
+    if(!State(*O.Value,IDs,SourcePackages,false,A,&Rotation)||!State(*New,IDs,SourcePackages,true,B,&Rotation)||A!=B)
+     return Fail(TEXT("copied control/component mismatch after measured rotation: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages,&Rotation));
+   }
    if(auto* C=Cast<UActorComponent>(New);C&&(!C->IsIn(Dst)||C->GetOwner()!=Dst))return Fail(TEXT("component ownership escaped candidate"));
   }
  }
@@ -270,5 +309,5 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  FSavePackageArgs A;A.TopLevelFlags=RF_Public|RF_Standalone;A.SaveFlags=SAVE_NoError;
  if(!UPackage::SavePackage(Package,World.Get(),*File,A))return Fail(TEXT("new world save failed; preserve listed candidate packages"));
   Saved.Add(File);
- Count=Targets.Num();return Reply(true,TEXT(""),Saved,Count);
+ Count=Targets.Num();return Reply(true,TEXT(""),Saved,Count,Equivalences);
 }
