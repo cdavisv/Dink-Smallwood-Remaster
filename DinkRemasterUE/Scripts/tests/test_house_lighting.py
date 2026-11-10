@@ -7,6 +7,7 @@ import importlib.util
 import json
 import math
 import os
+import re
 import runpy
 import sys
 import tempfile
@@ -21,7 +22,21 @@ lighting = importlib.util.module_from_spec(spec); spec.loader.exec_module(lighti
 
 class HouseLighting(unittest.TestCase):
     def setUp(self):
-        self.profile = lighting.load_profile(P)
+        self.profile = lighting.validate_profile(json.loads((P / lighting.PROFILE).read_text()))
+        # The source-audit workflow checks out LFS pointers. Verify the window
+        # pointer's content OID here, while production still hashes the actual FBX.
+        for relative, expected in self.profile['source_files_sha256'].items():
+            path = P / relative
+            data = path.read_bytes()
+            digest = hashlib.sha256(data).hexdigest()
+            if path.suffix == '.fbx' and data.startswith(b'version https://git-lfs.github.com/spec/v1'):
+                pointer = re.fullmatch(
+                    rb'version https://git-lfs.github.com/spec/v1\noid sha256:([0-9a-f]{64})\nsize [1-9][0-9]*\n',
+                    data,
+                )
+                self.assertIsNotNone(pointer, f'Invalid LFS pointer: {relative}')
+                digest = pointer.group(1).decode('ascii')
+            self.assertEqual(digest, expected, relative)
         self.manifest = json.loads((P / 'Content/Dink/Data/Art/stonebrook.json').read_text())
         self.layout = json.loads((P / 'SourceAssets/Art/Stonebrook/room_layout.json').read_text())
 
@@ -167,7 +182,11 @@ class HouseLighting(unittest.TestCase):
         (source / 'art_manifest.json').write_text(json.dumps({
             'assets': {'SM_Window_Limewash_2m_01': {'class': 'kit_wall'}}, 'materials': {}}))
         screens = root / 'ImportData/screens.json'; screens.parent.mkdir()
-        screens.write_bytes((P / 'ImportData/screens.json').read_bytes())
+        # The generated screens export is absent in source-audit checkouts.
+        screens.write_text(json.dumps({'screens': [{'screen': 1, 'corners': {
+            'nw': [-1851.3391, 3918.4598], 'ne': [-1825.0891, 3918.4598],
+            'sw': [-1851.3391, 3935.9598], 'se': [-1825.0891, 3935.9598],
+        }}]}))
         path = root / lighting.PROFILE; path.parent.mkdir(parents=True); path.write_text(json.dumps(profile))
         scripts = root / 'Scripts'; scripts.mkdir()
         (scripts / 'house_lighting.py').write_bytes((P / 'Scripts/house_lighting.py').read_bytes())
