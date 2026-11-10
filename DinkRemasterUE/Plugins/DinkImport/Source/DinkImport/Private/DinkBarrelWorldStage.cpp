@@ -103,6 +103,34 @@ bool MeasuredNearZeroRotation(UObject& A,UObject& B,FRotator& Canonical,FString&
  Evidence=FString::Printf(TEXT("RelativeRotation machine-zero ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) budgetDeg=%.17g; nonzeroangles/nonspatialbytes unchanged"),XS[0],XS[1],XS[2],YS[0],YS[1],YS[2],Budget);
  return true;
 }
+bool ExactQuaternion(const FQuat& A,const FQuat& B)
+{
+ const double X[]={A.X,A.Y,A.Z,A.W},Y[]={B.X,B.Y,B.Z,B.W};
+ for(int I=0;I<4;++I)if(!FMath::IsFinite(X[I])||!FMath::IsFinite(Y[I]))return false;
+ return FMemory::Memcmp(X,Y,sizeof(X))==0;
+}
+bool MeasuredAdjacentRotation(UObject& Source,UObject& Target,FRotator& Canonical,FString& Evidence)
+{
+ auto* A=Cast<USceneComponent>(&Source);auto* B=Cast<USceneComponent>(&Target);
+ if(!A||!B||A->GetClass()!=B->GetClass())return false;
+ const FRotator S=A->GetRelativeRotation(),T=B->GetRelativeRotation();
+ const double X[]={S.Pitch,S.Yaw,S.Roll},Y[]={T.Pitch,T.Yaw,T.Roll};int Changed=0;
+ for(int I=0;I<3;++I){if(!FMath::IsFinite(X[I])||!FMath::IsFinite(Y[I]))return false;
+  if(FMemory::Memcmp(&X[I],&Y[I],sizeof(double))==0)continue;
+  if(X[I]==0||Y[I]==0||std::nextafter(X[I],Y[I])!=Y[I])return false;
+  ++Changed;
+ }
+ if(Changed!=1||!ExactQuaternion(S.Quaternion(),T.Quaternion())||
+    !ExactQuaternion(A->GetRelativeRotationCache().RotatorToQuat_ReadOnly(S),B->GetRelativeRotationCache().RotatorToQuat_ReadOnly(T))||
+    !ExactQuaternion(A->GetComponentQuat(),B->GetComponentQuat()))return false;
+ Canonical=S;
+ Evidence=FString::Printf(TEXT("RelativeRotation ONLY ONE adjacent nonzero scalar source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g); directEuler/cache/world quaternions BITEXACT; sourcebytes unchanged"),X[0],X[1],X[2],Y[0],Y[1],Y[2]);
+ return true;
+}
+bool MeasuredRotation(UObject& A,UObject& B,FRotator& Canonical,FString& Evidence)
+{
+ return MeasuredNearZeroRotation(A,B,Canonical,Evidence)||MeasuredAdjacentRotation(A,B,Canonical,Evidence);
+}
 bool AdjacentTranslationValues(const double (&A)[3],const double (&B)[3])
 {
  bool Difference=false;
@@ -192,7 +220,8 @@ bool MeasuredChildTranslation(UObject& Source,UObject& Target,AActor* ExpectedSo
   // Exact local reflected TRS plus socket; every other reflected field remains
   // checked by State. Never normalize local transforms or instance transforms.
   FVector PL=P->GetRelativeLocation(),QL=Q->GetRelativeLocation(),PS=P->GetRelativeScale3D(),QS=Q->GetRelativeScale3D();
-  FRotator PR=P->GetRelativeRotation(),QR=Q->GetRelativeRotation();
+  FRotator PR=P->GetRelativeRotation(),QR=Q->GetRelativeRotation(),QualifiedRotation;FString RotationEvidence;
+  if(MeasuredRotation(*P,*Q,QualifiedRotation,RotationEvidence))PR=QR=QualifiedRotation;
   TArray<uint8> Left,Right;FObjectWriter LW(Left),RW(Right);LW<<PL<<PR<<PS;RW<<QL<<QR<<QS;
   if(Left!=Right||P->GetAttachSocketName()!=Q->GetAttachSocketName()||!P->GetAttachParent()||
      Remap.FindRef(P->GetAttachParent())!=Q->GetAttachParent())return false;
@@ -396,7 +425,7 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    if(A!=B)
    {
     FRotator Rotation;FTransform ActorTransform,RootTransform,ChildTransform;FString REvidence,TEvidence,RootEvidence,ChildEvidence;
-    const bool R=MeasuredNearZeroRotation(*O.Value,*New,Rotation,REvidence);
+    const bool R=MeasuredRotation(*O.Value,*New,Rotation,REvidence);
     const bool T=MeasuredActorTranslation(*O.Value,*New,ActorTransform,TEvidence);
     const bool Root=MeasuredRootTranslation(*O.Value,*New,Src,Dst,RootTransform,RootEvidence);
     const bool Child=MeasuredChildTranslation(*O.Value,*New,Src,Dst,Remap,ChildTransform,ChildEvidence);
@@ -516,6 +545,25 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestTrue(TEXT("actual raw-instance mutation succeeds"),ISMA->UpdateInstanceTransform(0,FTransform(FVector(0,0,1)),false,false,false));
  TestTrue(TEXT("actual ISM state serializes after instance change"),State(*ISMA,TestIDs,NoForbidden,false,AfterInstance,nullptr,nullptr,nullptr,&Canonical));
  TestTrue(TEXT("changed instance bytes refuse even with identical component world override"),BeforeInstance!=AfterInstance);
+ auto* RotA=NewObject<USceneComponent>(OwnerA);auto* RotB=NewObject<USceneComponent>(OwnerB);
+ RotA->SetRelativeRotation(FRotator(0,-90,0));RotB->SetRelativeRotation(FRotator(0,-90,0));
+ // Reproduce the measured stored Euler representation without recomputing the
+ // world/cache: both orientations are proven identical by production guards.
+ auto* RP=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation"));
+ if(!TestNotNull(TEXT("actual typed RelativeRotation property"),RP))return false;
+ auto* Stored=RP->ContainerPtrToValuePtr<FRotator>(RotA);
+ Stored->Yaw=std::nextafter(-90.,0.);FRotator RotationCanonical;FString RotationEvidence;
+ TestTrue(TEXT("actual measured one-ULP Euler with bitidentical direct/cache/world Q qualifies"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
+ Stored->Yaw=std::nextafter(Stored->Yaw,0.);
+ TestFalse(TEXT("two-ULP Euler refuses"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
+ Stored->Yaw=std::numeric_limits<double>::quiet_NaN();
+ TestFalse(TEXT("nonfinite Euler refuses"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
+ Stored->Yaw=std::nextafter(-90.,0.);RotB->SetAbsolute(false,true,false);RotB->SetWorldRotation(FQuat(FVector::UpVector,.01));
+ // Restore just the stored target Euler; actual world remains deliberately different.
+ RP->ContainerPtrToValuePtr<FRotator>(RotB)->Yaw=-90.;
+ TestFalse(TEXT("changed actual world quaternion refuses despite adjacent stored Euler"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
+ TestFalse(TEXT("nonScene objects cannot use Euler representation comparison"),MeasuredAdjacentRotation(*OwnerA,*OwnerB,RotationCanonical,RotationEvidence));
+
 
 
 
