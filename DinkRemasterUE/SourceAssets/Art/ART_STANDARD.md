@@ -38,6 +38,18 @@ Static meshes (props, kit modules, foliage, buildings, doors, weapons) use mater
 | `MI_Shared_OakEndgrain2m` | reusable oak cut ends and pegs | `SharedMaterials/manifest.json` |
 | `MI_Shared_LimePlaster2m` | reusable lime plaster infill | `SharedMaterials/manifest.json` |
 
+| Material | Use | Defined in |
+|---|---|---|
+| `MI_Shared_FieldstoneSeed2m` | modeled stone blocks with portable stable variation | `SharedMaterials/manifest.json` |
+| `MI_Shared_FieldstoneWall2m` | continuous generic fieldstone wall surfaces | `SharedMaterials/manifest.json` |
+| `MI_Shared_WeatheredTimber2m` | weathered long/endgrain timber variants | `SharedMaterials/manifest.json` |
+| `MI_Shared_IronLead2m` | forged iron and lead sheet variants | `SharedMaterials/manifest.json` |
+| `MI_Shared_LimeMortarSoot2m` | tintable mortar, bedding and soot variants | `SharedMaterials/manifest.json` |
+| `MI_Shared_DressedReed2m` | dressed reed/thatch surfaces | `SharedMaterials/manifest.json` |
+| `MI_Shared_ThinWavyGlass2m` | physical 2 m thin wavy glass; native closed-pane policy pending review | `SharedMaterials/manifest.json` |
+
+These source-registered generic roles use `ArchitecturalSurfaces2mV1`. Multi-variant parents use explicit ordinary UV/color selectors declared in the library; no house-position lookup or prop UV atlas is permitted. Source registration grants no native or final appearance approval.
+
 The derived shared camera variants `MI_Shared_OakLonggrain2m_CameraMasked`, `MI_Shared_OakEndgrain2m_CameraMasked` and `MI_Shared_LimePlaster2m_CameraMasked` use those same three texture sets and the existing opacity/shadow convention. Native import and final camera alias activation remain separate review gates.
 
 The tiling terrain and building sets of `SharedMaterials/manifest.json` (when that library is published) join as `MI_Shared_<Name>` (`MI_Shared_CobbleStreet`, `MI_Shared_TimberPlanks`, ...); the checker accepts exactly the names that manifest lists.

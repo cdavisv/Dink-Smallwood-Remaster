@@ -1,3 +1,7 @@
+## Starting-house shared exterior isolated source admission (in progress)
+
+This worktree is `art/house439-shared-exterior-source` at Root base `f3c84a1`; do not mutate `/Work/DinkRoofNativeDelivery`. Root authorized generic6opaque+glass material/source registration, full194192triangle+6UCX export and existingimporter preparation, with explicit Root review before UE. `Docs/Verification/House439SharedExteriorSource` records current plan/evidence. Source direction is approved for trial only; native optics/final appearance not yet accepted. User authorized reviewable source commits when checksready and final session reconciliation.
+
 ## Shared roof native preparation integrated
 
 The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.

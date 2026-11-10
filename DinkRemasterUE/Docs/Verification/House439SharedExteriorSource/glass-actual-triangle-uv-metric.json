@@ -1,0 +1,1058 @@
+[
+  {
+    "object": "InsetGlassPane",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045049885756425,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.001",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505026956974,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.002",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.003",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.004",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.005",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.006",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241082427,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.007",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999998,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505279463702,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.008",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241082427,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.009",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999998,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505279463702,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.010",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241832047,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.011",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505280213329,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.012",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.1649253656389496,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505263555401,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.013",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045053019366015,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.014",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.1649253656389496,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051177713336,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.015",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051561523364,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.016",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051798016917,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.017",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045052181828344,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.018",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.019",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.020",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.021",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.022",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256537535104377
+    ],
+    "anisotropy_max": 1.1282687675521883,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045049973179836,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.023",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256537535104377
+    ],
+    "anisotropy_max": 1.1282687675521883,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505035698115,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.024",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045049885756425,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.025",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505026956974,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.026",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.027",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.028",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.029",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.030",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241082427,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.031",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999998,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505279463702,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.032",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241082427,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.033",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999998,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505279463702,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.034",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505241832047,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.035",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505280213329,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.036",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.1649253656389496,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505263555401,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.037",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045053019366015,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.038",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.1649253656389496,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051177713336,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.039",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256301979712854
+    ],
+    "anisotropy_max": 1.1281509898564273,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051561523364,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.040",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045051798016917,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.041",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563111653633072
+    ],
+    "anisotropy_max": 1.1281555826816538,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045052181828344,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.042",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.043",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.044",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061609572765,
+      2.0000000000000004
+    ]
+  },
+  {
+    "object": "InsetGlassPane.045",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      2.0,
+      2.2563621750624203
+    ],
+    "anisotropy_max": 1.1281810875312102,
+    "singular_median": [
+      2.165005632298434,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045061993395863,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.046",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256537535104377
+    ],
+    "anisotropy_max": 1.1282687675521883,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.0045049973179836,
+      2.0
+    ]
+  },
+  {
+    "object": "InsetGlassPane.047",
+    "triangles": 108,
+    "degenerateUV": 0,
+    "metres_per_UV_singular_minmax": [
+      1.9999999999999996,
+      2.256537535104377
+    ],
+    "anisotropy_max": 1.1282687675521883,
+    "singular_median": [
+      2.164952114756117,
+      2.0
+    ],
+    "largest_triangle_metric": [
+      2.0,
+      2.0
+    ],
+    "area_weighted_metric": [
+      2.004505035698115,
+      2.0
+    ]
+  }
+]

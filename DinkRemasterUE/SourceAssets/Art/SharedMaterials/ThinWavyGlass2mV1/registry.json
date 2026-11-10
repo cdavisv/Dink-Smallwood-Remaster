@@ -1,0 +1,84 @@
+{
+  "schema": "dink-shared-thin-glass/1",
+  "status": "SOURCE_REGISTERED_NATIVE_PENDING",
+  "roles": {
+    "ThinWavyGlass2m": {
+      "material": "MI_Shared_ThinWavyGlass2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "General near-clear wavy glass surfaces with reviewed thin-wall front/back policy"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "size": [
+            1024,
+            1024
+          ],
+          "bit_depth": 16,
+          "png_color_type": 2,
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "thin_transmissive_surface_2m",
+      "mesh_contract": {
+        "UV0": "metres/2 in pane plane; no private attributes",
+        "normal_strength": 1,
+        "geometry_policy": "Closed pane geometry requires explicit front/back handling review; no automatic opaque fallback"
+      },
+      "IOR": 1.48,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.037460978147762745,
+      "unreal_specular": 0.46826222684703434,
+      "transmission": 1,
+      "thin_wall": true,
+      "linear_tint": [
+        0.96,
+        0.985,
+        0.97
+      ],
+      "volume_absorption": "None in this derivative; replaces historical volumetric source explicitly",
+      "source": "ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend",
+      "library": "ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend",
+      "reuse_proof": "ThinWavyGlass2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ThinWavyGlass2mV1/PROVENANCE.md",
+      "native_requirements": [
+        "Physical thin-translucent shading with transmission and reflection; fail closed if unavailable",
+        "OpenGL normal import green flip and actual readback",
+        "Review closed-pane front/back response before cottage application",
+        "Root review before UE execution; native optical appearance unproven"
+      ]
+    }
+  }
+}

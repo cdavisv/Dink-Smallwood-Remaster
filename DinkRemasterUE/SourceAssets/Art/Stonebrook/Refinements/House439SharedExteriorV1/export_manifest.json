@@ -1,0 +1,26 @@
+{
+  "status": "SOURCE_ONLY_NATIVE_PENDING",
+  "source": "House439_SharedExterior_Source.blend",
+  "source_sha256": "a88249598c9ae742630941e284cfa45d42599c8cca276b2348138321acd97910",
+  "FBX": [
+    {
+      "name": "SM_Cottage_Stonebrook_01",
+      "file": "FBX/SM_Cottage_Stonebrook_01.fbx",
+      "sha256": "bfcb1eedea117819747e27977d40d13631d19b0aa32c31fef99c94c05fabdf4f",
+      "triangles": 194192,
+      "UCX": 6,
+      "material_slots": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortarSoot2m",
+        "MI_Shared_WeatheredTimber2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_ThinWavyGlass2m",
+        "MI_Shared_FieldstoneWall2m",
+        "MI_Shared_DressedReed2m"
+      ]
+    }
+  ],
+  "render_triangles": 194192,
+  "UCX": 6,
+  "native_approved": false
+}

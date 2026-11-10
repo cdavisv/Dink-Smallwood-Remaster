@@ -1,0 +1,14 @@
+{
+  "status": "SOURCE_REGISTERED_NATIVE_PENDING",
+  "material": "MI_Shared_ThinWavyGlass2m",
+  "maps_bytes_identical_to_reviewed_bake": {
+    "BC": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+    "N_GL": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+    "ORM": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607"
+  },
+  "reuse_objects": [
+    "Glass2m",
+    "Glass4m"
+  ],
+  "scope": "Only material names/resource paths normalized; no cottage or native changes."
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "dink-house439-shared-exterior-source/1",
+  "status": "source_registered_native_pending",
+  "source": "House439_SharedExterior_Source.blend",
+  "source_sha256": "a88249598c9ae742630941e284cfa45d42599c8cca276b2348138321acd97910",
+  "shared_material_manifest": "../../../SharedMaterials/manifest.json",
+  "assets": {
+    "SM_Cottage_Stonebrook_01": {
+      "name": "SM_Cottage_Stonebrook_01",
+      "class": "building",
+      "dimensions_m": [
+        18.815841674804688,
+        10.5363450050354,
+        7.930000305175781
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortarSoot2m",
+        "MI_Shared_WeatheredTimber2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_ThinWavyGlass2m",
+        "MI_Shared_FieldstoneWall2m",
+        "MI_Shared_DressedReed2m"
+      ],
+      "material_slots": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortarSoot2m",
+        "MI_Shared_WeatheredTimber2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_ThinWavyGlass2m",
+        "MI_Shared_FieldstoneWall2m",
+        "MI_Shared_DressedReed2m"
+      ],
+      "triangles": 194192,
+      "fbx": "FBX/SM_Cottage_Stonebrook_01.fbx",
+      "fbx_sha256": "bfcb1eedea117819747e27977d40d13631d19b0aa32c31fef99c94c05fabdf4f",
+      "source": "House439_SharedExterior_Source.blend",
+      "UCX_count": 6,
+      "families": [
+        63
+      ],
+      "sprite_identity": {
+        "sequence": 63,
+        "frames": [
+          1
+        ],
+        "observed_screens": [
+          439,
+          530,
+          617
+        ],
+        "scope": "Exact cottage frame1 only; no blanket sequence/families.json activation"
+      },
+      "source_identity": "Starting-house exterior cottage; original home01 guide, separate home02door/home11chimney guides retained in historical QA",
+      "proposed_trial_path": "/Game/Dink/Refinements/House439SharedExteriorV1/Meshes/SM_Cottage_Stonebrook_01",
+      "production_target": "/Game/Dink/Buildings/StonebrookExterior/SM_Cottage_Stonebrook_01",
+      "textures": [
+        {
+          "size": [
+            1024,
+            1024
+          ],
+          "library_manifest": "../../../SharedMaterials/manifest.json"
+        }
+      ],
+      "soft_budget_qualification": "194192 exceeds60000 soft target, below200000 hard; preserves full reviewed construction for boundednativegame trial; finalperformance pending",
+      "glass_coordinate_channel": 0,
+      "native_status": "pendingRootreview/import/readback/GPU; no runtime activation"
+    }
+  },
+  "validation_reports": [
+    "SOURCE_EQUIVALENCE.json",
+    "FULL_FBX_REPORT.json",
+    "EXPORTED_METADATA.json",
+    "Review/COLOR_RENDER_RECEIPT.json"
+  ],
+  "provenance": "PROVENANCE.md"
+}
