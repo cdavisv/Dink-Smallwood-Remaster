@@ -1,3 +1,13 @@
+Native preparation validation:14offline importer/profile/slot/alias/geometry-source regressions and10architecture tests pass. Full actual source audit4419binaries/507Python/22shell/4255ledger,0errors/secrets. The first post-merge audit saw3new camera PNG LFS pointers; hydrated exact local objects and reran successfully. Current Root df3365c raw ledger prefix is exact; no Content/Data/native ledger mutations. Source helpers remain uncompiled/unexecuted in UE pending Root review.
+
+# Shared roof native adapter prepared — no native execution
+
+Branch`art/interior-roof-shared-library` at merged5237868 plus this preparation. Source/library5260f1b and policy39b617d are already available to Root. `Scripts/RoofNative/shared_roof_{contract,native,verify}.py` implements23fresh trial,fresh readback,8existing production material-only bindings+exact3camera aliases,and fresh final23production readback. Fourteen offline regressions pass; all17322 source triangles remain uniquely oriented/matched after role consolidation. Existing204authored UCX and production geometry/UV/normals/source filenames/build/collision policy must stay exact. Temporary8trial meshes are not production delivery.
+
+Small editor-only filename scope extension (exact8roof+9texture names/source roots) is UNCOMPILED. `supports_shared_roof_source_filenames` fails oldDLLs before any import. Root must review then build/launch through its normal guarded private runner. No UE/build/asset import/save/Content/Data/nativeledger activation has occurred here. Concrete callback factories and caller/save/guard obligations are documented in Docs/Verification/InteriorRoofSharedNativePreparation. Actual23import/readback,8productionbindings+3aliases,finalreadback/currentGPU and candidate native ledger updates remain outstanding; source preparation alone is not whole-goal completion.
+
+---
+
 ## Current roof integration — accepted camera merged
 
 This branch now integrates accepted master `52dabc60e0ed3b11b88c7e3974344838dd58b997` (camera PR49, HeroGrowth, East Wilds booth and audio/owner decisions). Merge conflicts were documentation additions only; both histories are retained below. The camera fix has full192/latestGPU acceptance on its own branch. Roof-specific187/readback/GPU evidence below is historical on its prior runtime base; it does not prove this combined roof snapshot. Rebuild, compatible current generated controls, shared material/source admission, native/GPU/cook and PR45 review/merge remain unfinished. Interior shared-material source work uses a separate worktree based on2ba4570; do not overwrite it. No active Root UE process.

@@ -1,0 +1,25 @@
+{
+  "verification_mode": "full",
+  "binary_files_verified": 4416,
+  "binary_files_metadata_only": 0,
+  "python_syntax_files": 507,
+  "shell_syntax_files": 22,
+  "ledger_rows": 4255,
+  "missing_assets": 0,
+  "hash_errors": 3,
+  "secret_flags": [],
+  "errors": [
+    {
+      "asset_hash_mismatch": "Docs/Verification/OutdoorCameraHeadroom/door-exit.png"
+    },
+    {
+      "asset_hash_mismatch": "Docs/Verification/OutdoorCameraHeadroom/door-return-settled.png"
+    },
+    {
+      "asset_hash_mismatch": "Docs/Verification/OutdoorCameraHeadroom/outside-free.png"
+    }
+  ],
+  "layout_cases_passed": 3,
+  "approved_audio_runtime_matches": true,
+  "passed": false
+}
