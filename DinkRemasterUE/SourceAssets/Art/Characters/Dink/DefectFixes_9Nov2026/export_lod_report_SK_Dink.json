@@ -1,0 +1,70 @@
+{
+  "validation": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 11
+  },
+  "normals": [
+    {
+      "mesh": "SK_Dink_LOD0",
+      "flat_faces_for_cancelled_normals": 0,
+      "zero_normals_remaining": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD1",
+      "flat_faces_for_cancelled_normals": 0,
+      "zero_normals_remaining": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD2",
+      "flat_faces_for_cancelled_normals": 0,
+      "zero_normals_remaining": 0
+    },
+    {
+      "mesh": "SK_Dink_LOD3",
+      "flat_faces_for_cancelled_normals": 0,
+      "zero_normals_remaining": 0
+    }
+  ],
+  "lods": [
+    {
+      "mesh": "SK_Dink_LOD0",
+      "triangles": 31688,
+      "vertices": 16545
+    },
+    {
+      "mesh": "SK_Dink_LOD1",
+      "triangles": 15844,
+      "vertices": 8570
+    },
+    {
+      "mesh": "SK_Dink_LOD2",
+      "triangles": 7921,
+      "vertices": 4538
+    },
+    {
+      "mesh": "SK_Dink_LOD3",
+      "triangles": 3803,
+      "vertices": 2413
+    }
+  ],
+  "rest_rig_bones": 89,
+  "dimensions_m": [
+    1.1226370334625244,
+    0.4864029884338379,
+    1.8013807535171509
+  ],
+  "lod_union_dimensions_m": [
+    1.1234434843063354,
+    0.48710334300994873,
+    1.8013807535171509
+  ],
+  "materials": [
+    "MI_Dink_Skin",
+    "MI_Dink_Eyes",
+    "MI_Dink_Hair",
+    "MI_Dink_BrowLash",
+    "MI_Dink_Wardrobe"
+  ]
+}

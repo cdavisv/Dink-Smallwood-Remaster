@@ -91,6 +91,31 @@ public:
 	void SetWalking(bool bWalking);
 	void ZoomCamera(float Steps);
 
+	/**
+	 * Player-only wall clearance (mesh only; the capsule and its movement are untouched). The
+	 * hunch, lean and gait sway carry the head and shoulders past the 28 cm capsule, so walking
+	 * into a wall pushed them into it. Each frame short sphere sweeps run from the capsule axis
+	 * to the head and shoulder points of the posed mesh; when one is blocked the applied body
+	 * lean is eased off and the mesh pulled back along the facing by the overlap (clamped to
+	 * MaxWallPullback, applied at once so nothing shows through, released smoothly when clear).
+	 */
+	UPROPERTY(EditAnywhere, Category="Dink|Physicality")
+	bool bWallClearance = true;
+	/** Largest pull-back of the mesh, cm. */
+	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0"))
+	float MaxWallPullback = 35.f;
+	/** Mesh pull-back currently applied along -facing, cm (0 when no wall is in reach). */
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	float GetWallPullback() const { return WallPullback; }
+	/** 0..1: how much of the body lean is being held back by a wall. */
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	float GetWallLeanDamping() const { return WallLeanDamping; }
+	/** World position of the forward-most head point the clearance protects, as the mesh stands now. */
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	FVector GetHeadReachPoint() const;
+	/** Forward reach of the protected points beyond their bones, cm (face/nose, shoulder front). */
+	static constexpr float HeadReach = 13.f, HeadLift = 5.f, ShoulderReach = 9.f, WallProbeRadius = 3.f;
+
 private:
 	void StartWalking() { SetWalking(true); }
 	void StopWalking() { SetWalking(false); }
@@ -112,6 +137,13 @@ private:
 	bool bBodyLocationReady = false;
 	void UpdateConfidence(bool bSnap);
 	FQuat AppliedBodyRotation = FQuat::Identity;
+	float WallPullback = 0.f;
+	float WallLeanDamping = 0.f;
+	bool ShouldClearWalls() const;
+	/** Probe points (head, shoulders) in mesh component space, from the live pose when there is one. */
+	void GetWallProbePoints(TArray<FVector, TInlineAllocator<3>>& Out) const;
+	/** Pull-back (cm along -facing) the mesh needs at this relative transform to keep its probes out of walls. */
+	float MeasureWallOverlap(const FTransform& MeshRelative) const;
 
 protected:
 	virtual void BeginPlay() override;

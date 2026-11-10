@@ -1,0 +1,254 @@
+{
+  "file": "SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend",
+  "meshes": [
+    {
+      "mesh": "SK_Dink_Hands_LOD0",
+      "vertices": 16545,
+      "faces": 17162,
+      "buckle": {
+        "vertices": 40,
+        "gap_before_mm": 15.44,
+        "gap_spread_mm": 1.02,
+        "moved_back_mm": 16.04
+      },
+      "chest": {
+        "vertices": 409,
+        "max_move_mm": 3.24,
+        "mean_move_mm": 0.87
+      },
+      "wrists": {
+        "l": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 192,
+          "cuff_span_mm": [
+            33.5,
+            71.6
+          ],
+          "sleeve_end_mm": [
+            61.6,
+            82.7
+          ],
+          "sleeve_vertices_tapered": 40,
+          "cuff_offset_before_mm": [
+            10.5,
+            22.5
+          ],
+          "cuff_offset_after_mm": [
+            1.5,
+            18.7
+          ]
+        },
+        "r": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 192,
+          "cuff_span_mm": [
+            33.5,
+            71.6
+          ],
+          "sleeve_end_mm": [
+            61.6,
+            82.7
+          ],
+          "sleeve_vertices_tapered": 39,
+          "cuff_offset_before_mm": [
+            10.5,
+            23.4
+          ],
+          "cuff_offset_after_mm": [
+            1.5,
+            19.5
+          ]
+        }
+      },
+      "changed_vertices": 910,
+      "zero_corner_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_Hands_LOD1",
+      "vertices": 8570,
+      "faces": 15844,
+      "buckle": {
+        "vertices": 40,
+        "gap_before_mm": 15.83,
+        "gap_spread_mm": 0.62,
+        "moved_back_mm": 16.43
+      },
+      "chest": {
+        "vertices": 283,
+        "max_move_mm": 3.55,
+        "mean_move_mm": 0.86
+      },
+      "wrists": {
+        "l": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 110,
+          "cuff_span_mm": [
+            33.6,
+            71.4
+          ],
+          "sleeve_end_mm": [
+            61.7,
+            82.9
+          ],
+          "sleeve_vertices_tapered": 23,
+          "cuff_offset_before_mm": [
+            10.7,
+            22.5
+          ],
+          "cuff_offset_after_mm": [
+            1.5,
+            18.7
+          ]
+        },
+        "r": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 112,
+          "cuff_span_mm": [
+            33.6,
+            71.3
+          ],
+          "sleeve_end_mm": [
+            61.6,
+            82.7
+          ],
+          "sleeve_vertices_tapered": 25,
+          "cuff_offset_before_mm": [
+            10.6,
+            23.2
+          ],
+          "cuff_offset_after_mm": [
+            1.5,
+            19.4
+          ]
+        }
+      },
+      "changed_vertices": 590,
+      "zero_corner_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_Hands_LOD2",
+      "vertices": 4538,
+      "faces": 7921,
+      "buckle": {
+        "vertices": 33,
+        "gap_before_mm": 15.86,
+        "gap_spread_mm": 1.33,
+        "moved_back_mm": 16.46
+      },
+      "chest": {
+        "vertices": 129,
+        "max_move_mm": 2.97,
+        "mean_move_mm": 0.68
+      },
+      "wrists": {
+        "l": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 52,
+          "cuff_span_mm": [
+            33.6,
+            71.6
+          ],
+          "sleeve_end_mm": [
+            60.5,
+            82.9
+          ],
+          "sleeve_vertices_tapered": 14,
+          "cuff_offset_before_mm": [
+            11.0,
+            24.1
+          ],
+          "cuff_offset_after_mm": [
+            2.7,
+            20.3
+          ]
+        },
+        "r": {
+          "skin_top_mm": 54.1,
+          "cuff_vertices": 54,
+          "cuff_span_mm": [
+            33.5,
+            71.4
+          ],
+          "sleeve_end_mm": [
+            61.6,
+            82.6
+          ],
+          "sleeve_vertices_tapered": 13,
+          "cuff_offset_before_mm": [
+            11.0,
+            22.2
+          ],
+          "cuff_offset_after_mm": [
+            2.9,
+            18.4
+          ]
+        }
+      },
+      "changed_vertices": 289,
+      "zero_corner_normals": 0
+    },
+    {
+      "mesh": "SK_Dink_Hands_LOD3",
+      "vertices": 2413,
+      "faces": 3803,
+      "buckle": {
+        "vertices": 15,
+        "gap_before_mm": 16.09,
+        "gap_spread_mm": 0.52,
+        "moved_back_mm": 16.69
+      },
+      "chest": {
+        "vertices": 55,
+        "max_move_mm": 4.55,
+        "mean_move_mm": 0.48
+      },
+      "wrists": {
+        "l": {
+          "skin_top_mm": 54.3,
+          "cuff_vertices": 25,
+          "cuff_span_mm": [
+            33.9,
+            71.4
+          ],
+          "sleeve_end_mm": [
+            61.6,
+            82.9
+          ],
+          "sleeve_vertices_tapered": 6,
+          "cuff_offset_before_mm": [
+            10.1,
+            25.7
+          ],
+          "cuff_offset_after_mm": [
+            2.5,
+            21.7
+          ]
+        },
+        "r": {
+          "skin_top_mm": 54.1,
+          "cuff_vertices": 27,
+          "cuff_span_mm": [
+            33.1,
+            71.4
+          ],
+          "sleeve_end_mm": [
+            61.7,
+            83.2
+          ],
+          "sleeve_vertices_tapered": 6,
+          "cuff_offset_before_mm": [
+            11.7,
+            23.1
+          ],
+          "cuff_offset_after_mm": [
+            2.2,
+            19.2
+          ]
+        }
+      },
+      "changed_vertices": 119,
+      "zero_corner_normals": 0
+    }
+  ],
+  "bones": 89
+}
