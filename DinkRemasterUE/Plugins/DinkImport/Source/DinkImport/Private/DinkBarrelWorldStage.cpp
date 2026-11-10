@@ -2,6 +2,7 @@
 #include "DinkInstanceOriginsComponent.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
+#include "Greybox/DinkWarpComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Components/BoxComponent.h"
 #include "PhysicsEngine/BodySetup.h"
@@ -38,6 +39,7 @@
 #include "UObject/LazyObjectPtr.h"
 #include "UObject/UObjectHash.h"
 #include "UObject/UnrealType.h"
+#include "UObject/UObjectThreadContext.h"
 #include "UObject/NoExportTypes.h"
 #include <limits>
 #include <cmath>
@@ -773,6 +775,91 @@ void AddObjects(AActor& A,const FString& K,TMap<const UObject*,FString>& IDs,TMa
  IDs.Add(&A,K);ByRelative.Add(TEXT(""),&A);
  ForEachObjectWithOuter(&A,[&](UObject* O){const FString R=O->GetPathName(&A);IDs.Add(O,K+TEXT("/")+R);ByRelative.Add(R,O);},EGetObjectsFlags::IncludeNestedObjects);
 }
+// Binary loaded-actor transport: never clipboard/TEXT, never reparent sources.
+bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UObject*,UObject*>& Remap,
+ TMap<UObject*,UObject*>& Created,TArray<AActor*>& Copies,FString& Error)
+{
+ Copies.Reset();Created.Reset();TArray<AActor*> Ordered=Controls;
+ Ordered.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
+ TSet<AActor*> Unique;
+ for(AActor* SourceActor:Ordered)
+ {
+  if(!SourceActor||SourceActor->GetLevel()==&NewLevel||Unique.Contains(SourceActor))
+  {Error=TEXT("binary controls require unique actors from distinct source levels");return false;}
+  Unique.Add(SourceActor);AActor* Copy=Cast<AActor>(Remap.FindRef(SourceActor));
+  if(!Copy)
+  {
+   FObjectDuplicationParameters Parameters(SourceActor,&NewLevel);
+   Parameters.DestName=MakeUniqueObjectName(&NewLevel,SourceActor->GetClass(),SourceActor->GetFName());
+   Parameters.DestClass=SourceActor->GetClass();Parameters.DuplicateMode=EDuplicateMode::Normal;
+   Parameters.bAssignExternalPackages=false;Parameters.bSkipPostLoad=true;
+   Parameters.DuplicationSeed=Remap;TMap<UObject*,UObject*> CallCreated;Parameters.CreatedObjects=&CallCreated;
+   Copy=Cast<AActor>(StaticDuplicateObjectEx(Parameters));
+   if(!Copy||CallCreated.FindRef(SourceActor)!=Copy)
+   {Error=TEXT("binary actor duplication did not report its actual root mapping");return false;}
+   for(const auto& Pair:CallCreated)
+   {
+    if(!Pair.Key||!Pair.Value||Pair.Key==Pair.Value||Pair.Key->GetClass()!=Pair.Value->GetClass()||
+       (Remap.Contains(Pair.Key)&&Remap.FindRef(Pair.Key)!=Pair.Value)||
+       (Created.Contains(Pair.Key)&&Created.FindRef(Pair.Key)!=Pair.Value))
+    {Error=TEXT("binary created-object map conflict or class/identity mismatch");return false;}
+    Remap.Add(Pair.Key,Pair.Value);Created.Add(Pair.Key,Pair.Value);
+   }
+  }
+  if(Copy==SourceActor||Copy->GetClass()!=SourceActor->GetClass()||Copy->GetOuter()!=&NewLevel||Copy->GetLevel()!=&NewLevel||Copies.Contains(Copy))
+  {Error=TEXT("binary actor copy has wrong target level/class/identity");return false;}
+  Copies.Add(Copy);
+ }
+ return Copies.Num()==Controls.Num();
+}
+bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,const TMap<UObject*,UObject*>& Remap,
+ const TMap<UObject*,UObject*>& Created,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& SourcePackages,FString& Error)
+{
+ TSet<UObject*> TargetObjects;
+ for(const auto& Pair:Created)
+ {
+  UObject* Target=Pair.Value;
+  if(!Pair.Key||!Target||Remap.FindRef(Pair.Key)!=Target||Pair.Key==Target||Pair.Key->GetClass()!=Target->GetClass()||
+     !Target->IsIn(&NewLevel)||SourcePackages.Contains(Target->GetOutermost()))
+  {Error=TEXT("binary finalization requires complete distinct target object mappings");return false;}
+  TargetObjects.Add(Target);
+ }
+ // Complete all actor/component/nested cross-references BEFORE any PostLoad.
+ for(UObject* Target:TargetObjects)
+ {FArchiveReplaceObjectRef<UObject> Fix(Target,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);}
+ for(UObject* Target:TargetObjects)
+ {
+  TSet<const UObject*> Seen;
+  for(const UObject* Archetype=Target->GetArchetype();Archetype;Archetype=Archetype->GetArchetype())
+  {
+   if(Seen.Contains(Archetype)){Error=TEXT("binary target archetype chain is cyclic");return false;}Seen.Add(Archetype);
+   if(SourcePackages.Contains(Archetype->GetOutermost()))
+   {Error=TEXT("binary target retained source-instance archetype: ")+Target->GetPathName();return false;}
+   if(Archetype->HasAnyFlags(RF_ClassDefaultObject))break;
+  }
+  TArray<uint8> BeforeCallbacks;
+  if(!State(*Target,IDs,SourcePackages,true,BeforeCallbacks))
+  {Error=TEXT("binary target retained source-package reference before callbacks: ")+Target->GetPathName();return false;}
+  if(auto* Component=Cast<UActorComponent>(Target);Component&&Component->IsRegistered())
+  {Error=TEXT("binary target component registered before complete reference validation");return false;}
+ }
+ for(AActor* Copy:Copies)
+  if(!Copy||Copy->GetLevel()!=&NewLevel||!TargetObjects.Contains(Copy))
+  {Error=TEXT("binary finalization actor membership mismatch");return false;}
+ // Same supported post-load routing as StaticDuplicateObjectEx, deferred until
+ // Owner and every nested/cross-actor reference point at the complete copies.
+ {
+  TGuardValue<bool> RoutingPostLoad(FUObjectThreadContext::Get().IsRoutingPostLoad,true);
+  for(UObject* Target:TargetObjects)if(!Target->IsTemplate())Target->ConditionalPostLoad();
+ }
+ NewLevel.AddLoadedActors(Copies,nullptr);
+ // New editor worlds may not yet have level-wide registration enabled.
+ // This is the same public target-only registration used by the staging pass.
+ for(AActor* Copy:Copies)if(IsValid(Copy))Copy->RegisterAllComponents();
+ for(AActor* Copy:Copies)if(!IsValid(Copy)||Copy->GetLevel()!=&NewLevel||!NewLevel.Actors.Contains(Copy))
+ {Error=TEXT("supported loaded-level registration lost a binary actor");return false;}
+ return true;
+}
 bool Fresh(const FString& P){return !FindPackage(nullptr,*P)&&!FPackageName::DoesPackageExist(P);}
 }
 
@@ -828,11 +915,11 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
  for(TFieldIterator<FProperty> It(Settings->GetClass());It;++It)
   if(It->GetOwnerClass()==AWorldSettings::StaticClass()&&!It->HasAnyPropertyFlags(CPF_Transient|CPF_DuplicateTransient|CPF_NonPIEDuplicateTransient|CPF_SkipSerialization))
    It->CopyCompleteValue(It->ContainerPtrToValuePtr<void>(NewSettings),It->ContainerPtrToValuePtr<void>(Settings));
- TArray<AActor*> Copies;GUnrealEd->DuplicateActors(Controls,Copies,World->PersistentLevel,FVector::ZeroVector);
- if(Copies.Num()!=Controls.Num())return Fail(TEXT("actual control duplication incomplete"));
- TMap<FString,AActor*> Targets;for(AActor* A:Copies){const FString K=Key(*A);if(!Sources.Contains(K)||Targets.Contains(K))return Fail(TEXT("copied control identity missing/duplicate"));if(A->GetWorld()!=World.Get()||SourcePackages.Contains(A->GetArchetype()->GetOutermost()))return Fail(TEXT("copied actor retained source world/archetype"));Targets.Add(K,A);A->SetActorLabel(Sources[K]->GetActorLabel(),false);}
  TMap<UObject*,UObject*> Remap;Remap.Add(SourceWorld,World.Get());Remap.Add(const_cast<AWorldSettings*>(Settings),NewSettings);
  for(const auto* L:SourceWorld->GetLevels())Remap.Add(const_cast<ULevel*>(L),World->PersistentLevel);
+ TArray<AActor*> Copies;TMap<UObject*,UObject*> BinaryCreated;FString BinaryError;
+ if(!BinaryCopyControls(Controls,*World->PersistentLevel,Remap,BinaryCreated,Copies,BinaryError))return Fail(BinaryError);
+ TMap<FString,AActor*> Targets;for(AActor* A:Copies){const FString K=Key(*A);if(!Sources.Contains(K)||Targets.Contains(K))return Fail(TEXT("copied control identity missing/duplicate"));if(A->GetWorld()!=World.Get()||SourcePackages.Contains(A->GetArchetype()->GetOutermost()))return Fail(TEXT("copied actor retained source world/archetype"));Targets.Add(K,A);A->SetActorLabel(Sources[K]->GetActorLabel(),false);}
  TMap<int32,ADinkGreyboxScreen*> NewHosts;
  for(int32 S:{31,209})
  {
@@ -858,10 +945,12 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   for(const auto& O:SourceObjects[Src])
   {
    if(auto* H=Cast<ADinkGreyboxScreen>(Src);H&&Selected(H->ScreenNumber))continue;
-   UObject** New=Objects.Find(O.Key);if(!New||(*New)->GetClass()!=O.Value->GetClass())return Fail(TEXT("source descendant missing from candidate"));Remap.Add(O.Value,*New);
+   UObject** New=Objects.Find(O.Key);if(!New||(*New)->GetClass()!=O.Value->GetClass()||(Remap.Contains(O.Value)&&Remap.FindRef(O.Value)!=*New))return Fail(TEXT("source descendant missing/conflicting binary mapping"));Remap.Add(O.Value,*New);
   }
  }
  for(const auto& P:Remap)if(const FString* Identity=IDs.Find(P.Key))IDs.Add(P.Value,*Identity);
+ {FArchiveReplaceObjectRef<UObject> FixSettingsBeforeCallbacks(NewSettings,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);}
+ if(!FinalizeBinaryControls(Copies,*World->PersistentLevel,Remap,BinaryCreated,IDs,SourcePackages,BinaryError))return Fail(BinaryError);
  for(const auto& P:Targets)
  {
   FArchiveReplaceObjectRef<UObject> Fix(P.Value,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);
@@ -960,6 +1049,87 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkBinaryControlCopyRegression,
+ "Dink.Import.Foundation.BinaryControlCopy",EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
+bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
+{
+ const FString Token=FGuid::NewGuid().ToString(EGuidFormats::Digits);
+ UPackage* SourcePackage=CreatePackage(*(TEXT("/Temp/DinkBinarySource_")+Token));
+ UPackage* TargetPackage=CreatePackage(*(TEXT("/Temp/DinkBinaryTarget_")+Token));
+ UWorld* SourceWorld=UWorld::CreateWorld(EWorldType::Editor,false,FName(TEXT("BinarySource")),SourcePackage,false);
+ UWorld* TargetWorld=UWorld::CreateWorld(EWorldType::Editor,false,FName(TEXT("BinaryTarget")),TargetPackage,false);
+ if(!TestNotNull(TEXT("binary source scratchworld"),SourceWorld)||!TestNotNull(TEXT("binary target scratchworld"),TargetWorld))return false;
+ ON_SCOPE_EXIT{TargetWorld->DestroyWorld(false);TargetWorld->MarkObjectsPendingKill();SourceWorld->DestroyWorld(false);SourceWorld->MarkObjectsPendingKill();};
+ ULevel* ExtraLevel=NewObject<ULevel>(SourceWorld,TEXT("BinaryExtraLevel"));ExtraLevel->OwningWorld=SourceWorld;SourceWorld->AddLevel(ExtraLevel);
+ FActorSpawnParameters FirstParams;FirstParams.Name=TEXT("BinarySameName");FirstParams.OverrideLevel=SourceWorld->PersistentLevel;
+ FActorSpawnParameters SecondParams;SecondParams.Name=TEXT("BinarySameName");SecondParams.OverrideLevel=ExtraLevel;
+ auto* First=SourceWorld->SpawnActor<ADinkPlaceholderActor>(FirstParams);auto* Second=SourceWorld->SpawnActor<ADinkPlaceholderActor>(SecondParams);
+ if(!TestNotNull(TEXT("binary native/defaultsubobject actor first"),First)||!TestNotNull(TEXT("binary same-name other-level actor second"),Second))return false;
+ TestEqual(TEXT("source names deliberately collide across levels"),First->GetFName(),Second->GetFName());First->SetOwner(Second);
+ auto* Warp=NewObject<UDinkWarpComponent>(First,TEXT("BinaryWarp"));First->AddInstanceComponent(Warp);Warp->SetupAttachment(First->GetRootComponent());
+ Warp->WarpId=TEXT("S254_P04");Warp->SourceScreen=254;Warp->DestScreen=418;Warp->DestLocation=FVector(-184172.03999999998,55656.424999999988,0);Warp->DestMapPixel=FVector2D(303.00000000000006,389.99999999999994);
+ Warp->SetBoxExtent(FVector(180,145.00000000000341,150),false);Warp->SetCollisionProfileName(TEXT("BlockAll"));Warp->RegisterComponent();
+ auto* Nested=NewObject<USceneComponent>(First->GetRootComponent(),TEXT("BinaryNested"));First->AddInstanceComponent(Nested);Nested->SetupAttachment(Second->GetRootComponent());Nested->SetRelativeLocation(FVector(205.62000000002445,7929.4799999999996,-0.));Nested->RegisterComponent();
+ auto* Instances=NewObject<UInstancedStaticMeshComponent>(First,TEXT("BinaryInstances"));First->AddInstanceComponent(Instances);Instances->SetupAttachment(First->GetRootComponent());Instances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+ auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));if(!TestNotNull(TEXT("actual cube for raw instance binary proof"),Cube))return false;Instances->SetStaticMesh(Cube);Instances->AddInstance(FTransform::Identity,false);Instances->RegisterComponent();
+ TArray<FInstancedStaticMeshInstanceData> SourceRecords=Instances->PerInstanceSMData;SourceRecords[0].Transform.M[3][0]=205.62000000002445;
+ if(!TestTrue(TEXT("source raw setup uses stock invalidation API"),Instances->BatchUpdateInstancesData(0,SourceRecords.Num(),SourceRecords.GetData(),false,true)))return false;
+ TMap<const UObject*,FString> IDs;TMap<FString,UObject*> FirstObjects,SecondObjects;AddObjects(*First,TEXT("First"),IDs,FirstObjects);AddObjects(*Second,TEXT("Second"),IDs,SecondObjects);
+ IDs.Add(SourceWorld,TEXT("World"));IDs.Add(SourceWorld->PersistentLevel,TEXT("Level"));IDs.Add(ExtraLevel,TEXT("Level"));IDs.Add(SourceWorld->GetWorldSettings(),TEXT("Settings"));
+ TSet<const UPackage*> Forbidden;Forbidden.Add(SourcePackage);
+ TMap<UObject*,TArray<uint8>> SourceBefore;
+ for(const auto* Group:{&FirstObjects,&SecondObjects})for(const auto& Pair:*Group)
+ {TArray<uint8> Bytes;if(!TestTrue(TEXT("source binary fixture state before"),State(*Pair.Value,IDs,Forbidden,false,Bytes)))return false;SourceBefore.Add(Pair.Value,MoveTemp(Bytes));}
+ auto* SourceBody=Warp->GetBodySetup();if(!TestNotNull(TEXT("actual registered source warp body"),SourceBody))return false;
+ const FGuid SourceBodyGuid=SourceBody->BodySetupGuid;
+ TArray<uint8> SourceBodyBefore,SourceBodyAfter;if(!TestTrue(TEXT("source body before binary copy"),State(*SourceBody,IDs,Forbidden,false,SourceBodyBefore)))return false;
+ TMap<UObject*,UObject*> Remap;Remap.Add(SourceWorld,TargetWorld);Remap.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);Remap.Add(ExtraLevel,TargetWorld->PersistentLevel);Remap.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
+ TMap<UObject*,UObject*> Created;TArray<AActor*> Copies;FString Error;
+ const bool Copied=BinaryCopyControls({First,Second},*TargetWorld->PersistentLevel,Remap,Created,Copies,Error);
+ if(!TestTrue(TEXT("same production binary transport succeeds: ")+Error,Copied))return false;
+ for(const auto& Pair:Remap)if(const auto* ID=IDs.Find(Pair.Key))IDs.Add(Pair.Value,*ID);
+ const bool Finalized=FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,Remap,Created,IDs,Forbidden,Error);
+ if(!TestTrue(TEXT("same production deferred loaded-level finalization succeeds: ")+Error,Finalized))return false;
+ auto* FirstCopy=Cast<ADinkPlaceholderActor>(Remap.FindRef(First));auto* SecondCopy=Cast<ADinkPlaceholderActor>(Remap.FindRef(Second));auto* WarpCopy=Cast<UDinkWarpComponent>(Remap.FindRef(Warp));auto* NestedCopy=Cast<USceneComponent>(Remap.FindRef(Nested));auto* InstanceCopy=Cast<UInstancedStaticMeshComponent>(Remap.FindRef(Instances));
+ if(!TestNotNull(TEXT("actual binary warp mapping"),WarpCopy)||!TestNotNull(TEXT("actual nested instance mapping"),NestedCopy)||!TestNotNull(TEXT("actual raw instance mapping"),InstanceCopy))return false;
+ TestTrue(TEXT("flattened actors distinct and names unique"),FirstCopy&&SecondCopy&&FirstCopy!=SecondCopy&&FirstCopy->GetFName()!=SecondCopy->GetFName());
+ TestTrue(TEXT("cross-actor owner points at copied actor"),FirstCopy->GetOwner()==SecondCopy);TestTrue(TEXT("nested component keeps copied outer and owner"),NestedCopy->GetOuter()==Remap.FindRef(Nested->GetOuter())&&NestedCopy->GetOwner()==FirstCopy);
+ TestTrue(TEXT("nested cross-actor attach parent references copied defaultsubobject"),NestedCopy->GetAttachParent()==SecondCopy->GetRootComponent());
+ TestTrue(TEXT("native defaultsubobject class/CDO archetypes preserved"),FirstCopy->GetRootComponent()->GetArchetype()==First->GetRootComponent()->GetArchetype()&&FirstCopy->GetArchetype()==First->GetArchetype());
+ TestTrue(TEXT("actual DestLocation all double bits preserved"),ExactVectorBytes(Warp->DestLocation,WarpCopy->DestLocation));TestTrue(TEXT("actual BoxExtent all double bits preserved"),ExactVectorBytes(Warp->GetUnscaledBoxExtent(),WarpCopy->GetUnscaledBoxExtent()));
+ TestTrue(TEXT("warp target and trigger fields preserved"),WarpCopy->DestScreen==Warp->DestScreen&&WarpCopy->WarpId==Warp->WarpId&&WarpCopy->bTriggerEnabled==Warp->bTriggerEnabled);
+ TestTrue(TEXT("all64 collision policy preserved"),WarpCopy->GetCollisionResponseToChannels()==Warp->GetCollisionResponseToChannels());TestEqual(TEXT("warp collision profile preserved"),WarpCopy->GetCollisionProfileName(),Warp->GetCollisionProfileName());TestEqual(TEXT("warp collision enabled preserved"),int32(WarpCopy->GetCollisionEnabled()),int32(Warp->GetCollisionEnabled()));
+ TestTrue(TEXT("actual box calculated bounds exact"),ExactVectorBytes(Warp->CalcBounds(Warp->GetComponentTransform()).BoxExtent,WarpCopy->CalcBounds(WarpCopy->GetComponentTransform()).BoxExtent));
+ TestTrue(TEXT("owned loaded actors become registered before use"),WarpCopy->IsRegistered());
+ TestEqual(TEXT("raw instance count exact"),InstanceCopy->PerInstanceSMData.Num(),Instances->PerInstanceSMData.Num());
+ for(int I=0;I<Instances->PerInstanceSMData.Num();++I)for(int Row=0;Row<4;++Row)for(int Col=0;Col<4;++Col)
+ {const auto A=Instances->PerInstanceSMData[I].Transform.M[Row][Col],B=InstanceCopy->PerInstanceSMData[I].Transform.M[Row][Col];TestTrue(TEXT("every raw instance scalar bit exact"),FMemory::Memcmp(&A,&B,sizeof(A))==0);}
+ for(const auto& Pair:SourceBefore)
+ {TArray<uint8> Bytes;TestTrue(TEXT("source binary state after"),State(*Pair.Key,IDs,Forbidden,false,Bytes));TestTrue(TEXT("every source actor/subobject byte unchanged"),Pair.Value==Bytes);
+  UObject* Target=Remap.FindRef(Pair.Key);TArray<uint8> TargetBytes;if(!TestNotNull(TEXT("complete source subobject remap"),Target))return false;TestTrue(TEXT("strict actual target state contains no source refs"),State(*Target,IDs,Forbidden,true,TargetBytes));TestTrue(TEXT("full binary transported tracked state exact"),Pair.Value==TargetBytes);}
+ TestTrue(TEXT("source body after binary finalization"),State(*SourceBody,IDs,Forbidden,false,SourceBodyAfter));TestTrue(TEXT("source BodySetup immutable"),SourceBodyBefore==SourceBodyAfter);TestTrue(TEXT("source BodySetup GUID unchanged"),SourceBody->BodySetupGuid==SourceBodyGuid);
+ auto* CopyBody=WarpCopy->GetBodySetup();if(!TestNotNull(TEXT("actual registered copied box body"),CopyBody))return false;
+ TestEqual(TEXT("copied physical box shape count"),CopyBody->AggGeom.BoxElems.Num(),SourceBody->AggGeom.BoxElems.Num());
+ if(SourceBody->AggGeom.BoxElems.Num()==1&&CopyBody->AggGeom.BoxElems.Num()==1)
+ {TestEqual(TEXT("copied physical box X"),CopyBody->AggGeom.BoxElems[0].X,SourceBody->AggGeom.BoxElems[0].X);TestEqual(TEXT("copied physical box Y"),CopyBody->AggGeom.BoxElems[0].Y,SourceBody->AggGeom.BoxElems[0].Y);TestEqual(TEXT("copied physical box Z"),CopyBody->AggGeom.BoxElems[0].Z,SourceBody->AggGeom.BoxElems[0].Z);}
+ TestEqual(TEXT("copied physics readiness matches source"),WarpCopy->IsPhysicsStateCreated(),Warp->IsPhysicsStateCreated());
+ TMap<UObject*,UObject*> MissingMap=Remap;MissingMap.Remove(Second);TestFalse(TEXT("missing cross-actor mapping refuses before callbacks"),FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,MissingMap,Created,IDs,Forbidden,Error));
+ TMap<UObject*,UObject*> ConflictingMap;ConflictingMap.Add(First,First);TMap<UObject*,UObject*> BadCreated;TArray<AActor*> BadCopies;TestFalse(TEXT("source actor as its own copy refuses"),BinaryCopyControls({First},*TargetWorld->PersistentLevel,ConflictingMap,BadCreated,BadCopies,Error));
+ TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
+ const bool IncompleteCopied=BinaryCopyControls({First},*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,BadCopies,Error);
+ if(!TestTrue(TEXT("incomplete peer map fixture still binary copies its root"),IncompleteCopied))return false;
+ for(const auto& Pair:IncompleteSeed)if(const auto* ID=IDs.Find(Pair.Key))IDs.Add(Pair.Value,*ID);
+ TestFalse(TEXT("retained source cross-actor reference refuses before PostLoad"),FinalizeBinaryControls(BadCopies,*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,IDs,Forbidden,Error));TestTrue(TEXT("missing peer refusal reports actual source reference"),Error.Contains(TEXT("source-package reference before callbacks")));
+ auto* SourceInstanceTemplate=NewObject<ADinkPlaceholderActor>(SourceWorld->PersistentLevel,TEXT("BinaryInstanceArchetype"),RF_Transactional,First);
+ TMap<UObject*,UObject*> ArchetypeSeed;ArchetypeSeed.Add(SourceWorld,TargetWorld);ArchetypeSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);ArchetypeSeed.Add(Second,SecondCopy);
+ const bool ArchetypeCopied=BinaryCopyControls({SourceInstanceTemplate},*TargetWorld->PersistentLevel,ArchetypeSeed,BadCreated,BadCopies,Error);
+ if(!TestTrue(TEXT("source-instance archetype negative fixture binary copied"),ArchetypeCopied))return false;
+ TestFalse(TEXT("source-instance archetype refuses before PostLoad"),FinalizeBinaryControls(BadCopies,*TargetWorld->PersistentLevel,ArchetypeSeed,BadCreated,IDs,Forbidden,Error));TestTrue(TEXT("archetype refusal identifies exact source-instance archetype"),Error.Contains(TEXT("source-instance archetype")));
+ for(const auto& Pair:SourceBefore){TArray<uint8> Bytes;TestTrue(TEXT("source state after refusal fixtures"),State(*Pair.Key,IDs,Forbidden,false,Bytes));TestTrue(TEXT("no refusal fixture changed source bytes"),Pair.Value==Bytes);}
+ TestTrue(TEXT("source body after refusal fixtures"),State(*SourceBody,IDs,Forbidden,false,SourceBodyAfter));TestTrue(TEXT("source body and GUID unchanged after all negative cases"),SourceBodyBefore==SourceBodyAfter&&SourceBody->BodySetupGuid==SourceBodyGuid);
+ return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkStageActorTranslationRegression,
  "Dink.Import.Foundation.ActorTranslationRepresentation",EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
 bool FDinkStageActorTranslationRegression::RunTest(const FString&)
