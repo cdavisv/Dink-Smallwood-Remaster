@@ -1146,13 +1146,13 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  const FVector S144SourceP(61693.359999999993,7929.4799999999996,0);
  const FRotator S144SourceEuler(-0.,-.077097042524470513,-0.);
  RootPose(*EulerRootS,S144SourceP,S144SourceEuler);
- auto* LocationProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
- if(!TestNotNull(TEXT("actual S144 location property"),LocationProperty))return false;
+ auto* S144LocationProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
+ if(!TestNotNull(TEXT("actual S144 location property"),S144LocationProperty))return false;
  FString S144PText,S144EulerText;
- LocationProperty->ExportTextItem_Direct(S144PText,LocationProperty->ContainerPtrToValuePtr<void>(EulerRootS),nullptr,EulerRootS,EulerFlags);
+ S144LocationProperty->ExportTextItem_Direct(S144PText,S144LocationProperty->ContainerPtrToValuePtr<void>(EulerRootS),nullptr,EulerRootS,EulerFlags);
  EulerProperty->ExportTextItem_Direct(S144EulerText,EulerProperty->ContainerPtrToValuePtr<void>(EulerRootS),nullptr,EulerRootS,EulerFlags);
  FVector S144TargetP=FVector::ZeroVector;FRotator S144TargetEuler=FRotator::ZeroRotator;
- const TCHAR* S144PTail=LocationProperty->ImportText_Direct(*S144PText,&S144TargetP,EulerRootT,EulerFlags,&EulerErrors);
+ const TCHAR* S144PTail=S144LocationProperty->ImportText_Direct(*S144PText,&S144TargetP,EulerRootT,EulerFlags,&EulerErrors);
  const TCHAR* S144ETail=EulerProperty->ImportText_Direct(*S144EulerText,&S144TargetEuler,EulerRootT,EulerFlags,&EulerErrors);
  if(!TestTrue(TEXT("S144 fixture parses complete real stock TEXT fields"),S144PTail&&!*S144PTail&&S144ETail&&!*S144ETail))return false;
  TestEqual(TEXT("actual measured S144 target X"),S144TargetP.X,61693.360000000001);
