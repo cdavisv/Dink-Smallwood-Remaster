@@ -1,3 +1,7 @@
+## C43 fixture compile failure preserved; local identifier correction
+
+Actual C43 Editor failed exit6/12.081s with13318immutable inputs unchanged/kernelPASS; Game did not run. New measured S144 fixture reused an existing later LocationProperty local in the same function. Rename only the new fixture variable and its references to S144LocationProperty; production code/assertions unchanged. Failed run preserved at DinkQA/RuntimeHardnessBuildPreparation/Candidate43/Runs/4a27e5db90054bdfb82b014668d78a57. C44 must use explicitly qualified partial-recovery provenance and current own7/14 fingerprint, never claim C43 build success. Native29/Stage28 still future-empty until coherent build passes.
+
 ## Stage27 measured combined root TEXT pose repair — source-only pending review/build
 
 Branch fix/runtime-hardness-current: actual Stage27 refused S144_P01 with only positionExact false; all mapping/registered/unattached/finite/local-world/scale/absolute guards passed. Actual source X61693.359999999993 became61693.360000000001 and yaw−.077097042524470513 became−.077096999999999999; both target fields exactly match stock property export/temporary import flags2565. Zero output assets and13318unchanged inputs retained in DinkQA/RuntimeHardnessActualStage/Candidate27/Runs/4f0dc76485c7404c99dcb9c1a6d1c3d4.
