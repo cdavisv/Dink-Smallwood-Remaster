@@ -1,3 +1,7 @@
+## Mother clothing source lane (10 Nov 2026)
+
+Isolated `art/mother-clothing-realism` at `/home/davisc/Work/DinkMotherClothing`; `SourceAssets/Art/Characters/Mother/ClothingRealismV1` is a Blender source/export candidate only, never a production import/default. Original Mother is already3D. Preserve baseline89 rig/4LODs/UV/animation authority and original S001_P26 script. Read candidate README/HANDOFF and retain explicit source-validation warnings and native/texture-memory acceptance gates before any import.
+
 ## Generated blocker graphics verified; evidence publication
 
 Branch `fix/generated-blocker-visuals` at `/home/davisc/Work/DinkGeneratedBlockerVisuals`, tested source `2b683008675e3181b294a474e5cfd187158dacd9`, based on accepted master `c608c303`. Own Editor/Game builds, warm focused5 and full198 native cases pass (164clean/34warning successes). Ordinary regeneration separates644Visual/612Debug; saved readback passes; all2425physical/ground preimages unchanged and second import byte-idempotent across4818generated files. Actual Editor15 captures, new-game original-spawn held-W path around correctly sized chair to door, and packaged9 captures with debug0/1/0 and realW exit/return pass. Normal cook, four Vulkan shader validations, actual cooked inventory and packagedCH1 pass. Packaged run75a271d5-f482-45bf-b11c-606e32c69249 closed0/302.911685s/13647unchanged; four warnings/zeroerrors and normal private202 closure retained.

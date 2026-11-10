@@ -1,0 +1,33 @@
+{
+  "status": "SOURCE_CANDIDATE_READBACK_PASS_NOT_IMPORTED",
+  "base_commit": "868911993692e2930ee5bde6c55d07e21e310f5e",
+  "source_sha256": "908b848680818081153656d43d34b7b1a0542098848bcbc8ae29e3fc2c6e780b",
+  "baked_source_sha256": "ea0d187e4be91f619292d13655a1a7f7b48a8a65192e11d7c666ae42606bcb34",
+  "renders_actual_CPU_Cycles": {
+    "Renders/mother-back.png": "5cc9652c37807dc75d6622cd32c79dac3f44843820c274d0e06b658be679b0c1",
+    "Renders/mother-baseline-front.png": "cdff647a7ba3518eb8e4a4e134da3e40649365656fa33002ba2115f0e0e785bb",
+    "Renders/mother-fabric-detail.png": "a749a2627ad8f49ff9c6b9621f242c54fb865978afecca5ab311c68ba7e993c1",
+    "Renders/mother-front.png": "11935af50d7dbe14848eac95b7654a819f5bcce8dfa7bb68cd854f3bae0d2357",
+    "Renders/mother-linen-detail.png": "d352cbf5de06b278a0a9d2c7c9fed1951f1ccdd8a3c7194cc183d3c0e41014b8"
+  },
+  "visual_review": "Actual front/back, wool seam detail, linen detail and matched baseline-front viewed. Wool/linen weave and sewn centre seam visible; original red/apron identity retained. This remains candidate-level tailoring/lighting, not final photoreal approval.",
+  "readback": "Original89 rest bones; four original topologies/UVs/weights/nonwardrobe vertices and original atlas pixels exact in editable and baked sources. Four FBX local bone transforms/hierarchy exactly equal accepted baseline; unit scalar0.9999999776482582 also exactly baseline.",
+  "geometry": "All4LODs zero new collapsed cloth triangles and zero reversed cloth triangle normals. Local proposed drape was backtracked at thin fold vertices after an actual failed orientation check; assertions retained.",
+  "asset_validator": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 9
+  },
+  "warning_qualification": "Same9 warning categories as baseline: original32,164tri LOD0 exceeds20k target but below35k hardmax; intentional open cards/cloth and inherited lowLOD wire edges. LOD0 near-coincident vertex count46\u219247 (within0.01mm); retained as explicit candidate warning and requires close deformation/fold review before activation, not silently called unchanged.",
+  "performance": "Triangles32164/16082/8040/3859 and five slots unchanged; no extra skin influences. Separate3x4K maps add texture memory; native compression/mip residency and consolidation are acceptance gates.",
+  "runtime": "No UE/import/default activation, Content changes or runtime manifests. Native bind-pose/animation/deformation, actual lighting, actor identity and performance gates remain open.",
+  "baseline_paths": {
+    "SourceAssets/Art/Characters/SK_Mother.blend": "cebc3c9a85f6289f1323491f7d335d40677393d0a05b3f44ec7dd63255026c75",
+    "SourceAssets/Art/Characters/Export/SK_Mother_LOD0.fbx": "742e7459f91056e00928f8c8e90294ac633ba33e4d669dd8a5e7e6c47996c5f8",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_BC.png": "05604e88f76069809bca41f4dd97b0c7cb9a3f60b49a9a7f32d5b2d3b19de6c4",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_N.png": "c7c0fca8e01271ef8b35393b1c052ce73e722cc1b3524062a463932f9c34e2d2",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_ORM.png": "d603a4ae3923f2c73f5ac9d0d8b1ebbf93821105904650a615f077a7d0cfada3",
+    "SourceAssets/Art/Characters/character_manifest.json": "2414139eccfdde0ab2e27ac9cd6d4afe9168c0dbabac635079a7d0cbab820c87"
+  }
+}
