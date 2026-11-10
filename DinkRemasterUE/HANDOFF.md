@@ -1,3 +1,7 @@
+## Current roof integration — accepted camera merged
+
+This branch now integrates accepted master `52dabc60e0ed3b11b88c7e3974344838dd58b997` (camera PR49, HeroGrowth, East Wilds booth and audio/owner decisions). Merge conflicts were documentation additions only; both histories are retained below. The camera fix has full192/latestGPU acceptance on its own branch. Roof-specific187/readback/GPU evidence below is historical on its prior runtime base; it does not prove this combined roof snapshot. Rebuild, compatible current generated controls, shared material/source admission, native/GPU/cook and PR45 review/merge remain unfinished. Interior shared-material source work uses a separate worktree based on2ba4570; do not overwrite it. No active Root UE process.
+
 # Roof delivery: current verified state
 
 Worktree `/home/davisc/Work/DinkRoofNativeDelivery`, branch `art/roof-native-current`, runtime base `5d65ed88`. Read [current validation](Docs/Verification/RoofNativeCurrent/README.md) and its `results.json`. The active coordination record is `/home/davisc/Work/DinkQA/RoofV12dRootReview/HANDOFF.md`. Older headers below are historical.
@@ -11,6 +15,38 @@ The current exterior cottage blocks the camera: a matching Camera-channel sweep 
 Current remote master is `fbf060bb77ad0652a41e45e13c2c8855a14e1f86` (runtime `72fa9c0` plus packaged-parity docs). This branch must preserve its accepted voice ledger and owner-decision changes when integrating. Runtime fitted collision work is separate in `/home/davisc/Work/DinkRuntimeHardnessIntegrationCurrent`; it still requires compilation, native acceptance and actual two-origin activation. Do not copy mutable source blindly into this roof-only lane.
 
 The roof PR is draft/unmerged. Current cook/package, shared material and source-record art-standard reconciliation, final photoreal art and PR review/merge remain open. Existing art-standard violations and ten missing mesh source records are not waived by successful runtime tests. The new exterior cottage source and hero refinement are unfinished. Preserve the frozen source payloads and all historical failure evidence.
+
+## Outdoor camera final validation — ready for merge
+
+Branch `fix/outdoor-camera-headroom` tested at73ccdbe including mastere417/HeroGrowth/booth. Full192/192 completed,0failed (160clean+32HTTP/EOSwarningtests); focused3/3clean, own Editor/Game pass. Latest actualGPU147.32s/8PNGs/12634unchanged: realWexit1→439/return439→1 PASS, scripts/input enabled; lift49.2714cm/fullhead visible, samecottageCameraBLOCK/sweep error0, interior/free0lift/free400cm. Ownprocess/displaynormalclosure verified. Four source-file review hashes unchanged. Docs/Verification/OutdoorCameraHeadroom contains portable summaries/latest3screenshots. Earlier sections below are historical checkpoints; their pending statements are superseded here. PR49 publication/merge to be checked on GitHub. Final art and actual fitted barrels remain separate unfinished work.
+
+## Combined target frozen for rebuild (9 November2026)
+
+Camera branch now includes approved masterb3abb418 HeroGrowth and e417231 PR50 booth doorway by routine merge, preserving both source changes and notes. Runtime target is fixed at e417 plus camera; later unrelatedmaster changes do not automatically restart this epoch. Earlier focused3/GPU8 evidence remains scopedfbf camera base. Rebuild, newfocusedcamera, fullDink and quickdoor verification are pending on this combinedtarget.
+
+Ignored ImportData+Content/Dink/_Generated refreshed as5415 exactfiles from currentmaster e417 checkout `/home/davisc/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE`, sourcebefore/afterhashstable, independentinodes, matchingcurrentexporter, actualrow4designedjoin. Priorfixtures archived externally. Receipt `/home/davisc/Work/DinkQA/OutdoorCameraCurrentFixtureRefresh/REFRESH_RECEIPT.json`; this is a qualified exactcurrentcontrolcopy, not ownfreshimport/coldregeneration. No tracked ownerData/art/audio/Code/DLL copies. Own Editor/Game incremental uses exactprioractualbuild14Editor+Game2 as baseline, freshsourceguard/privateUBA; heavycompile awaits RootCurrent quickbuild closure.
+
+## Outdoor headroom camera fix (9 November2026)
+
+Branch `fix/outdoor-camera-headroom`, isolated worktree `/home/davisc/Work/DinkOutdoorCameraHeadroom`, basefbf060bb. Bounded projection-derived outdoor vertical pivot lift preserves Camera collision/exterior face clearance; no lateral wall bypass or Data/art/warp changes. Own Editor/Game compiled, focused3/3passed (39HTTPwarnings ondoor), actualGPU8photos/realWexitreturnPASS. Exit52.1176cm lift/fullhead visible/samecottageCameraBLOCK; indoor+free0lift/free400cm. Cache-store diagnostics retained. See Docs/Verification/OutdoorCameraHeadroom and screenshot hashes. Full baseline is pending before merge; do not equate focused/GPU success with fullsuite completion. Runtime source frozen after this local commit; native verification may reuse actual compiled bytes with fresh source/doc epoch.
+
+## Outdoor camera headroom — focused native PASS (2026-11-09)
+
+Own warm focused run `/home/davisc/Work/DinkQA/OutdoorCameraHeadroomNativePreparation/Candidate1/Runs/3994c70407e44de98df4bc98e7b8c9c2`, tool36904, normal0/37.476s. Actual registered3, finished3, allSuccess: `Dink.Art.Camera.OutdoorDoorHeadroom`, `OutdoorHeadroomGeometry`, and retained `WallsRemainSolid`. Report counts2cleanSuccess+1SuccessWithWarnings; doorway warnings are blocked-network HTTP diagnostics, no assertion failures. Exact7 owned modules validated in actual maps using Btrfs namespace identity;12612 source/assets/Data plus14Editor/Game capabilities unchanged. HOST434569/434609/434627 freshly absent, zero signals; closure receipt in run. Cache was an independently copied, hash-checked seed from closed RoofNativeDeliveryNativePreparation/RunDDC: explicitly warm, no cold-start proof. Roof rebuild slot released after closure.
+
+Remaining: actual GPU screenshots at the recorded arrival pose, real W exit/return, exterior wall preservation and interior/free-outdoor framing controls. Native success does not establish visual acceptance. Source remains on `fix/outdoor-camera-headroom`, uncommitted pending final visual verification and reviewer/PR flow; no art/Data/actor/warp edits.
+
+## Outdoor camera headroom — actual isolated builds complete (2026-11-09)
+
+Worktree `/home/davisc/Work/DinkOutdoorCameraHeadroom`, branch `fix/outdoor-camera-headroom`, base `fbf060bb77ad0652a41e45e13c2c8855a14e1f86`. Approved four-file bounded outdoor vertical-headroom fix, recorded sphere-edge clearance regression, and unpossess restoration compiled successfully. Build evidence: `/home/davisc/Work/DinkQA/OutdoorCameraHeadroomBuild/Candidate2/Runs/117ccf33048c4d85bc508f7c093347c6`. Editor exit0/137.751s; Game exit0/73.760s; both kernel proofs passed; all12612 immutable inputs unchanged; seven fresh Editor modules,14 Editor files preserved throughGame and freshly rehashed after closure. HOST supervisor416271 and children416395/418451 absent, zero signals. Both successful logs retain cache-store diagnostic “Some action result store tasks did not succeed”; this is not a warning-free build claim. Prior Candidate1 preflight refusal preserved; Candidate2 uses approved narrow maxone unrelated NullRHI automation guard, actual protected Root project, private UBA/Epic/tmp outputs and MaxParallelActions2.
+
+Pending: execute compiled geometry/door native regressions and actual current doorway GPU screenshots with collision preserved, default interior/free-outdoor controls, real W exit/return. No visual acceptance, commit/PR or merge claimed yet. Source remains uncommitted for review; no Data/art/collision/warp edits.
+
+# Outdoor doorway headroom candidate
+
+Isolated /home/davisc/Work/DinkOutdoorCameraHeadroom, branch fix/outdoor-camera-headroom, basefbf060bb77ad0652a41e45e13c2c8855a14e1f86. Actual current-door evidence: Cottage Camera block retracts400cm boom to106.186cm and clips head; +Z80 exposes head while preserving wall, lateral50 reaches400 but enters unlit shell and is rejected. New bounded outdoor-only vertical framing uses actual capsule top/projection/basis and same collision probe; no actor/warp/collision/input/Data/asset changes. Recorded edge contact faceclearance is10.006cm despite sphere radius12: preserve baseline signed clearance, never equate face normal with sphere contact normal.
+
+Four source files plus this continuity update; pure geometry/recordedcorner and actual cottagePIE regressions added. Root approved source, own Editor/Game build authorized with reviewed privateUBA/namespace workflow; no DLL copies. Actual first build callback HOST tool15330 refused global preflight before ATTEMPT/run/UBT/native because unrelated HeroGrowth NullRHI automation403260 was treated as a cook. No compile ran and no DLL exists. Root now prioritizes the separate roof compile; camera build is HOLD until that closes, then use the same approved narrow unrelated-NullRHI guard. No override, signals or automatic retry. Build/test outcomes remain pending. Source art metadata and full graphics acceptance remain separate.
 
 ---
 

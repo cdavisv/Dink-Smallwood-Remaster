@@ -14,7 +14,7 @@ from pathlib import Path
 
 from . import names as N
 from .convert import Project, ScriptEmitter, walk_stmts, stmt_exprs, walk_expr, PSEUDO
-from .overrides import BRACE_TYPOS
+from .overrides import BRACE_TYPOS, OWNER_DECISIONS
 from .shotlist import shot_list, is_scene
 from .vocab import describe, SAY_CALLS, SAY_BLOCKS
 
@@ -29,6 +29,14 @@ EMITTER_CODES = {"say_sprite_zero", "bare_identifier_arg", "midtext_backtick",
                  "malformed_as_label", "unknown_call", "unknown_statement", "missing_paren",
                  "string_quote", "goto_missing_label", "engine_condition_differs",
                  "undeclared_variable", "engine_else_after_comment", "missing_comma"}
+# Unknown commands (no engine command of that name) the remaster's director gives a meaning
+# by owner decision; the switches that call them stay false.
+DIRECTOR_DEFINED = {
+    "sp_prop": "the remaster's director defines `sp_prop <sprite> <0|1>` (owner decision OD1, "
+               "9 Nov 2026): set the placed sprite's map `prop` flag, the warp / walk-through "
+               "flag that get_hard and special_block read (dink.cpp:569-575, 15337-15341; no "
+               "1997 command can change it), until the screen loads again",
+}
 # Info-level codes that need no human decision.
 SKIP_CODES = {"goto_cross_procedure", "unused_label"}
 
@@ -289,6 +297,14 @@ def build(ast_dir, out_dir, compile_files=True, jobs=8, quiet=False):
         stats[status] += 1
         coverage.append(row)
 
+    # every owner decision must name a switch the converter made (a renamed or vanished
+    # constant must not silently leave the decision unapplied)
+    made = {n["ink"] for n in project.names if n["kind"] == "fix"}
+    stale = sorted(set(OWNER_DECISIONS) - made)
+    if stale:
+        raise SystemExit("overrides.OWNER_DECISIONS names switches the converter did not "
+                         "make: %s" % ", ".join(stale))
+
     # scripts referenced but without a .c file; a `.d` with no `.c` that nothing references
     # is dead data (the engine would load it, but nothing asks for it)
     referenced = {d["script"] for d in diags
@@ -477,8 +493,12 @@ def build(ast_dir, out_dir, compile_files=True, jobs=8, quiet=False):
             # only the switched-off intent branch uses it; never a described command
             cat, args, blocking = "unknown-command", "", False
             note = ("not an engine command: dink.cpp has no such name, so the engine logs it "
-                    "and skips the line; recorded only as a switched-off intent (see the "
-                    "unknown_call rows of review_queue.csv); the director need not run it")
+                    "and skips the line; written only in a switched-off intent branch (see the "
+                    "unknown_call rows of review_queue.csv)")
+            if name in DIRECTOR_DEFINED:
+                note += "; " + DIRECTOR_DEFINED[name]
+            else:
+                note += "; the director need not run it"
         else:
             cat, args, note, blocking = describe(name, B.BUILTINS.get(name))
         forms = by_cmd.get(name, Counter())

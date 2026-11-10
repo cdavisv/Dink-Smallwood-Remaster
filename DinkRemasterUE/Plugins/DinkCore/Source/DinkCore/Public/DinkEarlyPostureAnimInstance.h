@@ -13,7 +13,7 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Transient, Category="Dink|Posture")
     float PostureWeight = 0.f;
     virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-    static float TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne);
+    static float TargetWeight(int32 Story, bool bAllowed, bool bAttacking, bool bAirborne, float Confidence = 0.f);
 private:
     FVector PreviousLocation = FVector::ZeroVector;
     bool bHasPreviousLocation = false;

@@ -1,6 +1,7 @@
 #include "DinkInteriorCameraComponent.h"
 #include "DinkCoreModule.h"
 #include "DinkCameraFraming.h"
+#include "DinkCameraHeadroom.h"
 #include "DinkCameraOcclusion.h"
 #include "Components/CapsuleComponent.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -97,6 +98,7 @@ void UDinkInteriorCameraComponent::AddZoomInput(float Steps)
 
 void UDinkInteriorCameraComponent::RestoreCamera()
 {
+    OutdoorHeadroomLift=0.f;
     FloorFramingShift=FVector::ZeroVector; bFloorFramingAvailable=false; bFloorFramingFeasible=true;
     if (Arm) { Arm->TargetArmLength=OutdoorArm; Arm->TargetOffset=OutdoorPivot; Arm->SocketOffset=OutdoorSocket; }
     if (Camera) Camera->SetFieldOfView(OutdoorFOV);
@@ -304,6 +306,68 @@ void UDinkInteriorCameraComponent::UpdateFraming(float DeltaTime)
     PreviousPawnLocation=Position; bSnapFraming=false;
 }
 
+void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
+{
+    OutdoorHeadroomLift=0.f;
+    Arm->TargetOffset=OutdoorPivot;
+    // Match the native spring-arm sweep rather than extending through a blocker.
+    // Lag/custom camera-local offsets need a different trajectory; leave their policy alone.
+    if (!Arm->bDoCollisionTest || Arm->TargetArmLength<=0 || Arm->ProbeSize<=0 ||
+        Arm->ProbeChannel!=ECC_Camera || Arm->bEnableCameraLag || Arm->bEnableCameraRotationLag ||
+        !Camera->GetRelativeLocation().IsNearlyZero()) return;
+    const UCapsuleComponent* Capsule=GetOwner()->FindComponentByClass<UCapsuleComponent>();
+    const APawn* Pawn=Cast<APawn>(GetOwner());
+    APlayerController* PC=Pawn ? Cast<APlayerController>(Pawn->GetController()) : nullptr;
+    int32 Width=0,Height=0; if (PC) PC->GetViewportSize(Width,Height);
+    if (!Capsule || Width<=0 || Height<=0) return;
+    const FRotator Rotation=Arm->GetTargetRotation();
+    const FVector Pivot=Arm->GetComponentLocation()+OutdoorPivot;
+    const FVector Desired=Pivot-Rotation.Vector()*Arm->TargetArmLength+Rotation.RotateVector(Arm->SocketOffset);
+    const FCollisionShape Shape=FCollisionShape::MakeSphere(Arm->ProbeSize);
+    FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkOutdoorHeadroom),false,GetOwner());
+    FHitResult BaseHit;
+    if (!GetWorld()->SweepSingleByChannel(BaseHit,Pivot,Desired,FQuat::Identity,Arm->ProbeChannel,Shape,Params) ||
+        BaseHit.bStartPenetrating || BaseHit.Time>=1.f) return;
+    FMinimalViewInfo View; Camera->GetCameraView(0.f,View);
+    if (View.ProjectionMode!=ECameraProjectionMode::Perspective) return;
+    const FIntRect Rect(0,0,Width,Height);
+    FSceneViewProjectionData Projection; Projection.SetViewRectangle(Rect);
+    TEnumAsByte<EAspectRatioAxisConstraint> Axis=AspectRatio_MaintainXFOV;
+    if (PC->GetLocalPlayer()) Axis=PC->GetLocalPlayer()->AspectRatioAxisConstraint;
+    if (Camera->bOverrideAspectRatioAxisConstraint) Axis=Camera->AspectRatioAxisConstraint;
+    FMinimalViewInfo::CalculateProjectionMatrixGivenViewRectangle(View,Axis,Rect,Projection);
+    const FQuat ViewRotation=Rotation.Quaternion()*Camera->GetRelativeRotation().Quaternion();
+    const FVector Forward=ViewRotation.GetForwardVector(),Up=ViewRotation.GetUpVector();
+    const FVector Top=Capsule->GetComponentLocation()+FVector(0,0,Capsule->GetScaledCapsuleHalfHeight());
+    const double Maximum=Capsule->GetScaledCapsuleHalfHeight();
+    constexpr double MarginNDC=.2; // Keep the capsule top within the upper90% of screen height.
+    FVector Eye=BaseHit.Location;
+    double Lift=0;
+    for (int32 Attempt=0; Attempt<3; ++Attempt)
+    {
+        double More=0;
+        if (!DinkCameraHeadroom::MinimumLift(Top,Eye,Forward,Up,Projection.ProjectionMatrix.M[1][1],
+            Projection.ProjectionMatrix.M[2][1],MarginNDC,Maximum-Lift,More)) return;
+        if (More<=1.e-5)
+        {
+            if (Lift>0) { OutdoorHeadroomLift=Lift; Arm->TargetOffset=OutdoorPivot+FVector(0,0,Lift); }
+            return;
+        }
+        Lift+=More+.25; // Numerical clearance, still inside the capsule-derived bound.
+        if (Lift>Maximum) return;
+        const FVector Offset(0,0,Lift);
+        FHitResult PivotHit,Candidate;
+        if (GetWorld()->SweepSingleByChannel(PivotHit,Pivot,Pivot+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params)) return;
+        if (!GetWorld()->SweepSingleByChannel(Candidate,Pivot+Offset,Desired+Offset,FQuat::Identity,Arm->ProbeChannel,Shape,Params) ||
+            Candidate.bStartPenetrating || Candidate.GetComponent()!=BaseHit.GetComponent() ||
+            FVector::DotProduct(Candidate.ImpactNormal,BaseHit.ImpactNormal)<.5 ||
+            !DinkCameraHeadroom::PreservesExteriorFace(BaseHit.Location,Candidate.Location,BaseHit.ImpactPoint,BaseHit.ImpactNormal)) return;
+        // Stay on the original wall's exterior side. A clear route into an unlit shell
+        // is not an acceptable headroom fix, even if it yields the full arm length.
+        Eye=Candidate.Location;
+    }
+}
+
 void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction)
 {
     Super::TickComponent(DeltaTime,TickType,TickFunction);
@@ -311,14 +375,15 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     const APawn* Pawn=Cast<APawn>(GetOwner());
     if (!Pawn || !Pawn->IsLocallyControlled() || Pawn->GetController()!=GetWorld()->GetFirstPlayerController())
     {
-        if (bInteriorMode || !Occluders.IsEmpty()) SelectScreen(nullptr);
+        if (bInteriorMode || !Occluders.IsEmpty() || OutdoorHeadroomLift>0) SelectScreen(nullptr);
         return;
     }
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
     if (!bSelectedScreen || Screen!=CurrentScreen.Get() || bAppliedCutaway!=bEnableWallCutaway) SelectScreen(Screen);
     Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
-    if (bInteriorMode) UpdateFraming(DeltaTime);
+    if (bInteriorMode) { OutdoorHeadroomLift=0.f; UpdateFraming(DeltaTime); }
+    else UpdateOutdoorHeadroom();
     if (Occluders.IsEmpty()) return;
     const FRotator Rotation=Arm->GetTargetRotation();
     const FVector Pivot=Arm->GetComponentLocation()+Arm->TargetOffset;

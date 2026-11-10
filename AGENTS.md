@@ -404,7 +404,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
 - `tools/analyse` (built 5 Nov 2026) is pipeline stages 3 and 4: true
   connectivity, warp graph, interiors, regions and the 2D-to-3D world layout.
   `cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out`
-  (about 24 s); tests: `python3 -m unittest discover -s tests` (49 pass).
+  (about 24 s); tests: `python3 -m unittest discover -s tests` (57 pass, 9 Nov 2026).
   It reads `tools/data/tile_classes.csv` and `tools/dinkc/out/calls.csv`.
   `tools/analyse/regions.toml` is the hand-tuned region and scale table: edit
   it and rebuild. World position of any original point is the bilinear blend
@@ -418,17 +418,38 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   `s6-warp` machine (SCR_253 to SCR_154); the Edge of the World plateau only
   by pits and caves; the snow isle only by the hole on SCR_144. The toll
   bridge is SCR_404 (base script `s1-brg`); the `s1-nopas` barrier is on
-  SCR_346. East Wilds (cols 27-31, rows 8-20, 56 screens), checked 7 Nov 2026
-  against the data and `dink.cpp`: no designed way in (no warp or script
+  SCR_346. East Wilds (cols 27-31, rows 8-20): the 1997 data has no designed
+  way in (checked 7 Nov 2026 against the data and `dink.cpp`: no warp or script
   targets it except the booth door S289_P19; the river along cols 25/26, a
-  channel at rows 11/12 and the cliff foot are closed outlines). The engine
-  has two sequence-break routes, listed in `out/engine_reach.json`: push the
-  rock S277_P03 (`s1-roc`, strength 4), walk the hardness-0 cliff face east to
-  SCR_288, leave its right edge (the row wrap loads SCR_289, the booth's black
-  void), take the booth door to SCR_350 (23 of the 56 screens); and wade
-  through sea reached by screen-edge leaks (24 more; 9 stay closed). A cut
-  must close the rock, the wrap and the leaks; a reconnection can use the
-  booth door and the river at SCR_443/444.
+  channel at rows 11/12 and the cliff foot are closed outlines). **Owner
+  decision 9 Nov 2026: reconnected through the cobbler's booth.**
+  `tools/analyse/regions.toml` `[[join]] cobbler_booth_doorway` (a designed
+  join: `analyse/joins.py` patches the build's in-memory tiles and hardness,
+  `connectivity.json` `designed_joins` carries it to the UE exporter) makes
+  SCR_289 + SCR_290 one interior `INT_289` (region koka_isle) with a doorway:
+  void tiles SCR_289 (11, 1-3), (9-11, 4) and SCR_290 (0, 1-4) become wood
+  floor; on SCR_289 the passage is map y 176-214 (below the door S289_P19,
+  which fills its east wall at y 125-176; wall hardboxes S289_P11/P12 cut), on
+  SCR_290 the west wall (S290_P10, top of S290_P14) is cut over y 125-214,
+  facing the door and the passage; 2 px jambs close it off from the void. The
+  passage was first 22 px (rows 1-3 only) and left about 2 px clear of the
+  greybox's door trigger (hardbox + 30 cm); the coordinator widened it into
+  row 4 the same night (38 px crossing, about 18 px of free band for the
+  capsule), so the walk both ways between the rooms misses the door. Designed route: Koka bridge
+  SCR_727 -> SCR_759 -> SCR_734 door S734_P31 -> SCR_290 -> doorway -> SCR_289
+  -> door S289_P19 -> SCR_350 (351, 241) -> meadows. The region is now 55
+  outdoor screens (SCR_289 went with the booth), 22 reached by design (the
+  meadows of rows 8-11 with SCR_352's treasure and the SCR_349 save machine);
+  the 24 river/coast screens of rows 12-20 are still reached only by wading
+  and 9 by nothing. The engine's sequence breaks are left as they are
+  (`out/engine_reach.json`): push the rock S277_P03 (`s1-roc`, strength 4),
+  walk the hardness-0 cliff face east to SCR_288, leave its right edge (the row
+  wrap loads SCR_289's black void, which still touches the door); and wading
+  through sea reached by screen-edge leaks. In the greybox neither leads in:
+  the rock and the hardness-0 cliff face still work (cliff faces are open
+  ground there), but SCR_288's east side gets an edge wall (no grid neighbour;
+  there is no row wrap, SCR_289 lies on the interior sheet), and water
+  components are filled `DinkHardLow`, so nobody wades.
 - Unreal Engine 5.8.4 (Epic's prebuilt Linux build, CL 58902052) is installed
   at `~/UnrealEngine/UE_5.8.4` (73 GB) with Epic's Fab plugin for Linux
   unpacked into `Engine/Plugins/Fab`. The editor MCP plugins ship with it under
@@ -447,7 +468,7 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   run with a display.
 - `tools/dinkink` (built 5 Nov 2026, stdlib only) is pipeline stage 5: it
   converts the DinkC ASTs to Ink drafts. `cd tools/dinkink && python3 -m dinkink build --ast ../dinkc/out --out out`
-  (about 7 s); tests: `python3 -m unittest discover -s tests` (39 pass, 12-27 s).
+  (about 7 s); tests: `python3 -m unittest discover -s tests` (44 pass, 12-27 s; 9 Nov 2026).
   Output: 377 `.ink` files plus root `dink.ink` (all compile with inklecate,
   0 errors, 0 warnings), `names.csv`, `line_ids.csv`, `director_commands.csv`,
   `director_vocabulary.csv`, 103 shot lists, `review_queue.csv` (65 items,
@@ -553,8 +574,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 176 automation tests (verified 9 Nov
-  2026: 176/176 in 723 s; the probe runs as twenty save-slot chapters,
+  rows, 111 implemented, 35 recorded. 188 automation tests (verified 9 Nov
+  2026 night: 188/188 in 677 s on master 72fa9c0; the probe runs as twenty save-slot chapters,
   Ch1..Ch9 and ChA..ChK, deterministic across runs and identical packaged for all
   twenty (9 Nov 2026); PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
@@ -693,6 +714,22 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   placements, plus 46 warps on such proxies, so 143 final / 6,312 placeholder /
   152 cut; report in `Plugins/DinkImport/Docs/art_coverage.md`). Remaster gap noted:
   `draw_hard_sprite`/`sp_hard` are only recorded (UE AGENTS.md pitfall 77).
+- Probe progress, 9 Nov 2026 evening (PR #41): `sp_hard`, `draw_hard_sprite` and
+  `draw_hard_map` ported from `dink.cpp` (9979-9998, 8089-8104, 8224-8232):
+  the loaded hardness map is redrawn from a per-screen `tiles` layer plus the
+  hard placements and sprites in `que` order, read by `GetHard` until the next
+  screen load; the greybox swaps a runtime collision mesh in for the baked one
+  (`DinkGreyboxHardness.cpp`). Five `Dink.Gameplay.Hardness.*` tests on real
+  SCR_031 data (six untouched screens reproduce `tools/dinkex` pixel for
+  pixel). Chapter 9 moved because `s4-rock.c` now opens the duck pen as in the
+  original, 10-20 follow from it. Seth margin: chapter 19 also takes SCR_209's
+  and SCR_177's barrel potions, two gold hearts, SCR_352's pickups and
+  SCR_159's four magic potions (strength 30 at the bow, defense 11, magic 17,
+  lifemax 95); Seth dies with 8 of 11 elixirs left, 30/95 life, 41 arrows,
+  100 s (was 0 left, 7 life, 139 s). Master 5d65ed8 (PR #40 + #41): 185/185,
+  packaged probe all twenty PARITY OK (ch9 ddb1e8e0ca .. ch20 2298aad2ce,
+  table in `Plugins/DinkParity/Docs/packaged_probe.md`). Still open: saved
+  editor_type 2-5 hard flags are not applied on screen load (pitfall 77).
 - Packaged build (first cook 7 Nov 2026): the probe moved into a new
   `DeveloperTool` module `DinkProbe` (same plugin; `DinkParity` is now `Editor`
   type, the uproject allow-list is gone), so it exists in a game target.
@@ -767,7 +804,22 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   as in 1997). The converter now does rules C1-C7 of that review (new
   constants `fix_s2_man2_l25`, `fix_s1_h3_8_l13`, `fix_s1_wand2_l187`,
   `fix_s3_chick_l42`; the five empty ones are gone; `freeeze`/`unfreeeze` emit
-  `freeze`/`unfreeze`; `sp_prop` is still a no-op and every switch false, so
-  OD1 and OD2 stay open). Review-queue IDs were renumbered by that change, so
+  `freeze`/`unfreeze`; at that point `sp_prop` was a no-op and every switch false). Review-queue IDs were renumbered by that change, so
   the R-numbers in `verbatim_review.md` are the pre-fix ones (match by
-  script and line). `DinkRemasterUE` has not been synced with the new story.
+  script and line).
+- Owner decisions OD1 and OD2 (9 Nov 2026, done the same day): the four
+  pure-typo switches `fix_s2_jack_l171`, `fix_s4_sign3_l17`, `fix_s3_chick_l42`,
+  `fix_s1_h3_8_l13` are `true` in the shipped build, every other `fix_` switch
+  stays `false`. They are listed in `tools/dinkink/dinkink/overrides.py`
+  `OWNER_DECISIONS` (value, date, reason, dink.cpp citation); the converter
+  emits `CONST <name> = true // owner decision 9 Nov 2026: ...` for them and
+  stops if a decision names a switch it did not make; never hand-edit the
+  `.ink`. `DinkRemasterUE/Scripts/sync_story.py` accepts exactly that set.
+  OD1: the remaster's director defines `sp_prop <sprite> <0|1>` (set the
+  placement's map `prop` flag, warp / walk-through, until the screen loads
+  again; see the UE AGENTS.md gameplay row "placement prop"); its two 1997
+  calls stay behind `fix_s5_fguy_l6`/`fix_s5_end_l33` = false. Merged as PR
+  #44 (master 72fa9c0); packaged probe re-run from that master the same night:
+  all twenty chapters PARITY OK at the new hashes (ch1 bf7710e26c .. ch20
+  7fdc482332, `Plugins/DinkParity/Docs/packaged_probe.md`). The UE project
+  is synced with this story (`sync_story.py --rebuild`).
