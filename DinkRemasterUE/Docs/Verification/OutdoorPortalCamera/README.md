@@ -1,3 +1,15 @@
+# Outdoor doorway camera
+
+A clear collision sweep through the cottage doorway could leave an outdoor camera inside the dark shell. The optional sidecar binds the exact authored cottage component, mesh/source provenance and physical doorway envelope. It limits presentation distance at the exterior lip and reuses physically swept head framing. Original collision, materials, controls and requested zoom remain unchanged; ownership, reset and infeasible paths are explicit.
+
+Own Editor/Game builds, focused9 and full201 native regression pass at `bac00294966efbc0af013cc443eb70e8a6f6e946`. Real-input testing starts at the original spawn and walks around the correctly sized chair through the door and back, before any fixture relocation. Actual doorway, free400 and indoor240 screenshots and measurements pass. Selected portable evidence and exact original hashes are in `Evidence/INDEX.json` and `Evidence/ORIGINS.json`.
+
+The evidence retains the cold readiness timeouts, first fixture compilation failure, observer API failures, corrected same-game continuation, warnings,7.44cm settled-pose qualification and unexplained outer-tool143 after actual game/display0. Normal current cook, packagedCH1/rendered checks and final review remain pending. These results prove a bounded camera improvement, not final house lighting/art or broader collision completion.
+
+## Historical source checkpoint
+
+The following records the original source-review state; pending build/native wording is superseded by the validation above. Source/provenance and acceptance boundaries still apply.
+
 # Outdoor portal camera source checkpoint
 
 Isolated branch `fix/outdoor-portal-camera`, base `2b683008675e3181b294a474e5cfd187158dacd9`, checkout `/home/artist/Work/DinkOutdoorPortalCamera`. This is an uncompiled source candidate; no UE, build, native or rendered acceptance is claimed.

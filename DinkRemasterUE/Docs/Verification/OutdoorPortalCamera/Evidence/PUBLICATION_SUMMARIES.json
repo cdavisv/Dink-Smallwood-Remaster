@@ -1,0 +1,27 @@
+{
+  "GPU/state-portal-recorded.json": {
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-recorded.json",
+    "original_sha256": "56e225bdcf45d26909e9b88387502287e960ddd4d2040b944d984b13fe5c248a",
+    "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
+  },
+  "GPU/state-portal-recorded-corrected.json": {
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-recorded-corrected.json",
+    "original_sha256": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d",
+    "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
+  },
+  "GPU/state-portal-free-corrected.json": {
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-free-corrected.json",
+    "original_sha256": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
+    "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
+  },
+  "GPU/state-portal-indoor-restored-corrected.json": {
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-indoor-restored-corrected.json",
+    "original_sha256": "529ce7b0b1e640857c1ac28c7934fa31b9f4bd8ee611e571ae6d656b6dc4ff8d",
+    "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
+  },
+  "Native/Cold9.json": {
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/Native/Cold9.json",
+    "original_sha256": "ec768783fbfeac97bc05a9032b1cd8e57ffa9172a1302caf36aade61ac72eba6",
+    "omitted": "Large info-event/scene inventories; test states, counts, durations and error/warning excerpts with full-message hashes retained."
+  }
+}

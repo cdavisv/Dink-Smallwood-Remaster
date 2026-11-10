@@ -1,3 +1,11 @@
+## Outdoor doorway camera: Editor/native/real-input validation passed; package pending
+
+Branch `fix/outdoor-portal-camera` at `/home/artist/Work/DinkOutdoorPortalCamera`, PR57. Runtime tested at `bac00294966efbc0af013cc443eb70e8a6f6e946` after accepted master868911; this publication changes docs/proof only. Own Editor/Game builds pass. All201 current native tests complete successfully (169 clean,32 with retained warnings), with13645 inputs unchanged. Focused9 warm cases pass; the first cold run retains two readiness failures during distance-field compilation, with assertions/timeouts unchanged.
+
+Original-spawn real-W five-waypoint movement and door exit/return pass before any Goto. Actual camera controls keep the eye outside the cottage lip, preserve physical Camera blocking and restore free400/indoor240. Driver reviewed14 screenshots; Root reviewed key initial/exit/return/recorded/free/indoor frames. The settled camera fixture is7.44cm from the earlier recorded target, so this is not an exact before/after pixel comparison. Native exact-pose tests are separate evidence.
+
+Two read-only observer API failures and the original controls-driver failure are preserved. The corrected same-game continuation reads the actual native Engine.NearClipPlane10 through its reflected name, with no scene changes. Game/display exit0 and13661 unchanged inputs are proven; outer tool26525 returned143 after recording completion, cause unproven. Do not claim a warning-free or single-pass run. See `Docs/Verification/OutdoorPortalCamera/Evidence`. Normal current cook, packagedCH1/camera pixels, final review and CI remain gates before merge. Broader collision and final photoreal art remain open.
+
 ## Portal cold Editor failure preserved; fixture pointer deduction fix only
 
 Own BuildC1 Root46745 failed Editor6 after140.59913s/kernelPASS/13645inputs unchanged; Game did not run. Exact failure: fixture `auto*` cannot deduce from TObjectPtr CameraBoom/FollowCamera. Fixed only `.Get()` at that declaration; assertions and production runtime bytes unchanged. Cold log/partial outputs preserved in `/home/artist/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3`. C2 must qualify actual OWN failed-C1 partial modules/metadata, never claim successfulbaseline or copyDLLs. No retry/build/native launched by this sourcefix.

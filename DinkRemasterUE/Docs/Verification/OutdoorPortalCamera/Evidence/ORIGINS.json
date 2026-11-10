@@ -1,0 +1,224 @@
+{
+  "Build/C1_editor_failure.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/editor/HOST_TERMINAL.json",
+    "sha256": "91fed653d06d77f2c4e9649804c28187dced1e8f0d6e77c1ea0406211df18534",
+    "bytes": 128
+  },
+  "Build/C2_sequence.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate2/Runs/b74a504ffb4a4dc084d34bc1714be17f/SEQUENCE_RESULT.json",
+    "sha256": "006a4c5600320ff3f9ead1c2346852523a8e7176435645ee990411d80deecc8c",
+    "bytes": 1988
+  },
+  "Build/C1_error_excerpt.json": {
+    "derived_from": [
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/ProjectSaved/Logs/build.log",
+        "sha256": "16929173b549663244c7789fe4db29b6a0db6101caec7e344b5807a0d44dd12d"
+      }
+    ],
+    "sha256": "fe5b07019d123cdfd612698af85bb7aa8c7bae6d7d5cf940b9e48c053fb7be20",
+    "bytes": 966
+  },
+  "Native/Cold9.json": {
+    "derived_from": [
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/Report/index.json",
+        "sha256": "5dd2693ceee3bc6fb00188371c6ca39603a69d11d196a7ad81c91a7250aafb03"
+      },
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/HOST_TERMINAL.json",
+        "sha256": "25b7d5842e6be03b7f5f3f978c9031aa135f6b51bf0e00c75fa43761e95cc46e"
+      }
+    ],
+    "sha256": "ec768783fbfeac97bc05a9032b1cd8e57ffa9172a1302caf36aade61ac72eba6",
+    "bytes": 2435462
+  },
+  "Native/Warm9.json": {
+    "derived_from": [
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/Report/index.json",
+        "sha256": "8006e9031935804b19c8c484476284b9e1178c439e44c6c65750fa8bcbfd089d"
+      },
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/HOST_TERMINAL.json",
+        "sha256": "e5678be2893e991a36e15282fe91d2c32ba94b19be43c40f26914aa0231328ed"
+      }
+    ],
+    "sha256": "95ffc3a7a37bf3a4c3c50d0ce9d4783bba137fd7d6d30bdbf165491ca885493c",
+    "bytes": 27516
+  },
+  "GPU/result.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/result.json",
+    "sha256": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
+    "bytes": 197
+  },
+  "GPU/DISPLAY_CLOSED.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DISPLAY_CLOSED.json",
+    "sha256": "4398e018344920793f7f10029f106278972bb84bcd92e8cc8e16ecf5cf6488ac",
+    "bytes": 553
+  },
+  "GPU/DRIVER_REVIEW_FINAL.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DRIVER_REVIEW_FINAL.json",
+    "sha256": "0f5da5f06523dab8f14657ca1f593baad55aed860262c983b6f51ffd8e18df70",
+    "bytes": 10615
+  },
+  "GPU/OUTER_TOOL_QUALIFICATION.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/OUTER_TOOL_QUALIFICATION.json",
+    "sha256": "ea6304bb1d24ab2cbba4dc38f4d2720e4ce87a72ea37bbaac600ed73d329e6f7",
+    "bytes": 1855
+  },
+  "GPU/FRESH_STARTUP_PLAYER.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/FRESH_STARTUP_PLAYER.json",
+    "sha256": "5d676e416f844d6d31363c2d69cca523ffa39d72c49e932e40465a7c53fe546e",
+    "bytes": 396
+  },
+  "GPU/ENGINE_OUTER_IDENTITY.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY.json",
+    "sha256": "6ffe250c4f939a7f5cf7ac3efc0e49312d704d341e7d3a31f31eab7529086e90",
+    "bytes": 2483
+  },
+  "GPU/ENGINE_OUTER_IDENTITY_V2.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY_V2.json",
+    "sha256": "112bbf892b05e5d291986999b815a870a72b702e7aa87208af1b32a54ac72408",
+    "bytes": 1843
+  },
+  "GPU/CORRECTED_CONTROLS_CALLER.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/CORRECTED_CONTROLS_CALLER.json",
+    "sha256": "7bf56d5dd7ed86a981f519b098b2c6867aaf4b978cf940b12c064059cbc65d4b",
+    "bytes": 460
+  },
+  "GPU/state-portal-recorded.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded.json",
+    "sha256": "56e225bdcf45d26909e9b88387502287e960ddd4d2040b944d984b13fe5c248a",
+    "bytes": 731352
+  },
+  "GPU/state-portal-recorded-corrected.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
+    "sha256": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d",
+    "bytes": 732043
+  },
+  "GPU/state-portal-free-corrected.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-free-corrected.json",
+    "sha256": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
+    "bytes": 731848
+  },
+  "GPU/state-portal-indoor-restored-corrected.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-indoor-restored-corrected.json",
+    "sha256": "529ce7b0b1e640857c1ac28c7934fa31b9f4bd8ee611e571ae6d656b6dc4ff8d",
+    "bytes": 731791
+  },
+  "Screenshots/spawn-initial.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-initial.png",
+    "sha256": "6297345fed84faaea8f74344bd2060c01e3b718a25d454aa8917ff07ebc98a6d",
+    "bytes": 954019
+  },
+  "Screenshots/spawn-corridor-east.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-corridor-east.png",
+    "sha256": "c1da0258f03266019d9a15bad084e40ab043b1f195bd75f1ece34bf27b6f6db9",
+    "bytes": 1026588
+  },
+  "Screenshots/spawn-door-exit.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-exit.png",
+    "sha256": "8b4f79a9ac688903b63318c79817027bf5c3650ea55b8cdef6ac55cfb1f79bf6",
+    "bytes": 1189293
+  },
+  "Screenshots/spawn-door-return.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-return.png",
+    "sha256": "0898cc518078e308c77a66e51a668648c897080a418adc9a7a5ba0b05bffd4c7",
+    "bytes": 1016061
+  },
+  "Screenshots/portal-recorded-corrected.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-recorded-corrected.png",
+    "sha256": "9ba579fe4eb4ad09d0d0486ef4f5a591256099a2ee2e00abb6a8b67416a53874",
+    "bytes": 1180852
+  },
+  "Screenshots/portal-free-corrected.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-free-corrected.png",
+    "sha256": "4ea37cc06efe9f12c332c575d75217c6f5eb52c35877e7b2b0063327454d9c1d",
+    "bytes": 1056085
+  },
+  "Screenshots/portal-indoor-restored-corrected.png": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-indoor-restored-corrected.png",
+    "sha256": "4ac280b08927af3e43ed90ee1913715150279d6ea6e6a60a21020294384b0ca8",
+    "bytes": 1114107
+  },
+  "Routes/walk-west.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-west.json",
+    "sha256": "65927c62ab220474d638e57778316b78ebb80fd272acd09841ec4fe52d57f7fb",
+    "bytes": 7970
+  },
+  "Routes/walk-corridor-west.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-west.json",
+    "sha256": "9decdfbffe0f5e6f3808bba84652a4d12af608b7dc8e16a3f98ae59b66dcea7e",
+    "bytes": 14925
+  },
+  "Routes/walk-corridor-east.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-east.json",
+    "sha256": "672be89aee0984d52762d28946b952fe3ee34decdc2412b9a7a879c34d010876",
+    "bytes": 6552
+  },
+  "Routes/walk-south-bypass.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-south-bypass.json",
+    "sha256": "7acbd4c8509ce513453e5c2a708e45f5e1d002730c0e8fecc72f7ae23949a85a",
+    "bytes": 8772
+  },
+  "Routes/walk-door-approach.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-door-approach.json",
+    "sha256": "8518fb9577ed5965132bc1ce1c2f66459533665589ab2cd77efece6abd785fe9",
+    "bytes": 5770
+  },
+  "Routes/route-spawn-door-exit.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-exit.json",
+    "sha256": "9803527befe496bb9506d64e87db04f02f36c9e5964fea05d939ecfa8b87aec7",
+    "bytes": 2549
+  },
+  "Routes/route-spawn-door-return.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-return.json",
+    "sha256": "aceb4ad6b23312c7f1f0b7e3fb40d6440999c8fde8be4e176444d096fad81dcb",
+    "bytes": 973
+  },
+  "ObserverCorrection/CORRECTION_ONLY.diff": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraObserverCorrection/CORRECTION_ONLY.diff",
+    "sha256": "55ddb79720dd35f2d5a2ce7e47eb0e224269f392f4109c54fef1a6757489f17f",
+    "bytes": 1689
+  },
+  "ObserverCorrection/PROVENANCE.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraObserverCorrection/PROVENANCE.json",
+    "sha256": "c3d015f5f3a13029dd9a6ad3493d0c3c7a895144508d6e813e0da2c7905802d6",
+    "bytes": 819
+  },
+  "ObserverCorrection/INDEX.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraObserverCorrection/INDEX.json",
+    "sha256": "23a11dc76eacad173c27e6e5d0ae35c9c23c926d13823d02bb03b3bb221eea37",
+    "bytes": 858
+  },
+  "GPU/PoseQualification.json": {
+    "derived_from": [
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
+        "sha256": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d"
+      }
+    ],
+    "sha256": "648d563bff73a070ed42c74b822a430b0b5614d7d068d52147c0072bef3d8302",
+    "bytes": 606
+  },
+  "Native/FullCurrent201.json": {
+    "derived_from": [
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
+        "sha256": "6f92699bb81e719ba83c06e82b73f396fff7ff38c18b6751636b0a3871b3a52c"
+      },
+      {
+        "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Report/index.json",
+        "sha256": "b0f8ac6ecb430288d3deae1ac9c9c29eb690e5b75763d4d8365006a2145a3b6b"
+      }
+    ],
+    "sha256": "6b260d2ce54f76906774914c5414f75c6d8c2c6b0275ac1436ce1709a2042d6a",
+    "bytes": 37006
+  },
+  "Native/FullCurrent_HOST_TERMINAL.json": {
+    "origin": "/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
+    "sha256": "6f92699bb81e719ba83c06e82b73f396fff7ff38c18b6751636b0a3871b3a52c",
+    "bytes": 14230
+  }
+}

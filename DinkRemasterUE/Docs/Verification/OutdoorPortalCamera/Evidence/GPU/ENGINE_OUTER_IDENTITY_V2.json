@@ -1,0 +1,52 @@
+{
+  "binding": {
+    "pid": 828353,
+    "start_ticks": 8647351,
+    "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "argv": [
+      "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-NoCompile",
+      "-nosound",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-ExecCmds=t.MaxFPS 45",
+      "-DinkQARunId=af1a4101-de2c-4829-887f-8fbd16b432e3",
+      "-nowrite",
+      "-notraceserver",
+      "-DDC=InstalledNoZenLocalFallback",
+      "-DDC-NoDefaultGraph",
+      "-LocalDataCachePath=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+      "-SharedDataCachePath=None",
+      "-ZenSharedDataCacheHost=None",
+      "-UserDir=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
+      "-abslog=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
+    ],
+    "nonce": "af1a4101-de2c-4829-887f-8fbd16b432e3",
+    "namespace_pid": 2
+  },
+  "caller_sha256": "720d20ff4af19c16a5314e0927e0b2fa833a6e017442e37f30bd5388be1d15df",
+  "actual_outer": "/Engine/Transient.GameEngine_0",
+  "actual_class": "/Script/Engine.GameEngine",
+  "pawn_before": [
+    97726.1138697628,
+    37519.1596679113,
+    98.34999561309814
+  ],
+  "near_clip": 10.0,
+  "pawn_after": [
+    97726.1138697628,
+    37519.1596679113,
+    98.34999561309814
+  ],
+  "success": true
+}
