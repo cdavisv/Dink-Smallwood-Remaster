@@ -77,9 +77,9 @@ def load_contract(root):
         else:
             g=graphs['materials'][entry['material']];validate_graph(g);images={n['image']['name']:n['image']['packed_sha256']for n in g['nodes']if n['type']=='TEX_IMAGE'};require(set(images)==set(typed),'Source shader images differ from registered variants')
             for name,digest in images.items():require(textures[typed[name]]['source_sha256']==digest,'Shader packed pixels differ')
-            recipe.update(source_graph_reviewed=False,source_graph=g,source_graph_sha256=hashlib.sha256(json.dumps(g,sort_keys=True).encode()).hexdigest())
+            recipe.update(source_graph_reviewed=False,uv1_semantic_decode='U,1-V',source_graph=g,source_graph_sha256=hashlib.sha256(json.dumps(g,sort_keys=True).encode()).hexdigest())
         materials.append(recipe);packages[recipe['package']]='Material'
-    mesh=dict(name=NAME,package=TRIAL+'Meshes/'+NAME,file=fbx['file'],source_sha256=fbx['sha256'],triangles=194192,UCX=6,material_slots=meta['material_slots'],UV_channels=['UV0','UV1_SharedData'],color0='SharedSurfaceData',normal_tangent_basis='UV0',collision='SIMPLE_AND_COMPLEX',nanite=False)
+    mesh=dict(name=NAME,package=TRIAL+'Meshes/'+NAME,file=fbx['file'],source_sha256=fbx['sha256'],triangles=194192,UCX=6,material_slots=meta['material_slots'],UV_channels=['UV0','UV1_SharedData'],color0='SharedSurfaceData',normal_tangent_basis='UV0',native_UV_convention='LegacyFBX imports V=1-sourceV on allchannels; semanticUV1Y decoded byOneMinus inmaterial, UV0 stays texture convention',collision='SIMPLE_AND_COMPLEX',nanite=False)
     packages[mesh['package']]='StaticMesh';require(len(textures)==30 and len(materials)==7 and len(packages)==38,'Exact fresh38 trial scope differs')
     result=dict(schema='dink-house439-native-trial/1',source_pins=pins,textures=list(textures.values()),materials=materials,meshes=[mesh],trial_packages=packages,production_activated=False,native_review_required=True)
     result['digest']=hashlib.sha256(json.dumps(result,sort_keys=True).encode()).hexdigest();return result

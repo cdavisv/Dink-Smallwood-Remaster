@@ -1,0 +1,219 @@
+{
+  "status": "ACTUAL_BINARY_UV1_AND_INSTALLED_IMPORTER_CONVENTION_VERIFIED",
+  "fbx_sha256": "bfcb1eedea117819747e27977d40d13631d19b0aa32c31fef99c94c05fabdf4f",
+  "engine_importer_sha256": "7da42a17d57a268dab4128914484bed5c3d5f6b357abecb48b634c56df4279b9",
+  "engine_source": "Engine/Source/Editor/UnrealEd/Private/Fbx/FbxStaticMeshImport.cpp:758,927",
+  "rows": [
+    {
+      "geometry": "b'SM_Cottage_Stonebrook_01_Mesh.002\\x00\\x01Geometry'",
+      "actual_fbx_corners": 582576,
+      "raw_source_UV1_minmax": [
+        [
+          -3.0607426166534424,
+          -0.009999999776482582
+        ],
+        [
+          1.2307686805725098,
+          3.963242769241333
+        ]
+      ],
+      "predicted_native_UV1_minmax": [
+        [
+          -3.0607426166534424,
+          -2.963242769241333
+        ],
+        [
+          1.2307686805725098,
+          1.0099999997764826
+        ]
+      ],
+      "decoded_semantics_max_error": 0.0,
+      "direct_native_bias_max_error": 6.926485538482666,
+      "per_role": [
+        {
+          "role": "MI_Shared_FieldstoneSeed2m",
+          "corners": 62772,
+          "sourceUV1_minmax": [
+            [
+              -3.0607426166534424,
+              0.0031435296405106783
+            ],
+            [
+              1.2307686805725098,
+              3.963242769241333
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              -3.0607426166534424,
+              -2.963242769241333
+            ],
+            [
+              1.2307686805725098,
+              0.9968564703594893
+            ]
+          ],
+          "direct_bias_error_max": 6.926485538482666,
+          "semantic_use": "notusedbythismaterial"
+        },
+        {
+          "role": "MI_Shared_LimeMortarSoot2m",
+          "corners": 1692,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              -0.009999999776482582
+            ],
+            [
+              1.0,
+              0.009999999776482582
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              0.9900000002235174
+            ],
+            [
+              1.0,
+              1.0099999997764826
+            ]
+          ],
+          "direct_bias_error_max": 1.0199999995529652,
+          "semantic_use": "selectorUandroughnessbiasV"
+        },
+        {
+          "role": "MI_Shared_WeatheredTimber2m",
+          "corners": 19116,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "direct_bias_error_max": 1.0,
+          "semantic_use": "selectorU"
+        },
+        {
+          "role": "MI_Shared_IronLead2m",
+          "corners": 11232,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "direct_bias_error_max": 1.0,
+          "semantic_use": "selectorU"
+        },
+        {
+          "role": "MI_Shared_ThinWavyGlass2m",
+          "corners": 15552,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "direct_bias_error_max": 1.0,
+          "semantic_use": "notusedbythismaterial"
+        },
+        {
+          "role": "MI_Shared_FieldstoneWall2m",
+          "corners": 243636,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "direct_bias_error_max": 1.0,
+          "semantic_use": "notusedbythismaterial"
+        },
+        {
+          "role": "MI_Shared_DressedReed2m",
+          "corners": 228576,
+          "sourceUV1_minmax": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "nativeUV1_minmax": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "direct_bias_error_max": 1.0,
+          "semantic_use": "notusedbythismaterial"
+        }
+      ]
+    }
+  ],
+  "qualification": "Native values predicted from installed source, not actualUnrealreadback. Shaderdecode restores source-data meaning; native mesh/graph/GPU proof remainsrequired."
+}
