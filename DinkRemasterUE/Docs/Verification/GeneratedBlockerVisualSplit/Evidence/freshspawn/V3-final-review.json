@@ -1,0 +1,415 @@
+{
+  "status": "ACTUAL_FRESH_SPAWN_TO_DOOR_WALK_PASS; SCOPED_NOT_COLLISION_FIX",
+  "source_HEAD": "2b683008675e3181b294a474e5cfd187158dacd9",
+  "startup": {
+    "actual": {
+      "screen": 1,
+      "map": [
+        314.0,
+        161.0
+      ],
+      "world": [
+        -183760.16,
+        392550.355,
+        98.15
+      ],
+      "yaw": 180.0,
+      "pitch": 0.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    "expected_bundle_spawn": [
+      1,
+      314,
+      161
+    ],
+    "before_any_Goto": true,
+    "qualification": "Actual privatefreshgame start; no initial relocation"
+  },
+  "no_Goto_commands": true,
+  "diagnosis_original_driver": {
+    "tool": 88916,
+    "exit": 1,
+    "error": "Mybarecamera_probeimportfailed; actualprofileAPIquerynotrunthen",
+    "state_sha256": "f5297e7ebeb74f1a5ac097fdcf680d97d5b3d10bcaf174ad81f35d3f1bf0f373",
+    "preserved": true
+  },
+  "corrected_readonly_contact": {
+    "driver_tool": 20285,
+    "exit": 0,
+    "receipt_sha256": "2c354598c5e7c75d616d19f5f36619d2f1b7b0f55f0ae0447f59629fe54c3770",
+    "caller_sha256": "12bcab526daa6817a09faeea15694324fd2d1a625d5214a2598fe1434de9a752",
+    "probe_sha256": "62a3922f2f0197c26b8746f9a7c394e2d57f30ab03f644356296aae7174d5554",
+    "hit": {
+      "blocking": true,
+      "initial_overlap": false,
+      "time": 0.0014419390354305506,
+      "distance_cm": 0.09999901801347733,
+      "location_cm": [
+        -183877.5350015279,
+        392978.876330204,
+        98.15
+      ],
+      "impact_point_cm": [
+        -183849.53499999997,
+        392978.8763298798,
+        49.89995193481445
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "impact_normal": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_221",
+      "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_221.StaticMeshComponent0",
+      "component_state": {
+        "actor": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_221",
+        "actor_class": "StaticMeshActor",
+        "component": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.StaticMeshActor_221.StaticMeshComponent0",
+        "component_class": "StaticMeshComponent",
+        "mesh": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
+        "profile": "BlockAll",
+        "enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+        "object_type": "<CollisionChannel.ECC_WORLD_STATIC: 0>",
+        "Pawn_response": "<CollisionResponseType.ECR_BLOCK: 2>",
+        "mobility": "<ComponentMobility.STATIC: 0>",
+        "world_location_cm": [
+          -183817.03499999997,
+          392970.35500000004,
+          0.0
+        ],
+        "world_rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "component_world_bounds": {
+          "origin_cm": [
+            -183817.03499999997,
+            392970.3550019074,
+            50.25
+          ],
+          "extent_cm": [
+            32.5,
+            26.875,
+            50.25
+          ],
+          "sphere_radius_cm": 62.655250549316406
+        },
+        "actor_world_bounds": {
+          "origin_cm": [
+            -183817.03499999997,
+            392970.3550019074,
+            50.25
+          ],
+          "extent_cm": [
+            32.5,
+            26.875,
+            50.25
+          ],
+          "only_colliding": false,
+          "include_child_actors": false
+        },
+        "mesh_local_bounds": {
+          "origin_cm": [
+            0.0,
+            1.9073486328125e-06,
+            50.25
+          ],
+          "extent_cm": [
+            32.5,
+            26.875,
+            50.25
+          ],
+          "sphere_radius_cm": 62.655249661724945
+        }
+      },
+      "tail_raw": [
+        "None",
+        "None",
+        "-1",
+        "0",
+        "5557",
+        "<Struct 'Vector' (0x7f7d5e0f4880) {x: -183877.635000, y: 392978.876000, z: 98.150000}>",
+        "<Struct 'Vector' (0x7f7d5e0f4b00) {x: -183808.285000, y: 392979.105000, z: 98.150000}>"
+      ]
+    },
+    "pawn_unchanged": true,
+    "qualification": "ActualsamegamequerycorrectedbyRootapprovedselfcontainedhelper; originalerrorNOTrewritten/waived"
+  },
+  "Root_contact_review": {
+    "clearance_sha256": "6ac43fc984da4462ffbf8c33139cf4901f9cbea0531bf4e96897d430a458d43f",
+    "corrected_receipt_explicitly_pinned": true,
+    "decision": "Actual static oak chair contacts at visible mesh bounds; walk around it via270,259 and270,330. Original import-error state is only parent binding; actual contact review is this pinned corrected receipt. No collision fix or broad fitting acceptance claim."
+  },
+  "actual_walk_driver": {
+    "tool": 99769,
+    "exit": 0,
+    "walk": "PASS",
+    "normalquit": "PASS"
+  },
+  "outer": {
+    "exit_code": 0,
+    "elapsed": 746.4897192749922,
+    "inputs_unchanged": 13610,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "all10PNGs_personally_viewed": true,
+  "screenshots_sha256": {
+    "spawn-initial.png": "fda688f94a4c411aed291aaa4176d2616b9792cb912c8be44d63a66d7f0d6734",
+    "pawn-contact.png": "963ddb4516ad5dfff1de074e489320d90f179b4f85dca8edbe70fba697395907",
+    "spawn-walk-start.png": "25acd9021371d8855326756569052a61beb339344032910745d40048a0a28139",
+    "spawn-west.png": "97e284849df0edbdff744f183cd64ef8b20f3111dc26910232de19e201f92442",
+    "spawn-corridor-west.png": "707be8593487eda654760e079d88aa8a500f30d4e519bb834cc1dd65f59ffc71",
+    "spawn-corridor-east.png": "1da03e5586c779d0dee72a6826fb7cf0ba6f7a0f8cfb445e6b606f93e56c5a4b",
+    "spawn-south-bypass.png": "892e537641fdf1ef5274451f106d9251c424bd3a6f96d9ce96bcd4a49eb5a2b1",
+    "spawn-door-approach.png": "977de425adbae823d74162fa3ef6d4b99ac4ea6b412cfcff31049b52b22300be",
+    "spawn-door-exit.png": "4984a7999b8820cf0b12b4a1298e62c46dba080a746d388a9ef53d6d6b28ec1c",
+    "final.png": "854ec6c5281b183bd43ea969057f9918216212ca8ea209d7b2afe892a421a6b9"
+  },
+  "waypoints": {
+    "walk-west.json": {
+      "target": [
+        1,
+        245,
+        161
+      ],
+      "result": "PASS",
+      "pulse_count": 11,
+      "arrival": {
+        "screen": 1,
+        "map": [
+          248.039,
+          161.0
+        ],
+        "world": [
+          -184048.741,
+          392550.355,
+          98.15
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "arrival_tolerance_px": 4
+    },
+    "walk-corridor-west.json": {
+      "target": [
+        1,
+        245,
+        259
+      ],
+      "result": "PASS",
+      "pulse_count": 18,
+      "arrival": {
+        "screen": 1,
+        "map": [
+          245.01,
+          258.665
+        ],
+        "world": [
+          -184061.989,
+          392977.638,
+          98.15
+        ],
+        "yaw": 91.771,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "arrival_tolerance_px": 0.5
+    },
+    "walk-corridor-east.json": {
+      "target": [
+        1,
+        270,
+        259
+      ],
+      "result": "PASS",
+      "pulse_count": 10,
+      "arrival": {
+        "screen": 1,
+        "map": [
+          269.742,
+          258.997
+        ],
+        "world": [
+          -183953.788,
+          392979.09,
+          98.15
+        ],
+        "yaw": 0.763,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "arrival_tolerance_px": 0.5
+    },
+    "walk-south-bypass.json": {
+      "target": [
+        1,
+        270,
+        330
+      ],
+      "result": "PASS",
+      "pulse_count": 11,
+      "arrival": {
+        "screen": 1,
+        "map": [
+          269.986,
+          326.205
+        ],
+        "world": [
+          -183952.72,
+          393273.127,
+          98.15
+        ],
+        "yaw": 89.793,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "arrival_tolerance_px": 4
+    },
+    "walk-door-approach.json": {
+      "target": [
+        1,
+        303,
+        350
+      ],
+      "result": "PASS",
+      "pulse_count": 8,
+      "arrival": {
+        "screen": 1,
+        "map": [
+          300.009,
+          347.845
+        ],
+        "world": [
+          -183821.369,
+          393367.8,
+          98.15
+        ],
+        "yaw": 35.781,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "arrival_tolerance_px": 4
+    }
+  },
+  "realWdoor": {
+    "result": "PASS",
+    "samples": 9,
+    "first_screen": 1,
+    "last_screen": 439,
+    "input": "Only actual held W and camera orientation; no route teleports"
+  },
+  "all10debug_off_ownerwall230_scriptsON": "PASS",
+  "final_camera": {
+    "headroom": {
+      "outdoor_headroom_lift": 0.0,
+      "capsule_top_world": [
+        97729.63625545749,
+        37512.61084546293,
+        194.34999561309814
+      ],
+      "projected_capsule_top_pixel": [
+        639.9999389648438,
+        202.2157745361328
+      ],
+      "projection_return": "<Struct 'Vector2D' (0x7f7d5e11f6e0) {x: 639.999939, y: 202.215775}>",
+      "projection_api_signature": "x.project_world_location_to_screen(world_location, player_viewport_relative=False) -> Vector2D or None\nConvert a World Space 3D position into a 2D Screen Space position.\n\nArgs:\n    world_location (Vector): \n    player_viewport_relative (bool): \n\nReturns:\n    Vector2D or None: true if the world coordinate was successfully projected to the screen.\n\n    screen_location (Vector2D):",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    "camera_probe": {
+      "passed": true,
+      "actual": {
+        "blocking": false,
+        "initial_overlap": false,
+        "scope": "Documented sphere_trace_single None means NOHIT",
+        "start_cm": [
+          97729.63625545749,
+          37512.61084546293,
+          98.34999561309814
+        ],
+        "unfixed_end_cm": [
+          97704.23270538304,
+          37133.03737537629,
+          221.9567933630771
+        ],
+        "actual_camera_cm": [
+          97704.23270538304,
+          37133.03737537629,
+          221.9567933630771
+        ],
+        "target_arm_cm": 400.0,
+        "native_collision_fix_applied": false,
+        "predicted_vs_actual_camera_error_cm": 0.0,
+        "api_signature": "X.sphere_trace_single(world_context_object, start, end, radius, trace_channel, trace_complex, actors_to_ignore, draw_debug_type, ignore_self=True, trace_color=[1.000000, 0.000000, 0.000000, 1.000000], trace_hit_color=[0.000000, 1.000000, 0.000000, 1.000000], draw_time=5.000000) -> HitResult or None\nSweeps a sphere along the given line and returns the first blocking hit encountered.\nThis trace finds the objects that RESPONDS to the given TraceChannel\n\nArgs:\n    world_context_object (Object): \n    start (Vector): Start of line segment.\n    end (Vector): End of line segment.\n    radius (float): Radius of the sphere to sweep\n    trace_channel (TraceTypeQuery): \n    trace_complex (bool): True to test against complex collision, false to test against simplified collision.\n    actors_to_ignore (Array[Actor]): \n    draw_debug_type (DrawDebugTrace): \n    ignore_self (bool): \n    trace_color (LinearColor): \n    trace_hit_color (LinearColor): \n    draw_time (float): \n\nReturns:\n    HitResult or None: True if there was a hit, false otherwise.\n\n    out_hit (HitResult): Properties of the trace hit."
+      }
+    },
+    "visual": "Fullhero visible; camera looksoutfromdarkcottage-shellinteriorthroughdoor. Differentpose/free400NOHIT/lift0; NOTwhole-opticsacceptance."
+  },
+  "warnings": [
+    "[2026.11.10-14.07.54:787][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+    "[2026.11.10-14.07.54:787][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+    "[2026.11.10-14.07.57:312][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.57:312][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.57:312][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.57:312][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.57:312][  0]LogVTDiskCache: Warning: Fail to write to /home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DerivedDataCache/VT, derived data cache to this directory will be read only.",
+    "[2026.11.10-14.07.57:848][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.57:848][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+    "[2026.11.10-14.07.59:413][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'ActorLayersWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:413][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'UObjectLabelWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:413][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'FolderCompatibilityWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:413][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DiskSizeWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataItemTypeWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataLabelWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataVirtualPathWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetNameWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'StaticMeshTrianglesWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertHeaderWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedHeaderConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'SocketWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'TypeInfoWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.07.59:414][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'VisibilityWidgetConstructor' as purpose '0' isn't registered.",
+    "[2026.11.10-14.20.12:680][355]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0x5b88cd5ec00 has unfreed Image resources ",
+    "[2026.11.10-14.20.12:681][355]LogVulkanRHI: Warning:  ** LEAK 000 [07000000-004d0008] 5046280  ImageRT "
+  ],
+  "errors": [],
+  "error_qualification": "Game.log has0Error/Fatal lines; originalModuleNotFound traceback remainsinstate-pawn-contact andHOSTdiagnosticdriver88916exit1. Correctedquery/walkpassedlater; zero runtime-logerrors doesnotclaimoriginaldiagnosepassed.",
+  "fresh_postclosure_13610_input_guard": "PASS",
+  "closure_sha256": "1cf2f9f5392d179cadd4ea9e1886606456687d74748372778b3dd9411744ee77",
+  "remaining": [
+    "OriginalV1linearcontrolfailure/V2expectedchaircontactpreserved",
+    "Navigationaroundcorrect-sizeauthoredchairisNOTrepair/globalcollisionapproval",
+    "Actualstartinghousechosenpathwalkoutproven; no universalmanualnavigation/finalartclaim",
+    "Regeneratedworldcook/packageproof separatepending",
+    "Darkcottage-shell finalcameraframing remainsvisiblelimitation"
+  ],
+  "source_feature_material_physics_setters": false
+}
