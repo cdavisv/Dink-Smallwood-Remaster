@@ -25,6 +25,7 @@
 #include "Misc/PackageName.h"
 #include "Misc/Paths.h"
 #include "Misc/ScopeExit.h"
+#include "Misc/OutputDeviceNull.h"
 #include "Misc/SecureHash.h"
 #include "Serialization/ArchiveReplaceObjectRef.h"
 #include "Serialization/ObjectWriter.h"
@@ -286,6 +287,62 @@ bool RestoreNewTargetRootTranslation(AActor& Source,AActor& Target,UWorld* NewWo
     !ExactTransform(A->GetComponentTransform(),B->GetComponentTransform()))
  {Evidence=TEXT("target root exact source-local/world postcondition failed");return false;}
  Restored=true;Evidence=TEXT("RESTORED NEW TARGET root exact source position via Direct+TeleportPhysics; ")+Proof;return true;
+}
+bool ExactTransformBytes(FTransform A,FTransform B)
+{
+ TArray<uint8> L,R;FObjectWriter LW(L),RW(R);LW<<A;RW<<B;return L==R;
+}
+bool ExactVectorBytes(const FVector& A,const FVector& B)
+{
+ const double L[]={A.X,A.Y,A.Z},R[]={B.X,B.Y,B.Z};return FMemory::Memcmp(L,R,sizeof(L))==0;
+}
+bool RestoreNewTargetChildLocation(USceneComponent& Source,USceneComponent& Target,AActor* ExpectedSource,AActor* ExpectedTarget,
+ UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,bool& Restored,FString& Evidence)
+{
+ Restored=false;Evidence.Reset();const FVector SourceLocation=Source.GetRelativeLocation(),TargetLocation=Target.GetRelativeLocation();
+ if(ExactVectorBytes(SourceLocation,TargetLocation))return true;
+ if(!ExpectedSource||!ExpectedTarget||!NewWorld||&Source==&Target||Source.GetOwner()!=ExpectedSource||Target.GetOwner()!=ExpectedTarget||
+    Source.GetWorld()==NewWorld||Target.GetWorld()!=NewWorld||Source.GetClass()!=Target.GetClass()||
+    Remap.FindRef(ExpectedSource)!=ExpectedTarget||Remap.FindRef(&Source)!=&Target||
+    &Source==ExpectedSource->GetRootComponent()||&Target==ExpectedTarget->GetRootComponent()||!Source.IsRegistered()||!Target.IsRegistered()||
+    SourceLocation.ContainsNaN()||TargetLocation.ContainsNaN())
+ {Evidence=TEXT("child local repair requires exact registered mapped NEW-world component/actor pair and finite vectors");return false;}
+ auto* SourceParent=Source.GetAttachParent();auto* TargetParent=Target.GetAttachParent();
+ TSet<const USceneComponent*> Ancestors;
+ for(auto* P=SourceParent,*Q=TargetParent;P||Q;)
+ {if(!P||!Q||Ancestors.Contains(P)||P->GetOwner()!=ExpectedSource||Q->GetOwner()!=ExpectedTarget||P->GetClass()!=Q->GetClass()||
+     !P->IsRegistered()||!Q->IsRegistered()||Remap.FindRef(P)!=Q||P->GetAttachSocketName()!=Q->GetAttachSocketName())
+  {Evidence=TEXT("child local repair requires complete exact mapped registered attachment hierarchy");return false;}
+  Ancestors.Add(P);if((P==ExpectedSource->GetRootComponent())!=(Q==ExpectedTarget->GetRootComponent()))return false;
+  P=P->GetAttachParent();Q=Q->GetAttachParent();}
+
+ if(!SourceParent||!TargetParent||SourceParent->GetOwner()!=ExpectedSource||TargetParent->GetOwner()!=ExpectedTarget||
+    Remap.FindRef(SourceParent)!=TargetParent||Source.GetAttachSocketName()!=Target.GetAttachSocketName()||
+    !ExactTransformBytes(SourceParent->GetComponentTransform(),TargetParent->GetComponentTransform())||
+    !ExactTransformBytes(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()))||
+    !ExactVectorBytes(Source.GetRelativeScale3D(),Target.GetRelativeScale3D())||
+    Source.IsUsingAbsoluteLocation()!=Target.IsUsingAbsoluteLocation()||Source.IsUsingAbsoluteRotation()!=Target.IsUsingAbsoluteRotation()||Source.IsUsingAbsoluteScale()!=Target.IsUsingAbsoluteScale())
+ {Evidence=TEXT("child local repair parent/socket/frame/scale/absolute policy differs");return false;}
+ const FRotator SR=Source.GetRelativeRotation(),TR=Target.GetRelativeRotation();
+ const double A[]={SR.Pitch,SR.Yaw,SR.Roll},B[]={TR.Pitch,TR.Yaw,TR.Roll};FRotator Qualified;FString RotationProof;
+ if(FMemory::Memcmp(A,B,sizeof(A))&&!MeasuredRotation(Source,Target,Qualified,RotationProof))
+ {Evidence=TEXT("child local repair rotation differs beyond existing qualified representation");return false;}
+ auto* Property=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
+ if(!Property||Property->Struct!=TBaseStructure<FVector>::Get()||Property->ArrayDim!=1)return false;
+ // Exact stock CopyActors -> LevelExporterT3D COPY -> ExportProperties flags:
+ // EditorActor.cpp423, EditorExporters.cpp637, UnrealExporter.cpp1142.
+ constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+ FString Text;Property->ExportTextItem_Direct(Text,Property->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,Flags);
+ FVector Expected=FVector::ZeroVector;FOutputDeviceNull Errors;
+ const TCHAR* Tail=Property->ImportText_Direct(*Text,&Expected,&Target,Flags,&Errors);
+ if(Tail)while(*Tail&&FChar::IsWhitespace(*Tail))++Tail;
+ if(!Tail||*Tail||!ExactVectorBytes(Expected,TargetLocation))
+ {Evidence=TEXT("child local difference is NOT exact stock TEXT roundtrip: ")+Text;return false;}
+ Target.SetRelativeLocation_Direct(SourceLocation);
+ Target.UpdateComponentToWorld(EUpdateTransformFlags::None,ETeleportType::TeleportPhysics);
+ if(!ExactVectorBytes(SourceLocation,Target.GetRelativeLocation())||!ExactTransformBytes(Source.GetComponentTransform(),Target.GetComponentTransform()))
+ {Evidence=TEXT("child local exact source/world postcondition failed");return false;}
+ Restored=true;Evidence=FString::Printf(TEXT("RESTORED NEW TARGET child sourceRelative=(%.17g,%.17g,%.17g) TEXTtarget=(%.17g,%.17g,%.17g) exactStockFlags=%d export={%s}; exactworld/localpostcondition; source untouched"),SourceLocation.X,SourceLocation.Y,SourceLocation.Z,TargetLocation.X,TargetLocation.Y,TargetLocation.Z,Flags,*Text);return true;
 }
 bool RestoreNewTargetRawInstances(UInstancedStaticMeshComponent& Source,UInstancedStaticMeshComponent& Target,
  AActor* ExpectedSource,AActor* ExpectedTarget,UWorld* NewWorld,const TMap<UObject*,UObject*>& Remap,FString& Evidence,bool bRootRestored=false)
@@ -607,6 +664,18 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   if(Host)continue;bool Restored=false;FString Repair;
   if(!RestoreNewTargetRootTranslation(*Src,*Dst,World.Get(),Remap,Restored,Repair))return Fail(Pair.Key+TEXT(" ")+Repair);
   if(Restored){RestoredActors.Add(Dst);Equivalences.Add(Pair.Key+TEXT(" ")+Repair);}}
+ TArray<USceneComponent*> OrderedChildren;
+ for(const auto& Pair:Targets)
+ {AActor* Src=Sources[Pair.Key];if(auto* Host=Cast<ADinkGreyboxScreen>(Src);Host&&Selected(Host->ScreenNumber))continue;
+  for(const auto& Object:SourceObjects[Src])if(auto* Component=Cast<USceneComponent>(Object.Value);Component&&Component!=Src->GetRootComponent())OrderedChildren.Add(Component);}
+ auto Depth=[](const USceneComponent* Component){int D=0;TSet<const USceneComponent*> Seen;for(auto* P=Component;P;P=P->GetAttachParent()){if(Seen.Contains(P))return MAX_int32;Seen.Add(P);++D;}return D;};
+ OrderedChildren.Sort([&](const USceneComponent& A,const USceneComponent& B){const int X=Depth(&A),Y=Depth(&B);return X==Y?A.GetPathName()<B.GetPathName():X<Y;});
+ for(auto* Src:OrderedChildren)
+ {auto* Dst=Cast<USceneComponent>(Remap.FindRef(Src));auto* Owner=Src->GetOwner();auto* NewOwner=Cast<AActor>(Remap.FindRef(Owner));
+  if(!Dst||!NewOwner||Depth(Src)==MAX_int32)return Fail(TEXT("child local repair missing mapping or cyclic attachment"));
+  bool Restored=false;FString Repair;if(!RestoreNewTargetChildLocation(*Src,*Dst,Owner,NewOwner,World.Get(),Remap,Restored,Repair))return Fail(Src->GetPathName()+TEXT(" ")+Repair);
+  if(Restored){RestoredActors.Add(NewOwner);Equivalences.Add(Repair);}}
+
 
  for(const auto& P:Targets)
  {
@@ -905,6 +974,40 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  RepairTargetRoot->SetRelativeScale3D(FVector::OneVector);RepairTargetRoot->SetRelativeRotation(FRotator(0,.01,0));
  RestoreNewTargetRootTranslation(*RootSourceOwner,*RootTargetOwner,NewWorld,RootMap,RootRestored,RootRepairEvidence);
  TestFalse(TEXT("changed quaternion target root not restored"),RootRestored);
+ AActor* LocalOwnerS=World->SpawnActor<AActor>();AActor* LocalOwnerT=NewWorld->SpawnActor<AActor>();
+ auto* ParentS=NewObject<USceneComponent>(LocalOwnerS);auto* ParentT=NewObject<USceneComponent>(LocalOwnerT);
+ LocalOwnerS->SetRootComponent(ParentS);LocalOwnerT->SetRootComponent(ParentT);ParentS->RegisterComponent();ParentT->RegisterComponent();
+ auto* LocalS=NewObject<USceneComponent>(LocalOwnerS);auto* LocalT=NewObject<USceneComponent>(LocalOwnerT);
+ LocalS->SetupAttachment(ParentS);LocalT->SetupAttachment(ParentT);LocalS->RegisterComponent();LocalT->RegisterComponent();
+ const FVector ObservedS(-116.95999999999185,3.25,1.5),ObservedT(-116.95999999999999,3.25,1.5);
+ SetExact(*LocalS,ObservedS);SetExact(*LocalT,ObservedT);
+ TMap<UObject*,UObject*> LocalMap;LocalMap.Add(LocalOwnerS,LocalOwnerT);LocalMap.Add(ParentS,ParentT);LocalMap.Add(LocalS,LocalT);
+ TArray<uint8> LocalBefore,LocalAfter;TestTrue(TEXT("local source pre-repair raw state available"),State(*LocalS,TestIDs,NoForbidden,false,LocalBefore));
+ bool LocalRestored=false;FString LocalProof;
+ TestTrue(TEXT("actual Card TEXT-roundtrip >oneULP childlocal restoration succeeds"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ TestTrue(TEXT("actual Card childlocal restoration was performed"),LocalRestored);TestTrue(TEXT("actual Card source relative/world exact after repair"),ExactVectorBytes(LocalS->GetRelativeLocation(),LocalT->GetRelativeLocation())&&ExactTransformBytes(LocalS->GetComponentTransform(),LocalT->GetComponentTransform()));
+ AddInfo(LocalProof);
+ SetExact(*LocalT,ObservedT+FVector(1,0,0));
+ TestFalse(TEXT("arbitrary child position is not repaired as TEXT drift"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ SetExact(*LocalT,ObservedT);TMap<UObject*,UObject*> BadLocalMap=LocalMap;BadLocalMap.Remove(LocalS);
+ TestFalse(TEXT("child wrong component map refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,BadLocalMap,LocalRestored,LocalProof));
+ BadLocalMap=LocalMap;BadLocalMap.Remove(ParentS);
+ TestFalse(TEXT("child wrong parent map refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,BadLocalMap,LocalRestored,LocalProof));
+ TestFalse(TEXT("child wrong NEW world refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,World,LocalMap,LocalRestored,LocalProof));
+ LocalT->AttachToComponent(ParentT,FAttachmentTransformRules::KeepRelativeTransform,TEXT("wrong_socket"));
+ TestFalse(TEXT("child different attachment socket refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ LocalT->AttachToComponent(ParentT,FAttachmentTransformRules::KeepRelativeTransform);
+ LocalT->SetRelativeRotation(FRotator(0,1,0));
+ TestFalse(TEXT("child changed rotation refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ LocalT->SetRelativeRotation(FRotator::ZeroRotator);LocalT->SetRelativeScale3D(FVector(2,1,1));
+ TestFalse(TEXT("child changed scale refuses"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ LocalT->SetRelativeScale3D(FVector::OneVector);
+ auto* LocationProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeLocation"));
+ LocationProperty->ContainerPtrToValuePtr<FVector>(LocalT)->X=std::numeric_limits<double>::quiet_NaN();
+ TestFalse(TEXT("child nonfinite relative location refuses before setter"),RestoreNewTargetChildLocation(*LocalS,*LocalT,LocalOwnerS,LocalOwnerT,NewWorld,LocalMap,LocalRestored,LocalProof));
+ LocationProperty->ContainerPtrToValuePtr<FVector>(LocalT)->X=ObservedT.X;
+ TestTrue(TEXT("local source post-repair raw state available"),State(*LocalS,TestIDs,NoForbidden,false,LocalAfter));TestTrue(TEXT("child source raw state never changed"),LocalBefore==LocalAfter);
+
 
 
 
