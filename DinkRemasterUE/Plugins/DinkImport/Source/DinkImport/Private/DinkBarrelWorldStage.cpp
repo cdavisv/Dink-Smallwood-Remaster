@@ -985,6 +985,14 @@ void CaptureBinaryImmediateActors(AActor& Actor,FBinaryControlLifetime& Immediat
  for(auto* C:Components){if(C->GetAttachParent())Add(C->GetAttachParent()->GetOwner());for(const auto& Child:C->GetAttachChildren())if(Child)Add(Child->GetOwner());}
  Immediate.SourceActors.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
 }
+// Private predicate boundary. Production supplies ONLY Object.GetArchetype();
+// unit coverage may present an actual forbidden source-instance chain root.
+bool AuditedArchetypeChain(const UObject* Archetype,const TSet<const UPackage*>& SourcePackages,FString& Error)
+{
+ TSet<const UObject*> Seen;for(const UObject* A=Archetype;A;A=A->GetArchetype())
+ {if(Seen.Contains(A)){Error=TEXT("source archetype chain cyclic");return false;}Seen.Add(A);if(SourcePackages.Contains(A->GetOutermost())){Error=TEXT("source-instance archetype rejected BEFORE binary construction");return false;}if(A->HasAnyFlags(RF_ClassDefaultObject))break;}
+ return true;
+}
 bool AuditedBinaryObject(UObject& Object,const TSet<const UPackage*>& SourcePackages,FString& Error)
 {
  static const TSet<FString> Classes={
@@ -995,8 +1003,7 @@ bool AuditedBinaryObject(UObject& Object,const TSet<const UPackage*>& SourcePack
   TEXT("/Script/DinkCore.DinkOriginComponent"),TEXT("/Script/DinkCore.DinkInstanceOriginsComponent"),TEXT("/Script/DinkCore.DinkWarpComponent")};
  if(!Classes.Contains(Object.GetClass()->GetPathName())||Object.GetClass()->GetClass()!=UClass::StaticClass())
  {Error=TEXT("unreviewed binary native object callback/class: ")+Object.GetClass()->GetPathName();return false;}
- TSet<const UObject*> Seen;for(const UObject* A=Object.GetArchetype();A;A=A->GetArchetype())
- {if(Seen.Contains(A)){Error=TEXT("source archetype chain cyclic");return false;}Seen.Add(A);if(SourcePackages.Contains(A->GetOutermost())){Error=TEXT("source-instance archetype rejected BEFORE binary construction");return false;}if(A->HasAnyFlags(RF_ClassDefaultObject))break;}
+ if(!AuditedArchetypeChain(Object.GetArchetype(),SourcePackages,Error))return false;
  if(auto* Light=Cast<ULightComponentBase>(&Object);Light&&Light->GetMobility()!=EComponentMobility::Movable)
  {Error=TEXT("binary world controls require importer Movable light GUID lifecycle");return false;}
  if(Object.IsA<UStaticMeshComponent>())
@@ -1722,12 +1729,21 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
  if(!TestTrue(TEXT("missing-peer fixture actual source owner/parent and requested-root preconditions"),First->GetOwner()==Second&&Nested->GetAttachParent()==Second->GetRootComponent()&&First->GetLevel()!=Second->GetLevel()&&!IncompleteSeed.Contains(Second)))return false;
  AddInfo(FString::Printf(TEXT("INCOMPLETE_PEER_BEFORE requested=%s owner=%s peer=%s sourceOuter=%s peerOuter=%s seedRoots=%d"),*First->GetPathName(),*GetPathNameSafe(First->GetOwner()),*Second->GetPathName(),*GetPathNameSafe(First->GetOuter()),*GetPathNameSafe(Second->GetOuter()),IncompleteSeed.Num()));
- const bool IncompleteCopied=BinaryCopyControls({First},*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,BadCopies,BadLifetime,Error);
+ Error.Reset();const bool IncompleteCopied=BinaryCopyControls({First},*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,BadCopies,BadLifetime,Error);
  if(!TestTrue(TEXT("incomplete peer map fixture still binary copies its root"),IncompleteCopied))return false;
  for(const auto& Pair:BadCreated){const bool Owned=Pair.Key==First||Pair.Key->IsIn(First);TestTrue(TEXT("actor-local copy never constructs an unrequested peer or its descendants"),Owned);if(Pair.Key->IsA<AActor>())AddInfo(FString::Printf(TEXT("INCOMPLETE_PEER_CREATED source=%s target=%s sourceOwnedByRequestedRoot=%d"),*Pair.Key->GetPathName(),*GetPathNameSafe(Pair.Value),int32(Owned)));}
  TestTrue(TEXT("missing peer remains unmapped before deferred ref validation"),!BadCreated.Contains(Second)&&!IncompleteSeed.Contains(Second)&&CastChecked<AActor>(IncompleteSeed.FindRef(First))->GetOwner()==Second);
  for(const auto& Pair:IncompleteSeed)if(const auto* ID=IDs.Find(Pair.Key))IDs.Add(Pair.Value,*ID);
  TestFalse(TEXT("retained source cross-actor reference refuses before PostLoad"),FinalizeBinaryControls(BadCopies,*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,IDs,Forbidden,BadLifetime,Error));TestTrue(TEXT("missing peer refusal reports actual source reference"),Error.Contains(TEXT("source-package reference before deferred PostLoad")));
+ // Private guard unit boundary: real forbidden source-instance pointer, not
+ // a fabricated GetArchetype relationship or an Internal archetype-cache edit.
+ Error.Reset();const int32 TargetsBeforeArchetypeUnit=BadLifetime.Targets.Num();
+ TestFalse(TEXT("private archetype-chain rejects actual source-instance candidate BEFORE construction"),AuditedArchetypeChain(First,Forbidden,Error));
+ TestTrue(TEXT("private archetype-chain reports unchanged source-instance refusal"),Error.Contains(TEXT("source-instance archetype")));
+ TestEqual(TEXT("pure archetype guard performs no target construction"),BadLifetime.Targets.Num(),TargetsBeforeArchetypeUnit);
+ Error.Reset();TestTrue(TEXT("external class CDO archetype is allowed by same production predicate"),AuditedArchetypeChain(First->GetClass()->GetDefaultObject(false),Forbidden,Error));
+ // Separate integration coverage: Template initializes properties; observed
+ // public factory archetype remains class CDO. Do not call that an instance.
  auto* SourceInstanceTemplate=NewObject<ADinkPlaceholderActor>(SourceWorld->PersistentLevel,TEXT("BinaryInstanceArchetype"),RF_Transactional,First);
  TStrongObjectPtr<ADinkPlaceholderActor> HoldInstanceTemplate(SourceInstanceTemplate);
  auto* ActualArchetype=SourceInstanceTemplate->GetArchetype();auto* RequiredArchetype=UObject::GetArchetypeFromRequiredInfo(SourceInstanceTemplate->GetClass(),SourceInstanceTemplate->GetOuter(),SourceInstanceTemplate->GetFName(),SourceInstanceTemplate->GetFlags());
@@ -1735,9 +1751,13 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  TSet<const UObject*> ArchetypeDiagnosticsSeen;for(const UObject* A=ActualArchetype;A&&!ArchetypeDiagnosticsSeen.Contains(A);A=A->GetArchetype()){ArchetypeDiagnosticsSeen.Add(A);AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_CHAIN object=%s class=%s flags=0x%llx outer=%s package=%s sourcePackage=%d"),*A->GetPathName(),*A->GetClass()->GetPathName(),static_cast<unsigned long long>(A->GetFlags()),*GetPathNameSafe(A->GetOuter()),*A->GetOutermost()->GetName(),int32(Forbidden.Contains(A->GetOutermost()))));if(A->HasAnyFlags(RF_ClassDefaultObject))break;}
  ForEachObjectWithOuter(SourceInstanceTemplate,[&](UObject* O){const UObject* A=O->GetArchetype();AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_SUBOBJECT object=%s class=%s flags=0x%llx outer=%s archetype=%s archetypePackage=%s sourceArchetype=%d"),*O->GetPathName(),*O->GetClass()->GetPathName(),static_cast<unsigned long long>(O->GetFlags()),*GetPathNameSafe(O->GetOuter()),*GetPathNameSafe(A),A?*A->GetOutermost()->GetName():TEXT("None"),int32(A&&Forbidden.Contains(A->GetOutermost()))));},EGetObjectsFlags::IncludeNestedObjects);
  TMap<UObject*,UObject*> ArchetypeSeed;ArchetypeSeed.Add(SourceWorld,TargetWorld);ArchetypeSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);ArchetypeSeed.Add(Second,SecondCopy);
- const bool ArchetypeCopied=BinaryCopyControls({SourceInstanceTemplate},*TargetWorld->PersistentLevel,ArchetypeSeed,BadCreated,BadCopies,BadLifetime,Error);
+ Error.Reset();const bool ArchetypeCopied=BinaryCopyControls({SourceInstanceTemplate},*TargetWorld->PersistentLevel,ArchetypeSeed,BadCreated,BadCopies,BadLifetime,Error);
  AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_RESULT copied=%d created=%d error={%s}"),int32(ArchetypeCopied),BadCreated.Num(),*Error));for(const auto& Pair:BadCreated)if(Pair.Key->IsA<AActor>())AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_CREATED source=%s target=%s sourceArchetype=%s"),*Pair.Key->GetPathName(),*GetPathNameSafe(Pair.Value),*GetPathNameSafe(Pair.Key->GetArchetype())));
- TestFalse(TEXT("source-instance archetype refuses BEFORE binary construction"),ArchetypeCopied);TestTrue(TEXT("archetype preflight identifies source-instance archetype"),Error.Contains(TEXT("source-instance archetype")));
+ TestTrue(TEXT("TemplateFirst integration has actual external class CDO archetype, not input template"),ActualArchetype==SourceInstanceTemplate->GetClass()->GetDefaultObject(false)&&ActualArchetype!=First&&RequiredArchetype==ActualArchetype);
+ TestTrue(TEXT("TemplateFirst still initializes distinct owned source properties"),SourceInstanceTemplate->Origin!=First->Origin&&SourceInstanceTemplate->Origin->ScriptName==First->Origin->ScriptName&&SourceInstanceTemplate->Origin->SourceHash==First->Origin->SourceHash&&!First->Origin->ScriptName.IsEmpty());
+ TestTrue(TEXT("actual CDO-based TemplateFirst object passes unchanged preflight and actor-local copy"),ArchetypeCopied);TestTrue(TEXT("successful distinct call has no stale source-instance refusal text"),Error.IsEmpty());
+ TestTrue(TEXT("actual TemplateFirst integration reports its own root mapping"),BadCreated.Contains(SourceInstanceTemplate));
+ for(const auto& Pair:BadCreated)TestTrue(TEXT("TemplateFirst Created closure stays inside its preflight-owned tree"),Pair.Key==SourceInstanceTemplate||Pair.Key->IsIn(SourceInstanceTemplate));
  for(const auto& Pair:SourceBefore){TArray<uint8> Bytes;TestTrue(TEXT("source state after refusal fixtures"),State(*Pair.Key,IDs,Forbidden,false,Bytes));TestTrue(TEXT("no refusal fixture changed source bytes"),Pair.Value==Bytes);}
  TestTrue(TEXT("source body after refusal fixtures"),State(*SourceBody,IDs,Forbidden,false,SourceBodyAfter));TestTrue(TEXT("source body and GUID unchanged after all negative cases"),SourceBodyBefore==SourceBodyAfter&&SourceBody->BodySetupGuid==SourceBodyGuid);
  return true;
