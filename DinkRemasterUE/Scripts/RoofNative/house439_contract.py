@@ -11,6 +11,7 @@ ROLES=('FieldstoneSeed2m','FieldstoneWall2m','WeatheredTimber2m','IronLead2m',
 NAME='SM_Cottage_Stonebrook_01'
 IMPORTER_FILES=tuple(Path(p)for p in (
     'Scripts/RoofNative/house439_contract.py','Scripts/RoofNative/house439_native.py',
+    'Scripts/RoofNative/house439_material_readback.py',
     'Scripts/RoofNative/house439_glass_material.py','Scripts/RoofNative/house439_opaque_material.py',
     'Scripts/RoofNative/native_mesh_tools_v11c.py','Scripts/RoofNative/native_texture_tools_v11.py',
     'Scripts/RoofNative/shared_roof_native.py','Scripts/RoofNative/native_material_slots_v11.py',
