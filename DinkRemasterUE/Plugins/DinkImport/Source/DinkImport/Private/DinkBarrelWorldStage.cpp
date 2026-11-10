@@ -800,6 +800,16 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
   TArray<uint8> ExpectedCache,ActualCache;FObjectWriter ExpectedWriter(ExpectedCache),ActualWriter(ActualCache);
   CacheProperty->SerializeItem(FStructuredArchiveFromArchive(ExpectedWriter).GetSlot(),SourceCache,nullptr);
   CacheProperty->SerializeItem(FStructuredArchiveFromArchive(ActualWriter).GetSlot(),TargetCache,nullptr);
+  if(ExpectedCache!=ActualCache)
+  {
+   AddInfo(TEXT("Cache fixture SOURCE ")+BoundsCacheDiagnostic(*ISMA,*CacheProperty,CacheIndex));
+   AddInfo(TEXT("Cache fixture TARGET ")+BoundsCacheDiagnostic(*NewISM,*CacheProperty,CacheIndex));
+   AddInfo(TEXT("Cache fixture component world ")+TransformDifference(ISMA->GetComponentTransform(),NewISM->GetComponentTransform()));
+   AddInfo(FString::Printf(TEXT("Cache fixture canonical bytes=%d/%d hexSource=%s hexTarget=%s"),ExpectedCache.Num(),ActualCache.Num(),*BytesToHex(ExpectedCache.GetData(),ExpectedCache.Num()),*BytesToHex(ActualCache.GetData(),ActualCache.Num())));
+  }
+  FTransform SourcePose=ISMA->GetComponentTransform(),TargetPose=NewISM->GetComponentTransform();TArray<uint8> SourcePoseBytes,TargetPoseBytes;
+  FObjectWriter SourcePoseWriter(SourcePoseBytes),TargetPoseWriter(TargetPoseBytes);SourcePoseWriter<<SourcePose;TargetPoseWriter<<TargetPose;
+  TestTrue(TEXT("cache fixture SOURCE and TARGET world TRS byteexact precondition"),SourcePoseBytes==TargetPoseBytes);
   TestTrue(FString::Printf(TEXT("target cache%d actual recomputed fields equal exact own source-aligned geometry"),CacheIndex),ExpectedCache==ActualCache);
  }
 
