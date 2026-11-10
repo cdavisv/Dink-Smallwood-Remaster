@@ -1,0 +1,78 @@
+{
+  "scope": "ActualCook10 packaged rendered smoke; no whole-game/final-art/globalcollision claim",
+  "outer": {
+    "exit_code": 0,
+    "elapsed": 147.2355875899957,
+    "inputs_unchanged": 12977,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "driver_terminal": {
+    "source": "Rootexplicit parentmessage",
+    "tool": 86849,
+    "exit_code": 0
+  },
+  "all_seven_PNGs_independently_viewed": true,
+  "screenshots": {
+    "room.png": "5b34594d192e8bfc30f9d9b054ccf268eeced27e1e77594c3f256ff985a4690e",
+    "roof-0.png": "d410e55b3bd6e27bf0445d633522f7f05199eeebf9ff5e4d8f185b6aa5c3ea93",
+    "roof-270.png": "533f92cfee55596e917cccc8fdd03ce9de66c5195d2cc7dc21f89cf5c0fd5be4",
+    "door-before.png": "8683f060f703a0e5ed9644bc10ed9b0ab7fa3aa156f9e7e1aa466e7bf15aa446",
+    "door-exit.png": "52944ce97e89bc886920c53512a1601c26a5485334fcc22b310f5802797a32c2",
+    "door-return.png": "e752ffde9d2a36198a496d7c51f0a2bb4f2d07661cea0f833277974497c056a0",
+    "final.png": "c848a12efa5e6096ee99853acb89e11829e0328eb9211bbec189deb473671de9"
+  },
+  "real_W_routes": {
+    "route-door-exit.json": {
+      "result": "PASS",
+      "samples": 9,
+      "start_screen": 1,
+      "final_screen": 439,
+      "input": "Only actual held W and camera orientation; no route teleports"
+    },
+    "route-door-return.json": {
+      "result": "PASS",
+      "samples": 3,
+      "start_screen": 439,
+      "final_screen": 1,
+      "input": "Only actual held W and camera orientation; no route teleports"
+    }
+  },
+  "warning_lines": [
+    "[2026.11.10-12.21.34:044][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+    "[2026.11.10-12.21.34:044][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+    "[2026.11.10-12.23.53:272][ 28]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0x7f2976c34b00 has unfreed Image resources ",
+    "[2026.11.10-12.23.53:272][ 28]LogVulkanRHI: Warning:  ** LEAK 000 [07800000-004d0008] 5046280  ImageRT "
+  ],
+  "error_lines": [],
+  "visual_review": [
+    "Room/fireplace/table/hero readable; roof0/270 show rafters andpanels",
+    "Door-exit head visible; realWreturn backinside",
+    "No coldprogress overlays observed",
+    "Dark roofgable andoverall finalart quality remain separate work"
+  ],
+  "normal_cleanup": {
+    "identity": {
+      "pid": 748115,
+      "start_ticks": 7484024,
+      "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "argv": [
+        "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+        ":202",
+        "-screen",
+        "0",
+        "1280x720x24",
+        "-nolisten",
+        "tcp",
+        "-auth",
+        "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/authority",
+        "-noreset"
+      ]
+    },
+    "exit_code": 0,
+    "stale_artifacts_preserved": [],
+    "normal_cleanup_before_supervisor_return": true
+  },
+  "no_Source_feature_material_physics_setters": "Parentauthorizedfixedruntimeconsole setup/actions retained; no such setters recorded",
+  "qualification": "Packagedruntimeconsole evidence; no EditorPython camera/physics diagnostic claim"
+}
