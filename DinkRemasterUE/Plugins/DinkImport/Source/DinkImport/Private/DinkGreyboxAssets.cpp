@@ -196,6 +196,19 @@ namespace DinkGreybox
 			}
 		};
 
+		bool HasDebugBlockers(const FDinkBundleCollision* Collision)
+		{
+			if (Collision) for (const TCHAR* Class : {TEXT("solid"), TEXT("low"), TEXT("sprite"), TEXT("warp")})
+				if (const TArray<FIntRect>* Rects = Collision->ByClass.Find(Class))
+					if (!Rects->IsEmpty()) return true;
+			return false;
+		}
+
+		bool ShouldPruneUnusedDebugMesh(const FString& Package, const FDinkBundleCollision* Collision)
+		{
+			return Package.EndsWith(TEXT("_DebugBlockers")) && Collision && !HasDebugBlockers(Collision);
+		}
+
 		// Shared by the importer and mesh-description regression; no assets or physics are touched here.
 		void WriteScreenPresentation(const FDinkBundleScreen& Screen, const FDinkBundleCollision& Coll,
 			const FVector& Pivot, FMeshWriter& Visual, FMeshWriter& Debug)
@@ -815,7 +828,7 @@ namespace DinkGreybox
 				{
 					if (Pair.Key.StartsWith(Prefix))
 					{
-						// still a valid screen; drop only a CollLow that is no longer needed
+						// Still a valid screen: preserve the existing low rule and prune only an unused debug mesh.
 						const FDinkBundleCollision* C = nullptr;
 						for (const FDinkBundleScreen& S : Bundle.Screens)
 						{
@@ -826,7 +839,8 @@ namespace DinkGreybox
 						}
 						const bool bLowGone = Pair.Key.EndsWith(TEXT("_CollLow")) && C && (!C->ByClass.Contains(TEXT("low")) ||
 							C->ByClass[TEXT("low")].Num() + (C->ByClass.Contains(TEXT("fill_water")) ? C->ByClass[TEXT("fill_water")].Num() : 0) == 0);
-						bKeep = !bLowGone;
+						const bool bDebugGone = ShouldPruneUnusedDebugMesh(Pair.Key, C);
+						bKeep = !bLowGone && !bDebugGone;
 						break;
 					}
 				}
@@ -898,10 +912,7 @@ namespace DinkGreybox
 		if (FCString::Strcmp(Which, TEXT("DebugBlockers")) == 0)
 		{
 			const FDinkBundleCollision* Coll = Bundle.Collision.Find(FString::Printf(TEXT("SCR_%03d"), Screen));
-			bool bHasBlockers = false;
-			if (Coll) for (const TCHAR* Class : {TEXT("solid"), TEXT("low"), TEXT("sprite"), TEXT("warp")})
-				if (const TArray<FIntRect>* Rects = Coll->ByClass.Find(Class)) bHasBlockers |= !Rects->IsEmpty();
-			if (!bHasBlockers) return nullptr;
+			if (!HasDebugBlockers(Coll)) return nullptr;
 		}
 		return Cast<UStaticMesh>(LoadGenerated(FString::Printf(TEXT("%s/SM_SCR_%03d_%s"), *ScreenFolder(Screen), Screen, Which)));
 	}
