@@ -1,3 +1,7 @@
+## Generated interior wall ownership candidate (10 November 2026)
+
+Isolated `fix/generated-interior-visibility` at `/home/artist/Work/DinkGeneratedInteriorVisibility`, base f97349e. Generated `InteriorWall_*` presentation cubes must follow the physically occupied indoor volume or its exact same-world InteriorId+interior Sheet group (3/4 INT003,289/290 INT289), subject independently to authored hiding. Do not hide the whole interiors layer, actors, physical edge walls, or outdoor legacy props. Registration/late BeginPlay/null pawn/synchronous entry relocation are covered by a new native scratch-world fixture, not yet executed. Source-only; no build/native/GPU acceptance. See HANDOFF.md. RuntimeHardness Current and Root frozen Delivery remain separate.
+
 ## Accepted hero source history validated; combined runtime rebuild pending
 
 At accepted-master mergebd35802, preserve11exactpriorhero source preimages under DefectFixes_9Nov2026/History/<oldsha>/<basename>, verified against oldGit/LFS. Append11historyrows after exact4314-row mergedprefix =>4325. Narrow frozen11revision validator proves oldarchive+currentacceptedbytes and laterroworder; metadata mode admits only exact stagedpointerpath/OID/size and reports it separately. No oldrow rewrite, genericlatestrow exemption or runtime changes in this history fix.
