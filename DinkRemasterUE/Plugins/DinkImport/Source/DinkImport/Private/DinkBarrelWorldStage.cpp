@@ -36,6 +36,7 @@
 #include "UObject/UnrealType.h"
 #include "UObject/NoExportTypes.h"
 #include <limits>
+#include <cmath>
 
 namespace
 {
@@ -46,7 +47,7 @@ FString Key(const AActor& A)
 FString Reply(bool OK,const FString& Error,const TArray<FString>& Saved,int32 Actors,const TArray<FString>& Equivalences)
 {
  auto O=MakeShared<FJsonObject>();O->SetBoolField(TEXT("ok"),OK);O->SetStringField(TEXT("error"),Error);
- TArray<TSharedPtr<FJsonValue>> E;for(const auto& V:Equivalences)E.Add(MakeShared<FJsonValueString>(V));O->SetArrayField(TEXT("measured_rotation_representations"),E);
+ TArray<TSharedPtr<FJsonValue>> E;for(const auto& V:Equivalences)E.Add(MakeShared<FJsonValueString>(V));O->SetArrayField(TEXT("measured_representation_equivalences"),E);
  O->SetStringField(TEXT("world"),TargetName);O->SetNumberField(TEXT("actor_controls"),Actors);
  O->SetStringField(TEXT("scope"),TEXT("actual_full_generated_controls_only_two_new_foundations_not_gameplay_acceptance"));
  TArray<TSharedPtr<FJsonValue>> Files;for(const auto& F:Saved)Files.Add(MakeShared<FJsonValueString>(F));O->SetArrayField(TEXT("saved_new_packages"),Files);
@@ -100,6 +101,27 @@ bool MeasuredNearZeroRotation(UObject& A,UObject& B,FRotator& Canonical,FString&
  }
  if(!Difference)return false;
  Evidence=FString::Printf(TEXT("RelativeRotation machine-zero ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) budgetDeg=%.17g; nonzeroangles/nonspatialbytes unchanged"),XS[0],XS[1],XS[2],YS[0],YS[1],YS[2],Budget);
+ return true;
+}
+bool MeasuredActorTranslation(UObject& Source,UObject& Target,FTransform& Canonical,FString& Evidence)
+{
+ auto* A=Cast<AActor>(&Source);auto* B=Cast<AActor>(&Target);if(!A||!B||A->GetClass()!=B->GetClass())return false;
+ const FTransform S=A->GetActorTransform(),T=B->GetActorTransform();if(S.ContainsNaN()||T.ContainsNaN())return false;
+ const FQuat SQ=S.GetRotation(),TQ=T.GetRotation();const FVector SS=S.GetScale3D(),TS=T.GetScale3D();
+ const double Q1[]={SQ.X,SQ.Y,SQ.Z,SQ.W},Q2[]={TQ.X,TQ.Y,TQ.Z,TQ.W};
+ const double K1[]={SS.X,SS.Y,SS.Z},K2[]={TS.X,TS.Y,TS.Z};
+ if(FMemory::Memcmp(Q1,Q2,sizeof(Q1))||FMemory::Memcmp(K1,K2,sizeof(K1)))return false;
+ const FVector X=S.GetTranslation(),Y=T.GetTranslation();const double V1[]={X.X,X.Y,X.Z},V2[]={Y.X,Y.Y,Y.Z};bool Difference=false;
+ for(int I=0;I<3;++I)
+ {
+  if(!FMath::IsFinite(V1[I])||!FMath::IsFinite(V2[I]))return false;
+  if(FMemory::Memcmp(&V1[I],&V2[I],sizeof(double))==0)continue;
+  if(std::nextafter(V1[I],V2[I])!=V2[I])return false;
+  Difference=true;
+ }
+ if(!Difference)return false;
+ Canonical=S;
+ Evidence=FString::Printf(TEXT("ACTOR-world translation ONLY maxONE adjacent-double peraxis source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) deltaCm=(%.17g,%.17g,%.17g); Q/scale/nonspatial/sourcebytes strict"),V1[0],V1[1],V1[2],V2[0],V2[1],V2[2],V2[0]-V1[0],V2[1]-V1[1],V2[2]-V1[2]);
  return true;
 }
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
@@ -156,7 +178,7 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
  if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS ")+TransformDifference(A->GetComponentTransform(),CastChecked<USceneComponent>(&Target)->GetComponentTransform());
  return TEXT("state serialization differs outside filtered properties; no comparison waived");
 }
-bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr)
+bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr,FTransform* ActorComparisonTransform=nullptr)
 {
  FStateWriter W(Out,IDs,Forbidden,Target);FString Class=O.GetClass()->GetPathName();W<<Class;
  for(TFieldIterator<FProperty> It(O.GetClass());It;++It)
@@ -164,7 +186,7 @@ bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const U
   auto* P=*It;if(!TrackedProperty(*P,O))continue;
   FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&O),nullptr);
  }
- if(auto* A=Cast<AActor>(&O)){FTransform T=A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
+ if(auto* A=Cast<AActor>(&O)){FTransform T=ActorComparisonTransform?*ActorComparisonTransform:A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
  if(auto* C=Cast<USceneComponent>(&O)){FTransform T=C->GetComponentTransform();W<<T;}
  if(auto* C=Cast<UInstancedStaticMeshComponent>(&O))
  {int32 N=C->GetInstanceCount();W<<N;for(int32 I=0;I<N;++I){FTransform T;if(!C->GetInstanceTransform(I,T,false))return false;W<<T;}}
@@ -283,14 +305,18 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
    if(A!=B)
    {
-    FRotator Rotation;FString Evidence;
-    if(!MeasuredNearZeroRotation(*O.Value,*New,Rotation,Evidence))return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
-    // ONLY the pair-comparison serialization receives this measured override.
-    // Source before/after fingerprints and every appended transform remain raw.
-    Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+Evidence);
+    FRotator Rotation;FTransform ActorTransform;FString REvidence,TEvidence;
+    const bool R=MeasuredNearZeroRotation(*O.Value,*New,Rotation,REvidence);
+    const bool T=MeasuredActorTranslation(*O.Value,*New,ActorTransform,TEvidence);
+    if(!R&&!T)return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
+    // Pair comparison ONLY: source before/after and every component/local
+    // transform remain raw. Actor Q/scale must already be bit-exact.
+    if(R)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+REvidence);
+    if(T)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+TEvidence);
     A.Reset();B.Reset();
-    if(!State(*O.Value,IDs,SourcePackages,false,A,&Rotation)||!State(*New,IDs,SourcePackages,true,B,&Rotation)||A!=B)
-     return Fail(TEXT("copied control/component mismatch after measured rotation: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages,&Rotation));
+    if(!State(*O.Value,IDs,SourcePackages,false,A,R?&Rotation:nullptr,T?&ActorTransform:nullptr)||
+       !State(*New,IDs,SourcePackages,true,B,R?&Rotation:nullptr,T?&ActorTransform:nullptr)||A!=B)
+     return Fail(TEXT("copied control/component mismatch after measured representation: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages,R?&Rotation:nullptr));
    }
    if(auto* C=Cast<UActorComponent>(New);C&&(!C->IsIn(Dst)||C->GetOwner()!=Dst))return Fail(TEXT("component ownership escaped candidate"));
   }
