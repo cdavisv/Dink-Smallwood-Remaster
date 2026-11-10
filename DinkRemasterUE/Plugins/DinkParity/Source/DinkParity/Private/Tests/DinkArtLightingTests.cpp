@@ -148,7 +148,7 @@ bool FDinkAuthoredLightPreflight::RunTest(const FString&)
     for (const TCHAR* Key : {TEXT("radius_cm"), TEXT("kelvin")})
     { auto R = LightRow(); R->SetNumberField(Key, 0); Add(R); }
     { auto R = LightRow(); R->SetArrayField(TEXT("world_cm"), {}); Add(R); }
-    { auto R = LightRow(); R->SetArrayField(TEXT("world_cm"), {MakeShared<FJsonValueBool>(true), MakeShared<FJsonValueNumber>(0), MakeShared<FJsonValueNumber>(0)}); Add(R); }
+    { auto R = LightRow(); R->SetArrayField(TEXT("world_cm"), {MakeShared<FJsonValueBoolean>(true), MakeShared<FJsonValueNumber>(0), MakeShared<FJsonValueNumber>(0)}); Add(R); }
     { auto R = LightRow(); R->SetNumberField(TEXT("source_width_cm"), 80); Add(R); }
     { auto R = LightRow(true); R->RemoveField(TEXT("source_width_cm")); Add(R); }
     { auto R = LightRow(true); R->SetNumberField(TEXT("source_width_cm"), -80); Add(R); }
