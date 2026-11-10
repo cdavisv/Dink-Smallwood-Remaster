@@ -1,3 +1,9 @@
+## Stage28 mapped-parent diagnostic checkpoint — source-only, no repair
+
+Runtime8c3 actual Stage28 native0/helperFAIL30.6449s/13318unchanged/zerooutputs. DinkScreenVolume_340.EdgeWall_S child refusal showed parent Bounds Y55656.424999999988→55656.425000000003 (two ULP) with exactQ/scale. All-root repair already precedes sorted-child repair; old one-ULP roottranslation left this root unchanged. No ordering or parent-equality waiver is justified.
+
+Diagnostic-only successor appends actual mapped-parent local position/Euler/scale17, root/attachment/registration identities, per-side local==ownactor position and relative/world/actor exactness, and stock FProperty export/temporary import flags2565 for RelativeLocation/Rotation/Scale with complete-parse and exacttarget-bit results. Only the existing failure evidence branch changes; no guard/predicate/setter/tolerance/cache/physics changes and all a433 positive/negative fixtures remain untouched. No UE/build/asset writes. Await Root review/lease for metrology; actual TEXT-derived parent-position repair remains unproven. PR56source20b/Root4fb untouched.
+
 ## C43 fixture compile failure preserved; local identifier correction
 
 Actual C43 Editor failed exit6/12.081s with13318immutable inputs unchanged/kernelPASS; Game did not run. New measured S144 fixture reused an existing later LocationProperty local in the same function. Rename only the new fixture variable and its references to S144LocationProperty; production code/assertions unchanged. Failed run preserved at DinkQA/RuntimeHardnessBuildPreparation/Candidate43/Runs/4a27e5db90054bdfb82b014668d78a57. C44 must use explicitly qualified partial-recovery provenance and current own7/14 fingerprint, never claim C43 build success. Native29/Stage28 still future-empty until coherent build passes.

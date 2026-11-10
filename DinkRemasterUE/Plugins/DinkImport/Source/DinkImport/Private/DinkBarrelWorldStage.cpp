@@ -412,7 +412,40 @@ bool RestoreNewTargetChildPose(USceneComponent& Source,USceneComponent& Target,A
    SS.X,SS.Y,SS.Z,TS.X,TS.Y,TS.Z,int32(Source.IsUsingAbsoluteLocation()),int32(Source.IsUsingAbsoluteRotation()),int32(Source.IsUsingAbsoluteScale()),int32(Target.IsUsingAbsoluteLocation()),int32(Target.IsUsingAbsoluteRotation()),int32(Target.IsUsingAbsoluteScale()));
   if(SourceParent&&TargetParent)
   {Evidence+=TEXT(" PARENT WORLD ")+TransformDifference(SourceParent->GetComponentTransform(),TargetParent->GetComponentTransform());
-   Evidence+=TEXT(" SOCKET WORLD ")+TransformDifference(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()));}
+   Evidence+=TEXT(" SOCKET WORLD ")+TransformDifference(SourceParent->GetSocketTransform(Source.GetAttachSocketName()),TargetParent->GetSocketTransform(Target.GetAttachSocketName()));
+   const FVector ParentSL=SourceParent->GetRelativeLocation(),ParentTL=TargetParent->GetRelativeLocation();
+   const FRotator ParentSR=SourceParent->GetRelativeRotation(),ParentTR=TargetParent->GetRelativeRotation();
+   const FVector ParentSS=SourceParent->GetRelativeScale3D(),ParentTS=TargetParent->GetRelativeScale3D();
+   Evidence+=FString::Printf(TEXT(" MAPPED PARENT localP17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localEuler17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localScale17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) rootIdentity=%d/%d unattached=%d/%d registered=%d/%d localEqualsOwnActorP=%d/%d worldEqualsOwnActorTRS=%d/%d relativeEqualsOwnWorldTRS=%d/%d actorPairExact=%d"),
+    ParentSL.X,ParentSL.Y,ParentSL.Z,ParentTL.X,ParentTL.Y,ParentTL.Z,ParentSR.Pitch,ParentSR.Yaw,ParentSR.Roll,ParentTR.Pitch,ParentTR.Yaw,ParentTR.Roll,ParentSS.X,ParentSS.Y,ParentSS.Z,ParentTS.X,ParentTS.Y,ParentTS.Z,
+    int32(SourceParent==ExpectedSource->GetRootComponent()),int32(TargetParent==ExpectedTarget->GetRootComponent()),int32(!SourceParent->GetAttachParent()),int32(!TargetParent->GetAttachParent()),int32(SourceParent->IsRegistered()),int32(TargetParent->IsRegistered()),
+    int32(ExactVectorBytes(ParentSL,ExpectedSource->GetActorLocation())),int32(ExactVectorBytes(ParentTL,ExpectedTarget->GetActorLocation())),
+    int32(ExactTransformBytes(SourceParent->GetComponentTransform(),ExpectedSource->GetActorTransform())),int32(ExactTransformBytes(TargetParent->GetComponentTransform(),ExpectedTarget->GetActorTransform())),
+    int32(ExactTransformBytes(SourceParent->GetRelativeTransform(),SourceParent->GetComponentTransform())),int32(ExactTransformBytes(TargetParent->GetRelativeTransform(),TargetParent->GetComponentTransform())),
+    int32(ExactTransformBytes(ExpectedSource->GetActorTransform(),ExpectedTarget->GetActorTransform())));
+   constexpr int ParentFlags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
+   for(const TCHAR* ParentName:{TEXT("RelativeLocation"),TEXT("RelativeRotation"),TEXT("RelativeScale3D")})
+   {
+    auto* ParentProperty=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),ParentName);
+    if(!ParentProperty||ParentProperty->ArrayDim!=1)continue;
+    FString ParentText,ParentTargetText;ParentProperty->ExportTextItem_Direct(ParentText,ParentProperty->ContainerPtrToValuePtr<void>(SourceParent),nullptr,SourceParent,ParentFlags);
+    ParentProperty->ExportTextItem_Direct(ParentTargetText,ParentProperty->ContainerPtrToValuePtr<void>(TargetParent),nullptr,TargetParent,ParentFlags);FOutputDeviceNull ParentErrors;
+    if(ParentProperty->Struct==TBaseStructure<FRotator>::Get())
+    {
+     FRotator ParentExpected=FRotator::ZeroRotator;const TCHAR* ParentTail=ParentProperty->ImportText_Direct(*ParentText,&ParentExpected,TargetParent,ParentFlags,&ParentErrors);
+     if(ParentTail)while(*ParentTail&&FChar::IsWhitespace(*ParentTail))++ParentTail;
+     const double ParentParsed[]={ParentExpected.Pitch,ParentExpected.Yaw,ParentExpected.Roll},ParentActual[]={ParentTR.Pitch,ParentTR.Yaw,ParentTR.Roll};
+     Evidence+=FString::Printf(TEXT(" parentStock%s source={%s} target={%s} parseComplete=%d matchesActualTarget=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),ParentName,*ParentText,*ParentTargetText,int32(ParentTail&&!*ParentTail),int32(ParentTail&&!*ParentTail&&!FMemory::Memcmp(ParentParsed,ParentActual,sizeof(ParentParsed))),ParentExpected.Pitch,ParentExpected.Yaw,ParentExpected.Roll,ParentFlags);
+    }
+    else if(ParentProperty->Struct==TBaseStructure<FVector>::Get())
+    {
+     FVector ParentExpected=FVector::ZeroVector;const TCHAR* ParentTail=ParentProperty->ImportText_Direct(*ParentText,&ParentExpected,TargetParent,ParentFlags,&ParentErrors);
+     if(ParentTail)while(*ParentTail&&FChar::IsWhitespace(*ParentTail))++ParentTail;
+     const FVector ParentActual=FString(ParentName)==TEXT("RelativeLocation")?ParentTL:ParentTS;
+     Evidence+=FString::Printf(TEXT(" parentStock%s source={%s} target={%s} parseComplete=%d matchesActualTarget=%d expected17=(%.17g,%.17g,%.17g) flags=%d"),ParentName,*ParentText,*ParentTargetText,int32(ParentTail&&!*ParentTail),int32(ParentTail&&!*ParentTail&&ExactVectorBytes(ParentExpected,ParentActual)),ParentExpected.X,ParentExpected.Y,ParentExpected.Z,ParentFlags);
+    }
+   }
+  }
   Evidence+=FString::Printf(TEXT(" CHILD localPosition17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) localEuler17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) CHILD WORLD "),SourceLocation.X,SourceLocation.Y,SourceLocation.Z,TargetLocation.X,TargetLocation.Y,TargetLocation.Z,SR.Pitch,SR.Yaw,SR.Roll,TR.Pitch,TR.Yaw,TR.Roll)+TransformDifference(Source.GetComponentTransform(),Target.GetComponentTransform());
   constexpr int Flags=PPF_DeepCompareInstances|PPF_ExportsNotFullyQualified|PPF_Copy|PPF_Delimited;
   for(const TCHAR* Name:{TEXT("RelativeLocation"),TEXT("RelativeRotation"),TEXT("RelativeScale3D")})
