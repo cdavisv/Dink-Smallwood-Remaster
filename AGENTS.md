@@ -401,6 +401,13 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   already has locally. Recovering an object that is not local: find the file
   content (sha256 = the pointer's oid) in the committer's working copy, copy it
   to `.git/lfs/objects/<2>/<2>/<oid>`, then `git lfs push --object-id origin <oid>`.
+  The other direction fails quietly too: a `git lfs pull -q` after a
+  fast-forward left 28 pointer files in the shared checkout on 9 Nov 2026 (the
+  new hero meshes among them) and the editor then failed 22 tests and the cook
+  on an unloadable `SK_Dink.uasset`. After any pull or fast-forward that brings
+  in binaries run `git lfs ls-files | grep " - "` (a `-` is an unsmudged
+  pointer) and `git lfs pull` again until it prints nothing (UE AGENTS.md
+  pitfall 82).
 - `tools/analyse` (built 5 Nov 2026) is pipeline stages 3 and 4: true
   connectivity, warp graph, interiors, regions and the 2D-to-3D world layout.
   `cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out`
@@ -574,8 +581,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   wind-up, at most 2 attackers) is on for play and off in parity tests.
   Brains are plain C++ (`ThinkSprite`), not State Tree assets, so they run
   headless; a State Tree task can call them later. Director status: 146
-  rows, 111 implemented, 35 recorded. 188 automation tests (verified 9 Nov
-  2026 night: 188/188 in 677 s on master 72fa9c0; the probe runs as twenty save-slot chapters,
+  rows, 111 implemented, 35 recorded. 193 automation tests (verified 9 Nov
+  2026 late night: 193/193 in 719 s on master 9758852, packaged parity all twenty; the probe runs as twenty save-slot chapters,
   Ch1..Ch9 and ChA..ChK, deterministic across runs and identical packaged for all
   twenty (9 Nov 2026); PIE tests run on a fixed 60 Hz step).
 - Stonebrook probe (`Dink.Gameplay.Probe.Stonebrook`, report in
