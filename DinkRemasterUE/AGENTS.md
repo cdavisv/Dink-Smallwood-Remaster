@@ -1,3 +1,7 @@
+## Shared roof native preparation (not executed)
+
+Use only Root-reviewed caller with shared_roof_contract/native/verify. Exact23fresh trial then exact8existing mesh material edits+3camera aliases and fresh final23readback; no production geometry reimport or collision change. The new exact8/9editor metadata scope/capability is source-only/uncompiled. Old DLLs must refuse before imports. Existing2048/legacy helpers remain strict; new closed1024/shared profiles are explicit.14offline tests pass; no UE/native/GPU approval. Docs/Verification/InteriorRoofSharedNativePreparation defines recovery/save/guard and actual-output ledger obligations.
+
 ## Current roof integration — accepted camera merged
 
 This branch now integrates accepted master `52dabc60e0ed3b11b88c7e3974344838dd58b997` (camera PR49, HeroGrowth, East Wilds booth and audio/owner decisions). Merge conflicts were documentation additions only; both histories are retained below. The camera fix has full192/latestGPU acceptance on its own branch. Roof-specific187/readback/GPU evidence below is historical on its prior runtime base; it does not prove this combined roof snapshot. Rebuild, compatible current generated controls, shared material/source admission, native/GPU/cook and PR45 review/merge remain unfinished. Interior shared-material source work uses a separate worktree based on2ba4570; do not overwrite it. No active Root UE process.

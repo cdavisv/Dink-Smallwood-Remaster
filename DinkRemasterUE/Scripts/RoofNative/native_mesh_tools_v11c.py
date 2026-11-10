@@ -27,9 +27,9 @@ def apply_lod_builds(mesh, subsystem, expected_lods, guard):
     mesh.set_editor_property('allow_cpu_access', True)
 
 
-def import_base(U, packet, record, package, guard):
+def _import_base_profile(U, packet, record, package, guard, prefix):
     path = source_file(packet, record)
-    require(package.startswith('/Game/Dink/Refinements/RoofChimneyV12d/Meshes/') and '.' not in package, 'Unexpected mesh package')
+    require(package.startswith(prefix) and '.' not in package, 'Unexpected mesh package')
     require(U.SystemLibrary.get_console_variable_int_value('Interchange.FeatureFlags.Import.FBX') == 0, 'Legacy FBX importer required')
     guard()
     require(not U.EditorAssetLibrary.does_asset_exist(package), 'Refusing mesh overwrite')
@@ -57,6 +57,18 @@ def import_base(U, packet, record, package, guard):
     mesh = U.load_asset(package)
     require(isinstance(mesh, U.StaticMesh), 'Expected StaticMesh')
     return mesh
+
+
+def import_base(U, packet, record, package, guard):
+    return _import_base_profile(U, packet, record, package, guard,
+                                '/Game/Dink/Refinements/RoofChimneyV12d/Meshes/')
+
+
+def import_shared_roof_base(U, packet, record, package, guard):
+    from shared_roof_contract import NAMES, TRIAL
+    require(package in {TRIAL + name for name in NAMES}, 'Outside exact eight shared roof trial targets')
+    require(record['file'] == 'FBX/' + package.rsplit('/', 1)[-1] + '.fbx', 'Shared FBX name differs')
+    return _import_base_profile(U, packet, record, package, guard, TRIAL)
 
 
 def append_lods(U, mesh, packet, records, subsystem, guard):
