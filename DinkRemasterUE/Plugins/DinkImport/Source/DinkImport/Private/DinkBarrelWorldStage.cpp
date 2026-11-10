@@ -21,6 +21,7 @@
 #include "Dom/JsonObject.h"
 #include "Misc/FileHelper.h"
 #include "HAL/FileManager.h"
+#include "Hash/CityHash.h"
 #include "Misc/PackageName.h"
 #include "Misc/Paths.h"
 #include "Misc/ScopeExit.h"
@@ -302,6 +303,37 @@ FString NestedPropertyDifference(FProperty& P,void* SourceValue,void* TargetValu
  {const double L=N->GetFloatingPointPropertyValue(SourceValue),R=N->GetFloatingPointPropertyValue(TargetValue);Numeric=FString::Printf(TEXT(" numeric17=%.17g/%.17g delta=%.17g"),L,R,R-L);}
  return FString::Printf(TEXT(" nestedFirst=%s depth=%d propertyClass=%s flags=0x%llx canonicalBytes=%d/%d firstByte=%d hexStart=%d hexA=%s hexB=%s source={%s} target={%s}%s"),*Path,Depth,*P.GetClass()->GetName(),static_cast<unsigned long long>(P.GetPropertyFlags()),A.Num(),B.Num(),Offset,Start,*AH,*BH,*X.Left(384),*Y.Left(384),*Numeric);
 }
+FString BoundsCacheDiagnostic(UObject& O,FProperty& Property,int Index)
+{
+ auto* ISM=Cast<UInstancedStaticMeshComponent>(&O);auto* P=CastField<FStructProperty>(&Property);
+ if(!ISM||!P||P->GetFName()!=TEXT("CachedBounds")||P->Struct!=FBoundsCacheElement::StaticStruct())return FString();
+ const auto* Cache=P->ContainerPtrToValuePtr<FBoundsCacheElement>(ISM,Index);
+ auto* HashProperty=FindFProperty<FUInt32Property>(P->Struct,TEXT("Hash"));
+ if(!HashProperty)return TEXT(" cache diagnostic missing reflected Hash");
+ const uint32 StoredHash=HashProperty->GetPropertyValue_InContainer(Cache);
+ const FBoxSphereBounds Stored=Cache->GetValue(false);
+ auto Values=[](const FBoxSphereBounds& V,TArray<uint8>& Raw)
+ {const double D[]={V.Origin.X,V.Origin.Y,V.Origin.Z,V.BoxExtent.X,V.BoxExtent.Y,V.BoxExtent.Z,double(V.SphereRadius)};Raw.Append(reinterpret_cast<const uint8*>(D),sizeof(D));};
+ TArray<uint8> StoredBytes;Values(Stored,StoredBytes);
+ FString Result=FString::Printf(TEXT(" ISMCache[%d] valid=%d storedHash=%u storedValue17 origin=(%.17g,%.17g,%.17g) extent=(%.17g,%.17g,%.17g) radius=%.17g valueHex=%s"),Index,int32(Cache->IsValid()),StoredHash,Stored.Origin.X,Stored.Origin.Y,Stored.Origin.Z,Stored.BoxExtent.X,Stored.BoxExtent.Y,Stored.BoxExtent.Z,double(Stored.SphereRadius),*BytesToHex(StoredBytes.GetData(),StoredBytes.Num()));
+ if(!ISM->GetStaticMesh()||ISM->PerInstanceSMData.Num()==0)return Result+TEXT(" noMeshOrInstances");
+ // Exact installed InstancedStaticMesh.cpp3032-45/3133-44, READ ONLY.
+ // Never CalcBounds/GetOrCalcBounds: those mutate source cache.
+ const FTransform World=ISM->GetComponentTransform();FVector Translation=World.GetTranslation(),Scale=World.GetScale3D();FQuat Rotation=World.GetRotation();
+ const FBox MeshBounds=ISM->GetStaticMesh()->GetBounds().GetBox();uint64 Hash=0;
+ Hash=CityHash64WithSeed(reinterpret_cast<const char*>(&Translation),sizeof(Translation),Hash);
+ Hash=CityHash64WithSeed(reinterpret_cast<const char*>(&Rotation),sizeof(Rotation),Hash);
+ Hash=CityHash64WithSeed(reinterpret_cast<const char*>(&Scale),sizeof(Scale),Hash);
+ Hash=CityHash64WithSeed(reinterpret_cast<const char*>(&MeshBounds.Min),sizeof(MeshBounds.Min),Hash);
+ Hash=CityHash64WithSeed(reinterpret_cast<const char*>(&MeshBounds.Max),sizeof(MeshBounds.Max),Hash);
+ const uint32 ExpectedHash=uint32(Hash)^uint32(Hash>>32);
+ const FMatrix WorldMatrix=World.ToMatrixWithScale();FBoxSphereBounds::Builder Builder;FSHA1 Matrices;
+ for(const auto& Instance:ISM->PerInstanceSMData){Builder+=MeshBounds.TransformBy(Instance.Transform*WorldMatrix);Matrices.Update(reinterpret_cast<const uint8*>(&Instance.Transform),sizeof(Instance.Transform));}
+ Matrices.Final();uint8 MatrixDigest[20];Matrices.GetHash(MatrixDigest);
+ const FBoxSphereBounds Expected=Builder;TArray<uint8> ExpectedBytes;Values(Expected,ExpectedBytes);
+ Result+=FString::Printf(TEXT(" mesh=%s meshBounds17=(%.17g,%.17g,%.17g)/(%.17g,%.17g,%.17g) rawInstanceMatrices=%d SHA1=%s ownComponentHash=%u hashMatch=%d ownValue17 origin=(%.17g,%.17g,%.17g) extent=(%.17g,%.17g,%.17g) radius=%.17g ownValueHex=%s ownValueBitMatch=%d"),*ISM->GetStaticMesh()->GetPathName(),MeshBounds.Min.X,MeshBounds.Min.Y,MeshBounds.Min.Z,MeshBounds.Max.X,MeshBounds.Max.Y,MeshBounds.Max.Z,ISM->PerInstanceSMData.Num(),*BytesToHex(MatrixDigest,20),ExpectedHash,int32(ExpectedHash==StoredHash),Expected.Origin.X,Expected.Origin.Y,Expected.Origin.Z,Expected.BoxExtent.X,Expected.BoxExtent.Y,Expected.BoxExtent.Z,double(Expected.SphereRadius),*BytesToHex(ExpectedBytes.GetData(),ExpectedBytes.Num()),int32(ExpectedBytes==StoredBytes));
+ return Result;
+}
 FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UObject*,FString>& IDs,
  const TSet<const UPackage*>& Forbidden,FRotator* ComparisonRotation=nullptr)
 {
@@ -309,16 +341,19 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
  for(TFieldIterator<FProperty> It(Source.GetClass());It;++It)
  {
   auto* P=*It;if(!TrackedProperty(*P,Source))continue;
+  for(int StaticIndex=0;StaticIndex<P->ArrayDim;++StaticIndex)
+  {
   TArray<uint8> A,B;FStateWriter SA(A,IDs,Forbidden,false),SB(B,IDs,Forbidden,true);
-  P->SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),ComparisonRotation&&RotationProperty(*P,Source)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Source),nullptr);
-  P->SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),ComparisonRotation&&RotationProperty(*P,Target)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Target),nullptr);
+  P->SerializeItem(FStructuredArchiveFromArchive(SA).GetSlot(),ComparisonRotation&&RotationProperty(*P,Source)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Source,StaticIndex),nullptr);
+  P->SerializeItem(FStructuredArchiveFromArchive(SB).GetSlot(),ComparisonRotation&&RotationProperty(*P,Target)?static_cast<void*>(ComparisonRotation):P->ContainerPtrToValuePtr<void>(&Target,StaticIndex),nullptr);
   if(A!=B||SB.SourceReference||SA.IsError()||SB.IsError())
   {
-   FString X,Y;P->ExportTextItem_Direct(X,P->ContainerPtrToValuePtr<void>(&Source),nullptr,&Source,PPF_None);
-   P->ExportTextItem_Direct(Y,P->ContainerPtrToValuePtr<void>(&Target),nullptr,&Target,PPF_None);
+   FString X,Y;P->ExportTextItem_Direct(X,P->ContainerPtrToValuePtr<void>(&Source,StaticIndex),nullptr,&Source,PPF_None);
+   P->ExportTextItem_Direct(Y,P->ContainerPtrToValuePtr<void>(&Target,StaticIndex),nullptr,&Target,PPF_None);
    const FString AH=A.Num()<=128?BytesToHex(A.GetData(),A.Num()):TEXT("over128bytes");
    const FString BH=B.Num()<=128?BytesToHex(B.GetData(),B.Num()):TEXT("over128bytes");
-   FString Numeric=NestedPropertyDifference(*P,P->ContainerPtrToValuePtr<void>(&Source),P->ContainerPtrToValuePtr<void>(&Target),Source,Target,IDs,Forbidden,P->GetName(),0);
+   FString Numeric=NestedPropertyDifference(*P,P->ContainerPtrToValuePtr<void>(&Source,StaticIndex),P->ContainerPtrToValuePtr<void>(&Target,StaticIndex),Source,Target,IDs,Forbidden,P->GetName()+FString::Printf(TEXT("[%d]"),StaticIndex),0);
+   Numeric+=TEXT(" sourceCache:")+BoundsCacheDiagnostic(Source,*P,StaticIndex)+TEXT(" targetCache:")+BoundsCacheDiagnostic(Target,*P,StaticIndex);
    if(const auto* Struct=CastField<FStructProperty>(P);Struct&&Struct->Struct==TBaseStructure<FRotator>::Get())
    {
     const auto* R=P->ContainerPtrToValuePtr<FRotator>(&Source);const auto* T=P->ContainerPtrToValuePtr<FRotator>(&Target);
@@ -335,9 +370,10 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
     Numeric+=TransformDifference(SC->GetComponentTransform(),TC->GetComponentTransform());
     }
    }
-   return FString::Printf(TEXT("firstProperty=%s flags=0x%llx ownerClass=%s propertyClass=%s canonicalBytes=%d/%d targetSourceReference=%d source={%s} target={%s} canonicalHexA=%s canonicalHexB=%s%s"),
-    *P->GetName(),static_cast<unsigned long long>(P->GetPropertyFlags()),*P->GetOwnerClass()->GetPathName(),
+   return FString::Printf(TEXT("firstProperty=%s staticIndex=%d flags=0x%llx ownerClass=%s propertyClass=%s canonicalBytes=%d/%d targetSourceReference=%d source={%s} target={%s} canonicalHexA=%s canonicalHexB=%s%s"),
+    *P->GetName(),StaticIndex,static_cast<unsigned long long>(P->GetPropertyFlags()),*P->GetOwnerClass()->GetPathName(),
     *P->GetClass()->GetName(),A.Num(),B.Num(),int32(SB.SourceReference),*X.Left(384),*Y.Left(384),*AH,*BH,*Numeric);
+  }
   }
  }
  if(auto* A=Cast<AActor>(&Source))
@@ -360,7 +396,8 @@ bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const U
  {
   auto* P=*It;if(!TrackedProperty(*P,O))continue;
   FVector RootLocation=RootComparisonTransform?RootComparisonTransform->GetTranslation():FVector::ZeroVector;
-  FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):RootComparisonTransform&&RootLocationProperty(*P,O)?static_cast<void*>(&RootLocation):AggregateComparison&&AggregateProperty(*P,O)?static_cast<void*>(AggregateComparison):P->ContainerPtrToValuePtr<void>(&O),nullptr);
+  FString Name=P->GetName();W<<Name;int32 StaticCount=P->ArrayDim;W<<StaticCount;
+  for(int StaticIndex=0;StaticIndex<StaticCount;++StaticIndex)P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):RootComparisonTransform&&RootLocationProperty(*P,O)?static_cast<void*>(&RootLocation):AggregateComparison&&AggregateProperty(*P,O)?static_cast<void*>(AggregateComparison):P->ContainerPtrToValuePtr<void>(&O,StaticIndex),nullptr);
  }
  if(auto* A=Cast<AActor>(&O)){FTransform T=ActorComparisonTransform?*ActorComparisonTransform:A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
  if(auto* C=Cast<USceneComponent>(&O)){FTransform T=RootComparisonTransform?*RootComparisonTransform:ChildComparisonTransform?*ChildComparisonTransform:C->GetComponentTransform();W<<T;}
@@ -604,6 +641,19 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestTrue(TEXT("actual raw-instance mutation succeeds"),ISMA->UpdateInstanceTransform(0,FTransform(FVector(0,0,1)),false,false,false));
  TestTrue(TEXT("actual ISM state serializes after instance change"),State(*ISMA,TestIDs,NoForbidden,false,AfterInstance,nullptr,nullptr,nullptr,&Canonical));
  TestTrue(TEXT("changed instance bytes refuse even with identical component world override"),BeforeInstance!=AfterInstance);
+ auto* CacheProperty=FindFProperty<FStructProperty>(UInstancedStaticMeshComponent::StaticClass(),TEXT("CachedBounds"));
+ if(!TestNotNull(TEXT("actual ISM static cache property"),CacheProperty))return false;
+ TestEqual(TEXT("installed Component Navigation Local cache slots"),CacheProperty->ArrayDim,3);
+ for(int Index:{1,2})
+ {
+  auto* Cache=CacheProperty->ContainerPtrToValuePtr<FBoundsCacheElement>(ISMA,Index);const FBoundsCacheElement Original=*Cache;
+  TArray<uint8> CacheBefore,CacheAfter;
+  TestTrue(TEXT("all-slots source serialization before mutation"),State(*ISMA,TestIDs,NoForbidden,false,CacheBefore));
+  Cache->CacheValue(FBoxSphereBounds(FVector(1,2,3),FVector(4,5,6),7),123+Index);
+  TestTrue(TEXT("all-slots source serialization after mutation"),State(*ISMA,TestIDs,NoForbidden,false,CacheAfter));
+  TestTrue(FString::Printf(TEXT("static cache index%d mutation is detected"),Index),CacheBefore!=CacheAfter);*Cache=Original;
+ }
+
  auto* RotA=NewObject<USceneComponent>(OwnerA);auto* RotB=NewObject<USceneComponent>(OwnerB);
  RotA->SetRelativeRotation(FRotator(0,-90,0));RotB->SetRelativeRotation(FRotator(0,-90,0));
  // Reproduce the measured stored Euler representation without recomputing the
