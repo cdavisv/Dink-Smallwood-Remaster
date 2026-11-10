@@ -239,6 +239,15 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
     Numeric=FString::Printf(TEXT(" rotator17 source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) delta=(%.17g,%.17g,%.17g)"),
      double(R->Pitch),double(R->Yaw),double(R->Roll),double(T->Pitch),double(T->Yaw),double(T->Roll),
      double(T->Pitch-R->Pitch),double(T->Yaw-R->Yaw),double(T->Roll-R->Roll));
+    if(auto* SC=Cast<USceneComponent>(&Source))
+    {
+    auto* TC=CastChecked<USceneComponent>(&Target);
+    const FQuat SQ=R->Quaternion(),TQ=T->Quaternion();
+    const FQuat CachedS=SC->GetRelativeRotationCache().RotatorToQuat_ReadOnly(*R),CachedT=TC->GetRelativeRotationCache().RotatorToQuat_ReadOnly(*T);
+    Numeric+=FString::Printf(TEXT(" localEulerQuat17 source=(%.17g,%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g,%.17g) readonlyCacheQuat17 source=(%.17g,%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g,%.17g) world "),
+     SQ.X,SQ.Y,SQ.Z,SQ.W,TQ.X,TQ.Y,TQ.Z,TQ.W,CachedS.X,CachedS.Y,CachedS.Z,CachedS.W,CachedT.X,CachedT.Y,CachedT.Z,CachedT.W);
+    Numeric+=TransformDifference(SC->GetComponentTransform(),TC->GetComponentTransform());
+    }
    }
    return FString::Printf(TEXT("firstProperty=%s flags=0x%llx ownerClass=%s propertyClass=%s canonicalBytes=%d/%d targetSourceReference=%d source={%s} target={%s} canonicalHexA=%s canonicalHexB=%s%s"),
     *P->GetName(),static_cast<unsigned long long>(P->GetPropertyFlags()),*P->GetOwnerClass()->GetPathName(),
