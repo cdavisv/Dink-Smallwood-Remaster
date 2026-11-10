@@ -21,6 +21,70 @@ class SharedRoofTests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = C.load_contract(P)
 
+    def test_mesh_relative_metadata_is_ready_for_verification_and_save(self):
+        # Exercise the complete import orchestrator. The verifier models the real
+        # source-filename check; patching individual low-level imports cannot fix order.
+        class Asset:
+            def __init__(self, package):
+                self.package = package
+                self.relative_ready = False
+                self.verified = False
+            def get_path_name(self):
+                return self.package + '.' + self.package.rsplit('/', 1)[-1]
+        class Material(Asset):
+            pass
+        class Mesh(Asset):
+            pass
+        events, receipts = [], []
+        tools = SimpleNamespace(create_asset=lambda name, folder, *args: Material(folder + '/' + name))
+        U = SimpleNamespace(EditorAssetLibrary=SimpleNamespace(does_asset_exist=lambda p: False),
+                            AssetToolsHelpers=SimpleNamespace(get_asset_tools=lambda: tools),
+                            Material=Material, MaterialFactoryNew=lambda: None,
+                            StaticMeshEditorSubsystem=object(), get_default_object=lambda cls: object())
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            contract = copy.deepcopy(self.contract)
+            def configure(u, asset, files, packet, guard):
+                self.assertIs(u, U)
+                self.assertEqual(packet, root / 'SourceAssets/Art')
+                if isinstance(asset, Mesh):
+                    self.assertFalse(asset.relative_ready, 'Redundant mesh metadata setup')
+                    self.assertFalse(asset.verified)
+                    events.append(('relative', asset.package))
+                asset.relative_ready = True
+            def verify(mesh, record):
+                self.assertTrue(mesh.relative_ready, 'Verifier observed an absolute/raw import filename')
+                self.assertFalse(C.package_file(root, mesh.package).exists(), 'Verifier ran after save')
+                mesh.verified = True
+                events.append(('verify', mesh.package))
+                return dict(passed=True, triangles=record['triangles'], UCX=record['UCX'],
+                            geometry_UV_normals_source_match=True)
+            def save(asset, overwrite=False):
+                self.assertFalse(overwrite)
+                if isinstance(asset, Mesh):
+                    self.assertTrue(asset.relative_ready)
+                    self.assertTrue(asset.verified, 'Mesh saved before source verification')
+                    events.append(('save', asset.package))
+                file = C.package_file(root, asset.package)
+                file.parent.mkdir(parents=True, exist_ok=True)
+                file.write_bytes(b'mocked native save')
+                return True
+            with patch.object(N, 'preflight_native'), patch.object(N, 'load_contract', return_value=contract), \
+                 patch.object(N, 'import_shared_texture', side_effect=lambda u, source, row, guard: Asset(row['package'])), \
+                 patch.object(N, 'build_graph'), patch.object(N, 'inspect_graph', return_value={}), \
+                 patch.object(N, 'import_shared_roof_base', side_effect=lambda u, packet, row, package, guard: Mesh(package)), \
+                 patch.object(N, 'append_lods'), patch.object(N, 'configure_policy'), \
+                 patch.object(N, 'bind_named_materials'), patch.object(N, 'configure_relative_sources', side_effect=configure):
+                report = N.import_trial(U, root, contract, lambda: None, save,
+                                        lambda *args: {}, verify, receipts.append)
+            self.assertTrue(report['passed'])
+            self.assertEqual(len(report['packages']), 23)
+            self.assertIs(receipts[-1], report)
+            for record in contract['meshes']:
+                package = record['package']
+                self.assertEqual([event for event in events if event[1] == package],
+                                 [('relative', package), ('verify', package), ('save', package)])
+
     def test_actual_binary_shared_roles_have_unique_oriented_source_correspondence(self):
         from shared_roof_verify import decode_source
         from geometry_only_match_v11 import candidates
