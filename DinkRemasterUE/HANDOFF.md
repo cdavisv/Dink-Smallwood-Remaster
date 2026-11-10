@@ -394,3 +394,6 @@ This proof remains at fbf(runtime72fa), before newer master HeroGrowth/PR50 comp
 ### Owner-master compatibility merge after Current7
 
 Current7 source/docs committed locally as 26fb460; its four targeted native PASS remains scoped to fbf/runtime72fa. Merged owner master e41723107ce51f9841bef135a6ecdf27797aa98d cleanly, retaining HeroGrowth, the widened cobbler booth join/exporter/test and accepted audio/owner decisions. No camera PR49 source imported. The twenty owner-changed paths match e417 bytes; the hardness commit paths remain unchanged except this explicit continuity entry. Latest5415 ignored controls, fresh combined Editor/Game/focused validation and actual marked031/209/default activation remain pending.
+
+
+Latest control refresh completed: exactly5415 ImportData/generated files copied independently from frozen camera73ccdbe e417-derived controls, all source/destination SHA256 matched before/after; prior5415 archived with verified original hashes. Retained63 Character/Input controls also match. Full5478 fixture ledger `/home/davisc/Work/DinkQA/RuntimeHardnessCurrentFixtureRefresh/CURRENT_FIXTURES.json`; refresh receipt alongside it. No code/DLL/productionData overlay; these remain UNMARKED controls, not actual031/209 acceptance.
