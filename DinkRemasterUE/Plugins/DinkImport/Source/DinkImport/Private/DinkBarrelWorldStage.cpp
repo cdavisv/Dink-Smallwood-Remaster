@@ -3,6 +3,8 @@
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/InstancedStaticMeshComponent.h"
+#include "Components/BoxComponent.h"
+#include "PhysicsEngine/BodySetup.h"
 #include "Engine/Level.h"
 #include "Engine/LevelStreaming.h"
 #include "Engine/StaticMesh.h"
@@ -233,6 +235,35 @@ bool MeasuredChildTranslation(UObject& Source,UObject& Target,AActor* ExpectedSo
  Evidence=FString::Printf(TEXT("DERIVED CHILD world ONLY source=(%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g) delta=(%.17g,%.17g,%.17g); exact owner delta; mapped attachment chain/local TRS/Q/scale strict; "),From.X,From.Y,From.Z,To.X,To.Y,To.Z,To.X-From.X,To.Y-From.Y,To.Z-From.Z)+RootEvidence;
  return true;
 }
+bool AggregateProperty(const FProperty& P,const UObject& O)
+{
+ const auto* S=CastField<FStructProperty>(&P);
+ return O.IsA<UBodySetup>()&&P.GetOwnerClass()==UBodySetup::StaticClass()&&P.GetFName()==TEXT("AggGeom")&&S&&S->Struct==FKAggregateGeom::StaticStruct();
+}
+bool MeasuredBoxRotationZero(UObject& Source,UObject& Target,AActor* ExpectedSource,AActor* ExpectedTarget,
+ const TMap<UObject*,UObject*>& Remap,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,
+ FKAggregateGeom& Canonical,FString& Evidence)
+{
+ auto* A=Cast<UBodySetup>(&Source);auto* B=Cast<UBodySetup>(&Target);
+ auto* BoxA=A?Cast<UBoxComponent>(A->GetOuter()):nullptr;auto* BoxB=B?Cast<UBoxComponent>(B->GetOuter()):nullptr;
+ if(!A||!B||A->GetClass()!=B->GetClass()||!BoxA||!BoxB||BoxA->GetClass()!=BoxB->GetClass()||
+    BoxA->GetOwner()!=ExpectedSource||BoxB->GetOwner()!=ExpectedTarget||!ExpectedSource||!ExpectedTarget||
+    Remap.FindRef(BoxA)!=BoxB||Remap.FindRef(A)!=B||A->AggGeom.BoxElems.Num()!=B->AggGeom.BoxElems.Num())return false;
+ FKAggregateGeom Left=A->AggGeom,Right=B->AggGeom;bool Changed=false;Evidence.Reset();
+ for(int I=0;I<Left.BoxElems.Num();++I)
+ {
+  FRotator& L=Left.BoxElems[I].Rotation;FRotator& R=Right.BoxElems[I].Rotation;
+  double* X[]={&L.Pitch,&L.Yaw,&L.Roll};double* Y[]={&R.Pitch,&R.Yaw,&R.Roll};
+  for(int Axis=0;Axis<3;++Axis)if(*X[Axis]==0&&*Y[Axis]==0&&FMemory::Memcmp(X[Axis],Y[Axis],sizeof(double)))
+  {Evidence+=FString::Printf(TEXT(" box[%d].Rotation axis%d source=%.17g target=%.17g SIGNEDZERO ONLY;"),I,Axis,*X[Axis],*Y[Axis]);*X[Axis]=*Y[Axis]=0;Changed=true;}
+ }
+ if(!Changed)return false;
+ auto* P=FindFProperty<FStructProperty>(UBodySetup::StaticClass(),TEXT("AggGeom"));if(!P||!AggregateProperty(*P,Source))return false;
+ TArray<uint8> L,R;FStateWriter LW(L,IDs,Forbidden,false),RW(R,IDs,Forbidden,true);
+ P->SerializeItem(FStructuredArchiveFromArchive(LW).GetSlot(),&Left,nullptr);P->SerializeItem(FStructuredArchiveFromArchive(RW).GetSlot(),&Right,nullptr);
+ if(L!=R||LW.IsError()||RW.IsError()||RW.SourceReference)return false;
+ Canonical=Left;Evidence+=TEXT(" entire canonical aggregate exact; mapped UBoxComponent-owned body; original source bytes unchanged");return true;
+}
 FString TransformDifference(const FTransform& Source,const FTransform& Target)
 {
  FTransform S=Source,T=Target;TArray<uint8> A,B;FObjectWriter WA(A),WB(B);WA<<S;WB<<T;
@@ -322,14 +353,14 @@ FString FirstStateDifference(UObject& Source,UObject& Target,const TMap<const UO
  if(auto* A=Cast<USceneComponent>(&Source))return TEXT("nonpropertyComponentTRS ")+TransformDifference(A->GetComponentTransform(),CastChecked<USceneComponent>(&Target)->GetComponentTransform());
  return TEXT("state serialization differs outside filtered properties; no comparison waived");
 }
-bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr,FTransform* ActorComparisonTransform=nullptr,FTransform* RootComparisonTransform=nullptr,FTransform* ChildComparisonTransform=nullptr)
+bool State(UObject& O,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,TArray<uint8>& Out,FRotator* ComparisonRotation=nullptr,FTransform* ActorComparisonTransform=nullptr,FTransform* RootComparisonTransform=nullptr,FTransform* ChildComparisonTransform=nullptr,FKAggregateGeom* AggregateComparison=nullptr)
 {
  FStateWriter W(Out,IDs,Forbidden,Target);FString Class=O.GetClass()->GetPathName();W<<Class;
  for(TFieldIterator<FProperty> It(O.GetClass());It;++It)
  {
   auto* P=*It;if(!TrackedProperty(*P,O))continue;
   FVector RootLocation=RootComparisonTransform?RootComparisonTransform->GetTranslation():FVector::ZeroVector;
-  FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):RootComparisonTransform&&RootLocationProperty(*P,O)?static_cast<void*>(&RootLocation):P->ContainerPtrToValuePtr<void>(&O),nullptr);
+  FString Name=P->GetName();W<<Name;P->SerializeItem(FStructuredArchiveFromArchive(W).GetSlot(),ComparisonRotation&&RotationProperty(*P,O)?static_cast<void*>(ComparisonRotation):RootComparisonTransform&&RootLocationProperty(*P,O)?static_cast<void*>(&RootLocation):AggregateComparison&&AggregateProperty(*P,O)?static_cast<void*>(AggregateComparison):P->ContainerPtrToValuePtr<void>(&O),nullptr);
  }
  if(auto* A=Cast<AActor>(&O)){FTransform T=ActorComparisonTransform?*ActorComparisonTransform:A->GetActorTransform();W<<T;bool H=A->IsHidden(),C=A->GetActorEnableCollision();W<<H<<C;}
  if(auto* C=Cast<USceneComponent>(&O)){FTransform T=RootComparisonTransform?*RootComparisonTransform:ChildComparisonTransform?*ChildComparisonTransform:C->GetComponentTransform();W<<T;}
@@ -450,12 +481,13 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
    TArray<uint8> A,B;if(!State(*O.Value,IDs,SourcePackages,false,A)||!State(*New,IDs,SourcePackages,true,B))return Fail(TEXT("candidate source-reference/state serialization refused: ")+P.Key+TEXT("/")+O.Key);
    if(A!=B)
    {
-    FRotator Rotation;FTransform ActorTransform,RootTransform,ChildTransform;FString REvidence,TEvidence,RootEvidence,ChildEvidence;
+    FRotator Rotation;FTransform ActorTransform,RootTransform,ChildTransform;FString REvidence,TEvidence,RootEvidence,ChildEvidence,AggregateEvidence;FKAggregateGeom Aggregate;
     const bool R=MeasuredRotation(*O.Value,*New,Rotation,REvidence);
     const bool T=MeasuredActorTranslation(*O.Value,*New,ActorTransform,TEvidence);
     const bool Root=MeasuredRootTranslation(*O.Value,*New,Src,Dst,RootTransform,RootEvidence);
     const bool Child=MeasuredChildTranslation(*O.Value,*New,Src,Dst,Remap,ChildTransform,ChildEvidence);
-    if(!R&&!T&&!Root&&!Child)return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
+    const bool BoxZero=MeasuredBoxRotationZero(*O.Value,*New,Src,Dst,Remap,IDs,SourcePackages,Aggregate,AggregateEvidence);
+    if(!R&&!T&&!Root&&!Child&&!BoxZero)return Fail(TEXT("copied control/component mismatch: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages));
     // Pair comparison ONLY; only qualified root location/world share the owner delta.
     // Source before/after, local/instance transforms and Q/scale remain strict;
     // derived component-world translation only may share the exact owner delta.
@@ -463,9 +495,10 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
     if(T)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+TEvidence);
     if(Root)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+RootEvidence);
     if(Child)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+ChildEvidence);
+    if(BoxZero)Equivalences.Add(P.Key+TEXT("/")+O.Key+TEXT(" ")+AggregateEvidence);
     A.Reset();B.Reset();
-    if(!State(*O.Value,IDs,SourcePackages,false,A,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr)||
-       !State(*New,IDs,SourcePackages,true,B,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr)||A!=B)
+    if(!State(*O.Value,IDs,SourcePackages,false,A,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr,BoxZero?&Aggregate:nullptr)||
+       !State(*New,IDs,SourcePackages,true,B,R?&Rotation:nullptr,T?&ActorTransform:nullptr,Root?&RootTransform:nullptr,Child?&ChildTransform:nullptr,BoxZero?&Aggregate:nullptr)||A!=B)
      return Fail(TEXT("copied control/component mismatch after measured representation: ")+P.Key+TEXT("/")+O.Key+TEXT(" ")+FirstStateDifference(*O.Value,*New,IDs,SourcePackages,R?&Rotation:nullptr));
    }
    if(auto* C=Cast<UActorComponent>(New);C&&(!C->IsIn(Dst)||C->GetOwner()!=Dst))return Fail(TEXT("component ownership escaped candidate"));
@@ -594,6 +627,27 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  RP->ContainerPtrToValuePtr<FRotator>(RotB)->Yaw=-90.;
  TestFalse(TEXT("changed actual world quaternion refuses despite adjacent stored Euler"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
  TestFalse(TEXT("nonScene objects cannot use Euler representation comparison"),MeasuredAdjacentRotation(*OwnerA,*OwnerB,RotationCanonical,RotationEvidence));
+ auto* BoxA=NewObject<UBoxComponent>(OwnerA);auto* BoxB=NewObject<UBoxComponent>(OwnerB);
+ auto* BodyA=NewObject<UBodySetup>(BoxA);auto* BodyB=NewObject<UBodySetup>(BoxB);
+ BodyA->AggGeom.BoxElems.Add(FKBoxElem(10,20,30));BodyB->AggGeom.BoxElems.Add(FKBoxElem(10,20,30));
+ BodyA->AggGeom.BoxElems[0].Rotation.Roll=-0.;BodyB->AggGeom.BoxElems[0].Rotation.Roll=0.;Mapping.Add(BoxA,BoxB);Mapping.Add(BodyA,BodyB);
+ FKAggregateGeom Aggregate;FString AggregateEvidence;TArray<uint8> SourceBefore,SourceAfter;
+ TestTrue(TEXT("raw body source fingerprint before qualification"),State(*BodyA,TestIDs,NoForbidden,false,SourceBefore));
+ TestTrue(TEXT("mapped box body signedzero rotation qualifies"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ TestTrue(TEXT("raw body source fingerprint after qualification"),State(*BodyA,TestIDs,NoForbidden,false,SourceAfter));
+ TestTrue(TEXT("source body bytes unchanged"),SourceBefore==SourceAfter);
+ TMap<UObject*,UObject*> WrongBodyMapping=Mapping;WrongBodyMapping.Remove(BodyA);
+ TestFalse(TEXT("owned typed body without exact body mapping refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,WrongBodyMapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ TestFalse(TEXT("box body wrong corresponding owner refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,Wrong,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ BodyB->AggGeom.BoxElems[0].Rotation.Yaw=1;
+ TestFalse(TEXT("nonzero box rotation change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ BodyB->AggGeom.BoxElems[0].Rotation.Yaw=0;BodyB->AggGeom.BoxElems[0].X+=1;
+ TestFalse(TEXT("box dimension change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ BodyB->AggGeom.BoxElems[0].X-=1;BodyB->AggGeom.BoxElems.Add(FKBoxElem(10,20,30));
+ TestFalse(TEXT("box count change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+ BodyB->AggGeom.BoxElems.Pop();BodyB->AggGeom.SphereElems.Add(FKSphereElem(1));
+ TestFalse(TEXT("other geometry type change refuses"),MeasuredBoxRotationZero(*BodyA,*BodyB,OwnerA,OwnerB,Mapping,TestIDs,NoForbidden,Aggregate,AggregateEvidence));
+
 
 
 
