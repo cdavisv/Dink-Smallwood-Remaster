@@ -1,3 +1,9 @@
+# Authored architecture family policy (isolated source lane)
+
+Worktree `/home/davisc/Work/DinkInteriorSharedMaterialsAdmission`, branch `art/interior-roof-shared-library`, base`2ba4570`. Root authorized a narrow no-sprite identity exemption for declared authored screen architecture. Ten focused checker regressions pass; no runtime/native change. `Docs/Verification/AuthoredArchitectureFamilyPolicy` records the exact declaration/use constraints and baseline error counts. Companion shared roof source/library registration is being prepared in this worktree; no UE launch, native import or Data activation has occurred. Preserve current master camera/owner/audio changes when this source-only branch is integrated.
+
+---
+
 # Roof delivery: current verified state
 
 Worktree `/home/davisc/Work/DinkRoofNativeDelivery`, branch `art/roof-native-current`, runtime base `5d65ed88`. Read [current validation](Docs/Verification/RoofNativeCurrent/README.md) and its `results.json`. The active coordination record is `/home/davisc/Work/DinkQA/RoofV12dRootReview/HANDOFF.md`. Older headers below are historical.
