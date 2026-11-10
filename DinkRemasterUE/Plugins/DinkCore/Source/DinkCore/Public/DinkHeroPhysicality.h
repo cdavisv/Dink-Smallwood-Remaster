@@ -35,6 +35,8 @@ struct FDinkHeroPhysicality
     }
     float GetConfidence() const { return Confidence; }
     float GetBaselinePitch() const { return FMath::Lerp(BaselinePitch, ConfidentPitch, Confidence); }
+    /** The timid part of the baseline: what an authored bone-level slouch replaces. */
+    float GetHunchPitch() const { return BaselinePitch * (1.f - Confidence); }
 
     /** Scrawny shoulders/chest that fill out with confidence; X/Y width, Z height. */
     FVector GetPhysiqueScale() const
@@ -52,6 +54,7 @@ struct FDinkHeroPhysicality
     /** An actual jump left the ground. A clumsy takeoff flails and guarantees a hard landing. */
     bool TakeOff(float FlailChance)
     {
+        if (Recovery > 0.f) BeginRecoveryBlend();
         Recovery = 0.f; bPratfall = false;
         bFlailing = Random.FRand() < FMath::Clamp(FlailChance, 0.f, 1.f);
         FlailTime = 0.f;
@@ -95,8 +98,11 @@ struct FDinkHeroPhysicality
         Confidence = FMath::FInterpConstantTo(Confidence, TargetConfidence, DeltaTime, .35f);
         const float Timid = 1.f - Confidence;
         Cooldown = FMath::Max(0.f, Cooldown - DeltaTime);
-        // A fresh takeoff cancels a previous landing's catch-step, without rearming its cooldown.
+        // A fresh takeoff cancels a previous landing's catch-step, without rearming its cooldown;
+        // the pose eases out of it rather than snapping upright in one frame.
+        if (!Grounded && Recovery > 0.f) BeginRecoveryBlend();
         Recovery = Grounded ? FMath::Max(0.f, Recovery - DeltaTime) : 0.f;
+        BlendLeft = FMath::Max(0.f, BlendLeft - DeltaTime);
         if (Grounded) bFlailing = false; else if (bFlailing) FlailTime += DeltaTime;
         const float DistanceSpeed = bReady ? .5f * (Speed + PreviousSpeed) : Speed;
         const float SpeedChange = bReady ? (Speed - PreviousSpeed) / DeltaTime : 0.f;
@@ -175,7 +181,14 @@ struct FDinkHeroPhysicality
                     -3. * Envelope * FMath::Abs(FMath::Sin(3. * PI * T)));
             }
         }
-        const bool Fall = IsStumbling() && bPratfall;
+        if (BlendLeft > 0.f)
+        {
+            // Ease from the interrupted stumble/pratfall pose into the newly computed one.
+            const float Alpha = FMath::InterpEaseInOut(0.f, 1.f, 1.f - BlendLeft / RecoveryBlendTime, 2.f);
+            Rotation = FMath::Lerp(BlendFromRotation, Rotation, Alpha);
+            Offset = FMath::Lerp(BlendFromOffset, Offset, Alpha);
+        }
+        const bool Fall = (IsStumbling() && bPratfall) || BlendLeft > 0.f;
         Rotation.Pitch = FMath::Clamp(Rotation.Pitch, Fall ? -40. : -20., 6.);
         Rotation.Roll = FMath::Clamp(Rotation.Roll, -9., 9.);
         Rotation.Yaw = FMath::Clamp(Rotation.Yaw, -8., 8.);
@@ -189,16 +202,24 @@ struct FDinkHeroPhysicality
     /** Drops every transient motion. Confidence is earned, so it survives teleports/cutscenes. */
     void Cancel()
     {
-        Recovery = Cooldown = Weight = Lurch = Turn = Run = PreviousSpeed = FlailTime = 0.f;
+        Recovery = Cooldown = Weight = Lurch = Turn = Run = PreviousSpeed = FlailTime = BlendLeft = 0.f;
         Phase = IdlePhase = MopePhase = 0.; bReady = bFlailing = bPratfall = false;
         Rotation = FRotator::ZeroRotator; Offset = FVector::ZeroVector;
     }
 private:
+    void BeginRecoveryBlend()
+    {
+        BlendFromRotation = Rotation; BlendFromOffset = Offset; BlendLeft = RecoveryBlendTime;
+    }
+    static constexpr float RecoveryBlendTime = .22f;
     static constexpr float StumbleDuration = .85f;
     static constexpr float PratfallDuration = 1.6f;
     FRandomStream Random{1997};
     FRotator Rotation = FRotator::ZeroRotator;
     FVector Offset = FVector::ZeroVector;
+    FRotator BlendFromRotation = FRotator::ZeroRotator;
+    FVector BlendFromOffset = FVector::ZeroVector;
+    float BlendLeft = 0.f;
     double Phase = 0., IdlePhase = 0., MopePhase = 0.;
     float Recovery = 0.f, RecoveryDuration = StumbleDuration, Cooldown = 0.f, Weight = 0.f, StumbleSide = 1.f;
     float PreviousSpeed = 0.f, Lurch = 0.f, Turn = 0.f, Run = 0.f, FlailTime = 0.f;

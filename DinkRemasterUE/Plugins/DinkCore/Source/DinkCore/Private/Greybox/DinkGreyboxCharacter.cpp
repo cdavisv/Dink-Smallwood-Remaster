@@ -262,8 +262,9 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
     if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
         Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
     {
-        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
-        AppliedBodyRotation = AppliedBodyRotation * FRotator(-HeroPhysicality.GetBaselinePitch(),0,0).Quaternion();
+        // Bone-level authored slouch owns the timid hunch; keep shuffle/stumble and the upright
+        // lean confidence earns.
+        AppliedBodyRotation = AppliedBodyRotation * FRotator(-HeroPhysicality.GetHunchPitch(),0,0).Quaternion();
     }
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;

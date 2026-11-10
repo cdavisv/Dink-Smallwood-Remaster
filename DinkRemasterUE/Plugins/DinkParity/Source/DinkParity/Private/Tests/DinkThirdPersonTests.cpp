@@ -229,6 +229,27 @@ bool FDinkHeroGrowthTest::RunTest(const FString&)
     TestTrue(TEXT("pratfall faceplants well past an ordinary stumble"),Lowest<-25.);
     TestTrue(TEXT("pratfall has a real forward fall"),Furthest>10.);
     TestFalse(TEXT("he gets back up within two seconds"),Flail.IsStumbling());
+    for (const bool bByJump : {true,false})
+    {
+        // Jumping (or stepping off a ledge) mid-faceplant must ease him up, never snap 30+ degrees.
+        FDinkHeroPhysicality Pop; Pop.TakeOff(1.f); Pop.Update(1.f/60.f,300,false,true);
+        Pop.Land(300,.35f,0.f);
+        for (int32 I=0;I<30;++I) Pop.Update(1.f/60.f,0,true,true);
+        TestTrue(TEXT("interrupt fixture is face-down"),Pop.IsPratfall() && Pop.GetRotation().Pitch<-25.);
+        double Prev=Pop.GetRotation().Pitch, Step=0;
+        if (bByJump) Pop.TakeOff(0.f);
+        for (int32 I=0;I<30;++I)
+        {
+            Pop.Update(1.f/60.f,300,false,true);
+            Step=FMath::Max(Step,FMath::Abs(Pop.GetRotation().Pitch-Prev)); Prev=Pop.GetRotation().Pitch;
+        }
+        AddInfo(FString::Printf(TEXT("largest per-frame pitch change leaving a pratfall (%s): %.2f"),bByJump?TEXT("jump"):TEXT("ledge"),Step));
+        TestFalse(TEXT("leaving the ground ends the pratfall"),Pop.IsStumbling());
+        TestTrue(TEXT("leaving a pratfall eases out without a one-frame pop"),Step<8.);
+        TestTrue(TEXT("the ease-out finishes quickly"),Pop.GetRotation().Pitch>-12.);
+    }
+    TestEqual(TEXT("authored slouch replaces only the timid hunch"),Timid.GetHunchPitch(),FDinkHeroPhysicality::BaselinePitch);
+    TestEqual(TEXT("a confident Dink has no hunch for a slouch to replace"),Hero.GetHunchPitch(),0.f);
     FDinkHeroPhysicality Clean; TestFalse(TEXT("zero flail chance gives a clean takeoff"),Clean.TakeOff(0.f));
     TestTrue(TEXT("landing a clean hop still needs its chance"),!Clean.Land(300,.35f,0.f));
     FDinkHeroPhysicality Freeze; Freeze.TakeOff(1.f); Freeze.Update(.1f,0,false,false);
