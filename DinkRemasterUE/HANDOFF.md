@@ -1,3 +1,7 @@
+## Shared roof native capability builds complete
+
+Runtime/source f3c84a1 (c07aa88 import support) passed own Editor/Game13.291s/13.261s;12790inputs unchanged,bothkernelproofPASS,7ownmodules/14Editorfilesfreshlyrehashed,preservedthroughGame. Ownedhostprocesses537870/537878/538158closednormally. Current merge also adds3343fe2 fourphase caller/cleanup template; noCPP/asset/Data delta fromcompiledf3. Native23trial/readback/production8bindings+3cameraaliases andGPU remain pending. Old 'extension not compiled' checkpoints below are superseded; no imported material acceptance yet.
+
 ## Shared roof native preparation integrated
 
 The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.
@@ -5,6 +9,8 @@ The reviewed c07aa88 importer and narrow shared-source filename metadata support
 ## Current integrated house builds passed
 
 Branch `art/roof-native-current`, runtime df3365c integrating accepted master52dabc/camera/HeroGrowth/booth. Own Editor/Game builds passed83.251s/44.020s; both mount proofs pass,12708protectedinputs unchanged,7ownEditor modules/14Editorfiles preservedthroughGame and freshlyrehashed. HOST514488/514496/515594 absent after normal0,zero signals. Current ignored controls refreshed5415 exactfiles from closed full192camera checkout; priorcontrols archived, noCode/DLL/trackedData/audio overlay, notfreshimport. Docs/Verification/RoofNativeCurrent/current-builds.json pins results. Copied offline cold-only assertion was stale for explicit ownincremental recipe; preserved failure, replaced with exactprior14Editor receipt/baseline check,15offlinePASS. No assertion/runtimepolicy changes. Newcombined native/GPU/cook and sharedmaterial productionactivation remain pending; older187/readback/GPUproof below is prior-base evidence.
+
+Root-requested four-phase caller template added separately after c07aa88 freeze. It uses the existing Root guard/save-tracker callback boundary and reviewed VistaV7 function-scope/chained-traceback cleanup; releases verifier/CDO closures before Python shutdown.4cycle-surrogate tests pass; actual UE teardown untested. No newlauncher/framework/UE execution. Entry and underlying importer hashes are indexed in the native preparation docs.
 
 Native preparation validation:14offline importer/profile/slot/alias/geometry-source regressions and10architecture tests pass. Full actual source audit4419binaries/507Python/22shell/4255ledger,0errors/secrets. The first post-merge audit saw3new camera PNG LFS pointers; hydrated exact local objects and reran successfully. Current Root df3365c raw ledger prefix is exact; no Content/Data/native ledger mutations. Source helpers remain uncompiled/unexecuted in UE pending Root review.
 

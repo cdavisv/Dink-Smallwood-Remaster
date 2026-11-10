@@ -1,3 +1,7 @@
+## Shared roof native capability builds complete
+
+Runtime/source f3c84a1 (c07aa88 import support) passed own Editor/Game13.291s/13.261s;12790inputs unchanged,bothkernelproofPASS,7ownmodules/14Editorfilesfreshlyrehashed,preservedthroughGame. Ownedhostprocesses537870/537878/538158closednormally. Current merge also adds3343fe2 fourphase caller/cleanup template; noCPP/asset/Data delta fromcompiledf3. Native23trial/readback/production8bindings+3cameraaliases andGPU remain pending. Old 'extension not compiled' checkpoints below are superseded; no imported material acceptance yet.
+
 ## Shared roof native preparation integrated
 
 The reviewed c07aa88 importer and narrow shared-source filename metadata support are integrated here. The new Editor extension is not compiled yet; old modules refuse before imports. Four bounded phases cover fresh23 import/readback,8existing material-binding updates+3camera aliases, then final23readback. No imported Content or Data activation occurred in this merge. Build/import/GPU verification remain required; prior runtime builds are scoped below.
