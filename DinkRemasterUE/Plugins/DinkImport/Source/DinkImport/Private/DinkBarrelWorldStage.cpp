@@ -14,6 +14,7 @@
 #include "Engine/LevelStreaming.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
+#include "Engine/Engine.h"
 #include "EngineUtils.h"
 #include "Editor.h"
 #include "Editor/UnrealEdEngine.h"
@@ -1132,7 +1133,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
 {
  if(!NewLevel.GetWorld()){Error=TEXT("binary target level requires an owning world");return false;}
  Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.PendingVisualizations.Reset();Lifetime.VisualizationSourceBefore.Reset();Lifetime.SourceTopology.Reset();
- TSet<AActor*> PreflightActors;TSet<const UPackage*> SourcePackages;TSet<UWorld*> Worlds;
+ TSet<AActor*> PreflightActors;TSet<const UPackage*> SourcePackages;TSet<UWorld*> Worlds;TMap<AActor*,TSet<UObject*>> AuditedOwned;
  for(AActor* Actor:Controls)
  {
   if(!Actor||!IsValid(Actor)||!Actor->GetWorld()||!Actor->GetLevel()||Actor->GetLevel()==&NewLevel||PreflightActors.Contains(Actor))
@@ -1143,7 +1144,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  {if(!Lifetime.SourceLevels.Contains(Level))Lifetime.SourceLevels.Add(Level);SourcePackages.Add(Level->GetOutermost());for(const auto& Actor:Level->Actors)if(Actor&&!Lifetime.SourceActors.Contains(Actor.Get()))Lifetime.SourceActors.Add(Actor.Get());}
  Lifetime.SourceLevels.Sort([](const ULevel& A,const ULevel& B){return A.GetPathName()<B.GetPathName();});Lifetime.SourceActors.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
  for(AActor* Actor:Controls)
- {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;if(OK&&PendingPrivateBody(*O))Lifetime.PendingCaches.AddUnique(CastChecked<UBodySetup>(O));if(OK)if(auto* C=Cast<USceneComponent>(O);C&&IsVisualizationLight(*C)){auto* B=ReadPrivateVisualization(*C,Error);if(!B||Lifetime.PendingVisualizations.Contains(B))OK=false;else{TArray<uint8> Before;if(!CaptureVisualizationRead(*C,Before))OK=false;else{Lifetime.PendingVisualizations.Add(B,C);Lifetime.VisualizationSourceBefore.Add(B,MoveTemp(Before));}}}},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
+ {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;auto& Owned=AuditedOwned.FindOrAdd(Actor);Owned.Add(Actor);bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;if(OK)Owned.Add(O);if(OK&&PendingPrivateBody(*O))Lifetime.PendingCaches.AddUnique(CastChecked<UBodySetup>(O));if(OK)if(auto* C=Cast<USceneComponent>(O);C&&IsVisualizationLight(*C)){auto* B=ReadPrivateVisualization(*C,Error);if(!B||Lifetime.PendingVisualizations.Contains(B))OK=false;else{TArray<uint8> Before;if(!CaptureVisualizationRead(*C,Before))OK=false;else{Lifetime.PendingVisualizations.Add(B,C);Lifetime.VisualizationSourceBefore.Add(B,MoveTemp(Before));}}}},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
  if(!CaptureBinarySourceTopology(Lifetime,Lifetime.SourceTopology)){Error=TEXT("cannot snapshot source topology before immediate callbacks");return false;}
  TArray<AActor*> Ordered=Controls;
  Ordered.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
@@ -1159,7 +1160,10 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
    Parameters.DestName=MakeUniqueObjectName(&NewLevel,SourceActor->GetClass(),SourceActor->GetFName());
    Parameters.DestClass=SourceActor->GetClass();Parameters.DuplicateMode=EDuplicateMode::World;
    Parameters.bAssignExternalPackages=false;Parameters.bSkipPostLoad=true;
-   Parameters.DuplicationSeed=Remap;TMap<UObject*,UObject*> CallCreated;Parameters.CreatedObjects=&CallCreated;
+   // Engine seeds this root itself. A mapped source level/world here would
+   // let its writer CONSTRUCT referenced peer actors before their preflight.
+   // Keep global cross-actor/world mappings for deferred reference fixup only.
+   Parameters.DuplicationSeed.Reset();TMap<UObject*,UObject*> CallCreated;Parameters.CreatedObjects=&CallCreated;
    FBinaryControlLifetime Immediate;CaptureBinaryImmediateActors(*SourceActor,Immediate);
    for(const auto& Role:Lifetime.PendingVisualizations)if(Immediate.SourceActors.Contains(Role.Value->GetOwner())){Immediate.PendingVisualizations.Add(Role.Key,Role.Value);Immediate.VisualizationSourceBefore.Add(Role.Key,Lifetime.VisualizationSourceBefore[Role.Key]);}
    if(!CaptureBinarySourceTopology(Immediate,Immediate.SourceTopology)){Error=TEXT("cannot snapshot audited immediate-callback source peers");return false;}
@@ -1172,10 +1176,10 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
    {Error=TEXT("binary actor duplication did not report its actual root mapping");return false;}
    for(const auto& Pair:CallCreated)
    {
-    if(!Pair.Key||!Pair.Value||Pair.Key==Pair.Value||Pair.Key->GetClass()!=Pair.Value->GetClass()||
+    if(!Pair.Key||!Pair.Value||!AuditedOwned[SourceActor].Contains(Pair.Key)||Pair.Key==Pair.Value||Pair.Key->GetClass()!=Pair.Value->GetClass()||
        (Remap.Contains(Pair.Key)&&Remap.FindRef(Pair.Key)!=Pair.Value)||
        (Created.Contains(Pair.Key)&&Created.FindRef(Pair.Key)!=Pair.Value))
-    {Error=TEXT("binary created-object map conflict or class/identity mismatch");return false;}
+    {Error=TEXT("binary created-object outside preflight owned tree or map/class/identity conflict");return false;}
     Remap.Add(Pair.Key,Pair.Value);Created.Add(Pair.Key,Pair.Value);
    }
   }
@@ -1486,7 +1490,10 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  UPackage* LightAuthorPackage=CreatePackage(*(TEXT("/Temp/DinkBinaryLightAuthor_")+Token));
  TStrongObjectPtr<UWorld> LightAuthorWorld(UWorld::CreateWorld(EWorldType::Editor,false,FName(TEXT("LightAuthor")),LightAuthorPackage,false));
  if(!TestNotNull(TEXT("isolated strongly retained light authoring world"),LightAuthorWorld.Get()))return false;
- ON_SCOPE_EXIT{LightAuthorWorld->DestroyWorld(false);LightAuthorWorld->MarkObjectsPendingKill();};
+ UEngine* AuthorContextEngine=GEngine;bool OwnAuthorContext=false;
+ ON_SCOPE_EXIT{LightAuthorWorld->DestroyWorld(false);if(OwnAuthorContext)AuthorContextEngine->DestroyWorldContext(LightAuthorWorld.Get());LightAuthorWorld->MarkObjectsPendingKill();};
+ if(!TestTrue(TEXT("authoring world has no foreign context before owned registration"),AuthorContextEngine&&!AuthorContextEngine->GetWorldContextFromWorld(LightAuthorWorld.Get())))return false;
+ AuthorContextEngine->CreateNewWorldContext(EWorldType::Editor).SetCurrentWorld(LightAuthorWorld.Get());OwnAuthorContext=true;
  auto* AuthorLight=LightAuthorWorld->SpawnActor<ADirectionalLight>();if(!TestNotNull(TEXT("actual native authoring light"),AuthorLight))return false;
  TStrongObjectPtr<ADirectionalLight> HoldAuthorLight(AuthorLight);auto* AuthorComponent=Cast<ULightComponentBase>(AuthorLight->GetLightComponent());
  if(!TestNotNull(TEXT("actual authoring light component"),AuthorComponent))return false;
@@ -1713,13 +1720,23 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  TMap<UObject*,UObject*> MissingMap=Remap;MissingMap.Remove(Second);TestFalse(TEXT("missing cross-actor mapping refuses before deferred PostLoad"),FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,MissingMap,Created,IDs,Forbidden,Lifetime,Error));
  TMap<UObject*,UObject*> ConflictingMap;ConflictingMap.Add(First,First);TMap<UObject*,UObject*> BadCreated;TArray<AActor*> BadCopies;TestFalse(TEXT("source actor as its own copy refuses"),BinaryCopyControls({First},*TargetWorld->PersistentLevel,ConflictingMap,BadCreated,BadCopies,BadLifetime,Error));
  TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
+ if(!TestTrue(TEXT("missing-peer fixture actual source owner/parent and requested-root preconditions"),First->GetOwner()==Second&&Nested->GetAttachParent()==Second->GetRootComponent()&&First->GetLevel()!=Second->GetLevel()&&!IncompleteSeed.Contains(Second)))return false;
+ AddInfo(FString::Printf(TEXT("INCOMPLETE_PEER_BEFORE requested=%s owner=%s peer=%s sourceOuter=%s peerOuter=%s seedRoots=%d"),*First->GetPathName(),*GetPathNameSafe(First->GetOwner()),*Second->GetPathName(),*GetPathNameSafe(First->GetOuter()),*GetPathNameSafe(Second->GetOuter()),IncompleteSeed.Num()));
  const bool IncompleteCopied=BinaryCopyControls({First},*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,BadCopies,BadLifetime,Error);
  if(!TestTrue(TEXT("incomplete peer map fixture still binary copies its root"),IncompleteCopied))return false;
+ for(const auto& Pair:BadCreated){const bool Owned=Pair.Key==First||Pair.Key->IsIn(First);TestTrue(TEXT("actor-local copy never constructs an unrequested peer or its descendants"),Owned);if(Pair.Key->IsA<AActor>())AddInfo(FString::Printf(TEXT("INCOMPLETE_PEER_CREATED source=%s target=%s sourceOwnedByRequestedRoot=%d"),*Pair.Key->GetPathName(),*GetPathNameSafe(Pair.Value),int32(Owned)));}
+ TestTrue(TEXT("missing peer remains unmapped before deferred ref validation"),!BadCreated.Contains(Second)&&!IncompleteSeed.Contains(Second)&&CastChecked<AActor>(IncompleteSeed.FindRef(First))->GetOwner()==Second);
  for(const auto& Pair:IncompleteSeed)if(const auto* ID=IDs.Find(Pair.Key))IDs.Add(Pair.Value,*ID);
  TestFalse(TEXT("retained source cross-actor reference refuses before PostLoad"),FinalizeBinaryControls(BadCopies,*TargetWorld->PersistentLevel,IncompleteSeed,BadCreated,IDs,Forbidden,BadLifetime,Error));TestTrue(TEXT("missing peer refusal reports actual source reference"),Error.Contains(TEXT("source-package reference before deferred PostLoad")));
  auto* SourceInstanceTemplate=NewObject<ADinkPlaceholderActor>(SourceWorld->PersistentLevel,TEXT("BinaryInstanceArchetype"),RF_Transactional,First);
+ TStrongObjectPtr<ADinkPlaceholderActor> HoldInstanceTemplate(SourceInstanceTemplate);
+ auto* ActualArchetype=SourceInstanceTemplate->GetArchetype();auto* RequiredArchetype=UObject::GetArchetypeFromRequiredInfo(SourceInstanceTemplate->GetClass(),SourceInstanceTemplate->GetOuter(),SourceInstanceTemplate->GetFName(),SourceInstanceTemplate->GetFlags());
+ AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_PRECONDITION candidate=%s ptr=%llu class=%s flags=0x%llx outer=%s inputTemplate=%s inputTemplatePtr=%llu actualArchetype=%s actualPtr=%llu actualIsInputTemplate=%d actualIsClassCDO=%d requiredArchetype=%s requiredMatchesActual=%d"),*SourceInstanceTemplate->GetPathName(),static_cast<unsigned long long>(reinterpret_cast<UPTRINT>(SourceInstanceTemplate)),*SourceInstanceTemplate->GetClass()->GetPathName(),static_cast<unsigned long long>(SourceInstanceTemplate->GetFlags()),*GetPathNameSafe(SourceInstanceTemplate->GetOuter()),*First->GetPathName(),static_cast<unsigned long long>(reinterpret_cast<UPTRINT>(First)),*GetPathNameSafe(ActualArchetype),static_cast<unsigned long long>(reinterpret_cast<UPTRINT>(ActualArchetype)),int32(ActualArchetype==First),int32(ActualArchetype==SourceInstanceTemplate->GetClass()->GetDefaultObject(false)),*GetPathNameSafe(RequiredArchetype),int32(RequiredArchetype==ActualArchetype)));
+ TSet<const UObject*> ArchetypeDiagnosticsSeen;for(const UObject* A=ActualArchetype;A&&!ArchetypeDiagnosticsSeen.Contains(A);A=A->GetArchetype()){ArchetypeDiagnosticsSeen.Add(A);AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_CHAIN object=%s class=%s flags=0x%llx outer=%s package=%s sourcePackage=%d"),*A->GetPathName(),*A->GetClass()->GetPathName(),static_cast<unsigned long long>(A->GetFlags()),*GetPathNameSafe(A->GetOuter()),*A->GetOutermost()->GetName(),int32(Forbidden.Contains(A->GetOutermost()))));if(A->HasAnyFlags(RF_ClassDefaultObject))break;}
+ ForEachObjectWithOuter(SourceInstanceTemplate,[&](UObject* O){const UObject* A=O->GetArchetype();AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_SUBOBJECT object=%s class=%s flags=0x%llx outer=%s archetype=%s archetypePackage=%s sourceArchetype=%d"),*O->GetPathName(),*O->GetClass()->GetPathName(),static_cast<unsigned long long>(O->GetFlags()),*GetPathNameSafe(O->GetOuter()),*GetPathNameSafe(A),A?*A->GetOutermost()->GetName():TEXT("None"),int32(A&&Forbidden.Contains(A->GetOutermost()))));},EGetObjectsFlags::IncludeNestedObjects);
  TMap<UObject*,UObject*> ArchetypeSeed;ArchetypeSeed.Add(SourceWorld,TargetWorld);ArchetypeSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);ArchetypeSeed.Add(Second,SecondCopy);
  const bool ArchetypeCopied=BinaryCopyControls({SourceInstanceTemplate},*TargetWorld->PersistentLevel,ArchetypeSeed,BadCreated,BadCopies,BadLifetime,Error);
+ AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_RESULT copied=%d created=%d error={%s}"),int32(ArchetypeCopied),BadCreated.Num(),*Error));for(const auto& Pair:BadCreated)if(Pair.Key->IsA<AActor>())AddInfo(FString::Printf(TEXT("ARCHETYPE_FIXTURE_CREATED source=%s target=%s sourceArchetype=%s"),*Pair.Key->GetPathName(),*GetPathNameSafe(Pair.Value),*GetPathNameSafe(Pair.Key->GetArchetype())));
  TestFalse(TEXT("source-instance archetype refuses BEFORE binary construction"),ArchetypeCopied);TestTrue(TEXT("archetype preflight identifies source-instance archetype"),Error.Contains(TEXT("source-instance archetype")));
  for(const auto& Pair:SourceBefore){TArray<uint8> Bytes;TestTrue(TEXT("source state after refusal fixtures"),State(*Pair.Key,IDs,Forbidden,false,Bytes));TestTrue(TEXT("no refusal fixture changed source bytes"),Pair.Value==Bytes);}
  TestTrue(TEXT("source body after refusal fixtures"),State(*SourceBody,IDs,Forbidden,false,SourceBodyAfter));TestTrue(TEXT("source body and GUID unchanged after all negative cases"),SourceBodyBefore==SourceBodyAfter&&SourceBody->BodySetupGuid==SourceBodyGuid);
