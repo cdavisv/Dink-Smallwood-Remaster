@@ -424,8 +424,14 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  TestFalse(TEXT("nonroot component refuses"),MeasuredRootTranslation(*RootA,*Nonroot,OwnerA,OwnerB,Canonical,Evidence));
  RootB->SetupAttachment(Nonroot);
  TestFalse(TEXT("attached root refuses"),MeasuredRootTranslation(*RootA,*RootB,OwnerA,OwnerB,Canonical,Evidence));
- RootB->SetupAttachment(nullptr);Target.SetTranslation(FVector(5,Two,8));RootB->SetWorldTransform(Target);
- TestFalse(TEXT("two-ULP actual root and owner refuse"),MeasuredRootTranslation(*RootA,*RootB,OwnerA,OwnerB,Canonical,Evidence));
+ // Fresh root avoids SetWorldTransform's cached/nearly-equal early-out after
+ // the preceding one-ULP case. Prove the stored inputs before testing refusal.
+ AActor* OwnerTwo=World->SpawnActor<AActor>();auto* RootTwo=NewObject<USceneComponent>(OwnerTwo);
+ OwnerTwo->SetRootComponent(RootTwo);RootTwo->SetRelativeLocation(FVector(5,Two,8));
+ TestEqual(TEXT("two-ULP fixture stores exact relative scalar"),RootTwo->GetRelativeLocation().Y,Two);
+ TestEqual(TEXT("two-ULP fixture stores exact world scalar"),RootTwo->GetComponentLocation().Y,Two);
+ TestEqual(TEXT("two-ULP fixture stores exact owner scalar"),OwnerTwo->GetActorLocation().Y,Two);
+ TestFalse(TEXT("two-ULP actual root and owner refuse"),MeasuredRootTranslation(*RootA,*RootTwo,OwnerA,OwnerTwo,Canonical,Evidence));
 
  return true;
 }
