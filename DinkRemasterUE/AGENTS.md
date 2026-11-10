@@ -1,3 +1,7 @@
+## Outdoor headroom camera fix (9 November2026)
+
+Branch `fix/outdoor-camera-headroom`, isolated worktree `/home/davisc/Work/DinkOutdoorCameraHeadroom`, basefbf060bb. Bounded projection-derived outdoor vertical pivot lift preserves Camera collision/exterior face clearance; no lateral wall bypass or Data/art/warp changes. Own Editor/Game compiled, focused3/3passed (39HTTPwarnings ondoor), actualGPU8photos/realWexitreturnPASS. Exit52.1176cm lift/fullhead visible/samecottageCameraBLOCK; indoor+free0lift/free400cm. Cache-store diagnostics retained. See Docs/Verification/OutdoorCameraHeadroom and screenshot hashes. Full baseline is pending before merge; do not equate focused/GPU success with fullsuite completion. Runtime source frozen after this local commit; native verification may reuse actual compiled bytes with fresh source/doc epoch.
+
 # AGENTS.md
 
 ## Clumsier movement follow-up (9 November2026 UTC)
