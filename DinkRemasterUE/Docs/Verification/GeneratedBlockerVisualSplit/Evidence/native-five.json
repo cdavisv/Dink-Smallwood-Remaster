@@ -1,0 +1,55 @@
+{
+  "cold": {
+    "exit_code": 255,
+    "elapsed": 303.78658255099435,
+    "source_files": 12982,
+    "immutable_changes": [],
+    "actual": {
+      "actual_registered": 5,
+      "report_tests": 5,
+      "actually_finished": 5,
+      "succeeded": 3,
+      "failed": 1,
+      "warnings": 1,
+      "notRun": 0,
+      "paths": [
+        "Dink.Art.GeneratedInteriorWalls.OwnerAndJoinedRooms",
+        "Dink.Art.Greybox.DebugBlockersStayPresentationOnly",
+        "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+        "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+        "Dink.Import.Greybox.GroundWaterAndDebugMeshSplit"
+      ],
+      "skipped_test_messages": [],
+      "complete": true,
+      "success": false
+    },
+    "success": false
+  },
+  "warm": {
+    "exit_code": 0,
+    "elapsed": 30.393343643998378,
+    "source_files": 12982,
+    "immutable_changes": [],
+    "actual": {
+      "actual_registered": 5,
+      "report_tests": 5,
+      "actually_finished": 5,
+      "succeeded": 5,
+      "failed": 0,
+      "warnings": 0,
+      "notRun": 0,
+      "paths": [
+        "Dink.Art.GeneratedInteriorWalls.OwnerAndJoinedRooms",
+        "Dink.Art.Greybox.DebugBlockersStayPresentationOnly",
+        "Dink.Art.HouseWalls.AuthoredSuppressesGeneratedVisuals",
+        "Dink.Art.HouseWalls.GreyboxRetainsGeneratedVisuals",
+        "Dink.Import.Greybox.GroundWaterAndDebugMeshSplit"
+      ],
+      "skipped_test_messages": [],
+      "complete": true,
+      "success": true
+    },
+    "success": true
+  },
+  "qualification": "Cold authoredhouse PIE fixture timeout preserved; same unchanged source/assertions/timeouts warmowncache rerun passed5. Threeclean+onewarning success andonefailure oncold; allfiveclean onwarm. Notfullsuite."
+}
