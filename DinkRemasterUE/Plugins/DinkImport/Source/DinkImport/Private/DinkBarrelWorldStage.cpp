@@ -36,6 +36,7 @@
 #include "Misc/SecureHash.h"
 #include "Serialization/ArchiveReplaceObjectRef.h"
 #include "Serialization/ObjectWriter.h"
+#include "Serialization/CustomVersion.h"
 #include "Serialization/StructuredArchive.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
@@ -67,7 +68,7 @@ FString Reply(bool OK,const FString& Error,const TArray<FString>& Saved,int32 Ac
 }
 // Only nontransient reflected state, with scene object references canonicalized
 // to source identities. Asset references remain exact asset paths. No setters.
-class FStateWriter final:public FObjectWriter
+class FStateWriter:public FObjectWriter
 {
  const TMap<const UObject*,FString>& IDs;const TSet<const UPackage*>& Forbidden;bool Target;
 public:
@@ -781,6 +782,139 @@ void AddObjects(AActor& A,const FString& K,TMap<const UObject*,FString>& IDs,TMa
  IDs.Add(&A,K);ByRelative.Add(TEXT(""),&A);
  ForEachObjectWithOuter(&A,[&](UObject* O){const FString R=O->GetPathName(&A);IDs.Add(O,K+TEXT("/")+R);ByRelative.Add(R,O);},EGetObjectsFlags::IncludeNestedObjects);
 }
+// Exact installed native serialization contract. No output-byte scanning and no
+// source/target GUID assignment: only four typed actual-member archive calls.
+bool PrivateBodyArchivePrimaryPins()
+{
+ static const bool Valid=[](){
+  const TPair<const TCHAR*,const TCHAR*> Pins[]={
+  {TEXT("Runtime/Engine/Private/PhysicsEngine/BodySetup.cpp"),TEXT("A3F237BE58FDECF44CCE84CC49E69D84DC5A6EE8")},
+  {TEXT("Runtime/Core/Private/Misc/Guid.cpp"),TEXT("28F329BF632F64B941F9324D9908CBC73A809BF3")},
+  {TEXT("Runtime/Core/Public/Misc/Guid.h"),TEXT("637423874B8B8CA9B5D7B2EE473362D8446945B8")},
+  {TEXT("Runtime/Core/Public/Serialization/Archive.h"),TEXT("A45B03C23D26AF5E51778E1DEBA737AC047CD24A")},
+  {TEXT("Runtime/CoreUObject/Public/Serialization/ObjectWriter.h"),TEXT("9EA49AC638D160E992C4BFF1BB1F624B5F1E3700")},
+  {TEXT("Runtime/CoreUObject/Private/Serialization/ObjectWriter.cpp"),TEXT("2B7DE69BFF7F166EB87BF0DF560230B644357678")},
+  };
+  for(const auto& Pin:Pins){TArray<uint8> Bytes;uint8 Hash[FSHA1::DigestSize];
+   if(!FFileHelper::LoadFileToArray(Bytes,*(FPaths::EngineSourceDir()/Pin.Key)))return false;
+   FSHA1::HashBuffer(Bytes.GetData(),Bytes.Num(),Hash);if(BytesToHex(Hash,FSHA1::DigestSize)!=Pin.Value)return false;}
+  return true;
+ }();return Valid;
+}
+class FPrivateBodyWriter final:public FStateWriter
+{
+ const FGuid* Guid;bool Role;int32 Hits=0;UPTRINT Start=0,End=0;
+public:
+ TArray<int64> Offsets;TArray<uint32> LiteralWords;
+ FPrivateBodyWriter(TArray<uint8>& Bytes,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,const FGuid& G,bool CanonicalRole)
+ :FStateWriter(Bytes,IDs,Forbidden,Target),Guid(&G),Role(CanonicalRole)
+ {Start=reinterpret_cast<UPTRINT>(Guid);if(Start>std::numeric_limits<UPTRINT>::max()-sizeof(FGuid)){SetError();return;}End=Start+sizeof(FGuid);}
+ void Serialize(void* Data,int64 Num)override
+ {
+  if(!Role){FObjectWriter::Serialize(Data,Num);return;}
+  const UPTRINT Address=reinterpret_cast<UPTRINT>(Data);
+  if(Num<0||static_cast<uint64>(Num)>std::numeric_limits<UPTRINT>::max()-Address){SetError();return;}
+  const UPTRINT Limit=Address+static_cast<UPTRINT>(Num);
+  if(Address<End&&Limit>Start)
+  {
+   const uint32* Members[]={&Guid->A,&Guid->B,&Guid->C,&Guid->D};
+   if(IsByteSwapping()||sizeof(uint32)!=4||sizeof(FGuid)!=16||Hits>=4||Num!=4||Address!=reinterpret_cast<UPTRINT>(Members[Hits])||Address!=Start+4*Hits||(Hits>0&&Tell()!=Offsets[0]+4*Hits))
+   {SetError();return;}
+   LiteralWords.Add(*Members[Hits]);Offsets.Add(Tell());uint32 Word=0x43414348u+static_cast<uint32>(Hits);++Hits;
+   FObjectWriter::Serialize(&Word,sizeof(Word));return;
+  }
+  FObjectWriter::Serialize(Data,Num);
+ }
+ bool Complete()const{return !IsError()&&!SourceReference&&(!Role||Hits==4)&&IsSaving()&&!IsLoading()&&!IsCooking()&&!IsPersistent()&&!IsByteSwapping()&&GetPortFlags()==0;}
+ // Dedicated low-level tests call Serialize on exact typed addresses; production
+ // always calls actual Body.Serialize and requires the same four-call coverage.
+};
+FString PrivateBodyVersions(const FArchive& Ar)
+{
+ TArray<FString> Versions;for(const auto& V:Ar.GetCustomVersions().GetAllVersions())Versions.Add(V.Key.ToString()+TEXT(":")+LexToString(V.Version));
+ Versions.Sort();return FString::Printf(TEXT("UE=%d Licensee=%d port=%u saving=%d loading=%d cooking=%d persistent=%d swapping=%d custom="),Ar.UEVer().ToValue(),Ar.LicenseeUEVer(),Ar.GetPortFlags(),int32(Ar.IsSaving()),int32(Ar.IsLoading()),int32(Ar.IsCooking()),int32(Ar.IsPersistent()),int32(Ar.IsByteSwapping()))+FString::Join(Versions,TEXT(";"));
+}
+bool NativeBodyPass(UBodySetup& Body,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,bool Role,TArray<uint8>& Bytes,TArray<int64>* Offsets,FString* Versions,FString* Audit)
+{
+ const TMap<const UObject*,FString> LiteralIDs;const TSet<const UPackage*> None;
+ TArray<uint8> Before,After;const FGuid GuidBefore=Body.BodySetupGuid;
+ if(!State(Body,LiteralIDs,None,false,Before))return false;
+ FPrivateBodyWriter W(Bytes,IDs,Forbidden,Target,Body.BodySetupGuid,Role);
+ if(W.IsError())return false;Body.Serialize(W);
+ if(!State(Body,LiteralIDs,None,false,After)||Before!=After||GuidBefore!=Body.BodySetupGuid)return false;
+ if(Offsets)*Offsets=W.Offsets;if(Versions)*Versions=PrivateBodyVersions(W);
+ if(Audit){*Audit=PrivateBodyVersions(W);for(int I=0;I<W.LiteralWords.Num();++I)*Audit+=FString::Printf(TEXT(" word%d=%08x@%lld"),I,W.LiteralWords[I],static_cast<long long>(W.Offsets[I]));}
+ return W.Complete();
+}
+bool NativeBodyBytes(UBodySetup& Body,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,bool Target,bool Role,TArray<uint8>& Bytes,TArray<int64>* Offsets=nullptr,FString* Versions=nullptr,FString* Audit=nullptr)
+{
+ if(Body.GetClass()!=UBodySetup::StaticClass()||!PrivateBodyArchivePrimaryPins())return false;
+ // Each native pass brackets the known saving-time AggGeom.FixupDeprecated
+ // with literal reflected/GUID snapshots. Literal native streams also bracket
+ // the requested pass; no role canonicalization participates in that check.
+ const TMap<const UObject*,FString> LiteralIDs;const TSet<const UPackage*> None;
+ TArray<uint8> LiteralBefore,LiteralAfter;FString BeforeVersion,AfterVersion;
+ if(!NativeBodyPass(Body,LiteralIDs,None,false,false,LiteralBefore,nullptr,&BeforeVersion,nullptr)||
+  !NativeBodyPass(Body,IDs,Forbidden,Target,Role,Bytes,Offsets,Versions,Audit)||
+  !NativeBodyPass(Body,LiteralIDs,None,false,false,LiteralAfter,nullptr,&AfterVersion,nullptr))return false;
+ return LiteralBefore==LiteralAfter&&BeforeVersion==AfterVersion;
+}
+const FObjectPropertyBase* ShapeCacheProperty()
+{return FindFProperty<FObjectPropertyBase>(UShapeComponent::StaticClass(),TEXT("ShapeBodySetup"));}
+UBodySetup* ExistingShapeCache(UShapeComponent& Shape)
+{const auto* P=ShapeCacheProperty();return P?Cast<UBodySetup>(P->GetObjectPropertyValue_InContainer(&Shape)):nullptr;}
+bool EligiblePrivateBody(UBodySetup& Body,UShapeComponent& Owner)
+{
+ static const TSet<FString> ShapeClasses={TEXT("/Script/Engine.BoxComponent"),TEXT("/Script/Engine.CapsuleComponent"),TEXT("/Script/DinkCore.DinkWarpComponent")};
+ const auto* P=ShapeCacheProperty();
+ return P&&ShapeClasses.Contains(Owner.GetClass()->GetPathName())&&Owner.GetClass()->GetClass()==UClass::StaticClass()&&P->HasAllPropertyFlags(CPF_Transient|CPF_DuplicateTransient)&&Body.GetClass()==UBodySetup::StaticClass()&&
+  Body.HasAnyFlags(RF_Transient)&&!Body.HasAnyFlags(RF_Public|RF_Standalone|RF_ClassDefaultObject|RF_ArchetypeObject)&&
+  Body.GetOuter()==&Owner&&!Owner.IsTemplate()&&Owner.GetOwner()&&Owner.GetWorld()&&ExistingShapeCache(Owner)==&Body&&Body.BodySetupGuid.IsValid();
+}
+bool PendingPrivateBody(UObject& Object)
+{auto* B=Cast<UBodySetup>(&Object);auto* C=B?Cast<UShapeComponent>(B->GetOuter()):nullptr;return B&&C&&EligiblePrivateBody(*B,*C);}
+bool ComparePrivateBodyRole(UBodySetup& A,UBodySetup& B,UShapeComponent& S,UShapeComponent& T,
+ const TMap<UObject*,UObject*>& Remap,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& Forbidden,FString& Error,FString* Evidence=nullptr)
+{
+ if(&A==&B||&S==&T||S.GetClass()!=T.GetClass()||S.GetWorld()==T.GetWorld()||!S.IsRegistered()||!T.IsRegistered()||
+  Remap.FindRef(&S)!=&T||Remap.FindRef(S.GetOwner())!=T.GetOwner()||Remap.FindRef(&A)!=&B||
+  !EligiblePrivateBody(A,S)||!EligiblePrivateBody(B,T)||A.BodySetupGuid==B.BodySetupGuid||Forbidden.Contains(B.GetOutermost()))
+ {Error=TEXT("private shape cache role eligibility/bijection refused");return false;}
+ int Count=0;for(const auto& Pair:Remap)if(Pair.Value==&B)++Count;if(Count!=1){Error=TEXT("private cache mapping not bijective");return false;}
+ const FGuid AG=A.BodySetupGuid,BG=B.BodySetupGuid;TArray<uint8> BeforeA,BeforeB,AfterA,AfterB,X,Y;
+ const TMap<const UObject*,FString> LiteralIDs;const TSet<const UPackage*> NoForbidden;
+ TArray<int64> AX,BX;FString AV,BV,AuditA,AuditB;
+ if(!NativeBodyBytes(A,LiteralIDs,NoForbidden,false,false,BeforeA)||!NativeBodyBytes(B,LiteralIDs,NoForbidden,false,false,BeforeB)||
+  !NativeBodyBytes(A,IDs,Forbidden,false,true,X,&AX,&AV,&AuditA)||!NativeBodyBytes(B,IDs,Forbidden,true,true,Y,&BX,&BV,&AuditB)||
+  !NativeBodyBytes(A,LiteralIDs,NoForbidden,false,false,AfterA)||!NativeBodyBytes(B,LiteralIDs,NoForbidden,false,false,AfterB)||
+  BeforeA!=AfterA||BeforeB!=AfterB||AG!=A.BodySetupGuid||BG!=B.BodySetupGuid||X!=Y||AX!=BX||AV!=BV)
+ {Error=TEXT("private cache native serialization/coverage/literal immutability refused");return false;}
+ TArray<uint8> PS,PT;if(!State(S,IDs,Forbidden,false,PS)||!State(T,IDs,Forbidden,true,PT)||PS!=PT)
+ {Error=TEXT("private cache owning component persistent state differs");return false;}
+ const auto SB=S.CalcBounds(S.GetComponentTransform()),TB=T.CalcBounds(T.GetComponentTransform());
+ if(!ExactVectorBytes(SB.Origin,TB.Origin)||!ExactVectorBytes(SB.BoxExtent,TB.BoxExtent)||SB.SphereRadius!=TB.SphereRadius||
+  S.GetCollisionEnabled()!=T.GetCollisionEnabled()||S.GetCollisionObjectType()!=T.GetCollisionObjectType()||S.GetCollisionProfileName()!=T.GetCollisionProfileName()||
+  S.GetCollisionResponseToChannels()!=T.GetCollisionResponseToChannels()||S.IsPhysicsStateCreated()!=T.IsPhysicsStateCreated())
+ {Error=TEXT("private cache shape bounds/readiness/all64 policy differs");return false;}
+ const auto* SA=S.BodyInstance.GetPhysicsActorHandle();const auto* TA=T.BodyInstance.GetPhysicsActorHandle();
+ if(SA&&SA==TA){Error=TEXT("private cache target shared source physics actor");return false;}
+ if(S.GetCollisionEnabled()!=ECollisionEnabled::NoCollision)
+ {
+  if(!S.IsPhysicsStateCreated()||!T.IsPhysicsStateCreated()||!SA||!TA){Error=TEXT("private cache actual physics bodies not ready");return false;}
+  FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkBinaryPrivateCache),false);
+  for(int Axis=0;Axis<3;++Axis)for(int Sign:{-1,1})
+  {
+   FVector Direction=FVector::ZeroVector;Direction[Axis]=Sign;const double Reach=SB.BoxExtent.GetMax()+100.;
+   const FVector Start=SB.Origin+Direction*Reach,EndPoint=SB.Origin-Direction*Reach;FHitResult SH,TH;
+   const bool HitS=S.LineTraceComponent(SH,Start,EndPoint,Params),HitT=T.LineTraceComponent(TH,Start,EndPoint,Params);
+   if(!HitS||!HitT||SH.Distance!=TH.Distance||!ExactVectorBytes(SH.ImpactPoint,TH.ImpactPoint)||!ExactVectorBytes(SH.ImpactNormal,TH.ImpactNormal))
+   {Error=TEXT("private cache actual six-side shape queries differ/not ready");return false;}
+  }
+ }
+ if(Evidence)*Evidence=FString::Printf(TEXT("privateCacheRole source=%s target=%s sourceGuid=%s targetGuid=%s canonicalBytes=%d sourceArchive={%s} targetArchive={%s}"),*A.GetPathName(),*B.GetPathName(),*AG.ToString(),*BG.ToString(),X.Num(),*AuditA,*AuditB);
+ return true;
+}
+
 // This contract defers ONLY PostLoad. Audited native PreDuplicate,
 // PostDuplicate and native UClass PostInitInstance still run inside duplication.
 struct FBinaryControlLifetime
@@ -789,6 +923,8 @@ struct FBinaryControlLifetime
  TArray<TStrongObjectPtr<UObject>> SourceWorlds;
  TArray<ULevel*> SourceLevels;
  TArray<AActor*> SourceActors;
+ TArray<FString> CacheEvidence;
+ TArray<UBodySetup*> PendingCaches; // eligible source roles established BEFORE immediate duplicate callbacks
  TArray<uint8> SourceTopology;
 };
 bool CaptureBinarySourceTopology(const FBinaryControlLifetime& Lifetime,TArray<uint8>& Bytes)
@@ -811,9 +947,9 @@ bool CaptureBinarySourceTopology(const FBinaryControlLifetime& Lifetime,TArray<u
    {int32 Enabled=int32(C->GetCollisionEnabled()),Type=int32(C->GetCollisionObjectType());FName Profile=C->GetCollisionProfileName();bool Physics=C->IsPhysicsStateCreated();W<<Enabled<<Type<<Profile<<Physics;const FBodyInstance& ExistingInstance=C->BodyInstance;Pointer(ExistingInstance.GetPhysicsActorHandle());for(int I=0;I<64;++I){int32 Response=int32(C->GetCollisionResponseToChannels().GetResponse(static_cast<ECollisionChannel>(I)));W<<Response;}
     const auto* ShapeBody=FindFProperty<FObjectPropertyBase>(UShapeComponent::StaticClass(),TEXT("ShapeBodySetup"));
     auto* ExistingBody=C->IsA<UShapeComponent>()&&ShapeBody?Cast<UBodySetup>(ShapeBody->GetObjectPropertyValue_InContainer(C)):nullptr;Pointer(ExistingBody);
-    if(ExistingBody){FGuid Guid=ExistingBody->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes;if(!State(*ExistingBody,NoIDs,NoForbidden,false,BodyBytes))return false;W<<BodyBytes;}}
+    if(ExistingBody){FGuid Guid=ExistingBody->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*ExistingBody,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*ExistingBody,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}}
    if(auto* Body=Cast<UBodySetup>(Object))
-   {FGuid Guid=Body->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes;if(!State(*Body,NoIDs,NoForbidden,false,BodyBytes))return false;W<<BodyBytes;}
+   {FGuid Guid=Body->BodySetupGuid;W<<Guid;TArray<uint8> BodyBytes,NativeBytes;if(!State(*Body,NoIDs,NoForbidden,false,BodyBytes)||!NativeBodyBytes(*Body,NoIDs,NoForbidden,false,false,NativeBytes))return false;W<<BodyBytes<<NativeBytes;}
   }
  }
  return !W.IsError();
@@ -843,6 +979,8 @@ bool AuditedBinaryObject(UObject& Object,const TSet<const UPackage*>& SourcePack
  {Error=TEXT("unreviewed binary native object callback/class: ")+Object.GetClass()->GetPathName();return false;}
  TSet<const UObject*> Seen;for(const UObject* A=Object.GetArchetype();A;A=A->GetArchetype())
  {if(Seen.Contains(A)){Error=TEXT("source archetype chain cyclic");return false;}Seen.Add(A);if(SourcePackages.Contains(A->GetOutermost())){Error=TEXT("source-instance archetype rejected BEFORE binary construction");return false;}if(A->HasAnyFlags(RF_ClassDefaultObject))break;}
+ if(auto* Light=Cast<ULightComponentBase>(&Object);Light&&Light->GetMobility()!=EComponentMobility::Movable)
+ {Error=TEXT("binary world controls require importer Movable light GUID lifecycle");return false;}
  if(Object.IsA<UStaticMeshComponent>())
  {const auto* Paint=FindFProperty<FObjectPropertyBase>(UStaticMeshComponent::StaticClass(),TEXT("MeshPaintTexture"));if(!Paint||Paint->GetObjectPropertyValue_InContainer(&Object)){Error=TEXT("binary static mesh callback requires audited null mesh-paint texture");return false;}}
  return true;
@@ -852,7 +990,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  TMap<UObject*,UObject*>& Created,TArray<AActor*>& Copies,FBinaryControlLifetime& Lifetime,FString& Error)
 {
  if(!NewLevel.GetWorld()){Error=TEXT("binary target level requires an owning world");return false;}
- Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.SourceTopology.Reset();
+ Copies.Reset();Created.Reset();Lifetime.SourceLevels.Reset();Lifetime.SourceActors.Reset();Lifetime.PendingCaches.Reset();Lifetime.CacheEvidence.Reset();Lifetime.SourceTopology.Reset();
  TSet<AActor*> PreflightActors;TSet<const UPackage*> SourcePackages;TSet<UWorld*> Worlds;
  for(AActor* Actor:Controls)
  {
@@ -864,7 +1002,7 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  {if(!Lifetime.SourceLevels.Contains(Level))Lifetime.SourceLevels.Add(Level);SourcePackages.Add(Level->GetOutermost());for(const auto& Actor:Level->Actors)if(Actor&&!Lifetime.SourceActors.Contains(Actor.Get()))Lifetime.SourceActors.Add(Actor.Get());}
  Lifetime.SourceLevels.Sort([](const ULevel& A,const ULevel& B){return A.GetPathName()<B.GetPathName();});Lifetime.SourceActors.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
  for(AActor* Actor:Controls)
- {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
+ {if(!AuditedBinaryObject(*Actor,SourcePackages,Error))return false;bool OK=true;ForEachObjectWithOuter(Actor,[&](UObject* O){if(OK&&!AuditedBinaryObject(*O,SourcePackages,Error))OK=false;if(OK&&PendingPrivateBody(*O))Lifetime.PendingCaches.AddUnique(CastChecked<UBodySetup>(O));},EGetObjectsFlags::IncludeNestedObjects);if(!OK)return false;}
  if(!CaptureBinarySourceTopology(Lifetime,Lifetime.SourceTopology)){Error=TEXT("cannot snapshot source topology before immediate callbacks");return false;}
  TArray<AActor*> Ordered=Controls;
  Ordered.Sort([](const AActor& A,const AActor& B){return A.GetPathName()<B.GetPathName();});
@@ -905,8 +1043,8 @@ bool BinaryCopyControls(const TArray<AActor*>& Controls,ULevel& NewLevel,TMap<UO
  }
  return Copies.Num()==Controls.Num()&&VerifyBinarySourceTopology(Lifetime,Error);
 }
-bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,const TMap<UObject*,UObject*>& Remap,
- const TMap<UObject*,UObject*>& Created,const TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& SourcePackages,FBinaryControlLifetime& Lifetime,FString& Error)
+bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<UObject*,UObject*>& Remap,
+ const TMap<UObject*,UObject*>& Created,TMap<const UObject*,FString>& IDs,const TSet<const UPackage*>& SourcePackages,FBinaryControlLifetime& Lifetime,FString& Error)
 {
  if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
  TSet<UObject*> Retained;for(const auto& Strong:Lifetime.Targets)if(Strong.IsValid())Retained.Add(Strong.Get());
@@ -963,6 +1101,20 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,const
   TSet<AActor*> Children;for(const auto& Child:Copy->Children)
   {if(!Child||!CopiedSet.Contains(Child.Get())||Child->GetOwner()!=Copy||Children.Contains(Child.Get())){Error=TEXT("binary copied Children contains missing/duplicate/source actor");return false;}Children.Add(Child.Get());}
  }
+ // Resolve ONLY deliberately pending, nonserialized private ShapeBodySetup
+ // roles after stock registration. Other missing descendants remain failures.
+ for(UBodySetup* A:Lifetime.PendingCaches)
+ {
+  if(!PendingPrivateBody(*A)){Error=TEXT("pending source private cache eligibility changed");return false;}
+  auto* S=CastChecked<UShapeComponent>(A->GetOuter());auto* T=Cast<UShapeComponent>(Remap.FindRef(S));auto* B=T?ExistingShapeCache(*T):nullptr;
+  if(!T||!B||!EligiblePrivateBody(*B,*T)||A==B){Error=TEXT("pending private cache did not regenerate as distinct target role");return false;}
+  if(Remap.Contains(A)&&Remap.FindRef(A)!=B){Error=TEXT("private cache role conflicts with existing source mapping");return false;}
+  for(const auto& Pair:Remap)if(Pair.Key!=A&&Pair.Value==B){Error=TEXT("regenerated private cache aliases existing mapping");return false;}
+  const auto* Identity=IDs.Find(A);if(!Identity){Error=TEXT("pending private cache missing source canonical identity");return false;}
+  const FString RoleIdentity=*Identity;Remap.Add(A,B);IDs.Add(B,RoleIdentity);
+  FString CacheAudit;if(!ComparePrivateBodyRole(*A,*B,*S,*T,Remap,IDs,SourcePackages,Error,&CacheAudit))return false;Lifetime.CacheEvidence.Add(CacheAudit);
+ }
+ if(!VerifyBinarySourceTopology(Lifetime,Error))return false;
  return true;
 }
 bool Fresh(const FString& P){return !FindPackage(nullptr,*P)&&!FPackageName::DoesPackageExist(P);}
@@ -1051,12 +1203,14 @@ FString UDinkHardnessFoundationLibrary::StageTwoBarrelWorldV1(UWorld* SourceWorl
   for(const auto& O:SourceObjects[Src])
   {
    if(auto* H=Cast<ADinkGreyboxScreen>(Src);H&&Selected(H->ScreenNumber))continue;
+   if(PendingPrivateBody(*O.Value)&&!Remap.Contains(O.Value))continue; // explicit post-registration cache role
    UObject** New=Objects.Find(O.Key);if(!New||(*New)->GetClass()!=O.Value->GetClass()||(Remap.Contains(O.Value)&&Remap.FindRef(O.Value)!=*New))return Fail(TEXT("source descendant missing/conflicting binary mapping"));Remap.Add(O.Value,*New);
   }
  }
  for(const auto& P:Remap)if(const FString* Identity=IDs.Find(P.Key))IDs.Add(P.Value,*Identity);
  {FArchiveReplaceObjectRef<UObject> FixSettingsBeforeCallbacks(NewSettings,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);}
  if(!FinalizeBinaryControls(Copies,*World->PersistentLevel,Remap,BinaryCreated,IDs,SourcePackages,BinaryLifetime,BinaryError))return Fail(BinaryError);
+ Equivalences.Append(BinaryLifetime.CacheEvidence);
  for(const auto& P:Targets)
  {
   FArchiveReplaceObjectRef<UObject> Fix(P.Value,Remap,EArchiveReplaceObjectFlags::IgnoreOuterRef|EArchiveReplaceObjectFlags::IgnoreArchetypeRef);
@@ -1177,6 +1331,7 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  First->Tags.Add(TEXT("DinkKey=S031_P03"));FDinkOriginId::Parse(TEXT("S031_P03"),First->Origin->OriginId);First->Origin->ScriptName=TEXT("bar-f1");First->Origin->SourceHash=TEXT("binary-copy-fixture-source");
  auto* Light=SourceWorld->SpawnActor<ADirectionalLight>();if(!TestNotNull(TEXT("actual native directional light for World-mode GUID fidelity"),Light))return false;
  auto* LightComponent=Cast<ULightComponentBase>(Light->GetLightComponent());if(!TestNotNull(TEXT("actual light component"),LightComponent))return false;
+ LightComponent->SetMobility(EComponentMobility::Movable);LightComponent->UpdateLightGUIDs();
  auto GuidValue=[](ULightComponentBase& C,const TCHAR* Name){const auto* Property=FindFProperty<FStructProperty>(ULightComponentBase::StaticClass(),Name);check(Property&&Property->Struct==TBaseStructure<FGuid>::Get());return *Property->ContainerPtrToValuePtr<FGuid>(&C);};
  const FGuid LightGuidBefore=GuidValue(*LightComponent,TEXT("LightGuid")),OriginalLightGuidBefore=GuidValue(*LightComponent,TEXT("OriginalLightGuid"));
  const TArray<TObjectPtr<AActor>> FirstChildrenBefore=First->Children,SecondChildrenBefore=Second->Children;const FGuid FirstActorGuidBefore=First->GetActorGuid(),SecondActorGuidBefore=Second->GetActorGuid();
@@ -1188,6 +1343,7 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));if(!TestNotNull(TEXT("actual cube for raw instance binary proof"),Cube))return false;Instances->SetStaticMesh(Cube);First->Card->SetStaticMesh(Cube);First->Card->SetMaterial(0,Cube->GetMaterial(0));Instances->AddInstance(FTransform::Identity,false);Instances->RegisterComponent();
  TArray<FInstancedStaticMeshInstanceData> SourceRecords=Instances->PerInstanceSMData;SourceRecords[0].Transform.M[3][0]=205.62000000002445;
  if(!TestTrue(TEXT("source raw setup uses stock invalidation API"),Instances->BatchUpdateInstancesData(0,SourceRecords.Num(),SourceRecords.GetData(),false,true)))return false;
+ Instances->OnPostPopulatePerInstanceData(); // stock loaded-source seed initialization BEFORE every baseline
  TMap<const UObject*,FString> IDs;TMap<FString,UObject*> FirstObjects,SecondObjects,LightObjects;AddObjects(*First,TEXT("First"),IDs,FirstObjects);AddObjects(*Second,TEXT("Second"),IDs,SecondObjects);AddObjects(*Light,TEXT("Light"),IDs,LightObjects);
  IDs.Add(SourceWorld,TEXT("World"));IDs.Add(SourceWorld->PersistentLevel,TEXT("Level"));IDs.Add(ExtraLevel,TEXT("Level"));IDs.Add(SourceWorld->GetWorldSettings(),TEXT("Settings"));
  TSet<const UPackage*> Forbidden;Forbidden.Add(SourcePackage);
@@ -1217,6 +1373,7 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  AddInfo(FString::Printf(TEXT("LIGHT_POLICY BEFORE_DEFERRED sourceMobility=%d sourceStaticLighting=%d sourceStaticShadowing=%d binaryMobility=%d binaryStaticLighting=%d binaryStaticShadowing=%d"),int32(LightComponent->GetMobility()),int32(LightComponent->HasStaticLighting()),int32(LightComponent->HasStaticShadowing()),int32(BinaryLightComponent->GetMobility()),int32(BinaryLightComponent->HasStaticLighting()),int32(BinaryLightComponent->HasStaticShadowing())));
  const bool Finalized=FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,Remap,Created,IDs,Forbidden,Lifetime,Error);
  if(!TestTrue(TEXT("same production deferred loaded-level finalization succeeds: ")+Error,Finalized))return false;
+ for(const FString& Audit:Lifetime.CacheEvidence)AddInfo(Audit);
  TestTrue(TEXT("source transient Children unchanged after deferred PostLoad and registration"),First->Children==FirstChildrenBefore&&Second->Children==SecondChildrenBefore);
  auto* LightCopy=Cast<ADirectionalLight>(Remap.FindRef(Light));if(!TestNotNull(TEXT("actual copied light"),LightCopy))return false;
  auto* LightComponentCopy=Cast<ULightComponentBase>(LightCopy->GetLightComponent());if(!TestNotNull(TEXT("actual copied light component"),LightComponentCopy))return false;
@@ -1266,6 +1423,37 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  if(SourceBody->AggGeom.BoxElems.Num()==1&&CopyBody->AggGeom.BoxElems.Num()==1)
  {TestEqual(TEXT("copied physical box X"),CopyBody->AggGeom.BoxElems[0].X,SourceBody->AggGeom.BoxElems[0].X);TestEqual(TEXT("copied physical box Y"),CopyBody->AggGeom.BoxElems[0].Y,SourceBody->AggGeom.BoxElems[0].Y);TestEqual(TEXT("copied physical box Z"),CopyBody->AggGeom.BoxElems[0].Z,SourceBody->AggGeom.BoxElems[0].Z);}
  TestEqual(TEXT("copied physics readiness matches source"),WarpCopy->IsPhysicsStateCreated(),Warp->IsPhysicsStateCreated());
+ TestTrue(TEXT("loaded Movable source has exact stock invalid light GUIDs"),!LightGuidBefore.IsValid()&&!OriginalLightGuidBefore.IsValid());
+ TestTrue(TEXT("loaded ISM public post-population initializes persistent seed before baseline"),Instances->InstancingRandomSeed!=0);
+ TestTrue(TEXT("actual private source/target cache GUIDs valid, independent and not forged"),SourceBody->BodySetupGuid.IsValid()&&CopyBody->BodySetupGuid.IsValid()&&SourceBody->BodySetupGuid!=CopyBody->BodySetupGuid);
+ TestTrue(TEXT("private role uses full native serialization, bounds, all64 policies and actual six-side queries"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Remap,IDs,Forbidden,Error));
+ TestFalse(TEXT("cache role rejects actual source alias"),ComparePrivateBodyRole(*SourceBody,*SourceBody,*Warp,*Warp,Remap,IDs,Forbidden,Error));
+ {TMap<UObject*,UObject*> Wrong=Remap;Wrong.Remove(Warp);TestFalse(TEXT("cache role rejects missing owning component map"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Wrong,IDs,Forbidden,Error));}
+ {TMap<UObject*,UObject*> Wrong=Remap;Wrong.Add(Second,CopyBody);TestFalse(TEXT("cache role rejects non-bijective target cache"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Wrong,IDs,Forbidden,Error));}
+ auto* ExternalBody=NewObject<UBodySetup>(TargetPackage,NAME_None,RF_Public|RF_Standalone);
+ TestFalse(TEXT("persistent/external body cannot acquire private role"),EligiblePrivateBody(*ExternalBody,*WarpCopy));ExternalBody->ClearFlags(RF_Public|RF_Standalone);ExternalBody->MarkAsGarbage();
+ TestFalse(TEXT("default/archetype body cannot acquire private role"),EligiblePrivateBody(*GetMutableDefault<UBodySetup>(),*WarpCopy));
+ const auto TraceBefore=CopyBody->CollisionTraceFlag;CopyBody->CollisionTraceFlag=TraceBefore==CTF_UseSimpleAndComplex?CTF_UseSimpleAsComplex:CTF_UseSimpleAndComplex;
+ TestFalse(TEXT("one nonidentity native physics field remains strict"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Remap,IDs,Forbidden,Error));CopyBody->CollisionTraceFlag=TraceBefore;
+ const auto ResponsesBefore=WarpCopy->GetCollisionResponseToChannels();WarpCopy->SetCollisionResponseToChannel(ECC_Visibility,ECR_Ignore);
+ TestFalse(TEXT("actual response policy change refuses private role"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Remap,IDs,Forbidden,Error));WarpCopy->SetCollisionResponseToChannels(ResponsesBefore);
+ static_assert(static_cast<int32>(ECC_GameTraceChannel50)==63,"installed64-channel collision contract changed");
+ WarpCopy->SetCollisionResponseToChannel(ECC_GameTraceChannel50,ResponsesBefore.GetResponse(ECC_GameTraceChannel50)==ECR_Ignore?ECR_Block:ECR_Ignore);
+ TestFalse(TEXT("boundary channel63 policy change refuses private role"),ComparePrivateBodyRole(*SourceBody,*CopyBody,*Warp,*WarpCopy,Remap,IDs,Forbidden,Error));WarpCopy->SetCollisionResponseToChannels(ResponsesBefore);
+ // Low-level coverage is exercised independently of production eligibility.
+ // No public role bypass: actual production comparison above validates eligibility.
+ const TMap<const UObject*,FString> EmptyIDs;const TSet<const UPackage*> EmptyForbidden;
+ const FGuid CoverageGuid(1,2,3,4),OtherGuid(5,6,7,8);const FGuid CoverageBefore=CoverageGuid;
+ auto Feed=[](FPrivateBodyWriter& Writer,const FGuid& G){Writer.Serialize(const_cast<uint32*>(&G.A),4);Writer.Serialize(const_cast<uint32*>(&G.B),4);Writer.Serialize(const_cast<uint32*>(&G.C),4);Writer.Serialize(const_cast<uint32*>(&G.D),4);};
+ TArray<uint8> CanonicalA,CanonicalB;FPrivateBodyWriter CA(CanonicalA,EmptyIDs,EmptyForbidden,false,CoverageGuid,true),CB(CanonicalB,EmptyIDs,EmptyForbidden,false,OtherGuid,true);Feed(CA,CoverageGuid);Feed(CB,OtherGuid);
+ TestTrue(TEXT("four exact typed addresses canonicalize independent identities"),CA.Complete()&&CB.Complete()&&CanonicalA==CanonicalB&&CA.Offsets==CB.Offsets&&CoverageGuid==CoverageBefore);
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.Serialize(const_cast<uint32*>(&CoverageGuid.B),4);TestFalse(TEXT("out-of-order GUID address refuses"),W.Complete());}
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.Serialize(const_cast<uint32*>(&CoverageGuid.A),8);TestFalse(TEXT("unexpected GUID serialization size refuses"),W.Complete());}
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);Feed(W,CoverageGuid);W.Serialize(const_cast<uint32*>(&CoverageGuid.A),4);TestFalse(TEXT("repeated GUID storage refuses"),W.Complete());}
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.Serialize(const_cast<uint32*>(&CoverageGuid.A),4);TestFalse(TEXT("missing typed GUID coverage refuses"),W.Complete());}
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.Serialize(reinterpret_cast<uint8*>(const_cast<FGuid*>(&CoverageGuid))+1,4);TestFalse(TEXT("partial GUID storage overlap refuses"),W.Complete());}
+ {TArray<uint8> Bytes;FPrivateBodyWriter W(Bytes,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);W.SetByteSwapping(true);Feed(W,CoverageGuid);TestFalse(TEXT("unknown byte-swapping serialization refuses"),W.Complete());}
+ {TArray<uint8> X,Y;FGuid UnrelatedA=CoverageGuid,UnrelatedB=OtherGuid;FPrivateBodyWriter A(X,EmptyIDs,EmptyForbidden,false,CoverageGuid,true),B(Y,EmptyIDs,EmptyForbidden,false,CoverageGuid,true);Feed(A,CoverageGuid);Feed(B,CoverageGuid);Feed(A,UnrelatedA);Feed(B,UnrelatedB);TestTrue(TEXT("unrelated GUID numeric data remains literal at other addresses"),A.Complete()&&B.Complete()&&X!=Y);}
  TMap<UObject*,UObject*> MissingMap=Remap;MissingMap.Remove(Second);TestFalse(TEXT("missing cross-actor mapping refuses before deferred PostLoad"),FinalizeBinaryControls(Copies,*TargetWorld->PersistentLevel,MissingMap,Created,IDs,Forbidden,Lifetime,Error));
  TMap<UObject*,UObject*> ConflictingMap;ConflictingMap.Add(First,First);TMap<UObject*,UObject*> BadCreated;TArray<AActor*> BadCopies;TestFalse(TEXT("source actor as its own copy refuses"),BinaryCopyControls({First},*TargetWorld->PersistentLevel,ConflictingMap,BadCreated,BadCopies,BadLifetime,Error));
  TMap<UObject*,UObject*> IncompleteSeed;IncompleteSeed.Add(SourceWorld,TargetWorld);IncompleteSeed.Add(SourceWorld->PersistentLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(ExtraLevel,TargetWorld->PersistentLevel);IncompleteSeed.Add(SourceWorld->GetWorldSettings(),TargetWorld->GetWorldSettings());
