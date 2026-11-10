@@ -6,6 +6,7 @@ import copy
 from house439_contract import load_contract,assert_trial_absent,require,sha,SOURCE,TRIAL
 from house439_glass_material import build_graph as build_glass
 from house439_opaque_material import build_graph as build_opaque
+from house439_material_readback import inspect_graph as inspect_house_graph
 from native_texture_tools_v11 import _import_profile,_configure_profile
 from native_mesh_tools_v11c import import_house439_base,append_lods,configure_policy
 from shared_roof_native import bind_named_materials
@@ -52,7 +53,7 @@ def import_trial(U,root,contract,approval,guard,save,pixel_check,graph_check,mes
                 recipe.update(native_policy_reviewed=True,physical_uv_reviewed=True);build_glass(U,material,recipe,typed,guard)
             else:
                 recipe['source_graph_reviewed']=True;build_opaque(U,material,recipe,recipe['source_graph'],typed,guard)
-            report['materials'].append(checked(graph_check(material,recipe),'graph topology'));persist(material)
+            actual_graph=inspect_house_graph(U,material,recipe);actual_graph['additional_review']=checked(graph_check(material,recipe),'additional graph/shader');report['materials'].append(actual_graph);persist(material)
         role_packages={r['source_material']:r['package']for r in contract['materials']};subsystem=U.get_default_object(U.StaticMeshEditorSubsystem)
         for record in contract['meshes']:
             native_record=dict(record,sha256=record['source_sha256']);mesh=import_house439_base(U,root/SOURCE,native_record,record['package'],guard);append_lods(U,mesh,root/SOURCE,[dict(index=0)],subsystem,guard);configure_policy(U,mesh,record,guard);bind_named_materials(U,mesh,role_packages,194192,guard);result=checked(mesh_check(mesh,record),'source mesh/frame/colour/collision');require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete whole-cottage native source proof');report['meshes'].append(result);persist(mesh,[root/SOURCE/record['file']])
@@ -82,7 +83,7 @@ def verify_trial_readback(U,root,contract,imported,guard,pixel_check,graph_check
         for recipe in contract['textures']:
             guard();texture=U.load_asset(recipe['package']);_configure_profile(U,texture,recipe,guard,False,1024);source=root/recipe['source_file'];inspect_relative_sources(U,texture,[source],root/'SourceAssets/Art');report['textures'].append(checked(pixel_check(texture,source,recipe),'source pixel'))
         for recipe in contract['materials']:
-            guard();material=U.load_asset(recipe['package']);require(isinstance(material,U.Material),'Saved material missing');report['materials'].append(checked(graph_check(material,recipe),'graph topology'))
+            guard();material=U.load_asset(recipe['package']);require(isinstance(material,U.Material),'Saved material missing');actual_graph=inspect_house_graph(U,material,recipe);actual_graph['additional_review']=checked(graph_check(material,recipe),'additional saved graph/shader');report['materials'].append(actual_graph)
         roles={r['source_material']:r['package']for r in contract['materials']}
         for record in contract['meshes']:
             guard();mesh=U.load_asset(record['package']);require(isinstance(mesh,U.StaticMesh),'Saved whole cottage missing');inspect_relative_sources(U,mesh,[root/SOURCE/record['file']],root/'SourceAssets/Art');names=[str(s.get_editor_property('imported_material_slot_name'))for s in mesh.get_editor_property('static_materials')];require(len(names)==7 and set(names)==set(roles),'Saved semantic slot set differs');inspect_slots(U,mesh,0,names,roles,194192);result=checked(mesh_check(mesh,record),'mesh/frame/colour/collision');require(result.get('triangles')==194192 and result.get('UCX')==6 and result.get('source_correspondence_passed')is True and result.get('raw_Color0_import_passed')is True and result.get('normal_tangent_basis')=='UV0','Incomplete saved whole-cottage proof');report['meshes'].append(result)

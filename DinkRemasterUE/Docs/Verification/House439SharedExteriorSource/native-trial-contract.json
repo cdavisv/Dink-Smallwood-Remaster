@@ -137,8 +137,9 @@
     "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/VERIFY_REGISTERED.json": "373244f5db0f14fe128faeb9bd724dee12626fa10ec7394e26aba22a08be4537",
     "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/registry.json": "69bc3b8d0c7eb706c4dbe5092c25e41465cfe561f6c279c10b380b96c1241d8b",
     "SourceAssets/Art/SharedMaterials/manifest.json": "b8d977abdda49a4cfadbba4fd5fd3bad02ba2d7d38b7817733a0dd274302dad5",
-    "Scripts/RoofNative/house439_contract.py": "9464615c3dbce8fe1be4343a9fcb6b344fd3d895c983a1770ace185a63b3d4f9",
-    "Scripts/RoofNative/house439_native.py": "4d404d2d6994fbd367edfd11b1c66ce3b0faad43dca9bc93834134aba2e70c40",
+    "Scripts/RoofNative/house439_contract.py": "3a10df30e6aeeecf67fe4384481d82209b3f9bafdd5cd3353044425b368d0978",
+    "Scripts/RoofNative/house439_native.py": "3fead3ca75f6a226806bc2ecaf4c5db307300a0367f9c456c0c791220a55c6c7",
+    "Scripts/RoofNative/house439_material_readback.py": "1e5f0b6f80f3448edaf36cab7f5e4782404fe84967a5656c4eb42024daa3e41f",
     "Scripts/RoofNative/house439_glass_material.py": "e190def7aa1172dd3fc13072353d1e55d5a692d43c035fe42c0d1e4ad1ed5598",
     "Scripts/RoofNative/house439_opaque_material.py": "8e3f32f5531c94885447af71508e7474ed76d7a333fb46d53751d78f052e84d5",
     "Scripts/RoofNative/native_mesh_tools_v11c.py": "80b1c1b6463db1d7b20a0ccab99f91d8165958b35862db43ba48c8addacd0757",
@@ -4730,5 +4731,5 @@
   },
   "production_activated": false,
   "native_review_required": true,
-  "digest": "f5a57da479d4af488ce93e4330bd32c60ae2dbd2496dc8f0a04ad3d2c4b86de9"
+  "digest": "3c15003e4d6a059a3b26f915eaae1df1ec1192278d6e017a4b0374a7b9260256"
 }
