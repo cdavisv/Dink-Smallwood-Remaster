@@ -1297,11 +1297,14 @@ bool FinalizeBinaryControls(const TArray<AActor*>& Copies,ULevel& NewLevel,TMap<
  {
   TGuardValue<bool> RoutingPostLoad(FUObjectThreadContext::Get().IsRoutingPostLoad,true);
   if(!ObserveCollisionPolicy(TEXT("beforeDeferredPostLoad"),Lifetime,Remap,Error))return false;
+  // Resolve this diagnostic-only pair once: full-world callback traversal
+  // must not rescan/allocate source paths for every target object.
+  UObject* WitnessTargetComponent=nullptr;AActor* WitnessTargetOwner=nullptr;
+  for(const auto& Pair:Remap)if(Pair.Key&&Pair.Key->GetPathName()==PolicyWitnessPath)
+  {WitnessTargetComponent=Pair.Value;if(const auto* C=Cast<UActorComponent>(Pair.Value))WitnessTargetOwner=C->GetOwner();break;}
   for(UObject* Target:TargetObjects)if(!Target->IsTemplate())
   {
-   bool WitnessComponent=false,WitnessOwner=false;
-   for(const auto& Pair:Remap)if(Pair.Key&&Pair.Key->GetPathName()==PolicyWitnessPath)
-   {WitnessComponent=Target==Pair.Value;if(const auto* C=Cast<UActorComponent>(Pair.Value))WitnessOwner=Target==C->GetOwner();break;}
+   const bool WitnessComponent=Target==WitnessTargetComponent,WitnessOwner=Target==WitnessTargetOwner;
    if((WitnessComponent||WitnessOwner)&&!ObserveCollisionPolicy(WitnessComponent?TEXT("beforeComponentPostLoad"):TEXT("beforeOwnerPostLoad"),Lifetime,Remap,Error))return false;
    Target->ConditionalPostLoad();
    if((WitnessComponent||WitnessOwner)&&!ObserveCollisionPolicy(WitnessComponent?TEXT("afterComponentPostLoad"):TEXT("afterOwnerPostLoad"),Lifetime,Remap,Error))return false;

@@ -1,3 +1,7 @@
+## Policy witness R1: bounded full-world traversal — source-only
+
+Root review of1e45995 found per-target Remap/path rescanning could make full-world deferred callback diagnostics quadratic. Exact successor resolves the same diagnostic target component+owner ONCE before TargetObjects traversal, then O(1) pointer comparisons per target. Selection remains evidence-only; State/profile/physics guards, witness read brackets/JSON, callback order and every fixture assertion unchanged. Old sealed C57 unattempted packet remains preserved. New disabled C57R1 uses the same actual positive C56 own7/14 baseline, fresh source pins, identical execution guards. Offline diff/byte checks only, no UE/build; Root review and lease required.
+
 ## Current runtime: Stage33 policy witness — diagnostics only, awaiting review
 
 Actual C56 positive8028cc32... Editor20.238/Game14.313s/13324stable preceded Stage33 b8c7dd646eca4ec5a5f31c2486af1f9a native0/helperfalse/zerooutputs. Actual SnowIsle.DinkScreenVolume_0.EdgeWall_W State first mismatch: BodyInstance.CollisionResponses.ResponseToChannels.Visibility Block→Ignore, same DinkHardSolid profile visible,13630bytes each. Root14467 postflight source/modules/Game/kernel/host0 PASS; failure and empty target namespace preserved. No physics correction inferred.
