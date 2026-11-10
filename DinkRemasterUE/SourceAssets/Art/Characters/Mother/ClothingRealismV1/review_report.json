@@ -11,7 +11,7 @@
     "Renders/mother-linen-detail.png": "d352cbf5de06b278a0a9d2c7c9fed1951f1ccdd8a3c7194cc183d3c0e41014b8"
   },
   "visual_review": "Actual front/back, wool seam detail, linen detail and matched baseline-front viewed. Wool/linen weave and sewn centre seam visible; original red/apron identity retained. This remains candidate-level tailoring/lighting, not final photoreal approval.",
-  "readback": "Original89 rest bones; four original topologies/UVs/weights/nonwardrobe vertices and original atlas pixels exact in editable and baked sources. Four FBX local bone transforms/hierarchy exactly equal accepted baseline; unit scalar0.9999999776482582 also exactly baseline.",
+  "readback": "Original89 rest bones; four original editable polygon topologies/UVs/weights/nonwardrobe vertices and original atlas pixels exact in editable and baked sources. Four FBX local bone transforms/hierarchy exactly equal accepted baseline; unit scalar0.9999999776482582 also exactly baseline.",
   "geometry": "All4LODs zero new collapsed cloth triangles and zero reversed cloth triangle normals. Local proposed drape was backtracked at thin fold vertices after an actual failed orientation check; assertions retained.",
   "asset_validator": {
     "assets": 1,
@@ -29,5 +29,21 @@
     "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_N.png": "c7c0fca8e01271ef8b35393b1c052ce73e722cc1b3524062a463932f9c34e2d2",
     "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_ORM.png": "d603a4ae3923f2c73f5ac9d0d8b1ebbf93821105904650a615f077a7d0cfada3",
     "SourceAssets/Art/Characters/character_manifest.json": "2414139eccfdde0ab2e27ac9cd6d4afe9168c0dbabac635079a7d0cbab820c87"
-  }
+  },
+  "export_triangulation_qualification": {
+    "independent_reviewed_head": "1bbfdeb9f78fcd0e1a9a9f42417b4acd3917671b",
+    "independent_review_sha256": "fdfba2a523d7189911a8039853e6d26cb0aa0f1c9fd3e9d06b0a0242ceeddc3a",
+    "LOD0_changed_triangle_index_records": 142,
+    "changed_records_scope": "All wardrobe material slot4; no full-FBX triangle-index identity claim.",
+    "LOD1_to_3_raw_triangle_indices": "Exact baseline",
+    "independent_semantics": "All4 FBXs: exact89bone rest/hierarchy, skin clusters/weights and bind matrices, direct UV arrays and vertex/material UV semantics, semantic noncloth protection.",
+    "cause": "Likely geometry-dependent exporter retriangulation of eased editable quads; exact mechanism not independently regenerated.",
+    "independent_source_check": {
+      "path": "/home/davisc/Work/DinkQA/MotherClothingIndependentReview/SOURCE_CHECK.json",
+      "sha256": "cc329cdc636b83568a068bfcd386822f3a029183b4035b51efbf18090539f5c2",
+      "method": "check_source.py: bone-named Cluster Indices/Weights/Transform/TransformLink exact; changed coordinates limited to wardrobe slot4; per(vertexID,materialID) UV-set equality. Reviewer did not rerun supplied Blender readback or establish tangent basis."
+    }
+  },
+  "normal_bake_export_basis": "PENDING: Blender LOD0 proxy tangent-normal bake vs exported/native triangle/corner-normal/tangent bases must be independently checked, including changed LOD0 diagonals, lowerLOD reuse and native normal green orientation. Matching editable UVs alone is not proof.",
+  "quality_scope": "Source-only draft. Real textile gains; smooth/tight bodice/waist/upperarm silhouette, angular apron waist/hem/folds and inherited head/skin/hair style remain unfinished. No final photoreal/native approval."
 }
