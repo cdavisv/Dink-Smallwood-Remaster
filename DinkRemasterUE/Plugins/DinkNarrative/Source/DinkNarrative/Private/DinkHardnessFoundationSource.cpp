@@ -14,8 +14,8 @@
 #include "Misc/SecureHash.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
-#include "Physics/PhysicsInterfaceCore.h"
-#include "Chaos/TriangleMeshImplicitObject.h"
+#include "Hardness/DinkFoundationLiveGeometry.h"
+#include "PhysicsEngine/BodyInstance.h"
 
 namespace
 {
@@ -24,14 +24,7 @@ bool Number(const TSharedPtr<FJsonValue>& V,double& N)
 bool Integer(const TSharedPtr<FJsonValue>& V,int32& N)
 { double D=0; if(!Number(V,D)||D<MIN_int32||D>MAX_int32||FMath::FloorToDouble(D)!=D)return false;N=int32(D);return true; }
 FString Hash(const TArray<uint8>& Bytes) { return FSHA1::HashBuffer(Bytes.GetData(),Bytes.Num()).ToString().ToLower(); }
-FString Signature(const FVector3f& A,const FVector3f& B,const FVector3f& C)
-{
-    const FVector3f V[3]={A,B,C};FString Best;
-    for(int32 R=0;R<3;++R) { FString S;
-        for(int32 I=0;I<3;++I) {const auto& P=V[(I+R)%3];S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"),P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z);}
-        if(R==0||S<Best)Best=MoveTemp(S); }
-    return Best;
-}
+
 }
 
 bool FDinkHardnessFoundationSource::Load(const FString& File,int32 ExpectedScreen,
@@ -90,6 +83,7 @@ bool FDinkHardnessFoundationSource::VerifyInstances(ADinkScreenVolume& Volume,AD
     {Error=TEXT("foundation world identity/corners invalid");return false;}
     const FVector Pivot=DinkLayout::MapPixelToUnreal(Corners,300,200);
     auto At=[&](double X,double Y,double Z){return FVector3f(DinkLayout::MapPixelToUnreal(Corners,X,Y,Z)-Pivot);};
+    FString GeometryFailure;
     auto Verify=[&](UStaticMeshComponent* C,const FString& MeshPath,const TArray<FIntRect>& Fill,bool Floor,FName Profile,ECollisionChannel Channel,const TCHAR* Role){
         FCollisionResponseTemplate Template;
         if(!C||!C->ComponentHasTag(Role)||!UCollisionProfile::Get()->GetProfileTemplate(Profile,Template)||Template.ObjectType!=Channel||
@@ -102,22 +96,35 @@ bool FDinkHardnessFoundationSource::VerifyInstances(ADinkScreenVolume& Volume,AD
         TArray<FString> Expected;
         if(Floor){FVector3f P[4]={At(0,0,0),At(600,0,0),At(600,400,0),At(0,400,0)};
             if(FVector3f::CrossProduct(P[1]-P[0],P[3]-P[0]).Z<0)Swap(P[1],P[3]);
-            Expected.Add(Signature(P[2],P[0],P[1]));Expected.Add(Signature(P[3],P[0],P[2]));}
+            Expected.Add(DinkFoundationLiveGeometry::TriangleSignature(P[2],P[0],P[1]));Expected.Add(DinkFoundationLiveGeometry::TriangleSignature(P[3],P[0],P[2]));}
         for(const auto& R:Fill){std::array<DinkHardness::ShellPoint,8>P;const FVector3f B[4]={At(R.Min.X,R.Min.Y,0),At(R.Max.X,R.Min.Y,0),At(R.Max.X,R.Max.Y,0),At(R.Min.X,R.Max.Y,0)};
             for(int32 I=0;I<4;++I){P[I]={B[I].X,B[I].Y,B[I].Z};P[I+4]={B[I].X,B[I].Y,B[I].Z+HeightCm};}
             const auto Shell=DinkHardness::OpenPrismShell(P);if(!Shell)return false;
-            for(const auto& T:*Shell)Expected.Add(Signature(FVector3f(T[0].X,T[0].Y,T[0].Z),FVector3f(T[1].X,T[1].Y,T[1].Z),FVector3f(T[2].X,T[2].Y,T[2].Z)));}
-        TArray<FString> Actual;bool Read=false;
-        FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),[&](const FPhysicsActorHandle& Actor){
-            if(!FPhysicsInterface::GetGlobalPose_AssumesLocked(Actor).Equals(C->GetComponentTransform(),1e-4))return;
-            TArray<FPhysicsShapeHandle> Shapes;if(FPhysicsInterface::GetAllShapes_AssumedLocked(Actor,Shapes)!=1||FPhysicsInterface::GetShapeType(Shapes[0])!=ECollisionShapeType::Trimesh||
-                !FPhysicsInterface::IsQueryShape(Shapes[0])||!FPhysicsInterface::IsSimulationShape(Shapes[0]))return;
-            const auto Geometry=FPhysicsInterface::GetGeometryCollection(Shapes[0]);const auto& Mesh=Geometry.GetTriMeshGeometry();
-            auto Indices=[&](const auto& Rows){for(const auto& I:Rows)Actual.Add(Signature(FVector3f(Mesh.Particles().GetX(I[0])),FVector3f(Mesh.Particles().GetX(I[1])),FVector3f(Mesh.Particles().GetX(I[2]))));};
-            if(Mesh.Elements().RequiresLargeIndices())Indices(Mesh.Elements().GetLargeIndexBuffer());else Indices(Mesh.Elements().GetSmallIndexBuffer());Read=true;});
-        Expected.Sort();Actual.Sort();return Read&&Actual==Expected;};
+            for(const auto& T:*Shell)Expected.Add(DinkFoundationLiveGeometry::TriangleSignature(FVector3f(T[0].X,T[0].Y,T[0].Z),FVector3f(T[1].X,T[1].Y,T[1].Z),FVector3f(T[2].X,T[2].Y,T[2].Z)));}
+        TArray<FString> Actual;
+        FString ReadError;
+        const FTransform& ExpectedBodyPose = C->GetComponentTransform();
+        if (!DinkFoundationLiveGeometry::ReadTriangleSignatures(*C->GetBodyInstance(), &ExpectedBodyPose, Actual, ReadError))
+        {
+            GeometryFailure = FString(Role) + TEXT(" ") + ReadError;
+            return false;
+        }
+        Expected.Sort();
+        Actual.Sort();
+        if (Actual != Expected)
+        {
+            GeometryFailure = FString::Printf(TEXT("%s live oriented triangle mismatch expected=%d actual=%d"),
+                Role, Expected.Num(), Actual.Num());
+            return false;
+        }
+        return true;
+    };
     if(!Verify(Host.CollisionSolid,SolidMesh,SolidFill,true,DinkCollision::ProfileHardSolid,DinkCollision::HardSolid,TEXT("DinkHardnessFixedFloorFillV1"))||
         !Verify(Host.CollisionLow,LowMesh,WaterFill,false,DinkCollision::ProfileHardLow,DinkCollision::HardLow,TEXT("DinkHardnessFixedWaterV1")))
-    {Error=TEXT("actual cooked foundation triangles/profiles/channels/nav/overlap differ");return false;}
+    {
+        Error = TEXT("actual cooked foundation triangles/profiles/channels/nav/overlap differ");
+        if (!GeometryFailure.IsEmpty()) Error += TEXT(": ") + GeometryFailure;
+        return false;
+    }
     Error.Reset();return true;
 }

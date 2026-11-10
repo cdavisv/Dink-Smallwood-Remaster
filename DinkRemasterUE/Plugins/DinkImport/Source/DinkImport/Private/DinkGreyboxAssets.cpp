@@ -5,10 +5,8 @@
 #include "DinkCollision.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/CollisionProfile.h"
-#include "Chaos/ImplicitObjectScaled.h"
-#include "Chaos/ShapeInstance.h"
-#include "Chaos/TriangleMeshImplicitObject.h"
-#include "Physics/PhysicsInterfaceCore.h"
+#include "Hardness/DinkFoundationLiveGeometry.h"
+#include "PhysicsEngine/BodyInstance.h"
 #include "DinkImportLog.h"
 #include "AssetCompilingManager.h"
 #include "AssetRegistry/AssetRegistryModule.h"
@@ -1026,17 +1024,6 @@ namespace DinkGreybox
         UStaticMeshComponent* Low, FString& Error)
     {
         if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle,Candidate,Error)) return false;
-        auto Signature=[](const FVector3f& A,const FVector3f& B,const FVector3f& C) {
-            const FVector3f V[3]={A,B,C}; FString Best;
-            for(int32 R=0;R<3;++R)
-            {
-                FString S;
-                for(int32 I=0;I<3;++I) { const auto& P=V[(I+R)%3];
-                    S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"),P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z); }
-                if(R==0 || S<Best) Best=MoveTemp(S);
-            }
-            return Best;
-        };
         FString GeometryFailure;
         auto Verify=[&](UStaticMeshComponent* C,UStaticMesh* Mesh,FName Profile,ECollisionChannel Channel,const TCHAR* RoleTag) {
             if(!Mesh) return C==nullptr || C->GetStaticMesh()==nullptr;
@@ -1058,77 +1045,16 @@ namespace DinkGreybox
             {
                 const auto VI=Description->GetTriangleVertexInstances(T);
                 // StaticMesh cooks by swapping first two vertices.
-                Expected.Add(Signature(Positions[Description->GetVertexInstanceVertex(VI[1])],
-                    Positions[Description->GetVertexInstanceVertex(VI[0])],Positions[Description->GetVertexInstanceVertex(VI[2])]));
+                Expected.Add(DinkFoundationLiveGeometry::TriangleSignature(
+                    Positions[Description->GetVertexInstanceVertex(VI[1])],
+                    Positions[Description->GetVertexInstanceVertex(VI[0])],
+                    Positions[Description->GetVertexInstanceVertex(VI[2])]));
             }
             TArray<FString> Actual;
-            bool bReadTriangles = false;
-            FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),
-                [&](const FPhysicsActorHandle& Actor)
+            FString ReadError;
+            if (!DinkFoundationLiveGeometry::ReadTriangleSignatures(*C->GetBodyInstance(), nullptr, Actual, ReadError))
             {
-                TArray<FPhysicsShapeHandle> Shapes;
-                if (FPhysicsInterface::GetAllShapes_AssumedLocked(Actor, Shapes) != 1 ||
-                    Shapes.Num() != 1 || !Shapes[0].IsValid() ||
-                    !FPhysicsInterface::IsQueryShape(Shapes[0]) ||
-                    !FPhysicsInterface::IsSimulationShape(Shapes[0]))
-                {
-                    GeometryFailure = FString::Printf(TEXT("%s requires one live query and simulation shape"), RoleTag);
-                    return;
-                }
-
-                // Unit-scale static meshes are registered as instanced triangle
-                // meshes. The physics collection's checked getter uses a cast
-                // dispatcher that does not handle triangle meshes in this engine.
-                const Chaos::FImplicitObjectRef Geometry = Shapes[0].Shape->GetGeometry();
-                if (!Geometry)
-                {
-                    GeometryFailure = FString::Printf(TEXT("%s live shape has no geometry"), RoleTag);
-                    return;
-                }
-
-                Chaos::FVec3 Scale(1);
-                Chaos::FReal Margin = 0;
-                const auto* TriangleMesh = Chaos::UnwrapImplicit<Chaos::FTriangleMeshImplicitObject>(
-                    *Geometry, Scale, Margin);
-                // Fixed geometry is already in the expected local frame.
-                // Reject transformed/unknown wrappers and any actual scale or margin.
-                if (!TriangleMesh || Scale != Chaos::FVec3(1) || Margin != 0)
-                {
-                    GeometryFailure = FString::Printf(
-                        TEXT("%s unsupported live triangle geometry type=%u scale=(%.17g,%.17g,%.17g) margin=%.17g"),
-                        RoleTag, static_cast<uint32>(Geometry->GetType()),
-                        double(Scale.X), double(Scale.Y), double(Scale.Z), double(Margin));
-                    return;
-                }
-
-                const uint64 ParticleCount = TriangleMesh->Particles().Size();
-                auto ReadIndices = [&](const auto& Indices)
-                {
-                    for (const auto& Index : Indices)
-                    {
-                        if (uint64(Index[0]) >= ParticleCount || uint64(Index[1]) >= ParticleCount ||
-                            uint64(Index[2]) >= ParticleCount)
-                        {
-                            GeometryFailure = FString::Printf(TEXT("%s live triangle has an invalid vertex index"), RoleTag);
-                            return false;
-                        }
-                        Actual.Add(Signature(FVector3f(TriangleMesh->Particles().GetX(Index[0])),
-                            FVector3f(TriangleMesh->Particles().GetX(Index[1])),
-                            FVector3f(TriangleMesh->Particles().GetX(Index[2]))));
-                    }
-                    return true;
-                };
-                const auto& Elements = TriangleMesh->Elements();
-                bReadTriangles = Elements.RequiresLargeIndices()
-                    ? ReadIndices(Elements.GetLargeIndexBuffer())
-                    : ReadIndices(Elements.GetSmallIndexBuffer());
-            });
-            if (!bReadTriangles)
-            {
-                if (GeometryFailure.IsEmpty())
-                {
-                    GeometryFailure = FString::Printf(TEXT("%s live physics read did not complete"), RoleTag);
-                }
+                GeometryFailure = FString(RoleTag) + TEXT(" ") + ReadError;
                 return false;
             }
             Expected.Sort();

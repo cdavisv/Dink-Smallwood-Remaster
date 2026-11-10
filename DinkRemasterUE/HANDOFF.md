@@ -1,3 +1,7 @@
+## Stage36 shared live triangle verifier
+
+Stage36 run 50c647afd9f14495ba3a9bde0f82bb3b passed the Import geometry read and reached a second checked Chaos triangle cast in DinkHardnessFoundationSource.cpp. The project-wide C++ audit found this remaining call. The two verifiers now share DinkCore's live shape reader and triangle signature. Import retains the exact source-mesh triangle expectation. Narrative retains the descriptor-derived floor and fill expectation and checks the locked body pose against the component transform. The shared read enforces one valid query/simulation shape, typed triangle unwrapping, unit scale, zero margin and valid indices. Both callers still compare sorted oriented triangle signatures exactly and enforce their existing profile, channel and component checks. The prior crash is preserved. The shared implementation awaits a build and another actual staging attempt.
+
 ## Stage35 live Chaos triangle read
 
 Stage35 run 7ad72463ca5645cf87e83225c19b9477 ended native245 with zero packages and protected inputs unchanged. The symbolized stack reaches DinkGreyboxAssets.cpp through GetTriMeshGeometry and the checked CastHelper in CastingUtilities.h. Installed ChaosInterfaceUtils.cpp307–325 creates an instanced triangle mesh for a unit-scale complex shape. GetShapeType strips wrapper bits, but GetTriMeshGeometry delegates to a dispatcher without triangle cases.
