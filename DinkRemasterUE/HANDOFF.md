@@ -1,3 +1,7 @@
+## Outdoor portal camera — source-only isolated checkpoint
+
+New optional exact-owner portal presentation cap and projected headroom candidate on `fix/outdoor-portal-camera` in `/home/artist/Work/DinkOutdoorPortalCamera`, based on2b68300. Existing cottage generator/export/native package provenance only; no V77, collision/material/asset changes or UE launch. Four metadata tests pass; new native geometry/ownership/doorway/reset fixtures are UNCOMPILED/UNRUN. Native/render/full validation and accepted-master integration remain pending. Read `Docs/Verification/OutdoorPortalCamera/README.md`. Frozen blocker and Root worktrees were not edited.
+
 ## First split Editor compile preserved; fixture-only compiler correction
 
 Actual own cold BuildCandidate1 run7e629cf99ac5445d948a7f9470f1026e failed Editor6 after137.335s,12982inputs unchanged/kernelPASS; Game did not run. Only error was native fixture copying FString in a range loop underWerror; one deprecated polygon-group API warning also recorded. Fix only constFString& and installed MeshDescription.GetPolygonGroupPolygonIDs (same polygon membership/iteration); no production geometry, collision or test assertions changed. Rebuild/native/import remain pending. Preserve first failure and permit only exact pinned own partial outputs for incremental retry; Root4fb remains protected.
