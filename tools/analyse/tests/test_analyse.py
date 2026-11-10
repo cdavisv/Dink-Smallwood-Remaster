@@ -21,13 +21,14 @@ sys.path.insert(0, ROOT)
 
 from analyse import engine as EN                         # noqa: E402
 from analyse import graph as GR                          # noqa: E402
+from analyse import joins as JN                          # noqa: E402
 from analyse import layout as LY                         # noqa: E402
 from analyse import regions as RG                        # noqa: E402
 from analyse import warps as WP                          # noqa: E402
 from analyse.build import vision_setters                 # noqa: E402
 from analyse.scripts import Scripts                      # noqa: E402
 from analyse.build import analyse                        # noqa: E402
-from analyse.ir import W, H, col_row                     # noqa: E402
+from analyse.ir import IR, W, H, col_row                 # noqa: E402
 from analyse.labels import label                         # noqa: E402
 
 IR_DIR = os.path.normpath(os.path.join(ROOT, "..", "dinkex", "out"))
@@ -244,7 +245,7 @@ class TestRealData(unittest.TestCase):
         reached = {n for n, _ in self.w.reached}
         for n in (439, 586, 497, 501, 417, 30, 731, 73):   # Stonebrook .. snow castle
             self.assertIn(n, reached, n)
-        self.assertNotIn(350, reached)                       # sealed East Wilds (cobbler's door)
+        self.assertIn(350, reached)                          # East Wilds, through the cobbler's booth (designed join)
 
 
 class StubIR:
@@ -531,7 +532,10 @@ class TestEngineReachRules(unittest.TestCase):
 
 @unittest.skipUnless(have_ir(), "tools/dinkex/out missing: run the extractor first")
 class TestEastWilds(unittest.TestCase):
-    """East Wilds (cols 27-31, rows 8-20): no designed way in, but the engine has two."""
+    """East Wilds (cols 27-31, rows 8-20). The 1997 data has no designed way in; since the owner's
+    designed join of 9 Nov 2026 (regions.toml [[join]] cobbler_booth_doorway) the cobbler's booth
+    is one interior and its doorway leads from the Koka room (SCR_290) to the East Wilds door
+    S289_P19. The engine's two sequence-break routes are left as they are."""
 
     @classmethod
     def setUpClass(cls):
@@ -546,13 +550,41 @@ class TestEastWilds(unittest.TestCase):
             out.setdefault(self.rows[n]["reach_level"], []).append(n)
         return out
 
-    def test_no_designed_route_to_the_booth_or_the_meadows(self):
-        design = {n for n, _ in self.w.reached}
-        for n in (289, 316, 317, 350, 349, 412, 444, 540):
-            self.assertNotIn(n, design)
-        self.assertEqual(len(self.ew), 56)
-        self.assertEqual(len(self.levels()["design"]), 8)             # cliff and coast fragments only
-        self.assertTrue(set(self.levels()["design"]) <= {284, 285, 286, 287, 288, 575, 607, 639})
+    def test_designed_route_through_the_booth(self):
+        node = next((352, k) for k in range(1, 10) if (352, k) in self.w.reached)
+        path = EN.route(self.w.reached, node)
+        hops = []
+        for a, b in zip(path, path[1:]):
+            kind, ident = EN.edge_kind(a, b, self.w.crossings, self.w.wraps, self.w.warps, self.w.swarps)
+            hops.append((a[0], b[0], kind, ident))
+        i = next(k for k, h in enumerate(hops) if h[3] == "S734_P31")
+        self.assertEqual(hops[i][:3], (734, 290, "warp"))                 # Koka Isle's booth door
+        self.assertEqual(hops[i + 1][:3], (290, 289, "crossing"))        # the doorway
+        self.assertEqual(hops[i + 2], (289, 350, "warp", "S289_P19"))     # the East Wilds door
+        self.assertEqual(path[-1][0], 352)
+        self.assertIn(727, [n for n, _ in path])                          # over the Koka bridge
+        row = self.rows[352]
+        self.assertTrue(row["reached"] and row["reached_without_script_warps"])
+        self.assertEqual(row["reach_level"], "design")
+
+    def test_east_wilds_reached_by_design(self):
+        self.assertEqual(len(self.ew), 55)            # 4 x 13 + 3 outdoor cells; SCR_289 is the booth's (koka_isle)
+        self.assertEqual(self.rows[289]["region"], "koka_isle")
+        lv = self.levels()
+        self.assertEqual(lv["design"], [284, 285, 286, 287, 288, 316, 317, 318, 319, 320, 348, 349, 350, 351, 352,
+                                        380, 381, 382, 383, 575, 607, 639])
+        self.assertNotIn("engine_dry", lv)            # the booth door route is designed now
+        reg = self.rep["regions"]["east_wilds"]
+        self.assertEqual(reg["engine_only_dry"], [])
+        self.assertNotIn("route_to_largest_land_dry", reg)
+        for n in (289, 316, 317, 318, 319, 320, 348, 349, 350, 351, 352, 380, 381, 382, 383):
+            self.assertNotIn("SCR_%03d" % n, self.rep["engine_only_dry_screens"])
+        self.assertTrue(self.rep["engine_only_dry_screens"])     # sequence breaks elsewhere stay listed
+
+    def test_engine_wading_and_the_screens_nothing_reaches(self):
+        lv = self.levels()
+        self.assertEqual(len(lv["engine_wading"]), 24)
+        self.assertEqual(lv["none"], [509, 510, 541, 542, 573, 574, 605, 606, 637])
 
     def test_the_row_wrap_is_a_real_crossing_from_the_cliff_into_the_booth(self):
         wrap = [c for c in self.w.wraps if (c["a"], c["b"]) == (288, 289)]
@@ -561,19 +593,15 @@ class TestEastWilds(unittest.TestCase):
         self.assertEqual((wrap[0]["a_class"], wrap[0]["b_class"]), ("blocked", "void"))   # why the design skips it
         self.assertFalse(any(c["a"] == 288 and c["b"] == 289 for c in self.w.crossings))   # not a grid neighbour
 
-    def test_engine_dry_route_is_cliff_wrap_booth_door(self):
-        steps = self.rep["regions"]["east_wilds"]["route_to_largest_land_dry"]["steps"]
-        kinds = [(s["component"][:7], s.get("via"), s.get("via_id")) for s in steps]
-        self.assertEqual(kinds[0][0], "SCR_288")
-        self.assertIn(("SCR_289", "wrap", None), kinds)
-        self.assertIn(("SCR_350", "warp", "S289_P19"), kinds)
-        self.assertEqual(self.levels()["engine_dry"],
-                         [289, 316, 317, 318, 319, 320, 348, 349, 350, 351, 352, 380, 381, 382, 383])
-
-    def test_engine_wading_and_the_screens_nothing_reaches(self):
-        lv = self.levels()
-        self.assertEqual(len(lv["engine_wading"]), 24)
-        self.assertEqual(lv["none"], [509, 510, 541, 542, 573, 574, 605, 606, 637])
+    def test_glitch_routes_are_left_as_they_were(self):
+        # the wrap lands in SCR_289's void, which still touches the East Wilds door (the join's jambs
+        # close only the passage); the engine's dry search still takes it
+        door = next(x for x in self.w.warps if x["id"] == "S289_P19")
+        void = [k for k in door["src_comps"] if self.w.comps[289].terrain_class(k) == "void"]
+        self.assertEqual(len(void), 1)
+        self.assertIn((289, void[0]), self.w.dry_seen)
+        used = [(c["a"], c["b"]) for c in self.rep["wrap_crossings_in_dry_reach"]]
+        self.assertIn(("SCR_288", "SCR_289"), used)
 
     def test_the_rock_that_opens_the_cliff_is_a_removable_hardbox(self):
         ir = self.w.ir
@@ -587,6 +615,120 @@ class TestEastWilds(unittest.TestCase):
         for x in self.w.warps:
             if x["dst_screen"] in ew:
                 self.assertIn(x["src_screen"], ew | {289}, x["id"])   # only the booth door and EW's own doors
+
+
+def _table_with(side_changes=None):
+    """regions.toml with the booth join's sides changed: side_changes = {289: {"tiles": ...}, ...}."""
+    t = RG.load_table(TABLE)
+    import copy as _copy
+    t = _copy.deepcopy(t)
+    for side in t["join"][0]["side"]:
+        side.update((side_changes or {}).get(side["screen"], {}))
+    return t
+
+
+@unittest.skipUnless(have_ir(), "tools/dinkex/out missing: run the extractor first")
+class TestDesignedJoin(unittest.TestCase):
+    """regions.toml [[join]] cobbler_booth_doorway (owner decision, 9 Nov 2026)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.w = world()
+        cls.join = next(j for j in cls.w.joins if j["id"] == "cobbler_booth_doorway")
+
+    def test_the_booth_is_one_interior_with_both_doors(self):
+        it = next(i for i in self.w.interiors if 289 in i["screen_numbers"])
+        self.assertEqual(it["id"], "INT_289")
+        self.assertEqual(it["screen_numbers"], [289, 290])
+        self.assertEqual(sorted(e["warp"] for e in it["entrances"]), ["S350_P09", "S734_P31"])
+        self.assertEqual(sorted(e["warp"] for e in it["exits"]), ["S289_P19", "S290_P19"])
+        self.assertEqual(it["region"], "koka_isle")
+        self.assertEqual(it["name"], "Cobbler's booth (Koka door east room, East Wilds door west room)")
+        self.assertFalse(any(290 in i["screen_numbers"] and i is not it for i in self.w.interiors))
+        area = next(a for a in self.w.table["area"] if a["region"] == "east_wilds")
+        self.assertEqual(area["name"], "East Wilds (entered from the cobbler's booth)")
+
+    def test_the_doorway_is_a_walkable_reached_crossing(self):
+        cs = [c for c in self.w.crossings if (c["a"], c["b"]) == (289, 290) and c["walkable"]]
+        self.assertEqual(len(cs), 1)
+        c = cs[0]
+        self.assertEqual((c["dir"], c["from"], c["to"], c["a_class"], c["b_class"]), ("right", 176, 214, "land", "land"))
+        self.assertTrue(c["reached"])
+        self.assertEqual(self.join["crossings"][0]["length"], 38)
+        # the two floors are one walk group
+        self.assertEqual(self.w.group_of[(289, c["a_comp"])], self.w.group_of[(290, c["b_comp"])])
+
+    def test_tiles_and_hardness_are_patched_in_memory_only(self):
+        ir = self.w.ir
+        for (n, col, row, num) in ((289, 11, 1, 18), (289, 11, 2, 6), (289, 11, 3, 18),
+                                   (289, 9, 4, 18), (289, 10, 4, 19), (289, 11, 4, 6),
+                                   (290, 0, 1, 19), (290, 0, 2, 7), (290, 0, 3, 19), (290, 0, 4, 7)):
+            with open(os.path.join(IR_DIR, "screens", "SCR_%03d.json" % n), encoding="utf-8") as fh:
+                old = json.load(fh)["tiles"][row * 12 + col]                # tools/dinkex/out itself is untouched
+            self.assertEqual(ir.tile_classes[old["num"]]["terrain"], "void")
+            t = ir.screens[n]["tiles"][row * 12 + col]
+            self.assertEqual((t["col"], t["row"], t["x"], t["y"], t["num"], t["designed_join"], t["replaces"]),
+                             (col, row, old["x"], old["y"], num, "cobbler_booth_doorway", old["num"]))
+            self.assertEqual(ir.tile_classes[num]["terrain"], "wood_floor")
+        for n, rect in ((289, (480, 176, 600, 214)), (290, (0, 125, 97, 214))):
+            raw, h = ir.raw_hardness(n), ir.hardness(n)
+            x0, y0, x1, y1 = rect
+            self.assertTrue((h[y0:y1, x0:x1] == 0).all())
+            self.assertTrue((raw[y0:y1, x0:x1] != 0).any())                 # the walls were there
+            side = next(s for s in self.join["sides"] if s["screen_number"] == n)
+            changed = h != raw
+            keep = ~(JN.tile_mask(side))
+            keep[y0:y1, x0:x1] = False
+            self.assertFalse(changed[keep].any())                             # nothing else changes
+            jambs = changed & (h == 1)
+            self.assertTrue((raw[jambs] == 0).all())                          # jambs only close void
+            self.assertEqual(int(jambs.sum()), side["closed_px"])
+            self.assertEqual(int((changed & (h == 0)).sum()), side["opened_px"])
+        self.assertEqual(self.join["sides"][0]["cut_hardboxes"], ["S289_P11", "S289_P12"])
+        self.assertEqual(self.join["sides"][1]["cut_hardboxes"], ["S290_P10", "S290_P14"])
+
+    def test_the_join_is_json_ready(self):
+        data = json.loads(json.dumps(self.w.joins))
+        self.assertEqual(data[0]["decided"], "2026-11-09")
+        self.assertEqual([s["open"] for s in data[0]["sides"]], [[480, 176, 600, 214], [0, 125, 97, 214]])
+
+    def test_bad_overrides_stop_the_build(self):
+        ir = IR(IR_DIR)
+        cases = {
+            "not void": {289: {"tiles": [[10, 1, 18]]}},                      # tile (10, 1) is wood already
+            "not used on this screen": {289: {"tiles": [[11, 1, 999]]}},
+            "not floor": {289: {"tiles": [[11, 1, 30]]}},                     # a void tile as the replacement
+            "warp hardness": {289: {"open": [480, 125, 600, 214]}},          # over the door S289_P19
+            "does not reach": {290: {"open": [10, 125, 97, 214]}},
+            "is not floor": {290: {"open": [0, 125, 97, 260]}},               # into row 5's void
+        }
+        for expect, change in cases.items():
+            with self.assertRaises(SystemExit, msg=expect) as cm:
+                JN.resolve(ir, _table_with(change))
+            self.assertIn(expect, str(cm.exception.code))
+        t = _table_with()
+        t["join"][0]["screens"] = [289, 291]
+        with self.assertRaises(SystemExit):
+            JN.resolve(ir, t)
+
+    def test_a_bad_override_stops_the_whole_build_early(self):
+        with open(TABLE, encoding="utf-8") as fh:
+            text = fh.read()
+        bad = text.replace("tiles = [[11, 1, 18], [11, 2, 6],", "tiles = [[11, 1, 18], [10, 2, 6],")
+        self.assertNotEqual(bad, text)
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, "regions.toml")
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write(bad)
+            with self.assertRaises(SystemExit) as cm:
+                analyse(IR_DIR, p, log=lambda *a: None)
+        self.assertIn("SCR_289 tile (10, 2) is tile 19", str(cm.exception.code))
+
+    def test_a_join_without_a_crossing_stops_the_build(self):
+        j = {"id": "x", "screen_numbers": [289, 290]}
+        crossings = [{"a": 289, "b": 290, "walkable": False}]
+        with self.assertRaises(SystemExit):
+            JN.check_crossings([j], crossings)
 
 
 @unittest.skipUnless(have_ir(), "tools/dinkex/out missing: run the extractor first")

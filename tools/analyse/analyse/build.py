@@ -12,6 +12,7 @@ import numpy as np
 from . import engine as EN
 from . import graph as G
 from . import interiors as I
+from . import joins as JN
 from . import layout as LY
 from . import regions as RG
 from . import render as RD
@@ -41,6 +42,14 @@ def analyse(ir_dir, table_path, story_dir=None, classes_dir=None, dinkc_dir=None
     lay = table["layout"]
     scripts = Scripts(ir.story_dir)
     w.ir, w.table, w.scripts = ir, table, scripts
+    # designed joins (owner decisions) patch the in-memory IR before anything reads it
+    w.joins = JN.resolve(ir, table)
+    JN.install(ir, w.joins)
+    for j in w.joins:
+        log("designed join %s (%s): %s" % (j["id"], j["decided"], ", ".join(
+            "%s %d tiles, %d px opened, %d px closed, hardboxes cut %s" % (
+                sd["screen"], len(sd["tiles"]), sd["opened_px"], sd["closed_px"], sd["cut_hardboxes"] or "none")
+            for sd in j["sides"])))
 
     # --- connectivity ------------------------------------------------------
     removable = removable_map(ir, scripts)
@@ -69,6 +78,7 @@ def analyse(ir_dir, table_path, story_dir=None, classes_dir=None, dinkc_dir=None
     for c in crossings:
         c["walkable"] = G.walkable_crossing(c)
         c["reached"] = c["walkable"] and (c["a"], c["a_comp"]) in reached
+    JN.check_crossings(w.joins, crossings)
     bodies, comp_wkind = G.water_bodies(ir, comps, crossings, lay["river_width_px"])
     w.comps, w.crossings, w.wraps, w.warps, w.swarps = comps, crossings, wraps, warps, swarps
     w.start, w.reached, w.group_of, w.removable = start, reached, group_of, removable
@@ -295,6 +305,8 @@ def write_all(w, out, dinkc_dir=None, log=print):
                                          "or a map brain other than 0 and 15",
                   "crossing": "walkable on both sides of the shared edge, pixel for pixel, run >= %d px" % lay["min_crossing_px"],
                   "player_space": "components whose terrain class is not water, canopy or void (tools/data/tile_classes.csv)",
+                  "designed_joins": "owner decisions in regions.toml [[join]], applied to the tile layer and hardness "
+                                    "before this analysis (analyse/joins.py); `designed_joins` lists them resolved",
                   "start": lay["start"]},
         "counts": {"screens": len(comps), "components": sum(c.count for c in comps.values()),
                    "crossings": len(w.crossings), "walkable_crossings": sum(c["walkable"] for c in w.crossings),
@@ -304,6 +316,7 @@ def write_all(w, out, dinkc_dir=None, log=print):
                    "pockets_below_threshold": small, "edge_leaks": len(leaks),
                    "removable_hardboxes": sum(len(v) for v in w.removable.values())},
         "start_component": node_id(*w.start),
+        "designed_joins": [{k: v for k, v in j.items() if k != "screen_numbers"} for j in w.joins],
         "walk_groups": walk_groups,
         "pockets": pockets,
         "unreached_screens": [screen_id(n) for n in sorted(set(ir.used) - {n for n, _ in w.reached})],
