@@ -1,0 +1,49 @@
+{
+  "source_sha256": "28a5c007c16a7647510bf7fcd34c429ceae3471cdf44422c6504cf21d698fed7",
+  "views": [
+    {
+      "view": "hearth",
+      "camera": [
+        -3,
+        1.4,
+        2.6
+      ],
+      "target": [
+        -0.45,
+        5.97,
+        1.4
+      ],
+      "ortho_m": 3.7
+    },
+    {
+      "view": "cavity",
+      "camera": [
+        -0.5,
+        3.5,
+        0.65
+      ],
+      "target": [
+        -0.45,
+        6,
+        1
+      ],
+      "ortho_m": 1.9
+    },
+    {
+      "view": "chimney",
+      "camera": [
+        2.5,
+        2.8,
+        6.5
+      ],
+      "target": [
+        -0.5,
+        6,
+        4.7
+      ],
+      "ortho_m": 3.1
+    }
+  ],
+  "samples": 16,
+  "CPU_threads": 2
+}

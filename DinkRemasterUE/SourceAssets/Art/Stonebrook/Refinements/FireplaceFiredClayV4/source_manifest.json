@@ -1,0 +1,152 @@
+{
+  "schema": "dink-source-fired-clay-fireplace/2",
+  "status": "source_rgb_normalization_root_reviewed_native_pending",
+  "supersedes": "V3 unrepresentable RGB only; V3 and shared library remain byte-exact historical source",
+  "source": "Fireplace_FiredClayV4.blend",
+  "source_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12",
+  "shared_registry": "../../../SharedMaterials/manifest.json",
+  "assets": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "dimensions_m": [
+        1.786549687385559,
+        0.8945789337158203,
+        2.319999933242798
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FiredClayMasonry2m"
+      ],
+      "triangles": 1486,
+      "fbx": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "collision_hulls": 92,
+      "source_only": true,
+      "class": "kit_piece",
+      "identity": {
+        "kind": "structural_continuation",
+        "assembly_origin": "S001_P19",
+        "sprite_counterpart": null,
+        "geometry": "unchanged frome801/V12d; masonry material continuation only"
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "dimensions_m": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "triangles": 57296,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "collision_hulls": 16,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "dimensions_m": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "triangles": 37908,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "collision_hulls": 0,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "dimensions_m": [
+        2.510611057281494,
+        1.1152336597442627,
+        2.802102565765381
+      ],
+      "materials": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "triangles": 19998,
+      "fbx": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "collision_hulls": 0,
+      "source_only": true,
+      "class": "prop_large",
+      "families": [
+        "fireplace_brick"
+      ],
+      "origin_identity": {
+        "origin": "S001_P19",
+        "seq": 64,
+        "frame": 5,
+        "script": "s1-h1-2"
+      }
+    }
+  ],
+  "brick_nominal_m": [
+    0.22,
+    0.105,
+    0.065
+  ],
+  "mortar_m": 0.008,
+  "opening_m": {
+    "width": 1.18,
+    "height": 1.06,
+    "sill": 0.18,
+    "lintel": 1.24
+  },
+  "triangle_qualification": "LOD0 57296>20000soft but<60000hard; real1429brickcells/edgework, actualLOD1/LOD2=37908/19998",
+  "geometry_protection": "LOD0overallbbox/pivotexact, all312UCX/roof8/unrelated/chimneygeometryexact; intentionalFPmasonrytopologychanges",
+  "known_frames": "5 original chimney sliver T/B zeros retained; no native-frame waiver",
+  "native_run": false,
+  "normalization": {
+    "operation": "clamp only out-of-range RGB to [0,1]; alpha exact",
+    "affected_corners": [
+      8988,
+      6396,
+      3132
+    ],
+    "max_delta": 0.01975429058074951,
+    "material_graphs_unchanged": true,
+    "geometry_unchanged": true,
+    "chimney_FBX_whole_bytes_unchanged": true
+  }
+}
