@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "rig_bones": 89,
+  "files": {
+    "SK_Mother_ClothingRealismV1.blend": {
+      "sha256": "908b848680818081153656d43d34b7b1a0542098848bcbc8ae29e3fc2c6e780b",
+      "lods": [
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 0,
+          "vertices": 17337,
+          "triangles": 32164,
+          "changed_cloth_vertices": 2715,
+          "max_displacement_m": 0.04078438878059387,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 1,
+          "vertices": 9104,
+          "triangles": 16082,
+          "changed_cloth_vertices": 1637,
+          "max_displacement_m": 0.04078438878059387,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 2,
+          "vertices": 4818,
+          "triangles": 8040,
+          "changed_cloth_vertices": 762,
+          "max_displacement_m": 0.040379300713539124,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 3,
+          "vertices": 2503,
+          "triangles": 3859,
+          "changed_cloth_vertices": 393,
+          "max_displacement_m": 0.04162350296974182,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        }
+      ],
+      "original_atlas_pixels_exact": true,
+      "rest89_exact": true
+    },
+    "SK_Mother_ClothingRealismV1_Baked.blend": {
+      "sha256": "ea0d187e4be91f619292d13655a1a7f7b48a8a65192e11d7c666ae42606bcb34",
+      "lods": [
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 0,
+          "vertices": 17337,
+          "triangles": 32164,
+          "changed_cloth_vertices": 2715,
+          "max_displacement_m": 0.04078438878059387,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 1,
+          "vertices": 9104,
+          "triangles": 16082,
+          "changed_cloth_vertices": 1637,
+          "max_displacement_m": 0.04078438878059387,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 2,
+          "vertices": 4818,
+          "triangles": 8040,
+          "changed_cloth_vertices": 762,
+          "max_displacement_m": 0.040379300713539124,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        },
+        {
+          "new_collapsed_cloth_triangles": 0,
+          "reversed_cloth_triangle_normals": 0,
+          "lod": 3,
+          "vertices": 2503,
+          "triangles": 3859,
+          "changed_cloth_vertices": 393,
+          "max_displacement_m": 0.04162350296974182,
+          "topology_uv_weights_noncloth_geometry_exact": true
+        }
+      ],
+      "original_atlas_pixels_exact": true,
+      "rest89_exact": true
+    }
+  }
+}
