@@ -17,6 +17,9 @@ Tested f97349ed95b05b81a1f24d117279b97ed152126e with own C6 builds. Current full
 Packaged rendered startup NOT accepted: both actualGPU202 attempts crashed before input/photos in Radeon Vulkan compute PSO path, including verifiedsingleprecacheworker. Source/stage12940unchanged and private displays closed normally. Exactdriver symbols unavailable; no driverrootcauseclaim. Private newer-driver comparison preparation only, no systemdriver update. Docs/Verification/RoofNativeCurrent/combined-f973 contains indexedactualreceipts/fivecurrentcaptures/diagnosis, no cores/authfiles. PR45 remainsdraft pendingpackagedpixels; inheritedjunction/tangentlimits, separatevisibilityfix, globalbarrelrollout andnewfireplace/exterior/finalart remainopen.
 
 Separatevisibility branch3fa6e05 fixes scratchcontroller registration after firstfocused exact1failedbeforebehavior; originalassertions retained, rebuild/native/renderpending. RuntimeStage25native0/helperguardFAIL/zeroassets/source13318unchanged; exactrootEulerTEXT roundingdiagnosed, no tolerancewaiver. No whole-goalcompletionclaim.
+## Generated interior wall ownership candidate (10 November 2026)
+
+Isolated `fix/generated-interior-visibility` at `/home/davisc/Work/DinkGeneratedInteriorVisibility`, base f97349e. Generated `InteriorWall_*` presentation cubes must follow the physically occupied indoor volume or its exact same-world InteriorId+interior Sheet group (3/4 INT003,289/290 INT289), subject independently to authored hiding. Do not hide the whole interiors layer, actors, physical edge walls, or outdoor legacy props. Registration/late BeginPlay/null pawn/synchronous entry relocation are covered by a new native scratch-world fixture, not yet executed. Source-only; no build/native/GPU acceptance. See HANDOFF.md. RuntimeHardness Current and Root frozen Delivery remain separate.
 
 ## Accepted hero source history validated; combined runtime rebuild pending
 
