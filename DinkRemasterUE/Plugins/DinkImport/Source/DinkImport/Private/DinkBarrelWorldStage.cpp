@@ -552,7 +552,12 @@ bool FDinkStageActorTranslationRegression::RunTest(const FString&)
  auto* RP=FindFProperty<FStructProperty>(USceneComponent::StaticClass(),TEXT("RelativeRotation"));
  if(!TestNotNull(TEXT("actual typed RelativeRotation property"),RP))return false;
  auto* Stored=RP->ContainerPtrToValuePtr<FRotator>(RotA);
- Stored->Yaw=std::nextafter(-90.,0.);FRotator RotationCanonical;FString RotationEvidence;
+ Stored->Yaw=std::nextafter(-90.,0.);RP->ContainerPtrToValuePtr<FRotator>(RotB)->Yaw=-90.;
+ TestEqual(TEXT("Euler fixture stores exact measured source yaw"),RotA->GetRelativeRotation().Yaw,std::nextafter(-90.,0.));
+ TestEqual(TEXT("Euler fixture stores exact measured target yaw"),RotB->GetRelativeRotation().Yaw,-90.);
+ const FQuat FixtureS=RotA->GetRelativeRotation().Quaternion(),FixtureT=RotB->GetRelativeRotation().Quaternion();
+ AddInfo(FString::Printf(TEXT("MeasuredEuler fixture sourceYaw=%.17g targetYaw=%.17g directQ source=(%.17g,%.17g,%.17g,%.17g) target=(%.17g,%.17g,%.17g,%.17g)"),RotA->GetRelativeRotation().Yaw,RotB->GetRelativeRotation().Yaw,FixtureS.X,FixtureS.Y,FixtureS.Z,FixtureS.W,FixtureT.X,FixtureT.Y,FixtureT.Z,FixtureT.W));
+ FRotator RotationCanonical;FString RotationEvidence;
  TestTrue(TEXT("actual measured one-ULP Euler with bitidentical direct/cache/world Q qualifies"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
  Stored->Yaw=std::nextafter(Stored->Yaw,0.);
  TestFalse(TEXT("two-ULP Euler refuses"),MeasuredAdjacentRotation(*RotA,*RotB,RotationCanonical,RotationEvidence));
