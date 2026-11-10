@@ -1,0 +1,55 @@
+"""Generic joint-free scanned clay and a separate periodic masonry set; no prop bake."""
+from pathlib import Path
+from PIL import Image
+import numpy as np,json,hashlib
+D=Path(__file__).resolve().parent;T=D/'Textures';T.mkdir(exist_ok=True);I=D/'Inputs';n=1024;R=np.random.default_rng(46391)
+def read_source(key):
+ im=Image.open(I/f'red_brick_{key}_2k.png')
+ if im.mode.startswith('I'):
+  a=np.asarray(im,dtype=np.float64)/65535.;return np.repeat(a[:,:,None],3,axis=2)
+ return np.asarray(im.convert('RGB'),dtype=np.float64)/255
+source={k:read_source(key)for k,key in [('BC','diff'),('N','nor_gl'),('R','rough')]};H,W=source['BC'].shape[:2]
+# Interior clay-only strip, selected from actual retained source view; no mortar borders.
+rect=(1050,345,1220,375);x0,y0,x1,y1=rect
+# Registered periodic blend of one physical patch: preserve spatial texture scale.
+patch={k:a[y0:y1,x0:x1].copy()for k,a in source.items()};pw=(x1-x0)*1.4/W;ph=(y1-y0)*1.4/W
+# Sample periodic patches with reflected duplicate cycles and feather edges, aligned in all channels.
+y,x=np.mgrid[:n,:n];ux=(x/n*round(2/pw)+.24*np.sin(2*np.pi*y/n*13))%1;uy=(y/n*round(2/ph)+.25*np.sin(2*np.pi*x/n*11))%1
+def map_coordinates(a,coords,order=1,mode='wrap'):
+ y,x=coords;iy=np.floor(y).astype(int);ix=np.floor(x).astype(int);fy=y-iy;fx=x-ix;jy=(iy+1)%a.shape[0];jx=(ix+1)%a.shape[1];return a[iy,ix]*(1-fy)*(1-fx)+a[iy,jx]*(1-fy)*fx+a[jy,ix]*fy*(1-fx)+a[jy,jx]*fy*fx
+out={}
+for key,a in patch.items():
+ if key=='BC':a=np.where(a<=.04045,a/12.92,((a+.055)/1.055)**2.4)
+ if key=='N':a=a*2-1
+ vals=np.zeros((n,n,3));weight=np.zeros((n,n))
+ for sx in [0,.5]:
+  for sy in [0,.5]:
+   u=(ux+sx)%1;v=(uy+sy)%1;w=(np.sin(np.pi*u)*np.sin(np.pi*v))**2
+   for c in range(3):vals[:,:,c]+=map_coordinates(a[:,:,c],[v*(len(a)-1),u*(a.shape[1]-1)],order=1,mode='wrap')*w
+   weight+=w
+ vals/=weight[:,:,None]
+ if key=='BC':
+  # Artist-aged clay finish, not unchanged calibrated scan BRDF.
+  vals*=np.array([.40,.46,.52]);vals=np.where(vals<=.0031308,vals*12.92,1.055*vals**(1/2.4)-.055)
+ if key=='N':
+  vals[:,:,:2]*=.7;vals/=np.linalg.norm(vals,axis=2)[:,:,None];vals=vals*.5+.5
+ out[key]=np.clip(vals,0,1)
+# Small periodic porous microheight at .4..2mm added to scanned surface normal.
+f=np.fft.fftfreq(n)*n;a=R.standard_normal((n,n));h=np.fft.ifft2(np.fft.fft2(a)*np.exp(-(f[:,None]**2+f[None,:]**2)/(210**2))).real;h/=h.std();h*=.00009
+normal=out['N']*2-1;normal[:,:,0]-=(np.roll(h,-1,1)-np.roll(h,1,1))*n/4;normal[:,:,1]+=(np.roll(h,-1,0)-np.roll(h,1,0))*n/4;normal/=np.linalg.norm(normal,axis=2)[:,:,None];out['N']=normal*.5+.5
+orm=np.stack([np.ones((n,n)),np.clip(out['R'][:,:,0]*.35+.61,.72,.98),np.zeros((n,n))],2)
+for suffix,a in [('BC',out['BC']),('N_GL',out['N']),('ORM',orm)]:Image.fromarray((a*255+.5).astype('uint8')).save(T/f'T_Shared_FiredClay2m_{suffix}.png')
+# Reuse exact registered mortar and soot maps rather than minting private variants.
+prior=D.parent/'Textures'
+import shutil
+for name in ['LimeMortar2m','Soot2m']:
+ for suffix in ['BC','N_GL','ORM']:shutil.copy2(prior/f'T_Shared_{name}_{suffix}.png',T/f'T_Shared_{name}_{suffix}.png')
+# Distinct generic coursed texture for continuous chimney geometry; never on individual modeled bricks.
+mortar=np.asarray(Image.open(T/'T_Shared_LimeMortar2m_BC.png'),dtype=float)/255
+row=np.floor(y*28/n).astype(int);u=(x*9/n+(row%2)*.5)%1;v=(y*28/n)%1;dist=np.minimum(np.minimum(u,1-u)*2/9,np.minimum(v,1-v)*2/28);mask=np.clip((dist-.003)/.003,0,1);bevel=np.clip((dist-.004)/.003,0,1)
+variation=R.uniform(.74,1.07,(28,10))[row,(np.floor(x*9/n+(row%2)*.5).astype(int)%9)];bc=out['BC']*variation[:,:,None]*mask[:,:,None]+mortar*(1-mask[:,:,None])*.68
+nn=out['N']*2-1;hh=bevel*.0018;nn[:,:,0]-=(np.roll(hh,-1,1)-np.roll(hh,1,1))*n/4;nn[:,:,1]+=(np.roll(hh,-1,0)-np.roll(hh,1,0))*n/4;nn/=np.linalg.norm(nn,axis=2)[:,:,None]
+for suffix,a in [('BC',bc),('N_GL',nn*.5+.5),('ORM',orm)]:Image.fromarray((np.clip(a,0,1)*255+.5).astype('uint8')).save(T/f'T_Shared_FiredClayMasonry2m_{suffix}.png')
+Image.open(I/'red_brick_diff_2k.png').crop(rect).save(I/'SelectedClayOnlyCrop.png')
+json.dump(dict(status='GENERIC_SOURCE_PROPOSAL_BEFORE_MESH_USE',roles=['FiredClay2m','FiredClayMasonry2m'],source='https://polyhaven.com/a/red_brick',author='Rob Tuytel',license='CC0-1.0',published_width_m=1.4,source_image_size=[W,H],joint_free_crop_px=rect,crop_size_m=[pw,ph],normalized_periodic_patch_repeats=[round(2/pw),round(2/ph)],normalized_patch_size_m=[2/round(2/pw),2/round(2/ph)],normal='OpenGL, sourceXYattenuation.7 then90micrometre authored periodicporosity; normalnode1',BC='sourceRGB→linear*.40,.46,.52→sRGB; artistagedbrownfinish, smallperiodiccoordinatewarpbreaksstriprepetition',roughness='artist roughcoat .61+.35scannedR clamped.72..98; notmeasuredfiredclayBRDF',repeat_m=2,resolution=1024,masonry_dimensions=dict(bond='halfstagger',brick_length_m=2/9-.008,brick_height_m=2/28-.008,mortar_m=.008),files={p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in T.glob('*.png')}),open(D/'generic_material_registry.json','w'),indent=2)
+print('GENERIC_CLAY_MAPS_COMPLETE')

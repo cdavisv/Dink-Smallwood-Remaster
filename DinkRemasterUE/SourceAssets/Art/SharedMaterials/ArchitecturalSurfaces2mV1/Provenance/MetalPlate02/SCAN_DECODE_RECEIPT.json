@@ -1,0 +1,44 @@
+{
+  "scope": "Raw source PNG decode as Non-Color into float arrays; diffuse values stay encoded sRGB for explicit conversion later",
+  "files": [
+    {
+      "file": "metal_plate_02_diff_1k.png",
+      "sha256": "6565bd25062e3f724018cc6ddd83ba896bdae7a7026635d670491eced3294463",
+      "PNG_bit_depth": 16,
+      "range": [
+        0.06674296408891678,
+        1.0
+      ],
+      "alpha_unused_range": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "file": "metal_plate_02_nor_gl_1k.png",
+      "sha256": "a39eee156a992afef4f1453010f2f2ff3c01cd6b5e0ce408259954ce25dd049f",
+      "PNG_bit_depth": 16,
+      "range": [
+        0.11558709293603897,
+        1.0
+      ],
+      "alpha_unused_range": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "file": "metal_plate_02_arm_1k.png",
+      "sha256": "7b8221dcba57767eac0509066cfc50bc3183bc4a0c2613c2c61047083ee8e202",
+      "PNG_bit_depth": 16,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "alpha_unused_range": [
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

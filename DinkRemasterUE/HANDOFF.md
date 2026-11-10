@@ -1,3 +1,7 @@
+## Fireplace V4 delivery staged on merged window lighting
+
+Worktree /home/davisc/Work/DinkFireplaceV4Delivery, branch art/fireplace-fired-clay-v4-delivery, base 8ea3d06. Staged 33 verified native packages, two house manifest edits, the V4 authoring packet and three shared libraries. Existing lighting and ledger prefix are preserved. The prior trial and assembly reloads and real-input walkthrough evidence are recorded in Docs/Verification/FireplaceV4Delivery. The gameplay captures precede the lighting merge. Combined regenerated and rendered validation and remote LFS publication proof remain pending.
+
 ## Window lighting importer checks the generated window positions before asset work
 
 The PR59 review follow-up shares the screen transform and element-row builder between the early lighting preflight and manifest generation. A changed screen-1 corner now fails the exact window binding check before AssetTools is accessed. The inert-Unreal entry regression covers that refusal and still checks that the canonical inputs reach AssetTools. The runtime manifest, C++ and lighting profile are byte-identical to the packaged 38476d3 source. This is an importer ordering change. No Unreal import or build was run for it.

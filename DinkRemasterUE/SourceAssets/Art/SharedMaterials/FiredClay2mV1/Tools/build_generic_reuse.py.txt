@@ -1,0 +1,23 @@
+import bpy,json,os,hashlib
+from pathlib import Path
+from mathutils import Vector
+D=Path(__file__).resolve().parent;bpy.ops.wm.open_mainfile(filepath=str(D/'Fireplace_FiredClayV3.blend'));mats=[bpy.data.materials['MI_Shared_FiredClay2m'],bpy.data.materials['MI_Shared_FiredClayMasonry2m']]
+bpy.data.libraries.write(str(D/'SharedFiredClayLibrary_Source.blend'),set(mats),fake_user=True,compress=True)
+for m in mats:m.use_fake_user=True
+for o in list(bpy.data.objects):bpy.data.objects.remove(o,do_unlink=True)
+rows=[]
+for i,(m,soot)in enumerate([(mats[0],0.),(mats[0],.65),(mats[1],0.),(mats[1],.4)]):
+ for j,size in enumerate([2.,4.]):
+  bpy.ops.mesh.primitive_plane_add(size=size,location=(i*4.6,j*5,0));o=bpy.context.object;o.name=m.name+f'_Soot{soot}_{size}m';o.data.materials.append(m);u=o.data.uv_layers.active;u.name='UV0'
+  for q in u.data:q.uv*=size/2
+  c=o.data.color_attributes.new(name='SharedSurfaceData',type='FLOAT_COLOR',domain='CORNER')
+  for q in c.data:q.color=(.85,.80,.76,soot)
+  rows.append(dict(name=o.name,size_m=size,repeat_m=2,UV_span=size/2,soot_coverage=soot))
+for mesh in list(bpy.data.meshes):
+ if not mesh.users:bpy.data.meshes.remove(mesh)
+for m in list(bpy.data.materials):
+ if m not in mats:bpy.data.materials.remove(m,do_unlink=True)
+for im in list(bpy.data.images):
+ if not im.users:bpy.data.images.remove(im)
+s=bpy.context.scene;s.render.engine='CYCLES';s.cycles.device='CPU';s.cycles.samples=16;s.cycles.use_denoising=True;s.render.threads_mode='FIXED';s.render.threads=2;s.render.resolution_x=1400;s.render.resolution_y=800;s.render.resolution_percentage=100;s.render.image_settings.file_format='PNG';s.view_settings.view_transform='AgX';s.view_settings.look='AgX - Medium High Contrast';s.world=bpy.data.worlds.new('GenericReview');s.world.use_nodes=True;s.world.node_tree.nodes['Background'].inputs[0].default_value=(.3,.3,.3,1);s.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+ld=bpy.data.lights.new('GenericKey','AREA');ld.energy=3500;ld.size=12;o=bpy.data.objects.new('GenericKey',ld);s.collection.objects.link(o);o.location=(5,-2,8);o.rotation_euler=(Vector((7,2,0))-o.location).to_track_quat('-Z','Y').to_euler();c=bpy.data.objects.new('GenericCamera',bpy.data.cameras.new('GenericCamera'));s.collection.objects.link(c);c.location=(6.9,2.6,20);c.rotation_euler=(0,0,0);c.data.type='ORTHO';c.data.ortho_scale=19;s.camera=c;bpy.ops.wm.save_as_mainfile(filepath=str(D/'GenericFiredClayReuse2m4m.blend'),compress=True);(D/'Review').mkdir(exist_ok=True);s.render.filepath=str(D/'Review/generic_reuse_2m4m.png');bpy.ops.render.render(write_still=True);json.dump(dict(status='GENERIC_REUSE',planes=rows,source_library_sha256=hashlib.sha256((D/'SharedFiredClayLibrary_Source.blend').read_bytes()).hexdigest(),scope='actual independent2m/4m panels; RGBclaytint andAsootcoverage; no prop bake'),open(D/'GENERIC_REUSE.json','w'),indent=2);print('GENERIC_REUSE_PASS',flush=True);os._exit(0)

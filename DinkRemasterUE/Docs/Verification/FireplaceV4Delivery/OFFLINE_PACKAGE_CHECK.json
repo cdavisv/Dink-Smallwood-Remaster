@@ -1,0 +1,88 @@
+{
+  "native_lfs_pointers_verified": 33,
+  "native_namespace_strings": {
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.uasset": [],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClay2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_ORM",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClayMasonry2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_ORM",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_LimeMortar2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_Soot2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_OakLonggrain2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_IronLead2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_ORM",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FieldstoneSeed2m.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_BC",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClayMasonry2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_IronLead2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_Soot2m"
+    ],
+    "Content/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.uasset": [
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClay2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_IronLead2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_LimeMortar2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_OakLonggrain2m",
+      "/Game/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_Soot2m"
+    ]
+  },
+  "source_library_index_hashes_passed": true,
+  "merged_stonebrook_exact_single_reference_edit": true,
+  "merged_ledger_prefix_exact": true
+}

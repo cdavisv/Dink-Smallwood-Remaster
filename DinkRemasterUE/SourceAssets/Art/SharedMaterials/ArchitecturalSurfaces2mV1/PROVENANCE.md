@@ -1,0 +1,11 @@
+# Generic architectural surface provenance
+
+These are genuinely repeating2m surface maps and genericUV/variant/color contracts, not cottage UV atlases. Exact source map pixels are preserved; registry.json identifies hashes, selectors and storage. The source/library blend contains reusable shaders, and GenericReuse_2m4m demonstrates independent shapes, not the cottage. Registration remains in progress until these artifacts and checks are present; no mesh source use or native import is activated yet.
+
+FieldstoneSeed2m uses CC0 PolyHaven rock_boulder_dry (DimitriosSavva/RicoCilliers), registered cropped/repeated donor with65% normal/flat artist blend already inmap; shader normalstrength1 and SharedSurfaceData.R modulation .94+.10R. It is deliberately distinct from fireplace Fieldstone2m which uses directBC/no tint andnormalstrength.7. FieldstoneWall2m uses CC0 PolyHaven stone_wall, CharlotteBaglioni photography/DarioBarresi processing, publisher2m width with isotropicheight assumption andartistheight qualification.
+
+WeatheredTimber2m longgrain uses CC0 fine_grained_wood fromthe frozen source download receipt; endgrain uses MartinVorel LibreShot BeautifulWoodStructure photograph, creatorcommercial/publicdomainpermission. Exactlinked license was retiredPublicDomainCertification1.0US, not relabeled aCC0deed. Unknownphotoactualscale/species, artist0.5m cropwidth/repeat/color adjustment, flatendnormal/roughness.86/AO1/M0, embeddedphotoillumination acknowledged.
+
+IronLead2m uses CC0 metal_plate_02 finephotocrop+authoredblackenedfinish foriron andauthoredgray/microtexture forlead, notmeasuredlead/zinc. LimeMortarSoot2m uses authoredgenericLimePlasterfield(normalizedBCmean.5,roughness.96) andconstantsoot, notphotographicscans; vertexRGBtint andUV1roughnessbias preserveadaptedsource appearance. DressedReed2m isoriginalauthored fragment pigment/height/normals withperiodic irregularweathering. Generatedartdirectionimage wasreferenceonly; generatedpixelsarenottextures,artistdimensionsnotmeasurements.
+
+Historical donor manifests retain oldproposal/pending statements asprovenance, not current admissionstate. Actualnew registry andsourcechecks govern. Allopaque IOR1.5/specularIORlevel.5 =>F0.04/nativeSpecular.5; GLnormals require nativegreenflip/readback. No nativeacceptance byregistration.

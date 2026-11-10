@@ -1,0 +1,256 @@
+{
+  "status": "PASS_material_graphs_and_packed_pixels_exact_onlynames_pathsnormalized",
+  "donor_sha256_unchanged": "30dc4b7705941adde67622f7f7f2a47b96edf5fc0085646a18382dffef87d824",
+  "materials": [
+    {
+      "old_name": "MI_Candidate_IndividualStone_2m",
+      "registered_material": "MI_Shared_FieldstoneSeed2m",
+      "shader_pixel_fingerprint_exact": "fe9d046e604364cae228e2e4413d68a494438b9fcc5343f470588e0da651ba38"
+    },
+    {
+      "old_name": "MI_Candidate_StoneWallFull_2m",
+      "registered_material": "MI_Shared_FieldstoneWall2m",
+      "shader_pixel_fingerprint_exact": "74fbb1688d4f4d570fd45d4d0d474e4cc4e7d7238c027efcf015101483aa3006"
+    },
+    {
+      "old_name": "MI_Candidate_WeatheredTimber_2Role",
+      "registered_material": "MI_Shared_WeatheredTimber2m",
+      "shader_pixel_fingerprint_exact": "3fe345241b03f2e050b741bcb3f7aa62a2fe2a62193bea7a378ec300697bf391"
+    },
+    {
+      "old_name": "MI_Candidate_Metalwork_2Role",
+      "registered_material": "MI_Shared_IronLead2m",
+      "shader_pixel_fingerprint_exact": "2827b8a629a9d73de3019a5b1f9bbfa901f445b45e597711a39a0d4fdfde2be8"
+    },
+    {
+      "old_name": "MI_Candidate_Mineral_2Role",
+      "registered_material": "MI_Shared_LimeMortarSoot2m",
+      "shader_pixel_fingerprint_exact": "75ff946a3bc15255860710c4fb61efb56b3df4b616499efbfa93f877a9bd86cd"
+    },
+    {
+      "old_name": "MI_Shared_WeatheredDressedReed_2m",
+      "registered_material": "MI_Shared_DressedReed2m",
+      "shader_pixel_fingerprint_exact": "468ad331f59e845fdb9e8fa86f2b4d44c5b0386c3ba41648d12eb0d24b986c46"
+    }
+  ],
+  "reuse_surfaces": [
+    {
+      "object": "FieldstoneSeed2m_Stone_2.0m",
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "variant": "Stone",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "FieldstoneSeed2m_Stone_4.0m",
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "variant": "Stone",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "FieldstoneWall2m_Wall_2.0m",
+      "material": "MI_Shared_FieldstoneWall2m",
+      "variant": "Wall",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "FieldstoneWall2m_Wall_4.0m",
+      "material": "MI_Shared_FieldstoneWall2m",
+      "variant": "Wall",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "WeatheredTimber2m_Longgrain_2.0m",
+      "material": "MI_Shared_WeatheredTimber2m",
+      "variant": "Longgrain",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "WeatheredTimber2m_Longgrain_4.0m",
+      "material": "MI_Shared_WeatheredTimber2m",
+      "variant": "Longgrain",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "WeatheredTimber2m_Endgrain_2.0m",
+      "material": "MI_Shared_WeatheredTimber2m",
+      "variant": "Endgrain",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "WeatheredTimber2m_Endgrain_4.0m",
+      "material": "MI_Shared_WeatheredTimber2m",
+      "variant": "Endgrain",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "IronLead2m_BlackenedIron_2.0m",
+      "material": "MI_Shared_IronLead2m",
+      "variant": "BlackenedIron",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "IronLead2m_BlackenedIron_4.0m",
+      "material": "MI_Shared_IronLead2m",
+      "variant": "BlackenedIron",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "IronLead2m_DullLead_2.0m",
+      "material": "MI_Shared_IronLead2m",
+      "variant": "DullLead",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "IronLead2m_DullLead_4.0m",
+      "material": "MI_Shared_IronLead2m",
+      "variant": "DullLead",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "LimeMortarSoot2m_Lime_2.0m",
+      "material": "MI_Shared_LimeMortarSoot2m",
+      "variant": "Lime",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "LimeMortarSoot2m_Lime_4.0m",
+      "material": "MI_Shared_LimeMortarSoot2m",
+      "variant": "Lime",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "LimeMortarSoot2m_Soot_2.0m",
+      "material": "MI_Shared_LimeMortarSoot2m",
+      "variant": "Soot",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "LimeMortarSoot2m_Soot_4.0m",
+      "material": "MI_Shared_LimeMortarSoot2m",
+      "variant": "Soot",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 1
+    },
+    {
+      "object": "DressedReed2m_Reed_2.0m",
+      "material": "MI_Shared_DressedReed2m",
+      "variant": "Reed",
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ],
+      "UV1_role": 0
+    },
+    {
+      "object": "DressedReed2m_Reed_4.0m",
+      "material": "MI_Shared_DressedReed2m",
+      "variant": "Reed",
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ],
+      "UV1_role": 0
+    }
+  ],
+  "scope": "Independent18planes/9variants; no cottagegeometry/UVatlas inlibrary. Actualrenderneedsinspection; notnativeacceptance.",
+  "recipe_qualification": "Extractionuseshistoricaldonor forrebuild; packedlibrary/reuse scenes selfcontained andrelocatable. No fakefullyreproducibleexternal scanprocessing claim."
+}

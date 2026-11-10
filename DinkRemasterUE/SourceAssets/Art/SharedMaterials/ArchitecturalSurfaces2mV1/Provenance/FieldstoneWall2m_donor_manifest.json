@@ -1,0 +1,88 @@
+{
+  "status": "PROPOSED_SHARED_LIBRARY_SET_NOT_PUBLISHED_OR_ADMITTED",
+  "candidate_material": "MI_Candidate_StoneWallFull_2m",
+  "proposed_library_name": "MI_Shared_ScannedStoneWall_2m",
+  "reuse_scope": "Generic repeating stone masonry for independent wall modules, buildings and masonry panels; not a house UV bake",
+  "source_asset": "https://polyhaven.com/a/stone_wall",
+  "license": "CC0-1.0",
+  "authors": [
+    "Charlotte Baglioni (photography)",
+    "Dario Barresi (processing)"
+  ],
+  "physical_repeat_m": [
+    2,
+    2
+  ],
+  "dimension_qualification": "Publisher width2m; square height2m assumes isotropic texels. Height amplitude80mm is an artist estimate, not measured scan depth.",
+  "texture_edge": 1024,
+  "texel_density_px_m": 512,
+  "textures": {
+    "BC": {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_BC.png",
+      "sRGB": true
+    },
+    "N": {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_N_GL.png",
+      "sRGB": false,
+      "convention": "OpenGL +Y; green flip required on native DirectX import"
+    },
+    "ORM": {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_ORM.png",
+      "sRGB": false,
+      "channels": "R=1(unoccluded assumption, no scanned AO); G=source roughness; B=0(nonmetal)"
+    }
+  },
+  "normal_contract": "Full finite-difference height normal of the generic2m periodic scan-derived field. Intended base tangent frame must describe the nominal wall plane. Do not combine with lowpass geometry smooth normals without compensation: that doubles macro slope. Normal-bearing geometry/UV and native basis require separate proof.",
+  "conversion": "Source BC/R RGB16 -> Pillow RGB8 decode (explicit quantization), BC sRGB->linear Lanczos2:1 resample->sRGB8; scalar roughness Lanczos2:1; full-height derivative normal normalized->RGB8; no house-specific bake or generated paint.",
+  "source_files": [
+    {
+      "path": "CandidateV14/MatchedStoneSources/stone_wall_diff_2k.png",
+      "sha256": "92a4fe145a02dbbf22c1a349a13900a42c851aed1e761fb478960bde71d7d07a"
+    },
+    {
+      "path": "CandidateV14/MatchedStoneSources/stone_wall_rough_2k.png",
+      "sha256": "191d5eb91968b234560b8ccdfe50346b1a3d115890e7e7cf5dcf291e0a875799"
+    },
+    {
+      "path": "CandidateV15/stone_full_height_periodic.npy",
+      "sha256": "f0263d2f3986f41d31163c9a9bb49ca8b1afaeb79f692d50920323673a8d4c4e"
+    },
+    {
+      "path": "ScanGeometrySourcesV1/stone_wall_disp_4k.png",
+      "sha256": "20491a282cafde7a505bfc0b631097c5d51006b4279ebff391964851167b6ad9"
+    }
+  ],
+  "normal_data_checks": {
+    "nonfinite": 0,
+    "zero_normals": 0,
+    "decoded_length_minmax": [
+      0.9934735121668632,
+      1.0063924861687112
+    ],
+    "quantization_angle_degrees_p50_p95_max": [
+      0.1774331135378651,
+      0.2739785777133932,
+      0.3823398489518536
+    ]
+  },
+  "native": "NOT_RUN",
+  "material_library_admission": "NOT_DONE",
+  "known_remaining": "Generic normal/base-frame coupon test and actual source/render/export evidence; six-role whole-cottage material conversion outstanding.",
+  "output_files": [
+    {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_BC.png",
+      "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+      "PNG_bit_depth": 8
+    },
+    {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_N_GL.png",
+      "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+      "PNG_bit_depth": 8
+    },
+    {
+      "path": "Textures/T_SharedCandidate_StoneWall2m_ORM.png",
+      "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+      "PNG_bit_depth": 8
+    }
+  ]
+}

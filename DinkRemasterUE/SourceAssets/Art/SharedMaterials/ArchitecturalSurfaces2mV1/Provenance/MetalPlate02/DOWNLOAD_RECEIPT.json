@@ -1,0 +1,28 @@
+{
+  "publisher": "https://polyhaven.com/a/metal_plate_02",
+  "author": "Rob Tuytel",
+  "license": "CC0-1.0",
+  "publisher_width_m": 2,
+  "publisher_html_sha256": "204c97e94390ce3e58992364707cdf0dab163b8ff4d7f36282610a8233af82ad",
+  "URLs_verified_literal_in_saved_publisher_page": true,
+  "files": [
+    {
+      "file": "metal_plate_02_diff_1k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/metal_plate_02/metal_plate_02_diff_1k.png",
+      "sha256": "6565bd25062e3f724018cc6ddd83ba896bdae7a7026635d670491eced3294463",
+      "bytes": 5401242
+    },
+    {
+      "file": "metal_plate_02_nor_gl_1k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/metal_plate_02/metal_plate_02_nor_gl_1k.png",
+      "sha256": "a39eee156a992afef4f1453010f2f2ff3c01cd6b5e0ce408259954ce25dd049f",
+      "bytes": 3580368
+    },
+    {
+      "file": "metal_plate_02_arm_1k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/metal_plate_02/metal_plate_02_arm_1k.png",
+      "sha256": "7b8221dcba57767eac0509066cfc50bc3183bc4a0c2613c2c61047083ee8e202",
+      "bytes": 5390079
+    }
+  ]
+}

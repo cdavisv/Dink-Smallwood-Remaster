@@ -1,0 +1,33 @@
+{
+  "asset_page": "https://polyhaven.com/a/fine_grained_wood",
+  "license": "CC0-1.0",
+  "license_page": "https://polyhaven.com/license",
+  "publisher_dimension_m": 0.6,
+  "publisher_dimension_axis": "width",
+  "authors": "Rob Tuytel",
+  "literal_URLs_extracted_from_retained_publisher_HTML": true,
+  "publisher_page_fetch": "curl after default urllib request403; retained current publicHTML",
+  "files": [
+    {
+      "file": "fine_grained_wood_col_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/fine_grained_wood/fine_grained_wood_col_2k.png",
+      "bytes": 5970519,
+      "sha256": "a90e4b26c0fb05b8144c7dacf5f9caa76fc781966ab05b5239b1fc2daad69673",
+      "role": "BC"
+    },
+    {
+      "file": "fine_grained_wood_nor_gl_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/fine_grained_wood/fine_grained_wood_nor_gl_2k.png",
+      "bytes": 3210822,
+      "sha256": "8bf311cca68565541749b32c91960e6e40fd9bfce651b923512394d571e21759",
+      "role": "N_GL"
+    },
+    {
+      "file": "fine_grained_wood_rough_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/fine_grained_wood/fine_grained_wood_rough_2k.png",
+      "bytes": 2103115,
+      "sha256": "135bacfcb37c5aed18bf6374ccff063cbaf7d16ad1029b3f1d5a67258be610f7",
+      "role": "R"
+    }
+  ]
+}

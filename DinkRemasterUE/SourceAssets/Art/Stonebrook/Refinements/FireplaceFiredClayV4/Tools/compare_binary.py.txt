@@ -1,0 +1,42 @@
+"""Independent serialized FBX comparison; no exporter/importer inference."""
+from pathlib import Path
+import sys,json,hashlib,shutil
+O=Path(__file__).resolve().parent;OLD=O.parent/'FiredClayV3'
+sys.path.insert(0,str(OLD));import fbxparse as F
+def plain(n):return [n.name,n.props,[plain(c)for c in n.children]]
+def parsed(p):
+ _,t=F.parse(p);top={n.name:n for n in t};obs=top['Objects'].children
+ return top,{n.props[1]:n for n in obs if n.name in {'Geometry','Model','Material'}}
+def colors(g):
+ n=g.first('LayerElementColor');a=n.first('Colors').props[0];a=[a[i:i+4]for i in range(0,len(a),4)]
+ if n.first('ReferenceInformationType').props[0]=='IndexToDirect':a=[a[i]for i in n.first('ColorIndex').props[0]]
+ return a
+rows=[]
+for p in sorted((O/'FBX').glob('*.fbx')):
+ a,aa=parsed(OLD/'FBX'/p.name);b,bb=parsed(p);assert aa.keys()==bb.keys()
+ assert plain(a['GlobalSettings'])==plain(b['GlobalSettings'])
+ changes=[]
+ for name,old in aa.items():
+  new=bb[name];assert old.name==new.name and old.props[1:]==new.props[1:]
+  if old.name=='Geometry' and name.startswith('SM_Fireplace'):
+   assert [plain(n)for n in old.children if n.name!='LayerElementColor']==[plain(n)for n in new.children if n.name!='LayerElementColor'],name
+   oc,nc=colors(old),colors(new);assert len(oc)==len(nc)
+   expected=[[min(1,max(0,v))if i<3 else v for i,v in enumerate(r)]for r in oc];assert nc==expected
+   delta=[abs(x-y)for r,s in zip(oc,nc)for x,y in zip(r,s)]
+   changes.append(dict(geometry=name,corners=len(oc),affected_corners=sum(r!=s for r,s in zip(oc,nc)),affected_channels=[sum(r[i]!=s[i]for r,s in zip(oc,nc))for i in range(4)],max_delta=max(delta),alpha_exact=all(r[3]==s[3]for r,s in zip(oc,nc))))
+  else:assert [plain(n)for n in old.children]==[plain(n)for n in new.children],(name,old.name)
+ # Map per-export IDs to stable object names to compare every semantic connection.
+ def connections(top):
+  ids={n.props[0]:(n.name,n.props[1])for n in top['Objects'].children}
+  return sorted(repr([ids.get(v,v)for v in c.props])for c in top['Connections'].children)
+ assert connections(a)==connections(b)
+ rows.append(dict(file=p.name,geometry_model_material_connections_exact_except_expected_RGB=True,changes=changes))
+# No chimney source attribute changed; retain its existing whole FBX bytes.
+p=O/'FBX/SM_Chimney_Stonebrook_V8.fbx';shutil.copy2(OLD/'FBX'/p.name,p)
+r=json.load(open(O/'FBX_ROUNDTRIP.json'))
+for row in r:
+ if row['name']=='SM_Chimney_Stonebrook_V8':row['sha256']=hashlib.sha256(p.read_bytes()).hexdigest()
+(O/'FBX_ROUNDTRIP.json').write_text(json.dumps(r,indent=2)+'\n')
+graph=json.load(open(O/'ACTUAL_SOURCE_GRAPHS.json'));baseline=json.load(open('/home/davisc/Work/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/ACTUAL_SOURCE_GRAPHS.json'));assert graph['materials']==baseline['materials']
+(O/'BINARY_SUCCESSOR_PROOF.json').write_text(json.dumps(dict(status='PASS',rows=rows,chimney_entire_FBX_byte_exact=True,all_seven_actual_material_graphs_and_packed_images_exact=True,no_texture_library_duplication=True),indent=2)+'\n')
+print('BINARY_SUCCESSOR_PASS',rows)

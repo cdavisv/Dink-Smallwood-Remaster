@@ -1,0 +1,15 @@
+# Starting-house fireplace V4 delivery
+
+The runtime uses a three-LOD fired-clay fireplace at S001_P19 and the verified V4 chimney. The staged payload contains 24 textures, seven material parents, the chimney and the assembled fireplace. The three individual fireplace LOD packages remain trial inputs. The assembled package retains all three relative FBX source filenames. The V4 authoring packet and three required shared libraries are included. Existing shared material registrations are preserved, and the prior index bytes are archived before the ledger appends the new revisions.
+
+The two runtime manifest edits preserve the fireplace origin, offsets, rotation and scale and the chimney transform and component flags. The chimney edit changes only its mesh reference in the merged 8ea3d06 lighting manifest. Generated maps, lighting settings, source code for the game and compiled binaries are excluded from the staged delivery.
+
+Trial import and fresh reload verified all 35 input packages. Assembly V2 saved and freshly reloaded the three-LOD fireplace with exact authored collision. The three authored mesh counts are 57,296, 37,908 and 19,998 triangles. The fireplace retains 16 convex hulls with LOD0 complex collision. The chimney retains its 92 authored hulls. The trial scene checks matched the baseline component placement, navigation flags and six fireplace rays. Both real-input walkthroughs exited and returned from the original spawn. Baseline Interaction03 and candidate Candidate01 selected S001_P19 with real E input and produced the original story response. The baseline's earlier flame selection remains a recorded failure.
+
+The matched close images show finer red-brown brick courses and a defined lintel, with a readable lit opening and consistent floor contact. The player occludes part of the opening and the moving Mother differs between captures. These are qualitative observations from the gameplay stages before lighting merge 8ea3d06. The combined branch still needs a generated scene and rendered review with the merged lighting.
+
+PACKAGE_INVENTORY.json records each native package, source and verified SHA256. EVIDENCE.json records the retained local receipt and capture hashes. Local LFS pointer and binary checks verify staged bytes. Remote LFS upload and cold retrieval require a separate publication check.
+
+All 573 Python tests and both sequential source audits passed. The audits verified 4,617 materialized LFS binaries and 4,503 ledger rows. The exact 33 native staged pointer hashes and sizes match the saved package bytes. The authored source diff passes whitespace checks. Eleven byte-preserved provider HTML snapshots retain their original whitespace.
+
+Blender verified the delivery tree in place with 328 mesh objects, 312 UCX objects, four FBX payloads and 27 active packed images. The portable verifier defaults to V4-only and accepts an explicit --prior-blend path for the historical comparison. Both invocations passed. The delivery does not include the historical V3 blend.
