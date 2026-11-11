@@ -1,0 +1,702 @@
+{
+  "candidate_sha256": "5a61932b0fbb1700a92766af1d97e1cd8293019bdfd801bb55c0ffcbce78afad",
+  "objects": [
+    {
+      "name": "Broken_coopered_stave_08",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_09",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_10",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_11",
+      "vertices": 120,
+      "triangles": 236,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_12",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_13",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_14",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_15",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_16",
+      "vertices": 120,
+      "triangles": 236,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_17",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_00",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_01",
+      "vertices": 120,
+      "triangles": 236,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_02",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_03",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000020265579224,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_04",
+      "vertices": 152,
+      "triangles": 300,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_05",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000001639127731,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_06",
+      "vertices": 120,
+      "triangles": 236,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.000999998301267624,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Broken_coopered_stave_07",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0010000020265579224,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Opened_forged_hoop_00",
+      "vertices": 432,
+      "triangles": 860,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.00299999862909317,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Opened_forged_hoop_01",
+      "vertices": 444,
+      "triangles": 884,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.00299999862909317,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Opened_forged_hoop_02",
+      "vertices": 444,
+      "triangles": 884,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.00299999862909317,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Opened_forged_hoop_03",
+      "vertices": 432,
+      "triangles": 860,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.00299999862909317,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_00",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.003999999724328518,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_01",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.003999999258667231,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_02",
+      "vertices": 92,
+      "triangles": 180,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.003999998793005943,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_03",
+      "vertices": 104,
+      "triangles": 204,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.004000000189989805,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_04",
+      "vertices": 136,
+      "triangles": 268,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.0040000006556510925,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    },
+    {
+      "name": "Scattered_head_board_05",
+      "vertices": 192,
+      "triangles": 380,
+      "finite": true,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "floor_min_m": 0.004000000189989805,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ],
+      "wood_attributes": [
+        "WoodPhoto",
+        "WoodMetric",
+        "WoodEnd",
+        "WoodEndMask",
+        "WoodSeed"
+      ]
+    }
+  ],
+  "all_finite": true,
+  "below_floor_objects": [],
+  "nonmanifold_edges": 0,
+  "degenerate_triangles": 0,
+  "external_file_images": [],
+  "images": [
+    {
+      "name": "GeneratedOak_Albedo_V1.png",
+      "packed": true,
+      "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a"
+    },
+    {
+      "name": "GeneratedOak_Albedo_V1.png.001",
+      "packed": true,
+      "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a"
+    },
+    {
+      "name": "T_BarrelOak_SourceSampler_BC",
+      "packed": true,
+      "sha256": "26333e0a2c11be5a1dd83e1782aae3730199bc233d30185eef98b938273bbff7"
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_BC",
+      "packed": true,
+      "sha256": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714"
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_N_GL",
+      "packed": true,
+      "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be"
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_ORM",
+      "packed": true,
+      "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539"
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_BC",
+      "packed": true,
+      "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07"
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_N_GL",
+      "packed": true,
+      "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf"
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_ORM",
+      "packed": true,
+      "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16"
+    },
+    {
+      "name": "T_Stonebrook_Limewash_BC",
+      "packed": true,
+      "sha256": "000e1d4ddcf73b5d587be416b47901339c81558d09f9b07b63bee02fd918f47f"
+    },
+    {
+      "name": "T_Stonebrook_Limewash_N",
+      "packed": true,
+      "sha256": "0f3acb8e376a4f1fbeb041d8605fc6043ff9b33727b32b5562a44ebf3ae3e0d2"
+    },
+    {
+      "name": "T_Stonebrook_Limewash_ORM",
+      "packed": true,
+      "sha256": "0f5c6994f4fee2b9b893b1d626f89357e7cabcfb2e2a328b339fa571bcf592f1"
+    },
+    {
+      "name": "T_Stonebrook_Linen_BC",
+      "packed": true,
+      "sha256": "7dd5874caf4471b716caa55f867a4f482b498b13d082940cbffc5e34e03aff65"
+    },
+    {
+      "name": "T_Stonebrook_Linen_N",
+      "packed": true,
+      "sha256": "ac7b0da0e8ad6fd9b7e3689fd99ef06ef4d388f29cc185854ca30082894e33bb"
+    },
+    {
+      "name": "T_Stonebrook_Linen_ORM",
+      "packed": true,
+      "sha256": "5b2f9414647e5577aeb91f7194cd5a5e2f8b0d2d2c5b3e70e4fef3dda4aef13e"
+    },
+    {
+      "name": "T_Stonebrook_Oak_BC",
+      "packed": true,
+      "sha256": "01f2a469d9f4bf85a66a6bec3eca872488daf603ec959a9681266b3527353afb"
+    },
+    {
+      "name": "T_Stonebrook_Oak_N",
+      "packed": true,
+      "sha256": "8a6fa877161151522d1d7e4ed91f72ccd9eca3fceaf02e5e38528703b12aebb2"
+    },
+    {
+      "name": "T_Stonebrook_Oak_ORM",
+      "packed": true,
+      "sha256": "61a95fe3ec478df2568c9c934640e70cfeddda8c0c533d5c1b3cc34e64c2a4d0"
+    },
+    {
+      "name": "T_Stonebrook_Wicker_BC",
+      "packed": true,
+      "sha256": "1a8d274c1b4c90103e63e499f6966aab06316de42b87f0c5155d05e6cefc77b3"
+    },
+    {
+      "name": "T_Stonebrook_Wicker_N",
+      "packed": true,
+      "sha256": "1155c20fe9cdd10515fe91718e69eb2f6861d955823903b971cb7b41f7c58243"
+    },
+    {
+      "name": "T_Stonebrook_Wicker_ORM",
+      "packed": true,
+      "sha256": "708158d750853602d8e95a881991da31551627270ffbad616048f49d9834fb48"
+    },
+    {
+      "name": "T_Stonebrook_WroughtIron_BC",
+      "packed": true,
+      "sha256": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075"
+    },
+    {
+      "name": "T_Stonebrook_WroughtIron_N",
+      "packed": true,
+      "sha256": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9"
+    },
+    {
+      "name": "T_Stonebrook_WroughtIron_ORM",
+      "packed": true,
+      "sha256": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb"
+    }
+  ],
+  "linked_libraries": [],
+  "all_wood_corner_attributes_retained": true,
+  "collision_meshes": [],
+  "qualifications": [
+    "Decorative debris overlaps deliberately; no rigid-body settling/intersection-free certificate",
+    "No colliders created; source-only, runtime broken-family binding remains absent",
+    "Target debris uses approved shared longgrain/endgrain/iron only; intact private-material comparison is review-only"
+  ],
+  "target_shared_material_names": [
+    "MI_Shared_OakEndgrain2m",
+    "MI_Shared_OakLonggrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "target_shared_materials_only": true
+}
