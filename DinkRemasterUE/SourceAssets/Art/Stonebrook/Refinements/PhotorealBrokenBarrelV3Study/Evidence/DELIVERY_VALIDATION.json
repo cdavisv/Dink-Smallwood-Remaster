@@ -1,0 +1,20 @@
+{
+  "CPU_jobs": {
+    "relocated_reopen": 0,
+    "reproduce_geometry": 0,
+    "reproduced_reopen": 0
+  },
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "device": "CPU",
+  "threads": 2,
+  "target_geometry_graphs_maps_exact": true,
+  "frozen_source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "reproduced_blend_sha256": "d8c819de70a5b3041514744163b56893ec9eaf51d786f6fe8bdf781f0d377ab0",
+  "initial_verifier_failure": "Tuple vs JSON-list graph comparison; fixed by lossless JSON value conversion, successful rerun; no art changed. Failed log preserved off-tree.",
+  "lineage_qualification": "Earlier tracked42ff raw local signatures differ from derived9d97 parent; no equivalence claimed. Embedded28 matches actual immediate9d97 parent exactly.",
+  "warnings": "Existing PipeWire startup message; no audio config change.",
+  "no_UE_build_native_cache": true
+}

@@ -1,0 +1,264 @@
+{
+  "reopened_candidate_checks": [
+    {
+      "name": "V3_Broken_coopered_stave_00",
+      "signed_volume_m3": 0.0010594487749429463,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_01",
+      "signed_volume_m3": 0.00135532081056715,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_03",
+      "signed_volume_m3": 0.0019471161826579055,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_05",
+      "signed_volume_m3": 0.0010477795403012185,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_06",
+      "signed_volume_m3": 0.001332121549820704,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_07",
+      "signed_volume_m3": 0.0016543042197345768,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_08",
+      "signed_volume_m3": 0.0019332993732358735,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_09",
+      "signed_volume_m3": 0.0022293369374973733,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_10",
+      "signed_volume_m3": 0.0010919654917857455,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_11",
+      "signed_volume_m3": 0.0013494933436041842,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_12",
+      "signed_volume_m3": 0.0016539093091579751,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_14",
+      "signed_volume_m3": 0.002213321320144742,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_15",
+      "signed_volume_m3": 0.001048178254223103,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_17",
+      "signed_volume_m3": 0.0016529458157995656,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Opened_forged_hoop_00",
+      "signed_volume_m3": 9.40601030831232e-05,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Opened_forged_hoop_01",
+      "signed_volume_m3": 0.00013553028252893346,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Opened_forged_hoop_02",
+      "signed_volume_m3": 0.000138278577088907,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Opened_forged_hoop_03",
+      "signed_volume_m3": 0.00011319534628159871,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_00",
+      "signed_volume_m3": 0.0009868944688641952,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_01",
+      "signed_volume_m3": 0.0016017517190013012,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_02",
+      "signed_volume_m3": 0.0017527106586453514,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_03",
+      "signed_volume_m3": 0.0016017517190013016,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_04",
+      "signed_volume_m3": 0.000986894468864195,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Scattered_head_board_05",
+      "signed_volume_m3": 3.8021360665275475e-06,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_02_Split_A",
+      "signed_volume_m3": 0.0008801049698547796,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_02_Split_B",
+      "signed_volume_m3": 0.0007447439170846948,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_04_Split_A",
+      "signed_volume_m3": 0.0012446186124524324,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_04_Split_B",
+      "signed_volume_m3": 0.0009662243280473254,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_13_Split_A",
+      "signed_volume_m3": 0.0010760599144738778,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_13_Split_B",
+      "signed_volume_m3": 0.0008554290883457974,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_16_Split_A",
+      "signed_volume_m3": 0.0007572932943226204,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Broken_coopered_stave_16_Split_B",
+      "signed_volume_m3": 0.0005902285501849804,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Fracture_fibre_00",
+      "signed_volume_m3": 2.2750049911757516e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Fracture_fibre_01",
+      "signed_volume_m3": 2.9333279864111143e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Fracture_fibre_02",
+      "signed_volume_m3": 3.675000937245292e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    {
+      "name": "V3_Fracture_fibre_03",
+      "signed_volume_m3": 4.499998489314025e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    }
+  ],
+  "broken_real_dimensions": {
+    "min_m": [
+      -0.5216614007949829,
+      -0.6371681690216064,
+      0.000999998301267624
+    ],
+    "max_m": [
+      0.5132461786270142,
+      0.6007031798362732,
+      0.19763432443141937
+    ],
+    "dimensions_m": [
+      1.034907579421997,
+      1.2378713488578796,
+      0.19663432613015175
+    ]
+  },
+  "parent_intact_dimensions": {
+    "min_m": [
+      -0.4197332262992859,
+      -0.42229944467544556,
+      0.0
+    ],
+    "max_m": [
+      0.4197332262992859,
+      0.42229944467544556,
+      1.0075000524520874
+    ],
+    "dimensions_m": [
+      0.8394664525985718,
+      0.8445988893508911,
+      1.0075000524520874
+    ]
+  },
+  "intact_parent_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "candidate_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "metric_context": "Original intact real-scale geometry on left; candidate pile on right. Translated horizontally only; no rescaling. Scene metres scale1.",
+  "private_comparison_only": true,
+  "native_game_scale_unproven": true,
+  "no_billboard_dimensions_inherited": true,
+  "CPU_affinity": [
+    0,
+    1
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "exact_original28": true,
+  "sources": [
+    {
+      "path": "/home/davisc/Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend",
+      "sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
+      "objects": {
+        "Broken_coopered_stave_00": "e9742304b29f38622da26eb283d857d81bda9b3347bb941010b72dd23afc72de",
+        "Broken_coopered_stave_01": "5a95daf71e07f8a81bb63738363ea227e4fc3ce7d74e62ba9ef7ffe1cb01ed9d",
+        "Broken_coopered_stave_02": "521f614ed03156101ffe63c68f85780b93fcf140c0daa82f5495cbd43841f102",
+        "Broken_coopered_stave_03": "a2a83429f679515ce84ff9704868a4bc5bab15a17c7c67884a1121443f9fced6",
+        "Broken_coopered_stave_04": "bc6476add7cb76406f6c4f72908f3a35d97b939fb698f5fc9b10ba422ca36c26",
+        "Broken_coopered_stave_05": "27fb66b6aa2d6badd956b4ae81448a570b2a6679f8e0559b25af7f11f5342a5b",
+        "Broken_coopered_stave_06": "9cad47bb7ed2dd417314928e050cb4ec22697ebe48eeee0d9d8d1549f60c9f6c",
+        "Broken_coopered_stave_07": "d773b9fba666ea655fabf05502e7a32edd44d7f97290e38ad0ea89cdcba8f0e9",
+        "Broken_coopered_stave_08": "304b8e010fa0afd5bd7a6f72e77e69b4a0995b8fdbca484091a14749a437c672",
+        "Broken_coopered_stave_09": "03d3911672abb5734b3e5d7c9523842a427effa0db9b59a68cd40322fe6c74d2",
+        "Broken_coopered_stave_10": "b5ce81776253b603522e52d1d38670bbdd82b1399d21518e7557c821b9c9f077",
+        "Broken_coopered_stave_11": "de5f53da32dae7773470183e8ea7ee0da49a5f3823363a4bb5375fcd18b8dee4",
+        "Broken_coopered_stave_12": "73fed6f0932f4793bc4b8d49714793dde9443e9498db2457ad3f622dfb220e3c",
+        "Broken_coopered_stave_13": "deb2c65d9af9c98e26482ae12495048bb75ffa651a1a2bc651ba20d3b202242a",
+        "Broken_coopered_stave_14": "091732fe584163e177612196e17a37d65c582f19deac9434c5fa1a7d75d6e505",
+        "Broken_coopered_stave_15": "35c8fc5a07366252f0bf469b1935b225b663254707f9c390259fe2b96fef8311",
+        "Broken_coopered_stave_16": "2ed49d3779105a5bf877d3cfe01648688f96b1ac3d944796784e3b1ef4b8cbdf",
+        "Broken_coopered_stave_17": "500f6e5710a58880efb3e9eecd79014084d12a48991d3554caa71039f5d63389",
+        "Opened_forged_hoop_00": "4c5cc8fd23bd9fcf5dbf9281a9e0b36b66d2ee7341fd5fbcbad4d7b66f68df05",
+        "Opened_forged_hoop_01": "2118077e8c1bf193d9439a006be9ca23a8d272e7a1661efc5c64caf2f6410cd1",
+        "Opened_forged_hoop_02": "e002728611458236cf9405dff86d210a7b876b0ddde5601ad60538b94b1a7d8d",
+        "Opened_forged_hoop_03": "fe3caf625a7fb681ffe99d9bdeae4944877a96e95f5845fcbc6b8a0a9f06b47d",
+        "Scattered_head_board_00": "0066c50a903f2795038791dfe258de4250c2b8474667597e47f8cf4445f944d5",
+        "Scattered_head_board_01": "617492ffd5efc79551e6625770049d000f1065adc8d806af786a941845bced91",
+        "Scattered_head_board_02": "0dd1faa43ce2c0d66a9799677c9ffc91d07c94c1c859360420b51396a36125bc",
+        "Scattered_head_board_03": "6615e349ce92470df77daece8a5f1f58c8ef5073ba96a446bc4a75e54dc3de4c",
+        "Scattered_head_board_04": "3e915c31d0581abc78fd3decfe9efea6f66e6a63606af69844260fd2ac545af9",
+        "Scattered_head_board_05": "2351af94e9236faf3f9e7b529cbc36b7922f6c028d2cbef1b95ea1e17c4ab524"
+      }
+    },
+    {
+      "path": "/home/davisc/Work/DinkBrokenBarrelV3SourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV3Study/portable.source.blend",
+      "sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+      "objects": {
+        "Broken_coopered_stave_00": "e9742304b29f38622da26eb283d857d81bda9b3347bb941010b72dd23afc72de",
+        "Broken_coopered_stave_01": "5a95daf71e07f8a81bb63738363ea227e4fc3ce7d74e62ba9ef7ffe1cb01ed9d",
+        "Broken_coopered_stave_02": "521f614ed03156101ffe63c68f85780b93fcf140c0daa82f5495cbd43841f102",
+        "Broken_coopered_stave_03": "a2a83429f679515ce84ff9704868a4bc5bab15a17c7c67884a1121443f9fced6",
+        "Broken_coopered_stave_04": "bc6476add7cb76406f6c4f72908f3a35d97b939fb698f5fc9b10ba422ca36c26",
+        "Broken_coopered_stave_05": "27fb66b6aa2d6badd956b4ae81448a570b2a6679f8e0559b25af7f11f5342a5b",
+        "Broken_coopered_stave_06": "9cad47bb7ed2dd417314928e050cb4ec22697ebe48eeee0d9d8d1549f60c9f6c",
+        "Broken_coopered_stave_07": "d773b9fba666ea655fabf05502e7a32edd44d7f97290e38ad0ea89cdcba8f0e9",
+        "Broken_coopered_stave_08": "304b8e010fa0afd5bd7a6f72e77e69b4a0995b8fdbca484091a14749a437c672",
+        "Broken_coopered_stave_09": "03d3911672abb5734b3e5d7c9523842a427effa0db9b59a68cd40322fe6c74d2",
+        "Broken_coopered_stave_10": "b5ce81776253b603522e52d1d38670bbdd82b1399d21518e7557c821b9c9f077",
+        "Broken_coopered_stave_11": "de5f53da32dae7773470183e8ea7ee0da49a5f3823363a4bb5375fcd18b8dee4",
+        "Broken_coopered_stave_12": "73fed6f0932f4793bc4b8d49714793dde9443e9498db2457ad3f622dfb220e3c",
+        "Broken_coopered_stave_13": "deb2c65d9af9c98e26482ae12495048bb75ffa651a1a2bc651ba20d3b202242a",
+        "Broken_coopered_stave_14": "091732fe584163e177612196e17a37d65c582f19deac9434c5fa1a7d75d6e505",
+        "Broken_coopered_stave_15": "35c8fc5a07366252f0bf469b1935b225b663254707f9c390259fe2b96fef8311",
+        "Broken_coopered_stave_16": "2ed49d3779105a5bf877d3cfe01648688f96b1ac3d944796784e3b1ef4b8cbdf",
+        "Broken_coopered_stave_17": "500f6e5710a58880efb3e9eecd79014084d12a48991d3554caa71039f5d63389",
+        "Opened_forged_hoop_00": "4c5cc8fd23bd9fcf5dbf9281a9e0b36b66d2ee7341fd5fbcbad4d7b66f68df05",
+        "Opened_forged_hoop_01": "2118077e8c1bf193d9439a006be9ca23a8d272e7a1661efc5c64caf2f6410cd1",
+        "Opened_forged_hoop_02": "e002728611458236cf9405dff86d210a7b876b0ddde5601ad60538b94b1a7d8d",
+        "Opened_forged_hoop_03": "fe3caf625a7fb681ffe99d9bdeae4944877a96e95f5845fcbc6b8a0a9f06b47d",
+        "Scattered_head_board_00": "0066c50a903f2795038791dfe258de4250c2b8474667597e47f8cf4445f944d5",
+        "Scattered_head_board_01": "617492ffd5efc79551e6625770049d000f1065adc8d806af786a941845bced91",
+        "Scattered_head_board_02": "0dd1faa43ce2c0d66a9799677c9ffc91d07c94c1c859360420b51396a36125bc",
+        "Scattered_head_board_03": "6615e349ce92470df77daece8a5f1f58c8ef5073ba96a446bc4a75e54dc3de4c",
+        "Scattered_head_board_04": "3e915c31d0581abc78fd3decfe9efea6f66e6a63606af69844260fd2ac545af9",
+        "Scattered_head_board_05": "2351af94e9236faf3f9e7b529cbc36b7922f6c028d2cbef1b95ea1e17c4ab524"
+      }
+    }
+  ]
+}
