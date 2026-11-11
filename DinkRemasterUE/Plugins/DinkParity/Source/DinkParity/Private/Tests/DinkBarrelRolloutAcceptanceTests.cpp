@@ -279,7 +279,7 @@ public:
             for (auto* Component : Components)
                 if (Component->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) Family = Component;
             if (!Test->TestNotNull(TEXT("actual family component"), Family) ||
-                !Test->TestNotNull(TEXT("actual family static mesh"), Family->GetStaticMesh()) ||
+                !Test->TestNotNull(TEXT("actual family static mesh"), Family->GetStaticMesh().Get()) ||
                 !Test->TestTrue(TEXT("family visible and original card hidden"),
                     Family->IsVisible() && !Family->bHiddenInGame && Actor->Card && Actor->Card->bHiddenInGame))
                 return true;
@@ -518,7 +518,7 @@ private:
             Test->TestFalse(TEXT("background publication releases controller movement"), Controller->IsMoveInputIgnored()) &&
             Test->TestFalse(TEXT("background publication releases Dink"), Story.GetDirector()->GetDink().bFrozen) &&
             Test->TestNotNull(TEXT("background published family component exists"), Family) &&
-            Test->TestNotNull(TEXT("background published family mesh exists"), Family->GetStaticMesh()) &&
+            Test->TestNotNull(TEXT("background published family mesh exists"), Family->GetStaticMesh().Get()) &&
             Test->TestTrue(TEXT("background retains its visible family and hides its legacy card"),
                 Actor->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) && !Actor->IsHidden() &&
                 Family->IsVisible() && !Family->bHiddenInGame && Actor->Card && Actor->Card->bHiddenInGame);
