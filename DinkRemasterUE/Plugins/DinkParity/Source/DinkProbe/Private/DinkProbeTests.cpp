@@ -49,6 +49,7 @@
 #endif
 #include "DinkProbeHold.h"
 #include "DinkProbeLoadOracle.h"
+#include "DinkProbeLoadTransformDiagnostic.h"
 #include "Misc/Parse.h"
 
 // The probe is its own module (DinkProbe) so it can be compiled into a Development game target and run in a packaged
@@ -3182,16 +3183,22 @@ namespace DinkProbeTest
     // The original load restarts scripts synchronously; never compare their old
     // handles/states as persistent playerInfo. Unknown restart effects fail closed.
     bool CheckOriginalLoad(FAutomationTestBase& Test,UDinkSaveGame& Saved,UDinkSaveSubsystem& Saves,
-        APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 EventStart)
+        APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 EventStart,const DinkProbeLoadDiagnostic::FBoundary& BeforeLoad)
     {
         auto* G=Story.GetGameplay();auto* D=Story.GetDirector();
+        const auto AfterLoad=DinkProbeLoadDiagnostic::Capture(Pawn,Story,Greybox);
         UDinkSaveGame* Actual=Saves.CaptureSnapshot(&Pawn,D->GetDink().Screen);
         if(!Test.TestNotNull(TEXT("actual post-load save capture"),Actual))return false;
         const auto Expected=DinkProbeLoadOracle::Narrative(Saved);
         if(!Test.TestTrue(TEXT("actual saved narrative JSON exists"),Expected.IsValid()))return false;
         const auto Differences=DinkProbeLoadOracle::PersistentDifferences(Saved,*Actual);
         for(const auto& Difference:Differences)Test.AddError(Difference);
-        if(!Differences.IsEmpty())return false;
+        if(!Differences.IsEmpty())
+        {
+            const FString Path=DinkProbeLoadDiagnostic::Write(Saved,*Actual,Pawn,Story,Greybox,BeforeLoad,AfterLoad,EventStart);
+            if(Path.IsEmpty())Test.AddError(TEXT("cannot save exact load transform diagnostic"));else Test.AddInfo(TEXT("exact load transform evidence: ")+Path);
+            return false;
+        }
         const auto* Physical=Greybox.FindScreenAt(Pawn.GetActorLocation());
         if(!Test.TestTrue(TEXT("loaded physical/cache/director/player_map agree with saved screen"),
             Physical&&Greybox.GetCurrentScreen()==Physical&&Physical->ScreenNumber==Saved.CurrentScreen&&
@@ -3367,6 +3374,7 @@ namespace DinkProbeTest
 				}
 				UDinkSaveSubsystem* Saves = C.World->GetGameInstance()->GetSubsystem<UDinkSaveSubsystem>();
 				const int32 LoadEventStart = C.S->Events.Num();
+                const auto LoadBoundary = DinkProbeLoadDiagnostic::Capture(*C.Pawn,*C.S,*C.GB);
 				UDinkSaveGame* Loaded = Saves ? Saves->LoadFromSlot(Spec.LoadSlot, C.Pawn) : nullptr;
 				if (!Loaded)
 				{
@@ -3379,7 +3387,7 @@ namespace DinkProbeTest
 				const auto SavedNarrative = DinkProbeLoadOracle::Narrative(*Loaded);
                 const bool RequiredLoad = C.G->RequiresOriginalHardnessScreen(SavedNarrative.IsValid()?SavedNarrative->GetIntegerField(TEXT("lastScreen")):Loaded->CurrentScreen);
                 const bool OriginalLoad = SavedNarrative.IsValid()?DinkProbeLoadOracle::OriginalMode(*SavedNarrative,RequiredLoad):RequiredLoad;
-                if (OriginalLoad && !CheckOriginalLoad(*Test,*Loaded,*Saves,*C.Pawn,*C.S,*C.GB,LoadEventStart))
+                if (OriginalLoad && !CheckOriginalLoad(*Test,*Loaded,*Saves,*C.Pawn,*C.S,*C.GB,LoadEventStart,LoadBoundary))
                 { RestoreTimeStep();return true; }
                 // Legacy saves retain their exact live-runtime snapshot comparison.
                 if (!OriginalLoad)
