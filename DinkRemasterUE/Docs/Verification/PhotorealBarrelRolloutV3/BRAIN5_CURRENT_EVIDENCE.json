@@ -64,7 +64,18 @@
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_ENGINE_STAGE_AFTER.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/ProjectSaved/Logs/package.log": "f2e818079b6e7b1509a114280f31ae1eb379936c4b9fe044967cc318e1ea2f11",
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/BUILD_PROVENANCE.json": "1b44d72cab45920a117cbf07d3de4614b075ff1d2016c1cd169cd6a024458be9",
-    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/SUCCESSOR.json": "37e2c967528f557736a09408cfc9ad939339518af166e9d63c68830e50d10bfa"
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/SUCCESSOR.json": "37e2c967528f557736a09408cfc9ad939339518af166e9d63c68830e50d10bfa",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_TERMINAL.json": "a7a284466f77da25b20e002e13f9bc147f546265d8edcd07a457c45ead1a9642",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/NATIVE_TERMINAL.json": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/ROOT_POST_CLOSURE.json": "a6a08c6d783a318a23a01a5b1e496b1bd841157f6276d518947fc0a2a2328fcc",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/ROOT_SPIRV_VALIDATION/REPORT.json": "07cdf682aac8dd068a917eb053f6ffa42495710715fcbf5fc9a4ac3c9f41f5a9",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/ProjectSaved/Logs/package.log": "2a954487ed56d94613b92054b1d084a9927bd5bc5d9827fc9bbd5ab3215281c7",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_BUILD_HISTORY_BEFORE.json": "f0e00442124685018fc87940a7a96adc5645992044988173a9e5a3907fa4b607",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_BUILD_HISTORY_AFTER.json": "f0e00442124685018fc87940a7a96adc5645992044988173a9e5a3907fa4b607",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_SHADERPRINT_BEFORE.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_SHADERPRINT_AFTER.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_ENGINE_STAGE_BEFORE.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_ENGINE_STAGE_AFTER.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
   },
   "documentation_parent": "c59537b91a08cf5c74273d21e76e729b5e726241",
   "fresh_ordinary_generation": {
@@ -129,6 +140,46 @@
     "scope": "New ordinary-generated outputs mounted read-only; old generated namespaces hidden. No new RHI/full247/cook acceptance."
   },
   "current_cook_status": {
+    "status": "COOK_AND_STAGE_SUCCESS_PACKAGED_VALIDATION_PENDING",
+    "candidate": 5,
+    "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa",
+    "owning_tool": 35703,
+    "wrapper_exit": 0,
+    "uat_native_exit": 0,
+    "host_elapsed_seconds": 315.6045371249784,
+    "uat_buildcookrun_seconds": 301.51,
+    "stage_completed": true,
+    "iostore_creation_reported_success": true,
+    "separately_built_source": "b4b9e1d343198ecacfbe562f1b7fe88e1f375698",
+    "production_source_base": "bea91fd3566ad793149ba944f5e65dac4993344e",
+    "separately_successful_own_editor_game_outputs": true,
+    "binary_equality_vs_earlier_bea_claimed": false,
+    "uat_target_rebuild_claimed": false,
+    "explicit_skipbuild": true,
+    "mapped_owned_module_count": 7,
+    "immutable_changes": [],
+    "normal_helper_shader_errors": {},
+    "complete_before_after_histories_equal": true,
+    "authoritative_post_closure_native_unknown_empty": true,
+    "actual_global_archive_sha256": "2eb16d1df8039d8ea5f76278e055874204d8cbadef5d83e5363acd4001fed00e",
+    "typed_shader_count": 4,
+    "shader_type": "FSubsurfaceDebugCS",
+    "all_vulkan13_valid": true,
+    "complete_cooked_asset_inventory_proven": false,
+    "cooked_imported_size_runtime_proven": false,
+    "packaged_runtime_proof": false
+  },
+  "cook_C3_status": {
+    "status": "FAILED_BEFORE_COOKER",
+    "candidate": 3,
+    "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa",
+    "uat_native_exit": 6,
+    "host_elapsed_seconds": 14.019331104995217,
+    "reason": "Read-only source Intermediate/Build/XmlConfigCache.bin write in UnrealBuildTool XML configuration cache",
+    "current_successful_cook_claimed": false,
+    "packaged_runtime_proof": false
+  },
+  "cook_C4_status": {
     "status": "C4_FAILED_BEFORE_COOKER_C5_PENDING",
     "latest_actual_failed_candidate": 4,
     "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9",
@@ -153,15 +204,5 @@
       "primary_source": "Engine/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs:735\u2013740",
       "scope": "Authorized pending plan only; no successful UAT/cook/package/runtime claim"
     }
-  },
-  "cook_C3_status": {
-    "status": "FAILED_BEFORE_COOKER",
-    "candidate": 3,
-    "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa",
-    "uat_native_exit": 6,
-    "host_elapsed_seconds": 14.019331104995217,
-    "reason": "Read-only source Intermediate/Build/XmlConfigCache.bin write in UnrealBuildTool XML configuration cache",
-    "current_successful_cook_claimed": false,
-    "packaged_runtime_proof": false
   }
 }
