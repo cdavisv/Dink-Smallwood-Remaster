@@ -254,14 +254,25 @@ public:
             if (Rule.Origin.Screen != Screen) continue;
             auto* Actor = SourceActor(*World, Rule.Origin, *Test);
             if (!Actor || !SourceMatches(*Test, *Actor, Rule)) return true;
-            if (!Test->TestEqual(TEXT("background has no original live birth order"),
+            const FDinkSprite* ExistingLive=nullptr;int32 ExistingHandle=0;
+            for(const auto& Pair:Director->GetSprites())
+                if(Pair.Value.bActive&&Pair.Value.Origin==Rule.Origin&&Pair.Value.Actor.Get()==Actor)
+                {ExistingLive=&Pair.Value;ExistingHandle=Pair.Key;break;}
+            const auto* OriginalPlacement=Gameplay->GetData().FindPlacement(Rule.Origin);
+            FString OrderText;for(int32 Index:OriginalOrder)OrderText+=FString::Printf(TEXT("%d,"),Index);
+            Test->AddInfo(FString::Printf(TEXT("ORIGINAL_BIRTH origin=%s sourceType=%d static=%d effectiveType=%d override=%d projected=%d capability=%d liveHandle=%d order=[%s]"),
+                *Rule.Origin.ToString(),Rule.SourceType,Rule.IsStaticBackground(),
+                OriginalPlacement?Gameplay->EffectiveHardnessPlacementType(*OriginalPlacement):-1,
+                int32(Story->GetWorldState()->GetOverrideType(Rule.Origin)),Gameplay->UsesOriginalHardnessProjection(Screen),
+                World->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>()->RequiresScreenCapability(Screen),
+                ExistingHandle,*OrderText));
+            if (!Test->TestEqual(TEXT("original live birth order matches exact source type: ")+Rule.Origin.ToString(),
                 OriginalOrder.Contains(Rule.Origin.Placement), !Rule.IsStaticBackground()))
                 return true;
             if (!Rule.IsStaticBackground())
             {
-                const auto* Live = Director->FindSprite(Director->HandleForPlacement(Screen, Rule.Origin.Placement));
                 if (!Test->TestTrue(TEXT("original live birth keeps source script identity"),
-                    Live && Live->bActive && Live->Actor.Get() == Actor && Live->Script == Rule.SourceScript))
+                    ExistingLive && ExistingLive->bActive && ExistingLive->Actor.Get() == Actor && ExistingLive->Script == Rule.SourceScript))
                     return true;
             }
             FDinkSprite QueryActor;
