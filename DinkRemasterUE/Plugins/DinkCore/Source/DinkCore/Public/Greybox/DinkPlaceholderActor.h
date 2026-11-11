@@ -10,6 +10,7 @@ class UDinkOriginComponent;
 class UDinkWarpComponent;
 class UStaticMeshComponent;
 class UMaterialInterface;
+struct FDinkFamilyCollisionFitCandidate;
 
 /**
  * Greybox stand-in for one original sprite placement: an upright two-sided card that shows the
@@ -70,6 +71,8 @@ public:
     TObjectPtr<UMaterialInterface> PublishedLegacyCardMaterial;
     UPROPERTY(Transient)
     bool bHasPublishedLegacyPicture=false;
+    /** Lean successful release epoch; weak actor/components, strong picture assets. */
+    TSharedPtr<const FDinkFamilyCollisionFitCandidate> PublishedLegacyReleaseWitness;
 
 	/** The original stamps this placement's hardbox into the screen's hardness. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Dink|Placeholder")

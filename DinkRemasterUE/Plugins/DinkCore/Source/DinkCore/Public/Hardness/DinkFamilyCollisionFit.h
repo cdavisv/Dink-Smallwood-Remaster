@@ -109,6 +109,7 @@ struct DINKCORE_API FDinkFamilyCollisionFitCandidate
     TSharedPtr<TStrongObjectPtr<UTexture>> ReleaseTexture,SourcePictureTexture;
     FDinkLegacyPictureDescriptor ReleasePicture;
     bool bReleasePicturePrepared=false;
+    TSharedPtr<const FDinkFamilyCollisionFitCandidate> RestoreReleaseWitness;
 };
 /** Implemented by the ONE admitted owner coordinator, not by the family layer.
  * The implementation must verify held loading gate and matching committed
