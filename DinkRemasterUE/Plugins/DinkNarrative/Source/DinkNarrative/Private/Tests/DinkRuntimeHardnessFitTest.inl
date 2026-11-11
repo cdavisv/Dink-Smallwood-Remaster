@@ -11,6 +11,10 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Engine/Engine.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/Texture.h"
+#include "Engine/Texture2D.h"
+#include "Serialization/JsonSerializer.h"
+#include "Serialization/JsonWriter.h"
 #include "Materials/MaterialInterface.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "UObject/Package.h"
@@ -184,7 +188,48 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     if(const auto* F=G->Data.FindFrame(173,6))
     {auto& P=BrokenPictureState.DisplayedPicture;P.Width=F->Width;P.Height=F->Height;P.OriginX=F->OriginX;P.OriginY=F->OriginY;P.Sha1=F->PictureDescriptorSha1;}
     FDinkFamilyCollisionFitCandidate PreparedPicture;
-    if(!TestTrue(TEXT("actual source173/6 release picture preflights before mutation"),Families->PrepareCollisionFitReleaseCandidate(Id,BrokenPictureState,PreparedPicture,Error)))return false;
+    const bool PicturePrepared=Families->PrepareCollisionFitReleaseCandidate(Id,BrokenPictureState,PreparedPicture,Error);
+    if(!PicturePrepared)
+    {
+        // Failure-only observation AFTER the real unchanged prepare path. Never finish async compilation here.
+        auto Facts=MakeShared<FJsonObject>();Facts->SetStringField(TEXT("prepare_error"),Error);Facts->SetStringField(TEXT("actor"),Actor->GetPathName());
+        Facts->SetBoolField(TEXT("baseline_present"),Actor->bHasImportedCardBaseline);
+        auto Pose=[](const FTransform& T){auto R=MakeShared<FJsonObject>();R->SetStringField(TEXT("translation"),T.GetTranslation().ToString());R->SetStringField(TEXT("rotation"),T.GetRotation().ToString());R->SetStringField(TEXT("scale"),T.GetScale3D().ToString());return R;};
+        Facts->SetObjectField(TEXT("imported_baseline"),Pose(Actor->ImportedCardRelativeTransform));Facts->SetObjectField(TEXT("card_relative"),Pose(Actor->Card->GetRelativeTransform()));
+        Facts->SetObjectField(TEXT("card_world"),Pose(Actor->Card->GetComponentTransform()));Facts->SetBoolField(TEXT("card_world_upright"),Actor->Card->GetComponentQuat().GetUpVector().Equals(FVector::UpVector,0));
+        Facts->SetStringField(TEXT("origin"),Actor->Origin->OriginId.ToString());Facts->SetStringField(TEXT("source_hash"),Actor->Origin->SourceHash);Facts->SetNumberField(TEXT("source_seq"),Actor->Origin->Sequence);Facts->SetNumberField(TEXT("source_frame"),Actor->Origin->Frame);
+        auto Picture=[](const FDinkLegacyPictureDescriptor& P)
+        {
+            auto R=MakeShared<FJsonObject>();R->SetNumberField(TEXT("sequence"),P.Sequence);R->SetNumberField(TEXT("frame"),P.Frame);R->SetNumberField(TEXT("width"),P.Width);R->SetNumberField(TEXT("height"),P.Height);
+            R->SetNumberField(TEXT("origin_x"),P.OriginX);R->SetNumberField(TEXT("origin_y"),P.OriginY);R->SetStringField(TEXT("descriptor_sha1"),P.Sha1);R->SetBoolField(TEXT("descriptor_valid"),DinkFamilyCollisionFit::ValidatePictureDescriptor(P));
+            const FString Key=FString::Printf(TEXT("%d_%02d"),P.Sequence,P.Frame);const FString ExpectedMI=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"),*Key,*Key);
+            const FString ExpectedTex=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_%s.T_Sprite_%s"),*Key,*Key);
+            R->SetStringField(TEXT("expected_material"),ExpectedMI);R->SetStringField(TEXT("expected_texture"),ExpectedTex);auto* MI=LoadObject<UMaterialInterface>(nullptr,*ExpectedMI);UTexture* Tex=nullptr;
+            R->SetStringField(TEXT("actual_material"),GetPathNameSafe(MI));R->SetStringField(TEXT("material_class"),MI?MI->GetClass()->GetPathName():FString());
+            R->SetBoolField(TEXT("tex_parameter_found"),MI&&MI->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Tex));R->SetStringField(TEXT("actual_texture"),GetPathNameSafe(Tex));R->SetStringField(TEXT("texture_class"),Tex?Tex->GetClass()->GetPathName():FString());
+            if(Tex)
+            {
+                #if WITH_EDITOR
+                R->SetBoolField(TEXT("is_compiling_before_dimensions"),Tex->IsCompiling());
+                #endif
+                R->SetNumberField(TEXT("surface_width"),Tex->GetSurfaceWidth());R->SetNumberField(TEXT("surface_height"),Tex->GetSurfaceHeight());
+                R->SetNumberField(TEXT("expected_resampled_width"),FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Width))));R->SetNumberField(TEXT("expected_resampled_height"),FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Height))));
+                #if WITH_EDITOR
+                R->SetBoolField(TEXT("is_compiling_after_dimensions"),Tex->IsCompiling());
+                #endif
+                #if WITH_EDITORONLY_DATA
+                if(const auto* T2D=Cast<UTexture2D>(Tex)){R->SetNumberField(TEXT("source_width"),T2D->Source.GetSizeX());R->SetNumberField(TEXT("source_height"),T2D->Source.GetSizeY());}
+                #endif
+            }
+            return R;
+        };
+        Facts->SetObjectField(TEXT("source_picture"),Picture(BrokenPictureState.SourcePicture));Facts->SetObjectField(TEXT("displayed_picture"),Picture(BrokenPictureState.DisplayedPicture));
+        const FString Dir=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Automation/ReleasedPicturePreflight"));IFileManager::Get().MakeDirectory(*Dir,true);
+        const FString File=Dir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));FString Text;
+        const bool Written=FJsonSerializer::Serialize(Facts,TJsonWriterFactory<>::Create(&Text))&&FFileHelper::SaveStringToFile(Text,*File,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting);
+        AddInfo(FString::Printf(TEXT("release preflight diagnostic receipt=%s written=%d payload=%s"),*File,Written,*Text));
+    }
+    if(!TestTrue(FString(TEXT("actual source173/6 release picture preflights before mutation: "))+Error,PicturePrepared))return false;
     #if WITH_EDITOR
     if(auto* TargetMI=Cast<UMaterialInstanceConstant>(PreparedPicture.ReleaseMaterial->Get()))
     {
