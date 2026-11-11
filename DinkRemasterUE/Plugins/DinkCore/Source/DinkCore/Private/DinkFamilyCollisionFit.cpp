@@ -546,26 +546,47 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitReleaseCandidate(const FDinkOri
        Current.DisplayedPicture.Sequence!=Current.DisplayedSequence||Current.DisplayedPicture.Frame!=Current.DisplayedFrame||
        !DinkFamilyCollisionFit::ProjectLegacyCard(Current.SourcePicture,Current.DisplayedPicture,Actor->ImportedCardRelativeTransform,Prepared.ReleaseCardRelative,Error))
     {if(Error.IsEmpty())Error=TEXT("missing/mismatched immutable imported card/picture baseline");return false;}
-    auto ResolvePicture=[&](const FDinkLegacyPictureDescriptor& Picture,UTexture*& Texture)->UMaterialInterface*
+    auto ResolvePicture=[&](const TCHAR* Role,const FDinkLegacyPictureDescriptor& Picture,UTexture*& Texture)->UMaterialInterface*
     {
-        if(!DinkFamilyCollisionFit::ValidatePictureDescriptor(Picture))return nullptr;
+        if(!DinkFamilyCollisionFit::ValidatePictureDescriptor(Picture))
+        {if(Error.IsEmpty())Error=FString(Role)+TEXT(" picture descriptor invalid");return nullptr;}
         const FString Key=FString::Printf(TEXT("%d_%02d"),Picture.Sequence,Picture.Frame);
         const FString MaterialPath=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"),*Key,*Key);
         const FString TexturePath=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_%s.T_Sprite_%s"),*Key,*Key);
         auto* Material=LoadObject<UMaterialInterface>(nullptr,*MaterialPath);Texture=nullptr;
-        if(!Material||Material->GetPathName()!=MaterialPath||
-           !Material->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Texture)||!Texture||Texture->GetPathName()!=TexturePath||
-           Texture->GetSurfaceWidth()!=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Width)))||
-           Texture->GetSurfaceHeight()!=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Height))))return nullptr;
+        const bool MaterialMatches=Material&&Material->GetPathName()==MaterialPath;
+        const bool ParameterFound=MaterialMatches&&Material->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Texture);
+        const bool TextureMatches=ParameterFound&&Texture&&Texture->GetPathName()==TexturePath;
+        const uint32 ExpectedWidth=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Width)));
+        const uint32 ExpectedHeight=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Height)));
+        float ActualWidth=0,ActualHeight=0;bool WidthRead=false,HeightRead=false;
+        bool CompilingObserved=false,CompilingBeforeDimensions=false;
+        if(TextureMatches)
+        {
+            #if WITH_EDITOR
+            CompilingObserved=true;CompilingBeforeDimensions=Texture->IsCompiling();
+            #endif
+            // Preserve original short-circuit order; cache the EXACT values the predicate uses.
+            WidthRead=true;ActualWidth=Texture->GetSurfaceWidth();
+            if(ActualWidth==ExpectedWidth){HeightRead=true;ActualHeight=Texture->GetSurfaceHeight();}
+        }
+        if(!TextureMatches||ActualWidth!=ExpectedWidth||!HeightRead||ActualHeight!=ExpectedHeight)
+        {
+            if(Error.IsEmpty())Error=FString::Printf(
+                TEXT("%s picture asset preflight failed: expectedMI=%s actualMI=%s materialMatch=%d parameterFound=%d expectedTex=%s actualTex=%s textureMatch=%d widthRead=%d actualWidth=%.17g expectedWidth=%u heightRead=%d actualHeight=%.17g expectedHeight=%u compilingObserved=%d compilingBeforeDimensions=%d"),
+                Role,*MaterialPath,*GetPathNameSafe(Material),MaterialMatches,ParameterFound,*TexturePath,*GetPathNameSafe(Texture),TextureMatches,
+                WidthRead,double(ActualWidth),ExpectedWidth,HeightRead,double(ActualHeight),ExpectedHeight,CompilingObserved,CompilingBeforeDimensions);
+            return nullptr;
+        }
         return Material;
     };
     // The ordinary exporter resamples the WHOLE image to power-of-two texture sizes;
     // UV0 remains0..1, so logical source width/pivot drive geometry without UV cropping.
     UTexture* SourceTexture=nullptr;UTexture* TargetTexture=nullptr;
-    auto* SourceMaterial=ResolvePicture(Current.SourcePicture,SourceTexture);
-    auto* Material=ResolvePicture(Current.DisplayedPicture,TargetTexture);
+    auto* SourceMaterial=ResolvePicture(TEXT("Source"),Current.SourcePicture,SourceTexture);
+    auto* Material=ResolvePicture(TEXT("Target"),Current.DisplayedPicture,TargetTexture);
     if(!SourceMaterial||!Material)
-    {Error=TEXT("missing/wrong source or effective-frame material/Tex identity or resampled dimensions");return false;}
+    {if(Error.IsEmpty())Error=TEXT("missing/wrong source or effective-frame material/Tex identity or resampled dimensions");return false;}
     // Position/scale come from source pixels; retain the currently legitimate billboard yaw.
     Prepared.ReleaseCardRelative.SetRotation(Actor->Card->GetRelativeTransform().GetRotation());
     Prepared.ReleaseMaterial=MakeShared<TStrongObjectPtr<UMaterialInterface>>(Material);
