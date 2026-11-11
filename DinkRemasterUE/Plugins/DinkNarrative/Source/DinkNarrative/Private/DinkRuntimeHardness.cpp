@@ -264,8 +264,11 @@ bool UDinkGameplay::PrepareOriginalHardnessPlacements(int32 Screen,FString& Erro
     const auto* Runtime=RuntimeHardness.Find(RuntimeHardnessKey(Screen,Vision));
     if(Runtime&&Runtime->IsValid()&&(*Runtime)->Published)
     {
+        const bool WasLoading = IsHardnessLoading();
+        SetHardnessLoading(true);
         if(!(*Runtime)->Session.RedrawFitted({},Stamps,*(*Runtime)->Owner,Fits->Bodies,Fits->SuppressedCodes,&Context,Apply))return Fail(TEXT("initial physical projection refused"));
         if(!PublishHardnessFitVisuals(BeforeFits,Error))return Fail(*Error);
+        SetHardnessLoading(WasLoading);
     }
     else return Fail(TEXT("initial placement physical owner not admitted"));
     Error.Reset();return true;
