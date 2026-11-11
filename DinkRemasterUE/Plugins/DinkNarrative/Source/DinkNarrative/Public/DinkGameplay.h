@@ -616,7 +616,7 @@ private:
     bool PublishHardnessFitVisuals(const TSharedPtr<FDinkHardnessFitSet>& Before, FString& Error);
     bool FittedMissileMatches(const FDinkSprite& Missile,const FDinkSprite& Target,int32 Range) const;
     bool HasHardnessFitInstance(const FDinkSprite& Sprite) const;
-    UPrimitiveComponent* FindHardnessFitPrimitive(const FDinkSprite& Sprite) const;
+    UPrimitiveComponent* FindHardnessFitPrimitive(const FDinkSprite& Sprite, FString* Error=nullptr) const;
     friend class FDinkHardnessShadowRoundTrip;
     friend class FDinkHardnessRetainedLegacyOwner;
     friend class FDinkHardnessEditorCarryActor;

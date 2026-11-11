@@ -75,14 +75,19 @@ public:
         :Candidate(C),Families(&F),Implicit(C.Geometry.BodySetup->TriMeshGeometries[0].GetReference()){}
     const void* BackendTag() const noexcept override{return NativeFitTag();}
     bool Current() const noexcept override
+    {return CurrentWithError(nullptr);}
+    bool CurrentWithError(FString* OutError) const
     {
-        if(!Families.IsValid() || !Candidate.Geometry.BodySetup.IsValid())return false;
+        auto Fail=[&](const TCHAR* Why){if(OutError)*OutError=Why;return false;};
+        if(!Families.IsValid() || !Candidate.Geometry.BodySetup.IsValid())return Fail(TEXT("expired family or body setup"));
         const auto* B=Candidate.Geometry.BodySetup.Get();
-        if(B->TriMeshGeometries.Num()!=1 || B->TriMeshGeometries[0].GetReference()!=Implicit)return false;
+        if(B->TriMeshGeometries.Num()!=1 || B->TriMeshGeometries[0].GetReference()!=Implicit)return Fail(TEXT("cooked implicit identity changed"));
         FString Error;auto C=Candidate;
         if(Families->ValidateCollisionFit(C,C.Sprite,Error))return true;
         C.bVisualApplied=!C.bVisualApplied;
-        return Families->ValidateCollisionFit(C,C.Sprite,Error);
+        const bool Valid=Families->ValidateCollisionFit(C,C.Sprite,Error);
+        if(!Valid&&OutError)*OutError=Error;
+        return Valid;
     }
 };
 struct FRegisteredShape
@@ -392,14 +397,25 @@ std::optional<DinkHardness::FittedOwner> FDinkRegisteredHardnessOwner::MakeFitte
     for(const auto& P:Candidate.LogicalCells)Cells.push_back(P.Y*600+P.X);
     return DinkHardness::FittedOwner{Code,reinterpret_cast<std::uintptr_t>(Candidate.Actor.Get()),Geometry,std::move(Cells)};
 }
-UPrimitiveComponent* FDinkRegisteredHardnessOwner::FindFittedPrimitive(std::uintptr_t InstanceId) const
+UPrimitiveComponent* FDinkRegisteredHardnessOwner::FindFittedPrimitive(std::uintptr_t InstanceId,FString* Error) const
 {
-    if(!IsInGameThread() || !HasAdmittedBaseline() || !Impl->Active->StillRegistered() ||
-       !Impl->Active->HasFlags(true))return nullptr;
-    bool Current=false;for(const auto& Fit:Impl->Active->Fits)
-        if(Fit.InstanceId==InstanceId && Fit.Geometry && Fit.Geometry->Current()){Current=true;break;}
-    const auto* Found=Impl->Active->Fitted.Find(InstanceId);
-    return Current && Found ? Found->Get() : nullptr;
+    auto Fail=[&](const TCHAR* Why)->UPrimitiveComponent*{if(Error)*Error=Why;return nullptr;};
+    if(!IsInGameThread()||!HasAdmittedBaseline())return Fail(TEXT("hardness baseline no longer admitted"));
+    if(!Impl->Active->StillRegistered())return Fail(TEXT("active hardness body set no longer registered"));
+    if(!Impl->Active->HasFlags(true))return Fail(TEXT("active hardness shape flags changed"));
+    for(const auto& Fit:Impl->Active->Fits)
+    {
+        if(Fit.InstanceId!=InstanceId||!Fit.Geometry)continue;
+        if(Error)
+        {
+            if(Fit.Geometry->BackendTag()!=NativeFitTag())return Fail(TEXT("unexpected fitted geometry backend"));
+            if(!static_cast<const FNativeFit&>(*Fit.Geometry).CurrentWithError(Error))return nullptr;
+        }
+        else if(!Fit.Geometry->Current())return nullptr;
+        const auto* Found=Impl->Active->Fitted.Find(InstanceId);
+        return Found&&Found->IsValid()?Found->Get():Fail(TEXT("fitted component missing"));
+    }
+    return Fail(TEXT("actor has no admitted fitted geometry"));
 }
 
 const void* FDinkRegisteredHardnessOwner::BackendTag() const noexcept{return NativeOwnerTag();}

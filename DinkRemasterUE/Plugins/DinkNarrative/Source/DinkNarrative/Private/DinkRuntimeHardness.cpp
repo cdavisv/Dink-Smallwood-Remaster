@@ -670,13 +670,15 @@ bool UDinkGameplay::HasHardnessFitInstance(const FDinkSprite& S) const
     return false;
 }
 
-UPrimitiveComponent* UDinkGameplay::FindHardnessFitPrimitive(const FDinkSprite& S) const
+UPrimitiveComponent* UDinkGameplay::FindHardnessFitPrimitive(const FDinkSprite& S,FString* Error) const
 {
-    if(!HardnessProjection||!HardnessProjection->Fits||S.Screen!=HardnessProjection->Screen||!S.Actor.IsValid())return nullptr;
+    if(Error)Error->Reset();
+    auto Fail=[&](const TCHAR* Why)->UPrimitiveComponent*{if(Error)*Error=Why;return nullptr;};
+    if(!HardnessProjection||!HardnessProjection->Fits||S.Screen!=HardnessProjection->Screen||!S.Actor.IsValid())return Fail(TEXT("missing projection, fit set or current actor"));
     const auto* State=RuntimeHardness.Find(RuntimeHardnessKey(S.Screen,HardnessProjection->Vision));
-    if(!State||!State->IsValid()||!(*State)->Published)return nullptr;
+    if(!State||!State->IsValid()||!(*State)->Published)return Fail(TEXT("runtime hardness state is not published"));
     auto* Owner=FDinkRegisteredHardnessOwner::CheckedOwner((*State)->Owner.Get());
-    return Owner?Owner->FindFittedPrimitive(reinterpret_cast<std::uintptr_t>(S.Actor.Get())):nullptr;
+    return Owner?Owner->FindFittedPrimitive(reinterpret_cast<std::uintptr_t>(S.Actor.Get()),Error):Fail(TEXT("missing registered hardness owner"));
 }
 
 bool UDinkGameplay::BuildHardnessDrawStamps(int32 Screen,int32 Vision,
