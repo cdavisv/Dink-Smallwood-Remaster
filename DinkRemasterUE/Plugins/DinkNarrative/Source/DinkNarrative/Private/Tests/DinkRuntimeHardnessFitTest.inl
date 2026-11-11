@@ -394,6 +394,55 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     Story->GetWorldState()->ClearOverride(Id);G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,1);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);S->Props.Add(TEXT("nohit"),0);
     G->RecordEditorHardness(Id,0);
+    auto IntactState=ReleaseState;IntactState.bPrebirth=false;IntactState.RuntimeHandle=Handle;IntactState.bActive=true;IntactState.DisplayedSequence=173;IntactState.DisplayedFrame=1;
+    IntactState.DisplayedPicture=IntactState.SourcePicture;IntactState.AnimationSequence=0;IntactState.Brain=0;IntactState.NoHit=0;
+    FDinkFamilyCollisionFitCandidate RestoreCandidate;
+    const auto RetainedWitness=Actor->PublishedLegacyReleaseWitness;
+    if(!TestTrue(TEXT("successful publication retains lean nonrecursive picture witness"),RetainedWitness.IsValid()&&RetainedWitness->Geometry.Vertices.IsEmpty()&&RetainedWitness->LogicalCells.IsEmpty()&&!RetainedWitness->RestoreReleaseWitness))return false;
+    Actor->PublishedLegacyReleaseWitness.Reset();
+    TestFalse(TEXT("intact restore cannot infer missing publication witness"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->bHasPublishedLegacyPicture=false;
+    TestFalse(TEXT("unwitnessed visible card and hidden family cannot admit intact restore"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->PublishedLegacyReleaseWitness=RetainedWitness;
+    Actor->bHasPublishedLegacyPicture=false;
+    TestFalse(TEXT("cleared flag cannot bypass retained publication witness"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->bHasPublishedLegacyPicture=true;
+    auto* RetainedMesh=Actor->Card->GetStaticMesh();Actor->Card->SetStaticMesh(nullptr);
+    TestFalse(TEXT("intact restore refuses swapped published card mesh"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->Card->SetStaticMesh(RetainedMesh);
+    const auto SourceSha=Actor->PublishedSourcePictureSha1;Actor->PublishedSourcePictureSha1=TEXT("tampered");
+    TestFalse(TEXT("intact restore refuses changed source descriptor witness"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->PublishedSourcePictureSha1=SourceSha;
+    auto BadIntactDescriptor=IntactState;BadIntactDescriptor.SourcePicture.OriginX++;
+    TestFalse(TEXT("intact restore rejects changed canonical pivot retaining old descriptor SHA"),Families->PrepareCollisionFit(Id,BadIntactDescriptor,RestoreCandidate,Error));
+    if(!TestTrue(TEXT("known published broken card qualifies genuine intact request"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error))){AddError(Error);return false;}
+    Actor->PublishedLegacyReleaseWitness.Reset();
+    TestFalse(TEXT("prepare-to-apply witness removal refuses"),Families->ValidateCollisionFit(RestoreCandidate,IntactState,Error));
+    Actor->PublishedLegacyReleaseWitness=RetainedWitness;
+    const auto BaselineBefore=Actor->ImportedCardRelativeTransform;Actor->ImportedCardRelativeTransform.AddToTranslation(FVector(1,0,0));
+    TestFalse(TEXT("intact restore refuses immutable baseline tamper"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->ImportedCardRelativeTransform=BaselineBefore;
+    Actor->PublishedLegacyCardRelative=EpochULP;
+    TestFalse(TEXT("intact restore refuses one ULP published epoch tamper"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->PublishedLegacyCardRelative=ReleasedBefore;
+    Actor->Card->SetAbsolute(true,false,false);
+    TestFalse(TEXT("intact restore refuses unsupported parent-relative authority"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->Card->SetAbsolute(false,false,false);Actor->Card->SetRelativeTransform(ReleasedBefore);
+    Actor->Card->SetMaterial(0,RetainedWitness->SourcePictureMaterial->Get());
+    TestFalse(TEXT("intact restore refuses changed published card material"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+    Actor->Card->SetMaterial(0,RetainedWitness->ReleaseMaterial->Get());
+    #if WITH_EDITOR
+    if(auto* PublishedMI=Cast<UMaterialInstanceConstant>(RetainedWitness->ReleaseMaterial->Get()))
+    {
+        const bool WasDirty=PublishedMI->GetOutermost()->IsDirty();UTexture* ExactTex=RetainedWitness->ReleaseTexture->Get();
+        ON_SCOPE_EXIT {PublishedMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),ExactTex);PublishedMI->GetOutermost()->SetDirtyFlag(WasDirty);};
+        PublishedMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),RetainedWitness->SourcePictureTexture->Get());
+        TestFalse(TEXT("intact restore refuses prior published MI Tex mutation"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
+        TestFalse(TEXT("prepared restore revalidates prior published MI Tex epoch"),Families->ValidateCollisionFit(RestoreCandidate,IntactState,Error));
+        PublishedMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),ExactTex);
+    }
+    else AddError(TEXT("expected published ordinary MI for intact restore texture control"));
+    #endif
     const bool RestoredIntact=G->RedrawRuntimeHardnessMap(209,Error);
     if(!TestTrue(TEXT("intact source restore after repeated broken presentation"),RestoredIntact)){RedrawFailure(TEXT("intact source restore after repeated broken presentation"),Error);return false;}
     TestNotNull(TEXT("intact restore reintroduces actual fitted body"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));

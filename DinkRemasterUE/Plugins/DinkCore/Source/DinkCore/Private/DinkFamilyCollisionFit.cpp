@@ -332,6 +332,32 @@ bool DinkFamilyCollisionFit::BuildFootprint(const FDinkFamilyFittedGeometry& G,c
     BoundaryError=DinkFamilyFit::MaximumCellRadiusCm(Map);Error.Reset();return true;
 }
 
+namespace
+{
+bool PublishedReleaseMatches(const ADinkPlaceholderActor& Actor,const FDinkFamilyCollisionFitCandidate& W,
+    const FDinkLegacyPictureDescriptor& SourcePicture,FString& Error)
+{
+    const auto* Card=Actor.Card.Get();const auto* Source=W.SourceActor.Get();
+    if(!DinkFamilyCollisionFit::ValidatePictureDescriptor(SourcePicture)||
+       !Actor.bHasImportedCardBaseline||!Actor.bHasPublishedLegacyPicture||
+       Actor.PublishedLegacyReleaseWitness.Get()!=&W||W.Actor.Get()!=&Actor||W.World.Get()!=Actor.GetWorld()||W.Card.Get()!=Card||
+       !Card||!Actor.Origin||!Source||!Source->Origin||W.Origin!=Source->Origin->OriginId||Source->Origin->SourceHash!=W.SourceHash||
+       Source->Origin->ScriptName!=W.ScriptName||
+       !W.BeforeCardMesh.IsValid()||Card->GetStaticMesh()!=W.BeforeCardMesh.Get()||Card->GetAttachParent()!=Actor.GetRootComponent()||
+       !Card->GetAttachSocketName().IsNone()||Card->IsUsingAbsoluteLocation()||Card->IsUsingAbsoluteRotation()||Card->IsUsingAbsoluteScale()||
+       !Actor.ImportedCardRelativeTransform.Equals(W.ImportedCardBaseline,0)||
+       !Actor.PublishedImportedCardBaseline.Equals(W.ImportedCardBaseline,0)||
+       SourcePicture.Sha1!=W.Sprite.SourcePicture.Sha1||Actor.PublishedSourcePictureSha1!=W.Sprite.SourcePicture.Sha1||
+       !Actor.PublishedLegacyCardRelative.Equals(W.ReleaseCardRelative,0)||
+       !Card->GetRelativeTransform().GetTranslation().Equals(W.ReleaseCardRelative.GetTranslation(),0)||
+       !Card->GetRelativeTransform().GetScale3D().Equals(W.ReleaseCardRelative.GetScale3D(),0)||
+       !Card->GetComponentQuat().GetUpVector().Equals(FVector::UpVector,0)||
+       !W.ReleaseMaterial||Actor.PublishedLegacyCardMaterial!=W.ReleaseMaterial->Get()||Card->GetMaterial(0)!=W.ReleaseMaterial->Get())
+    {Error=TEXT("published release identity/geometry/baseline witness changed");return false;}
+    return DinkFamilyCollisionFit::ValidateReleasedPictureAssets(W,Error);
+}
+}
+
 bool UDinkArtFamilySubsystem::PrepareCollisionFit(const FDinkOriginId& Id,const FDinkFamilyFitSpriteState& Sprite,
     FDinkFamilyCollisionFitCandidate& Out,FString& Error) const
 { return PrepareCollisionFitImpl(Id,Sprite,Out,Error,false); }
@@ -365,14 +391,25 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
         Family->GetAttachParent()!=Actor->GetRootComponent()||Family->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
         Family->CanEverAffectNavigation()||Family->GetGenerateOverlapEvents())
         return Fail(TEXT("real-size exclusive noncolliding family binding changed"));
+    if(Actor->bHasPublishedLegacyPicture!=Actor->PublishedLegacyReleaseWitness.IsValid())
+        return Fail(TEXT("published release flag/witness disagree"));
+    if(Actor->PublishedLegacyReleaseWitness)
+    {
+        if(Actor->PublishedLegacyReleaseWitness->FamilyComponent.Get()!=Family||Actor->PublishedLegacyReleaseWitness->SourceActor.Get()!=Source)
+            return Fail(TEXT("published release family/source identity changed"));
+        if(!PublishedReleaseMatches(*Actor,*Actor->PublishedLegacyReleaseWitness,Sprite.SourcePicture,Error))return false;
+    }
     if(!Release)
     {
         const bool IntactPresentation=Actor->Card->bHiddenInGame&&!Family->bHiddenInGame&&Family->IsVisible();
         const bool RestoringPrebirth=Sprite.bPrebirth&&Actor==Source&&Actor->Card->IsVisible()&&
             !Actor->Card->bHiddenInGame&&Family->bHiddenInGame&&!Family->IsVisible();
-        if(!IntactPresentation&&!RestoringPrebirth)return Fail(TEXT("unexpected fitted family presentation"));
+        const bool RestoringPublished=Actor->PublishedLegacyReleaseWitness.IsValid()&&Actor->Card->IsVisible()&&
+            !Actor->Card->bHiddenInGame&&Family->bHiddenInGame&&!Family->IsVisible();
+        if(!IntactPresentation&&!RestoringPrebirth&&!RestoringPublished)return Fail(TEXT("unexpected fitted family presentation"));
     }
     FDinkFamilyCollisionFitCandidate C;C.Origin=Id;C.Sprite=Sprite;C.World=GetWorld();C.Actor=Actor;C.SourceActor=Source;C.FamilyComponent=Family;C.Card=Actor->Card;
+    C.RestoreReleaseWitness=Actor->PublishedLegacyReleaseWitness;
     C.bReleaseOnly=Release;C.BeforeFamilyHidden=Family->bHiddenInGame;C.BeforeCardHidden=Actor->Card->bHiddenInGame;C.BeforeCardVisible=Actor->Card->IsVisible();
     C.BeforeCardMesh=Actor->Card->GetStaticMesh();C.Corners=Volume->Corners;C.BeforeActor=Actor->GetActorTransform();
     C.BeforeFamily=Family->GetComponentTransform();C.BeforeCard=Actor->Card->GetComponentTransform();
@@ -427,6 +464,11 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
         }
         return Fail(TEXT("fit candidate world, actor or component no longer valid"));
     }
+    if(A->bHasPublishedLegacyPicture!=A->PublishedLegacyReleaseWitness.IsValid()||
+       C.RestoreReleaseWitness!=A->PublishedLegacyReleaseWitness)return Fail(TEXT("prepared published release witness changed"));
+    if(C.RestoreReleaseWitness&&(!A->PublishedLegacyReleaseWitness.IsValid()||
+       C.RestoreReleaseWitness!=A->PublishedLegacyReleaseWitness||C.RestoreReleaseWitness->Origin!=C.Origin||
+       !PublishedReleaseMatches(*A,*C.RestoreReleaseWitness,Current.SourcePicture,Error)))return false;
     int32 FamilyComponents=0,Volumes=0;
     if(A->ScreenNumber!=Current.CurrentScreen)return Fail(TEXT("current owner screen changed"));
     TInlineComponentArray<UStaticMeshComponent*> Components(A);for(auto* X:Components)if(X->ComponentHasTag(FamilyTag))++FamilyComponents;
@@ -501,6 +543,14 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     if(!SupportedParent()){Error=TEXT("released card requires actor-root parent/no socket/no absolute channels");return false;}
     const FTransform ParentWorld=Parent->GetComponentTransform();
     const FTransform RequestedWorld=C.ReleaseCardRelative*ParentWorld; // BEFORE mobility/pose setters.
+    // Construct only the retained picture epoch, not cooked geometry/cells or a recursive restore chain.
+    auto Witness=MakeShared<FDinkFamilyCollisionFitCandidate>();
+    Witness->Origin=C.Origin;Witness->World=C.World;Witness->Actor=C.Actor;Witness->SourceActor=C.SourceActor;Witness->Card=C.Card;Witness->FamilyComponent=C.FamilyComponent;
+    Witness->BeforeCardMesh=C.BeforeCardMesh;Witness->SourceHash=C.SourceHash;Witness->ScriptName=C.ScriptName;
+    Witness->bImportedCardBaselinePresent=C.bImportedCardBaselinePresent;Witness->ImportedCardBaseline=C.ImportedCardBaseline;Witness->Sprite.SourcePicture=C.Sprite.SourcePicture;
+    Witness->ReleasePicture=C.ReleasePicture;Witness->bReleasePicturePrepared=C.bReleasePicturePrepared;
+    Witness->ReleaseMaterial=C.ReleaseMaterial;Witness->ReleaseTexture=C.ReleaseTexture;
+    Witness->SourcePictureMaterial=C.SourcePictureMaterial;Witness->SourcePictureTexture=C.SourcePictureTexture;
     // All validation/allocation is complete before publication. Resolve geometry/material BEFORE exposing the card.
     // Registered imported cards can still be Static after hidden-card billboarding was skipped.
     // This is presentation-only: existing strict NoCollision/navigation/overlap guards already passed.
@@ -519,6 +569,8 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     Actor->PublishedLegacyCardRelative=Card->GetRelativeTransform();
     Actor->PublishedLegacyCardMaterial=C.ReleaseMaterial->Get();
     Actor->PublishedImportedCardBaseline=C.ImportedCardBaseline;Actor->PublishedSourcePictureSha1=C.Sprite.SourcePicture.Sha1;
+    Witness->ReleaseCardRelative=Card->GetRelativeTransform();
+    Actor->PublishedLegacyReleaseWitness=Witness;
     Actor->bHasPublishedLegacyPicture=true;
     Error.Reset();return true;
 }
@@ -544,16 +596,9 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitReleaseCandidate(const FDinkOri
     // Do not launder pitch/roll tampering into the next released presentation.
     if(Actor&&!Actor->Card->GetComponentQuat().GetUpVector().Equals(FVector::UpVector,0))
     {Error=TEXT("effective legacy card has unsupported non-yaw world rotation");return false;}
-    if(Actor&&Actor->bHasPublishedLegacyPicture)
-    {
-        const auto Actual=Actor->Card->GetRelativeTransform();
-        if(!Actor->ImportedCardRelativeTransform.Equals(Actor->PublishedImportedCardBaseline,0)||
-           Current.SourcePicture.Sha1!=Actor->PublishedSourcePictureSha1||
-           !Actual.GetTranslation().Equals(Actor->PublishedLegacyCardRelative.GetTranslation(),0)||
-           !Actual.GetScale3D().Equals(Actor->PublishedLegacyCardRelative.GetScale3D(),0)||
-           Actor->Card->GetMaterial(0)!=Actor->PublishedLegacyCardMaterial)
-        {Error=TEXT("published effective legacy card geometry/material changed");return false;}
-    }
+    if(Actor&&Actor->bHasPublishedLegacyPicture&&
+       (!Actor->PublishedLegacyReleaseWitness||!PublishedReleaseMatches(*Actor,*Actor->PublishedLegacyReleaseWitness,Current.SourcePicture,Error)))
+    {if(Error.IsEmpty())Error=TEXT("published release witness missing");return false;}
     if(!Actor||!Actor->bHasImportedCardBaseline||!Actor->Origin||
        Current.SourcePicture.Sequence!=Actor->Origin->Sequence||Current.SourcePicture.Frame!=Actor->Origin->Frame||
        Current.DisplayedPicture.Sequence!=Current.DisplayedSequence||Current.DisplayedPicture.Frame!=Current.DisplayedFrame||
