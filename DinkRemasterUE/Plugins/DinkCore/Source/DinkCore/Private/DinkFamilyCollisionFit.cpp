@@ -21,28 +21,67 @@ namespace
 const FString BarrelMesh(TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
 bool ExactFields(const FJsonObject& O,std::initializer_list<const TCHAR*> Names)
 { if(O.Values.Num()!=int32(Names.size()))return false;for(const auto* N:Names)if(!O.HasField(N))return false;return true; }
-bool Eligible(const FDinkFamilyFitSpriteState& S)
-{ return S.SchemaVersion==DinkFamilyCollisionFit::DescriptorSchemaVersion&&S.Actor.IsValid()&&S.Origin.IsValid()&&FMath::IsFinite(S.EngineX)&&FMath::IsFinite(S.EngineY)&&!S.ScriptName.IsNone()&&((S.bPrebirth&&S.RuntimeHandle==0)||(!S.bPrebirth&&S.RuntimeHandle>1&&S.RuntimeHandle!=1000))&&S.CurrentScreen>=1&&S.CurrentScreen<=768&&S.bActive&&!(S.AnimationSequence==173&&S.Brain==5&&S.NoHit!=0)&&S.DisplayedSequence==173&&S.DisplayedFrame==1; }
+bool IsSha1(const FString& Value)
+{
+    if (Value.Len() != 40) return false;
+    for (TCHAR C : Value)
+        if (!FChar::IsHexDigit(C)) return false;
+    return true;
+}
+const FDinkFamilyCollisionFitRule* FindRule(
+    const TArray<FDinkFamilyCollisionFitRule>& Rules, const FDinkOriginId& Origin)
+{
+    const FDinkFamilyCollisionFitRule* Match = nullptr;
+    for (const auto& Rule : Rules)
+    {
+        if (Rule.Origin != Origin) continue;
+        if (Match) return nullptr;
+        Match = &Rule;
+    }
+    return Match;
+}
+bool Eligible(const FDinkFamilyFitSpriteState& S, const FDinkFamilyCollisionFitRule& Rule)
+{
+    const bool ValidHandle = S.bPrebirth
+        ? S.RuntimeHandle == 0
+        : !Rule.IsStaticBackground() && S.RuntimeHandle > 1 && S.RuntimeHandle != 1000;
+    return S.SchemaVersion == DinkFamilyCollisionFit::DescriptorSchemaVersion &&
+        S.Actor.IsValid() && S.Origin == Rule.Origin &&
+        FMath::IsFinite(S.EngineX) && FMath::IsFinite(S.EngineY) &&
+        S.ScriptName == Rule.SourceScript && ValidHandle &&
+        S.CurrentScreen >= 1 && S.CurrentScreen <= 768 &&
+        (!Rule.IsStaticBackground() || S.CurrentScreen == Rule.Origin.Screen) &&
+        S.bActive && !(S.AnimationSequence == 173 && S.Brain == 5 && S.NoHit != 0) &&
+        S.DisplayedSequence == 173 && S.DisplayedFrame == 1;
+}
 bool SameSprite(const FDinkFamilyFitSpriteState& A,const FDinkFamilyFitSpriteState& B)
 { return A.SchemaVersion==B.SchemaVersion&&A.Origin==B.Origin&&A.Actor==B.Actor&&A.SourceActor==B.SourceActor&&A.EngineX==B.EngineX&&A.EngineY==B.EngineY&&A.ScriptName==B.ScriptName&&A.RuntimeHandle==B.RuntimeHandle&&A.CurrentScreen==B.CurrentScreen&&A.bPrebirth==B.bPrebirth&&A.DisplayedSequence==B.DisplayedSequence&&A.DisplayedFrame==B.DisplayedFrame&&A.Hard==B.Hard&&A.Prop==B.Prop&&A.bActive==B.bActive&&A.AnimationSequence==B.AnimationSequence&&A.Brain==B.Brain&&A.NoHit==B.NoHit; }
 TArray<TWeakObjectPtr<UMaterialInterface>> Materials(const UStaticMeshComponent& C)
 { TArray<TWeakObjectPtr<UMaterialInterface>> R;for(int32 I=0;I<C.GetNumMaterials();++I)R.Add(C.GetMaterial(I));return R; }
-bool ExpectedSource(const ADinkPlaceholderActor& A,const FDinkOriginId& Origin)
+bool ExpectedSource(const ADinkPlaceholderActor& Actor, const FDinkFamilyCollisionFitRule& Rule)
 {
-    const FName Script=Origin.Screen==31?FName(TEXT("bar-gh")):FName(TEXT("bar-f1"));
-    if(!A.Origin||A.Origin->SourceHash.Len()!=40)return false;
-    for(TCHAR C:A.Origin->SourceHash)if(!FChar::IsHexDigit(C))return false;
-    return A.Origin->OriginId==Origin&&A.ScreenNumber==Origin.Screen&&A.Origin->Sequence==173&&
-        A.Origin->Frame==1&&A.Origin->ClassId==TEXT("barrel")&&A.Origin->ScriptName==Script;
+    const auto* Origin = Actor.Origin.Get();
+    if (!Origin || !IsSha1(Origin->SourceHash)) return false;
+    if (!Rule.SourceHash.IsEmpty() &&
+        (!Origin->SourceHash.Equals(Rule.SourceHash, ESearchCase::IgnoreCase) ||
+         Origin->PlacementType != Rule.SourceType ||
+         Actor.ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag) != Rule.IsStaticBackground()))
+        return false;
+    return Origin->OriginId == Rule.Origin && Actor.ScreenNumber == Rule.Origin.Screen &&
+        Origin->Sequence == 173 && Origin->Frame == 1 && Origin->ClassId == TEXT("barrel") &&
+        Origin->ScriptName == Rule.SourceScript;
 }
-bool SourceBinding(const ADinkPlaceholderActor& Actor,const ADinkPlaceholderActor& Source,const FDinkOriginId& Id)
+bool SourceBinding(const ADinkPlaceholderActor& Actor, const ADinkPlaceholderActor& Source,
+    const FDinkFamilyCollisionFitRule& Rule)
 {
-    if(!ExpectedSource(Source,Id) || Actor.GetWorld()!=Source.GetWorld() || !Actor.Origin)return false;
-    if(&Actor==&Source)return Actor.Origin->OriginId==Id;
-    return Actor.ActorHasTag(TEXT("DinkRetainedLiveSprite")) && !Actor.Origin->OriginId.IsValid() &&
-        Actor.Origin->ScriptName.IsNone() && Actor.Origin->SourceHash==Source.Origin->SourceHash &&
-        Actor.Origin->Sequence==Source.Origin->Sequence && Actor.Origin->Frame==Source.Origin->Frame &&
-        Actor.Origin->ClassId==Source.Origin->ClassId;
+    if (!ExpectedSource(Source, Rule) || Actor.GetWorld() != Source.GetWorld() || !Actor.Origin)
+        return false;
+    if (&Actor == &Source) return Actor.Origin->OriginId == Rule.Origin;
+    return !Rule.IsStaticBackground() &&
+        Actor.ActorHasTag(TEXT("DinkRetainedLiveSprite")) && !Actor.Origin->OriginId.IsValid() &&
+        Actor.Origin->ScriptName.IsNone() && Actor.Origin->SourceHash == Source.Origin->SourceHash &&
+        Actor.Origin->Sequence == Source.Origin->Sequence && Actor.Origin->Frame == Source.Origin->Frame &&
+        Actor.Origin->ClassId == Source.Origin->ClassId;
 }
 }
 
@@ -53,27 +92,77 @@ bool DinkFamilyCollisionFit::ParsePolicy(const FString& Json,TArray<FDinkFamilyC
     if(!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Json),Root)||!Root||
         !Root->TryGetStringField(TEXT("schema"),Schema)||Schema!=TEXT("dink-art-families/1"))return Fail(TEXT("family schema invalid"));
     if(!Root->HasField(TEXT("collision_fit"))){Error.Reset();return true;}
-    const TSharedPtr<FJsonObject>* Policy=nullptr;
-    if(!Root->TryGetObjectField(TEXT("collision_fit"),Policy)||!Policy||!Policy->IsValid()||
-        !ExactFields(**Policy,{TEXT("schema"),TEXT("origins")})||
-        !(*Policy)->TryGetStringField(TEXT("schema"),Schema)||Schema!=TEXT("dink-family-collision-fit/1"))return Fail(TEXT("fit policy schema invalid"));
-    const TArray<TSharedPtr<FJsonValue>>* Rows=nullptr;
-    if(!(*Policy)->TryGetArrayField(TEXT("origins"),Rows)||Rows->IsEmpty()||Rows->Num()>2)return Fail(TEXT("one or two explicit audited origins required"));
-    TArray<FDinkFamilyCollisionFitRule> Rules;TSet<FString> Seen;
-    for(const auto& V:*Rows)
+    const TSharedPtr<FJsonObject>* Policy = nullptr;
+    if (!Root->TryGetObjectField(TEXT("collision_fit"), Policy) || !Policy || !Policy->IsValid() ||
+        !ExactFields(**Policy, {TEXT("schema"), TEXT("origins")}) ||
+        !(*Policy)->TryGetStringField(TEXT("schema"), Schema))
+        return Fail(TEXT("fit policy schema invalid"));
+    const bool SourcePinned = Schema == TEXT("dink-family-collision-fit/2");
+    if (!SourcePinned && Schema != TEXT("dink-family-collision-fit/1"))
+        return Fail(TEXT("fit policy schema invalid"));
+
+    const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
+    if (!(*Policy)->TryGetArrayField(TEXT("origins"), Rows) || Rows->IsEmpty() ||
+        Rows->Num() > (SourcePinned ? 85 : 2))
+        return Fail(TEXT("fit policy requires an explicit bounded set of origins"));
+
+    TArray<FDinkFamilyCollisionFitRule> Rules;
+    TSet<FString> Seen;
+    for (const auto& Value : *Rows)
     {
-        const TSharedPtr<FJsonObject>* O=nullptr;FString Id,Family,Anchor,Geometry,Raster;FDinkFamilyCollisionFitRule R;
-        if(!V||!V->TryGetObject(O)||!O||!O->IsValid()||!ExactFields(**O,{TEXT("origin"),TEXT("family"),TEXT("mesh"),TEXT("geometry_sha1"),TEXT("anchor"),TEXT("geometry"),TEXT("raster")})||
-            !(*O)->TryGetStringField(TEXT("origin"),Id)||!FDinkOriginId::Parse(Id,R.Origin)||R.Origin.ToString()!=Id||
-            !DinkFamilyFit::ScopedOrigin(R.Origin.Screen,R.Origin.Placement)||Seen.Contains(Id)||
-            !(*O)->TryGetStringField(TEXT("family"),Family)||Family!=TEXT("barrel")||
-            !(*O)->TryGetStringField(TEXT("mesh"),R.Mesh)||R.Mesh!=BarrelMesh||
-            !(*O)->TryGetStringField(TEXT("geometry_sha1"),R.GeometrySha1)||R.GeometrySha1.Len()!=40||
-            !(*O)->TryGetStringField(TEXT("anchor"),Anchor)||Anchor!=TEXT("sprite_ground")||
-            !(*O)->TryGetStringField(TEXT("geometry"),Geometry)||Geometry!=TEXT("cooked_complex")||
-            !(*O)->TryGetStringField(TEXT("raster"),Raster)||Raster!=TEXT("cell_center"))return Fail(TEXT("fit rule is foreign, duplicate, incomplete or unreviewed"));
-        for(TCHAR C:R.GeometrySha1)if(!FChar::IsHexDigit(C))return Fail(TEXT("invalid cooked geometry digest"));
-        R.GeometrySha1=R.GeometrySha1.ToLower();Seen.Add(Id);Rules.Add(MoveTemp(R));
+        const TSharedPtr<FJsonObject>* Object = nullptr;
+        if (!Value || !Value->TryGetObject(Object) || !Object || !Object->IsValid())
+            return Fail(TEXT("fit rule must be an object"));
+        const FJsonObject& Row = **Object;
+        if (SourcePinned
+            ? !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("geometry_sha1"),
+                TEXT("anchor"), TEXT("geometry"), TEXT("raster"), TEXT("source_hash"), TEXT("source_script"),
+                TEXT("source_type"), TEXT("source_representation")})
+            : !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("geometry_sha1"),
+                TEXT("anchor"), TEXT("geometry"), TEXT("raster")}))
+            return Fail(TEXT("fit rule fields do not match its schema"));
+
+        FString Id, Family, Anchor, Geometry, Raster;
+        FDinkFamilyCollisionFitRule Rule;
+        if (!Row.TryGetStringField(TEXT("origin"), Id) || !FDinkOriginId::Parse(Id, Rule.Origin) ||
+            !Rule.Origin.IsValid() || Rule.Origin.ToString() != Id ||
+            Rule.Origin.Screen > 768 || Rule.Origin.Placement > 99 || Seen.Contains(Id) ||
+            !Row.TryGetStringField(TEXT("family"), Family) || Family != TEXT("barrel") ||
+            !Row.TryGetStringField(TEXT("mesh"), Rule.Mesh) || Rule.Mesh != BarrelMesh ||
+            !Row.TryGetStringField(TEXT("geometry_sha1"), Rule.GeometrySha1) || !IsSha1(Rule.GeometrySha1) ||
+            !Row.TryGetStringField(TEXT("anchor"), Anchor) || Anchor != TEXT("sprite_ground") ||
+            !Row.TryGetStringField(TEXT("geometry"), Geometry) || Geometry != TEXT("cooked_complex") ||
+            !Row.TryGetStringField(TEXT("raster"), Raster) || Raster != TEXT("cell_center"))
+            return Fail(TEXT("fit rule is foreign, duplicate, incomplete or unreviewed"));
+
+        if (SourcePinned)
+        {
+            static const TSet<FString> SupportedScripts = {TEXT(""), TEXT("bar-sh"), TEXT("bar-e"),
+                TEXT("bar-f1"), TEXT("bar-dp"), TEXT("bar-sp"), TEXT("bar-gh")};
+            FString Script, Representation;
+            double Type = -1;
+            if (!Row.TryGetStringField(TEXT("source_hash"), Rule.SourceHash) || !IsSha1(Rule.SourceHash) ||
+                !Row.TryGetStringField(TEXT("source_script"), Script) ||
+                !Row.HasTypedField<EJson::Number>(TEXT("source_type")) ||
+                !Row.TryGetNumberField(TEXT("source_type"), Type) || (Type != 0 && Type != 1) ||
+                !Row.TryGetStringField(TEXT("source_representation"), Representation) ||
+                Representation != (Type == 0 ? TEXT("instance") : TEXT("actor")))
+                return Fail(TEXT("fit rule source identity is invalid"));
+            if (!SupportedScripts.Contains(Script) || (Type == 0 && !Script.IsEmpty() && Script != TEXT("bar-sh")))
+                return Fail(TEXT("fit rule script does not match a supported source lifecycle"));
+            Rule.SourceType = static_cast<int32>(Type);
+            Rule.SourceScript = Script.IsEmpty() ? NAME_None : FName(*Script);
+            Rule.SourceHash = Rule.SourceHash.ToLower();
+        }
+        else
+        {
+            if (!DinkFamilyFit::ScopedOrigin(Rule.Origin.Screen, Rule.Origin.Placement))
+                return Fail(TEXT("legacy fit policy only accepts the original pair"));
+            Rule.SourceScript = Rule.Origin.Screen == 31 ? FName(TEXT("bar-gh")) : FName(TEXT("bar-f1"));
+        }
+        Rule.GeometrySha1 = Rule.GeometrySha1.ToLower();
+        Seen.Add(Id);
+        Rules.Add(MoveTemp(Rule));
     }
     Out=MoveTemp(Rules);Error.Reset();return true;
 }
@@ -206,17 +295,16 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     FDinkFamilyCollisionFitCandidate& Out,FString& Error,bool Release) const
 {
     auto Fail=[&](const TCHAR* Why){Error=Why;return false;};
-    if(!IsInGameThread()||!bReady||bCollisionFitPolicyError||!GetWorld()||Sprite.Origin!=Id||!Eligible(Sprite)||!DinkFamilyFit::ScopedOrigin(Id.Screen,Id.Placement)||
+    if(!IsInGameThread()||!bReady||bCollisionFitPolicyError||!GetWorld()||Sprite.Origin!=Id||
         Precedence.Screens.Contains(Id.Screen)||Precedence.Origins.Contains(Id.ToString()))return Fail(TEXT("ineligible/unready/authored fit request"));
-    const FDinkFamilyCollisionFitRule* Rule=nullptr;
-    for(const auto& R:CollisionFitRules)if(R.Origin==Id){if(Rule)return Fail(TEXT("duplicate fit authority"));Rule=&R;}
-    if(!Rule)return Fail(TEXT("no explicit opt-in fit policy; PR40/41 unchanged"));
+    const auto* Rule = FindRule(CollisionFitRules, Id);
+    if (!Rule || !Eligible(Sprite, *Rule)) return Fail(TEXT("no eligible explicit opt-in fit policy"));
     ADinkPlaceholderActor* Actor=Sprite.Actor.Get();
     ADinkPlaceholderActor* Source=Sprite.SourceActor.IsValid()?Sprite.SourceActor.Get():Actor;ADinkScreenVolume* Volume=nullptr;
-    if(!Actor||!Source||!SourceBinding(*Actor,*Source,Id)||Actor->ScreenNumber!=Sprite.CurrentScreen) return Fail(TEXT("explicit actor/source/current screen binding required"));
+    if(!Actor||!Source||!SourceBinding(*Actor,*Source,*Rule)||Actor->ScreenNumber!=Sprite.CurrentScreen) return Fail(TEXT("explicit actor/source/current screen binding required"));
     for(TActorIterator<ADinkScreenVolume> It(GetWorld());It;++It)if(It->ScreenNumber==Sprite.CurrentScreen)
     {if(Volume)return Fail(TEXT("ambiguous screen map"));Volume=*It;}
-    if(!Actor||!Volume||Sprite.Actor.Get()!=Actor||!Actor->Origin||Sprite.ScriptName!=Source->Origin->ScriptName||(!Sprite.bPrebirth&&(Actor->IsHidden()||!Actor->GetActorEnableCollision()))||!SourceBinding(*Actor,*Source,Id)||!Actor->ActorHasTag(FamilyTag)||Actor->ActorHasTag(TEXT("DinkAuthoredArt"))||
+    if(!Actor||!Volume||Sprite.Actor.Get()!=Actor||!Actor->Origin||Sprite.ScriptName!=Source->Origin->ScriptName||(!Sprite.bPrebirth&&(Actor->IsHidden()||!Actor->GetActorEnableCollision()))||!SourceBinding(*Actor,*Source,*Rule)||!Actor->ActorHasTag(FamilyTag)||Actor->ActorHasTag(TEXT("DinkAuthoredArt"))||
         !Actor->Card||(!Release&&!Actor->Card->bHiddenInGame)||Actor->Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
         Actor->Card->CanEverAffectNavigation()||Actor->Card->GetGenerateOverlapEvents())return Fail(TEXT("actual audited family placement unavailable"));
     const FVector ScriptGround=DinkLayout::MapPixelToUnreal(Volume->Corners,Sprite.EngineX-20,Sprite.EngineY);
@@ -256,7 +344,9 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
 {
     auto Fail=[&](const TCHAR* Why){Error=Why;return false;};
     const auto* A=C.Actor.Get();const auto* Source=C.SourceActor.Get();const auto* F=C.FamilyComponent.Get();const auto* Card=C.Card.Get();
-    if(!IsInGameThread()||C.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||C.Geometry.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||bCollisionFitPolicyError||C.World.Get()!=GetWorld()||!A||!Source||!F||!Card||!SameSprite(C.Sprite,Current)||!Eligible(Current)||!SourceBinding(*A,*Source,C.Origin)||
+    if (!IsInGameThread()) return Fail(TEXT("fit validation requires the game thread"));
+    const auto* Rule = FindRule(CollisionFitRules, C.Origin);
+    if(C.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||C.Geometry.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||bCollisionFitPolicyError||C.World.Get()!=GetWorld()||!A||!Source||!F||!Card||!SameSprite(C.Sprite,Current)||!Rule||!Eligible(Current,*Rule)||!SourceBinding(*A,*Source,*Rule)||
         A->GetWorld()!=GetWorld()||
         !((A->GetActorEnableCollision()==C.BeforeActorCollision&&A->IsHidden()==C.BeforeActorHidden)||
           (C.Sprite.bPrebirth&&A->GetActorEnableCollision()&&!A->IsHidden()))||!A->GetActorTransform().Equals(C.BeforeActor,0)||Source->Origin->SourceHash!=C.SourceHash||Source->Origin->ScriptName!=C.ScriptName||
@@ -282,8 +372,7 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
     if(!C.ProposedWorld.Equals(Expected,0)||!DinkFamilyCollisionFit::BuildFootprint(Actual,Expected,C.Corners,Polygon,Cells,Low,High,Boundary,Error)||
         Polygon!=C.WorldFootprint||Cells!=C.LogicalCells||Low!=C.MinWorldZ||High!=C.MaxWorldZ||Boundary!=C.MaximumRasterBoundaryErrorCm)
         return Fail(TEXT("prepared transform/footprint/height payload changed"));
-    int32 PolicyFound=0;for(const auto& R:CollisionFitRules)if(R.Origin==C.Origin&&R.Mesh==F->GetStaticMesh()->GetPathName()&&R.GeometrySha1==Actual.CookedGeometrySha1)++PolicyFound;
-    if(PolicyFound!=1)return Fail(TEXT("explicit unique reviewed fit policy no longer present"));
+    if (Rule->Mesh != F->GetStaticMesh()->GetPathName() || Rule->GeometrySha1 != Actual.CookedGeometrySha1)return Fail(TEXT("explicit unique reviewed fit policy no longer present"));
     Error.Reset();return true;
 }
 

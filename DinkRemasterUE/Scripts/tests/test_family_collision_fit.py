@@ -19,8 +19,17 @@ class FamilyCollisionFitTests(unittest.TestCase):
    td=Path(td);points=td/'vertices.txt';points.write_text(''.join(f'{v[i]*100} {-v[i+1]*100} {v[i+2]*100}\n'for i in range(0,len(v),3)))
    exe=td/'fit';subprocess.run(['g++','-std=c++17','-Wall','-Wextra','-Werror','-fno-exceptions','-fno-rtti','-I',str(P/'Plugins/DinkCore/Source/DinkCore/Public'),str(P/'Scripts/tests/native/family_collision_fit.cpp'),'-o',str(exe)],check=True,capture_output=True)
    result=subprocess.run([str(exe),str(points)],check=True,text=True,capture_output=True);self.assertIn('PASS actual FBX projected with production math',result.stdout)
- def test_shipped_families_data_has_no_activation_or_global_fit_change(self):
-  data=json.loads((P/'Content/Dink/Data/Art/families.json').read_text());self.assertNotIn('collision_fit',data)
+ def test_shipped_families_data_keeps_real_size_and_explicit_policy(self):
+  data=json.loads((P/'Content/Dink/Data/Art/families.json').read_text())
+  policy=data['collision_fit']
+  origins=[row['origin'] for row in policy['origins']]
+  self.assertEqual(len(origins),len(set(origins)))
+  if policy['schema']=='dink-family-collision-fit/1':
+   self.assertEqual(set(origins),{'S031_P03','S209_P13'})
+  else:
+   self.assertEqual(policy['schema'],'dink-family-collision-fit/2')
+   self.assertEqual(len(origins),85)
+   self.assertEqual(sum(row['source_type']==0 for row in policy['origins']),3)
   barrel=next(r for r in data['families'] if r['family']=='barrel');self.assertEqual(barrel['fit'],'none');self.assertTrue(barrel['scripted']);self.assertFalse(barrel['yaw_from_sprite'])
   self.assertEqual(barrel['mesh'],'/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01')
  def test_source_guide_and_drop_identity_are_unchanged(self):

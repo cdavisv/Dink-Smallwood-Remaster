@@ -1,4 +1,5 @@
 #include "DinkStorySubsystem.h"
+#include "Hardness/DinkFamilyCollisionFit.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
 #include "Hardness/DinkHardnessActivation.h"
@@ -1204,7 +1205,8 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 			{
 				continue;
 			}
-			if (!Origin->ScriptName.IsNone() && HasProcedure(Origin->ScriptName, NAME_Main))
+			if (!Actor->ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag) &&
+				!Origin->ScriptName.IsNone() && HasProcedure(Origin->ScriptName, NAME_Main))
 			{
 				RunForActor(Actor, NAME_Main);
 			}

@@ -639,13 +639,18 @@ bool UDinkGameplay::PublishHardnessFitVisuals(const TSharedPtr<FDinkHardnessFitS
         bool Released=false;for(const auto& R:HardnessProjection->Fits->Releases)if(R.Actor==C.Actor){Released=true;break;}
         if(Released)continue;
         auto Current=C.Sprite;
-        if(const auto* D=Director())for(const auto& Pair:D->GetSprites())if(Pair.Value.Actor==C.Actor)
+        const bool StaticBackground = C.Actor.IsValid() &&
+            C.Actor->ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag);
+        if (!StaticBackground)
         {
-            const auto& S=Pair.Value;Current.RuntimeHandle=S.Handle;Current.CurrentScreen=S.Screen;
-            Current.EngineX=S.X;Current.EngineY=S.Y;Current.DisplayedSequence=S.GetProp(TEXT("pseq"));
-            Current.DisplayedFrame=S.GetProp(TEXT("pframe"),1);Current.Hard=S.GetProp(TEXT("hard"),1);
-            Current.Prop=GetPlacementProp(OriginalHardnessOwnerOrigin(S));Current.bActive=S.bActive;Current.bPrebirth=false;
-            Current.AnimationSequence=S.GetProp(TEXT("seq"));Current.Brain=S.GetProp(TEXT("brain"));Current.NoHit=S.GetProp(TEXT("nohit"));break;
+            if(const auto* D=Director())for(const auto& Pair:D->GetSprites())if(Pair.Value.Actor==C.Actor)
+            {
+                const auto& S=Pair.Value;Current.RuntimeHandle=S.Handle;Current.CurrentScreen=S.Screen;
+                Current.EngineX=S.X;Current.EngineY=S.Y;Current.DisplayedSequence=S.GetProp(TEXT("pseq"));
+                Current.DisplayedFrame=S.GetProp(TEXT("pframe"),1);Current.Hard=S.GetProp(TEXT("hard"),1);
+                Current.Prop=GetPlacementProp(OriginalHardnessOwnerOrigin(S));Current.bActive=S.bActive;Current.bPrebirth=false;
+                Current.AnimationSequence=S.GetProp(TEXT("seq"));Current.Brain=S.GetProp(TEXT("brain"));Current.NoHit=S.GetProp(TEXT("nohit"));break;
+            }
         }
         if(!Current.bActive||!C.Actor.IsValid())continue; // deactivated/destroyed actors already hide their complete presentation
         if(!Family->ReleaseCollisionFitVisual(C,Current,Guard,Error))return false;
