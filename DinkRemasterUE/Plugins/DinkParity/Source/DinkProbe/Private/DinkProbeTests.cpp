@@ -48,6 +48,8 @@
 #include "Tests/AutomationEditorCommon.h"
 #endif
 #include "DinkProbeHold.h"
+#include "DinkProbeLoadOracle.h"
+#include "Misc/Parse.h"
 
 // The probe is its own module (DinkProbe) so it can be compiled into a Development game target and run in a packaged
 // build (Plugins/DinkParity/Docs/packaged_probe.md). Same flags as DinkTestHelpers.h's, which stays in DinkParity (editor-only).
@@ -3176,6 +3178,120 @@ namespace DinkProbeTest
 		return C;
 	}
 
+
+    // The original load restarts scripts synchronously; never compare their old
+    // handles/states as persistent playerInfo. Unknown restart effects fail closed.
+    bool CheckOriginalLoad(FAutomationTestBase& Test,UDinkSaveGame& Saved,UDinkSaveSubsystem& Saves,
+        APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 EventStart)
+    {
+        auto* G=Story.GetGameplay();auto* D=Story.GetDirector();
+        UDinkSaveGame* Actual=Saves.CaptureSnapshot(&Pawn,D->GetDink().Screen);
+        if(!Test.TestNotNull(TEXT("actual post-load save capture"),Actual))return false;
+        const auto Expected=DinkProbeLoadOracle::Narrative(Saved);
+        if(!Test.TestTrue(TEXT("actual saved narrative JSON exists"),Expected.IsValid()))return false;
+        const auto Differences=DinkProbeLoadOracle::PersistentDifferences(Saved,*Actual);
+        for(const auto& Difference:Differences)Test.AddError(Difference);
+        if(!Differences.IsEmpty())return false;
+        const auto* Physical=Greybox.FindScreenAt(Pawn.GetActorLocation());
+        if(!Test.TestTrue(TEXT("loaded physical/cache/director/player_map agree with saved screen"),
+            Physical&&Greybox.GetCurrentScreen()==Physical&&Physical->ScreenNumber==Saved.CurrentScreen&&
+            D->GetDink().Screen==Saved.CurrentScreen&&Story.GetFacts()->GetFact(TEXT("player_map"))==Saved.CurrentScreen&&
+            !G->IsHardnessLoading()))return false;
+        const int32 SavedNext=Expected->GetIntegerField(TEXT("nextInstanceId"));
+        TSet<int32> OldIds;
+        for(const auto& Value:Expected->GetArrayField(TEXT("instances")))OldIds.Add(Value->AsObject()->GetIntegerField(TEXT("id")));
+        TArray<DinkProbeLoadOracle::FProcedureStart> Starts;
+        TArray<DinkProbeLoadOracle::FProcedureCall> Calls;
+        if(!Test.TestTrue(TEXT("restart events available without truncation"),Story.bRecordEvents&&EventStart<=Story.Events.Num()&&Story.Events.Num()<Story.MaxEvents))return false;
+        for(int32 Index=EventStart;Index<Story.Events.Num();++Index)
+        {
+            const auto& Event=Story.Events[Index];
+            if(Event.Kind==TEXT("cmd"))
+            {const auto Line=FDinkStoryLine::Parse(Event.Text,{TEXT("cmd")});Calls.Add({Event.InstanceId,Index,Line.Command,Line.Args});}
+            if(Event.Kind!=TEXT("start"))continue;
+            int32 Id=0,Sprite=0;
+            if(FParse::Value(*Event.Detail,TEXT("instance="),Id)&&FParse::Value(*Event.Detail,TEXT("sprite="),Sprite))Starts.Add({Id,Sprite,Index,Event.Text});
+        }
+        TSet<int32> Qualified;
+        auto RequireStart=[&](FName Script,FName Procedure,int32 Sprite)
+        {
+            if(Script.IsNone()||!Story.HasProcedure(Script,Procedure))return true;
+            const FString Path=DinkNarrative::EntryPath(Script.ToString(),Procedure.ToString());
+            bool Found=false;
+            for(const auto& Start:Starts)if(Start.Id>=SavedNext&&Start.Sprite==Sprite&&Start.Path==Path){Qualified.Add(Start.Id);Found=true;}
+            return Test.TestTrue(TEXT("source-qualified fresh procedure ")+Path,Found);
+        };
+        const auto* Volume=Greybox.FindScreen(Saved.CurrentScreen);
+        const FName Base=G->GetData().GetBaseScript(Saved.CurrentScreen);
+        if(!Test.TestTrue(TEXT("imported screen base script matches independent gameplay source"),Volume&&Volume->BaseScript==Base))return false;
+        if(!RequireStart(Base,TEXT("main"),0))return false;
+        // Reconstruct persisted update_play_changes independently of the live
+        // runtime cache. Every nonzero saved override clears the source script.
+        auto ExpectedBirth=[&](const FDinkPlacementInfo& Source)
+        {
+            int32 Override=0,SavedSeq=0,SavedFrame=0;
+            for(const auto& Entry:Saved.Overrides)if(Entry.Origin==Source.Origin)Override=static_cast<int32>(Entry.Type);
+            const auto& Pictures=Expected->GetObjectField(TEXT("gameplay"))->GetArrayField(TEXT("hardnessEditorPicturesV1"));
+            for(const auto& Value:Pictures)
+            {
+                const auto Picture=Value->AsObject();
+                if(Picture->GetStringField(TEXT("origin"))==Source.Origin.ToString())
+                {SavedSeq=Picture->GetIntegerField(TEXT("seq"));SavedFrame=Picture->GetIntegerField(TEXT("frame"));}
+            }
+            return DinkProbeLoadOracle::BirthExpectation(Source.Type,Source.Hard,Source.Seq,Source.Frame,Source.Script,Override,SavedSeq,SavedFrame);
+        };
+        TSet<int32> ClearedRawStarts;
+        // Immutable actor provenance must remain source-bound. Current sprite
+        // picture/script may already differ through a legitimate source command.
+        for(const auto& Pair:D->GetSprites())
+        {
+            const auto& Sprite=Pair.Value;
+            if(!Sprite.bActive||!Sprite.Origin.IsValid()||Sprite.Screen!=Saved.CurrentScreen)continue;
+            const auto* Source=G->GetData().FindPlacement(Sprite.Origin);
+            if(!Test.TestNotNull(TEXT("fresh placement retains source origin"),Source))return false;
+            const auto Birth=ExpectedBirth(*Source);
+            const auto* Actor=Sprite.Actor.Get();
+            const auto* Origin=Actor?UDinkOriginComponent::FindOnActor(Actor):nullptr;
+            if(!Test.TestTrue(TEXT("fresh live placement is source-bound and obeys saved effective birth fields"),
+                !Birth.Removed&&Birth.Type==1&&Actor&&Origin&&Origin->OriginId==Source->Origin&&
+                Origin->ScriptName==Source->Script&&Origin->PlacementType==Source->Type&&Origin->Sequence==Source->Seq&&Origin->Frame==Source->Frame))return false;
+            if(!RequireStart(Birth.Script,TEXT("main"),Pair.Key))return false;
+            if(Birth.Script.IsNone()&&!Source->Script.IsNone())
+            {
+                const FString RawMain=DinkNarrative::EntryPath(Source->Script.ToString(),TEXT("main"));
+                for(const auto& Start:Starts)if(Start.Sprite==Pair.Key&&Start.Path==RawMain)ClearedRawStarts.Add(Start.Id);
+            }
+        }
+        auto Armed=[&](int32 Id,int32 Slot,const TArray<FName>& Items)
+        {
+            const FName Script=Items.IsValidIndex(Slot)?Items[Slot]:NAME_None;
+            if(Script.IsNone())return Test.TestEqual(TEXT("empty armed slot has no runtime instance"),Id,0);
+            const auto* Instance=Story.FindInstance(Id);
+            if(!Test.TestTrue(TEXT("armed script freshly detached from saved inventory"),Instance&&Instance->IsAlive()&&
+                Instance->Id>=SavedNext&&Instance->Script==Script&&Instance->Sprite==UDinkDirector::HandleNoSprite&&Instance->AttachedTo==UDinkDirector::HandleNoSprite))return false;
+            if(Story.HasProcedure(Script,TEXT("arm"))&&!Test.TestTrue(TEXT("armed source arm procedure actually invoked on that fresh instance"),
+                DinkProbeLoadOracle::HasExactStart(Starts,Id,UDinkDirector::HandleNoSprite,DinkNarrative::EntryPath(Script.ToString(),TEXT("arm")))))return false;
+            if(!Test.TestTrue(TEXT("saved armed script has a usable source procedure"),Story.HasProcedure(Script,TEXT("use"))))return false;
+            Qualified.Add(Id);return true;
+        };
+        if(!Armed(G->GetWeaponInstance(),Saved.Inventory.ArmedItemSlot,Saved.Inventory.Items)||
+           !Armed(G->GetMagicInstance(),Saved.Inventory.ArmedMagicSlot,Saved.Inventory.Magic))return false;
+        // Trace literal external/spawn/sp_script calls from already qualified
+        // fresh procedures. Dynamic unresolvable targets fail rather than being
+        // accepted as arbitrary globals. The source parser preserves arguments.
+        Qualified=DinkProbeLoadOracle::QualifySourceCalls(MoveTemp(Qualified),Starts,Calls,SavedNext,UDinkDirector::HandleNoSprite);
+        for(int32 Id:ClearedRawStarts)
+            if(!Test.TestTrue(TEXT("override-cleared raw main only runs through an explicit source call"),Qualified.Contains(Id)))return false;
+        TArray<DinkProbeLoadOracle::FFreshIdentity> Fresh;
+        for(const auto& Instance:Story.GetInstances())if(Instance->IsAlive())
+            Fresh.Add({Instance->Id,Instance->Screen,Qualified.Contains(Instance->Id)});
+        FString Error;
+        const bool Valid=DinkProbeLoadOracle::FreshIdentities(OldIds,SavedNext,Saved.CurrentScreen,Fresh,Error);
+        if(!Test.TestTrue(TEXT("saved runtime instances replaced by source-qualified fresh identities: ")+Error,Valid))return false;
+        Test.AddInfo(FString::Printf(TEXT("original-load oracle: persistent domains exact; %d old IDs gone, %d fresh alive instances, source entry/armed/global provenance verified"),OldIds.Num(),Fresh.Num()));
+        return true;
+    }
+
 	class FProbeCommand : public IAutomationLatentCommand
 	{
 	public:
@@ -3250,6 +3366,7 @@ namespace DinkProbeTest
 					return false;
 				}
 				UDinkSaveSubsystem* Saves = C.World->GetGameInstance()->GetSubsystem<UDinkSaveSubsystem>();
+				const int32 LoadEventStart = C.S->Events.Num();
 				UDinkSaveGame* Loaded = Saves ? Saves->LoadFromSlot(Spec.LoadSlot, C.Pawn) : nullptr;
 				if (!Loaded)
 				{
@@ -3259,12 +3376,21 @@ namespace DinkProbeTest
 				}
 				bLoaded = true;
 				LoadedScreen = Loaded->CurrentScreen;
-				// What was loaded must be what was saved: the same state dump, taken before a frame runs.
+				const auto SavedNarrative = DinkProbeLoadOracle::Narrative(*Loaded);
+                const bool RequiredLoad = C.G->RequiresOriginalHardnessScreen(SavedNarrative.IsValid()?SavedNarrative->GetIntegerField(TEXT("lastScreen")):Loaded->CurrentScreen);
+                const bool OriginalLoad = SavedNarrative.IsValid()?DinkProbeLoadOracle::OriginalMode(*SavedNarrative,RequiredLoad):RequiredLoad;
+                if (OriginalLoad && !CheckOriginalLoad(*Test,*Loaded,*Saves,*C.Pawn,*C.S,*C.GB,LoadEventStart))
+                { RestoreTimeStep();return true; }
+                // Legacy saves retain their exact live-runtime snapshot comparison.
+                if (!OriginalLoad)
+                {
+                // What was loaded must be what was saved: the same state dump, taken before a frame runs.
 				const FString Before = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/probe_ch%d_state.txt"), Spec.Number - 1);
 				FString Expected;
 				if (FFileHelper::LoadFileToString(Expected, *Before))
 				{
 					const FString RestoredDump = C.StateDump();
+                    Test->TestTrue(TEXT("legacy exact saved runtime lines"),DinkProbeLoadOracle::LegacyLinesEqual(Expected,RestoredDump));
 					TArray<FString> A, B;
 					Expected.ParseIntoArrayLines(A, false);
 					RestoredDump.ParseIntoArrayLines(B, false);
@@ -3284,6 +3410,7 @@ namespace DinkProbeTest
 				{
 					Test->AddWarning(FString::Printf(TEXT("no %s: the loaded game was not compared with the saved one"), *Before));
 				}
+                } // legacy exact snapshot
 				Test->TestEqual(TEXT("the greybox is on the saved screen right after the load"), C.GB->GetCurrentScreen() ? C.GB->GetCurrentScreen()->ScreenNumber : 0, LoadedScreen);
 				// The trace of a loaded chapter starts at the load: what the new game played in the frames before it (the mother's scene, a
 				// number of frames that depends on how long PIE took to start) is not part of this chapter's game.
