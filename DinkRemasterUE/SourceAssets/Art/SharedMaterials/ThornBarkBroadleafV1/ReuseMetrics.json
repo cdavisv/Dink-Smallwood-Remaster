@@ -1,0 +1,92 @@
+[
+  {
+    "object": "QA_Bark_2m",
+    "dimensions_m": [
+      2,
+      2
+    ],
+    "uv_repeats": [
+      1.0,
+      1.0
+    ],
+    "material": "MI_Shared_ThornBark2m"
+  },
+  {
+    "object": "QA_Bark_4m",
+    "dimensions_m": [
+      4,
+      4
+    ],
+    "uv_repeats": [
+      2.0,
+      2.0
+    ],
+    "material": "MI_Shared_ThornBark2m"
+  },
+  {
+    "object": "QA_BroadleafSpecimen_00",
+    "blade_length_m": 0.12,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": false
+  },
+  {
+    "object": "QA_BroadleafSpecimen_01",
+    "blade_length_m": 0.12,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": false
+  },
+  {
+    "object": "QA_BroadleafSpecimen_02",
+    "blade_length_m": 0.12,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": false
+  },
+  {
+    "object": "QA_BroadleafSpecimen_03",
+    "blade_length_m": 0.18,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": true
+  },
+  {
+    "object": "QA_BroadleafSpecimen_04",
+    "blade_length_m": 0.18,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": true
+  },
+  {
+    "object": "QA_BroadleafSpecimen_05",
+    "blade_length_m": 0.18,
+    "uv": [
+      0,
+      1
+    ],
+    "material": "MI_Shared_BroadleafTrimV1",
+    "nominal_trim_length_m": 0.12,
+    "leaf_variation_stretches_trim": true
+  }
+]

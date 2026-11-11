@@ -1,0 +1,12 @@
+{
+  "base_commit": "b1ee08e5a6e01ddd52716e0c3adf75ada379b570",
+  "base_violation_assets": 203,
+  "candidate_violation_assets": 203,
+  "violation_maps_exact": true,
+  "new_candidate_violations": {},
+  "new_warnings": [
+    "Stonebrook/Refinements/ThornBrambleV9Candidate:SM_ThornBramble_01: 24,220 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)"
+  ],
+  "global_checker_exit": 1,
+  "scope": "Actual HEAD git archive baseline; all existing203 violating asset entries identical; no waiver introduced"
+}
