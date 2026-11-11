@@ -136,7 +136,7 @@ bool FDinkProbeStockProjectionOracle::RunTest(const FString& Parameters)
     UWorld* World=UWorld::CreateWorld(EWorldType::Game,false);
     if(!TestNotNull(TEXT("owned stock-only world"),World))return false;
     ON_SCOPE_EXIT {World->DestroyWorld(false);};
-    World->InitializeNewWorld(UWorld::InitializationValues().AllowAudioPlayback(false).CreatePhysicsScene(false).CreateNavigation(false).CreateAISystem(false));
+    // CreateWorld already initializes WorldSettings and the persistent level.
     ACharacter* Pawn=World->SpawnActor<ACharacter>();
     if(!TestNotNull(TEXT("owned same-root pawn"),Pawn))return false;
     const FTransform Initial(FRotator(0,180,0),FVector(-183760.15999999997,392550.35499999998,98.149998664855957));
