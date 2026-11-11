@@ -240,8 +240,19 @@ public:
             Story->bNewGamePending = false;
             Story->bInstantMode = true;
             Test->AddInfo(FString::Printf(TEXT("ROLLOUT_BEFORE_GOTO requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
-            if (!Test->TestTrue(TEXT("ordinary entry into rollout screen"), Greybox->GotoScreen(Screen, 300, 200)))
-                return true;
+            TArray<FVector2D> Entries{FVector2D(300,200)};
+            for (const auto& Rule : Rules) if (Rule.Origin.Screen == Screen)
+                if (const auto* Placement = Gameplay->GetData().FindPlacement(Rule.Origin))
+                    for (const FVector2D Offset : {FVector2D(20,0),FVector2D(-20,0),FVector2D(0,20),FVector2D(0,-20)})
+                        Entries.AddUnique(FVector2D(Placement->X-20,Placement->Y)+Offset);
+            bool DidEnter = false;
+            for (const FVector2D& Entry : Entries)
+                if (Greybox->GotoScreen(Screen,float(Entry.X),float(Entry.Y)))
+                {
+                    Test->AddInfo(FString::Printf(TEXT("ROLLOUT_PUBLIC_ENTRY screen=%d map=(%.9g,%.9g)"),Screen,Entry.X,Entry.Y));
+                    DidEnter = true;break;
+                }
+            if (!Test->TestTrue(TEXT("ordinary collision-checked entry into rollout screen"), DidEnter)) return true;
             Entered = true;
             EntryDeadline = FPlatformTime::Seconds() + 5;
             Until = Now;
