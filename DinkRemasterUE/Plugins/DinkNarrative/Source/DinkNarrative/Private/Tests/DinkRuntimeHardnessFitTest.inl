@@ -1,6 +1,8 @@
 // Included by the production adapter only in automation builds so this fixture
 // can inspect its private published epoch without exposing an admission bypass.
 #include "Misc/AutomationTest.h"
+#include <cmath>
+#include <limits>
 #include "Misc/App.h"
 #include "Misc/ScopeExit.h"
 #include "Misc/Guid.h"
@@ -348,8 +350,30 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     const bool RepeatedBroken=G->RedrawRuntimeHardnessMap(209,Error);
     if(!TestTrue(TEXT("repeated broken-load source redraw succeeds"),RepeatedBroken)){RedrawFailure(TEXT("repeated broken-load source redraw succeeds"),Error);}
     TestTrue(TEXT("repeated broken picture geometry/material never compound"),Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0)&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
+    const auto& PublishedRelease=G->HardnessProjection->Fits->Releases.Last();
+    const FTransform RequestedWorld=PublishedRelease.ReleaseCardRelative*Actor->GetRootComponent()->GetComponentTransform();
+    TestTrue(TEXT("large parent fixture exercises local roundtrip while world request stays exact"),
+        Actor->GetRootComponent()->GetComponentLocation().X==2722.5&&PublishedRelease.ReleaseCardRelative.GetLocation().X==1.0000000000000018&&Actor->Card->GetRelativeLocation().X==1.0&&Actor->Card->GetComponentTransform().Equals(RequestedWorld,0));
+    TestTrue(TEXT("published epoch freezes actual observed relative rather than ideal request"),Actor->PublishedLegacyCardRelative.Equals(Actor->Card->GetRelativeTransform(),0));
     const auto ReleasedBefore=Actor->Card->GetRelativeTransform();
     const auto ReleaseState=G->HardnessProjection->Fits->ReleaseStates.Last();
+    auto EpochULP=Actor->PublishedLegacyCardRelative;auto ULPLocation=EpochULP.GetLocation();ULPLocation.X=std::nextafter(ULPLocation.X,std::numeric_limits<double>::infinity());EpochULP.SetTranslation(ULPLocation);
+    Actor->PublishedLegacyCardRelative=EpochULP;
+    TestFalse(TEXT("one ULP tamper of frozen actual relative epoch still refuses"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->PublishedLegacyCardRelative=ReleasedBefore;
+    Actor->Card->AddWorldOffset(FVector(1,0,0));
+    TestFalse(TEXT("true world displacement refuses future release"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->SetRelativeTransform(ReleasedBefore);
+    auto* RootParent=Actor->GetRootComponent();auto* OtherParent=NewObject<USceneComponent>(Actor);Actor->AddInstanceComponent(OtherParent);OtherParent->SetupAttachment(RootParent);OtherParent->SetMobility(EComponentMobility::Movable);OtherParent->RegisterComponent();
+    TestTrue(TEXT("owned alternative parent attaches for rejection control"),Actor->Card->AttachToComponent(OtherParent,FAttachmentTransformRules::KeepWorldTransform));
+    TestFalse(TEXT("changed parent refuses even with same world frame"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->AttachToComponent(RootParent,FAttachmentTransformRules::KeepWorldTransform);OtherParent->DestroyComponent();Actor->Card->SetRelativeTransform(ReleasedBefore);
+    Actor->Card->AttachToComponent(RootParent,FAttachmentTransformRules::KeepWorldTransform,TEXT("UnsupportedSocket"));
+    TestFalse(TEXT("nonempty attachment socket refuses supported publication"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->AttachToComponent(RootParent,FAttachmentTransformRules::KeepWorldTransform,NAME_None);Actor->Card->SetRelativeTransform(ReleasedBefore);
+    Actor->Card->SetAbsolute(true,false,false);
+    TestFalse(TEXT("absolute location refuses relative-to-world publication contract"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->SetAbsolute(false,false,false);Actor->Card->SetRelativeTransform(ReleasedBefore);
     Actor->Card->AddLocalOffset(FVector(1,0,0));
     TestFalse(TEXT("published broken card position tamper refuses next release"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
     Actor->Card->SetRelativeTransform(ReleasedBefore);
