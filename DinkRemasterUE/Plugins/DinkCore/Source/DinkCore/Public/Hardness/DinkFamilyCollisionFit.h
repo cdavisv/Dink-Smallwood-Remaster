@@ -31,6 +31,13 @@ struct DINKCORE_API FDinkFamilyCollisionFitRule
     int32 SourceType = 1;
     bool IsStaticBackground() const { return SourceType == 0; }
 };
+/** Optional single final173/6 visual. Absent means the exact legacy-card path. */
+struct DINKCORE_API FDinkReleasedFamilyVisualBinding
+{
+    bool bRequested=false;
+    FString Mesh;
+    TArray<FString> Materials;
+};
 /** Source-reader image geometry. Hash authenticates this descriptor, not native texture pixels. */
 struct DINKCORE_API FDinkLegacyPictureDescriptor
 {
@@ -110,6 +117,21 @@ struct DINKCORE_API FDinkFamilyCollisionFitCandidate
     FDinkLegacyPictureDescriptor ReleasePicture;
     bool bReleasePicturePrepared=false;
     TSharedPtr<const FDinkFamilyCollisionFitCandidate> RestoreReleaseWitness;
+    // Optional visual-only final mesh. No physical geometry or recursive witness copy.
+    bool bReleasedMeshPrepared=false;
+    TSharedPtr<TStrongObjectPtr<UStaticMesh>> ReleasedMesh;
+    FString ReleasedMeshPath;
+    TArray<FString> ReleasedMaterialPaths;
+    TArray<TSharedPtr<TStrongObjectPtr<UMaterialInterface>>> ReleasedMaterials;
+    FBox ReleasedBounds;
+    const void* ReleasedRenderData=nullptr;
+    int32 ReleasedLodCount=0;
+    FTransform ReleasedRelative,ReleasedWorld;
+    TWeakObjectPtr<UStaticMeshComponent> ReleasedComponent;
+    TSharedPtr<TStrongObjectPtr<UStaticMeshComponent>> NewReleasedComponent;
+    bool BeforeReleasedVisible=false,BeforeReleasedHidden=true;
+    ECollisionChannel ReleasedObjectType=ECC_WorldStatic;
+    FCollisionResponseContainer ReleasedResponses;
 };
 /** Implemented by the ONE admitted owner coordinator, not by the family layer.
  * The implementation must verify held loading gate and matching committed
@@ -123,6 +145,7 @@ struct DINKCORE_API IDinkFamilyFitVisualAuthority
 };
 namespace DinkFamilyCollisionFit
 {
+    DINKCORE_API bool ParseReleasedVisual(const FString& FamiliesJson,FDinkReleasedFamilyVisualBinding& Out,FString& Error);
     DINKCORE_API bool ParsePolicy(const FString& FamiliesJson,TArray<FDinkFamilyCollisionFitRule>& Out,FString& Error);
     DINKCORE_API bool ReadCookedGeometry(UStaticMesh& Mesh,FDinkFamilyFittedGeometry& Out,FString& Error);
     DINKCORE_API bool BuildFootprint(const FDinkFamilyFittedGeometry& Geometry,const FTransform& Proposed,

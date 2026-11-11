@@ -73,6 +73,9 @@ public:
     bool bHasPublishedLegacyPicture=false;
     /** Lean successful release epoch; weak actor/components, strong picture assets. */
     TSharedPtr<const FDinkFamilyCollisionFitCandidate> PublishedLegacyReleaseWitness;
+    /** Optional guarded final-picture mesh; never a family collision source or authored interaction shape. */
+    UPROPERTY(Transient)
+    TObjectPtr<UStaticMeshComponent> ReleasedFamilyArt;
 
 	/** The original stamps this placement's hardbox into the screen's hardness. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Dink|Placeholder")

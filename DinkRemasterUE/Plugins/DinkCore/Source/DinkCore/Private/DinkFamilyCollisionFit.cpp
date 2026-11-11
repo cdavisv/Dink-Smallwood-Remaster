@@ -7,6 +7,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
+#include "StaticMeshResources.h"
 #include "Engine/Texture.h"
 #include "Engine/Texture2D.h"
 #include "Engine/World.h"
@@ -16,6 +17,9 @@
 #include "Materials/MaterialInterface.h"
 #include "Dom/JsonObject.h"
 #include "Misc/SecureHash.h"
+#include "Misc/PackageName.h"
+#include "Misc/ScopeExit.h"
+#include "Engine/CollisionProfile.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 
@@ -95,6 +99,30 @@ bool SourceBinding(const ADinkPlaceholderActor& Actor, const ADinkPlaceholderAct
         Actor.Origin->Sequence == Source.Origin->Sequence && Actor.Origin->Frame == Source.Origin->Frame &&
         Actor.Origin->ClassId == Source.Origin->ClassId;
 }
+}
+
+bool DinkFamilyCollisionFit::ParseReleasedVisual(const FString& Json,FDinkReleasedFamilyVisualBinding& Out,FString& Error)
+{
+    Out={};TSharedPtr<FJsonObject> Root;FString Schema;
+    auto Fail=[&](){Error=TEXT("invalid optional final173/6 released visual binding");return false;};
+    if(!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Json),Root)||!Root||
+       !Root->TryGetStringField(TEXT("schema"),Schema)||Schema!=TEXT("dink-art-families/1"))return Fail();
+    if(!Root->HasField(TEXT("released_barrel_visual"))){Error.Reset();return true;}
+    const TSharedPtr<FJsonObject>* Row=nullptr;const TArray<TSharedPtr<FJsonValue>>* Materials=nullptr;double Sequence=0,Frame=0;
+    FDinkReleasedFamilyVisualBinding Parsed;
+    if(!Root->TryGetObjectField(TEXT("released_barrel_visual"),Row)||!Row||!Row->IsValid()||
+       !ExactFields(**Row,{TEXT("sequence"),TEXT("frame"),TEXT("mesh"),TEXT("materials")})||
+       !(*Row)->TryGetNumberField(TEXT("sequence"),Sequence)||Sequence!=173||
+       !(*Row)->TryGetNumberField(TEXT("frame"),Frame)||Frame!=6||
+       !(*Row)->TryGetStringField(TEXT("mesh"),Parsed.Mesh)||!Parsed.Mesh.StartsWith(TEXT("/Game/"))||
+       !FPackageName::IsValidObjectPath(Parsed.Mesh)||!(*Row)->TryGetArrayField(TEXT("materials"),Materials)||Materials->Num()!=3)return Fail();
+    for(const auto& Value:*Materials)
+    {
+        FString Path;if(!Value.IsValid()||!Value->TryGetString(Path)||!Path.StartsWith(TEXT("/Game/"))||
+            !FPackageName::IsValidObjectPath(Path)||Parsed.Materials.Contains(Path))return Fail();
+        Parsed.Materials.Add(Path);
+    }
+    Parsed.bRequested=true;Out=MoveTemp(Parsed);Error.Reset();return true;
 }
 
 bool DinkFamilyCollisionFit::ParsePolicy(const FString& Json,TArray<FDinkFamilyCollisionFitRule>& Out,FString& Error)
@@ -334,6 +362,50 @@ bool DinkFamilyCollisionFit::BuildFootprint(const FDinkFamilyFittedGeometry& G,c
 
 namespace
 {
+const FName ReleasedVisualTag(TEXT("DinkReleasedFamilyVisual"));
+bool ReleasedInventoryMatches(const ADinkPlaceholderActor& Actor,const UStaticMeshComponent* Expected)
+{
+    int32 Count=0;TInlineComponentArray<UStaticMeshComponent*> Components(&Actor);
+    for(const auto* C:Components)if(C->ComponentHasTag(ReleasedVisualTag)){if(C!=Expected)return false;++Count;}
+    return Count==(Expected?1:0);
+}
+bool ReleasedAssetsMatch(const FDinkFamilyCollisionFitCandidate& C,FString& Error)
+{
+    if(!C.ReleasedMesh){if(!C.bReleasedMeshPrepared)return true;Error=TEXT("prepared released visual asset missing");return false;}
+    const auto* Mesh=C.ReleasedMesh&&C.ReleasedMesh->IsValid()?C.ReleasedMesh->Get():nullptr;
+    if(!Mesh||!Mesh->GetRenderData()||Mesh->GetRenderData()!=C.ReleasedRenderData||C.ReleasedLodCount<1||Mesh->GetRenderData()->LODResources.Num()!=C.ReleasedLodCount||Mesh->GetPathName()!=C.ReleasedMeshPath||C.ReleasedMaterialPaths.Num()!=C.ReleasedMaterials.Num()||!C.ReleasedBounds.IsValid||!Mesh->GetBoundingBox().Equals(C.ReleasedBounds,0)||
+       Mesh->GetStaticMaterials().Num()!=C.ReleasedMaterials.Num()||C.ReleasedMaterials.Num()!=3||
+       Mesh->bHasNavigationData||Mesh->GetNavCollision()||
+       (Mesh->GetBodySetup()&&Mesh->GetBodySetup()->AggGeom.GetElementCount()!=0))
+    {Error=TEXT("released visual mesh/bounds/material count/collision/navigation asset changed");return false;}
+    const FVector Size=C.ReleasedBounds.GetSize();
+    if(!FMath::IsFinite(Size.X)||!FMath::IsFinite(Size.Y)||!FMath::IsFinite(Size.Z)||Size.GetMin()<=0)
+    {Error=TEXT("released visual requires finite positive three-dimensional bounds");return false;}
+    for(int32 I=0;I<C.ReleasedMaterials.Num();++I)
+        if(!C.ReleasedMaterials[I]||!C.ReleasedMaterials[I]->IsValid()||Mesh->GetMaterial(I)!=C.ReleasedMaterials[I]->Get()||C.ReleasedMaterials[I]->Get()->GetPathName()!=C.ReleasedMaterialPaths[I])
+        {Error=TEXT("released visual material asset epoch changed");return false;}
+    return true;
+}
+bool ReleasedComponentMatches(const ADinkPlaceholderActor& Actor,const FDinkFamilyCollisionFitCandidate& C,FString& Error)
+{
+    const auto* Child=C.ReleasedComponent.Get();
+    if(!ReleasedAssetsMatch(C,Error))return false;
+    if(!C.ReleasedMesh)
+    {if(Actor.ReleasedFamilyArt==nullptr&&ReleasedInventoryMatches(Actor,nullptr))return true;Error=TEXT("unexpected released child without asset witness");return false;}
+    if(!Child||!ReleasedInventoryMatches(Actor,Child)||Actor.ReleasedFamilyArt!=Child||Child->GetOwner()!=&Actor||!Child->IsRegistered()||
+       Child->Mobility!=EComponentMobility::Movable||Child->GetAttachParent()!=Actor.GetRootComponent()||
+       !Child->GetAttachSocketName().IsNone()||Child->IsUsingAbsoluteLocation()||Child->IsUsingAbsoluteRotation()||Child->IsUsingAbsoluteScale()||
+       Child->GetStaticMesh()!=C.ReleasedMesh->Get()||!Child->GetRelativeTransform().Equals(C.ReleasedRelative,0)||
+       !Child->GetComponentTransform().Equals(C.ReleasedWorld,0)||!Child->ComponentHasTag(ReleasedVisualTag)||
+       Child->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)||Child->ComponentHasTag(TEXT("DinkAuthoredArt"))||
+       Child->GetCollisionProfileName()!=UCollisionProfile::NoCollision_ProfileName||Child->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
+       Child->CanEverAffectNavigation()||Child->GetGenerateOverlapEvents()||Child->GetCollisionObjectType()!=C.ReleasedObjectType||
+       Child->GetCollisionResponseToChannels()!=C.ReleasedResponses||Child->GetNumMaterials()!=C.ReleasedMaterials.Num())
+    {Error=TEXT("published released visual child identity/pose/physics epoch changed");return false;}
+    for(int32 I=0;I<C.ReleasedMaterials.Num();++I)if(Child->GetMaterial(I)!=C.ReleasedMaterials[I]->Get())
+    {Error=TEXT("published released visual child materials changed");return false;}
+    return true;
+}
 bool PublishedReleaseMatches(const ADinkPlaceholderActor& Actor,const FDinkFamilyCollisionFitCandidate& W,
     const FDinkLegacyPictureDescriptor& SourcePicture,FString& Error)
 {
@@ -354,7 +426,7 @@ bool PublishedReleaseMatches(const ADinkPlaceholderActor& Actor,const FDinkFamil
        !Card->GetComponentQuat().GetUpVector().Equals(FVector::UpVector,0)||
        !W.ReleaseMaterial||Actor.PublishedLegacyCardMaterial!=W.ReleaseMaterial->Get()||Card->GetMaterial(0)!=W.ReleaseMaterial->Get())
     {Error=TEXT("published release identity/geometry/baseline witness changed");return false;}
-    return DinkFamilyCollisionFit::ValidateReleasedPictureAssets(W,Error);
+    return DinkFamilyCollisionFit::ValidateReleasedPictureAssets(W,Error)&&ReleasedComponentMatches(Actor,W,Error);
 }
 }
 
@@ -391,6 +463,8 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
         Family->GetAttachParent()!=Actor->GetRootComponent()||Family->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
         Family->CanEverAffectNavigation()||Family->GetGenerateOverlapEvents())
         return Fail(TEXT("real-size exclusive noncolliding family binding changed"));
+    if(!ReleasedInventoryMatches(*Actor,Actor->ReleasedFamilyArt.Get()))return Fail(TEXT("ambiguous/unwitnessed released visual components"));
+    if(Actor->ReleasedFamilyArt&&!Actor->PublishedLegacyReleaseWitness)return Fail(TEXT("released visual has no published source witness"));
     if(Actor->bHasPublishedLegacyPicture!=Actor->PublishedLegacyReleaseWitness.IsValid())
         return Fail(TEXT("published release flag/witness disagree"));
     if(Actor->PublishedLegacyReleaseWitness)
@@ -401,15 +475,20 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     }
     if(!Release)
     {
-        const bool IntactPresentation=Actor->Card->bHiddenInGame&&!Family->bHiddenInGame&&Family->IsVisible();
+        const auto* Released=Actor->ReleasedFamilyArt.Get();
+        const bool ReleasedHidden=!Released||(!Released->IsVisible()&&Released->bHiddenInGame);
+        const bool IntactPresentation=ReleasedHidden&&Actor->Card->bHiddenInGame&&!Family->bHiddenInGame&&Family->IsVisible();
         const bool RestoringPrebirth=Sprite.bPrebirth&&Actor==Source&&Actor->Card->IsVisible()&&
             !Actor->Card->bHiddenInGame&&Family->bHiddenInGame&&!Family->IsVisible();
         const bool RestoringPublished=Actor->PublishedLegacyReleaseWitness.IsValid()&&Actor->Card->IsVisible()&&
             !Actor->Card->bHiddenInGame&&Family->bHiddenInGame&&!Family->IsVisible();
-        if(!IntactPresentation&&!RestoringPrebirth&&!RestoringPublished)return Fail(TEXT("unexpected fitted family presentation"));
+        const bool RestoringReleasedMesh=Actor->PublishedLegacyReleaseWitness&&Actor->PublishedLegacyReleaseWitness->bReleasedMeshPrepared&&
+            Released&&Released->IsVisible()&&!Released->bHiddenInGame&&Actor->Card->bHiddenInGame&&!Actor->Card->IsVisible()&&Family->bHiddenInGame&&!Family->IsVisible();
+        if(!IntactPresentation&&!RestoringPrebirth&&!RestoringPublished&&!RestoringReleasedMesh)return Fail(TEXT("unexpected fitted family presentation"));
     }
     FDinkFamilyCollisionFitCandidate C;C.Origin=Id;C.Sprite=Sprite;C.World=GetWorld();C.Actor=Actor;C.SourceActor=Source;C.FamilyComponent=Family;C.Card=Actor->Card;
     C.RestoreReleaseWitness=Actor->PublishedLegacyReleaseWitness;
+    if(Actor->ReleasedFamilyArt){C.BeforeReleasedVisible=Actor->ReleasedFamilyArt->IsVisible();C.BeforeReleasedHidden=Actor->ReleasedFamilyArt->bHiddenInGame;}
     C.bReleaseOnly=Release;C.BeforeFamilyHidden=Family->bHiddenInGame;C.BeforeCardHidden=Actor->Card->bHiddenInGame;C.BeforeCardVisible=Actor->Card->IsVisible();
     C.BeforeCardMesh=Actor->Card->GetStaticMesh();C.Corners=Volume->Corners;C.BeforeActor=Actor->GetActorTransform();
     C.BeforeFamily=Family->GetComponentTransform();C.BeforeCard=Actor->Card->GetComponentTransform();
@@ -469,6 +548,8 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
     if(C.RestoreReleaseWitness&&(!A->PublishedLegacyReleaseWitness.IsValid()||
        C.RestoreReleaseWitness!=A->PublishedLegacyReleaseWitness||C.RestoreReleaseWitness->Origin!=C.Origin||
        !PublishedReleaseMatches(*A,*C.RestoreReleaseWitness,Current.SourcePicture,Error)))return false;
+    if(A->ReleasedFamilyArt&&(A->ReleasedFamilyArt->IsVisible()!=(C.bVisualApplied?false:C.BeforeReleasedVisible)||
+       A->ReleasedFamilyArt->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeReleasedHidden)))return Fail(TEXT("released child visibility epoch changed"));
     int32 FamilyComponents=0,Volumes=0;
     if(A->ScreenNumber!=Current.CurrentScreen)return Fail(TEXT("current owner screen changed"));
     TInlineComponentArray<UStaticMeshComponent*> Components(A);for(auto* X:Components)if(X->ComponentHasTag(FamilyTag))++FamilyComponents;
@@ -504,10 +585,12 @@ bool UDinkArtFamilySubsystem::ApplyCollisionFitVisual(FDinkFamilyCollisionFitCan
     C.FamilyComponent->SetHiddenInGame(false);
     C.Card->SetVisibility(false);
     C.Card->SetHiddenInGame(true);
+    if(auto* Released=C.Actor->ReleasedFamilyArt.Get()){Released->SetVisibility(false);Released->SetHiddenInGame(true);}
     C.bVisualApplied=true;
     if(!C.FamilyComponent->GetComponentTransform().Equals(C.ProposedWorld,1.e-4)||
        !C.FamilyComponent->IsVisible()||C.FamilyComponent->bHiddenInGame||
-       C.Card->IsVisible()||!C.Card->bHiddenInGame)
+       C.Card->IsVisible()||!C.Card->bHiddenInGame||
+       (C.Actor->ReleasedFamilyArt&&(C.Actor->ReleasedFamilyArt->IsVisible()||!C.Actor->ReleasedFamilyArt->bHiddenInGame)))
     {Error=TEXT("fitted presentation did not publish; coordinator must retain loading gate");return false;}
     Error.Reset();return true;
 }
@@ -529,6 +612,36 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
        Current.SourcePicture.Sha1!=C.Sprite.SourcePicture.Sha1)
     {Error=TEXT("effective legacy picture was not preflighted before fit release");return false;}
     if(!DinkFamilyCollisionFit::ValidateReleasedPictureAssets(C,Error))return false;
+    if(!ReleasedAssetsMatch(C,Error))return false;
+    if(C.bReleasedMeshPrepared)
+    {
+        if(!C.Actor.IsValid()||!C.Actor->GetRootComponent()||!ReleasedVisualBinding.bRequested||!C.ReleasedMesh||C.ReleasedMesh->Get()->GetPathName()!=ReleasedVisualBinding.Mesh||
+           ReleasedVisualBinding.Materials.Num()!=C.ReleasedMaterials.Num()||Current.DisplayedSequence!=173||Current.DisplayedFrame!=6||
+           (Current.bActive&&!Current.bPrebirth))
+        {Error=TEXT("requested final released visual policy/state changed");return false;}
+        for(int32 I=0;I<C.ReleasedMaterials.Num();++I)if(C.ReleasedMaterials[I]->Get()->GetPathName()!=ReleasedVisualBinding.Materials[I])
+        {Error=TEXT("requested final released visual material policy changed");return false;}
+        const FQuat Yaw=C.ProposedWorld.GetRotation();const FBox& Bounds=C.ReleasedBounds;
+        const FTransform Expected(Yaw,C.Actor->GetActorLocation()-Yaw.RotateVector(FVector(Bounds.GetCenter().X,Bounds.GetCenter().Y,Bounds.Min.Z)),FVector::OneVector);
+        if(!C.ReleasedWorld.Equals(Expected,0)||!C.ReleasedRelative.Equals(Expected.GetRelativeTransform(C.Actor->GetRootComponent()->GetComponentTransform()),0))
+        {Error=TEXT("prepared released visual ground/yaw/metre-scale payload changed");return false;}
+    }
+    if(C.NewReleasedComponent)
+    {
+        const auto* Child=C.NewReleasedComponent->Get();
+        if(!C.bReleasedMeshPrepared||!Child||C.ReleasedComponent.Get()!=Child||C.Actor->ReleasedFamilyArt||!ReleasedInventoryMatches(*C.Actor.Get(),nullptr)||Child->IsRegistered()||
+           Child->GetOwner()!=nullptr||Child->GetAttachParent()!=C.Actor->GetRootComponent()||!Child->GetAttachSocketName().IsNone()||
+           Child->IsUsingAbsoluteLocation()||Child->IsUsingAbsoluteRotation()||Child->IsUsingAbsoluteScale()||
+           !Child->GetRelativeTransform().Equals(FTransform::Identity,0)||Child->IsVisible()||!Child->bHiddenInGame||
+           Child->Mobility!=EComponentMobility::Movable||Child->GetStaticMesh()!=C.ReleasedMesh->Get()||
+           !Child->ComponentHasTag(ReleasedVisualTag)||Child->ComponentHasTag(FamilyTag)||Child->ComponentHasTag(TEXT("DinkAuthoredArt"))||
+           Child->GetCollisionProfileName()!=UCollisionProfile::NoCollision_ProfileName||Child->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
+           Child->CanEverAffectNavigation()||Child->GetGenerateOverlapEvents()||Child->GetCollisionObjectType()!=C.ReleasedObjectType||
+           Child->GetCollisionResponseToChannels()!=C.ReleasedResponses||Child->GetNumMaterials()!=C.ReleasedMaterials.Num())
+        {Error=TEXT("unpublished released child changed after preparation");return false;}
+        for(int32 I=0;I<C.ReleasedMaterials.Num();++I)if(Child->GetMaterial(I)!=C.ReleasedMaterials[I]->Get())
+        {Error=TEXT("unpublished released child material changed");return false;}
+    }
     // Exact prepublication snapshots remain authoritative; a changed card/material is never repaired silently.
     auto Prior=C;Prior.bVisualApplied=true;
     if(!ValidateCollisionFit(Prior,Prior.Sprite,Error))
@@ -551,7 +664,14 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     Witness->ReleasePicture=C.ReleasePicture;Witness->bReleasePicturePrepared=C.bReleasePicturePrepared;
     Witness->ReleaseMaterial=C.ReleaseMaterial;Witness->ReleaseTexture=C.ReleaseTexture;
     Witness->SourcePictureMaterial=C.SourcePictureMaterial;Witness->SourcePictureTexture=C.SourcePictureTexture;
-    // All validation/allocation is complete before publication. Resolve geometry/material BEFORE exposing the card.
+    Witness->bReleasedMeshPrepared=C.bReleasedMeshPrepared;Witness->ReleasedMesh=C.ReleasedMesh;
+    Witness->ReleasedMaterials=C.ReleasedMaterials;Witness->ReleasedBounds=C.ReleasedBounds;
+    Witness->ReleasedRenderData=C.ReleasedRenderData;Witness->ReleasedLodCount=C.ReleasedLodCount;
+    Witness->ReleasedMeshPath=C.ReleasedMeshPath;Witness->ReleasedMaterialPaths=C.ReleasedMaterialPaths;
+    Witness->ReleasedRelative=C.ReleasedRelative;Witness->ReleasedWorld=C.ReleasedWorld;Witness->ReleasedComponent=C.ReleasedComponent;
+    Witness->ReleasedObjectType=C.ReleasedObjectType;Witness->ReleasedResponses=C.ReleasedResponses;
+    // All asset/candidate/witness allocation is complete; child ownership/registration is a guarded publication side effect.
+    // Resolve geometry/material BEFORE exposing either presentation.
     // Registered imported cards can still be Static after hidden-card billboarding was skipped.
     // This is presentation-only: existing strict NoCollision/navigation/overlap guards already passed.
     if(Card->Mobility!=EComponentMobility::Movable)Card->SetMobility(EComponentMobility::Movable);
@@ -560,10 +680,45 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     const auto WorldMatches=[&](){return SupportedParent()&&Parent->GetComponentTransform().Equals(ParentWorld,0)&&
         Card->GetComponentTransform().Equals(RequestedWorld,0)&&Card->GetMaterial(0)==C.ReleaseMaterial->Get();};
     if(!WorldMatches()){Error=TEXT("effective legacy picture world/parent/material publication failed; retain loading gate");return false;}
+    auto* Released=C.ReleasedComponent.Get();bool NewChildOwned=false,PublicationSucceeded=false;
+    ON_SCOPE_EXIT
+    {
+        if(NewChildOwned&&!PublicationSucceeded&&Released)
+        {
+            if(Actor->ReleasedFamilyArt==Released)Actor->ReleasedFamilyArt=nullptr;
+            Actor->RemoveInstanceComponent(Released);Released->DestroyComponent();
+        }
+    };
+    if(C.bReleasedMeshPrepared)
+    {
+        if(!Released){Error=TEXT("prepared released visual child expired");return false;}
+        if(C.NewReleasedComponent)
+        {
+            if(Actor->ReleasedFamilyArt||Released->IsRegistered()||C.NewReleasedComponent->Get()!=Released)
+            {Error=TEXT("prepared released visual ownership changed");return false;}
+            // PostRename is the supported owner-list transition (ActorComponent.cpp934).
+            const FName Name=MakeUniqueObjectName(Actor,UStaticMeshComponent::StaticClass(),TEXT("ReleasedFamilyArt"));
+            if(!Released->Rename(*Name.ToString(),Actor,REN_DontCreateRedirectors|REN_NonTransactional))
+            {Error=TEXT("released visual child ownership publication failed");return false;}
+            NewChildOwned=true;Actor->AddInstanceComponent(Released);Released->RegisterComponent();
+        }
+        else if(Actor->ReleasedFamilyArt!=Released){Error=TEXT("released visual child changed");return false;}
+        Released->SetRelativeTransform(C.ReleasedRelative,false,nullptr,ETeleportType::TeleportPhysics);
+        if(!SupportedParent()||!Parent->GetComponentTransform().Equals(ParentWorld,0)||
+           !Released->GetComponentTransform().Equals(C.ReleasedWorld,0))
+        {Error=TEXT("released mesh exact world publication failed; retain loading gate");return false;}
+        // Capture only the stock setter result after exact world equality, without tolerance.
+        Witness->ReleasedRelative=Released->GetRelativeTransform();Actor->ReleasedFamilyArt=Released;
+    }
+    if(C.ReleasedMesh&&!ReleasedComponentMatches(*Actor,*Witness,Error))return false;
     Family->SetVisibility(false);Family->SetHiddenInGame(true);
-    Card->SetVisibility(true);Card->SetHiddenInGame(false);
-    if(!WorldMatches()||!Card->IsVisible()||Card->bHiddenInGame||Family->IsVisible()||!Family->bHiddenInGame)
-    {Error=TEXT("effective legacy picture publication failed; retain loading gate");return false;}
+    Card->SetVisibility(!C.bReleasedMeshPrepared);Card->SetHiddenInGame(C.bReleasedMeshPrepared);
+    if(Released){Released->SetVisibility(C.bReleasedMeshPrepared);Released->SetHiddenInGame(!C.bReleasedMeshPrepared);}
+    if(!WorldMatches()||Card->IsVisible()==C.bReleasedMeshPrepared||Card->bHiddenInGame!=C.bReleasedMeshPrepared||
+       Family->IsVisible()||!Family->bHiddenInGame||
+       (Released&&(Released->IsVisible()!=C.bReleasedMeshPrepared||Released->bHiddenInGame==C.bReleasedMeshPrepared)))
+    {Error=TEXT("effective released presentation failed; retain loading gate");return false;}
+    if(C.ReleasedMesh&&!ReleasedComponentMatches(*Actor,*Witness,Error))return false;
     // Stock setters can round-trip local coordinates while producing the EXACT requested world pose.
     // Freeze the observed relative epoch, never the unrepresentable ideal local request.
     Actor->PublishedLegacyCardRelative=Card->GetRelativeTransform();
@@ -571,7 +726,7 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     Actor->PublishedImportedCardBaseline=C.ImportedCardBaseline;Actor->PublishedSourcePictureSha1=C.Sprite.SourcePicture.Sha1;
     Witness->ReleaseCardRelative=Card->GetRelativeTransform();
     Actor->PublishedLegacyReleaseWitness=Witness;
-    Actor->bHasPublishedLegacyPicture=true;
+    Actor->bHasPublishedLegacyPicture=true;PublicationSucceeded=true;
     Error.Reset();return true;
 }
 
@@ -652,6 +807,46 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitReleaseCandidate(const FDinkOri
     Prepared.ReleaseTexture=MakeShared<TStrongObjectPtr<UTexture>>(TargetTexture);
     Prepared.SourcePictureTexture=MakeShared<TStrongObjectPtr<UTexture>>(SourceTexture);
     Prepared.ReleasePicture=Current.DisplayedPicture;Prepared.bReleasePicturePrepared=true;
+    // Retain any previous hidden child epoch during intermediate legacy animation frames.
+    if(const auto* Prior=Actor->PublishedLegacyReleaseWitness.Get();Prior&&Prior->ReleasedMesh)
+    {
+        Prepared.ReleasedMesh=Prior->ReleasedMesh;Prepared.ReleasedMaterials=Prior->ReleasedMaterials;
+        Prepared.ReleasedMeshPath=Prior->ReleasedMeshPath;Prepared.ReleasedMaterialPaths=Prior->ReleasedMaterialPaths;
+        Prepared.ReleasedBounds=Prior->ReleasedBounds;Prepared.ReleasedRelative=Prior->ReleasedRelative;
+        Prepared.ReleasedRenderData=Prior->ReleasedRenderData;Prepared.ReleasedLodCount=Prior->ReleasedLodCount;
+        Prepared.ReleasedWorld=Prior->ReleasedWorld;Prepared.ReleasedComponent=Prior->ReleasedComponent;
+        Prepared.ReleasedObjectType=Prior->ReleasedObjectType;Prepared.ReleasedResponses=Prior->ReleasedResponses;
+    }
+    const bool FinalPicture=Current.DisplayedSequence==173&&Current.DisplayedFrame==6&&(!Current.bActive||Current.bPrebirth);
+    if(ReleasedVisualBinding.bRequested&&FinalPicture)
+    {
+        auto* Mesh=LoadObject<UStaticMesh>(nullptr,*ReleasedVisualBinding.Mesh);
+        if(!Mesh||Mesh->GetPathName()!=ReleasedVisualBinding.Mesh)
+        {Error=TEXT("requested released visual mesh unavailable");return false;}
+        Prepared.bReleasedMeshPrepared=true;Prepared.ReleasedMesh=MakeShared<TStrongObjectPtr<UStaticMesh>>(Mesh);
+        Prepared.ReleasedMeshPath=ReleasedVisualBinding.Mesh;Prepared.ReleasedMaterialPaths=ReleasedVisualBinding.Materials;
+        Prepared.ReleasedBounds=Mesh->GetBoundingBox();Prepared.ReleasedMaterials.Reset();
+        Prepared.ReleasedRenderData=Mesh->GetRenderData();Prepared.ReleasedLodCount=Mesh->GetRenderData()?Mesh->GetRenderData()->LODResources.Num():0;
+        for(int32 I=0;I<ReleasedVisualBinding.Materials.Num();++I)
+        {
+            auto* M=LoadObject<UMaterialInterface>(nullptr,*ReleasedVisualBinding.Materials[I]);
+            if(!M||M->GetPathName()!=ReleasedVisualBinding.Materials[I]||Mesh->GetMaterial(I)!=M)
+            {Error=TEXT("requested released visual shared material identity unavailable");return false;}
+            Prepared.ReleasedMaterials.Add(MakeShared<TStrongObjectPtr<UMaterialInterface>>(M));
+        }
+        if(!ReleasedAssetsMatch(Prepared,Error))return false;
+        // Qualified intact ground/yaw, no card-layout scale or effective-frame pixel dimensions.
+        const FQuat Yaw=Prepared.ProposedWorld.GetRotation();
+        const FBox& Bounds=Prepared.ReleasedBounds;
+        Prepared.ReleasedWorld=FTransform(Yaw,Actor->GetActorLocation()-Yaw.RotateVector(FVector(Bounds.GetCenter().X,Bounds.GetCenter().Y,Bounds.Min.Z)),FVector::OneVector);
+        Prepared.ReleasedRelative=Prepared.ReleasedWorld.GetRelativeTransform(Actor->GetRootComponent()->GetComponentTransform());
+        if(!Prepared.ReleasedComponent.IsValid())
+        {
+            auto* Child=MakeUnpublishedReleasedVisual(*Actor,*Mesh);
+            Prepared.NewReleasedComponent=MakeShared<TStrongObjectPtr<UStaticMeshComponent>>(Child);Prepared.ReleasedComponent=Child;
+            Prepared.ReleasedObjectType=Child->GetCollisionObjectType();Prepared.ReleasedResponses=Child->GetCollisionResponseToChannels();
+        }
+    }
     Out=MoveTemp(Prepared);
     Out.bReleaseOnly=true;return true;
 }

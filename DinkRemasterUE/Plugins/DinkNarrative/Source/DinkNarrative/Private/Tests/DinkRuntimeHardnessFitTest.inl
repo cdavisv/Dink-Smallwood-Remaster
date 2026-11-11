@@ -19,6 +19,7 @@
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
 #include "Materials/MaterialInterface.h"
+#include "Materials/Material.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "UObject/Package.h"
 #include "PhysicsEngine/BodySetup.h"
@@ -153,7 +154,9 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     ActiveRule.CanonicalSurfaceSha1=Geometry.CanonicalSurfaceSha1;
     ActiveRule.SourceHash=Actor->Origin->SourceHash;ActiveRule.SourceScript=TEXT("bar-f1");
     Families->CollisionFitRules.Add(ActiveRule);
-    const int Handle=D->CreateVirtualSprite(209,Placement->X,Placement->Y);auto* S=D->FindSprite(Handle);S->Actor=Actor;S->Origin=Id;S->Script=TEXT("bar-f1");S->Props.Add(TEXT("live"),1);S->Props.Add(TEXT("pseq"),173);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);
+    const int Handle=D->CreateVirtualSprite(209,Placement->X,Placement->Y);auto* S=D->FindSprite(Handle);S->Actor=Actor;S->Origin=Id;S->Script=TEXT("bar-f1");G->InitPlacementSprite(*S);S->Props.Add(TEXT("live"),1);S->Props.Add(TEXT("pseq"),173);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);
+    TestTrue(TEXT("ordinary source initializer preserves audited stationary placement semantics"),S->X==Placement->X&&S->Y==Placement->Y&&S->Dir==0&&
+        S->Props.Contains(TEXT("speed"))&&S->GetProp(TEXT("speed"))==Placement->Speed&&Placement->Speed==0);
     // Feed the SAME strict production reader an owned saved source packet.
     // There is no public path override or missing-sidecar admission exemption.
     const FString SelectedDirectory=FPaths::ProjectSavedDir()/TEXT("Automation/FittedSource")/FGuid::NewGuid().ToString();
@@ -454,6 +457,49 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     auto* ExtraSprite=D->FindSprite(Extra);ExtraSprite->Props.Add(TEXT("pseq"),173);ExtraSprite->Props.Add(TEXT("pframe"),1);ExtraSprite->Props.Add(TEXT("hard"),0);
     const bool ShutdownRedrawn=G->RedrawRuntimeHardnessMap(209,Error);
     if(!TestTrue(TEXT("prepare controlled final registered body for shutdown lifetime proof"),ShutdownRedrawn)){RedrawFailure(TEXT("prepare controlled final registered body for shutdown lifetime proof"),Error);return false;}
+    // Detached fixture evidence only: never synchronize or repair the measured row.
+    TArray<TSharedPtr<FJsonValue>> CoordinateRows;int32 FirstCoordinateDivergence=INDEX_NONE;
+    const FString CoordinateDir=FPaths::ProjectSavedDir()/TEXT("Automation/ReleasedCoordinateDiagnostic");
+    const FString CoordinateFile=CoordinateDir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));
+    const auto CoordinateSnapshot=[&](const TCHAR* Phase,double Tick)
+    {
+        const auto* Row=D->FindSprite(Handle);auto Facts=MakeShared<FJsonObject>();
+        Facts->SetStringField(TEXT("phase"),Phase);Facts->SetNumberField(TEXT("tick"),Tick);Facts->SetBoolField(TEXT("row_present"),Row!=nullptr);
+        if(Row)
+        {
+            const FVector Actual=Actor->GetActorLocation();const FVector Mapped=DinkLayout::MapPixelToUnreal(Volume->Corners,Row->X-20,Row->Y);
+            double InverseX=0,InverseY=0;const bool InverseOk=DinkLayout::MetresToMapPixel(Volume->Corners,DinkLayout::UnrealToMetres(Actual),InverseX,InverseY);
+            const bool Agrees=FVector2D(Actual.X,Actual.Y).Equals(FVector2D(Mapped.X,Mapped.Y),.05);
+            if(!Agrees&&FirstCoordinateDivergence==INDEX_NONE)FirstCoordinateDivergence=CoordinateRows.Num();
+            Facts->SetBoolField(TEXT("strict_ground_agrees"),Agrees);Facts->SetBoolField(TEXT("inverse_ok"),InverseOk);
+            const auto Exact=[&](const TCHAR* Name,double Value){uint64 Bits=0;FMemory::Memcpy(&Bits,&Value,sizeof(Bits));Facts->SetStringField(Name,FString::Printf(TEXT("%.17g/0x%016llx"),Value,static_cast<unsigned long long>(Bits)));};
+            Exact(TEXT("row_x"),Row->X);Exact(TEXT("row_y"),Row->Y);Exact(TEXT("placement_x"),Placement->X);Exact(TEXT("placement_y"),Placement->Y);
+            Exact(TEXT("actor_x"),Actual.X);Exact(TEXT("actor_y"),Actual.Y);Exact(TEXT("actor_z"),Actual.Z);Exact(TEXT("mapped_x"),Mapped.X);Exact(TEXT("mapped_y"),Mapped.Y);
+            const FQuat ActualQ=Actor->GetActorQuat();const FVector ActualScale=Actor->GetActorScale3D();
+            Exact(TEXT("actor_qx"),ActualQ.X);Exact(TEXT("actor_qy"),ActualQ.Y);Exact(TEXT("actor_qz"),ActualQ.Z);Exact(TEXT("actor_qw"),ActualQ.W);
+            Exact(TEXT("actor_sx"),ActualScale.X);Exact(TEXT("actor_sy"),ActualScale.Y);Exact(TEXT("actor_sz"),ActualScale.Z);
+            Exact(TEXT("delta_x"),Actual.X-Mapped.X);Exact(TEXT("delta_y"),Actual.Y-Mapped.Y);Exact(TEXT("inverse_engine_x"),InverseX+20);Exact(TEXT("inverse_y"),InverseY);
+            Exact(TEXT("corner_nw_x"),Volume->Corners.NW.X);Exact(TEXT("corner_nw_y"),Volume->Corners.NW.Y);Exact(TEXT("corner_ne_x"),Volume->Corners.NE.X);Exact(TEXT("corner_ne_y"),Volume->Corners.NE.Y);
+            Exact(TEXT("corner_sw_x"),Volume->Corners.SW.X);Exact(TEXT("corner_sw_y"),Volume->Corners.SW.Y);Exact(TEXT("corner_se_x"),Volume->Corners.SE.X);Exact(TEXT("corner_se_y"),Volume->Corners.SE.Y);
+            Facts->SetStringField(TEXT("actor"),GetPathNameSafe(Row->Actor.Get()));Facts->SetStringField(TEXT("source"),GetPathNameSafe(Actor));Facts->SetStringField(TEXT("origin"),Row->Origin.ToString());
+            Facts->SetNumberField(TEXT("screen"),Row->Screen);Facts->SetNumberField(TEXT("handle"),Handle);Facts->SetNumberField(TEXT("dir"),Row->Dir);
+            Facts->SetBoolField(TEXT("active"),Row->bActive);Facts->SetBoolField(TEXT("moving"),Row->bMoving);Facts->SetBoolField(TEXT("spawned"),Row->bSpawned);Facts->SetBoolField(TEXT("retained"),Row->bRetainedOriginalEditor);
+            Facts->SetBoolField(TEXT("slot"),G->HardnessProjection&&G->HardnessProjection->Identity->Slots.Slot(Handle).has_value());Facts->SetBoolField(TEXT("explicit_speed"),Row->Props.Contains(TEXT("speed")));
+            for(const TCHAR* Key:{TEXT("mx"),TEXT("my"),TEXT("seq"),TEXT("frame"),TEXT("pseq"),TEXT("pframe"),TEXT("brain"),TEXT("nohit")})Facts->SetNumberField(Key,Row->GetProp(Key));
+            Facts->SetNumberField(TEXT("speed_default1"),Row->GetProp(TEXT("speed"),1));
+        }
+        CoordinateRows.Add(MakeShared<FJsonValueObject>(Facts));
+    };
+    const auto SaveCoordinates=[&]()
+    {
+        auto Facts=MakeShared<FJsonObject>();Facts->SetArrayField(TEXT("rows"),CoordinateRows);Facts->SetNumberField(TEXT("first_divergence"),FirstCoordinateDivergence);
+        FString Text;IFileManager::Get().MakeDirectory(*CoordinateDir,true);
+        const bool Written=FJsonSerializer::Serialize(Facts,TJsonWriterFactory<>::Create(&Text))&&FFileHelper::SaveStringToFile(Text,*CoordinateFile);
+        AddInfo(FString::Printf(TEXT("released coordinate diagnostic rows=%d firstDivergence=%d written=%d path=%s"),CoordinateRows.Num(),FirstCoordinateDivergence,Written,*CoordinateFile));
+    };
+    ON_SCOPE_EXIT { SaveCoordinates(); };
+    TestTrue(TEXT("natural source begins with unchanged placement speed and dumb-sprite direction"),D->FindSprite(Handle)->GetProp(TEXT("speed"))==Placement->Speed&&D->FindSprite(Handle)->Dir==0);
+    CoordinateSnapshot(TEXT("before_first_natural_hit"),Story->GetNowMs());
     // Natural production path: original hit procedure, then ThinkSprite's real
     // Animate -> OneTimeBrain5 completion. No manual final pframe or final redraw.
     S=D->FindSprite(Handle);S->bSpawned=false; // this actor is the fixture's ordinary source placement
@@ -468,9 +514,12 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     const double NaturalStart=Story->GetNowMs();int32 NaturalFrames=0;TSet<int32> AnimatedFrames;
     for(;NaturalFrames<180&&D->FindSprite(Handle)->bActive;++NaturalFrames)
     {
+        CoordinateSnapshot(TEXT("before_existing_think"),NaturalStart+NaturalFrames*(1000.0/60.0));
         G->ThinkSprite(Handle,NaturalStart+NaturalFrames*(1000.0/60.0));
+        CoordinateSnapshot(TEXT("after_existing_think"),NaturalStart+NaturalFrames*(1000.0/60.0));
         AnimatedFrames.Add(D->FindSprite(Handle)->GetProp(TEXT("pframe")));
     }
+    CoordinateSnapshot(TEXT("after_natural_deactivation"),Story->GetNowMs());
     TestTrue(TEXT("natural animator actually visited intermediate and final frames"),AnimatedFrames.Contains(2)&&AnimatedFrames.Contains(3)&&AnimatedFrames.Contains(4)&&AnimatedFrames.Contains(5)&&AnimatedFrames.Contains(6));
     S=D->FindSprite(Handle);
     if(!TestTrue(TEXT("natural Animate reaches final1736 then brain5 deactivates"),S&&!S->bActive&&
@@ -508,5 +557,148 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     AddInfo(FString::Printf(TEXT("final background factors ActorHidden=%d currentActive=%d materialSame=%d actualMaterial=%s expectedMaterial=%s"),
         Actor->IsHidden(),S->bActive,Actor->Card->GetMaterial(0)==FirstBrokenMaterial,*GetPathNameSafe(Actor->Card->GetMaterial(0)),*GetPathNameSafe(FirstBrokenMaterial)));
     TestTrue(TEXT("normal guarded redraw restores correct inactive background"),!Actor->IsHidden()&&!S->bActive&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
+    TestTrue(TEXT("default absent final-mesh option leaves all existing legacy controls exact"),!Families->ReleasedVisualBinding.bRequested&&!Actor->ReleasedFamilyArt);
+#if WITH_EDITOR
+    // Own unsaved synthetic assets; never mutate the engine cube or activate production Data.
+    const FString PackageName=TEXT("/Game/DinkQA/ReleasedVisual_")+FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    auto* VisualPackage=CreatePackage(*PackageName);auto* VisualMesh=DuplicateObject<UStaticMesh>(Cube,VisualPackage,TEXT("SM_SyntheticReleased"));
+    if(!TestNotNull(TEXT("owned synthetic visual mesh"),VisualMesh)||
+       !TestTrue(TEXT("owned body setup is not shared with engine source"),VisualMesh->GetBodySetup()&&VisualMesh->GetBodySetup()!=Cube->GetBodySetup()))return false;
+    FAssetCompilingManager::Get().FinishAllCompilation(); // owned synthetic asset setup only, before any gameplay mutation
+    VisualMesh->GetBodySetup()->AggGeom.EmptyElements();VisualMesh->MarkAsNotHavingNavigationData();VisualMesh->GetStaticMaterials().Reset();
+    TArray<UMaterialInterface*> VisualMaterials;
+    for(int32 I=0;I<3;++I)
+    {
+        auto* M=NewObject<UMaterial>(VisualPackage,*FString::Printf(TEXT("M_Synthetic_%d"),I),RF_Public|RF_Standalone);
+        VisualMaterials.Add(M);VisualMesh->GetStaticMaterials().Add(FStaticMaterial(M));
+    }
+    // Characterize the supported unit-parent yaw path using actual stock components.
+    // FamilyWorld comes from the first real child, not a hand-computed quaternion oracle.
+    // No epsilon/force-update/cache flush: the final exact-world gate remains the production contract.
+    auto TransformWords=[](const FTransform& T)
+    {
+        const FVector V=T.GetTranslation(),Z=T.GetScale3D();const FQuat Q=T.GetRotation();
+        const double Values[]={V.X,V.Y,V.Z,Q.X,Q.Y,Q.Z,Q.W,Z.X,Z.Y,Z.Z};
+        TArray<TSharedPtr<FJsonValue>> Out;
+        for(const double Value:Values)
+        {
+            uint64 Word=0;FMemory::Memcpy(&Word,&Value,sizeof(Word));
+            Out.Add(MakeShared<FJsonValueString>(FString::Printf(TEXT("%.17g/0x%016llx"),Value,static_cast<unsigned long long>(Word))));
+        }
+        return Out;
+    };
+    for(const double ParentYaw:{45.0,90.0})
+    {
+        auto* ParentActor=W->SpawnActor<AActor>();auto* Parent=NewObject<USceneComponent>(ParentActor);
+        ParentActor->AddInstanceComponent(Parent);ParentActor->SetRootComponent(Parent);Parent->SetMobility(EComponentMobility::Movable);Parent->RegisterComponent();
+        ParentActor->SetActorTransform(FTransform(FRotator(0,ParentYaw,0),FVector(221487.36,-157285.60,0),FVector::OneVector));
+        auto* StockFamily=NewObject<USceneComponent>(ParentActor);ParentActor->AddInstanceComponent(StockFamily);StockFamily->SetupAttachment(Parent);StockFamily->SetMobility(EComponentMobility::Movable);
+        StockFamily->SetRelativeTransform(FTransform(FRotator(0,DinkArtFamily::StableYaw(Id.ToString()),0),FVector::ZeroVector,FVector::OneVector));StockFamily->RegisterComponent();
+        const FTransform ParentBefore=Parent->GetComponentTransform();
+        const FQuat QualifiedYaw=StockFamily->GetComponentQuat();const FVector NonzeroAnchor(3.25,-7.125,-2.5);
+        const FTransform Requested(QualifiedYaw,ParentActor->GetActorLocation()-QualifiedYaw.RotateVector(NonzeroAnchor),FVector::OneVector);
+        const FTransform Relative=Requested.GetRelativeTransform(ParentBefore);
+        auto* StockReleased=NewObject<USceneComponent>(ParentActor);ParentActor->AddInstanceComponent(StockReleased);StockReleased->SetupAttachment(Parent);StockReleased->SetMobility(EComponentMobility::Movable);StockReleased->RegisterComponent();
+        StockReleased->SetRelativeTransform(Relative,false,nullptr,ETeleportType::TeleportPhysics);
+        const FTransform Actual=StockReleased->GetComponentTransform();const bool Exact=Actual.Equals(Requested,0);
+        auto Facts=MakeShared<FJsonObject>();Facts->SetNumberField(TEXT("nominal_parent_yaw_degrees"),ParentYaw);Facts->SetBoolField(TEXT("actual_world_exact_requested"),Exact);
+        Facts->SetArrayField(TEXT("parent_actual_t_q_s_words"),TransformWords(ParentBefore));Facts->SetArrayField(TEXT("qualified_family_world_t_q_s_words"),TransformWords(StockFamily->GetComponentTransform()));
+        Facts->SetArrayField(TEXT("requested_world_t_q_s_words"),TransformWords(Requested));Facts->SetArrayField(TEXT("requested_relative_t_q_s_words"),TransformWords(Relative));
+        Facts->SetArrayField(TEXT("actual_world_t_q_s_words"),TransformWords(Actual));Facts->SetArrayField(TEXT("actual_relative_t_q_s_words"),TransformWords(StockReleased->GetRelativeTransform()));
+        const FString Dir=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Automation/ReleasedParentYaw"));IFileManager::Get().MakeDirectory(*Dir,true);
+        const FString File=Dir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));FString Text;
+        const bool Written=FJsonSerializer::Serialize(Facts,TJsonWriterFactory<>::Create(&Text))&&FFileHelper::SaveStringToFile(Text,*File,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting);
+        AddInfo(FString::Printf(TEXT("stock released parent yaw %.0f exact=%d receipt=%s written=%d payload=%s"),ParentYaw,Exact,*File,Written,*Text));
+        TestTrue(TEXT("stock parent remains unit-scale and unchanged"),ParentBefore.GetScale3D().Equals(FVector::OneVector,0)&&Parent->GetComponentTransform().Equals(ParentBefore,0));
+        TestTrue(FString::Printf(TEXT("stock supported parent yaw %.0f preserves exact requested world"),ParentYaw),Exact);
+        TestTrue(TEXT("stock parent characterization receipt retained before equality assertion"),Written);
+        ParentActor->Destroy();
+    }
+    FString Option=FString::Printf(TEXT("{\"schema\":\"dink-art-families/1\",\"released_barrel_visual\":{\"sequence\":173,\"frame\":6,\"mesh\":\"%s\",\"materials\":[\"%s\",\"%s\",\"%s\"]}}"),
+        *VisualMesh->GetPathName(),*VisualMaterials[0]->GetPathName(),*VisualMaterials[1]->GetPathName(),*VisualMaterials[2]->GetPathName());
+    FDinkReleasedFamilyVisualBinding Parsed;
+    TestTrue(TEXT("optional released binding absent remains off"),DinkFamilyCollisionFit::ParseReleasedVisual(TEXT("{\"schema\":\"dink-art-families/1\"}"),Parsed,Error)&&!Parsed.bRequested);
+    TestFalse(TEXT("wrong final frame refuses instead of ignoring request"),DinkFamilyCollisionFit::ParseReleasedVisual(Option.Replace(TEXT("\"frame\":6"),TEXT("\"frame\":1")),Parsed,Error));
+    TestFalse(TEXT("unknown option field refuses"),DinkFamilyCollisionFit::ParseReleasedVisual(Option.Replace(TEXT("\"frame\":6"),TEXT("\"frame\":6,\"extra\":true")),Parsed,Error));
+    if(!TestTrue(TEXT("explicit synthetic final1736 mapping parses"),DinkFamilyCollisionFit::ParseReleasedVisual(Option,Parsed,Error)))return false;
+    Families->ReleasedVisualBinding=Parsed;
+    const auto FinalLegacyState=G->HardnessProjection->Fits->ReleaseStates.Last();FDinkFamilyCollisionFitCandidate MissingVisual;
+    Families->ReleasedVisualBinding.Mesh=PackageName+TEXT("/Missing.Missing");
+    TestFalse(TEXT("explicit missing final mesh refuses before any card/child mutation"),Families->PrepareCollisionFitReleaseCandidate(Id,FinalLegacyState,MissingVisual,Error));
+    TestTrue(TEXT("missing requested mesh leaves prior card and actor child untouched"),!Actor->ReleasedFamilyArt&&Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0)&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
+    Families->ReleasedVisualBinding=Parsed;
+    CoordinateSnapshot(TEXT("before_restore_props"),Story->GetNowMs());
+    // Restore intact through the SAME coordinator before a second real hit/Animate/brain5 cycle.
+    Story->GetWorldState()->ClearOverride(Id);G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,1);G->RecordEditorHardness(Id,0);
+    S=D->FindSprite(Handle);S->Script=Placement->Script;S->Props.Add(TEXT("pseq"),173);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("seq"),0);S->Props.Add(TEXT("frame"),0);S->Props.Add(TEXT("brain"),0);S->Props.Add(TEXT("nohit"),0);S->Props.Add(TEXT("hard"),0);
+    TestFalse(TEXT("natural deactivation released the original live slot"),G->HardnessProjection->Identity->Slots.Slot(Handle).has_value());
+    FDinkScriptInstance ReactivationContext;ReactivationContext.Script=Placement->Script;ReactivationContext.Sprite=Handle;ReactivationContext.Screen=209;
+    FDinkStoryLine ReactivationLine;ReactivationLine.Kind=EDinkLineKind::Command;ReactivationLine.Command=TEXT("sp_active");ReactivationLine.Args={FString::FromInt(Handle),TEXT("1")};
+    CoordinateSnapshot(TEXT("before_sp_active"),Story->GetNowMs());
+    D->Execute(ReactivationContext,ReactivationLine);
+    CoordinateSnapshot(TEXT("after_sp_active"),Story->GetNowMs());
+    TestTrue(TEXT("registered sp_active command restores actual live slot"),G->HardnessProjection->Identity->Slots.Slot(Handle).has_value()&&D->FindSprite(Handle)->bActive);
+    CoordinateSnapshot(TEXT("before_intact_redraw"),Story->GetNowMs());
+    const bool FeatureIntactRedrawn=G->RedrawRuntimeHardnessMap(209,Error);
+    CoordinateSnapshot(TEXT("after_intact_redraw"),Story->GetNowMs());
+    if(!TestTrue(TEXT("opt-in feature preserves actual intact restore/body"),FeatureIntactRedrawn)){AddError(Error);return false;}
+    FString IntactBodyError;const auto* IntactBeforeHit=D->FindSprite(Handle);
+    auto* IntactBeforeHitBody=G->FindHardnessFitPrimitive(*IntactBeforeHit,&IntactBodyError);
+    TestNotNull(TEXT("intact fitted body present before natural feature hit"),IntactBeforeHitBody);
+    if(!IntactBeforeHitBody)
+    {
+        AddInfo(FString::Printf(TEXT("feature intact prehit lookup: handle=%d actor=%s source=%s rowScreen=%d projectionScreen=%d vision=%d loading=%d reason=%s"),
+            Handle,*GetPathNameSafe(IntactBeforeHit->Actor.Get()),*GetPathNameSafe(Actor),IntactBeforeHit->Screen,
+            G->HardnessProjection?G->HardnessProjection->Screen:0,G->HardnessProjection?G->HardnessProjection->Vision:0,G->IsHardnessLoading(),*IntactBodyError));
+        if(G->HardnessProjection&&G->HardnessProjection->Fits)
+            for(const auto& Fit:G->HardnessProjection->Fits->Candidates)
+                AddInfo(FString::Printf(TEXT("feature intact admitted candidate: actor=%s source=%s family=%s familyRegistered=%d"),
+                    *GetPathNameSafe(Fit.Actor.Get()),*GetPathNameSafe(Fit.SourceActor.Get()),*GetPathNameSafe(Fit.FamilyComponent.Get()),Fit.FamilyComponent.IsValid()&&Fit.FamilyComponent->IsRegistered()));
+    }
+    const int32 MeshHit=Story->StartProcedure(Placement->Script,TEXT("hit"),Handle,{},209,true);
+    if(!TestTrue(TEXT("second source hit really starts"),MeshHit>0))return false;Story->RunNow(MeshHit);
+    for(int32 F=0;F<180&&D->FindSprite(Handle)->bActive;++F)G->ThinkSprite(Handle,NaturalStart+4000+F*(1000.0/60.0));
+    S=D->FindSprite(Handle);auto* Released=Actor->ReleasedFamilyArt.Get();
+    if(!TestNotNull(TEXT("natural final1736 publishes dedicated mesh child"),Released))return false;
+    TestTrue(TEXT("natural released mesh preserves inactive/scriptend/type3/no-body domains"),!S->bActive&&S->Script.IsNone()&&S->GetProp(TEXT("pframe"))==6&&Story->GetWorldState()->GetOverrideType(Id)==EDinkOverrideType::BackgroundNoHardness&&!G->FindHardnessFitPrimitive(*S)&&!G->IsHardnessLoading());
+    TestTrue(TEXT("real-size released child replaces visible giant card, not collision source"),Released->IsVisible()&&!Released->bHiddenInGame&&Released->GetStaticMesh()==VisualMesh&&Released->GetComponentScale().Equals(FVector::OneVector,0)&&Actor->Card->bHiddenInGame&&!Actor->Card->IsVisible()&&FamilyMesh->bHiddenInGame&&FamilyMesh->GetStaticMesh()==Barrel);
+    TestTrue(TEXT("released child is visual only without authored/family interaction tags"),Released->GetCollisionEnabled()==ECollisionEnabled::NoCollision&&!Released->CanEverAffectNavigation()&&!Released->GetGenerateOverlapEvents()&&!Released->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)&&!Actor->ActorHasTag(TEXT("DinkAuthoredArt")));
+    TestTrue(TEXT("hidden canonical card still holds exact1736 source witness"),Actor->Card->GetMaterial(0)==FirstBrokenMaterial&&Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0));
+    auto* Brain7Actor=W->SpawnActor<AActor>();const int32 Brain7Handle=D->CreateVirtualSprite(209,Placement->X+100,Placement->Y);
+    auto* Brain7Sprite=D->FindSprite(Brain7Handle);Brain7Sprite->Actor=Brain7Actor;Brain7Sprite->bSpawned=false;Brain7Sprite->Props.Add(TEXT("brain"),7);Brain7Sprite->Props.Add(TEXT("seq"),173);
+    for(int32 F=0;F<180&&D->FindSprite(Brain7Handle)->bActive;++F)G->ThinkSprite(Brain7Handle,NaturalStart+8000+F*(1000.0/60.0));
+    TestTrue(TEXT("enabled final-mesh option keeps paired brain7 hidden without background publication"),Brain7Actor->IsHidden()&&!D->FindSprite(Brain7Handle)->bActive&&Actor->ReleasedFamilyArt==Released&&Released->IsVisible());
+    const auto MeshWitness=Actor->PublishedLegacyReleaseWitness;const auto ChildPose=Released->GetRelativeTransform();
+    const FName ChildProfile=Released->GetCollisionProfileName();const auto ChildCollision=Released->GetCollisionEnabled();
+    const auto ChildObjectType=Released->GetCollisionObjectType();const auto ChildResponses=Released->GetCollisionResponseToChannels();
+    auto FeatureState=G->HardnessProjection->Fits->ReleaseStates.Last();FDinkFamilyCollisionFitCandidate FeaturePrepared;
+    const auto Refuses=[&](const TCHAR* What){TestFalse(What,Families->PrepareCollisionFitReleaseCandidate(Id,FeatureState,FeaturePrepared,Error));};
+    Released->SetRelativeLocation(ChildPose.GetLocation()+FVector(1,0,0));Refuses(TEXT("released child pose tamper refuses"));Released->SetRelativeTransform(ChildPose);
+    Released->SetMaterial(0,IntactMaterial);Refuses(TEXT("released child material tamper refuses"));Released->SetMaterial(0,VisualMaterials[0]);
+    Released->SetStaticMesh(Cube);Refuses(TEXT("released child mesh identity tamper refuses"));Released->SetStaticMesh(VisualMesh);
+    Released->SetCanEverAffectNavigation(true);Refuses(TEXT("released child navigation tamper refuses"));Released->SetCanEverAffectNavigation(false);
+    Released->SetCollisionEnabled(ECollisionEnabled::QueryOnly);Refuses(TEXT("released child query collision tamper refuses"));
+    // SetCollisionEnabled invalidates the named profile; restore the captured full epoch.
+    Released->SetCollisionProfileName(ChildProfile);
+    TestTrue(TEXT("restored child collision profile and enabled/object/responses are exact"),Released->GetCollisionProfileName()==ChildProfile&&
+        Released->GetCollisionEnabled()==ChildCollision&&Released->GetCollisionObjectType()==ChildObjectType&&Released->GetCollisionResponseToChannels()==ChildResponses);
+    auto* Duplicate=NewObject<UStaticMeshComponent>(Actor);Duplicate->ComponentTags.Add(TEXT("DinkReleasedFamilyVisual"));Duplicate->RegisterComponent();
+    Refuses(TEXT("duplicate dedicated-tag child refuses, even outside actor pointer"));Duplicate->DestroyComponent();
+    Actor->PublishedLegacyReleaseWitness.Reset();Refuses(TEXT("visible released child cannot infer missing source witness"));Actor->PublishedLegacyReleaseWitness=MeshWitness;
+    if(!TestTrue(TEXT("restored exact released epoch requalifies"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    // Actual source-backed type3 load boundary: remove Director rows, do not manufacture a legacy sprite.
+    D->ReleaseScreenSprites(209,{});bool AnySourceRow=false;for(const auto& Pair:D->GetSprites())AnySourceRow|=Pair.Value.Origin==Id;
+    TestFalse(TEXT("persisted background load has zero Director rows for origin"),AnySourceRow);
+    if(!TestTrue(TEXT("zero-row type3 redraw uses original prebirth admission"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    TestTrue(TEXT("zero-row type3 retains same visible3D child and canonical hidden card"),Actor->ReleasedFamilyArt==Released&&Released->IsVisible()&&Actor->Card->bHiddenInGame&&!G->IsHardnessLoading());
+    if(!TestTrue(TEXT("repeat zero-row load is idempotent"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    TestTrue(TEXT("repeat child geometry never compounds"),Released->GetRelativeTransform().Equals(ChildPose,0));
+    // Recreate only the legitimate intact live source row; broken-load checks above had none.
+    Story->GetWorldState()->ClearOverride(Id);G->EditorHardnessPicture(Id,false,1);G->RecordEditorHardness(Id,0);
+    const int32 IntactHandle=D->CreateVirtualSprite(209,Placement->X,Placement->Y);auto* IntactSprite=D->FindSprite(IntactHandle);
+    IntactSprite->Actor=Actor;IntactSprite->Origin=Id;IntactSprite->Script=Placement->Script;IntactSprite->bSpawned=false;IntactSprite->Props.Add(TEXT("pseq"),173);IntactSprite->Props.Add(TEXT("pframe"),1);IntactSprite->Props.Add(TEXT("hard"),0);
+    if(!TestTrue(TEXT("mesh release witness permits genuine intact restore"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    TestTrue(TEXT("intact restores real body/family and hides mesh/card"),G->FindHardnessFitPrimitive(*D->FindSprite(IntactHandle))&&FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame&&!Released->IsVisible()&&Released->bHiddenInGame&&Actor->Card->bHiddenInGame);
+#endif
     return true;
 }
