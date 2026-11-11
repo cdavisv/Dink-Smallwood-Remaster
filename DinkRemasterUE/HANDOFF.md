@@ -1,3 +1,7 @@
+## Logical-cell diagnostic engine/map coordinate correction
+
+Actualed22d05 native36132 closed1 with originalS468 assertion. Its56 fitted cells occupy mapX419..426/Y376..383, fully inside laterP02 displayed hardbox map[400,376,494,412]. Diagnostic mistakenly queried map-localX through engine-coordinate GetHard (which subtracts20); codes from that run are explicitly qualified and cannot prove fitted-cell ownership. Successor records both map_local_x and engine_x=mapX+20, queries correct engineX, preserves all assertions and requires fresh native measurement. Original packet retained in BarrelLogicalOwnerDiagnosticStage/FAILED_RESULT.json.
+
 ## S468 exact logical-owner diagnostic successor
 
 Natural-startup3cb5ee6 AllOrigin85111 closed1/82.848s after successful source/birth/body/census traversal throughS468_P01, where no final code101 appears in its old hardbox. Startup and source-backed land entries now work. SourceP01(443,380),173/1 oldhardbox[426,365,463,386]; later-bornP02seq32/1(468,389) hardbox[420,376,514,412] overlaps it, so retain original precedence. Preserve `/home/artist/Work/DinkQA/BarrelNaturalStartupStage/FAILED_RESULT.json`. Failure-only diagnostic records exact current transformed cooked footprint cells with actual GetHard codes, worldbounds/transform and ordered original source hardboxes. Assertion/production semantics unchanged; native measurement pending before any expectation correction.

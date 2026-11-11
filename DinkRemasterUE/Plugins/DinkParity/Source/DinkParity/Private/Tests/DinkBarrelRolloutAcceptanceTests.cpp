@@ -421,8 +421,8 @@ public:
                 TArray<TSharedPtr<FJsonValue>> CellRows,Stamps;
                 for (const auto& Cell : Cells)
                 {
-                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("x"),Cell.X);Row->SetNumberField(TEXT("y"),Cell.Y);
-                    Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
+                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("map_local_x"),Cell.X);Row->SetNumberField(TEXT("engine_x"),Cell.X+20);Row->SetNumberField(TEXT("y"),Cell.Y);
+                    Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X+20,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
                 }
                 for (int32 Owner : OriginalOrder) if (const auto* Other = Gameplay->GetData().FindPlacement(FDinkOriginId(Screen,Owner)))
                 {
