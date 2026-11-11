@@ -1,0 +1,73 @@
+{
+  "source_review": "/home/davisc/Work/DinkQA/StartingHouseLightingGPUPreparation/Candidate1/Runs/f3ca4923-ab20-49c0-a10d-affda9dc6cda/ROOT_WEST_DIAGNOSTIC_REVIEW.json",
+  "source_review_sha256": "864401e6da08e0bf7f68cf40341b09630f747eaece4e413f4904a968699dc2c3",
+  "status": "QUALIFIED_CAUSAL_DIAGNOSTIC",
+  "whole_phase_passed": false,
+  "phase_exit": 1,
+  "qualification": "All three fixed-exposure captures passed bounded settling. Final automatic-exposure view failed settling; no west-RESULT.json exists and none synthesized. Native settings restoration independently passed.",
+  "actual_fixed_HDR": {
+    "EV_min": -4.5,
+    "EV_max": -4.5,
+    "settings_compensation": -2,
+    "curve_compensation": 0,
+    "all_compensation": -2,
+    "pre_exposure": 5.5669
+  },
+  "wall_ROI": [
+    610,
+    240,
+    700,
+    330
+  ],
+  "sRGB_means_not_physical_energy": {
+    "west-fixed-baseline": [
+      249.90074074074073,
+      240.81506172839505,
+      229.47629629629628
+    ],
+    "west-off": [
+      27.007407407407406,
+      12.872962962962964,
+      2.4087654320987655
+    ],
+    "west-fixed-light-restored": [
+      249.91012345679013,
+      240.819012345679,
+      229.48185185185184
+    ]
+  },
+  "finding": "Exact west450lm fill produces far-wall/ceiling hot patch at fixed exposure; off removes patch and leaves barrels very dark; restore reproduces patch. Authored light distribution needs redesign.",
+  "limits": [
+    "NPCs moved between captures; no NPC or whole-image difference claim.",
+    "No native optical opacity, HDR clipping, Lumen convergence or final art approval claimed."
+  ],
+  "image_sha256": {
+    "baseline-hdr.png": "62263210282a828374bae55464cdaa01aa114ce2fc4eae9db89b4a2e84a51208",
+    "west-fixed-hdr.png": "a6b40dadb89c20b5ff77ef50d0cd5603a08186266cd5563c6723f9d49f3c1b65",
+    "west-fixed-baseline.png": "3c92389d9d32f285582bdb8e6573905a374a3078b09edfb338920791f429e475",
+    "west-off.png": "58bc71464180d98830509d86968914f9992e030287bcb19b08b077a4ba2048aa",
+    "west-fixed-light-restored.png": "91266aa03e92550f0db666eb988b222b4437f8d3b9ca84a3a2b063bdcc63c5ea"
+  },
+  "closure": {
+    "exit_code": 0,
+    "elapsed": 1228.829184356,
+    "inputs_unchanged": 13747,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "native_restoration": {
+    "passed": true,
+    "checks": {
+      "lights": true,
+      "postprocess_components": true,
+      "postprocess_volumes": true,
+      "HDR_flag": true,
+      "camera_pose": true,
+      "pawn_pose": true,
+      "FOV": true
+    },
+    "visual_settling_proven": false,
+    "qualification": "Paired phase88371 exit1 only final automatic-view convergence; actual fixed3 captures pass. Native restoration verified independently."
+  },
+  "source_only_use": "Causal motivation for new design; no claim new RectLight candidate was rendered."
+}

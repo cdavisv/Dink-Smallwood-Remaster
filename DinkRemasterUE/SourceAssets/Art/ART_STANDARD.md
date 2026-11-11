@@ -34,6 +34,11 @@ Static meshes (props, kit modules, foliage, buildings, doors, weapons) use mater
 | `MI_Stonebrook_OakLeaf` | leaf cards, grass blades | `StonebrookExterior/exterior_manifest.json` |
 | `MI_Stonebrook_Meadow` | meadow ground (tiling) | `StonebrookExterior/exterior_manifest.json` |
 | `MI_Stonebrook_Earth` | earth paths (tiling) | `StonebrookExterior/exterior_manifest.json` |
+| `MI_Shared_OakLonggrain2m` | reusable oak timber, planks and boards | `SharedMaterials/manifest.json` |
+| `MI_Shared_OakEndgrain2m` | reusable oak cut ends and pegs | `SharedMaterials/manifest.json` |
+| `MI_Shared_LimePlaster2m` | reusable lime plaster infill | `SharedMaterials/manifest.json` |
+
+The derived shared camera variants `MI_Shared_OakLonggrain2m_CameraMasked`, `MI_Shared_OakEndgrain2m_CameraMasked` and `MI_Shared_LimePlaster2m_CameraMasked` use those same three texture sets and the existing opacity/shadow convention. Native import and final camera alias activation remain separate review gates.
 
 The tiling terrain and building sets of `SharedMaterials/manifest.json` (when that library is published) join as `MI_Shared_<Name>` (`MI_Shared_CobbleStreet`, `MI_Shared_TimberPlanks`, ...); the checker accepts exactly the names that manifest lists.
 
@@ -84,6 +89,8 @@ Largest texture edge per class, in pixels, from CONVENTIONS.md. Hero props (plac
 | `creature` | 4096 | 4096 | 512 |
 
 ## 5. Family binding
+
+- **Authored screen architecture with no original sprite counterpart:** an explicit source record `authored_architecture: {"screens": [1], "purpose": "exposed interior roof adaptation"}` may replace a sprite-family declaration only for `kit_ceiling`, `kit_wall` or `kit_piece`. `screens` must be a nonempty unique list of positive integer screen IDs and `purpose` a nonempty description. Every actual runtime use of that mesh must be a direct `elements[].mesh` reference in a `dink-art/1` manifest on a declared screen, with no context, family, replacement, asset-list or different-screen uses. Missing/conflicting declarations do not qualify. Props and name-only matches never qualify. This exemption only addresses family identity; shared materials, triangle/texture caps, gameplay and collision rules still apply.
 
 - **Every delivered mesh declares the sprite family or families it dresses.** A family is an original sprite sequence, written as the audit writes it (`173 bonuses/barrels/barel-`, the `dink.ini` number and path), or a class id from the data repo's `tools/data/sprite_classes.csv` (`barrel`, `tree_pine_large`). The declaration is a `families` list on the asset's entry in its source manifest, or a row in `Content/Dink/Data/Art/families.json` naming the mesh. A mesh with neither is a violation once it is imported under `Content/Dink`.
 - **Exempt:** screen-fitted terrain that exists for one screen only: meshes named `SM_<Area>_<screen>_{Land,Bank,Water}_*`, `SM_Vista*`, `SM_Ground_*` and `SM_Path_*`. They dress that screen's ground.

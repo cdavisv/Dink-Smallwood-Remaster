@@ -25,11 +25,16 @@ static TAutoConsoleVariable<int32> CVarDinkScreenInfo(
 
 void UDinkGreyboxSubsystem::RegisterScreen(ADinkScreenVolume* Screen)
 {
+	if (!Screen) return;
 	Screens.AddUnique(Screen);
+	const APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr;
+	const APawn* Pawn = PC ? PC->GetPawn() : nullptr;
+	Screen->RefreshInteriorWallVisuals(Pawn ? FindScreenAt(Pawn->GetActorLocation()) : nullptr);
 }
 
 void UDinkGreyboxSubsystem::UnregisterScreen(ADinkScreenVolume* Screen)
 {
+	if (Screen) Screen->RefreshInteriorWallVisuals(nullptr);
 	Screens.Remove(Screen);
 }
 
@@ -254,6 +259,7 @@ void UDinkGreyboxSubsystem::RefreshCurrentScreen()
 	APawn* Pawn = PC ? PC->GetPawn() : nullptr;
 	if (!Pawn)
 	{
+		for (const auto& Weak : Screens) if (ADinkScreenVolume* Volume = Weak.Get()) Volume->RefreshInteriorWallVisuals(nullptr);
 		UpdateLegacyCardVisibility(0);
 		return;
 	}
@@ -264,6 +270,10 @@ void UDinkGreyboxSubsystem::RefreshCurrentScreen()
 		OnScreenChanged.Broadcast(Screen);
 		UE_LOG(LogDink, Log, TEXT("Entered %s"), Screen ? *Screen->Describe() : TEXT("no screen"));
 	}
+	// Screen-entry callbacks can move the pawn synchronously. Use its actual
+	// physical screen now, not a cached room or the room before those callbacks.
+	const ADinkScreenVolume* Physical = FindScreenAt(Pawn->GetActorLocation());
+	for (const auto& Weak : Screens) if (ADinkScreenVolume* Volume = Weak.Get()) Volume->RefreshInteriorWallVisuals(Physical);
 	UpdateLegacyCardVisibility(Screen ? Screen->ScreenNumber : 0);
 }
 

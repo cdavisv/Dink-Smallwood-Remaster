@@ -9,6 +9,8 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Engine/World.h"
+#include "CollisionQueryParams.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -266,14 +268,100 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
         // lean confidence earns.
         AppliedBodyRotation = AppliedBodyRotation * FRotator(-HeroPhysicality.GetHunchPitch(),0,0).Quaternion();
     }
+	// A wall the clearance found last frame holds back part of the lean (eased, cosmetic).
+	if (WallLeanDamping > 0.f)
+		AppliedBodyRotation = FQuat::Slerp(AppliedBodyRotation, FQuat::Identity, .8f * WallLeanDamping);
 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
-	AppliedBodyOffset = HeroPhysicality.GetOffset();
-	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
 	// Scrawny frame that fills out with confidence; composed on whatever scale art authored.
 	const FVector BaseScale = GetMesh()->GetRelativeScale3D() / AppliedPhysique;
 	AppliedPhysique = HeroPhysicality.GetPhysiqueScale();
+	// Wall clearance composes with the physicality offset: measure the mesh where the body
+	// layer puts it, then pull it back along the facing (actor-local -X) by the overlap. It
+	// rises at once (nothing shows through the wall) and releases over a few tenths of a second.
+	const FVector BodyOffset = HeroPhysicality.GetOffset();
+	const float WallNeeded = ShouldClearWalls() ? MeasureWallOverlap(FTransform(GetMesh()->GetRelativeRotation().Quaternion(),
+		BaseLocation + BodyOffset, BaseScale * AppliedPhysique)) : 0.f;
+	WallPullback = (Teleported || WallNeeded >= WallPullback) ? WallNeeded
+		: FMath::FInterpTo(WallPullback, WallNeeded, DeltaSeconds, 6.f);
+	const float LeanTarget = FMath::Clamp(WallNeeded / 8.f, 0.f, 1.f);
+	WallLeanDamping = Teleported ? LeanTarget : FMath::FInterpTo(WallLeanDamping, LeanTarget, DeltaSeconds, 8.f);
+	if (WallLeanDamping < KINDA_SMALL_NUMBER) WallLeanDamping = 0.f;
+	AppliedBodyOffset = BodyOffset - FVector(WallPullback, 0.f, 0.f);
+	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
 	GetMesh()->SetRelativeScale3D(BaseScale * AppliedPhysique);
+}
+
+bool ADinkGreyboxCharacter::ShouldClearWalls() const
+{
+	// The player only: the probe bot drives this pawn through a player controller too, which
+	// is fine because only the mesh moves; NPCs and unpossessed copies never run it.
+	return bWallClearance && GetMesh() && GetWorld() && Cast<APlayerController>(Controller) != nullptr;
+}
+
+void ADinkGreyboxCharacter::GetWallProbePoints(TArray<FVector, TInlineAllocator<3>>& Out) const
+{
+	// Mesh component space of the 89-bone rig: feet at the origin, facing +Y, centimetres.
+	// The live pose (walk, posture clip, head-down) is used when the mesh has one; the
+	// fallbacks are Dink's bind-pose bones.
+	struct FProbe { const TCHAR* Bone; FVector BindPose; FVector Reach; };
+	const FProbe Probes[] = {
+		{TEXT("head"), FVector(0., .7, 162.6), FVector(0., HeadReach, HeadLift)},
+		{TEXT("upperarm_l"), FVector(19., -2.6, 143.6), FVector(0., ShoulderReach, 0.)},
+		{TEXT("upperarm_r"), FVector(-19., -2.6, 143.6), FVector(0., ShoulderReach, 0.)}};
+	const USkeletalMeshComponent* Body = GetMesh();
+	const bool bLive = Body && Body->GetSkeletalMeshAsset() && Body->GetNumComponentSpaceTransforms() > 0;
+	for (const FProbe& Probe : Probes)
+	{
+		FVector Bone = Probe.BindPose;
+		if (bLive)
+		{
+			const int32 Index = Body->GetBoneIndex(FName(Probe.Bone));
+			const FVector Live = Index != INDEX_NONE ? Body->GetBoneTransform(Index, FTransform::Identity).GetLocation() : FVector::ZeroVector;
+			if (Index != INDEX_NONE && Live.Z > 60. && Live.Z < 240.) Bone = Live;
+		}
+		Out.Add(Bone + Probe.Reach);
+	}
+}
+
+FVector ADinkGreyboxCharacter::GetHeadReachPoint() const
+{
+	TArray<FVector, TInlineAllocator<3>> Points;
+	GetWallProbePoints(Points);
+	return GetMesh() ? GetMesh()->GetComponentTransform().TransformPosition(Points[0]) : GetActorLocation();
+}
+
+float ADinkGreyboxCharacter::MeasureWallOverlap(const FTransform& MeshRelative) const
+{
+	const UWorld* World = GetWorld();
+	const UCapsuleComponent* Capsule = GetCapsuleComponent();
+	if (!World || !Capsule) return 0.f;
+	TArray<FVector, TInlineAllocator<3>> Points;
+	GetWallProbePoints(Points);
+	const FTransform Actor = GetActorTransform();
+	const FVector Axis = GetActorLocation(), Up = GetActorUpVector();
+	const FVector Facing = GetActorForwardVector().GetSafeNormal2D();
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkWallClearance), false, this);
+	// Whatever stops the capsule stops the head; other bodies (NPCs, ragdolls) do not.
+	FCollisionResponseParams Responses(Capsule->GetCollisionResponseToChannels());
+	Responses.CollisionResponse.SetResponse(ECC_Pawn, ECR_Ignore);
+	Responses.CollisionResponse.SetResponse(ECC_PhysicsBody, ECR_Ignore);
+	float Needed = 0.f;
+	for (const FVector& Local : Points)
+	{
+		const FVector Point = Actor.TransformPosition(MeshRelative.TransformPosition(Local));
+		// Short sweep from the capsule axis at the point's height out to the point.
+		const FVector Start = Axis + Up * FVector::DotProduct(Point - Axis, Up);
+		if (FVector::DistSquared(Start, Point) < 1.) continue;
+		FHitResult Hit;
+		if (!World->SweepSingleByChannel(Hit, Start, Point, FQuat::Identity, Capsule->GetCollisionObjectType(),
+			FCollisionShape::MakeSphere(WallProbeRadius), Params, Responses) || Hit.bStartPenetrating) continue;
+		const double Depth = FVector::DotProduct(Hit.Location - Point, Hit.Normal);
+		const double Along = FVector::DotProduct(-Facing, Hit.Normal); // what a pull-back gains per cm
+		if (Depth <= 0. || Along < .2) continue; // side walls: pulling back would not help
+		Needed = FMath::Max(Needed, float(Depth / Along));
+	}
+	return FMath::Min(Needed, MaxWallPullback);
 }
 
 void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)

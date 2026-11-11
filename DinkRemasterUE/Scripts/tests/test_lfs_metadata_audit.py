@@ -41,7 +41,7 @@ class LFSMetadataAuditTests(unittest.TestCase):
                     "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_COMMON_DIR", "GIT_NAMESPACE"}
         self.env = {k: v for k, v in os.environ.items() if k not in excluded}
         self.git("init", "-q", str(self.repo))
-        for name in ("verify_sources.py", "lfs_inventory.py", "remaster_paths.py"):
+        for name in ("verify_sources.py", "lfs_inventory.py", "remaster_paths.py", "hero_source_history.py", "library_index_history.py"):
             shutil.copy2(SCRIPTS / name, self.project / "Scripts" / name)
         self.binary_path = "Content/test.uasset"
         self.binary = b"reviewed binary asset"

@@ -1,0 +1,16 @@
+{
+  "owner": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+  "values": {
+    "OutdoorPortalArmCap": 0.0,
+    "OutdoorHeadroomLift": 0.0,
+    "OutdoorPortalOwner": "",
+    "OutdoorPortalMeshSHA": "",
+    "bOutdoorPortalFramingFeasible": true,
+    "TargetArmLength": 400.0
+  },
+  "engine": {
+    "path": "/Engine/Transient.GameEngine_2147482589",
+    "NearClipPlane": 10.0
+  },
+  "scope": "Actualpackagednativepropertyinstancevalues; noPython/sweep/hull/projectionclaim"
+}

@@ -1,0 +1,88 @@
+{
+  "status": "ACCEPTED_MASTER_AND_EXACT_SOURCE_HISTORY_VERIFIED_REBUILD_PENDING",
+  "base": "52dabc60e0ed3b11b88c7e3974344838dd58b997",
+  "accepted_master": "af6f6c4d62859531112c2bd0a388ea00c2b43ae4",
+  "roof": "bee8f2b8aeadfe040fb50cb5810fc8c7e4701671",
+  "method": "Exact current roof ledger bytes then exact accepted-master appended suffix from common base; no prior row rewrite. Review required before actual merge.",
+  "base_sha256": "1b8ac209c8d8f810bc0a8f41b915cf125fb44706c6a92943ce1d9bf0f29846be",
+  "roof_sha256": "585b83c2707ca7c4b07bbecdd34e08750e3ba11b30e6e89d2ea326c1a9f202ad",
+  "master_sha256": "c66e8361c5d1de304421b29dcd745ab3999d7b24c5ac0499dbfec768feb54915",
+  "candidate_sha256": "508c2256c99a1848a67bcc67abd5619724aed82fcc4c342d176578cd0979ff4f",
+  "master_appended_bytes": 51402,
+  "candidate_rows": 4314,
+  "source_audit_first": {
+    "verification_mode": "full",
+    "binary_files_verified": 4460,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 515,
+    "shell_syntax_files": 22,
+    "ledger_rows": 4314,
+    "missing_assets": 0,
+    "hash_errors": 11,
+    "secret_flags": [],
+    "errors": [
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/Export/SK_Dink_LOD0.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/Export/SK_Dink_LOD1.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/Export/SK_Dink_LOD2.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/Export/SK_Dink_LOD3.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/Export/SK_Dink_Hands_LOD0.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/Export/SK_Dink_Hands_LOD1.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/Export/SK_Dink_Hands_LOD2.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/Export/SK_Dink_Hands_LOD3.fbx"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/HandBindingV2/scope_verification.json"
+      },
+      {
+        "asset_hash_mismatch": "SourceAssets/Art/Characters/Dink/SK_Dink.blend"
+      }
+    ],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": false
+  },
+  "source_audit_final": {
+    "verification_mode": "full",
+    "binary_files_verified": 4470,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 517,
+    "shell_syntax_files": 22,
+    "ledger_rows": 4325,
+    "historical_rows_binary_verified": 11,
+    "historical_rows_metadata_only": 0,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "history_ledger_rows_appended": 11,
+  "current_ledger_sha256": "f35572950cd1f4b56251c966ba0357bcea749d6bd75b9509f9dcfc7e35b9ebca",
+  "python_regressions": {
+    "executed": 531,
+    "passed": true,
+    "hero_history_executions": 27,
+    "hero_history_distinct_cases": 17
+  },
+  "history_validation": "Only frozen11 accepted hero revisions; real archive/current bytes required in full mode, exact staged path/OID/size required for metadata pointers. Prior rows unchanged; no generic latest-row waiver."
+}

@@ -1,0 +1,21 @@
+{
+  "qualification": "ProjectfixtureTObjectPtrdeductiononly; GameNOTRUN; preservedcoldfailure",
+  "lines": [
+    {
+      "line": 171,
+      "text": "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorPortalCameraTests.cpp:80:15: error: variable 'Arm' with type 'auto *' has incompatible initializer of type 'TObjectPtr<USpringArmComponent>'"
+    },
+    {
+      "line": 172,
+      "text": "   80 |         auto* Arm=H->CameraBoom;auto* Camera=H->FollowCamera;"
+    },
+    {
+      "line": 174,
+      "text": "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorPortalCameraTests.cpp:80:39: error: variable 'Camera' with type 'auto *' has incompatible initializer of type 'TObjectPtr<UCameraComponent>'"
+    },
+    {
+      "line": 175,
+      "text": "   80 |         auto* Arm=H->CameraBoom;auto* Camera=H->FollowCamera;"
+    }
+  ]
+}

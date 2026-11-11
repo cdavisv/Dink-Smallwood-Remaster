@@ -1,0 +1,42 @@
+{
+  "status": "Independent sharedsource proposal; notadmitted",
+  "long_source": "Existing unchanged CC0fine_grained_wood maps andpublisherreceipt inCandidateV21/Sources;publishedwidth0.6m",
+  "long_recipe": "0.5mrepeat from0.6msource registered0.1moverlap eachaxis, sameweights BClinear/decodedN/R,4x4supersampleareaaverage then4x4repeat into2m1024. No recolour.",
+  "end_source": "InteriorRoofSharedV1 authoredgenericOakEndgrain2m, notphotographicgrowthrings",
+  "end_recipe": "N/ORMcopiedBYTEEXACT; BC linearRGBgaintarget(.096,.056,.028) matcheslegacyartistdarkendgrain. Patternreused, notadoptedinteriorlonggrain.",
+  "end_RGB_gain": [
+    0.799270675494007,
+    0.8794817659063526,
+    1.0783447385163571
+  ],
+  "physical_repeat_m": 2,
+  "nominal_px_m": 512,
+  "expected_contract": "UV0physicalmetres/2, UV1_SharedData.x role0long/1end, normalbasisUV0",
+  "native": "NOT_RUN",
+  "files": [
+    {
+      "file": "T_WeatheredTimberEnd_BC.png",
+      "sha256": "6225042bd691ad0fb8d8cdc5addf9d80bb1f6c49ea99a25a15657f97ba4c8c27"
+    },
+    {
+      "file": "T_WeatheredTimberEnd_N_GL.png",
+      "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be"
+    },
+    {
+      "file": "T_WeatheredTimberEnd_ORM.png",
+      "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539"
+    },
+    {
+      "file": "T_WeatheredTimberLong_BC.png",
+      "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200"
+    },
+    {
+      "file": "T_WeatheredTimberLong_N_GL.png",
+      "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d"
+    },
+    {
+      "file": "T_WeatheredTimberLong_ORM.png",
+      "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f"
+    }
+  ]
+}

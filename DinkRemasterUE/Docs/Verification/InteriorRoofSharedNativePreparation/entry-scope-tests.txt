@@ -1,0 +1,9 @@
+test_chained_exception_frames_are_all_cleared (test_shared_roof_entry_scope.EntryScope.test_chained_exception_frames_are_all_cleared) ... ok
+test_failure_frames_are_cleared_before_collection (test_shared_roof_entry_scope.EntryScope.test_failure_frames_are_cleared_before_collection) ... ok
+test_non_json_native_result_is_rejected_and_released (test_shared_roof_entry_scope.EntryScope.test_non_json_native_result_is_rejected_and_released) ... ok
+test_success_scope_releases_CDO_closure_surrogates_before_collection (test_shared_roof_entry_scope.EntryScope.test_success_scope_releases_CDO_closure_surrogates_before_collection) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+OK

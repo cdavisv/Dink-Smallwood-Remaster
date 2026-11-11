@@ -1,0 +1,31 @@
+{
+  "asset": "https://polyhaven.com/a/red_brick",
+  "author": "Rob Tuytel",
+  "license": "CC0-1.0",
+  "published_width_m": 1.4,
+  "source_urls_from_retained_publisher_HTML": true,
+  "files": [
+    {
+      "role": "diff",
+      "file": "red_brick_diff_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/red_brick/red_brick_diff_2k.png",
+      "bytes": 22217598,
+      "sha256": "4b814528cb900a65e2a2600254a06326d2966a6188b325283fdf74891e7e1f04"
+    },
+    {
+      "role": "nor_gl",
+      "file": "red_brick_nor_gl_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/red_brick/red_brick_nor_gl_2k.png",
+      "bytes": 8907641,
+      "sha256": "e3ca21654988c8ee348fff4a71ccd57fce35073d6898902f185c1f86799e9ae1"
+    },
+    {
+      "role": "rough",
+      "file": "red_brick_rough_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/red_brick/red_brick_rough_2k.png",
+      "bytes": 5487715,
+      "sha256": "388da5e4bf39ee608d0c642f1020101b51bb77f014e4b676695805b4dfd275bd"
+    }
+  ],
+  "first_attempt": "urllib default DNS denied in sandbox and403 outside; curl publisher/download successful"
+}

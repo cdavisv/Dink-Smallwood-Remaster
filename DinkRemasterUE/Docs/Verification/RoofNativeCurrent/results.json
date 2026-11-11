@@ -1,0 +1,73 @@
+{
+  "scope": "Roof delivery 0a9a89a on runtime base 5d65; current-master integration and final art acceptance remain pending",
+  "native_tests": {
+    "registered": 187,
+    "success": 187,
+    "without_warnings": 157,
+    "with_network_warnings": 30,
+    "cold_focused_readiness_failure_retained": true
+  },
+  "readback": {
+    "packages": 50,
+    "meshes": 10,
+    "LODs": 12,
+    "triangles": 48090,
+    "convex_hulls": 312,
+    "textures": 25,
+    "materials": 15,
+    "imports": 0,
+    "saves": 0,
+    "source_and_content_unchanged": true,
+    "tangent_Y_handedness": "NOT_PROVEN",
+    "native_report_sha256": "e48a6431e5e78a87d66b086d95bf16cf4ac9a1ffe371b81b6bf8bf26a5bd7221"
+  },
+  "GPU": {
+    "exit_code": 0,
+    "protected_inputs_unchanged": 12703,
+    "screenshots": 26,
+    "real_W_exit": "1 -> 439 PASS",
+    "real_W_return": "439 -> 1 PASS",
+    "scripts_enabled": true,
+    "movement_unlocked": true,
+    "owned_game_and_display_closed": true
+  },
+  "camera_defect": {
+    "actual_blocker": "SM_Cottage_Stonebrook_01 / StaticMeshActor_242 / StaticMeshComponent0",
+    "profile": "BlockAll",
+    "Camera_response": "Block",
+    "target_arm_cm": 400,
+    "actual_camera_distance_cm": 106.18594884872257,
+    "trace_prediction_error_cm": 0,
+    "actual_actor_rotation": [
+      0,
+      0,
+      0
+    ],
+    "actual_actor_scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "camera_study": {
+    "vertical_pivot_80cm": "Head visible in screenshot; temporary experiment, not shipped fix",
+    "lateral_offset_minus_50cm": "Rejected: enters unlit exterior cottage shell",
+    "reflected_vector_restore_alias": "First restore retained live property value; caught and corrected with explicit numeric Vector(0,0,0), independently captured at 106.185257cm",
+    "gameplay_collision_modified": false,
+    "source_modified": false
+  },
+  "driver_failure": "Initial fixed-delay fresh player read raced the log reply; preserved. Recovery waited up to 5 seconds for a fresh reply and used unique capture labels. Read-only transform capture first used unavailable get_root_component; corrected to actual root_component property.",
+  "evidence_images_sha256": {
+    "door-camera-before.png": "abf34459deea2853260bf8b818ce8a8b9170a0e8a2a44fe1d48663b3db0b5357",
+    "door-camera-height-study.png": "8df12e6f383f30dd6a48b6a3dd541f235a4f1d682dfe3048683a76136dbe8d71",
+    "starting-house-interior.png": "6de5072b983a49015366bb02a8fa7ac1de3fe340d0df8f0d7f22541beedfc0aa"
+  },
+  "remaining": [
+    "Adaptive camera source fix and native/GPU regression",
+    "Current-master owner/audio integration and builds",
+    "Fitted barrel body and logical interaction runtime acceptance",
+    "Shared material/source-record art-standard reconciliation",
+    "Full current cook/package and PR review/merge",
+    "Photoreal character/exterior/interior material completion"
+  ]
+}

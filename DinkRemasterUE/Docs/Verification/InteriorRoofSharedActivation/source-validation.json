@@ -1,0 +1,34 @@
+{
+  "source_audit": {
+    "verification_mode": "full",
+    "binary_files_verified": 4442,
+    "binary_files_metadata_only": 0,
+    "python_syntax_files": 511,
+    "shell_syntax_files": 22,
+    "ledger_rows": 4278,
+    "missing_assets": 0,
+    "hash_errors": 0,
+    "secret_flags": [],
+    "errors": [],
+    "layout_cases_passed": 3,
+    "approved_audio_runtime_matches": true,
+    "passed": true
+  },
+  "specific_tests": {
+    "activation": 12,
+    "shared_roof": 15,
+    "lifetime": 4
+  },
+  "art_standard": {
+    "baseline_source_assets": 441,
+    "activated_source_assets": 449,
+    "baseline_violating_assets": 202,
+    "activated_violating_assets": 202,
+    "family_violations": 23,
+    "material_violations": 186,
+    "new_delivery_hard_violations": 0,
+    "new_delivery_soft_triangle_warnings": 3,
+    "qualification": "Existing violations retained; no waiver or final-art approval"
+  },
+  "native_execution": "NOT_RUN_ON_ACTIVATED_EPOCH"
+}

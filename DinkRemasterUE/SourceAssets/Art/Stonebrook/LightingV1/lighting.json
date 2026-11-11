@@ -1,0 +1,360 @@
+{
+  "schema": "dink-house-lighting/1",
+  "owner_manifest": "stonebrook.json",
+  "screen": 1,
+  "source_files_sha256": {
+    "SourceAssets/Art/tools/build_stonebrook.py": "5e12a8540ffdf8cc499bf9e6a1f64602ef91769defeb6b63da391dccd0a794da",
+    "SourceAssets/Art/Stonebrook/Export/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.fbx": "0a6ee0567d7f406e674f10a8b62f2629cc8b21a8de0503c33c179661f5ac2109"
+  },
+  "windows": [
+    {
+      "expected_runtime": {
+        "name": "NorthWall_1",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -184379.2225,
+          392283.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.9296875,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "NorthWall_1",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          172.5,
+          100
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.9296875,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "expected_runtime": {
+        "name": "NorthWall_6",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -183449.535,
+          392283.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.9296875,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "NorthWall_6",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          385.0,
+          100
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.9296875,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "expected_runtime": {
+        "name": "WestWall_2",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -184565.15999999997,
+          392658.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "WestWall_2",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          130,
+          185.71428571428572
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "expected_runtime": {
+        "name": "WestWall_4",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -184565.15999999997,
+          393033.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "WestWall_4",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          130,
+          271.42857142857144
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "expected_runtime": {
+        "name": "EastWall_2",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -183077.66,
+          392658.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "EastWall_2",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          470,
+          185.71428571428572
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "expected_runtime": {
+        "name": "EastWall_4",
+        "mesh": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+        "world_cm": [
+          -183077.65999999997,
+          393033.48,
+          0.0
+        ],
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ],
+        "collision": true,
+        "camera_occluder": true
+      },
+      "expected_source": {
+        "name": "EastWall_4",
+        "mesh": "SM_Window_Limewash_2m_01",
+        "source_pixel": [
+          470,
+          271.42857142857144
+        ],
+        "height_cm": 0,
+        "rotation_deg": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          0.9375,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "practical_points": [
+    {
+      "world_cm": [
+        -183821.41,
+        392856.60500000004,
+        150.0
+      ],
+      "lumens": 50,
+      "kelvin": 2700,
+      "radius_cm": 520
+    },
+    {
+      "world_cm": [
+        -183869.535,
+        392353.48000000004,
+        55
+      ],
+      "lumens": 40,
+      "kelvin": 2000,
+      "radius_cm": 390
+    }
+  ],
+  "legacy_lights": [
+    {
+      "world_cm": [
+        -183821.41,
+        392856.60500000004,
+        150.0
+      ],
+      "lumens": 50,
+      "kelvin": 2700,
+      "radius_cm": 520
+    },
+    {
+      "world_cm": [
+        -183869.535,
+        392353.48000000004,
+        55
+      ],
+      "lumens": 40,
+      "kelvin": 2000,
+      "radius_cm": 390
+    },
+    {
+      "world_cm": [
+        -184390.15999999997,
+        392480.355,
+        250.0
+      ],
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 420
+    },
+    {
+      "world_cm": [
+        -183252.66,
+        392786.605,
+        260.0
+      ],
+      "lumens": 450,
+      "kelvin": 5000,
+      "radius_cm": 440
+    },
+    {
+      "world_cm": [
+        -183821.41,
+        393289.73,
+        270.0
+      ],
+      "lumens": 120,
+      "kelvin": 4000,
+      "radius_cm": 480
+    }
+  ],
+  "daylight": {
+    "lumens_per_window": 170,
+    "kelvin": 5000,
+    "radius_cm": 1000,
+    "source_width_cm": 80,
+    "source_height_cm": 130,
+    "outside_wall_cm": 30
+  },
+  "source_aperture": {
+    "clear_width_unscaled_cm": 88,
+    "clear_height_cm": 136,
+    "center_local_cm": [
+      100,
+      0,
+      185
+    ],
+    "frame_max_depth_cm": 23
+  },
+  "notes": [
+    "Window sources approximate motivated incoming daylight; actual native transmission/shadow/performance and final appearance are unapproved.",
+    "Preserve accepted40lm2000K/z55 fireplace; historical room_layout150lm2700K/z90 is not lighting authority.",
+    "Global sun/sky, existing2 practicals, exposure\u22122EV, geometry/material/physics/camera unchanged."
+  ]
+}

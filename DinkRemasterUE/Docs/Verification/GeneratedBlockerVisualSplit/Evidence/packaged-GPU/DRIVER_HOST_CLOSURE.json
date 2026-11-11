@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "pid": 795808,
+      "recorded_start_ticks": 8381245,
+      "exists": false
+    },
+    {
+      "pid": 795811,
+      "recorded_start_ticks": 8381957,
+      "exists": false
+    },
+    {
+      "pid": 795828,
+      "recorded_start_ticks": 8381968,
+      "exists": false
+    }
+  ],
+  "display_socket_exists": false,
+  "display_lock_exists": false,
+  "signals_sent_by_driver": false
+}

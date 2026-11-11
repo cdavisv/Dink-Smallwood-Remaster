@@ -1,0 +1,5 @@
+# Generic mineral and coursed masonry provenance
+
+Mortar and soot are deterministic artist-authored periodic fields, not photographic scans or calibrated BRDFs. Coursed masonry combines the exact existing CC0 fieldstone donor with the authored mortar; courses .2m, staggered blocks .4m, approximate8mm bedding. No prop-private bake. Existing rock_boulder_dry license/source/scale assumptions are preserved in ../ArchitecturalSurfaces2mV1/Provenance/FieldstoneSeed2m_donor_manifest.json and the RockBoulderDry source receipts. No new downloads/paid services.
+
+The three graph parents are uniform opaque Principled IOR1.5/specIOR.5/normal1, BCdirect, ORM.G roughness/ORM.B metallic, no tint or position lookup, tangentbasisUV0. Old .7strength QA behavior is not registered. Source image bytes match the accepted successor exactly. Tools/build_library.py extracts/replays packed graph data without external images. The .py.txt historical texture recipes and AUTHOR_PROVENANCE.md retain old author paths/statuses honestly, not portable replay requirements. Native/gamecolour/light and five independent flashing-frame qualifications are outside material-source registration.

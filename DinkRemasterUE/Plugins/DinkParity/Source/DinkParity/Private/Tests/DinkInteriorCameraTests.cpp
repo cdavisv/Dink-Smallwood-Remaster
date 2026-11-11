@@ -1,4 +1,9 @@
 #include "DinkTestHelpers.h"
+#include "Dom/JsonObject.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
 #include <limits>
 #include "DinkInteriorCameraComponent.h"
 #include "DinkCameraOcclusion.h"
@@ -30,6 +35,38 @@
 
 namespace
 {
+const TSet<FString>& ExactOpaqueRoofAssets()
+{
+    static const TSet<FString> Paths = {
+        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8"),
+    };
+    return Paths;
+}
+const TSet<FString>& ExactSharedRoofAssets()
+{
+    static const TSet<FString> Paths = {
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
+    };
+    return Paths;
+}
+const TSet<FString>& ExactRoofPanelAssets()
+{
+    static const TSet<FString> Paths = {
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
+        TEXT("/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
+    };
+    return Paths;
+}
+
 struct FMeshBefore
 {
     UStaticMeshComponent* Mesh=nullptr;
@@ -41,10 +78,15 @@ struct FMeshBefore
     FCollisionResponseContainer Responses;
     ECollisionChannel ObjectType=ECC_WorldStatic;
     TArray<TObjectPtr<UMaterialInterface>> Materials, Overrides;
+    bool Navigation=false, Overlap=false, CastsShadow=false, Visible=false, ActorCollision=false;
     explicit FMeshBefore(UStaticMeshComponent* M) : Mesh(M), Asset(M->GetStaticMesh()), Transform(M->GetComponentTransform()),
         Extent(M->Bounds.BoxExtent), BoundsOrigin(M->Bounds.Origin), Enabled(M->GetCollisionEnabled()),
         Profile(M->GetCollisionProfileName()), Responses(M->GetCollisionResponseToChannels()), ObjectType(M->GetCollisionObjectType()), Overrides(M->OverrideMaterials)
-    { for (int32 I=0; I<M->GetNumMaterials(); ++I) Materials.Add(M->GetMaterial(I)); }
+    {
+        for (int32 I=0; I<M->GetNumMaterials(); ++I) Materials.Add(M->GetMaterial(I));
+        Navigation=M->CanEverAffectNavigation(); Overlap=M->GetGenerateOverlapEvents();
+        CastsShadow=M->CastShadow; Visible=M->IsVisible(); ActorCollision=M->GetOwner()->GetActorEnableCollision();
+    }
 };
 class FInteriorCameraPIE : public IAutomationLatentCommand
 {
@@ -90,11 +132,17 @@ public:
             Move(Hero,Grey,Yard,300,200); Phase=1; At=FPlatformTime::Seconds(); return false;
         }
         if (FPlatformTime::Seconds()-At<.6) return false;
+        if (Phase>1) CheckOpaqueRoofs();
         if (Phase==1)
         {
             Test->TestEqual(TEXT("outdoor439 selected before capturing original wall state"),Grey->GetCurrentScreen(),Yard);
             CheckCamera(Hero,false); CheckInput(Hero,PC);
             Test->TestFalse(TEXT("outdoor camera mode"),C->bInteriorMode);
+            // Derive supported membership independently from the committed full material
+            // mapping, never from the manager's post-state count. The eight shared
+            // roofs must be managed; only the legacy chimney remains unmapped.
+            TMap<FString, UMaterialInterface*> Variants;
+            if (!ReadCameraVariants(Variants)) return true;
             // Exercise a nonempty override array with the same original material, as well as the
             // untouched empty/full arrays on every other real wall and ceiling.
             for (TActorIterator<AActor> It(W); It; ++It)
@@ -103,6 +151,22 @@ public:
                 TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
                 for (UStaticMeshComponent* M : Meshes)
                 {
+                    const UStaticMesh* Asset=M->GetStaticMesh();
+                    if (!Test->TestTrue(TEXT("tagged camera fixture has a registered mesh/materials"),M->IsRegistered() && Asset && M->GetNumMaterials()>0)) return true;
+                    bool Complete=true;
+                    for (int32 Slot=0; Slot<M->GetNumMaterials(); ++Slot)
+                    {
+                        UMaterialInterface* Material=M->GetMaterial(Slot);
+                        Complete &= Material && Variants.Contains(Material->GetPathName().ToLower());
+                    }
+                    if (ExactOpaqueRoofAssets().Contains(Asset->GetPathName()))
+                    {
+                        Test->TestFalse(TEXT("admitted roof has no unreviewed camera fade mapping"),Complete);
+                        OpaqueRoofs.Emplace(M); continue;
+                    }
+                    if (ExactSharedRoofAssets().Contains(Asset->GetPathName()))
+                        Test->TestTrue(TEXT("shared roof has its reviewed complete fade mapping"),Complete);
+                    if (!Test->TestTrue(TEXT("every other tagged real occluder has a complete reviewed fade mapping"),Complete)) return true;
                     if (!OverrideFixture && M->GetNumMaterials()>0)
                     {
                         OverrideFixture=M; FixtureOverrides=M->OverrideMaterials; M->SetMaterial(0,M->GetMaterial(0));
@@ -119,8 +183,28 @@ public:
             }
             Test->TestEqual(TEXT("actual house floor union contains56 authored floor tiles"),Floors.Num(),56);
             Test->TestTrue(TEXT("real house has multiple tagged wall/ceiling meshes"),Before.Num()>2);
+            {
+                TSet<FString> Seen;
+                int32 Count=0;
+                for (const FMeshBefore& B : Before)
+                    if (ExactSharedRoofAssets().Contains(B.Asset->GetPathName()))
+                    { Seen.Add(B.Asset->GetPathName()); ++Count; }
+                Test->TestEqual(TEXT("all8 exact shared roof roles participate in fade and restore checks"),Count,8);
+                bool CompleteSet=Seen.Num()==8;
+                for (const FString& Path : ExactSharedRoofAssets()) CompleteSet &= Seen.Contains(Path);
+                Test->TestTrue(TEXT("shared roof identities are exact and unique"),CompleteSet);
+            }
+            {
+                TSet<FString> Seen;
+                for (const FMeshBefore& B : OpaqueRoofs) Seen.Add(B.Asset->GetPathName());
+                Test->TestEqual(TEXT("only the exact legacy chimney remains opaque and separately inventoried"),OpaqueRoofs.Num(),1);
+                bool CompleteSet=Seen.Num()==1;
+                for (const FString& Path : ExactOpaqueRoofAssets()) CompleteSet &= Seen.Contains(Path);
+                Test->TestTrue(TEXT("opaque roof identities are exact and unique"),CompleteSet);
+                CheckOpaqueRoofs();
+            }
             bool Wall=false, Ceiling=false, Door=false;
-            for (const FMeshBefore& B : Before) { Wall|=B.Asset && B.Asset->GetName().Contains(TEXT("Wall")); Ceiling|=B.Asset && B.Asset->GetName().Contains(TEXT("Ceiling")); Door|=B.Asset && B.Asset->GetName().Contains(TEXT("Doorway")); }
+            for (const FMeshBefore& B : Before) { Wall|=B.Asset && B.Asset->GetName().Contains(TEXT("Wall")); Ceiling|=B.Asset && (B.Asset->GetName().Contains(TEXT("Ceiling")) || ExactRoofPanelAssets().Contains(B.Asset->GetPathName())); Door|=B.Asset && B.Asset->GetName().Contains(TEXT("Doorway")); }
             Test->TestTrue(TEXT("fixture includes real walls"),Wall); Test->TestTrue(TEXT("fixture includes real ceiling"),Ceiling); Test->TestTrue(TEXT("returned-door lintel is explicitly tagged for camera management"),Door);
             UnknownActor=W->SpawnActor<AActor>(); Unknown=NewObject<UStaticMeshComponent>(UnknownActor,TEXT("UnknownCameraMaterial"));
             UnknownActor->SetRootComponent(Unknown); UnknownActor->AddInstanceComponent(Unknown);
@@ -185,7 +269,7 @@ public:
             const FVector Eye=Hero->FollowCamera->GetComponentLocation();
             Test->TestTrue(TEXT("adaptive camera preserves readable180cm view depth"),FVector::DotProduct(Hero->GetActorLocation()-Eye,Hero->FollowCamera->GetForwardVector())>=179.9);
             Test->TestTrue(TEXT("adaptive camera remains over180cm from pawn"),FVector::Distance(Eye,Hero->GetActorLocation())>180);
-            Test->TestEqual(TEXT("adaptive framing retains ownership of85 architectural surfaces"),C->ManagedOccluderCount,Before.Num());
+            Test->TestEqual(TEXT("adaptive framing retains ownership of all mapped architectural surfaces"),C->ManagedOccluderCount,Before.Num());
             for (const FMeshBefore& B : Before)
             {
                 CheckGeometry(B); FCollisionResponseContainer Responses=B.Responses; Responses.SetResponse(ECC_Camera,ECR_Ignore);
@@ -272,6 +356,7 @@ public:
             for (int32 I=0;I<Before[5].Materials.Num();++I)
                 ExpectedOverrides[I]=Before[5].Overrides.IsValidIndex(I) ? Before[5].Overrides[I] : nullptr;
             C->DestroyComponent();
+            CheckOpaqueRoofs();
             Test->TestEqual(TEXT("external NoCollision survives manager destruction"),Before[0].Mesh->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
             Test->TestEqual(TEXT("external object type survives manager destruction"),Before[1].Mesh->GetCollisionObjectType(),ECC_WorldDynamic);
             Test->TestEqual(TEXT("external named profile survives manager destruction"),Before[2].Mesh->GetCollisionProfileName(),ExternalProfile);
@@ -307,6 +392,44 @@ public:
         return false;
     }
 private:
+    bool ReadCameraVariants(TMap<FString, UMaterialInterface*>& Out)
+    {
+        FString Text; TSharedPtr<FJsonObject> Root;
+        if (!Test->TestTrue(TEXT("independent camera configuration loads and parses"),
+            FFileHelper::LoadFileToString(Text,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/camera_materials.json"))) &&
+            FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Root) && Root.IsValid())) return false;
+        FString Schema; const TSharedPtr<FJsonObject>* Variants=nullptr;
+        if (!Test->TestTrue(TEXT("independent camera schema and complete mapping exist"),Root->TryGetStringField(TEXT("schema"),Schema) && Schema==TEXT("dink-camera/1") && Root->TryGetObjectField(TEXT("material_variants"),Variants) && !(*Variants)->Values.IsEmpty())) return false;
+        for (const auto& Pair : (*Variants)->Values)
+        {
+            FString Path;
+            if (!Test->TestTrue(TEXT("camera variant row is a unique nonempty string"),!Pair.Key.IsEmpty() && Pair.Value->TryGetString(Path) && !Path.IsEmpty() && !Out.Contains(FString(*Pair.Key).ToLower()))) return false;
+            UMaterialInterface* Variant=LoadObject<UMaterialInterface>(nullptr,*Path); float Opacity=0;
+            if (!Test->TestTrue(TEXT("configured fade variant is an actual masked opacity1 material"),Variant && Variant->GetBlendMode()==BLEND_Masked && Variant->GetScalarParameterValue(FMaterialParameterInfo(TEXT("DinkCameraOpacity")),Opacity) && FMath::IsNearlyEqual(Opacity,1.f))) return false;
+            Out.Add(FString(*Pair.Key).ToLower(),Variant);
+        }
+        return true;
+    }
+    void CheckOpaqueRoofs()
+    {
+        for (const FMeshBefore& B : OpaqueRoofs)
+        {
+            CheckGeometry(B);
+            Test->TestTrue(TEXT("unmapped roof keeps all64 collision responses"),B.Mesh->GetCollisionResponseToChannels()==B.Responses);
+            Test->TestEqual(TEXT("unmapped roof keeps named profile"),B.Mesh->GetCollisionProfileName(),B.Profile);
+            Test->TestEqual(TEXT("unmapped roof keeps object type"),B.Mesh->GetCollisionObjectType(),B.ObjectType);
+            Test->TestTrue(TEXT("unmapped roof keeps exact material override array"),B.Mesh->OverrideMaterials==B.Overrides);
+            Test->TestEqual(TEXT("unmapped roof keeps material count"),B.Mesh->GetNumMaterials(),B.Materials.Num());
+            for (int32 I=0; I<B.Materials.Num(); ++I) Test->TestEqual(TEXT("unmapped roof remains original opaque material"),B.Mesh->GetMaterial(I),B.Materials[I].Get());
+            Test->TestFalse(TEXT("new roof navigation was false at capture"),B.Navigation);
+            Test->TestFalse(TEXT("new roof overlaps were false at capture"),B.Overlap);
+            Test->TestEqual(TEXT("unmapped roof preserves navigation"),B.Mesh->CanEverAffectNavigation(),B.Navigation);
+            Test->TestEqual(TEXT("unmapped roof preserves overlaps"),B.Mesh->GetGenerateOverlapEvents(),B.Overlap);
+            Test->TestEqual(TEXT("unmapped roof preserves shadows"),bool(B.Mesh->CastShadow),B.CastsShadow);
+            Test->TestEqual(TEXT("unmapped roof preserves visibility"),B.Mesh->IsVisible(),B.Visible);
+            Test->TestEqual(TEXT("unmapped roof preserves actor collision"),B.Mesh->GetOwner()->GetActorEnableCollision(),B.ActorCollision);
+        }
+    }
     void Move(ADinkGreyboxCharacter* H,UDinkGreyboxSubsystem* G,ADinkScreenVolume* S,double X,double Y)
     { H->GetCharacterMovement()->StopMovementImmediately(); H->SetActorLocation(S->MapPixelToWorld(X,Y)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics); G->RefreshCurrentScreen(); }
     void CheckGeometry(const FMeshBefore& B)
@@ -319,6 +442,7 @@ private:
     }
     void CheckRestored()
     {
+        CheckOpaqueRoofs();
         for (const FMeshBefore& B : Before)
         {
             CheckGeometry(B); Test->TestEqual(TEXT("original collision profile restored"),B.Mesh->GetCollisionProfileName(),B.Profile);
@@ -455,7 +579,7 @@ private:
     }
     FAutomationTestBase* Test; int32 Phase=0; double Began=0,At=0;
     ADinkScreenVolume* Home=nullptr; ADinkScreenVolume* Yard=nullptr;
-    TArray<FMeshBefore> Before; TArray<UStaticMeshComponent*> Floors; UInputComponent* InputBefore=nullptr;
+    TArray<FMeshBefore> Before, OpaqueRoofs; TArray<UStaticMeshComponent*> Floors; UInputComponent* InputBefore=nullptr;
     UStaticMeshComponent* OverrideFixture=nullptr; TArray<TObjectPtr<UMaterialInterface>> FixtureOverrides;
     AActor* UnknownActor=nullptr; UStaticMeshComponent* Unknown=nullptr; UMaterialInterface* UnknownMaterial=nullptr;
     FRotator ExpectedControl; bool ViewportReady=false,MoveIgnored=false,LookIgnored=false; FCollisionResponseContainer CapsuleResponses; ECollisionEnabled::Type CapsuleEnabled=ECollisionEnabled::NoCollision;

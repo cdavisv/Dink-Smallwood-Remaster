@@ -1,0 +1,23 @@
+test_absolute_centres_and_inward_axes_from_original_placements (test_house_lighting.HouseLighting.test_absolute_centres_and_inward_axes_from_original_placements) ... ok
+test_actual_importer_entry_rejects_invalid_lighting_before_any_native_work (test_house_lighting.HouseLighting.test_actual_importer_entry_rejects_invalid_lighting_before_any_native_work) ... ok
+test_actual_standalone_apply_entry_rejects_same_invalid_profiles_without_writes (test_house_lighting.HouseLighting.test_actual_standalone_apply_entry_rejects_same_invalid_profiles_without_writes) ... ok
+test_complete_preflight_rejects_runtime_float_and_scaled_aperture_mismatches (test_house_lighting.HouseLighting.test_complete_preflight_rejects_runtime_float_and_scaled_aperture_mismatches) ... ok
+test_complete_preflight_validates_generated_practical_specs (test_house_lighting.HouseLighting.test_complete_preflight_validates_generated_practical_specs) ... ok
+test_current_source_and_runtime_match_authority (test_house_lighting.HouseLighting.test_current_source_and_runtime_match_authority) ... ok
+test_daylight_tuning_preserves_exact_practicals_and_scene (test_house_lighting.HouseLighting.test_daylight_tuning_preserves_exact_practicals_and_scene) ... ok
+test_foreign_light_inventory_is_not_overwritten (test_house_lighting.HouseLighting.test_foreign_light_inventory_is_not_overwritten) ... ok
+test_importer_preflight_precedes_any_asset_import_and_overlay_precedes_metadata_save (test_house_lighting.HouseLighting.test_importer_preflight_precedes_any_asset_import_and_overlay_precedes_metadata_save) ... ok
+test_legacy_regeneration_drift_does_not_restore_150lm_fireplace (test_house_lighting.HouseLighting.test_legacy_regeneration_drift_does_not_restore_150lm_fireplace) ... ok
+test_missing_duplicate_and_foreign_window_refuse (test_house_lighting.HouseLighting.test_missing_duplicate_and_foreign_window_refuse) ... ok
+test_nonfinite_or_mistyped_parameters_refuse (test_house_lighting.HouseLighting.test_nonfinite_or_mistyped_parameters_refuse) ... ok
+test_only_lights_change_and_input_is_not_mutated (test_house_lighting.HouseLighting.test_only_lights_change_and_input_is_not_mutated) ... ok
+test_other_screen_or_render_context_refuse (test_house_lighting.HouseLighting.test_other_screen_or_render_context_refuse) ... ok
+test_rectangle_cannot_intersect_source_frame (test_house_lighting.HouseLighting.test_rectangle_cannot_intersect_source_frame) ... ok
+test_source_fingerprints_required_and_changed_bytes_refuse (test_house_lighting.HouseLighting.test_source_fingerprints_required_and_changed_bytes_refuse) ... ok
+test_source_layout_changes_refuse (test_house_lighting.HouseLighting.test_source_layout_changes_refuse) ... ok
+test_window_geometry_changes_refuse_even_legacy_regeneration (test_house_lighting.HouseLighting.test_window_geometry_changes_refuse_even_legacy_regeneration) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.055s
+
+OK

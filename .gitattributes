@@ -17,3 +17,6 @@ DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/**/*.bin 
 DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ChartSeparatedCandidateV6/CANDIDATE.json filter=lfs diff=lfs merge=lfs -text
 DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/PlanarPatchExperimentV6/PLANAR_PATCH_RESULT.json filter=lfs diff=lfs merge=lfs -text
 DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/**/*.gz filter=lfs diff=lfs merge=lfs -text
+
+# Shared interior roof actual binary corner diagnostics.
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/**/*.gz filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,180 @@
+{
+  "schema": "dink-shared-mineral-masonry/1",
+  "status": "source_registered_native_pending",
+  "materials": {
+    "LimeMortar2m": {
+      "material": "MI_Shared_LimeMortar2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic lime mortar, joint bedding and masonry backing"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_BC.png",
+          "sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_N_GL.png",
+          "sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_ORM.png",
+          "sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "opaque_mineral_2m",
+      "shader_contract": {
+        "IOR": 1.5,
+        "specular_IOR_level": 0.5,
+        "normal_strength": 1,
+        "normal_basis": "UV0",
+        "base_colour": "direct sRGB texture",
+        "roughness": "ORM.G",
+        "metallic": "ORM.B",
+        "AO": "unoccluded map red retained; unused in Blender graph",
+        "opacity": 1
+      },
+      "source": "MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+      "qualification": "artist-authored generic material; FieldstoneCoursed2m uses existing CC0 shared stone donor; no calibrated BRDF or native approval"
+    },
+    "Soot2m": {
+      "material": "MI_Shared_Soot2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic soot, carbonized fuel and fire-exposed lining"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png",
+          "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png",
+          "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png",
+          "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "opaque_mineral_2m",
+      "shader_contract": {
+        "IOR": 1.5,
+        "specular_IOR_level": 0.5,
+        "normal_strength": 1,
+        "normal_basis": "UV0",
+        "base_colour": "direct sRGB texture",
+        "roughness": "ORM.G",
+        "metallic": "ORM.B",
+        "AO": "unoccluded map red retained; unused in Blender graph",
+        "opacity": 1
+      },
+      "source": "MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+      "qualification": "artist-authored generic material; FieldstoneCoursed2m uses existing CC0 shared stone donor; no calibrated BRDF or native approval"
+    },
+    "FieldstoneCoursed2m": {
+      "material": "MI_Shared_FieldstoneCoursed2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic continuous coursed masonry using shared fieldstone and lime mortar"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_BC.png",
+          "sha256": "f90ff36926b7990f7702810e8ecd86971b37659960178b8d82ecf0559330a15f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_N_GL.png",
+          "sha256": "a8c6e1270cef5033a0ccb998fd880afad639536364c65eb73dae30c9d24d4067",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_FieldstoneCoursed2m_ORM.png",
+          "sha256": "6a360d2e6de2a11e02ce432fef0187b7a661fb192137abf888a0c03a627cb7c0",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "opaque_mineral_2m",
+      "shader_contract": {
+        "IOR": 1.5,
+        "specular_IOR_level": 0.5,
+        "normal_strength": 1,
+        "normal_basis": "UV0",
+        "base_colour": "direct sRGB texture",
+        "roughness": "ORM.G",
+        "metallic": "ORM.B",
+        "AO": "unoccluded map red retained; unused in Blender graph",
+        "opacity": 1
+      },
+      "source": "MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+      "qualification": "artist-authored generic material; FieldstoneCoursed2m uses existing CC0 shared stone donor; no calibrated BRDF or native approval"
+    }
+  }
+}

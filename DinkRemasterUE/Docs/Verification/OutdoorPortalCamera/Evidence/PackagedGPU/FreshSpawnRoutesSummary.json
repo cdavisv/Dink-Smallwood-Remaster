@@ -1,0 +1,324 @@
+{
+  "actual5waypointsAndExitReturnPassed": true,
+  "before_any_Goto": true,
+  "routes": {
+    "route-spawn-door-exit.json": {
+      "result": "PASS",
+      "steps": 9,
+      "start": {
+        "screen": 1,
+        "map": [
+          299.835,
+          347.851
+        ],
+        "world": [
+          -183822.131,
+          393367.827,
+          98.15
+        ],
+        "yaw": 34.18,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 439,
+        "map": [
+          345.05,
+          307.861
+        ],
+        "world": [
+          97729.67,
+          37512.69,
+          98.35
+        ],
+        "yaw": 85.98,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        303.5,
+        400
+      ],
+      "expected_screen": 439,
+      "actual_W_pulses": null,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
+      "original_sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3",
+      "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
+    },
+    "route-spawn-door-return.json": {
+      "result": "PASS",
+      "steps": 3,
+      "start": {
+        "screen": 439,
+        "map": [
+          345.05,
+          307.861
+        ],
+        "world": [
+          97729.67,
+          37512.69,
+          98.35
+        ],
+        "yaw": 85.98,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          302.684,
+          388.184
+        ],
+        "world": [
+          -183809.666,
+          393544.285,
+          98.0
+        ],
+        "yaw": -99.897,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        439,
+        339,
+        271
+      ],
+      "expected_screen": 1,
+      "actual_W_pulses": null,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
+      "original_sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061",
+      "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
+    },
+    "walk-corridor-east.json": {
+      "result": "PASS",
+      "steps": 18,
+      "start": {
+        "screen": 1,
+        "map": [
+          245.009,
+          258.779
+        ],
+        "world": [
+          -184061.996,
+          392978.14,
+          98.15
+        ],
+        "yaw": 92.31,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          269.518,
+          258.996
+        ],
+        "world": [
+          -183954.769,
+          392979.086,
+          98.15
+        ],
+        "yaw": 0.494,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        270,
+        259
+      ],
+      "expected_screen": null,
+      "actual_W_pulses": 9,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-east.json",
+      "original_sha256": "6df5def59065a23d0bd2876a69e0971bf4ce63f3d8ea5445290c96d3fa34d29f"
+    },
+    "walk-corridor-west.json": {
+      "result": "PASS",
+      "steps": 40,
+      "start": {
+        "screen": 1,
+        "map": [
+          248.964,
+          161.0
+        ],
+        "world": [
+          -184044.692,
+          392550.355,
+          98.15
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          245.009,
+          258.779
+        ],
+        "world": [
+          -184061.996,
+          392978.14,
+          98.15
+        ],
+        "yaw": 92.31,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        245,
+        259
+      ],
+      "expected_screen": null,
+      "actual_W_pulses": 20,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-west.json",
+      "original_sha256": "18e75388aa9ce9194cf89c4685098ba908fdd53f778acdd222570b5fc94fbd88"
+    },
+    "walk-door-approach.json": {
+      "result": "PASS",
+      "steps": 14,
+      "start": {
+        "screen": 1,
+        "map": [
+          269.984,
+          327.58
+        ],
+        "world": [
+          -183952.732,
+          393279.143,
+          98.15
+        ],
+        "yaw": 89.613,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          299.835,
+          347.851
+        ],
+        "world": [
+          -183822.131,
+          393367.827,
+          98.15
+        ],
+        "yaw": 34.18,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        303,
+        350
+      ],
+      "expected_screen": null,
+      "actual_W_pulses": 7,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-door-approach.json",
+      "original_sha256": "366f0973ecb58c4d1ecbd25eea3cd1fcef2892f8a6e85eacfdfabcb7097ccb23"
+    },
+    "walk-south-bypass.json": {
+      "result": "PASS",
+      "steps": 22,
+      "start": {
+        "screen": 1,
+        "map": [
+          269.518,
+          258.996
+        ],
+        "world": [
+          -183954.769,
+          392979.086,
+          98.15
+        ],
+        "yaw": 0.494,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          269.984,
+          327.58
+        ],
+        "world": [
+          -183952.732,
+          393279.143,
+          98.15
+        ],
+        "yaw": 89.613,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        270,
+        330
+      ],
+      "expected_screen": null,
+      "actual_W_pulses": 11,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-south-bypass.json",
+      "original_sha256": "ee3c05d3bd063f6e56e902a2d1bc8c6dc7b09e4bd3b59e9aae18ef32cb0c2e05"
+    },
+    "walk-west.json": {
+      "result": "PASS",
+      "steps": 20,
+      "start": {
+        "screen": 1,
+        "map": [
+          314.0,
+          161.0
+        ],
+        "world": [
+          -183760.16,
+          392550.355,
+          98.15
+        ],
+        "yaw": 180.0,
+        "pitch": 0.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "finish": {
+        "screen": 1,
+        "map": [
+          248.964,
+          161.0
+        ],
+        "world": [
+          -184044.692,
+          392550.355,
+          98.15
+        ],
+        "yaw": 180.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      },
+      "target": [
+        1,
+        245,
+        161
+      ],
+      "expected_screen": null,
+      "actual_W_pulses": 10,
+      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-west.json",
+      "original_sha256": "fabea96331dcd2b6fc4498ec0124c02aeedc4eb0c44aef9a6aecb8098362611a"
+    }
+  },
+  "qualification": "Original door warps are gameplay, with no ConsoleGoto on the fresh route. Waypoint receipts include pulse arrays. Door transition receipts record positions and actual held-W method but omit pulse counts; no count is inferred. No global collision claim."
+}

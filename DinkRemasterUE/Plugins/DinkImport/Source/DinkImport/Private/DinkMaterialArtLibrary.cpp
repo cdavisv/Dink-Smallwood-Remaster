@@ -1,4 +1,5 @@
 #include "DinkMaterialArtLibrary.h"
+#include "Components/PrimitiveComponent.h"
 #include "Materials/Material.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/StaticMeshSourceData.h"
@@ -9,6 +10,19 @@
 #include "Dom/JsonObject.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
+
+TArray<int32> UDinkMaterialArtLibrary::InspectPrimitiveCollisionResponses(UPrimitiveComponent* Component)
+{
+	static_assert(static_cast<int32>(ECC_OverlapAll_Deprecated) == 64,
+		"Review the serialized collision-channel schema before changing this snapshot.");
+	TArray<int32> Result;
+	if (!Component) return Result;
+	const FCollisionResponseContainer& Responses = Component->GetCollisionResponseToChannels();
+	Result.Reserve(static_cast<int32>(ECC_OverlapAll_Deprecated));
+	for (int32 Index = 0; Index < static_cast<int32>(ECC_OverlapAll_Deprecated); ++Index)
+		Result.Add(static_cast<int32>(Responses.GetResponse(static_cast<ECollisionChannel>(Index))));
+	return Result;
+}
 
 TArray<int32> UDinkMaterialArtLibrary::GetConnectedMaterialProperties(UMaterial* Material)
 {

@@ -1,0 +1,362 @@
+{
+  "cookers": {
+    "734761": {
+      "proof": {
+        "process": {
+          "pid": 734761,
+          "start_ticks": 7382768,
+          "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+          "argv": [
+            "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+            "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/DinkRemaster.uproject",
+            "-run=Cook",
+            "-Map=/Game/Dink/_Generated/Maps/L_Greybox_World",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Kits",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Props",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Foliage",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Camera",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Refinements",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Audio",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Creatures",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/NPC",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Hero",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Materials",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Textures",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Characters",
+            "-CookDir=/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Input",
+            "-TargetPlatform=Linux",
+            "-unversioned",
+            "-UserDir=/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User",
+            "-DinkQARunId=a4a170b7efed44e4a9a823d30ab78c80",
+            "-DDC=InstalledNoZenLocalFallback",
+            "-DDC-NoDefaultGraph",
+            "-LocalDataCachePath=/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/DDC",
+            "-SharedDataCachePath=None",
+            "-ZenSharedDataCacheHost=None",
+            "-notraceserver",
+            "-SkipZenStore",
+            "-ini:Engine:[VirtualTextureChunkDDCCache]:Path=/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/VT",
+            "-fileopenlog",
+            "-abslog=/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/EngineSaved/Cook-2026.11.10-04.04.37.txt",
+            "-stdout",
+            "-CrashForUAT",
+            "-unattended",
+            "-NoLogTimes"
+          ]
+        },
+        "actual_shader_sha256": "c832c56f04778bab2a8f73adbb3b905d84619693113cfd36da1de3ea8dcabd64",
+        "mount": {
+          "id": 1209,
+          "root": "/@home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
+          "target": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Shaders/Private/ShaderPrint.ush",
+          "options": [
+            "ro",
+            "nosuid",
+            "nodev",
+            "relatime"
+          ],
+          "filesystem": "btrfs"
+        },
+        "private_source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
+        "source_inode": 6394454,
+        "source_device": 50,
+        "source_mode": 256,
+        "private_parent_mode": 448,
+        "namespace_source_samefile": true,
+        "namespace_target_samefile": true,
+        "readonly_source_and_Editor_mounts": {
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE": {
+            "id": 1165,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content": {
+            "id": 1165,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Source": {
+            "id": 1165,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Scripts": {
+            "id": 1165,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets": {
+            "id": 1165,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Source": {
+            "id": 1164,
+            "root": "/@home",
+            "target": "/home",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Config": {
+            "id": 1164,
+            "root": "/@home",
+            "target": "/home",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Shaders": {
+            "id": 1164,
+            "root": "/@home",
+            "target": "/home",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target": {
+            "id": 1169,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1170,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
+            "id": 1171,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1178,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
+            "id": 1179,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1181,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
+            "id": 1182,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1184,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
+            "id": 1185,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1187,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
+            "id": 1188,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
+            "id": 1189,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules": {
+            "id": 1191,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          },
+          "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
+            "id": 1192,
+            "root": "/@home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
+            "target": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
+            "options": [
+              "ro",
+              "nosuid",
+              "nodev",
+              "relatime"
+            ],
+            "filesystem": "btrfs"
+          }
+        },
+        "private_Saved_and_EngineStage": true,
+        "namespaces": {
+          "pid": "pid:[4026533174]",
+          "mnt": "mnt:[4026533401]",
+          "net": "net:[4026533175]"
+        },
+        "CapEff": "0000000000000000",
+        "scope": "Actual cooker proc/root file +mount+owned temporary source proof, not only launcher configuration"
+      },
+      "observations": 433
+    }
+  },
+  "errors": {},
+  "helper_log": {
+    "event": {
+      "host": {
+        "device": 50,
+        "inode": 418646,
+        "mode": 292,
+        "mtime_ns": 1790767826000000000,
+        "sha256": "69e3599c3bd8277a114f565a77f4e99f84bfa48c6d036b79d330cb17a4a390f2",
+        "size": 15906
+      },
+      "mode": "private_overlay"
+    },
+    "host_postguard_reported": true,
+    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/ProjectSaved/Logs/package.log",
+    "sha256": "a2f83c4eeb88cb4cf60a18ba35c65a49f78b1ebbedd88ffd18fc1090027f1ffd"
+  }
+}

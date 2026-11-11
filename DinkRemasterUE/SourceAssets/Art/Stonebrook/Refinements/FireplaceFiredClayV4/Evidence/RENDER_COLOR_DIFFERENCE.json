@@ -1,0 +1,30 @@
+{
+  "status": "MATCHED_REAL_RENDER_COMPARISON",
+  "same_800px_CPU2_16samples_AgX_cameras_lighting": true,
+  "rows": [
+    {
+      "view": "hearth",
+      "changed_RGB_pixels": 7230,
+      "total_pixels": 640000,
+      "RGB_max_byte_delta": 2,
+      "RGB_mean_byte_delta": 0.004167708333333333,
+      "alpha_exact": true
+    },
+    {
+      "view": "cavity",
+      "changed_RGB_pixels": 8484,
+      "total_pixels": 640000,
+      "RGB_max_byte_delta": 2,
+      "RGB_mean_byte_delta": 0.004851041666666667,
+      "alpha_exact": true
+    },
+    {
+      "view": "chimney",
+      "changed_RGB_pixels": 28,
+      "total_pixels": 640000,
+      "RGB_max_byte_delta": 1,
+      "RGB_mean_byte_delta": 1.4583333333333333e-05,
+      "alpha_exact": true
+    }
+  ]
+}
