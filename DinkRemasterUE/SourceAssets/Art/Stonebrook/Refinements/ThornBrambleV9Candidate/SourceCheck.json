@@ -1,0 +1,91 @@
+{
+  "status": "SOURCE_CHECK_PASS_not_export_native_or_visual_acceptance",
+  "frozen_v9_geometry_uv_materialindex_exact": true,
+  "meshes": [
+    {
+      "name": "SM_ThornBramble_01_LOD0",
+      "triangles": 24220,
+      "dimensions_m": [
+        1.789616584777832,
+        1.6634480953216553,
+        1.0496001243591309
+      ],
+      "minZ": 0.0,
+      "min_triangle_area_m2": 8.47805864733589e-08,
+      "degenerate_at_1e12": 0,
+      "woody_boundary_edges": 0,
+      "intentional_leaf_boundary_edges": 9488,
+      "edges_over_2_faces": 0,
+      "materials": [
+        "MI_Shared_ThornBark2m",
+        "MI_Shared_BroadleafTrimV1"
+      ]
+    },
+    {
+      "name": "SM_ThornBramble_01_LOD1",
+      "triangles": 12594,
+      "dimensions_m": [
+        1.7888157367706299,
+        1.6633813381195068,
+        1.04835045337677
+      ],
+      "minZ": 0.0,
+      "min_triangle_area_m2": 1.0904698478088638e-05,
+      "degenerate_at_1e12": 0,
+      "woody_boundary_edges": 0,
+      "intentional_leaf_boundary_edges": 8302,
+      "edges_over_2_faces": 0,
+      "materials": [
+        "MI_Shared_ThornBark2m",
+        "MI_Shared_BroadleafTrimV1"
+      ]
+    },
+    {
+      "name": "SM_ThornBramble_01_LOD2",
+      "triangles": 5812,
+      "dimensions_m": [
+        1.7888157367706299,
+        1.6633813381195068,
+        1.0467145442962646
+      ],
+      "minZ": 0.0,
+      "min_triangle_area_m2": 2.4254622907203417e-05,
+      "degenerate_at_1e12": 0,
+      "woody_boundary_edges": 0,
+      "intentional_leaf_boundary_edges": 4660,
+      "edges_over_2_faces": 0,
+      "materials": [
+        "MI_Shared_ThornBark2m",
+        "MI_Shared_BroadleafTrimV1"
+      ]
+    }
+  ],
+  "packed_images": {
+    "T_Shared_BroadleafTrimV1_BC": {
+      "sha256": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+      "colorspace": "sRGB"
+    },
+    "T_Shared_BroadleafTrimV1_N_GL": {
+      "sha256": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+      "colorspace": "Non-Color"
+    },
+    "T_Shared_BroadleafTrimV1_ORM": {
+      "sha256": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f",
+      "colorspace": "Non-Color"
+    },
+    "T_Shared_ThornBark2m_BC": {
+      "sha256": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+      "colorspace": "sRGB"
+    },
+    "T_Shared_ThornBark2m_N_GL": {
+      "sha256": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+      "colorspace": "Non-Color"
+    },
+    "T_Shared_ThornBark2m_ORM": {
+      "sha256": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+      "colorspace": "Non-Color"
+    }
+  },
+  "LOD0_soft_target_warning": true,
+  "studio_floor_removed_after_review_renders": true
+}

@@ -1,0 +1,10 @@
+{
+  "base_commit": "b1ee08e5a6e01ddd52716e0c3adf75ada379b570",
+  "existing_material_entries_exact": true,
+  "only_new_keys": [
+    "ThornBark2m",
+    "BroadleafTrimV1"
+  ],
+  "existing_top_level_metadata_exact": true,
+  "runtime_activation": false
+}
