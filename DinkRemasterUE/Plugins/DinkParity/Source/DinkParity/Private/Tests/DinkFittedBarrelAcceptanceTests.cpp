@@ -50,8 +50,16 @@ public:
         {
             Story->bNewGamePending=false;Story->bInstantMode=true;
             if(!Test->TestTrue(TEXT("real map has explicitly marked capability"),W->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>()->RequiresScreenCapability(Screen))||
-               !Test->TestTrue(TEXT("actual source policy requests this origin"),W->GetSubsystem<UDinkArtFamilySubsystem>()->IsCollisionFitRequested(Id))||
-               !Test->TestTrue(TEXT("ordinary greybox teleport enters actual screen"),Greybox->GotoScreen(Screen,float(P->X-20+65),float(P->Y))))return true;
+               !Test->TestTrue(TEXT("actual source policy requests this origin"),W->GetSubsystem<UDinkArtFamilySubsystem>()->IsCollisionFitRequested(Id)))return true;
+            // Use public checked teleports only; a wide offset may land inside legitimate terrain.
+            bool Entered=false;
+            for(const FVector2D Offset:{FVector2D(65,0),FVector2D(20,0),FVector2D(-20,0),FVector2D(0,20),FVector2D(0,-20)})
+                if(Greybox->GotoScreen(Screen,float(P->X-20+Offset.X),float(P->Y+Offset.Y)))
+                {
+                    Test->AddInfo(FString::Printf(TEXT("PUBLIC_ENTRY origin=%s offset=(%.0f,%.0f) actor=%s"),*Id.ToString(),Offset.X,Offset.Y,*Hero->GetActorLocation().ToString()));
+                    Entered=true;break;
+                }
+            if(!Test->TestTrue(TEXT("ordinary checked greybox teleport enters actual screen"),Entered))return true;
             Phase=1;Until=Now+1;return false;
         }
         if(!DiagnosticMode.IsEmpty())return UpdateContactDiagnostic(W,Hero,Story,Greybox,Now);
@@ -228,6 +236,7 @@ private:
         UDinkGreyboxSubsystem* Greybox,double Now)
     {
         auto* G=Story->GetGameplay();auto* D=Story->GetDirector();
+        auto* PC=W->GetFirstPlayerController();
         const FDinkOriginId Id(Screen,Index);
         auto* Target=D->FindSprite(D->HandleForPlacement(Screen,Index));
         if(Phase==1)
@@ -307,7 +316,23 @@ private:
                 G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit));
             WallActor->Destroy();
             Place(DiagnosticMode.StartsWith(TEXT("Live"))?Live:Native75,0);
+            if(DiagnosticMode.EndsWith(TEXT("Timed")))
+            {
+                // Phase0 deliberately skips the new-game menu; reproduce start-1.c's
+                // real inventory/arm path instead of injecting a WeaponInstance.
+                Story->bInstantMode=true;
+                const int32 Slot=G->AddItem(TEXT("item-fst"),false);
+                if(!Test->TestTrue(TEXT("original fist inventory item added"),Slot!=INDEX_NONE))return true;
+                G->SetFact(TEXT("cur_weapon"),Slot+1);G->ArmWeapon();Story->RunUntilIdle();
+                const auto* Armed=Story->FindInstance(G->GetWeaponInstance());
+                if(!Test->TestTrue(TEXT("normal original fist arm procedure leaves a live use instance"),
+                    Armed&&Armed->IsAlive()&&Armed->Script==FName(TEXT("item-fst"))&&Story->HasProcedure(Armed->Script,TEXT("use")))||
+                   !Test->TestTrue(TEXT("normal armed base_hit is enabled"),D->GetDink().GetProp(TEXT("base_hit"),100)>0)||
+                   !Test->TestFalse(TEXT("timed attack starts unfrozen"),D->GetDink().bFrozen)||
+                   !Test->TestFalse(TEXT("timed attack movement is released"),PC->IsMoveInputIgnored()))return true;
+            }
             Story->bInstantMode=false;
+            // Arming reloads sequence metadata: measure the real delay AFTER the arm procedure.
             const int32 Delay=G->Data.HitFrameDelayMs(106);
             Test->TestEqual(TEXT("actual sequence106 special hit delay is175ms"),Delay,175);
             if(DiagnosticMode.EndsWith(TEXT("Direct")))
