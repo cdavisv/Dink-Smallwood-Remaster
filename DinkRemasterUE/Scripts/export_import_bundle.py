@@ -30,6 +30,7 @@ Stdlib + numpy + Pillow (both on the dev machine).
 from __future__ import annotations
 
 from remaster_paths import default_data_repo
+from sync_gameplay_data import release_picture_keys
 
 import argparse
 import csv
@@ -375,28 +376,6 @@ def git_head(repo: Path) -> str:
     except Exception:
         return "unknown"
 
-
-def release_picture_keys(family_policy: dict, placements: list, canonical_sequences: list) -> dict:
-    """Canonical animation pictures required by fitted-source release; no IO/native writes."""
-    fitted_ids = {row["origin"] for row in family_policy.get("collision_fit", {}).get("origins", [])}
-    release_sequences = {p["seq"] for p in placements if p["id"] in fitted_ids}
-    pictures = {}
-    if release_sequences:
-        found = set()
-        for sequence in canonical_sequences:
-            if sequence["seq"] not in release_sequences:
-                continue
-            found.add(sequence["seq"])
-            for frame in sequence["frames"]:
-                if frame.get("empty") or not frame.get("width") or not frame.get("height"):
-                    continue
-                if not frame.get("image"):
-                    raise ValueError(f"missing release picture source {sequence['seq']}/{frame['frame']}")
-                pictures.setdefault(f"{sequence['seq']}_{frame['frame']:02d}", frame["image"])
-        if found != release_sequences:
-            raise ValueError("missing canonical release sequence metadata")
-
-    return pictures
 
 
 def main(argv=None) -> int:
