@@ -58,6 +58,8 @@ public:
             if(!Test->TestTrue(TEXT("actual original template created live barrel"),S&&S->bActive&&S->Origin==Id&&S->Script==FName(Screen==31?TEXT("bar-gh"):TEXT("bar-f1"))))return true;
             auto* Actor=Cast<ADinkPlaceholderActor>(S->Actor.Get());auto* Body=G->FindHardnessFitPrimitive(*S);
             if(!Test->TestNotNull(TEXT("real initial birth admitted exact fitted body"),Body)||!Test->TestNotNull(TEXT("real original placeholder actor"),Actor))return true;
+            Test->TestFalse(TEXT("successful initial fitted publication releases the hardness loading gate"),G->IsHardnessLoading());
+            Test->TestFalse(TEXT("successful initial fitted publication releases controller movement"),PC->IsMoveInputIgnored());
             Ground=Greybox->FindScreen(Screen)->MapPixelToWorld(float(S->X-20),float(S->Y));
             Test->TestTrue(TEXT("barrel body height fits source instead of legacy300cm prism"),Body->Bounds.BoxExtent.Z*2<110&&Body->Bounds.BoxExtent.Z*2>99);
             Test->TestTrue(TEXT("script coordinates stayed original"),S->X==P->X&&S->Y==P->Y);
