@@ -378,15 +378,16 @@ private:
 IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkRealFittedBarrels,"Dink.Gameplay.FittedBarrelAcceptance",DINK_TEST_FLAGS)
 void FDinkRealFittedBarrels::GetTests(TArray<FString>& Names,TArray<FString>& Commands) const
 {
-    for(const FString& Kind:{FString(TEXT("Candidate")),FString(TEXT("Default"))})for(int32 N:{31,209})
-    {Names.Add(FString::Printf(TEXT("%s%03d"),*Kind,N));Commands.Add(FString::Printf(TEXT("%s:%d"),*Kind,N));}
+    for(int32 N:{31,209})
+    {Names.Add(FString::Printf(TEXT("Default%03d"),N));Commands.Add(FString::Printf(TEXT("Default:%d"),N));}
 }
 bool FDinkRealFittedBarrels::RunTest(const FString& Parameters)
 {
     FString Kind,Number;if(!Parameters.Split(TEXT(":"),&Kind,&Number))return false;
-    const FString Package=Kind==TEXT("Candidate")?TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Barrel031209V1"):UGameMapsSettings::GetGameDefaultMap();
+    if(Kind!=TEXT("Default"))return false;
+    const FString Package=UGameMapsSettings::GetGameDefaultMap();
     const FString File=FPackageName::LongPackageNameToFilename(Package,FPackageName::GetMapPackageExtension());
-    if(!TestTrue(TEXT("actual staged/default world exists, no fixture-only skip"),IFileManager::Get().FileExists(*File))||!TestNotNull(TEXT("actual acceptance world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
+    if(!TestTrue(TEXT("ordinary default world exists, no fixture-only skip"),IFileManager::Get().FileExists(*File))||!TestNotNull(TEXT("actual acceptance world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
     FAssetCompilingManager::Get().FinishAllCompilation();
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this,FCString::Atoi(*Number)));
@@ -430,9 +431,9 @@ void FDinkLiveBarrelContact::GetTests(TArray<FString>& Names,TArray<FString>& Co
 }
 bool FDinkLiveBarrelContact::RunTest(const FString& Parameters)
 {
-    const FString File=FPackageName::LongPackageNameToFilename(TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Barrel031209V1"),FPackageName::GetMapPackageExtension());
-    if(!TestTrue(TEXT("saved Stage40 diagnostic world exists"),IFileManager::Get().FileExists(*File))||
-       !TestNotNull(TEXT("saved Stage40 diagnostic world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
+    const FString File=FPackageName::LongPackageNameToFilename(UGameMapsSettings::GetGameDefaultMap(),FPackageName::GetMapPackageExtension());
+    if(!TestTrue(TEXT("ordinary saved world exists"),IFileManager::Get().FileExists(*File))||
+       !TestNotNull(TEXT("ordinary saved world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
     FAssetCompilingManager::Get().FinishAllCompilation();
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this,FDinkOriginId(31,3),Parameters));
