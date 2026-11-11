@@ -17,6 +17,9 @@ from dinkex.extract import Extractor
 from dinkex.jsonfmt import pretty
 from dinkex.runtime_hardness import decode_runtime_layers, runtime_layers
 
+PHOTO_MESH = '/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01'
+SURFACE_ALGORITHM = 'DinkOrientedTrianglesF32LEMaterialU16LE/1'
+PHOTO_SURFACE_SHA1 = 'de0f514e0172077e7bbd9dc0b30c75f5c40939e6'
 PAIR = {"S031_P03", "S209_P13"}
 SOURCE_KEYS = ("id", "hash", "screen", "index", "type", "representation",
                "script", "brain", "vision", "seq", "frame", "map_x", "map_y", "hardness")
@@ -51,14 +54,22 @@ def build_inputs(bundle, inventory_path, data, output):
 
     art = PROJECT / "Content/Dink/Data/Art"
     families = json.loads((art / "families.json").read_bytes())
-    pair_rules = {row["origin"]: row for row in families["collision_fit"]["origins"]}
-    if pair_rules.keys() != PAIR:
-        raise ValueError("expected the original fitted barrel pair")
-    pair_template = pair_rules["S031_P03"]
-    common_rule = {key: value for key, value in pair_template.items() if key != "origin"}
-    if any(pair_rules["S209_P13"].get(key) != value for key, value in common_rule.items()):
-        raise ValueError("original pair does not share the same cooked barrel contract")
     origins = sorted(targets.keys() | PAIR)
+    prior_rules = {row["origin"]: row for row in families["collision_fit"]["origins"]}
+    if set(prior_rules) != set(origins) or families["collision_fit"]["schema"] != "dink-family-collision-fit/3":
+        raise ValueError("expected the explicit approved photoreal85 policy")
+    common_rule = dict(family="barrel", mesh=PHOTO_MESH, surface_algorithm=SURFACE_ALGORITHM,
+                       surface_sha1=PHOTO_SURFACE_SHA1, anchor="sprite_ground",
+                       geometry="cooked_complex", raster="cell_center")
+    for origin, prior in prior_rules.items():
+        expected = dict(common_rule, origin=origin, source_hash=placements[origin]["hash"],
+                        source_script=placements[origin]["script"], source_type=placements[origin]["type"],
+                        source_representation=placements[origin]["representation"])
+        if prior != expected:
+            raise ValueError(f"approved photoreal source/policy changed for {origin}")
+    barrel = next(row for row in families["families"] if row["family"] == "barrel")
+    if barrel["mesh"] != PHOTO_MESH or barrel["fit"] != "none" or not barrel["scripted"] or barrel["yaw_from_sprite"]:
+        raise ValueError("global photoreal barrel family binding changed")
     selected = {placements[origin]["screen"] for origin in origins}
     authored = set()
     for path in art.glob("*.json"):
@@ -81,7 +92,7 @@ def build_inputs(bundle, inventory_path, data, output):
         rules.append(dict(common_rule, origin=origin, source_hash=row["hash"],
                           source_script=row["script"], source_type=row["type"],
                           source_representation=row["representation"]))
-    families["collision_fit"] = dict(schema="dink-family-collision-fit/2", origins=rules)
+    families["collision_fit"] = dict(schema="dink-family-collision-fit/3", origins=rules)
 
     def hardbox(sprite):
         picture = extractor.seqs.pic_for(sprite["seq"], sprite["frame"])

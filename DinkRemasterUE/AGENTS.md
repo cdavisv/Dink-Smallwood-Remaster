@@ -1,3 +1,7 @@
+## Photoreal barrel fit schema3 source — native acceptance pending
+
+Full85 source policy uses the existing approved `/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01` with canonical oriented surface identity, rather than automatic legacyKit fallback/ordered cache hashes. Versioned algorithm and exact byte contract are documented in Docs/Verification/PhotorealBarrelRolloutV3; preserve winding/material/duplicate/signedzero/cull/count semantics. Legacy1/2 remain oldKit/raw; per-admission raw identity still must match. Photo needs16648 actual cooked triangles plus unchanged bounds/UCX. Source generator and all38 foundation/114 hardness inputs included; do not reuse earlier native packages/maps as new acceptance. Game cooked-data proof, own builds, normal fresh regeneration and actual gameplay/GPU remain pending.
+
 ## Fireplace V4 delivery staged on merged window lighting
 
 Worktree /home/artist/Work/DinkFireplaceV4Delivery, branch art/fireplace-fired-clay-v4-delivery, base 8ea3d06. Staged 33 verified native packages, two house manifest edits, the V4 authoring packet and three shared libraries. Existing lighting and ledger prefix are preserved. The prior trial and assembly reloads and real-input walkthrough evidence are recorded in Docs/Verification/FireplaceV4Delivery. The gameplay captures precede the lighting merge. Combined regenerated and rendered validation and remote LFS publication proof remain pending.

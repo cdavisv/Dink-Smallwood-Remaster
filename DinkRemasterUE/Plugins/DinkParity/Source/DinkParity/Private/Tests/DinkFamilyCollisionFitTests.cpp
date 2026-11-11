@@ -15,10 +15,16 @@ bool FDinkFamilyFitPolicyTest::RunTest(const FString&)
     TArray<FDinkFamilyCollisionFitRule> Rules;FString Error,Shipped;
     if(!TestTrue(TEXT("actual families available"),FFileHelper::LoadFileToString(Shipped,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/families.json")))))return false;
     TestTrue(TEXT("absent optional policy preserves defaults"),DinkFamilyCollisionFit::ParsePolicy(TEXT(R"({"schema":"dink-art-families/1","families":[]})"),Rules,Error));TestEqual(TEXT("absent policy activates zero origins"),Rules.Num(),0);
-    TestTrue(TEXT("actual shipped policy parses"),DinkFamilyCollisionFit::ParsePolicy(Shipped,Rules,Error));const bool SourcePinned = Shipped.Contains(TEXT("dink-family-collision-fit/2"));
+    TestTrue(TEXT("actual shipped policy parses"),DinkFamilyCollisionFit::ParsePolicy(Shipped,Rules,Error));const bool SourcePinned = Shipped.Contains(TEXT("dink-family-collision-fit/2")) || Shipped.Contains(TEXT("dink-family-collision-fit/3"));
     TestEqual(TEXT("expected shipped collision fit scope"), Rules.Num(), SourcePinned ? 85 : 2);
     TSet<FString> ActualOrigins;
-    for(const auto& Rule:Rules){ActualOrigins.Add(Rule.Origin.ToString());TestEqual(TEXT("actual reviewed barrel mesh"),Rule.Mesh,FString(TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01")));TestEqual(TEXT("fresh actual native effective geometry SHA"),Rule.GeometrySha1,FString(TEXT("5eb85050e7e90d1a1dd8b97554077af688f66732")));}
+    for(const auto& Rule:Rules)
+    {
+        ActualOrigins.Add(Rule.Origin.ToString());
+        TestEqual(TEXT("approved active photoreal barrel mesh"),Rule.Mesh,FString(TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01")));
+        TestEqual(TEXT("stable canonical photoreal surface SHA"),Rule.CanonicalSurfaceSha1,FString(TEXT("de0f514e0172077e7bbd9dc0b30c75f5c40939e6")));
+        TestTrue(TEXT("v3 has no legacy ordered policy digest"),Rule.GeometrySha1.IsEmpty());
+    }
     TestTrue(TEXT("exact reviewed pair retained with unique origins"),
         ActualOrigins.Num() == Rules.Num() && ActualOrigins.Contains(TEXT("S031_P03")) &&
         ActualOrigins.Contains(TEXT("S209_P13")));
@@ -67,13 +73,32 @@ bool FDinkFamilyFitPolicyTest::RunTest(const FString&)
             DinkFamilyCollisionFit::ParsePolicy(SourcePacket(Bad), Rules, Error));
         TestEqual(TEXT("invalid source policy publishes no rows"), Rules.Num(), 0);
     }
+    const FString PhotoRow = Anonymous.Replace(
+        TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"),
+        TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01")).Replace(
+        TEXT("\"geometry_sha1\":\"0000000000000000000000000000000000000000\""),
+        TEXT("\"surface_algorithm\":\"DinkOrientedTrianglesF32LEMaterialU16LE/1\",\"surface_sha1\":\"de0f514e0172077e7bbd9dc0b30c75f5c40939e6\""));
+    auto PhotoPacket = [&SourcePacket](const FString& Rows)
+    { return SourcePacket(Rows).Replace(TEXT("dink-family-collision-fit/2"),TEXT("dink-family-collision-fit/3")); };
+    TestTrue(TEXT("reviewed canonical photoreal source rule parses"),DinkFamilyCollisionFit::ParsePolicy(PhotoPacket(PhotoRow),Rules,Error));
+    if(TestEqual(TEXT("one explicit canonical rule"),Rules.Num(),1))
+        TestTrue(TEXT("canonical rule cannot fall back to legacy digest"),Rules[0].GeometrySha1.IsEmpty()&&!Rules[0].CanonicalSurfaceSha1.IsEmpty());
+    for(const auto& Bad:{PhotoRow.Replace(TEXT("F32LE"),TEXT("F32BE")),
+        PhotoRow.Replace(TEXT("de0f514e0172077e7bbd9dc0b30c75f5c40939e6"),TEXT("0000000000000000000000000000000000000000")),
+        PhotoRow.Replace(TEXT("/Props/Stonebrook/PhotorealBarrelV1/"),TEXT("/Kits/Stonebrook/")),
+        PhotoRow.LeftChop(1)+TEXT(",\"geometry_sha1\":\"0000000000000000000000000000000000000000\"}"),
+        Anonymous})
+    {
+        TestFalse(TEXT("v3 rejects foreign algorithm/digest/mesh, mixed or legacy policy"),DinkFamilyCollisionFit::ParsePolicy(PhotoPacket(Bad),Rules,Error));
+        TestTrue(TEXT("v3 failure leaves no partial rows"),Rules.IsEmpty());
+    }
     return true;
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkFamilyFitGeometryTest,"Dink.Art.Family.CollisionFitCookedGeometry",DINK_TEST_FLAGS)
 bool FDinkFamilyFitGeometryTest::RunTest(const FString&)
 {
-    auto* Mesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+    auto* Mesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
     if(!TestNotNull(TEXT("actual family kit barrel"),Mesh))return false;
     FAssetCompilingManager::Get().FinishAllCompilation();
     if(!TestNotNull(TEXT("actual barrel body setup"),Mesh->GetBodySetup()))return false;
@@ -82,7 +107,9 @@ bool FDinkFamilyFitGeometryTest::RunTest(const FString&)
     Mesh->GetBodySetup()->CreatePhysicsMeshes();
     FDinkFamilyFittedGeometry G;FString Error;
     if(!TestTrue(TEXT("read actual reviewed cooked triangles"),DinkFamilyCollisionFit::ReadCookedGeometry(*Mesh,G,Error))){AddError(Error);return false;}
-    AddInfo(FString::Printf(TEXT("ACTUAL reviewed effective cooked geometry SHA1=%s"),*G.CookedGeometrySha1));
+    TestEqual(TEXT("actual stable canonical photoreal surface"),G.CanonicalSurfaceSha1,FString(TEXT("de0f514e0172077e7bbd9dc0b30c75f5c40939e6")));
+    TestEqual(TEXT("actual full source photoreal surface retained"),G.Triangles.Num(),16648);
+    AddInfo(FString::Printf(TEXT("ACTUAL ordered cooked identity SHA1=%s"),*G.CookedGeometrySha1));
     FBox CookedBounds(ForceInit);for(const auto& V:G.Vertices)CookedBounds+=FVector(V);
     FTriMeshCollisionData Selected;const bool SelectedReady=Mesh->GetPhysicsTriMeshData(&Selected,Mesh->GetBodySetup()->bMeshCollideAll);
     FBox SelectedBounds(ForceInit);for(const auto& V:Selected.Vertices)SelectedBounds+=FVector(V);

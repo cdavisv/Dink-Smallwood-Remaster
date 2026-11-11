@@ -21,7 +21,8 @@ struct DINKCORE_API FDinkFamilyCollisionFitRule
 {
     FDinkOriginId Origin;
     FString Mesh;
-    FString GeometrySha1;
+    FString GeometrySha1; // Legacy schema1/2 ordered cooked identity only.
+    FString CanonicalSurfaceSha1; // Schema3 stable oriented surface contract only.
     FString SourceHash; // Empty only for the legacy schema 1 pair.
     FName SourceScript;
     int32 SourceType = 1;
@@ -57,7 +58,8 @@ struct DINKCORE_API FDinkFamilyFittedGeometry
     TArray<uint16> MaterialIndices;
     TArray<FVector> AuthoredUCXVertices;
     FBox RenderBounds;
-    FString CookedGeometrySha1;
+    FString CookedGeometrySha1; // Exact ordered identity retained within each admission.
+    FString CanonicalSurfaceSha1;
 };
 /** Prepared descriptor only. The physical coordinator must replace the original
  * owner layer, physical body, logical/hit footprint and clear semantics together.

@@ -25,7 +25,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkHardnessFittedLifecycle,
 bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
 {
     auto* Cube=LoadObject<UStaticMesh>(nullptr,TEXT("/Engine/BasicShapes/Cube.Cube"));
-    auto* Barrel=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+    auto* Barrel=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
 #if WITH_EDITOR
     FAssetCompilingManager::Get().FinishAllCompilation();
 #endif
@@ -99,7 +99,11 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     FDinkFamilyFittedGeometry Geometry;if(!TestTrue(TEXT("actual cooked complex geometry"),DinkFamilyCollisionFit::ReadCookedGeometry(*Barrel,Geometry,Error)))return false;
     Families->bReady=true;Families->bCollisionFitPolicyError=false;Families->Precedence={};Families->Bindings.Reset();Families->CollisionFitRules.Reset();
     FDinkFamilyBinding Binding;Binding.Family=TEXT("barrel");Binding.ClassId=TEXT("barrel");Binding.Mesh=Barrel->GetPathName();Binding.Fit=EDinkFamilyFit::None;Binding.bScripted=true;Families->Bindings.Add(Binding);
-    Families->CollisionFitRules.Add({Id,Barrel->GetPathName(),Geometry.CookedGeometrySha1});
+    FDinkFamilyCollisionFitRule ActiveRule;
+    ActiveRule.Origin=Id;ActiveRule.Mesh=Barrel->GetPathName();
+    ActiveRule.CanonicalSurfaceSha1=Geometry.CanonicalSurfaceSha1;
+    ActiveRule.SourceHash=Actor->Origin->SourceHash;ActiveRule.SourceScript=TEXT("bar-f1");
+    Families->CollisionFitRules.Add(ActiveRule);
     const int Handle=D->CreateVirtualSprite(209,Placement->X,Placement->Y);auto* S=D->FindSprite(Handle);S->Actor=Actor;S->Origin=Id;S->Script=TEXT("bar-f1");S->Props.Add(TEXT("live"),1);S->Props.Add(TEXT("pseq"),173);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);
     // Feed the SAME strict production reader an owned saved source packet.
     // There is no public path override or missing-sidecar admission exemption.

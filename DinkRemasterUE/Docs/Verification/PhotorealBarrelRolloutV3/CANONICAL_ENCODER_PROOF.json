@@ -1,0 +1,18 @@
+{
+  "helper_commit": "fb4793ad6430eb9797fafca428d2bda0d14c00eb",
+  "results": [
+    {
+      "input": "/home/artist/Work/DinkQA/BarrelLiveContactDiagnostic/MetrologyCandidate1/Runs/241938e9486143479ae794449797ebf6/User/Saved/Automation/BarrelCookMetrology/Photo.json",
+      "input_sha256": "dd769d38873bb14444fd44bc710d3f4193cb64b2fa099b79a939cd461c1ad5e0",
+      "triangles": 16648,
+      "actual_production_encoder_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6"
+    },
+    {
+      "input": "/home/artist/Work/DinkQA/BarrelLiveContactDiagnostic/MetrologyCandidate2/Runs/8a26197fa6784c3c8cf7c992b8aaf490/User/Saved/Automation/BarrelCookMetrology/Photo.json",
+      "input_sha256": "a9255f18da9165ab8594f87eb23ad09fd3e92a340cab2a1a6fbb8b4a14046d9d",
+      "triangles": 16648,
+      "actual_production_encoder_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6"
+    }
+  ],
+  "unreal_launched": false
+}
