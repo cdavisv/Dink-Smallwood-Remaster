@@ -1,0 +1,47 @@
+[
+  {
+    "source": "Original",
+    "total_meshes": 328,
+    "total_render_roof_triangles": 17322,
+    "gable_changes": []
+  },
+  {
+    "source": "recess_20mm",
+    "total_meshes": 328,
+    "total_render_roof_triangles": 17322,
+    "gable_changes": [
+      {
+        "object": "SM_IndoorRoof_Gable_EN_01",
+        "triangles": 266,
+        "degenerate_triangles": 0,
+        "minimum_oriented_normal_dot": 0.9986174796134482,
+        "triangle_indices_exact": true,
+        "no_new_degeneracy": true
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_ES_01",
+        "triangles": 266,
+        "degenerate_triangles": 0,
+        "minimum_oriented_normal_dot": 0.9986174796134482,
+        "triangle_indices_exact": true,
+        "no_new_degeneracy": true
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WN_01",
+        "triangles": 266,
+        "degenerate_triangles": 0,
+        "minimum_oriented_normal_dot": 0.9986174796134482,
+        "triangle_indices_exact": true,
+        "no_new_degeneracy": true
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WS_01",
+        "triangles": 266,
+        "degenerate_triangles": 0,
+        "minimum_oriented_normal_dot": 0.9986174796134482,
+        "triangle_indices_exact": true,
+        "no_new_degeneracy": true
+      }
+    ]
+  }
+]
