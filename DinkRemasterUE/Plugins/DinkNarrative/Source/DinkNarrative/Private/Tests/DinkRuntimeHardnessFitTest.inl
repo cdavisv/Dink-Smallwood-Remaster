@@ -503,6 +503,10 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     TestTrue(TEXT("unadmitted refusal holds gate and never forces visibility"),G->IsHardnessLoading()&&Actor->IsHidden());
     G->HardnessProjection=AdmittedFinalBackgroundProjection;G->SetHardnessLoading(false);
     if(!TestTrue(TEXT("restored admission republishes through existing guarded background path"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    S=D->FindSprite(Handle); // Generic sprite insertions above may invalidate earlier TMap value pointers.
+    if(!TestNotNull(TEXT("final background source record remains bound"),S))return false;
+    AddInfo(FString::Printf(TEXT("final background factors ActorHidden=%d currentActive=%d materialSame=%d actualMaterial=%s expectedMaterial=%s"),
+        Actor->IsHidden(),S->bActive,Actor->Card->GetMaterial(0)==FirstBrokenMaterial,*GetPathNameSafe(Actor->Card->GetMaterial(0)),*GetPathNameSafe(FirstBrokenMaterial)));
     TestTrue(TEXT("normal guarded redraw restores correct inactive background"),!Actor->IsHidden()&&!S->bActive&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
     return true;
 }
