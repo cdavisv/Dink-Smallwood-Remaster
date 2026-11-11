@@ -37,6 +37,8 @@ Static meshes (props, kit modules, foliage, buildings, doors, weapons) use mater
 | `MI_Shared_OakLonggrain2m` | reusable oak timber, planks and boards | `SharedMaterials/manifest.json` |
 | `MI_Shared_OakEndgrain2m` | reusable oak cut ends and pegs | `SharedMaterials/manifest.json` |
 | `MI_Shared_LimePlaster2m` | reusable lime plaster infill | `SharedMaterials/manifest.json` |
+| `MI_Shared_ThornBark2m` | reusable thorny shrub bark, 2m tiling; source candidate, native pending | `SharedMaterials/manifest.json` |
+| `MI_Shared_BroadleafTrimV1` | reusable broadleaf trim, nominal 0.12m blade; source candidate, native pending | `SharedMaterials/manifest.json` |
 
 The derived shared camera variants `MI_Shared_OakLonggrain2m_CameraMasked`, `MI_Shared_OakEndgrain2m_CameraMasked` and `MI_Shared_LimePlaster2m_CameraMasked` use those same three texture sets and the existing opacity/shadow convention. Native import and final camera alias activation remain separate review gates.
 

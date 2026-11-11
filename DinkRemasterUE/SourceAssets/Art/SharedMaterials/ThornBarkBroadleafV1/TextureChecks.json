@@ -1,0 +1,160 @@
+{
+  "T_Shared_ThornBark2m_BC.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      49,
+      41,
+      26
+    ],
+    "max": [
+      73,
+      61,
+      41
+    ],
+    "mean": [
+      62.13261413574219,
+      52.05860233306885,
+      33.952908515930176
+    ],
+    "sha256_matches_registry": true,
+    "srgb": true,
+    "seam_mean_absolute_codes": 0.5826822916666666,
+    "interior_neighbor_mean_absolute_codes": 0.7424283790526229
+  },
+  "T_Shared_ThornBark2m_N_GL.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      122,
+      128,
+      255
+    ],
+    "max": [
+      133,
+      128,
+      255
+    ],
+    "mean": [
+      127.80967330932617,
+      128.0,
+      255.0
+    ],
+    "sha256_matches_registry": true,
+    "srgb": false,
+    "normal_length_range": [
+      1.0000153785822494,
+      1.0009376611262943
+    ],
+    "seam_mean_absolute_codes": 0.2099609375,
+    "interior_neighbor_mean_absolute_codes": 0.2212097028755295
+  },
+  "T_Shared_ThornBark2m_ORM.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      255,
+      198,
+      0
+    ],
+    "max": [
+      255,
+      215,
+      0
+    ],
+    "mean": [
+      255.0,
+      206.54352378845215,
+      0.0
+    ],
+    "sha256_matches_registry": true,
+    "srgb": false,
+    "seam_mean_absolute_codes": 0.16748046875,
+    "interior_neighbor_mean_absolute_codes": 0.22280405491405994
+  },
+  "T_Shared_BroadleafTrimV1_BC.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      26,
+      45,
+      12
+    ],
+    "max": [
+      52,
+      73,
+      22
+    ],
+    "mean": [
+      34.448121070861816,
+      56.90904998779297,
+      15.91787338256836
+    ],
+    "sha256_matches_registry": true,
+    "srgb": true
+  },
+  "T_Shared_BroadleafTrimV1_N_GL.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      128,
+      104,
+      250
+    ],
+    "max": [
+      151,
+      151,
+      255
+    ],
+    "mean": [
+      128.0440444946289,
+      127.99904251098633,
+      254.99042510986328
+    ],
+    "sha256_matches_registry": true,
+    "srgb": false,
+    "normal_length_range": [
+      0.9955147393731103,
+      1.0000153785822494
+    ]
+  },
+  "T_Shared_BroadleafTrimV1_ORM.png": {
+    "shape": [
+      1024,
+      1024,
+      3
+    ],
+    "min": [
+      255,
+      165,
+      0
+    ],
+    "max": [
+      255,
+      181,
+      0
+    ],
+    "mean": [
+      255.0,
+      173.3591661453247,
+      0.0
+    ],
+    "sha256_matches_registry": true,
+    "srgb": false
+  }
+}

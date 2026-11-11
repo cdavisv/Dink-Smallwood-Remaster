@@ -1,0 +1,119 @@
+{
+  "ThornBark2m": {
+    "material": "MI_Shared_ThornBark2m",
+    "repeat_m": 2,
+    "trim_dimensions_m": null,
+    "IOR": 1.5,
+    "specular_IOR_level": 0.23,
+    "dielectric_F0": 0.0184,
+    "unreal_specular": 0.23,
+    "normal_orientation": "OpenGL +Y",
+    "native_flip_green": true,
+    "source_authored_not_measured": true,
+    "textures": {
+      "BC": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_BC.png",
+        "sha256": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": true,
+        "normal_orientation": null,
+        "native_flip_green": false
+      },
+      "N": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_N_GL.png",
+        "sha256": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": false,
+        "normal_orientation": "OpenGL +Y",
+        "native_flip_green": true
+      },
+      "ORM": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_ORM.png",
+        "sha256": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": false,
+        "normal_orientation": null,
+        "native_flip_green": false
+      }
+    },
+    "status": "source_registered_candidate_native_pending",
+    "uses": [
+      "generic thorny woody shrub bark and woody runners"
+    ],
+    "source": "ThornBarkBroadleafV1/SharedThornBroadleaf_ProceduralSource.blend",
+    "library": "ThornBarkBroadleafV1/SharedThornBroadleaf_LibraryCandidate.blend",
+    "reuse_proof": "ThornBarkBroadleafV1/GenericReuse.blend",
+    "provenance": "ThornBarkBroadleafV1/PROVENANCE.md",
+    "orm": "R=1 material occlusion; G=authored roughness; B=0 dielectric",
+    "nominal_texels_per_m": 512
+  },
+  "BroadleafTrimV1": {
+    "material": "MI_Shared_BroadleafTrimV1",
+    "repeat_m": null,
+    "trim_dimensions_m": [
+      0.12,
+      0.12
+    ],
+    "IOR": 1.5,
+    "specular_IOR_level": 0.28,
+    "dielectric_F0": 0.022400000000000003,
+    "unreal_specular": 0.28,
+    "normal_orientation": "OpenGL +Y",
+    "native_flip_green": true,
+    "source_authored_not_measured": true,
+    "textures": {
+      "BC": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_BC.png",
+        "sha256": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": true,
+        "normal_orientation": null,
+        "native_flip_green": false
+      },
+      "N": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_N_GL.png",
+        "sha256": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": false,
+        "normal_orientation": "OpenGL +Y",
+        "native_flip_green": true
+      },
+      "ORM": {
+        "file": "ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_ORM.png",
+        "sha256": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f",
+        "size": [
+          1024,
+          1024
+        ],
+        "srgb": false,
+        "normal_orientation": null,
+        "native_flip_green": false
+      }
+    },
+    "status": "source_registered_candidate_native_pending",
+    "uses": [
+      "generic broadleaf trim; nominal blade0.12m, geometry provides outline; reusable across plants"
+    ],
+    "source": "ThornBarkBroadleafV1/SharedThornBroadleaf_ProceduralSource.blend",
+    "library": "ThornBarkBroadleafV1/SharedThornBroadleaf_LibraryCandidate.blend",
+    "reuse_proof": "ThornBarkBroadleafV1/GenericReuse.blend",
+    "provenance": "ThornBarkBroadleafV1/PROVENANCE.md",
+    "orm": "R=1 material occlusion; G=authored roughness; B=0 dielectric",
+    "nominal_texels_per_m": null
+  }
+}

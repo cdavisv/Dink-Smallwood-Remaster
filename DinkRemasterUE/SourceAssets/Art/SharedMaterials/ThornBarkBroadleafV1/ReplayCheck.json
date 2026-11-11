@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "all_six_texture_png_sha256_exact": true,
+  "source_maps": {
+    "T_Shared_ThornBark2m_BC.png": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+    "T_Shared_ThornBark2m_N_GL.png": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+    "T_Shared_ThornBark2m_ORM.png": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+    "T_Shared_BroadleafTrimV1_BC.png": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+    "T_Shared_BroadleafTrimV1_N_GL.png": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+    "T_Shared_BroadleafTrimV1_ORM.png": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f"
+  },
+  "replay_maps": {
+    "T_Shared_ThornBark2m_BC.png": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+    "T_Shared_ThornBark2m_N_GL.png": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+    "T_Shared_ThornBark2m_ORM.png": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+    "T_Shared_BroadleafTrimV1_BC.png": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+    "T_Shared_BroadleafTrimV1_N_GL.png": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+    "T_Shared_BroadleafTrimV1_ORM.png": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f"
+  },
+  "replay": "build_library.py -- --out <distinct-directory>",
+  "scope": "CPU procedural source replay; no native/export acceptance"
+}
