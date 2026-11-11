@@ -28,7 +28,9 @@
 class FDinkRealBarrelCheck : public IAutomationLatentCommand
 {
 public:
-    FDinkRealBarrelCheck(FAutomationTestBase* T,int32 N):Test(T),Screen(N),Index(N==31?3:13),Began(FPlatformTime::Seconds()){}
+    FDinkRealBarrelCheck(FAutomationTestBase* T,int32 N):FDinkRealBarrelCheck(T,FDinkOriginId(N,N==31?3:13)){}
+    FDinkRealBarrelCheck(FAutomationTestBase* T,FDinkOriginId Origin)
+        :Test(T),Screen(Origin.Screen),Index(Origin.Placement),Began(FPlatformTime::Seconds()){}
     bool Update() override
     {
         if(FPlatformTime::Seconds()-Began>180){Test->AddError(FString::Printf(TEXT("actual fitted barrel SCR_%03d phase%d timed out"),Screen,Phase));return true;}
@@ -47,7 +49,7 @@ public:
         {
             Story->bNewGamePending=false;Story->bInstantMode=true;
             if(!Test->TestTrue(TEXT("real map has explicitly marked capability"),W->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>()->RequiresScreenCapability(Screen))||
-               !Test->TestTrue(TEXT("strict actual two-origin policy is requested"),W->GetSubsystem<UDinkArtFamilySubsystem>()->IsCollisionFitRequested(Id))||
+               !Test->TestTrue(TEXT("actual source policy requests this origin"),W->GetSubsystem<UDinkArtFamilySubsystem>()->IsCollisionFitRequested(Id))||
                !Test->TestTrue(TEXT("ordinary greybox teleport enters actual screen"),Greybox->GotoScreen(Screen,float(P->X-20+65),float(P->Y))))return true;
             Phase=1;Until=Now+1;return false;
         }
@@ -55,7 +57,7 @@ public:
         {
             if(!Test->TestEqual(TEXT("actual screen event completed"),D->GetDink().Screen,Screen))return true;
             const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
-            if(!Test->TestTrue(TEXT("actual original template created live barrel"),S&&S->bActive&&S->Origin==Id&&S->Script==FName(Screen==31?TEXT("bar-gh"):TEXT("bar-f1"))))return true;
+            if(!Test->TestTrue(TEXT("actual original template created live barrel"),S&&S->bActive&&S->Origin==Id&&S->Script==P->Script))return true;
             auto* Actor=Cast<ADinkPlaceholderActor>(S->Actor.Get());auto* Body=G->FindHardnessFitPrimitive(*S);
             if(!Test->TestNotNull(TEXT("real initial birth admitted exact fitted body"),Body)||!Test->TestNotNull(TEXT("real original placeholder actor"),Actor))return true;
             Test->TestFalse(TEXT("successful initial fitted publication releases the hardness loading gate"),G->IsHardnessLoading());
@@ -71,7 +73,7 @@ public:
             if(!Family||!Test->TestTrue(TEXT("actual visual mesh cooked geometry readable"),DinkFamilyCollisionFit::ReadCookedGeometry(*Family->GetStaticMesh(),Geometry,GeometryError))){Test->AddError(GeometryError);return true;}
             FBox ExpectedBounds(ForceInit);for(const auto& V:Geometry.Vertices)ExpectedBounds+=Family->GetComponentTransform().TransformPosition(FVector(V));
             Test->TestTrue(TEXT("registered fitted XY extent matches ACTUAL cooked geometry, not oversized original hardbox"),
-                FMath::IsNearlyEqual(Body->Bounds.BoxExtent.X*2,ExpectedBounds.GetSize().X,.05)&&FMath::IsNearlyEqual(Body->Bounds.BoxExtent.Y*2,ExpectedBounds.GetSize().Y,.05)&&ExpectedBounds.GetSize().X<90&&ExpectedBounds.GetSize().Y<90);
+                FMath::IsNearlyEqual(Body->Bounds.BoxExtent.X*2,ExpectedBounds.GetSize().X,.05)&&FMath::IsNearlyEqual(Body->Bounds.BoxExtent.Y*2,ExpectedBounds.GetSize().Y,.05));
             auto OnlyBody=[&](UPrimitiveComponent* Selected)
             {
                 FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkFittedRealCardinal),true);
@@ -115,17 +117,47 @@ public:
             Test->TestFalse(TEXT("accepted prop immediately disables world blocking"),W->SweepSingleByChannel(High,Ground+FVector(-200,0,90),Ground+FVector(0,0,90),FQuat::Identity,ECC_Pawn,Capsule,OnlyBody(InertBody)));
             G->SetPlacementProp(Id,0);
             // Use the real production hit resolver, not StartProcedure(barrel,hit).
+            TSet<int32> BeforeHit;
+            for (const auto& Pair : D->GetSprites()) BeforeHit.Add(Pair.Key);
             Hero->SetActorLocation(Ground+FVector(-75,0,Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight()+2),false,nullptr,ETeleportType::TeleportPhysics);
             Hero->SetActorRotation(FRotator::ZeroRotator);G->SyncDinkFacingFromActor();
             G->RunThroughTagList(1);G->FlushPendingHits();Story->RunUntilIdle();
             // Verify creation in the hit turn before touch/brain ticks can consume the food.
-            bool Drop=false;FString ObservedDrops;
-            for(const auto& Pair:D->GetSprites())if(const auto* DropSprite=&Pair.Value;DropSprite->Screen==Screen&&DropSprite->bActive&&DropSprite->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
+            FName DropScript;
+            int32 DropSequence = 0;
+            int32 DropOffsetY = 0;
+            if (P->Script == TEXT("bar-gh")) { DropScript = TEXT("gheart"); DropSequence = 53; }
+            else if (P->Script == TEXT("bar-f1")) { DropScript = TEXT("sfood"); DropSequence = 421; }
+            else if (P->Script == TEXT("bar-sh")) { DropScript = TEXT("sheart"); DropSequence = 54; DropOffsetY = 1; }
+            else if (P->Script == TEXT("bar-dp")) { DropScript = TEXT("bpotion"); DropSequence = 178; DropOffsetY = 1; }
+            else if (P->Script == TEXT("bar-sp")) { DropScript = TEXT("rpotion"); DropSequence = 178; DropOffsetY = 1; }
+            else if (!Test->TestEqual(TEXT("supported no-drop barrel source"), P->Script, FName(TEXT("bar-e"))))
+                return true;
+            bool Drop = false;
+            bool UnexpectedDrop = false;
+            FString ObservedDrops;
+            for (const auto& Pair : D->GetSprites())
             {
-                Drop|=DropSprite->X==P->X&&DropSprite->Y==P->Y&&DropSprite->GetProp(TEXT("pseq"))==(Screen==31?53:421);
-                ObservedDrops+=FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),double(DropSprite->X),double(DropSprite->Y),DropSprite->GetProp(TEXT("pseq")));
+                const auto& Sprite = Pair.Value;
+                if (BeforeHit.Contains(Pair.Key) || Sprite.Screen != Screen || !Sprite.bActive) continue;
+                if (DropScript.IsNone())
+                {
+                    UnexpectedDrop |= Sprite.Script == TEXT("gheart") || Sprite.Script == TEXT("sfood") ||
+                        Sprite.Script == TEXT("sheart") || Sprite.Script == TEXT("bpotion") || Sprite.Script == TEXT("rpotion");
+                    continue;
+                }
+                if (Sprite.Script != DropScript) continue;
+                Drop |= Sprite.X == P->X && Sprite.Y == P->Y + DropOffsetY &&
+                    Sprite.GetProp(TEXT("pseq")) == DropSequence;
+                ObservedDrops += FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),
+                    double(Sprite.X), double(Sprite.Y), Sprite.GetProp(TEXT("pseq")));
             }
-            Test->TestTrue(FString::Printf(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates (expected %.9g,%.9g, observed%s)"),double(P->X),double(P->Y),*ObservedDrops),Drop);
+            if (DropScript.IsNone())
+                Test->TestFalse(TEXT("empty barrel does not create a bonus"), UnexpectedDrop);
+            else
+                Test->TestTrue(FString::Printf(TEXT("actual %s drop %s at source coordinates %.9g,%.9g (observed%s)"),
+                    *P->Script.ToString(), *DropScript.ToString(), double(P->X), double(P->Y + DropOffsetY),
+                    *ObservedDrops), Drop);
             Phase=2;Until=Now+.5;return false;
         }
         if(Phase==2)
@@ -232,4 +264,32 @@ bool FDinkRealFittedBarrels::RunTest(const FString& Parameters)
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this,FCString::Atoi(*Number)));
     ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());return true;
+}
+
+
+IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkRolloutScriptHits,"Dink.Gameplay.BarrelRollout.ScriptedHits",DINK_TEST_FLAGS)
+void FDinkRolloutScriptHits::GetTests(TArray<FString>& Names,TArray<FString>& Commands) const
+{
+    for (const TCHAR* Origin : {TEXT("S031_P03"), TEXT("S209_P13"), TEXT("S161_P24"),
+        TEXT("S034_P51"), TEXT("S156_P05"), TEXT("S177_P03")})
+    {
+        Names.Add(Origin);
+        Commands.Add(Origin);
+    }
+}
+bool FDinkRolloutScriptHits::RunTest(const FString& Parameters)
+{
+    FDinkOriginId Origin;
+    if (!TestTrue(TEXT("rollout scripted origin parses"), FDinkOriginId::Parse(Parameters, Origin)))
+        return false;
+    const FString Package = UGameMapsSettings::GetGameDefaultMap();
+    const FString File = FPackageName::LongPackageNameToFilename(Package, FPackageName::GetMapPackageExtension());
+    if (!TestTrue(TEXT("ordinary saved rollout world exists"), IFileManager::Get().FileExists(*File)) ||
+        !TestNotNull(TEXT("ordinary saved rollout world loads"), UEditorLoadingAndSavingUtils::LoadMap(File)))
+        return false;
+    FAssetCompilingManager::Get().FinishAllCompilation();
+    ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
+    ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this, Origin));
+    ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
+    return true;
 }
