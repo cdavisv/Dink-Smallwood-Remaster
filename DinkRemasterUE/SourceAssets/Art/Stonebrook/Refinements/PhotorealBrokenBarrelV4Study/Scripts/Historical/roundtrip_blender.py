@@ -1,0 +1,11 @@
+import bpy,numpy as np,json,os,sys,hashlib
+from pathlib import Path
+Q=Path(__file__).resolve().parent
+bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.ops.import_scene.fbx(filepath=str(Q/'SM_Barrel_Broken_CurvedV4_LOD0.fbx'),use_custom_normals=True,use_image_search=False)
+obs=[o for o in bpy.context.scene.objects if o.type=='MESH'];assert len(obs)==1;o=obs[0];me=o.data;me.calc_loop_triangles();src=np.load(Q/'SOURCE_TRIANGLES.npz')
+P=np.array([tuple(o.matrix_world@me.vertices[i].co)for t in me.loop_triangles for i in t.vertices],np.float32).reshape(-1,3,3)
+nm=o.matrix_world.to_3x3().inverted().transposed();N=np.array([tuple((nm@me.corner_normals[l].vector).normalized())for t in me.loop_triangles for l in t.loops],np.float32).reshape(-1,3,3);UV=np.array([tuple(me.uv_layers.active.data[l].uv)for t in me.loop_triangles for l in t.loops],np.float32).reshape(-1,3,2);M=np.array([t.material_index for t in me.loop_triangles],np.uint16)
+a=src['normal'].astype(float);b=N.astype(float);a/=np.linalg.norm(a,axis=-1,keepdims=True);b/=np.linalg.norm(b,axis=-1,keepdims=True);ang=np.degrees(np.arctan2(np.linalg.norm(np.cross(a,b),axis=-1),np.sum(a*b,axis=-1)))
+r={'fbx_sha256':hashlib.sha256((Q/'SM_Barrel_Broken_CurvedV4_LOD0.fbx').read_bytes()).hexdigest(),'fresh_blender_import':True,'triangles':len(P),'objects':len(obs),'source_float32_positions_exact':bool(np.array_equal(P,src['position'])),'max_position_error_m':float(np.max(np.abs(P-src['position']))),'source_UV_exact':bool(np.array_equal(UV,src['uv'])),'source_material_indices_exact':bool(np.array_equal(M,src['material'])),'imported_material_names':[m.name for m in me.materials],'normal_max_angle_degrees':float(ang.max()),'normal_corners_above_005_degrees':int((ang>.05).sum()),'normal_gate_degrees':.05,'normal_gate_pass':bool(ang.max()<=.05),'imported_world_matrix':[list(x)for x in o.matrix_world],'bounds_m':{'min':P.min((0,1)).tolist(),'max':P.max((0,1)).tolist()},'scope':'Fresh Blender importer can encode custom normals lossily. Serialized binary proof is separate; this is not UE import or raw/built TBN acceptance.'}
+(Q/'BLENDER_ROUNDTRIP.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r));sys.stdout.flush();os._exit(0)

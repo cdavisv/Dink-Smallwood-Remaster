@@ -1,0 +1,96 @@
+{
+  "PASS": true,
+  "serialized_closed_edge_count_two": true,
+  "serialized_positive_signed_volume_m3": 0.017984406306903285,
+  "finite_positions_UV_normals": true,
+  "min_triangle_area_m2": 8.056638657354679e-08,
+  "fbx_sha256": "1a6997e7488e3c2a4d623a6b77c94047776641d236ce19ba7b46d85a14326c98",
+  "binary_version": 7400,
+  "single_mesh_single_node": true,
+  "triangles": 15680,
+  "source_to_serialized_float32_channels_exact": {
+    "position": true,
+    "normal": true,
+    "uv": true,
+    "material": true
+  },
+  "source_to_serialized_normal_angle_degrees": 0,
+  "material_slots": [
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_OakEndgrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "node_properties": {
+    "DefaultAttributeIndex": 0,
+    "InheritType": 1
+  },
+  "global_settings": {
+    "UpAxis": 2,
+    "UpAxisSign": 1,
+    "FrontAxis": 1,
+    "FrontAxisSign": -1,
+    "CoordAxis": 0,
+    "CoordAxisSign": 1,
+    "OriginalUpAxis": -1,
+    "OriginalUpAxisSign": 1,
+    "UnitScaleFactor": 100.0,
+    "OriginalUnitScaleFactor": 100.0,
+    "AmbientColor": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "DefaultCamera": "Producer Perspective",
+    "TimeMode": 11,
+    "TimeSpanStart": 0,
+    "TimeSpanStop": 46186158000,
+    "CustomFrameRate": 24.0
+  },
+  "bounds_m": {
+    "min": [
+      -0.5177920460700989,
+      -0.6085214614868164,
+      0.0010000001639127731
+    ],
+    "max": [
+      0.4704448878765106,
+      0.6082841157913208,
+      0.21103957295417786
+    ]
+  },
+  "external_basename_texture_references_no_embedded_pixels": [
+    {
+      "name": "T_Shared_OakLonggrain2m_BC\u0000\u0001Video",
+      "filename": "T_Shared_OakLonggrain2m_BC.png",
+      "embedded": false
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_N_GL\u0000\u0001Video",
+      "filename": "T_Shared_OakLonggrain2m_N_GL.png",
+      "embedded": false
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_BC\u0000\u0001Video",
+      "filename": "T_Shared_OakEndgrain2m_BC.png",
+      "embedded": false
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_N_GL\u0000\u0001Video",
+      "filename": "T_Shared_OakEndgrain2m_N_GL.png",
+      "embedded": false
+    },
+    {
+      "name": "T_Stonebrook_WroughtIron_BC\u0000\u0001Video",
+      "filename": "T_Stonebrook_WroughtIron_BC.png",
+      "embedded": false
+    },
+    {
+      "name": "T_Stonebrook_WroughtIron_N\u0000\u0001Video",
+      "filename": "T_Stonebrook_WroughtIron_N.png",
+      "embedded": false
+    }
+  ],
+  "no_UCX_or_LOD_siblings": true,
+  "tangent_basis_omitted_generate_native_Mikk_pending": true,
+  "scope": "Independent stdlib binary parser validates serialized channels, not Blender custom-normal codec or native importer"
+}

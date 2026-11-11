@@ -1,0 +1,47 @@
+{
+  "schema": "dink-inactive-art-source-study/1",
+  "status": "inactive_preferred_source_candidate",
+  "family": "barrel_broken",
+  "original_sequence": 173,
+  "original_frame": 6,
+  "class": "prop",
+  "source": "portable.source.blend",
+  "source_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "radial_v4_parent_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
+  "published_prior_v3_source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "objects": 25,
+  "LOD0_triangles": 15680,
+  "other_LODs": false,
+  "dimensions_m": [
+    0.9882369339466095,
+    1.2168055772781372,
+    0.21003957279026508
+  ],
+  "shared_target_materials": [
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_OakEndgrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "references_sha256": {
+    "SourceAssets/Art/SharedMaterials/manifest.json": "c19adfb9bde4e4151c50e9c0ee6e4d42fb1d8bd414583654f94695a946c3fd1f",
+    "SourceAssets/Art/Stonebrook/art_manifest.json": "b5cfa84d909f540592d8f424c15125eea02a780a743b8a418848d32d6b53667d",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV3Study/manifest.json": "3306a7383c101282e8091a4466487026ef469bb0da5b2c375415251959823fee"
+  },
+  "runtime_activated": false,
+  "native_unsaved_geometry_probe_passed": true,
+  "native_appearance_accepted": false,
+  "independent_Mikk_T_accepted": false,
+  "Blender_roundtrip_normal_gate_passed": false,
+  "exports": [
+    "Export/SM_Barrel_Broken_CurvedV4_LOD0.fbx"
+  ],
+  "collision_navigation_supplied": false,
+  "limits": [
+    "LOD0 only; above6000soft/below20000hard",
+    "Simple smooth fracture faces; no final photoreal approval",
+    "Historical Blender normal roundtrip failed .824704885deg/.05",
+    "Unsaved native normal gates passed; no material/RHI/lifecycle/cook acceptance"
+  ],
+  "historical_scope": "Exact archived scripts/READY receipts reference original QA dependency paths and omitted historical outputs. They are not portable rebuild commands; only separately documented inspect/export wrappers are runnable."
+}
