@@ -36,11 +36,37 @@ bool FDinkFamilyFitExactInertBody::RunTest(const FString& Parameters)
     auto* Policy=NewObject<UBoxComponent>(Host);
     Policy->SetCollisionProfileName(DinkCollision::ProfileHardSolid);
     Policy->SetGenerateOverlapEvents(false);Policy->SetCanEverAffectNavigation(false);
+    auto* RefusedBody=NewObject<UDinkHardnessPrismComponent>(Host);
+    Policy->SetGenerateOverlapEvents(true);
+    TestFalse(TEXT("failed initial preparation refuses"),RefusedBody->PrepareCookedMeshGeometry(*Source,*Policy));
+    TestFalse(TEXT("failed initial preparation cannot validate later"),RefusedBody->ValidateCookedMeshGeometry(*Source));
+    Policy->SetGenerateOverlapEvents(false);
     auto* Body=NewObject<UDinkHardnessPrismComponent>(Host);
     Body->SetupAttachment(Root);
     const FVector Center=Mesh->GetBoundingBox().GetCenter();
     Body->SetRelativeLocation(FVector(-Center.X,-Center.Y,0));
     if(!TestTrue(TEXT("prepare exact readonly cooked geometry"),Body->PrepareCookedMeshGeometry(*Source,*Policy)))return false;
+    // Test-owned unregistered copy only: every mutation is restored before registration.
+    auto* PreparedSetup=Body->GetBodySetup();auto& PreparedMesh=*PreparedSetup->TriMeshGeometries[0];
+    auto& MutableParticles=const_cast<Chaos::FTriangleMeshImplicitObject::ParticlesType&>(PreparedMesh.Particles());
+    const auto OriginalPoint=MutableParticles.GetX(0);auto ShiftedPoint=OriginalPoint;ShiftedPoint[0]+=.25f;
+    MutableParticles.SetX(0,ShiftedPoint);
+    TestFalse(TEXT("post-prepare owned particle mutation refuses"),Body->ValidateCookedMeshGeometry(*Source));
+    MutableParticles.SetX(0,OriginalPoint);
+    auto ChangeCycle=[&](const auto& Elements)
+    {
+        auto Original=Elements;auto Changed=Original;
+        const auto First=Changed[0][0];Changed[0][0]=Changed[0][1];Changed[0][1]=Changed[0][2];Changed[0][2]=First;
+        auto& MutableElements=const_cast<Chaos::FTrimeshIndexBuffer&>(PreparedMesh.Elements());
+        MutableElements.Reinitialize(MoveTemp(Changed));
+        TestFalse(TEXT("even semantically identical cyclic reorder AFTER own freeze refuses"),Body->ValidateCookedMeshGeometry(*Source));
+        MutableElements.Reinitialize(MoveTemp(Original));
+    };
+    if(PreparedMesh.Elements().RequiresLargeIndices())ChangeCycle(PreparedMesh.Elements().GetLargeIndexBuffer());
+    else ChangeCycle(PreparedMesh.Elements().GetSmallIndexBuffer());
+    const bool BeforeCull=PreparedMesh.GetCullsBackFaceRaycast();PreparedMesh.SetCullsBackFaceRaycast(!BeforeCull);
+    TestFalse(TEXT("wrong owned inert cull refuses"),Body->ValidateCookedMeshGeometry(*Source));PreparedMesh.SetCullsBackFaceRaycast(BeforeCull);
+    TestTrue(TEXT("exact restored owned epoch remains valid"),Body->ValidateCookedMeshGeometry(*Source));
     Host->AddInstanceComponent(Body);Body->RegisterComponent();
     if(!TestTrue(TEXT("registered inert profile preparation"),Body->FinalizeRegisteredPreparation(*Policy)))return false;
     TestTrue(TEXT("registered actual triangle body remains query+simulation inert"),Body->ValidateRegisteredInert());
@@ -49,6 +75,10 @@ bool FDinkFamilyFitExactInertBody::RunTest(const FString& Parameters)
     TestTrue(TEXT("owned exact deep-copy implicit never aliases source"),
         Own&&Own->TriMeshGeometries.Num()==1&&Own->TriMeshGeometries[0]!=Source->TriMeshGeometries[0]);
     TestTrue(TEXT("all particles/elements/materials/external faces exact; owned active cull derived"),Body->ValidateCookedMeshGeometry(*Source));
+    Own->TriMeshGeometries[0]->SetCullsBackFaceRaycast(Source->bDoubleSidedGeometry);
+    TestFalse(TEXT("wrong registered owned cull refuses"),Body->ValidateCookedMeshGeometry(*Source));
+    Own->TriMeshGeometries[0]->SetCullsBackFaceRaycast(!Source->bDoubleSidedGeometry);
+    TestTrue(TEXT("correct registered owned cull restores validation"),Body->ValidateCookedMeshGeometry(*Source));
     TestEqual(TEXT("source raw cache cull unchanged by own registration"),Source->TriMeshGeometries[0]->GetCullsBackFaceRaycast(),Before.bSourceCullsBackFaceRaycast);
     TestEqual(TEXT("owned active cull follows stock double-sided policy"),Own->TriMeshGeometries[0]->GetCullsBackFaceRaycast(),!Source->bDoubleSidedGeometry);
     TestEqual(TEXT("source GUID unchanged"),Source->BodySetupGuid,Before.BodySetupGuid);

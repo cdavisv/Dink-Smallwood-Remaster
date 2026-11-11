@@ -1,3 +1,7 @@
+## Owned cooked copy identities — source fix, native validation pending
+
+Engine DeepCopyGeometry rebuilds BVH and can reorder faces/material/external IDs. Initial association validation must retain exact indexed particle bits plus counted oriented index/material/external-face tuples (duplicates/winding/width preserved), then freeze independent ordered source/owned epochs. Later readiness/commit checks must stream WITHOUT heap allocation/sort/capture. Source raw cache cull may legally initialize through an unrelated stock component; owned active cull remains strict and own registration must not mutate source. Never publish frozen admission state after initial association refusal. c59 metrology proves50 reordered rows among16,648 exact Photo faces. See current HANDOFF/PhotorealBarrelRolloutV3; fix remains uncompiled/unrun natively here.
+
 ## Ordinary importer owns fitted foundation generation — native validation pending
 
 The default85 source policy no longer requires private native foundation preparation. Normal import performs complete pure source/descriptor preflight, then verifies existing immutable targets or builds wholly missing foundation pairs with the existing producer. Dry-run never builds foundations; partial/invalid targets refuse overwrite. New foundations save after actual generated-host verification and before maps. Active fitted acceptance uses ordinary GameDefaultMap only; private Stage40 Candidate enumeration is historical. See PhotorealBarrelRolloutV3 README/HANDOFF. This successor remains uncompiled/unrun natively.

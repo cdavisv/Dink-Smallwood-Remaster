@@ -157,7 +157,7 @@ bool FDinkBarrelOwnedCopyMetrology::RunTest(const FString&)
         else if(Before.ParticleBits!=Observation.ParticleBits)FirstGuard=TEXT("indexed_particle_bits");
         else if(Before.RawIndices!=Observation.RawIndices)FirstGuard=TEXT("same_internal_index_triplets");
         else if(Before.Materials!=Observation.Materials||Before.ExternalFaces!=Observation.ExternalFaces)FirstGuard=TEXT("same_internal_material_or_external_face");
-        Report->SetStringField(TEXT("first_failed_actual_validate_guard_in_source_order"),FirstGuard);
+        Report->SetStringField(TEXT("legacy_first_failed_same_index_guard_in_source_order"),FirstGuard);
     }
     // Never register an instance refused by production preparation.
     Report->SetBoolField(TEXT("registration_attempted"),Prepared);

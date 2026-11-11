@@ -7,6 +7,67 @@
 #include "Physics/PhysScene.h"
 #include "Physics/Experimental/PhysScene_Chaos.h"
 
+namespace
+{
+DinkCookedMeshIdentity::Snapshot CookedIdentity(const Chaos::FTriangleMeshImplicitObject& Mesh)
+{
+    DinkCookedMeshIdentity::Snapshot Result;
+    Result.LargeIndices=Mesh.Elements().RequiresLargeIndices();
+    Result.Particles.reserve(Mesh.Particles().Size());
+    for(int32 Index=0;Index<Mesh.Particles().Size();++Index)
+    {
+        DinkCookedMeshIdentity::ParticleBits Bits;
+        for(int32 Axis=0;Axis<3;++Axis)
+        {
+            const float Value=Mesh.Particles().GetX(Index)[Axis];
+            FMemory::Memcpy(&Bits[Axis],&Value,sizeof(Value));
+        }
+        Result.Particles.push_back(Bits);
+    }
+    auto Read=[&](const auto& Elements)
+    {
+        int32 Number=0;
+        for(const auto& Triangle:Elements)
+        {
+            DinkCookedMeshIdentity::Face Item;
+            for(int32 Corner=0;Corner<3;++Corner)Item.Indices[Corner]=uint32(Triangle[Corner]);
+            Item.Material=Mesh.GetMaterialIndex(Number);Item.ExternalFace=Mesh.GetExternalFaceIndexFromInternal(Number++);
+            Result.Faces.push_back(Item);
+        }
+    };
+    if(Result.LargeIndices)Read(Mesh.Elements().GetLargeIndexBuffer());else Read(Mesh.Elements().GetSmallIndexBuffer());
+    return Result;
+}
+bool MatchesCookedIdentity(const DinkCookedMeshIdentity::Snapshot& Frozen,
+                           const Chaos::FTriangleMeshImplicitObject& Mesh)
+{
+    // Called from readiness/commit paths: stream fixed values, allocate nothing.
+    if(Frozen.LargeIndices!=Mesh.Elements().RequiresLargeIndices() ||
+       Frozen.Particles.size()!=static_cast<SIZE_T>(Mesh.Particles().Size()) ||
+       Frozen.Faces.size()!=static_cast<SIZE_T>(Mesh.Elements().GetNumTriangles()))return false;
+    for(int32 Index=0;Index<Mesh.Particles().Size();++Index)
+        for(int32 Axis=0;Axis<3;++Axis)
+        {
+            const float Value=Mesh.Particles().GetX(Index)[Axis];uint32 Bits;
+            FMemory::Memcpy(&Bits,&Value,sizeof(Bits));
+            if(Frozen.Particles[Index][Axis]!=Bits)return false;
+        }
+    auto Match=[&](const auto& Elements)
+    {
+        int32 Number=0;
+        for(const auto& Triangle:Elements)
+        {
+            const auto& Item=Frozen.Faces[Number];
+            for(int32 Corner=0;Corner<3;++Corner)if(Item.Indices[Corner]!=uint32(Triangle[Corner]))return false;
+            if(Item.Material!=Mesh.GetMaterialIndex(Number) || Item.ExternalFace!=Mesh.GetExternalFaceIndexFromInternal(Number))return false;
+            ++Number;
+        }
+        return true;
+    };
+    return Frozen.LargeIndices?Match(Mesh.Elements().GetLargeIndexBuffer()):Match(Mesh.Elements().GetSmallIndexBuffer());
+}
+}
+
 UDinkHardnessPrismComponent::UDinkHardnessPrismComponent(const FObjectInitializer& Initializer)
     : Super(Initializer)
 {
@@ -96,7 +157,15 @@ bool UDinkHardnessPrismComponent::PrepareCookedMeshGeometry(UBodySetup& Source,c
     BodyInstance.SetPhysMaterialOverride(Body->GetSimplePhysicalMaterial());
     BodyInstance.SetCollisionEnabled(ECollisionEnabled::NoCollision,false);
     bDesiredNavigation=Reference.CanEverAffectNavigation();CanCharacterStepUpOn=Reference.CanCharacterStepUpOn;
-    LocalGeometryBounds=Bounds;ShapeBodySetup=Setup;return ValidateCookedMeshGeometry(Source);
+    LocalGeometryBounds=Bounds;ShapeBodySetup=Setup;
+    // CopySlowImpl legitimately rebuilds BVH face order. Verify every exact
+    // association BEFORE publishing an admitted pair of ordered epoch snapshots.
+    auto Admission=DinkCookedMeshIdentity::Admit(CookedIdentity(*Source.TriMeshGeometries[0]),CookedIdentity(*Copy));
+    if(!Admission)return false;
+    PreparedSourceGuid=Source.BodySetupGuid;PreparedSourceDoubleSided=Source.bDoubleSidedGeometry;
+    PreparedSourceImplicit=Source.TriMeshGeometries[0].GetReference();PreparedOwnedImplicit=Copy;PreparedOwnedSetup=Setup;
+    PreparedIdentity=MoveTemp(Admission);
+    return ValidateCookedMeshGeometry(Source);
 }
 
 bool UDinkHardnessPrismComponent::ValidateCookedMeshGeometry(const UBodySetup& Source) const
@@ -109,21 +178,14 @@ bool UDinkHardnessPrismComponent::ValidateCookedMeshGeometry(const UBodySetup& S
        A.Elements().RequiresLargeIndices()!=B.Elements().RequiresLargeIndices() ||
        A.Elements().GetNumTriangles()!=B.Elements().GetNumTriangles() ||
        B.GetCullsBackFaceRaycast()!=(IsRegistered()?!Source.bDoubleSidedGeometry:SourceRawCullBeforeRegistration))return false;
-    for(int32 I=0;I<A.Particles().Size();++I)
-        for(int32 K=0;K<3;++K)
-        {const float X=A.Particles().GetX(I)[K],Y=B.Particles().GetX(I)[K];if(FMemory::Memcmp(&X,&Y,sizeof(float))!=0)return false;}
-    auto SameIndices=[](const auto& X,const auto& Y){
-        if(X.Num()!=Y.Num())return false;
-        for(int32 I=0;I<X.Num();++I)for(int32 K=0;K<3;++K)if(X[I][K]!=Y[I][K])return false;
-        return true;
-    };
-    const bool Same=A.Elements().RequiresLargeIndices()?
-        SameIndices(A.Elements().GetLargeIndexBuffer(),B.Elements().GetLargeIndexBuffer()):
-        SameIndices(A.Elements().GetSmallIndexBuffer(),B.Elements().GetSmallIndexBuffer());
-    if(!Same)return false;
-    for(int32 I=0;I<A.Elements().GetNumTriangles();++I)
-        if(A.GetMaterialIndex(I)!=B.GetMaterialIndex(I) ||
-           A.GetExternalFaceIndexFromInternal(I)!=B.GetExternalFaceIndexFromInternal(I))return false;
+    if(CookedSource.Get()!=&Source || PreparedOwnedSetup.Get()!=ShapeBodySetup ||
+       Source.BodySetupGuid!=PreparedSourceGuid || Source.bDoubleSidedGeometry!=PreparedSourceDoubleSided ||
+       &A!=PreparedSourceImplicit || &B!=PreparedOwnedImplicit ||
+       !PreparedIdentity)return false;
+    // No later reordering/mutation is admitted in either epoch. Raw cache cull
+    // is excluded only for the documented stock source-initialization transition;
+    // owned cull is checked against the existing inert/registered policy above.
+    if(!MatchesCookedIdentity(PreparedIdentity->Source,A) || !MatchesCookedIdentity(PreparedIdentity->Owned,B))return false;
     return true;
 }
 

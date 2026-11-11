@@ -1,0 +1,63 @@
+{
+  "source_head": "c59e1abeb441cf5b52751a7ab454a6747a73143b",
+  "native_session": 17272,
+  "native_exit": 0,
+  "native_tests": 1,
+  "warnings": 0,
+  "capture_sha256": "4b59e413b6f060712ed2f7202698ac01026d0fb42c6dc0747c165a558163f20b",
+  "observations": {
+    "source_before": {
+      "particles": 8396,
+      "triangles": 16648,
+      "index_width": "u16",
+      "canonical_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+      "independent42_record_equality": true,
+      "independent18_record_equality": true
+    },
+    "source_after": {
+      "particles": 8396,
+      "triangles": 16648,
+      "index_width": "u16",
+      "canonical_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+      "independent42_record_equality": true,
+      "independent18_record_equality": true
+    },
+    "direct_copy": {
+      "particles": 8396,
+      "triangles": 16648,
+      "index_width": "u16",
+      "canonical_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+      "independent42_record_equality": true,
+      "independent18_record_equality": true
+    },
+    "actual_owned_after_prepare": {
+      "particles": 8396,
+      "triangles": 16648,
+      "index_width": "u16",
+      "canonical_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+      "independent42_record_equality": true,
+      "independent18_record_equality": true
+    }
+  },
+  "raw_index_row_mismatches": 50,
+  "raw_external_face_row_mismatches": 50,
+  "first_mismatch": {
+    "internal_face": 9769,
+    "source_indices": [
+      4484,
+      4483,
+      4481
+    ],
+    "owned_indices": [
+      4516,
+      4486,
+      4487
+    ],
+    "source_external_face": 7052,
+    "owned_external_face": 7098
+  },
+  "production_first_failed_guard": "same_internal_index_triplets",
+  "source_exact_before_after": true,
+  "production_prepare_accepted": false,
+  "failed_body_registered": false
+}
