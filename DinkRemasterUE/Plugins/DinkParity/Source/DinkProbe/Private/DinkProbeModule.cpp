@@ -2,6 +2,10 @@
 #include "Misc/CoreDelegates.h"
 #include "DinkProbeHold.h"
 
+#if WITH_DEV_AUTOMATION_TESTS
+void DinkStopAttackQueueObserver();
+#endif
+
 // The tests register themselves through IMPLEMENT_SIMPLE_AUTOMATION_TEST in DinkProbeTests.cpp.
 class FDinkProbeModule : public FDefaultModuleImpl
 {
@@ -14,6 +18,9 @@ public:
 
 	virtual void ShutdownModule() override
 	{
+		#if WITH_DEV_AUTOMATION_TESTS
+		DinkStopAttackQueueObserver();
+		#endif
 		FCoreDelegates::OnFEngineLoopInitComplete.Remove(InitCompleteHandle);
 	}
 

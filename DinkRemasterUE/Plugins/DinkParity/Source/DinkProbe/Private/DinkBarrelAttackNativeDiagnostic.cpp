@@ -19,6 +19,7 @@
 #include "HAL/IConsoleManager.h"
 #include "HAL/FileManager.h"
 #include "Misc/CommandLine.h"
+#include "Misc/CoreDelegates.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "Dom/JsonObject.h"
@@ -57,10 +58,10 @@ FObject Hit(bool Returned,const FHitResult& H,const UPrimitiveComponent* Expecte
 class FDinkBarrelAttackNativeDiagnostic
 {
 public:
-    static TSharedRef<FJsonObject> Capture(UWorld* World,bool ExactRecordedQueries)
+    static TSharedRef<FJsonObject> Capture(UWorld* World,bool ExactRecordedQueries,bool Passive=false)
     {
         using namespace DinkAttackMetrology;
-        auto O=MakeShared<FJsonObject>();O->SetNumberField(TEXT("schema"),1);O->SetStringField(TEXT("scope"),TEXT("Read-only diagnostic, not hit/drop acceptance; no attack/scheduling changes"));
+        auto O=MakeShared<FJsonObject>();O->SetNumberField(TEXT("schema"),1);O->SetStringField(TEXT("capture_mode"),Passive?TEXT("passive"):TEXT("full"));O->SetBoolField(TEXT("passive_no_physics_queries"),Passive);TArray<TSharedPtr<FJsonValue>> QueryOrder;O->SetArrayField(TEXT("query_call_order"),QueryOrder);O->SetStringField(TEXT("scope"),TEXT("Read-only diagnostic, not hit/drop acceptance; no attack/scheduling changes"));
         auto Fail=[&](const TCHAR* Reason){O->SetStringField(TEXT("capture_error"),Reason);return O;};
         if(!World||!World->IsGameWorld())return Fail(TEXT("not an active game world"));
         auto* PC=World->GetFirstPlayerController();auto* Hero=PC?Cast<ADinkGreyboxCharacter>(PC->GetPawn()):nullptr;
@@ -90,7 +91,8 @@ public:
         for(TActorIterator<ADinkGreyboxScreen> It(World);It;++It)if(It->ScreenNumber==31)
         {TInlineComponentArray<UDinkHardnessPrismComponent*> Parts(*It);for(auto* C:Parts)if(C->HardnessCode==103&&C->ComponentHasTag(TEXT("DinkHardnessOwnedV1"))){Physical=C;++PhysicalCount;}}
         O->SetNumberField(TEXT("independent_physical_count"),PhysicalCount);O->SetStringField(TEXT("independent_physical_primitive"),GetPathNameSafe(Physical));O->SetBoolField(TEXT("private_matches_independent"),Private&&Private==Physical);
-        double PredicateDistance=0;O->SetBoolField(TEXT("production_predicate_at_live_pose"),G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit,&PredicateDistance));O->SetNumberField(TEXT("predicate_distance"),PredicateDistance);
+        O->SetBoolField(TEXT("production_predicate_sampled"),!Passive);
+        if(!Passive){QueryOrder.Add(MakeShared<FJsonValueString>(TEXT("production_predicate_invocation_at_live_pose_before_independent_queries")));double PredicateDistance=0;O->SetBoolField(TEXT("production_predicate_at_live_pose"),G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit,&PredicateDistance));O->SetNumberField(TEXT("predicate_distance"),PredicateDistance);}
         O->SetNumberField(TEXT("runtime_hit_delay106_ms"),G->Data.HitFrameDelayMs(106));O->SetBoolField(TEXT("runtime_sequence106_exists"),G->Data.SeqExists(106));
         TArray<TSharedPtr<FJsonValue>> Frames;for(int32 I=1;I<=8;++I)
         {const auto* F=G->Data.FindFrame(106,I);if(!F)break;auto R=MakeShared<FJsonObject>();R->SetNumberField(TEXT("frame"),I);R->SetNumberField(TEXT("delay_ms"),F->DelayMs);R->SetBoolField(TEXT("special"),F->bSpecial);R->SetBoolField(TEXT("empty"),F->bEmpty);Frames.Add(MakeShared<FJsonValueObject>(R));}
@@ -100,7 +102,7 @@ public:
         A->SetNumberField(TEXT("seq"),D->GetDink().GetProp(TEXT("seq")));A->SetNumberField(TEXT("sprite_frame"),D->GetDink().GetProp(TEXT("frame")));A->SetNumberField(TEXT("nocontrol"),D->GetDink().GetProp(TEXT("nocontrol")));A->SetNumberField(TEXT("range"),D->GetDink().GetProp(TEXT("range")));A->SetNumberField(TEXT("base_hit"),D->GetDink().GetProp(TEXT("base_hit"),100));A->SetBoolField(TEXT("frozen"),D->GetDink().bFrozen);A->SetBoolField(TEXT("move_ignored"),PC->IsMoveInputIgnored());O->SetObjectField(TEXT("attack_state"),A);
         TArray<TSharedPtr<FJsonValue>> Queue;for(const auto& Pending:G->PendingHits)
         {auto R=MakeShared<FJsonObject>();R->SetNumberField(TEXT("sprite"),Pending.Sprite);R->SetNumberField(TEXT("seq"),Pending.Seq);R->SetNumberField(TEXT("at_ms"),Pending.AtMs);const auto* S=D->FindSprite(Pending.Sprite);R->SetBoolField(TEXT("seq_match_now"),S&&S->bActive&&S->GetProp(TEXT("seq"))==Pending.Seq);Queue.Add(MakeShared<FJsonValueObject>(R));}O->SetArrayField(TEXT("pending_hits"),Queue);
-        if(PhysicalCount==1&&Physical)
+        if(!Passive&&PhysicalCount==1&&Physical)
         {
             auto B=MakeShared<FJsonObject>();B->SetBoolField(TEXT("registered"),Physical->IsRegistered());B->SetBoolField(TEXT("physics_created"),Physical->IsPhysicsStateCreated());B->SetStringField(TEXT("class"),Physical->GetClass()->GetName());B->SetObjectField(TEXT("component_pose"),Pose(Physical->GetComponentTransform()));B->SetArrayField(TEXT("bounds_origin"),Vec(Physical->Bounds.Origin));B->SetArrayField(TEXT("bounds_extent"),Vec(Physical->Bounds.BoxExtent));B->SetStringField(TEXT("profile"),Physical->GetCollisionProfileName().ToString());B->SetNumberField(TEXT("object_type"),int32(Physical->GetCollisionObjectType()));
             const auto* BI=Physical->GetBodyInstance();B->SetBoolField(TEXT("body_instance_valid"),BI&&BI->IsValidBodyInstance());
@@ -119,41 +121,156 @@ public:
             TArray<TSharedPtr<FJsonValue>> Sweeps;
             for(bool Complex:{false,true})
             {
+                QueryOrder.Add(MakeShared<FJsonValueString>(Complex?TEXT("direct_component_complex"):TEXT("direct_component_simple")));
                 FHitResult Direct;const bool DirectReturn=Physical->SweepComponent(Direct,Start,End,FQuat::Identity,FCollisionShape::MakeCapsule(Radius,HalfHeight),Complex);
                 auto R=MakeShared<FJsonObject>();R->SetBoolField(TEXT("complex"),Complex);R->SetObjectField(TEXT("direct_independent_component"),Hit(DirectReturn,Direct,Physical));
                 FVector Surface=Direct.bStartPenetrating?Physical->Bounds.GetBox().GetClosestPointTo(From):Direct.ImpactPoint;
+                if(DirectReturn)QueryOrder.Add(MakeShared<FJsonValueString>(Complex?TEXT("derived_los_after_complex_component"):TEXT("derived_los_after_simple_component")));
                 FCollisionQueryParams SightParams(SCENE_QUERY_STAT(DinkNativeAttackSight),true,Hero);FHitResult Sight;const bool SightReturn=DirectReturn&&World->LineTraceSingleByChannel(Sight,From,Surface,ECC_Visibility,SightParams);
                 R->SetArrayField(TEXT("source_los_surface"),Vec(Surface));R->SetObjectField(TEXT("source_los"),Hit(SightReturn,Sight,Physical));R->SetBoolField(TEXT("source_los_allows"),DirectReturn&&(!SightReturn||Sight.GetActor()==TargetActor||Sight.GetComponent()==Physical||Sight.Distance+1>=FVector::Distance(From,Surface)));
                 FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkNativeAttackWorld),Complex,Hero);TArray<FHitResult> WorldHits;
+                QueryOrder.Add(MakeShared<FJsonValueString>(Complex?TEXT("world_complex"):TEXT("world_simple")));
                 const bool WorldReturn=World->SweepMultiByObjectType(WorldHits,Start,End,FQuat::Identity,FCollisionObjectQueryParams(Physical->GetCollisionObjectType()),FCollisionShape::MakeCapsule(Radius,HalfHeight),Params);
                 R->SetBoolField(TEXT("world_native_return"),WorldReturn);R->SetBoolField(TEXT("world_find_initial_overlaps"),Params.bFindInitialOverlaps);TArray<TSharedPtr<FJsonValue>> WH;for(const auto& H:WorldHits){auto PerHit=Hit(WorldReturn,H,Physical);PerHit->RemoveField(TEXT("native_return"));WH.Add(MakeShared<FJsonValueObject>(PerHit));}R->SetArrayField(TEXT("world_hits"),WH);Sweeps.Add(MakeShared<FJsonValueObject>(R));
             }
             O->SetArrayField(TEXT("direct_vs_world_queries"),Sweeps);
         }
+        O->SetArrayField(TEXT("query_call_order"),QueryOrder);
         O->SetObjectField(TEXT("hero_after"),Pose(Hero->GetActorTransform()));O->SetNumberField(TEXT("world_time_after"),World->GetTimeSeconds());O->SetNumberField(TEXT("story_ms_after"),Story->GetNowMs());
         O->SetBoolField(TEXT("observed_pose_clock_life_gold_unchanged"),Before.Equals(Hero->GetActorTransform(),0)&&WorldBefore==World->GetTimeSeconds()&&StoryBefore==Story->GetNowMs()&&LifeBefore==G->GetFact(TEXT("life"))&&GoldBefore==G->GetFact(TEXT("gold")));
         return O;
     }
-    static FString Write(UWorld* World,const FString& Label,bool Exact,TSharedPtr<FJsonObject>* Captured=nullptr)
+    static FString Write(UWorld* World,const FString& Label,bool Exact,TSharedPtr<FJsonObject>* Captured=nullptr,bool Passive=false)
     {
-        const auto O=Capture(World,Exact);if(Captured)*Captured=O;
+        const auto O=Capture(World,Exact,Passive);O->SetStringField(TEXT("label"),Label);FString Nonce;FParse::Value(FCommandLine::Get(),TEXT("DinkQARunId="),Nonce);O->SetStringField(TEXT("nonce"),Nonce);if(Captured)*Captured=O;
         FString Text;if(!FJsonSerializer::Serialize(O,TJsonWriterFactory<>::Create(&Text)))return FString();
-        const FString Dir=FPaths::ProjectSavedDir()/TEXT("Automation/BarrelAttackNative");IFileManager::Get().MakeDirectory(*Dir,true);
+        const FString Dir=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Automation/BarrelAttackNative"));IFileManager::Get().MakeDirectory(*Dir,true);
         const FString File=Dir/(Label+TEXT("-")+FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));
         return FFileHelper::SaveStringToFile(Text,*File,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting)?File:FString();
     }
+private:
+    struct FQueueObserver
+    {
+        TWeakObjectPtr<UWorld> World;
+        TWeakObjectPtr<ADinkGreyboxCharacter> Hero;
+        int32 TargetHandle=0,LastSeq=INDEX_NONE;
+        TArray<FDinkPendingHit> LastQueue;
+        TArray<TSharedPtr<FJsonValue>> Rows;
+        TSharedRef<FJsonObject> Payload=MakeShared<FJsonObject>();
+        double StartReal=0;
+        FString FinalPath,ArmedPath;
+        FDelegateHandle Begin,End,Cleanup,Exit;
+    };
+    static TUniquePtr<FQueueObserver>& QueueObserver(){static TUniquePtr<FQueueObserver> Value;return Value;}
+    static FString& LastObserverReceipt(){static FString Value;return Value;}
+    static bool SaveObserverJson(const TSharedRef<FJsonObject>& Value,const FString& Path)
+    {
+        FString Text;return FJsonSerializer::Serialize(Value,TJsonWriterFactory<>::Create(&Text))&&
+            FFileHelper::SaveStringToFile(Text,*Path,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting);
+    }
+    static void ObserverBegin(){SampleObserver(TEXT("begin"));}
+    static void ObserverEnd(){SampleObserver(TEXT("end"));}
+    static void ObserverExit(){StopObserver(TEXT("engine_pre_exit"));}
+    static void ObserverCleanup(UWorld* World,bool,bool)
+    {if(QueueObserver()&&QueueObserver()->World.Get()==World)StopObserver(TEXT("world_cleanup"));}
+    static void SampleObserver(const TCHAR* Phase)
+    {
+        auto* State=QueueObserver().Get();if(!State)return;
+        const double Real=FPlatformTime::Seconds();
+        if(Real-State->StartReal>=2.0){StopObserver(TEXT("time_limit"));return;}
+        auto* World=State->World.Get();auto* Hero=State->Hero.Get();auto* PC=World?World->GetFirstPlayerController():nullptr;
+        auto* Story=World&&World->GetGameInstance()?World->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>():nullptr;
+        auto* G=Story?Story->GetGameplay():nullptr;auto* D=Story?Story->GetDirector():nullptr;
+        if(!World||!Hero||Hero->GetWorld()!=World||!PC||PC->GetPawn()!=Hero||!Story||!G||!D){StopObserver(TEXT("invalid_owned_context"));return;}
+        if(D->GetDink().Screen!=31){StopObserver(TEXT("screen_changed"));return;}
+        const auto& HeroSprite=D->GetDink();const int32 Seq=HeroSprite.GetProp(TEXT("seq"));
+        bool Transition=Seq!=State->LastSeq||G->PendingHits.Num()!=State->LastQueue.Num();
+        for(int32 I=0;!Transition&&I<G->PendingHits.Num();++I)
+        {const auto& A=G->PendingHits[I];const auto& B=State->LastQueue[I];Transition=A.Sprite!=B.Sprite||A.Seq!=B.Seq||A.AtMs!=B.AtMs;}
+        auto Row=MakeShared<FJsonObject>();Row->SetStringField(TEXT("phase"),Phase);Row->SetNumberField(TEXT("frame"),double(GFrameCounter));Row->SetNumberField(TEXT("real_elapsed_ms"),(Real-State->StartReal)*1000);
+        Row->SetNumberField(TEXT("world_seconds"),World->GetTimeSeconds());Row->SetNumberField(TEXT("story_now_ms"),Story->GetNowMs());Row->SetNumberField(TEXT("gameplay_now_ms"),G->NowMs);Row->SetBoolField(TEXT("instant_mode"),Story->bInstantMode);
+        Row->SetNumberField(TEXT("seq"),Seq);Row->SetNumberField(TEXT("sprite_frame"),HeroSprite.GetProp(TEXT("frame")));Row->SetNumberField(TEXT("nocontrol"),HeroSprite.GetProp(TEXT("nocontrol")));Row->SetBoolField(TEXT("attack_held"),G->bAttackHeld);
+        Row->SetArrayField(TEXT("hero_location"),DinkAttackMetrology::Vec(Hero->GetActorLocation()));Row->SetArrayField(TEXT("actor_forward"),DinkAttackMetrology::Vec(Hero->GetActorForwardVector().GetSafeNormal2D()));
+        Row->SetNumberField(TEXT("pending_total"),G->PendingHits.Num());TArray<TSharedPtr<FJsonValue>> Queue;
+        for(int32 I=0;I<FMath::Min(16,G->PendingHits.Num());++I)
+        {const auto& P=G->PendingHits[I];auto R=MakeShared<FJsonObject>();R->SetNumberField(TEXT("sprite"),P.Sprite);R->SetNumberField(TEXT("seq"),P.Seq);R->SetNumberField(TEXT("at_ms"),P.AtMs);const auto* S=D->FindSprite(P.Sprite);R->SetBoolField(TEXT("current_seq_matches"),S&&S->bActive&&S->GetProp(TEXT("seq"))==P.Seq);Queue.Add(MakeShared<FJsonValueObject>(R));}
+        Row->SetArrayField(TEXT("pending"),Queue);Row->SetBoolField(TEXT("pending_truncated"),G->PendingHits.Num()>16);
+        const auto* Weapon=Story->FindInstance(G->GetWeaponInstance());Row->SetNumberField(TEXT("weapon_id"),G->GetWeaponInstance());if(Weapon)Row->SetStringField(TEXT("weapon_procedure"),Weapon->Procedure.ToString());
+        const FDinkSprite* Target=nullptr;int32 TargetMatches=0;
+        for(const auto& Pair:D->GetSprites())if(Pair.Value.Origin==FDinkOriginId(31,3)){Target=&Pair.Value;++TargetMatches;}
+        if(TargetMatches!=1)Target=nullptr;
+        Row->SetNumberField(TEXT("target_match_count"),TargetMatches);Row->SetNumberField(TEXT("initial_target_handle"),State->TargetHandle);Row->SetNumberField(TEXT("target_handle"),Target?Target->Handle:0);Row->SetBoolField(TEXT("target_present"),Target!=nullptr);Row->SetBoolField(TEXT("target_active"),Target&&Target->bActive);Row->SetNumberField(TEXT("target_nohit"),Target?Target->GetProp(TEXT("nohit")):-1);
+        Row->SetBoolField(TEXT("queue_or_seq_transition"),Transition);Row->SetBoolField(TEXT("predicate_sampled"),false);Row->SetBoolField(TEXT("physical_queries_performed"),false);Row->SetBoolField(TEXT("fit_sampled"),Transition&&Target);
+        if(Transition&&Target)
+        {
+            FString Error;auto Fit=MakeShared<FJsonObject>();auto* Primitive=G->FindHardnessFitPrimitive(*Target,&Error);
+            Fit->SetBoolField(TEXT("has_instance"),G->HasHardnessFitInstance(*Target));Fit->SetStringField(TEXT("private_error"),Error);Fit->SetStringField(TEXT("primitive"),GetPathNameSafe(Primitive));
+            Fit->SetBoolField(TEXT("uses_authored"),G->UsesAuthoredGeometry(HeroSprite,*Target));Row->SetObjectField(TEXT("fit"),Fit);
+        }
+        State->Rows.Add(MakeShared<FJsonValueObject>(Row));State->LastSeq=Seq;
+        if(G->PendingHits.Num()>16){StopObserver(TEXT("pending_queue_exceeds_bound"));return;}
+        State->LastQueue=G->PendingHits;
+        if(State->Rows.Num()>=180)StopObserver(TEXT("row_limit"));
+    }
+public:
+    static bool ObserverActive(){return QueueObserver().IsValid();}
+    static FString ObserverReceipt(){return LastObserverReceipt();}
+    static bool ArmObserver(UWorld* World,const FString& Label,FString& FinalPath,FString& Error,bool NoInputControl=false)
+    {
+        Error.Reset();if(ObserverActive()){Error=TEXT("already_armed_no_implicit_rearm");return false;}
+        FString Nonce;FParse::Value(FCommandLine::Get(),TEXT("DinkQARunId="),Nonce);
+        if(!World||!World->IsGameWorld()||(!NoInputControl&&Nonce.IsEmpty())){Error=TEXT("invalid_world_or_missing_nonce");return false;}
+        auto* PC=World->GetFirstPlayerController();auto* Hero=PC?Cast<ADinkGreyboxCharacter>(PC->GetPawn()):nullptr;
+        auto* Story=World->GetGameInstance()?World->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>():nullptr;auto* D=Story?Story->GetDirector():nullptr;
+        if(!Hero||!D||!Story->GetGameplay()||D->GetDink().Screen!=31){Error=TEXT("missing_owned031_context");return false;}
+        int32 Handle=0,Count=0;for(const auto& Pair:D->GetSprites())if(Pair.Value.bActive&&Pair.Value.Origin==FDinkOriginId(31,3)){Handle=Pair.Key;++Count;}
+        if(Count!=1){Error=TEXT("missing_or_ambiguous_existing_target");return false;}
+        auto State=MakeUnique<FQueueObserver>();State->World=World;State->Hero=Hero;State->TargetHandle=Handle;
+        const FString Dir=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Automation/BarrelAttackNative"));IFileManager::Get().MakeDirectory(*Dir,true);
+        const FString Stem=Dir/(TEXT("observer-")+Label+TEXT("-")+FGuid::NewGuid().ToString(EGuidFormats::Digits));State->FinalPath=Stem+TEXT(".json");State->ArmedPath=Stem+TEXT(".armed.json");FinalPath=State->FinalPath;LastObserverReceipt()=FinalPath;
+        State->Payload->SetNumberField(TEXT("schema"),1);State->Payload->SetStringField(TEXT("label"),Label);State->Payload->SetStringField(TEXT("nonce"),Nonce);State->Payload->SetStringField(TEXT("arming_authority"),NoInputControl?TEXT("native_no_input_control"):TEXT("explicit_nonce_console"));State->Payload->SetStringField(TEXT("scope"),TEXT("passive read-only begin/end snapshots; no sweeps/predicates during window; intra-frame dispatch not proven; no synthesized input, dispatch hook or gameplay mutation"));
+        State->Payload->SetNumberField(TEXT("max_real_seconds"),2);State->Payload->SetNumberField(TEXT("max_rows"),180);State->Payload->SetStringField(TEXT("final_receipt"),State->FinalPath);
+        State->StartReal=FPlatformTime::Seconds();State->Payload->SetNumberField(TEXT("armed_real_seconds"),State->StartReal);
+        if(!SaveObserverJson(State->Payload,State->ArmedPath)){Error=TEXT("arm_receipt_write_failed");return false;}
+        QueueObserver()=MoveTemp(State);auto* Active=QueueObserver().Get();
+        Active->Begin=FCoreDelegates::OnBeginFrame.AddStatic(&FDinkBarrelAttackNativeDiagnostic::ObserverBegin);Active->End=FCoreDelegates::OnEndFrame.AddStatic(&FDinkBarrelAttackNativeDiagnostic::ObserverEnd);
+        Active->Cleanup=FWorldDelegates::OnWorldCleanup.AddStatic(&FDinkBarrelAttackNativeDiagnostic::ObserverCleanup);Active->Exit=FCoreDelegates::OnEnginePreExit.AddStatic(&FDinkBarrelAttackNativeDiagnostic::ObserverExit);
+        UE_LOG(LogTemp,Display,TEXT("DINK_ATTACK_OBSERVER_ARMED final=%s armed=%s"),*Active->FinalPath,*Active->ArmedPath);return true;
+    }
+    static void StopObserver(const TCHAR* Reason)
+    {
+        auto* State=QueueObserver().Get();if(!State)return;
+        FCoreDelegates::OnBeginFrame.Remove(State->Begin);FCoreDelegates::OnEndFrame.Remove(State->End);FWorldDelegates::OnWorldCleanup.Remove(State->Cleanup);FCoreDelegates::OnEnginePreExit.Remove(State->Exit);
+        State->Begin.Reset();State->End.Reset();State->Cleanup.Reset();State->Exit.Reset();
+        State->Payload->SetStringField(TEXT("termination_reason"),Reason);State->Payload->SetNumberField(TEXT("finished_real_seconds"),FPlatformTime::Seconds());State->Payload->SetBoolField(TEXT("delegates_removed"),true);State->Payload->SetArrayField(TEXT("rows"),State->Rows);
+        if(!SaveObserverJson(State->Payload,State->FinalPath))
+        {FString Evidence;FJsonSerializer::Serialize(State->Payload,TJsonWriterFactory<>::Create(&Evidence));UE_LOG(LogTemp,Error,TEXT("DINK_ATTACK_OBSERVER_WRITE_FAILURE %s %s"),*State->FinalPath,*Evidence);}
+        else UE_LOG(LogTemp,Display,TEXT("DINK_ATTACK_OBSERVER_COMPLETE %s"),*State->FinalPath);
+        QueueObserver().Reset();
+    }
 };
+
+void DinkStopAttackQueueObserver(){FDinkBarrelAttackNativeDiagnostic::StopObserver(TEXT("module_shutdown"));}
 
 namespace
 {
-FAutoConsoleCommandWithWorldAndArgs NativeAttackCommand(TEXT("dink.QAReadAttack031"),TEXT("Read-only developer attack diagnostic: label and exact DinkQARunId nonce; does not attack."),
+FAutoConsoleCommandWithWorldAndArgs NativeAttackCommand(TEXT("dink.QAReadAttack031"),TEXT("Read-only031: label nonce passive|full; passive before F, full only after observer completes; never attacks."),
     FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args,UWorld* World)
     {
         FString Nonce;FParse::Value(FCommandLine::Get(),TEXT("DinkQARunId="),Nonce);
-        if(Args.Num()!=2||Nonce.IsEmpty()||Args[1]!=Nonce||Args[0].IsEmpty()||Args[0].Len()>64||!World||!World->IsGameWorld())return;
+        if(Args.Num()!=3||Nonce.IsEmpty()||Args[1]!=Nonce||Args[0].IsEmpty()||Args[0].Len()>64||!World||!World->IsGameWorld()||(Args[2]!=TEXT("passive")&&Args[2]!=TEXT("full")))return;
         for(TCHAR C:Args[0])if(!FChar::IsAlnum(C)&&C!=TEXT('-')&&C!=TEXT('_'))return;
-        const FString Receipt=FDinkBarrelAttackNativeDiagnostic::Write(World,Args[0],false);
+        if(Args[2]==TEXT("full")&&FDinkBarrelAttackNativeDiagnostic::ObserverActive()){UE_LOG(LogTemp,Warning,TEXT("DINK_NATIVE_ATTACK_FULL_REFUSED observer_active"));return;}
+        const FString Receipt=FDinkBarrelAttackNativeDiagnostic::Write(World,Args[0],false,nullptr,Args[2]==TEXT("passive"));
         UE_LOG(LogTemp,Display,TEXT("DINK_NATIVE_ATTACK_RECEIPT %s"),*Receipt);
+    }));
+FAutoConsoleCommandWithWorldAndArgs QueueObserverCommand(TEXT("dink.QAObserveAttack031"),TEXT("Arm read-only031 queue observer for2real seconds/180rows; label nonce. Does NOT press F."),
+    FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args,UWorld* World)
+    {
+        FString Nonce;FParse::Value(FCommandLine::Get(),TEXT("DinkQARunId="),Nonce);
+        if(Args.Num()!=2||Nonce.IsEmpty()||Args[1]!=Nonce||Args[0].IsEmpty()||Args[0].Len()>64)return;
+        for(TCHAR C:Args[0])if(!FChar::IsAlnum(C)&&C!=TEXT('-')&&C!=TEXT('_'))return;
+        FString Receipt,Error;if(!FDinkBarrelAttackNativeDiagnostic::ArmObserver(World,Args[0],Receipt,Error))UE_LOG(LogTemp,Warning,TEXT("DINK_ATTACK_OBSERVER_ARM_REFUSED %s"),*Error);
     }));
 }
 #endif
@@ -164,12 +281,13 @@ namespace
 class FDinkExactAttack031Capture final : public IAutomationLatentCommand
 {
 public:
-    explicit FDinkExactAttack031Capture(FAutomationTestBase* InTest):Test(InTest),Began(FPlatformTime::Seconds()){}
+    explicit FDinkExactAttack031Capture(FAutomationTestBase* InTest,bool Control=false):Test(InTest),Began(FPlatformTime::Seconds()),ObserveNoInput(Control){}
     bool Update() override
     {
         UWorld* World=GEditor?GEditor->PlayWorld.Get():nullptr;
         auto FinishFailure=[&](const TCHAR* Why)
         {
+            if(FDinkBarrelAttackNativeDiagnostic::ObserverActive())FDinkBarrelAttackNativeDiagnostic::StopObserver(TEXT("fixture_failure"));
             const FString Receipt=FDinkBarrelAttackNativeDiagnostic::Write(World,TEXT("fixture-failure"),true);
             Test->AddInfo(TEXT("native attack diagnostic receipt: ")+Receipt);Test->AddError(Why);return true;
         };
@@ -191,6 +309,34 @@ public:
             Entered=true;return false;
         }
         if(D->GetDink().Screen!=31||Physical->ScreenNumber!=31||!G->UsesOriginalHardnessProjection(31))return false;
+        if(ObserveNoInput)
+        {
+            if(!ObserverStarted)
+            {
+                FString Error;if(!FDinkBarrelAttackNativeDiagnostic::ArmObserver(World,TEXT("fixture-no-input"),ObserverPath,Error,true)){Test->AddError(Error);return true;}
+                ObserverStarted=true;ObserverStart=FPlatformTime::Seconds();FString RefusedPath,RefusedError;
+                Test->TestFalse(TEXT("an active observer cannot implicitly rearm"),FDinkBarrelAttackNativeDiagnostic::ArmObserver(World,TEXT("must-not-rearm"),RefusedPath,RefusedError,true));
+                return false;
+            }
+            if(FDinkBarrelAttackNativeDiagnostic::ObserverActive())
+            {
+                if(FPlatformTime::Seconds()-ObserverStart>3){FDinkBarrelAttackNativeDiagnostic::StopObserver(TEXT("native_control_deadline"));Test->AddError(TEXT("observer exceeded own real-time bound"));return true;}
+                return false;
+            }
+            FString Text;TSharedPtr<FJsonObject> Receipt;
+            if(!Test->TestTrue(TEXT("finished observer receipt retained"),FFileHelper::LoadFileToString(Text,*ObserverPath)&&FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Receipt)))return true;
+            Test->AddInfo(TEXT("no-input observer receipt: ")+ObserverPath);
+            const auto& Rows=Receipt->GetArrayField(TEXT("rows"));const FString Reason=Receipt->GetStringField(TEXT("termination_reason"));
+            Test->TestTrue(TEXT("observer ends at own time/row cap without gameplay input"),Reason==TEXT("time_limit")||Reason==TEXT("row_limit"));
+            Test->TestTrue(TEXT("observer rows are bounded and nonempty"),Rows.Num()>1&&Rows.Num()<=180);Test->TestTrue(TEXT("observer removes delegates before completion"),Receipt->GetBoolField(TEXT("delegates_removed")));
+            bool Begin=false,End=false,NoInput=true,Within=true;
+            for(const auto& Value:Rows)
+            {const auto R=Value->AsObject();Begin|=R->GetStringField(TEXT("phase"))==TEXT("begin");End|=R->GetStringField(TEXT("phase"))==TEXT("end");NoInput&=!R->GetBoolField(TEXT("attack_held"))&&R->GetNumberField(TEXT("pending_total"))==0&&R->GetBoolField(TEXT("target_active"))&&R->GetNumberField(TEXT("target_nohit"))==0&&!R->GetBoolField(TEXT("predicate_sampled"))&&!R->GetBoolField(TEXT("physical_queries_performed"));Within&=R->GetNumberField(TEXT("real_elapsed_ms"))<2000;}
+            Test->TestTrue(TEXT("actual begin and end frame phases sampled"),Begin&&End);Test->TestTrue(TEXT("no-input control keeps queue empty and barrel intact"),NoInput);Test->TestTrue(TEXT("all samples remain inside two real seconds"),Within);
+            FDinkBarrelAttackNativeDiagnostic::StopObserver(TEXT("idempotent-control-stop"));FString After;
+            Test->TestTrue(TEXT("completed observer cannot append/overwrite after stop"),!FDinkBarrelAttackNativeDiagnostic::ObserverActive()&&FFileHelper::LoadFileToString(After,*ObserverPath)&&After==Text);
+            return true;
+        }
         TSharedPtr<FJsonObject> Captured;
         const FString Receipt=FDinkBarrelAttackNativeDiagnostic::Write(World,TEXT("exact-recorded-query-fixture"),true,&Captured);
         // All assertions follow writing actual evidence. This is not an attack test.
@@ -207,7 +353,7 @@ public:
         return true;
     }
 private:
-    FAutomationTestBase* Test;double Began;bool Entered=false;
+    FAutomationTestBase* Test;double Began;bool Entered=false;bool ObserveNoInput=false,ObserverStarted=false;double ObserverStart=0;FString ObserverPath;
 };
 }
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkAttack031ReadOnlyMetrology,"Dink.Gameplay.BarrelAttackMetrology.ExactGPU031ReadOnly",EAutomationTestFlags::EditorContext|EAutomationTestFlags::ProductFilter)
@@ -221,5 +367,15 @@ bool FDinkAttack031ReadOnlyMetrology::RunTest(const FString& Parameters)
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FDinkExactAttack031Capture(this));
     ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkAttack031QueueControl,"Dink.Gameplay.BarrelAttackMetrology.QueueObserverNoInput",EAutomationTestFlags::EditorContext|EAutomationTestFlags::ProductFilter)
+bool FDinkAttack031QueueControl::RunTest(const FString& Parameters)
+{
+    FString Map;GConfig->GetString(TEXT("/Script/EngineSettings.GameMapsSettings"),TEXT("GameDefaultMap"),Map,GEngineIni);
+    if(!TestFalse(TEXT("ordinary GameDefaultMap is configured"),Map.IsEmpty()))return false;
+    const FString File=FPackageName::LongPackageNameToFilename(Map,FPackageName::GetMapPackageExtension());
+    if(!TestTrue(TEXT("ordinary generated world exists"),IFileManager::Get().FileExists(*File))||!TestNotNull(TEXT("ordinary world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
+    FAssetCompilingManager::Get().FinishAllCompilation();ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
+    ADD_LATENT_AUTOMATION_COMMAND(FDinkExactAttack031Capture(this,true));ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());return true;
 }
 #endif
