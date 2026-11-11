@@ -1,3 +1,9 @@
+## Final Full247 checkpoint — 11 Nov 2026
+
+Docs-only successor to deliveryfb92449, samebea code. Actual80944 closedwrapper1/native255 after1131.075s:197clean+35warning=232Success/15Fail/0unrun/in-process. Independent comparison proves all common243 states, all15 failure-name/error arrays and Ch6 STOP/event trace EXACT historicalbaseline; four new tests passed. Ch6 records touch damage/player death then missing-checkpoint cascades, not a measured route-rejection cause. Fullsuite remains failed/unaccepted. See current verification/evidence plus compact `BRAIN5_FULL247_COMPARISON.json`.
+
+Root strict post-full98238 passed; exact closure hash is pinned. Existing six/All85/RHI qualifications and visual gaps remain. Fresh normal generation, real cook/package/runtime, final3D activation/art, framed reentry pixels and Ch6 correction remain pending. No UE/build/cache/test execution or push in this docs task. Code/header/fixture bytes remain exactbea; PR66 stays draft/unmerged. Earlier PENDING80944 text below is historical.
+
 ## Current Brain5 proof checkpoint — 11 Nov 2026
 
 Docs-only on `fix/package-dynamic-sprite-cook` in `/home/davisc/Work/DinkReleasedPicturePackagingFix`, parentb31ac04; runtime code remains byte-exactbea. See `Docs/Verification/PhotorealBarrelRolloutV3/BRAIN5_CURRENT_VERIFICATION.md` plus compact local evidence hashes. Native six48412 passed5clean+1offline HTTP warning; All85 native32553 passed28.919s/all85 assertions, while wrapper1 wrong-path failure is preserved with Root read-only correction/no rerun. Third RHI door/ONEF/1736/drop/type3/normal loads/freeW/Room1 native/final framed intact proofs passed, with zero-row background observer supplement and no F retry. Off-camera reentry PNG/oversized old2D debris remain visual/final-art gaps.
