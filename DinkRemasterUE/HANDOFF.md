@@ -1,3 +1,7 @@
+## Original admission trace and checked reentry successor
+
+SourceOwner `/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic`, successor of84b fixture readiness. Actual targeted13183 preserves two timed armed-contact successes and two failures in `/home/davisc/Work/DinkQA/BarrelFixtureReadinessStage/FAILED_RESULT.json`. Reuses the same collision-checked cardinal public teleport choices for initial entry and S177 reentry; immutable terrain remains untouched. Adds read-only actual Begin required/data and Story entry-completion traces plus before/after fixture Goto observations to distinguish a capability-registration race from refusal. No admission behavior, delay, birth assertion or collision policy change. Source review/build/native targeted2 pending.
+
 ## Ordinary fixture readiness and remaining coverage diagnostics — source only
 
 Same owned SourceOwner physical worktree, newbranch `test/barrel-ordinary-fixture-readiness`, runtimeb200 preserved. Actual full25 run74195 closed1/146.694s:21pass(13clean+8qualified warning successes),4fail. Direct Live/Native75 contact/break/drop/bodyrelease pass. Timed failures measured WeaponInstance0/missing/use0; fixture skips newgame and did not arm fists. Fixture now uses real AddItem(item-fst),cur_weapon and ArmWeapon/original arm procedure, asserts alive/use/base_hit/unfrozen/control release, measures106delay AFTER arming, then normal PlayerAttack with natural ticks. No production attack change/injection/directhit for timed.

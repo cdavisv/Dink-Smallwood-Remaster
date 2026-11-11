@@ -239,6 +239,7 @@ public:
         {
             Story->bNewGamePending = false;
             Story->bInstantMode = true;
+            Test->AddInfo(FString::Printf(TEXT("ROLLOUT_BEFORE_GOTO requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
             if (!Test->TestTrue(TEXT("ordinary entry into rollout screen"), Greybox->GotoScreen(Screen, 300, 200)))
                 return true;
             Entered = true;
@@ -248,6 +249,7 @@ public:
         if (!Test->TestEqual(TEXT("requested source screen became current"), Director->GetDink().Screen, Screen) ||
             !Test->TestFalse(TEXT("all-origin initial projection released loading gate"), Gameplay->IsHardnessLoading()))
             return true;
+        Test->AddInfo(FString::Printf(TEXT("ROLLOUT_AFTER_ENTRY requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
         const auto OriginalOrder = Gameplay->OriginalHardnessPlacementOrder(Screen);
         for (const auto& Rule : Rules)
         {
