@@ -18,7 +18,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkFamilyFitExactInertBody,
     "Dink.Art.Family.CollisionFitExactInertBody",DINK_TEST_FLAGS)
 bool FDinkFamilyFitExactInertBody::RunTest(const FString& Parameters)
 {
-    auto* Mesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+    auto* Mesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
     FAssetCompilingManager::Get().FinishAllCompilation();
     if(!TestNotNull(TEXT("actual selected barrel mesh"),Mesh))return false;
     auto* Source=Mesh->GetBodySetup();if(!TestNotNull(TEXT("source body setup"),Source))return false;
@@ -83,7 +83,7 @@ bool FDinkFamilyFitExactInertBody::RunTest(const FString& Parameters)
     const bool InitializedRead=DinkFamilyCollisionFit::ReadCookedGeometry(*Mesh,Initialized,Error);
     TestTrue(TEXT("ordinary source-component initialization remains readable"),InitializedRead);
     TestEqual(TEXT("ordinary component derives source cache cull by stock policy"),Source->TriMeshGeometries[0]->GetCullsBackFaceRaycast(),!Source->bDoubleSidedGeometry);
-    if(InitializedRead)TestEqual(TEXT("policy SHA independent of ordinary source cache initialization"),Initialized.CookedGeometrySha1,Before.CookedGeometrySha1);
+    if(InitializedRead)TestEqual(TEXT("policy SHA independent of ordinary source cache initialization"),Initialized.CanonicalSurfaceSha1,Before.CanonicalSurfaceSha1);
     TestTrue(TEXT("owned exact geometry remains current across ordinary source cache initialization"),Body->ValidateCookedMeshGeometry(*Source));
     TestTrue(TEXT("body remains inert after direct interaction queries"),Body->ValidateRegisteredInert());
     return true;

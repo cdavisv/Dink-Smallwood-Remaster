@@ -191,7 +191,7 @@ bool FDinkRolloutSavedInventory::RunTest(const FString&)
         FString Error;
         if (!TestNotNull(TEXT("source kit mesh loads"), Mesh) ||
             !TestTrue(TEXT("exact cooked mesh readable"), DinkFamilyCollisionFit::ReadCookedGeometry(*Mesh, Geometry, Error)) ||
-            !TestEqual(TEXT("actual cooked collision hash"), Geometry.CookedGeometrySha1, Rule.GeometrySha1))
+            !TestEqual(TEXT("actual canonical cooked surface hash"), Geometry.CanonicalSurfaceSha1, Rule.CanonicalSurfaceSha1))
         {
             AddError(Error);
             return false;
@@ -378,6 +378,7 @@ public:
             Row->SetBoolField(TEXT("background"), Rule.IsStaticBackground());
             Row->SetStringField(TEXT("body"), Body->GetPathName());
             Row->SetStringField(TEXT("geometry_sha1"), Geometry.CookedGeometrySha1);
+            Row->SetStringField(TEXT("surface_sha1"), Geometry.CanonicalSurfaceSha1);
             Row->SetStringField(TEXT("extent_cm"), Body->Bounds.BoxExtent.ToString());
             Row->SetBoolField(TEXT("four_pawn_sweeps"), true);
             Row->SetBoolField(TEXT("logical_owned_cell"), OwnedCell);

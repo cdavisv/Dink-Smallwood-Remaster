@@ -236,7 +236,7 @@ bool FDinkHardnessEditorCarryActor::RunTest(const FString& Parameters)
     // NoCollision/navfalse/overlapfalse, hidden old card, FamilyArt tag.
     auto* Family=NewObject<UStaticMeshComponent>(Source,TEXT("FamilyArt"));
     Family->SetMobility(EComponentMobility::Movable);Family->SetupAttachment(Source->GetRootComponent());
-    auto* FamilyMesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+    auto* FamilyMesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
     if(!TestNotNull(TEXT("actual PR40 barrel family mesh fixture"),FamilyMesh))return false;
     Family->SetStaticMesh(FamilyMesh);
     Family->SetCollisionEnabled(ECollisionEnabled::NoCollision);Family->SetCanEverAffectNavigation(false);

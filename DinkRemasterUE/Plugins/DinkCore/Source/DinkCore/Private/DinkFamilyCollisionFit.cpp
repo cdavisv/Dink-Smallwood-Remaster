@@ -1,5 +1,6 @@
 #include "Hardness/DinkFamilyCollisionFit.h"
 #include "Hardness/DinkFamilyFitMath.h"
+#include "Hardness/DinkCanonicalSurface.h"
 #include "DinkArtFamilySubsystem.h"
 #include "DinkOriginComponent.h"
 #include "Greybox/DinkPlaceholderActor.h"
@@ -19,6 +20,15 @@
 namespace
 {
 const FString BarrelMesh(TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+const FString PhotoBarrelMesh(TEXT("/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01"));
+const FString SurfaceAlgorithm(TEXT("DinkOrientedTrianglesF32LEMaterialU16LE/1"));
+const FString PhotoSurfaceSha1(TEXT("de0f514e0172077e7bbd9dc0b30c75f5c40939e6"));
+bool PolicyGeometryMatches(const FDinkFamilyCollisionFitRule& Rule, const FDinkFamilyFittedGeometry& Geometry)
+{
+    return Rule.CanonicalSurfaceSha1.IsEmpty()
+        ? Rule.GeometrySha1 == Geometry.CookedGeometrySha1
+        : Rule.CanonicalSurfaceSha1 == Geometry.CanonicalSurfaceSha1;
+}
 bool ExactFields(const FJsonObject& O,std::initializer_list<const TCHAR*> Names)
 { if(O.Values.Num()!=int32(Names.size()))return false;for(const auto* N:Names)if(!O.HasField(N))return false;return true; }
 bool IsSha1(const FString& Value)
@@ -97,7 +107,8 @@ bool DinkFamilyCollisionFit::ParsePolicy(const FString& Json,TArray<FDinkFamilyC
         !ExactFields(**Policy, {TEXT("schema"), TEXT("origins")}) ||
         !(*Policy)->TryGetStringField(TEXT("schema"), Schema))
         return Fail(TEXT("fit policy schema invalid"));
-    const bool SourcePinned = Schema == TEXT("dink-family-collision-fit/2");
+    const bool Canonical = Schema == TEXT("dink-family-collision-fit/3");
+    const bool SourcePinned = Canonical || Schema == TEXT("dink-family-collision-fit/2");
     if (!SourcePinned && Schema != TEXT("dink-family-collision-fit/1"))
         return Fail(TEXT("fit policy schema invalid"));
 
@@ -114,8 +125,11 @@ bool DinkFamilyCollisionFit::ParsePolicy(const FString& Json,TArray<FDinkFamilyC
         if (!Value || !Value->TryGetObject(Object) || !Object || !Object->IsValid())
             return Fail(TEXT("fit rule must be an object"));
         const FJsonObject& Row = **Object;
-        if (SourcePinned
-            ? !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("geometry_sha1"),
+        if (Canonical
+            ? !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("surface_sha1"),
+                TEXT("surface_algorithm"), TEXT("anchor"), TEXT("geometry"), TEXT("raster"), TEXT("source_hash"),
+                TEXT("source_script"), TEXT("source_type"), TEXT("source_representation")})
+            : SourcePinned ? !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("geometry_sha1"),
                 TEXT("anchor"), TEXT("geometry"), TEXT("raster"), TEXT("source_hash"), TEXT("source_script"),
                 TEXT("source_type"), TEXT("source_representation")})
             : !ExactFields(Row, {TEXT("origin"), TEXT("family"), TEXT("mesh"), TEXT("geometry_sha1"),
@@ -128,12 +142,22 @@ bool DinkFamilyCollisionFit::ParsePolicy(const FString& Json,TArray<FDinkFamilyC
             !Rule.Origin.IsValid() || Rule.Origin.ToString() != Id ||
             Rule.Origin.Screen > 768 || Rule.Origin.Placement > 99 || Seen.Contains(Id) ||
             !Row.TryGetStringField(TEXT("family"), Family) || Family != TEXT("barrel") ||
-            !Row.TryGetStringField(TEXT("mesh"), Rule.Mesh) || Rule.Mesh != BarrelMesh ||
-            !Row.TryGetStringField(TEXT("geometry_sha1"), Rule.GeometrySha1) || !IsSha1(Rule.GeometrySha1) ||
+            !Row.TryGetStringField(TEXT("mesh"), Rule.Mesh) || Rule.Mesh != (Canonical ? PhotoBarrelMesh : BarrelMesh) ||
             !Row.TryGetStringField(TEXT("anchor"), Anchor) || Anchor != TEXT("sprite_ground") ||
             !Row.TryGetStringField(TEXT("geometry"), Geometry) || Geometry != TEXT("cooked_complex") ||
             !Row.TryGetStringField(TEXT("raster"), Raster) || Raster != TEXT("cell_center"))
             return Fail(TEXT("fit rule is foreign, duplicate, incomplete or unreviewed"));
+
+        if (Canonical)
+        {
+            FString Algorithm;
+            if (!Row.TryGetStringField(TEXT("surface_algorithm"), Algorithm) || Algorithm != SurfaceAlgorithm ||
+                !Row.TryGetStringField(TEXT("surface_sha1"), Rule.CanonicalSurfaceSha1) ||
+                Rule.CanonicalSurfaceSha1 != PhotoSurfaceSha1)
+                return Fail(TEXT("unreviewed canonical photoreal surface contract"));
+        }
+        else if (!Row.TryGetStringField(TEXT("geometry_sha1"), Rule.GeometrySha1) || !IsSha1(Rule.GeometrySha1))
+            return Fail(TEXT("legacy ordered cooked digest invalid"));
 
         if (SourcePinned)
         {
@@ -171,7 +195,7 @@ bool DinkFamilyCollisionFit::ReadCookedGeometry(UStaticMesh& Mesh,FDinkFamilyFit
 {
     auto Fail=[&](const TCHAR* Why){Error=Why;return false;};
     UBodySetup* Body=Mesh.GetBodySetup();
-    if(Mesh.GetPathName()!=BarrelMesh||!Body||Body->CollisionTraceFlag!=CTF_UseComplexAsSimple||Body->TriMeshGeometries.Num()!=1||!Body->TriMeshGeometries[0]||
+    if((Mesh.GetPathName()!=BarrelMesh && Mesh.GetPathName()!=PhotoBarrelMesh)||!Body||Body->CollisionTraceFlag!=CTF_UseComplexAsSimple||Body->TriMeshGeometries.Num()!=1||!Body->TriMeshGeometries[0]||
         !Body->bCreatedPhysicsMeshes||Body->bFailedToCreatePhysicsMeshes||Body->bDoubleSidedGeometry)
         return Fail(TEXT("reviewed barrel actual cooked complex geometry unavailable; no implicit cook or UCX substitute"));
     const FBox Bounds=Mesh.GetBoundingBox();const FVector Size=Bounds.GetSize();
@@ -259,6 +283,25 @@ bool DinkFamilyCollisionFit::ReadCookedGeometry(UStaticMesh& Mesh,FDinkFamilyFit
         return false;
     }
     Hash.Final();uint8 Digest[20];Hash.GetHash(Digest);G.CookedGeometrySha1=BytesToHex(Digest,20).ToLower();
+    if (Mesh.GetPathName() == PhotoBarrelMesh && G.Triangles.Num() != 16648)
+        return Fail(TEXT("approved photoreal collision must retain all16648 source triangles"));
+    std::vector<DinkCanonicalSurface::Triangle> Surface;
+    Surface.reserve(G.Triangles.Num());
+    for (int32 Index = 0; Index < G.Triangles.Num(); ++Index)
+    {
+        DinkCanonicalSurface::Triangle Triangle;
+        const auto& Indices = G.Triangles[Index];
+        for (int32 Corner = 0; Corner < 3; ++Corner)
+        {
+            const auto& Vertex = G.Vertices[Indices[Corner]];
+            Triangle.Points[Corner] = {Vertex.X, Vertex.Y, Vertex.Z};
+        }
+        Triangle.Material = G.MaterialIndices[Index];
+        Surface.push_back(Triangle);
+    }
+    const auto CanonicalBytes = DinkCanonicalSurface::Bytes(Surface, G.bCullsBackFaceRaycast);
+    FSHA1::HashBuffer(CanonicalBytes.data(), CanonicalBytes.size(), Digest);
+    G.CanonicalSurfaceSha1 = BytesToHex(Digest, 20).ToLower();
     Out=MoveTemp(G);Error.Reset();return true;
 }
 
@@ -334,7 +377,7 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     C.BeforeProfile=Family->GetCollisionProfileName();C.BeforeResponses=Family->GetCollisionResponseToChannels();C.BeforeCollision=Family->GetCollisionEnabled();
     C.BeforeObjectType=Family->GetCollisionObjectType();C.BeforeNavigation=Family->CanEverAffectNavigation();C.BeforeOverlaps=Family->GetGenerateOverlapEvents();C.BeforeVisible=Family->IsVisible();C.BeforeActorCollision=Actor->GetActorEnableCollision();C.BeforeActorHidden=Actor->IsHidden();C.BeforeMobility=uint8(Family->Mobility);
     if(!DinkFamilyCollisionFit::ReadCookedGeometry(*Family->GetStaticMesh(),C.Geometry,Error))return false;
-    if(C.Geometry.CookedGeometrySha1!=Rule->GeometrySha1)return Fail(TEXT("actual cooked geometry does not match reviewed policy digest"));
+    if(!PolicyGeometryMatches(*Rule,C.Geometry))return Fail(TEXT("actual cooked geometry does not match reviewed policy digest"));
     const auto Rotation=Family->GetComponentQuat();
     if(!C.BeforeActor.GetScale3D().Equals(FVector::OneVector,0)||!C.BeforeFamily.GetScale3D().Equals(FVector::OneVector,0)||
         !FMath::IsNearlyZero(Rotation.Rotator().Pitch,.001)||!FMath::IsNearlyZero(Rotation.Rotator().Roll,.001))return Fail(TEXT("only upright unscaled barrel fit supported"));
@@ -386,6 +429,7 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
     FDinkFamilyFittedGeometry Actual;
     if(!DinkFamilyCollisionFit::ReadCookedGeometry(*F->GetStaticMesh(),Actual,Error))return false;
     if(Actual.BodySetupGuid!=C.Geometry.BodySetupGuid||Actual.CookedGeometrySha1!=C.Geometry.CookedGeometrySha1||
+        Actual.CanonicalSurfaceSha1!=C.Geometry.CanonicalSurfaceSha1||
         Actual.Vertices!=C.Geometry.Vertices||Actual.Triangles!=C.Geometry.Triangles||Actual.MaterialIndices!=C.Geometry.MaterialIndices||Actual.bCullsBackFaceRaycast!=C.Geometry.bCullsBackFaceRaycast||Actual.AuthoredUCXVertices!=C.Geometry.AuthoredUCXVertices||
         Actual.bDoubleSided!=C.Geometry.bDoubleSided||!Actual.RenderBounds.Equals(C.Geometry.RenderBounds,0))return Fail(TEXT("actual cooked geometry identity changed"));
     const FBox& B=Actual.RenderBounds;const FQuat Rotation=C.BeforeFamily.GetRotation();
@@ -394,7 +438,7 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
     if(!C.ProposedWorld.Equals(Expected,0)||!DinkFamilyCollisionFit::BuildFootprint(Actual,Expected,C.Corners,Polygon,Cells,Low,High,Boundary,Error)||
         Polygon!=C.WorldFootprint||Cells!=C.LogicalCells||Low!=C.MinWorldZ||High!=C.MaxWorldZ||Boundary!=C.MaximumRasterBoundaryErrorCm)
         return Fail(TEXT("prepared transform/footprint/height payload changed"));
-    if (Rule->Mesh != F->GetStaticMesh()->GetPathName() || Rule->GeometrySha1 != Actual.CookedGeometrySha1)return Fail(TEXT("explicit unique reviewed fit policy no longer present"));
+    if (Rule->Mesh != F->GetStaticMesh()->GetPathName() || !PolicyGeometryMatches(*Rule,Actual))return Fail(TEXT("explicit unique reviewed fit policy no longer present"));
     Error.Reset();return true;
 }
 
@@ -443,7 +487,8 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
             if(!C.FamilyComponent.IsValid() || !C.Card.IsValid() || !C.FamilyComponent->bHiddenInGame ||
                C.FamilyComponent->IsVisible() || C.Card->bHiddenInGame || !C.Card->IsVisible() ||
                !PrepareCollisionFitReleaseCandidate(C.Origin,Current,Released,Error) ||
-               Released.Geometry.CookedGeometrySha1!=C.Geometry.CookedGeometrySha1 || Released.SourceHash!=C.SourceHash)return false;
+               Released.Geometry.CookedGeometrySha1!=C.Geometry.CookedGeometrySha1 ||
+               Released.Geometry.CanonicalSurfaceSha1!=C.Geometry.CanonicalSurfaceSha1 || Released.SourceHash!=C.SourceHash)return false;
             Error.Reset();return true; // already-published broken presentation
         }
     }
