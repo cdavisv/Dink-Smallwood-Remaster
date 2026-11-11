@@ -204,6 +204,55 @@ namespace DinkGreybox
 			}
 		};
 
+		bool HasDebugBlockers(const FDinkBundleCollision* Collision)
+		{
+			if (Collision) for (const TCHAR* Class : {TEXT("solid"), TEXT("low"), TEXT("sprite"), TEXT("warp")})
+				if (const TArray<FIntRect>* Rects = Collision->ByClass.Find(Class))
+					if (!Rects->IsEmpty()) return true;
+			return false;
+		}
+
+		bool ShouldPruneUnusedDebugMesh(const FString& Package, const FDinkBundleCollision* Collision)
+		{
+			return Package.EndsWith(TEXT("_DebugBlockers")) && Collision && !HasDebugBlockers(Collision);
+		}
+
+		// Shared by the importer and mesh-description regression; no assets or physics are touched here.
+		void WriteScreenPresentation(const FDinkBundleScreen& Screen, const FDinkBundleCollision& Coll,
+			const FVector& Pivot, FMeshWriter& Visual, FMeshWriter& Debug)
+		{
+			auto At = [&](double X, double Y, double ZM)
+			{
+				return FVector3f(DinkLayout::MapPixelToUnreal(Screen.Corners, X, Y, ZM) - Pivot);
+			};
+			for (int32 Row = 0; Row < 8; ++Row)
+				for (int32 Col = 0; Col < 12; ++Col)
+				{
+					const double X0 = Col * 50.0, Y0 = Row * 50.0, X1 = X0 + 50.0, Y1 = Y0 + 50.0;
+					FVector3f P[4] = {At(X0, Y0, 0), At(X1, Y0, 0), At(X1, Y1, 0), At(X0, Y1, 0)};
+					FVector2f T[4] = {{float(X0 / 600.0), float(Y0 / 400.0)}, {float(X1 / 600.0), float(Y0 / 400.0)},
+						{float(X1 / 600.0), float(Y1 / 400.0)}, {float(X0 / 600.0), float(Y1 / 400.0)}};
+					Visual.Quad(TEXT("Ground"), P, T, FVector3f(0, 0, 1));
+				}
+			for (const TCHAR* Class : {TEXT("solid"), TEXT("low"), TEXT("sprite"), TEXT("warp"), TEXT("fill_water")})
+			{
+				const TArray<FIntRect>* Rectangles = Coll.ByClass.Find(Class);
+				if (!Rectangles) continue;
+				const bool bWater = FCString::Strcmp(Class, TEXT("fill_water")) == 0;
+				const bool bLow = FCString::Strcmp(Class, TEXT("low")) == 0;
+				const FName Slot = bWater ? TEXT("Water") : bLow ? TEXT("Low") :
+					FCString::Strcmp(Class, TEXT("solid")) == 0 ? TEXT("Solid") :
+					FCString::Strcmp(Class, TEXT("sprite")) == 0 ? TEXT("Sprite") : TEXT("Warp");
+				const float Height = float((bWater ? WaterSurfaceHeightM : bLow ? LowVisualHeightM : SolidVisualHeightM) * 100.0);
+				for (const FIntRect& R : *Rectangles)
+				{
+					FVector3f Base[4] = {At(R.Min.X, R.Min.Y, 0), At(R.Max.X, R.Min.Y, 0),
+						At(R.Max.X, R.Max.Y, 0), At(R.Min.X, R.Max.Y, 0)};
+					(bWater ? Visual : Debug).Prism(Slot, Base, Height, !bWater);
+				}
+			}
+		}
+
 		UStaticMesh* CommitMesh(const FString& Package, FMeshWriter& Writer, const TMap<FName, UMaterialInterface*>& Materials,
 			bool bCollision, bool& bExisted)
 		{
@@ -611,6 +660,7 @@ namespace DinkGreybox
 		const FString TexPkg = Folder / (TEXT("T_Ground_") + Sid);
 		const FString MiPkg = Folder / (TEXT("MI_Ground_") + Sid);
 		const FString VisualPkg = Folder / (TEXT("SM_") + Sid + TEXT("_Visual"));
+		const FString DebugPkg = Folder / (TEXT("SM_") + Sid + TEXT("_DebugBlockers"));
 		const FString SolidPkg = Folder / (TEXT("SM_") + Sid + TEXT("_CollSolid"));
 		const FString LowPkg = Folder / (TEXT("SM_") + Sid + TEXT("_CollLow"));
 
@@ -674,42 +724,34 @@ namespace DinkGreybox
 			return R ? *R : Empty;
 		};
 
-		// visual: ground grid (12x8 tiles, so the texture follows the bilinear map), blockers, water
-		const FString VisualHash = HashStrings({TEXT("visual"), GeoHash, MiPkg});
-		if (IsUpToDate(VisualPkg, VisualHash))
-		{
-			MarkUnchanged(VisualPkg, VisualHash);
-		}
+		// Visual-only split: keep the collision GeoHash and collision builders byte-for-byte.
+		const FString VisualHash = HashStrings({TEXT("visual-ground-water/1"), GeoHash, MiPkg});
+		const FString DebugHash = HashStrings({TEXT("debug-blockers/1"), GeoHash});
+		FMeshWriter Visual, Debug;
+		WriteScreenPresentation(Screen, *Coll, Pivot, Visual, Debug);
+		if (IsUpToDate(VisualPkg, VisualHash)) MarkUnchanged(VisualPkg, VisualHash);
 		else
 		{
-			FMeshWriter W;
-			for (int32 Row = 0; Row < 8; ++Row)
-			{
-				for (int32 Col = 0; Col < 12; ++Col)
-				{
-					const double X0 = Col * 50.0, Y0 = Row * 50.0, X1 = X0 + 50.0, Y1 = Y0 + 50.0;
-					FVector3f P[4] = {At(X0, Y0, 0), At(X1, Y0, 0), At(X1, Y1, 0), At(X0, Y1, 0)};
-					FVector2f T[4] = {{float(X0 / 600.0), float(Y0 / 400.0)}, {float(X1 / 600.0), float(Y0 / 400.0)},
-						{float(X1 / 600.0), float(Y1 / 400.0)}, {float(X0 / 600.0), float(Y1 / 400.0)}};
-					W.Quad(TEXT("Ground"), P, T, FVector3f(0, 0, 1));
-				}
-			}
-			FVector3f Base[4];
-			const float SolidH = float(SolidVisualHeightM * 100.0), LowH = float(LowVisualHeightM * 100.0);
-			for (const FIntRect& R : Rects(TEXT("solid"))) { RectBase(R, Base, 0); W.Prism(TEXT("Solid"), Base, SolidH); }
-			for (const FIntRect& R : Rects(TEXT("low"))) { RectBase(R, Base, 0); W.Prism(TEXT("Low"), Base, LowH); }
-			for (const FIntRect& R : Rects(TEXT("sprite"))) { RectBase(R, Base, 0); W.Prism(TEXT("Sprite"), Base, SolidH); }
-			for (const FIntRect& R : Rects(TEXT("warp"))) { RectBase(R, Base, 0); W.Prism(TEXT("Warp"), Base, SolidH); }
-			for (const FIntRect& R : Rects(TEXT("fill_water"))) { RectBase(R, Base, 0); W.Prism(TEXT("Water"), Base, float(WaterSurfaceHeightM * 100.0), false); }
 			TMap<FName, UMaterialInterface*> Mats;
 			Mats.Add(TEXT("Ground"), Cast<UMaterialInterface>(LoadGenerated(MiPkg)));
-			Mats.Add(TEXT("Solid"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Solid")))));
-			Mats.Add(TEXT("Low"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Low")))));
-			Mats.Add(TEXT("Sprite"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Sprite")))));
-			Mats.Add(TEXT("Warp"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Warp")))));
 			Mats.Add(TEXT("Water"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkWater")))));
 			bool bExisted = false;
-			MarkBuilt(CommitMesh(VisualPkg, W, Mats, false, bExisted), VisualPkg, VisualHash, bExisted);
+			MarkBuilt(CommitMesh(VisualPkg, Visual, Mats, false, bExisted), VisualPkg, VisualHash, bExisted);
+		}
+		// An empty debug mesh is not a valid static mesh. Screens without blockers use nullptr.
+		if (Debug.Triangles > 0)
+		{
+			if (IsUpToDate(DebugPkg, DebugHash)) MarkUnchanged(DebugPkg, DebugHash);
+			else
+			{
+				TMap<FName, UMaterialInterface*> Mats;
+				Mats.Add(TEXT("Solid"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Solid")))));
+				Mats.Add(TEXT("Low"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Low")))));
+				Mats.Add(TEXT("Sprite"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Sprite")))));
+				Mats.Add(TEXT("Warp"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkBlocker_Warp")))));
+				bool bExisted = false;
+				MarkBuilt(CommitMesh(DebugPkg, Debug, Mats, false, bExisted), DebugPkg, DebugHash, bExisted);
+			}
 		}
 
 		// collision: solid = ground + tall prisms (codes 1,3,100,200 + canopy/void fill); low = code 2 + water fill
@@ -794,7 +836,7 @@ namespace DinkGreybox
 				{
 					if (Pair.Key.StartsWith(Prefix))
 					{
-						// still a valid screen; drop only a CollLow that is no longer needed
+						// Still a valid screen: preserve the existing low rule and prune only an unused debug mesh.
 						const FDinkBundleCollision* C = nullptr;
 						for (const FDinkBundleScreen& S : Bundle.Screens)
 						{
@@ -805,7 +847,8 @@ namespace DinkGreybox
 						}
 						const bool bLowGone = Pair.Key.EndsWith(TEXT("_CollLow")) && C && (!C->ByClass.Contains(TEXT("low")) ||
 							C->ByClass[TEXT("low")].Num() + (C->ByClass.Contains(TEXT("fill_water")) ? C->ByClass[TEXT("fill_water")].Num() : 0) == 0);
-						bKeep = !bLowGone;
+						const bool bDebugGone = ShouldPruneUnusedDebugMesh(Pair.Key, C);
+						bKeep = !bLowGone && !bDebugGone;
 						break;
 					}
 				}
@@ -874,6 +917,11 @@ namespace DinkGreybox
 
 	UStaticMesh* FAssetSet::ScreenMesh(int32 Screen, const TCHAR* Which) const
 	{
+		if (FCString::Strcmp(Which, TEXT("DebugBlockers")) == 0)
+		{
+			const FDinkBundleCollision* Coll = Bundle.Collision.Find(FString::Printf(TEXT("SCR_%03d"), Screen));
+			if (!HasDebugBlockers(Coll)) return nullptr;
+		}
 		return Cast<UStaticMesh>(LoadGenerated(FString::Printf(TEXT("%s/SM_SCR_%03d_%s"), *ScreenFolder(Screen), Screen, Which)));
 	}
     bool BuildRuntimeHardnessFoundationV1(const FDinkBundle& Bundle, int32 ScreenNumber,
@@ -1078,3 +1126,7 @@ namespace DinkGreybox
     }
 
 }
+
+#if WITH_DEV_AUTOMATION_TESTS
+#include "Tests/DinkGreyboxPresentationTests.inl"
+#endif
