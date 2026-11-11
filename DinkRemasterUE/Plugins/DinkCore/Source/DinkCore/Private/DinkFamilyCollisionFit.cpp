@@ -675,7 +675,13 @@ bool DinkFamilyCollisionFit::ProjectLegacyCard(const FDinkLegacyPictureDescripto
     FVector At=Baseline.GetLocation();
     At.X+=((Displayed.Width-Source.Width)/2.0-(Displayed.OriginX-Source.OriginX))*X*100;
     At.Z+=(-(Displayed.Height-Source.Height)+(Displayed.OriginY-Source.OriginY))*Z*100;
-    Out=FTransform(Baseline.GetRotation(),At,FVector(Displayed.Width*X,1,Displayed.Height*Z));
+    // Identity on either image axis preserves the imported scale BIT EXACTLY.
+    // Divide/multiply by the same dimension can inject one ULP, which stock scene
+    // setters may retain only in relative scale while their world cache stays unchanged.
+    const FVector Scale=Baseline.GetScale3D();
+    Out=FTransform(Baseline.GetRotation(),At,FVector(
+        Displayed.Width==Source.Width?Scale.X:Displayed.Width*X,1,
+        Displayed.Height==Source.Height?Scale.Z:Displayed.Height*Z));
     if(Out.ContainsNaN()){Error=TEXT("nonfinite projected legacy card");return false;}
     Error.Reset();return true;
 }

@@ -1,3 +1,17 @@
+## Identity picture scale and rendered break freeze — 11 Nov 2026
+
+The rendered SCR_031 test walked the starting-house door out and back, contacted the barrel from all four sides and traversed its old-box gap. One real F created the original gold-heart drop, but `draw_hard_sprite` then refused graphics publication and retained the loading gate. Gameplay time froze with Dink in attack frame 1; that failed session and its mid-transition save remain preserved as failure evidence.
+
+`ProjectLegacyCard` divided the baseline scale by the source image dimension and multiplied it back even for an unchanged dimension. At the actual baseline X=3.8528, width=56 and parent X=221487.36 this injected one ULP. Stock scene setters retained the altered relative scale while keeping the old cached world scale, so the exact publication guard correctly refused it. Unchanged width/height now preserve the corresponding baseline scale bits exactly; changed dimensions retain the previous arithmetic. World/parent/material, source identity, physics and publication guards remain unchanged.
+
+Source authored as c0bb867; identical compiled code is ab9ebb8 in the owned incremental checkout. Editor build 92056 and Game build 3018 passed with no warnings. The added native stock-component regression reproduces the old failure at the actual coordinates and passes with the corrected projection, including broken-frame, repeat and intact-restore checks.
+
+The first cold native run (50618) had five successes and one observer-setup timeout during mesh compilation; it is retained, not waived. A single reviewed warm-cache run (5128), with identical source/modules/six tests and unchanged 180-second readiness bound, passed all six with zero warnings, failures or unrun tests. Report SHA256: `ed01c376b1d32d3a7fe632404f82e594fde6f5921204be250d12605b076577b4`. Authoritative closure verifies unchanged inputs, own14/Game2, protected58 and preserved first-run files. Evidence: `/home/artist/Work/DinkQA/IdentityAxisProjectionBuild` and `IdentityAxisProjectionWarmNative1`.
+
+The portable source suite passes all 605 tests after materializing the CI-required barrel FBX from the existing LFS object store; the asset itself is unchanged.
+
+Rendered retest is pending in a new disabled packet. Current all85/full narrative regression, normal cook/package and final realistic art activation remain outstanding. Source-only bramble study PR #67 is merged independently and remains inactive.
+
 ## 2026-11-11 — published picture and intact restore native controls pass
 
 PR66 delivery includes strict exact-world release and retained published-picture witness restoration. Tested own sourcef5c6be5 at /home/artist/Work/DinkReleasedPictureImportedSizeFix: Editor10787 succeeds9.39s/zero warnings; Game91561 succeeds31.63s/zero warnings, own14Editor outputs unchanged. Original compiler60821 failure preserved; its successor changes one fixture pointer declaration only. Independently reviewed source and stage.

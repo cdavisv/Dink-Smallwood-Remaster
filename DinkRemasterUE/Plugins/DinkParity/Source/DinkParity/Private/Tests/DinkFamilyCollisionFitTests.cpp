@@ -10,6 +10,10 @@
 #include "PhysicsEngine/BodySetup.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Misc/ScopeExit.h"
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
+#include "Components/SceneComponent.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkFamilyFitPolicyTest,"Dink.Art.Family.CollisionFitPolicy",DINK_TEST_FLAGS)
 bool FDinkFamilyFitPolicyTest::RunTest(const FString&)
@@ -152,6 +156,48 @@ bool FDinkLegacyPictureProjection::RunTest(const FString&)
     TestTrue(TEXT("source pixel geometry and pivot determine broken dimensions/anchor"),Projected.Equals(FTransform(FQuat::Identity,FVector(1,0,-20),FVector(.84,1,.64)),1.e-12));
     FTransform Again;TestTrue(TEXT("repeat uses immutable baseline without compounding"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,Baseline,Again,Error)&&Again.Equals(Projected,0));
     TestTrue(TEXT("intact restore derives original baseline"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Source,Baseline,Again,Error)&&Again.Equals(Baseline,0));
+    // Actual RHI031 source baseline/parent that exposed stock near-equality world-cache behavior.
+    const FTransform ActualBaseline(FQuat::Identity,FVector(-89.44,0,-75.68),FVector(3.8528,1,3.784));
+    FTransform IdentityProjection;
+    if(!TestTrue(TEXT("actual source picture identity projects bit-exact importer baseline"),
+        DinkFamilyCollisionFit::ProjectLegacyCard(Source,Source,ActualBaseline,IdentityProjection,Error)&&IdentityProjection.Equals(ActualBaseline,0)))return false;
+    auto HeightBaseline=ActualBaseline;HeightBaseline.SetScale3D(FVector(3.8528,1,3.8528));
+    FTransform HeightIdentity;
+    TestTrue(TEXT("height-axis identity preserves baseline despite old divide/multiply drift"),
+        (3.8528/Source.Height)*Source.Height!=3.8528&&
+        DinkFamilyCollisionFit::ProjectLegacyCard(Source,Source,HeightBaseline,HeightIdentity,Error)&&HeightIdentity.Equals(HeightBaseline,0));
+    UWorld* World=UWorld::CreateWorld(EWorldType::Game,false);
+    if(!TestNotNull(TEXT("owned stock-transform world"),World))return false;
+    ON_SCOPE_EXIT {World->DestroyWorld(false);};
+    AActor* Owner=World->SpawnActor<AActor>();
+    if(!TestNotNull(TEXT("owned stock-transform actor"),Owner))return false;
+    auto* Root=NewObject<USceneComponent>(Owner);Owner->SetRootComponent(Root);Owner->AddInstanceComponent(Root);
+    Root->SetMobility(EComponentMobility::Movable);Root->RegisterComponent();
+    auto* Card=NewObject<USceneComponent>(Owner);Owner->AddInstanceComponent(Card);Card->SetupAttachment(Root);
+    Card->SetMobility(EComponentMobility::Movable);Card->RegisterComponent();
+    Owner->SetActorLocation(FVector(221487.36,-157285.6,0),false,nullptr,ETeleportType::TeleportPhysics);
+    const FTransform ParentWorld=Root->GetComponentTransform();
+    Card->SetRelativeTransform(ActualBaseline,false,nullptr,ETeleportType::TeleportPhysics);
+    const FTransform BaselineWorld=ActualBaseline*ParentWorld;
+    if(!TestTrue(TEXT("actual large-world fixture starts at exact canonical world"),Card->GetComponentTransform().Equals(BaselineWorld,0)))return false;
+    auto OldIdentity=ActualBaseline;auto OldScale=OldIdentity.GetScale3D();
+    OldScale.X=(OldScale.X/Source.Width)*Source.Width;OldIdentity.SetScale3D(OldScale);
+    TestTrue(TEXT("old identity arithmetic injects exactly a distinct scale"),OldScale.X!=ActualBaseline.GetScale3D().X);
+    Card->SetRelativeTransform(OldIdentity,false,nullptr,ETeleportType::TeleportPhysics);
+    TestTrue(TEXT("stock setter records old one-ULP relative scale"),Card->GetRelativeScale3D().X==OldScale.X);
+    TestFalse(TEXT("old identity fails unchanged exact requested world guard"),Card->GetComponentTransform().Equals(OldIdentity*ParentWorld,0));
+    Card->SetRelativeTransform(IdentityProjection,false,nullptr,ETeleportType::TeleportPhysics);
+    TestTrue(TEXT("identity-preserving projection passes exact stock world guard"),Card->GetComponentTransform().Equals(IdentityProjection*ParentWorld,0));
+    FTransform ActualBroken;
+    if(!TestTrue(TEXT("actual173/6 still projects"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,ActualBaseline,ActualBroken,Error)))return false;
+    const FVector OldBrokenScale(Broken.Width*(ActualBaseline.GetScale3D().X/Source.Width),1,Broken.Height*(ActualBaseline.GetScale3D().Z/Source.Height));
+    TestTrue(TEXT("nonidentity173/6 scale keeps previous exact arithmetic"),ActualBroken.GetScale3D().Equals(OldBrokenScale,0));
+    Card->SetRelativeTransform(ActualBroken,false,nullptr,ETeleportType::TeleportPhysics);
+    TestTrue(TEXT("different173/6 projection passes unchanged exact world guard"),Card->GetComponentTransform().Equals(ActualBroken*ParentWorld,0));
+    FTransform RepeatedBroken;DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,ActualBaseline,RepeatedBroken,Error);
+    TestTrue(TEXT("actual large-world broken projection never compounds"),RepeatedBroken.Equals(ActualBroken,0));
+    Card->SetRelativeTransform(IdentityProjection,false,nullptr,ETeleportType::TeleportPhysics);
+    TestTrue(TEXT("actual intact projection restores exact source world after broken"),Card->GetComponentTransform().Equals(BaselineWorld,0));
     for(int32 Kind=0;Kind<5;++Kind)
     {
         auto Bad=Broken;if(Kind==0)Bad.Sha1.Reset();if(Kind==1)++Bad.Frame;if(Kind==2)++Bad.OriginX;if(Kind==3)++Bad.Width;if(Kind==4)Bad.Height=0;
