@@ -1,4 +1,7 @@
 #include "DinkProbeLoadOracle.h"
+#include "DinkProbeLoadTransformDiagnostic.h"
+#include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
 #include "Misc/AutomationTest.h"
 #include "UObject/Package.h"
 
@@ -121,6 +124,54 @@ bool FDinkProbeLoadModeOracle::RunTest(const FString& Parameters)
     TestTrue(TEXT("legacy exact positive preserves VM snapshot"),DinkProbeLoadOracle::LegacyLinesEqual(TEXT("fact story=4\ninstance old state0"),TEXT("fact story=4\ninstance old state0")));
     TestFalse(TEXT("legacy runtime state difference still refuses"),DinkProbeLoadOracle::LegacyLinesEqual(TEXT("fact story=4\ninstance old state0"),TEXT("fact story=4\ninstance new state1")));
     TestFalse(TEXT("legacy persistent difference still refuses"),DinkProbeLoadOracle::LegacyLinesEqual(TEXT("fact story=4"),TEXT("fact story=5")));
+    return true;
+}
+#endif
+
+#if WITH_DEV_AUTOMATION_TESTS
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkProbeStockProjectionOracle,
+    "Dink.Gameplay.ProbeLoadOracle.StockProjection",EAutomationTestFlags_ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FDinkProbeStockProjectionOracle::RunTest(const FString& Parameters)
+{
+    UWorld* World=UWorld::CreateWorld(EWorldType::Game,false);
+    if(!TestNotNull(TEXT("owned stock-only world"),World))return false;
+    ON_SCOPE_EXIT {World->DestroyWorld(false);};
+    World->InitializeNewWorld(UWorld::InitializationValues().AllowAudioPlayback(false).CreatePhysicsScene(false).CreateNavigation(false).CreateAISystem(false));
+    ACharacter* Pawn=World->SpawnActor<ACharacter>();
+    if(!TestNotNull(TEXT("owned same-root pawn"),Pawn))return false;
+    const FTransform Initial(FRotator(0,180,0),FVector(-183760.15999999997,392550.35499999998,98.149998664855957));
+    Pawn->SetActorTransform(Initial,false,nullptr,ETeleportType::TeleportPhysics);
+    DinkProbeLoadDiagnostic::FBoundary Before;Before.PawnClass=Pawn->GetClass();Before.Actor=Pawn->GetActorTransform();
+    auto* Root=Pawn->GetRootComponent();Before.RootClass=Root->GetClass();Before.Registered=Root->IsRegistered();Before.RelativeRotation=Root->GetRelativeRotation();
+    Before.AbsoluteLocation=Root->IsUsingAbsoluteLocation();Before.AbsoluteRotation=Root->IsUsingAbsoluteRotation();Before.AbsoluteScale=Root->IsUsingAbsoluteScale();
+    auto* Saved=OracleSave(true);Saved->PlayerTransform=FTransform(FRotator(0,-90,0),FVector(65133.07178933332,56192.182237999979,98));
+    TArray<uint8> SavedBytesBefore,SavedBytesAfter;TestTrue(TEXT("serialize raw saved bytes"),UGameplayStatics::SaveGameToMemory(Saved,SavedBytesBefore));
+    FTransform Applied;FString Reason;
+    if(!TestTrue(TEXT("actual stock reference qualifies"),DinkProbeLoadDiagnostic::StockProjection(*Pawn,Before,Saved->PlayerTransform,Applied,Reason)))
+    {AddError(Reason);return false;}
+    auto* Expected=DuplicateObject<UDinkSaveGame>(Saved,GetTransientPackage());Expected->PlayerTransform=Applied;
+    TestTrue(TEXT("actual independent pawn applies saved transform"),Pawn->SetActorTransform(Saved->PlayerTransform,false,nullptr,ETeleportType::TeleportPhysics));
+    auto* Actual=DuplicateObject<UDinkSaveGame>(Saved,GetTransientPackage());Actual->PlayerTransform=Pawn->GetActorTransform();
+    TestTrue(TEXT("independent actual pawn matches qualified stock reference exactly"),Actual->PlayerTransform.Equals(Applied,0));
+    TestTrue(TEXT("qualified exact projection passes"),DinkProbeLoadOracle::PersistentDifferences(*Expected,*Actual).IsEmpty());
+    for(int32 Channel=0;Channel<3;++Channel)
+    {
+        Actual->PlayerTransform=Applied;
+        if(Channel==0)Actual->PlayerTransform.AddToTranslation(FVector(1,0,0));
+        if(Channel==1)Actual->PlayerTransform.SetRotation(FRotator(0,3,0).Quaternion()*Applied.GetRotation());
+        if(Channel==2)Actual->PlayerTransform.SetScale3D(FVector(1.1,1,1));
+        TestFalse(FString::Printf(TEXT("projection rejects changed transform channel %d"),Channel),DinkProbeLoadOracle::PersistentDifferences(*Expected,*Actual).IsEmpty());
+    }
+    auto Bad=Before;Bad.RelativeRotation.Yaw+=7;
+    TestFalse(TEXT("inconsistent preload cache rejects reference"),DinkProbeLoadDiagnostic::StockProjection(*Pawn,Bad,Saved->PlayerTransform,Applied,Reason));
+    Bad=Before;Bad.Parent=true;
+    TestFalse(TEXT("attached preload rejects reference"),DinkProbeLoadDiagnostic::StockProjection(*Pawn,Bad,Saved->PlayerTransform,Applied,Reason));
+    Bad=Before;Bad.Registered=false;
+    TestFalse(TEXT("unregistered preload rejects reference"),DinkProbeLoadDiagnostic::StockProjection(*Pawn,Bad,Saved->PlayerTransform,Applied,Reason));
+    Actual->PlayerTransform=Saved->PlayerTransform;Actual->PlayerTransform.AddToTranslation(FVector(1,0,0));
+    TestFalse(TEXT("default oracle remains raw exact"),DinkProbeLoadOracle::PersistentDifferences(*Saved,*Actual).IsEmpty());
+    TestTrue(TEXT("serialize saved after projection"),UGameplayStatics::SaveGameToMemory(Saved,SavedBytesAfter));
+    TestTrue(TEXT("raw saved bytes unchanged"),SavedBytesBefore==SavedBytesAfter);
     return true;
 }
 #endif

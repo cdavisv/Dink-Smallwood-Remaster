@@ -1,6 +1,7 @@
 #pragma once
 #include "DinkProbeLoadOracle.h"
 #include "DinkStorySubsystem.h"
+#include "DinkGameplay.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "GameFramework/Character.h"
@@ -39,12 +40,18 @@ struct FBoundary
 {
     TSharedPtr<FJsonObject> Json;
     FTransform Actor;
+    UClass* RootClass=nullptr;
+    UClass* PawnClass=nullptr;
+    FName Socket;
+    uint64 Frame=0;
+    double WorldSeconds=0;
+    bool Registered=false;
     FRotator RelativeRotation;
     bool Parent=false,AbsoluteLocation=false,AbsoluteRotation=false,AbsoluteScale=false;
 };
 inline FBoundary Capture(APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox)
 {
-    FBoundary B;B.Actor=Pawn.GetActorTransform();B.Json=MakeShared<FJsonObject>();auto& O=*B.Json;
+    FBoundary B;B.Actor=Pawn.GetActorTransform();B.PawnClass=Pawn.GetClass();B.Frame=GFrameCounter;B.WorldSeconds=Pawn.GetWorld()->GetTimeSeconds();B.Json=MakeShared<FJsonObject>();auto& O=*B.Json;
     O.SetObjectField(TEXT("actor_transform"),Transform(B.Actor));O.SetObjectField(TEXT("actor_rotator"),Rotator(Pawn.GetActorRotation()));
     O.SetStringField(TEXT("class"),Pawn.GetClass()->GetPathName());O.SetNumberField(TEXT("frame"),double(GFrameCounter));
     O.SetNumberField(TEXT("world_seconds"),Pawn.GetWorld()->GetTimeSeconds());O.SetNumberField(TEXT("story_ms"),Story.GetNowMs());
@@ -56,7 +63,7 @@ inline FBoundary Capture(APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubs
     if(const auto* C=Pawn.GetController())O.SetObjectField(TEXT("controller_rotation"),Rotator(C->GetControlRotation()));
     if(const auto* Root=Pawn.GetRootComponent())
     {
-        B.RelativeRotation=Root->GetRelativeRotation();B.Parent=Root->GetAttachParent()!=nullptr;
+        B.Socket=Root->GetAttachSocketName();B.RootClass=Root->GetClass();B.Registered=Root->IsRegistered();B.RelativeRotation=Root->GetRelativeRotation();B.Parent=Root->GetAttachParent()!=nullptr;
         B.AbsoluteLocation=Root->IsUsingAbsoluteLocation();B.AbsoluteRotation=Root->IsUsingAbsoluteRotation();B.AbsoluteScale=Root->IsUsingAbsoluteScale();
         O.SetObjectField(TEXT("root_relative_transform"),Transform(Root->GetRelativeTransform()));O.SetObjectField(TEXT("root_relative_rotator"),Rotator(B.RelativeRotation));
         O.SetStringField(TEXT("root_class"),Root->GetClass()->GetPathName());O.SetStringField(TEXT("root_parent"),B.Parent?Root->GetAttachParent()->GetPathName():TEXT(""));
@@ -74,6 +81,40 @@ inline FBoundary Capture(APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubs
     O.SetBoolField(TEXT("readonly_ground_pawn_complex_hit"),Ground);O.SetStringField(TEXT("ground_component"),Hit.GetComponent()?Hit.GetComponent()->GetPathName():TEXT(""));
     O.SetStringField(TEXT("ground_impact"),Hit.ImpactPoint.ToString());O.SetNumberField(TEXT("ground_distance"),Hit.Distance);
     return B;
+}
+// A reference is admitted only from an exact, source-class/root-qualified preload seed.
+inline bool StockProjection(APawn& Pawn,const FBoundary& Before,const FTransform& Saved,FTransform& Applied,FString& Reason)
+{
+    Reason.Reset();const uint64 Frame=GFrameCounter;const double WorldSeconds=Pawn.GetWorld()->GetTimeSeconds();
+    if(Before.Parent||!Before.Socket.IsNone()||Before.PawnClass!=Pawn.GetClass()||!Before.RootClass||!Before.Registered){Reason=TEXT("unsupported attached/unregistered preload root");return false;}
+    FActorSpawnParameters P;P.bDeferConstruction=true;P.ObjectFlags|=RF_Transient;
+    P.SpawnCollisionHandlingOverride=ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    APawn* Control=Pawn.GetWorld()->SpawnActor<APawn>(Pawn.GetClass(),Before.Actor,P);
+    ON_SCOPE_EXIT {if(Control)Control->Destroy();};
+    auto* Root=Control?Control->GetRootComponent():nullptr;
+    if(!Root||Root->GetClass()!=Before.RootClass||Control->GetController()||Control->HasActorBegunPlay()||!Root->IsRegistered())
+    {Reason=TEXT("stock reference class/root/registration/controller/BeginPlay mismatch");return false;}
+    Control->SetActorEnableCollision(false);
+    Root->SetAbsolute(Before.AbsoluteLocation,Before.AbsoluteRotation,Before.AbsoluteScale);
+    const bool Seeded=Control->SetActorTransform(Before.Actor,false,nullptr,ETeleportType::TeleportPhysics);
+    Root->SetRelativeRotation(Before.RelativeRotation);
+    if(!Seeded||Root->GetAttachParent()||!Control->GetActorTransform().Equals(Before.Actor,0)||
+       Root->GetRelativeRotation()!=Before.RelativeRotation||Root->IsUsingAbsoluteLocation()!=Before.AbsoluteLocation||
+       Root->IsUsingAbsoluteRotation()!=Before.AbsoluteRotation||Root->IsUsingAbsoluteScale()!=Before.AbsoluteScale)
+    {Reason=TEXT("stock preload pose/cache/absolute seed mismatch");return false;}
+    if(!Control->SetActorTransform(Saved,false,nullptr,ETeleportType::TeleportPhysics)||Control->GetController()||Control->HasActorBegunPlay())
+    {Reason=TEXT("stock application failed or unexpectedly began gameplay");return false;}
+    if(Frame!=GFrameCounter||WorldSeconds!=Pawn.GetWorld()->GetTimeSeconds())
+    {Reason=TEXT("stock reference advanced frame/world time");return false;}
+    Applied=Control->GetActorTransform();return true;
+}
+inline FString RecordQualifiedProjection(const FBoundary& Before,const FTransform& Saved,const FTransform& Applied,const FTransform& Actual)
+{
+    auto O=MakeShared<FJsonObject>();O->SetObjectField(TEXT("before_load"),Before.Json);
+    O->SetObjectField(TEXT("saved"),Transform(Saved));O->SetObjectField(TEXT("stock_expected"),Transform(Applied));O->SetObjectField(TEXT("actual"),Transform(Actual));
+    O->SetBoolField(TEXT("preload_and_root_qualified"),true);O->SetBoolField(TEXT("stock_expected_actual_exact"),Applied.Equals(Actual,0));
+    FString Text;FJsonSerializer::Serialize(O,TJsonWriterFactory<>::Create(&Text));const FString Dir=FPaths::ProjectSavedDir()/TEXT("Automation/ProbeLoadProjection");IFileManager::Get().MakeDirectory(*Dir,true);
+    const FString Path=Dir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));return FFileHelper::SaveStringToFile(Text,*Path)?Path:FString();
 }
 inline FString Write(const UDinkSaveGame& Saved,const UDinkSaveGame& Actual,APawn& Pawn,UDinkStorySubsystem& Story,
     UDinkGreyboxSubsystem& Greybox,const FBoundary& Before,const FBoundary& Loaded,int32 EventStart)
