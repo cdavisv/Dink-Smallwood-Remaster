@@ -1,0 +1,1293 @@
+{
+ "violations": {
+  "Characters:SK_Dink": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Hero/SK_Dink), declares no sprite family"
+   }
+  ],
+  "Characters:SK_Dink_Hands": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Hero/Refinements/SK_Dink_Hands), declares no sprite family"
+   }
+  ],
+  "Characters:SK_Milder": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/NPC/Milder/SK_Milder), declares no sprite family"
+   }
+  ],
+  "Characters:SK_Mother": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/NPC/Mother/SK_Mother), declares no sprite family"
+   }
+  ],
+  "Creatures/Pig:SK_Pig": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Creatures/Pig/SK_Pig), declares no sprite family"
+   }
+  ],
+  "Creatures/Pillbug:SK_Pillbug": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Creatures/Pillbug/SK_Pillbug), declares no sprite family"
+   }
+  ],
+  "PigPen:SM_FeedScatter_Wheat_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_PigPen_Wheat"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/PigPen/SM_FeedScatter_Wheat_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/FireplaceFiredClayV4:SM_Chimney_Stonebrook_V8": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/FireplaceV2:SM_Fireplace_Stonebrook_V2": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_FireplaceV2_Atlas"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealBarrelV1:SM_Barrel_Oak_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Barrel_Oak_01_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealBasketV1:SM_Basket_Wicker_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Basket_Wicker_01_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealCandleV1:SM_Candle_Iron_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Candle_IronChar_PhotoBaked, MI_Candle_Wax_PhotoBaked"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealFeedSackV1:SM_FeedSack_Jute_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_FeedSack_Cord_PhotoBaked, MI_FeedSack_Jute_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealPieV1:SM_Pie_Rustic_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Pie_BlueCeramic_PhotoBaked, MI_Pie_PastryFruit_PhotoBaked"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Bed_Oak_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Bed_Oak_01_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Chair_Oak_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Chair_Oak_01_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Table_Oak_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Table_Oak_01_PhotoBaked"
+   },
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_House440_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_House440_Glass_Tile, MI_Shared_House440_Mortar_Tile, MI_Shared_House440_Oak_Tile, MI_Shared_House440_Stone_Tile, MI_Shared_House440_Thatch_Tile"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_Willow_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Willow_Bark, MI_Shared_Willow_Leaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM5_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S470_XM5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP1_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP2_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Bank_S472_XP4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_WetBank"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM2_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM3_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM4_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S406_XM5_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM1_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XM2_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP0_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S407_XP1_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP1_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP2_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP3_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S408_XP4_YP3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YP0_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP1_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YP0_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP2_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YP0_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP3_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YP0_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S440_XP4_YP1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM2_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM5_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S470_XM5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP1_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP2_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S472_XP4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM2_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM3_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM4_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S502_XM5_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM1_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XM2_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP0_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S503_XP1_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP1_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP2_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP3_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Land_S504_XP4_YM4_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Meadow"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM2_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XM6_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP1_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP4_YM3_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Reeds_XP5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_ReedLeaf"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM4_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM5_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S470_XM5_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP1_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP1_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP2_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP2_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP3_YM1_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP3_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Vista_Water_S472_XP4_YM2_01": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Shared_Ground_Water"
+   }
+  ],
+  "Stonebrook:SM_Candle_Iron_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Ceiling_Oak_2m_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Doorway_Limewash_4m_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_FeedSack_Jute_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Fireplace_Fieldstone_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Fireplace_Fieldstone_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Floor_Oak_2m_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Pie_Rustic_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Wall_Limewash_2m_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01), declares no sprite family"
+   }
+  ],
+  "Stonebrook:SM_Window_Limewash_2m_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01), declares no sprite family"
+   }
+  ],
+  "StonebrookExterior:SM_Cottage_Stonebrook_01": [
+   {
+    "kind": "family",
+    "detail": "delivered (/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01), declares no sprite family"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_05_04_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_05_05_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_06_04_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_06_05_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_07_04_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_438_Water_07_05_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_00_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_00_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_01_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_01_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_02_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_02_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_03_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_03_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_04_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_04_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_04_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_05_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_05_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_05_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_06_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_06_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_06_03_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_07_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_07_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_08_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_08_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_09_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_09_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_10_01_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Fields_471_Water_10_02_00": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_Fields_StreamWater"
+   }
+  ],
+  "StonebrookFields:SM_Pine_Stonebrook_V3": [
+   {
+    "kind": "material",
+    "detail": "not in the library: MI_PineV3_Bark, MI_PineV3_Sprays"
+   }
+  ]
+ },
+ "counts": {
+  "family": 24,
+  "material": 186
+ },
+ "warnings": [
+  "Characters:SK_Milder: 32,674 LOD0 triangles > character_humanoid soft target 20,000 (hard cap 35,000)",
+  "Characters:SK_Mother: 32,164 LOD0 triangles > character_humanoid soft target 20,000 (hard cap 35,000)",
+  "Coastal:SM_BeachPebbles_92_09: 1,728 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Coastal:SM_BeachPebbles_92_10: 2,592 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Coastal:SM_BeachPebbles_92_11: 3,456 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Creatures/Pig:SK_Pig: 19,266 LOD0 triangles > creature_quadruped soft target 15,000 (hard cap 30,000)",
+  "Stonebrook:SM_Barrel_Oak_01: 10,472 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook:SM_Basket_Wicker_01: 9,692 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook:SM_Bed_Oak_01: 7,744 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook:SM_Floor_Oak_2m_01: 2,624 LOD0 triangles > kit_floor soft target 1,000 (hard cap 4,000)",
+  "Stonebrook:SM_Pie_Rustic_01: 4,196 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Stonebrook/Refinements/FireplaceFiredClayV4:SM_Fireplace_Stonebrook_V3Contact: 57,296 LOD0 triangles > prop_large soft target 20,000 (hard cap 60,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_EN_01: 4,986 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_ES_01: 3,474 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1:SM_IndoorRoof_WN_01: 4,924 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1NativeDelivery:SM_IndoorRoof_EN_01: 4,986 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1NativeDelivery:SM_IndoorRoof_ES_01: 3,474 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/InteriorRoofSharedV1NativeDelivery:SM_IndoorRoof_WN_01: 4,924 LOD0 triangles > kit_piece soft target 3,000 (hard cap 10,000)",
+  "Stonebrook/Refinements/PhotorealBarrelV1:SM_Barrel_Oak_01: 16,648 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/PhotorealBasketV1:SM_Basket_Wicker_01: 19,680 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/PhotorealCandleV1:SM_Candle_Iron_01: 4,870 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Stonebrook/Refinements/PhotorealFeedSackV1:SM_FeedSack_Jute_01: 19,644 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/PhotorealPieV1:SM_Pie_Rustic_01: 4,844 LOD0 triangles > prop_small soft target 1,500 (hard cap 5,000)",
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Bed_Oak_01: 19,588 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Chair_Oak_01: 6,064 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/PhotorealPropsV1:SM_Table_Oak_01: 9,232 LOD0 triangles > prop soft target 6,000 (hard cap 20,000)",
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_House440_01: 114,354 LOD0 triangles > building soft target 60,000 (hard cap 200,000)",
+  "Stonebrook/Refinements/SharedStonebrookVistaV1:SM_Shared_Willow_01: 24,846 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)",
+  "Stonebrook/Refinements/ThornBrambleV9Candidate:SM_ThornBramble_01: 24,220 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)",
+  "StonebrookExterior:SM_Cottage_Stonebrook_01: 113,788 LOD0 triangles > building soft target 60,000 (hard cap 200,000)",
+  "StonebrookExterior:SM_Oak_Stonebrook_01: 19,076 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)",
+  "StonebrookFields:SM_Pine_Stonebrook_01: 22,444 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)",
+  "StonebrookFields:SM_Pine_Stonebrook_V3: 22,270 LOD0 triangles > foliage soft target 8,000 (hard cap 25,000)"
+ ],
+ "notes": [
+  "delivered /Game/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4 (stonebrook_refinement_fireplace_v2.json) has no source record under SourceAssets/Art"
+ ],
+ "checked": 459
+}

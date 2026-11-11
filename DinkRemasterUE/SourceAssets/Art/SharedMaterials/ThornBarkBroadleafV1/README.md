@@ -1,0 +1,9 @@
+# Shared thorn bark and broadleaf trim — source candidate
+
+Two reusable, originally authored Blender materials: `MI_Shared_ThornBark2m` and `MI_Shared_BroadleafTrimV1`. Registration is source-only and inactive in the game. No native material, importer or runtime binding is supplied.
+
+Six actual1024px BC/N_GL/ORM PNGs back the packed library. Bark repeats over2×2m at512px/m. Broadleaf is a generic0.12×0.12m trim field; geometry provides the blade outline. ART_STANDARD §4 explicitly permits foliage trim sheets; the512px/m tiling density does not describe this trim. Leaves of other lengths deliberately stretch the same shared trim and are documented as variants, not measured botanical specimens.
+
+`Tools/build_library.py` authors the editable source graphs and performs actual CPU Cycles bakes. Run with `-- --out /new/empty/directory` to replay without replacing this candidate. `SharedThornBroadleaf_ProceduralSource.blend` contains editable source shaders and physical bake coupons; `SharedThornBroadleaf_LibraryCandidate.blend` contains canonical texture-backed materials and all six packed PNGs. `Tools/build_reuse.py` builds `GenericReuse.blend`: unrelated2m/4m bark panels and six leaf specimens using the same two material datablocks. Actual renders are Review/generic_bark.png and generic_leaf.png. No prop-specific atlas or per-prop AO exists.
+
+BC is sRGB. N_GL and ORM are Non-Color/linear. Normals are tangent OpenGL+Y, normal strength1; native import must flip green and verify the saved material. ORM is R255 material occlusion, G authored roughness, B0 dielectric. Registry records physical scale, IOR/specular/F0 and all hashes. These are artist-authored optical values, not measured BRDFs. PROVENANCE.md documents the source and limitations. Native optical/backface/transmission behavior remains untested.

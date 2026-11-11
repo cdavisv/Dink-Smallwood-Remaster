@@ -1,0 +1,101 @@
+{
+  "schema": "dink-source-assets/1",
+  "status": "candidate-source-only-inactive",
+  "assets": [
+    {
+      "name": "SM_ThornBramble_01",
+      "class": "foliage",
+      "families": [
+        "thorn_bush"
+      ],
+      "original_sequence": 90,
+      "original_frame": 7,
+      "original_source": "90 lands/details/grave- frame7 only; NOT whole sequence",
+      "dimensions_m": [
+        1.789616584777832,
+        1.6634480953216553,
+        1.0496001243591309
+      ],
+      "materials": [
+        "MI_Shared_ThornBark2m",
+        "MI_Shared_BroadleafTrimV1"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "material": "MI_Shared_ThornBark2m",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_BC.png",
+          "sha256": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "material": "MI_Shared_ThornBark2m",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_N_GL.png",
+          "sha256": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "material": "MI_Shared_ThornBark2m",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_ORM.png",
+          "sha256": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "BC",
+          "material": "MI_Shared_BroadleafTrimV1",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_BC.png",
+          "sha256": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "material": "MI_Shared_BroadleafTrimV1",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_N_GL.png",
+          "sha256": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "material": "MI_Shared_BroadleafTrimV1",
+          "library_file": "../../../SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_ORM.png",
+          "sha256": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 24220,
+        "LOD1": 12594,
+        "LOD2": 5812
+      },
+      "lod_count": 3,
+      "source": {
+        "blend": "ThornBramble_SharedSourceV1.blend",
+        "sha256": "83fb0d4736f2f0bf8a1cad0b5e7bd9ac7f60a3a2d524a5da55a1abbeafbea1b2",
+        "collection": "SM_ThornBramble_01"
+      },
+      "collision": false,
+      "runtime_binding": false,
+      "notes": "Source candidate; LOD0 over8ksoft under25khard. No export/native/performance/finalphotoreal approval. Shared texture-backed roles registered; native pending."
+    }
+  ]
+}

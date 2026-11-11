@@ -1,0 +1,112 @@
+{
+  "base": "b1ee08e5a6e01ddd52716e0c3adf75ada379b570",
+  "new_lfs_payloads": [
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/GenericReuse.blend",
+      "sha256": "56ecd7a116c1c41c02fef1d17a6c2e5f2ab05491faf1ae9b7977794b9add5bc9",
+      "size": 2235758,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Review/generic_bark.png",
+      "sha256": "344395d84b85d6c28e85c81a9d97fcbdb34ac66e7e95bf766c35b81019d0dd75",
+      "size": 729039,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Review/generic_leaf.png",
+      "sha256": "30facf5c84dfc42a1d7018ff4282c65d797c9bcbdf94f02fe16baa74fd50a586",
+      "size": 758852,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_LibraryCandidate.blend",
+      "sha256": "e95c4d177200c7f1cbbfbdeb1f320a664fabcd41cf88025b7ac78bc7eca33122",
+      "size": 2231401,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_ProceduralSource.blend",
+      "sha256": "8822d83c2efe779db20a0218bdfc346cf3b9b8a62818e228d538724b910f4872",
+      "size": 102126,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_BC.png",
+      "sha256": "6e1b8c641f9e8ca0868f2152fdf9a363641ce2dd489a6eb97bc94df44ce58f88",
+      "size": 483432,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_N_GL.png",
+      "sha256": "66ca29d280688c1b02c6c1ae9ac6d2810ae6aaf6f67c98486ce5e5e17a5ac84f",
+      "size": 34400,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_BroadleafTrimV1_ORM.png",
+      "sha256": "8fb77fbca51dcd8a4d9bfa895fe93059fc576f0c23d737a804b56e4c4b4c7c8f",
+      "size": 272851,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_BC.png",
+      "sha256": "fd6a2a25e8c5d2c792e5665232c30b6834a473562993025e0f6574dba66723a6",
+      "size": 670006,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_N_GL.png",
+      "sha256": "ba2219a890a7e8339b27e3433d1f7b5f9e95b9a8be4a8c2462b6ff1d9e505001",
+      "size": 342478,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Textures/T_Shared_ThornBark2m_ORM.png",
+      "sha256": "563f517f34f81e96cb09c0748aab3a5dad6d15cff10766ad634d26a02639f33f",
+      "size": 330399,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/References/grave-07-decoded.png",
+      "sha256": "6f12367128343f9a1753e553f167e06bb8cf80d8a3221777c93716fa2e89edff",
+      "size": 2940,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/References/grave-07.bmp",
+      "sha256": "9d7b9309e50d6469a66a46a379d632e4ee4b10f18e4f0f85e02b968775b9aa58",
+      "size": 8256,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_00.png",
+      "sha256": "2e6a6e7854a5ec4817cb43c245dfe1711d11a097cad89d9aa3555c6d7bfaacfc",
+      "size": 992362,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_01.png",
+      "sha256": "67e89832e88c292633d33f00401bd304b5feca0ff19a6f9e048165d8237e6c79",
+      "size": 973310,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_02.png",
+      "sha256": "c32b2ede911045aa1a9d07764d3589379d0ebb072ea5229afff1f946a0819db5",
+      "size": 1019620,
+      "actual_payload_matches_index_pointer": true
+    },
+    {
+      "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/ThornBramble_SharedSourceV1.blend",
+      "sha256": "83fb0d4736f2f0bf8a1cad0b5e7bd9ac7f60a3a2d524a5da55a1abbeafbea1b2",
+      "size": 3366670,
+      "actual_payload_matches_index_pointer": true
+    }
+  ],
+  "no_runtime_content_config_source_build_changes": true,
+  "old_ledger_raw_prefix_bytes": 4047621,
+  "old_ledger_raw_prefix_sha256": "efc0c7bc6440769e9d920bd057a2de625ae0d5637ddb96b20162a21bcdb24909",
+  "old_ledger_raw_prefix_exact": true,
+  "unchanged_preexisting_art_violation_map": true
+}
