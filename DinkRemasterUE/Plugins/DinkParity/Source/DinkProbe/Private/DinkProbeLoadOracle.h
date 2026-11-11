@@ -30,6 +30,35 @@ inline bool LegacyLinesEqual(const FString& Expected,const FString& Actual)
     return A==B;
 }
 
+// Failure evidence only. Never normalizes the stored transforms or changes
+// the existing FProperty::Identical predicate.
+inline void AppendTransformDiagnostics(const FTransform& Saved,const FTransform& Actual,TArray<FString>& Errors)
+{
+    const FVector ST=Saved.GetTranslation(),AT=Actual.GetTranslation();
+    const FQuat SQ=Saved.GetRotation(),AQ=Actual.GetRotation();
+    const FVector SS=Saved.GetScale3D(),AS=Actual.GetScale3D();
+    const double A[]{ST.X,ST.Y,ST.Z,SQ.X,SQ.Y,SQ.Z,SQ.W,SS.X,SS.Y,SS.Z};
+    const double B[]{AT.X,AT.Y,AT.Z,AQ.X,AQ.Y,AQ.Z,AQ.W,AS.X,AS.Y,AS.Z};
+    const TCHAR* Names[]{TEXT("translation.x"),TEXT("translation.y"),TEXT("translation.z"),
+        TEXT("quaternion.x"),TEXT("quaternion.y"),TEXT("quaternion.z"),TEXT("quaternion.w"),
+        TEXT("scale.x"),TEXT("scale.y"),TEXT("scale.z")};
+    for(int32 Index=0;Index<10;++Index)
+    {
+        uint64 SavedBits=0,ActualBits=0;
+        static_assert(sizeof(double)==sizeof(uint64));
+        FMemory::Memcpy(&SavedBits,&A[Index],sizeof(double));
+        FMemory::Memcpy(&ActualBits,&B[Index],sizeof(double));
+        Errors.Add(FString::Printf(TEXT("PlayerTransform %s saved=%.17g bits=0x%016llx actual=%.17g bits=0x%016llx delta=%.17g"),
+            Names[Index],A[Index],static_cast<unsigned long long>(SavedBits),B[Index],static_cast<unsigned long long>(ActualBits),B[Index]-A[Index]));
+    }
+    const bool AngularValid=!SQ.ContainsNaN()&&!AQ.ContainsNaN()&&FMath::IsFinite(SQ.SizeSquared())&&
+        FMath::IsFinite(AQ.SizeSquared())&&SQ.SizeSquared()>0.0&&AQ.SizeSquared()>0.0;
+    Errors.Add(FString::Printf(TEXT("PlayerTransform metrics savedIsNormalized=%d actualIsNormalized=%d savedQuatNorm2=%.17g actualQuatNorm2=%.17g translationDeltaCm=%.17g scaleDelta=%.17g angularValid=%d normalizedAngularDeltaRadians=%.17g"),
+        int32(SQ.IsNormalized()),int32(AQ.IsNormalized()),double(SQ.SizeSquared()),double(AQ.SizeSquared()),
+        double(FVector::Dist(ST,AT)),double((AS-SS).Size()),int32(AngularValid),
+        AngularValid?double(SQ.GetNormalized().AngularDistance(AQ.GetNormalized())):-1.0));
+}
+
 inline TArray<FString> PersistentDifferences(const UDinkSaveGame& Saved,const UDinkSaveGame& Actual)
 {
     TArray<FString> Errors;
@@ -39,7 +68,12 @@ inline TArray<FString> PersistentDifferences(const UDinkSaveGame& Saved,const UD
         TEXT("ScreenExitTimes"),TEXT("GameTimeMs"),TEXT("CurrentScreen"),TEXT("PlayerTransform")})
     {
         const FProperty* Field=FindFProperty<FProperty>(UDinkSaveGame::StaticClass(),Name);
-        if(!Field||!Field->Identical_InContainer(&Saved,&Actual))Errors.Add(FString::Printf(TEXT("persistent %s differs"),Name));
+        if(!Field||!Field->Identical_InContainer(&Saved,&Actual))
+        {
+            Errors.Add(FString::Printf(TEXT("persistent %s differs"),Name));
+            if(FCString::Strcmp(Name,TEXT("PlayerTransform"))==0)
+                AppendTransformDiagnostics(Saved.PlayerTransform,Actual.PlayerTransform,Errors);
+        }
     }
     const auto Before=Narrative(Saved),After=Narrative(Actual);
     if(!Before||!After){Errors.Add(TEXT("missing actual narrative JSON"));return Errors;}
