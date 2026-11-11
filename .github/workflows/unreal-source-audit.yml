@@ -23,5 +23,9 @@ jobs:
           python-version: '3.12'
       - name: Check syntax, approved audio and pinned asset metadata
         run: python3 DinkRemasterUE/Scripts/verify_sources.py --metadata-only
+      - name: Hydrate the source FBX geometry fixture
+        run: |
+          git lfs install --local --skip-smudge
+          git lfs pull --include="DinkRemasterUE/SourceAssets/Art/Stonebrook/Export/Game/Dink/Props/Stonebrook/SM_Barrel_Oak_01.fbx" --exclude=""
       - name: Exercise asset bootstrap and import protections
         run: python3 -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'
