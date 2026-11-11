@@ -1,3 +1,9 @@
+## Exact transform load diagnostic; comparator unchanged
+
+Full242 run27969 on a31942c completed457.261s:192clean+30warning successes,20probe failures,noneunrun. Allnon-probe cases and85bodychecks pass. FreshCh1passes; firstCh2load reports onlystrictPlayerTransform mismatch andlaterchapterscascade. Originalpacket andunchanged14849inputs/14modules remain inBarrelPolicyGuardRegressionStage. NoEPS/exclusion/productionchange isapproved.
+
+Diagnostic-only successor captures saved/actual channels at17digits and64bitwords, channel deltas/bases, pre-load/post-load/pre-capture/post-capture actor/root/controller pose andframes/world/storytime, parent/socket/absolute/collision flags, cachedfloor andread-onlygroundquery, andloadcallbackevents. A failure-only owneddeferred same-class stockSetActorTransformcontrol hasnoBeginPlay/controller/narrative andrecordsits registration/seed-equivalence qualifications. Existingstrictcomparison remainsunchanged. ActualCh2numbers mustestablish setterroundtrip vsmeaningfulmovement beforeanyfix; ownbuild/native pending.
+
 ## Fenced farming probe retains ranged safety until enemies die
 
 Prop535c87b native78944 passes1clean/12.968s with all419 walking/warp/reset assertions. Host/cache closed and Unreal/build lease transferred to root for externalartist isolated bridge build/unsaved trial; this lane is CPU-only until explicit release.
