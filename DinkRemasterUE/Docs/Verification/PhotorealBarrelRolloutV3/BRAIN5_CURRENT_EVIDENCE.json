@@ -75,7 +75,19 @@
     "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_SHADERPRINT_BEFORE.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
     "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_SHADERPRINT_AFTER.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
     "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_ENGINE_STAGE_BEFORE.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
-    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_ENGINE_STAGE_AFTER.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/Runs/fbf9546afd3d499ca882002fad2be1fa/HOST_ENGINE_STAGE_AFTER.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/RESULT.json": "41a21b1fa4e45354622043eaeb70f7cad3f92d8476a6836090211f3efc4796ca",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/NATIVE_TERMINAL.json": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/ROOT_POST_CLOSURE.json": "a6a08c6d783a318a23a01a5b1e496b1bd841157f6276d518947fc0a2a2328fcc",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/HOST_SAVED_HISTORY.json": "3be4bbb86014b383e9ad1f3ef3d11ab2d4a79086ef53fe48c6e9056e3439f41b",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/GameSaved/Automation/Report/index.json": "af56a02e944749cc4b9dec6b9365653e723e2d4cb0d0e18839ca9ae0050ea3e6",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/GameSaved/Automation/CookedReleasedPictureAssets.json": "e7f2dbad2bd2111f3b17ccf625943cbe6b648c868d2ca5ecb16946f262f3a819",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/GameSaved/Automation/BarrelCookGame.surface.bin": "b4ad5e4487a946da0832b30ec01ad9ac649c859f257f44c84d36b912db8f637c",
+    "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6/GameSaved/Automation/BarrelCookGame.txt": "987fcfc664a92a2302a7ba53d8e499ba749e132a732fd939c24a52eb597915e2",
+    "/home/artist/Work/DinkQA/PackagedMetadataRaceQualificationV1/QUALIFICATION.json": "b1be4a90ce710da3e2d8b677caee1d47c4e3c3ee01a7a7de06ab9d3738db9e2d",
+    "/home/artist/Work/DinkQA/PackagedMetadataRaceQualificationV1/EXECUTED_INDEX_RECONSTRUCTED.json": "1fc64de164fd043d842b1d7cbd6bf0856e2e583892a5df8f5f08246985cde5de",
+    "/home/artist/Work/DinkQA/PackagedMetadataRaceQualificationV1/POSTRUN_OBSERVED_INDEX.json": "db18f4eba666ef8b4e26af97a71cebed606d2b80d27c2b78d67347bd205bddba",
+    "/home/artist/Work/DinkQA/PackagedC2MetadataQualificationV1/QUALIFICATION.json": "bbbb57a741e43cadef904bd0da3fd6dbba265a5a453aae74c87d917e3b20f606"
   },
   "documentation_parent": "c59537b91a08cf5c74273d21e76e729b5e726241",
   "fresh_ordinary_generation": {
@@ -166,8 +178,10 @@
     "shader_type": "FSubsurfaceDebugCS",
     "all_vulkan13_valid": true,
     "complete_cooked_asset_inventory_proven": false,
-    "cooked_imported_size_runtime_proven": false,
-    "packaged_runtime_proof": false
+    "cooked_imported_size_runtime_proven": true,
+    "packaged_runtime_proof": true,
+    "packaged_runtime_scope": "Only two actual cooked asset/surface/ImportedSize tests; no gameplay release lifecycle, pixels, real-input or new3D acceptance",
+    "packaged_gameplay_lifecycle_or_pixels_proven": false
   },
   "cook_C3_status": {
     "status": "FAILED_BEFORE_COOKER",
@@ -204,5 +218,86 @@
       "primary_source": "Engine/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs:735\u2013740",
       "scope": "Authorized pending plan only; no successful UAT/cook/package/runtime claim"
     }
+  },
+  "packaged_C2": {
+    "status": "ACTUAL_TWO_CLEAN_SUCCESSES_WITH_PACKET_IDENTITY_QUALIFICATION",
+    "run": "/home/artist/Work/DinkQA/Brain5CurrentCookPreparation/PackagedCandidate2/Runs/b8bba1364bd34e6099219d3b17059db6",
+    "owning_tool": 48482,
+    "wrapper_exit": 0,
+    "native_exit": 0,
+    "elapsed_seconds": 9.20369981598924,
+    "actual_tests": {
+      "Dink.Art.Family.BarrelCookedGameSurface": "Success",
+      "Dink.Art.Family.CookedReleasedPictureAssets": "Success"
+    },
+    "counts": {
+      "succeeded": 2,
+      "succeededWithWarnings": 0,
+      "failed": 0,
+      "notRun": 0,
+      "inProcess": 0,
+      "totalDuration": 0.004124211147427559
+    },
+    "game_sha256": "a6996bf07dce058d029ea2e5b2d1fc19433ce6656ba5a8c61355f2ea736298ab",
+    "current_own_game_matches": true,
+    "requires_cooked": true,
+    "actual_cooked_frames": [
+      {
+        "material": "/Game/Dink/_Generated/Sprites/MI_Sprite_173_01.MI_Sprite_173_01",
+        "texture": "/Game/Dink/_Generated/Sprites/T_Sprite_173_01.T_Sprite_173_01",
+        "package_cooked": true,
+        "frame": 1,
+        "imported_width": 64,
+        "imported_height": 64,
+        "platform_surface_width_diagnostic": 64,
+        "platform_surface_height_diagnostic": 64,
+        "descriptor_sha1": "b89b9bd0f6829a4c377345a7a3fe79793660dbfc"
+      },
+      {
+        "material": "/Game/Dink/_Generated/Sprites/MI_Sprite_173_06.MI_Sprite_173_06",
+        "texture": "/Game/Dink/_Generated/Sprites/T_Sprite_173_06.T_Sprite_173_06",
+        "package_cooked": true,
+        "frame": 6,
+        "imported_width": 128,
+        "imported_height": 64,
+        "platform_surface_width_diagnostic": 128,
+        "platform_surface_height_diagnostic": 64,
+        "descriptor_sha1": "31f8a48f1ae2bafe331f21acd5b8da64a4fa6ad9"
+      }
+    ],
+    "production_pair_guard_and_negative_controls_pass": true,
+    "cooked_triangles": 16648,
+    "canonical_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+    "full_surface_sha256": "b4ad5e4487a946da0832b30ec01ad9ac649c859f257f44c84d36b912db8f637c",
+    "full_surface_bytes": 632671,
+    "stage_source_and_saved_history_unchanged": true,
+    "authoritative_post_closure_native_unknown_empty": true,
+    "scope": "Actual cooked asset proof only; not whole release lifecycle/pixels/new3D/full-suite acceptance",
+    "packet_identity": {
+      "continuous_identity_claimed": false,
+      "executed_index_sha256": "1fc64de164fd043d842b1d7cbd6bf0856e2e583892a5df8f5f08246985cde5de",
+      "executed_index_reconstructed_not_retained_snapshot": true,
+      "postrun_observed_index_sha256": "db18f4eba666ef8b4e26af97a71cebed606d2b80d27c2b78d67347bd205bddba",
+      "runtime4_and_binding_unchanged": true,
+      "observed_metadata_mtimes_after_result": true,
+      "qualification": "Avoidable post-final PLAN/SUCCESSOR/INDEX mutation; no live-native source change evidenced; original preimages reconstructed externally, observed versions preserved; no rerun/reset",
+      "qualification_sha256": "b1be4a90ce710da3e2d8b677caee1d47c4e3c3ee01a7a7de06ab9d3738db9e2d",
+      "independent_final_qualification_sha256": "bbbb57a741e43cadef904bd0da3fd6dbba265a5a453aae74c87d917e3b20f606",
+      "observed_final_write_after_RESULT_seconds": 14.614331483840942,
+      "reconstructed_payloads_verified": 14,
+      "postrun_indexed_payloads": 34,
+      "unrecorded_prior_writes_excluded": false
+    }
+  },
+  "published_cooked_test_fixture": {
+    "path": "DinkRemasterUE/Plugins/DinkParity/Source/DinkProbe/Private/DinkCookedReleasedPictureTests.cpp",
+    "sha256": "643374a47fc039dec704ef4c85e37ccb7a3120f550966ab2f6ad8ec50f5a6a7d",
+    "built_tested_source": "b4b9e1d343198ecacfbe562f1b7fe88e1f375698",
+    "byte_exact": true,
+    "production_unchanged": true,
+    "client_context_only_excludes_editor": true,
+    "portable_tests_pass": 605,
+    "portable_seconds": 10.958,
+    "metadata_pass": true
   }
 }
