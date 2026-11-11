@@ -545,7 +545,14 @@ bool UDinkGameplay::PrepareHardnessFit(const FDinkSprite& S,uint8 Code,bool bPre
         if(!Family->PrepareCollisionFitReleaseCandidate(S.Origin,Snapshot,Candidate,Error))return false;
         Fits.Releases.Add(MoveTemp(Candidate));Fits.ReleaseStates.Add(Snapshot);Replaced=true;return true;
     }
-    if(!Family->PrepareCollisionFit(S.Origin,Snapshot,Candidate,Error))return false;
+    if(!Family->PrepareCollisionFit(S.Origin,Snapshot,Candidate,Error))
+    {
+        Error+=FString::Printf(TEXT(" [origin=%s screen=%d actor=%s script=%s handle=%d prebirth=%d picture=%d/%d active=%d animation=%d brain=%d nohit=%d]"),
+            *S.Origin.ToString(),Snapshot.CurrentScreen,*GetNameSafe(Actor),*Snapshot.ScriptName.ToString(),Snapshot.RuntimeHandle,
+            Snapshot.bPrebirth,Snapshot.DisplayedSequence,Snapshot.DisplayedFrame,Snapshot.bActive,
+            Snapshot.AnimationSequence,Snapshot.Brain,Snapshot.NoHit);
+        return false;
+    }
     auto Body=FDinkRegisteredHardnessOwner::MakeFittedOwner(Candidate,*Family,Code,Error);
     if(!Body)return false;
     // Producer guarantees Y-major, unique cell centres. Preserve its exact mask;

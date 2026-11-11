@@ -1,3 +1,9 @@
+## Saved barrel readback on 642e1d4
+
+Readback Candidate2 run `19c1dda0bf444873a1e7ba48878eba06` reached both fitted bodies in the unchanged Stage40 packages. Both screens failed tight XY bounds, immediate prop walkthrough and intact reload. SCR_209 also failed its food-drop assertion. The original report remains under `DinkQA/RuntimeHardnessCandidateReadback/Candidate2/Runs`.
+
+The pending source diff computes fitted bounds from the owned cooked triangle vertices. The acceptance fixture rebuilds component query filters after the prop body exchange and restores world-state snapshots before narrative snapshots, following save coordinator order. Failure messages now report the fit eligibility inputs and observed drop coordinates and sequence. The SCR_209 drop cause remains unverified. A new build and saved-map readback are pending.
+
 ## Stage40 saved pair and initial publication gate
 
 Stage40 saved the two fixed-solid meshes and the candidate world in run eae015e13c874c15a40c4c90251867f6. The fresh read-only Candidate031 and Candidate209 reload tests reached fitted visual publication, then refused because the initial placement path held no loading gate. The failures and three original package hashes are preserved. The initial physical and visual publication now holds the loading gate and restores its previous state after success. Refusal still invalidates the projection and keeps movement blocked. The actual saved-map regression now checks that successful initial admission releases both the hardness gate and controller movement, along with the existing body and visual proof. Native revalidation and GPU walkthrough are pending.

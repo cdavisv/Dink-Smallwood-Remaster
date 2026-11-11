@@ -72,8 +72,17 @@ public:
             FBox ExpectedBounds(ForceInit);for(const auto& V:Geometry.Vertices)ExpectedBounds+=Family->GetComponentTransform().TransformPosition(FVector(V));
             Test->TestTrue(TEXT("registered fitted XY extent matches ACTUAL cooked geometry, not oversized original hardbox"),
                 FMath::IsNearlyEqual(Body->Bounds.BoxExtent.X*2,ExpectedBounds.GetSize().X,.05)&&FMath::IsNearlyEqual(Body->Bounds.BoxExtent.Y*2,ExpectedBounds.GetSize().Y,.05)&&ExpectedBounds.GetSize().X<90&&ExpectedBounds.GetSize().Y<90);
-            FCollisionQueryParams Query(SCENE_QUERY_STAT(DinkFittedRealCardinal),true);
-            for(TActorIterator<AActor> It(W);It;++It){TArray<UPrimitiveComponent*> All;It->GetComponents(All);for(auto* C:All)if(C!=Body)Query.AddIgnoredComponent(C);}
+            auto OnlyBody=[&](UPrimitiveComponent* Selected)
+            {
+                FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkFittedRealCardinal),true);
+                for(TActorIterator<AActor> It(W);It;++It)
+                {
+                    TArray<UPrimitiveComponent*> All;It->GetComponents(All);
+                    for(auto* C:All)if(C!=Selected)Params.AddIgnoredComponent(C);
+                }
+                return Params;
+            };
+            const auto Query=OnlyBody(Body);
             const FCollisionShape Capsule=FCollisionShape::MakeCapsule(Hero->GetCapsuleComponent()->GetScaledCapsuleRadius(),Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight());
             for(const FVector V:{FVector(1,0,0),FVector(-1,0,0),FVector(0,1,0),FVector(0,-1,0)})
             {
@@ -92,7 +101,7 @@ public:
             }
             Test->TestTrue(TEXT("actual old hardbox contains a capsule-sized gap outside real mesh"),GapFound);
             if(GapFound)Test->TestFalse(TEXT("real-world Pawn capsule fits gap inside OLD hardbox outside actual fitted surface"),W->OverlapBlockingTestByChannel(Gap,FQuat::Identity,ECC_Pawn,Capsule,Query));
-            Intact=Story->SaveStateToJson();if(!Test->TestFalse(TEXT("actual intact save is nonempty"),Intact.IsEmpty()))return true;
+            Intact.Capture(*Story);if(!Test->TestFalse(TEXT("actual intact save is nonempty"),Intact.Narrative.IsEmpty()))return true;
             const int32 Before=G->GetHard(Screen,int32(P->X),int32(P->Y-5));
             Test->TestEqual(TEXT("actual fitted body interior owns original code"),Before,100+Index);
             FDinkScriptInstance Caller;Caller.Id=9100;Caller.Sprite=H;
@@ -100,8 +109,10 @@ public:
             Cmd(FString::Printf(TEXT("sp_hard %d 1"),H));
             Test->TestEqual(TEXT("sp_hard is delayed before draw"),G->GetHard(Screen,int32(P->X),int32(P->Y-5)),Before);
             Cmd(FString::Printf(TEXT("sp_hard %d 0"),H));
-            G->SetPlacementProp(Id,1);Test->TestNotNull(TEXT("propwalkthrough keeps inert exact interaction body"),G->FindHardnessFitPrimitive(*D->FindSprite(H)));
-            Test->TestFalse(TEXT("accepted prop immediately disables world blocking"),W->SweepSingleByChannel(High,Ground+FVector(-200,0,90),Ground+FVector(0,0,90),FQuat::Identity,ECC_Pawn,Capsule,Query));
+            G->SetPlacementProp(Id,1);
+            auto* InertBody=G->FindHardnessFitPrimitive(*D->FindSprite(H));
+            if(!Test->TestNotNull(TEXT("propwalkthrough keeps inert exact interaction body"),InertBody))return true;
+            Test->TestFalse(TEXT("accepted prop immediately disables world blocking"),W->SweepSingleByChannel(High,Ground+FVector(-200,0,90),Ground+FVector(0,0,90),FQuat::Identity,ECC_Pawn,Capsule,OnlyBody(InertBody)));
             G->SetPlacementProp(Id,0);
             // Use the real production hit resolver, not StartProcedure(barrel,hit).
             Hero->SetActorLocation(Ground+FVector(-75,0,Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight()+2),false,nullptr,ETeleportType::TeleportPhysics);
@@ -112,13 +123,16 @@ public:
         if(Phase==2)
         {
             Test->TestEqual(TEXT("actual hit persisted original editor_type3"),int32(Story->GetWorldState()->GetOverrideType(Id)),3);
-            bool Drop=false;
+            bool Drop=false;FString ObservedDrops;
             for(const auto& Pair:D->GetSprites())if(const auto* S=&Pair.Value;S->Screen==Screen&&S->bActive&&S->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
+            {
                 Drop|=S->X==P->X&&S->Y==P->Y&&S->GetProp(TEXT("pseq"))==(Screen==31?53:421);
-            Test->TestTrue(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates"),Drop);
+                ObservedDrops+=FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),double(S->X),double(S->Y),S->GetProp(TEXT("pseq")));
+            }
+            Test->TestTrue(FString::Printf(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates (expected %.9g,%.9g, observed%s)"),double(P->X),double(P->Y),*ObservedDrops),Drop);
             const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
             Test->TestTrue(TEXT("broken actual barrel has no fitted body"),!S||!G->FindHardnessFitPrimitive(*S));
-            Broken=Story->SaveStateToJson();
+            Broken.Capture(*Story);
             if(!Test->TestTrue(TEXT("ordinary leave enters other real screen"),Greybox->GotoScreen(Screen==31?209:31)))return true;
             Phase=3;Until=Now+.5;return false;
         }
@@ -136,7 +150,7 @@ public:
             Test->TestFalse(TEXT("persisted broken state hides intact family"),IntactVisible);
             Test->TestTrue(TEXT("persisted broken state exposes original card (rendered frame acceptance separate)"),CardExposed);
             Test->TestTrue(TEXT("persistent editor picture is actual173/6"),G->EditorHardnessPicture(Id,true,-1)==173&&G->EditorHardnessPicture(Id,false,-1)==6);
-            if(!Test->TestTrue(TEXT("actual same-screen broken save load"),Story->LoadStateFromJson(Broken)))return true;
+            if(!Test->TestTrue(TEXT("actual same-screen broken save load"),Broken.Restore(*Story)))return true;
             Phase=5;Until=Now+.5;return false;
         }
         if(Phase==5)
@@ -147,7 +161,7 @@ public:
             {LoadedCardExposed|=It->Card&&It->Card->IsVisible()&&!It->Card->bHiddenInGame&&!It->IsHidden();TArray<UStaticMeshComponent*> Cs;It->GetComponents(Cs);for(auto* C:Cs)if(C->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag))LoadedIntactVisible|=C->IsVisible()&&!C->bHiddenInGame;}
             Test->TestFalse(TEXT("broken SAVE LOAD keeps intact family hidden"),LoadedIntactVisible);
             Test->TestTrue(TEXT("broken SAVE LOAD exposes original card and preserves173/6 (rendered frame separate)"),LoadedCardExposed&&G->EditorHardnessPicture(Id,true,-1)==173&&G->EditorHardnessPicture(Id,false,-1)==6);
-            if(!Test->TestTrue(TEXT("actual same-screen intact save load"),Story->LoadStateFromJson(Intact)))return true;
+            if(!Test->TestTrue(TEXT("actual same-screen intact save load"),Intact.Restore(*Story)))return true;
             Phase=6;Until=Now+.5;return false;
         }
         const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
@@ -155,7 +169,31 @@ public:
         return true;
     }
 private:
-    FAutomationTestBase* Test;int32 Screen,Index,Phase=0;double Began,Until=0;FVector Ground;FString Intact,Broken;
+    FAutomationTestBase* Test;int32 Screen,Index,Phase=0;double Began,Until=0;FVector Ground;struct FSnapshot
+    {
+        FString Narrative;
+        TArray<FDinkWorldOverride> Overrides;
+        TArray<FDinkScreenExitTime> ExitTimes;
+        int64 GameTimeMs=0;
+
+        void Capture(UDinkStorySubsystem& Story)
+        {
+            const auto* World=Story.GetWorldState();
+            Overrides=World->ExportOverrides();
+            ExitTimes=World->ExportScreenExitTimes();
+            GameTimeMs=World->GetGameTimeMs();
+            Narrative=Story.SaveStateToJson();
+        }
+
+        bool Restore(UDinkStorySubsystem& Story) const
+        {
+            // The save coordinator restores world overrides before the narrative
+            // recreates the screen's original placements.
+            Story.GetWorldState()->ImportState(Overrides,ExitTimes,GameTimeMs);
+            return Story.LoadStateFromJson(Narrative);
+        }
+    };
+    FSnapshot Intact,Broken;
 };
 
 IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkRealFittedBarrels,"Dink.Gameplay.FittedBarrelAcceptance",DINK_TEST_FLAGS)
