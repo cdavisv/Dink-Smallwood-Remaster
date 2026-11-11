@@ -214,7 +214,7 @@ public:
     {
         if (FPlatformTime::Seconds() - Began > 600)
         {
-            Test->AddError(TEXT("whole rollout runtime screen traversal timed out"));
+            Test->AddError(FString::Printf(TEXT("whole rollout runtime screen traversal timed out; initialReady=%d %s"),int32(InitialReady),*StartupState));
             return true;
         }
         UWorld* World = GEditor ? GEditor->PlayWorld.Get() : nullptr;
@@ -237,6 +237,20 @@ public:
         const int32 Screen = Screens[ScreenIndex];
         if (!Entered)
         {
+            if (!InitialReady)
+            {
+                const auto* InitialScreen = Greybox->GetCurrentScreen();
+                const auto* PhysicalScreen = Greybox->FindScreenAt(Hero->GetActorLocation());
+                const int32 Remaining = FAssetCompilingManager::Get().GetNumRemainingAssets();
+                StartupState = FString::Printf(TEXT("begun=%d pawnBegun=%d capsuleRegistered=%d paused=%d remainingAssets=%d worldTime=%.9g pendingNewGame=%d director=%d greybox=%d physical=%d loading=%d"),int32(World->HasBegunPlay()),int32(Hero->HasActorBegunPlay()),int32(Hero->GetCapsuleComponent()->IsRegistered()),int32(World->IsPaused()),Remaining,Now,int32(Story->bNewGamePending),Director->GetDink().Screen,InitialScreen?InitialScreen->ScreenNumber:-1,PhysicalScreen?PhysicalScreen->ScreenNumber:-1,int32(Gameplay->IsHardnessLoading()));
+                if (!World->HasBegunPlay() || !Hero->HasActorBegunPlay() || !Hero->GetCapsuleComponent()->IsRegistered() || World->IsPaused() || Remaining != 0 || Story->bNewGamePending || !InitialScreen || PhysicalScreen != InitialScreen || InitialScreen->ScreenNumber != Director->GetDink().Screen || Gameplay->IsHardnessLoading() || (Gameplay->RequiresOriginalHardnessScreen(InitialScreen->ScreenNumber) && !Gameplay->UsesOriginalHardnessProjection(InitialScreen->ScreenNumber)))
+                { InitialReadyTime = -1;return false; }
+                if (InitialReadyTime < 0 || InitialHero.Get() != Hero || InitialController.Get() != PC)
+                { InitialReadyTime = Now;InitialHero = Hero;InitialController = PC;return false; }
+                if (Now <= InitialReadyTime) return false;
+                InitialReady = true;
+                Test->AddInfo(TEXT("ROLLOUT_INITIAL_READY ")+StartupState);
+            }
             Story->bNewGamePending = false;
             Story->bInstantMode = true;
             Test->AddInfo(FString::Printf(TEXT("ROLLOUT_BEFORE_GOTO requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
@@ -430,6 +444,11 @@ private:
     TArray<int32> Screens;
     TArray<TSharedPtr<FJsonValue>> Rows;
     double Began;
+    FString StartupState;
+    TWeakObjectPtr<ADinkGreyboxCharacter> InitialHero;
+    TWeakObjectPtr<APlayerController> InitialController;
+    double InitialReadyTime = -1;
+    bool InitialReady = false;
     double EntryDeadline = 0;
     double Until = 0;
     int32 ScreenIndex = 0;
