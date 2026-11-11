@@ -407,6 +407,36 @@ public:
                         GapCell = true;
                     }
                 }
+            if (!OwnedCell)
+            {
+                auto Diagnostic = MakeShared<FJsonObject>();
+                Diagnostic->SetStringField(TEXT("origin"),Rule.Origin.ToString());
+                Diagnostic->SetStringField(TEXT("old_hardbox"),FString::Printf(TEXT("%d,%d,%d,%d"),Left,Top,Right,Bottom));
+                Diagnostic->SetStringField(TEXT("world_bounds"),Expected.ToString());
+                Diagnostic->SetStringField(TEXT("family_transform"),Family->GetComponentTransform().ToString());
+                TArray<FVector2D> Polygon;TArray<FIntPoint> Cells;double Low,High,Boundary;
+                const bool Built = DinkFamilyCollisionFit::BuildFootprint(Geometry,Family->GetComponentTransform(),Volume->Corners,Polygon,Cells,Low,High,Boundary,Error);
+                Diagnostic->SetBoolField(TEXT("actual_footprint_built"),Built);
+                Diagnostic->SetStringField(TEXT("footprint_error"),Error);
+                TArray<TSharedPtr<FJsonValue>> CellRows,Stamps;
+                for (const auto& Cell : Cells)
+                {
+                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("x"),Cell.X);Row->SetNumberField(TEXT("y"),Cell.Y);
+                    Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
+                }
+                for (int32 Owner : OriginalOrder) if (const auto* Other = Gameplay->GetData().FindPlacement(FDinkOriginId(Screen,Owner)))
+                {
+                    FDinkSprite Sprite;Sprite.X=Other->X;Sprite.Y=Other->Y;Sprite.Props.Add(TEXT("pseq"),Other->Seq);Sprite.Props.Add(TEXT("pframe"),Other->Frame);
+                    int32 L,T,R,B;if(!Gameplay->GetHardbox(Sprite,L,T,R,B))continue;
+                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("owner"),Owner);Row->SetNumberField(TEXT("seq"),Other->Seq);Row->SetNumberField(TEXT("frame"),Other->Frame);
+                    Row->SetStringField(TEXT("hardbox"),FString::Printf(TEXT("%d,%d,%d,%d"),L,T,R,B));Stamps.Add(MakeShared<FJsonValueObject>(Row));
+                }
+                Diagnostic->SetArrayField(TEXT("actual_fitted_cells"),CellRows);Diagnostic->SetArrayField(TEXT("ordered_source_stamps"),Stamps);
+                FString Text;FJsonSerializer::Serialize(Diagnostic,TJsonWriterFactory<>::Create(&Text));
+                const FString Path=FPaths::ProjectSavedDir()/TEXT("Automation/BarrelLogicalOwnerDiagnostic.json");
+                if(!FFileHelper::SaveStringToFile(Text,*Path))Test->AddError(TEXT("cannot save actual logical-owner diagnostic"));
+                Test->AddInfo(TEXT("actual logical-owner failure diagnostic: ")+Path);
+            }
             if (!Test->TestTrue(TEXT("fitted logical footprint owns an actual original hardbox cell"), OwnedCell) ||
                 !Test->TestTrue(TEXT("original hardbox has a capsule-sized released gap"), GapCell)) return true;
             for (const FVector Direction : {FVector(1,0,0), FVector(-1,0,0), FVector(0,1,0), FVector(0,-1,0)})
