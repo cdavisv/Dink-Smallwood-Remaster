@@ -1,3 +1,9 @@
+## Current Brain5 proof checkpoint — 11 Nov 2026
+
+Docs-only on `fix/package-dynamic-sprite-cook` in `/home/artist/Work/DinkReleasedPicturePackagingFix`, parentb31ac04; runtime code remains byte-exactbea. See `Docs/Verification/PhotorealBarrelRolloutV3/BRAIN5_CURRENT_VERIFICATION.md` plus compact local evidence hashes. Native six48412 passed5clean+1offline HTTP warning; All85 native32553 passed28.919s/all85 assertions, while wrapper1 wrong-path failure is preserved with Root read-only correction/no rerun. Third RHI door/ONEF/1736/drop/type3/normal loads/freeW/Room1 native/final framed intact proofs passed, with zero-row background observer supplement and no F retry. Off-camera reentry PNG/oversized old2D debris remain visual/final-art gaps.
+
+Full247 owning80944 is PENDING. Fresh normal generation, real cook/package/runtime, native3D debris and final art remain pending. No UE/build/cache work or push during this docs update; PR66 stays draft/unmerged. Older pending/source-only entries below are historical checkpoints, superseded only by explicitly listed current evidence.
+
 ## Brain5 public delivery integration — 11 Nov 2026
 
 In `/home/artist/Work/DinkReleasedPicturePackagingFix`, branch `fix/package-dynamic-sprite-cook`, integrated reviewed author commits8c08fd0/28c02f3/341f6aa as414c6f9/a6c0e50/e4865ac atop a2ed5d7. The HANDOFF-only conflict preserves both the Brain5 history and existing identity-axis rendered-failure/fix history. Changed production CPP/header and native fixture bytes match owned runtime sourcebea91fd3566ad793149ba944f5e65dac4993344e exactly; packaging defaults and other runtime guards are unchanged.
