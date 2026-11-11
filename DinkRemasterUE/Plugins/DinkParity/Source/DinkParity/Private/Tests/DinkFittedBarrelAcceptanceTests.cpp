@@ -118,11 +118,7 @@ public:
             Hero->SetActorLocation(Ground+FVector(-75,0,Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight()+2),false,nullptr,ETeleportType::TeleportPhysics);
             Hero->SetActorRotation(FRotator::ZeroRotator);G->SyncDinkFacingFromActor();
             G->RunThroughTagList(1);G->FlushPendingHits();Story->RunUntilIdle();
-            Phase=2;Until=Now+.5;return false;
-        }
-        if(Phase==2)
-        {
-            Test->TestEqual(TEXT("actual hit persisted original editor_type3"),int32(Story->GetWorldState()->GetOverrideType(Id)),3);
+            // Verify creation in the hit turn before touch/brain ticks can consume the food.
             bool Drop=false;FString ObservedDrops;
             for(const auto& Pair:D->GetSprites())if(const auto* S=&Pair.Value;S->Screen==Screen&&S->bActive&&S->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
             {
@@ -130,6 +126,11 @@ public:
                 ObservedDrops+=FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),double(S->X),double(S->Y),S->GetProp(TEXT("pseq")));
             }
             Test->TestTrue(FString::Printf(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates (expected %.9g,%.9g, observed%s)"),double(P->X),double(P->Y),*ObservedDrops),Drop);
+            Phase=2;Until=Now+.5;return false;
+        }
+        if(Phase==2)
+        {
+            Test->TestEqual(TEXT("actual hit persisted original editor_type3"),int32(Story->GetWorldState()->GetOverrideType(Id)),3);
             const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
             Test->TestTrue(TEXT("broken actual barrel has no fitted body"),!S||!G->FindHardnessFitPrimitive(*S));
             Broken.Capture(*Story);
@@ -166,6 +167,17 @@ public:
         }
         const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
         Test->TestTrue(TEXT("real save/load re-admits intact barrel and releases movement gate"),S&&G->FindHardnessFitPrimitive(*S)&&!PC->IsMoveInputIgnored());
+        bool FamilyVisible=false;
+        auto* RestoredActor=S?Cast<ADinkPlaceholderActor>(S->Actor.Get()):nullptr;
+        if(RestoredActor)
+        {
+            TArray<UStaticMeshComponent*> Meshes;RestoredActor->GetComponents(Meshes);
+            for(auto* Mesh:Meshes)
+                if(Mesh->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag))
+                    FamilyVisible|=Mesh->IsVisible()&&!Mesh->bHiddenInGame;
+        }
+        Test->TestTrue(TEXT("intact save restores family visibility and hides broken card"),
+            RestoredActor&&RestoredActor->Card&&RestoredActor->Card->bHiddenInGame&&FamilyVisible);
         return true;
     }
 private:
