@@ -532,7 +532,7 @@ private:
             else
             {
                 int32 Seq=0,Frame=0;G->EffectiveHardnessPicture(*P,Seq,Frame);
-                const auto Bounds=DinkHardness::DisplayedBounds(Seq,Frame,FMath::RoundToInt32(P->X),FMath::RoundToInt32(P->Y),[&](int S,int F)->std::optional<DinkHardness::Rect>{
+                const auto Bounds=DinkHardness::DisplayedBounds(Seq,Frame,P->X,P->Y,[&](int S,int F)->std::optional<DinkHardness::Rect>{
                     const auto* Info=Data.FindFrame(S,F);if(!Info)return std::nullopt;
                     return DinkHardness::Rect{Info->Left,Info->Top,Info->Right,Info->Bottom};});
                 if(!Test->TestTrue(TEXT("nonfit effective displayed source picture exists"),Bounds.has_value()))return false;
