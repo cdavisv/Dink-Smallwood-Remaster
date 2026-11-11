@@ -1,0 +1,14 @@
+{
+  "input_sha256": "5a61932b0fbb1700a92766af1d97e1cd8293019bdfd801bb55c0ffcbce78afad",
+  "output_sha256": "42ff822785784d531dbbc0730055f8b0281feacb83792364c43dace43b0a7282",
+  "target_materials": [
+    "MI_Shared_OakEndgrain2m",
+    "MI_Shared_OakLonggrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "target_objects": 28,
+  "private_intact_comparison_removed": true,
+  "unused_private_data_purged": true,
+  "geometry_material_graph_mutations": false,
+  "native_executed": false
+}
