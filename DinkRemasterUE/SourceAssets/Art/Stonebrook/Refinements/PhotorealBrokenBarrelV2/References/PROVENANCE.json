@@ -1,0 +1,23 @@
+{
+  "archive": "/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/graphics/bonuses/barrels/dir.ff",
+  "archive_sha256": "24b0cc251377b4cdf276f1f8a9aed5c814313c4122f8614a82f2bfd4463b7642",
+  "images": [
+    {
+      "name": "barel-01.bmp",
+      "sha256": "60367e6fde38abf421c051ac80c3846cfb74a09499e21b87dc0a956aa55792ff",
+      "size": [
+        56,
+        55
+      ]
+    },
+    {
+      "name": "barel-06.bmp",
+      "sha256": "498c5c5ae2e451f4b954bf22e3472fe97bc268e8a8a73aedc5e6b00a40e6c336",
+      "size": [
+        84,
+        64
+      ]
+    }
+  ],
+  "note": "Original173/1 intact and173/6 persistent broken guide;174palette variants were inventoried but are not the broken state."
+}

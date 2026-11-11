@@ -1,0 +1,156 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/PhotorealBrokenBarrelCandidateV2/SelectedV2R2/PhotorealBrokenBarrelV2_Source.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 2,
+    "warnings": 5
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "30 mesh objects are outside any asset collection and will not be exported: REVIEW_ONLY_Floor, Accepted_Intact_Comparison, Broken_coopered_stave_08, Broken_coopered_stave_09, Broken_coopered_stave_10, Broken_coopered_stave_11, Broken_coopered_stave_12, Broken_coopered_stave_13"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SM_Barrel_Broken_01",
+      "class": "prop",
+      "collection": "SM_Barrel_Broken_01",
+      "tris_per_lod": {
+        "LOD0": 9624
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -52.166,
+          -63.717,
+          0.1
+        ],
+        "blender_max_cm": [
+          51.325,
+          57.75,
+          18.963
+        ],
+        "size_cm": [
+          103.491,
+          121.467,
+          18.863
+        ],
+        "unreal_min_cm": [
+          -52.166,
+          -57.75,
+          0.1
+        ],
+        "unreal_max_cm": [
+          51.325,
+          63.717,
+          18.963
+        ]
+      },
+      "errors": 2,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "mesh data 'SM_Barrel_Oak_01_PhotorealSource.021' differs from object name 'SM_Barrel_Broken_01'",
+          "object": "SM_Barrel_Broken_01"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "LOD0 has 9624 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_Barrel_Broken_01",
+          "data": {
+            "tris": 9624,
+            "target": 6000
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "UV0 islands overlap (1266.9 % of UV area, 1129 triangles); class prop needs unique UVs",
+          "object": "SM_Barrel_Broken_01",
+          "data": {
+            "overlap_ratio": 12.66892
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "1092 triangles have UVs outside 0-1",
+          "object": "SM_Barrel_Broken_01"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Barrel_Broken_01"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "image 'T_Shared_OakLonggrain2m_N_GL' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "image 'T_Shared_OakEndgrain2m_N_GL' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "COLLISION_MISSING",
+          "severity": "error",
+          "asset": "SM_Barrel_Broken_01",
+          "message": "class prop needs UCX_ collision (run make_lods.py --collision)"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "validation_scope": "In-memory joined surrogate of editable parts; NOT exported or saved",
+  "source_custom_normals": {
+    "Broken_coopered_stave_08": false,
+    "Broken_coopered_stave_09": false,
+    "Broken_coopered_stave_10": false,
+    "Broken_coopered_stave_11": false,
+    "Broken_coopered_stave_12": false,
+    "Broken_coopered_stave_13": false,
+    "Broken_coopered_stave_14": false,
+    "Broken_coopered_stave_15": false,
+    "Broken_coopered_stave_16": false,
+    "Broken_coopered_stave_17": false,
+    "Broken_coopered_stave_00": false,
+    "Broken_coopered_stave_01": false,
+    "Broken_coopered_stave_02": false,
+    "Broken_coopered_stave_03": false,
+    "Broken_coopered_stave_04": false,
+    "Broken_coopered_stave_05": false,
+    "Broken_coopered_stave_06": false,
+    "Broken_coopered_stave_07": false,
+    "Opened_forged_hoop_00": false,
+    "Opened_forged_hoop_01": false,
+    "Opened_forged_hoop_02": false,
+    "Opened_forged_hoop_03": false,
+    "Scattered_head_board_00": false,
+    "Scattered_head_board_01": false,
+    "Scattered_head_board_02": false,
+    "Scattered_head_board_03": false,
+    "Scattered_head_board_04": false,
+    "Scattered_head_board_05": false
+  },
+  "collision_qualification": "No UCX created: original broken gameplay is nonblocking; candidate does not change runtime physics. Missing prop collision guide finding remains explicit, not waived."
+}
