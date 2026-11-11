@@ -14,7 +14,7 @@ class CanonicalSurfaceTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.tmp=tempfile.TemporaryDirectory(prefix='dink-surface-');cls.exe=Path(cls.tmp.name)/'surface'
-  subprocess.run(['g++','-std=c++17','-Wall','-Wextra','-Werror','-fno-exceptions','-fno-rtti','-I',str(P/'Plugins/DinkCore/Source/DinkCore/Public'),str(P/'Scripts/tests/native/canonical_surface.cpp'),'-o',str(cls.exe)],check=True,capture_output=True)
+  subprocess.run(['g++','-std=c++17','-Wall','-Wextra','-Wshadow','-Werror','-fno-exceptions','-fno-rtti','-I',str(P/'Plugins/DinkCore/Source/DinkCore/Public'),str(P/'Scripts/tests/native/canonical_surface.cpp'),'-o',str(cls.exe)],check=True,capture_output=True)
  @classmethod
  def tearDownClass(cls):cls.tmp.cleanup()
  def encode(self,rows,cull=True):return subprocess.run([str(self.exe)]+([] if cull else ['no-cull']),input=b''.join(rows),check=True,capture_output=True).stdout
