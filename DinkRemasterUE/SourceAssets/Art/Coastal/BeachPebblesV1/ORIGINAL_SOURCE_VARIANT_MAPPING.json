@@ -1,0 +1,3957 @@
+{
+  "scope": "Original raw source verified against historical281origin inventory; not current runtime binding approval",
+  "coverage_source_sha256": "30c62e8f56d87572bd2380070777207c522c7d7a0e5e22f8d7250caca855dde8",
+  "raw_sources": {
+    "/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/dink.dat": "7ce0106fab423b52f06c26858a89679a94ede52153d9b4378b3fd31bcc9dba40",
+    "/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/map.dat": "39438580a6d92b962254fa3c41e24f39fbb4856543f255781ba0c50af15af9d3"
+  },
+  "mapped": 281,
+  "unresolved": 0,
+  "historical_background_frame_disagreements": [],
+  "frame_counts": {
+    "11": 49,
+    "10": 44,
+    "9": 26,
+    "5": 63,
+    "6": 41,
+    "8": 22,
+    "7": 36
+  },
+  "rows": [
+    {
+      "origin_id": "S257_P10",
+      "screen": 257,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        59,
+        250
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S257_P11",
+      "screen": 257,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        79,
+        62
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S257_P12",
+      "screen": 257,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        178,
+        294
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S257_P13",
+      "screen": 257,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        134,
+        119
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S320_P16",
+      "screen": 320,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        424,
+        364
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P02",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        461,
+        203
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P04",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        217,
+        369
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P05",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        318,
+        299
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P06",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        576,
+        173
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P07",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        601,
+        187
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S351_P08",
+      "screen": 351,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        476,
+        372
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P01",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        272,
+        201
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P02",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        341,
+        129
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P03",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        156,
+        224
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P04",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        215,
+        110
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P05",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        226,
+        123
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P07",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        201,
+        170
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P08",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        55,
+        193
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P09",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        400,
+        63
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P10",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        446,
+        30
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S352_P11",
+      "screen": 352,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        448,
+        33
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S385_P05",
+      "screen": 385,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        90,
+        216
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S388_P01",
+      "screen": 388,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        548,
+        243
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S388_P02",
+      "screen": 388,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        462,
+        187
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S417_P09",
+      "screen": 417,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        118,
+        286
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S420_P01",
+      "screen": 420,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        531,
+        222
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S420_P02",
+      "screen": 420,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        457,
+        296
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S420_P03",
+      "screen": 420,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        524,
+        67
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S420_P04",
+      "screen": 420,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        473,
+        130
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S449_P09",
+      "screen": 449,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        569,
+        376
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S449_P10",
+      "screen": 449,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        219,
+        94
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S452_P01",
+      "screen": 452,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        458,
+        255
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S452_P04",
+      "screen": 452,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        446,
+        67
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S452_P05",
+      "screen": 452,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        422,
+        117
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S452_P07",
+      "screen": 452,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        438,
+        204
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S481_P01",
+      "screen": 481,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        240,
+        247
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S481_P03",
+      "screen": 481,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        403,
+        256
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S481_P04",
+      "screen": 481,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        320,
+        190
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S481_P08",
+      "screen": 481,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        317,
+        315
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S482_P01",
+      "screen": 482,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        133,
+        182
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S482_P03",
+      "screen": 482,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        423,
+        316
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S482_P04",
+      "screen": 482,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        183,
+        27
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P05",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        92,
+        202
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P06",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        206,
+        148
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P07",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        362,
+        48
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P08",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        531,
+        119
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P09",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        531,
+        228
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S483_P10",
+      "screen": 483,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        372,
+        248
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S484_P01",
+      "screen": 484,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        72,
+        97
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S484_P03",
+      "screen": 484,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        362,
+        180
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S484_P05",
+      "screen": 484,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        218,
+        53
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S484_P06",
+      "screen": 484,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        122,
+        159
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S484_P07",
+      "screen": 484,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        262,
+        117
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S487_P01",
+      "screen": 487,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        266,
+        282
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S487_P02",
+      "screen": 487,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        515,
+        373
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S487_P03",
+      "screen": 487,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        595,
+        173
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S488_P06",
+      "screen": 488,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        90,
+        263
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S488_P07",
+      "screen": 488,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        144,
+        353
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S488_P08",
+      "screen": 488,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        37,
+        381
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S488_P09",
+      "screen": 488,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        268,
+        61
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S518_P08",
+      "screen": 518,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        409,
+        379
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S519_P04",
+      "screen": 519,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        394,
+        320
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S519_P05",
+      "screen": 519,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        534,
+        74
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S520_P01",
+      "screen": 520,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        88,
+        200
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S520_P05",
+      "screen": 520,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        200,
+        264
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S550_P03",
+      "screen": 550,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        496,
+        74
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S550_P04",
+      "screen": 550,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        410,
+        148
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S550_P05",
+      "screen": 550,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        266,
+        364
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S551_P05",
+      "screen": 551,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        104,
+        338
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S551_P09",
+      "screen": 551,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        419,
+        114
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S582_P04",
+      "screen": 582,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        489,
+        380
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S582_P05",
+      "screen": 582,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        598,
+        295
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S582_P06",
+      "screen": 582,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        418,
+        295
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S582_P08",
+      "screen": 582,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        440,
+        113
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P01",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        53,
+        87
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P02",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        71,
+        117
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P04",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        24,
+        381
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P05",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        318,
+        333
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P06",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        136,
+        201
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S583_P07",
+      "screen": 583,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        543,
+        285
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P01",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        446,
+        140
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P03",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        556,
+        38
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P04",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        490,
+        250
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P06",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        506,
+        350
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P09",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        474,
+        351
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S615_P01",
+      "screen": 615,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        122,
+        100
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S615_P05",
+      "screen": 615,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        365,
+        34
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S615_P06",
+      "screen": 615,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        259,
+        150
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S615_P07",
+      "screen": 615,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        174,
+        244
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S646_P03",
+      "screen": 646,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        503,
+        284
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S646_P04",
+      "screen": 646,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        416,
+        82
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S646_P05",
+      "screen": 646,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        580,
+        231
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S646_P07",
+      "screen": 646,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        329,
+        371
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S647_P05",
+      "screen": 647,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        54,
+        17
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S647_P06",
+      "screen": 647,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        87,
+        129
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S647_P07",
+      "screen": 647,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        188,
+        232
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P01",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        414,
+        109
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P02",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        354,
+        295
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P03",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        606,
+        91
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P04",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        596,
+        222
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P05",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        302,
+        34
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P06",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        498,
+        377
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S678_P09",
+      "screen": 678,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        474,
+        351
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S679_P02",
+      "screen": 679,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        116,
+        303
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S699_P04",
+      "screen": 699,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        413,
+        124
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S699_P05",
+      "screen": 699,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        380,
+        230
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S699_P06",
+      "screen": 699,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        341,
+        292
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S699_P07",
+      "screen": 699,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        224,
+        264
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S699_P08",
+      "screen": 699,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        274,
+        176
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P03",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        119,
+        90
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P04",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        159,
+        249
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P05",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        398,
+        382
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P06",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        550,
+        315
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P07",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        448,
+        70
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P08",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        314,
+        126
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P09",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        68,
+        371
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S701_P12",
+      "screen": 701,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        489,
+        366
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P01",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        341,
+        120
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P02",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        479,
+        179
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P09",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        502,
+        314
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P10",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        563,
+        227
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P11",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        500,
+        49
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P12",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        503,
+        137
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P13",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        339,
+        325
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S711_P01",
+      "screen": 711,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        189,
+        329
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S711_P04",
+      "screen": 711,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        94,
+        79
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S711_P05",
+      "screen": 711,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        70,
+        290
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S711_P06",
+      "screen": 711,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        105,
+        373
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S720_P02",
+      "screen": 720,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        310,
+        337
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S725_P06",
+      "screen": 725,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        513,
+        244
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P03",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        198,
+        147
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P06",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        288,
+        166
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P07",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        200,
+        227
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P08",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        83,
+        223
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P09",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        287,
+        144
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P10",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        292,
+        232
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P11",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        579,
+        207
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P12",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        567,
+        140
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P13",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        295,
+        196
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P14",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        201,
+        196
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S727_P16",
+      "screen": 727,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        123,
+        34
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S728_P07",
+      "screen": 728,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        362,
+        123
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S728_P15",
+      "screen": 728,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        254,
+        239
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S728_P16",
+      "screen": 728,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        140,
+        211
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S728_P17",
+      "screen": 728,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        85,
+        243
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P02",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        248,
+        249
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P03",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        412,
+        379
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P04",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        585,
+        279
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P05",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        479,
+        300
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P06",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        572,
+        341
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P07",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        72,
+        281
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S729_P08",
+      "screen": 729,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        179,
+        352
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S730_P01",
+      "screen": 730,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        474,
+        282
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S730_P02",
+      "screen": 730,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        184,
+        350
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S731_P06",
+      "screen": 731,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        210,
+        216
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S731_P07",
+      "screen": 731,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        115,
+        335
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S731_P08",
+      "screen": 731,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        556,
+        196
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S731_P09",
+      "screen": 731,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        350,
+        324
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P07",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        78,
+        202
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P08",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        174,
+        298
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P09",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        115,
+        326
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P10",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        512,
+        112
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P11",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        515,
+        101
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P12",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        507,
+        129
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P13",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        342,
+        306
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P14",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        441,
+        250
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P15",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        318,
+        169
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P16",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        541,
+        277
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S732_P17",
+      "screen": 732,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        551,
+        285
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P04",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        217,
+        99
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P05",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        81,
+        396
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P06",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        253,
+        207
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P07",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        559,
+        275
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P08",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        458,
+        197
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P09",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        453,
+        42
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P10",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        86,
+        53
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P11",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        72,
+        175
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P12",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        226,
+        241
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P13",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        75,
+        334
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P14",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        532,
+        52
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P15",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        560,
+        81
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P16",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        410,
+        337
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P17",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        416,
+        331
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P18",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        402,
+        309
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S733_P19",
+      "screen": 733,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        390,
+        194
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P21",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        95,
+        105
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P22",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        81,
+        111
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P23",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        333,
+        24
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P24",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        362,
+        21
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P25",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        376,
+        121
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P26",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        387,
+        127
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P27",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        344,
+        114
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P28",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        53,
+        41
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P29",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        430,
+        309
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S742_P01",
+      "screen": 742,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        435,
+        70
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S742_P03",
+      "screen": 742,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        289,
+        50
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S742_P07",
+      "screen": 742,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        193,
+        98
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S743_P04",
+      "screen": 743,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        232,
+        64
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S743_P05",
+      "screen": 743,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        193,
+        74
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S743_P06",
+      "screen": 743,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        214,
+        155
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S743_P07",
+      "screen": 743,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        280,
+        187
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S743_P08",
+      "screen": 743,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        59,
+        55
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S759_P01",
+      "screen": 759,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        231,
+        314
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S759_P04",
+      "screen": 759,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        312,
+        136
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S759_P05",
+      "screen": 759,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        514,
+        149
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P08",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        89,
+        97
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P09",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        164,
+        278
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P10",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        566,
+        76
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P11",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        402,
+        83
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P12",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        543,
+        336
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P13",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        527,
+        305
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P14",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        541,
+        315
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P15",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        505,
+        104
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P16",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        475,
+        135
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P17",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        530,
+        118
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P18",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        523,
+        130
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S760_P19",
+      "screen": 760,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        503,
+        190
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P01",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        368,
+        284
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P02",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        153,
+        128
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P07",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        134,
+        145
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P08",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        91,
+        315
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P09",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        167,
+        360
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P10",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        185,
+        339
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P11",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        218,
+        330
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P12",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        252,
+        348
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P13",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        406,
+        54
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P14",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        552,
+        48
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P15",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        541,
+        71
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P16",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        589,
+        196
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P17",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        580,
+        219
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P18",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        501,
+        288
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P19",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        546,
+        89
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P20",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        610,
+        9
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P21",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        284,
+        79
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S761_P22",
+      "screen": 761,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        330,
+        120
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P14",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        92,
+        91
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P15",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        319,
+        25
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P16",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        75,
+        330
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P19",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        255,
+        268
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P20",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        445,
+        185
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P21",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        561,
+        50
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P22",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        226,
+        95
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P23",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        355,
+        338
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P24",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        488,
+        216
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P25",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        396,
+        238
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P26",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        434,
+        272
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P27",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        486,
+        275
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S762_P28",
+      "screen": 762,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        535,
+        298
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P09",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        158,
+        361
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P10",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        54,
+        135
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P11",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        323,
+        238
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P12",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        562,
+        32
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P13",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        578,
+        355
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P14",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        193,
+        39
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P15",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        495,
+        206
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P16",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        63,
+        268
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S763_P17",
+      "screen": 763,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        142,
+        302
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P06",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        544,
+        64
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P08",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        117,
+        33
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P23",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        303,
+        321
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P34",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        312,
+        210
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P35",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 0,
+      "original_xy": [
+        150,
+        214
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S764_P37",
+      "screen": 764,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        285,
+        210
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P06",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 0,
+      "original_xy": [
+        520,
+        93
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P10",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        263,
+        54
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P11",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        55,
+        346
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P18",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 0,
+      "original_xy": [
+        416,
+        233
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P20",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 9,
+      "source_asset": "SM_BeachPebbles_92_09",
+      "original_type": 0,
+      "original_xy": [
+        195,
+        146
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P29",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 7,
+      "source_asset": "SM_BeachPebbles_92_07",
+      "original_type": 0,
+      "original_xy": [
+        416,
+        243
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P30",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        466,
+        73
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P31",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 5,
+      "source_asset": "SM_BeachPebbles_92_05",
+      "original_type": 0,
+      "original_xy": [
+        50,
+        32
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S765_P34",
+      "screen": 765,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 0,
+      "original_xy": [
+        158,
+        233
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S320_P05",
+      "screen": 320,
+      "original_sequence": 92,
+      "original_frame": 8,
+      "source_asset": "SM_BeachPebbles_92_08",
+      "original_type": 1,
+      "original_xy": [
+        446,
+        385
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S582_P07",
+      "screen": 582,
+      "original_sequence": 92,
+      "original_frame": 6,
+      "source_asset": "SM_BeachPebbles_92_06",
+      "original_type": 1,
+      "original_xy": [
+        347,
+        294
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P02",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 1,
+      "original_xy": [
+        363,
+        352
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S614_P05",
+      "screen": 614,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 1,
+      "original_xy": [
+        378,
+        34
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S688_P04",
+      "screen": 688,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 1,
+      "original_xy": [
+        548,
+        192
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P07",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 1,
+      "original_xy": [
+        265,
+        164
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S710_P08",
+      "screen": 710,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 1,
+      "original_xy": [
+        173,
+        284
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S734_P20",
+      "screen": 734,
+      "original_sequence": 92,
+      "original_frame": 10,
+      "source_asset": "SM_BeachPebbles_92_10",
+      "original_type": 1,
+      "original_xy": [
+        578,
+        52
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    },
+    {
+      "origin_id": "S742_P04",
+      "screen": 742,
+      "original_sequence": 92,
+      "original_frame": 11,
+      "source_asset": "SM_BeachPebbles_92_11",
+      "original_type": 1,
+      "original_xy": [
+        430,
+        206
+      ],
+      "original_script": "",
+      "runtime_binding_activated": false
+    }
+  ],
+  "no_runtime_changes": true
+}

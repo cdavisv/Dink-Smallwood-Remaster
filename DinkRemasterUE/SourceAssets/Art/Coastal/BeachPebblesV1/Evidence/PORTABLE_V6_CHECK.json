@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "scope": "Actual relocated final source reopen and packed pixels read, plus packet full hash check",
+  "source_sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+  "mesh_LODs": 21,
+  "shared_material_graph_matches_V3": true,
+  "images": [
+    {
+      "name": "T_Shared_FieldstoneSeed2m_Stone_BC.png",
+      "packed_sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+      "actual_pixels_read": 4194304,
+      "external_path_required": false
+    },
+    {
+      "name": "T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+      "packed_sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+      "actual_pixels_read": 4194304,
+      "external_path_required": false
+    },
+    {
+      "name": "T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+      "packed_sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+      "actual_pixels_read": 4194304,
+      "external_path_required": false
+    }
+  ],
+  "external_image_dependencies": false,
+  "linked_libraries": 0,
+  "native_accepted": false
+}

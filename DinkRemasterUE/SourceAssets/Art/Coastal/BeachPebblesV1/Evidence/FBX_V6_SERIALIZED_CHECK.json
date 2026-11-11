@@ -1,0 +1,239 @@
+{
+  "success": true,
+  "scope": "Independent stdlib binary FBX serialized-channel/count validation, not full corner bijection or native import",
+  "files": [
+    {
+      "file": "SM_BeachPebbles_92_05_LOD0.fbx",
+      "sha256": "07215005ddf2f820ccd6372a66291b1d933c1610a2504b74b4701714a3eafbb6",
+      "triangles": 432,
+      "corner_count": 1296,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 1,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_05_LOD1.fbx",
+      "sha256": "4da15fd1206b78a3a0191666dd1b8f7911daf849741e148ebd5ddbc5f196df9b",
+      "triangles": 216,
+      "corner_count": 648,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 3,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_05_LOD2.fbx",
+      "sha256": "c99f69ee1705257929da9089d251ce8275a4d22b5db209e57663f255789585d2",
+      "triangles": 86,
+      "corner_count": 258,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 3,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD0.fbx",
+      "sha256": "727f5c6a49d7662526b0de46c2ed53f9a7730e44ecb75c065d71d8057dbc8ce3",
+      "triangles": 432,
+      "corner_count": 1296,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 1,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD1.fbx",
+      "sha256": "7ecf8ec6651f077ee2836bc9e6c86512eeb1203ed92a90212fb0b825c00f9be4",
+      "triangles": 216,
+      "corner_count": 648,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 3,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD2.fbx",
+      "sha256": "7d081d4607bd9b5c3d2c32ede555f39df590fa7111ca574805939b7d0c823864",
+      "triangles": 86,
+      "corner_count": 258,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 3,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD0.fbx",
+      "sha256": "867d3a5141ff8d787c20722ba25585bce7d9283d5d11ea0df1ca25e084ba82ef",
+      "triangles": 864,
+      "corner_count": 2592,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 2,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD1.fbx",
+      "sha256": "210e2b347f9d5680a223b2401266e67785084f6f38c260c8bb3463d164565648",
+      "triangles": 432,
+      "corner_count": 1296,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 6,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD2.fbx",
+      "sha256": "3548df8ea2a3c66de572439eb7d052ba2b64c270ffc77c1d070662359cec4ac0",
+      "triangles": 172,
+      "corner_count": 516,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 6,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD0.fbx",
+      "sha256": "e03ffdc5242dfa6bdcc8ba8f247aa66c1b29d8ebcd3501af0876a8d62369c72b",
+      "triangles": 1296,
+      "corner_count": 3888,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 3,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD1.fbx",
+      "sha256": "89fe877be2ac91efe16ec424ddadc978ffc2462df0a93afed1e0527baf7a5f2a",
+      "triangles": 648,
+      "corner_count": 1944,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 6,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD2.fbx",
+      "sha256": "370e257c5d79dadcc50e683d747e086610699b263c4ef7b0b1dfdcc16a981388",
+      "triangles": 258,
+      "corner_count": 774,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 7,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD0.fbx",
+      "sha256": "84fbb774dabdfa023b069347ddec30713f4f1b2c8666a12096cdd3d09673a1bd",
+      "triangles": 1728,
+      "corner_count": 5184,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 4,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD1.fbx",
+      "sha256": "e2cfcd24006e52d8ed803d274d9b3152a0eb74547990680d616b559d242e146c",
+      "triangles": 864,
+      "corner_count": 2592,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 12,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD2.fbx",
+      "sha256": "d93960e105dbdba406fc1b7daa120ec2534a99db216599617b85fa268bcf0710",
+      "triangles": 346,
+      "corner_count": 1038,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 12,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD0.fbx",
+      "sha256": "80dc60a3d8ab397d390b81d53562686c270a6b87ff8f32a1e721078cdd7b4d08",
+      "triangles": 2592,
+      "corner_count": 7776,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 6,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD1.fbx",
+      "sha256": "51051350fd9dbbd8ea05cdb882a9ae390021a8306525e15508adeafeb22b5465",
+      "triangles": 1296,
+      "corner_count": 3888,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 17,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD2.fbx",
+      "sha256": "c13130a08b8cc3b6db6dd67202e229f3fee5ac67f47b0cfe963a1aac3df9312f",
+      "triangles": 518,
+      "corner_count": 1554,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 16,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD0.fbx",
+      "sha256": "6e04b6fba2c07be16f61e24f07ca8ca38368cac892283d8a7494bb5247a7f6f0",
+      "triangles": 3456,
+      "corner_count": 10368,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 8,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD1.fbx",
+      "sha256": "962f43045ace4faa9cb98e6d19c896d6e52a0a60edde25b76903ccc623b98ed8",
+      "triangles": 1728,
+      "corner_count": 5184,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 21,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD2.fbx",
+      "sha256": "e322d7308803f504d6074a94f70873d7171f99c24b906bc870812fa14c65fa4d",
+      "triangles": 690,
+      "corner_count": 2070,
+      "color_attribute": "SharedSurfaceData",
+      "distinct_colors": 21,
+      "UV_normals_tangents_binormals_serialized": true,
+      "normal_mapping": "ByVertice IndexToDirect resolved to all corners",
+      "single_shared_material": true
+    }
+  ],
+  "count": 21,
+  "native_accepted": false
+}

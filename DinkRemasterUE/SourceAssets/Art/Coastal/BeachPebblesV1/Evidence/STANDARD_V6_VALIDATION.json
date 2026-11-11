@@ -1,0 +1,499 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkQA/BeachPebbleSourceInventoryV1/BeachPebbles_V6_ExplicitTriangles.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 7,
+    "assets_passed": 7,
+    "errors": 0,
+    "warnings": 27
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "1 mesh objects are outside any asset collection and will not be exported: REVIEW_ONLY_Floor"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SM_BeachPebbles_92_05",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_05",
+      "tris_per_lod": {
+        "LOD0": 432,
+        "LOD1": 216,
+        "LOD2": 86
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -3.042,
+          -2.637,
+          0.0
+        ],
+        "blender_max_cm": [
+          3.042,
+          2.637,
+          2.673
+        ],
+        "size_cm": [
+          6.084,
+          5.274,
+          2.673
+        ],
+        "unreal_min_cm": [
+          -3.042,
+          -2.637,
+          0.0
+        ],
+        "unreal_max_cm": [
+          3.042,
+          2.637,
+          2.673
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_05",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_05",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_05",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_06",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_06",
+      "tris_per_lod": {
+        "LOD0": 432,
+        "LOD1": 216,
+        "LOD2": 86
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -4.06,
+          -3.96,
+          0.0
+        ],
+        "blender_max_cm": [
+          4.06,
+          3.96,
+          4.189
+        ],
+        "size_cm": [
+          8.12,
+          7.919,
+          4.189
+        ],
+        "unreal_min_cm": [
+          -4.06,
+          -3.96,
+          0.0
+        ],
+        "unreal_max_cm": [
+          4.06,
+          3.96,
+          4.189
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_06",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_06",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_06",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_07",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_07",
+      "tris_per_lod": {
+        "LOD0": 864,
+        "LOD1": 432,
+        "LOD2": 172
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -8.151,
+          -6.556,
+          0.0
+        ],
+        "blender_max_cm": [
+          8.151,
+          6.556,
+          2.565
+        ],
+        "size_cm": [
+          16.303,
+          13.113,
+          2.565
+        ],
+        "unreal_min_cm": [
+          -8.151,
+          -6.556,
+          0.0
+        ],
+        "unreal_max_cm": [
+          8.151,
+          6.556,
+          2.565
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_07",
+          "message": "texel density 511 px/m at the declared 1024 px texture; target 1024 px/m (accepted 512-2048)",
+          "object": "SM_BeachPebbles_92_07_LOD0",
+          "data": {
+            "density_px_per_m": 511.3,
+            "target": 1024
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_07",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_07",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_07",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_08",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_08",
+      "tris_per_lod": {
+        "LOD0": 1296,
+        "LOD1": 648,
+        "LOD2": 258
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -15.225,
+          -8.018,
+          0.0
+        ],
+        "blender_max_cm": [
+          15.225,
+          8.018,
+          3.796
+        ],
+        "size_cm": [
+          30.45,
+          16.036,
+          3.796
+        ],
+        "unreal_min_cm": [
+          -15.225,
+          -8.018,
+          0.0
+        ],
+        "unreal_max_cm": [
+          15.225,
+          8.018,
+          3.796
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_08",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_08",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_08",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_09",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_09",
+      "tris_per_lod": {
+        "LOD0": 1728,
+        "LOD1": 864,
+        "LOD2": 346
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -6.572,
+          -10.267,
+          0.0
+        ],
+        "blender_max_cm": [
+          6.572,
+          10.267,
+          4.125
+        ],
+        "size_cm": [
+          13.144,
+          20.534,
+          4.125
+        ],
+        "unreal_min_cm": [
+          -6.572,
+          -10.267,
+          0.0
+        ],
+        "unreal_max_cm": [
+          6.572,
+          10.267,
+          4.125
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_09",
+          "message": "LOD0 has 1728 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_BeachPebbles_92_09_LOD0",
+          "data": {
+            "tris": 1728,
+            "target": 1500
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_09",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_09",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_09",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_10",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_10",
+      "tris_per_lod": {
+        "LOD0": 2592,
+        "LOD1": 1296,
+        "LOD2": 518
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -14.1,
+          -10.38,
+          0.0
+        ],
+        "blender_max_cm": [
+          14.1,
+          10.38,
+          4.908
+        ],
+        "size_cm": [
+          28.199,
+          20.761,
+          4.908
+        ],
+        "unreal_min_cm": [
+          -14.1,
+          -10.38,
+          0.0
+        ],
+        "unreal_max_cm": [
+          14.1,
+          10.38,
+          4.908
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_10",
+          "message": "LOD0 has 2592 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_BeachPebbles_92_10_LOD0",
+          "data": {
+            "tris": 2592,
+            "target": 1500
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_10",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_10",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_10",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_BeachPebbles_92_11",
+      "class": "prop_small",
+      "collection": "SM_BeachPebbles_92_11",
+      "tris_per_lod": {
+        "LOD0": 3456,
+        "LOD1": 1728,
+        "LOD2": 690
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -15.205,
+          -12.055,
+          0.0
+        ],
+        "blender_max_cm": [
+          15.205,
+          12.055,
+          4.417
+        ],
+        "size_cm": [
+          30.41,
+          24.11,
+          4.417
+        ],
+        "unreal_min_cm": [
+          -15.205,
+          -12.055,
+          0.0
+        ],
+        "unreal_max_cm": [
+          15.205,
+          12.055,
+          4.417
+        ]
+      },
+      "errors": 0,
+      "warnings": 5,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_11",
+          "message": "LOD0 has 3456 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_BeachPebbles_92_11_LOD0",
+          "data": {
+            "tris": 3456,
+            "target": 1500
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_11",
+          "message": "texel density 512 px/m at the declared 1024 px texture; target 1024 px/m (accepted 512-2048)",
+          "object": "SM_BeachPebbles_92_11_LOD0",
+          "data": {
+            "density_px_per_m": 511.9,
+            "target": 1024
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_11",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_11",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_N_GL.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_BeachPebbles_92_11",
+          "message": "image 'T_Shared_FieldstoneSeed2m_Stone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

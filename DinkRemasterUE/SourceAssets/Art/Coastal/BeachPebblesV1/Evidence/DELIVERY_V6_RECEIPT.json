@@ -1,0 +1,32 @@
+{
+  "status": "SOURCE_CANDIDATE_TRANSPORT_REIMPORT_PASS_NOT_NATIVE",
+  "selected_source": "BeachPebbles_V6_ExplicitTriangles.blend",
+  "files": {
+    "BeachPebbles_V6_ExplicitTriangles.blend": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+    "Variants_V6_ExplicitTriangles.png": "6033548148d542cf9594b01eccd9115ccacb3dddb9b866f638f4c0784503de7f",
+    "Export_V6/manifest.json": "4a9bfbf9239f3737575d5da4f1e31116a58c08a42c004b6c35dbcef2e7203c48",
+    "STANDARD_V6_VALIDATION.json": "89f6661eb3ce7658588adfe88b48bf45d149e2f03b28f61dac23a7241a9450ed",
+    "FBX_V6_SERIALIZED_CHECK.json": "a4ed43bd6133865aa118f27c9e4aed626d6aafc329b44611ea7d2ed58ae8b98e",
+    "FBX_V6_REIMPORT_CHECK.json": "f6b5efde64b7d81d224f5f0bbc17285dc6952c51cfee09e53ccadcc546874da6",
+    "prepare_delivery_v6.py": "234bb957fb783afb4f687082052d6d3653672aad1854f1712e91d5a12ea307d8",
+    "reimport_fbx_v6.py": "6daa6a006f1c766b35e3de37be2d95dae025b1b0464365bc6ae5e8201bf0ec07",
+    "check_fbx_v6.py": "21955abdbf29de7125f1a1ecd7a7f0cdea1c229119b530f4c88f10f88bdfb6e6"
+  },
+  "standard_validation": {
+    "assets": 7,
+    "assets_passed": 7,
+    "errors": 0,
+    "warnings": 27
+  },
+  "serialized_files": 21,
+  "reimport_files": 21,
+  "max_errors": {
+    "max_position_error_m": 0.0,
+    "max_UV_error": 0.0,
+    "max_RGBA_error": 0.0,
+    "max_normal_angle_deg": 0.033300262839443796
+  },
+  "V5_failure_preserved": true,
+  "native_accepted": false,
+  "binding_activated": false
+}

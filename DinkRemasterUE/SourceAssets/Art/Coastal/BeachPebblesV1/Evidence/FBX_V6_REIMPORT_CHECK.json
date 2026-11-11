@@ -1,0 +1,203 @@
+{
+  "success": true,
+  "scope": "Fresh Blender FBX reimport corner multiset correspondence at fixed source coordinate frame; not native import or triangle adjacency bijection",
+  "files": [
+    {
+      "file": "SM_BeachPebbles_92_05_LOD0.fbx",
+      "corners": 1296,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.029747389364263493
+    },
+    {
+      "file": "SM_BeachPebbles_92_05_LOD1.fbx",
+      "corners": 648,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.03259055090493789
+    },
+    {
+      "file": "SM_BeachPebbles_92_05_LOD2.fbx",
+      "corners": 258,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.02746706139638071
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD0.fbx",
+      "corners": 1296,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.02759114558240548
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD1.fbx",
+      "corners": 648,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.026920825746789404
+    },
+    {
+      "file": "SM_BeachPebbles_92_06_LOD2.fbx",
+      "corners": 258,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.01956396907710023
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD0.fbx",
+      "corners": 2592,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.033203819090565675
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD1.fbx",
+      "corners": 1296,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.029650800676847743
+    },
+    {
+      "file": "SM_BeachPebbles_92_07_LOD2.fbx",
+      "corners": 516,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.021779025451007666
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD0.fbx",
+      "corners": 3888,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.030430739800516984
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD1.fbx",
+      "corners": 1944,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.029202675099549994
+    },
+    {
+      "file": "SM_BeachPebbles_92_08_LOD2.fbx",
+      "corners": 774,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.028940299289014308
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD0.fbx",
+      "corners": 5184,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.030311790534218386
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD1.fbx",
+      "corners": 2592,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.030051483214760144
+    },
+    {
+      "file": "SM_BeachPebbles_92_09_LOD2.fbx",
+      "corners": 1038,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.03103102012129262
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD0.fbx",
+      "corners": 7776,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.03146624245630007
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD1.fbx",
+      "corners": 3888,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.030761740713693708
+    },
+    {
+      "file": "SM_BeachPebbles_92_10_LOD2.fbx",
+      "corners": 1554,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.027101155809557267
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD0.fbx",
+      "corners": 10368,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.033300262839443796
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD1.fbx",
+      "corners": 5184,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.03142880386864056
+    },
+    {
+      "file": "SM_BeachPebbles_92_11_LOD2.fbx",
+      "corners": 2070,
+      "all_source_corners_consumed_once": true,
+      "max_position_error_m": 0.0,
+      "max_UV_error": 0.0,
+      "max_RGBA_error": 0.0,
+      "max_normal_angle_deg": 0.027375530524260235
+    }
+  ],
+  "count": 21,
+  "tolerances": {
+    "position_m": 3e-07,
+    "UV": 1e-06,
+    "RGBA": 1e-06,
+    "normal_degrees": 0.05
+  },
+  "native_accepted": false
+}
