@@ -623,6 +623,9 @@ private:
     friend class FDinkHardnessFittedLifecycle;
     // Read-only access for real-map acceptance; no admission/path override.
     friend class FDinkRealBarrelCheck;
+#if WITH_DEV_AUTOMATION_TESTS
+    friend class FDinkBarrelAttackNativeDiagnostic; // read-only developer metrology; no gameplay seam
+#endif
     friend class FDinkRolloutRuntimeCheck;
     friend class FDinkRolloutBackgroundCheck;
     bool ValidateRetainedLegacyEditorFlags(int32 Screen,FString& Error) const;
