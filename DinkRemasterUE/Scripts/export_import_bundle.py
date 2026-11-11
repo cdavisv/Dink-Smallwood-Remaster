@@ -376,6 +376,29 @@ def git_head(repo: Path) -> str:
         return "unknown"
 
 
+def release_picture_keys(family_policy: dict, placements: list, canonical_sequences: list) -> dict:
+    """Canonical animation pictures required by fitted-source release; no IO/native writes."""
+    fitted_ids = {row["origin"] for row in family_policy.get("collision_fit", {}).get("origins", [])}
+    release_sequences = {p["seq"] for p in placements if p["id"] in fitted_ids}
+    pictures = {}
+    if release_sequences:
+        found = set()
+        for sequence in canonical_sequences:
+            if sequence["seq"] not in release_sequences:
+                continue
+            found.add(sequence["seq"])
+            for frame in sequence["frames"]:
+                if frame.get("empty") or not frame.get("width") or not frame.get("height"):
+                    continue
+                if not frame.get("image"):
+                    raise ValueError(f"missing release picture source {sequence['seq']}/{frame['frame']}")
+                pictures.setdefault(f"{sequence['seq']}_{frame['frame']:02d}", frame["image"])
+        if found != release_sequences:
+            raise ValueError("missing canonical release sequence metadata")
+
+    return pictures
+
+
 def main(argv=None) -> int:
     here = Path(__file__).resolve().parent.parent
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
@@ -721,6 +744,13 @@ def main(argv=None) -> int:
 
     by_id = {p["id"]: p for p in placements_out}
     screen_by_num = {s["screen"]: s for s in screens_out}
+
+    # Fitted replacements can release into any authored frame of their source sequence.
+    # Include these images through the SAME ordinary texture generation path, never a private QA asset pack.
+    family_policy = json.loads((here / "Content/Dink/Data/Art/families.json").read_text())
+    canonical_sequences = json.loads((dinkex / "sequences.json").read_text())["sequences"]
+    for key, image in release_picture_keys(family_policy, placements_out, canonical_sequences).items():
+        pic_keys.setdefault(key, image)
 
     # --- sprites
     sprites_out = {}

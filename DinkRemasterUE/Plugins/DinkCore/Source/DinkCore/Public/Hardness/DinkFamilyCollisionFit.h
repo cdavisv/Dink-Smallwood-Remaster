@@ -3,12 +3,14 @@
 #include "DinkOriginId.h"
 #include "DinkLayout.h"
 #include "Engine/EngineTypes.h"
+#include "UObject/StrongObjectPtr.h"
 
 class ADinkPlaceholderActor;
 class UStaticMesh;
 class UStaticMeshComponent;
 class UBodySetup;
 class UMaterialInterface;
+class UTexture;
 class UWorld;
 namespace DinkFamilyCollisionFit
 {
@@ -28,6 +30,12 @@ struct DINKCORE_API FDinkFamilyCollisionFitRule
     int32 SourceType = 1;
     bool IsStaticBackground() const { return SourceType == 0; }
 };
+/** Source-reader image geometry. Hash authenticates this descriptor, not native texture pixels. */
+struct DINKCORE_API FDinkLegacyPictureDescriptor
+{
+    int32 Sequence=0,Frame=0,Width=0,Height=0,OriginX=0,OriginY=0;
+    FString Sha1;
+};
 struct DINKCORE_API FDinkFamilyFitSpriteState
 {
     int32 SchemaVersion=DinkFamilyCollisionFit::DescriptorSchemaVersion;
@@ -42,6 +50,7 @@ struct DINKCORE_API FDinkFamilyFitSpriteState
     int32 DisplayedSequence=0,DisplayedFrame=0,Hard=1,Prop=0;
     bool bActive=false;
     int32 AnimationSequence=0,Brain=0,NoHit=0;
+    FDinkLegacyPictureDescriptor SourcePicture,DisplayedPicture;
 };
 /** Exact cooked query triangles, not a guessed box and not a300cm raster prism.
  * UCX is separately retained provenance and is NOT the selected query shape. */
@@ -76,6 +85,8 @@ struct DINKCORE_API FDinkFamilyCollisionFitCandidate
     TWeakObjectPtr<UStaticMesh> BeforeCardMesh;
     FDinkScreenCorners Corners;
     FTransform BeforeActor,BeforeFamily,BeforeCard,ProposedWorld;
+    FTransform ImportedCardBaseline;
+    bool bImportedCardBaselinePresent=false;
     TArray<TWeakObjectPtr<UMaterialInterface>> BeforeMaterials,BeforeCardMaterials;
     FString SourceHash;
     FName ScriptName,BeforeProfile;
@@ -92,6 +103,11 @@ struct DINKCORE_API FDinkFamilyCollisionFitCandidate
     double MinWorldZ=0,MaxWorldZ=0,MaximumRasterBoundaryErrorCm=0;
     bool bVisualApplied=false;
     bool bReleaseOnly=false;
+    FTransform ReleaseCardRelative;
+    TSharedPtr<TStrongObjectPtr<UMaterialInterface>> ReleaseMaterial,SourcePictureMaterial;
+    TSharedPtr<TStrongObjectPtr<UTexture>> ReleaseTexture,SourcePictureTexture;
+    FDinkLegacyPictureDescriptor ReleasePicture;
+    bool bReleasePicturePrepared=false;
 };
 /** Implemented by the ONE admitted owner coordinator, not by the family layer.
  * The implementation must verify held loading gate and matching committed
@@ -110,4 +126,13 @@ namespace DinkFamilyCollisionFit
     DINKCORE_API bool BuildFootprint(const FDinkFamilyFittedGeometry& Geometry,const FTransform& Proposed,
         const FDinkScreenCorners& Corners,TArray<FVector2D>& Polygon,TArray<FIntPoint>& Cells,
         double& MinZ,double& MaxZ,double& BoundaryErrorCm,FString& Error);
+}
+
+namespace DinkFamilyCollisionFit
+{
+    DINKCORE_API bool ValidateReleasedPictureAssets(const FDinkFamilyCollisionFitCandidate& Candidate,FString& Error);
+    DINKCORE_API bool ValidatePictureDescriptor(const FDinkLegacyPictureDescriptor& Picture);
+    DINKCORE_API bool ProjectLegacyCard(const FDinkLegacyPictureDescriptor& Source,
+        const FDinkLegacyPictureDescriptor& Displayed,const FTransform& ImportedBaseline,
+        FTransform& Out,FString& Error);
 }

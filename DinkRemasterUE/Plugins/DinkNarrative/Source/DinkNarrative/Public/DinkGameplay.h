@@ -38,6 +38,9 @@ struct DINKNARRATIVE_API FDinkFrameInfo
 	/** The picture's size (getpic()'s box: right = Width, bottom = Height). */
 	int32 Width = 0;
 	int32 Height = 0;
+    /** Additive canonical reader presentation metadata. Legacy rows remain gameplay-compatible. */
+    int32 OriginX = 0, OriginY = 0;
+    FString PictureDescriptorSha1;
 };
 
 /**

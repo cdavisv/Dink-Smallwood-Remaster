@@ -11,6 +11,9 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Engine/Engine.h"
 #include "Engine/StaticMesh.h"
+#include "Materials/MaterialInterface.h"
+#include "Materials/MaterialInstanceConstant.h"
+#include "UObject/Package.h"
 #include "PhysicsEngine/BodySetup.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SceneComponent.h"
@@ -94,7 +97,12 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     auto* Actor=W->SpawnActorDeferred<ADinkPlaceholderActor>(ADinkPlaceholderActor::StaticClass(),FTransform(Ground));
     Actor->ScreenNumber=209;Actor->Origin->PlacementType=Placement->Type;Actor->Origin->OriginId=Id;Actor->Origin->Sequence=173;Actor->Origin->Frame=1;Actor->Origin->ScriptName=TEXT("bar-f1");Actor->Origin->ClassId=TEXT("barrel");Actor->Origin->SourceHash=FString::ChrN(40,TEXT('a'));
     Actor->GetRootComponent()->SetMobility(EComponentMobility::Movable);Actor->Card->SetMobility(EComponentMobility::Movable);Actor->FinishSpawning(FTransform(Ground));Actor->Tags.Add(UDinkArtFamilySubsystem::FamilyTag);
-    Actor->Card->SetStaticMesh(Cube);Actor->Card->SetCollisionEnabled(ECollisionEnabled::NoCollision);Actor->Card->SetCanEverAffectNavigation(false);Actor->Card->SetGenerateOverlapEvents(false);Actor->Card->SetHiddenInGame(true);
+    auto* CardMesh=LoadObject<UStaticMesh>(nullptr,TEXT("/Game/Dink/_Generated/Shared/SM_DinkCard.SM_DinkCard"));
+    auto* IntactMaterial=LoadObject<UMaterialInterface>(nullptr,TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_173_01.MI_Sprite_173_01"));
+    if(!TestNotNull(TEXT("ordinary imported source card mesh"),CardMesh)||!TestNotNull(TEXT("ordinary imported source picture"),IntactMaterial))return false;
+    Actor->ImportedCardRelativeTransform=FTransform(FQuat::Identity,FVector(-13,0,-11),FVector(.56,1,.55));Actor->bHasImportedCardBaseline=true;
+    Actor->Card->SetRelativeTransform(Actor->ImportedCardRelativeTransform);Actor->Card->SetMaterial(0,IntactMaterial);
+    Actor->Card->SetStaticMesh(CardMesh);Actor->Card->SetCollisionEnabled(ECollisionEnabled::NoCollision);Actor->Card->SetCanEverAffectNavigation(false);Actor->Card->SetGenerateOverlapEvents(false);Actor->Card->SetHiddenInGame(true);
     auto* FamilyMesh=NewObject<UStaticMeshComponent>(Actor);Actor->AddInstanceComponent(FamilyMesh);FamilyMesh->SetupAttachment(Actor->GetRootComponent());FamilyMesh->SetMobility(EComponentMobility::Movable);FamilyMesh->SetStaticMesh(Barrel);FamilyMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);FamilyMesh->SetCanEverAffectNavigation(false);FamilyMesh->SetGenerateOverlapEvents(false);FamilyMesh->ComponentTags.Add(UDinkArtFamilySubsystem::FamilyTag);FamilyMesh->SetRelativeLocation(FVector(89,0,0));FamilyMesh->RegisterComponent();
     auto* Families=W->GetSubsystem<UDinkArtFamilySubsystem>();if(!TestNotNull(TEXT("family subsystem"),Families))return false;
     // Exercise the same native loader used before visual CVar gates, using
@@ -163,6 +171,42 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     if(!TestTrue(FString(TEXT("actual full fitted redraw: "))+Error,Redrawn))return false;
     auto* Primitive=G->FindHardnessFitPrimitive(*D->FindSprite(Handle));if(!TestNotNull(TEXT("same-owner admitted exact fitted primitive"),Primitive))return false;
     TestTrue(TEXT("fitted visual aligned to script ground"),FamilyMesh->Bounds.GetBox().GetCenter().Equals(Primitive->Bounds.GetBox().GetCenter(),.1));
+    const auto FrozenCard=Actor->Card->GetRelativeTransform();Actor->Card->AddLocalOffset(FVector(1,0,0));
+    TestNull(TEXT("explicit intact card pose tamper still refuses fit"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
+    Actor->Card->SetRelativeTransform(FrozenCard);
+    TestNotNull(TEXT("restoring exact card epoch requalifies fit"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
+    const auto FrozenBaseline=Actor->ImportedCardRelativeTransform;Actor->ImportedCardRelativeTransform.AddToTranslation(FVector(1,0,0));
+    TestNull(TEXT("immutable imported baseline tamper still refuses admitted fit"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
+    Actor->ImportedCardRelativeTransform=FrozenBaseline;
+    TestNotNull(TEXT("restored source baseline requalifies admitted fit"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
+    auto BrokenPictureState=G->HardnessProjection->Fits->Candidates[0].Sprite;
+    BrokenPictureState.DisplayedFrame=6;BrokenPictureState.DisplayedPicture.Frame=6;
+    if(const auto* F=G->Data.FindFrame(173,6))
+    {auto& P=BrokenPictureState.DisplayedPicture;P.Width=F->Width;P.Height=F->Height;P.OriginX=F->OriginX;P.OriginY=F->OriginY;P.Sha1=F->PictureDescriptorSha1;}
+    FDinkFamilyCollisionFitCandidate PreparedPicture;
+    if(!TestTrue(TEXT("actual source173/6 release picture preflights before mutation"),Families->PrepareCollisionFitReleaseCandidate(Id,BrokenPictureState,PreparedPicture,Error)))return false;
+    #if WITH_EDITOR
+    if(auto* TargetMI=Cast<UMaterialInstanceConstant>(PreparedPicture.ReleaseMaterial->Get()))
+    {
+        UTexture* OriginalTex=PreparedPicture.ReleaseTexture->Get();const bool WasDirty=TargetMI->GetOutermost()->IsDirty();
+        ON_SCOPE_EXIT {TargetMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),OriginalTex);TargetMI->GetOutermost()->SetDirtyFlag(WasDirty);};
+        const auto BeforeRejected=Actor->Card->GetRelativeTransform();auto* BeforeMaterial=Actor->Card->GetMaterial(0);
+        TargetMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),PreparedPicture.SourcePictureTexture->Get());
+        TestFalse(TEXT("postprepare target Tex mutation refuses actual publication validator"),DinkFamilyCollisionFit::ValidateReleasedPictureAssets(PreparedPicture,Error));
+        TestTrue(TEXT("rejected target Tex mutation leaves card untouched"),Actor->Card->GetRelativeTransform().Equals(BeforeRejected,0)&&Actor->Card->GetMaterial(0)==BeforeMaterial&&Actor->Card->bHiddenInGame);
+        TargetMI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Tex")),OriginalTex);
+        TestTrue(TEXT("restored exact target Tex requalifies"),DinkFamilyCollisionFit::ValidateReleasedPictureAssets(PreparedPicture,Error));
+    }
+    else AddError(TEXT("expected ordinary target material instance for Tex mutation control"));
+    #endif
+    Actor->bHasImportedCardBaseline=false;
+    TestFalse(TEXT("old missing importer baseline refuses broken publication"),Families->PrepareCollisionFitReleaseCandidate(Id,BrokenPictureState,PreparedPicture,Error));
+    Actor->bHasImportedCardBaseline=true;
+    auto BadPicture=BrokenPictureState;BadPicture.DisplayedPicture.OriginX++;
+    TestFalse(TEXT("tampered canonical frame pivot refuses before mutation"),Families->PrepareCollisionFitReleaseCandidate(Id,BadPicture,PreparedPicture,Error));
+    BadPicture=BrokenPictureState;BadPicture.DisplayedPicture.Frame=1;
+    TestFalse(TEXT("wrong frame descriptor never exposes intact173/1 fallback"),Families->PrepareCollisionFitReleaseCandidate(Id,BadPicture,PreparedPicture,Error));
+    TestTrue(TEXT("negative picture preparation left card hidden and exact"),Actor->Card->GetRelativeTransform().Equals(FrozenCard,0)&&Actor->Card->bHiddenInGame);
     const auto FitCells=G->HardnessProjection->Fits->Candidates[0].LogicalCells;
     if(!TestTrue(TEXT("nonempty fitted mask"),FitCells.Num()>0))return false;
     const auto Cell=FitCells[FitCells.Num()/2];TestEqual(TEXT("GetHard uses fitted owner113"),G->GetHard(209,Cell.X+20,Cell.Y),113);
@@ -179,19 +223,50 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     S=D->FindSprite(Handle);S->Props.Add(TEXT("hard"),1);G->RecordEditorHardness(Id,1);
     if(!TestTrue(TEXT("soft intact redraw"),G->RedrawRuntimeHardness(Handle,Error)))return false;
     TestTrue(TEXT("softness alone retains intact visual"),FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame);TestEqual(TEXT("softness clears old logical mask"),G->GetHard(209,Cell.X+20,Cell.Y),0);
+    Actor->Card->SetMobility(EComponentMobility::Static);
+    TestTrue(TEXT("release starts with a registered static imported card"),Actor->Card->IsRegistered()&&Actor->Card->Mobility==EComponentMobility::Static);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("seq"),173);S->Props.Add(TEXT("brain"),5);S->Props.Add(TEXT("nohit"),1);
     if(!TestTrue(TEXT("actual bar-f1 break state releases fitted body"),G->RedrawRuntimeHardness(Handle,Error)))return false;
     TestNull(TEXT("broken barrel has no fitted physical instance"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
     TestTrue(TEXT("broken barrel hides intact family and exposes card"),FamilyMesh->bHiddenInGame&&!FamilyMesh->IsVisible()&&!Actor->Card->bHiddenInGame);
+    TestTrue(TEXT("actual release makes only noncolliding card movable for projection"),Actor->Card->Mobility==EComponentMobility::Movable&&Actor->Card->GetCollisionEnabled()==ECollisionEnabled::NoCollision&&!Actor->Card->CanEverAffectNavigation()&&!Actor->Card->GetGenerateOverlapEvents());
     TestTrue(TEXT("broken redraw is idempotent"),G->RedrawRuntimeHardnessMap(209,Error));
     Story->GetWorldState()->SetOverride(Id,EDinkOverrideType::BackgroundNoHardness);
     G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,6);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("pframe"),6);S->Props.Add(TEXT("seq"),0);S->Props.Add(TEXT("brain"),0);
     if(!TestTrue(TEXT("persisted broken173/6 source projection"),G->RedrawRuntimeHardnessMap(209,Error)))return false;
     TestTrue(TEXT("persisted broken background never restores intact family"),FamilyMesh->bHiddenInGame&&!FamilyMesh->IsVisible());
+    TestEqual(TEXT("persisted broken picture projects actual173/6 material"),Actor->Card->GetMaterial(0)->GetPathName(),FString(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_173_06.MI_Sprite_173_06")));
+    TestTrue(TEXT("persisted broken picture uses source dimensions/pivot"),Actor->Card->GetRelativeTransform().Equals(FTransform(FQuat::Identity,FVector(1,0,-20),FVector(.84,1,.64)),1.e-12));
+    const auto FirstBrokenPose=Actor->Card->GetRelativeTransform();auto* FirstBrokenMaterial=Actor->Card->GetMaterial(0);
+    TestTrue(TEXT("repeated broken-load source redraw succeeds"),G->RedrawRuntimeHardnessMap(209,Error));
+    TestTrue(TEXT("repeated broken picture geometry/material never compound"),Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0)&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
+    const auto ReleasedBefore=Actor->Card->GetRelativeTransform();
+    const auto ReleaseState=G->HardnessProjection->Fits->ReleaseStates.Last();
+    Actor->Card->AddLocalOffset(FVector(1,0,0));
+    TestFalse(TEXT("published broken card position tamper refuses next release"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->SetRelativeTransform(ReleasedBefore);
+    Actor->Card->SetRelativeRotation(FRotator(10,0,0));
+    TestFalse(TEXT("released non-yaw card rotation refuses rather than being legitimized"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->SetRelativeTransform(ReleasedBefore);
+    Actor->ImportedCardRelativeTransform.AddToTranslation(FVector(1,0,0));
+    TestFalse(TEXT("released immutable source baseline tamper refuses"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->ImportedCardRelativeTransform=FrozenBaseline;
+    Actor->Card->SetMaterial(0,IntactMaterial);
+    TestFalse(TEXT("published broken card wrong material refuses next release"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
+    Actor->Card->SetMaterial(0,Actor->PublishedLegacyCardMaterial);
+    TestTrue(TEXT("restored released epoch requalifies exact picture"),Families->PrepareCollisionFitReleaseCandidate(Id,ReleaseState,PreparedPicture,Error));
     TestEqual(TEXT("persisted broken background stays nonblocking"),G->GetHard(209,Cell.X+20,Cell.Y),0);
     TestTrue(TEXT("immutable floor unchanged"),Floor->GetComponentTransform().Equals(FloorTransform,0)&&Floor->GetCollisionResponseToChannels()==FloorResponses&&Floor->GetStaticMesh()==Fixed);
     TestTrue(TEXT("script/drop coordinates and original source identity preserved"),D->FindSprite(Handle)->X==Placement->X&&D->FindSprite(Handle)->Y==Placement->Y&&Actor->Origin->OriginId==Id);
+    // Model the strict persisted restore boundary using the actual source override/picture APIs.
+    Story->GetWorldState()->ClearOverride(Id);G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,1);
+    S=D->FindSprite(Handle);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);S->Props.Add(TEXT("nohit"),0);
+    G->RecordEditorHardness(Id,0);
+    if(!TestTrue(TEXT("intact source restore after repeated broken presentation"),G->RedrawRuntimeHardnessMap(209,Error)))return false;
+    TestNotNull(TEXT("intact restore reintroduces actual fitted body"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
+    TestTrue(TEXT("intact restore hides legacy card and shows family"),Actor->Card->bHiddenInGame&&FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame);
+    TestEqual(TEXT("intact restore retains immutable source picture identity"),Actor->Origin->Frame,1);
     // Leave a real owned body active to exercise production shutdown, rather
     // than qualifying cleanup only after a final empty broken-barrel map.
     const int32 Extra=D->CreateVirtualSprite(209,Placement->X+70,Placement->Y);

@@ -8,14 +8,15 @@ Reads the data repo's tools/dinkex/out (sequences.json, screens/SCR_nnn.json; ru
 `cd tools/dinkex && python3 -m dinkex extract --data ../../bin/dink --out out` there if missing) and
 writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToAlwaysStageAsUFS=Dink/Data):
 
-    frames.csv        seq,frame,delay_ms,special,left,top,right,bottom,loop,empty,width,height
+    frames.csv        seq,frame,delay_ms,special,left,top,right,bottom,loop,empty,width,height,origin_x,origin_y,picture_descriptor_sha1
                       every frame of dink.ini: animation delay, the "special" (hit) flag that makes
                       a sprite's attack land (dink.cpp D:16971), and the picture's hardbox relative to
                       the sprite position, which the hit, touch, push and missile tests use (getpic());
                       loop = SET_FRAME_FRAME <seq> <frame> -1 (the animation wraps to frame 1 there),
                       empty = a slot with no picture (the animation ends there, like the slot after the last);
                       width/height = the picture's size (getpic()'s box, which the pig and bounce brains
-                      keep inside the screen).
+                      keep inside the screen). Additive origin_x/origin_y preserve canonical per-frame pivots;
+                      picture_descriptor_sha1 checks metadata self-consistency, NOT native pixel integrity.
     Hardness/SCR_nnn.txt  the screen's 600x400 hardness map as the engine builds it on load (tools/dinkex
                       hardness/SCR_nnn[_vV].png + _owner.png), one block per &vision value: tile codes 1
                       (solid), 2 (low: missiles and flyers cross), 3 (other), and 100+index where placement
@@ -60,7 +61,7 @@ import sys
 HERE = pathlib.Path(__file__).resolve().parent.parent
 DEST = HERE / "Content" / "Dink" / "Data" / "Gameplay"
 
-FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height"]
+FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height", "origin_x", "origin_y", "picture_descriptor_sha1"]
 PLACEMENT_COLS = ["origin", "screen", "index", "type", "x", "y", "seq", "frame", "size", "vision", "brain",
                   "script", "hitpoints", "strength", "defense", "exp", "nohit", "touch_damage", "speed", "timing",
                   "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound", "que",
@@ -87,6 +88,19 @@ def to_csv(cols, rows) -> bytes:
     return buf.getvalue().encode()
 
 
+def picture_descriptor(seq: int, frame: dict) -> dict:
+    """Canonical reader metadata; a descriptor identity, not a native texture pixel hash."""
+    origin = frame.get("origin")
+    if frame.get("empty") or not frame.get("width") or not frame.get("height"):
+        return {"origin_x": "", "origin_y": "", "picture_descriptor_sha1": ""}
+    if not isinstance(origin, dict) or type(origin.get("x")) is not int or type(origin.get("y")) is not int:
+        raise ValueError(f"{seq}/{frame['frame']}: missing canonical picture origin")
+    values = [seq, frame["frame"], frame["width"], frame["height"], origin["x"], origin["y"]]
+    payload = "DinkPictureDescriptor/1:" + ",".join(map(str, values))
+    return {"origin_x": origin["x"], "origin_y": origin["y"],
+            "picture_descriptor_sha1": hashlib.sha1(payload.encode("ascii")).hexdigest()}
+
+
 def frames(dinkex: pathlib.Path):
     seqs = json.loads((dinkex / "sequences.json").read_text())["sequences"]
     rows = []
@@ -97,7 +111,8 @@ def frames(dinkex: pathlib.Path):
                          "special": 1 if f.get("is_hit_frame") or f.get("special") else 0,
                          "left": hb["left"], "top": hb["top"], "right": hb["right"], "bottom": hb["bottom"],
                          "loop": 1 if f.get("loop_to_start") else 0, "empty": 1 if f.get("empty") else 0,
-                         "width": f.get("width") or 0, "height": f.get("height") or 0})
+                         "width": f.get("width") or 0, "height": f.get("height") or 0,
+                         **picture_descriptor(q["seq"], f)})
     return rows
 
 
