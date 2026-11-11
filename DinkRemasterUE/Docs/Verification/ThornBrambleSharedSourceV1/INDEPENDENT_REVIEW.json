@@ -1,0 +1,57 @@
+{
+  "verdict": "PASS_SOURCE_CANDIDATE_ONLY",
+  "head": "f904bd8ca89eeed0a82647c906fcbe0f0e09b25c",
+  "base": "b1ee08e5a6e01ddd52716e0c3adf75ada379b570",
+  "branch": "art/thorn-bramble-cpu-review-v9",
+  "working_tree_clean": true,
+  "blocking_findings": [],
+  "independent_checks": {
+    "head": "f904bd8ca89eeed0a82647c906fcbe0f0e09b25c",
+    "base": "b1ee08e5a6e01ddd52716e0c3adf75ada379b570",
+    "old_ledger_bytes": 4047621,
+    "old_ledger_sha256": "efc0c7bc6440769e9d920bd057a2de625ae0d5637ddb96b20162a21bcdb24909",
+    "new_ledger_rows": 40,
+    "binary_LFS_payloads": 17,
+    "shared_index_hashes": 147,
+    "textures": 6,
+    "baseline_violation_assets": 203,
+    "candidate_violation_assets": 203,
+    "violation_maps_exact": true,
+    "new_asset_violations": 0,
+    "source_only": true,
+    "blender_replay_rerun": false
+  },
+  "additional_checks": [
+    "49changedpaths limitedSourceAssets/Docs/HANDOFF; noRuntime/Content/Config/nativecode",
+    "Alloldsharedmaterialentries/topmetadata unchanged; exactlytwo newroles",
+    "OldsharedmanifestandSHAindex byteexacthistorypreserved, oldindexentries unchanged exceptcurrentmanifestdigest",
+    "Actual17LFS materializedpayload sizes/hashes equalcommittedpointerOIDs",
+    "Actual6PNG1024RGB/sharedhashes/ORMR255+B0/NonColorunitnormal\u00b12% andbarkseam checks pass",
+    "Artstandardactualbasegitarchive vscurrentchecker203\u2192203 identicalviolationmap; newfoliageasset0violations",
+    "Originalguide+threecandidate+twoindependentgenericreuse renders visuallyinspected",
+    "Portableprocedural/material/sourcebuildscripts containregisteredrelativepaths; actualauthorreplay6PNGhashes andpacked/LODchecks reviewed, not independentlyreplayed"
+  ],
+  "quality_assessment": [
+    "Usable editableinactive source study; not finalphotoreal/gameacceptedart",
+    "Angular/polygonal cane bends, repetitive junctions andsimplified recurring leafveins remainvisible",
+    "Openuprightsilhouette readsairier/taller than originaldarklowmound; improvecanopydensity/groundedmass beforeactivation",
+    "Genericbarkpanel readsdirectionalwoodgrain; botanicalbarkdetail/speciesrealism notproven",
+    "LOD0 24220 exceeds8000softtarget butunder25000hard; sourcecounts only, noexport/native/performance proof"
+  ],
+  "limits": [
+    "NoBlenderlaunch/rebake/replay/reopen byreviewer; authorCPUevidence reviewed",
+    "NoFBX/nativeimport/runtimebindings/collisionchanges; thorns/touchscript/gameplay identity unchanged",
+    "No two-sided/transmission/wind/lightmapUV/nativegreenflip/render/performance approval",
+    "Ledger/source registration isnot finalartacceptance; Rootvisualsourcecandidateapproval separate"
+  ],
+  "no_ue_build_import_state_edit_commit_or_push": true,
+  "root_visual_review": {
+    "scope": "Inactive editable source study only",
+    "reviewed_images": [
+      "SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_00.png",
+      "SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/Review/generic_bark.png"
+    ],
+    "finding": "Tangled shape improved; angular cane segments, open canopy and directional wood-like bark remain visible. Final photoreal/native/gameplay acceptance pending."
+  },
+  "publication_scope": "Reviewable source study and shared source texture sets; no runtime activation."
+}
