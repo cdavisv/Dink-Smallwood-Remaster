@@ -5,6 +5,8 @@
 #include "Interfaces/Interface_CollisionDataProvider.h"
 #include "AssetCompilingManager.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/Texture2D.h"
+#include "UObject/UObjectGlobals.h"
 #include "PhysicsEngine/BodySetup.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
@@ -158,5 +160,27 @@ bool FDinkLegacyPictureProjection::RunTest(const FString&)
         TestTrue(TEXT("rejected picture never mutates publication output"),Again.Equals(Before,0));
     }
     TestFalse(TEXT("missing importer scale refuses"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,FTransform(FQuat::Identity,FVector::ZeroVector,FVector::ZeroVector),Again,Error));
+    return true;
+}
+
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkLegacyPictureImportedSize,"Dink.Art.Family.ReleasedPictureImportedSize",DINK_TEST_FLAGS)
+bool FDinkLegacyPictureImportedSize::RunTest(const FString&)
+{
+#if WITH_EDITORONLY_DATA
+    FDinkLegacyPictureDescriptor P;P.Sequence=173;P.Frame=1;P.Width=56;P.Height=55;P.OriginX=41;P.OriginY=44;
+    P.Sha1=TEXT("b89b9bd0f6829a4c377345a7a3fe79793660dbfc");
+    TStrongObjectPtr<UTexture2D> Texture(NewObject<UTexture2D>(GetTransientPackage()));
+    TArray<uint8> Pixels;Pixels.SetNumZeroed(64*64*4);Texture->Source.Init(64,64,1,1,TSF_BGRA8,Pixels.GetData());
+    FIntPoint Observed;
+    TestEqual(TEXT("owned unrendered texture has no platform surface width"),Texture->GetSurfaceWidth(),0.f);
+    TestEqual(TEXT("owned unrendered texture has no platform surface height"),Texture->GetSurfaceHeight(),0.f);
+    TestTrue(TEXT("actual imported authoring dimensions qualify without platform resource"),DinkFamilyCollisionFit::MatchesLegacyPictureImportedSize(P,*Texture,&Observed)&&Observed==FIntPoint(64,64));
+    TArray<uint8> WrongPixels;WrongPixels.SetNumZeroed(32*64*4);Texture->Source.Init(32,64,1,1,TSF_BGRA8,WrongPixels.GetData());
+    TestFalse(TEXT("actual mismatched imported width refuses despite valid descriptor"),DinkFamilyCollisionFit::MatchesLegacyPictureImportedSize(P,*Texture,&Observed));
+    TestEqual(TEXT("rejection reports actual imported dimensions"),Observed,FIntPoint(32,64));
+    Pixels.SetNumZeroed(64*32*4);Texture->Source.Init(64,32,1,1,TSF_BGRA8,Pixels.GetData());
+    TestFalse(TEXT("actual mismatched imported height refuses"),DinkFamilyCollisionFit::MatchesLegacyPictureImportedSize(P,*Texture,&Observed));
+#endif
     return true;
 }

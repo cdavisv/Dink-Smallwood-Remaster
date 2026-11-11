@@ -8,6 +8,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/Texture.h"
+#include "Engine/Texture2D.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "PhysicsEngine/BodySetup.h"
@@ -556,26 +557,26 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitReleaseCandidate(const FDinkOri
         auto* Material=LoadObject<UMaterialInterface>(nullptr,*MaterialPath);Texture=nullptr;
         const bool MaterialMatches=Material&&Material->GetPathName()==MaterialPath;
         const bool ParameterFound=MaterialMatches&&Material->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Texture);
-        const bool TextureMatches=ParameterFound&&Texture&&Texture->GetPathName()==TexturePath;
+        const auto* Texture2D=Cast<UTexture2D>(Texture);
+        const bool TextureMatches=ParameterFound&&Texture2D&&Texture->GetPathName()==TexturePath;
         const uint32 ExpectedWidth=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Width)));
         const uint32 ExpectedHeight=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Height)));
-        float ActualWidth=0,ActualHeight=0;bool WidthRead=false,HeightRead=false;
+        FIntPoint ActualSize=FIntPoint::ZeroValue;bool DimensionsMatch=false,DimensionsRead=false;
         bool CompilingObserved=false,CompilingBeforeDimensions=false;
         if(TextureMatches)
         {
             #if WITH_EDITOR
             CompilingObserved=true;CompilingBeforeDimensions=Texture->IsCompiling();
             #endif
-            // Preserve original short-circuit order; cache the EXACT values the predicate uses.
-            WidthRead=true;ActualWidth=Texture->GetSurfaceWidth();
-            if(ActualWidth==ExpectedWidth){HeightRead=true;ActualHeight=Texture->GetSurfaceHeight();}
+            // Authoring size is independent of optional rendered platform resources in ALL contexts.
+            DimensionsRead=true;DimensionsMatch=DinkFamilyCollisionFit::MatchesLegacyPictureImportedSize(Picture,*Texture2D,&ActualSize);
         }
-        if(!TextureMatches||ActualWidth!=ExpectedWidth||!HeightRead||ActualHeight!=ExpectedHeight)
+        if(!TextureMatches||!DimensionsMatch)
         {
             if(Error.IsEmpty())Error=FString::Printf(
-                TEXT("%s picture asset preflight failed: expectedMI=%s actualMI=%s materialMatch=%d parameterFound=%d expectedTex=%s actualTex=%s textureMatch=%d widthRead=%d actualWidth=%.17g expectedWidth=%u heightRead=%d actualHeight=%.17g expectedHeight=%u compilingObserved=%d compilingBeforeDimensions=%d"),
+                TEXT("%s picture asset preflight failed: expectedMI=%s actualMI=%s materialMatch=%d parameterFound=%d expectedTex=%s actualTex=%s textureMatch=%d importedDimensionsRead=%d actualImportedWidth=%d expectedWidth=%u actualImportedHeight=%d expectedHeight=%u compilingObserved=%d compilingBeforeDimensions=%d"),
                 Role,*MaterialPath,*GetPathNameSafe(Material),MaterialMatches,ParameterFound,*TexturePath,*GetPathNameSafe(Texture),TextureMatches,
-                WidthRead,double(ActualWidth),ExpectedWidth,HeightRead,double(ActualHeight),ExpectedHeight,CompilingObserved,CompilingBeforeDimensions);
+                DimensionsRead,ActualSize.X,ExpectedWidth,ActualSize.Y,ExpectedHeight,CompilingObserved,CompilingBeforeDimensions);
             return nullptr;
         }
         return Material;
@@ -633,13 +634,24 @@ bool DinkFamilyCollisionFit::ValidateReleasedPictureAssets(const FDinkFamilyColl
         const FString MI=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"),*Key,*Key);
         const FString Tex=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_%s.T_Sprite_%s"),*Key,*Key);
         UTexture* Parameter=nullptr;
-        return Material->Get()->GetPathName()==MI&&Texture->Get()->GetPathName()==Tex&&
+        const auto* Texture2D=Cast<UTexture2D>(Texture->Get());
+        return Material->Get()->GetPathName()==MI&&Texture->Get()->GetPathName()==Tex&&Texture2D&&
             Material->Get()->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Parameter)&&Parameter==Texture->Get()&&
-            Parameter->GetSurfaceWidth()==FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Width)))&&
-            Parameter->GetSurfaceHeight()==FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Height)));
+            MatchesLegacyPictureImportedSize(P,*Texture2D);
     };
     if(!C.bReleasePicturePrepared||!Matches(C.Sprite.SourcePicture,C.SourcePictureMaterial,C.SourcePictureTexture)||
        !Matches(C.ReleasePicture,C.ReleaseMaterial,C.ReleaseTexture))
     {Error=TEXT("prepared source/effective picture material/Tex identity or dimensions changed");return false;}
     Error.Reset();return true;
+}
+
+
+bool DinkFamilyCollisionFit::MatchesLegacyPictureImportedSize(const FDinkLegacyPictureDescriptor& P,
+    const UTexture2D& Texture,FIntPoint* Observed)
+{
+    // GetImportedSize reads editor source logical size or the persisted cooked ImportedSize.
+    // GetSurfaceWidth/Height instead depend on optional platform data and can both be0 in commandlets.
+    const FIntPoint Size=Texture.GetImportedSize();if(Observed)*Observed=Size;
+    return ValidatePictureDescriptor(P)&&Size.X==int32(FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Width))))&&
+        Size.Y==int32(FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Height))));
 }
