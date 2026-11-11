@@ -1,0 +1,65 @@
+{
+  "schema": "dink-source-candidate/1",
+  "status": "source_visual_candidate_not_native_or_full_guide_pass",
+  "base_origin_master": "d925fe0b02318bca5477c46e10b5a03a300fff81",
+  "candidate": "PhotorealBrokenBarrelV2_Source.blend",
+  "candidate_sha256": "42ff822785784d531dbbc0730055f8b0281feacb83792364c43dace43b0a7282",
+  "families": [
+    "barrel_broken"
+  ],
+  "original_sequence": 173,
+  "original_frame": 6,
+  "semantic_class": "prop",
+  "role_proposed": "visual_only_family_shared_tiling",
+  "role_profile_implemented": false,
+  "parent_source": "../PhotorealBarrelV1/PhotorealBarrelV1_Source.blend",
+  "parent_source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+  "shared_library": "../../../SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend",
+  "shared_library_sha256": "bcff2725b32ecfeea8d85f03a7324b120d1fdfea00aec7ba34a600911eb27dda",
+  "materials": [
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_OakEndgrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "triangles": 9624,
+  "parts": 28,
+  "bounds_cm": [
+    103.491,
+    121.467,
+    18.863
+  ],
+  "floor_min_cm": 0.1,
+  "no_collider": true,
+  "guide_raw_errors": 2,
+  "guide_passed": false,
+  "native_imported": false,
+  "activated": false,
+  "production_registry_changes": false,
+  "material_graph_proof": "Evidence/DELIVERY_REPRODUCTION_CHECK.json",
+  "provenance": "References/PROVENANCE.json",
+  "recipes": [
+    "Scripts/build_broken_barrel.py",
+    "Scripts/finalize_source.py"
+  ],
+  "source_visual_review": "Root accepted selectedV2R2; cleaned copy has identical28 target signatures; no final/native approval",
+  "payloads": {
+    "Evidence/DELIVERY_REPRODUCTION_CHECK.json": "f4d409a1f549384ca158ae434e71116914d401d63c1ca8f9f6cdb8d9715bbe3d",
+    "Evidence/FINALIZE_SELECTED.json": "b532454199ea10d151801914298624fcb072100191077ef3e9f8aa72b2158497",
+    "Evidence/GUIDE_RAW.json": "b77f868c5f6f2277b9cfc07b435c395c243b5ba4766c490c1914223a51ee48c8",
+    "Evidence/MATERIAL_PROVENANCE.json": "fda75797bb7f8a9ef254d3273d5b03a4c32320c9f2a087f2fab5999c80f9ac73",
+    "Evidence/SELECTED_GEOMETRY_CHECK.json": "4a6ac16aaec73f9eed6dfb0667baa1fb0ed40c7e93050e8bc19080eb3d9fc31a",
+    "POLICY_INTERPRETATION.md": "3b1745ae085ad5eb0a6778724c2f7e77ed2a55f0b403bfabede9371a6a01d2ad",
+    "PhotorealBrokenBarrelV2_Source.blend": "42ff822785784d531dbbc0730055f8b0281feacb83792364c43dace43b0a7282",
+    "Previews/V1_private_material_before.png": "cacb4a1644da0861e6a0a007ce323bd0529a2a782106a8a28085a8646820ba9f",
+    "Previews/V2_shared_material_after.png": "45bc7e9082df4c1332c9014cc8a332da833b2298998fb289ac608429cd4efe57",
+    "Previews/V2_shared_material_top.png": "7377fe4d37cb53d77aae74b0f9c8abfa2875d8abe5a92645e89d61b8a3e96af6",
+    "README.md": "4cacad02a0a9298cdc487d3de9ca760d1fea5cae5411dfb4c13664d94e680ddf",
+    "References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
+    "References/barel-01.bmp.png": "2f1ab1200c47f6df03f085dacdba53e1842385b7ce5824c6d31574bee09f344c",
+    "References/barel-06.bmp.png": "b6de2786813e799b54c654e2e493ffafd04c7758c53d5f36d9b08f53a4fc84ba",
+    "Scripts/build_broken_barrel.py": "5bc14b64b66c4a47c4b6357d628e32f83fb20bf3a36d746e2b91f2ceb2edcaf6",
+    "Scripts/finalize_source.py": "e717f06662a53c721a4a71fa8bf327092b62b3193bd07074b4e85d641d833f15"
+  },
+  "reproduction_source_epoch": "2a18d7cfaa2c61328048fd07b7ae25b76a2f8e97; subsequent fast-forward adds beach source only; pinned parent/library unchanged",
+  "source_publication_decision": "Root reviewed ART_STANDARD precedence and cleared source-only archival publication with raw generic2guidefindings disclosed; no fullguide/exportready/native/activation acceptance"
+}
