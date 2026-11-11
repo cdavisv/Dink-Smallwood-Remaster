@@ -185,7 +185,7 @@ public:
                     FamilyVisible|=Mesh->IsVisible()&&!Mesh->bHiddenInGame;
         }
         Test->TestTrue(TEXT("intact save restores family visibility and hides broken card"),
-            RestoredActor&&RestoredActor->Card&&RestoredActor->Card->bHiddenInGame&&FamilyVisible);
+            RestoredActor&&RestoredActor->Card&&!RestoredActor->Card->IsVisible()&&RestoredActor->Card->bHiddenInGame&&FamilyVisible);
         return true;
     }
 private:
