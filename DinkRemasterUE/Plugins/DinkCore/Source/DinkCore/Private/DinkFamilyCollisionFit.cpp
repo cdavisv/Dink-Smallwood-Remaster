@@ -350,7 +350,8 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     for(TActorIterator<ADinkScreenVolume> It(GetWorld());It;++It)if(It->ScreenNumber==Sprite.CurrentScreen)
     {if(Volume)return Fail(TEXT("ambiguous screen map"));Volume=*It;}
     if(!Actor||!Volume||Sprite.Actor.Get()!=Actor||!Actor->Origin||Sprite.ScriptName!=Source->Origin->ScriptName||(!Sprite.bPrebirth&&(Actor->IsHidden()||!Actor->GetActorEnableCollision()))||!SourceBinding(*Actor,*Source,*Rule)||!Actor->ActorHasTag(FamilyTag)||Actor->ActorHasTag(TEXT("DinkAuthoredArt"))||
-        !Actor->Card||Actor->Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
+        !Actor->Card||Actor->Card->GetAttachParent()!=Actor->GetRootComponent()||!Actor->Card->GetAttachSocketName().IsNone()||
+        Actor->Card->IsUsingAbsoluteLocation()||Actor->Card->IsUsingAbsoluteRotation()||Actor->Card->IsUsingAbsoluteScale()||Actor->Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
         Actor->Card->CanEverAffectNavigation()||Actor->Card->GetGenerateOverlapEvents())return Fail(TEXT("actual audited family placement unavailable"));
     const FVector ScriptGround=DinkLayout::MapPixelToUnreal(Volume->Corners,Sprite.EngineX-20,Sprite.EngineY);
     if(!FVector2D(Actor->GetActorLocation().X,Actor->GetActorLocation().Y).Equals(FVector2D(ScriptGround.X,ScriptGround.Y),.05))
@@ -408,7 +409,8 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
         !F->GetComponentTransform().Equals(C.bVisualApplied?C.ProposedWorld:C.BeforeFamily,C.bVisualApplied?1.e-4:0.)||!F->IsRegistered()||
         F->GetCollisionProfileName()!=C.BeforeProfile||F->GetCollisionEnabled()!=C.BeforeCollision||F->GetCollisionObjectType()!=C.BeforeObjectType||
         F->GetCollisionResponseToChannels()!=C.BeforeResponses||F->CanEverAffectNavigation()!=C.BeforeNavigation||F->GetGenerateOverlapEvents()!=C.BeforeOverlaps||F->IsVisible()!=(C.bVisualApplied?true:C.BeforeVisible)||F->bHiddenInGame!=(C.bVisualApplied?false:C.BeforeFamilyHidden)||
-        Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=(!C.bVisualApplied&&C.BeforeCardVisible)||
+        Card!=A->Card.Get()||Card->GetAttachParent()!=A->GetRootComponent()||!Card->GetAttachSocketName().IsNone()||
+        Card->IsUsingAbsoluteLocation()||Card->IsUsingAbsoluteRotation()||Card->IsUsingAbsoluteScale()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=(!C.bVisualApplied&&C.BeforeCardVisible)||
         Materials(*F)!=C.BeforeMaterials||Materials(*Card)!=C.BeforeCardMaterials)
     {
         if(A&&F&&Card)
@@ -492,19 +494,29 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
         Prior.bVisualApplied=false;
         if(!ValidateCollisionFit(Prior,Prior.Sprite,Error))return false;
     }
-    auto* Card=C.Card.Get();auto* Family=C.FamilyComponent.Get();
+    auto* Card=C.Card.Get();auto* Family=C.FamilyComponent.Get();auto* Actor=C.Actor.Get();
+    auto* Parent=Actor->GetRootComponent();
+    const auto SupportedParent=[&](){return Parent&&Actor->GetRootComponent()==Parent&&Card->GetAttachParent()==Parent&&
+        Card->GetAttachSocketName().IsNone()&&!Card->IsUsingAbsoluteLocation()&&!Card->IsUsingAbsoluteRotation()&&!Card->IsUsingAbsoluteScale();};
+    if(!SupportedParent()){Error=TEXT("released card requires actor-root parent/no socket/no absolute channels");return false;}
+    const FTransform ParentWorld=Parent->GetComponentTransform();
+    const FTransform RequestedWorld=C.ReleaseCardRelative*ParentWorld; // BEFORE mobility/pose setters.
     // All validation/allocation is complete before publication. Resolve geometry/material BEFORE exposing the card.
     // Registered imported cards can still be Static after hidden-card billboarding was skipped.
     // This is presentation-only: existing strict NoCollision/navigation/overlap guards already passed.
     if(Card->Mobility!=EComponentMobility::Movable)Card->SetMobility(EComponentMobility::Movable);
     Card->SetRelativeTransform(C.ReleaseCardRelative,false,nullptr,ETeleportType::TeleportPhysics);
     Card->SetMaterial(0,C.ReleaseMaterial->Get());
+    const auto WorldMatches=[&](){return SupportedParent()&&Parent->GetComponentTransform().Equals(ParentWorld,0)&&
+        Card->GetComponentTransform().Equals(RequestedWorld,0)&&Card->GetMaterial(0)==C.ReleaseMaterial->Get();};
+    if(!WorldMatches()){Error=TEXT("effective legacy picture world/parent/material publication failed; retain loading gate");return false;}
     Family->SetVisibility(false);Family->SetHiddenInGame(true);
     Card->SetVisibility(true);Card->SetHiddenInGame(false);
-    if(!Card->GetRelativeTransform().Equals(C.ReleaseCardRelative,0)||Card->GetMaterial(0)!=C.ReleaseMaterial->Get()||
-       !Card->IsVisible()||Card->bHiddenInGame||Family->IsVisible()||!Family->bHiddenInGame)
+    if(!WorldMatches()||!Card->IsVisible()||Card->bHiddenInGame||Family->IsVisible()||!Family->bHiddenInGame)
     {Error=TEXT("effective legacy picture publication failed; retain loading gate");return false;}
-    auto* Actor=C.Actor.Get();Actor->PublishedLegacyCardRelative=C.ReleaseCardRelative;
+    // Stock setters can round-trip local coordinates while producing the EXACT requested world pose.
+    // Freeze the observed relative epoch, never the unrepresentable ideal local request.
+    Actor->PublishedLegacyCardRelative=Card->GetRelativeTransform();
     Actor->PublishedLegacyCardMaterial=C.ReleaseMaterial->Get();
     Actor->PublishedImportedCardBaseline=C.ImportedCardBaseline;Actor->PublishedSourcePictureSha1=C.Sprite.SourcePicture.Sha1;
     Actor->bHasPublishedLegacyPicture=true;
