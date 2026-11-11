@@ -1,3 +1,9 @@
+## Saved barrel readback on 1018326
+
+Readback Candidate3 run `63254d635cde42389db995741925f048` passed bounds and immediate prop walkthrough on both saved screens. Intact reload still refused the audited family placement after the broken card was exposed. SCR_209 reported no active food drop after the half-second wait.
+
+The pending fix admits the exact broken presentation pair on original intact prebirth and restores family visibility after physical admission. The acceptance test verifies both visibility changes on intact reload and checks the actual scripted drop in the hit turn before later gameplay ticks. Food consumption remains unconfirmed. No Unreal process was launched.
+
 ## Saved barrel readback on 642e1d4
 
 Readback Candidate2 run `19c1dda0bf444873a1e7ba48878eba06` reached both fitted bodies in the unchanged Stage40 packages. Both screens failed tight XY bounds, immediate prop walkthrough and intact reload. SCR_209 also failed its food-drop assertion. The original report remains under `DinkQA/RuntimeHardnessCandidateReadback/Candidate2/Runs`.

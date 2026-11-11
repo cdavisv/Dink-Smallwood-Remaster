@@ -217,7 +217,7 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     for(TActorIterator<ADinkScreenVolume> It(GetWorld());It;++It)if(It->ScreenNumber==Sprite.CurrentScreen)
     {if(Volume)return Fail(TEXT("ambiguous screen map"));Volume=*It;}
     if(!Actor||!Volume||Sprite.Actor.Get()!=Actor||!Actor->Origin||Sprite.ScriptName!=Source->Origin->ScriptName||(!Sprite.bPrebirth&&(Actor->IsHidden()||!Actor->GetActorEnableCollision()))||!SourceBinding(*Actor,*Source,Id)||!Actor->ActorHasTag(FamilyTag)||Actor->ActorHasTag(TEXT("DinkAuthoredArt"))||
-        !Actor->Card||(!Release&&!Actor->Card->bHiddenInGame)||Actor->Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
+        !Actor->Card||Actor->Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
         Actor->Card->CanEverAffectNavigation()||Actor->Card->GetGenerateOverlapEvents())return Fail(TEXT("actual audited family placement unavailable"));
     const FVector ScriptGround=DinkLayout::MapPixelToUnreal(Volume->Corners,Sprite.EngineX-20,Sprite.EngineY);
     if(!FVector2D(Actor->GetActorLocation().X,Actor->GetActorLocation().Y).Equals(FVector2D(ScriptGround.X,ScriptGround.Y),.05))
@@ -229,8 +229,15 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     if(!Family||Family->Mobility!=EComponentMobility::Movable||!Family->IsRegistered()||!Family->GetStaticMesh()||Family->GetStaticMesh()->GetPathName()!=Rule->Mesh||
         !Binding||Binding->Mesh!=Rule->Mesh||Binding->Fit!=EDinkFamilyFit::None||!Binding->bScripted||Binding->bYawFromSprite||
         Family->GetAttachParent()!=Actor->GetRootComponent()||Family->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||
-        Family->CanEverAffectNavigation()||Family->GetGenerateOverlapEvents()||(!Release&&(Family->bHiddenInGame||!Family->IsVisible())))
+        Family->CanEverAffectNavigation()||Family->GetGenerateOverlapEvents())
         return Fail(TEXT("real-size exclusive noncolliding family binding changed"));
+    if(!Release)
+    {
+        const bool IntactPresentation=Actor->Card->bHiddenInGame&&!Family->bHiddenInGame&&Family->IsVisible();
+        const bool RestoringPrebirth=Sprite.bPrebirth&&Actor==Source&&Actor->Card->IsVisible()&&
+            !Actor->Card->bHiddenInGame&&Family->bHiddenInGame&&!Family->IsVisible();
+        if(!IntactPresentation&&!RestoringPrebirth)return Fail(TEXT("unexpected fitted family presentation"));
+    }
     FDinkFamilyCollisionFitCandidate C;C.Origin=Id;C.Sprite=Sprite;C.World=GetWorld();C.Actor=Actor;C.SourceActor=Source;C.FamilyComponent=Family;C.Card=Actor->Card;
     C.bReleaseOnly=Release;C.BeforeFamilyHidden=Family->bHiddenInGame;C.BeforeCardHidden=Actor->Card->bHiddenInGame;C.BeforeCardVisible=Actor->Card->IsVisible();
     C.BeforeCardMesh=Actor->Card->GetStaticMesh();C.Corners=Volume->Corners;C.BeforeActor=Actor->GetActorTransform();
@@ -263,8 +270,8 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
         !F->GetStaticMesh()||F->GetOwner()!=A||uint8(F->Mobility)!=C.BeforeMobility||F->GetAttachParent()!=A->GetRootComponent()||F->GetStaticMesh()!=C.Geometry.Mesh.Get()||F->GetStaticMesh()->GetBodySetup()!=C.Geometry.BodySetup.Get()||
         !F->GetComponentTransform().Equals(C.bVisualApplied?C.ProposedWorld:C.BeforeFamily,C.bVisualApplied?1.e-4:0.)||!F->IsRegistered()||
         F->GetCollisionProfileName()!=C.BeforeProfile||F->GetCollisionEnabled()!=C.BeforeCollision||F->GetCollisionObjectType()!=C.BeforeObjectType||
-        F->GetCollisionResponseToChannels()!=C.BeforeResponses||F->CanEverAffectNavigation()!=C.BeforeNavigation||F->GetGenerateOverlapEvents()!=C.BeforeOverlaps||F->IsVisible()!=C.BeforeVisible||F->bHiddenInGame!=C.BeforeFamilyHidden||
-        Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=C.BeforeCardHidden||Card->IsVisible()!=C.BeforeCardVisible||
+        F->GetCollisionResponseToChannels()!=C.BeforeResponses||F->CanEverAffectNavigation()!=C.BeforeNavigation||F->GetGenerateOverlapEvents()!=C.BeforeOverlaps||F->IsVisible()!=(C.bVisualApplied?true:C.BeforeVisible)||F->bHiddenInGame!=(C.bVisualApplied?false:C.BeforeFamilyHidden)||
+        Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=C.BeforeCardVisible||
         Materials(*F)!=C.BeforeMaterials||Materials(*Card)!=C.BeforeCardMaterials)return Fail(TEXT("fit candidate world/origin/frame/transform/material/policy became stale"));
     int32 FamilyComponents=0,Volumes=0;
     if(A->ScreenNumber!=Current.CurrentScreen)return Fail(TEXT("current owner screen changed"));
@@ -295,6 +302,11 @@ bool UDinkArtFamilySubsystem::ApplyCollisionFitVisual(FDinkFamilyCollisionFitCan
     // The authority must hold its gameplay loading gate and already bind the
     // matching mesh body/logical layer. No source origin or collision setter.
     C.FamilyComponent->SetWorldTransform(C.ProposedWorld,false,nullptr,ETeleportType::TeleportPhysics);
+    // An intact save can reuse the original actor after the broken card was
+    // exposed. Restore the fitted presentation only after body admission.
+    C.FamilyComponent->SetVisibility(true);
+    C.FamilyComponent->SetHiddenInGame(false);
+    C.Card->SetHiddenInGame(true);
     C.bVisualApplied=true;
     if(!C.FamilyComponent->GetComponentTransform().Equals(C.ProposedWorld,1.e-4))
     {Error=TEXT("visual transform did not publish; coordinator must retain loading gate");return false;}
