@@ -498,10 +498,10 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     }
     // A requested source without an admitted projection must retain the loading
     // guard and must not forcibly expose an actor. Restore via normal redraw only.
-    const auto Admitted=G->HardnessProjection;Actor->SetActorHiddenInGame(true);G->HardnessProjection.Reset();
+    const auto AdmittedFinalBackgroundProjection=G->HardnessProjection;Actor->SetActorHiddenInGame(true);G->HardnessProjection.Reset();
     TestFalse(TEXT("natural final background refuses absent screen admission"),G->CommitFittedBrain5Background(Handle,Error));
     TestTrue(TEXT("unadmitted refusal holds gate and never forces visibility"),G->IsHardnessLoading()&&Actor->IsHidden());
-    G->HardnessProjection=Admitted;G->SetHardnessLoading(false);
+    G->HardnessProjection=AdmittedFinalBackgroundProjection;G->SetHardnessLoading(false);
     if(!TestTrue(TEXT("restored admission republishes through existing guarded background path"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
     TestTrue(TEXT("normal guarded redraw restores correct inactive background"),!Actor->IsHidden()&&!S->bActive&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
     return true;
