@@ -1,3 +1,7 @@
+## 2026-11-11 — intact restore fixture pointer declaration correction
+
+Own Editor60821 at1042097 failed6/66s/oneerror/zero warnings: UE5.8 GetStaticMesh returns TObjectPtr<UStaticMesh>, incompatible with auto* deduction. This successor changes only that fixture declaration to explicit UStaticMesh*. Production implementation/headers remain byte-identical to reviewedb426f54. Original failure and own partial outputs retained in DinkQA/PublishedIntactRestoreBuild; normal same-owner incremental rebuild/native acceptance remain pending. No assertion or state change.
+
 ## 2026-11-11 — witnessed published-card intact restoration (source only)
 
 NEW /home/artist/Work/DinkBarrelPublishedIntactRestore, branch fix/barrel-published-intact-restore, base93a8619. Actual65041 passed broken publication/repeat/tamper controls, then refused intact restore because presentation eligibility admitted only intact family or prebirth state. Frozen stage/result retained.
