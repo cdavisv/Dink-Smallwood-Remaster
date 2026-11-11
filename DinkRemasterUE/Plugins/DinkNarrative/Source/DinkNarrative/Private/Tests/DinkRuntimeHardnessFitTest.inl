@@ -172,8 +172,52 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     FString CanonicalError;TestFalse(TEXT("public admission never exempts absent/drifted canonical baseline"),G->AdmitRuntimeHardness(209,0,Owner,CanonicalError));
     const bool Admitted=G->AdmitRuntimeHardnessFromSourceFile(209,0,Owner,SelectedFile,Error);
     if(!TestTrue(FString(TEXT("actual baseline scene transaction: "))+Error,Admitted))return false;
+    auto RedrawFailure=[&](const TCHAR* Phase,const FString& Failure)
+    {
+        // Failure-only readback AFTER the unchanged redraw. No query/admission/slot allocation.
+        const FString Reason=Failure;AddError(Reason.IsEmpty()?TEXT("Redraw returned false with no Error"):Reason);
+        auto O=MakeShared<FJsonObject>();O->SetStringField(TEXT("phase"),Phase);O->SetStringField(TEXT("error"),Reason);O->SetBoolField(TEXT("hardness_loading"),G->IsHardnessLoading());
+        auto V=[](const FVector& P){return FString::Printf(TEXT("%.17g,%.17g,%.17g"),P.X,P.Y,P.Z);};
+        auto Pose=[&](const FTransform& T){auto R=MakeShared<FJsonObject>();const auto Q=T.GetRotation();R->SetStringField(TEXT("translation_xyz"),V(T.GetTranslation()));R->SetStringField(TEXT("scale_xyz"),V(T.GetScale3D()));R->SetStringField(TEXT("quaternion_xyzw"),FString::Printf(TEXT("%.17g,%.17g,%.17g,%.17g"),Q.X,Q.Y,Q.Z,Q.W));return R;};
+        O->SetNumberField(TEXT("effective_source_type"),G->EffectiveHardnessPlacementType(*Placement));
+        O->SetObjectField(TEXT("actor_world"),Pose(Actor->GetActorTransform()));O->SetObjectField(TEXT("imported_baseline"),Pose(Actor->ImportedCardRelativeTransform));
+        O->SetObjectField(TEXT("card_relative"),Pose(Actor->Card->GetRelativeTransform()));O->SetBoolField(TEXT("card_visible"),Actor->Card->IsVisible());O->SetBoolField(TEXT("card_hidden"),Actor->Card->bHiddenInGame);O->SetStringField(TEXT("card_material"),GetPathNameSafe(Actor->Card->GetMaterial(0)));
+        TArray<TSharedPtr<FJsonValue>> Sprites,Releases;int32 Active=0,Inactive=0;
+        for(const auto& Pair:D->GetSprites())if(Pair.Value.Origin==Id)
+        {
+            const auto& Sprite=Pair.Value;if(Sprite.bActive)++Active;else++Inactive;auto R=MakeShared<FJsonObject>();
+            R->SetNumberField(TEXT("handle"),Sprite.Handle);R->SetBoolField(TEXT("active"),Sprite.bActive);R->SetNumberField(TEXT("seq"),Sprite.GetProp(TEXT("seq")));R->SetNumberField(TEXT("brain"),Sprite.GetProp(TEXT("brain")));R->SetNumberField(TEXT("nohit"),Sprite.GetProp(TEXT("nohit")));R->SetNumberField(TEXT("pseq"),Sprite.GetProp(TEXT("pseq")));R->SetNumberField(TEXT("pframe"),Sprite.GetProp(TEXT("pframe")));R->SetStringField(TEXT("script"),Sprite.Script.ToString());Sprites.Add(MakeShared<FJsonValueObject>(R));
+        }
+        O->SetNumberField(TEXT("origin_active_sprites"),Active);O->SetNumberField(TEXT("origin_inactive_sprites"),Inactive);O->SetArrayField(TEXT("sprites"),Sprites);
+        if(G->HardnessProjection&&G->HardnessProjection->Fits)
+        {
+            const auto& Fits=*G->HardnessProjection->Fits;O->SetNumberField(TEXT("candidate_count"),Fits.Candidates.Num());O->SetNumberField(TEXT("release_count"),Fits.Releases.Num());O->SetNumberField(TEXT("body_count"),Fits.Bodies.size());
+            for(int32 I=0;I<Fits.Releases.Num();++I)
+            {
+                const auto& C=Fits.Releases[I];auto R=MakeShared<FJsonObject>();R->SetStringField(TEXT("origin"),C.Origin.ToString());R->SetBoolField(TEXT("prepared"),C.bReleasePicturePrepared);R->SetObjectField(TEXT("expected_relative"),Pose(C.ReleaseCardRelative));R->SetStringField(TEXT("expected_material"),C.ReleaseMaterial?GetPathNameSafe(C.ReleaseMaterial->Get()):FString());
+                if(C.Card.IsValid())
+                {
+                    const auto* Card=C.Card.Get();const auto Actual=Card->GetRelativeTransform();const auto ActualWorld=Card->GetComponentTransform();
+                    R->SetObjectField(TEXT("actual_relative"),Pose(Actual));R->SetObjectField(TEXT("actual_card_world"),Pose(ActualWorld));
+                    R->SetBoolField(TEXT("relative_exact"),Actual.Equals(C.ReleaseCardRelative,0));R->SetBoolField(TEXT("translation_exact"),Actual.GetTranslation().Equals(C.ReleaseCardRelative.GetTranslation(),0));R->SetBoolField(TEXT("rotation_exact"),Actual.GetRotation().Equals(C.ReleaseCardRelative.GetRotation(),0));R->SetBoolField(TEXT("scale_exact"),Actual.GetScale3D().Equals(C.ReleaseCardRelative.GetScale3D(),0));
+                    const auto* Parent=Card->GetAttachParent();const auto* Root=Actor->GetRootComponent();
+                    R->SetStringField(TEXT("attach_parent"),GetPathNameSafe(Parent));R->SetStringField(TEXT("attach_socket"),Card->GetAttachSocketName().ToString());R->SetStringField(TEXT("actor_root"),GetPathNameSafe(Root));
+                    R->SetBoolField(TEXT("parent_is_actor_root"),Parent&&Parent==Root);R->SetBoolField(TEXT("absolute_location"),Card->IsUsingAbsoluteLocation());R->SetBoolField(TEXT("absolute_rotation"),Card->IsUsingAbsoluteRotation());R->SetBoolField(TEXT("absolute_scale"),Card->IsUsingAbsoluteScale());
+                    const bool RelativeCompositionApplies=!Card->IsUsingAbsoluteLocation()&&!Card->IsUsingAbsoluteRotation()&&!Card->IsUsingAbsoluteScale();
+                    R->SetBoolField(TEXT("relative_composition_applies"),RelativeCompositionApplies);
+                    if(Root){const auto RootWorld=Root->GetComponentTransform();const auto Requested=C.ReleaseCardRelative*RootWorld;R->SetObjectField(TEXT("actor_root_world"),Pose(RootWorld));R->SetObjectField(TEXT("requested_world_via_actor_root"),Pose(Requested));R->SetBoolField(TEXT("world_exact_via_actor_root"),RelativeCompositionApplies&&Parent==Root&&Card->GetAttachSocketName().IsNone()&&ActualWorld.Equals(Requested,0));}
+                    if(Parent){const auto ParentWorld=Parent->GetComponentTransform();const auto ParentSocketWorld=Parent->GetSocketTransform(Card->GetAttachSocketName(),RTS_World);const auto Requested=C.ReleaseCardRelative*ParentWorld;const auto SocketRequested=C.ReleaseCardRelative*ParentSocketWorld;R->SetObjectField(TEXT("attach_parent_world"),Pose(ParentWorld));R->SetObjectField(TEXT("attach_parent_socket_world"),Pose(ParentSocketWorld));R->SetObjectField(TEXT("requested_world_via_actual_parent"),Pose(Requested));R->SetObjectField(TEXT("requested_world_via_parent_socket"),Pose(SocketRequested));R->SetBoolField(TEXT("world_exact_via_actual_parent"),RelativeCompositionApplies&&Card->GetAttachSocketName().IsNone()&&ActualWorld.Equals(Requested,0));R->SetBoolField(TEXT("world_exact_via_parent_socket"),RelativeCompositionApplies&&ActualWorld.Equals(SocketRequested,0));}
+                }
+                if(Fits.ReleaseStates.IsValidIndex(I)){const auto& State=Fits.ReleaseStates[I];R->SetBoolField(TEXT("prebirth"),State.bPrebirth);R->SetBoolField(TEXT("active"),State.bActive);R->SetNumberField(TEXT("runtime_handle"),State.RuntimeHandle);R->SetNumberField(TEXT("frame"),State.DisplayedFrame);}
+                Releases.Add(MakeShared<FJsonValueObject>(R));
+            }
+        }
+        O->SetArrayField(TEXT("releases"),Releases);FString Text;const FString Dir=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Automation/ReleasedPictureRedraw"));IFileManager::Get().MakeDirectory(*Dir,true);const FString File=Dir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));
+        const bool Written=FJsonSerializer::Serialize(O,TJsonWriterFactory<>::Create(&Text))&&FFileHelper::SaveStringToFile(Text,*File,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting);
+        AddInfo(FString::Printf(TEXT("redraw diagnostic receipt=%s written=%d payload=%s"),*File,Written,*Text));
+    };
     const bool Redrawn=G->RedrawRuntimeHardnessMap(209,Error);
-    if(!TestTrue(FString(TEXT("actual full fitted redraw: "))+Error,Redrawn))return false;
+    if(!TestTrue(FString(TEXT("actual full fitted redraw: "))+Error,Redrawn)){RedrawFailure(TEXT("actual full fitted redraw"),Error);return false;}
     auto* Primitive=G->FindHardnessFitPrimitive(*D->FindSprite(Handle));if(!TestNotNull(TEXT("same-owner admitted exact fitted primitive"),Primitive))return false;
     TestTrue(TEXT("fitted visual aligned to script ground"),FamilyMesh->Bounds.GetBox().GetCenter().Equals(Primitive->Bounds.GetBox().GetCenter(),.1));
     const auto FrozenCard=Actor->Card->GetRelativeTransform();Actor->Card->AddLocalOffset(FVector(1,0,0));
@@ -279,25 +323,30 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     if(Primitive)TestTrue(TEXT("actual direct sweep still queries inert cooked body"),Primitive->SweepComponent(Hit,Ground+FVector(0,0,170),Ground+FVector(0,0,30),FQuat::Identity,Capsule,true));
     G->SetPlacementProp(Id,0);TestEqual(TEXT("prop restore uses same logical epoch"),G->GetHard(209,Cell.X+20,Cell.Y),113);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("hard"),1);G->RecordEditorHardness(Id,1);
-    if(!TestTrue(TEXT("soft intact redraw"),G->RedrawRuntimeHardness(Handle,Error)))return false;
+    const bool SoftRedrawn=G->RedrawRuntimeHardness(Handle,Error);
+    if(!TestTrue(TEXT("soft intact redraw"),SoftRedrawn)){RedrawFailure(TEXT("soft intact redraw"),Error);return false;}
     TestTrue(TEXT("softness alone retains intact visual"),FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame);TestEqual(TEXT("softness clears old logical mask"),G->GetHard(209,Cell.X+20,Cell.Y),0);
     Actor->Card->SetMobility(EComponentMobility::Static);
     TestTrue(TEXT("release starts with a registered static imported card"),Actor->Card->IsRegistered()&&Actor->Card->Mobility==EComponentMobility::Static);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("seq"),173);S->Props.Add(TEXT("brain"),5);S->Props.Add(TEXT("nohit"),1);
-    if(!TestTrue(TEXT("actual bar-f1 break state releases fitted body"),G->RedrawRuntimeHardness(Handle,Error)))return false;
+    const bool BreakRedrawn=G->RedrawRuntimeHardness(Handle,Error);
+    if(!TestTrue(TEXT("actual bar-f1 break state releases fitted body"),BreakRedrawn)){RedrawFailure(TEXT("actual bar-f1 break state releases fitted body"),Error);return false;}
     TestNull(TEXT("broken barrel has no fitted physical instance"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
     TestTrue(TEXT("broken barrel hides intact family and exposes card"),FamilyMesh->bHiddenInGame&&!FamilyMesh->IsVisible()&&!Actor->Card->bHiddenInGame);
     TestTrue(TEXT("actual release makes only noncolliding card movable for projection"),Actor->Card->Mobility==EComponentMobility::Movable&&Actor->Card->GetCollisionEnabled()==ECollisionEnabled::NoCollision&&!Actor->Card->CanEverAffectNavigation()&&!Actor->Card->GetGenerateOverlapEvents());
-    TestTrue(TEXT("broken redraw is idempotent"),G->RedrawRuntimeHardnessMap(209,Error));
+    const bool FirstBrokenRepeat=G->RedrawRuntimeHardnessMap(209,Error);
+    if(!TestTrue(TEXT("broken redraw is idempotent"),FirstBrokenRepeat)){RedrawFailure(TEXT("broken redraw is idempotent"),Error);}
     Story->GetWorldState()->SetOverride(Id,EDinkOverrideType::BackgroundNoHardness);
     G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,6);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("pframe"),6);S->Props.Add(TEXT("seq"),0);S->Props.Add(TEXT("brain"),0);
-    if(!TestTrue(TEXT("persisted broken173/6 source projection"),G->RedrawRuntimeHardnessMap(209,Error)))return false;
+    const bool PersistedBroken=G->RedrawRuntimeHardnessMap(209,Error);
+    if(!TestTrue(TEXT("persisted broken173/6 source projection"),PersistedBroken)){RedrawFailure(TEXT("persisted broken173/6 source projection"),Error);return false;}
     TestTrue(TEXT("persisted broken background never restores intact family"),FamilyMesh->bHiddenInGame&&!FamilyMesh->IsVisible());
     TestEqual(TEXT("persisted broken picture projects actual173/6 material"),Actor->Card->GetMaterial(0)->GetPathName(),FString(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_173_06.MI_Sprite_173_06")));
     TestTrue(TEXT("persisted broken picture uses source dimensions/pivot"),Actor->Card->GetRelativeTransform().Equals(FTransform(FQuat::Identity,FVector(1,0,-20),FVector(.84,1,.64)),1.e-12));
     const auto FirstBrokenPose=Actor->Card->GetRelativeTransform();auto* FirstBrokenMaterial=Actor->Card->GetMaterial(0);
-    TestTrue(TEXT("repeated broken-load source redraw succeeds"),G->RedrawRuntimeHardnessMap(209,Error));
+    const bool RepeatedBroken=G->RedrawRuntimeHardnessMap(209,Error);
+    if(!TestTrue(TEXT("repeated broken-load source redraw succeeds"),RepeatedBroken)){RedrawFailure(TEXT("repeated broken-load source redraw succeeds"),Error);}
     TestTrue(TEXT("repeated broken picture geometry/material never compound"),Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0)&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
     const auto ReleasedBefore=Actor->Card->GetRelativeTransform();
     const auto ReleaseState=G->HardnessProjection->Fits->ReleaseStates.Last();
@@ -321,7 +370,8 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     Story->GetWorldState()->ClearOverride(Id);G->EditorHardnessPicture(Id,true,173);G->EditorHardnessPicture(Id,false,1);
     S=D->FindSprite(Handle);S->Props.Add(TEXT("pframe"),1);S->Props.Add(TEXT("hard"),0);S->Props.Add(TEXT("nohit"),0);
     G->RecordEditorHardness(Id,0);
-    if(!TestTrue(TEXT("intact source restore after repeated broken presentation"),G->RedrawRuntimeHardnessMap(209,Error)))return false;
+    const bool RestoredIntact=G->RedrawRuntimeHardnessMap(209,Error);
+    if(!TestTrue(TEXT("intact source restore after repeated broken presentation"),RestoredIntact)){RedrawFailure(TEXT("intact source restore after repeated broken presentation"),Error);return false;}
     TestNotNull(TEXT("intact restore reintroduces actual fitted body"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
     TestTrue(TEXT("intact restore hides legacy card and shows family"),Actor->Card->bHiddenInGame&&FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame);
     TestEqual(TEXT("intact restore retains immutable source picture identity"),Actor->Origin->Frame,1);
@@ -329,6 +379,7 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     // than qualifying cleanup only after a final empty broken-barrel map.
     const int32 Extra=D->CreateVirtualSprite(209,Placement->X+70,Placement->Y);
     auto* ExtraSprite=D->FindSprite(Extra);ExtraSprite->Props.Add(TEXT("pseq"),173);ExtraSprite->Props.Add(TEXT("pframe"),1);ExtraSprite->Props.Add(TEXT("hard"),0);
-    if(!TestTrue(TEXT("prepare controlled final registered body for shutdown lifetime proof"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    const bool ShutdownRedrawn=G->RedrawRuntimeHardnessMap(209,Error);
+    if(!TestTrue(TEXT("prepare controlled final registered body for shutdown lifetime proof"),ShutdownRedrawn)){RedrawFailure(TEXT("prepare controlled final registered body for shutdown lifetime proof"),Error);return false;}
     return true;
 }
