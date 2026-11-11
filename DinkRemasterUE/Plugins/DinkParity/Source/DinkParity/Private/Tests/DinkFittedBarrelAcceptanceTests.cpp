@@ -163,10 +163,16 @@ public:
             Test->TestFalse(TEXT("broken SAVE LOAD keeps intact family hidden"),LoadedIntactVisible);
             Test->TestTrue(TEXT("broken SAVE LOAD exposes original card and preserves173/6 (rendered frame separate)"),LoadedCardExposed&&G->EditorHardnessPicture(Id,true,-1)==173&&G->EditorHardnessPicture(Id,false,-1)==6);
             if(!Test->TestTrue(TEXT("actual same-screen intact save load"),Intact.Restore(*Story)))return true;
+            const auto* Immediate=D->FindSprite(D->HandleForPlacement(Screen,Index));
+            Test->AddInfo(FString::Printf(TEXT("intact reload return: sprite=%d body=%d hardness_loading=%d controller_ignored=%d dink_frozen=%d"),
+                Immediate!=nullptr,Immediate&&G->FindHardnessFitPrimitive(*Immediate),G->IsHardnessLoading(),PC->IsMoveInputIgnored(),D->GetDink().bFrozen));
             Phase=6;Until=Now+.5;return false;
         }
         const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
-        Test->TestTrue(TEXT("real save/load re-admits intact barrel and releases movement gate"),S&&G->FindHardnessFitPrimitive(*S)&&!PC->IsMoveInputIgnored());
+        Test->TestTrue(TEXT("intact save/load restores the original live sprite"),S&&S->bActive&&S->Origin==Id);
+        Test->TestNotNull(TEXT("intact save/load re-admits the fitted body"),S?G->FindHardnessFitPrimitive(*S):nullptr);
+        Test->TestFalse(TEXT("intact save/load releases the hardness loading gate"),G->IsHardnessLoading());
+        Test->TestFalse(FString::Printf(TEXT("intact save/load releases controller movement (Dink frozen=%d)"),D->GetDink().bFrozen),PC->IsMoveInputIgnored());
         bool FamilyVisible=false;
         auto* RestoredActor=S?Cast<ADinkPlaceholderActor>(S->Actor.Get()):nullptr;
         if(RestoredActor)
