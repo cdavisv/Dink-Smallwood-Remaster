@@ -1,3 +1,9 @@
+## 2026-11-11 — published picture and intact restore native controls pass
+
+PR66 delivery includes strict exact-world release and retained published-picture witness restoration. Tested own sourcef5c6be5 at /home/artist/Work/DinkReleasedPictureImportedSizeFix: Editor10787 succeeds9.39s/zero warnings; Game91561 succeeds31.63s/zero warnings, own14Editor outputs unchanged. Original compiler60821 failure preserved; its successor changes one fixture pointer declaration only. Independently reviewed source and stage.
+
+Actual native53572 exits0: six successes (four clean/two with retained warnings), zero failed/unrun,71.382507s. Existing lifecycle now proves persistedbroken173/6, repeat/idempotence, actual relative epoch under exactworld projection, strict tamper refusals, intact body restoration and shutdown. Report SHA d0baa3bcd1c3d4c10e0c6e7f8361503b73ed62c267f241bfe98d1ab53dfe8bb6. Root actual-host closure verifies no native/unknown processes and14,864 immutable inputs/14ownEditor outputs unchanged. These reuse4,869 prior ordinary-generated packages only as runtime fixtures; no new-generation/cook/render/all85 acceptance claimed. Actual retained-live031 input/screenshots, normal package/container checks and broader regression remain before merge. Earlier failures remain historical evidence.
+
 ## 2026-11-11 — intact restore fixture pointer declaration correction
 
 Own Editor60821 at1042097 failed6/66s/oneerror/zero warnings: UE5.8 GetStaticMesh returns TObjectPtr<UStaticMesh>, incompatible with auto* deduction. This successor changes only that fixture declaration to explicit UStaticMesh*. Production implementation/headers remain byte-identical to reviewedb426f54. Original failure and own partial outputs retained in DinkQA/PublishedIntactRestoreBuild; normal same-owner incremental rebuild/native acceptance remain pending. No assertion or state change.
