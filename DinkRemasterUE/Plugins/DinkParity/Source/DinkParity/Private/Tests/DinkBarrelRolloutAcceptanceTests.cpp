@@ -11,6 +11,8 @@
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Hardness/DinkHardnessFoundationSource.h"
+#include "Hardness/DinkHardnessPrismComponent.h"
+#include "Engine/OverlapResult.h"
 #include "Hardness/DinkRuntimeHardnessWorldSubsystem.h"
 #include "AssetCompilingManager.h"
 #include "Components/CapsuleComponent.h"
@@ -30,6 +32,7 @@
 
 namespace
 {
+#include "DinkBarrelRolloutSourcePins.inl"
 bool ReadRules(FAutomationTestBase& Test, TArray<FDinkFamilyCollisionFitRule>& Rules)
 {
     FString Text, Error;
@@ -38,6 +41,8 @@ bool ReadRules(FAutomationTestBase& Test, TArray<FDinkFamilyCollisionFitRule>& R
         !Test.TestTrue(TEXT("rollout policy parses"), DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error)))
         return false;
     if (!Test.TestEqual(TEXT("whole rollout has exactly 85 rules"), Rules.Num(), 85)) return false;
+    TSet<FString> ExpectedPins;
+    for (const TCHAR* Pin : RolloutSourcePins) ExpectedPins.Add(Pin);
     int32 Backgrounds = 0, Anonymous = 0;
     TSet<FString> Origins;
     for (const auto& Rule : Rules)
@@ -45,9 +50,14 @@ bool ReadRules(FAutomationTestBase& Test, TArray<FDinkFamilyCollisionFitRule>& R
         Test.TestEqual(TEXT("rollout source hash pinned"), Rule.SourceHash.Len(), 40);
         Test.TestFalse(TEXT("each origin has one rule"), Origins.Contains(Rule.Origin.ToString()));
         Origins.Add(Rule.Origin.ToString());
+        const FString Pin = FString::Printf(TEXT("%s|%s|%s|%d"), *Rule.Origin.ToString(),
+            *Rule.SourceHash, Rule.SourceScript.IsNone() ? TEXT("") : *Rule.SourceScript.ToString(), Rule.SourceType);
+        if (!Test.TestEqual(TEXT("exact frozen source identity present once: ") + Pin, ExpectedPins.Remove(Pin), 1))
+            return false;
         Backgrounds += Rule.IsStaticBackground();
         Anonymous += !Rule.IsStaticBackground() && Rule.SourceScript.IsNone();
     }
+    if (!Test.TestEqual(TEXT("all frozen source identities consumed"), ExpectedPins.Num(), 0)) return false;
     Test.TestEqual(TEXT("three original backgrounds"), Backgrounds, 3);
     Test.TestEqual(TEXT("eight anonymous original live barrels"), Anonymous, 8);
     for (const TCHAR* Control : {TEXT("S060_P08"), TEXT("S060_P09"), TEXT("S060_P10"), TEXT("S063_P06"),
@@ -296,6 +306,62 @@ public:
             const auto Capsule = FCollisionShape::MakeCapsule(
                 Hero->GetCapsuleComponent()->GetScaledCapsuleRadius(),
                 Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight());
+            auto* Host = Cast<ADinkGreyboxScreen>(Body->GetOwner());
+            if (!Test->TestTrue(TEXT("actual fitted owner binds the current source screen"),
+                Host && Host->ScreenNumber == Screen)) return true;
+            int32 MatchingBodies = 0;
+            TInlineComponentArray<UDinkHardnessPrismComponent*> OwnedBodies(Host);
+            for (auto* Owned : OwnedBodies)
+                if (Owned->IsRegistered() && Owned->IsQueryCollisionEnabled() &&
+                    Owned->HardnessCode == 100 + Rule.Origin.Placement)
+                {
+                    ++MatchingBodies;
+                    if (!Test->TestTrue(TEXT("no active same-screen legacy prism retains fitted owner code"), Owned == Body))
+                        return true;
+                }
+            if (!Test->TestEqual(TEXT("one active body owns fitted source code"), MatchingBodies, 1)) return true;
+            // Scan actual original hardbox cells against the published fitted logical owner.
+            FDinkSprite SourceSprite;
+            SourceSprite.Origin = Rule.Origin;
+            SourceSprite.Screen = Screen;
+            SourceSprite.X = Placement->X;
+            SourceSprite.Y = Placement->Y;
+            SourceSprite.Props.Add(TEXT("pseq"), 173);
+            SourceSprite.Props.Add(TEXT("pframe"), 1);
+            int32 Left, Top, Right, Bottom;
+            bool OwnedCell = false, GapCell = false;
+            if (!Test->TestTrue(TEXT("original source hardbox readable"),
+                Gameplay->GetHardbox(SourceSprite, Left, Top, Right, Bottom))) return true;
+            for (int32 Y = Top + 1; Y < Bottom; ++Y)
+                for (int32 X = Left + 1; X < Right; ++X)
+                {
+                    const int32 Code = Gameplay->GetHard(Screen, X, Y);
+                    OwnedCell |= Code == 100 + Rule.Origin.Placement;
+                    const FVector Point = Volume->MapPixelToWorld(float(X - 20), float(Y)) + FVector(0,0,90);
+                    if (!GapCell && Expected.ComputeSquaredDistanceToPoint(Point) >
+                        FMath::Square(Capsule.GetCapsuleRadius() + 2))
+                    {
+                        if (!Test->TestNotEqual(TEXT("old hardbox gap loses this barrel's logical owner"),
+                            Code, 100 + Rule.Origin.Placement)) return true;
+                        if (!Test->TestFalse(TEXT("capsule gap clears the actual barrel body"),
+                            World->OverlapBlockingTestByChannel(Point, FQuat::Identity, ECC_Pawn, Capsule, Query))) return true;
+                        // Unfiltered query retains unrelated valid blockers; report them without claiming global clearance.
+                        TArray<FOverlapResult> Hits;
+                        World->OverlapMultiByChannel(Hits, Point, FQuat::Identity, ECC_Pawn, Capsule);
+                        for (const auto& Hit : Hits)
+                        {
+                            const auto* Prism = Cast<UDinkHardnessPrismComponent>(Hit.GetComponent());
+                            if (!Test->TestFalse(TEXT("unfiltered gap has no same-screen barrel owner overlap"),
+                                Prism && Prism->GetOwner() == Host && Prism->HardnessCode == 100 + Rule.Origin.Placement))
+                                return true;
+                        }
+                        Test->AddInfo(FString::Printf(TEXT("%s old-hardbox gap unfiltered overlaps=%d; unrelated blockers retained"),
+                            *Rule.Origin.ToString(), Hits.Num()));
+                        GapCell = true;
+                    }
+                }
+            if (!Test->TestTrue(TEXT("fitted logical footprint owns an actual original hardbox cell"), OwnedCell) ||
+                !Test->TestTrue(TEXT("original hardbox has a capsule-sized released gap"), GapCell)) return true;
             for (const FVector Direction : {FVector(1,0,0), FVector(-1,0,0), FVector(0,1,0), FVector(0,-1,0)})
             {
                 FHitResult Hit;
@@ -314,6 +380,9 @@ public:
             Row->SetStringField(TEXT("geometry_sha1"), Geometry.CookedGeometrySha1);
             Row->SetStringField(TEXT("extent_cm"), Body->Bounds.BoxExtent.ToString());
             Row->SetBoolField(TEXT("four_pawn_sweeps"), true);
+            Row->SetBoolField(TEXT("logical_owned_cell"), OwnedCell);
+            Row->SetBoolField(TEXT("released_old_hardbox_gap"), GapCell);
+            Row->SetNumberField(TEXT("active_same_code_prisms"), MatchingBodies);
             Rows.Add(MakeShared<FJsonValueObject>(Row));
         }
         ++ScreenIndex;
@@ -439,8 +508,20 @@ private:
             Test->AddError(Error);
             return false;
         }
-        return Test->TestTrue(TEXT("background retains its visible family"),
-            Actor->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) && !Actor->IsHidden());
+        auto* Controller = World.GetFirstPlayerController();
+        UStaticMeshComponent* Family = nullptr;
+        TArray<UStaticMeshComponent*> Components;
+        Actor->GetComponents(Components);
+        for (auto* Component : Components)
+            if (Component->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) Family = Component;
+        return Test->TestNotNull(TEXT("background controller exists"), Controller) &&
+            Test->TestFalse(TEXT("background publication releases controller movement"), Controller->IsMoveInputIgnored()) &&
+            Test->TestFalse(TEXT("background publication releases Dink"), Story.GetDirector()->GetDink().bFrozen) &&
+            Test->TestNotNull(TEXT("background published family component exists"), Family) &&
+            Test->TestNotNull(TEXT("background published family mesh exists"), Family->GetStaticMesh()) &&
+            Test->TestTrue(TEXT("background retains its visible family and hides its legacy card"),
+                Actor->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) && !Actor->IsHidden() &&
+                Family->IsVisible() && !Family->bHiddenInGame && Actor->Card && Actor->Card->bHiddenInGame);
     }
 
     FAutomationTestBase* Test;
