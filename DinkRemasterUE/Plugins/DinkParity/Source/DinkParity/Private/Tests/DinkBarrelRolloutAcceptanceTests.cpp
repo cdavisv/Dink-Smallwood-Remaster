@@ -243,8 +243,17 @@ public:
             if (!Test->TestTrue(TEXT("ordinary entry into rollout screen"), Greybox->GotoScreen(Screen, 300, 200)))
                 return true;
             Entered = true;
-            Until = Now + .25;
+            EntryDeadline = FPlatformTime::Seconds() + 5;
+            Until = Now;
             return false;
+        }
+        // Goto updates the director before the next Story tick admits this screen.
+        // A guessed world-time delay can expire within that same frame during startup.
+        if (Director->GetDink().Screen != Screen || !Gameplay->UsesOriginalHardnessProjection(Screen) || Gameplay->IsHardnessLoading())
+        {
+            if (FPlatformTime::Seconds() < EntryDeadline) return false;
+            Test->AddError(FString::Printf(TEXT("rollout admission deadline requested=%d current=%d capability=%d projected=%d loading=%d; see actual HARDNESS_BEGIN/ENTRY_COMPLETE refusal traces"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
+            return true;
         }
         if (!Test->TestEqual(TEXT("requested source screen became current"), Director->GetDink().Screen, Screen) ||
             !Test->TestFalse(TEXT("all-origin initial projection released loading gate"), Gameplay->IsHardnessLoading()))
@@ -410,6 +419,7 @@ private:
     TArray<int32> Screens;
     TArray<TSharedPtr<FJsonValue>> Rows;
     double Began;
+    double EntryDeadline = 0;
     double Until = 0;
     int32 ScreenIndex = 0;
     bool Entered = false;
