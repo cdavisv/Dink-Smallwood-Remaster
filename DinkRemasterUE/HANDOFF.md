@@ -1,3 +1,7 @@
+## Measured ordinary Story admission readiness
+
+Actual3896143 targeted68341: S177 reentry passes unchanged terrain at checked20px offset; AllOrigin fails because its assertion runs before the next Story tick. BeforeGoto capability1; actual Begin31 required1/data1 and Story completion projected1/loading0 follow the buffered fixture projected0 observation. No provider refusal or production gate change is indicated. Preserve `/home/davisc/Work/DinkQA/BarrelAdmissionTraceStage/FAILED_RESULT.json` and original report/log. Successor replaces guessed .25 world-time delay with a bounded5s wall-clock read-only wait for current screen plus actual projection admission and released loading gate. Timeout fails with state diagnostics; original all85 source/birth/body assertions remain unchanged. Native proof pending.
+
 ## Original admission trace and checked reentry successor
 
 SourceOwner `/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic`, successor of84b fixture readiness. Actual targeted13183 preserves two timed armed-contact successes and two failures in `/home/davisc/Work/DinkQA/BarrelFixtureReadinessStage/FAILED_RESULT.json`. Reuses the same collision-checked cardinal public teleport choices for initial entry and S177 reentry; immutable terrain remains untouched. Adds read-only actual Begin required/data and Story entry-completion traces plus before/after fixture Goto observations to distinguish a capability-registration race from refusal. No admission behavior, delay, birth assertion or collision policy change. Source review/build/native targeted2 pending.
