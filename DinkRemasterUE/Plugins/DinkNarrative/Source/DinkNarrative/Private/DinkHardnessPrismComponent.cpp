@@ -157,7 +157,26 @@ bool UDinkHardnessPrismComponent::FinalizeRegisteredPreparation(const UPrimitive
 
 void UDinkHardnessPrismComponent::UpdateBodySetup() {}
 FBoxSphereBounds UDinkHardnessPrismComponent::CalcBounds(const FTransform& LocalToWorld) const
-{ return FBoxSphereBounds(LocalGeometryBounds).TransformBy(LocalToWorld); }
+{
+    if (CookedSource.IsValid() && ShapeBodySetup && ShapeBodySetup->TriMeshGeometries.Num()==1 &&
+        ShapeBodySetup->TriMeshGeometries[0])
+    {
+        // The cooked copy is installed before registration. Transform its triangle
+        // vertices so an angled barrel does not inherit its rotated local AABB.
+        const auto& Mesh=*ShapeBodySetup->TriMeshGeometries[0];
+        FBox WorldBounds(ForceInit);
+        auto AddVertices=[&](const auto& Triangles)
+        {
+            for(const auto& Triangle:Triangles)
+                for(int32 Corner=0;Corner<3;++Corner)
+                    WorldBounds+=LocalToWorld.TransformPosition(FVector(Mesh.Particles().GetX(Triangle[Corner])));
+        };
+        if(Mesh.Elements().RequiresLargeIndices())AddVertices(Mesh.Elements().GetLargeIndexBuffer());
+        else AddVertices(Mesh.Elements().GetSmallIndexBuffer());
+        if(WorldBounds.IsValid)return FBoxSphereBounds(WorldBounds);
+    }
+    return FBoxSphereBounds(LocalGeometryBounds).TransformBy(LocalToWorld);
+}
 
 bool UDinkHardnessPrismComponent::ValidateRegisteredInert() const
 {

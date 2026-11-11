@@ -9,6 +9,32 @@ The isolated `fix/barrel-collision-rollout` branch at `/home/davisc/Work/DinkBar
 
 Build and validate the pair corrections on the current integration branch first, then carry them into this branch. Prepare the missing fixed foundation packages with the existing `DinkHardnessFoundationLibrary.prepare_foundation_v1` API in the isolated candidate. Apply the verified overlay alongside those packages and run the normal all-region importer. Verify the actual 85 origins, soft and authored controls, original warps and script lifecycle, then repeat after cook. The old world remains a comparison for map entry, same-screen load and starting-house exit.
 
+## Saved barrel readback on 60e58f6
+
+Readback Candidate6 run `36f312bef7da4943a4bb3a589e8f9c9b` isolated the intact reload lookup failure to applied card visibility. Both actors had the expected fitted pose, family visibility and hidden-in-game card state. The applied descriptor still compared the card against the visible prepublication snapshot. The pending fix explicitly publishes the card with visibility off and validates that state after publication. Before publication, validation still requires the exact captured card state. Both real reload fixtures assert the explicit fitted card state.
+
+## Saved barrel readback on 08e3666
+
+Readback Candidate5 run `d3312cc11af949df8c6c8c0165b949fd` verified that the intact reload returns with a live sprite, restored visibility and both movement gates released. Only the fitted-body lookup failed, immediately and after the settle interval on both screens. Food drop passed in the preceding readback.
+
+The pending diagnostic adds an optional refusal reason to the verified fitted-body lookup. It identifies the projection, owner, registration, shape flag, actor or descriptor check that rejects the lookup, and records live versus expected pose and presentation on descriptor failure. Admission checks are unchanged. Native verification is pending.
+
+## Saved barrel readback on 1018326
+
+Readback Candidate3 run `63254d635cde42389db995741925f048` passed bounds and immediate prop walkthrough on both saved screens. Intact reload still refused the audited family placement after the broken card was exposed. SCR_209 reported no active food drop after the half-second wait.
+
+The pending fix admits the exact broken presentation pair on original intact prebirth and restores family visibility after physical admission. The acceptance test verifies both visibility changes on intact reload and checks the actual scripted drop in the hit turn before later gameplay ticks. Food consumption remains unconfirmed. No Unreal process was launched.
+
+## Saved barrel readback on 642e1d4
+
+Readback Candidate2 run `19c1dda0bf444873a1e7ba48878eba06` reached both fitted bodies in the unchanged Stage40 packages. Both screens failed tight XY bounds, immediate prop walkthrough and intact reload. SCR_209 also failed its food-drop assertion. The original report remains under `DinkQA/RuntimeHardnessCandidateReadback/Candidate2/Runs`.
+
+The pending source diff computes fitted bounds from the owned cooked triangle vertices. The acceptance fixture rebuilds component query filters after the prop body exchange and restores world-state snapshots before narrative snapshots, following save coordinator order. Failure messages now report the fit eligibility inputs and observed drop coordinates and sequence. The SCR_209 drop cause remains unverified. A new build and saved-map readback are pending.
+
+## Stage40 saved pair and initial publication gate
+
+Stage40 saved the two fixed-solid meshes and the candidate world in run eae015e13c874c15a40c4c90251867f6. The fresh read-only Candidate031 and Candidate209 reload tests reached fitted visual publication, then refused because the initial placement path held no loading gate. The failures and three original package hashes are preserved. The initial physical and visual publication now holds the loading gate and restores its previous state after success. Refusal still invalidates the projection and keeps movement blocked. The actual saved-map regression now checks that successful initial admission releases both the hardness gate and controller movement, along with the existing body and visual proof. Native revalidation and GPU walkthrough are pending.
+
 ## Native39 navigation fixture lifetime
 
 Native39 run 911ecc9d155a4f52b9bdf11ce03e6980 passed the navigation alias and duplicate checks and refused the later source topology after forced GC. The separate First/Second Children assertions passed. AWorldSettings::PostInitProperties creates the scratch world's initial navigation config. Replacing that UPROPERTY during the fixture left its old child in the source topology census without a GC owner. The fixture now temporarily authors the already-owned config, restores its setting and the original target reference on exit, and checks the original source config identity across the existing forced GC. The production ownership and topology guards are unchanged. Native39's original report is preserved. The correction awaits build and native confirmation.

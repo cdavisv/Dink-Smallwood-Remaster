@@ -264,8 +264,11 @@ bool UDinkGameplay::PrepareOriginalHardnessPlacements(int32 Screen,FString& Erro
     const auto* Runtime=RuntimeHardness.Find(RuntimeHardnessKey(Screen,Vision));
     if(Runtime&&Runtime->IsValid()&&(*Runtime)->Published)
     {
+        const bool WasLoading = IsHardnessLoading();
+        SetHardnessLoading(true);
         if(!(*Runtime)->Session.RedrawFitted({},Stamps,*(*Runtime)->Owner,Fits->Bodies,Fits->SuppressedCodes,&Context,Apply))return Fail(TEXT("initial physical projection refused"));
         if(!PublishHardnessFitVisuals(BeforeFits,Error))return Fail(*Error);
+        SetHardnessLoading(WasLoading);
     }
     else return Fail(TEXT("initial placement physical owner not admitted"));
     Error.Reset();return true;
@@ -542,7 +545,14 @@ bool UDinkGameplay::PrepareHardnessFit(const FDinkSprite& S,uint8 Code,bool bPre
         if(!Family->PrepareCollisionFitReleaseCandidate(S.Origin,Snapshot,Candidate,Error))return false;
         Fits.Releases.Add(MoveTemp(Candidate));Fits.ReleaseStates.Add(Snapshot);Replaced=true;return true;
     }
-    if(!Family->PrepareCollisionFit(S.Origin,Snapshot,Candidate,Error))return false;
+    if(!Family->PrepareCollisionFit(S.Origin,Snapshot,Candidate,Error))
+    {
+        Error+=FString::Printf(TEXT(" [origin=%s screen=%d actor=%s script=%s handle=%d prebirth=%d picture=%d/%d active=%d animation=%d brain=%d nohit=%d]"),
+            *S.Origin.ToString(),Snapshot.CurrentScreen,*GetNameSafe(Actor),*Snapshot.ScriptName.ToString(),Snapshot.RuntimeHandle,
+            Snapshot.bPrebirth,Snapshot.DisplayedSequence,Snapshot.DisplayedFrame,Snapshot.bActive,
+            Snapshot.AnimationSequence,Snapshot.Brain,Snapshot.NoHit);
+        return false;
+    }
     auto Body=FDinkRegisteredHardnessOwner::MakeFittedOwner(Candidate,*Family,Code,Error);
     if(!Body)return false;
     // Producer guarantees Y-major, unique cell centres. Preserve its exact mask;
@@ -665,13 +675,15 @@ bool UDinkGameplay::HasHardnessFitInstance(const FDinkSprite& S) const
     return false;
 }
 
-UPrimitiveComponent* UDinkGameplay::FindHardnessFitPrimitive(const FDinkSprite& S) const
+UPrimitiveComponent* UDinkGameplay::FindHardnessFitPrimitive(const FDinkSprite& S,FString* Error) const
 {
-    if(!HardnessProjection||!HardnessProjection->Fits||S.Screen!=HardnessProjection->Screen||!S.Actor.IsValid())return nullptr;
+    if(Error)Error->Reset();
+    auto Fail=[&](const TCHAR* Why)->UPrimitiveComponent*{if(Error)*Error=Why;return nullptr;};
+    if(!HardnessProjection||!HardnessProjection->Fits||S.Screen!=HardnessProjection->Screen||!S.Actor.IsValid())return Fail(TEXT("missing projection, fit set or current actor"));
     const auto* State=RuntimeHardness.Find(RuntimeHardnessKey(S.Screen,HardnessProjection->Vision));
-    if(!State||!State->IsValid()||!(*State)->Published)return nullptr;
+    if(!State||!State->IsValid()||!(*State)->Published)return Fail(TEXT("runtime hardness state is not published"));
     auto* Owner=FDinkRegisteredHardnessOwner::CheckedOwner((*State)->Owner.Get());
-    return Owner?Owner->FindFittedPrimitive(reinterpret_cast<std::uintptr_t>(S.Actor.Get())):nullptr;
+    return Owner?Owner->FindFittedPrimitive(reinterpret_cast<std::uintptr_t>(S.Actor.Get()),Error):Fail(TEXT("missing registered hardness owner"));
 }
 
 bool UDinkGameplay::BuildHardnessDrawStamps(int32 Screen,int32 Vision,
