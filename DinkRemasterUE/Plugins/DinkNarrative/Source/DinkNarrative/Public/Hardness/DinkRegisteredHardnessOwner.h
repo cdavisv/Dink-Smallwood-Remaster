@@ -46,7 +46,7 @@ public:
         const std::vector<std::uint8_t>& SuppressedCodes) override;
     static std::optional<DinkHardness::FittedOwner> MakeFittedOwner(
         const FDinkFamilyCollisionFitCandidate& Candidate,UDinkArtFamilySubsystem& Families,uint8 Code,FString& Error);
-    UPrimitiveComponent* FindFittedPrimitive(std::uintptr_t InstanceId) const;
+    UPrimitiveComponent* FindFittedPrimitive(std::uintptr_t InstanceId, FString* Error=nullptr) const;
 private:
     explicit FDinkRegisteredHardnessOwner(FDinkHardnessWorldDefinition Definition);
     struct FImpl;

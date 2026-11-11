@@ -170,7 +170,9 @@ public:
         }
         const int32 H=D->HandleForPlacement(Screen,Index);auto* S=D->FindSprite(H);
         Test->TestTrue(TEXT("intact save/load restores the original live sprite"),S&&S->bActive&&S->Origin==Id);
-        Test->TestNotNull(TEXT("intact save/load re-admits the fitted body"),S?G->FindHardnessFitPrimitive(*S):nullptr);
+        FString FitError;
+        auto* RestoredBody=S?G->FindHardnessFitPrimitive(*S,&FitError):nullptr;
+        Test->TestNotNull(FString::Printf(TEXT("intact save/load re-admits the fitted body (%s)"),*FitError),RestoredBody);
         Test->TestFalse(TEXT("intact save/load releases the hardness loading gate"),G->IsHardnessLoading());
         Test->TestFalse(FString::Printf(TEXT("intact save/load releases controller movement (Dink frozen=%d)"),D->GetDink().bFrozen),PC->IsMoveInputIgnored());
         bool FamilyVisible=false;

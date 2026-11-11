@@ -1,3 +1,9 @@
+## Saved barrel readback on 08e3666
+
+Readback Candidate5 run `d3312cc11af949df8c6c8c0165b949fd` verified that the intact reload returns with a live sprite, restored visibility and both movement gates released. Only the fitted-body lookup failed, immediately and after the settle interval on both screens. Food drop passed in the preceding readback.
+
+The pending diagnostic adds an optional refusal reason to the verified fitted-body lookup. It identifies the projection, owner, registration, shape flag, actor or descriptor check that rejects the lookup, and records live versus expected pose and presentation on descriptor failure. Admission checks are unchanged. Native verification is pending.
+
 ## Saved barrel readback on 1018326
 
 Readback Candidate3 run `63254d635cde42389db995741925f048` passed bounds and immediate prop walkthrough on both saved screens. Intact reload still refused the audited family placement after the broken card was exposed. SCR_209 reported no active food drop after the half-second wait.

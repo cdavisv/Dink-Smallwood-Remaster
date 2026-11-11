@@ -272,7 +272,22 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
         F->GetCollisionProfileName()!=C.BeforeProfile||F->GetCollisionEnabled()!=C.BeforeCollision||F->GetCollisionObjectType()!=C.BeforeObjectType||
         F->GetCollisionResponseToChannels()!=C.BeforeResponses||F->CanEverAffectNavigation()!=C.BeforeNavigation||F->GetGenerateOverlapEvents()!=C.BeforeOverlaps||F->IsVisible()!=(C.bVisualApplied?true:C.BeforeVisible)||F->bHiddenInGame!=(C.bVisualApplied?false:C.BeforeFamilyHidden)||
         Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=C.BeforeCardVisible||
-        Materials(*F)!=C.BeforeMaterials||Materials(*Card)!=C.BeforeCardMaterials)return Fail(TEXT("fit candidate world/origin/frame/transform/material/policy became stale"));
+        Materials(*F)!=C.BeforeMaterials||Materials(*Card)!=C.BeforeCardMaterials)
+    {
+        if(A&&F&&Card)
+        {
+            Error=FString::Printf(TEXT("fit candidate stale: applied=%d actor_hidden=%d/%d actor_collision=%d/%d actor_pose=%d family_pose=%d family_visible=%d/%d family_hidden=%d/%d card_pose=%d card_visible=%d/%d card_hidden=%d/%d card_mesh=%d family_materials=%d card_materials=%d"),
+                C.bVisualApplied,A->IsHidden(),C.BeforeActorHidden,A->GetActorEnableCollision(),C.BeforeActorCollision,
+                A->GetActorTransform().Equals(C.BeforeActor,0),
+                F->GetComponentTransform().Equals(C.bVisualApplied?C.ProposedWorld:C.BeforeFamily,C.bVisualApplied?1.e-4:0.),
+                F->IsVisible(),C.bVisualApplied||C.BeforeVisible,F->bHiddenInGame,!C.bVisualApplied&&C.BeforeFamilyHidden,
+                Card->GetComponentTransform().Equals(C.BeforeCard,0),Card->IsVisible(),C.BeforeCardVisible,
+                Card->bHiddenInGame,C.bVisualApplied||C.BeforeCardHidden,Card->GetStaticMesh()==C.BeforeCardMesh.Get(),
+                Materials(*F)==C.BeforeMaterials,Materials(*Card)==C.BeforeCardMaterials);
+            return false;
+        }
+        return Fail(TEXT("fit candidate world, actor or component no longer valid"));
+    }
     int32 FamilyComponents=0,Volumes=0;
     if(A->ScreenNumber!=Current.CurrentScreen)return Fail(TEXT("current owner screen changed"));
     TInlineComponentArray<UStaticMeshComponent*> Components(A);for(auto* X:Components)if(X->ComponentHasTag(FamilyTag))++FamilyComponents;
