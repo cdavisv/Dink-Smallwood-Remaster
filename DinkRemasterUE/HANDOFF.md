@@ -1,3 +1,11 @@
+## Saved rollout acceptance source
+
+Branch `fix/barrel-rollout-acceptance` in `/home/artist/Work/DinkBarrelRolloutAcceptance` reconciles the pair corrections from `642e1d4` through `0432cb2` with rollout `ea24ea4`. Merge `1be3d32` keeps typed source binding and the pair's later published-card visibility validation. Both handoff histories are retained. The successful generated stage at `DinkQA/BarrelRolloutWorldStage` remains the saved-map baseline.
+
+The new native group `Dink.Gameplay.BarrelRollout` has eleven cases. SavedInventory fresh-loads the ordinary map and checks the 85 pinned source actors, 38 registered foundation instances, exact cooked mesh identity, three original background carriers, eight anonymous live sources and excluded soft/authored controls. AllOriginBodies enters every affected screen through the ordinary coordinator and records an actual registered body and four Pawn sweeps for every rule. Three BackgroundLifecycle cases cover entry, reentry and same-screen save/load for S034_P49/P50 and S469_P16 with their type 0 identity and absence from the original live-main order. Six ScriptedHits cases reuse the real hit resolver and existing break/reentry/save checks for each original barrel script, with source-correct pickup scripts, pictures and offsets.
+
+C++ compilation and all eleven native cases are pending. The existing pair tests remain available. The saved map and generated packages are inputs to readback, with results written under the readback project's private Saved directory.
+
 ## Barrel collision rollout source and inputs
 
 Importer preflight now requires a readable families manifest and validates both bindings and the optional fit policy before selecting legacy generation. A valid manifest without a fit policy and a validated v1 pair both retain legacy generation. Every explicit v2 rule must match a non-excluded source screen, placement and family binding before region selection. Partial imports prepare foundations only for selected screens. Seventeen portable tests passed. The added native parser cases await the rollout build.
