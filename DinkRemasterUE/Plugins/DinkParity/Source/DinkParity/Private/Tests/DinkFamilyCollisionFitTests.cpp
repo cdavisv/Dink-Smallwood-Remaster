@@ -138,3 +138,25 @@ bool FDinkFamilyFitGeometryTest::RunTest(const FString&)
     TestTrue(TEXT("raster boundary quantization explicitly measured"),Boundary>4&&Boundary<5);
     return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkLegacyPictureProjection,"Dink.Art.Family.ReleasedPictureProjection",DINK_TEST_FLAGS)
+bool FDinkLegacyPictureProjection::RunTest(const FString&)
+{
+    FDinkLegacyPictureDescriptor Source;Source.Sequence=173;Source.Frame=1;Source.Width=56;Source.Height=55;Source.OriginX=41;Source.OriginY=44;
+    Source.Sha1=TEXT("b89b9bd0f6829a4c377345a7a3fe79793660dbfc");
+    auto Broken=Source;Broken.Frame=6;Broken.Width=84;Broken.Height=64;Broken.Sha1=TEXT("31f8a48f1ae2bafe331f21acd5b8da64a4fa6ad9");
+    const FTransform Baseline(FQuat::Identity,FVector(-13,0,-11),FVector(.56,1,.55));FTransform Projected;FString Error;
+    TestTrue(TEXT("canonical source173/6 projects"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,Baseline,Projected,Error));
+    TestTrue(TEXT("source pixel geometry and pivot determine broken dimensions/anchor"),Projected.Equals(FTransform(FQuat::Identity,FVector(1,0,-20),FVector(.84,1,.64)),1.e-12));
+    FTransform Again;TestTrue(TEXT("repeat uses immutable baseline without compounding"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,Baseline,Again,Error)&&Again.Equals(Projected,0));
+    TestTrue(TEXT("intact restore derives original baseline"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Source,Baseline,Again,Error)&&Again.Equals(Baseline,0));
+    for(int32 Kind=0;Kind<5;++Kind)
+    {
+        auto Bad=Broken;if(Kind==0)Bad.Sha1.Reset();if(Kind==1)++Bad.Frame;if(Kind==2)++Bad.OriginX;if(Kind==3)++Bad.Width;if(Kind==4)Bad.Height=0;
+        const FTransform Before=Again;
+        TestFalse(TEXT("missing/wrong picture identity/pivot/size refuses"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Bad,Baseline,Again,Error));
+        TestTrue(TEXT("rejected picture never mutates publication output"),Again.Equals(Before,0));
+    }
+    TestFalse(TEXT("missing importer scale refuses"),DinkFamilyCollisionFit::ProjectLegacyCard(Source,Broken,FTransform(FQuat::Identity,FVector::ZeroVector,FVector::ZeroVector),Again,Error));
+    return true;
+}

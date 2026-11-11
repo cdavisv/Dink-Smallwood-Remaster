@@ -538,12 +538,27 @@ bool UDinkGameplay::PrepareHardnessFit(const FDinkSprite& S,uint8 Code,bool bPre
     Snapshot.Hard=S.GetProp(TEXT("hard"),1);Snapshot.Prop=GetPlacementProp(FDinkOriginId(S.Screen,Code-100));
     Snapshot.bActive=S.bActive;Snapshot.bPrebirth=bPrebirth;
     Snapshot.AnimationSequence=S.GetProp(TEXT("seq"));Snapshot.Brain=S.GetProp(TEXT("brain"));Snapshot.NoHit=S.GetProp(TEXT("nohit"));
+    auto Picture=[&](int32 Seq,int32 Frame)
+    {
+        FDinkLegacyPictureDescriptor P;P.Sequence=Seq;P.Frame=Frame;
+        if(const auto* F=Data.FindFrame(Seq,Frame))
+        {P.Width=F->Width;P.Height=F->Height;P.OriginX=F->OriginX;P.OriginY=F->OriginY;P.Sha1=F->PictureDescriptorSha1;}
+        return P;
+    };
+    if(Actor&&Actor->Origin)Snapshot.SourcePicture=Picture(Actor->Origin->Sequence,Actor->Origin->Frame);
+    Snapshot.DisplayedPicture=Picture(Snapshot.DisplayedSequence,Snapshot.DisplayedFrame);
     FDinkFamilyCollisionFitCandidate Candidate;
     const bool Broken=(Snapshot.DisplayedSequence==173&&Snapshot.DisplayedFrame==6)||
         (Snapshot.AnimationSequence==173&&Snapshot.Brain==5&&Snapshot.NoHit!=0);
     if(Broken)
     {
+        // Preserve the prior admitted source/card/baseline epoch before preparing its replacement.
+        if(HardnessProjection&&HardnessProjection->Fits)
+            for(const auto& Prior:HardnessProjection->Fits->Candidates)if(Prior.Actor==Snapshot.Actor)
+                if(!Family->ValidateCollisionFit(Prior,Prior.Sprite,Error))return false;
         if(!Family->PrepareCollisionFitReleaseCandidate(S.Origin,Snapshot,Candidate,Error))return false;
+        for(int32 I=Fits.Releases.Num()-1;I>=0;--I)if(Fits.Releases[I].Actor==Candidate.Actor)
+        {Fits.Releases.RemoveAt(I);Fits.ReleaseStates.RemoveAt(I);}
         Fits.Releases.Add(MoveTemp(Candidate));Fits.ReleaseStates.Add(Snapshot);Replaced=true;return true;
     }
     if(!Family->PrepareCollisionFit(S.Origin,Snapshot,Candidate,Error))

@@ -99,6 +99,8 @@ bool FDinkGameplayData::Load(FString* OutError)
 		Info.bEmpty = F.Num() > 9 && FCString::Atoi(*F[9]) != 0;
 		Info.Width = F.Num() > 10 ? FCString::Atoi(*F[10]) : 0;
 		Info.Height = F.Num() > 11 ? FCString::Atoi(*F[11]) : 0;
+        if(F.Num()>=15&&!F[12].IsEmpty()&&!F[13].IsEmpty())
+        {Info.OriginX=FCString::Atoi(*F[12]);Info.OriginY=FCString::Atoi(*F[13]);Info.PictureDescriptorSha1=F[14];}
 		Frames.Add(Key(Seq, Frame), Info);
 		int32& Count = FrameCounts.FindOrAdd(Seq);
 		Count = FMath::Max(Count, Frame);

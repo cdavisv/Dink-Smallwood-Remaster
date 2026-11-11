@@ -7,6 +7,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/Texture.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "PhysicsEngine/BodySetup.h"
@@ -373,6 +374,7 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitImpl(const FDinkOriginId& Id,co
     C.bReleaseOnly=Release;C.BeforeFamilyHidden=Family->bHiddenInGame;C.BeforeCardHidden=Actor->Card->bHiddenInGame;C.BeforeCardVisible=Actor->Card->IsVisible();
     C.BeforeCardMesh=Actor->Card->GetStaticMesh();C.Corners=Volume->Corners;C.BeforeActor=Actor->GetActorTransform();
     C.BeforeFamily=Family->GetComponentTransform();C.BeforeCard=Actor->Card->GetComponentTransform();
+    C.ImportedCardBaseline=Actor->ImportedCardRelativeTransform;C.bImportedCardBaselinePresent=Actor->bHasImportedCardBaseline;
     C.BeforeMaterials=Materials(*Family);C.BeforeCardMaterials=Materials(*Actor->Card);C.SourceHash=Source->Origin->SourceHash;C.ScriptName=Source->Origin->ScriptName;
     C.BeforeProfile=Family->GetCollisionProfileName();C.BeforeResponses=Family->GetCollisionResponseToChannels();C.BeforeCollision=Family->GetCollisionEnabled();
     C.BeforeObjectType=Family->GetCollisionObjectType();C.BeforeNavigation=Family->CanEverAffectNavigation();C.BeforeOverlaps=Family->GetGenerateOverlapEvents();C.BeforeVisible=Family->IsVisible();C.BeforeActorCollision=Actor->GetActorEnableCollision();C.BeforeActorHidden=Actor->IsHidden();C.BeforeMobility=uint8(Family->Mobility);
@@ -397,7 +399,8 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
     if (!IsInGameThread()) return Fail(TEXT("fit validation requires the game thread"));
     const auto* Rule = FindRule(CollisionFitRules, C.Origin);
     if(C.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||C.Geometry.SchemaVersion!=DinkFamilyCollisionFit::DescriptorSchemaVersion||bCollisionFitPolicyError||C.World.Get()!=GetWorld()||!A||!Source||!F||!Card||!SameSprite(C.Sprite,Current)||!Rule||!Eligible(Current,*Rule)||!SourceBinding(*A,*Source,*Rule)||
-        A->GetWorld()!=GetWorld()||
+        A->GetWorld()!=GetWorld()||A->bHasImportedCardBaseline!=C.bImportedCardBaselinePresent||
+        !A->ImportedCardRelativeTransform.Equals(C.ImportedCardBaseline,0)||
         !((A->GetActorEnableCollision()==C.BeforeActorCollision&&A->IsHidden()==C.BeforeActorHidden)||
           (C.Sprite.bPrebirth&&A->GetActorEnableCollision()&&!A->IsHidden()))||!A->GetActorTransform().Equals(C.BeforeActor,0)||Source->Origin->SourceHash!=C.SourceHash||Source->Origin->ScriptName!=C.ScriptName||
         !F->GetStaticMesh()||F->GetOwner()!=A||uint8(F->Mobility)!=C.BeforeMobility||F->GetAttachParent()!=A->GetRootComponent()||F->GetStaticMesh()!=C.Geometry.Mesh.Get()||F->GetStaticMesh()->GetBodySetup()!=C.Geometry.BodySetup.Get()||
@@ -475,25 +478,35 @@ bool UDinkArtFamilySubsystem::ReleaseCollisionFitVisual(const FDinkFamilyCollisi
     if(Authority.GetSchemaVersion()!=DinkFamilyCollisionFit::DescriptorSchemaVersion ||
        Current.Actor!=C.Actor || Current.Origin!=C.Origin || Current.CurrentScreen!=C.Sprite.CurrentScreen ||
        !Authority.CanReleaseVisual(C,Current,Error))return false;
-    // Snapshot validation pins source/mesh/policy; runtime hard/frame may have
-    // deliberately changed. Caller owns the current frame's card presentation.
+    if(!C.bReleasePicturePrepared||!C.ReleaseMaterial||!C.ReleaseMaterial->IsValid()||
+       Current.DisplayedSequence!=C.ReleasePicture.Sequence||Current.DisplayedFrame!=C.ReleasePicture.Frame||
+       Current.DisplayedPicture.Sha1!=C.ReleasePicture.Sha1||!DinkFamilyCollisionFit::ValidatePictureDescriptor(Current.DisplayedPicture)||
+       Current.SourcePicture.Sha1!=C.Sprite.SourcePicture.Sha1)
+    {Error=TEXT("effective legacy picture was not preflighted before fit release");return false;}
+    if(!DinkFamilyCollisionFit::ValidateReleasedPictureAssets(C,Error))return false;
+    // Exact prepublication snapshots remain authoritative; a changed card/material is never repaired silently.
     auto Prior=C;Prior.bVisualApplied=true;
     if(!ValidateCollisionFit(Prior,Prior.Sprite,Error))
     {
         Prior.bVisualApplied=false;
-        if(!ValidateCollisionFit(Prior,Prior.Sprite,Error))
-        {
-            FDinkFamilyCollisionFitCandidate Released;
-            if(!C.FamilyComponent.IsValid() || !C.Card.IsValid() || !C.FamilyComponent->bHiddenInGame ||
-               C.FamilyComponent->IsVisible() || C.Card->bHiddenInGame || !C.Card->IsVisible() ||
-               !PrepareCollisionFitReleaseCandidate(C.Origin,Current,Released,Error) ||
-               Released.Geometry.CookedGeometrySha1!=C.Geometry.CookedGeometrySha1 ||
-               Released.Geometry.CanonicalSurfaceSha1!=C.Geometry.CanonicalSurfaceSha1 || Released.SourceHash!=C.SourceHash)return false;
-            Error.Reset();return true; // already-published broken presentation
-        }
+        if(!ValidateCollisionFit(Prior,Prior.Sprite,Error))return false;
     }
-    C.FamilyComponent->SetVisibility(false);C.FamilyComponent->SetHiddenInGame(true);
-    C.Card->SetVisibility(true);C.Card->SetHiddenInGame(false);
+    auto* Card=C.Card.Get();auto* Family=C.FamilyComponent.Get();
+    // All validation/allocation is complete before publication. Resolve geometry/material BEFORE exposing the card.
+    // Registered imported cards can still be Static after hidden-card billboarding was skipped.
+    // This is presentation-only: existing strict NoCollision/navigation/overlap guards already passed.
+    if(Card->Mobility!=EComponentMobility::Movable)Card->SetMobility(EComponentMobility::Movable);
+    Card->SetRelativeTransform(C.ReleaseCardRelative,false,nullptr,ETeleportType::TeleportPhysics);
+    Card->SetMaterial(0,C.ReleaseMaterial->Get());
+    Family->SetVisibility(false);Family->SetHiddenInGame(true);
+    Card->SetVisibility(true);Card->SetHiddenInGame(false);
+    if(!Card->GetRelativeTransform().Equals(C.ReleaseCardRelative,0)||Card->GetMaterial(0)!=C.ReleaseMaterial->Get()||
+       !Card->IsVisible()||Card->bHiddenInGame||Family->IsVisible()||!Family->bHiddenInGame)
+    {Error=TEXT("effective legacy picture publication failed; retain loading gate");return false;}
+    auto* Actor=C.Actor.Get();Actor->PublishedLegacyCardRelative=C.ReleaseCardRelative;
+    Actor->PublishedLegacyCardMaterial=C.ReleaseMaterial->Get();
+    Actor->PublishedImportedCardBaseline=C.ImportedCardBaseline;Actor->PublishedSourcePictureSha1=C.Sprite.SourcePicture.Sha1;
+    Actor->bHasPublishedLegacyPicture=true;
     Error.Reset();return true;
 }
 
@@ -506,7 +519,106 @@ bool UDinkArtFamilySubsystem::PrepareCollisionFitReleaseCandidate(const FDinkOri
     {Error=TEXT("release candidate requires an actually removed/broken original barrel");return false;}
     // This qualifies source geometry/presentation ONLY. It never enters a body
     // request: the consumer must use actual Current for CanReleaseVisual.
-    auto Source=Current;Source.Hard=0;Source.bActive=true;Source.DisplayedSequence=173;Source.DisplayedFrame=1;Source.AnimationSequence=0;Source.Brain=0;Source.NoHit=0;
-    if(!PrepareCollisionFitImpl(Origin,Source,Out,Error,true))return false;
+    auto Source=Current;Source.Hard=0;Source.bActive=true;
+    const auto* SourceActor=Current.SourceActor.IsValid()?Current.SourceActor.Get():Current.Actor.Get();
+    if(!SourceActor||!SourceActor->Origin){Error=TEXT("release source identity is unavailable");return false;}
+    Source.DisplayedSequence=SourceActor->Origin->Sequence;Source.DisplayedFrame=SourceActor->Origin->Frame;
+    Source.DisplayedPicture=Current.SourcePicture;Source.AnimationSequence=0;Source.Brain=0;Source.NoHit=0;
+    FDinkFamilyCollisionFitCandidate Prepared;
+    if(!PrepareCollisionFitImpl(Origin,Source,Prepared,Error,true))return false;
+    auto* Actor=Prepared.Actor.Get();
+    // Ordinary billboard authority writes WORLD upright yaw only (FaceCardsToCamera).
+    // Do not launder pitch/roll tampering into the next released presentation.
+    if(Actor&&!Actor->Card->GetComponentQuat().GetUpVector().Equals(FVector::UpVector,0))
+    {Error=TEXT("effective legacy card has unsupported non-yaw world rotation");return false;}
+    if(Actor&&Actor->bHasPublishedLegacyPicture)
+    {
+        const auto Actual=Actor->Card->GetRelativeTransform();
+        if(!Actor->ImportedCardRelativeTransform.Equals(Actor->PublishedImportedCardBaseline,0)||
+           Current.SourcePicture.Sha1!=Actor->PublishedSourcePictureSha1||
+           !Actual.GetTranslation().Equals(Actor->PublishedLegacyCardRelative.GetTranslation(),0)||
+           !Actual.GetScale3D().Equals(Actor->PublishedLegacyCardRelative.GetScale3D(),0)||
+           Actor->Card->GetMaterial(0)!=Actor->PublishedLegacyCardMaterial)
+        {Error=TEXT("published effective legacy card geometry/material changed");return false;}
+    }
+    if(!Actor||!Actor->bHasImportedCardBaseline||!Actor->Origin||
+       Current.SourcePicture.Sequence!=Actor->Origin->Sequence||Current.SourcePicture.Frame!=Actor->Origin->Frame||
+       Current.DisplayedPicture.Sequence!=Current.DisplayedSequence||Current.DisplayedPicture.Frame!=Current.DisplayedFrame||
+       !DinkFamilyCollisionFit::ProjectLegacyCard(Current.SourcePicture,Current.DisplayedPicture,Actor->ImportedCardRelativeTransform,Prepared.ReleaseCardRelative,Error))
+    {if(Error.IsEmpty())Error=TEXT("missing/mismatched immutable imported card/picture baseline");return false;}
+    auto ResolvePicture=[&](const FDinkLegacyPictureDescriptor& Picture,UTexture*& Texture)->UMaterialInterface*
+    {
+        if(!DinkFamilyCollisionFit::ValidatePictureDescriptor(Picture))return nullptr;
+        const FString Key=FString::Printf(TEXT("%d_%02d"),Picture.Sequence,Picture.Frame);
+        const FString MaterialPath=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"),*Key,*Key);
+        const FString TexturePath=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_%s.T_Sprite_%s"),*Key,*Key);
+        auto* Material=LoadObject<UMaterialInterface>(nullptr,*MaterialPath);Texture=nullptr;
+        if(!Material||Material->GetPathName()!=MaterialPath||
+           !Material->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Texture)||!Texture||Texture->GetPathName()!=TexturePath||
+           Texture->GetSurfaceWidth()!=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Width)))||
+           Texture->GetSurfaceHeight()!=FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(Picture.Height))))return nullptr;
+        return Material;
+    };
+    // The ordinary exporter resamples the WHOLE image to power-of-two texture sizes;
+    // UV0 remains0..1, so logical source width/pivot drive geometry without UV cropping.
+    UTexture* SourceTexture=nullptr;UTexture* TargetTexture=nullptr;
+    auto* SourceMaterial=ResolvePicture(Current.SourcePicture,SourceTexture);
+    auto* Material=ResolvePicture(Current.DisplayedPicture,TargetTexture);
+    if(!SourceMaterial||!Material)
+    {Error=TEXT("missing/wrong source or effective-frame material/Tex identity or resampled dimensions");return false;}
+    // Position/scale come from source pixels; retain the currently legitimate billboard yaw.
+    Prepared.ReleaseCardRelative.SetRotation(Actor->Card->GetRelativeTransform().GetRotation());
+    Prepared.ReleaseMaterial=MakeShared<TStrongObjectPtr<UMaterialInterface>>(Material);
+    Prepared.SourcePictureMaterial=MakeShared<TStrongObjectPtr<UMaterialInterface>>(SourceMaterial);
+    Prepared.ReleaseTexture=MakeShared<TStrongObjectPtr<UTexture>>(TargetTexture);
+    Prepared.SourcePictureTexture=MakeShared<TStrongObjectPtr<UTexture>>(SourceTexture);
+    Prepared.ReleasePicture=Current.DisplayedPicture;Prepared.bReleasePicturePrepared=true;
+    Out=MoveTemp(Prepared);
     Out.bReleaseOnly=true;return true;
+}
+
+
+bool DinkFamilyCollisionFit::ValidatePictureDescriptor(const FDinkLegacyPictureDescriptor& P)
+{
+    if(P.Sequence<=0||P.Frame<=0||P.Width<=0||P.Height<=0||P.Width>16384||P.Height>16384||P.Sha1.Len()!=40)return false;
+    const FString Text=FString::Printf(TEXT("DinkPictureDescriptor/1:%d,%d,%d,%d,%d,%d"),P.Sequence,P.Frame,P.Width,P.Height,P.OriginX,P.OriginY);
+    FTCHARToUTF8 Bytes(*Text);uint8 Digest[20];FSHA1::HashBuffer(Bytes.Get(),Bytes.Length(),Digest);
+    return P.Sha1==BytesToHex(Digest,20).ToLower();
+}
+bool DinkFamilyCollisionFit::ProjectLegacyCard(const FDinkLegacyPictureDescriptor& Source,
+    const FDinkLegacyPictureDescriptor& Displayed,const FTransform& Baseline,FTransform& Out,FString& Error)
+{
+    if(!ValidatePictureDescriptor(Source)||!ValidatePictureDescriptor(Displayed)||Baseline.ContainsNaN()||
+        !Baseline.GetRotation().Equals(FQuat::Identity,0)||Baseline.GetScale3D().X<=0||Baseline.GetScale3D().Z<=0||Baseline.GetScale3D().Y!=1)
+    {Error=TEXT("missing/invalid source-backed legacy picture descriptor/baseline");return false;}
+    // Each result starts at the immutable importer baseline: repeated load/reentry cannot compound scale.
+    const double X=Baseline.GetScale3D().X/Source.Width,Z=Baseline.GetScale3D().Z/Source.Height;
+    FVector At=Baseline.GetLocation();
+    At.X+=((Displayed.Width-Source.Width)/2.0-(Displayed.OriginX-Source.OriginX))*X*100;
+    At.Z+=(-(Displayed.Height-Source.Height)+(Displayed.OriginY-Source.OriginY))*Z*100;
+    Out=FTransform(Baseline.GetRotation(),At,FVector(Displayed.Width*X,1,Displayed.Height*Z));
+    if(Out.ContainsNaN()){Error=TEXT("nonfinite projected legacy card");return false;}
+    Error.Reset();return true;
+}
+
+
+bool DinkFamilyCollisionFit::ValidateReleasedPictureAssets(const FDinkFamilyCollisionFitCandidate& C,FString& Error)
+{
+    auto Matches=[](const FDinkLegacyPictureDescriptor& P,const TSharedPtr<TStrongObjectPtr<UMaterialInterface>>& Material,
+        const TSharedPtr<TStrongObjectPtr<UTexture>>& Texture)
+    {
+        if(!ValidatePictureDescriptor(P)||!Material||!Material->IsValid()||!Texture||!Texture->IsValid())return false;
+        const FString Key=FString::Printf(TEXT("%d_%02d"),P.Sequence,P.Frame);
+        const FString MI=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"),*Key,*Key);
+        const FString Tex=FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_%s.T_Sprite_%s"),*Key,*Key);
+        UTexture* Parameter=nullptr;
+        return Material->Get()->GetPathName()==MI&&Texture->Get()->GetPathName()==Tex&&
+            Material->Get()->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Parameter)&&Parameter==Texture->Get()&&
+            Parameter->GetSurfaceWidth()==FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Width)))&&
+            Parameter->GetSurfaceHeight()==FMath::Min(1024u,FMath::RoundUpToPowerOfTwo(uint32(P.Height)));
+    };
+    if(!C.bReleasePicturePrepared||!Matches(C.Sprite.SourcePicture,C.SourcePictureMaterial,C.SourcePictureTexture)||
+       !Matches(C.ReleasePicture,C.ReleaseMaterial,C.ReleaseTexture))
+    {Error=TEXT("prepared source/effective picture material/Tex identity or dimensions changed");return false;}
+    Error.Reset();return true;
 }

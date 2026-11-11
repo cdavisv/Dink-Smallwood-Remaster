@@ -84,6 +84,7 @@ namespace
 	{
 		FDinkHardnessFoundationSource Source;
 		FDinkHardnessFoundationCandidate Candidate;
+        TSet<FString> PictureKeys;
 	};
 
 	// Pure source preflight completes for every explicit rule before any native
@@ -184,6 +185,37 @@ namespace
 		}
 		for (auto It = Screens.CreateIterator(); It; ++It)
 			if (!Selected.Contains(It.Key())) It.RemoveCurrent();
+        // Require every nonempty canonical frame before any foundation/native write.
+        FString FrameText;
+        if(!FFileHelper::LoadFileToString(FrameText,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Gameplay/frames.csv"))))
+        {Error=TEXT("missing source frame metadata for fitted release pictures");return false;}
+        TSet<int32> SourceSequences;
+        for(const auto& Rule:Rules)if(Selected.Contains(Rule.Origin.Screen))
+            for(const auto& Placement:Bundle.Placements)if(Placement.Id==Rule.Origin.ToString())SourceSequences.Add(Placement.Seq);
+        TArray<FString> FrameLines;FrameText.ParseIntoArrayLines(FrameLines);
+        TSet<int32> FoundSequences;
+        for(int32 I=1;I<FrameLines.Num();++I)
+        {
+            TArray<FString> Fields;FrameLines[I].ParseIntoArray(Fields,TEXT(","),false);
+            if(Fields.Num()<12||!SourceSequences.Contains(FCString::Atoi(*Fields[0])))continue;
+            const int32 Seq=FCString::Atoi(*Fields[0]),Frame=FCString::Atoi(*Fields[1]);
+            FoundSequences.Add(Seq);
+            if(FCString::Atoi(*Fields[9])!=0||FCString::Atoi(*Fields[10])<=0||FCString::Atoi(*Fields[11])<=0)continue;
+            if(Fields.Num()<15||Fields[12].IsEmpty()||Fields[13].IsEmpty()||Fields[14].Len()!=40)
+            {Error=TEXT("missing canonical release picture pivot/descriptor");return false;}
+            FDinkLegacyPictureDescriptor Descriptor;Descriptor.Sequence=Seq;Descriptor.Frame=Frame;
+            Descriptor.Width=FCString::Atoi(*Fields[10]);Descriptor.Height=FCString::Atoi(*Fields[11]);
+            Descriptor.OriginX=FCString::Atoi(*Fields[12]);Descriptor.OriginY=FCString::Atoi(*Fields[13]);Descriptor.Sha1=Fields[14];
+            if(!DinkFamilyCollisionFit::ValidatePictureDescriptor(Descriptor))
+            {Error=TEXT("invalid canonical release picture descriptor");return false;}
+            const FString Key=FString::Printf(TEXT("%d_%02d"),Seq,Frame);
+            const auto* Picture=Bundle.Sprites.Find(Key);
+            if(!Picture||Picture->Width!=FCString::Atoi(*Fields[10])||Picture->Height!=FCString::Atoi(*Fields[11]))
+            {Error=TEXT("missing/mismatched ordinary release picture in bundle: ")+Key;return false;}
+            for(auto& Pair:Screens)Pair.Value.PictureKeys.Add(Key);
+        }
+        if(FoundSequences.Num()!=SourceSequences.Num())
+        {Error=TEXT("missing canonical fitted release sequence");return false;}
 		return true;
 	}
 
@@ -394,6 +426,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				SpriteKeys.Add(P.Card.Sprite);
 			}
 		}
+        for(const auto& Screen:FittedScreens)for(const FString& Key:Screen.Value.PictureKeys)SpriteKeys.Add(Key);
 		TArray<FString> SortedKeys = SpriteKeys.Array();
 		SortedKeys.Sort();
 		for (const FString& Key : SortedKeys)
@@ -724,7 +757,9 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				A->CardScaleMode = FName(*P.Card.ScaleMode);
 				A->Card->SetStaticMesh(GetCard());
 				A->Card->SetMaterial(0, Assets.SpriteMaterial(P.Card.Sprite));
-				A->Card->SetRelativeTransform(CardRelative(P.Card));
+				A->ImportedCardRelativeTransform=CardRelative(P.Card);
+                A->bHasImportedCardBaseline=true;
+                A->Card->SetRelativeTransform(A->ImportedCardRelativeTransform);
 				A->Card->SetHiddenInGame(P.Kind == TEXT("hardness_only"));
 			}
 			if (Warp)

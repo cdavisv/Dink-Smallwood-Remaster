@@ -40,6 +40,16 @@ bool FDinkFittedGenerationPreflightTest::RunTest(const FString&)
         Placement.bHasCard = true; Placement.bHasHardness = true;
         Bundle.Placements.Add(Placement);
     }
+    FString FrameText;
+    if(!TestTrue(TEXT("canonical release frame metadata available"),FFileHelper::LoadFileToString(FrameText,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Gameplay/frames.csv")))))return false;
+    TArray<FString> FrameLines;FrameText.ParseIntoArrayLines(FrameLines);
+    for(int32 I=1;I<FrameLines.Num();++I)
+    {
+        TArray<FString> Fields;FrameLines[I].ParseIntoArray(Fields,TEXT(","),false);
+        if(Fields.Num()<12||FCString::Atoi(*Fields[0])!=173||FCString::Atoi(*Fields[9])!=0)continue;
+        FDinkBundleSprite Picture;Picture.Key=FString::Printf(TEXT("173_%02d"),FCString::Atoi(*Fields[1]));
+        Picture.Width=FCString::Atoi(*Fields[10]);Picture.Height=FCString::Atoi(*Fields[11]);Bundle.Sprites.Add(Picture.Key,Picture);
+    }
     TMap<int32, FFittedScreen> Plan;
     TMap<FString, const FDinkBundlePlacement*> Promoted;
     if (!TestTrue(TEXT("fresh-clone planning needs no generated foundations"),
@@ -49,6 +59,11 @@ bool FDinkFittedGenerationPreflightTest::RunTest(const FString&)
     for (const auto& Pair : Plan)
         TestTrue(TEXT("pure planning never loads/builds native foundations"),
             Pair.Value.Candidate.FixedSolid == nullptr && Pair.Value.Candidate.FixedLow == nullptr);
+    const auto MissingPicture=Bundle.Sprites.FindChecked(TEXT("173_02"));Bundle.Sprites.Remove(TEXT("173_02"));
+    Plan.Reset();Promoted.Reset();
+    TestFalse(TEXT("missing intermediate release animation frame refuses before native writes"),PrepareFittedGeneration(Bundle,Selected,Plan,Promoted,Error));
+    TestTrue(TEXT("missing picture failure identifies ordinary bundle key"),Error.Contains(TEXT("173_02")));
+    Bundle.Sprites.Add(TEXT("173_02"),MissingPicture);
     const FString OriginalHash = Bundle.Placements.Last().Hash;
     Bundle.Placements.Last().Hash = FString::ChrN(40, TEXT('0'));
     Plan.Reset(); Promoted.Reset();
