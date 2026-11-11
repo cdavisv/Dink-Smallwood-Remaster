@@ -1841,20 +1841,30 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  FBinaryControlLifetime Lifetime,BadLifetime;
  TStrongObjectPtr<UWorld> HoldSourceWorld(SourceWorld),HoldTargetWorld(TargetWorld);
  ON_SCOPE_EXIT{TargetWorld->DestroyWorld(false);TargetWorld->MarkObjectsPendingKill();SourceWorld->DestroyWorld(false);SourceWorld->MarkObjectsPendingKill();};
+ TWeakObjectPtr<UNavigationSystemConfig> SourceNavigationAcrossGC;
+ const auto* NavigationFixtureProperty = WorldNavigationConfigProperty();
  {
   auto* SourceSettings = SourceWorld->GetWorldSettings();
   auto* TargetSettings = TargetWorld->GetWorldSettings();
-  const auto* Property = WorldNavigationConfigProperty();
-  UClass* ConfigClass = LoadClass<UNavigationSystemConfig>(
-   nullptr, TEXT("/Script/NavigationSystem.NavigationSystemModuleConfig"));
-  if (!TestTrue(TEXT("actual native instanced world navigation field and config class"),
-    SourceSettings && TargetSettings && Property && ConfigClass))
+  const auto* Property = NavigationFixtureProperty;
+  auto* SourceConfig = SourceSettings && Property
+   ? Cast<UNavigationSystemConfig>(Property->GetObjectPropertyValue_InContainer(SourceSettings)) : nullptr;
+  if (!TestTrue(TEXT("scratch world already owns its native instanced navigation config"),
+    TargetSettings && SourceConfig && SourceConfig->GetOuter() == SourceSettings &&
+    SourceConfig->GetClass()->GetPathName() == TEXT("/Script/NavigationSystem.NavigationSystemModuleConfig")))
   {
    return false;
   }
-  auto* SourceConfig = NewObject<UNavigationSystemConfig>(SourceSettings, ConfigClass, TEXT("AuthoredNavigationFixture"));
-  SourceConfig->DefaultAgentName = TEXT("DinkNavigationOwnershipFixture");
-  Property->SetObjectPropertyValue_InContainer(SourceSettings, SourceConfig);
+
+  // Reuse the config constructed by AWorldSettings. Replacing that reference
+  // would orphan the old child inside the source topology captured before GC.
+  SourceNavigationAcrossGC = SourceConfig;
+  TGuardValue<FName> AuthoredAgent(SourceConfig->DefaultAgentName, FName(TEXT("DinkNavigationOwnershipFixture")));
+  TStrongObjectPtr<UObject> OriginalTargetConfig(Property->GetObjectPropertyValue_InContainer(TargetSettings));
+  ON_SCOPE_EXIT
+  {
+   Property->SetObjectPropertyValue_InContainer(TargetSettings, OriginalTargetConfig.Get());
+  };
 
   TMap<const UObject*, FString> ConfigIDs;
   ConfigIDs.Add(SourceConfig, TEXT("@WorldSettings/NavigationSystemConfig"));
@@ -1871,12 +1881,11 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
   FStateWriter SourceWriter(SourceReference, ConfigIDs, ConfigSourcePackages, false);
   Property->SerializeItem(FStructuredArchiveFromArchive(SourceWriter).GetSlot(),
    Property->ContainerPtrToValuePtr<void>(SourceSettings), nullptr);
-  UObject* OriginalTargetConfig = Property->GetObjectPropertyValue_InContainer(TargetSettings);
   Property->SetObjectPropertyValue_InContainer(TargetSettings, SourceConfig);
   FStateWriter AliasWriter(AliasedReference, ConfigIDs, ConfigSourcePackages, true);
   Property->SerializeItem(FStructuredArchiveFromArchive(AliasWriter).GetSlot(),
    Property->ContainerPtrToValuePtr<void>(TargetSettings), nullptr);
-  Property->SetObjectPropertyValue_InContainer(TargetSettings, OriginalTargetConfig);
+  Property->SetObjectPropertyValue_InContainer(TargetSettings, OriginalTargetConfig.Get());
   TestTrue(TEXT("world settings alias refuses even with identical canonical bytes"),
    !SourceWriter.IsError() && !AliasWriter.IsError() &&
    SourceReference == AliasedReference && AliasWriter.SourceReference);
@@ -2096,6 +2105,10 @@ bool FDinkBinaryControlCopyRegression::RunTest(const FString&)
  if(!TestNotNull(TEXT("pending copied owner before deferred loading"),PendingSecond))return false;TestEqual(TEXT("transient copied Children empty BEFORE deferred owner PostLoad"),PendingSecond->Children.Num(),0);
  TArray<TWeakObjectPtr<UObject>> BeforeGC;for(const auto& Pair:Created)BeforeGC.Emplace(Pair.Value);
  CollectGarbage(RF_NoFlags,true);
+ TestTrue(TEXT("scratch source still owns the original navigation config after interval GC"),
+  SourceNavigationAcrossGC.IsValid() &&
+  NavigationFixtureProperty->GetObjectPropertyValue_InContainer(SourceWorld->GetWorldSettings()) ==
+   SourceNavigationAcrossGC.Get());
  for(const auto& Weak:BeforeGC)TestTrue(TEXT("every unpublished binary target survives forced interval GC"),Weak.IsValid());
  TestTrue(TEXT("source topology including transient Children unchanged after interval GC"),VerifyBinarySourceTopology(Lifetime,Error));TestTrue(TEXT("source transient Children unchanged after forced GC"),First->Children==FirstChildrenBefore&&Second->Children==SecondChildrenBefore);
  for(const auto& Pair:Remap)if(const auto* ID=IDs.Find(Pair.Key))IDs.Add(Pair.Value,*ID);
