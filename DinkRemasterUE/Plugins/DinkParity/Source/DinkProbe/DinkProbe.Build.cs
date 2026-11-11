@@ -10,7 +10,7 @@ public class DinkProbe : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PrivateDependencyModuleNames.AddRange(new string[] {
-			"Core", "CoreUObject", "Engine", "DinkCore", "DinkNarrative", "InkPlusPlus", "Chaos"
+			"Core", "CoreUObject", "Engine", "DinkCore", "DinkNarrative", "InkPlusPlus", "Chaos", "Json"
 		});
 		if (Target.bBuildEditor)
 		{
