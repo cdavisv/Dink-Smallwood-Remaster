@@ -1,8 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Components/ShapeComponent.h"
+#include "Hardness/DinkCookedMeshIdentity.h"
 #include "DinkHardnessPrismComponent.generated.h"
 class UBodySetup;
+namespace Chaos { class FTriangleMeshImplicitObject; }
 
 /** Transient original open-bottom triangle shells for one hardness-code mask. Preparation creates
  * actual registered bodies with per-shape collision disabled, not an active
@@ -29,4 +31,12 @@ private:
     bool bDesiredNavigation = false;
     TWeakObjectPtr<UBodySetup> CookedSource;
     bool SourceRawCullBeforeRegistration=false;
+    // Source cache raw cull may legitimately initialize under stock registration;
+    // immutable geometry/GUID and phase-qualified owned cull remain strict.
+    FGuid PreparedSourceGuid;
+    bool PreparedSourceDoubleSided=false;
+    const Chaos::FTriangleMeshImplicitObject* PreparedSourceImplicit=nullptr;
+    const Chaos::FTriangleMeshImplicitObject* PreparedOwnedImplicit=nullptr;
+    TWeakObjectPtr<UBodySetup> PreparedOwnedSetup;
+    std::optional<DinkCookedMeshIdentity::Admission> PreparedIdentity;
 };
