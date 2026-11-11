@@ -1,3 +1,9 @@
+## Brain5 public delivery integration — 11 Nov 2026
+
+In `/home/artist/Work/DinkReleasedPicturePackagingFix`, branch `fix/package-dynamic-sprite-cook`, integrated reviewed author commits8c08fd0/28c02f3/341f6aa as414c6f9/a6c0e50/e4865ac atop a2ed5d7. The HANDOFF-only conflict preserves both the Brain5 history and existing identity-axis rendered-failure/fix history. Changed production CPP/header and native fixture bytes match owned runtime sourcebea91fd3566ad793149ba944f5e65dac4993344e exactly; packaging defaults and other runtime guards are unchanged.
+
+Portable delivery suite: `python3 -B -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'` passed605 tests in9.427s. Root reports currentbea native six passed48412 (report375f2979…); that is external native evidence, not a new execution in this delivery checkout. No Unreal/build/cache operation or push performed here. New RHI visual proof, broader acceptance and Root final source review remain separate; this integration does not claim merge readiness.
+
 ## 2026-11-11 — final natural-background fixture pointer correction (source only)
 
 Actual391b native3846 completed4cleanSuccess+1warningSuccess/1FittedLifecycle failure. Everynewnaturalhit/Animate2–6/brain5inactive/scriptend/visibleMI+Tex1736/pivot/body0 andpairedbrain7/generic/missingadmission control passed. ONLYfinal guarded-redraw restoration conjunctionfailed; originalreport/compiledstage preserved. Currenterror omitsindividualfactor values, so solemeasuredcause is not claimed.
