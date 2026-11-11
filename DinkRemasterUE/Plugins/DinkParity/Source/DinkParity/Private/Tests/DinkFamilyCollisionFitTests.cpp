@@ -27,6 +27,19 @@ bool FDinkFamilyFitPolicyTest::RunTest(const FString&)
     TestTrue(TEXT("complete narrow explicit rule parses, digest still requires native match"),DinkFamilyCollisionFit::ParsePolicy(Packet(Row),Rules,Error));TestEqual(TEXT("one prepared rule"),Rules.Num(),1);
     for(const FString& Bad:{Row+TEXT(",")+Row,Row.Replace(TEXT("S031_P03"),TEXT("S001_P03")),Row.Replace(TEXT("sprite_ground"),TEXT("card_center")),Row.Replace(TEXT("cooked_complex"),TEXT("box")),Row.Replace(TEXT("cell_center"),TEXT("unknown")),Row.Replace(TEXT("\"barrel\""),TEXT("true")),Row.Replace(TEXT("0000000000000000000000000000000000000000"),TEXT("not-reviewed"))})
     {TestFalse(TEXT("duplicate/foreign origin, wrong anchor/geometry/raster/type/digest refuse whole policy"),DinkFamilyCollisionFit::ParsePolicy(Packet(Bad),Rules,Error));TestEqual(TEXT("no partial policy survives refusal"),Rules.Num(),0);}
+    const TArray<FString> InvalidDocuments = {
+        TEXT("{"),
+        TEXT(R"({"schema":"dink-art-families/1","families":[],"collision_fit":null})"),
+        TEXT(R"({"schema":"dink-art-families/1","families":[],"collision_fit":{"origins":[]}})"),
+        Packet(Row).Replace(TEXT("dink-family-collision-fit/1"), TEXT("dink-family-collision-fit/3")),
+    };
+    for (const auto& Invalid : InvalidDocuments)
+    {
+        TestFalse(TEXT("invalid explicit policy is rejected before generation"),
+            DinkFamilyCollisionFit::ParsePolicy(Invalid, Rules, Error));
+        TestTrue(TEXT("invalid policy reports an error and publishes no rows"),
+            !Error.IsEmpty() && Rules.IsEmpty());
+    }
     auto SourcePacket = [&Packet](const FString& Rows)
     {
         return Packet(Rows).Replace(TEXT("dink-family-collision-fit/1"), TEXT("dink-family-collision-fit/2"));
