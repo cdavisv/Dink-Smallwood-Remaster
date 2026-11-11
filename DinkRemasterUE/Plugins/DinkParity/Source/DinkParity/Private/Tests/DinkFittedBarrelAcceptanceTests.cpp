@@ -15,6 +15,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Hardness/DinkRuntimeHardnessWorldSubsystem.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "AssetCompilingManager.h"
 #include "Editor.h"
@@ -29,8 +30,8 @@ class FDinkRealBarrelCheck : public IAutomationLatentCommand
 {
 public:
     FDinkRealBarrelCheck(FAutomationTestBase* T,int32 N):FDinkRealBarrelCheck(T,FDinkOriginId(N,N==31?3:13)){}
-    FDinkRealBarrelCheck(FAutomationTestBase* T,FDinkOriginId Origin)
-        :Test(T),Screen(Origin.Screen),Index(Origin.Placement),Began(FPlatformTime::Seconds()){}
+    FDinkRealBarrelCheck(FAutomationTestBase* T,FDinkOriginId Origin,FString ContactMode=FString())
+        :DiagnosticMode(MoveTemp(ContactMode)),Test(T),Screen(Origin.Screen),Index(Origin.Placement),Began(FPlatformTime::Seconds()){}
     bool Update() override
     {
         if(FPlatformTime::Seconds()-Began>180){Test->AddError(FString::Printf(TEXT("actual fitted barrel SCR_%03d phase%d timed out"),Screen,Phase));return true;}
@@ -53,6 +54,7 @@ public:
                !Test->TestTrue(TEXT("ordinary greybox teleport enters actual screen"),Greybox->GotoScreen(Screen,float(P->X-20+65),float(P->Y))))return true;
             Phase=1;Until=Now+1;return false;
         }
+        if(!DiagnosticMode.IsEmpty())return UpdateContactDiagnostic(W,Hero,Story,Greybox,Now);
         if(Phase==1)
         {
             if(!Test->TestEqual(TEXT("actual screen event completed"),D->GetDink().Screen,Screen))return true;
@@ -221,6 +223,131 @@ public:
         return true;
     }
 private:
+    FString DiagnosticMode;
+    bool UpdateContactDiagnostic(UWorld* W,ADinkGreyboxCharacter* Hero,UDinkStorySubsystem* Story,
+        UDinkGreyboxSubsystem* Greybox,double Now)
+    {
+        auto* G=Story->GetGameplay();auto* D=Story->GetDirector();
+        const FDinkOriginId Id(Screen,Index);
+        auto* Target=D->FindSprite(D->HandleForPlacement(Screen,Index));
+        if(Phase==1)
+        {
+            if(!Test->TestNotNull(TEXT("contact diagnostic has real original sprite"),Target))return true;
+            auto* Body=G->FindHardnessFitPrimitive(*Target);
+            if(!Test->TestNotNull(TEXT("contact diagnostic has admitted fitted geometry"),Body))return true;
+            if(!Test->TestEqual(TEXT("measured fist witness uses default range"),D->GetDink().GetProp(TEXT("range")),0))return true;
+            const auto* Capsule=Hero->GetCapsuleComponent();
+            const FVector Center=Body->Bounds.Origin;
+            // Actual GPU c220... CombatProbe1 origin is (221417.03867542115,
+            // -157286.60466988108,98.14999956674819), relative to this body XY.
+            const FVector Live(Center.X-70.32132457885,Center.Y-1.00466988108,98.14999956674819);
+            const FVector Native75(Center.X-75,Center.Y,Live.Z);
+            const FVector Native80(Center.X-80,Center.Y,Live.Z);
+            FCollisionQueryParams ContactParams(SCENE_QUERY_STAT(DinkLiveBarrelContact),false,Hero);
+            FHitResult Contact;
+            const bool ContactHit=W->SweepSingleByChannel(Contact,
+                FVector(Center.X-120,Center.Y,Live.Z),FVector(Center.X,Center.Y,Live.Z),
+                FQuat::Identity,ECC_Pawn,FCollisionShape::MakeCapsule(
+                    Capsule->GetScaledCapsuleRadius(),Capsule->GetScaledCapsuleHalfHeight()),ContactParams);
+            Test->AddInfo(FString::Printf(TEXT("UNFILTERED_CONTACT hit=%d component=%s distance=%.17g point=%s"),
+                ContactHit,*GetPathNameSafe(Contact.GetComponent()),Contact.Distance,*Contact.Location.ToString()));
+            if(!Test->TestTrue(TEXT("unfiltered original-world capsule contact belongs to fitted barrel"),ContactHit&&Contact.GetComponent()==Body))return true;
+
+            auto Place=[&](const FVector& Position,float Yaw)
+            {
+                Hero->SetActorLocation(Position,false,nullptr,ETeleportType::TeleportPhysics);
+                Hero->SetActorRotation(FRotator(0,Yaw,0));
+                G->SyncDinkFromActor();G->SyncDinkFacingFromActor();
+            };
+            auto Measure=[&](const TCHAR* Label,const FVector& Position)
+            {
+                Place(Position,0);
+                const FVector Forward=Hero->GetActorForwardVector().GetSafeNormal2D();
+                const float Radius=FMath::Max(1.f,float(G->AuthoredInteraction.AttackHalfWidthCm));
+                const float HalfHeight=FMath::Max(Radius,Capsule->GetScaledCapsuleHalfHeight()-10.f);
+                const FVector Start=Position+Forward*(Capsule->GetScaledCapsuleRadius()+Radius);
+                const FVector End=Position+Forward*(Capsule->GetScaledCapsuleRadius()+
+                    FMath::Max(G->AuthoredInteraction.AttackReachCm,double(Radius*2))-Radius);
+                double Distance=0;
+                const bool Accepted=G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit,&Distance);
+                Test->AddInfo(FString::Printf(TEXT("ACTUAL_PREDICATE pose=%s accepted=%d distance=%.17g from=(%.17g,%.17g,%.17g) start=%s end=%s radius=%.17g halfheight=%.17g"),
+                    Label,Accepted,Distance,Position.X,Position.Y,Position.Z,*Start.ToString(),*End.ToString(),double(Radius),double(HalfHeight)));
+                for(bool Complex:{false,true})
+                {
+                    FHitResult Hit;
+                    const bool Swept=Body->SweepComponent(Hit,Start,End,FQuat::Identity,
+                        FCollisionShape::MakeCapsule(Radius,HalfHeight),Complex);
+                    FVector Surface=Hit.ImpactPoint;
+                    if(Hit.bStartPenetrating)Surface=Body->Bounds.GetBox().GetClosestPointTo(Position);
+                    FHitResult Wall;FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkLiveBarrelSight),true,Hero);
+                    const bool Occluded=Swept&&W->LineTraceSingleByChannel(Wall,Position,Surface,ECC_Visibility,Params);
+                    Test->AddInfo(FString::Printf(TEXT("CAPSULE pose=%s complex=%d result=%d blocking=%d penetrating=%d distance=%.17g impact=%s location=%s normal=%s surface=%s LOS=%d blocker=%s blockerDistance=%.17g bodyClass=%s"),
+                        Label,Complex,Swept,Hit.bBlockingHit,Hit.bStartPenetrating,Hit.Distance,
+                        *Hit.ImpactPoint.ToString(),*Hit.Location.ToString(),*Hit.ImpactNormal.ToString(),
+                        *Surface.ToString(),Occluded,*GetPathNameSafe(Wall.GetComponent()),Wall.Distance,*Body->GetClass()->GetName()));
+                }
+            };
+            Measure(TEXT("measured-live"),Live);
+            Measure(TEXT("native75"),Native75);
+            Measure(TEXT("native80"),Native80);
+            Measure(TEXT("unfiltered-contact"),Contact.Location);
+            Place(Native75,180);
+            Test->TestFalse(TEXT("actual authored predicate rejects facing-away attack"),
+                G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit));
+            Place(Native75,0);
+            AActor* WallActor=W->SpawnActor<AActor>();
+            if(!Test->TestNotNull(TEXT("owned occlusion control actor"),WallActor))return true;
+            auto* Wall=NewObject<UBoxComponent>(WallActor);
+            WallActor->SetRootComponent(Wall);WallActor->AddInstanceComponent(Wall);
+            Wall->SetBoxExtent(FVector(2,80,140));Wall->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+            Wall->SetCollisionResponseToAllChannels(ECR_Ignore);
+            Wall->SetCollisionResponseToChannel(ECC_Visibility,ECR_Block);
+            Wall->RegisterComponent();WallActor->SetActorLocation(Native75+FVector(12,0,0));
+            Test->TestFalse(TEXT("actual authored predicate rejects an occluding world wall"),
+                G->AuthoredGeometryMatches(D->GetDink(),*Target,UDinkGameplay::EAuthoredInteraction::Hit));
+            WallActor->Destroy();
+            Place(DiagnosticMode.StartsWith(TEXT("Live"))?Live:Native75,0);
+            Story->bInstantMode=false;
+            const int32 Delay=G->Data.HitFrameDelayMs(106);
+            Test->TestEqual(TEXT("actual sequence106 special hit delay is175ms"),Delay,175);
+            if(DiagnosticMode.EndsWith(TEXT("Direct")))
+            {
+                G->RunThroughTagList(1);
+                bool ImmediateDrop=false;
+                const auto* Source=G->GetData().FindPlacement(Id);
+                for(const auto& Pair:D->GetSprites())
+                    if(Pair.Value.bActive&&Pair.Value.Screen==Screen&&Pair.Value.Script==FName(TEXT("gheart")))
+                        ImmediateDrop|=Pair.Value.X==Source->X&&Pair.Value.Y==Source->Y&&Pair.Value.GetProp(TEXT("pseq"))==53;
+                Test->TestTrue(TEXT("direct actual hit creates original gold heart in the hit turn"),ImmediateDrop);
+            }
+            else
+            {
+                const auto* Weapon=Story->FindInstance(G->GetWeaponInstance());
+                Test->AddInfo(FString::Printf(TEXT("ARMED_WEAPON id=%d exists=%d alive=%d script=%s hasUse=%d"),
+                    G->GetWeaponInstance(),Weapon!=nullptr,Weapon&&Weapon->IsAlive(),
+                    Weapon?*Weapon->Script.ToString():TEXT("None"),
+                    Weapon&&Story->HasProcedure(Weapon->Script,TEXT("use"))));
+                Test->TestTrue(TEXT("production PlayerAttack accepts normal armed fist input"),G->PlayerAttack());
+                Test->AddInfo(FString::Printf(TEXT("PLAYER_ATTACK pending=%d now=%.17g seq=%d dir=%d"),
+                    G->PendingHits.Num(),Story->GetNowMs(),D->GetDink().GetProp(TEXT("seq")),D->GetDink().Dir));
+                for(const auto& Hit:G->PendingHits)Test->AddInfo(FString::Printf(TEXT("PENDING sprite=%d seq=%d at=%.17g"),Hit.Sprite,Hit.Seq,Hit.AtMs));
+            }
+            Phase=2;Until=Now+1;return false;
+        }
+        Test->AddInfo(FString::Printf(TEXT("HIT_OUTCOME mode=%s editorType=%d pending=%d seq=%d dir=%d now=%.17g"),
+            *DiagnosticMode,int32(Story->GetWorldState()->GetOverrideType(Id)),G->PendingHits.Num(),
+            D->GetDink().GetProp(TEXT("seq")),D->GetDink().Dir,Story->GetNowMs()));
+        Test->TestEqual(TEXT("real hit dispatch persists broken original editor_type3"),
+            int32(Story->GetWorldState()->GetOverrideType(Id)),3);
+        Test->TestTrue(TEXT("real hit removes fitted collision"),!Target||!G->FindHardnessFitPrimitive(*Target));
+        bool Drop=false;
+        const auto* Source=G->GetData().FindPlacement(Id);
+        for(const auto& Pair:D->GetSprites())
+            if(Pair.Value.bActive&&Pair.Value.Screen==Screen&&Pair.Value.Script==FName(TEXT("gheart")))
+                Drop|=Pair.Value.X==Source->X&&Pair.Value.Y==Source->Y&&Pair.Value.GetProp(TEXT("pseq"))==53;
+        Test->AddInfo(FString::Printf(TEXT("SETTLED_DROP activeOriginalGoldHeart=%d (natural tick may collect it; direct creation is asserted in hit turn)"),Drop));
+        return true;
+    }
     FAutomationTestBase* Test;int32 Screen,Index,Phase=0;double Began,Until=0;FVector Ground;struct FSnapshot
     {
         FString Narrative;
@@ -292,4 +419,22 @@ bool FDinkRolloutScriptHits::RunTest(const FString& Parameters)
     ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this, Origin));
     ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
     return true;
+}
+
+
+IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkLiveBarrelContact,"Dink.Gameplay.BarrelLiveContact",DINK_TEST_FLAGS)
+void FDinkLiveBarrelContact::GetTests(TArray<FString>& Names,TArray<FString>& Commands) const
+{
+    for(const TCHAR* Mode:{TEXT("LiveTimed"),TEXT("LiveDirect"),TEXT("Native75Timed"),TEXT("Native75Direct")})
+    {Names.Add(Mode);Commands.Add(Mode);}
+}
+bool FDinkLiveBarrelContact::RunTest(const FString& Parameters)
+{
+    const FString File=FPackageName::LongPackageNameToFilename(TEXT("/Game/Dink/RuntimeHardnessV1/Worlds/L_Barrel031209V1"),FPackageName::GetMapPackageExtension());
+    if(!TestTrue(TEXT("saved Stage40 diagnostic world exists"),IFileManager::Get().FileExists(*File))||
+       !TestNotNull(TEXT("saved Stage40 diagnostic world loads"),UEditorLoadingAndSavingUtils::LoadMap(File)))return false;
+    FAssetCompilingManager::Get().FinishAllCompilation();
+    ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
+    ADD_LATENT_AUTOMATION_COMMAND(FDinkRealBarrelCheck(this,FDinkOriginId(31,3),Parameters));
+    ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());return true;
 }
