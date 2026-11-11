@@ -50,6 +50,7 @@
 #include "DinkProbeHold.h"
 #include "DinkProbeLoadOracle.h"
 #include "DinkProbeLoadTransformDiagnostic.h"
+#include "Kismet/GameplayStatics.h"
 #include "Misc/Parse.h"
 
 // The probe is its own module (DinkProbe) so it can be compiled into a Development game target and run in a packaged
@@ -3191,7 +3192,28 @@ namespace DinkProbeTest
         if(!Test.TestNotNull(TEXT("actual post-load save capture"),Actual))return false;
         const auto Expected=DinkProbeLoadOracle::Narrative(Saved);
         if(!Test.TestTrue(TEXT("actual saved narrative JSON exists"),Expected.IsValid()))return false;
-        const auto Differences=DinkProbeLoadOracle::PersistentDifferences(Saved,*Actual);
+        if(!Test.TestTrue(TEXT("load projection boundary has no advancing frame/world tick"),
+            BeforeLoad.Frame==AfterLoad.Frame&&BeforeLoad.WorldSeconds==AfterLoad.WorldSeconds))return false;
+        if(!Test.TestTrue(TEXT("load preserves qualified root class/attachment/socket/absolute/registration"),
+            BeforeLoad.PawnClass==AfterLoad.PawnClass&&BeforeLoad.RootClass==AfterLoad.RootClass&&
+            BeforeLoad.Parent==AfterLoad.Parent&&BeforeLoad.Socket==AfterLoad.Socket&&BeforeLoad.Registered==AfterLoad.Registered&&
+            BeforeLoad.AbsoluteLocation==AfterLoad.AbsoluteLocation&&BeforeLoad.AbsoluteRotation==AfterLoad.AbsoluteRotation&&
+            BeforeLoad.AbsoluteScale==AfterLoad.AbsoluteScale))return false;
+        TArray<uint8> SavedBytesBefore,SavedBytesAfter;
+        if(!Test.TestTrue(TEXT("serialize untouched loaded save before reference"),UGameplayStatics::SaveGameToMemory(&Saved,SavedBytesBefore)))return false;
+        FTransform Applied;FString ProjectionReason;
+        if(!Test.TestTrue(TEXT("exact same-class/root stock transform reference qualified"),
+            DinkProbeLoadDiagnostic::StockProjection(Pawn,BeforeLoad,Saved.PlayerTransform,Applied,ProjectionReason)))
+        {Test.AddError(ProjectionReason);return false;}
+        Test.AddInfo(TEXT("load transform reference qualified: exact preload seed, registered same-class root, no controller/BeginPlay, stock setter success"));
+        auto* AppliedExpected=DuplicateObject<UDinkSaveGame>(&Saved,GetTransientPackage());
+        AppliedExpected->PlayerTransform=Applied;
+        const FString ProjectionPath=DinkProbeLoadDiagnostic::RecordQualifiedProjection(BeforeLoad,Saved.PlayerTransform,Applied,Actual->PlayerTransform);
+        if(!Test.TestFalse(TEXT("qualified projection receipt saved"),ProjectionPath.IsEmpty()))return false;
+        Test.AddInfo(TEXT("qualified load projection evidence: ")+ProjectionPath);
+        const auto Differences=DinkProbeLoadOracle::PersistentDifferences(*AppliedExpected,*Actual);
+        if(!Test.TestTrue(TEXT("serialize loaded save after detached reference"),UGameplayStatics::SaveGameToMemory(&Saved,SavedBytesAfter))||
+           !Test.TestTrue(TEXT("saved bytes unchanged by reference projection"),SavedBytesBefore==SavedBytesAfter))return false;
         for(const auto& Difference:Differences)Test.AddError(Difference);
         if(!Differences.IsEmpty())
         {
