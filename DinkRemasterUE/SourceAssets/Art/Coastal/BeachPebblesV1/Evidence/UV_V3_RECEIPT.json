@@ -1,0 +1,84 @@
+{
+  "assets": [
+    {
+      "asset": "SM_BeachPebbles_92_05",
+      "geometry_before_sha256": "7c71fe0349143c5bfc7eea9b4e787f1c93bb4191d565fc457984f57b6a3e8cb2",
+      "geometry_after_sha256": "7c71fe0349143c5bfc7eea9b4e787f1c93bb4191d565fc457984f57b6a3e8cb2",
+      "surface_area_m2": 0.006667529409241979,
+      "physical_UV_area": 0.0016668823523104945,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_06",
+      "geometry_before_sha256": "a4bea51c0e096c90516066f8abcdf4fea17defffffd6979de6eeb9d29d93bea8",
+      "geometry_after_sha256": "a4bea51c0e096c90516066f8abcdf4fea17defffffd6979de6eeb9d29d93bea8",
+      "surface_area_m2": 0.013906953990954207,
+      "physical_UV_area": 0.003476738497738552,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_07",
+      "geometry_before_sha256": "80ac73c2e9b0f2f141ec2db26bd0b5567e226224a2744299cc17fd94797defa4",
+      "geometry_after_sha256": "80ac73c2e9b0f2f141ec2db26bd0b5567e226224a2744299cc17fd94797defa4",
+      "surface_area_m2": 0.01096364228942548,
+      "physical_UV_area": 0.0027409105723563694,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_08",
+      "geometry_before_sha256": "37ac9f823cb238e18714df4923e63009bfb74e7a45305408cf944fc524875707",
+      "geometry_after_sha256": "37ac9f823cb238e18714df4923e63009bfb74e7a45305408cf944fc524875707",
+      "surface_area_m2": 0.023381248458463233,
+      "physical_UV_area": 0.005845312114615807,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_09",
+      "geometry_before_sha256": "4e36785b7cbe638aa5dbe27f787b78eccddb04e94cf4d2461e66818de9f01942",
+      "geometry_after_sha256": "4e36785b7cbe638aa5dbe27f787b78eccddb04e94cf4d2461e66818de9f01942",
+      "surface_area_m2": 0.025372128876824718,
+      "physical_UV_area": 0.00634303221920618,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_10",
+      "geometry_before_sha256": "2fba078118c9c4b452c5e8561299c4a8f30b936230e5895197d029207199ec81",
+      "geometry_after_sha256": "2fba078118c9c4b452c5e8561299c4a8f30b936230e5895197d029207199ec81",
+      "surface_area_m2": 0.03689872455515797,
+      "physical_UV_area": 0.009224681138789492,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_11",
+      "geometry_before_sha256": "19b6ec9ba05cae9107703c387debc4df647b96af56aceb907294468b1f1fe3c1",
+      "geometry_after_sha256": "19b6ec9ba05cae9107703c387debc4df647b96af56aceb907294468b1f1fe3c1",
+      "surface_area_m2": 0.07001073138098945,
+      "physical_UV_area": 0.017502682845247364,
+      "physical_repeat_m": 2,
+      "geometry_unchanged": true,
+      "UV_method": "Longitudinal X-axis mapping, poles on lateral silhouette and seam on underside; global UV area matched to surface_area/4",
+      "anisotropic_distortion_acceptance": false
+    }
+  ],
+  "material_graph_changed": false,
+  "no_private_materials": true,
+  "no_native_or_binding": true
+}
