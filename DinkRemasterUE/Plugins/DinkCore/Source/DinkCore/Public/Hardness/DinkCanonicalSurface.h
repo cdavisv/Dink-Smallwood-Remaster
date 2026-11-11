@@ -45,7 +45,7 @@ inline std::vector<std::uint8_t> Bytes(const std::vector<Triangle>& Triangles, b
     Result.push_back(EffectiveCull ? 1 : 0);
     const auto Count = static_cast<std::uint32_t>(Records.size());
     for (unsigned Byte = 0; Byte < 4; ++Byte) Result.push_back(std::uint8_t(Count >> (8 * Byte)));
-    for (const auto& Record : Records) Result.insert(Result.end(), Record.begin(), Record.end());
+    for (const auto& SerializedRecord : Records) Result.insert(Result.end(), SerializedRecord.begin(), SerializedRecord.end());
     return Result;
 }
 }
