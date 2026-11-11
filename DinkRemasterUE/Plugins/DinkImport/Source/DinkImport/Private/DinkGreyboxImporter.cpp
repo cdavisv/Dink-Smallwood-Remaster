@@ -101,7 +101,9 @@ namespace
 		}
 
 		TArray<FDinkFamilyCollisionFitRule> Rules;
-		if (!DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error)) return false;
+		FDinkReleasedFamilyVisualBinding ReleasedVisual;
+		if (!DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error) ||
+            !DinkFamilyCollisionFit::ParseReleasedVisual(Text, ReleasedVisual, Error)) return false;
 		TArray<FDinkFamilyBinding> Bindings;
 		TArray<FString> BindingErrors;
 		if (!DinkArtFamily::ParseFamilies(Text, Bindings, BindingErrors) || !BindingErrors.IsEmpty())
