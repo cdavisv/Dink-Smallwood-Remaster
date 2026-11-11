@@ -1,0 +1,31 @@
+{
+  "tested_runtime_source": "bea91fd3566ad793149ba944f5e65dac4993344e",
+  "delivery_parent": "b31ac046a62fbbf2837a3efe339198125a8c062a",
+  "scope": "Local QA references/hash pins only; no embedded screenshot/binary bundle",
+  "full247_status": "PENDING owning80944; no outcome claimed",
+  "local_evidence_sha256": {
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundReacquireStage/UserProof/Saved/Automation/brain5_background_guards/index.json": "375f2979bce85212f3f1900d3dcffb1b089ce325869f72de3e9f24c143cbeba0",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundReacquireStage/ROOT_HOST_CLOSURE.json": "e602035fbc74239b77250f7ab9bff39e43887444a56434d7b8d60fe57faa920e",
+    "/home/davisc/Work/DinkQA/FittedBrain5RegressionAll85/UserProof/Saved/Automation/current_bea_all85/index.json": "2ba152cf527981b76514424ae7cd69fbabe778f8dd18fc0f5f6f4d7f994779a5",
+    "/home/davisc/Work/DinkQA/FittedBrain5RegressionAll85/ROOT_OWNER_TERMINAL.json": "3d16b72d43d530987ab12000b32b78344f57b1d55822a3a83f08e2698db4519e",
+    "/home/davisc/Work/DinkQA/FittedBrain5RegressionAll85/ROOT_CORRECTED_BODY_READBACK.json": "7fa94bc04dbd6887fd3eb6e10f42e2aaa805f8d9685bca8e9229cd8b7e7a3c55",
+    "/home/davisc/Work/DinkQA/FittedBrain5RegressionAll85/UserProof/Saved/Automation/BarrelRolloutBodies.json": "d4d2e0bb5baa7fdfd4f1adc22fcfa356e394230eab7566055f269141fc97b767",
+    "/home/davisc/Work/DinkQA/Brain5PostRHIClosure/ROOT_POST_RHI_CLOSURE_02.json": "6dbaed00d6da07593299bf272a0ee5cf3553ab4755a86c6a6257746647a277f5",
+    "/home/davisc/Work/DinkQA/Brain5PostRHIClosure/ROOT_AFTER_ALL85_CLOSURE_03.json": "a9de9190ea2e31edbd89b01fcba36d73357c06c05490f484d8ac8cb47170ad8f",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/route-door-exit.json": "ec4eb86c95b4dee0d9adea52e6b788ed7e4ea80fe734cead9e731d9d779242e7",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/route-door-return.json": "27b7faececea5ddc51113d39496c765e0ef334391e2c4402e50aa364629c2ca1",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/released-barrel031-fresh-attack-after.json": "8c9a1de066b7179a813f2b463a22c77bf180539916b67c8cac8e900d8da715c7",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/save-broken031.json": "ca3377f0cacf2f61503563c38d4a360b81062d5e6db789ffa14f508ed816dcfd",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/load-intact031.json": "db22ea9c1edc67bcf016f30838f116e42531a921d077a139ca5a1eb83ed46cf6",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/load-broken031.json": "bf7e330c09d518b78311a8a879e756e477f48c597320324a433b903ecd33d7ae",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/released-barrel031-supplement-v1-loaded-broken.json": "6fca78b5abab61e54a9bb5f1f0a1eb43386596e4406c5a584436a56f2a4fb86d",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/barrel031-supplement-v1-free-W-crossing.json": "601efbe0ea51ac42ba5ada58aab5951528b121a3283560dbde4fea131293efa8",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/released-barrel031-supplement-v1-reentered.json": "00f47eccf459584920b30351909a14620ed0436f1b118ca42895df9ab3eac484",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/load-intact031_released_final.json": "db22ea9c1edc67bcf016f30838f116e42531a921d077a139ca5a1eb83ed46cf6",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/intact-barrel031-supplement-v1-framed-intact.json": "c6089d2ab561fd9acca60bb9d4faed06a3a8a27637e930d8f6e1051d60f9d813",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/framing-barrel031-supplement-v1-framed-intact.json": "a0b9db747d9db573d2fffcedcafa34efe620781286e33f721c91f778e9cfd788",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/SUPPLEMENT_STAGE2_RESULT.json": "ae1c37d96e599189e005d08f9556074f317b96e4054e38e23bded29365cb513c",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/result.json": "ec6bf6e504c5bff46840bba9800235f2c4ffbeb4df43ca7bf3971b9a22f7ccf5",
+    "/home/davisc/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/DISPLAY_CLOSED.json": "72643437a996b191b3f2a638fcb4b0fc5fc58d05aa34a939c4c77c51b7191d24"
+  }
+}
