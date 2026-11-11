@@ -1,0 +1,37 @@
+{
+  "schema": "dink-source-candidate/1",
+  "status": "candidate_source_visual_review_only",
+  "base_origin_master": "b2824f9e1304d036c94e16c1cbcd42ce147b0eba",
+  "candidate": "InteriorRoof_GableRecess20mmCandidate.blend",
+  "candidate_sha256": "785af1ffefcba86aa8ffd3232973b7f99a67758f9c045a6c8964b9d4c97dd3df",
+  "original_source": "../InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
+  "original_source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "original_geometry_issue": "../InteriorRoofSharedV1/GEOMETRY_ISSUE.json",
+  "source_architecture": "Existing exposed-roof adaptation for starting-house screen1; no invented sprite counterpart or placementID",
+  "changed_objects": [
+    "SM_IndoorRoof_Gable_EN_01",
+    "SM_IndoorRoof_Gable_ES_01",
+    "SM_IndoorRoof_Gable_WN_01",
+    "SM_IndoorRoof_Gable_WS_01"
+  ],
+  "depth_recess_m": 0.02,
+  "selected_vertices_each": 102,
+  "moved_vertices_each": 93,
+  "unchanged_UCX": 312,
+  "unchanged_meshes": 324,
+  "unchanged_render_roof_triangles": 17322,
+  "recipe": "Scripts/repair_gable.py",
+  "recipe_sha256": "1b2b8479e732ff3b61369584ebac76777e35e73d037a6a647bbd22f84cb307af",
+  "images": {
+    "Review/before_gable.png": "8380e02cfb57bf12d5413cf07e5acab3e67cea77c40eac7689bc4afb066c139e",
+    "Review/before_junction.png": "03ef338db81816576ef2433b2b0b17bc19987f94a45b7054bbae71b3e1bde36d",
+    "Review/recess_20mm_gable.png": "23fe42b974b592b249256aa57a1512fd81137962bf23a6beb3165c26cb4d7f2f",
+    "Review/recess_20mm_junction.png": "72e445c2d4b1bc78ad8e05dc164e2909ec7967172c7d338fea6006e0f3003144"
+  },
+  "provenance": "Evidence/CANDIDATE_RECEIPT.json",
+  "relocation_validation": "Evidence/SOURCE_VALIDATION.json",
+  "native_imported": false,
+  "activated": false,
+  "production_registry_changes": false,
+  "source_geometry_and_render_candidate_only": true
+}
