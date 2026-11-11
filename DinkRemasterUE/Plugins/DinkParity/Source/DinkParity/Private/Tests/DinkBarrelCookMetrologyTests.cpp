@@ -61,17 +61,47 @@ bool FDinkBarrelCookMetrology::RunTest(const FString&)
             const auto* Variable=IConsoleManager::Get().FindConsoleVariable(Name);
             Report->SetStringField(Name,Variable?Variable->GetString():TEXT("UNAVAILABLE"));
         }
+        Report->SetBoolField(TEXT("mesh_collide_all"),Body->bMeshCollideAll);
+        Report->SetNumberField(TEXT("lod_for_collision"),Mesh->LODForCollision);
+        Report->SetStringField(TEXT("complex_collision_mesh"),GetPathNameSafe(Mesh->ComplexCollisionMesh.Get()));
+        const bool Photo=Mesh->GetPathName().Contains(TEXT("/PhotorealBarrelV1/"));
         TArray<TSharedPtr<FJsonValue>> SourceRows,SelectedRows,CookedRows;
         FStaticMeshConstAttributes Attributes(*Description);
         const auto Positions=Attributes.GetVertexPositions();
+        const auto SlotNames=Attributes.GetPolygonGroupMaterialSlotNames();
+        TMap<FPolygonGroupID,uint16> Materials;
+        TArray<TSharedPtr<FJsonValue>> MaterialMappings;
+        for(const auto Group:Description->PolygonGroups().GetElementIDs())
+        {
+            TSet<int32> Matches;
+            const FName Name=SlotNames[Group];
+            for(int32 I=0;I<Mesh->GetStaticMaterials().Num();++I)
+            {
+                const auto& Slot=Mesh->GetStaticMaterials()[I];
+                if(Slot.MaterialSlotName==Name||Slot.ImportedMaterialSlotName==Name)Matches.Add(I);
+            }
+            if(!TestEqual(TEXT("source polygon group has one exact static material slot"),Matches.Num(),1))return false;
+            const int32 Material=*Matches.CreateConstIterator();
+            if(!TestTrue(TEXT("actual material index fits record"),Material>=0&&Material<=MAX_uint16))return false;
+            Materials.Add(Group,uint16(Material));
+            auto Mapping=MakeShared<FJsonObject>();
+            Mapping->SetNumberField(TEXT("source_group"),Group.GetValue());
+            Mapping->SetStringField(TEXT("source_slot"),Name.ToString());
+            Mapping->SetNumberField(TEXT("material_index"),Material);
+            Mapping->SetStringField(TEXT("material_slot"),Mesh->GetStaticMaterials()[Material].MaterialSlotName.ToString());
+            Mapping->SetStringField(TEXT("imported_slot"),Mesh->GetStaticMaterials()[Material].ImportedMaterialSlotName.ToString());
+            MaterialMappings.Add(MakeShared<FJsonValueObject>(Mapping));
+        }
+        Report->SetArrayField(TEXT("source_material_mappings"),MaterialMappings);
+        Report->SetStringField(TEXT("record_byte_order"),PLATFORM_LITTLE_ENDIAN?TEXT("little"):TEXT("big"));
+        if(Photo&&!TestEqual(TEXT("photoreal source has one material group"),Materials.Num(),1))return false;
         for(const auto Triangle:Description->Triangles().GetElementIDs())
         {
             const auto Instances=Description->GetTriangleVertexInstances(Triangle);
-            const int32 Group=Description->GetTrianglePolygonGroup(Triangle).GetValue();
-            if(!TestEqual(TEXT("reviewed one-material source group"),Group,0))return false;
+            const auto Group=Description->GetTrianglePolygonGroup(Triangle);
             Add(SourceRows,Positions[Description->GetVertexInstanceVertex(Instances[0])],
                 Positions[Description->GetVertexInstanceVertex(Instances[1])],
-                Positions[Description->GetVertexInstanceVertex(Instances[2])],uint16(Group));
+                Positions[Description->GetVertexInstanceVertex(Instances[2])],Materials.FindChecked(Group));
         }
         FTriMeshCollisionData Selected;
         if(!TestTrue(TEXT("actual selected collision data readable"),Mesh->GetPhysicsTriMeshData(&Selected,Body->bMeshCollideAll)))return false;
@@ -82,6 +112,7 @@ bool FDinkBarrelCookMetrology::RunTest(const FString&)
             Add(SelectedRows,FVector3f(Selected.Vertices[T.v0]),FVector3f(Selected.Vertices[T.v1]),
                 FVector3f(Selected.Vertices[T.v2]),Selected.MaterialIndices[I]);
         }
+        Report->SetBoolField(TEXT("selected_flip_normals"),Selected.bFlipNormals);
         const auto& Cooked=*Body->TriMeshGeometries[0];
         Report->SetBoolField(TEXT("raw_cooked_cull"),Cooked.GetCullsBackFaceRaycast());
         auto Read=[&](const auto& Triangles)
@@ -98,7 +129,6 @@ bool FDinkBarrelCookMetrology::RunTest(const FString&)
         Report->SetArrayField(TEXT("source_triangle_float_material_records"),SourceRows);
         Report->SetArrayField(TEXT("selected_triangle_float_material_records"),SelectedRows);
         Report->SetArrayField(TEXT("cooked_triangle_float_material_records"),CookedRows);
-        const bool Photo=Mesh->GetPathName().Contains(TEXT("/PhotorealBarrelV1/"));
         if(Photo)
         {
             TestEqual(TEXT("approved photoreal source triangle count"),SourceRows.Num(),16648);
