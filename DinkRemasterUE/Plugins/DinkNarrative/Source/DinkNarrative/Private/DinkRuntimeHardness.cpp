@@ -106,6 +106,7 @@ bool UDinkGameplay::BeginOriginalHardnessScreen(int32 Screen,FString& Error,int3
     HardnessProjection.Reset();
     auto* Provider=Story&&Story->GetWorld()?Story->GetWorld()->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>():nullptr;
     const bool Required=Provider&&Provider->RequiresScreenCapability(Screen);
+    UE_LOG(LogTemp,Display,TEXT("HARDNESS_BEGIN screen=%d required=%d hasData=%d vision=%d"),Screen,int32(Required),int32(HasData()),InitialVision);
     if(!OriginalSlotHistory.IsValid())ResetOriginalSlotHistory();
     if(Required)OriginalSlotHistory->SelectedProjection=true;
     // Sidecars alone never opt a legacy generated world into a new birth order.

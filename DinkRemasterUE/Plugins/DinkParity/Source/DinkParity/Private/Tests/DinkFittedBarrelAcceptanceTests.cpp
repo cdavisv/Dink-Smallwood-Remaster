@@ -51,15 +51,7 @@ public:
             Story->bNewGamePending=false;Story->bInstantMode=true;
             if(!Test->TestTrue(TEXT("real map has explicitly marked capability"),W->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>()->RequiresScreenCapability(Screen))||
                !Test->TestTrue(TEXT("actual source policy requests this origin"),W->GetSubsystem<UDinkArtFamilySubsystem>()->IsCollisionFitRequested(Id)))return true;
-            // Use public checked teleports only; a wide offset may land inside legitimate terrain.
-            bool Entered=false;
-            for(const FVector2D Offset:{FVector2D(65,0),FVector2D(20,0),FVector2D(-20,0),FVector2D(0,20),FVector2D(0,-20)})
-                if(Greybox->GotoScreen(Screen,float(P->X-20+Offset.X),float(P->Y+Offset.Y)))
-                {
-                    Test->AddInfo(FString::Printf(TEXT("PUBLIC_ENTRY origin=%s offset=(%.0f,%.0f) actor=%s"),*Id.ToString(),Offset.X,Offset.Y,*Hero->GetActorLocation().ToString()));
-                    Entered=true;break;
-                }
-            if(!Test->TestTrue(TEXT("ordinary checked greybox teleport enters actual screen"),Entered))return true;
+            if(!EnterChecked(*Greybox,*Hero,*P,Id))return true;
             Phase=1;Until=Now+1;return false;
         }
         if(!DiagnosticMode.IsEmpty())return UpdateContactDiagnostic(W,Hero,Story,Greybox,Now);
@@ -181,7 +173,7 @@ public:
         }
         if(Phase==3)
         {
-            if(!Test->TestTrue(TEXT("ordinary reentry"),Greybox->GotoScreen(Screen,float(P->X-20+65),float(P->Y))))return true;
+            if(!Test->TestTrue(TEXT("ordinary reentry"),EnterChecked(*Greybox,*Hero,*P,Id)))return true;
             Phase=4;Until=Now+.5;return false;
         }
         if(Phase==4)
@@ -231,6 +223,18 @@ public:
         return true;
     }
 private:
+    template<typename Placement> bool EnterChecked(UDinkGreyboxSubsystem& Greybox,ADinkGreyboxCharacter& Hero,const Placement& P,const FDinkOriginId& Id)
+    {
+        // Public checked teleports preserve legitimate terrain and use the same route on reentry.
+        for(const FVector2D Offset:{FVector2D(65,0),FVector2D(20,0),FVector2D(-20,0),FVector2D(0,20),FVector2D(0,-20)})
+            if(Greybox.GotoScreen(Screen,float(P.X-20+Offset.X),float(P.Y+Offset.Y)))
+            {
+                Test->AddInfo(FString::Printf(TEXT("PUBLIC_ENTRY origin=%s offset=(%.0f,%.0f) actor=%s"),*Id.ToString(),Offset.X,Offset.Y,*Hero.GetActorLocation().ToString()));
+                return true;
+            }
+        Test->AddError(TEXT("ordinary checked greybox teleport cannot enter actual screen"));return false;
+    }
+
     FString DiagnosticMode;
     bool UpdateContactDiagnostic(UWorld* W,ADinkGreyboxCharacter* Hero,UDinkStorySubsystem* Story,
         UDinkGreyboxSubsystem* Greybox,double Now)
