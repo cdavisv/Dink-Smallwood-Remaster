@@ -1,3 +1,9 @@
+## 2026-11-11 — final natural-background fixture pointer correction (source only)
+
+Actual391b native3846 completed4cleanSuccess+1warningSuccess/1FittedLifecycle failure. Everynewnaturalhit/Animate2–6/brain5inactive/scriptend/visibleMI+Tex1736/pivot/body0 andpairedbrain7/generic/missingadmission control passed. ONLYfinal guarded-redraw restoration conjunctionfailed; originalreport/compiledstage preserved. Currenterror omitsindividualfactor values, so solemeasuredcause is not claimed.
+
+Definitefixturecontractviolation: source S pointer retained across3CreateVirtualSprite insertions intoDirector.Sprites(TMap), whose value addresses mayinvalidate. This narrow successor reacquires actualcurrentrecord AFTERnormalredraw, nonnullguard thenALLoriginal3conditions unchanged; logsActualActorHidden/currentActive/materialpointeridentity+paths for discrimination. No production/guard/timing/stat/codepath change. Uncompiled/unrun, Root/peer review beforecommit/build; thirdRHIgate remainsfalse untilactualnativeproof.
+
 ## 2026-11-11 — natural fitted brain5 final-background commit (source only)
 
 NEW /home/davisc/Work/DinkFittedBrain5BackgroundFix, branch fix/fitted-brain5-final-background, basecompiledab9ebb8. Preserve actualc2RHI60900 ONEF/newgheart/noBody/saveoverride success but debris VISUALFAIL. Actor37 hiddenTRUE, CardrawvisibleTRUE/hiddenFALSE/MI+Tex17301, FamilyhiddenTRUE, logicalinactive1736/seq0/frame0/scriptempty; moveignoredFALSE. No animation freeze/refusal. RHI closed/released byRoot95189; no extraF/load/visibility changes.
