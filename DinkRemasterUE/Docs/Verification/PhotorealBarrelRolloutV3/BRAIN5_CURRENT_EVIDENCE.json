@@ -2,7 +2,7 @@
   "tested_runtime_source": "bea91fd3566ad793149ba944f5e65dac4993344e",
   "delivery_parent": "b31ac046a62fbbf2837a3efe339198125a8c062a",
   "scope": "Local QA references/hash pins only; no embedded screenshot/binary bundle",
-  "full247_status": "PENDING owning80944; no outcome claimed",
+  "full247_status": "FAILED80944: native255;197clean+35warning successes/15fail/0unrun,1131.075s; exactsame15baselinefailures,4newpass",
   "local_evidence_sha256": {
     "/home/artist/Work/DinkQA/FittedBrain5BackgroundReacquireStage/UserProof/Saved/Automation/brain5_background_guards/index.json": "375f2979bce85212f3f1900d3dcffb1b089ce325869f72de3e9f24c143cbeba0",
     "/home/artist/Work/DinkQA/FittedBrain5BackgroundReacquireStage/ROOT_HOST_CLOSURE.json": "e602035fbc74239b77250f7ab9bff39e43887444a56434d7b8d60fe57faa920e",
@@ -26,6 +26,9 @@
     "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/framing-barrel031-supplement-v1-framed-intact.json": "a0b9db747d9db573d2fffcedcafa34efe620781286e33f721c91f778e9cfd788",
     "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/SUPPLEMENT_STAGE2_RESULT.json": "ae1c37d96e599189e005d08f9556074f317b96e4054e38e23bded29365cb513c",
     "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/result.json": "ec6bf6e504c5bff46840bba9800235f2c4ffbeb4df43ca7bf3971b9a22f7ccf5",
-    "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/DISPLAY_CLOSED.json": "72643437a996b191b3f2a638fcb4b0fc5fc58d05aa34a939c4c77c51b7191d24"
+    "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/Runs/ace4ce82-c701-4e3a-93ca-7060f81e0939/DISPLAY_CLOSED.json": "72643437a996b191b3f2a638fcb4b0fc5fc58d05aa34a939c4c77c51b7191d24",
+    "/home/artist/Work/DinkQA/FittedBrain5RegressionFullDink/UserProof/Saved/Automation/current_bea_fulldink/index.json": "a79b96dd3dcea7e3316cb108badc4f9c3f9004e4bd64d9602a96273426950ccc",
+    "/home/artist/Work/DinkQA/Brain5Full247IndependentComparison/COMPARISON.json": "42a551f322e55e43cffafd5919326a8ebf1c0e6c2274e50e6671ba313c8107ac",
+    "/home/artist/Work/DinkQA/Brain5PostRHIClosure/ROOT_AFTER_FULL247_CLOSURE_04.json": "a4158309d592853111fdd3a06f8cb8e206d4414599fdd02c006143070379e666"
   }
 }

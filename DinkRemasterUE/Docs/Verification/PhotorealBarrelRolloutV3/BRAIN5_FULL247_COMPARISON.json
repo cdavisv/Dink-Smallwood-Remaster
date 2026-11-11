@@ -1,0 +1,53 @@
+{
+  "verdict": "CURRENT_FULL247_FAIL_REPRODUCES_EXACT_BASELINE_FAILURE_SET_NO_WAIVER",
+  "current_report": "/home/artist/Work/DinkQA/FittedBrain5RegressionFullDink/UserProof/Saved/Automation/current_bea_fulldink/index.json",
+  "current_sha256": "a79b96dd3dcea7e3316cb108badc4f9c3f9004e4bd64d9602a96273426950ccc",
+  "baseline_report": "/home/artist/Work/DinkQA/FittedBrain5BackgroundGPUPreparation/BaselineProof/NativeProof/full243_index.json",
+  "baseline_sha256": "39c5e17309d3aa185804995e758f1dd827e9c656dba990f4cd13ee7ac588396c",
+  "counts_current": {
+    "succeeded": 197,
+    "succeededWithWarnings": 35,
+    "failed": 15,
+    "notRun": 0,
+    "inProcess": 0,
+    "totalDuration": 1131.074951171875
+  },
+  "common243_states_exact": true,
+  "failure15_names_exact": true,
+  "all15_error_message_arrays_exact": true,
+  "added4_all_pass": {
+    "Dink.Art.Family.ReleasedPictureImportedSize": "Success",
+    "Dink.Art.Family.ReleasedPictureProjection": "Success",
+    "Dink.Gameplay.BarrelAttackMetrology.ExactGPU031ReadOnly": "Success",
+    "Dink.Gameplay.BarrelAttackMetrology.QueueObserverNoInput": "Success"
+  },
+  "failure_names": [
+    "Dink.Gameplay.Probe.Ch6Goblins",
+    "Dink.Gameplay.Probe.Ch7Sanctuary",
+    "Dink.Gameplay.Probe.Ch8Knights",
+    "Dink.Gameplay.Probe.Ch9Windemere",
+    "Dink.Gameplay.Probe.ChAJoppa",
+    "Dink.Gameplay.Probe.ChBKit",
+    "Dink.Gameplay.Probe.ChCDragons",
+    "Dink.Gameplay.Probe.ChDCastle",
+    "Dink.Gameplay.Probe.ChEEdge",
+    "Dink.Gameplay.Probe.ChFDarklands",
+    "Dink.Gameplay.Probe.ChGSlayers",
+    "Dink.Gameplay.Probe.ChHDucks",
+    "Dink.Gameplay.Probe.ChISeth",
+    "Dink.Gameplay.Probe.ChJBowLore",
+    "Dink.Gameplay.Probe.ChKSeth"
+  ],
+  "first_failure": "Dink.Gameplay.Probe.Ch6Goblins",
+  "first_error": "Expected 'the probe gets at least as far as before (3 steps; reached 1)' to be true.",
+  "actual_measured_summary": "Screen680; Dink518,300; life0/26; fourchasers; target14 hp14; goal605,387; touchdamage10 from14 at882217 then from15 at882983; death883033. Goblin14 later killed byanotherNPC at940717, playeralreadydead. Step2 didnotcomplete150s; reached1 vs expected3.",
+  "later14": "All missing prior chapter save slots, exact baseline error arrays; no independent later gameplay coverage",
+  "rejected_route_qualification": "Current report/log records requested goal and observed movement/death, not Goto/path admission result or reason. Rejected route NOT measured/proved. Separate older f26 contact-safe diagnostic has21 route telemetry rows and also failed; it is not this compiledbea run and does not establish current rejected-route causality.",
+  "Ch6_STOP_exact_text_sha256": "4fc91a27ab63a004ec9296145a4a32100fdae010b9aba22288dde04b3b194d1c",
+  "Ch6_gameplay_events_exact_text_sha256": "4fc91a27ab63a004ec9296145a4a32100fdae010b9aba22288dde04b3b194d1c",
+  "full_independent_receipt_sha256": "42a551f322e55e43cffafd5919326a8ebf1c0e6c2274e50e6671ba313c8107ac",
+  "owning_session": 80944,
+  "wrapper_exit_code": 1,
+  "native_exit_code": 255,
+  "post_full_host_closure_sha256": "a4158309d592853111fdd3a06f8cb8e206d4414599fdd02c006143070379e666"
+}
