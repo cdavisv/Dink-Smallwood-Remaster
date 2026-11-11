@@ -120,10 +120,10 @@ public:
             G->RunThroughTagList(1);G->FlushPendingHits();Story->RunUntilIdle();
             // Verify creation in the hit turn before touch/brain ticks can consume the food.
             bool Drop=false;FString ObservedDrops;
-            for(const auto& Pair:D->GetSprites())if(const auto* S=&Pair.Value;S->Screen==Screen&&S->bActive&&S->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
+            for(const auto& Pair:D->GetSprites())if(const auto* DropSprite=&Pair.Value;DropSprite->Screen==Screen&&DropSprite->bActive&&DropSprite->Script==FName(Screen==31?TEXT("gheart"):TEXT("sfood")))
             {
-                Drop|=S->X==P->X&&S->Y==P->Y&&S->GetProp(TEXT("pseq"))==(Screen==31?53:421);
-                ObservedDrops+=FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),double(S->X),double(S->Y),S->GetProp(TEXT("pseq")));
+                Drop|=DropSprite->X==P->X&&DropSprite->Y==P->Y&&DropSprite->GetProp(TEXT("pseq"))==(Screen==31?53:421);
+                ObservedDrops+=FString::Printf(TEXT(" xy=(%.9g,%.9g) picture=%d"),double(DropSprite->X),double(DropSprite->Y),DropSprite->GetProp(TEXT("pseq")));
             }
             Test->TestTrue(FString::Printf(TEXT("actual bar-gh goldHEART or bar-f1 food drop at original script coordinates (expected %.9g,%.9g, observed%s)"),double(P->X),double(P->Y),*ObservedDrops),Drop);
             Phase=2;Until=Now+.5;return false;
