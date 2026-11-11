@@ -115,10 +115,18 @@ class DINKCORE_API ADinkGreyboxScreen : public AActor
 
 public:
 	ADinkGreyboxScreen();
+	virtual void BeginPlay() override;
 
-	/** Ground (tile image), visible blocker prisms and water surface. No collision. */
+	/** Ground (tile image) and water surface only. No collision. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Dink|Greybox")
 	TObjectPtr<UStaticMeshComponent> Visual;
+
+	/** Generated hardness presentation only: opt-in debug view, never physical or shadow geometry. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Dink|Greybox")
+	TObjectPtr<UStaticMeshComponent> DebugBlockers;
+
+	/** Reads dink.GreyboxBlockers; affects only DebugBlockers hidden-in-game state. */
+	void RefreshDebugBlockers();
 
 	/** Ground plane plus 3 m prisms for hardness 1/3/100/200 and filled canopy/void. Profile DinkHardSolid, hidden. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Dink|Greybox")

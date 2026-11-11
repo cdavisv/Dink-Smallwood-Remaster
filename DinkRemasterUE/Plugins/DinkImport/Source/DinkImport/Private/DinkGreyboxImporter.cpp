@@ -530,6 +530,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			const auto* Fitted = FittedScreens.Find(S.Screen);
 			if (Fitted) HashParts.Add(Fitted->Source.SourceTextSha1);
 			FDesiredActor D;
+			HashParts.Add(TEXT("greybox-ground-water-debug-split/1"));
 			D.Key = S.Id + TEXT(":Greybox");
 			D.Hash = HashStrings(HashParts);
 			D.Group = S.Group;
@@ -545,6 +546,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				const FDinkBundleScreen& S = *SP;
 				A->ScreenNumber = S.Screen;
 				A->Visual->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("Visual")));
+				A->DebugBlockers->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("DebugBlockers")));
 				if (Fitted)
 				{
 					A->CollisionSolid->SetStaticMesh(Fitted->Candidate.FixedSolid);
