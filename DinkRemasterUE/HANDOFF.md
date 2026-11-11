@@ -1,3 +1,7 @@
+## 2026-11-11 — release helper CI dependency correction (Python only)
+
+GitHub CI43021965969 failed because the new stdlib unit test imported export_import_bundle, whose module-level NumPy import is unavailable in minimal CI. Pure release_picture_keys is moved unchanged into existing stdlib sync_gameplay_data beside picture_descriptor; exporter and test import it there. No mock/skip/parser weakening or new dependency. Native C++/headers/data remain byte-identical to62552d8 own Editor12951 (181.02s/0warnings); no new C++ build needed for this Python-only successor. Existing normal bundle export31948 completed0/29.6s using625source before this move, all85source hashes/38foundations/six173frames verified; behavior-identical helper placement does not relabel that export's source epoch. Stage Python overlay/source-successor lineage must be explicit after review. No UE/build/commit for this correction yet.
+
 ## 2026-11-11 — effective released legacy picture projection CPU successor (uncompiled)
 
 Isolated `/home/davisc/Work/DinkBarrelReleasedPictureFix`, branch `fix/barrel-released-picture-projection`, base9fd084d. Original rendered031 run9db07c77 had successful hit/drop/body/persistence METADATA but loaded/reentered broken173/6 still exposed MI_Sprite_173_01; this is a visual failure. Old frozen barrel/art checkouts/modules/stages remain untouched. No UE/build/local commit for this successor yet; Root/ART owns current lease.

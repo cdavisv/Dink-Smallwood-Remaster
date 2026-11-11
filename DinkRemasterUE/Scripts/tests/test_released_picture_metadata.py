@@ -8,7 +8,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import sync_gameplay_data as sync
-from export_import_bundle import release_picture_keys
+from sync_gameplay_data import release_picture_keys
 
 class ReleasedPictureMetadata(unittest.TestCase):
     def frame(self, **updates):

@@ -101,6 +101,29 @@ def picture_descriptor(seq: int, frame: dict) -> dict:
             "picture_descriptor_sha1": hashlib.sha1(payload.encode("ascii")).hexdigest()}
 
 
+def release_picture_keys(family_policy: dict, placements: list, canonical_sequences: list) -> dict:
+    """Canonical animation pictures required by fitted-source release; no IO/native writes."""
+    fitted_ids = {row["origin"] for row in family_policy.get("collision_fit", {}).get("origins", [])}
+    release_sequences = {p["seq"] for p in placements if p["id"] in fitted_ids}
+    pictures = {}
+    if release_sequences:
+        found = set()
+        for sequence in canonical_sequences:
+            if sequence["seq"] not in release_sequences:
+                continue
+            found.add(sequence["seq"])
+            for frame in sequence["frames"]:
+                if frame.get("empty") or not frame.get("width") or not frame.get("height"):
+                    continue
+                if not frame.get("image"):
+                    raise ValueError(f"missing release picture source {sequence['seq']}/{frame['frame']}")
+                pictures.setdefault(f"{sequence['seq']}_{frame['frame']:02d}", frame["image"])
+        if found != release_sequences:
+            raise ValueError("missing canonical release sequence metadata")
+
+    return pictures
+
+
 def frames(dinkex: pathlib.Path):
     seqs = json.loads((dinkex / "sequences.json").read_text())["sequences"]
     rows = []
