@@ -2,6 +2,11 @@
 #include "DinkArtFamilySubsystem.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
+#include "DinkFactSubsystem.h"
+#include "DinkWorldStateSubsystem.h"
+#include "Hardness/DinkRuntimeHardnessSource.h"
+#include "Hardness/DinkHardnessSlots.h"
+#include "Hardness/DinkDisplayedHardness.h"
 #include "DinkInstanceOriginsComponent.h"
 #include "DinkLayout.h"
 #include "DinkOriginComponent.h"
@@ -285,6 +290,8 @@ public:
             return true;
         Test->AddInfo(FString::Printf(TEXT("ROLLOUT_AFTER_ENTRY requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
         const auto OriginalOrder = Gameplay->OriginalHardnessPlacementOrder(Screen);
+        std::vector<uint8> ExpectedPixels;TMap<FDinkOriginId,TArray<FIntPoint>> ExpectedMasks;
+        if(!BuildSourceOracle(*World,*Story,*Greybox,Screen,ExpectedPixels,ExpectedMasks))return true;
         for (const auto& Rule : Rules)
         {
             if (Rule.Origin.Screen != Screen) continue;
@@ -367,6 +374,16 @@ public:
                         return true;
                 }
             if (!Test->TestEqual(TEXT("one active body owns fitted source code"), MatchingBodies, 1)) return true;
+            const auto* OwnMask=ExpectedMasks.Find(Rule.Origin);
+            if(!Test->TestTrue(TEXT("source-backed fitted mask is nonempty"),OwnMask&&!OwnMask->IsEmpty()))return true;
+            int32 VisibleOwnerCells=0,OverlaidCells=0;
+            for(const FIntPoint& Cell:*OwnMask)
+            {
+                const int32 ExpectedCode=ExpectedPixels[Cell.Y*600+Cell.X];
+                const int32 ActualCode=Gameplay->GetHard(Screen,Cell.X+20,Cell.Y);
+                if(!Test->TestEqual(FString::Printf(TEXT("%s source-ordered fitted cell map=(%d,%d) engine=(%d,%d)"),*Rule.Origin.ToString(),Cell.X,Cell.Y,Cell.X+20,Cell.Y),ActualCode,ExpectedCode))return true;
+                if(ExpectedCode==100+Rule.Origin.Placement)++VisibleOwnerCells;else++OverlaidCells;
+            }
             // Scan actual original hardbox cells against the published fitted logical owner.
             FDinkSprite SourceSprite;
             SourceSprite.Origin = Rule.Origin;
@@ -422,7 +439,7 @@ public:
                 for (const auto& Cell : Cells)
                 {
                     auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("map_local_x"),Cell.X);Row->SetNumberField(TEXT("engine_x"),Cell.X+20);Row->SetNumberField(TEXT("y"),Cell.Y);
-                    Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X+20,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
+                    Row->SetNumberField(TEXT("expected_code"),ExpectedPixels[Cell.Y*600+Cell.X]);Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X+20,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
                 }
                 for (int32 Owner : OriginalOrder) if (const auto* Other = Gameplay->GetData().FindPlacement(FDinkOriginId(Screen,Owner)))
                 {
@@ -435,10 +452,9 @@ public:
                 FString Text;FJsonSerializer::Serialize(Diagnostic,TJsonWriterFactory<>::Create(&Text));
                 const FString Path=FPaths::ProjectSavedDir()/TEXT("Automation/BarrelLogicalOwnerDiagnostic.json");
                 if(!FFileHelper::SaveStringToFile(Text,*Path))Test->AddError(TEXT("cannot save actual logical-owner diagnostic"));
-                Test->AddInfo(TEXT("actual logical-owner failure diagnostic: ")+Path);
+                Test->AddInfo(TEXT("actual masked logical-owner diagnostic: ")+Path);
             }
-            if (!Test->TestTrue(TEXT("fitted logical footprint owns an actual original hardbox cell"), OwnedCell) ||
-                !Test->TestTrue(TEXT("original hardbox has a capsule-sized released gap"), GapCell)) return true;
+            if (!Test->TestTrue(TEXT("original hardbox has a capsule-sized released gap"), GapCell)) return true;
             for (const FVector Direction : {FVector(1,0,0), FVector(-1,0,0), FVector(0,1,0), FVector(0,-1,0)})
             {
                 FHitResult Hit;
@@ -458,7 +474,10 @@ public:
             Row->SetStringField(TEXT("surface_sha1"), Geometry.CanonicalSurfaceSha1);
             Row->SetStringField(TEXT("extent_cm"), Body->Bounds.BoxExtent.ToString());
             Row->SetBoolField(TEXT("four_pawn_sweeps"), true);
-            Row->SetBoolField(TEXT("logical_owned_cell"), OwnedCell);
+            Row->SetBoolField(TEXT("logical_ordered_overlay"), true);
+            Row->SetNumberField(TEXT("logical_fitted_cells"), OwnMask->Num());
+            Row->SetNumberField(TEXT("logical_visible_owner_cells"), VisibleOwnerCells);
+            Row->SetNumberField(TEXT("logical_overlaid_cells"), OverlaidCells);
             Row->SetBoolField(TEXT("released_old_hardbox_gap"), GapCell);
             Row->SetNumberField(TEXT("active_same_code_prisms"), MatchingBodies);
             Rows.Add(MakeShared<FJsonValueObject>(Row));
@@ -469,6 +488,62 @@ public:
     }
 
 private:
+    bool BuildSourceOracle(UWorld& World,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 Screen,
+        std::vector<uint8>& Pixels,TMap<FDinkOriginId,TArray<FIntPoint>>& Masks)
+    {
+        auto* G=Story.GetGameplay();const auto& Data=G->GetData();
+        const int32 Vision=Story.GetFacts()->GetFact(TEXT("vision"));
+        FDinkRuntimeHardnessSource Source;FString Error;
+        const FString Layer=Vision==0?FString::Printf(TEXT("Hardness/SCR_%03d_layers.json"),Screen):FString::Printf(TEXT("Hardness/SCR_%03d_v%d_layers.json"),Screen,Vision);
+        if(!Test->TestTrue(TEXT("independent source tile baseline loads"),FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*Layer),Vision,Source,Error)))
+        {Test->AddError(Error);return false;}
+        // Reconstruct the initial source overlay, never copy the published runtime map.
+        // Any unmodelled script redraw that changes a checked cell must fail below.
+        Pixels=Source.TileBase;
+        std::vector<DinkHardness::InitialPlacement> SourceRows;
+        for(const auto* P:Data.GetPlacementsOnScreen(Screen))
+            if(!Story.GetWorldState()->IsPlacementRemoved(P->Origin))SourceRows.push_back({P->Origin.Placement,G->EffectiveHardnessPlacementType(*P),P->Y,P->Que,P->Vision});
+        const auto Ordered=DinkHardness::MixedInitialOrder(std::move(SourceRows),Vision);
+        if(!Test->TestTrue(TEXT("independent effective mixed source order is valid"),Ordered.has_value()))return false;
+        for(const auto& Entry:*Ordered)
+        {
+            const FDinkOriginId Origin(Screen,Entry.Owner);const auto* P=Data.FindPlacement(Origin);
+            if(!Test->TestNotNull(TEXT("ordered source placement exists"),P))return false;
+            if(G->EffectiveHardnessFlag(*P)!=0)continue;
+            const auto* Fit=Rules.FindByPredicate([&](const auto& R){return R.Origin==Origin;});
+            if(Fit)
+            {
+                auto* A=SourceActor(World,Origin,*Test);if(!A||!SourceMatches(*Test,*A,*Fit))return false;
+                UStaticMeshComponent* Family=nullptr;TInlineComponentArray<UStaticMeshComponent*> Cs(A);
+                for(auto* C:Cs)if(C->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag))Family=C;
+                if(!Test->TestTrue(TEXT("oracle source family mesh exists"),Family&&Family->GetStaticMesh()))return false;
+                FDinkFamilyFittedGeometry Shape;TArray<FVector2D> Polygon;TArray<FIntPoint> Cells;double Low,High,Boundary;
+                auto* Volume=Greybox.FindScreen(Screen);
+                if(!Test->TestTrue(TEXT("oracle exact source cooked geometry and raster load"),Volume&&DinkFamilyCollisionFit::ReadCookedGeometry(*Family->GetStaticMesh(),Shape,Error)&&Shape.CanonicalSurfaceSha1==Fit->CanonicalSurfaceSha1&&DinkFamilyCollisionFit::BuildFootprint(Shape,Family->GetComponentTransform(),Volume->Corners,Polygon,Cells,Low,High,Boundary,Error)))
+                {Test->AddError(Error);return false;}
+                if(!Test->TestFalse(TEXT("each source fitted contributor retains nonempty underlying cells"),Cells.IsEmpty()))return false;
+                for(const auto& Cell:Cells)
+                {
+                    if(!Test->TestTrue(TEXT("source fitted cell lies within map"),Cell.X>=0&&Cell.X<600&&Cell.Y>=0&&Cell.Y<400))return false;
+                    Pixels[Cell.Y*600+Cell.X]=uint8(100+Entry.Owner);
+                }
+                Masks.Add(Origin,MoveTemp(Cells));
+            }
+            else
+            {
+                int32 Seq=0,Frame=0;G->EffectiveHardnessPicture(*P,Seq,Frame);
+                const auto Bounds=DinkHardness::DisplayedBounds(Seq,Frame,FMath::RoundToInt32(P->X),FMath::RoundToInt32(P->Y),[&](int S,int F)->std::optional<DinkHardness::Rect>{
+                    const auto* Info=Data.FindFrame(S,F);if(!Info)return std::nullopt;
+                    return DinkHardness::Rect{Info->Left,Info->Top,Info->Right,Info->Bottom};});
+                if(!Test->TestTrue(TEXT("nonfit effective displayed source picture exists"),Bounds.has_value()))return false;
+                for(int32 Y=FMath::Max(0,Bounds->Top);Y<FMath::Min(400,Bounds->Bottom);++Y)
+                    for(int32 X=FMath::Max(0,Bounds->Left);X<FMath::Min(600,Bounds->Right);++X)Pixels[Y*600+X]=uint8(100+Entry.Owner);
+            }
+        }
+        // Apply the original per-query prop rule after all ordered contributors.
+        for(auto& Code:Pixels)if(G->IsWalkThroughByProp(Screen,Code))Code=0;
+        return true;
+    }
     FAutomationTestBase* Test;
     TArray<FDinkFamilyCollisionFitRule> Rules;
     TArray<int32> Screens;
