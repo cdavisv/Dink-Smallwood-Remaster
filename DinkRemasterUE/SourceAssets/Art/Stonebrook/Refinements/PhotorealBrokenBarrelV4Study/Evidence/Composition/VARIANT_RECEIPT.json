@@ -1,0 +1,494 @@
+{
+  "source_v4_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
+  "variant_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "source_frozen_files_unchanged": true,
+  "geometry_UV_local_normals_material_slots_exact_all25": true,
+  "geometry_fingerprints": {
+    "V4_Bent_thin_iron_hoop_00": "ae0d9f046be01194dc9423ce1bb6c0f253600c7cb00fd5981de640b830ad66af",
+    "V4_Bent_thin_iron_hoop_01": "da61ddbf9aa2735f48913ae2219b41de5dfe39657332c0cb0b2a395da4a5de4d",
+    "V4_Bent_thin_iron_hoop_02": "de07394d6db63719db0d28137599adfb267eb323d47d2c594eae38f433050fbb",
+    "V4_Bent_thin_iron_hoop_03": "e708abe0a265be957356f63f9ce042afd0e4737166678c4a7f98953a785c7810",
+    "V4_Curved_coopered_stave_03": "1ab2cf40364a43b2718f7fbd165198d4d2d8145e21961aa6ccaf3bc47f615a4c",
+    "V4_Curved_coopered_stave_13": "9a6935e85a5dff0effa41b0ec6ad64af35985b4d2335a3217ebdac497e62ff83",
+    "V4_Curved_coopered_stave_06": "d9b24e7d8fc71c979d689e8f185b92fd8b0534e83d41c5997913d7ee8aca09d5",
+    "V4_Curved_coopered_stave_16": "9973d495c4b8f1a70a7798a83ec9fbf1bd54979365160e433b336b36e6f0df56",
+    "V4_Curved_coopered_stave_00": "ecdbc95f09b59e75d51677c198b42dac8fa261cfb198c72809c95674092a35ba",
+    "V4_Curved_coopered_stave_09": "8d9e4ad4578d45a8c6cd8feecb97c0db512b5b27d35eb58d46a4ddb22e59d018",
+    "V4_Curved_coopered_stave_02": "7a8a0a4711b2e06cdf7956e0bc036a487987b34e38e708265b80f14416c03f82",
+    "V4_Curved_coopered_stave_11": "4e5806fda7c630b2d4d5eae24885165eb2ecb9d666676866ed90a18e96c16868",
+    "V4_Curved_coopered_stave_01": "62c2b0d730bf2abe6564f183df9ec0a2a742ee0891329625db653a4a95636b1f",
+    "V4_Curved_coopered_stave_14": "625ce2fff429c5042e99e757059a11a528d757d11f057018a6810b09057ce8d7",
+    "V4_Curved_coopered_stave_04": "2589adb85e222b715c222876a22bdae1426b7ad3d258414259955f24af33b1d1",
+    "V4_Curved_coopered_stave_07": "0f6b490d77009fafb5f7c99d5240e453c7c2ca521b1a98ae6b3f4985948cd783",
+    "V4_Curved_coopered_stave_08": "49312b52ba16fc417f1f594a94b9e7fec6237a9499c781f4b3a05e51cc034933",
+    "V4_Curved_coopered_stave_10": "e33bcc7ee2b9fb5a0a8892569506f95be8a26812b794f26c1a618b4a080f28e3",
+    "V4_Curved_coopered_stave_12": "3f61b6daf7f9aa3089c3c2219eb79990d768f83db22b883f1beda4a6102dcba9",
+    "V4_Curved_coopered_stave_17": "7738762e10ab5579619e090c51c6ae89aff38ae39e4100175c9c2d87b4fc5547",
+    "V4_Curved_coopered_stave_05": "3e13a5a58a78e20378a4f66f1c42892564a6365e12a81e54eedec1048211cb93",
+    "V4_Curved_coopered_stave_15": "fcc86accd83fd777997eb5088da86ea02c47372055b618c77dd06888344413f9",
+    "V4_Split_head_board_00": "749252f2098b010716ea7e78f66ed6a4f330eab2e7abfe6599915369a1d4702a",
+    "V4_Split_head_board_01": "4b7de44efa88ffe33ae63a6c6d137f22bbd940b715a09dab62b7ae57a7824fd4",
+    "V4_Split_head_board_02": "9cd90beb0561f58f484cdb3cedab9b806f780ba6e1c10e38ca04e27b5a674eb6"
+  },
+  "object_scales_exact_all25": true,
+  "rigid_changes": [
+    {
+      "object": "V4_Curved_coopered_stave_01",
+      "delta_xy_m": [
+        -0.06,
+        -0.06
+      ],
+      "delta_world_yaw_degrees": 30,
+      "new_z_m": 0.1140519455075264,
+      "residual_clearance_lift_m": 0,
+      "actual_surface_intersections_with_previously_placed": 0,
+      "contained_volume_pairs": 0,
+      "nearest_actual_surface_gap_m": 0.0018146339571103454,
+      "support": "existing mesh triangles",
+      "support_point_on_moved_surface": [
+        0.020845502614974976,
+        -0.09912611544132233,
+        0.1387900859117508
+      ],
+      "nearest_support_surface_point": [
+        0.020518139004707336,
+        -0.09912563115358353,
+        0.13700522482395172
+      ]
+    },
+    {
+      "object": "V4_Curved_coopered_stave_07",
+      "delta_xy_m": [
+        0.1,
+        -0.08
+      ],
+      "delta_world_yaw_degrees": 23,
+      "new_z_m": 0.1499328762292862,
+      "residual_clearance_lift_m": 0,
+      "actual_surface_intersections_with_previously_placed": 0,
+      "contained_volume_pairs": 0,
+      "nearest_actual_surface_gap_m": 0.0014847489073872566,
+      "support": "existing mesh triangles",
+      "support_point_on_moved_surface": [
+        -0.004594345577061176,
+        0.17340731620788574,
+        0.12403726577758789
+      ],
+      "nearest_support_surface_point": [
+        -0.004528217017650604,
+        0.17360861599445343,
+        0.12256771326065063
+      ]
+    },
+    {
+      "object": "V4_Curved_coopered_stave_08",
+      "delta_xy_m": [
+        0.01,
+        -0.05
+      ],
+      "delta_world_yaw_degrees": -62,
+      "new_z_m": 0.20000697672367096,
+      "residual_clearance_lift_m": 0,
+      "actual_surface_intersections_with_previously_placed": 0,
+      "contained_volume_pairs": 0,
+      "nearest_actual_surface_gap_m": 0.001500032376497984,
+      "support": "existing mesh triangles",
+      "support_point_on_moved_surface": [
+        -0.2277088612318039,
+        -0.09838265180587769,
+        0.16228854656219482
+      ],
+      "nearest_support_surface_point": [
+        -0.22771349549293518,
+        -0.09838930517435074,
+        0.16078853607177734
+      ]
+    },
+    {
+      "object": "V4_Split_head_board_01",
+      "delta_xy_m": [
+        -0.025,
+        -0.11
+      ],
+      "delta_world_yaw_degrees": -29,
+      "new_z_m": 0.17329445481300354,
+      "residual_clearance_lift_m": 0,
+      "actual_surface_intersections_with_previously_placed": 0,
+      "contained_volume_pairs": 0,
+      "nearest_actual_surface_gap_m": 0.0014821694931015372,
+      "support": "existing mesh triangles",
+      "support_point_on_moved_surface": [
+        0.12849320471286774,
+        -0.06185323745012283,
+        0.15274690091609955
+      ],
+      "nearest_support_surface_point": [
+        0.12853838503360748,
+        -0.06207679584622383,
+        0.1512823849916458
+      ]
+    },
+    {
+      "object": "V4_Split_head_board_02",
+      "delta_xy_m": [
+        0.05,
+        -0.085
+      ],
+      "delta_world_yaw_degrees": 37,
+      "new_z_m": 0.19901570677757263,
+      "residual_clearance_lift_m": 0,
+      "actual_surface_intersections_with_previously_placed": 0,
+      "contained_volume_pairs": 0,
+      "nearest_actual_surface_gap_m": 0.001494944328442216,
+      "support": "existing mesh triangles",
+      "support_point_on_moved_surface": [
+        -0.18497146666049957,
+        0.19728218019008636,
+        0.1972169727087021
+      ],
+      "nearest_support_surface_point": [
+        -0.1850273311138153,
+        0.19717508554458618,
+        0.1957269161939621
+      ]
+    }
+  ],
+  "untouched_object_matrices_exact": 20,
+  "bounds": {
+    "min_m": [
+      -0.5177920460700989,
+      -0.6085214614868164,
+      0.0010000001639127731
+    ],
+    "max_m": [
+      0.4704448878765106,
+      0.6082841157913208,
+      0.21103957295417786
+    ],
+    "size_m": [
+      0.9882369339466095,
+      1.2168055772781372,
+      0.21003957279026508
+    ]
+  },
+  "final_changed_piece_surface_intersections": {
+    "V4_Curved_coopered_stave_01": [],
+    "V4_Curved_coopered_stave_07": [],
+    "V4_Curved_coopered_stave_08": [],
+    "V4_Split_head_board_01": [],
+    "V4_Split_head_board_02": []
+  },
+  "unchanged_support_graph_preserved": true,
+  "contact_scope": "Moved pieces vs all others tested with actual triangle-BVH intersections plus volume-containment rays; sampled actual surface gap <=5mm. Unchanged20 use exact original geometry/matrices/support partners; no full baseline collision certification or dynamic simulation claim.",
+  "before_transforms": {
+    "V4_Curved_coopered_stave_01": {
+      "location": [
+        0.22962763905525208,
+        0.15603239834308624,
+        0.10240618139505386
+      ],
+      "rotation_euler": [
+        -0.03702520951628685,
+        3.141592502593994,
+        -1.0164282321929932
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "matrix_world": [
+        [
+          -0.5264061093330383,
+          0.8496505618095398,
+          0.03147295117378235,
+          0.22962763905525208
+        ],
+        [
+          0.850233256816864,
+          0.5260453820228577,
+          0.0194857157766819,
+          0.15603239834308624
+        ],
+        [
+          -1.5099580252808664e-07,
+          0.03701674938201904,
+          -0.9993146657943726,
+          0.10240618139505386
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "V4_Curved_coopered_stave_07": {
+      "location": [
+        -0.18399371206760406,
+        0.24624203145503998,
+        0.15060687065124512
+      ],
+      "rotation_euler": [
+        -0.10323739051818848,
+        -0.0,
+        0.8525905609130859
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "matrix_world": [
+        [
+          0.6580346822738647,
+          -0.7489784955978394,
+          -0.0775984674692154,
+          -0.18399371206760406
+        ],
+        [
+          0.7529876232147217,
+          0.6545311808586121,
+          0.06781317293643951,
+          0.24624203145503998
+        ],
+        [
+          0.0,
+          -0.10305410623550415,
+          0.9946757555007935,
+          0.15060687065124512
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "V4_Curved_coopered_stave_08": {
+      "location": [
+        -0.20808981359004974,
+        0.14192508161067963,
+        0.19699212908744812
+      ],
+      "rotation_euler": [
+        0.0842440128326416,
+        -0.0,
+        1.0742013454437256
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "matrix_world": [
+        [
+          0.476434588432312,
+          -0.8760918974876404,
+          0.07398059219121933,
+          -0.20808981359004974
+        ],
+        [
+          0.8792099356651306,
+          0.4747449457645416,
+          -0.04008930176496506,
+          0.14192508161067963
+        ],
+        [
+          0.0,
+          0.08414439857006073,
+          0.996453583240509,
+          0.19699212908744812
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "V4_Split_head_board_01": {
+      "location": [
+        0.28999999165534973,
+        0.28999999165534973,
+        0.1421889066696167
+      ],
+      "rotation_euler": [
+        0.019999999552965164,
+        -0.03999999910593033,
+        1.7000000476837158
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "matrix_world": [
+        [
+          -0.12874147295951843,
+          -0.9913634657859802,
+          0.024983350187540054,
+          0.28999999165534973
+        ],
+        [
+          0.9908715486526489,
+          -0.12961183488368988,
+          -0.03707136586308479,
+          0.28999999165534973
+        ],
+        [
+          0.03998933359980583,
+          0.01998266950249672,
+          0.9990002512931824,
+          0.1421889066696167
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "V4_Split_head_board_02": {
+      "location": [
+        -0.25,
+        0.28999999165534973,
+        0.15253891050815582
+      ],
+      "rotation_euler": [
+        0.019999999552965164,
+        -0.03999999910593033,
+        3.4000000953674316
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "matrix_world": [
+        [
+          -0.9660248160362244,
+          0.25626325607299805,
+          0.03354340046644211,
+          -0.25
+        ],
+        [
+          -0.25533679127693176,
+          -0.9664004445075989,
+          0.0295515526086092,
+          0.28999999165534973
+        ],
+        [
+          0.03998933359980583,
+          0.01998266950249672,
+          0.9990002512931824,
+          0.15253891050815582
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "after_transforms": {
+    "V4_Curved_coopered_stave_01": {
+      "location": [
+        0.16962763667106628,
+        0.09603239595890045,
+        0.1140519455075264
+      ],
+      "rotation_euler": [
+        -0.03702520579099655,
+        3.141592502593994,
+        -0.4928293228149414
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "V4_Curved_coopered_stave_07": {
+      "location": [
+        -0.08399371057748795,
+        0.16624203324317932,
+        0.1499328762292862
+      ],
+      "rotation_euler": [
+        -0.10323739051818848,
+        -0.0,
+        1.2540161609649658
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "V4_Curved_coopered_stave_08": {
+      "location": [
+        -0.1980898082256317,
+        0.09192508459091187,
+        0.20000697672367096
+      ],
+      "rotation_euler": [
+        0.0842440128326416,
+        -0.0,
+        -0.007902614772319794
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "V4_Split_head_board_01": {
+      "location": [
+        0.26499998569488525,
+        0.17999999225139618,
+        0.17329445481300354
+      ],
+      "rotation_euler": [
+        0.019999997690320015,
+        -0.03999999910593033,
+        1.193854570388794
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "V4_Split_head_board_02": {
+      "location": [
+        -0.20000000298023224,
+        0.20499999821186066,
+        0.19901570677757263
+      ],
+      "rotation_euler": [
+        0.019999999552965164,
+        -0.03999999910593033,
+        -2.2374134063720703
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "threads": 2,
+  "device": "CPU",
+  "export_native_runtime": false
+}

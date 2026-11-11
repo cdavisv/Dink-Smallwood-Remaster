@@ -1,0 +1,97 @@
+{
+  "variant_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "source_v4_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
+  "all25_geometry_UV_local_normals_material_slots_exact": true,
+  "all25_scales_exact": true,
+  "unchanged20_world_matrices_exact": true,
+  "three_shared_material_graphs_and9_packed_maps_exact": true,
+  "real_vertical_surface_supports": [
+    {
+      "object": "V4_Curved_coopered_stave_01",
+      "support": "V4_Curved_coopered_stave_11",
+      "gap_m": 0.0018449032974988222,
+      "direction": "moved_bottom_down_to_support_top",
+      "from": [
+        0.020845502614974976,
+        -0.09912611544132233,
+        0.1387900859117508
+      ],
+      "to": [
+        0.020845502614974976,
+        -0.09912611544132233,
+        0.1369451880455017
+      ],
+      "support_normal_z": 0.9835931062698364
+    },
+    {
+      "object": "V4_Curved_coopered_stave_07",
+      "support": "V4_Curved_coopered_stave_04",
+      "gap_m": 0.0015000969467312097,
+      "direction": "moved_bottom_down_to_support_top",
+      "from": [
+        -0.004594345577061176,
+        0.17340731620788574,
+        0.12403726577758789
+      ],
+      "to": [
+        -0.004594345577061176,
+        0.17340731620788574,
+        0.12253716588020325
+      ],
+      "support_normal_z": 0.9897648692131042
+    },
+    {
+      "object": "V4_Curved_coopered_stave_08",
+      "support": "V4_Curved_coopered_stave_10",
+      "gap_m": 0.0010408557315915823,
+      "direction": "support_top_up_to_moved_bottom",
+      "from": [
+        -0.22660624980926514,
+        -0.10282500088214874,
+        0.1607377827167511
+      ],
+      "to": [
+        -0.22660624980926514,
+        -0.10282500088214874,
+        0.16177864372730255
+      ],
+      "moved_bottom_normal_z": -0.9887199401855469
+    },
+    {
+      "object": "V4_Split_head_board_01",
+      "support": "V4_Curved_coopered_stave_01",
+      "gap_m": 0.0012534010054171085,
+      "direction": "support_top_up_to_moved_bottom",
+      "from": [
+        0.132047638297081,
+        -0.06344632804393768,
+        0.15119364857673645
+      ],
+      "to": [
+        0.132047638297081,
+        -0.06344632804393768,
+        0.15244704484939575
+      ],
+      "moved_bottom_normal_z": -0.9990003108978271
+    },
+    {
+      "object": "V4_Split_head_board_02",
+      "support": "V4_Curved_coopered_stave_08",
+      "gap_m": 0.0014998482836037874,
+      "direction": "moved_bottom_down_to_support_top",
+      "from": [
+        -0.18497146666049957,
+        0.19728218019008636,
+        0.1972169727087021
+      ],
+      "to": [
+        -0.18497146666049957,
+        0.19728218019008636,
+        0.19571712613105774
+      ],
+      "support_normal_z": 0.9967304468154907
+    }
+  ],
+  "support_scope": "Actual opposed top/bottom triangle normals and vertical rays with gaps<=5mm. Not a rigidbody/centre-of-mass stability proof; changed mesh intersections/containment separately checked in VARIANT_RECEIPT.",
+  "no_export_native_runtime": true
+}
