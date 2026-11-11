@@ -448,11 +448,61 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     TestNotNull(TEXT("intact restore reintroduces actual fitted body"),G->FindHardnessFitPrimitive(*D->FindSprite(Handle)));
     TestTrue(TEXT("intact restore hides legacy card and shows family"),Actor->Card->bHiddenInGame&&FamilyMesh->IsVisible()&&!FamilyMesh->bHiddenInGame);
     TestEqual(TEXT("intact restore retains immutable source picture identity"),Actor->Origin->Frame,1);
-    // Leave a real owned body active to exercise production shutdown, rather
-    // than qualifying cleanup only after a final empty broken-barrel map.
+    // Keep a registered generic mask body for shutdown coverage. The natural
+    // completion case below retires the source barrel's fitted body explicitly.
     const int32 Extra=D->CreateVirtualSprite(209,Placement->X+70,Placement->Y);
     auto* ExtraSprite=D->FindSprite(Extra);ExtraSprite->Props.Add(TEXT("pseq"),173);ExtraSprite->Props.Add(TEXT("pframe"),1);ExtraSprite->Props.Add(TEXT("hard"),0);
     const bool ShutdownRedrawn=G->RedrawRuntimeHardnessMap(209,Error);
     if(!TestTrue(TEXT("prepare controlled final registered body for shutdown lifetime proof"),ShutdownRedrawn)){RedrawFailure(TEXT("prepare controlled final registered body for shutdown lifetime proof"),Error);return false;}
+    // Natural production path: original hit procedure, then ThinkSprite's real
+    // Animate -> OneTimeBrain5 completion. No manual final pframe or final redraw.
+    S=D->FindSprite(Handle);S->bSpawned=false; // this actor is the fixture's ordinary source placement
+    S->Script=Placement->Script;
+    const int32 HitInstance=Story->StartProcedure(Placement->Script,TEXT("hit"),Handle,{},209,true);
+    if(!TestTrue(TEXT("actual source hit procedure starts"),HitInstance>0))return false;
+    Story->RunNow(HitInstance);
+    S=D->FindSprite(Handle);
+    if(!TestTrue(TEXT("actual hit script initializes natural brain5 and persisted background"),
+        S&&S->bActive&&S->GetProp(TEXT("brain"))==5&&S->GetProp(TEXT("seq"))==173&&
+        Story->GetWorldState()->GetOverrideType(Id)==EDinkOverrideType::BackgroundNoHardness&&!G->IsHardnessLoading()))return false;
+    const double NaturalStart=Story->GetNowMs();int32 NaturalFrames=0;TSet<int32> AnimatedFrames;
+    for(;NaturalFrames<180&&D->FindSprite(Handle)->bActive;++NaturalFrames)
+    {
+        G->ThinkSprite(Handle,NaturalStart+NaturalFrames*(1000.0/60.0));
+        AnimatedFrames.Add(D->FindSprite(Handle)->GetProp(TEXT("pframe")));
+    }
+    TestTrue(TEXT("natural animator actually visited intermediate and final frames"),AnimatedFrames.Contains(2)&&AnimatedFrames.Contains(3)&&AnimatedFrames.Contains(4)&&AnimatedFrames.Contains(5)&&AnimatedFrames.Contains(6));
+    S=D->FindSprite(Handle);
+    if(!TestTrue(TEXT("natural Animate reaches final1736 then brain5 deactivates"),S&&!S->bActive&&
+        S->GetProp(TEXT("pseq"))==173&&S->GetProp(TEXT("pframe"))==6&&S->GetProp(TEXT("seq"))==0&&S->GetProp(TEXT("frame"))==0&&NaturalFrames<180))return false;
+    TestTrue(TEXT("original kill_this_task ends attached script naturally"),S->Script.IsNone());
+    TestTrue(TEXT("natural final background is actually visible without reactivating logical sprite"),
+        !Actor->IsHidden()&&Actor->Card->IsVisible()&&!Actor->Card->bHiddenInGame&&FamilyMesh->bHiddenInGame&&!FamilyMesh->IsVisible()&&!G->IsHardnessLoading());
+    TestEqual(TEXT("natural final background uses actual1736 material"),Actor->Card->GetMaterial(0)->GetPathName(),FString(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_173_06.MI_Sprite_173_06")));
+    UTexture* NaturalTex=nullptr;
+    TestTrue(TEXT("natural final background actual Tex is1736"),Actor->Card->GetMaterial(0)->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),NaturalTex)&&NaturalTex&&NaturalTex->GetPathName()==TEXT("/Game/Dink/_Generated/Sprites/T_Sprite_173_06.T_Sprite_173_06"));
+    TestTrue(TEXT("natural final background preserves canonical source pivot projection"),Actor->Card->GetRelativeTransform().Equals(FirstBrokenPose,0));
+    TestNull(TEXT("natural inactive background has no fitted body"),G->FindHardnessFitPrimitive(*S));
+    // Generic/spawned behavior and brain7 remain distinct from source-backed brain5.
+    for(const int32 Case:{0,1,2})
+    {
+        const int32 Brain=Case==2?7:5;const bool Spawned=Case==0;
+        auto* Other=W->SpawnActor<AActor>();const int32 H=D->CreateVirtualSprite(209,Placement->X+100,Placement->Y);
+        auto* OtherSprite=D->FindSprite(H);OtherSprite->Actor=Other;OtherSprite->bSpawned=Spawned;
+        OtherSprite->Props.Add(TEXT("brain"),Brain);OtherSprite->Props.Add(TEXT("seq"),173);
+        for(int32 F=0;F<180&&D->FindSprite(H)->bActive;++F)G->ThinkSprite(H,NaturalStart+F*(1000.0/60.0));
+        TestFalse(TEXT("paired generic one-time sprite deactivates"),D->FindSprite(H)->bActive);
+        TestTrue(TEXT("brain7 stays hidden; generic spawnedbrain5 stays destroyed, no background publication"),
+            Spawned?Other->IsActorBeingDestroyed():Other->IsHidden());
+        TestTrue(TEXT("unrelated one-time completion cannot alter admitted source background"),!Actor->IsHidden()&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
+    }
+    // A requested source without an admitted projection must retain the loading
+    // guard and must not forcibly expose an actor. Restore via normal redraw only.
+    const auto Admitted=G->HardnessProjection;Actor->SetActorHiddenInGame(true);G->HardnessProjection.Reset();
+    TestFalse(TEXT("natural final background refuses absent screen admission"),G->CommitFittedBrain5Background(Handle,Error));
+    TestTrue(TEXT("unadmitted refusal holds gate and never forces visibility"),G->IsHardnessLoading()&&Actor->IsHidden());
+    G->HardnessProjection=Admitted;G->SetHardnessLoading(false);
+    if(!TestTrue(TEXT("restored admission republishes through existing guarded background path"),G->RedrawRuntimeHardnessMap(209,Error))){AddError(Error);return false;}
+    TestTrue(TEXT("normal guarded redraw restores correct inactive background"),!Actor->IsHidden()&&!S->bActive&&Actor->Card->GetMaterial(0)==FirstBrokenMaterial);
     return true;
 }

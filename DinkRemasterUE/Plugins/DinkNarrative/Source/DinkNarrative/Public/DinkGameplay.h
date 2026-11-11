@@ -550,6 +550,7 @@ private:
 	void DuckBrain(FDinkSprite& S, double TickMs);
 	void PigBrain(FDinkSprite& S, double TickMs);
 	void OneTimeBrain(FDinkSprite& S, bool bForReal);
+    bool CommitFittedBrain5Background(int32 Handle,FString& Error);
 	void RepeatBrain(FDinkSprite& S);
 	void PillBrain(FDinkSprite& S, double TickMs);
 	void DragonBrain(FDinkSprite& S, double TickMs);

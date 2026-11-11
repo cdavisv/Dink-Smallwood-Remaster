@@ -799,6 +799,37 @@ bool UDinkGameplay::RedrawRuntimeHardness(int32 Handle,FString& Error)
     Error.Reset();return true;
 }
 
+bool UDinkGameplay::CommitFittedBrain5Background(int32 Handle,FString& Error)
+{
+    Error.Reset();
+    const auto* D=Director();const auto* S=D?D->FindSprite(Handle):nullptr;
+    // This is only the existing explicit fitted-original-source presentation path.
+    // Generic/spawned/retained sprites keep their ordinary deactivation semantics.
+    if(!S||!S->Origin.IsValid()||S->bSpawned||S->bRetainedOriginalEditor)return true;
+    auto* World=Story?Story->GetWorld():nullptr;
+    auto* Family=World?World->GetSubsystem<UDinkArtFamilySubsystem>():nullptr;
+    if(!Family||!Family->IsCollisionFitRequested(S->Origin))return true;
+    auto Fail=[&](const TCHAR* Why){Error=Why;GateOriginalHardnessTransition();return false;};
+    const auto* Source=Data.FindPlacement(S->Origin);
+    const auto* Actor=Cast<ADinkPlaceholderActor>(S->Actor.Get());
+    const auto* State=Story?Story->GetWorldState():nullptr;
+    if(!Source||!Actor||!Actor->Origin||Actor->Origin->OriginId!=S->Origin||Actor->GetWorld()!=World||!State||Family->HasCollisionFitPolicyError()||S->bActive||S->GetProp(TEXT("brain"))!=5||
+       S->GetProp(TEXT("seq"))!=0||S->GetProp(TEXT("frame"))!=0||S->Screen!=S->Origin.Screen||
+       State->GetOverrideType(S->Origin)!=EDinkOverrideType::BackgroundNoHardness||
+       EffectiveHardnessPlacementType(*Source)!=0||EffectiveHardnessFlag(*Source)==0)
+        return Fail(TEXT("final fitted brain5 requires actual inactive completion and persisted soft background source"));
+    if(!UsesOriginalHardnessProjection(S->Screen)||IsHardnessLoading())
+        return Fail(TEXT("final fitted brain5 background has no ready admitted original screen"));
+    int32 Seq=0,Frame=0;EffectiveHardnessPicture(*Source,Seq,Frame);
+    if(S->GetProp(TEXT("pseq"))!=Seq||S->GetProp(TEXT("pframe"))!=Frame)
+        return Fail(TEXT("final fitted brain5 picture disagrees with persisted background"));
+    // Existing redraw builds the legitimate type3 PREBIRTH background descriptor,
+    // validates source/assets/published epoch, commits logical+physical state and
+    // projects the picture before existing background-vision publication exposes it.
+    // No actor visibility setter, sprite reactivation or fit guard exception here.
+    return RedrawRuntimeHardnessMap(S->Screen,Error);
+}
+
 bool UDinkGameplay::RedrawRuntimeHardnessMap(int32 Screen,FString& Error)
 {
     auto Fail=[&](const TCHAR* Why){Error=Why;GateOriginalHardnessTransition();return false;};

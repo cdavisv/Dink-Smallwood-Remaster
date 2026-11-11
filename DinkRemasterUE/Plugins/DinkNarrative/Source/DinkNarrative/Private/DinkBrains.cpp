@@ -759,7 +759,16 @@ void UDinkGameplay::OneTimeBrain(FDinkSprite& S, bool bForReal)
 	}
 	if (S.GetProp(B_Seq) == 0)
 	{
-		Director()->DeactivateSprite(S.Handle, 0, /*bEndScripts*/ false);
+        const int32 Handle=S.Handle; // Deactivation callbacks may invalidate S.
+		Director()->DeactivateSprite(Handle, 0, /*bEndScripts*/ false);
+        if(!bForReal)
+        {
+            // D:15761 adds brain5's final frame to the background BEFORE dropping
+            // its live sprite. Brain7 deliberately has no background publication.
+            FString Error;
+            if(!CommitFittedBrain5Background(Handle,Error))
+                UE_LOG(LogTemp,Warning,TEXT("fitted brain5 final background refused: %s"),*Error);
+        }
 		return;
 	}
 	if (S.bMoving)
