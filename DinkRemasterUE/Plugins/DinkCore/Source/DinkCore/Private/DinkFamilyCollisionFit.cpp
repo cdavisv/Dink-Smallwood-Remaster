@@ -271,7 +271,7 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
         !F->GetComponentTransform().Equals(C.bVisualApplied?C.ProposedWorld:C.BeforeFamily,C.bVisualApplied?1.e-4:0.)||!F->IsRegistered()||
         F->GetCollisionProfileName()!=C.BeforeProfile||F->GetCollisionEnabled()!=C.BeforeCollision||F->GetCollisionObjectType()!=C.BeforeObjectType||
         F->GetCollisionResponseToChannels()!=C.BeforeResponses||F->CanEverAffectNavigation()!=C.BeforeNavigation||F->GetGenerateOverlapEvents()!=C.BeforeOverlaps||F->IsVisible()!=(C.bVisualApplied?true:C.BeforeVisible)||F->bHiddenInGame!=(C.bVisualApplied?false:C.BeforeFamilyHidden)||
-        Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=C.BeforeCardVisible||
+        Card!=A->Card.Get()||Card->GetCollisionEnabled()!=ECollisionEnabled::NoCollision||Card->CanEverAffectNavigation()||Card->GetGenerateOverlapEvents()||Card->GetStaticMesh()!=C.BeforeCardMesh.Get()||!Card->GetComponentTransform().Equals(C.BeforeCard,0)||Card->bHiddenInGame!=(C.bVisualApplied?true:C.BeforeCardHidden)||Card->IsVisible()!=(!C.bVisualApplied&&C.BeforeCardVisible)||
         Materials(*F)!=C.BeforeMaterials||Materials(*Card)!=C.BeforeCardMaterials)
     {
         if(A&&F&&Card)
@@ -281,7 +281,7 @@ bool UDinkArtFamilySubsystem::ValidateCollisionFit(const FDinkFamilyCollisionFit
                 A->GetActorTransform().Equals(C.BeforeActor,0),
                 F->GetComponentTransform().Equals(C.bVisualApplied?C.ProposedWorld:C.BeforeFamily,C.bVisualApplied?1.e-4:0.),
                 F->IsVisible(),C.bVisualApplied||C.BeforeVisible,F->bHiddenInGame,!C.bVisualApplied&&C.BeforeFamilyHidden,
-                Card->GetComponentTransform().Equals(C.BeforeCard,0),Card->IsVisible(),C.BeforeCardVisible,
+                Card->GetComponentTransform().Equals(C.BeforeCard,0),Card->IsVisible(),!C.bVisualApplied&&C.BeforeCardVisible,
                 Card->bHiddenInGame,C.bVisualApplied||C.BeforeCardHidden,Card->GetStaticMesh()==C.BeforeCardMesh.Get(),
                 Materials(*F)==C.BeforeMaterials,Materials(*Card)==C.BeforeCardMaterials);
             return false;
@@ -321,10 +321,13 @@ bool UDinkArtFamilySubsystem::ApplyCollisionFitVisual(FDinkFamilyCollisionFitCan
     // exposed. Restore the fitted presentation only after body admission.
     C.FamilyComponent->SetVisibility(true);
     C.FamilyComponent->SetHiddenInGame(false);
+    C.Card->SetVisibility(false);
     C.Card->SetHiddenInGame(true);
     C.bVisualApplied=true;
-    if(!C.FamilyComponent->GetComponentTransform().Equals(C.ProposedWorld,1.e-4))
-    {Error=TEXT("visual transform did not publish; coordinator must retain loading gate");return false;}
+    if(!C.FamilyComponent->GetComponentTransform().Equals(C.ProposedWorld,1.e-4)||
+       !C.FamilyComponent->IsVisible()||C.FamilyComponent->bHiddenInGame||
+       C.Card->IsVisible()||!C.Card->bHiddenInGame)
+    {Error=TEXT("fitted presentation did not publish; coordinator must retain loading gate");return false;}
     Error.Reset();return true;
 }
 

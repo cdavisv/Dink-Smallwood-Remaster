@@ -1,3 +1,7 @@
+## Saved barrel readback on 60e58f6
+
+Readback Candidate6 run `36f312bef7da4943a4bb3a589e8f9c9b` isolated the intact reload lookup failure to applied card visibility. Both actors had the expected fitted pose, family visibility and hidden-in-game card state. The applied descriptor still compared the card against the visible prepublication snapshot. The pending fix explicitly publishes the card with visibility off and validates that state after publication. Before publication, validation still requires the exact captured card state. Both real reload fixtures assert the explicit fitted card state.
+
 ## Saved barrel readback on 08e3666
 
 Readback Candidate5 run `d3312cc11af949df8c6c8c0165b949fd` verified that the intact reload returns with a live sprite, restored visibility and both movement gates released. Only the fitted-body lookup failed, immediately and after the settle interval on both screens. Food drop passed in the preceding readback.
