@@ -1079,3 +1079,13 @@ Branch `fix/barrel-ci-fbx-fixture`, worktree `/home/artist/Work/DinkBarrelCIFixt
 
 Verified in a skip-smudge checkout: focused six-test run reproduced the one FBX pointer error; selective local LFS hydration then passed all 596 tests in 9.199s. Metadata audit passed (4617 assets, 4503 ledger rows, zero missing/hash/secret errors); independent source review passed. GitHub network hydration and subsequent CI remain to be verified after integration into PR61. This does not constitute gameplay or native acceptance.
 
+## Regression contracts for versioned editor worlds and external vocabulary
+
+Worktree `/home/artist/Work/DinkRegressionContracts`, branch `test/remaster-world-contracts`, based on 12705a5. Source-only, not built or run in Unreal here; the barrel author retains the Unreal lease.
+
+The 237-case regression run exposed stale editor expectations. A source-policy audit independently confirms exactly three original background promotions (S034_P49, S034_P50, S469_P16), giving 4209 actors and 1637 instances while preserving the total. The content fixture now derives promotions from the typed source policy plus explicit world markers and verifies every origin's representation and each promotion's original type, hash, script and tag.
+
+Versioned editor hosts contain immutable foundations, while original tile/placement bodies are admitted in game worlds. The collision fixture now verifies each marked foundation's complete actual oriented geometry, source hashes, profiles, pose and settings, then checks every old sample against immutable fill presence or absence. Unmarked worlds retain their original expectations. An independent source/bundle audit finds 152 solid and 96 low samples across the 38 fitted screens must be clear in the editor, exactly matching the regression failures. This does not claim exhaustive runtime terrain sampling; dedicated runtime-owner and all-85 fitted-body checks remain required.
+
+The narrative fixture now checks the exact 33-name external vocabulary, with duplicate and unexpected-name rejection. The three additional value forms are editor_seq, editor_frame and sp_hard. Four generated vocabulary notes are synchronized with their implemented external/force_vision contracts; no command statuses or production behavior changed. Independent source enumeration matches all 33 names; diff checks pass. Independent source review, own build and targeted native tests remain pending before integration.
+
