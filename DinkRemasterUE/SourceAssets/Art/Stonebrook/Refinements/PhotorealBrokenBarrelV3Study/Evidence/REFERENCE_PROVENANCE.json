@@ -1,0 +1,14 @@
+{
+  "original_family": "173 bonuses/barrels/barel-",
+  "frame": 6,
+  "source_reference_pins": {
+    "/home/artist/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/barel-06.bmp.png": "b6de2786813e799b54c654e2e493ffafd04c7758c53d5f36d9b08f53a4fc84ba",
+    "/home/artist/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
+    "/home/artist/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/POLICY_INTERPRETATION.md": "3b1745ae085ad5eb0a6778724c2f7e77ed2a55f0b403bfabede9371a6a01d2ad",
+    "/home/artist/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/README.md": "4cacad02a0a9298cdc487d3de9ca760d1fea5cae5411dfb4c13664d94e680ddf"
+  },
+  "preferred_export_source": "SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend",
+  "reviewed_existing_render": "SourceNodesAlternativeV2/Renders/LOD0.png",
+  "design_reason": "Existing coherent radial silhouette retained; refine overly clean boards through selected real longitudinal splits, small fibre tips and varied overlaps. Existing shared PBR only.",
+  "authorization_scope": "CPU-only isolated Blender source study; no accepted asset/source/runtime modifications or publication"
+}

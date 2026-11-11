@@ -1,0 +1,45 @@
+{
+  "schema": "dink-inactive-art-source-study/1",
+  "status": "inactive_source_study",
+  "family": "barrel_broken",
+  "original_sequence": 173,
+  "original_frame": 6,
+  "class": "prop",
+  "source": "portable.source.blend",
+  "source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "immediate_preferred_parent_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
+  "earlier_published_v2_sha256": "42ff822785784d531dbbc0730055f8b0281feacb83792364c43dace43b0a7282",
+  "objects": 36,
+  "LOD0_triangles": 9928,
+  "other_V3_LODs": false,
+  "dimensions_m": [
+    1.034907579421997,
+    1.2378713488578796,
+    0.19663432613015175
+  ],
+  "shared_target_materials": [
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_OakEndgrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "references_sha256": {
+    "SourceAssets/Art/ART_STANDARD.md": "bbf50383f1357016ce945efec282dc7cb052ed522ab6759b4ced5a9b5f389215",
+    "SourceAssets/Art/SharedMaterials/manifest.json": "c19adfb9bde4e4151c50e9c0ee6e4d42fb1d8bd414583654f94695a946c3fd1f",
+    "SourceAssets/Art/Stonebrook/art_manifest.json": "b5cfa84d909f540592d8f424c15125eea02a780a743b8a418848d32d6b53667d",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/barel-06.bmp.png": "b6de2786813e799b54c654e2e493ffafd04c7758c53d5f36d9b08f53a4fc84ba",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/POLICY_INTERPRETATION.md": "3b1745ae085ad5eb0a6778724c2f7e77ed2a55f0b403bfabede9371a6a01d2ad"
+  },
+  "runtime_activated": false,
+  "native_validated": false,
+  "exports": [],
+  "final_photoreal_approved": false,
+  "known_limits": [
+    "Straight-board character and planar/uniform fractures",
+    "LOD0 only; no V3 reductions",
+    "Inherited raw generic UV overlap/missingUCX findings remain",
+    "Hidden private intact context is comparison only"
+  ],
+  "QA_origin": "/home/artist/Work/DinkQA/PhotorealBrokenBarrelRefinementV3",
+  "QA_READY_sha256": "7115bc752681ff679a2fa511f3a61112762ee2d1ff5894c1145887070e4cc395"
+}
