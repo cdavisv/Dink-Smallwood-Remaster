@@ -1,0 +1,333 @@
+{
+  "candidate_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "preferred_source_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
+  "objects": [
+    {
+      "name": "V3_Broken_coopered_stave_00",
+      "triangles": 204,
+      "signed_volume_m3": 0.0010594487749429463,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_01",
+      "triangles": 236,
+      "signed_volume_m3": 0.00135532081056715,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_03",
+      "triangles": 300,
+      "signed_volume_m3": 0.0019471161826579055,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_05",
+      "triangles": 204,
+      "signed_volume_m3": 0.0010477795403012185,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_06",
+      "triangles": 236,
+      "signed_volume_m3": 0.001332121549820704,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_07",
+      "triangles": 268,
+      "signed_volume_m3": 0.0016543042197345768,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_08",
+      "triangles": 300,
+      "signed_volume_m3": 0.0019332993732358735,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_09",
+      "triangles": 300,
+      "signed_volume_m3": 0.0022293369374973733,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_10",
+      "triangles": 204,
+      "signed_volume_m3": 0.0010919654917857455,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_11",
+      "triangles": 236,
+      "signed_volume_m3": 0.0013494933436041842,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_12",
+      "triangles": 268,
+      "signed_volume_m3": 0.0016539093091579751,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_14",
+      "triangles": 300,
+      "signed_volume_m3": 0.002213321320144742,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_15",
+      "triangles": 204,
+      "signed_volume_m3": 0.001048178254223103,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_17",
+      "triangles": 268,
+      "signed_volume_m3": 0.0016529458157995656,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Opened_forged_hoop_00",
+      "triangles": 860,
+      "signed_volume_m3": 9.40601030831232e-05,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Opened_forged_hoop_01",
+      "triangles": 884,
+      "signed_volume_m3": 0.00013553028252893346,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Opened_forged_hoop_02",
+      "triangles": 884,
+      "signed_volume_m3": 0.000138278577088907,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Opened_forged_hoop_03",
+      "triangles": 860,
+      "signed_volume_m3": 0.00011319534628159871,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_00",
+      "triangles": 268,
+      "signed_volume_m3": 0.0009868944688641952,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_01",
+      "triangles": 204,
+      "signed_volume_m3": 0.0016017517190013012,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_02",
+      "triangles": 180,
+      "signed_volume_m3": 0.0017527106586453514,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_03",
+      "triangles": 204,
+      "signed_volume_m3": 0.0016017517190013016,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_04",
+      "triangles": 268,
+      "signed_volume_m3": 0.000986894468864195,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Scattered_head_board_05",
+      "triangles": 380,
+      "signed_volume_m3": 3.8021360665275475e-06,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_02_Split_A",
+      "triangles": 168,
+      "signed_volume_m3": 0.0008801049698547796,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_02_Split_B",
+      "triangles": 168,
+      "signed_volume_m3": 0.0007447439170846948,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_04_Split_A",
+      "triangles": 188,
+      "signed_volume_m3": 0.0012446186124524324,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_04_Split_B",
+      "triangles": 188,
+      "signed_volume_m3": 0.0009662243280473254,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_13_Split_A",
+      "triangles": 188,
+      "signed_volume_m3": 0.0010760599144738778,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_13_Split_B",
+      "triangles": 188,
+      "signed_volume_m3": 0.0008554290883457974,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_16_Split_A",
+      "triangles": 148,
+      "signed_volume_m3": 0.0007572932943226204,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Broken_coopered_stave_16_Split_B",
+      "triangles": 148,
+      "signed_volume_m3": 0.0005902285501849804,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Fracture_fibre_00",
+      "triangles": 6,
+      "signed_volume_m3": 2.2750049911757516e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Fracture_fibre_01",
+      "triangles": 6,
+      "signed_volume_m3": 2.9333279864111143e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Fracture_fibre_02",
+      "triangles": 6,
+      "signed_volume_m3": 3.675000937245292e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    },
+    {
+      "name": "V3_Fracture_fibre_03",
+      "triangles": 6,
+      "signed_volume_m3": 4.499998489314025e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0,
+      "finite_positions_uv_corner_normals": true
+    }
+  ],
+  "triangles": 9928,
+  "dimensions_m": [
+    1.034907579421997,
+    1.2378713488578796,
+    0.19663432613015175
+  ],
+  "minimum_m": [
+    -0.5216614007949829,
+    -0.6371681690216064,
+    0.000999998301267624
+  ],
+  "maximum_m": [
+    0.5132461786270142,
+    0.6007031798362732,
+    0.19763432443141937
+  ],
+  "shared_graphs_exact": [
+    "MI_Shared_OakLonggrain2m",
+    "MI_Shared_OakEndgrain2m",
+    "MI_Stonebrook_WroughtIron"
+  ],
+  "packed_shared_image_sha256_exact": {
+    "T_Shared_OakEndgrain2m_BC": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+    "T_Shared_OakEndgrain2m_N_GL": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+    "T_Shared_OakEndgrain2m_ORM": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+    "T_Shared_OakLonggrain2m_BC": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+    "T_Shared_OakLonggrain2m_N_GL": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+    "T_Shared_OakLonggrain2m_ORM": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+    "T_Stonebrook_WroughtIron_BC": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+    "T_Stonebrook_WroughtIron_N": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+    "T_Stonebrook_WroughtIron_ORM": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb"
+  },
+  "Cycles_device": "CPU",
+  "render_threads": 2,
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "native_or_runtime_validation": false
+}
