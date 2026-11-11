@@ -186,7 +186,8 @@ namespace
 			UStaticMeshComponent* Card = It->Card;
 			// Authored meshes have real geometry and collision; rotating them like sprite cards
 			// would turn beds, tables and doorways as the camera moves.
-			if (!Card || !Card->GetVisibleFlag() || !Card->GetStaticMesh() || It->IsHidden() || It->ActorHasTag(TEXT("DinkAuthoredArt")))
+			// Hidden replacement cards retain their frozen fitted pose even when screen culling restores bVisible.
+			if (!Card || !Card->IsVisible() || !Card->GetStaticMesh() || It->IsHidden() || It->ActorHasTag(TEXT("DinkAuthoredArt")))
 			{
 				continue;
 			}
