@@ -1,0 +1,384 @@
+{
+  "scope": "SOURCE_ONLY_UNREAL_IMPORT_UNVERIFIED",
+  "source": {
+    "file": "../BeachPebbles_V6_ExplicitTriangles.blend",
+    "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3"
+  },
+  "original_sequence": 92,
+  "frames": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "asset_class": "prop_small",
+  "shared_material": "MI_Shared_FieldstoneSeed2m",
+  "texture_policy": "Reuse registered shared set, no new/reencoded texture maps",
+  "UV0_repeat_m": 2,
+  "files": [
+    {
+      "object": "SM_BeachPebbles_92_05_LOD0",
+      "file": "SM_BeachPebbles_92_05_LOD0.fbx",
+      "sha256": "07215005ddf2f820ccd6372a66291b1d933c1610a2504b74b4701714a3eafbb6",
+      "triangles": 432,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.06083541363477707,
+        0.05273745208978653,
+        0.02673327550292015
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_05_LOD1",
+      "file": "SM_BeachPebbles_92_05_LOD1.fbx",
+      "sha256": "4da15fd1206b78a3a0191666dd1b8f7911daf849741e148ebd5ddbc5f196df9b",
+      "triangles": 216,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.06083541363477707,
+        0.05273745208978653,
+        0.0266647357493639
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_05_LOD2",
+      "file": "SM_BeachPebbles_92_05_LOD2.fbx",
+      "sha256": "c99f69ee1705257929da9089d251ce8275a4d22b5db209e57663f255789585d2",
+      "triangles": 86,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.06079959124326706,
+        0.05287981033325195,
+        0.02692374959588051
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_06_LOD0",
+      "file": "SM_BeachPebbles_92_06_LOD0.fbx",
+      "sha256": "727f5c6a49d7662526b0de46c2ed53f9a7730e44ecb75c065d71d8057dbc8ce3",
+      "triangles": 432,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.0812000259757042,
+        0.07919231057167053,
+        0.041887592524290085
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_06_LOD1",
+      "file": "SM_BeachPebbles_92_06_LOD1.fbx",
+      "sha256": "7ecf8ec6651f077ee2836bc9e6c86512eeb1203ed92a90212fb0b825c00f9be4",
+      "triangles": 216,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.0812000259757042,
+        0.07919231057167053,
+        0.041887592524290085
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_06_LOD2",
+      "file": "SM_BeachPebbles_92_06_LOD2.fbx",
+      "sha256": "7d081d4607bd9b5c3d2c32ede555f39df590fa7111ca574805939b7d0c823864",
+      "triangles": 86,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.08123311400413513,
+        0.07929697632789612,
+        0.04114551842212677
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_07_LOD0",
+      "file": "SM_BeachPebbles_92_07_LOD0.fbx",
+      "sha256": "867d3a5141ff8d787c20722ba25585bce7d9283d5d11ea0df1ca25e084ba82ef",
+      "triangles": 864,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.16302497684955597,
+        0.13112694025039673,
+        0.025652671232819557
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_07_LOD1",
+      "file": "SM_BeachPebbles_92_07_LOD1.fbx",
+      "sha256": "210e2b347f9d5680a223b2401266e67785084f6f38c260c8bb3463d164565648",
+      "triangles": 432,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.16302497684955597,
+        0.13112694025039673,
+        0.025652671232819557
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_07_LOD2",
+      "file": "SM_BeachPebbles_92_07_LOD2.fbx",
+      "sha256": "3548df8ea2a3c66de572439eb7d052ba2b64c270ffc77c1d070662359cec4ac0",
+      "triangles": 172,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.16268324851989746,
+        0.1309194266796112,
+        0.026193290948867798
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_08_LOD0",
+      "file": "SM_BeachPebbles_92_08_LOD0.fbx",
+      "sha256": "e03ffdc5242dfa6bdcc8ba8f247aa66c1b29d8ebcd3501af0876a8d62369c72b",
+      "triangles": 1296,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.3044978380203247,
+        0.16036376357078552,
+        0.0379568412899971
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_08_LOD1",
+      "file": "SM_BeachPebbles_92_08_LOD1.fbx",
+      "sha256": "89fe877be2ac91efe16ec424ddadc978ffc2462df0a93afed1e0527baf7a5f2a",
+      "triangles": 648,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.30437231063842773,
+        0.16036376357078552,
+        0.03801219165325165
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_08_LOD2",
+      "file": "SM_BeachPebbles_92_08_LOD2.fbx",
+      "sha256": "370e257c5d79dadcc50e683d747e086610699b263c4ef7b0b1dfdcc16a981388",
+      "triangles": 258,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.30389246344566345,
+        0.15962332487106323,
+        0.037883006036281586
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_09_LOD0",
+      "file": "SM_BeachPebbles_92_09_LOD0.fbx",
+      "sha256": "84fbb774dabdfa023b069347ddec30713f4f1b2c8666a12096cdd3d09673a1bd",
+      "triangles": 1728,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.13143593072891235,
+        0.20533743500709534,
+        0.041250623762607574
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_09_LOD1",
+      "file": "SM_BeachPebbles_92_09_LOD1.fbx",
+      "sha256": "e2cfcd24006e52d8ed803d274d9b3152a0eb74547990680d616b559d242e146c",
+      "triangles": 864,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.13106831908226013,
+        0.20524102449417114,
+        0.041250623762607574
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_09_LOD2",
+      "file": "SM_BeachPebbles_92_09_LOD2.fbx",
+      "sha256": "d93960e105dbdba406fc1b7daa120ec2534a99db216599617b85fa268bcf0710",
+      "triangles": 346,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.130071759223938,
+        0.20545537769794464,
+        0.041508160531520844
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_10_LOD0",
+      "file": "SM_BeachPebbles_92_10_LOD0.fbx",
+      "sha256": "80dc60a3d8ab397d390b81d53562686c270a6b87ff8f32a1e721078cdd7b4d08",
+      "triangles": 2592,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.28199318051338196,
+        0.20760947465896606,
+        0.04907715320587158
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_10_LOD1",
+      "file": "SM_BeachPebbles_92_10_LOD1.fbx",
+      "sha256": "51051350fd9dbbd8ea05cdb882a9ae390021a8306525e15508adeafeb22b5465",
+      "triangles": 1296,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.28199318051338196,
+        0.2078559696674347,
+        0.04907715320587158
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_10_LOD2",
+      "file": "SM_BeachPebbles_92_10_LOD2.fbx",
+      "sha256": "c13130a08b8cc3b6db6dd67202e229f3fee5ac67f47b0cfe963a1aac3df9312f",
+      "triangles": 518,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.28204670548439026,
+        0.20779862999916077,
+        0.04969074949622154
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_11_LOD0",
+      "file": "SM_BeachPebbles_92_11_LOD0.fbx",
+      "sha256": "6e04b6fba2c07be16f61e24f07ca8ca38368cac892283d8a7494bb5247a7f6f0",
+      "triangles": 3456,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.3041030168533325,
+        0.2410966157913208,
+        0.04417062923312187
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_11_LOD1",
+      "file": "SM_BeachPebbles_92_11_LOD1.fbx",
+      "sha256": "962f43045ace4faa9cb98e6d19c896d6e52a0a60edde25b76903ccc623b98ed8",
+      "triangles": 1728,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.3039637804031372,
+        0.24121099710464478,
+        0.04417062923312187
+      ]
+    },
+    {
+      "object": "SM_BeachPebbles_92_11_LOD2",
+      "file": "SM_BeachPebbles_92_11_LOD2.fbx",
+      "sha256": "e322d7308803f504d6074a94f70873d7171f99c24b906bc870812fa14c65fa4d",
+      "triangles": 690,
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "source_color_attributes": [
+        "SharedSurfaceData"
+      ],
+      "colors_type": "LINEAR",
+      "tangents_exported": true,
+      "dimensions_m": [
+        0.30373650789260864,
+        0.24149636924266815,
+        0.04450574144721031
+      ]
+    }
+  ],
+  "collision": false,
+  "native_accepted": false,
+  "binding_activated": false,
+  "export_adapter": "Explicit local FBX invocation preserves LINEAR Color0 and T/B unlike generic exporter defaults; source project tools unchanged"
+}

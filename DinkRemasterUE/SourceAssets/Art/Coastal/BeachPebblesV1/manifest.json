@@ -1,0 +1,557 @@
+{
+  "schema": "dink-source-assets/1",
+  "status": "candidate-source-only",
+  "about": "Seven original-frame-specific pebble variants; source declarations do not activate runtime bindings",
+  "assets": [
+    {
+      "name": "SM_BeachPebbles_92_05",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 5,
+      "dimensions_m": [
+        0.06083541363477707,
+        0.05273745208978653,
+        0.02673327550292015
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 432,
+        "LOD1": 216,
+        "LOD2": 86
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_05_LOD0.fbx",
+          "sha256": "07215005ddf2f820ccd6372a66291b1d933c1610a2504b74b4701714a3eafbb6"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_05_LOD1.fbx",
+          "sha256": "4da15fd1206b78a3a0191666dd1b8f7911daf849741e148ebd5ddbc5f196df9b"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_05_LOD2.fbx",
+          "sha256": "c99f69ee1705257929da9089d251ce8275a4d22b5db209e57663f255789585d2"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_05"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_06",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 6,
+      "dimensions_m": [
+        0.0812000259757042,
+        0.07919231057167053,
+        0.041887592524290085
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 432,
+        "LOD1": 216,
+        "LOD2": 86
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_06_LOD0.fbx",
+          "sha256": "727f5c6a49d7662526b0de46c2ed53f9a7730e44ecb75c065d71d8057dbc8ce3"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_06_LOD1.fbx",
+          "sha256": "7ecf8ec6651f077ee2836bc9e6c86512eeb1203ed92a90212fb0b825c00f9be4"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_06_LOD2.fbx",
+          "sha256": "7d081d4607bd9b5c3d2c32ede555f39df590fa7111ca574805939b7d0c823864"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_06"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_07",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 7,
+      "dimensions_m": [
+        0.16302497684955597,
+        0.13112694025039673,
+        0.025652671232819557
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 864,
+        "LOD1": 432,
+        "LOD2": 172
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_07_LOD0.fbx",
+          "sha256": "867d3a5141ff8d787c20722ba25585bce7d9283d5d11ea0df1ca25e084ba82ef"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_07_LOD1.fbx",
+          "sha256": "210e2b347f9d5680a223b2401266e67785084f6f38c260c8bb3463d164565648"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_07_LOD2.fbx",
+          "sha256": "3548df8ea2a3c66de572439eb7d052ba2b64c270ffc77c1d070662359cec4ac0"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_07"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_08",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 8,
+      "dimensions_m": [
+        0.3044978380203247,
+        0.16036376357078552,
+        0.0379568412899971
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 1296,
+        "LOD1": 648,
+        "LOD2": 258
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_08_LOD0.fbx",
+          "sha256": "e03ffdc5242dfa6bdcc8ba8f247aa66c1b29d8ebcd3501af0876a8d62369c72b"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_08_LOD1.fbx",
+          "sha256": "89fe877be2ac91efe16ec424ddadc978ffc2462df0a93afed1e0527baf7a5f2a"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_08_LOD2.fbx",
+          "sha256": "370e257c5d79dadcc50e683d747e086610699b263c4ef7b0b1dfdcc16a981388"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_08"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_09",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 9,
+      "dimensions_m": [
+        0.13143593072891235,
+        0.20533743500709534,
+        0.041250623762607574
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 1728,
+        "LOD1": 864,
+        "LOD2": 346
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_09_LOD0.fbx",
+          "sha256": "84fbb774dabdfa023b069347ddec30713f4f1b2c8666a12096cdd3d09673a1bd"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_09_LOD1.fbx",
+          "sha256": "e2cfcd24006e52d8ed803d274d9b3152a0eb74547990680d616b559d242e146c"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_09_LOD2.fbx",
+          "sha256": "d93960e105dbdba406fc1b7daa120ec2534a99db216599617b85fa268bcf0710"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_09"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_10",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 10,
+      "dimensions_m": [
+        0.28199318051338196,
+        0.20760947465896606,
+        0.04907715320587158
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 2592,
+        "LOD1": 1296,
+        "LOD2": 518
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_10_LOD0.fbx",
+          "sha256": "80dc60a3d8ab397d390b81d53562686c270a6b87ff8f32a1e721078cdd7b4d08"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_10_LOD1.fbx",
+          "sha256": "51051350fd9dbbd8ea05cdb882a9ae390021a8306525e15508adeafeb22b5465"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_10_LOD2.fbx",
+          "sha256": "c13130a08b8cc3b6db6dd67202e229f3fee5ac67f47b0cfe963a1aac3df9312f"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_10"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    },
+    {
+      "name": "SM_BeachPebbles_92_11",
+      "class": "prop_small",
+      "families": [
+        "beach_pebbles"
+      ],
+      "original_sequence": 92,
+      "original_frame": 11,
+      "dimensions_m": [
+        0.3041030168533325,
+        0.2410966157913208,
+        0.04417062923312187
+      ],
+      "materials": [
+        "MI_Shared_FieldstoneSeed2m"
+      ],
+      "textures": [
+        {
+          "role": "BC",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "N",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "role": "ORM",
+          "library_file": "../../SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ]
+        }
+      ],
+      "tris": {
+        "LOD0": 3456,
+        "LOD1": 1728,
+        "LOD2": 690
+      },
+      "lod_count": 3,
+      "files": {
+        "LOD0": {
+          "file": "Export_V6/SM_BeachPebbles_92_11_LOD0.fbx",
+          "sha256": "6e04b6fba2c07be16f61e24f07ca8ca38368cac892283d8a7494bb5247a7f6f0"
+        },
+        "LOD1": {
+          "file": "Export_V6/SM_BeachPebbles_92_11_LOD1.fbx",
+          "sha256": "962f43045ace4faa9cb98e6d19c896d6e52a0a60edde25b76903ccc623b98ed8"
+        },
+        "LOD2": {
+          "file": "Export_V6/SM_BeachPebbles_92_11_LOD2.fbx",
+          "sha256": "e322d7308803f504d6074a94f70873d7171f99c24b906bc870812fa14c65fa4d"
+        }
+      },
+      "source": {
+        "blend": "BeachPebbles_V6_ExplicitTriangles.blend",
+        "sha256": "30369f9e4924dac1cf91ff8aac07ed21e81d6ccf995db90f2946b7ed8a530df3",
+        "collection": "SM_BeachPebbles_92_11"
+      },
+      "mesh_contract": {
+        "UV0": "Unique per-stone patches, aggregate area corresponds metres/2; local distortion qualified",
+        "Color0": "SharedSurfaceData CORNER FLOAT_COLOR, R stable .94+.10R variation"
+      },
+      "collision": false,
+      "native_accepted": false,
+      "binding_activated": false
+    }
+  ],
+  "raw_mapping_file": "ORIGINAL_SOURCE_VARIANT_MAPPING.json",
+  "original_guides": "Evidence/SOURCE_GUIDES.json",
+  "license_verification": "LICENSE_VERIFICATION.json",
+  "runtime_or_native_acceptance": false
+}

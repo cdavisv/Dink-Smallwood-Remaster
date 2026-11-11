@@ -1,0 +1,15 @@
+{
+  "verified_date": "2026-11-11",
+  "donor_asset": "Rock Boulder Dry",
+  "asset_url": "https://polyhaven.com/a/rock_boulder_dry",
+  "license_url": "https://polyhaven.com/license",
+  "license": "CC0",
+  "commercial_use_allowed": true,
+  "authors": {
+    "photography": "Dimitrios Savva",
+    "processing": "Rico Cilliers"
+  },
+  "scope": "Existing registered shared FieldstoneSeed2m uses derived donor maps; no new texture downloaded or material graph changed",
+  "registered_maps_verified_against_source": true,
+  "source_check_sha256": "f56850d89263a3cc2f13a11e1ae5d93daf60228d4a22959a722ba00222825d3d"
+}

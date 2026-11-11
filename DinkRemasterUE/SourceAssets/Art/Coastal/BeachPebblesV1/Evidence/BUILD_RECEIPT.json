@@ -1,0 +1,127 @@
+{
+  "scope": "Source-only geometry candidate; no native/binding acceptance",
+  "assets": [
+    {
+      "asset": "SM_BeachPebbles_92_05",
+      "sequence": 92,
+      "frame": 5,
+      "stones": 1,
+      "triangles": 432,
+      "dimensions_m": [
+        0.06083541177213192,
+        0.05273745395243168,
+        0.02673327550292015
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_06",
+      "sequence": 92,
+      "frame": 6,
+      "stones": 1,
+      "triangles": 432,
+      "dimensions_m": [
+        0.0812000259757042,
+        0.07919231429696083,
+        0.041887592524290085
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_07",
+      "sequence": 92,
+      "frame": 7,
+      "stones": 2,
+      "triangles": 864,
+      "dimensions_m": [
+        0.16302497684955597,
+        0.13112693652510643,
+        0.025652671232819557
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_08",
+      "sequence": 92,
+      "frame": 8,
+      "stones": 3,
+      "triangles": 1296,
+      "dimensions_m": [
+        0.3044978529214859,
+        0.16036376357078552,
+        0.0379568412899971
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_09",
+      "sequence": 92,
+      "frame": 9,
+      "stones": 4,
+      "triangles": 1728,
+      "dimensions_m": [
+        0.13143592700362206,
+        0.20533742755651474,
+        0.041250623762607574
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_10",
+      "sequence": 92,
+      "frame": 10,
+      "stones": 6,
+      "triangles": 2592,
+      "dimensions_m": [
+        0.28199318051338196,
+        0.20760948210954666,
+        0.04907715320587158
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    },
+    {
+      "asset": "SM_BeachPebbles_92_11",
+      "sequence": 92,
+      "frame": 11,
+      "stones": 8,
+      "triangles": 3456,
+      "dimensions_m": [
+        0.3041030168533325,
+        0.2410966083407402,
+        0.04417062923312187
+      ],
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "UV0": "UV0",
+      "physical_repeat_m": 2,
+      "vertex_attribute": "SharedSurfaceData",
+      "binding_activated": false
+    }
+  ],
+  "original_frame11": "touching guide component interpreted as three distinct stones; authored interpretation, not exact segmentation",
+  "material_graph_modified": false,
+  "collision_meshes": 0
+}
