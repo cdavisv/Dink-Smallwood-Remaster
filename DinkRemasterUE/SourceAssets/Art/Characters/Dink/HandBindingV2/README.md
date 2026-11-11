@@ -47,3 +47,7 @@ The original asset and cached anatomical controls are inputs. `../../Animations/
 ## Provenance
 
 Existing body/skin/hair/eyes originate from the documented CC0 MakeHuman pipeline; original project clothes remain unchanged. The per-digit correction, explicit weights and validation tools are original project work. The existing Epic89-bone hierarchy/reference transforms retain Epic terms and are not relabeled CC0. No new third-party model, texture, paid generation or download was used. Shared source ledgers and global character manifests are parent-coordinated; local rows stay candidate pending staged review.
+
+## Later change (9 Nov 2026)
+
+The cuff openings, chest dimples and floating buckle were then fixed in both `SK_Dink.blend` and this candidate by `../DefectFixes_9Nov2026/Tools/fix_hero_defects.py` (see `../../README.md`, "Dink defect fixes"); the hand fit itself is unchanged and `Tools/verify_scope.py` passes again on the fixed pair. `scope_verification.json` now carries the new outside fingerprints; `Export/` was re-exported.

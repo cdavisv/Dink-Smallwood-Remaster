@@ -1,0 +1,254 @@
+{
+  "scope": "Actualpackagedcamera/sidecarGETALL+pixels+freshspawnrealWroundtripPASS; notglobalphotorealart/collisionapproval",
+  "source_HEAD": "1dc16ba6d87e031e7b3075e4e59f57df64f2cc8b",
+  "mono_sha256": "d79e936a67405b29ecd00a4ad78dde233d67885b468f3eba23bb23935fd6638c",
+  "drivers": {
+    "init87105": 0,
+    "spawn92603": 0,
+    "camera86975": 0,
+    "quit2830": 0
+  },
+  "Root_launcher_tool": {
+    "handle": 25709,
+    "terminal": "PENDING_ROOT_POLL",
+    "qualification": "Gamewrapper0/display0arenotoutertoolstatus; Rootownsactualtoolpoll"
+  },
+  "game_result": {
+    "exit_code": 0,
+    "elapsed": 649.2860747029918,
+    "inputs_unchanged": 13742,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "display_closure": {
+    "identity": {
+      "pid": 854699,
+      "start_ticks": 9120647,
+      "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "argv": [
+        "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+        ":209",
+        "-screen",
+        "0",
+        "1280x720x24",
+        "-nolisten",
+        "tcp",
+        "-auth",
+        "/home/artist/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
+        "-noreset"
+      ]
+    },
+    "exit_code": 0,
+    "stale_artifacts_preserved": [],
+    "normal_cleanup_before_supervisor_return": true
+  },
+  "owned_HOST_process_exists": {
+    "854697": false,
+    "854699": false,
+    "854708": false,
+    "854710": false
+  },
+  "private_display209_socket_lock_absent": true,
+  "postclosure_guard": {
+    "source_immutable": 13703,
+    "stage_files": 39,
+    "passed": true
+  },
+  "fresh_startup": {
+    "actual": {
+      "screen": 1,
+      "map": [
+        314.0,
+        161.0
+      ],
+      "world": [
+        -183760.16,
+        392550.355,
+        98.15
+      ],
+      "yaw": 180.0,
+      "pitch": 0.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    "before_any_Goto": true
+  },
+  "routes": {
+    "walk-west.json": {
+      "result": "PASS",
+      "steps": 20,
+      "sha256": "fabea96331dcd2b6fc4498ec0124c02aeedc4eb0c44aef9a6aecb8098362611a"
+    },
+    "walk-corridor-west.json": {
+      "result": "PASS",
+      "steps": 40,
+      "sha256": "18e75388aa9ce9194cf89c4685098ba908fdd53f778acdd222570b5fc94fbd88"
+    },
+    "walk-corridor-east.json": {
+      "result": "PASS",
+      "steps": 18,
+      "sha256": "6df5def59065a23d0bd2876a69e0971bf4ce63f3d8ea5445290c96d3fa34d29f"
+    },
+    "walk-south-bypass.json": {
+      "result": "PASS",
+      "steps": 22,
+      "sha256": "ee3c05d3bd063f6e56e902a2d1bc8c6dc7b09e4bd3b59e9aae18ef32cb0c2e05"
+    },
+    "walk-door-approach.json": {
+      "result": "PASS",
+      "steps": 14,
+      "sha256": "366f0973ecb58c4d1ecbd25eea3cd1fcef2892f8a6e85eacfdfabcb7097ccb23"
+    },
+    "route-spawn-door-exit.json": {
+      "result": "PASS",
+      "steps": 9,
+      "sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3"
+    },
+    "route-spawn-door-return.json": {
+      "result": "PASS",
+      "steps": 3,
+      "sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061"
+    }
+  },
+  "all56native_GETALL_queries_success": true,
+  "GETALL_binding": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+  "camera_states": {
+    "portal-derived": {
+      "owner": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "values": {
+        "OutdoorPortalArmCap": 113.111664,
+        "OutdoorHeadroomLift": 49.557419,
+        "OutdoorPortalOwner": "stonebrook_exterior.json:DinksCottage",
+        "OutdoorPortalMeshSHA": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+        "bOutdoorPortalFramingFeasible": true,
+        "TargetArmLength": 113.111664
+      },
+      "engine": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "scope": "Actualpackagednativepropertyinstancevalues; noPython/sweep/hull/projectionclaim"
+    },
+    "portal-free": {
+      "owner": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "values": {
+        "OutdoorPortalArmCap": 0.0,
+        "OutdoorHeadroomLift": 0.0,
+        "OutdoorPortalOwner": "",
+        "OutdoorPortalMeshSHA": "",
+        "bOutdoorPortalFramingFeasible": true,
+        "TargetArmLength": 400.0
+      },
+      "engine": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "scope": "Actualpackagednativepropertyinstancevalues; noPython/sweep/hull/projectionclaim"
+    },
+    "portal-indoor": {
+      "owner": "/Game/Dink/_Generated/Maps/L_Greybox_World.L_Greybox_World:PersistentLevel.DinkGreyboxCharacter_2147481169",
+      "values": {
+        "OutdoorPortalArmCap": 0.0,
+        "OutdoorHeadroomLift": 0.0,
+        "OutdoorPortalOwner": "",
+        "OutdoorPortalMeshSHA": "",
+        "bOutdoorPortalFramingFeasible": true,
+        "TargetArmLength": 240.0
+      },
+      "engine": {
+        "path": "/Engine/Transient.GameEngine_2147482589",
+        "NearClipPlane": 10.0
+      },
+      "scope": "Actualpackagednativepropertyinstancevalues; noPython/sweep/hull/projectionclaim"
+    }
+  },
+  "actual_control_player_states": {
+    "portal-derived": {
+      "screen": 439,
+      "map": [
+        344.681,
+        308.516
+      ],
+      "world": [
+        97726.114,
+        37519.16,
+        98.35
+      ],
+      "yaw": 86.171,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    "portal-free": {
+      "screen": 439,
+      "map": [
+        345.0,
+        307.0
+      ],
+      "world": [
+        97729.073,
+        37504.146,
+        98.35
+      ],
+      "yaw": 270.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    },
+    "portal-indoor": {
+      "screen": 1,
+      "map": [
+        303.0,
+        300.0
+      ],
+      "world": [
+        -183808.285,
+        393158.48,
+        98.0
+      ],
+      "yaw": 270.0,
+      "pitch": -18.0,
+      "radius": 28.0,
+      "move_ignored": false
+    }
+  },
+  "pose_qualification": {
+    "prior_target_world": [
+      97729.63625545749,
+      37512.61084546293,
+      98.34999561309814
+    ],
+    "actual_packaged_world": [
+      97726.114,
+      37519.16,
+      98.35
+    ],
+    "distance_cm": 7.436242912809168,
+    "qualification": "Derivednearbyfixture/actualsettling, NOTexactbeforeafterpixelpose. GETALLdoesnotprovesweep/hull/headdepth/projection; separateNative/Editorproofscoverthose."
+  },
+  "all7screenshots_personally_viewed": true,
+  "screenshots_sha256": {
+    "final.png": "07fb537e7818b9f617165a57e552dfbfb308b46e2a4196c1cd7ad00ad3f0b873",
+    "portal-derived.png": "8d30511150a59382994891b506b006b15e5cef743864274749fe9ae281501ca8",
+    "portal-free.png": "1f40d9e2e57a2396978a245f50c2871af4cc8015b65cbda31f1e18bd9f54d931",
+    "portal-indoor.png": "09c8b04c51bedd12d56d47df4abfa38649bbdd5554b3fcb0ea8e0eed288621bb",
+    "spawn-door-exit.png": "dd0fee74363ca2823bcf26dab1834a0265b8dd1badd242072a8f4f2b7fbcc308",
+    "spawn-door-return.png": "3e6d3c2553efd36c77901ec760dc64c00b98830bc09ed9924fdf73555b731b37",
+    "spawn-initial.png": "68c6187e0b89fe2b6823b7c6d5c5715f9bcf3acd744716b105aaac382abae121"
+  },
+  "logs": {
+    "errors": 0,
+    "warnings": 4,
+    "warning_lines": [
+      "[2026.11.10-16.54.19:868][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+      "[2026.11.10-16.54.19:868][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+      "[2026.11.10-17.05.01:236][526]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0x7f9f2d240500 has unfreed Image resources ",
+      "[2026.11.10-17.05.01:237][526]LogVulkanRHI: Warning:  ** LEAK 000 [07800000-004d0008] 5046280  ImageRT "
+    ],
+    "error_lines": []
+  },
+  "remaining_visual_notes": [
+    "Mother NPC passes close to/overlaps hero in indoor control while original scriptsON; inheritedbehaviornotresolvedbycamera/sourceclothingcandidate. No finalart/NPCcollisionapproval."
+  ],
+  "original_Editor_GPU_qualification": "SeparateEditorGPU207outertool143causeunknownandreadonlyobserverfailuresremainpreserved; thispackagedrunrequirednocorrection/fallback/Python."
+}

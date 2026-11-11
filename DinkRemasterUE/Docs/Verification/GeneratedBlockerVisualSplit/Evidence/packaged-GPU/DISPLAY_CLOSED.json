@@ -1,0 +1,22 @@
+{
+  "identity": {
+    "pid": 795811,
+    "start_ticks": 8381957,
+    "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+    "argv": [
+      "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      ":202",
+      "-screen",
+      "0",
+      "1280x720x24",
+      "-nolisten",
+      "tcp",
+      "-auth",
+      "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/authority",
+      "-noreset"
+    ]
+  },
+  "exit_code": 0,
+  "stale_artifacts_preserved": [],
+  "normal_cleanup_before_supervisor_return": true
+}

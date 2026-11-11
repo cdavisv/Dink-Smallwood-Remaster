@@ -1,0 +1,50 @@
+{
+  "exit_code": 0,
+  "elapsed": 37.36689629800094,
+  "source_files": 8776,
+  "immutable_changes": [],
+  "module_count": 7,
+  "success": true,
+  "delta_count": 1263,
+  "delta_classes": {
+    "Map": 6,
+    "DebugBlockers": 612,
+    "Visual": 644,
+    "Manifest": 1
+  },
+  "generated_after_files": 4818,
+  "actual_import": {
+    "success": true,
+    "report": {
+      "region": "all",
+      "map": "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "bundle_commit": "fbf060b",
+      "screens": 644,
+      "placement_actors": 4206,
+      "placement_instances": 1640,
+      "warps": 116,
+      "actors": {
+        "created": 0,
+        "updated": 644,
+        "deleted": 0,
+        "unchanged": 4878,
+        "moved_by_hand": 0,
+        "foreign": 0
+      },
+      "assets": {
+        "created": 612,
+        "updated": 644,
+        "deleted": 0,
+        "unchanged": 3551
+      },
+      "levels_saved": 6,
+      "drift": 1900,
+      "seconds": 22.2,
+      "coverage_rows": 6607
+    },
+    "report_sha256": "e02d9abfc3d308a51daf92b0e0b455e583582735fabcd20128ff2c53297ce1b6",
+    "coverage_sha256": "30c62e8f56d87572bd2380070777207c522c7d7a0e5e22f8d7250caca855dde8",
+    "log_sha256": "5458a79336d0a2fac59d0b355f0728a96f81631edd3480c3b41a874f5d52dde3",
+    "scope": "Ordinary generated-world import only; freshreadback/idempotence/runtime acceptance separate"
+  }
+}

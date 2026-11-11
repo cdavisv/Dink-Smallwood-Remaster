@@ -1,0 +1,22 @@
+{
+  "source": "Original authored overlapping tapered split-stalk height/pigment field, guided by generated art-direction image; generated pixels not used as game texture",
+  "stalk_fragments": 17390,
+  "V2_changes": "Rounded elliptical cross-section height replaces flat fragments; periodic irregular random-grid10..70cm artistgray/brown/straw pigment, no Fourier stripes androughness variation. No lighting/AO baked into BC.",
+  "physical_tile_m": [
+    2,
+    2
+  ],
+  "map_resolution": [
+    1024,
+    1024
+  ],
+  "density_px_m": 512,
+  "artist_dimensions": "width4.5..9.5mm,length45..95mm,height1..5mm,notmeasured",
+  "maps": "BC sRGB/GLnormal linear/ORM(AO1,R.91,M0),RGB16",
+  "files": {
+    "T_Shared_DressedReed_BC.png": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+    "T_Shared_DressedReed_N_GL.png": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+    "T_Shared_DressedReed_ORM.png": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32"
+  },
+  "acceptance": "PENDING actualtile/source views"
+}

@@ -1,0 +1,290 @@
+{
+  "status": "PASS_SOURCE_WITH_RETAINED_ZERO_FRAME_QUALIFICATION",
+  "scope": "Relocated local-source read-only Blender5.2.2+actualbinaryFBX; noUE/native/game",
+  "objects_checked": 328,
+  "historical_comparison_performed": false,
+  "unchanged_or_intentional_masonry_scope_pass": null,
+  "aperture25_and_flue9_clear": true,
+  "LOD0_original_bbox_exact": true,
+  "UCX_count": 312,
+  "roof_mesh_count": 8,
+  "shared_graphs_exact": {
+    "MI_Shared_FiredClay2m": true,
+    "MI_Shared_FiredClayMasonry2m": true,
+    "MI_Shared_IronLead2m": true,
+    "MI_Shared_OakLonggrain2m": true,
+    "MI_Shared_LimeMortar2m": true,
+    "MI_Shared_Soot2m": true
+  },
+  "active_packed_images": {
+    "T_IndividualStone_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db"
+    },
+    "T_IndividualStone_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4"
+    },
+    "T_IndividualStone_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693"
+    },
+    "T_Shared_LimeMortar2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20"
+    },
+    "T_Shared_LimeMortar2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1"
+    },
+    "T_Shared_LimeMortar2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b"
+    },
+    "T_Shared_Soot2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f"
+    },
+    "T_Shared_Soot2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6"
+    },
+    "T_Shared_Soot2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8"
+    },
+    "T_Shared_OakLonggrain2m_BC": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07"
+    },
+    "T_Shared_OakLonggrain2m_N_GL": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf"
+    },
+    "T_Shared_OakLonggrain2m_ORM": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16"
+    },
+    "T_SharedCandidate_BlackenedIron_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd"
+    },
+    "T_SharedCandidate_DullLead_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9"
+    },
+    "T_SharedCandidate_BlackenedIron_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700"
+    },
+    "T_SharedCandidate_DullLead_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d"
+    },
+    "T_SharedCandidate_BlackenedIron_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c"
+    },
+    "T_SharedCandidate_DullLead_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b"
+    },
+    "T_Shared_FiredClayMasonry2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "1ad8700f05582506c22b081bbcbb41e753a36799c9c83fd31e17ae1cc83c9fa9"
+    },
+    "T_Shared_FiredClayMasonry2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "a8edca91ca3532920567795cdca4cb23b171be17047aa62b0927d6961f010aba"
+    },
+    "T_Shared_FiredClayMasonry2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f"
+    },
+    "T_Shared_Soot2m_BC.png.001": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f"
+    },
+    "T_Shared_Soot2m_N_GL.png.001": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6"
+    },
+    "T_Shared_Soot2m_ORM.png.001": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8"
+    },
+    "T_Shared_FiredClay2m_BC.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "e5cbb13c9fcb0031c17ad2b216afea746508ae0129d7655c3c656f4ba439622d"
+    },
+    "T_Shared_FiredClay2m_N_GL.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "ec06f6e3e64ae8259673b1bda2d2915b7acb1308677ed23b0539b08f49984ac3"
+    },
+    "T_Shared_FiredClay2m_ORM.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f"
+    }
+  },
+  "FBX": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "positions_exact": true,
+      "UV_errors": {
+        "UV0": 0.0,
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      },
+      "RGBA_error": 0.0,
+      "valid_frame_max_angles": {
+        "N": 1.2074182697257333e-06,
+        "T": 1.2074182697257333e-06,
+        "B": 4.182619578303747e-06
+      },
+      "retained_zero_TB_corners": [
+        3003,
+        3007,
+        3148,
+        3238,
+        3252
+      ],
+      "sha256": "8a9968629c92853641e0426f86555d783c1fde644009d07c08193509a6060dd3"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "positions_exact": true,
+      "UV_errors": {
+        "UV0": 0.0,
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      },
+      "RGBA_error": 0.0,
+      "valid_frame_max_angles": {
+        "N": 1.2074182697257333e-06,
+        "T": 1.2074182697257333e-06,
+        "B": 3.6222548091772e-06
+      },
+      "retained_zero_TB_corners": [],
+      "sha256": "f72b2b5b6170f2d4d5e39f4f85c13b74f13b0b2246b5c07dc52518e9a58db55d"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "positions_exact": true,
+      "UV_errors": {
+        "UV0": 0.0,
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      },
+      "RGBA_error": 0.0,
+      "valid_frame_max_angles": {
+        "N": 1.2074182697257333e-06,
+        "T": 1.2074182697257333e-06,
+        "B": 3.1945284701301985e-06
+      },
+      "retained_zero_TB_corners": [],
+      "sha256": "fe4089f22b345343fe7c2fad41011e4c7e2e62e9e946b9d0948c69a989a776db"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "positions_exact": true,
+      "UV_errors": {
+        "UV0": 0.0,
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      },
+      "RGBA_error": 0.0,
+      "valid_frame_max_angles": {
+        "N": 1.2074182697257333e-06,
+        "T": 1.2074182697257333e-06,
+        "B": 4.517745487845102e-06
+      },
+      "retained_zero_TB_corners": [],
+      "sha256": "2a53fbffae8498f8b62c08cbdff0627375def56a07a421f489f116c19d0e0441"
+    }
+  ],
+  "source_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12",
+  "generic_reuse_graphs_exact": true,
+  "replayed_generic_library_exact": false,
+  "original_sha256": null
+}

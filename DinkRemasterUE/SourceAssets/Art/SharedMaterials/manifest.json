@@ -1,0 +1,788 @@
+{
+  "schema": "dink-shared-materials/1",
+  "status": "source_registered_native_pending",
+  "materials": {
+    "OakLonggrain2m": {
+      "material": "MI_Shared_OakLonggrain2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "general oak timber, frames, boards, furniture"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_BC.png",
+          "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_N_GL.png",
+          "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakLonggrain2m_ORM.png",
+          "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.020000000000000004,
+      "unreal_specular": 0.25000000000000006,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "OakEndgrain2m": {
+      "material": "MI_Shared_OakEndgrain2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "general timber cut ends and pegs"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_BC.png",
+          "sha256": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_N_GL.png",
+          "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_OakEndgrain2m_ORM.png",
+          "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.020000000000000004,
+      "unreal_specular": 0.25000000000000006,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "LimePlaster2m": {
+      "material": "MI_Shared_LimePlaster2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "lime plaster, wall and gable infill"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_BC.png",
+          "sha256": "631382152572c1f129a162a81f30126676a5d0270e5aa3e07af4749552855b17",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_N_GL.png",
+          "sha256": "bf0a609a48956d2b36b5c2509b4d9040d1ea752dbcdddf0e6e6060eaaedce4c3",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "OakLime2mV1/Textures/T_Shared_LimePlaster2m_ORM.png",
+          "sha256": "21a8d7a9a18a20cd05373089ae2e9ca7825c08a8b38b9e04413c1a44fb84d70b",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "source": "OakLime2mV1/Shared2m_ProceduralSources.blend",
+      "library": "OakLime2mV1/Shared2m_LibraryCandidate.blend",
+      "reuse_proof": "OakLime2mV1/GenericReuse_2m4m.blend",
+      "IOR": 1.4600000381469727,
+      "specular_IOR_level": 0.25,
+      "dielectric_F0": 0.01748298206529641,
+      "unreal_specular": 0.21853727581620513,
+      "orm": "R=1 material occlusion; G=independent roughness; B=0 dielectric",
+      "provenance": "OakLime2mV1/PROVENANCE.md"
+    },
+    "OakLonggrain2m_CameraMasked": {
+      "material": "MI_Shared_OakLonggrain2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_OakLonggrain2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "OakLonggrain2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "OakEndgrain2m_CameraMasked": {
+      "material": "MI_Shared_OakEndgrain2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_OakEndgrain2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "OakEndgrain2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "LimePlaster2m_CameraMasked": {
+      "material": "MI_Shared_LimePlaster2m_CameraMasked",
+      "kind": "derived_camera_variant",
+      "derived_from": "MI_Shared_LimePlaster2m",
+      "status": "source_registered_native_pending",
+      "same_texture_set_as": "LimePlaster2m",
+      "uses": [
+        "existing camera occlusion convention only"
+      ],
+      "blend_mode": "BLEND_MASKED",
+      "DinkCameraOpacity_default": 1,
+      "shadow_pass_opacity": 1,
+      "dither_opacity_mask": true,
+      "opacity_mask_clip_value": 0.5,
+      "construction": "Separate UMaterial graph from existing RoofNative builder; same PBR role inputs/source maps plus DinkCameraOpacity/ShadowReplace. No private texture set; no claimed UMaterialInstance parent property."
+    },
+    "FiredClay2m": {
+      "material": "MI_Shared_FiredClay2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic joint-free clay bodies for modeled bricks, terracotta and fired-clay objects"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClay2m_BC.png",
+          "sha256": "e5cbb13c9fcb0031c17ad2b216afea746508ae0129d7655c3c656f4ba439622d",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClay2m_N_GL.png",
+          "sha256": "ec06f6e3e64ae8259673b1bda2d2915b7acb1308677ed23b0539b08f49984ac3",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClay2m_ORM.png",
+          "sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shared_dependencies": {
+        "Soot2m": {
+          "BC": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png",
+            "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": true,
+            "normal_orientation": null,
+            "native_flip_green": false
+          },
+          "N": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png",
+            "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": false,
+            "normal_orientation": "OpenGL +Y",
+            "native_flip_green": true
+          },
+          "ORM": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png",
+            "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": false,
+            "normal_orientation": null,
+            "native_flip_green": false
+          }
+        }
+      },
+      "source": "FiredClay2mV1/SharedFiredClayLibrary_Source.blend",
+      "shader_profile": "opaque_layered_clay_2m",
+      "shader_contract": {
+        "UV0": "physical metres/2",
+        "SharedSurfaceData": "LINEAR FLOAT_COLOR CORNER; RGB clay tint,A soot coverage; A is NOT opacity",
+        "base_colour": "mix clayBC*RGB and sharedSootBC byA",
+        "roughness": "mix clayORM.G and sharedSootORM.G byA",
+        "normal": "mix encoded GL clay/sharedSoot normal byA then NormalMap UV0 strength1",
+        "IOR": 1.5,
+        "specular_IOR_level": 0.35,
+        "metallic": 0,
+        "opacity": "constant1 unlinked",
+        "native_factory": "not implemented or approved by source registration"
+      },
+      "source_qualification": "CC0 red_brick RobTuytel1.4mwidth; interior crop/no mortar, artist brown finish/roughness/porosity and periodic normalization; not calibrated BRDF"
+    },
+    "FiredClayMasonry2m": {
+      "material": "MI_Shared_FiredClayMasonry2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic coursed clay-brick masonry for continuous wall/chimney surfaces"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_BC.png",
+          "sha256": "1ad8700f05582506c22b081bbcbb41e753a36799c9c83fd31e17ae1cc83c9fa9",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_N_GL.png",
+          "sha256": "a8edca91ca3532920567795cdca4cb23b171be17047aa62b0927d6961f010aba",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_ORM.png",
+          "sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shared_dependencies": {
+        "Soot2m": {
+          "BC": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png",
+            "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": true,
+            "normal_orientation": null,
+            "native_flip_green": false
+          },
+          "N": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png",
+            "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": false,
+            "normal_orientation": "OpenGL +Y",
+            "native_flip_green": true
+          },
+          "ORM": {
+            "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png",
+            "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+            "size": [
+              1024,
+              1024
+            ],
+            "srgb": false,
+            "normal_orientation": null,
+            "native_flip_green": false
+          }
+        }
+      },
+      "source": "FiredClay2mV1/SharedFiredClayLibrary_Source.blend",
+      "shader_profile": "opaque_layered_clay_2m",
+      "shader_contract": {
+        "UV0": "physical metres/2",
+        "SharedSurfaceData": "LINEAR FLOAT_COLOR CORNER; RGB clay tint,A soot coverage; A is NOT opacity",
+        "base_colour": "mix clayBC*RGB and sharedSootBC byA",
+        "roughness": "mix clayORM.G and sharedSootORM.G byA",
+        "normal": "mix encoded GL clay/sharedSoot normal byA then NormalMap UV0 strength1",
+        "IOR": 1.5,
+        "specular_IOR_level": 0.35,
+        "metallic": 0,
+        "opacity": "constant1 unlinked",
+        "native_factory": "not implemented or approved by source registration"
+      },
+      "source_qualification": "CC0 red_brick RobTuytel1.4mwidth; interior crop/no mortar, artist brown finish/roughness/porosity and periodic normalization; not calibrated BRDF"
+    },
+    "LimeMortar2m": {
+      "material": "MI_Shared_LimeMortar2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic lime mortar, joint bedding and masonry backing"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_BC.png",
+          "sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_N_GL.png",
+          "sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_ORM.png",
+          "sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "opaque_mineral_2m",
+      "shader_contract": {
+        "IOR": 1.5,
+        "specular_IOR_level": 0.5,
+        "normal_strength": 1,
+        "normal_basis": "UV0",
+        "base_colour": "direct sRGB texture",
+        "roughness": "ORM.G",
+        "metallic": "ORM.B",
+        "AO": "unoccluded map red retained; unused in Blender graph",
+        "opacity": 1
+      },
+      "source": "MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+      "qualification": "artist-authored generic material; FieldstoneCoursed2m uses existing CC0 shared stone donor; no calibrated BRDF or native approval"
+    },
+    "Soot2m": {
+      "material": "MI_Shared_Soot2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generic soot, carbonized fuel and fire-exposed lining"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png",
+          "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false
+        },
+        "N": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png",
+          "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true
+        },
+        "ORM": {
+          "file": "MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png",
+          "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false
+        }
+      },
+      "shader_profile": "opaque_mineral_2m",
+      "shader_contract": {
+        "IOR": 1.5,
+        "specular_IOR_level": 0.5,
+        "normal_strength": 1,
+        "normal_basis": "UV0",
+        "base_colour": "direct sRGB texture",
+        "roughness": "ORM.G",
+        "metallic": "ORM.B",
+        "AO": "unoccluded map red retained; unused in Blender graph",
+        "opacity": 1
+      },
+      "source": "MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+      "qualification": "artist-authored generic material; FieldstoneCoursed2m uses existing CC0 shared stone donor; no calibrated BRDF or native approval"
+    },
+    "IronLead2m": {
+      "material": "MI_Shared_IronLead2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generalforgedfittings andleadsheet/flashing,notzincscan"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png",
+          "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+          "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png",
+          "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_variant_tint_2m",
+      "variants": {
+        "BlackenedIron": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png",
+              "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+              "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png",
+              "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        },
+        "DullLead": {
+          "selector": 1,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png",
+              "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png",
+              "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png",
+              "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "UV1_SharedData.x": "0iron/1lead constant perface",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/IronLead2m_donor_manifest.json"
+    },
+    "FieldstoneSeed2m": {
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "status": "source_registered_native_pending",
+      "uses": [
+        "generalmodeledindividualfieldstoneblocks,boulders,hearthblocks withstablevertexcolorvariation"
+      ],
+      "repeat_m": 2,
+      "nominal_texels_per_m": 512,
+      "textures": {
+        "BC": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "N": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": "OpenGL +Y",
+          "native_flip_green": true,
+          "bit_depth": 16,
+          "png_color_type": 2
+        },
+        "ORM": {
+          "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_orientation": null,
+          "native_flip_green": false,
+          "bit_depth": 16,
+          "png_color_type": 2
+        }
+      },
+      "shader_profile": "opaque_surface_2m",
+      "variants": {
+        "Stone": {
+          "selector": 0,
+          "textures": {
+            "BC": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+              "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": true,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "N": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+              "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": "OpenGL +Y",
+              "native_flip_green": true,
+              "bit_depth": 16,
+              "png_color_type": 2
+            },
+            "ORM": {
+              "file": "ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+              "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+              "size": [
+                1024,
+                1024
+              ],
+              "srgb": false,
+              "normal_orientation": null,
+              "native_flip_green": false,
+              "bit_depth": 16,
+              "png_color_type": 2
+            }
+          }
+        }
+      },
+      "mesh_contract": {
+        "UV0": "metres/2",
+        "SharedSurfaceData.R": "stablevariation factor .94+.10R",
+        "normal_strength": 1
+      },
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "dielectric_F0": 0.04,
+      "unreal_specular": 0.5,
+      "source": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "library": "ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+      "reuse_proof": "ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+      "provenance": "ArchitecturalSurfaces2mV1/PROVENANCE.md",
+      "historical_donor_manifest": "ArchitecturalSurfaces2mV1/Provenance/FieldstoneSeed2m_donor_manifest.json"
+    }
+  },
+  "normal_standard": "OpenGL +Y, flip green on UE import; Non-Color N/ORM; sRGB BC"
+}

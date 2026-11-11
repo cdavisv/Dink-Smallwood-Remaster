@@ -1,0 +1,55 @@
+{
+  "outer_tool": {
+    "handle": 26525,
+    "terminal_exit_code": 143,
+    "authority": "Root actual tool poll report",
+    "cause": "UNPROVEN: no signal sender/cause evidence; do not infer host supervisor success from game exit"
+  },
+  "launch_supervisor": {
+    "pid": 828317,
+    "start_ticks": 8647007,
+    "exe": "/usr/bin/python3.14",
+    "argv": [
+      "python3",
+      "-B",
+      "-"
+    ]
+  },
+  "current_host_supervisor_absent": true,
+  "game_wrapper_result": {
+    "exit_code": 0,
+    "elapsed": 958.6885941719956,
+    "inputs_unchanged": 13661,
+    "display_identity_unchanged": true,
+    "display_cleanup": "Cleanup executes in supervisor finally before return"
+  },
+  "display_closure": {
+    "identity": {
+      "pid": 828344,
+      "start_ticks": 8647339,
+      "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "argv": [
+        "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+        ":207",
+        "-screen",
+        "0",
+        "1280x720x24",
+        "-nolisten",
+        "tcp",
+        "-auth",
+        "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/authority",
+        "-noreset"
+      ]
+    },
+    "exit_code": 0,
+    "stale_artifacts_preserved": [],
+    "normal_cleanup_before_supervisor_return": true
+  },
+  "proof_sha256": {
+    "launch.json": "0656ea1e4b572537f81360f8120779396146de3aaf610a4a0aa625d9166c39bb",
+    "result.json": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
+    "DISPLAY_CLOSED.json": "4398e018344920793f7f10029f106278972bb84bcd92e8cc8e16ecf5cf6488ac",
+    "DRIVER_REVIEW_FINAL.json": "0f5da5f06523dab8f14657ca1f593baad55aed860262c983b6f51ffd8e18df70"
+  },
+  "qualification": "Priorreview scopegame/display/observeddriver results only; outertool143 is separate retainednonzeroqualification. No restart/sourcechange."
+}

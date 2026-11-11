@@ -1,7 +1,7 @@
 {
   "schema": "dink-art/1",
   "screen": 1,
-  "source": "SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/placement_plan.json",
+  "source": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/source_manifest.json",
   "replacements": [
     {
       "origin": "S001_P19",
@@ -20,9 +20,9 @@
         1,
         1
       ],
-      "mesh": "/Game/Dink/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.SM_Fireplace_Stonebrook_V2"
+      "mesh": "/Game/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.SM_Fireplace_Stonebrook_FiredClayV4"
     }
   ],
   "elements": [],
-  "source_blend_sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02"
+  "source_blend_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12"
 }

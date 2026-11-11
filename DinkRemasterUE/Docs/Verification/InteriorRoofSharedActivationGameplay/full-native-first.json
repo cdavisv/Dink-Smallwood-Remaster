@@ -1,0 +1,26 @@
+{
+  "tested_commit": "742b3c93075f289814f8f0dbfa8cf6b328de8f5f",
+  "actual_registered": 194,
+  "actually_finished": 194,
+  "succeeded_clean": 161,
+  "succeeded_with_warnings": 32,
+  "failed": 1,
+  "exit_code": 255,
+  "elapsed_seconds": 751.2365046939958,
+  "source_files_unchanged": 12844,
+  "immutable_changes": [],
+  "custom_modules_verified": 7,
+  "failed_tests": [
+    {
+      "test": "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse",
+      "duration_seconds": 9.416545867919922,
+      "errors": [
+        "Expected 'all9 exact new roof roles are inventoried separately' to be 9, but it was 1.",
+        "Expected 'opaque roof identities are exact and unique' to be true.",
+        "Expected 'fixture includes real ceiling' to be true."
+      ]
+    }
+  ],
+  "raw_report_sha256": "acb1734e29e197611df17339506722ba57bd95f975d33eced5a267fdce00c636",
+  "scope": "Preserved actual full-suite failure. Fixture correction must compile and pass; no current full-green claim."
+}

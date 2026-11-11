@@ -1,0 +1,41 @@
+{
+  "binding": {
+    "pid": 828353,
+    "start_ticks": 8647351,
+    "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "argv": [
+      "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+      "/Game/Dink/_Generated/Maps/L_Greybox_World",
+      "-game",
+      "-sdlvideodriver=x11",
+      "-windowed",
+      "-ResX=1280",
+      "-ResY=720",
+      "-nosplash",
+      "-unattended",
+      "-NoCompile",
+      "-nosound",
+      "-norhithread",
+      "-forcerhibypass",
+      "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
+      "-ExecCmds=t.MaxFPS 45",
+      "-DinkQARunId=af1a4101-de2c-4829-887f-8fbd16b432e3",
+      "-nowrite",
+      "-notraceserver",
+      "-DDC=InstalledNoZenLocalFallback",
+      "-DDC-NoDefaultGraph",
+      "-LocalDataCachePath=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+      "-SharedDataCachePath=None",
+      "-ZenSharedDataCacheHost=None",
+      "-UserDir=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
+      "-abslog=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
+    ],
+    "nonce": "af1a4101-de2c-4829-887f-8fbd16b432e3",
+    "namespace_pid": 2
+  },
+  "caller_sha256": "e430a17b848fe1534a11097c15bc2715a05b846101664dbbd033b8b4c6d51330",
+  "success": false,
+  "error": "Exception(\"Object: Failed to find property 'near_clip_plane' for attribute 'near_clip_plane' on 'GameEngine'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/artist/Work/DinkQA/OutdoorPortalCameraObserverCorrection/engine_identity_once.py\", line 12, in execute\n    record.update(actual_outer=engine.get_path_name(),actual_class=engine.get_class().get_path_name(),near_clip=float(engine.get_editor_property('near_clip_plane')),pawn_before=[before.x,before.y,before.z]);after=pawn.get_actor_location();record['pawn_after']=[after.x,after.y,after.z];assert record['pawn_before']==record['pawn_after'];record['success']=True\n                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nException: Object: Failed to find property 'near_clip_plane' for attribute 'near_clip_plane' on 'GameEngine'\n"
+}

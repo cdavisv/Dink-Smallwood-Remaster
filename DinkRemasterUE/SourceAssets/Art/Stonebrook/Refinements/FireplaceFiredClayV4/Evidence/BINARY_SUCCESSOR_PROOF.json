@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "file": "SM_Chimney_Stonebrook_V8.fbx",
+      "geometry_model_material_connections_exact_except_expected_RGB": true,
+      "changes": []
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "geometry_model_material_connections_exact_except_expected_RGB": true,
+      "changes": [
+        {
+          "geometry": "SM_Fireplace_Stonebrook_V3Contact_LOD0_FiredClayV3\u0000\u0001Geometry",
+          "corners": 171888,
+          "affected_corners": 8988,
+          "affected_channels": [
+            8988,
+            168,
+            0,
+            0
+          ],
+          "max_delta": 0.01975429058074951,
+          "alpha_exact": true
+        }
+      ]
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "geometry_model_material_connections_exact_except_expected_RGB": true,
+      "changes": [
+        {
+          "geometry": "SM_Fireplace_Stonebrook_V3Contact_LOD1_FiredClayV3\u0000\u0001Geometry",
+          "corners": 113724,
+          "affected_corners": 6396,
+          "affected_channels": [
+            6396,
+            72,
+            0,
+            0
+          ],
+          "max_delta": 0.01975429058074951,
+          "alpha_exact": true
+        }
+      ]
+    },
+    {
+      "file": "SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "geometry_model_material_connections_exact_except_expected_RGB": true,
+      "changes": [
+        {
+          "geometry": "SM_Fireplace_Stonebrook_V3Contact_LOD2_FiredClayV3\u0000\u0001Geometry",
+          "corners": 59994,
+          "affected_corners": 3132,
+          "affected_channels": [
+            3132,
+            72,
+            0,
+            0
+          ],
+          "max_delta": 0.01975429058074951,
+          "alpha_exact": true
+        }
+      ]
+    }
+  ],
+  "chimney_entire_FBX_byte_exact": true,
+  "all_seven_actual_material_graphs_and_packed_images_exact": true,
+  "no_texture_library_duplication": true
+}

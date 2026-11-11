@@ -1,0 +1,27 @@
+{
+  "status": "CALLER_TEMPLATE_REVIEW_READY_NOT_EXECUTED",
+  "base_native_commit": "c07aa88c42611fa147c3db983184e9ffd93222d8",
+  "underlying_importer_sha256": "e45f002697a43ee8177677b3883c3ef953277ba40b5476a3da31058d61032f7a",
+  "scope_surrogate_tests": 4,
+  "scope_surrogate_passed": true,
+  "actual_Unreal_finalization_tested": false,
+  "files": [
+    {
+      "file": "Scripts/RoofNative/shared_roof_entry_template.py",
+      "sha256": "14929b28ac09df6eac4d1563f7db1e4151fac27669f485d4270a10ad9384b9d7"
+    },
+    {
+      "file": "Scripts/RoofNative/test_shared_roof_entry_scope.py",
+      "sha256": "acabf0a531ff39fbac0067e2601c24106f09920aa2e76f5bd0fafc4db69f8293"
+    }
+  ],
+  "full_source_audit": {
+    "actual_binaries": 4419,
+    "python_files": 509,
+    "shell_files": 22,
+    "ledger_rows": 4255,
+    "errors": 0,
+    "secret_flags": 0,
+    "passed": true
+  }
+}

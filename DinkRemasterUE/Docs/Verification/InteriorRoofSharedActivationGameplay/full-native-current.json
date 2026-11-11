@@ -1,0 +1,68 @@
+{
+  "tested_commit": "bee8f2b8aeadfe040fb50cb5810fc8c7e4701671",
+  "mode": "actual full Dink automation",
+  "run": "375ed1554f6140c18684b6c59dfe8e80",
+  "native_exit": 0,
+  "elapsed_seconds": 709.7541108669975,
+  "actual": {
+    "actual_registered": 194,
+    "report_tests": 194,
+    "actually_finished": 194,
+    "succeeded": 161,
+    "failed": 0,
+    "warnings": 33,
+    "notRun": 0,
+    "complete": true,
+    "success": true
+  },
+  "source_files": 12845,
+  "immutable_changes": [],
+  "mapped_modules": {
+    "Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6365ba6a23742e4daca10eaf59c8348e56aadd1fa34d9a12848f5cada7fb6181",
+    "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "7f582e2f23ed81044606a77d5dfb6cad349dcdbb5b44a7eb1c26f83bca31ea7c",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "fafd3cc71626885e52e814e536b8f010cfeecf9889d6e4e51fbb21f31b0f025c",
+    "Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "48fd58e061484f1dab43cc7ec455c4b126d8accab0d291f608e8afeec78530b3",
+    "Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "b267bf90501868c5f90b3768a6134447a194cea6a8be776f9f4208703f06ba1b",
+    "Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "b334b9efe1acec6725a38aa8c41a6bb8316d258ecca6158b5bfa81662b7d1180",
+    "Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "4c34976338e3b628e766e4f8b5be2f21b83ce18171a64ea151f1d29bb6781df5"
+  },
+  "normal_process_closure": true,
+  "raw_terminal_sha256": "51d96a9035dfb064add7a8a473eb6bb09926ca3573716adb6878ecfb71b1f931",
+  "raw_report_sha256": "2bc46d55eb8bbdba78ccdc46439bab594f86e9c1d32e2530e2f1ee2cb00af761",
+  "report_counts": {
+    "succeeded": 161,
+    "succeededWithWarnings": 33,
+    "failed": 0,
+    "notRun": 0,
+    "inProcess": 0
+  },
+  "warnings": "4489 warning entries across33 tests; all HTTP/EOS connectivity. No report Error entries. Not a zero-warning full run.",
+  "focused": {
+    "delivery_commit": "bee8f2b8aeadfe040fb50cb5810fc8c7e4701671",
+    "run": "/home/artist/Work/DinkQA/SharedRoofCurrentFullNativePreparation/Candidate2/Runs/03895fe8b78d4bf5bba43cf5b0be1164",
+    "terminal_sha256": "cbd8fa245ae04160eb7d32dcb7040878cc25838a0e80c6b62849c93b3d634390",
+    "report_sha256": "76a80da46197f76d15102d4b3066ee90d7c1227858813655b6a7a5a165ada05d",
+    "actual": {
+      "actual_registered": 1,
+      "report_tests": 1,
+      "actually_finished": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "warnings": 0,
+      "notRun": 0,
+      "paths": [
+        "Dink.Art.InteriorCamera.FadesAndRestoresPhysicalHouse"
+      ],
+      "complete": true,
+      "success": true
+    },
+    "native_exit": 0,
+    "elapsed_seconds": 34.3217688339937,
+    "protected_source_files": 12845,
+    "immutable_changes": [],
+    "mapped_module_count": 7,
+    "owned_processes_absent": true,
+    "scope": "Focused current camera test only. Full current suite separately running; GPU/cook/art/global collision not implied."
+  },
+  "scope": "Current roof + C5 test fixture correction. Accepted master hero fixes af6f6c4 are not included. GPU, source/native asset verification, cook and global collision remain separate."
+}

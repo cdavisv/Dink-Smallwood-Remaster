@@ -21,7 +21,8 @@ PhotorealBarrelV1:SM_Barrel_Oak_01):
   texture    a texture edge over the class cap (the lower family-scatter cap for a mesh a families.json row binds)
   family     a delivered mesh declares no sprite family (no `families` in its manifest, no families.json row);
              screen-fitted terrain (SM_*_<n>_Land/Bank/Water_*, SM_Vista*, SM_Ground_*, SM_Path_*) and meshes used
-             only by render-only `context` manifests are exempt
+             only by render-only `context` manifests are exempt. Explicit authored screen architecture with no sprite counterpart
+             also requires an allowed kit class, declared screens/purpose and exclusively matching dink-art/1 element uses
   missing    a mesh referenced by a runtime manifest has no .uasset
 Warnings (not violations): LOD0 triangles between the soft target and the hard cap.
 Notes: undeclared class, no triangle count found, delivered mesh with no source record.
@@ -145,6 +146,7 @@ class Asset:
         self.files = set()
         self.content_paths = set()
         self.role = None
+        self.architecture_declarations = []
 
     @property
     def key(self):
@@ -164,6 +166,8 @@ def harvest(record, name, lod, asset, json_dir):
         asset.cls = cls
     if isinstance(record.get("role"), str):
         asset.role = record["role"]
+    if "authored_architecture" in record:
+        asset.architecture_declarations.append(record["authored_architecture"])
     slots = record.get("material_slots")
     if isinstance(slots, list) and slots:
         names = {s if isinstance(s, str) else (s.get("material") or s.get("name")) for s in slots if isinstance(s, (str, dict))}
@@ -307,6 +311,63 @@ def load_deliveries():
     return delivered, family_meshes, family_rows, context_files
 
 
+def architecture_runtime_uses():
+    """Keep every actual mesh occurrence: only direct dink-art/1 elements qualify."""
+    uses = collections.defaultdict(list)
+
+    def walk(node, path, data, filename):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                walk(value, path + (key,), data, filename)
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                walk(value, path + (index,), data, filename)
+        elif isinstance(node, str) and GAME_MESH_RE.match(node):
+            if path and path[-1] in ("source", "skeleton", "reference_skeleton"):
+                return
+            uses[node.split(".")[0]].append({
+                "schema": data.get("schema"), "screen": data.get("screen"),
+                "context": "context" in data, "path": path, "file": filename,
+            })
+
+    if os.path.isdir(DATA_ART):
+        for filename in sorted(os.listdir(DATA_ART)):
+            if filename.lower().endswith(".json"):
+                data = read_json(os.path.join(DATA_ART, filename))
+                if isinstance(data, dict):
+                    walk(data, (), data, filename)
+    return uses
+
+
+def authored_architecture_exempt(asset, paths, runtime_uses):
+    """An explicit no-sprite architectural adaptation, never a name-only waiver."""
+    if asset.cls not in {"kit_ceiling", "kit_wall", "kit_piece"} or asset.families or not paths:
+        return False
+    declarations = asset.architecture_declarations
+    if not declarations or any(d != declarations[0] for d in declarations):
+        return False
+    declaration = declarations[0]
+    if not isinstance(declaration, dict) or set(declaration) != {"screens", "purpose"}:
+        return False
+    purpose, screens = declaration["purpose"], declaration["screens"]
+    if not isinstance(purpose, str) or not purpose.strip() or not isinstance(screens, list) or not screens:
+        return False
+    if any(type(screen) is not int or screen <= 0 for screen in screens) or len(screens) != len(set(screens)):
+        return False
+    for package in paths:
+        occurrences = runtime_uses.get(package, [])
+        if not occurrences:
+            return False
+        for use in occurrences:
+            path = use["path"]
+            if (use["schema"] != "dink-art/1" or use["context"]
+                    or type(use["screen"]) is not int or use["screen"] not in screens
+                    or len(path) != 3 or path[0] != "elements"
+                    or type(path[1]) is not int or path[2] != "mesh"):
+                return False
+    return True
+
+
 def match_source(pkg_path, by_name):
     """Best source asset for a delivered package path, by exact content_path, then by shared folder names."""
     name = pkg_path.rsplit("/", 1)[-1]
@@ -342,6 +403,7 @@ def assumed_class(a):
 def check(args):
     library, budgets, caps = read_standard(STANDARD)
     assets, files = load_sources()
+    architecture_uses = architecture_runtime_uses()
     delivered, family_meshes, family_rows, context_files = load_deliveries()
     by_name = collections.defaultdict(list)
     for a in assets.values():
@@ -401,7 +463,7 @@ def check(args):
             if a.tex > cap:
                 violations[a.key].append(("texture", "%d px texture > %s %scap %d" % (a.tex, cls, "family-scatter " if scatter else "", cap)))
         render_only = paths and all(delivered[p] <= context_files for p in paths)
-        if paths and not a.families and not (paths & family_pkgs) and not TERRAIN_RE.search(a.name) and not render_only:
+        if paths and not a.families and not (paths & family_pkgs) and not TERRAIN_RE.search(a.name) and not render_only and not authored_architecture_exempt(a, paths, architecture_uses):
             violations[a.key].append(("family", "delivered (%s), declares no sprite family" % ", ".join(sorted(paths))))
     return assets, delivered_by_asset, violations, warnings, notes, rows_extra, files, checked, library, budgets, caps, family_rows
 

@@ -1,0 +1,144 @@
+{
+  "scope": "ScopedportalGPU+actualfreshspawnrealWroundtripPASSafterexplicitreadonlyobservercorrections; NOTsingle-pass/full201/globalcollision/artacceptance",
+  "source_HEAD": "bac00294966efbc0af013cc443eb70e8a6f6e946",
+  "own_process_closure": {
+    "828344": {
+      "exists": false
+    },
+    "828351": {
+      "exists": false
+    },
+    "828353": {
+      "exists": false
+    }
+  },
+  "private_display_socket_and_lock_absent": true,
+  "postclosure_check_inputs": {
+    "passed": true,
+    "count": 13661
+  },
+  "actual_routes": {
+    "walk-west.json": {
+      "result": "PASS",
+      "steps": 20,
+      "sha256": "65927c62ab220474d638e57778316b78ebb80fd272acd09841ec4fe52d57f7fb"
+    },
+    "walk-corridor-west.json": {
+      "result": "PASS",
+      "steps": 38,
+      "sha256": "9decdfbffe0f5e6f3808bba84652a4d12af608b7dc8e16a3f98ae59b66dcea7e"
+    },
+    "walk-corridor-east.json": {
+      "result": "PASS",
+      "steps": 16,
+      "sha256": "672be89aee0984d52762d28946b952fe3ee34decdc2412b9a7a879c34d010876"
+    },
+    "walk-south-bypass.json": {
+      "result": "PASS",
+      "steps": 22,
+      "sha256": "7acbd4c8509ce513453e5c2a708e45f5e1d002730c0e8fecc72f7ae23949a85a"
+    },
+    "walk-door-approach.json": {
+      "result": "PASS",
+      "steps": 14,
+      "sha256": "8518fb9577ed5965132bc1ce1c2f66459533665589ab2cd77efece6abd785fe9"
+    },
+    "route-spawn-door-exit.json": {
+      "result": "PASS",
+      "steps": 9,
+      "sha256": "9803527befe496bb9506d64e87db04f02f36c9e5964fea05d939ecfa8b87aec7"
+    },
+    "route-spawn-door-return.json": {
+      "result": "PASS",
+      "steps": 3,
+      "sha256": "aceb4ad6b23312c7f1f0b7e3fb40d6440999c8fde8be4e176444d096fad81dcb"
+    }
+  },
+  "screenshots_personally_viewed_all14": true,
+  "screenshots_sha256": {
+    "final.png": "e2dc835eb9612bd200e3aaa206405f42d2abed23fe51bfa8e1684ecda9775958",
+    "portal-free-corrected.png": "4ea37cc06efe9f12c332c575d75217c6f5eb52c35877e7b2b0063327454d9c1d",
+    "portal-indoor-restored-corrected.png": "4ac280b08927af3e43ed90ee1913715150279d6ea6e6a60a21020294384b0ca8",
+    "portal-recorded-corrected.png": "9ba579fe4eb4ad09d0d0486ef4f5a591256099a2ee2e00abb6a8b67416a53874",
+    "portal-recorded.png": "353f38e32927a1b05da87a7a7aab32c7b56b8a86fe686a4e9ce82cd73adb7c9c",
+    "spawn-corridor-east.png": "c1da0258f03266019d9a15bad084e40ab043b1f195bd75f1ece34bf27b6f6db9",
+    "spawn-corridor-west.png": "62288f979ec93df03042d2b680e434758b24b4f9b4e6e45ff8220b00da3a63df",
+    "spawn-door-approach.png": "2fde0144656fe7cbddbe80bb2b6d617e076e9117224c00ce0c5489a0fd8eebdf",
+    "spawn-door-exit.png": "8b4f79a9ac688903b63318c79817027bf5c3650ea55b8cdef6ac55cfb1f79bf6",
+    "spawn-door-return.png": "0898cc518078e308c77a66e51a668648c897080a418adc9a7a5ba0b05bffd4c7",
+    "spawn-initial.png": "6297345fed84faaea8f74344bd2060c01e3b718a25d454aa8917ff07ebc98a6d",
+    "spawn-south-bypass.png": "3af1cb867bea4f5291296e3abfece5c3710b56ad600366b49fe6b1dd4925c109",
+    "spawn-walk-start.png": "a070129ad93363ce58202b74fc4a2198362790bd1b88392a7f44ff7205de4379",
+    "spawn-west.png": "763a4db15b281a878aef14d10608e2a35ba8eaf1cc4d709c243886d989d8a789"
+  },
+  "selected_receipts_sha256": {
+    "state-portal-recorded-corrected.json": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d",
+    "state-portal-free-corrected.json": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
+    "state-portal-indoor-restored-corrected.json": "529ce7b0b1e640857c1ac28c7934fa31b9f4bd8ee611e571ae6d656b6dc4ff8d",
+    "ENGINE_OUTER_IDENTITY_V2.json": "112bbf892b05e5d291986999b815a870a72b702e7aa87208af1b32a54ac72408",
+    "CORRECTED_CONTROLS_CALLER.json": "7bf56d5dd7ed86a981f519b098b2c6867aaf4b978cf940b12c064059cbc65d4b",
+    "FRESH_STARTUP_PLAYER.json": "5d676e416f844d6d31363c2d69cca523ffa39d72c49e932e40465a7c53fe546e",
+    "result.json": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
+    "DISPLAY_CLOSED.json": "4398e018344920793f7f10029f106278972bb84bcd92e8cc8e16ecf5cf6488ac"
+  },
+  "driver_tools": {
+    "init64849": 0,
+    "walk8991": 0,
+    "original_controls95194": 1,
+    "identity15796": 1,
+    "identity_native75852": 0,
+    "corrected_controls51409": 0,
+    "quit1347": 0
+  },
+  "preserved_failures": [
+    "Originalsealedportal_probe isinstance U.Engine AttributeError in observer JSONs",
+    "Originalcontrols95194failedclosedafterrecordedPNG",
+    "Firstexplicitidentityquery15796snake_casepropertyfailed",
+    "C1Editorfixturecompilefailure",
+    "ColdNativefocus2readinesstimeouts"
+  ],
+  "correction_index_sha256": "23a11dc76eacad173c27e6e5d0ae35c9c23c926d13823d02bb03b3bb221eea37",
+  "corrected_probe_sha256": "76117ce8739ab665c045e6c893868c3078142799c96e2fe1bb202f0f12a72efb",
+  "log": {
+    "errors": 0,
+    "warnings": 32,
+    "warning_lines": [
+      "[2026.11.10-15.35.27:885][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
+      "[2026.11.10-15.35.27:885][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:690][  0]LogVTDiskCache: Warning: Fail to write to /home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/VT, derived data cache to this directory will be read only.",
+      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'ActorLayersWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'UObjectLabelWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'FolderCompatibilityWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DiskSizeWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataItemTypeWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataLabelWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetDataVirtualPathWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AssetNameWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'DynamicAssetDataColumnBaseWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'StaticMeshTrianglesWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'AlertHeaderWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'OutlinerUnsavedHeaderConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'SocketWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'TypeInfoWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.37.37:692][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'VisibilityWidgetConstructor' as purpose '0' isn't registered.",
+      "[2026.11.10-15.51.17:960][915]LogVulkanRHI: Warning: FVulkanSubresourceAllocator 0x5984dd72e00 has unfreed Image resources ",
+      "[2026.11.10-15.51.17:960][915]LogVulkanRHI: Warning:  ** LEAK 000 [07000000-004d0008] 5046280  ImageRT "
+    ],
+    "error_lines": [],
+    "qualification": "ActualLogcategoryseveritycounts; PythonobservererrorsarepreservedseparatelyevenifcaughtandnotLogError"
+  },
+  "source_no_mutation": true,
+  "full_current_native_pending": true
+}

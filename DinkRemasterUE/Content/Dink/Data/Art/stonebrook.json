@@ -254,27 +254,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.16,
-        392470.9799999999,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_0",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -293,27 +272,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.2225,
-        392470.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_0",
@@ -336,27 +294,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.28499999997,
-        392470.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_0",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -375,27 +312,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.34749999997,
-        392470.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_0",
@@ -418,27 +334,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.40999999997,
-        392470.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_0",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -457,27 +352,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        392470.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_0",
@@ -500,27 +374,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.535,
-        392470.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_0",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -539,27 +392,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_0",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        392470.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_1",
@@ -582,27 +414,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.15999999997,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_1",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -621,27 +432,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.22249999997,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_1",
@@ -664,27 +454,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.28499999997,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_1",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -703,27 +472,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.3475,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_1",
@@ -746,27 +494,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.40999999997,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_1",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -785,27 +512,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_1",
@@ -828,27 +534,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.535,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_1",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -867,27 +552,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        392658.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_2",
@@ -910,27 +574,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.15999999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_2",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -949,27 +592,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.22249999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_2",
@@ -992,27 +614,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.28499999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_2",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1031,27 +632,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.34749999997,
-        392845.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_2",
@@ -1074,27 +654,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.41,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_2",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1113,27 +672,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.47249999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_2",
@@ -1156,27 +694,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.53499999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_2",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1195,27 +712,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.59749999997,
-        392845.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_3",
@@ -1238,27 +734,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.15999999997,
-        393033.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_3",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1277,27 +752,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.2225,
-        393033.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_3",
@@ -1320,27 +774,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.285,
-        393033.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_3",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1359,27 +792,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.34749999997,
-        393033.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_3",
@@ -1402,27 +814,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.40999999997,
-        393033.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_3",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1441,27 +832,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        393033.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_3",
@@ -1484,27 +854,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.535,
-        393033.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_3",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1523,27 +872,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_3",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        393033.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_4",
@@ -1566,27 +894,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.15999999997,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_4",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1605,27 +912,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.2225,
-        393220.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_4",
@@ -1648,27 +934,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.28499999997,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_4",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1687,27 +952,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.3475,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_4",
@@ -1730,27 +974,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.40999999997,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_4",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1769,27 +992,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        393220.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_4",
@@ -1812,27 +1014,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.535,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_4",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1851,27 +1032,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_4",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        393220.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_5",
@@ -1894,27 +1054,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.15999999997,
-        393408.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_5",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -1933,27 +1072,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.22249999997,
-        393408.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_5",
@@ -1976,27 +1094,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.285,
-        393408.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_5",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2015,27 +1112,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.3475,
-        393408.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_5",
@@ -2058,27 +1134,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.41,
-        393408.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_5",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2097,27 +1152,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        393408.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_5",
@@ -2140,27 +1174,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.53499999997,
-        393408.48000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_5",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2179,27 +1192,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_5",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        393408.48,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_0_6",
@@ -2222,27 +1214,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_0_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184565.16,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_1_6",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2261,27 +1232,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_1_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184379.2225,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_2_6",
@@ -2304,27 +1254,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_2_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184193.28499999997,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_3_6",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2343,27 +1272,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_3_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -184007.3475,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_4_6",
@@ -2386,27 +1294,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_4_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183821.41,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_5_6",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2425,27 +1312,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_5_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183635.4725,
-        393595.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "Floor_6_6",
@@ -2468,27 +1334,6 @@
       "collision": true
     },
     {
-      "name": "Ceiling_6_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183449.535,
-        393595.98000000004,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
-    },
-    {
       "name": "Floor_7_6",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
       "world_cm": [
@@ -2507,27 +1352,6 @@
         1
       ],
       "collision": true
-    },
-    {
-      "name": "Ceiling_7_6",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
-      "world_cm": [
-        -183263.5975,
-        393595.98,
-        350.0
-      ],
-      "rotation_deg": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.9296875,
-        0.9375,
-        1
-      ],
-      "collision": true,
-      "camera_occluder": true
     },
     {
       "name": "NorthWall_0",
@@ -3277,6 +2101,204 @@
         1
       ],
       "collision": true
+    },
+    {
+      "name": "Chimney_Stonebrook_V8",
+      "mesh": "/Game/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_EN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_ES_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_Gable_EN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_Gable_ES_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_Gable_WN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_Gable_WS_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_WN_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
+    },
+    {
+      "name": "IndoorRoof_WS_01",
+      "mesh": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01",
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        350
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "can_affect_navigation": false
     }
   ],
   "hide_origins": [
@@ -3331,34 +2353,118 @@
       "radius_cm": 390
     },
     {
+      "name": "Daylight_NorthWall_1",
+      "kind": "rect",
       "world_cm": [
-        -184390.15999999997,
-        392480.355,
-        250.0
+        -184286.25375,
+        392253.48,
+        185
       ],
-      "lumens": 450,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
       "kelvin": 5000,
-      "radius_cm": 420
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     },
     {
+      "name": "Daylight_NorthWall_6",
+      "kind": "rect",
       "world_cm": [
-        -183252.66,
-        392786.605,
-        260.0
+        -183356.56625,
+        392253.48,
+        185
       ],
-      "lumens": 450,
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
       "kelvin": 5000,
-      "radius_cm": 440
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     },
     {
+      "name": "Daylight_WestWall_2",
+      "kind": "rect",
       "world_cm": [
-        -183821.41,
-        393289.73,
-        270.0
+        -184595.15999999997,
+        392752.23,
+        185
       ],
-      "lumens": 120,
-      "kelvin": 4000,
-      "radius_cm": 480
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_WestWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -184595.15999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_2",
+      "kind": "rect",
+      "world_cm": [
+        -183047.66,
+        392752.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -183047.65999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
     }
   ],
   "warp_overrides": [

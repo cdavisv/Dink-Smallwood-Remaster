@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "source_HEAD": "1dc16ba6d87e031e7b3075e4e59f57df64f2cc8b",
+  "actual_container_csv_sha256": "9c7d5833fa5edde428a8be92d7f9c028c02d7b71cf35c5da95731ab5c0794da7",
+  "actual_pak_list_sha256": "2f1a5ab3b3cdd91b6b00504a8f9641a0b4a5f2fb7e4158f4918fec2b8ff031b8",
+  "groups": {
+    "shared23": 23,
+    "retained50": 50,
+    "split_visual644": 644,
+    "split_debug612": 612
+  },
+  "default_map_and_streamed_maps": [
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Darklands.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Fragments.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Interiors.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Joppa.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_Mainland.umap",
+    "../../../DinkRemaster/Content/Dink/_Generated/Maps/L_Greybox_World_SnowIsle.umap"
+  ],
+  "cottage_native_package": {
+    "path": "Content/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.uasset",
+    "sha256": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+    "object_path": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01"
+  },
+  "camera_owner_binding": {
+    "owner_manifest": "stonebrook_exterior.json",
+    "owner_element": "DinksCottage",
+    "owner_screen": 439,
+    "expected_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+    "matching_authored_rows": 1
+  },
+  "actual_UFS_data_extracted_from_pak": {
+    "Content/Dink/Data/Art/stonebrook.json": {
+      "sha256": "ea52c9aeb01ea49606cb16818954ee7278146bc385743c744b49d8d414956e2d",
+      "pak_entry": "DinkRemaster/Content/Dink/Data/Art/stonebrook.json",
+      "actual_extracted": "/home/artist/Work/DinkQA/OutdoorPortalCameraCookInventory/ExtractedArt/DinkRemaster/Content/Dink/Data/Art/stonebrook.json"
+    },
+    "Content/Dink/Data/Art/camera_materials.json": {
+      "sha256": "9edc7991b2b185819979429b0ce8bebb7b9e228a550473ebb3bf79f5a58d5a3a",
+      "pak_entry": "DinkRemaster/Content/Dink/Data/Art/camera_materials.json",
+      "actual_extracted": "/home/artist/Work/DinkQA/OutdoorPortalCameraCookInventory/ExtractedArt/DinkRemaster/Content/Dink/Data/Art/camera_materials.json"
+    },
+    "Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json": {
+      "sha256": "d633db201c94339ce11edc666aa152ea7202ee905df1970985558de198382154",
+      "pak_entry": "DinkRemaster/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json",
+      "actual_extracted": "/home/artist/Work/DinkQA/OutdoorPortalCameraCookInventory/ExtractedArt/DinkRemaster/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json"
+    },
+    "Content/Dink/Data/Art/camera_exteriors.json": {
+      "sha256": "9ef6f3e548f07bc01076110ecdbfe663efcb169b9b79fc1fc6c1ed0ad8bac893",
+      "pak_entry": "DinkRemaster/Content/Dink/Data/Art/camera_exteriors.json",
+      "actual_extracted": "/home/artist/Work/DinkQA/OutdoorPortalCameraCookInventory/ExtractedArt/DinkRemaster/Content/Dink/Data/Art/camera_exteriors.json"
+    },
+    "Content/Dink/Data/Art/stonebrook_exterior.json": {
+      "sha256": "c574f9a66679de272fe803137ca20ec942513e31d61846d132be12a7886eaa5b",
+      "pak_entry": "DinkRemaster/Content/Dink/Data/Art/stonebrook_exterior.json",
+      "actual_extracted": "/home/artist/Work/DinkQA/OutdoorPortalCameraCookInventory/ExtractedArt/DinkRemaster/Content/Dink/Data/Art/stonebrook_exterior.json"
+    }
+  },
+  "stage39_unchanged": true,
+  "shader_helper_observations": {
+    "845221": 439
+  },
+  "shader_helper_errors": {},
+  "host_Engine_shader_and_staging_preimages_unchanged": true,
+  "immutable_input_count": 13703,
+  "scope": "Actualread-onlyIoStorepackageinventory/UFSexactbyteextraction/sourceandstageimmutability; no packagedgameplay/runtimecameraacceptance yet."
+}

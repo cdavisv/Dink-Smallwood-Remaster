@@ -1,0 +1,648 @@
+[
+  {
+    "unix_time": 1794313316.283265,
+    "action": {
+      "console": "dink.ScreenInfo 0"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313317.4009626,
+    "action": {
+      "console": "dink.ScreenScripts 1"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313318.5163038,
+    "action": {
+      "console": "dink.Goto 1 303 300"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313319.6352491,
+    "action": {
+      "console": "dink.View -90 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313322.7397926,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313328.2436354,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313329.3609905,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313330.6945026,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/room.png",
+      "sha256": "5b34594d192e8bfc30f9d9b054ccf268eeced27e1e77594c3f256ff985a4690e",
+      "state": {
+        "screen": 1,
+        "map": [
+          303.0,
+          300.0
+        ],
+        "world": [
+          -183808.285,
+          393158.48,
+          98.0
+        ],
+        "yaw": -90.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313335.7029443,
+    "action": {
+      "console": "dink.Goto 1 303 300"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313336.8229184,
+    "action": {
+      "console": "dink.View 0 15"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313339.9633658,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313345.8600552,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313347.012943,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313348.3248737,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-0.png",
+      "sha256": "d410e55b3bd6e27bf0445d633522f7f05199eeebf9ff5e4d8f185b6aa5c3ea93",
+      "state": {
+        "screen": 1,
+        "map": [
+          303.0,
+          300.0
+        ],
+        "world": [
+          -183808.285,
+          393158.48,
+          98.0
+        ],
+        "yaw": 0.0,
+        "pitch": 15.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313348.6793664,
+    "action": {
+      "console": "dink.Goto 1 303 300"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313349.8263936,
+    "action": {
+      "console": "dink.View 270 15"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313352.9739656,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313358.5036268,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313359.6307318,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313360.9209964,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-270.png",
+      "sha256": "533f92cfee55596e917cccc8fdd03ce9de66c5195d2cc7dc21f89cf5c0fd5be4",
+      "state": {
+        "screen": 1,
+        "map": [
+          303.0,
+          300.0
+        ],
+        "world": [
+          -183808.285,
+          393158.48,
+          98.0
+        ],
+        "yaw": 270.0,
+        "pitch": 15.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313365.949794,
+    "action": {
+      "console": "dink.Goto 1 303 350"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313367.082391,
+    "action": {
+      "console": "dink.View 90 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313370.2091298,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313375.9516895,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313377.0863864,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313378.417516,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-before.png",
+      "sha256": "8683f060f703a0e5ed9644bc10ed9b0ab7fa3aa156f9e7e1aa466e7bf15aa446",
+      "state": {
+        "screen": 1,
+        "map": [
+          303.0,
+          350.0
+        ],
+        "world": [
+          -183808.285,
+          393377.23,
+          98.0
+        ],
+        "yaw": 90.0,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313378.7642863,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313379.8887854,
+    "action": {
+      "console": "dink.View 89.4271 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313381.0251539,
+    "action": {
+      "held_key": "w",
+      "seconds": 0.3268284930665689
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313382.1906378,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313383.3023014,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313384.4523728,
+    "action": {
+      "console": "dink.View 89.4269 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313385.6047359,
+    "action": {
+      "held_key": "w",
+      "seconds": 0.2756506724384314
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313386.7182875,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313387.8479943,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313388.9451156,
+    "action": {
+      "console": "dink.View 89.4270 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313390.0567477,
+    "action": {
+      "held_key": "w",
+      "seconds": 0.23566280382855176
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313391.1141906,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313392.2279425,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313393.3481624,
+    "action": {
+      "console": "dink.View 89.4272 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313394.472481,
+    "action": {
+      "held_key": "w",
+      "seconds": 0.19524111408258935
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313395.4896238,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313397.5926363,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313403.0940633,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313404.2233605,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313405.5405679,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-exit.png",
+      "sha256": "52944ce97e89bc886920c53512a1601c26a5485334fcc22b310f5802797a32c2",
+      "state": {
+        "screen": 439,
+        "map": [
+          344.997,
+          308.222
+        ],
+        "world": [
+          97729.191,
+          37516.267,
+          98.35
+        ],
+        "yaw": 89.427,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313405.88749,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313407.0289683,
+    "action": {
+      "console": "dink.View -99.7305 -18"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313408.161938,
+    "action": {
+      "held_key": "w",
+      "seconds": 0.42789238658245765
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313409.400359,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313411.4767702,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313417.0015504,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313418.1271803,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313419.4479232,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-return.png",
+      "sha256": "e752ffde9d2a36198a496d7c51f0a2bb4f2d07661cea0f833277974497c056a0",
+      "state": {
+        "screen": 1,
+        "map": [
+          302.69,
+          388.183
+        ],
+        "world": [
+          -183809.643,
+          393544.281,
+          98.0
+        ],
+        "yaw": -99.731,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313429.3805277,
+    "action": {
+      "console": "dink.ScreenScripts"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313430.5095701,
+    "action": {
+      "console": "dink.Player"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313431.8249147,
+    "action": {
+      "capture": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/final.png",
+      "sha256": "c848a12efa5e6096ee99853acb89e11829e0328eb9211bbec189deb473671de9",
+      "state": {
+        "screen": 1,
+        "map": [
+          302.69,
+          388.183
+        ],
+        "world": [
+          -183809.643,
+          393544.281,
+          98.0
+        ],
+        "yaw": -99.731,
+        "pitch": -18.0,
+        "radius": 28.0,
+        "move_ignored": false
+      }
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  },
+  {
+    "unix_time": 1794313432.1678376,
+    "action": {
+      "console": "quit"
+    },
+    "pid": 748271,
+    "start_ticks": 7484035,
+    "nonce": "4442a72b-9176-4309-a287-00c5f31d730a"
+  }
+]

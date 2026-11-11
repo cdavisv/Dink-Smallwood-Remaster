@@ -1,0 +1,34 @@
+{
+  "review_R1": "Complete early generated/aperture/native-float32 preflight",
+  "previous_head": "aa13e40597f2e577b0a886f959fba9142bd3a3d6",
+  "focused_tests": 18,
+  "full_python_tests": 562,
+  "elapsed_seconds": 5.91354033400421,
+  "actual_importer_entry_functional_test": "Three invalid profiles raise before ANY asset-tool/material/import/save access; valid control reaches first native sentinel. Fake hash witnesses only, no Unreal/FBX execution.",
+  "actual_standalone_apply_entry": "Same three invalid profiles raise with target bytes unchanged.",
+  "extra_boundary_tests": [
+    "width81.812499999 rounds to81.8125float and refuses",
+    "height135.999999999 rounds to136float and refuses",
+    "Kelvin1e-300 positive-after-conversion refusal",
+    "unsupported generated practical kind refusal"
+  ],
+  "held_files_exact_aa13": [
+    "Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp",
+    "Plugins/DinkCore/Source/DinkCore/Public/DinkArtSubsystem.h",
+    "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtLightingTests.cpp",
+    "Content/Dink/Data/Art/stonebrook.json",
+    "SourceAssets/Art/Stonebrook/LightingV1/lighting.json",
+    "SourceAssets/Art/Stonebrook/LightingV1/README.md",
+    "SourceAssets/asset_ledger.csv"
+  ],
+  "runtime_rows_or_core_changed": false,
+  "UE_build_native_import_save_GPU": "NOT_RUN",
+  "full_and_metadata_source_audits": {
+    "passed": true,
+    "binary": 4519,
+    "Python": 523,
+    "shell": 22,
+    "ledger": 4329,
+    "missing_hash_or_secret_errors": 0
+  }
+}
