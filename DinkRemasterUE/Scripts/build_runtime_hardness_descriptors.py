@@ -13,7 +13,7 @@ import math
 from pathlib import Path
 
 
-def build(bundle: Path, gameplay: Path):
+def build(bundle: Path, gameplay: Path, *, selected_screens=None, layers_root=None):
     screens = json.loads((bundle / 'screens.json').read_text())['screens']
     collision = json.loads((bundle / 'collision.json').read_text())['screens']
     common = {}
@@ -23,6 +23,11 @@ def build(bundle: Path, gameplay: Path):
         if not required.issubset(header):
             raise ValueError(f'{name}: missing migration columns')
         common[name] = hashlib.sha1(raw).hexdigest()
+    if selected_screens is not None:
+        screens = [screen for screen in screens if screen['screen'] in selected_screens]
+        if {screen['screen'] for screen in screens} != set(selected_screens):
+            raise ValueError('selected foundation screen missing from bundle')
+    layers_root = gameplay if layers_root is None else layers_root
     output = {}
     for screen in screens:
         number = screen['screen']
@@ -40,7 +45,7 @@ def build(bundle: Path, gameplay: Path):
                         or not 0 <= rect[0] < rect[2] <= 600 or not 0 <= rect[1] < rect[3] <= 400):
                     raise ValueError('invalid fixed fill rectangle')
         layer = f'Hardness/SCR_{number:03d}_layers.json'
-        raw = (gameplay/layer).read_bytes()
+        raw = (layers_root/layer).read_bytes()
         packet = json.loads(raw)
         if (not isinstance(packet,dict) or packet.get('schema') != 'dinkex.runtime-hardness/2'
                 or type(packet.get('width')) is not int or packet['width'] != 600

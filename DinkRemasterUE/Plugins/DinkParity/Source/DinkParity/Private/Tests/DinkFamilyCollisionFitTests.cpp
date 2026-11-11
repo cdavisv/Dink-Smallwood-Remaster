@@ -15,15 +15,45 @@ bool FDinkFamilyFitPolicyTest::RunTest(const FString&)
     TArray<FDinkFamilyCollisionFitRule> Rules;FString Error,Shipped;
     if(!TestTrue(TEXT("actual families available"),FFileHelper::LoadFileToString(Shipped,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/families.json")))))return false;
     TestTrue(TEXT("absent optional policy preserves defaults"),DinkFamilyCollisionFit::ParsePolicy(TEXT(R"({"schema":"dink-art-families/1","families":[]})"),Rules,Error));TestEqual(TEXT("absent policy activates zero origins"),Rules.Num(),0);
-    TestTrue(TEXT("actual shipped policy parses"),DinkFamilyCollisionFit::ParsePolicy(Shipped,Rules,Error));TestEqual(TEXT("exactly two admitted origins"),Rules.Num(),2);
+    TestTrue(TEXT("actual shipped policy parses"),DinkFamilyCollisionFit::ParsePolicy(Shipped,Rules,Error));const bool SourcePinned = Shipped.Contains(TEXT("dink-family-collision-fit/2"));
+    TestEqual(TEXT("expected shipped collision fit scope"), Rules.Num(), SourcePinned ? 85 : 2);
     TSet<FString> ActualOrigins;
     for(const auto& Rule:Rules){ActualOrigins.Add(Rule.Origin.ToString());TestEqual(TEXT("actual reviewed barrel mesh"),Rule.Mesh,FString(TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01")));TestEqual(TEXT("fresh actual native effective geometry SHA"),Rule.GeometrySha1,FString(TEXT("5eb85050e7e90d1a1dd8b97554077af688f66732")));}
-    TestTrue(TEXT("exact reviewed 031 and 209 origins"),ActualOrigins.Num()==2&&ActualOrigins.Contains(TEXT("S031_P03"))&&ActualOrigins.Contains(TEXT("S209_P13")));
+    TestTrue(TEXT("exact reviewed pair retained with unique origins"),
+        ActualOrigins.Num() == Rules.Num() && ActualOrigins.Contains(TEXT("S031_P03")) &&
+        ActualOrigins.Contains(TEXT("S209_P13")));
     const FString Row=TEXT(R"({"origin":"S031_P03","family":"barrel","mesh":"/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01","geometry_sha1":"0000000000000000000000000000000000000000","anchor":"sprite_ground","geometry":"cooked_complex","raster":"cell_center"})");
     auto Packet=[](const FString& Rows){return TEXT("{\"schema\":\"dink-art-families/1\",\"families\":[],\"collision_fit\":{\"schema\":\"dink-family-collision-fit/1\",\"origins\":[")+Rows+TEXT("]}}");};
     TestTrue(TEXT("complete narrow explicit rule parses, digest still requires native match"),DinkFamilyCollisionFit::ParsePolicy(Packet(Row),Rules,Error));TestEqual(TEXT("one prepared rule"),Rules.Num(),1);
     for(const FString& Bad:{Row+TEXT(",")+Row,Row.Replace(TEXT("S031_P03"),TEXT("S001_P03")),Row.Replace(TEXT("sprite_ground"),TEXT("card_center")),Row.Replace(TEXT("cooked_complex"),TEXT("box")),Row.Replace(TEXT("cell_center"),TEXT("unknown")),Row.Replace(TEXT("\"barrel\""),TEXT("true")),Row.Replace(TEXT("0000000000000000000000000000000000000000"),TEXT("not-reviewed"))})
     {TestFalse(TEXT("duplicate/foreign origin, wrong anchor/geometry/raster/type/digest refuse whole policy"),DinkFamilyCollisionFit::ParsePolicy(Packet(Bad),Rules,Error));TestEqual(TEXT("no partial policy survives refusal"),Rules.Num(),0);}
+    auto SourcePacket = [&Packet](const FString& Rows)
+    {
+        return Packet(Rows).Replace(TEXT("dink-family-collision-fit/1"), TEXT("dink-family-collision-fit/2"));
+    };
+    auto SourceRow = [&Row](const TCHAR* Id, const TCHAR* SourceFields)
+    {
+        return Row.LeftChop(1).Replace(TEXT("S031_P03"), Id) + SourceFields + TEXT("}");
+    };
+    const FString Anonymous = SourceRow(TEXT("S469_P13"), TEXT(R"(,"source_hash":"97c24d11722e25cf339fcbf0ee818f6b70e88f8d","source_script":"","source_type":1,"source_representation":"actor")"));
+    const FString Background = SourceRow(TEXT("S469_P16"), TEXT(R"(,"source_hash":"7de7ec648bed4f586c30e43c3fc6ac53503e2758","source_script":"bar-sh","source_type":0,"source_representation":"instance")"));
+    if (TestTrue(TEXT("explicit source rules cover anonymous live and scripted background"),
+        DinkFamilyCollisionFit::ParsePolicy(SourcePacket(Anonymous + TEXT(",") + Background), Rules, Error)) &&
+        TestEqual(TEXT("both source rules retained"), Rules.Num(), 2))
+    {
+        TestTrue(TEXT("anonymous source stays live"), Rules[0].SourceScript.IsNone() &&
+            !Rules[0].IsStaticBackground());
+        TestTrue(TEXT("type 0 source stays background with its original script name"),
+            Rules[1].IsStaticBackground() && Rules[1].SourceScript == FName(TEXT("bar-sh")));
+    }
+    for (const auto& Bad : {Row, Background.Replace(TEXT("\"instance\""), TEXT("\"actor\"")),
+            Background.Replace(TEXT("\"source_type\":0"), TEXT("\"source_type\":false")),
+            Background.Replace(TEXT("bar-sh"), TEXT("bar-f1"))})
+    {
+        TestFalse(TEXT("source rule rejects missing metadata or incompatible background lifecycle"),
+            DinkFamilyCollisionFit::ParsePolicy(SourcePacket(Bad), Rules, Error));
+        TestEqual(TEXT("invalid source policy publishes no rows"), Rules.Num(), 0);
+    }
     return true;
 }
 

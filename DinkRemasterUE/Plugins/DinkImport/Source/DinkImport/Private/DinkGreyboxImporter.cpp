@@ -1,5 +1,8 @@
 #include "DinkGreyboxImporter.h"
 #include "DinkGreyboxAssets.h"
+#include "DinkHardnessFoundationBuilder.h"
+#include "DinkArtFamilySubsystem.h"
+#include "Hardness/DinkHardnessFoundationSource.h"
 #include "DinkImportBundle.h"
 #include "DinkImportLog.h"
 #include "DinkCollision.h"
@@ -27,6 +30,11 @@
 #include "Engine/SkyLight.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
+#include "EngineUtils.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
+#include "UObject/StrongObjectPtr.h"
 #include "Components/SkyAtmosphereComponent.h"
 #include "FileHelpers.h"
 #include "GameFramework/PlayerStart.h"
@@ -74,6 +82,104 @@ namespace
 		A->Tags = {TagGenerated, FName(*(FString(TagKeyPrefix) + Key)), FName(*(FString(TagHashPrefix) + Hash))};
 	}
 
+	struct FFittedScreen
+	{
+		FDinkHardnessFoundationSource Source;
+		FDinkHardnessFoundationCandidate Candidate;
+	};
+
+	// The original v1 pair is staged separately. Only the explicit source-pinned
+	// policy selects ordinary generation and requires its prepared foundations.
+	bool PrepareFittedGeneration(const FDinkBundle& Bundle, const TSet<int32>& Selected,
+		TMap<int32, FFittedScreen>& Screens, TMap<FString, const FDinkBundlePlacement*>& Promoted,
+		TArray<TStrongObjectPtr<UStaticMesh>>& KeepMeshes, FString& Error)
+	{
+		const FString Families = DinkArtFamily::DefaultFamiliesPath();
+		FString Text;
+		TSharedPtr<FJsonObject> Root;
+		const TSharedPtr<FJsonObject>* Policy = nullptr;
+		FString Schema;
+		if (!FFileHelper::LoadFileToString(Text, *Families) ||
+			!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root ||
+			!Root->TryGetObjectField(TEXT("collision_fit"), Policy) || !Policy || !Policy->IsValid() ||
+			!(*Policy)->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-family-collision-fit/2"))
+			return true;
+
+		TArray<FDinkFamilyCollisionFitRule> Rules;
+		if (!DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error)) return false;
+		TArray<FDinkFamilyBinding> Bindings;
+		TArray<FString> BindingErrors;
+		if (!DinkArtFamily::ParseFamilies(Text, Bindings, BindingErrors) || !BindingErrors.IsEmpty())
+		{
+			Error = TEXT("invalid fitted family bindings: ") + FString::Join(BindingErrors, TEXT("; "));
+			return false;
+		}
+		const auto Precedence = FDinkFamilyPrecedence::LoadDirectory(FPaths::GetPath(Families), FPaths::GetCleanFilename(Families));
+		TMap<FString, const FDinkBundlePlacement*> Placements;
+		for (const auto& Placement : Bundle.Placements) Placements.Add(Placement.Id, &Placement);
+
+		for (const auto& Rule : Rules)
+		{
+			if (!Selected.Contains(Rule.Origin.Screen)) continue;
+			const FString Id = Rule.Origin.ToString();
+			const auto* Placement = Placements.FindRef(Id);
+			if (!Placement || Placement->Screen != Rule.Origin.Screen || Placement->Index != Rule.Origin.Placement ||
+				!Placement->Hash.Equals(Rule.SourceHash, ESearchCase::IgnoreCase) ||
+				Placement->Type != Rule.SourceType || FName(*Placement->Script) != Rule.SourceScript ||
+				Placement->Representation != (Rule.IsStaticBackground() ? TEXT("instance") : TEXT("actor")) ||
+				Placement->ClassId != TEXT("barrel") || Placement->Seq != 173 || Placement->Frame != 1 ||
+				Placement->Brain != 0 || Placement->Vision != 0 || Placement->bIsWarp ||
+				!Placement->bHasHardness || !Placement->bHasCard)
+			{
+				Error = TEXT("fitted source placement mismatch: ") + Id;
+				return false;
+			}
+
+			FDinkFamilyPlacement FamilyPlacement;
+			FamilyPlacement.Origin = Id;
+			FamilyPlacement.Screen = Placement->Screen;
+			FamilyPlacement.Sequence = Placement->Seq;
+			FamilyPlacement.ClassId = FName(*Placement->ClassId);
+			FamilyPlacement.bScripted = !Placement->Script.IsEmpty();
+			FamilyPlacement.bHardnessOnly = Placement->Kind == TEXT("hardness_only");
+			const FDinkFamilyBinding* Binding = nullptr;
+			if (DinkArtFamily::Decide(FamilyPlacement, Precedence, Bindings, Binding) != EDinkFamilyDecision::Bound ||
+				!Binding || Binding->Mesh != Rule.Mesh || Binding->Fit != EDinkFamilyFit::None ||
+				!Binding->bScripted || Binding->bYawFromSprite)
+			{
+				Error = TEXT("fitted source conflicts with family or authored precedence: ") + Id;
+				return false;
+			}
+
+			if (Rule.IsStaticBackground()) Promoted.Add(Id, Placement);
+			if (Screens.Contains(Placement->Screen)) continue;
+
+			const auto* Screen = Bundle.FindScreen(Placement->Screen);
+			auto& Prepared = Screens.Add(Placement->Screen);
+			const FString Descriptor = FPaths::ProjectContentDir() / FString::Printf(
+				TEXT("Dink/Data/Gameplay/Hardness/Foundations/SCR_%03d.json"), Placement->Screen);
+			if (!Screen)
+			{
+				Error = TEXT("fitted source screen missing: ") + Id;
+				return false;
+			}
+			if (!FDinkHardnessFoundationSource::Load(Descriptor, Placement->Screen, Prepared.Source, Error) ||
+				!Prepared.Source.VerifyGameplayInputs(Error))
+				return false;
+			auto& Candidate = Prepared.Candidate;
+			Candidate.Screen = Placement->Screen;
+			Candidate.CollisionSourceHash = Prepared.Source.CollisionSourceHash;
+			Candidate.Pivot = FAssetSet::ScreenPivot(*Screen);
+			Candidate.FixedSolid = LoadObject<UStaticMesh>(nullptr, *Prepared.Source.SolidMesh);
+			Candidate.FixedLow = Prepared.Source.LowMesh.IsEmpty()
+				? nullptr : LoadObject<UStaticMesh>(nullptr, *Prepared.Source.LowMesh);
+			if (Candidate.FixedSolid) KeepMeshes.Emplace(Candidate.FixedSolid);
+			if (Candidate.FixedLow) KeepMeshes.Emplace(Candidate.FixedLow);
+			if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle, Candidate, Error)) return false;
+		}
+		return true;
+	}
+
 	struct FDesiredActor
 	{
 		FString Key;
@@ -81,6 +187,7 @@ namespace
 		FString Group;   // "" = persistent level
 		FString Folder;
 		FTransform Transform;
+		TArray<FName> AdditionalTags;
 		TFunction<AActor*(UWorld&, ULevel&, const FTransform&)> Spawn;
 	};
 
@@ -211,6 +318,12 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			SpriteWarpByPlacement.Add(W.Placement, &W);
 		}
 	}
+
+	TMap<int32, FFittedScreen> FittedScreens;
+	TMap<FString, const FDinkBundlePlacement*> PromotedBarrels;
+	TArray<TStrongObjectPtr<UStaticMesh>> KeepFittedMeshes;
+	if (!PrepareFittedGeneration(Bundle, Selected, FittedScreens, PromotedBarrels, KeepFittedMeshes, Error))
+		return Fail(TEXT("fitted generation preflight: ") + Error);
 
 	// ------------------------------------------------------------------ assets
 	FAssetSet Assets(Bundle);
@@ -403,7 +516,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 		TArray<const FDinkBundlePlacement*> Instanced;
 		for (const FDinkBundlePlacement& P : Bundle.Placements)
 		{
-			if (P.Screen == S.Screen && P.Representation == TEXT("instance"))
+			if (P.Screen == S.Screen && P.Representation == TEXT("instance") && !PromotedBarrels.Contains(P.Id))
 			{
 				Instanced.Add(&P);
 			}
@@ -414,6 +527,8 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			{
 				HashParts.Add(P->Hash);
 			}
+			const auto* Fitted = FittedScreens.Find(S.Screen);
+			if (Fitted) HashParts.Add(Fitted->Source.SourceTextSha1);
 			FDesiredActor D;
 			D.Key = S.Id + TEXT(":Greybox");
 			D.Hash = HashStrings(HashParts);
@@ -421,7 +536,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			D.Folder = Folder;
 			D.Transform = FTransform(FAssetSet::ScreenPivot(S));
 			const FDinkBundleScreen* SP = &S;
-			D.Spawn = [SP, Instanced, &Assets, GetCard, &Bundle](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
+			D.Spawn = [SP, Instanced, Fitted, &Assets, GetCard, &Bundle](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
 			{
 				FActorSpawnParameters P;
 				P.OverrideLevel = &Level;
@@ -430,8 +545,18 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				const FDinkBundleScreen& S = *SP;
 				A->ScreenNumber = S.Screen;
 				A->Visual->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("Visual")));
-				A->CollisionSolid->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollSolid")));
-				A->CollisionLow->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollLow")));
+				if (Fitted)
+				{
+					A->CollisionSolid->SetStaticMesh(Fitted->Candidate.FixedSolid);
+					A->CollisionLow->SetStaticMesh(Fitted->Candidate.FixedLow);
+					A->CollisionSolid->ComponentTags.AddUnique(TEXT("DinkHardnessFixedFloorFillV1"));
+					A->CollisionLow->ComponentTags.AddUnique(TEXT("DinkHardnessFixedWaterV1"));
+				}
+				else
+				{
+					A->CollisionSolid->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollSolid")));
+					A->CollisionLow->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("CollLow")));
+				}
 				const FVector Pivot = T.GetLocation();
 				TMap<FString, UInstancedStaticMeshComponent*> ByKey;
 				for (const FDinkBundlePlacement* Pl : Instanced)
@@ -485,7 +610,8 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 				S && !S->Excluded.IsEmpty() ? S->Excluded : FString::Printf(TEXT("screen not in region import '%s'"), *Region)});
 			continue;
 		}
-		if (P.Representation == TEXT("instance"))
+		const bool PromoteBarrel = PromotedBarrels.Contains(P.Id);
+		if (P.Representation == TEXT("instance") && !PromoteBarrel)
 		{
 			Result.PlacementInstances++;
 			Coverage.Add({P.Id, TEXT("placement"), S->Id, P.Region, TEXT("instance"), S->Id + TEXT(":Greybox/Decor_") + P.Card.Sprite,
@@ -498,6 +624,12 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 		FDesiredActor D;
 		D.Key = P.Id;
 		D.Hash = HashStrings({ActorGeneratorVersion, P.Hash, Warp ? Warp->Hash : FString(), bDestIn ? TEXT("dest-in") : TEXT("dest-out")});
+		if (PromoteBarrel)
+		{
+			D.AdditionalTags.Add(DinkFamilyCollisionFit::PromotedBackgroundTag);
+			D.Hash = HashStrings({D.Hash, TEXT("fitted-background-actor/1")});
+		}
+
 		D.Group = P.Group;
 		D.Folder = FString::Printf(TEXT("%s/%s%s"), *FDinkGreyboxImporter::PascalCase(S->Group), *S->Id,
 			P.Vision ? *FString::Printf(TEXT("/Vision_%d"), P.Vision) : TEXT(""));
@@ -573,6 +705,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 		Desired.Add(MoveTemp(D));
 		FString Became = Warp ? TEXT("actor+warp") : TEXT("actor");
 		FString Detail = FString::Printf(TEXT("%s %s %s"), *P.Kind, *P.ClassId, *P.Category);
+		if (PromoteBarrel) Detail += TEXT(" (source type 0 represented by a fitted actor)");
 		if (P.Vision)
 		{
 			Detail += FString::Printf(TEXT("; vision %d (hidden until &vision = %d): %s"), P.Vision, P.Vision, *FString::Join(P.VisionRule, TEXT(" | ")));
@@ -935,6 +1068,7 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 					A->GetRootComponent()->SetWorldTransform(D->Transform);
 				}
 				SetGeneratedTags(A, D->Key, D->Hash);
+				A->Tags.Append(D->AdditionalTags);
 				A->SetActorLabel(D->Key);
 				A->SetFolderPath(FName(*D->Folder));
 				A->MarkPackageDirty();
@@ -954,6 +1088,66 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 		if (Changes > 0)
 		{
 			DirtyLevels.Add(Level);
+		}
+	}
+
+	if (!FittedScreens.IsEmpty())
+	{
+		TMap<int32, ADinkGreyboxScreen*> Hosts;
+		TMap<int32, ADinkScreenVolume*> Volumes;
+		for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
+		{
+			if (It->InstanceOrigins)
+			{
+				for (const auto& Instance : It->InstanceOrigins->Origins)
+					if (PromotedBarrels.Contains(Instance.OriginId.ToString()))
+						return Fail(TEXT("fitted background origin also remains an instance"));
+			}
+			if (!FittedScreens.Contains(It->ScreenNumber)) continue;
+			if (Hosts.Contains(It->ScreenNumber)) return Fail(TEXT("duplicate fitted screen host"));
+			Hosts.Add(It->ScreenNumber, *It);
+		}
+		for (TActorIterator<ADinkScreenVolume> It(World); It; ++It)
+		{
+			if (!FittedScreens.Contains(It->ScreenNumber)) continue;
+			if (Volumes.Contains(It->ScreenNumber)) return Fail(TEXT("duplicate fitted screen volume"));
+			Volumes.Add(It->ScreenNumber, *It);
+		}
+		TSet<FString> FoundPromotions;
+		for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+		{
+			const auto* Origin = It->Origin.Get();
+			if (!Origin) continue;
+			const FString Id = Origin->OriginId.ToString();
+			const auto* Placement = PromotedBarrels.FindRef(Id);
+			if (!Placement) continue;
+			if (FoundPromotions.Contains(Id) || Origin->PlacementType != 0 ||
+				!It->ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag) ||
+				Origin->SourceHash != Placement->Hash || Origin->ScriptName != FName(*Placement->Script))
+				return Fail(TEXT("generated fitted background origin differs: ") + Id);
+			FoundPromotions.Add(Id);
+		}
+		if (FoundPromotions.Num() != PromotedBarrels.Num())
+			return Fail(TEXT("generated fitted background origin missing"));
+
+		for (const auto& Pair : FittedScreens)
+		{
+			auto* Host = Hosts.FindRef(Pair.Key);
+			auto* Volume = Volumes.FindRef(Pair.Key);
+			const auto& Fitted = Pair.Value;
+			if (!Host || !Volume || !Host->CollisionSolid || !Host->CollisionLow)
+				return Fail(TEXT("missing generated fitted screen host/volume"));
+			if (!VerifyRuntimeHardnessFoundationInstanceV1(Bundle, Fitted.Candidate, *Host->CollisionSolid,
+				Host->CollisionLow.Get(), Error) || !Fitted.Source.VerifyInstances(*Volume, *Host, Error, false))
+				return Fail(TEXT("generated fitted screen verification: ") + Error);
+		}
+		for (const auto& Pair : Hosts)
+		{
+			auto* Host = Pair.Value;
+			if (Host->ActorHasTag(TEXT("DinkHardnessWorldV1"))) continue;
+			Host->Tags.Add(TEXT("DinkHardnessWorldV1"));
+			Host->MarkPackageDirty();
+			DirtyLevels.AddUnique(Host->GetLevel());
 		}
 	}
 

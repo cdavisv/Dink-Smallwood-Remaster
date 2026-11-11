@@ -10,15 +10,22 @@ class UStaticMeshComponent;
 class UBodySetup;
 class UMaterialInterface;
 class UWorld;
-namespace DinkFamilyCollisionFit { inline constexpr int32 DescriptorSchemaVersion=2; }
+namespace DinkFamilyCollisionFit
+{
+    inline constexpr int32 DescriptorSchemaVersion = 2;
+    inline constexpr TCHAR PromotedBackgroundTag[] = TEXT("DinkFitPromotedBackground");
+}
 
-/** Optional policy under families.json. No shipped row opts in. This first
- * generation intentionally permits only the two independently audited barrels. */
+/** Explicit origin policy under families.json. Schema 1 retains the original pair. */
 struct DINKCORE_API FDinkFamilyCollisionFitRule
 {
     FDinkOriginId Origin;
     FString Mesh;
     FString GeometrySha1;
+    FString SourceHash; // Empty only for the legacy schema 1 pair.
+    FName SourceScript;
+    int32 SourceType = 1;
+    bool IsStaticBackground() const { return SourceType == 0; }
 };
 struct DINKCORE_API FDinkFamilyFitSpriteState
 {
