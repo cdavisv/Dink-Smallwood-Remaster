@@ -1,0 +1,1062 @@
+{
+  "input_sha256": "d8c819de70a5b3041514744163b56893ec9eaf51d786f6fe8bdf781f0d377ab0",
+  "source_unchanged": true,
+  "geometry": {
+    "V3_Broken_coopered_stave_00": {
+      "sha256": "557e8d1a2461c74cf4d9cb6e91d0a983d0f27c16e6f58bb20f14f611afe5e796",
+      "triangles": 204,
+      "signed_volume": 0.0010594487749429463,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_01": {
+      "sha256": "be90048e6f2a5d5b5b83e57489117b982bd5cf36213dbdd75281c4c97dc167b7",
+      "triangles": 236,
+      "signed_volume": 0.00135532081056715,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_02_Split_A": {
+      "sha256": "6afea9e14d6cfdb15c5fdd21155e952b492b07187c0b9afd11df32e452528639",
+      "triangles": 168,
+      "signed_volume": 0.0008801049698547796,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_02_Split_B": {
+      "sha256": "ca9cec74d9da30de56a76d49a00ba04ef9fc75440ba9dda0d65e9c6a19a68f2f",
+      "triangles": 168,
+      "signed_volume": 0.0007447439170846948,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_03": {
+      "sha256": "d8f28da20d8e69e820d38d74f3b15b8fbecfe78148f2e8bc6632ca7f5aaebaa5",
+      "triangles": 300,
+      "signed_volume": 0.0019471161826579055,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_04_Split_A": {
+      "sha256": "7cd55a29b81f97343e386bf1364a6e9295fd1449e5f08bfa691c430293273895",
+      "triangles": 188,
+      "signed_volume": 0.0012446186124524324,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_04_Split_B": {
+      "sha256": "3ec2277dd0e9ce89c51e3e5c641af760719f0e57befe1edee918e888def6ca4b",
+      "triangles": 188,
+      "signed_volume": 0.0009662243280473254,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_05": {
+      "sha256": "eed3efa9915fb58cfa95c51e04515f0cad0d4461254fe83aa819fd9eca82a1b3",
+      "triangles": 204,
+      "signed_volume": 0.0010477795403012185,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_06": {
+      "sha256": "7b422029ffa5fe38745e2d1f05377f91395038136e24a6e8457aa8cf83db8741",
+      "triangles": 236,
+      "signed_volume": 0.001332121549820704,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_07": {
+      "sha256": "567628c43260bb1b9f9a6c9e2ce8cf8bbfb37e80da953b7ee573dda25f5dc7f9",
+      "triangles": 268,
+      "signed_volume": 0.0016543042197345768,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_08": {
+      "sha256": "deaf8dfd81995bd9f9fb86d48e69069a0779f398fac46085473b522959da485f",
+      "triangles": 300,
+      "signed_volume": 0.0019332993732358735,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_09": {
+      "sha256": "84e5f1138cb7a63f03a90334cff8209ee8011aaff57ff969fe333fe0424ff5ea",
+      "triangles": 300,
+      "signed_volume": 0.0022293369374973733,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_10": {
+      "sha256": "51e8ef22742768de3c3d5eb12b958df7417e463844db3a3a128bffbdf51244c0",
+      "triangles": 204,
+      "signed_volume": 0.0010919654917857455,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_11": {
+      "sha256": "b60b3bd5de01d006fcc3a10db4b485060526d1d2a3381883ef2612f4761be7b8",
+      "triangles": 236,
+      "signed_volume": 0.0013494933436041842,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_12": {
+      "sha256": "becb5fc758cd2a752876f37e74d10dccb6543f009ced951329913def1e8aec6f",
+      "triangles": 268,
+      "signed_volume": 0.0016539093091579751,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_13_Split_A": {
+      "sha256": "dcc558b8712ad265205b85d0ef553b254e984716c88a7e93d852563f3b64afd8",
+      "triangles": 188,
+      "signed_volume": 0.0010760599144738778,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_13_Split_B": {
+      "sha256": "7c716da423584c85a00546d16d51266bfee922671051708fb6248a463e662948",
+      "triangles": 188,
+      "signed_volume": 0.0008554290883457974,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_14": {
+      "sha256": "2b4e73cc8cde8d294b751ff115b8751ea2b49e87bd5f19d8bf4427f5a76d4c32",
+      "triangles": 300,
+      "signed_volume": 0.002213321320144742,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_15": {
+      "sha256": "aa637c0378af381b22908cf7ba144b6b1d648d283ed410790fe176fdb9648144",
+      "triangles": 204,
+      "signed_volume": 0.001048178254223103,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_16_Split_A": {
+      "sha256": "d3a7b2d7e865ca756d91b3e8a8eca6a9bafd99b033c5839da70b09dd29319b0c",
+      "triangles": 148,
+      "signed_volume": 0.0007572932943226204,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_16_Split_B": {
+      "sha256": "3a90605ddb4036455f838f8be5607579df30a2c5e72da8657b74b5c1cfaad9b8",
+      "triangles": 148,
+      "signed_volume": 0.0005902285501849804,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Broken_coopered_stave_17": {
+      "sha256": "66744b5ab7b96b75e6ff5d2f0c52f0ed76765dd2c01b3b4a268469235d295fde",
+      "triangles": 268,
+      "signed_volume": 0.0016529458157995656,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Fracture_fibre_00": {
+      "sha256": "3978509ce69fb497f882da50bdc8d90d947349dfb5a4dc2d85cbb769c57d916e",
+      "triangles": 6,
+      "signed_volume": 2.2750049911757516e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Fracture_fibre_01": {
+      "sha256": "35ebbd60f828f21089c3ec7ff7a1130c76f9504eb2fa8428358ecce13c972334",
+      "triangles": 6,
+      "signed_volume": 2.9333279864111143e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Fracture_fibre_02": {
+      "sha256": "8dccc7ecc5399e03a3d3a6c4af21f5fbb21bcb44c43fba0e9c95e10fb1345f77",
+      "triangles": 6,
+      "signed_volume": 3.675000937245292e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Fracture_fibre_03": {
+      "sha256": "992862f730ec04c649e1439ac0c0e2693274e6b78f000e82b739ad304f3d622f",
+      "triangles": 6,
+      "signed_volume": 4.499998489314025e-07,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Opened_forged_hoop_00": {
+      "sha256": "ecdf645cf1c1c29f374c7b6d0a2fc69892ccdb03343d6fa0bb406c22e2868043",
+      "triangles": 860,
+      "signed_volume": 9.40601030831232e-05,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Opened_forged_hoop_01": {
+      "sha256": "5c78dcb1415d26f1d3c03ab4bd789df06e9bb4b0f3035854e9fa41a55bf27617",
+      "triangles": 884,
+      "signed_volume": 0.00013553028252893346,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Opened_forged_hoop_02": {
+      "sha256": "68d378a283b3af3798f4c455bb508f6092ef5be3325192d47d1fbda568b83557",
+      "triangles": 884,
+      "signed_volume": 0.000138278577088907,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Opened_forged_hoop_03": {
+      "sha256": "bcf9c9cd38e6a405d5c758634c4af0ae357a72dffae87a005b93522d1bde967b",
+      "triangles": 860,
+      "signed_volume": 0.00011319534628159871,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_00": {
+      "sha256": "469740cdceee1c13b38d497a731ac651f3bec0cc6fcad4fbfe470e25d9123945",
+      "triangles": 268,
+      "signed_volume": 0.0009868944688641952,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_01": {
+      "sha256": "6e33c8797708ba53cf3bca72ed81c08c979963e4117707510474c58528cecce1",
+      "triangles": 204,
+      "signed_volume": 0.0016017517190013012,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_02": {
+      "sha256": "09ff2dd3b3f50363ed7903143c04b92cea2f5b7d389f70ecd5fb0d27fc4a0557",
+      "triangles": 180,
+      "signed_volume": 0.0017527106586453514,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_03": {
+      "sha256": "08d19764f43dd2ed254ffb891eb02b0e614589d309e764842aa9ca4b29a61a96",
+      "triangles": 204,
+      "signed_volume": 0.0016017517190013016,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_04": {
+      "sha256": "f989c1403becfff10dc84e6938c89d83e746131d97b0385dc6675e1b9519f6d7",
+      "triangles": 268,
+      "signed_volume": 0.000986894468864195,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    },
+    "V3_Scattered_head_board_05": {
+      "sha256": "6542c57c5afd7acc05409962e1895263ac6df315682dac976d1777e03e152ed9",
+      "triangles": 380,
+      "signed_volume": 3.8021360665275475e-06,
+      "nonmanifold_edges": 0,
+      "zero_area_triangles": 0
+    }
+  },
+  "triangles": 9928,
+  "objects": 36,
+  "minimum_m": [
+    -0.5216614007949829,
+    -0.6371681690216064,
+    0.000999998301267624
+  ],
+  "dimensions_m": [
+    1.034907579421997,
+    1.2378713488578796,
+    0.19663432613015175
+  ],
+  "shared_material_graphs": {
+    "MI_Shared_OakLonggrain2m": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakLonggrain2m_BC"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakLonggrain2m_N_GL"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakLonggrain2m_ORM"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial",
+          [
+            [
+              "Displacement",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Thickness",
+              "0.0"
+            ]
+          ],
+          null
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap",
+          [
+            [
+              "Strength",
+              "1.0"
+            ],
+            [
+              "Color",
+              "(0.5, 0.5, 1.0, 1.0)"
+            ]
+          ],
+          null
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled",
+          [
+            [
+              "Base Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ],
+            [
+              "Metallic",
+              "0.0"
+            ],
+            [
+              "Roughness",
+              "0.5"
+            ],
+            [
+              "IOR",
+              "1.5"
+            ],
+            [
+              "Alpha",
+              "1.0"
+            ],
+            [
+              "Thin Wall",
+              "False"
+            ],
+            [
+              "Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Weight",
+              "0.0"
+            ],
+            [
+              "Diffuse Roughness",
+              "0.0"
+            ],
+            [
+              "Subsurface Weight",
+              "0.0"
+            ],
+            [
+              "Subsurface Radius",
+              "(1.0, 0.20000000298023224, 0.10000000149011612)"
+            ],
+            [
+              "Subsurface Scale",
+              "0.004999999888241291"
+            ],
+            [
+              "Subsurface IOR",
+              "1.399999976158142"
+            ],
+            [
+              "Subsurface Anisotropy",
+              "0.0"
+            ],
+            [
+              "Specular IOR Level",
+              "0.25"
+            ],
+            [
+              "Specular Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Anisotropic",
+              "0.0"
+            ],
+            [
+              "Anisotropic Rotation",
+              "0.0"
+            ],
+            [
+              "Tangent",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Transmission Weight",
+              "0.0"
+            ],
+            [
+              "Coat Weight",
+              "0.0"
+            ],
+            [
+              "Coat Roughness",
+              "0.029999999329447746"
+            ],
+            [
+              "Coat IOR",
+              "1.5"
+            ],
+            [
+              "Coat Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Coat Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Sheen Weight",
+              "0.0"
+            ],
+            [
+              "Sheen Roughness",
+              "0.5"
+            ],
+            [
+              "Sheen Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Color",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Strength",
+              "0.0"
+            ],
+            [
+              "Thin Film Thickness",
+              "0.0"
+            ],
+            [
+              "Thin Film IOR",
+              "1.3300000429153442"
+            ]
+          ],
+          null
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor",
+          [
+            [
+              "Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ]
+          ],
+          null
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    },
+    "MI_Shared_OakEndgrain2m": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakEndgrain2m_BC"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakEndgrain2m_N_GL"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Shared_OakEndgrain2m_ORM"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial",
+          [
+            [
+              "Displacement",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Thickness",
+              "0.0"
+            ]
+          ],
+          null
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap",
+          [
+            [
+              "Strength",
+              "1.0"
+            ],
+            [
+              "Color",
+              "(0.5, 0.5, 1.0, 1.0)"
+            ]
+          ],
+          null
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled",
+          [
+            [
+              "Base Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ],
+            [
+              "Metallic",
+              "0.0"
+            ],
+            [
+              "Roughness",
+              "0.5"
+            ],
+            [
+              "IOR",
+              "1.5"
+            ],
+            [
+              "Alpha",
+              "1.0"
+            ],
+            [
+              "Thin Wall",
+              "False"
+            ],
+            [
+              "Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Weight",
+              "0.0"
+            ],
+            [
+              "Diffuse Roughness",
+              "0.0"
+            ],
+            [
+              "Subsurface Weight",
+              "0.0"
+            ],
+            [
+              "Subsurface Radius",
+              "(1.0, 0.20000000298023224, 0.10000000149011612)"
+            ],
+            [
+              "Subsurface Scale",
+              "0.004999999888241291"
+            ],
+            [
+              "Subsurface IOR",
+              "1.399999976158142"
+            ],
+            [
+              "Subsurface Anisotropy",
+              "0.0"
+            ],
+            [
+              "Specular IOR Level",
+              "0.25"
+            ],
+            [
+              "Specular Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Anisotropic",
+              "0.0"
+            ],
+            [
+              "Anisotropic Rotation",
+              "0.0"
+            ],
+            [
+              "Tangent",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Transmission Weight",
+              "0.0"
+            ],
+            [
+              "Coat Weight",
+              "0.0"
+            ],
+            [
+              "Coat Roughness",
+              "0.029999999329447746"
+            ],
+            [
+              "Coat IOR",
+              "1.5"
+            ],
+            [
+              "Coat Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Coat Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Sheen Weight",
+              "0.0"
+            ],
+            [
+              "Sheen Roughness",
+              "0.5"
+            ],
+            [
+              "Sheen Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Color",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Strength",
+              "0.0"
+            ],
+            [
+              "Thin Film Thickness",
+              "0.0"
+            ],
+            [
+              "Thin Film IOR",
+              "1.3300000429153442"
+            ]
+          ],
+          null
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor",
+          [
+            [
+              "Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ]
+          ],
+          null
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    },
+    "MI_Stonebrook_WroughtIron": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Stonebrook_WroughtIron_BC"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Stonebrook_WroughtIron_N"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage",
+          [
+            [
+              "Vector",
+              "(0.0, 0.0, 0.0)"
+            ]
+          ],
+          "T_Stonebrook_WroughtIron_ORM"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial",
+          [
+            [
+              "Displacement",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Thickness",
+              "0.0"
+            ]
+          ],
+          null
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap",
+          [
+            [
+              "Strength",
+              "0.3799999952316284"
+            ],
+            [
+              "Color",
+              "(0.5, 0.5, 1.0, 1.0)"
+            ]
+          ],
+          null
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled",
+          [
+            [
+              "Base Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ],
+            [
+              "Metallic",
+              "0.8199999928474426"
+            ],
+            [
+              "Roughness",
+              "0.5799999833106995"
+            ],
+            [
+              "IOR",
+              "1.5"
+            ],
+            [
+              "Alpha",
+              "1.0"
+            ],
+            [
+              "Thin Wall",
+              "False"
+            ],
+            [
+              "Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Weight",
+              "0.0"
+            ],
+            [
+              "Diffuse Roughness",
+              "0.0"
+            ],
+            [
+              "Subsurface Weight",
+              "0.0"
+            ],
+            [
+              "Subsurface Radius",
+              "(1.0, 0.20000000298023224, 0.10000000149011612)"
+            ],
+            [
+              "Subsurface Scale",
+              "0.004999999888241291"
+            ],
+            [
+              "Subsurface IOR",
+              "1.399999976158142"
+            ],
+            [
+              "Subsurface Anisotropy",
+              "0.0"
+            ],
+            [
+              "Specular IOR Level",
+              "0.5"
+            ],
+            [
+              "Specular Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Anisotropic",
+              "0.0"
+            ],
+            [
+              "Anisotropic Rotation",
+              "0.0"
+            ],
+            [
+              "Tangent",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Transmission Weight",
+              "0.0"
+            ],
+            [
+              "Coat Weight",
+              "0.0"
+            ],
+            [
+              "Coat Roughness",
+              "0.029999999329447746"
+            ],
+            [
+              "Coat IOR",
+              "1.5"
+            ],
+            [
+              "Coat Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Coat Normal",
+              "(0.0, 0.0, 0.0)"
+            ],
+            [
+              "Sheen Weight",
+              "0.0"
+            ],
+            [
+              "Sheen Roughness",
+              "0.5"
+            ],
+            [
+              "Sheen Tint",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Color",
+              "(1.0, 1.0, 1.0, 1.0)"
+            ],
+            [
+              "Emission Strength",
+              "0.0"
+            ],
+            [
+              "Thin Film Thickness",
+              "0.0"
+            ],
+            [
+              "Thin Film IOR",
+              "1.3300000429153442"
+            ]
+          ],
+          null
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor",
+          [
+            [
+              "Color",
+              "(0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)"
+            ]
+          ],
+          null
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    }
+  },
+  "shared_packed_maps": {
+    "T_Shared_OakEndgrain2m_BC": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+    "T_Shared_OakEndgrain2m_N_GL": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+    "T_Shared_OakEndgrain2m_ORM": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+    "T_Shared_OakLonggrain2m_BC": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+    "T_Shared_OakLonggrain2m_N_GL": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+    "T_Shared_OakLonggrain2m_ORM": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+    "T_Stonebrook_WroughtIron_BC": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+    "T_Stonebrook_WroughtIron_N": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+    "T_Stonebrook_WroughtIron_ORM": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb"
+  },
+  "no_linked_libraries": true,
+  "no_unpacked_file_images": true,
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "scope": "Source geometry/shared graphs only; no native/export/LOD/runtime/final appearance approval",
+  "compared_geometry_graphs_maps_exact": true
+}

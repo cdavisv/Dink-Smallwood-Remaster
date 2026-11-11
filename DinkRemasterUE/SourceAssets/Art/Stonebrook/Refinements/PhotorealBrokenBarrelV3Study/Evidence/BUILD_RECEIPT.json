@@ -1,0 +1,394 @@
+{
+  "source": "/home/artist/Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend",
+  "source_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
+  "source_after_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
+  "candidate_sha256": "8c5bc796d08d570bcc81bdcf5cd1a7930a2bfdbee73bdb9a2232d6149ecad5af",
+  "reference": "original173/6 barel-06.bmp.png",
+  "changes": [
+    {
+      "source_stave": 2,
+      "physical_gap_m": 0.007,
+      "longitudinal_stagger_m": 0.009,
+      "halves": [
+        "V3_Broken_coopered_stave_02_Split_A",
+        "V3_Broken_coopered_stave_02_Split_B"
+      ]
+    },
+    {
+      "source_stave": 4,
+      "physical_gap_m": 0.007,
+      "longitudinal_stagger_m": 0.009,
+      "halves": [
+        "V3_Broken_coopered_stave_04_Split_A",
+        "V3_Broken_coopered_stave_04_Split_B"
+      ]
+    },
+    {
+      "source_stave": 13,
+      "physical_gap_m": 0.007,
+      "longitudinal_stagger_m": 0.009,
+      "halves": [
+        "V3_Broken_coopered_stave_13_Split_A",
+        "V3_Broken_coopered_stave_13_Split_B"
+      ]
+    },
+    {
+      "source_stave": 16,
+      "physical_gap_m": 0.007,
+      "longitudinal_stagger_m": 0.009,
+      "halves": [
+        "V3_Broken_coopered_stave_16_Split_A",
+        "V3_Broken_coopered_stave_16_Split_B"
+      ]
+    }
+  ],
+  "refined_objects": 36,
+  "triangles": 9928,
+  "geometry": [
+    {
+      "object": "V3_Broken_coopered_stave_00",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_01",
+      "triangles": 236,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_03",
+      "triangles": 300,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_05",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_06",
+      "triangles": 236,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_07",
+      "triangles": 268,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_08",
+      "triangles": 300,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_09",
+      "triangles": 300,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_10",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_11",
+      "triangles": 236,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_12",
+      "triangles": 268,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_14",
+      "triangles": 300,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_15",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_17",
+      "triangles": 268,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Opened_forged_hoop_00",
+      "triangles": 860,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ]
+    },
+    {
+      "object": "V3_Opened_forged_hoop_01",
+      "triangles": 884,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ]
+    },
+    {
+      "object": "V3_Opened_forged_hoop_02",
+      "triangles": 884,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ]
+    },
+    {
+      "object": "V3_Opened_forged_hoop_03",
+      "triangles": 860,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Stonebrook_WroughtIron"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_00",
+      "triangles": 268,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_01",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_02",
+      "triangles": 180,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_03",
+      "triangles": 204,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_04",
+      "triangles": 268,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Scattered_head_board_05",
+      "triangles": 380,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_02_Split_A",
+      "triangles": 168,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_02_Split_B",
+      "triangles": 168,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_04_Split_A",
+      "triangles": 188,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_04_Split_B",
+      "triangles": 188,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_13_Split_A",
+      "triangles": 188,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_13_Split_B",
+      "triangles": 188,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_16_Split_A",
+      "triangles": 148,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Broken_coopered_stave_16_Split_B",
+      "triangles": 148,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Fracture_fibre_00",
+      "triangles": 6,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Fracture_fibre_01",
+      "triangles": 6,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Fracture_fibre_02",
+      "triangles": 6,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    },
+    {
+      "object": "V3_Fracture_fibre_03",
+      "triangles": 6,
+      "nonmanifold_edges": 0,
+      "materials": [
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_OakEndgrain2m"
+      ]
+    }
+  ],
+  "shared_material_graphs_unchanged": true,
+  "packed_image_sha256": {
+    "T_Shared_OakEndgrain2m_BC": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+    "T_Shared_OakEndgrain2m_N_GL": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+    "T_Shared_OakEndgrain2m_ORM": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+    "T_Shared_OakLonggrain2m_BC": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+    "T_Shared_OakLonggrain2m_N_GL": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+    "T_Shared_OakLonggrain2m_ORM": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+    "T_Stonebrook_WroughtIron_BC": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+    "T_Stonebrook_WroughtIron_N": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+    "T_Stonebrook_WroughtIron_ORM": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb"
+  },
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "render_threads": 2,
+  "cycles_device": "CPU",
+  "native_exported": false,
+  "runtime_activated": false,
+  "limitations": [
+    "RefinementLOD0 only; preferred V2 LOD1/2 remain historical hidden comparison, not regenerated V3 LODs",
+    "No native import/TBN/collision/navigation/cook/gamecamera proof",
+    "Original generic shared-tiling UV/missingUCX findings remain; no invented collider or private bake"
+  ]
+}
