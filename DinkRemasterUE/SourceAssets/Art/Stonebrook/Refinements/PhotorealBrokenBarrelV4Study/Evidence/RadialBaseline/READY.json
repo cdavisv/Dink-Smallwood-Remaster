@@ -1,0 +1,36 @@
+{
+  "status": "FROZEN_SOURCE_VARIANT_ROOT_REVIEW_NO_FINAL_PHOTO_APPROVAL",
+  "candidate": "PhotorealBrokenBarrelV4_CurvedSource.blend",
+  "candidate_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
+  "objects": 25,
+  "triangles": 15680,
+  "dimensions_m": [
+    0.9882369339466095,
+    1.2168055772781372,
+    0.21003957279026508
+  ],
+  "intact_dimensions_m": [
+    0.8394665122032166,
+    0.8445988893508911,
+    1.0075000524520874
+  ],
+  "closed_positive_finite_geometry_UV_normals": true,
+  "shared3_graphs_and9_packed_maps_exact": true,
+  "export_native_runtime_activated": false,
+  "remaining": "Strong radial/shared-centre arrangement and simplified smooth fracture faces; V4LODs/export/native validation absent",
+  "files_sha256": {
+    "PhotorealBrokenBarrelV4_CurvedSource.blend": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
+    "build_v4.py": "5f92cca1dddfe1b056cb8c481c2aaf94c9b5f8079a7c073ab1dfc9a7162c6d4e",
+    "final_views.py": "f19dc916f260b93f3d4811624ea8a89f48226cd3d47ef6fa3cdd7abd013152b0",
+    "BUILD_RECEIPT.json": "c9bf36a135df766d67dde2ea430176549037a26d85d192944936e1aafb486250",
+    "FINAL_REOPEN_CHECK.json": "9ede70e083381fced6f01f085560f8132b92c9dde2301d5da699002ee3d0c3d3",
+    "README.md": "ce025b0d82b293bf19c49f1f8a8316ad221b730bd84cd2ae987574db3ccd3a19",
+    "HANDOFF.md": "1d05ad9c32519fdb2344f992212b6a25d00f256a674e3188f7d0fbac3c525406",
+    "REFERENCE_PROVENANCE.json": "52a1354e742f8de3ba607042a86f0ee0cba803cb302bd345afc2ddc5e02585d2",
+    "Renders/01_V3_matched_baseline.png": "270455f7b629a8cd4c934caf1e538612c05f4f167a97e98597ede1b8ca38c2df",
+    "Renders/02_V4_matched.png": "740c0f144444f526aaa47b71ef6d25c9224d57bab837a69a6775e0627b052e74",
+    "Renders/03_V4_low_detail.png": "a7b6ff6c3477c2b7b0b528ee578c462034f439a9281fbf34d15440e6cc422173",
+    "Renders/04_V4_overview.png": "0ebdcece554f15ea17da16eeb4fe774eaa9cc8e519d5bd710ecaa555472cfda1",
+    "Renders/05_V4_intact_broken_real_scale.png": "fcffdb467846b6b4afbc0d624affe415b4e1d0f75ac0de13a8ef563cbe5343f1"
+  }
+}

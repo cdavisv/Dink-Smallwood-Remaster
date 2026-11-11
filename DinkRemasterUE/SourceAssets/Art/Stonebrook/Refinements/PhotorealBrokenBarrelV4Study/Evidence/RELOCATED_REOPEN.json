@@ -1,0 +1,313 @@
+{
+  "source_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "relocated_reopened": true,
+  "geometry_fingerprints_exact": true,
+  "objects": 25,
+  "triangles": 15680,
+  "graphs": {
+    "MI_Shared_OakLonggrain2m": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial"
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap"
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled"
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor"
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    },
+    "MI_Shared_OakEndgrain2m": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial"
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap"
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled"
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor"
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    },
+    "MI_Stonebrook_WroughtIron": {
+      "nodes": [
+        [
+          "Image Texture",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.001",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Image Texture.002",
+          "ShaderNodeTexImage"
+        ],
+        [
+          "Material Output",
+          "ShaderNodeOutputMaterial"
+        ],
+        [
+          "Normal Map",
+          "ShaderNodeNormalMap"
+        ],
+        [
+          "Principled BSDF",
+          "ShaderNodeBsdfPrincipled"
+        ],
+        [
+          "Separate Color",
+          "ShaderNodeSeparateColor"
+        ]
+      ],
+      "links": [
+        [
+          "Image Texture",
+          "Color",
+          "Principled BSDF",
+          "Base Color"
+        ],
+        [
+          "Image Texture.001",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Image Texture.002",
+          "Color",
+          "Separate Color",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ],
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Separate Color",
+          "Blue",
+          "Principled BSDF",
+          "Metallic"
+        ],
+        [
+          "Separate Color",
+          "Green",
+          "Principled BSDF",
+          "Roughness"
+        ]
+      ]
+    }
+  },
+  "packed_images": {
+    "T_Shared_OakLonggrain2m_BC": {
+      "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+      "colorspace": "sRGB",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Shared_OakLonggrain2m_N_GL": {
+      "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Shared_OakLonggrain2m_ORM": {
+      "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Shared_OakEndgrain2m_BC": {
+      "sha256": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+      "colorspace": "sRGB",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Shared_OakEndgrain2m_N_GL": {
+      "sha256": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Shared_OakEndgrain2m_ORM": {
+      "sha256": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Stonebrook_WroughtIron_BC": {
+      "sha256": "33d15f438583097f889b40e2c6d3e5d2e006c5efa5aba342f3ae3de31695f075",
+      "colorspace": "sRGB",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Stonebrook_WroughtIron_N": {
+      "sha256": "588cb87c78c129e1e4e466948e49321c9abc47ad56f8b976f96425d47fffcbe9",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "T_Stonebrook_WroughtIron_ORM": {
+      "sha256": "9e6e4fb747b444d63ef6384c1f8efe824d055664963a6ecaf28a3cc0735709bb",
+      "colorspace": "Non-Color",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "rendered": false,
+  "saved_source": false
+}

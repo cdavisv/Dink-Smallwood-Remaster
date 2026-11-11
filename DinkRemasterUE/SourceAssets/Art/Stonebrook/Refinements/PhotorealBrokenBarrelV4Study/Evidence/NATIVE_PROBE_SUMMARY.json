@@ -1,0 +1,31 @@
+{
+  "raw_and_built_source_normals_pass": true,
+  "raw_normal_max_degrees": 4.212236010450368e-06,
+  "built_normal_max_degrees": 0.001740052006598173,
+  "raw_position_error_cm": 1.9073486328125e-06,
+  "built_position_error_cm": 1.9073486328125e-06,
+  "raw_UV_error": 5.960464477539063e-08,
+  "built_UV_error": 5.960464477539063e-08,
+  "triangles": 15680,
+  "raw_instance_count": 47040,
+  "built_vertex_count": 16121,
+  "derived_basis_max_error_degrees": 0.002245269446916609,
+  "derived_Mikk_tangents_independently_certified": false,
+  "raw_tangent_zero_count": 47040,
+  "built_color0_present": false,
+  "color_scope": "Source has no color; raw default white and built present-white OR inspector absent-white accepted, never added",
+  "run": "a8168dc8331c49139b9252a6f6b36de2",
+  "owner_handle": 9194,
+  "unsaved_probe_passed": true,
+  "saved": false,
+  "activated": false,
+  "native_appearance_accepted": false,
+  "independent_Mikk_T_acceptance": false,
+  "normal_gate_degrees": 0.05,
+  "original_receipts_sha256": {
+    "TRIAL_RESULT.json": "3d7029339d3ca616afb171e9c5181551e2f265c8ac6cab4248bb53c9e810ca26",
+    "HOST_TERMINAL.json": "61fd04aabc0504310e84aaeb829e4c000d5a8f3fff927e1dcb0c8501c776abb3",
+    "HOST_CLOSURE.json": "fa326ed9343bb471ab38832e764e8c54989f06d33f830889147bb20c5b74aee6"
+  },
+  "original_comparison_sha256": "cea615163a9af93257e3a52d2a84cc27956a5973ede8d74d32baaf21ca602258"
+}
