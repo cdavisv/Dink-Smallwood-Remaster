@@ -1,3 +1,9 @@
+## First complete237 native regression retained
+
+Exact12705a5 focused85 target3166 passed/27.373s and full25 62737 passed/108.612s (19clean+6warning successes);11192 fitted cells=10472 visible+720 correctly overlaid, all85 bodies/gaps/four-side queries/census pass. FullDink43444 closed1/1028.001s:180clean+29warning successes,28fail,noneunrun. Full packet preserved in `/home/artist/Work/DinkQA/BarrelOrderedOverlayCompiledStage/FULL_SUITE_FAILED_RESULT.json` with14847inputs/14Editoroutputs unchanged. Causes under investigation include immutable surfacecapture output collision, staleV12d chimney fixture pin against acceptedV4, synthetic lifecycle missing PlacementType, original-save runtime-rebirth vslegacyprobe expectation, genuineCh4 farming death then later missing-slot cascades, prop419, legacyEditorworld collision/count assumptions, stale vocabulary status and externalcount. No fullsuite/GPU/merge acceptance claim.
+
+Narrow successor updates exact opaquechimney fixture to acceptedV4 (still opaque/unmapped/cardinality1, missingmapping errors includeactualmesh/materials) and binds manual lifecycleOrigin.PlacementType fromactualsourcePlacement before spawning. Strictsourcebinding/shutdown asserts retained; no production edits. Only two prior fixed surfacecapture files will be archived withverifiedhash/size/inode/path receipt afterhostclosure before next test; no wildcardSaved clearing or probeassertchange. Independent review/build/targeted proof pending.
+
 ## Oracle compiler overload correction
 
 Own70de342 Editor70326 closed6/4s with one error: int32 placementX/Y were unnecessarily passed to ambiguous float/double RoundToInt32 overloads. Correction passes those exact existing integer coordinates directly to DisplayedBounds; no source policy/order/expected cells or assertions change. Failed log and prepared source are preserved at BarrelOrderedOverlayStage/BUILD_FAILED_70326.log. No native run for70; successor build/native pending.
