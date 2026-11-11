@@ -1,3 +1,9 @@
+## Fenced farming probe retains ranged safety until enemies die
+
+Prop535c87b native78944 passes1clean/12.968s with all419 walking/warp/reset assertions. Host/cache closed and Unreal/build lease transferred to root for externalartist isolated bridge build/unsaved trial; this lane is CPU-only until explicit release.
+
+Actual237-suite Ch4 stops at second SCR480 farm: hero life0/26 after casts; later slots cascade missing. SCR480 has no fitted origin. AddFeud's inherited10s forced loot uses KiteFight.WalkDistances with threat radius0 and can near-drop teleport while fenced enemies remain. Probe-only successor defers all fenced loot goto/forcedgoto/StandBy while Alive>0, retains existing natural ranged fight, then uses original Alive0 collection. One bounded info record per first drop captures actual hostile IDs/HP/target and hero pose for diagnosis. No stats, AI, facts, timeouts, damage or colliders change. NativeCh4 checkpoint and fresh chapter chain remain required; source review pending.
+
 ## Prop419 fixture retains normal marked-screen entry
 
 Bounded8883dfa target78215 closed0/11.695s, all3clean: opaqueV4 camera, strict lifecycle source binding and fresh surface capture. Source/user production behavior unchanged. Prop419 fullsuite failure is source-confirmed:419 is now marked by three fitted barrels, but its fixture disabled bRunScreenScripts and thereby intentionally prevented Story.BeginOriginalHardnessScreen; actual log says marked prop requires admitted projection and correctly rolls back. Successor retains normal Story entry/dialogue skip, requires read-only currentprojection/not-loading readiness within5s on both419visits, and keeps all actual walk/warp/prop-reset assertions. No manual admission, source stats/facts or collider edits. Native target pending.

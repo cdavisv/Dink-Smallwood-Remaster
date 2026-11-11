@@ -3673,7 +3673,7 @@ namespace DinkProbeTest
 		void AddFeud(const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen, int32 GoldTarget, const TArray<FString>& LevelUps, int32 ExpTarget = 0)
 		{
 			Add(Name,
-				[Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
+				[this, Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
 					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
 					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
@@ -3692,15 +3692,34 @@ namespace DinkProbeTest
 					if (const int32 Drop = Drops(C))
 					{
 						C.P->bSawDrop = true;
-						if (C.P->LootSinceMs < 0.0) { C.P->LootSinceMs = C.S->GetNowMs(); }
-						O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0; // 10 s of waiting for the survivor to wander off is enough
-						const FDinkSprite* Loot = C.D->FindSprite(Drop);
-						O.bGoto = Loot != nullptr;
-						if (Loot)
-						{
-							O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
-							if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; } // the last steps
-						}
+                        if (C.P->LootSinceMs < 0.0)
+                        {
+                            C.P->LootSinceMs = C.S->GetNowMs();
+                            if (bPen && Alive>0)
+                            {
+                                FString HostileFacts;
+                                for(const auto& Pair:C.D->GetSprites())
+                                {
+                                    const auto& Enemy=Pair.Value;
+                                    if(!Enemy.bActive||Enemy.Screen!=Screen||!(Enemy.Script.ToString().StartsWith(TEXT("en-"))||Enemy.GetProp(TEXT("brain"))==9))continue;
+                                    HostileFacts+=FString::Printf(TEXT(" [id=%d script=%s xy=%.9g,%.9g hp=%d brain=%d nohit=%d target=%d]"),Pair.Key,*Enemy.Script.ToString(),double(Enemy.X),double(Enemy.Y),Enemy.GetProp(TEXT("hitpoints")),Enemy.GetProp(TEXT("brain")),Enemy.GetProp(TEXT("nohit")),Enemy.GetProp(TEXT("target")));
+                                }
+                                Test->AddInfo(FString::Printf(TEXT("FENCED_LOOT_DEFER screen=%d alive=%d life=%d hero=%.9g,%.9g pawn=%s drop=%d hostile%s"),Screen,Alive,C.Fact(TEXT("life")),double(C.D->GetDink().X),double(C.D->GetDink().Y),*C.Pawn->GetActorLocation().ToString(),Drop,*HostileFacts));
+                            }
+                        }
+                        // A fenced survivor cannot wander outside the pen. Finish
+                        // the existing real ranged fight before entering for loot.
+                        if (!bPen || Alive==0)
+                        {
+                            O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0;
+                            const FDinkSprite* Loot = C.D->FindSprite(Drop);
+                            O.bGoto = Loot != nullptr;
+                            if (Loot)
+                            {
+                                O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
+                                if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; }
+                            }
+                        }
 					}
 					if (Alive == 0)
 					{
