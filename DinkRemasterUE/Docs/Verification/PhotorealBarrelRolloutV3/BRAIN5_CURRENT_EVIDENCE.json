@@ -52,7 +52,19 @@
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa/HOST_COOKER_SHADER_PROGRESS.json": "af7cb3e2ddade84df2dfd34a170444a2a838e9bb7c07486203945b3827564d39",
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa/GENERATED_DELTA.json": "6f945a913f5e3b99a9f73e696176387f23e935e30891face8221f3efb53c8cdc",
     "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa/ProjectSaved/Logs/package.log": "9d93fa2a9a15ae8ef0847749ba2aecf170cfbd3c85f1543bf238341d09c748fa",
-    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa/ROOT_POST_CLOSURE.json": "a6a08c6d783a318a23a01a5b1e496b1bd841157f6276d518947fc0a2a2328fcc"
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa/ROOT_POST_CLOSURE.json": "a6a08c6d783a318a23a01a5b1e496b1bd841157f6276d518947fc0a2a2328fcc",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_TERMINAL.json": "d6bcbfbd519b1a3bc14a4c13050a4e2a838644b08cca9e8b9e0c91eced1dc689",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/NATIVE_TERMINAL.json": "bfc392838fab2550470057b5667aad99cc3e1bb852331cfcdb592e8fe90e8c50",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/ROOT_POST_CLOSURE.json": "a6a08c6d783a318a23a01a5b1e496b1bd841157f6276d518947fc0a2a2328fcc",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_BUILD_HISTORY_BEFORE.json": "f0e00442124685018fc87940a7a96adc5645992044988173a9e5a3907fa4b607",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_BUILD_HISTORY_AFTER.json": "f0e00442124685018fc87940a7a96adc5645992044988173a9e5a3907fa4b607",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_SHADERPRINT_BEFORE.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_SHADERPRINT_AFTER.json": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_ENGINE_STAGE_BEFORE.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/HOST_ENGINE_STAGE_AFTER.json": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9/ProjectSaved/Logs/package.log": "f2e818079b6e7b1509a114280f31ae1eb379936c4b9fe044967cc318e1ea2f11",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/BUILD_PROVENANCE.json": "1b44d72cab45920a117cbf07d3de4614b075ff1d2016c1cd169cd6a024458be9",
+    "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate5/SUCCESSOR.json": "37e2c967528f557736a09408cfc9ad939339518af166e9d63c68830e50d10bfa"
   },
   "documentation_parent": "c59537b91a08cf5c74273d21e76e729b5e726241",
   "fresh_ordinary_generation": {
@@ -117,6 +129,32 @@
     "scope": "New ordinary-generated outputs mounted read-only; old generated namespaces hidden. No new RHI/full247/cook acceptance."
   },
   "current_cook_status": {
+    "status": "C4_FAILED_BEFORE_COOKER_C5_PENDING",
+    "latest_actual_failed_candidate": 4,
+    "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate4/Runs/c904eb0e124748878afa95a03f9979d9",
+    "owning_tool": 70087,
+    "wrapper_exit": 1,
+    "uat_native_exit": 6,
+    "host_elapsed_seconds": 17.380012209992856,
+    "reason": "Private XML-cache fix worked; changed command line caused UBT makefile rebuild and protected read-only DinkRemaster.link.rsp write",
+    "immutable_changes": [],
+    "observed_native": {},
+    "complete_before_after_histories_equal": true,
+    "authoritative_post_closure_native_unknown_empty": true,
+    "current_successful_cook_claimed": false,
+    "packaged_runtime_proof": false,
+    "pending_successor": {
+      "candidate": 5,
+      "extra_cli": "-skipbuild",
+      "source": "b4b9e1d343198ecacfbe562f1b7fe88e1f375698",
+      "production_base": "bea91fd3566ad793149ba944f5e65dac4993344e",
+      "own_successful_editor_game_build_result_sha256": "bf654b7889198333c1f08b622679d0f8c90fda54fa616e9ddbb7d20e03846af0",
+      "binary_equality_vs_bea_claimed": false,
+      "primary_source": "Engine/Source/Programs/AutomationTool/AutomationUtils/ProjectParams.cs:735\u2013740",
+      "scope": "Authorized pending plan only; no successful UAT/cook/package/runtime claim"
+    }
+  },
+  "cook_C3_status": {
     "status": "FAILED_BEFORE_COOKER",
     "candidate": 3,
     "run": "/home/davisc/Work/DinkQA/Brain5CurrentCookPreparation/CookCandidate3/Runs/fbbd9939b4704ebb8715275184fa2eaa",
