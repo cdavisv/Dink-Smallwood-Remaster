@@ -162,6 +162,7 @@ protected:
 
 private:
     friend class FDinkHardnessFittedLifecycle; // native scratch-policy fixture; no public bypass
+    bool LoadCollisionFitPolicy(const FString& File,FString& Text,FString& Error);
     bool PrepareCollisionFitImpl(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Sprite,
         FDinkFamilyCollisionFitCandidate& Out,FString& Error,bool Release) const;
 	void ScreenChanged(ADinkScreenVolume* Screen);
@@ -172,7 +173,7 @@ private:
 
 	TArray<FDinkFamilyBinding> Bindings;
     TArray<FDinkFamilyCollisionFitRule> CollisionFitRules;
-    bool bCollisionFitPolicyError=false;
+    bool bCollisionFitPolicyError=true; // unavailable until the mandatory file has been read and parsed
 	FDinkFamilyPrecedence Precedence;
 	UPROPERTY(Transient)
 	TMap<FString, TObjectPtr<UStaticMesh>> Meshes;

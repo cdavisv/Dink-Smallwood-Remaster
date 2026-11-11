@@ -6,6 +6,7 @@
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "HAL/FileManager.h"
+#include "HAL/IConsoleManager.h"
 #include "Engine/GameInstance.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Engine/Engine.h"
@@ -96,6 +97,39 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     Actor->Card->SetStaticMesh(Cube);Actor->Card->SetCollisionEnabled(ECollisionEnabled::NoCollision);Actor->Card->SetCanEverAffectNavigation(false);Actor->Card->SetGenerateOverlapEvents(false);Actor->Card->SetHiddenInGame(true);
     auto* FamilyMesh=NewObject<UStaticMeshComponent>(Actor);Actor->AddInstanceComponent(FamilyMesh);FamilyMesh->SetupAttachment(Actor->GetRootComponent());FamilyMesh->SetMobility(EComponentMobility::Movable);FamilyMesh->SetStaticMesh(Barrel);FamilyMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);FamilyMesh->SetCanEverAffectNavigation(false);FamilyMesh->SetGenerateOverlapEvents(false);FamilyMesh->ComponentTags.Add(UDinkArtFamilySubsystem::FamilyTag);FamilyMesh->SetRelativeLocation(FVector(89,0,0));FamilyMesh->RegisterComponent();
     auto* Families=W->GetSubsystem<UDinkArtFamilySubsystem>();if(!TestNotNull(TEXT("family subsystem"),Families))return false;
+    // Exercise the same native loader used before visual CVar gates, using
+    // only this fixture's private temporary files (never rename shipped Data).
+    const FString PolicyDir=FPaths::ProjectSavedDir()/TEXT("Automation/FamilyPolicyLoad")/FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    IFileManager::Get().MakeDirectory(*PolicyDir,true);
+    ON_SCOPE_EXIT {IFileManager::Get().DeleteDirectory(*PolicyDir,false,true);};
+    FString PolicyText,PolicyError;
+    Families->CollisionFitRules.AddDefaulted(); // failed reload must clear stale rows
+    if(!TestFalse(TEXT("missing mandatory policy file refuses native load"),Families->LoadCollisionFitPolicy(PolicyDir/TEXT("missing.json"),PolicyText,PolicyError))||
+       !TestTrue(TEXT("missing policy records unavailable authority"),Families->HasCollisionFitPolicyError())||
+       !TestTrue(TEXT("failed load clears previous fit requests"),Families->GetCollisionFitRules().IsEmpty()))return false;
+    FDinkSprite PolicySprite;PolicySprite.Screen=209;PolicySprite.Origin=Id;
+    FDinkHardnessFitSet PolicyFits;std::vector<DinkHardness::Stamp> PolicyRuns;bool PolicyReplaced=false;
+    if(!TestFalse(TEXT("runtime prepare refuses missing policy instead of taking nonfit fallback"),G->PrepareHardnessFit(PolicySprite,101,true,PolicyFits,PolicyRuns,PolicyReplaced,PolicyError))||
+       !TestTrue(TEXT("policy refusal publishes no fitted bodies"),PolicyFits.Bodies.empty()))return false;
+    const FString LegacyFile=PolicyDir/TEXT("present_legacy.json");
+    if(!TestTrue(TEXT("write owned valid no-policy legacy control"),FFileHelper::SaveStringToFile(TEXT(R"({"schema":"dink-art-families/1","families":[]})"),*LegacyFile)))return false;
+    if(!TestTrue(TEXT("present valid file with absent optional policy remains legacy"),Families->LoadCollisionFitPolicy(LegacyFile,PolicyText,PolicyError))||
+       !TestTrue(TEXT("successful legacy reload clears prior failure diagnostic"),PolicyError.IsEmpty())||
+       !TestFalse(TEXT("loaded legacy policy is not unavailable"),Families->HasCollisionFitPolicyError())||
+       !TestTrue(TEXT("loaded legacy policy activates no fits"),Families->GetCollisionFitRules().IsEmpty())||
+       !TestTrue(TEXT("loaded legacy policy permits ordinary nonfit prepare"),G->PrepareHardnessFit(PolicySprite,101,true,PolicyFits,PolicyRuns,PolicyReplaced,PolicyError))||
+       !TestFalse(TEXT("legacy control did not replace source geometry"),PolicyReplaced))return false;
+    {
+        IConsoleVariable* Visual=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.FamilyArt"));
+        if(!TestNotNull(TEXT("family visual toggle exists"),Visual))return false;
+        const int32 Previous=Visual->GetInt();
+        ON_SCOPE_EXIT {Visual->SetWithCurrentPriority(Previous);};
+        Visual->SetWithCurrentPriority(0);
+        if(!TestEqual(TEXT("visual toggle is actually off for loader control"),Visual->GetInt(),0))return false;
+        Families->OnWorldBeginPlay(*W);
+        if(!TestFalse(TEXT("disabled optional graphics still loads collision policy"),Families->HasCollisionFitPolicyError())||
+           !TestTrue(TEXT("disabled graphics cannot erase requested fits"),Families->IsCollisionFitRequested(Id)))return false;
+    }
     FDinkFamilyFittedGeometry Geometry;if(!TestTrue(TEXT("actual cooked complex geometry"),DinkFamilyCollisionFit::ReadCookedGeometry(*Barrel,Geometry,Error)))return false;
     Families->bReady=true;Families->bCollisionFitPolicyError=false;Families->Precedence={};Families->Bindings.Reset();Families->CollisionFitRules.Reset();
     FDinkFamilyBinding Binding;Binding.Family=TEXT("barrel");Binding.ClassId=TEXT("barrel");Binding.Mesh=Barrel->GetPathName();Binding.Fit=EDinkFamilyFit::None;Binding.bScripted=true;Families->Bindings.Add(Binding);

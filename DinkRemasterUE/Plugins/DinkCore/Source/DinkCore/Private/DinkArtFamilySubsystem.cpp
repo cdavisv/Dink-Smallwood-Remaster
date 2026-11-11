@@ -320,18 +320,30 @@ bool UDinkArtFamilySubsystem::DoesSupportWorldType(EWorldType::Type WorldType) c
 	return WorldType == EWorldType::Game || WorldType == EWorldType::PIE;
 }
 
+bool UDinkArtFamilySubsystem::LoadCollisionFitPolicy(const FString& File,FString& Text,FString& Error)
+{
+    // An unreadable file is not a successfully loaded legacy policy. Clear any
+    // previous rows before attempting a read so failure cannot retain old fits.
+    bCollisionFitPolicyError=true;
+    CollisionFitRules.Reset();Text.Reset();Error.Reset();
+    if(!FFileHelper::LoadFileToString(Text,*File))
+    {Error=TEXT("mandatory family policy unavailable: ")+File;return false;}
+    bCollisionFitPolicyError=!DinkFamilyCollisionFit::ParsePolicy(Text,CollisionFitRules,Error);
+    return !bCollisionFitPolicyError;
+}
+
 void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 {
-	Super::OnWorldBeginPlay(World);
-	if (!CVarDinkFamilyArt.GetValueOnGameThread() || !ArtEnabled()) return;
-	FString Text;
-	if (!FFileHelper::LoadFileToString(Text, *DinkArtFamily::DefaultFamiliesPath())) return;
-	TArray<FString> Errors;
-	DinkArtFamily::ParseFamilies(Text, Bindings, Errors);
-    FString CollisionFitError;
-    bCollisionFitPolicyError=!DinkFamilyCollisionFit::ParsePolicy(Text,CollisionFitRules,CollisionFitError);
-    if(bCollisionFitPolicyError)
+    Super::OnWorldBeginPlay(World);
+    FString Text,CollisionFitError;
+    // Collision authority is independent of whether optional family graphics
+    // are enabled. A marked world must never silently substitute old hardboxes.
+    if(!LoadCollisionFitPolicy(DinkArtFamily::DefaultFamiliesPath(),Text,CollisionFitError))
         UE_LOG(LogDink,Warning,TEXT("Family collision fit policy refused: %s"),*CollisionFitError);
+    if (!CVarDinkFamilyArt.GetValueOnGameThread() || !ArtEnabled()) return;
+    if(Text.IsEmpty())return;
+    TArray<FString> Errors;
+    DinkArtFamily::ParseFamilies(Text, Bindings, Errors);
 	for (const FString& Error : Errors) UE_LOG(LogDink, Warning, TEXT("Family art: %s"), *Error);
 	if (Bindings.IsEmpty()) return;
 	// No greybox screens (a test or an unrelated map): nothing to dress.
