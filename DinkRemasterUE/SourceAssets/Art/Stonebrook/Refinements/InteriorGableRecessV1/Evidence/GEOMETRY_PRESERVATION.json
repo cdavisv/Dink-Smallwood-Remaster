@@ -1,0 +1,264 @@
+[
+  {
+    "candidate": "recess_20mm",
+    "all_mesh_objects": 328,
+    "UCX_objects_exact": 312,
+    "only_four_gables_changed": true,
+    "topology_TRS_UVs_materials_all_exact": true,
+    "all_gable_YZ_exact": true,
+    "individual_gable_world_bounds_exact": true,
+    "changed": [
+      {
+        "object": "SM_IndoorRoof_Gable_EN_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.019999980926513672,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            0.0,
+            0.0,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            0.0,
+            0.0,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_ES_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.019999980926513672,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            0.0,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            0.0,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            0.0,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            0.0,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WN_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.019999980926513672,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            -7.517499923706055,
+            0.0,
+            3.5
+          ],
+          [
+            0.0,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            -7.517499923706055,
+            0.0,
+            3.5
+          ],
+          [
+            0.0,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WS_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.019999980926513672,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            -7.517499923706055,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            0.0,
+            0.0,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            -7.517499923706055,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            0.0,
+            0.0,
+            6.980000019073486
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "candidate": "proud_8mm",
+    "all_mesh_objects": 328,
+    "UCX_objects_exact": 312,
+    "only_four_gables_changed": true,
+    "topology_TRS_UVs_materials_all_exact": true,
+    "all_gable_YZ_exact": true,
+    "individual_gable_world_bounds_exact": true,
+    "changed": [
+      {
+        "object": "SM_IndoorRoof_Gable_EN_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.007999897003173828,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            0.0,
+            0.0,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            0.0,
+            0.0,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_ES_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.007999897003173828,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            0.0,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            0.0,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            0.0,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            7.517499923706055,
+            0.0,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WN_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.007999897003173828,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            -7.517499923706055,
+            0.0,
+            3.5
+          ],
+          [
+            0.0,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            -7.517499923706055,
+            0.0,
+            3.5
+          ],
+          [
+            0.0,
+            6.662499904632568,
+            6.980000019073486
+          ]
+        ]
+      },
+      {
+        "object": "SM_IndoorRoof_Gable_WS_01",
+        "moved_vertices": 93,
+        "maximum_displacement_m": 0.007999897003173828,
+        "moved_min_world_z_m": 3.5,
+        "source_bounds": [
+          [
+            -7.517499923706055,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            0.0,
+            0.0,
+            6.980000019073486
+          ]
+        ],
+        "candidate_bounds": [
+          [
+            -7.517499923706055,
+            -6.662499904632568,
+            3.5
+          ],
+          [
+            0.0,
+            0.0,
+            6.980000019073486
+          ]
+        ]
+      }
+    ]
+  }
+]
