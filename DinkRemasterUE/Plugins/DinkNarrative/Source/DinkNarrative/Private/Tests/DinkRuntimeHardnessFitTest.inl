@@ -1,6 +1,7 @@
 // Included by the production adapter only in automation builds so this fixture
 // can inspect its private published epoch without exposing an admission bypass.
 #include "Misc/AutomationTest.h"
+#include "Misc/App.h"
 #include "Misc/ScopeExit.h"
 #include "Misc/Guid.h"
 #include "Misc/FileHelper.h"
@@ -189,6 +190,16 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     {auto& P=BrokenPictureState.DisplayedPicture;P.Width=F->Width;P.Height=F->Height;P.OriginX=F->OriginX;P.OriginY=F->OriginY;P.Sha1=F->PictureDescriptorSha1;}
     FDinkFamilyCollisionFitCandidate PreparedPicture;
     const bool PicturePrepared=Families->PrepareCollisionFitReleaseCandidate(Id,BrokenPictureState,PreparedPicture,Error);
+    if(PicturePrepared)
+    {
+        // Characterize real fixture assets AFTER the unchanged prepare; surface availability is not an admission condition.
+        for(UTexture* T:{PreparedPicture.SourcePictureTexture->Get(),PreparedPicture.ReleaseTexture->Get()})
+        {
+            const auto* Texture2D=Cast<UTexture2D>(T);const FIntPoint Imported=Texture2D?Texture2D->GetImportedSize():FIntPoint::ZeroValue;
+            AddInfo(FString::Printf(TEXT("release picture asset=%s class=%s imported=%d,%d platformSurface=%.17g,%.17g canEverRender=%d"),
+                *GetPathNameSafe(T),T?*T->GetClass()->GetPathName():TEXT("None"),Imported.X,Imported.Y,T?double(T->GetSurfaceWidth()):0,T?double(T->GetSurfaceHeight()):0,FApp::CanEverRender()));
+        }
+    }
     if(!PicturePrepared)
     {
         // Failure-only observation AFTER the real unchanged prepare path. Never finish async compilation here.
@@ -207,6 +218,8 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
             R->SetStringField(TEXT("expected_material"),ExpectedMI);R->SetStringField(TEXT("expected_texture"),ExpectedTex);auto* MI=LoadObject<UMaterialInterface>(nullptr,*ExpectedMI);UTexture* Tex=nullptr;
             R->SetStringField(TEXT("actual_material"),GetPathNameSafe(MI));R->SetStringField(TEXT("material_class"),MI?MI->GetClass()->GetPathName():FString());
             R->SetBoolField(TEXT("tex_parameter_found"),MI&&MI->GetTextureParameterValue(FMaterialParameterInfo(TEXT("Tex")),Tex));R->SetStringField(TEXT("actual_texture"),GetPathNameSafe(Tex));R->SetStringField(TEXT("texture_class"),Tex?Tex->GetClass()->GetPathName():FString());
+            if(const auto* Texture2D=Cast<UTexture2D>(Tex))
+            {const FIntPoint Imported=Texture2D->GetImportedSize();R->SetNumberField(TEXT("imported_width"),Imported.X);R->SetNumberField(TEXT("imported_height"),Imported.Y);}
             if(Tex)
             {
                 #if WITH_EDITOR

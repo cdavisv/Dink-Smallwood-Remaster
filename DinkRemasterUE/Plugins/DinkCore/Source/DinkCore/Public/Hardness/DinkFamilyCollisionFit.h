@@ -11,6 +11,7 @@ class UStaticMeshComponent;
 class UBodySetup;
 class UMaterialInterface;
 class UTexture;
+class UTexture2D;
 class UWorld;
 namespace DinkFamilyCollisionFit
 {
@@ -130,6 +131,9 @@ namespace DinkFamilyCollisionFit
 
 namespace DinkFamilyCollisionFit
 {
+    /** Authoring dimensions, available without a rendered/compiled platform resource in Editor and cooked Game. */
+    DINKCORE_API bool MatchesLegacyPictureImportedSize(const FDinkLegacyPictureDescriptor& Picture,
+        const UTexture2D& Texture,FIntPoint* Observed=nullptr);
     DINKCORE_API bool ValidateReleasedPictureAssets(const FDinkFamilyCollisionFitCandidate& Candidate,FString& Error);
     DINKCORE_API bool ValidatePictureDescriptor(const FDinkLegacyPictureDescriptor& Picture);
     DINKCORE_API bool ProjectLegacyCard(const FDinkLegacyPictureDescriptor& Source,
