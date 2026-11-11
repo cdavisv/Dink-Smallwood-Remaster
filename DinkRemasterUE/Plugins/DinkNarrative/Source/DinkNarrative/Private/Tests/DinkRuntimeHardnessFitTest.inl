@@ -407,7 +407,7 @@ bool FDinkHardnessFittedLifecycle::RunTest(const FString& Parameters)
     Actor->bHasPublishedLegacyPicture=false;
     TestFalse(TEXT("cleared flag cannot bypass retained publication witness"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
     Actor->bHasPublishedLegacyPicture=true;
-    auto* RetainedMesh=Actor->Card->GetStaticMesh();Actor->Card->SetStaticMesh(nullptr);
+    UStaticMesh* RetainedMesh=Actor->Card->GetStaticMesh();Actor->Card->SetStaticMesh(nullptr);
     TestFalse(TEXT("intact restore refuses swapped published card mesh"),Families->PrepareCollisionFit(Id,IntactState,RestoreCandidate,Error));
     Actor->Card->SetStaticMesh(RetainedMesh);
     const auto SourceSha=Actor->PublishedSourcePictureSha1;Actor->PublishedSourcePictureSha1=TEXT("tampered");
