@@ -31,9 +31,6 @@
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
-#include "Dom/JsonObject.h"
-#include "Serialization/JsonReader.h"
-#include "Serialization/JsonSerializer.h"
 #include "UObject/StrongObjectPtr.h"
 #include "Components/SkyAtmosphereComponent.h"
 #include "FileHelpers.h"
@@ -96,14 +93,11 @@ namespace
 	{
 		const FString Families = DinkArtFamily::DefaultFamiliesPath();
 		FString Text;
-		TSharedPtr<FJsonObject> Root;
-		const TSharedPtr<FJsonObject>* Policy = nullptr;
-		FString Schema;
-		if (!FFileHelper::LoadFileToString(Text, *Families) ||
-			!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root ||
-			!Root->TryGetObjectField(TEXT("collision_fit"), Policy) || !Policy || !Policy->IsValid() ||
-			!(*Policy)->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-family-collision-fit/2"))
-			return true;
+		if (!FFileHelper::LoadFileToString(Text, *Families))
+		{
+			Error = TEXT("cannot read families manifest: ") + Families;
+			return false;
+		}
 
 		TArray<FDinkFamilyCollisionFitRule> Rules;
 		if (!DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error)) return false;
@@ -111,17 +105,26 @@ namespace
 		TArray<FString> BindingErrors;
 		if (!DinkArtFamily::ParseFamilies(Text, Bindings, BindingErrors) || !BindingErrors.IsEmpty())
 		{
-			Error = TEXT("invalid fitted family bindings: ") + FString::Join(BindingErrors, TEXT("; "));
+			Error = TEXT("invalid family bindings: ") + FString::Join(BindingErrors, TEXT("; "));
 			return false;
 		}
+		// ParsePolicy returns no rows for an absent optional policy. Only the
+		// original v1 pair has rows without a pinned source hash.
+		if (Rules.IsEmpty() || Rules[0].SourceHash.IsEmpty()) return true;
+
 		const auto Precedence = FDinkFamilyPrecedence::LoadDirectory(FPaths::GetPath(Families), FPaths::GetCleanFilename(Families));
 		TMap<FString, const FDinkBundlePlacement*> Placements;
 		for (const auto& Placement : Bundle.Placements) Placements.Add(Placement.Id, &Placement);
 
 		for (const auto& Rule : Rules)
 		{
-			if (!Selected.Contains(Rule.Origin.Screen)) continue;
 			const FString Id = Rule.Origin.ToString();
+			const auto* Screen = Bundle.FindScreen(Rule.Origin.Screen);
+			if (!Screen || !Screen->Excluded.IsEmpty())
+			{
+				Error = TEXT("fitted source screen missing or excluded: ") + Id;
+				return false;
+			}
 			const auto* Placement = Placements.FindRef(Id);
 			if (!Placement || Placement->Screen != Rule.Origin.Screen || Placement->Index != Rule.Origin.Placement ||
 				!Placement->Hash.Equals(Rule.SourceHash, ESearchCase::IgnoreCase) ||
@@ -151,18 +154,15 @@ namespace
 				return false;
 			}
 
+			// A partial import selects foundations only for its region. Every
+			// explicit rule still has to match the complete bundle.
+			if (!Selected.Contains(Rule.Origin.Screen)) continue;
 			if (Rule.IsStaticBackground()) Promoted.Add(Id, Placement);
 			if (Screens.Contains(Placement->Screen)) continue;
 
-			const auto* Screen = Bundle.FindScreen(Placement->Screen);
 			auto& Prepared = Screens.Add(Placement->Screen);
 			const FString Descriptor = FPaths::ProjectContentDir() / FString::Printf(
 				TEXT("Dink/Data/Gameplay/Hardness/Foundations/SCR_%03d.json"), Placement->Screen);
-			if (!Screen)
-			{
-				Error = TEXT("fitted source screen missing: ") + Id;
-				return false;
-			}
 			if (!FDinkHardnessFoundationSource::Load(Descriptor, Placement->Screen, Prepared.Source, Error) ||
 				!Prepared.Source.VerifyGameplayInputs(Error))
 				return false;
