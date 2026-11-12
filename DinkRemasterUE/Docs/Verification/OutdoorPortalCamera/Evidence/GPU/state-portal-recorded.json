@@ -1,7 +1,7 @@
 {
   "portal": {
     "error": "AttributeError(\"module 'unreal' has no attribute 'Engine'\")",
-    "traceback": "Traceback (most recent call last):\n  File \"/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/observe_gpu.py\", line 33, in qa_read\n    spec=importlib.util.spec_from_file_location('portal_readonly_probe',Q/'portal_probe.py');probe=importlib.util.module_from_spec(spec);spec.loader.exec_module(probe);portal=probe.capture(U,W,H,PC,camera,arm)\n                                                                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py\", line 10, in capture\n    assert isinstance(engine,U.Engine),('GameInstance outer is not Engine',str(engine))\n                             ^^^^^^^^\nAttributeError: module 'unreal' has no attribute 'Engine'\n"
+    "traceback": "Traceback (most recent call last):\n  File \"/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/observe_gpu.py\", line 33, in qa_read\n    spec=importlib.util.spec_from_file_location('portal_readonly_probe',Q/'portal_probe.py');probe=importlib.util.module_from_spec(spec);spec.loader.exec_module(probe);portal=probe.capture(U,W,H,PC,camera,arm)\n                                                                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py\", line 10, in capture\n    assert isinstance(engine,U.Engine),('GameInstance outer is not Engine',str(engine))\n                             ^^^^^^^^\nAttributeError: module 'unreal' has no attribute 'Engine'\n"
   },
   "pawn_contact": null,
   "headroom": {
@@ -52,10 +52,10 @@
   "binding": {
     "pid": 828353,
     "start_ticks": 8647351,
-    "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
     "argv": [
-      "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
-      "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+      "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
       "/Game/Dink/_Generated/Maps/L_Greybox_World",
       "-game",
       "-sdlvideodriver=x11",
@@ -75,11 +75,11 @@
       "-notraceserver",
       "-DDC=InstalledNoZenLocalFallback",
       "-DDC-NoDefaultGraph",
-      "-LocalDataCachePath=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+      "-LocalDataCachePath=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
       "-SharedDataCachePath=None",
       "-ZenSharedDataCacheHost=None",
-      "-UserDir=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
-      "-abslog=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
+      "-UserDir=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
+      "-abslog=/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
     ],
     "nonce": "af1a4101-de2c-4829-887f-8fbd16b432e3",
     "namespace_pid": 2
@@ -495,7 +495,7 @@
     "scope": "Actual read-only generated InteriorWall hidden/visible flags and owning screen metadata; no setters or inferred pixel/shadow/collision acceptance."
   },
   "publication_summary": {
-    "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-recorded.json",
+    "original_path": "/home/artist/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-recorded.json",
     "original_sha256": "56e225bdcf45d26909e9b88387502287e960ddd4d2040b944d984b13fe5c248a",
     "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
   }

@@ -10,8 +10,8 @@
   "files": [
     {
       "path": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
-      "author_sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
-      "published_sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
+      "author_sha256": "156204dbffe97c0938dc350a9ad2728b22854b0b5431fe7da76c8e8aee2a0a6b",
+      "published_sha256": "156204dbffe97c0938dc350a9ad2728b22854b0b5431fe7da76c8e8aee2a0a6b",
       "independent_inode": true
     },
     {
@@ -40,8 +40,8 @@
     },
     {
       "path": "Export/manifest.json",
-      "author_sha256": "069ca7d728ba9bee42cdfa6fc36211dff3eeea08aad34e7e422e80d272269de8",
-      "published_sha256": "069ca7d728ba9bee42cdfa6fc36211dff3eeea08aad34e7e422e80d272269de8",
+      "author_sha256": "f7cc55cba84e57e8b4e7a2a82f8d20667f391b84cd443f6dcfd8977af65e84bd",
+      "published_sha256": "f7cc55cba84e57e8b4e7a2a82f8d20667f391b84cd443f6dcfd8977af65e84bd",
       "independent_inode": true
     },
     {
@@ -52,8 +52,8 @@
     },
     {
       "path": "Inputs/PhotorealPropsV1_Input.blend",
-      "author_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
-      "published_sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+      "author_sha256": "21b08853a8b38421a491fa7e666c24206cb0e71d44a14bc0f556523b1fcc080e",
+      "published_sha256": "21b08853a8b38421a491fa7e666c24206cb0e71d44a14bc0f556523b1fcc080e",
       "independent_inode": true
     },
     {
@@ -76,8 +76,8 @@
     },
     {
       "path": "Inputs/generation.json",
-      "author_sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9",
-      "published_sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9",
+      "author_sha256": "e501208372dc48ca91d4f7af8d365d0946d2e4d317180e394c9f9122c8d81696",
+      "published_sha256": "e501208372dc48ca91d4f7af8d365d0946d2e4d317180e394c9f9122c8d81696",
       "independent_inode": true
     },
     {
@@ -88,14 +88,14 @@
     },
     {
       "path": "PhotorealBarrelV1_Export.blend",
-      "author_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
-      "published_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
+      "author_sha256": "284ac592547dc97893b917860dd55b319f33cd41cce7f8a0b26399ddf69f0430",
+      "published_sha256": "284ac592547dc97893b917860dd55b319f33cd41cce7f8a0b26399ddf69f0430",
       "independent_inode": true
     },
     {
       "path": "PhotorealBarrelV1_Source.blend",
-      "author_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
-      "published_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
+      "author_sha256": "b0983eeb9eb6fdbbc4ea14d5b6528db7f9817530fa07b81f96cc40eb1b569350",
+      "published_sha256": "b0983eeb9eb6fdbbc4ea14d5b6528db7f9817530fa07b81f96cc40eb1b569350",
       "independent_inode": true
     },
     {
@@ -154,26 +154,26 @@
     },
     {
       "path": "Previews/back.png",
-      "author_sha256": "9a47101a1df90651c982b18e780af00223f1c1e4b8c0d704ca467eb83ee3e156",
-      "published_sha256": "9a47101a1df90651c982b18e780af00223f1c1e4b8c0d704ca467eb83ee3e156",
+      "author_sha256": "6ffb3579f9f3884b126c77e215b22a90c43e1c41e1c58b0859201df6e267d926",
+      "published_sha256": "6ffb3579f9f3884b126c77e215b22a90c43e1c41e1c58b0859201df6e267d926",
       "independent_inode": true
     },
     {
       "path": "Previews/front.png",
-      "author_sha256": "f18948c08a7acbb23e509c2256a45178cf20aac858f99eb45129c9ee917fc524",
-      "published_sha256": "f18948c08a7acbb23e509c2256a45178cf20aac858f99eb45129c9ee917fc524",
+      "author_sha256": "27d77f9a5d478af124d732e150d9edcab515102ce71bf26bcf033c948e10cebb",
+      "published_sha256": "27d77f9a5d478af124d732e150d9edcab515102ce71bf26bcf033c948e10cebb",
       "independent_inode": true
     },
     {
       "path": "Previews/game-distance.png",
-      "author_sha256": "68cf46b33a7dbd94b8503c9d86b773945c17157398d32e5c7d8664a5cac79963",
-      "published_sha256": "68cf46b33a7dbd94b8503c9d86b773945c17157398d32e5c7d8664a5cac79963",
+      "author_sha256": "756c945728adc56970435724e6a319f38e01d06b1e0adc1a82b9d4950c920bc0",
+      "published_sha256": "756c945728adc56970435724e6a319f38e01d06b1e0adc1a82b9d4950c920bc0",
       "independent_inode": true
     },
     {
       "path": "Previews/head.png",
-      "author_sha256": "15d0f5b0afb32c1509986b0d98465b192345ed91148eef5ebf3f37eb0e02fe56",
-      "published_sha256": "15d0f5b0afb32c1509986b0d98465b192345ed91148eef5ebf3f37eb0e02fe56",
+      "author_sha256": "4eea75f3244106283a13ba17c383c1403d69a8051b34dae10e6998dc0d20f9a1",
+      "published_sha256": "4eea75f3244106283a13ba17c383c1403d69a8051b34dae10e6998dc0d20f9a1",
       "independent_inode": true
     },
     {
@@ -184,20 +184,20 @@
     },
     {
       "path": "Roundtrip/front.png",
-      "author_sha256": "5437ec3c7ea0d5b5a980add1105b78a19a3d07e60ea2e69ec3a265cd183965bc",
-      "published_sha256": "5437ec3c7ea0d5b5a980add1105b78a19a3d07e60ea2e69ec3a265cd183965bc",
+      "author_sha256": "f3f39c854ded188886db32d4d5739986e1ccccfd41c0c5458f3fb4d784142b98",
+      "published_sha256": "f3f39c854ded188886db32d4d5739986e1ccccfd41c0c5458f3fb4d784142b98",
       "independent_inode": true
     },
     {
       "path": "Roundtrip/game-distance.png",
-      "author_sha256": "341af1036843905b4a26adbc27d7a2e85983ca713e2578213b3d90b794d024b9",
-      "published_sha256": "341af1036843905b4a26adbc27d7a2e85983ca713e2578213b3d90b794d024b9",
+      "author_sha256": "414468f1c4cf91b7988ff26a7dcb84b108a5577d5354cdf137ff6613d5f79d3f",
+      "published_sha256": "414468f1c4cf91b7988ff26a7dcb84b108a5577d5354cdf137ff6613d5f79d3f",
       "independent_inode": true
     },
     {
       "path": "Roundtrip/head.png",
-      "author_sha256": "8410259919bd17ac916612da4a78373aba33e4d1778057ee1ef7fa7a59b16604",
-      "published_sha256": "8410259919bd17ac916612da4a78373aba33e4d1778057ee1ef7fa7a59b16604",
+      "author_sha256": "7e3453a07ae1cc8d1448bc1611c8bbd0b98aed903ce45e0dad44cb7af635e5b4",
+      "published_sha256": "7e3453a07ae1cc8d1448bc1611c8bbd0b98aed903ce45e0dad44cb7af635e5b4",
       "independent_inode": true
     },
     {
@@ -238,8 +238,8 @@
     },
     {
       "path": "bake_receipt.json",
-      "author_sha256": "6817a0174739e7ffc9d18fb9f811b9025b630a3d6d026fb22c2d2f22a5666c32",
-      "published_sha256": "6817a0174739e7ffc9d18fb9f811b9025b630a3d6d026fb22c2d2f22a5666c32",
+      "author_sha256": "a869cbc8584a96d480f1d8fd576ef5efbc4062664468cc9e95b15e78b8147ca5",
+      "published_sha256": "a869cbc8584a96d480f1d8fd576ef5efbc4062664468cc9e95b15e78b8147ca5",
       "independent_inode": true
     },
     {
@@ -262,38 +262,38 @@
     },
     {
       "path": "export_report.json",
-      "author_sha256": "46f9ef1ee6ae656feda654daa6dc7442489479a330880f63fd37f5cbdd1b5949",
-      "published_sha256": "46f9ef1ee6ae656feda654daa6dc7442489479a330880f63fd37f5cbdd1b5949",
+      "author_sha256": "e1e8f4402eb94af54a1b86d1ccd5cc1992cf36ce40ab4cea3f5e0a1c2f35cf45",
+      "published_sha256": "e1e8f4402eb94af54a1b86d1ccd5cc1992cf36ce40ab4cea3f5e0a1c2f35cf45",
       "independent_inode": true
     },
     {
       "path": "guide_validation_source_scene.json",
-      "author_sha256": "5c00b81d773d6d2fb867ea9af9988381b5e2d1860f8633b9e413e7546f4fc4fe",
-      "published_sha256": "5c00b81d773d6d2fb867ea9af9988381b5e2d1860f8633b9e413e7546f4fc4fe",
+      "author_sha256": "9efdb7f925495ed49368a0294825f369281a60e963bb9a70406a3a8026456041",
+      "published_sha256": "9efdb7f925495ed49368a0294825f369281a60e963bb9a70406a3a8026456041",
       "independent_inode": true
     },
     {
       "path": "inspect_payload.py",
       "author_sha256": "37f2790d0f5bfb0a5d14218b12c7716e04a2a61986cb235a4ad3dcad440c96c1",
-      "published_sha256": "49742c9f05f453084c630a4e481826a0ebf2101c705bd6f7bfb9a6f91395c8b7",
+      "published_sha256": "02d432562b1b5fc8d63dd92019d4ba84ea1c92b8afd9dff3a8b6402a3ef69e52",
       "independent_inode": true
     },
     {
       "path": "portable_reopen_receipt.json",
-      "author_sha256": "b800846c6fff756d805ec67297dc1d6accdc7a183bf23443395243060d386693",
-      "published_sha256": "b800846c6fff756d805ec67297dc1d6accdc7a183bf23443395243060d386693",
+      "author_sha256": "66d70556e0ebd8855d149833176f7525298cc6a233786eb0725de20616d4b673",
+      "published_sha256": "66d70556e0ebd8855d149833176f7525298cc6a233786eb0725de20616d4b673",
       "independent_inode": true
     },
     {
       "path": "preview_audit.json",
-      "author_sha256": "1d06de01f745aeb77fedcce3e0b9f1ba87134e01fdef986a3df6136a8d71c71a",
-      "published_sha256": "1d06de01f745aeb77fedcce3e0b9f1ba87134e01fdef986a3df6136a8d71c71a",
+      "author_sha256": "f10a3059ab8b06479ee1bbf0e3323979abcab71f7575d00203005ef1b543cc03",
+      "published_sha256": "f10a3059ab8b06479ee1bbf0e3323979abcab71f7575d00203005ef1b543cc03",
       "independent_inode": true
     },
     {
       "path": "provenance_manifest.json",
-      "author_sha256": "329dfdbb1f26f5cf9d8f78d1231eb83cb399ed43d98242cfbe8901c0be51ff8c",
-      "published_sha256": "329dfdbb1f26f5cf9d8f78d1231eb83cb399ed43d98242cfbe8901c0be51ff8c",
+      "author_sha256": "36db3e722b032931f0419dbfdf5c1360cc44340cedde950fac2a26e83490745a",
+      "published_sha256": "36db3e722b032931f0419dbfdf5c1360cc44340cedde950fac2a26e83490745a",
       "independent_inode": true
     },
     {
@@ -316,14 +316,14 @@
     },
     {
       "path": "roundtrip_receipt.json",
-      "author_sha256": "e173455f1893427a5d872286d9cd1e000ae7b7869992cd99e66793c7d86f80ff",
-      "published_sha256": "e173455f1893427a5d872286d9cd1e000ae7b7869992cd99e66793c7d86f80ff",
+      "author_sha256": "b10e1dfd4493e4a576fc568fe970d650ca698f1b7cb6932e88b05b0d27ab77d8",
+      "published_sha256": "b10e1dfd4493e4a576fc568fe970d650ca698f1b7cb6932e88b05b0d27ab77d8",
       "independent_inode": true
     },
     {
       "path": "source_report.json",
-      "author_sha256": "04a30e4b34f0d0dbde247c010353fa37fe612a7079df97b7005e54ed75aba91f",
-      "published_sha256": "04a30e4b34f0d0dbde247c010353fa37fe612a7079df97b7005e54ed75aba91f",
+      "author_sha256": "3e5862a48e7007bd9f584cc4eb33165454920570c4b3785f7d4e3efa31ad293a",
+      "published_sha256": "3e5862a48e7007bd9f584cc4eb33165454920570c4b3785f7d4e3efa31ad293a",
       "independent_inode": true
     },
     {
@@ -340,8 +340,8 @@
     },
     {
       "path": "final_handoff.json",
-      "author_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
-      "published_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+      "author_sha256": "664fea7c171a5dc463365ff90fbdd2b3cabf5f91dda1b6c53e1ba3b2f539ea31",
+      "published_sha256": "d8c5144aaba9351e96fdf6888885159739f55276b1985fbd58048bf12598e483",
       "independent_inode": true
     }
   ]

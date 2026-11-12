@@ -1,6 +1,6 @@
 import bpy,json,hashlib,re,os,struct
 from pathlib import Path
-P=Path('/home/davisc/Work/DinkQA/HeroVisualRefinement');D=Path(__file__).resolve().parents[1]
+P=Path(Path.home()/'Work/DinkQA/HeroVisualRefinement');D=Path(__file__).resolve().parents[1]
 for sub in ['Source','Source/Helpers','Textures/Pants','Textures/Context','Evidence','Export','Previews','References','Provenance','Shaders']:(D/sub).mkdir(parents=True,exist_ok=True)
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 def jhash(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':')).encode()).hexdigest()

@@ -5,7 +5,7 @@
   "maps": [
     {
       "map": "BC",
-      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_BC.png",
+      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_BC.png",
       "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
       "width": 2048,
       "height": 2048,
@@ -28,7 +28,7 @@
     },
     {
       "map": "N",
-      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_N.png",
+      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_N.png",
       "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
       "width": 2048,
       "height": 2048,
@@ -54,7 +54,7 @@
     },
     {
       "map": "ORM",
-      "path": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_ORM.png",
+      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Textures/T_Dink_Trousers_V31_ORM.png",
       "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
       "width": 2048,
       "height": 2048,
@@ -165,34 +165,34 @@
     9,
     12
   ],
-  "procedural_master_retains_editable_grain_uv": "/home/davisc/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
+  "procedural_master_retains_editable_grain_uv": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
   "elapsed_seconds": 39.47759819030762,
   "original_Dink_reference_guide": {
     "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
     "files": [
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
         "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
       },
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
         "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
       },
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
         "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
       },
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
         "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
       },
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
         "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
       },
       {
-        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
-        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "2d59e99b09619e042666f0e500cb5eca61cc5ba29ef7b3968babb7b3a02ae024"
       }
     ],
     "visually_reviewed_original_images": [

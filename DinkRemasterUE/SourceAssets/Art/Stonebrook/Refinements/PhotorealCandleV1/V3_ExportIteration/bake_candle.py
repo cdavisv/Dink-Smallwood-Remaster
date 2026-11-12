@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 O=Path(__file__).resolve().parent;source=O/'PhotorealCandleV1_Source.blend';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();pin=sha(source)
 try:
- assert pin=='a6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42','Unexpected source checkpoint'
+ assert pin=='b715816ecb50cba25d6df6adbee9e5f6b40b257fb25e26deb0106a60703ce1dc','Unexpected source checkpoint'
  assert not (O/'PhotorealCandleV1_Export.blend').exists(),'Refuse existing export'
  bpy.ops.wm.open_mainfile(filepath=str(source));bpy.context.preferences.filepaths.save_version=0
  collection=bpy.data.collections['SM_Candle_Iron_01'];s=next(s for s in bpy.data.scenes if collection.name in s.collection.children);bpy.context.window.scene=s

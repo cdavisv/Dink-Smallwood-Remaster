@@ -78,11 +78,11 @@
       "response": "[2026.11.08-03.45.29:543][640]LogEngine: Onscreen warnings/messages are now DISABLED\n"
     },
     {
-      "command": "py exec(open('/home/davisc/Work/DinkQA/VistaFinal/read_context.py').read())",
+      "command": "py exec(open('/home/artist/Work/DinkQA/VistaFinal/read_context.py').read())",
       "response": "[2026.11.08-03.45.31:816][779]LogPython: QA_VISTA_CONTEXT_READER_READY\n"
     },
     {
-      "command": "py QA_NATIVE_CAMERA_OUTPUT='VistaFinal'; exec(open('/home/davisc/Work/DinkQA/read_native_camera.py').read())",
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='VistaFinal'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
       "response": "[2026.11.08-03.45.34:727][960]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
     },
     {

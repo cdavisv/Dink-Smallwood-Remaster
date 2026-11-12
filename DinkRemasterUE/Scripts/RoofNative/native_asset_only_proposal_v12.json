@@ -1,8 +1,8 @@
 {
   "status": "SETUP_ONLY_NO_EXECUTION",
   "scope": "REVIEW ONLY exact50 canonical fresh import; no launch/native permission",
-  "manifest_sha256": "56c65a55ff88a11a7066d20034488e7896a45216c5b9d006ffa55138dda04db9",
-  "binary_audit_sha256": "ba85259b6558d3faa12535b2fd13908a08070112f0c5ad872308b56fdb513e2e",
+  "manifest_sha256": "4858e4f351eb66ad20167e0656cba7765d521bed1b438283413ad2adb8e35a8d",
+  "binary_audit_sha256": "589b29446aabd6e34738a3067b0ab0e6228153d356743ed0542aa65ca50bf066",
   "namespace": "/Game/Dink/Refinements/RoofChimneyV12d",
   "package_count": 50,
   "packages": [
@@ -971,7 +971,7 @@
     "half_new_degenerate_UV_triangles": 3378,
     "source_float32_loss": 0,
     "builtin": "unreal.ProceduralMeshLibrary.get_section_from_static_mesh",
-    "installed_CPP": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
+    "installed_CPP": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
     "actual_data": "StaticMesh->GetRenderData()->LODResources[LOD].VertexBuffers.StaticMeshVertexBuffer.GetVertexUV(index,0), with actual section index buffer",
     "not_sufficient": [
       "MeshDescriptionUV alone",
@@ -1043,7 +1043,7 @@
       }
     ],
     "CPU_access_scope": "Original saved FP=False; new private candidate=True solely for required actual built-buffer proof; original reference/Root unchanged",
-    "historical_author_receipt": "/home/davisc/Work/DinkQA/RoofNativeV11QA/Setup/REFERENCE_READBACK_V11B_RESULT.json",
+    "historical_author_receipt": "/home/artist/Work/DinkQA/RoofNativeV11QA/Setup/REFERENCE_READBACK_V11B_RESULT.json",
     "runtime_dependency": false
   },
   "source_version": "V12d",

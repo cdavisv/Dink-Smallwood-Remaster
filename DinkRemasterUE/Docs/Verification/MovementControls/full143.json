@@ -3045,7 +3045,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogHttp: 0x568f914af00: libcurl info message cache 7 (Issue another request to this URL: 'https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1B9FE-DC86-7FCC-A3DB-479B1F8E6920%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream')",
+						"message": "LogHttp: 0x568f914af00: libcurl info message cache 7 (Issue another request to this URL: 'https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1B9FE-DC86-7FCC-A3DB-479B1F8E6920%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream')",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -3057,7 +3057,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogHttp: 0x568f914af00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1B9FE-DC86-7FCC-A3DB-479B1F8E6920%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'Other' after 0.05s",
+						"message": "LogHttp: 0x568f914af00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1B9FE-DC86-7FCC-A3DB-479B1F8E6920%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'Other' after 0.05s",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},

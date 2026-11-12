@@ -1,8 +1,8 @@
 {
-  "original_probe": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py",
+  "original_probe": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py",
   "original_sha256": "477a135fcbf5341afa506217995c2c8685267a1780de0805340388eefb3cbf84",
   "corrected_probe_sha256": "76117ce8739ab665c045e6c893868c3078142799c96e2fe1bb202f0f12a72efb",
-  "identity_receipt": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY_V2.json",
-  "identity_sha256": "112bbf892b05e5d291986999b815a870a72b702e7aa87208af1b32a54ac72408",
+  "identity_receipt": "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY_V2.json",
+  "identity_sha256": "d7e7a6bdbf85cdae2749c395782e745a8b9191f90ad33c06b3f49e1a41668500",
   "qualification": "Originalsealedpacket+2API failures retained. Correctedprobeonlynativeclasspath/propertyspelling, samerealnearclip. Supplementalnewlabels nooverwrite. Firstcurrentbadposecapturewithoutrelocation; onlythenexistingfree/indoorfixtures. No autolaunch/automaticexecution."
 }

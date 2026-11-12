@@ -74,16 +74,16 @@
     "Fresh relocated-clone verification with own local SourceAssets and no private author Saved receipts."
   ],
   "preserved_historical_file_sha256": {
-    "verify.json": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
-    "import.json": "3faa0be8b8a09d2ab39a8ba7d85eeaca7bb9760ac1ba30473efa1a228df4192b",
-    "checkpoint.json": "b628194b8ac7531b9484574de30901b90dc2c9af702d04c9d14e96c1415a5607",
+    "verify.json": "6f0daa184d345fc369abb629cdc0c3f335aca3de23cfc04795252676bddc5d84",
+    "import.json": "1fc30ffa9d0e4b6262aca95479e989d8488cd193caf08bf4cd68e4f2ed78241f",
+    "checkpoint.json": "2f57714433679ada283856541321b6a95109b8faf3ba6a54fc8888ad216cc600",
     "convex_bridge_test.json": "43230c5b4d21e9ff7dbe4f5d5cb7421fd98a8812864a38421f64b8e7cc68ddc3",
     "quantization_diagnosis.json": "948fcea38d40af6f05d647822d5a5da3533de3f4d972db059b02fdea5f85c90e",
     "tolerant_rematch_proof.json": "a9e8924146e3674eba295e96046ed70f2639a1b1987f2b8853262b70194158fb",
     "pure_tests.log": "8382ad608e0a08f539ef29fd94f492ccd119ca682ce912bf27dc63d7af73f285",
     "native_art_tests.json": "35558255edcd0fb5ebca1c8b3f77f322fe244900c885d54414e8d03b63f22121",
-    "build_modules.json": "592236ec6df1f7f03b223b74657e3a8c56664f7399b34fb18efbb552ee843c9d",
-    "evidence_hashes.json": "a163c11099f418855e146d78de05085c607be20f79a920d51b580b7d384aeb74",
+    "build_modules.json": "40585cdfc744190a110f5079807d85d9171b37f04aac7aac3c07c90e7ee409dc",
+    "evidence_hashes.json": "fdd26b93b8bdcda9807bede7274ec4651b32dce8644dc62cd1b083463fe35400",
     "ledger_append_receipt.json": "d44778bbfc05f543c381dc9ca7d4739d86ecdd7d17e0fc9b9fcca3ddb7ad78d9"
   },
   "combined_full_native": {

@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "Used8 shader graphs (node types/properties/defaults/links) and all packed image payload/colorspace/alpha state compared after loading original and new source; no blend saved.",
   "original_source_sha256": "0e9f1c05ff7a786c6535b93b0b5470d72e654830e212817193e820c7f72c7e41",
-  "new_source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "new_source_sha256": "11be0e85906780bb9c2c5287f180c9ec2ff3686551a4226852aea42a1827ae5f",
   "material_checks": {
     "MI_FireplaceV2_Atlas": true,
     "MI_InteriorRoof_GablePlaster_Baked": true,

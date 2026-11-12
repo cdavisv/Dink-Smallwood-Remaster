@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 from mathutils import Vector,Matrix
 from mathutils.bvhtree import BVHTree
-ROOT=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE')
+ROOT=Path(Path(__file__).resolve().parents[4])
 ART=ROOT/'SourceAssets/Art/Characters/Dink';ART.mkdir(exist_ok=True);TEX=ART/'Textures';TEX.mkdir(parents=True,exist_ok=True)
 DATA=ART.parent/'ThirdParty/MakeHuman'
 bpy.ops.wm.open_mainfile(filepath='/tmp/dink-art/dink_base.blend')

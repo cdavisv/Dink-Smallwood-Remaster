@@ -2,7 +2,7 @@
   "handoff_sha256": "e700f146ec737cc69fcd18a60f80b8f7b3712f22bddfa15335acc160eaa9d84e",
   "original_files": {
     "import_perimeter_skirt_surface.py": "a239878dfd25986e9cbb28ad8cb186e703b41a59b797d7b3c63d3e2d13fb23eb",
-    "publish_perimeter_skirt_surface.py": "b07a9d49eb707265454070fabe3bd15417e77fac16f1593caeac41a6b8bd6b1d",
+    "publish_perimeter_skirt_surface.py": "651cd4e556e730afb3600ffcb0e43f34740d551bc9d8f56b9055cfdb912ea9fb",
     "perimeter_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
     "test_perimeter_skirt_publication.py": "cd83d1e627438fba013d1222f151fbb2bf8d19fea9178739adbff49789a42613",
     "test_perimeter_geometry.py": "745a8789ee054005316e5ec5542465bfef6d9925298b0eaf048f7f71689d2366"
@@ -10,7 +10,7 @@
   "only_test_delta": "test_perimeter_geometry adds Scripts parent to sys.path for independent unittest discovery; production3tools byte-identical",
   "copied_sha256": {
     "import_perimeter_skirt_surface.py": "a239878dfd25986e9cbb28ad8cb186e703b41a59b797d7b3c63d3e2d13fb23eb",
-    "publish_perimeter_skirt_surface.py": "b07a9d49eb707265454070fabe3bd15417e77fac16f1593caeac41a6b8bd6b1d",
+    "publish_perimeter_skirt_surface.py": "651cd4e556e730afb3600ffcb0e43f34740d551bc9d8f56b9055cfdb912ea9fb",
     "perimeter_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
     "test_perimeter_skirt_publication.py": "cd83d1e627438fba013d1222f151fbb2bf8d19fea9178739adbff49789a42613",
     "test_perimeter_geometry.py": "c50b10c5fa3a6292b84b6d38c444f5db0e99833f0b5514948d6138d2e3822d38"

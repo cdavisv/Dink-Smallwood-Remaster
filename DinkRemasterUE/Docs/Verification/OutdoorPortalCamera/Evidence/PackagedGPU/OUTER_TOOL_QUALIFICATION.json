@@ -27,9 +27,9 @@
     "identity": {
       "pid": 854699,
       "start_ticks": 9120647,
-      "exe": "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
       "argv": [
-        "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+        "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
         ":209",
         "-screen",
         "0",
@@ -37,7 +37,7 @@
         "-nolisten",
         "tcp",
         "-auth",
-        "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
+        "/home/artist/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
         "-noreset"
       ]
     },
@@ -45,11 +45,11 @@
     "stale_artifacts_preserved": [],
     "normal_cleanup_before_supervisor_return": true
   },
-  "original_final_review_sha256": "b795e0d0865c6acb4caeda4c25c4f91a0ff549a0b3e469be6e2b3a3e2e8d9512",
+  "original_final_review_sha256": "62c0ab9c2568244cba1456b380bfbb1990ef5529129bd324f4434e093c11acfb",
   "proofs_sha256": {
     "launch.json": "d4bb06e75f44b6752803c0cd0aff7a40eddf1d2b5b3aa210591b0b41044953c8",
     "result.json": "512c4b9b5c5c61133a2069ef314f1bc2876c575c1e1143f269f44537657622df",
-    "DISPLAY_CLOSED.json": "56218ef6073bb08c6e536e5ae734d2ae68470328897c8b2f984750ec315dd71d"
+    "DISPLAY_CLOSED.json": "28099b24bdd0f72e2b9d303edaaa1035859a9cd74dbefda9392feecf79c09a83"
   },
   "qualification": "Game/display0 and actualdriver/nativeGETALL/Wroute/pixelresults distinct from outertool143. Originalfinalreviewimmutable; do not rewritehost0 or restart."
 }

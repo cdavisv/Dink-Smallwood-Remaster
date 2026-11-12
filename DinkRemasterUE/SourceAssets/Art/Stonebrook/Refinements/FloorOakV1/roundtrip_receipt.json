@@ -1,11 +1,11 @@
 {
-  "preview_sha256": "aa5bfb87884e80a8143a6537a258568281fa490b5225215e9cbf4c5cc8356811",
+  "preview_sha256": "1fe9566e182099f7c8b253a78382415e31d36b381b26c91ebd4ac4cd18027775",
   "rows": [
     {
       "view": "close",
       "variant": "procedural",
       "file": "Roundtrip/close-procedural.png",
-      "sha256": "45b8703dd2697db4015b5646d54737da3393ff2cea7dfa48663ed2d517be9249",
+      "sha256": "763faa506b14883dfab849087a43f35b642c2ceedb7f8b03ac35990bcf323236",
       "seconds": 34.39868879318237,
       "camera_world_matrix": [
         [
@@ -101,7 +101,7 @@
       "view": "close",
       "variant": "baked",
       "file": "Roundtrip/close-baked.png",
-      "sha256": "8b49a4069bba8882afb8aff10cdf57b57f404bdbbe4f52306b04c248f0c94159",
+      "sha256": "c459afcd381ee934e6ee938247b75bd4e11d11f5f33d9f0ab9c88e009a9c5206",
       "seconds": 29.414055347442627,
       "camera_world_matrix": [
         [
@@ -197,7 +197,7 @@
       "view": "room-angle",
       "variant": "procedural",
       "file": "Roundtrip/room-angle-procedural.png",
-      "sha256": "5905e8aa6fe412a042b29a771583520b220957f197de9e598f0405df1610f6f0",
+      "sha256": "914e353da34cbfd0f883e2d67971813d99befa832056f5d4cc0be7f626679fff",
       "seconds": 27.421231985092163,
       "camera_world_matrix": [
         [
@@ -293,7 +293,7 @@
       "view": "room-angle",
       "variant": "baked",
       "file": "Roundtrip/room-angle-baked.png",
-      "sha256": "5168446f79a0602b5b6c607a06b52acc33c9075b045c2089b3fd8f7c57c6cb11",
+      "sha256": "496bea86f5632dacbca1a75b72a65548dfc1856a2009334462722bc0855457f0",
       "seconds": 24.485855102539062,
       "camera_world_matrix": [
         [

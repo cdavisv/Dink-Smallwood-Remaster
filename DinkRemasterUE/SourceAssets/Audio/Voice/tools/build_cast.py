@@ -1,5 +1,5 @@
 import csv, re, collections, random
-D='/tmp/claude-1000/-home-davisc-Repos-Dink-Smallwood/74c5fee6-488a-439f-a824-7b6e9e736b70/scratchpad/voice/'
+D='/tmp/claude-1000/-home-artist-Repos-Dink-Smallwood/00000000-0000-0000-0000-000000000000/scratchpad/voice/'
 rows=list(csv.DictReader(open(D+'lines_raw.csv',encoding='utf-8')))
 fields=list(rows[0].keys())
 

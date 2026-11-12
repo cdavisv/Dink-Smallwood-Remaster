@@ -1,6 +1,6 @@
 from pathlib import Path
 import json,math,hashlib
-R=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');W=Path(__file__).resolve().parent
+R=Path(Path(__file__).resolve().parents[4]);W=Path(__file__).resolve().parent
 P=W/'placement_proposal.json';p=json.loads(P.read_text());old=p['interior_anchor_world_cm'];anchor=[-183806.0975,393595.98,0.]
 p['generation_float32_anchor_cm']=old;p['interior_anchor_world_cm']=anchor;p['reference_exterior_door_world_cm']=[97661.61092968748,37370.324198125,0.];p['coordinate_precision_note']='Scene is rebased to metres. Authoritative UE placement anchor remains double precision; original Blender Vector anchor rounded less than0.012cm, recorded above.'
 for row in p['instances']:

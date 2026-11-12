@@ -1,8 +1,8 @@
 {
   "status": "SOURCE_RELOCATION_AND_REGENERATION_PASS_NOT_NATIVE",
   "source_relative": "../InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
-  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
-  "delivered_candidate_sha256": "785af1ffefcba86aa8ffd3232973b7f99a67758f9c045a6c8964b9d4c97dd3df",
+  "source_sha256": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
+  "delivered_candidate_sha256": "c1cc7707256c749d73579271938c4f06d47892d4099bf3ef5e8ab2e2f44fe487",
   "regenerated_binary_sha256": "228e41a5c780d694fb2a2116ab4e8162a09605235adf75c809df09ac4787d213",
   "all328_reloaded_mesh_signatures_exact_between_candidate_and_portable_regeneration": true,
   "packed_file_images": 22,
@@ -29,7 +29,7 @@
     "Blender CPU2 inspect portable regenerated blend",
     "Blender CPU2 inspect original frozen blend"
   ],
-  "recipe_sha256": "1b2b8479e732ff3b61369584ebac76777e35e73d037a6a647bbd22f84cb307af",
+  "recipe_sha256": "193cd250b8b182a230a500a416bee8942792d1a2393b3ff6a8f5d6f2c3a68d4d",
   "all_successful_native_or_GPU_operations": false,
   "no_commit_or_push": true
 }

@@ -16,8 +16,8 @@ LogCsvProfiler: Display: Metadata set : ltoenabled="0"
 LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : mergedmodules="0"
 LogCsvProfiler: Display: Metadata set : compacttset="0"
-LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -UserDir=/home/davisc/Work/DinkQA/SurfaceNative/PackagedSmokeUser -abslog=/home/davisc/Work/DinkQA/SurfaceNative/packaged-smoke.log -ExecCmds="obj list class=DinkArtContextActor,obj list name=SM_Underfloor_Stonebrook_V1,obj list name=SM_Floor_Oak_2m_01,Quit"""
-LogCsvProfiler: Display: Metadata set : loginid="b8b91a92d10e4078b778d30ea0314c5c-000003e8"
+LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -UserDir=/home/artist/Work/DinkQA/SurfaceNative/PackagedSmokeUser -abslog=/home/artist/Work/DinkQA/SurfaceNative/packaged-smoke.log -ExecCmds="obj list class=DinkArtContextActor,obj list name=SM_Underfloor_Stonebrook_V1,obj list name=SM_Floor_Oak_2m_01,Quit"""
+LogCsvProfiler: Display: Metadata set : loginid="00000000000000000000000000000000-000003e8"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogPakFile: Initializing PakPlatformFile
 LogIoDispatcher: Display: Mounted container '../../../DinkRemaster/Content/Paks/global.utoc', Id='ffffffffffffffff', Order=0, Slot=0, Options=(None), Flags=(), HasSoftRefs=False
@@ -39,7 +39,7 @@ LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -8:00, Platform
 LogInit: Session CrashGUID >====================================================
          Session CrashGUID >   UECC-Linux-01A1B9BF1E1C7899AFA9ABE2BC701E5E
          Session CrashGUID >====================================================
-LogConfig: No local boot hotfix file found at: [/home/davisc/Work/DinkQA/SurfaceNative/PackagedSmokeUser/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
+LogConfig: No local boot hotfix file found at: [/home/artist/Work/DinkQA/SurfaceNative/PackagedSmokeUser/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
 LogInit: Running DelayedAutoRegister Phase IniSystemReady
 LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
 LogPluginManager: Mounting Engine plugin Paper2D
@@ -261,7 +261,7 @@ LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
 LogInit: ExecutableName: DinkRemaster
 LogInit: Build: ++UE5+Release-5.8-CL-58902052
 LogInit: Platform=Linux
-LogInit: MachineId=b8b91a92d10e4078b778d30ea0314c5c-000003e8
+LogInit: MachineId=00000000000000000000000000000000-000003e8
 LogInit: DeviceId=
 LogInit: Engine Version: 5.8.4-58902052+++UE5+Release-5.8
 LogInit: Compatible Engine Version: 5.8.0-55116800+++UE5+Release-5.8
@@ -273,8 +273,8 @@ LogInit: Architecture: x64
 LogInit: Compiled with Clang: 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE5+Release-5.8
-LogInit: Command Line:  /Game/Dink/_Generated/Maps/L_Greybox_World -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -UserDir=/home/davisc/Work/DinkQA/SurfaceNative/PackagedSmokeUser -abslog=/home/davisc/Work/DinkQA/SurfaceNative/packaged-smoke.log -ExecCmds="obj list class=DinkArtContextActor,obj list name=SM_Underfloor_Stonebrook_V1,obj list name=SM_Floor_Oak_2m_01,Quit"
-LogInit: Base Directory: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Binaries/Linux/
+LogInit: Command Line:  /Game/Dink/_Generated/Maps/L_Greybox_World -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -UserDir=/home/artist/Work/DinkQA/SurfaceNative/PackagedSmokeUser -abslog=/home/artist/Work/DinkQA/SurfaceNative/packaged-smoke.log -ExecCmds="obj list class=DinkArtContextActor,obj list name=SM_Underfloor_Stonebrook_V1,obj list name=SM_Floor_Oak_2m_01,Quit"
+LogInit: Base Directory: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Binaries/Linux/
 LogInit: Allocator: Binned2
 LogInit: Installed Engine Build: 0
 LogInit: This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
@@ -608,7 +608,7 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2026.11.08-06.01.12:546][  0]LogInit:  - this process' id (pid) is 375404, parent process' id (ppid) is 375403
 [2026.11.08-06.01.12:546][  0]LogInit:  - we are not running under debugger
 [2026.11.08-06.01.12:546][  0]LogInit:  - machine network name is 'omarchy'
-[2026.11.08-06.01.12:546][  0]LogInit:  - user name is 'davisc' (davisc)
+[2026.11.08-06.01.12:546][  0]LogInit:  - user name is 'artist' (artist)
 [2026.11.08-06.01.12:546][  0]LogInit:  - we're logged in locally
 [2026.11.08-06.01.12:546][  0]LogInit:  - we're running without rendering
 [2026.11.08-06.01.12:546][  0]LogInit:  - CPU: AuthenticAMD 'AMD Ryzen 5 7600X 6-Core Processor' (signature: 0xA60F12)

@@ -1,186 +1,186 @@
 {
   "cook/HOST_TERMINAL.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_TERMINAL.json",
-    "sha256": "7fbef8b5febf394549da8b433742cf1b2d927659b7634ca6f7e05eec33421590"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_TERMINAL.json",
+    "sha256": "b763d34e35c5acb5b08a2e02376badea8bbf6bd42139b304ccfb2ed7afef96dc"
   },
   "cook/NATIVE_TERMINAL.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/NATIVE_TERMINAL.json",
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/NATIVE_TERMINAL.json",
     "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2"
   },
   "cook/HOST_NORMAL_HELPER_PROOF.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_NORMAL_HELPER_PROOF.json",
-    "sha256": "ba3f91f8c6564cd52ce8ae6998db5d1cd19292af27712661e761d8f4c2458330"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_NORMAL_HELPER_PROOF.json",
+    "sha256": "49119588211f46516f074d8fe04f56e7a6a85ed988539a8817a2faf1172bb2b1"
   },
   "cook/HOST_SHADERPRINT_BEFORE.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_BEFORE.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_BEFORE.json",
+    "sha256": "ec06db55b3aad01ae80d314d0ad089d139af169b2a7bcbbdbee853c7b013f784"
   },
   "cook/HOST_SHADERPRINT_AFTER.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_AFTER.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_AFTER.json",
+    "sha256": "ec06db55b3aad01ae80d314d0ad089d139af169b2a7bcbbdbee853c7b013f784"
   },
   "cook/HOST_ENGINE_STAGE_BEFORE.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_BEFORE.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_BEFORE.json",
+    "sha256": "fca586feb4aee5f9d8c7b0552fd3306e77783cdaca9379ea676917cefa638d63"
   },
   "cook/HOST_ENGINE_STAGE_AFTER.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_AFTER.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
+    "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_AFTER.json",
+    "sha256": "fca586feb4aee5f9d8c7b0552fd3306e77783cdaca9379ea676917cefa638d63"
   },
   "shaders/REPORT.json": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/REPORT.json",
-    "sha256": "747f8b741c7cdcfefd1721a24a2e31d693f3e109e4ae5c98b2969dd131f2941d"
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/REPORT.json",
+    "sha256": "59476f2736462fcc8d2ee5b7a3160b9fe86c2d26acdfba74dc99afe4e9b01820"
   },
   "shaders/STAGE_EQUIVALENCE.json": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/STAGE_EQUIVALENCE.json",
-    "sha256": "6ef755095e8f6794823255a1beab536b100efc7ad137e00654549152c2aa93a7"
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/STAGE_EQUIVALENCE.json",
+    "sha256": "bbb1f16bef4f1e7431e5d60b010c012e363e06d2185e04294fc35bdb3bfbbdf3"
   },
   "inventory/ACTUAL_COOKED_ROOF_REVIEW.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCook10Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
+    "source": "/home/artist/Work/DinkQA/RoofCook10Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
     "sha256": "e399f453d49167d3b90c357e6417cd8b2875ee5cbd8f83370ea8b34ea37cf06c"
   },
   "inventory/LOGICAL_CHUNK_COMPARISON.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCook10Inventory/LOGICAL_CHUNK_COMPARISON.json",
+    "source": "/home/artist/Work/DinkQA/RoofCook10Inventory/LOGICAL_CHUNK_COMPARISON.json",
     "sha256": "fc23491c3753bb75927e082073215d485466c78b7ec165a948456005ea72f217"
   },
   "inventory/CHANGE_CLASSIFICATION.json": {
-    "source": "/home/davisc/Work/DinkQA/RoofCook10Inventory/CHANGE_CLASSIFICATION.json",
+    "source": "/home/artist/Work/DinkQA/RoofCook10Inventory/CHANGE_CLASSIFICATION.json",
     "sha256": "e2b9fa9549b14a351884d0c0a915225cd1544b71b03769b13749f6577eb69558"
   },
   "ch1/RESULT.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/RESULT.json",
-    "sha256": "ef84f90d63c3889163944b24f7aaaf662a8ec715e556652fbd042e65d2b9dd24"
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/RESULT.json",
+    "sha256": "f8653eed00222580039e3df6b536f10896412833642ad0513d2824ea1a65a4f9"
   },
   "ch1/NATIVE_TERMINAL.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/NATIVE_TERMINAL.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/NATIVE_TERMINAL.json",
     "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2"
   },
   "ch1_packet_race/RECONSTRUCTION_PROOF.json": {
-    "source": "/home/davisc/Work/DinkQA/Cook10CH1PacketRaceOriginal/RECONSTRUCTION_PROOF.json",
+    "source": "/home/artist/Work/DinkQA/Cook10CH1PacketRaceOriginal/RECONSTRUCTION_PROOF.json",
     "sha256": "0acf1c7dac1d27f29f0170a0210abc508fbf02fb94f335d4feab3a94da65066d"
   },
   "ch1_packet_race/ORIGINAL_INDEX.json": {
-    "source": "/home/davisc/Work/DinkQA/Cook10CH1PacketRaceOriginal/INDEX.json",
+    "source": "/home/artist/Work/DinkQA/Cook10CH1PacketRaceOriginal/INDEX.json",
     "sha256": "34c62e009c00b7673eab40e50660f69a4a81709944531eb7a05485a7f1c8a492"
   },
   "ch1_packet_race/ORIGINAL_PLAN.md": {
-    "source": "/home/davisc/Work/DinkQA/Cook10CH1PacketRaceOriginal/PLAN.md",
+    "source": "/home/artist/Work/DinkQA/Cook10CH1PacketRaceOriginal/PLAN.md",
     "sha256": "74d5d4690e8cc781caefea4418645e20e23f75e852685b6a2018a516064395cb"
   },
   "ch1_packet_race/CURRENT_INDEX.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/INDEX.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/INDEX.json",
     "sha256": "a55f1278445b9f1107304fb41c9a35cc7f5adfa8d5b69de7cb250f7c6c5c2d52"
   },
   "ch1_packet_race/CURRENT_PLAN.md": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/PLAN.md",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/PLAN.md",
     "sha256": "1a97ba76878d5a6f29c5112a071d2f696bc6d23fd2e1c641d95bc8f1fd0aa882"
   },
   "separate_source_review/REVIEW_0236131.json": {
-    "source": "/home/davisc/Work/DinkQA/GeneratedBlockerVisualsIndependentReview/REVIEW_0236131.json",
-    "sha256": "5aaa764ae099f38a6c6a88437e6a383e50ff2f36ce2d6e948cc67d09e7738990"
+    "source": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsIndependentReview/REVIEW_0236131.json",
+    "sha256": "01c8a25fbdfb3d9872378a06d58703e70c591ad66e4cafa37af1d9f58860e8ff"
   },
   "shaders/BCEFF2D799E37774.validation.txt": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/BCEFF2D799E37774.validation.txt",
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/BCEFF2D799E37774.validation.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "shaders/C365EC84ECA13802.validation.txt": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/C365EC84ECA13802.validation.txt",
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/C365EC84ECA13802.validation.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "shaders/D94DA625A2676ED0.validation.txt": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/D94DA625A2676ED0.validation.txt",
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/D94DA625A2676ED0.validation.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "shaders/F8EB059835E53D4E.validation.txt": {
-    "source": "/home/davisc/Work/DinkQA/Cook10FourShaderValidation/F8EB059835E53D4E.validation.txt",
+    "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/F8EB059835E53D4E.validation.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "gpu/result.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/result.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/result.json",
     "sha256": "7178e160ec04e63bd6059bb48b8d4c89d648344a346b6038edd4c6d2af6aadfb"
   },
   "gpu/DISPLAY_CLOSED.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_CLOSED.json",
-    "sha256": "19cd54f23bb41e5fdeb5be65d52669746e152a52ce7694044399b95aea93d4a4"
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_CLOSED.json",
+    "sha256": "50b258392ec49c3f48e994cd9e7476170347073ba51697fad7927a2687b6d5b8"
   },
   "gpu/DISPLAY_TERM_REQUESTED.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_TERM_REQUESTED.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_TERM_REQUESTED.json",
     "sha256": "84dcd29b5b5b486fb5e160be622d2568040f74f522b68dd98a653913f6a7f573"
   },
   "gpu/route-door-exit.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/route-door-exit.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/route-door-exit.json",
     "sha256": "4f7acebc0a6bc4b81acf57ea603b874aaf288d1fb5737d5ea57aaa3404009e44"
   },
   "gpu/route-door-return.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/route-door-return.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/route-door-return.json",
     "sha256": "c961b96cece569ec41d758d8b69890eafda17cd909d099987ec030f622bdda27"
   },
   "gpu/actions.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/actions.json",
-    "sha256": "b360deb22cdc480c7059542e352083572ac1390c8a3f224aa96cb84a6714e523"
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/actions.json",
+    "sha256": "ba0fd6a3b64308e9acca26258f2e676173feec5dfa4a74584748455918700edd"
   },
   "gpu/game.log": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log",
-    "sha256": "cb05f0a0b9f310f8681a2cda87df5c2e16e51299c2f24bdc538495f10841deb0"
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log",
+    "sha256": "8f4c5d7a7447fb2019092ef15bd5a53c76f77d3fca14c74bd89407c87c548aa5"
   },
   "gpu/player-room.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-room.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-room.json",
     "sha256": "741a0166f5d69aaa9ca708699f2f8c2421a2057f1af4895b6de29aa7a8902274"
   },
   "gpu/player-roof-0.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-roof-0.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-roof-0.json",
     "sha256": "454a13151fa5aff87457709307d9cf07f8792498011df8e06a8ea2eccbedef21"
   },
   "gpu/player-roof-270.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-roof-270.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-roof-270.json",
     "sha256": "ae1c902887b72f5a2ac887d511b0b37b92561d76bc353629ef2a54accb5d82b2"
   },
   "gpu/player-door-before.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-before.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-before.json",
     "sha256": "cf4de3286a0b4f7c11aa926c1baf1c436e4991577b461b6e40d8eec030fadbc4"
   },
   "gpu/player-door-exit.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-exit.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-exit.json",
     "sha256": "1f4c743fe1a9ab2392e6c3ea03927455e084c321e8d10e351eadacbcc95f1e31"
   },
   "gpu/player-door-return.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-return.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-door-return.json",
     "sha256": "5236c1e28dac35685136bc3355f6d256ca517ddcda79f1f6a7b6dc9c2738efc7"
   },
   "gpu/player-final.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-final.json",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-final.json",
     "sha256": "2644e36d58969f9945a10cd537cc63d216162fd7e5859b5602fac9ab784bf0b5"
   },
   "gpu/room.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/room.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/room.png",
     "sha256": "5b34594d192e8bfc30f9d9b054ccf268eeced27e1e77594c3f256ff985a4690e"
   },
   "gpu/roof-0.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-0.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-0.png",
     "sha256": "d410e55b3bd6e27bf0445d633522f7f05199eeebf9ff5e4d8f185b6aa5c3ea93"
   },
   "gpu/roof-270.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-270.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/roof-270.png",
     "sha256": "533f92cfee55596e917cccc8fdd03ce9de66c5195d2cc7dc21f89cf5c0fd5be4"
   },
   "gpu/door-before.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-before.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-before.png",
     "sha256": "8683f060f703a0e5ed9644bc10ed9b0ab7fa3aa156f9e7e1aa466e7bf15aa446"
   },
   "gpu/door-exit.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-exit.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-exit.png",
     "sha256": "52944ce97e89bc886920c53512a1601c26a5485334fcc22b310f5802797a32c2"
   },
   "gpu/door-return.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-return.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/door-return.png",
     "sha256": "e752ffde9d2a36198a496d7c51f0a2bb4f2d07661cea0f833277974497c056a0"
   },
   "gpu/final.png": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/final.png",
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/final.png",
     "sha256": "c848a12efa5e6096ee99853acb89e11829e0328eb9211bbec189deb473671de9"
   },
   "gpu/DRIVER_REVIEW.json": {
-    "source": "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DRIVER_REVIEW.json",
-    "sha256": "96dfc2e9d1a508197e0038549b1a4c3416379e42f561ec7e0059985a630b676e"
+    "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DRIVER_REVIEW.json",
+    "sha256": "6c47d26c7595408de0ba2e7b66cc8e6d723ecceb5ce74bbeb94de92e460027c6"
   }
 }
