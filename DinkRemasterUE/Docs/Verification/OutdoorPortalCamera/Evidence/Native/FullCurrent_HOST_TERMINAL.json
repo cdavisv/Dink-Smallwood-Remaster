@@ -5,7 +5,7 @@
   "source_files": 13645,
   "immutable_changes": [],
   "mapped_modules": {
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
       "inode": 6703571,
       "stat_device": 50,
       "mapped_device": 35,
@@ -14,7 +14,7 @@
       "namespace_samefile": true,
       "sha256": "82861f22a0636e548c2509405dafbf917c7db39fefd9aa04eaa26a695c1c91c2"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
       "inode": 6703628,
       "stat_device": 50,
       "mapped_device": 35,
@@ -23,7 +23,7 @@
       "namespace_samefile": true,
       "sha256": "87a87d5a809d4a62305818b801c269692d330e8075d9e9106ff1fde6a2d10e97"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
       "inode": 6704167,
       "stat_device": 50,
       "mapped_device": 35,
@@ -32,7 +32,7 @@
       "namespace_samefile": true,
       "sha256": "283a8c2865aacce310e3192fbd8445a8331e9e8ab90262ba94224fb5cec98684"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
       "inode": 6704160,
       "stat_device": 50,
       "mapped_device": 35,
@@ -41,7 +41,7 @@
       "namespace_samefile": true,
       "sha256": "7ad1d8462c4680bbcc50fa61b049af8660018847b0fcca2cd7d9694e878501cf"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
       "inode": 6704173,
       "stat_device": 50,
       "mapped_device": 35,
@@ -50,7 +50,7 @@
       "namespace_samefile": true,
       "sha256": "48f55e263d0013507fd3b26e9ebdf3eeb641ea9f7c9f3d31cb08e623410cbc37"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
       "inode": 6704180,
       "stat_device": 50,
       "mapped_device": 35,
@@ -59,7 +59,7 @@
       "namespace_samefile": true,
       "sha256": "8ef20699a4536b0d4f9d3f577085002f80fea80cd652698d6067ee8fe48d1136"
     },
-    "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
+    "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
       "inode": 6703637,
       "stat_device": 50,
       "mapped_device": 35,
@@ -73,12 +73,12 @@
     "837121:8797238": {
       "pid": 837121,
       "start_ticks": 8797238,
-      "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+      "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
       "argv": [
-        "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+        "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
         "-ExecCmds=Automation RunTests Dink; Quit",
-        "-ReportExportPath=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Report",
+        "-ReportExportPath=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Report",
         "-nullrhi",
         "-unattended",
         "-nosplash",
@@ -87,14 +87,14 @@
         "-NoSound",
         "-stdout",
         "-FullStdOutLogOutput",
-        "-abslog=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Unreal.log",
-        "-UserDir=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/User",
+        "-abslog=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Unreal.log",
+        "-UserDir=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/User",
         "-DinkQARunId=c7e8821fef8b45739682425bb39557b6",
         "-nowrite",
         "-notraceserver",
         "-DDC=InstalledNoZenLocalFallback",
         "-DDC-NoDefaultGraph",
-        "-LocalDataCachePath=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+        "-LocalDataCachePath=/home/artist/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
         "-SharedDataCachePath=None",
         "-ZenSharedDataCacheHost=None"
       ]

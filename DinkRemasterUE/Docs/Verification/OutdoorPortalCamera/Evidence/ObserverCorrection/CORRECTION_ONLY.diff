@@ -1,5 +1,5 @@
---- /home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py
-+++ /home/davisc/Work/DinkQA/OutdoorPortalCameraObserverCorrection/portal_probe.py
+--- /home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/portal_probe.py
++++ /home/artist/Work/DinkQA/OutdoorPortalCameraObserverCorrection/portal_probe.py
 @@ -7,8 +7,8 @@
   result=dict(cap=float(c.get_editor_property('outdoor_portal_arm_cap')),feasible=bool(c.get_editor_property('outdoor_portal_framing_feasible')),owner=str(c.get_editor_property('outdoor_portal_owner')),mesh_sha=str(c.get_editor_property('outdoor_portal_mesh_sha')),actual_target_arm=float(arm.get_editor_property('target_arm_length')),zoom_scope='No zoom input issued; requested zoom verified by native fixture, not exposed as Python getter')
   # Read actual owning Engine config object, not a guessed console variable.

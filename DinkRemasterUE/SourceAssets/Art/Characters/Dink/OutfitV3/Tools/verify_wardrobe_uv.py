@@ -1,7 +1,7 @@
 import bpy,sys,json,math
 from pathlib import Path
-ART=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
-sys.path.insert(0,'/home/davisc/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/tools/blender')
+ART=Path(Path(__file__).resolve().parents[1])
+sys.path.insert(0,str(Path(__file__).resolve().parents[7]/'tools/blender'))
 from dinkasset.validate import uv_stats
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'))
 rows=[]

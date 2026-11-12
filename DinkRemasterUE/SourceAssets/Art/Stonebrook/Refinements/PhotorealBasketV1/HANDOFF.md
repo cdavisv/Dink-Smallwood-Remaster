@@ -1,6 +1,6 @@
 # Basket UV refinement candidate
 
-Work-only /home/davisc/Work/DinkQA/PhotorealSessions/Basket/UVRefinement, outside Git. Integration checkout remains owned by original root session. No Unreal/native/runtime/ledger edits, commit/push, or GPU lease used. Earlier V4 source and provisional exports remain unchanged in parent Basket folder.
+Work-only /home/artist/Work/DinkQA/PhotorealSessions/Basket/UVRefinement, outside Git. Integration checkout remains owned by original root session. No Unreal/native/runtime/ledger edits, commit/push, or GPU lease used. Earlier V4 source and provisional exports remain unchanged in parent Basket folder.
 
 V4 atlas used10.385% of2048²pixels,290.16px/m across5.174m²surface. Curved smart-projected islands wasted the atlas. UV-only successor unwraps92disconnected reed components into528short straight tube/cap charts with4px gaps. Atlas use83.203%,821.29px/m (2.83×linear/8×area), same2048texture cap and19680triangles. Copied baseline Inputs/V4_Source.blend SHAf550ff60db5c41b6e43157f978734322918e1b2738cf5bfe62989c96164ac020 makes analysis/repack tools self-contained with Pipeline. Repack algorithm unchanged after input-path relocation; independent comparison reran against copied exact baseline.
 

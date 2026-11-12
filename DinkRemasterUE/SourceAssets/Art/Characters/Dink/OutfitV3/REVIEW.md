@@ -1,6 +1,6 @@
 # OutfitV3 source review candidate
 
-Source SHA-256: `59445d2de287a82ea980d5dca4d10cbfc7a8c02808eb180a0b38855bc5d98743`. Saved 2026-11-07T22:57:45.486112+00:00.
+Source SHA-256: `b3b0171677214ce5f3ad972c892cc9e57b1d05ec47166322e62249d5fb8f44c4`. Saved 2026-11-07T22:57:45.486112+00:00.
 
 The shirt is a single connected torso/shoulder/sleeve surface built from a filled garment volume, fitted to the frozen original shirt and immutable Skin envelope. Covered old collar/yoke overlays and shoulder strips were replaced. Closed leather bands follow the new shirt; their rear ends enter the original pack with its weights. Cuffs enter the original bracer rims with their weights. Original pack/belt hardware was restored from the pre-rebuild checkpoint into dedicated metallic UV cells. Covered inward trouser lining caused the black thigh artifact and was removed. Small elbow/collar cloth folds and subtle dielectric cloth/leather grain remain confined to new wardrobe geometry/atlas cells.
 

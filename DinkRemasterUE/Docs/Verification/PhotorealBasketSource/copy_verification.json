@@ -1,12 +1,12 @@
 {
-  "source": "/home/davisc/Work/DinkQA/PhotorealSessions/Basket/UVRefinement",
-  "destination": "/home/davisc/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1",
+  "source": "~/Work/DinkQA/PhotorealSessions/Basket/UVRefinement",
+  "destination": "~/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1",
   "reviewed_payload_count": 44,
   "runtime_content_changed": false,
   "files": [
     {
       "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.fbx",
-      "sha256": "4dcbb08777b83ee7d606cc677df7459e18cf161b753f8394fd373601ecec2e01",
+      "sha256": "46faf3e346179face06f667e7251f437165127096955f1595b4c9fe751e493c1",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -36,31 +36,31 @@
     },
     {
       "file": "Export/manifest.json",
-      "sha256": "ada551896e0a26cbaec12e8cbff59598941d9408c975da034f81a2887d46e6f4",
+      "sha256": "6cf0944a634851780b1c84748ea1c437eed42f9d8ef5d634131c8948e96e025f",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "HANDOFF.md",
-      "sha256": "3dd2169c414163931c43e50c497890aaf48bb545ff4fb58c3db48aaf83a9cdb2",
+      "sha256": "86d9c1d6a4402d62155aae7ae0582ce92b624bd934a5e5e6ce212d41594de03d",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "Inputs/V4_Source.blend",
-      "sha256": "f550ff60db5c41b6e43157f978734322918e1b2738cf5bfe62989c96164ac020",
+      "sha256": "6123a20ab84590c5dcd2a75a27fe7361ca4dd9b14d9a06b4238c6f6693639850",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "PhotorealBasketV1_Export.blend",
-      "sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+      "sha256": "5e32d8becf62f6131d7e3e83c2f2611f6c3dcae616bae7c8d44c12157991690c",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "PhotorealBasketV1_Source.blend",
-      "sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+      "sha256": "8abcff5273a5c1769856f162fd2a7a3a90830bdbbaa29e86b1e703fcfa4912dc",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -120,25 +120,25 @@
     },
     {
       "file": "Roundtrip/front.png",
-      "sha256": "f94f4247042d4e7e90b19473b4eea585188eb88e594287615b30353a74fb2a27",
+      "sha256": "a7bac57d0ddba6b25142b46d1c8ddcba3c303051696fa6ebe9e8f46ba2f443d6",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "Roundtrip/game-distance.png",
-      "sha256": "d458222e023e588b4278a5e2185af98f4e387e3f4fde53dcc33397cda9a87c7c",
+      "sha256": "a513fd075d0a6e834a79b867df7c790685a1c629f00344b855260c337e188e91",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "Roundtrip/handle.png",
-      "sha256": "e002f113d432bccc264bfce922ac6ce6f552a93a0feec23bd4db1ff1e2275ae4",
+      "sha256": "1c8405e0d42d19cec698947880a3725493bf53a5038ef9ee6a293a5a54eb013a",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "Roundtrip/weave.png",
-      "sha256": "472c8945d516786be1e8c996a08cef5aeff6c2097b049cc99e0eecdda5fcf25d",
+      "sha256": "05a601820ec18c880bfc7e6f37b397028cec55348b4c15ba5820d75aa8dc4b7d",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -180,7 +180,7 @@
     },
     {
       "file": "bake_receipt.json",
-      "sha256": "4d453cd4c883e73b46cdb30c22f33812c880739aefb779a8613261eef6c1d889",
+      "sha256": "d028320d26d681cc8aa8d6a836753e6da7e62b941a07afc31c284969748de543",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -198,25 +198,25 @@
     },
     {
       "file": "export_report.json",
-      "sha256": "f3701f5fd9f9c9422ab49af5eecaa0e0e30fa480607ed91a1476d5bc12bc3a89",
+      "sha256": "661bb432244c1764b86f44cafa31ec70982566fff691975807ce4d5c099d0e4a",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "guide_validation.json",
-      "sha256": "82043a19b8b7f3bb6cd437b5b8e05c0704ac95127404eb35ee44e7681cc96c0b",
+      "sha256": "b789706033efb27773c04283ba8f7395532f0bd7a1dbf73cf5cd6bb45f25af5d",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "pixel_comparison.json",
-      "sha256": "f4f80fc44b038f3ccc53438414bc13c94bdfc860f6848c54b8139f43e97ee5ce",
+      "sha256": "01bfd5fdb16faada5ec5e3bb53d2e43a220b10631b7ca4a2124b5cc81a8ba374",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "portable_export_receipt.json",
-      "sha256": "f180cfae34603b3e1924075640229259a0e18580cea066f0124ee58879f8df75",
+      "sha256": "13f4d9566aa98426606084b0ca6f2067db1eaa519515d919791abf417ec516dc",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -240,7 +240,7 @@
     },
     {
       "file": "roundtrip_receipt.json",
-      "sha256": "90362ed39c0b0a396a3d96a05627dcd3099919e6c38315313ffd00d8e77e4036",
+      "sha256": "f38573941d79fd774e0ef3b606e9af11a91c9564a4629c44b9b5cabff91b53bc",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -252,13 +252,13 @@
     },
     {
       "file": "uv_repack_receipt.json",
-      "sha256": "82304bebc79ee3116f62a3203ff4db1e19d7e3c3d1b533c6f1ab7f9df3fbf358",
+      "sha256": "d1a16ecc0cfbca0d0e862f6382fe113e2b9326046f6d2ef2b6292630848dfb29",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
     {
       "file": "uv_verification.json",
-      "sha256": "c9c7f70eced6fe22c60a33373522f38271824d1762b3025e78cee8e984d4d026",
+      "sha256": "68979fe0b35e0fb76357a403cab4d5d3cf93bb05c788fc32aeafa299a8e066c4",
       "independent_inode": true,
       "role": "unchanged reviewed candidate payload"
     },
@@ -270,7 +270,7 @@
     },
     {
       "file": "Inputs/KIT_Stonebrook_Input.blend",
-      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "sha256": "ee11c44ee88be504742b75967dd727047dd39721e83598eae2d3257eb772c0ed",
       "independent_inode": true,
       "role": "original kit authoring input"
     },

@@ -2,7 +2,7 @@
 import bpy,json,sys
 from pathlib import Path
 import numpy as np
-ROOT=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters';TEX=ART/'Textures'
+ROOT=Path(Path(__file__).resolve().parents[4]);ART=ROOT/'SourceAssets/Art/Characters';TEX=ART/'Textures'
 bpy.ops.wm.open_mainfile(filepath=str(ART/'Working/Mother_Rigged_PreBake.blend'))
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=1
 ob=bpy.data.objects['SK_Mother_LOD0'];arm=bpy.data.objects['Armature'];arm.data.pose_position='REST'

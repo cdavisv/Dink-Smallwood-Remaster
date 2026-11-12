@@ -4,7 +4,7 @@
   "Root_all_setup_scopes_unchanged": true,
   "source_pins_unchanged": true,
   "max_parallel_actions": 2,
-  "private_UBA_root": "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/UBA",
+  "private_UBA_root": "~/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/UBA",
   "retained_failures": [
     "build_uba_cache_denied.log",
     "build_no_uba_cache_denied.log.gz"

@@ -1,7 +1,7 @@
 {
   "status": "Preparedactual rebasedgeometry/PBRcandidate; rawguide/export/independentaudit/visualreviewpending",
   "input_clipped_table_sha256": "56b472a1eb6eaa4fa89137e28d62e3adfa50663b3416d75842b9f7b30ff7a12a",
-  "canonical_contract_sha256": "1c25ca997ed175a38dd3269ddccad9182c151b4ca67506e55cfb6fc54bc4ca2d",
+  "canonical_contract_sha256": "d9ea80391b3e53e3a5a71f2a98d182841c81cd1ca03a44946169b5d813a61e53",
   "terrain_assets": [
     {
       "asset": "SM_Vista_Land_S406_XM5_YP1_01",
@@ -4737,17 +4737,17 @@
   "reed_shared_texture_provenance": [
     {
       "file": "Textures/T_Shared_Willow_Leaf_BC.png",
-      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_BC.png",
+      "source": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_BC.png",
       "sha256": "b7c000a2ea7874e63366261685115de55a7e612ec44a79ea6b0cfc63fc418ad8"
     },
     {
       "file": "Textures/T_Shared_Willow_Leaf_N.png",
-      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_N.png",
+      "source": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_N.png",
       "sha256": "9d635534e475c7dc60f869767dbd9b0f37a94ddd7aa9a7b98642a6bd4febe8bc"
     },
     {
       "file": "Textures/T_Shared_Willow_Leaf_ORM.png",
-      "source": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_ORM.png",
+      "source": "/home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery/Textures/T_Shared_Willow_Leaf_ORM.png",
       "sha256": "71c1becae0caf05b746ce768df87512dd487e5dc6e971a71f756832ae37952e4"
     }
   ],

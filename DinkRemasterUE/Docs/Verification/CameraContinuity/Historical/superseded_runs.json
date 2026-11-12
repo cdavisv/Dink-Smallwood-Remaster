@@ -4,17 +4,17 @@
     {
       "run": "opaque_walls_art",
       "qualification": "NullRHIv1fixtureCamera pointerdereferenceafterDestroyComponent; nofinalindex.json; crashsummaryseparate",
-      "report_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_walls_art/index.json",
+      "report_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_walls_art/index.json",
       "terminal_json_present": false,
-      "html_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_walls_art/index.html",
+      "html_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_walls_art/index.html",
       "html_sha256": "d73240703aee217c56bf4eadc0aefe110ca8052f37fa20a602336ad43d74eeba"
     },
     {
       "run": "opaque_posture_art_v2",
       "qualification": "Art27/28pass;oldPerimeterSkirtOwnershipexpected85managedsurfaces withnewopaquedefault0; testpolicyupdatednotcollisiondeleted",
-      "report_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_art_v2/index.json",
+      "report_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_art_v2/index.json",
       "terminal_json_present": true,
-      "html_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_art_v2/index.html",
+      "html_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_art_v2/index.html",
       "html_sha256": "d73240703aee217c56bf4eadc0aefe110ca8052f37fa20a602336ad43d74eeba",
       "raw_report_sha256": "abc62848ded157c23eb38af3c2b0ea7b72461335c94e705f580c04824a320a7a",
       "test_states": {
@@ -40,17 +40,17 @@
     {
       "run": "opaque_posture_full_v3",
       "qualification": "Superseded/cancelled beforeownershipfix; nofinalindex.json",
-      "report_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v3/index.json",
+      "report_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v3/index.json",
       "terminal_json_present": false,
-      "html_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v3/index.html",
+      "html_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v3/index.html",
       "html_sha256": "d73240703aee217c56bf4eadc0aefe110ca8052f37fa20a602336ad43d74eeba"
     },
     {
       "run": "opaque_posture_full_v4",
       "qualification": "Superseded/cancelled beforeobservedABAownershipfix; nofinalindex.json",
-      "report_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v4/index.json",
+      "report_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v4/index.json",
       "terminal_json_present": false,
-      "html_path": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v4/index.html",
+      "html_path": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/opaque_posture_full_v4/index.html",
       "html_sha256": "d73240703aee217c56bf4eadc0aefe110ca8052f37fa20a602336ad43d74eeba"
     }
   ]

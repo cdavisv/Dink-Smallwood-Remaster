@@ -1,6 +1,6 @@
 # Pie V5 optical LOD source successor
 
-Owned workspace /home/davisc/Work/DinkQA/PhotorealSessions/Pie, noGitbranch/nativecheckout changes. Source2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a derives from immutable V4 baked92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e. Prior V4/52 export, raw44 and nativebridge8 remain untouched. PublicationCandidate remains on hold; never publish old V4LOD2 as final.
+Owned workspace /home/artist/Work/DinkQA/PhotorealSessions/Pie, noGitbranch/nativecheckout changes. Source2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a derives from immutable V4 baked92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e. Prior V4/52 export, raw44 and nativebridge8 remain untouched. PublicationCandidate remains on hold; never publish old V4LOD2 as final.
 
 Actual single-FBX V4LOD2 view showed faceted dish silhouette and distorted glaze highlights. V5 retains exact full860triangleLOD0 ceramic dish in both lowerLODs, preserving reduced pastry and corrected closed crumbs. Counts4844/3046/2048 (previous4844/2542/1330). Higher dish cost is deliberate optical quality; native distances/performance remain untested.
 

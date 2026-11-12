@@ -2,10 +2,10 @@
   "binding": {
     "pid": 785442,
     "start_ticks": 8122038,
-    "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
     "argv": [
-      "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
-      "/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DinkRemaster.uproject",
+      "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "/home/artist/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/DinkRemaster.uproject",
       "/Game/Dink/_Generated/Maps/L_Greybox_World",
       "-game",
       "-sdlvideodriver=x11",
@@ -25,18 +25,18 @@
       "-notraceserver",
       "-DDC=InstalledNoZenLocalFallback",
       "-DDC-NoDefaultGraph",
-      "-LocalDataCachePath=/home/davisc/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate1/RunDDC",
+      "-LocalDataCachePath=/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate1/RunDDC",
       "-SharedDataCachePath=None",
       "-ZenSharedDataCacheHost=None",
-      "-UserDir=/home/davisc/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/User",
-      "-abslog=/home/davisc/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/game.log"
+      "-UserDir=/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/User",
+      "-abslog=/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/game.log"
     ],
     "nonce": "9e4611ae-7211-489f-9c8b-28470258416a",
     "namespace_pid": 2
   },
   "probe_sha256": "62a3922f2f0197c26b8746f9a7c394e2d57f30ab03f644356296aae7174d5554",
   "caller_sha256": "12bcab526daa6817a09faeea15694324fd2d1a625d5214a2598fe1434de9a752",
-  "original_error": "/home/davisc/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/state-pawn-contact.json",
+  "original_error": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/state-pawn-contact.json",
   "original_error_sha256": "f5297e7ebeb74f1a5ac097fdcf680d97d5b3d10bcaf174ad81f35d3f1bf0f373",
   "contact": {
     "scope": "ActualPawnprofilevirtualcapsulesweep atrecordedstall; actualfreshPawnNOTrelocated, no collision/drawing/physics/source setters",

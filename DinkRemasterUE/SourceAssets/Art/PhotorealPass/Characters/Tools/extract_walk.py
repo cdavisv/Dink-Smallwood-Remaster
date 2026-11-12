@@ -1,8 +1,9 @@
 """Sample the Epic walk reference (read-only, review only) into armature-space bone matrices in metres."""
+from pathlib import Path
 import bpy, sys, os, json
 sys.path.insert(0, os.path.dirname(__file__))
 from prlib import *
-p = '/home/davisc/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx'
+p = str(Path.home()/'Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx')
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=p, automatic_bone_orientation=False, use_anim=True)
 ref = next(o for o in bpy.context.scene.objects if o.type == 'ARMATURE'); act = ref.animation_data.action

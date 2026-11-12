@@ -2,7 +2,7 @@
 import bpy,math,json,random,hashlib
 from pathlib import Path
 from mathutils import Vector,Matrix
-R=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');W=Path(__file__).resolve().parent
+R=Path(Path(__file__).resolve().parents[4]);W=Path(__file__).resolve().parent
 ANCHOR=Vector((-183806.0975,393595.98,0));EXTERIOR_ANCHOR=Vector((97661.61092968748,37370.324198125,0))
 ROOM=(-7.590625,7.284375,0.,13.125)
 random.seed(1439);bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)

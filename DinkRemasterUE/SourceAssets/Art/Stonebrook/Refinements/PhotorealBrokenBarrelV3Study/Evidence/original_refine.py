@@ -3,7 +3,7 @@ import bpy,bmesh,numpy as np,math,json,hashlib,os,sys,traceback
 from pathlib import Path
 from mathutils import Vector,Matrix
 Q=Path(__file__).resolve().parent
-SRC=Path('/home/davisc/Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend')
+SRC=Path(Path.home()/'Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend')
 PIN='9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def material_signature(m):

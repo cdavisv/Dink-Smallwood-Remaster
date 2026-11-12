@@ -3,70 +3,70 @@
   "runtime_cpp_content_source": "f97349ed95b05b81a1f24d117279b97ed152126e",
   "files": {
     "cook-terminal.json": {
-      "original": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate8/Runs/566fbbc6cce54e3d8ec5989da3040b72/HOST_TERMINAL.json",
-      "sha256": "82858971d4b07f5bcf5b2c68d1b0ad392dcdb5a3b291d06af2abcaeae0602e8c"
+      "original": "~/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate8/Runs/566fbbc6cce54e3d8ec5989da3040b72/HOST_TERMINAL.json",
+      "sha256": "40b0154b9c817c3063148363f15ebd8e51a9571e81344564be8f962eba1cb9f6"
     },
     "shader-four-validation.json": {
-      "original": "/home/davisc/Work/DinkQA/Cook8FourShaderValidation/REPORT.json",
-      "sha256": "22355de0d34828fef042468b82fde71aaa2ca7c0588ffdcc2d0f74ff766baaa7"
+      "original": "~/Work/DinkQA/Cook8FourShaderValidation/REPORT.json",
+      "sha256": "afb9286adef6996c615af76fefe045717fec3586f5ac9236b7f41c075a65e00d"
     },
     "cooked-roof-inventory.json": {
-      "original": "/home/davisc/Work/DinkQA/RoofCook8Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
+      "original": "~/Work/DinkQA/RoofCook8Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
       "sha256": "3b150fd4747e5219ddae1547c9f2f2f4639f5f8790814126f8b6644d6862b363"
     },
     "packaged-ch1.json": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedCH1Preparation/Runs/a5607565cb3a44d8a24e1244e7b5626f/RESULT.json",
-      "sha256": "1a5ff5dd3c4d49b4cd54d8781e8e0734d542e81a05ae6456d4ed6de03d3d94c4"
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedCH1Preparation/Runs/a5607565cb3a44d8a24e1244e7b5626f/RESULT.json",
+      "sha256": "48b5ccd51ee31daa5b3b95e5264f8af9728b01d7d2a97940854fa51517c28b2a"
     },
     "packaged-render-review.json": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/DRIVER_REVIEW_FINAL.json",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/DRIVER_REVIEW_FINAL.json",
       "sha256": "f9248fac7cf1474b833a357abf7b9c3c5020043566dff6de4111601297160c13"
     },
     "helper-real-namespace-test.json": {
-      "original": "/home/davisc/Work/DinkQA/ShaderPrintPackagingDeliveryDraft/ActualExercise1/RESULT.json",
-      "sha256": "f25e1b30e83dbe4057abbe04b6aab865c7612ca46fe2f5ad71adc95e2430ffb7"
+      "original": "~/Work/DinkQA/ShaderPrintPackagingDeliveryDraft/ActualExercise1/RESULT.json",
+      "sha256": "119fbc39a05610aacf0c7d7ec82f51fd259fed1ee7f6cc2506d77ffa1ee33a04"
     },
     "ShaderPrint-vulkan.patch": {
-      "original": "/home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate8/SHADERPRINT_MINIMAL.patch",
+      "original": "~/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate8/SHADERPRINT_MINIMAL.patch",
       "sha256": "5e6000939cb01eb9352afb0666c704573acb1795e3b9fcdf48427842b6d4da12"
     },
     "original-four-invalid.json": {
-      "original": "/home/davisc/Work/DinkQA/PackagedVulkanCrashDiagnosis/Cook7FourShaderBaseline/REPORT.json",
+      "original": "~/Work/DinkQA/PackagedVulkanCrashDiagnosis/Cook7FourShaderBaseline/REPORT.json",
       "sha256": "5cd2ff198b19bb00dcc4566d2cf41b4631275ec9e0584064568715c899c0fafb"
     },
     "room.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/room.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/room.png",
       "sha256": "c7f776abd9534e3e87d11931e4b825e103332494edf4454565d8f94e248e0945"
     },
     "roof-0.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/roof-0.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/roof-0.png",
       "sha256": "1e0931abb232248dd8b1a85179fa900f56645009dcb190b6742814804398ed70"
     },
     "roof-270.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/roof-270.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/roof-270.png",
       "sha256": "8bc7717250552427f612b01fa14db8754ad3c5bce1ea5fc33d297799517c0683"
     },
     "door-before.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-before.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-before.png",
       "sha256": "1b31c93f83196b44b06abbd6a7544514310252676a19b5f767263bdc5daf70fe"
     },
     "door-exit.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-exit.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-exit.png",
       "sha256": "788101d73aee097afc3918b65e75f04884688a9e93d011cc1c3e2d0adadd9747"
     },
     "door-return.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-return.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/door-return.png",
       "sha256": "0831c17e50e48d76c1cdf41b4ed1c434e832accf298f9d28620e3888d4a704d0"
     },
     "final.png": {
-      "original": "/home/davisc/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/final.png",
+      "original": "~/Work/DinkQA/SharedRoofCook8PackagedGPUPreparation/Runs/17a1fda3-ae09-41b5-a097-a234d5e1848a/final.png",
       "sha256": "d11e49abfa6662c6dc43c7043851797673adfa95e6e1caceaec23bc92f428cca"
     },
     "README.md": {
       "sha256": "7f914da3ff57fdff23eef3d4b3fb8995564d6e4dded260a09ae0cf2c4fb96148"
     },
     "device-entropy-regression.json": {
-      "source_directory": "/home/davisc/Work/DinkQA/C9EntropyDiagnosis",
+      "source_directory": "~/Work/DinkQA/C9EntropyDiagnosis",
       "sha256": "b8120182967d905df25deeba5e7fc9c803a95936316b1e6d1ee4e252acc3be71"
     }
   },

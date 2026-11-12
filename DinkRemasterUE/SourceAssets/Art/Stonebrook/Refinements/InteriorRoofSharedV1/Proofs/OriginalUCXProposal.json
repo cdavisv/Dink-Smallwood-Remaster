@@ -2250,7 +2250,7 @@
     "half_new_degenerate_UV_triangles": 3378,
     "source_float32_loss": 0,
     "builtin": "unreal.ProceduralMeshLibrary.get_section_from_static_mesh",
-    "installed_CPP": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
+    "installed_CPP": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
     "actual_data": "StaticMesh->GetRenderData()->LODResources[LOD].VertexBuffers.StaticMeshVertexBuffer.GetVertexUV(index,0), with actual section index buffer",
     "not_sufficient": [
       "MeshDescriptionUV alone",

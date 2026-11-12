@@ -18,12 +18,12 @@
   },
   "validation": "126/126 pure tests PASS; py_compile PASS; actual33export+checkpoint/all88dependencies; 19644sourcefaces14852jute4792cord checked with source-to-self geometry/UV/normal/material-ID bijection",
   "evidence": {
-    "actual_source_plan.json": "f59d7ec02df7d5a5b5bfa9b321c99ac100399af0770f666ead33c48fb3827beb",
+    "actual_source_plan.json": "c31c3585e803aa85250d7216db75a14b9a4cc39a5fda0381c48e7e85496f881b",
     "source_self_consistency.json": "e91b98d1877ce9c9db740da63c16ef6703891525597ab3c75c8d3d5865f50d6d",
     "tests_final.log": "142b385ffb697513ba7df468c329a7f016a7fc9ba3732961a53c207b826a7f85",
     "native_bridge_review.json": "32002bb6b7417fac76717e3bdca6da02e97e6570515f1b2d781f4543e8b63acd",
     "native_bridge_review.diff": "ff4c989b3d827f501a38d9fffc69f8567bc92c137052c2aea7e514858f6fea11",
-    "PLAN.json": "0b73652af4c776c7c29b4d273ee650f0e488f596c2f673a96af310df491d8930",
+    "PLAN.json": "8dc759c3ab744e531d8a3b34f947147be6f944954cc28466117244f16510bc1e",
     "reviewed_base_pins.json": "a99cfae6bcf9d82e42b02962a875cdfe951a2fa1e4d287152c730d1946ade64e",
     "README.md": "4a828a5981c48415f778c25e9c15c86c4d11836869cbe78b5a637b4a790b2e9d"
   },

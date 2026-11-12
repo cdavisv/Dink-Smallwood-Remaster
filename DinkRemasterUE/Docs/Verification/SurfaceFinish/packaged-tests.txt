@@ -1,21 +1,21 @@
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch1Stonebrook'] in 7s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch1Stonebrook/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch2Terris'] in 5s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch2Terris/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch3Roads'] in 3s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch3Roads/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch4Gold'] in 6s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch4Gold/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch5Bow'] in 1s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch5Bow/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch6Goblins'] in 2s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch6Goblins/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch7Sanctuary'] in 6s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch7Sanctuary/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch8Knights'] in 3s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch8Knights/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch9Windemere'] in 2s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch9Windemere/index.json
-TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.ChAJoppa'] in 2s; report: /home/davisc/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_ChAJoppa/index.json
-PARITY ?    stonebrook_probe_trace.txt md5 b3760d52d7 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/stonebrook_probe_trace.txt)
-PARITY ?    probe_ch10_trace.txt md5 c532805f11 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch10_trace.txt)
-PARITY ?    probe_ch2_trace.txt md5 253e6f7268 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch2_trace.txt)
-PARITY ?    probe_ch3_trace.txt md5 e9fce770bc (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch3_trace.txt)
-PARITY ?    probe_ch4_trace.txt md5 d431e6780f (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch4_trace.txt)
-PARITY ?    probe_ch5_trace.txt md5 6c709d1069 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch5_trace.txt)
-PARITY ?    probe_ch6_trace.txt md5 9e87080221 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch6_trace.txt)
-PARITY ?    probe_ch7_trace.txt md5 d50e5111f6 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch7_trace.txt)
-PARITY ?    probe_ch8_trace.txt md5 28406402c0 (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch8_trace.txt)
-PARITY ?    probe_ch9_trace.txt md5 1db62e4adb (no PIE trace at /home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch9_trace.txt)
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch1Stonebrook'] in 7s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch1Stonebrook/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch2Terris'] in 5s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch2Terris/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch3Roads'] in 3s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch3Roads/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch4Gold'] in 6s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch4Gold/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch5Bow'] in 1s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch5Bow/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch6Goblins'] in 2s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch6Goblins/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch7Sanctuary'] in 6s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch7Sanctuary/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch8Knights'] in 3s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch8Knights/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.Ch9Windemere'] in 2s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_Ch9Windemere/index.json
+TESTS PASSED: 1/1 passed, 0 failed (0 with warnings) [packaged, filter 'Dink.Gameplay.Probe.ChAJoppa'] in 2s; report: /home/artist/Work/DinkQA/SurfaceNative/PackageStage/Linux/DinkRemaster/Saved/Automation/Report_ChAJoppa/index.json
+PARITY ?    stonebrook_probe_trace.txt md5 b3760d52d7 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/stonebrook_probe_trace.txt)
+PARITY ?    probe_ch10_trace.txt md5 c532805f11 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch10_trace.txt)
+PARITY ?    probe_ch2_trace.txt md5 253e6f7268 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch2_trace.txt)
+PARITY ?    probe_ch3_trace.txt md5 e9fce770bc (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch3_trace.txt)
+PARITY ?    probe_ch4_trace.txt md5 d431e6780f (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch4_trace.txt)
+PARITY ?    probe_ch5_trace.txt md5 6c709d1069 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch5_trace.txt)
+PARITY ?    probe_ch6_trace.txt md5 9e87080221 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch6_trace.txt)
+PARITY ?    probe_ch7_trace.txt md5 d50e5111f6 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch7_trace.txt)
+PARITY ?    probe_ch8_trace.txt md5 28406402c0 (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch8_trace.txt)
+PARITY ?    probe_ch9_trace.txt md5 1db62e4adb (no PIE trace at /home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE/Saved/Narrative/probe_ch9_trace.txt)
 TESTS PASSED: all probe chapters (Ch1Stonebrook Ch2Terris Ch3Roads Ch4Gold Ch5Bow Ch6Goblins Ch7Sanctuary Ch8Knights Ch9Windemere ChAJoppa) passed, one packaged game process each

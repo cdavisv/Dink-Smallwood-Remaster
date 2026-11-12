@@ -5,7 +5,7 @@ from mathutils import Vector,Matrix,Quaternion
 ART=Path(__file__).resolve().parents[1];CHARS=ART.parents[1]
 # Read the existingEpic walk reference into temporary memory only, never into
 # the saved candidate or any authored/exported animation asset.
-walk_samples=[];walk_rest={};walk_path=Path('/home/davisc/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx')
+walk_samples=[];walk_rest={};walk_path=Path(Path.home()/'Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx')
 if not walk_path.exists():walk_path=Path('/tmp/dink-character-reference/Manny_Walk_Reference.fbx')
 if walk_path.exists():
  bpy.ops.wm.read_factory_settings(use_empty=True)

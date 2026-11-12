@@ -1,5 +1,5 @@
 {
-  "verification_sha256": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
+  "verification_sha256": "6f0daa184d345fc369abb629cdc0c3f335aca3de23cfc04795252676bddc5d84",
   "tools": {
     "props_contract.py": "e60f42d511e3752beacd9b25b6fcf7f57e16f30bbefb80e4e866bb9e8f6ca29c",
     "import_photoreal_props.py": "6e4f549598f79223d33ead085e111ddbbb1188bd5c213bf9663755ebfc5bc7a3",
@@ -17,26 +17,26 @@
     "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.uasset": "f535e1442be40dda7f7227dc1a39fdcc2ef5388e508cf8f460a3df63f5225379",
     "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.uasset": "6cef01ac4bf85e5515d97c5d04a5d111b75fbf249b4cced3803640f85d9700f3",
     "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.uasset": "e040ffde7adeeb5ef83dc7d4a0c51b444df89a58c48598db5d4eddb89b9c13fa",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_BC.uasset": "20a2821847516829dac1cf6acafc84b1bebc0b5ab20de6601efea88d5d669ca5",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_N.uasset": "c8df49c35a07cc1cf5b1862678c5559efabf47618d21d2a099762bfa1477095d",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_ORM.uasset": "4c27c2842527eafac3b2c2bd31f624f0c752d6b211ba16c40634b4df8e8fa199",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_BC.uasset": "f0f870c662d675c9b03d7fab708e18b683aa069967fc76cf189a050c6c86f9e6",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_N.uasset": "ad50680725833ea64ab16f802cf552e38b7d3dc4cc39a18b4505dcfa964ab80f",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_ORM.uasset": "018db3e24cfed79f5ec3835988988a6852d5946b86cb9f66312086a242d6550c",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_BC.uasset": "83641661e84f2ed7439d11f2afdb0209a11dd822f2761c66667f63ca08c725c6",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_N.uasset": "68c6e7a0d2d17e1aa7f73e6d2cae63b24c95073de8d830133428a5a530038fba",
-    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_ORM.uasset": "0e33f3c3879252829ab445edc55d1b8aa2366bd230fcc483e93e8656e4f89ecb"
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_BC.uasset": "c57b9603d2601257e7d5d4db019be16781b781b96304f8cbfc6ac1505b4ae277",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_N.uasset": "673eaf50069e3d24535cca774cb1811420efd2765ea1fb2dc1aaf58baf2f66ff",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Bed_Oak_01_Photo_ORM.uasset": "5c52e7379d284442016ae6793a7053d220c3ae94142d73a377817b3d23d7aca6",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_BC.uasset": "8fc646c35be98fa596b7b4c9b0ba5bf9a8241ae6062e09168da282c37c2241f9",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_N.uasset": "2300eec3c0bd5a40612409f6fbf8781a616d0930baa3985ecb0e8c6b1e9d353a",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Chair_Oak_01_Photo_ORM.uasset": "5254c32a7a60514a43c9e3711c2ebb526bfd6ba305477cfd2d834f463e5d0a0a",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_BC.uasset": "dd41e1bd071aa6b01c2a51c18450ee2d0866f5459b379a81f7b60dd5e42d6794",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_N.uasset": "8643ca14ebb1c9fdd9553f55a17ce2f1bb1564e34fb46a6bf0e87a1ee5f1272e",
+    "Content/Dink/Textures/Stonebrook/PhotorealPropsV1/T_Table_Oak_01_Photo_ORM.uasset": "d60a1fc937ce9883a0a4778acd2e3d6857e98888f089548a4c82fe9af40cdc1f"
   },
   "durable_evidence": {
-    "verify.json": "babd6a07e257b74a7a6a816cf1544b5173bf18c892b4991a6b63acc5f01b3b28",
-    "import.json": "3faa0be8b8a09d2ab39a8ba7d85eeaca7bb9760ac1ba30473efa1a228df4192b",
-    "checkpoint.json": "b628194b8ac7531b9484574de30901b90dc2c9af702d04c9d14e96c1415a5607",
+    "verify.json": "6f0daa184d345fc369abb629cdc0c3f335aca3de23cfc04795252676bddc5d84",
+    "import.json": "1fc30ffa9d0e4b6262aca95479e989d8488cd193caf08bf4cd68e4f2ed78241f",
+    "checkpoint.json": "2f57714433679ada283856541321b6a95109b8faf3ba6a54fc8888ad216cc600",
     "convex_bridge_test.json": "43230c5b4d21e9ff7dbe4f5d5cb7421fd98a8812864a38421f64b8e7cc68ddc3",
     "quantization_diagnosis.json": "948fcea38d40af6f05d647822d5a5da3533de3f4d972db059b02fdea5f85c90e",
     "tolerant_rematch_proof.json": "a9e8924146e3674eba295e96046ed70f2639a1b1987f2b8853262b70194158fb",
     "pure_tests.log": "8382ad608e0a08f539ef29fd94f492ccd119ca682ce912bf27dc63d7af73f285",
     "native_art_tests.json": "35558255edcd0fb5ebca1c8b3f77f322fe244900c885d54414e8d03b63f22121",
-    "build_modules.json": "592236ec6df1f7f03b223b74657e3a8c56664f7399b34fb18efbb552ee843c9d"
+    "build_modules.json": "40585cdfc744190a110f5079807d85d9171b37f04aac7aac3c07c90e7ee409dc"
   },
   "publication_applied": false,
   "root_review_before_publication": true

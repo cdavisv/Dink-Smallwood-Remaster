@@ -1,5 +1,5 @@
 {
-  "project": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
+  "project": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE",
   "pid": 148811,
   "label": "combined-return",
   "reader_sha256": "eeed281779bc0bdf6a624328ec6d91c690ca38a38e98afbcf308bc1aa197eb26",
@@ -37,11 +37,11 @@
   ],
   "floor_framing_feasible": true,
   "loaded_custom_modules": [
-    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-    "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
   ],
   "nearby_static_meshes": [
     {

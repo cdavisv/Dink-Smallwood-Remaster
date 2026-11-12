@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "source_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
-  "candidate_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "source_sha256": "11be0e85906780bb9c2c5287f180c9ec2ff3686551a4226852aea42a1827ae5f",
+  "candidate_sha256": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
   "mesh_objects": 328,
   "UCX_objects": 312,
   "geometry_TRS_parent_modifiers_smooth_corner_normals_exact": true,

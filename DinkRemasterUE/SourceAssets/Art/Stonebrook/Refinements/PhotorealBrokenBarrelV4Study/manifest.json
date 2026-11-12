@@ -6,9 +6,9 @@
   "original_frame": 6,
   "class": "prop",
   "source": "portable.source.blend",
-  "source_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "source_sha256": "de68432d3a74d3dd0193b535d9821558d173882f506153822d2d77af66e954f4",
   "radial_v4_parent_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
-  "published_prior_v3_source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "published_prior_v3_source_sha256": "5d40e9f8d4a7b22d5f3981190695db96aa247ce6eaed374bf2fd641616079f7f",
   "objects": 25,
   "LOD0_triangles": 15680,
   "other_LODs": false,
@@ -25,8 +25,8 @@
   "references_sha256": {
     "SourceAssets/Art/SharedMaterials/manifest.json": "c19adfb9bde4e4151c50e9c0ee6e4d42fb1d8bd414583654f94695a946c3fd1f",
     "SourceAssets/Art/Stonebrook/art_manifest.json": "b5cfa84d909f540592d8f424c15125eea02a780a743b8a418848d32d6b53667d",
-    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
-    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV3Study/manifest.json": "3306a7383c101282e8091a4466487026ef469bb0da5b2c375415251959823fee"
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "92a51ef20b644aafdb6a99cab1b2ad407c1ba0d1f3f88864dc0a6fc380a825f5",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV3Study/manifest.json": "a3f9f8136603213ae3a3a852b7031116ed5fe4a03260877e6f02368cd450875d"
   },
   "runtime_activated": false,
   "native_unsaved_geometry_probe_passed": true,

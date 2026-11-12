@@ -1,10 +1,10 @@
 {
   "status": "No blocking findings for source candidate; native acceptance pending",
   "findings": [],
-  "bundle": "/home/davisc/Work/DinkQA/PhotorealSessions/Barrel",
-  "source_sha256": "0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6",
-  "export_source_sha256": "c5847d19a9d74364a532727f3ed8d5149123c941f5ad83a4bbec30f2d0070880",
-  "final_handoff_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
+  "bundle": "/home/artist/Work/DinkQA/PhotorealSessions/Barrel",
+  "source_sha256": "b0983eeb9eb6fdbbc4ea14d5b6528db7f9817530fa07b81f96cc40eb1b569350",
+  "export_source_sha256": "284ac592547dc97893b917860dd55b319f33cd41cce7f8a0b26399ddf69f0430",
+  "final_handoff_sha256": "664fea7c171a5dc463365ff90fbdd2b3cabf5f91dda1b6c53e1ba3b2f539ea31",
   "frozen_files_verified": 55,
   "independent_binary_FBX": {
     "version": 7400,

@@ -6,9 +6,9 @@
   "original_frame": 6,
   "class": "prop",
   "source": "portable.source.blend",
-  "source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "source_sha256": "5d40e9f8d4a7b22d5f3981190695db96aa247ce6eaed374bf2fd641616079f7f",
   "immediate_preferred_parent_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
-  "earlier_published_v2_sha256": "42ff822785784d531dbbc0730055f8b0281feacb83792364c43dace43b0a7282",
+  "earlier_published_v2_sha256": "d0c399eee4e9fb956b1fc1ff84a74af44a74983f8b6b6793d858a296051c400e",
   "objects": 36,
   "LOD0_triangles": 9928,
   "other_V3_LODs": false,
@@ -27,7 +27,7 @@
     "SourceAssets/Art/SharedMaterials/manifest.json": "c19adfb9bde4e4151c50e9c0ee6e4d42fb1d8bd414583654f94695a946c3fd1f",
     "SourceAssets/Art/Stonebrook/art_manifest.json": "b5cfa84d909f540592d8f424c15125eea02a780a743b8a418848d32d6b53667d",
     "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/barel-06.bmp.png": "b6de2786813e799b54c654e2e493ffafd04c7758c53d5f36d9b08f53a4fc84ba",
-    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b7af2f1d151833a112a332b97e8a774d50cb5223346cba1511705ae149fa598a",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "92a51ef20b644aafdb6a99cab1b2ad407c1ba0d1f3f88864dc0a6fc380a825f5",
     "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/POLICY_INTERPRETATION.md": "3b1745ae085ad5eb0a6778724c2f7e77ed2a55f0b403bfabede9371a6a01d2ad"
   },
   "runtime_activated": false,
@@ -40,6 +40,6 @@
     "Inherited raw generic UV overlap/missingUCX findings remain",
     "Hidden private intact context is comparison only"
   ],
-  "QA_origin": "/home/davisc/Work/DinkQA/PhotorealBrokenBarrelRefinementV3",
-  "QA_READY_sha256": "7115bc752681ff679a2fa511f3a61112762ee2d1ff5894c1145887070e4cc395"
+  "QA_origin": "/home/artist/Work/DinkQA/PhotorealBrokenBarrelRefinementV3",
+  "QA_READY_sha256": "67d36a2b7a69bce37c722b696b5916d0fba5104bb683e78b11521ebef690953a"
 }

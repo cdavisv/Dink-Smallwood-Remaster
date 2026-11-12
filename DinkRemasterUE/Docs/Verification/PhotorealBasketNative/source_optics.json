@@ -4,7 +4,7 @@
   "source_materials": [
     {
       "file": "SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Source.blend",
-      "sha256": "945ddda9b4335eca6dd805b36626e66369eddfe578d3438985686980fabe0aaf",
+      "sha256": "8abcff5273a5c1769856f162fd2a7a3a90830bdbbaa29e86b1e703fcfa4912dc",
       "material": "MI_Basket_Willow_PhotoSource",
       "fields": {
         "IOR": {
@@ -39,7 +39,7 @@
     },
     {
       "file": "SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Export.blend",
-      "sha256": "fec926bf87c5a4e21411e6dfdd5013643438f236ec59da6affe5de0297fe02cb",
+      "sha256": "5e32d8becf62f6131d7e3e83c2f2611f6c3dcae616bae7c8d44c12157991690c",
       "material": "MI_Basket_Wicker_01_PhotoBaked",
       "fields": {
         "IOR": {

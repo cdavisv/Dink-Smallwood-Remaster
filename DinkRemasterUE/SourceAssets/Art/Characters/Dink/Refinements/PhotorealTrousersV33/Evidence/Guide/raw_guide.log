@@ -1,5 +1,5 @@
-00:00.325  blend            | Read blend: "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend"
-/home/davisc/Work/DinkDeliveryRepo/tools/blender/dinkasset/validate.py:498: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+00:00.325  blend            | Read blend: "/home/artist/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend"
+/home/artist/Work/DinkDeliveryRepo/tools/blender/dinkasset/validate.py:498: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   if not mat or not mat.use_nodes or not mat.node_tree:
 
 @@DINK_REPORT_BEGIN@@
@@ -7,7 +7,7 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "/home/davisc/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend",
+  "file": "/home/artist/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend",
   "strict": false,
   "passed": false,
   "summary": {

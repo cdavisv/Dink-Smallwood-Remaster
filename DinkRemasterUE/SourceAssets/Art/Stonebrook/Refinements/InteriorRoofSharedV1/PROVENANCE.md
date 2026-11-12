@@ -1,6 +1,6 @@
 # Roof source registration provenance
 
-Authority: Root accepted the final joinery, gable and reuse images for a native trial and authorized a separate source/library admission worktree. This branch is based on2ba457066c690540078ed7aa899058e1101d9f38. The original `/home/davisc/Work/DinkRoofNativeDelivery` checkout is preserved. Frozen QA source/46delivery pins remain unchanged; no publication/native claim is inherited from that approval.
+Authority: Root accepted the final joinery, gable and reuse images for a native trial and authorized a separate source/library admission worktree. This branch is based on2ba457066c690540078ed7aa899058e1101d9f38. The original `/home/artist/Work/DinkRoofNativeDelivery` checkout is preserved. Frozen QA source/46delivery pins remain unchanged; no publication/native claim is inherited from that approval.
 
 Frozen geometry source is the existing project RoofChimneyV12d/ExportV12d_Run01/Source/RoofChimney_ArtistRepair_v12d.blend,SHA3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec. `build_roof.py` reuses that registered project input and the shared library in SharedMaterials/OakLime2mV1; only material bindings change. All source geometry/UV/TRS/normals/UCX are preserved. Shared material/image names and relative paths are normalized; pixel/shader content is exact to the Root-approved QA candidate. Shared library sources and bakes are generic and reused by independent coupons.
 

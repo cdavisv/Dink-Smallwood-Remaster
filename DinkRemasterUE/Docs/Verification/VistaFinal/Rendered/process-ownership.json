@@ -1,9 +1,9 @@
 {
   "pid": 306643,
-  "project": "/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE",
+  "project": "/home/artist/Work/DinkVistaDelivery/DinkRemasterUE",
   "argv": [
-    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
-    "/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE/DinkRemaster.uproject",
+    "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "/home/artist/Work/DinkVistaDelivery/DinkRemasterUE/DinkRemaster.uproject",
     "/Game/Dink/_Generated/Maps/L_Greybox_World",
     "-game",
     "-sdlvideodriver=x11",
@@ -12,14 +12,14 @@
     "-ResY=720",
     "-nosplash",
     "-unattended",
-    "-abslog=/home/davisc/Work/DinkVistaDelivery/DinkRemasterUE/Saved/Playtest/vista-final.log",
+    "-abslog=/home/artist/Work/DinkVistaDelivery/DinkRemasterUE/Saved/Playtest/vista-final.log",
     "-norhithread",
     "-forcerhibypass",
     "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
     "-nosound",
     "-ddc=InstalledNoZenLocalFallback",
-    "-LocalDataCachePath=/home/davisc/Work/DinkQA/RenderedDelivery/Cache",
-    "-UserDir=/home/davisc/Work/DinkQA/VistaFinal/User"
+    "-LocalDataCachePath=/home/artist/Work/DinkQA/RenderedDelivery/Cache",
+    "-UserDir=/home/artist/Work/DinkQA/VistaFinal/User"
   ],
   "loaded_custom_modules": [
     {

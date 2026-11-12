@@ -1,7 +1,7 @@
 {
   "utc": 1794098365.8307161,
   "exit": 0,
-  "summary": "TESTS PASSED: 130/130 passed, 0 failed (0 with warnings) [filter 'Dink'] in 354s; report: /home/davisc/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html\n",
+  "summary": "TESTS PASSED: 130/130 passed, 0 failed (0 with warnings) [filter 'Dink'] in 354s; report: /home/artist/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html\n",
   "counts": {
     "tests": 130,
     "passed": 130,
@@ -63,7 +63,7 @@
   "foreign_saves_unchanged": true,
   "strict_chapter_errors": [],
   "full_verified": true,
-  "report": "/home/davisc/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html",
+  "report": "/home/artist/Work/DinkPlaytestStage/Saved/Automation/nearfrustum_full130_20261108/index.html",
   "limitations": [
     "Chapter6 is limited to healer/one goblin/exit; remaining sanctuary/Mog untested",
     "Graphics/camera/PP candidate acceptance remains separate",

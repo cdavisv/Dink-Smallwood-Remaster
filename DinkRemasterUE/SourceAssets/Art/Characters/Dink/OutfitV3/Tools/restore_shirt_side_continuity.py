@@ -1,7 +1,7 @@
 import bpy,json,math
 from pathlib import Path
 from mathutils import Vector
-ART=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));cache=json.loads((ART/'Tools/Checkpoints/ContinuousShirtGeometry.json').read_text());r=json.loads((ART/'continuous_shirt_report.json').read_text());assert len(cache['faces'])==r['shirt_faces'];tiles={tuple(v):i for i,v in enumerate(r['allocated_tiles'])};rows=[]
+ART=Path(Path(__file__).resolve().parents[1]);bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));cache=json.loads((ART/'Tools/Checkpoints/ContinuousShirtGeometry.json').read_text());r=json.loads((ART/'continuous_shirt_report.json').read_text());assert len(cache['faces'])==r['shirt_faces'];tiles={tuple(v):i for i,v in enumerate(r['allocated_tiles'])};rows=[]
 for lod in range(4):
  ob=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'];old=ob.data;present=set();shirtids=set()
  for p in old.polygons:

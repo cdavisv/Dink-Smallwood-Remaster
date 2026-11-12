@@ -1,9 +1,9 @@
 {
   "result": "PASS",
   "head": "7a22c2f608e4d848d823eb7870442eadf8c3618a",
-  "project": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE",
+  "project": "/home/artist/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE",
   "native_receipt_passed": true,
-  "native_receipt_sha256": "3e17b4d00dfa80e6590e24ce912977f3b4bae99478a6c359d5b259d96d906d6e",
+  "native_receipt_sha256": "5d15c2fc5b6a9cb6c0f138c246b9c94ef95e25cbe5e8fd51231d6b3179b322d5",
   "native_source_getter_roles": 12,
   "all_native_sources_resolve_selected_relocated_bundle": true,
   "candidate_packages_match_HEAD_LFS": 15,
@@ -37,13 +37,13 @@
     "No rendered/gameplay/lighting acceptance is implied by this NullRHI saved-asset portability check."
   ],
   "evidence": {
-    "receipt.json": "3e17b4d00dfa80e6590e24ce912977f3b4bae99478a6c359d5b259d96d906d6e",
-    "launch.json": "3d6626b4efa3331398fd0344b7bd4cae56b66a659ba91d59b39bc1ae15b246c3",
-    "before.json": "db8225ad4407ee00572dc3932194c82a878f6d56f9a67d1a3a45d2bd17356a5b",
-    "after_closeout.json": "a8682bee9c6e3c9f6fb81b3634507bc7a4fd4c63e171fcf2edcd6bf6a8e5eddf",
+    "receipt.json": "5d15c2fc5b6a9cb6c0f138c246b9c94ef95e25cbe5e8fd51231d6b3179b322d5",
+    "launch.json": "7d7ee0dad7881e213d71544591d76df8cb6705a31c088b8cb1e31bed4df13f06",
+    "before.json": "05191ab0e6bebb63d4cf2bf426a183de474fd9598f9f735a69a23e3aede4615d",
+    "after_closeout.json": "dfbe7558e0d0bd16dd1d5ad2b8365c0eee84bd2df307e77a75fdaeb65ca7da9e",
     "stdout.log": "d609bd9fd7654cd2583490b7554ea9765e780031bf05363ccb8fdff3c82c46f1",
     "fresh_build.json": "00deec722e4415e10a9e680e78656bcc6ceb43dff4df53ebc73cb197098751f9",
-    "clone_setup.json": "e23579ac0b738b3a2997bb534fca6d94ef5a9038dee74731365afcc5b3f8c448",
-    "publisher_noops.json": "107108d5bdeb9d834f384737dd58833dde68ee43ab31c518cffc910749b0ed79"
+    "clone_setup.json": "39e2e878e8a374d37204b8a9c0469f6bb83a8342d1985a8b38e77b3a7e570daa",
+    "publisher_noops.json": "d1d5f074e4c87f366f443d3a1c632927e5b962be7d7400fe9f6a37226bf04188"
   }
 }

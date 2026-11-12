@@ -2,9 +2,9 @@
   "identity": {
     "pid": 748115,
     "start_ticks": 7484024,
-    "exe": "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+    "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
     "argv": [
-      "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
       ":202",
       "-screen",
       "0",
@@ -12,7 +12,7 @@
       "-nolisten",
       "tcp",
       "-auth",
-      "/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/authority",
+      "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/authority",
       "-noreset"
     ]
   },

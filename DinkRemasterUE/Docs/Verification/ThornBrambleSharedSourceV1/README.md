@@ -1,6 +1,6 @@
 # Inactive thorn-bramble shared source review
 
-Worktree `/home/davisc/Work/DinkThornBrambleCPUReviewV9`, branch `art/thorn-bramble-cpu-review-v9`, base actual origin/master `b1ee08e5a6e01ddd52716e0c3adf75ada379b570`. No runtime, Data, native package, UE, build, cache or Engine edits. Source candidate is SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate; shared library is SharedMaterials/ThornBarkBroadleafV1. Earlier off-repository V9 remains preserved.
+Worktree `~/Work/DinkThornBrambleCPUReviewV9`, branch `art/thorn-bramble-cpu-review-v9`, base actual origin/master `b1ee08e5a6e01ddd52716e0c3adf75ada379b570`. No runtime, Data, native package, UE, build, cache or Engine edits. Source candidate is SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate; shared library is SharedMaterials/ThornBarkBroadleafV1. Earlier off-repository V9 remains preserved.
 
 Two reusable source roles were registered before use: MI_Shared_ThornBark2m (2m tiling) and MI_Shared_BroadleafTrimV1 (nominal0.12m trim, foliage rule). Actual1024px BC/N_GL/ORM PNGs, editable procedural sources, packed library and unrelated reuse coupons are delivered. No private prop bake or invented species. Native optical interpretation remains pending.
 

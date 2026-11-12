@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 O=Path(__file__).resolve().parent;source=O/'PhotorealFeedSackV1_Source.blend';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();pin=sha(source)
 try:
- assert pin=='4a51bdbb904f03afb0deb89bbdf546955812bb7e2c1a27386ad55b1966476d94','Unexpected source checkpoint'
+ assert pin=='fed50602908644f26ec7c47563e8d8e1edf6e5bd8a327dc3b776492bcd1b2bdf','Unexpected source checkpoint'
  assert not (O/'PhotorealFeedSackV1_Export.blend').exists(),'Refuse existing export'
  bpy.ops.wm.open_mainfile(filepath=str(source));bpy.context.preferences.filepaths.save_version=0
  collection=bpy.data.collections['SM_FeedSack_Jute_01'];s=next(s for s in bpy.data.scenes if collection.name in s.collection.children);bpy.context.window.scene=s

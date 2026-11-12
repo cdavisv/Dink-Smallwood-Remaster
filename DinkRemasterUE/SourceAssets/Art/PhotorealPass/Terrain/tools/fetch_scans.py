@@ -1,5 +1,6 @@
+from pathlib import Path
 import json,subprocess,os,sys,hashlib,zipfile,datetime,fcntl
-TP='/home/davisc/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/ThirdParty'
+TP=str(Path(__file__).resolve().parents[6]/'DinkRemasterUE/SourceAssets/Art/PhotorealPass/ThirdParty')
 CSV=TP+'/downloads.csv'
 HDR='source,asset_id,asset_url,file,sha256,licence,author,resolution,used_by,date\n'
 def curl(url,out):
