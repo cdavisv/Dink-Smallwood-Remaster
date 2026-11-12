@@ -114,6 +114,16 @@
   "warnings": [],
   "error_messages": []
  },
+ "castle_drawbridge/Castle_Drawbridge/SM_Castle_Drawbridge_PR.blend": {
+  "asset": "SM_Castle_Drawbridge_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
+  ],
+  "error_messages": []
+ },
  "catapult/Catapult/SM_Catapult_PR.blend": {
   "asset": "SM_Catapult_PR",
   "class": "prop_large",
@@ -140,6 +150,16 @@
  "cellar_hatch/Cellar_Hatch/SM_Cellar_Hatch_PR.blend": {
   "asset": "SM_Cellar_Hatch_PR",
   "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
+  ],
+  "error_messages": []
+ },
+ "church/Church/SM_Church_PR.blend": {
+  "asset": "SM_Church_PR",
+  "class": "building",
   "passed": true,
   "errors": [],
   "warnings": [
@@ -181,6 +201,141 @@
   "warnings": [],
   "error_messages": []
  },
+ "corpse_knight/Corpse_Knight/SM_Corpse_Knight_PR.blend": {
+  "asset": "SM_Corpse_Knight_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET",
+   "UV_RANGE"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (1.4 % of UV area, 47 triangles); class prop needs unique UVs"
+  ]
+ },
+ "corpse_maiden/Corpse_Maiden/SM_Corpse_Maiden_PR.blend": {
+  "asset": "SM_Corpse_Maiden_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "TEXTURE_SIZE",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET",
+   "UV_DEGENERATE"
+  ],
+  "error_messages": [
+   "9121 non-manifold edges (9111 open boundary, 10 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (630.9 % of UV area, 2764 triangles); class prop needs unique UVs",
+   "5 material slots, limit for prop is 3",
+   "image 'T_Mother_PR_Skin_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Skin_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Skin_SSS.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Hair_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Hair_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Outfit_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Outfit_N.png' is 4096x4096: prop textures max 2048"
+  ]
+ },
+ "corpse_mom/Corpse_Mother/SM_Corpse_Mother_PR.blend": {
+  "asset": "SM_Corpse_Mother_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "TEXTURE_SIZE",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET",
+   "UV_DEGENERATE"
+  ],
+  "error_messages": [
+   "9121 non-manifold edges (9111 open boundary, 10 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (630.9 % of UV area, 2764 triangles); class prop needs unique UVs",
+   "5 material slots, limit for prop is 3",
+   "image 'T_Mother_PR_Skin_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Skin_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Skin_SSS.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Hair_BC.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Hair_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Hair_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Outfit_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Mother_PR_Outfit_N.png' is 4096x4096: prop textures max 2048"
+  ]
+ },
+ "corpse_soldier/Corpse_Soldier/SM_Corpse_Soldier_PR.blend": {
+  "asset": "SM_Corpse_Soldier_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "TEXTURE_SIZE",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET",
+   "UV_DEGENERATE"
+  ],
+  "error_messages": [
+   "8371 non-manifold edges (8265 open boundary, 8 shared by >2 faces, 98 wire); prop must be a closed solid",
+   "UV0 islands overlap (717.8 % of UV area, 5566 triangles); class prop needs unique UVs",
+   "5 material slots, limit for prop is 3",
+   "image 'T_Milder_PR_Skin_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Skin_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Skin_SSS.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Hair_BC.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Hair_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Hair_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Hair_FLOW.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Outfit_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Milder_PR_Outfit_N.png' is 4096x4096: prop textures max 2048"
+  ]
+ },
+ "dink_dead/Dink_Dead/SM_Dink_Dead_PR.blend": {
+  "asset": "SM_Dink_Dead_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "TEXTURE_SIZE",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET",
+   "UV_DEGENERATE"
+  ],
+  "error_messages": [
+   "11011 non-manifold edges (11011 open boundary, 0 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (629.8 % of UV area, 1625 triangles); class prop needs unique UVs",
+   "5 material slots, limit for prop is 3",
+   "image 'T_Dink_PR_Skin_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Skin_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Skin_SSS.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Hair_BC.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Hair_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Hair_N.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Outfit_ORM.png' is 4096x4096: prop textures max 2048",
+   "image 'T_Dink_PR_Outfit_N.png' is 4096x4096: prop textures max 2048"
+  ]
+ },
  "dink_monument_rock/Monument_Dink/SM_Monument_Dink_PR.blend": {
   "asset": "SM_Monument_Dink_PR",
   "class": "prop",
@@ -203,6 +358,16 @@
   "error_messages": [
    "pivot is wrong for creature (rule feet): origin is 105.4 cm off, should move by (0.2, 105.4, -0.1) cm. "
   ]
+ },
+ "dragon_corpse/Dragon_Corpse/SM_Dragon_Corpse_PR.blend": {
+  "asset": "SM_Dragon_Corpse_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "NAME_TEXTURE"
+  ],
+  "error_messages": []
  },
  "dragon_statue/Dragon_Statue/SM_Dragon_Statue_PR.blend": {
   "asset": "SM_Dragon_Statue_PR",
@@ -525,6 +690,54 @@
   "warnings": [],
   "error_messages": []
  },
+ "npc_maiden_blue/Maiden_Blue/SK_Maiden_Blue_PR.blend": {
+  "asset": "SK_Mother",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "NO_MESH"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "asset has no render mesh"
+  ]
+ },
+ "npc_maiden_brown/Maiden_Brown/SK_Maiden_Brown_PR.blend": {
+  "asset": "SK_Mother",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "NO_MESH"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "asset has no render mesh"
+  ]
+ },
+ "npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR.blend": {
+  "asset": "SK_Mother",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "NO_MESH"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "asset has no render mesh"
+  ]
+ },
+ "npc_soldier/Soldier/SK_Soldier_PR.blend": {
+  "asset": "SK_Milder",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "NO_MESH"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "asset has no render mesh"
+  ]
+ },
  "ore_rock_blue/Ore_Rock_Blue/SM_Ore_Rock_Blue_PR.blend": {
   "asset": "SM_Ore_Rock_Blue_PR",
   "class": "prop",
@@ -656,6 +869,34 @@
   "errors": [],
   "warnings": [
    "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "snow_house_lower/Snow_House_Lower/SM_Snow_House_Lower_PR.blend": {
+  "asset": "SM_Snow_House_Lower_PR",
+  "class": "building",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
+  ],
+  "error_messages": []
+ },
+ "snow_house_roof/Snow_House_Roof/SM_Snow_House_Roof_PR.blend": {
+  "asset": "SM_Snow_House_Roof_PR",
+  "class": "building",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "snow_house_timber/Snow_House_Timber/SM_Snow_House_Timber_PR.blend": {
+  "asset": "SM_Snow_House_Timber_PR",
+  "class": "building",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
   ],
   "error_messages": []
  },

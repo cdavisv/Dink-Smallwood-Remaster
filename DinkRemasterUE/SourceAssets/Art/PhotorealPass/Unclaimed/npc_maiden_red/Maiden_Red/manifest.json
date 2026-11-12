@@ -1,0 +1,72 @@
+{
+ "name": "SK_Maiden_Red_PR",
+ "class": "character_humanoid",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR_LOD2.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR_LOD3.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/SK_Maiden_Red_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_npcs.py Maiden_Red",
+ "derived_from": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Characters/Mother (SK_Mother_Photoreal): mesh, LODs, skeleton and skin weights unchanged",
+ "dimensions_m": [
+  1.1079,
+  0.7885,
+  1.7992
+ ],
+ "lod0_triangles": 34207,
+ "lod1_triangles": 18813,
+ "lod2_triangles": 10791,
+ "lod3_triangles": 7144,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/T_Maiden_Red_PR_Outfit_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB (outfit, recoloured)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_maiden_red/Maiden_Red/T_Maiden_Red_PR_Hair_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB (hair, recoloured)"
+  }
+ ],
+ "shared_textures": "every other map (skin, eyes, gear, and the N / ORM / mask maps of outfit and hair) is the base character's, under PhotorealPass/Characters/Mother/Textures",
+ "materials": [
+  "MI_Mother_PR_Skin",
+  "MI_Mother_PR_Eyes",
+  "MI_Maiden_Red_PR_Hair",
+  "MI_Maiden_Red_PR_Outfit",
+  "MI_Mother_PR_Gear"
+ ],
+ "rig": {
+  "skeleton": "the 89-bone mannequin skeleton of the base, unchanged",
+  "bone_count": 89,
+  "root_bone": "root",
+  "animation": "none delivered; shares the base skeleton"
+ },
+ "pivot": "feet, front on -Y (as the base)",
+ "families": [
+  "npc_maiden_red",
+  "221 people/maiden/red/c4-w1-"
+ ],
+ "origin_ids": {
+  "npc_maiden_red": [
+   "S122_P09"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "woman in a long crimson dress with fair hair",
+ "third_party": [
+  "see the base character manifest"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "PARTIAL by construction. A colour variant, not a new character: body, face, hair shape, garments, skeleton and skin weights are those of Mother from the photoreal pass, so this NPC is her or his twin with a recoloured outfit and hair. Whatever that base still has wrong is inherited (see its manifest), including the Mother's dark patches at the neck and right forearm. No animation clips are delivered here; it plays whatever the base plays, on the same skeleton."
+}

@@ -172,7 +172,14 @@
   "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands",
   "SM_Cave_Hole_PR": "intended: the pivot is ground level at the opening; the shaft is 1.3 m below it",
   "SK_Goblin_Soldier_PR": "intended: origin between the feet; the shield and the polearm shift the bounding-box centre",
-  "SM_Snake_Pillar_PR": "0.2 % of the UV area overlaps where the smart projection folds on the coiled snake"
+  "SM_Snake_Pillar_PR": "0.2 % of the UV area overlaps where the smart projection folds on the coiled snake",
+  "SM_Corpse_Mother_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Maiden_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Soldier_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Dink_Dead_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Knight_PR": "1.4 % of the UV area overlaps (inherited from the knight's LOD1 unwrap)",
+  "SK_Mother": "the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings",
+  "SK_Milder": "the soldier variant: derived from the photoreal pass Milder; same remark as for the maidens"
  },
  "save_machine": {
   "why": "1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation"
@@ -274,5 +281,112 @@
  },
  "log_cabin": {
   "why": "1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets"
+ },
+ "church": {
+  "why": "1 building mesh with UCX hull: buttressed nave, chancel, round apse, slate roofs, bell turret and spire; one 4096 px bake, soft at 1 m"
+ },
+ "snow_house_lower": {
+  "why": "1 building mesh with UCX hull: framed and plastered ground storey; stacks under the timbered storey and the roof"
+ },
+ "snow_house_timber": {
+  "why": "1 building mesh with UCX hull: jettied timber-framed storey; place at z = 3.0 m on the lower storey"
+ },
+ "snow_house_roof": {
+  "why": "1 building mesh with UCX hull: pyramid roof of stone slates; place at z = 5.8 m"
+ },
+ "castle_drawbridge": {
+  "why": "1 mesh with UCX hull: gate arch in a wall sample, plank bridge fixed down, two chains; nothing moves"
+ },
+ "npc_maiden_blue": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_maiden_brown": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_maiden_red": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_soldier": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Milder (same mesh, LODs, 89-bone skeleton and weights; new outfit base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "corpse_mom": {
+  "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal"
+ },
+ "dink_dead": {
+  "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)"
+ },
+ "corpse_maiden": {
+  "status": "partial",
+  "why": "1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant"
+ },
+ "corpse_soldier": {
+  "status": "partial",
+  "why": "1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant"
+ },
+ "corpse_knight": {
+  "status": "partial",
+  "why": "1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight"
+ },
+ "dragon_corpse": {
+  "status": "partial",
+  "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here"
+ },
+ "hearth_fire": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops) synthesised from noise fields. Partial: a 2D flipbook source, no Niagara effect, light or embers"
+ },
+ "fireball_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): burning head with a flame trail. Partial: flipbook source only"
+ },
+ "explosion_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, one shot): fireball cooling to smoke. Partial: flipbook source only, weak smoke, no debris or flash"
+ },
+ "fire_burst_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, one shot): rising mushroom of fire. Partial: flipbook source only"
+ },
+ "sparkle_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): twinkling glints; one set for both original sequences. Partial: flipbook source only"
+ },
+ "fountain_spray_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): ballistic drops. Partial: flipbook source only, no water sheet or splash"
+ },
+ "npc_girl": {
+  "why": "not started: needs a child body, face and dress, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "corpse_girl": {
+  "why": "not started: needs a child body (and the girl herself), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "npc_merchant_blue": {
+  "why": "not started: needs a civilian man in a tunic (Milder cannot be taken out of his armour: the body under it is culled), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "npc_merchant_green": {
+  "why": "not started: needs a civilian man in a tunic, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "corpse_merchant": {
+  "why": "not started: needs a civilian man (and the merchant himself), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "npc_peasant": {
+  "why": "not started: needs a thin man in ragged clothes with a staff, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "corpse_peasant": {
+  "why": "not started: needs a peasant figure, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "npc_old_man": {
+  "why": "not started: needs a bent old man in a hooded cloak, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "npc_gnome_purple": {
+  "why": "not started: needs a short robed wizard with a pointed hat and beard, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+ },
+ "king_on_throne": {
+  "why": "not started: needs a seated robed king with a crown, and his throne, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
  }
 }
