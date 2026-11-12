@@ -120,6 +120,144 @@ def write_png_if_changed(path: Path, img: Image.Image) -> None:
     path.write_bytes(data)
 
 
+# ---------------------------------------------------------------------------------------------
+# Photoreal pass: per-screen terrain layer masks for the master ground material (M_Env_Terrain).
+# The tile classes (tools/data/tile_classes.csv) choose up to three layers of the catalogue
+# SourceAssets/Art/PhotorealPass/Environment/terrain_layers.json; transition tiles are split per
+# pixel by colour distance to the mean colours of their two classes. The mask is 96x64 (8 px per
+# tile), RGB = weights of layers A, B, C. Screens dominated by unmapped classes (wood floors,
+# building facades, void) keep the original painted ground.
+TERRAIN_MASK_W, TERRAIN_MASK_H = 96, 64
+
+
+def load_terrain_catalogue(project: Path):
+    path = project / "SourceAssets/Art/PhotorealPass/Environment/terrain_layers.json"
+    if not path.exists():
+        return None
+    cat = json.loads(path.read_text())
+    manifest = project / "SourceAssets/Art/PhotorealPass/Terrain/manifest.json"
+    sets = {s["name"]: s for s in json.loads(manifest.read_text())["sets"]} if manifest.exists() else {}
+    layers = {}
+    for name, row in cat["layers"].items():
+        if row["source"] == "terrain":
+            if row["set"] not in sets:
+                continue
+            tile_m = float(sets[row["set"]]["tile_size_m"])
+        else:
+            tile_m = float(row["tile_m"])
+        layers[name] = {"name": name, "tile_cm": round(tile_m * 100.0, 3), "normal_strength": float(row.get("normal_strength", 1.0)),
+                        "backlight": float(row.get("backlight", 0.0)), "emissive": float(row.get("emissive", 0.0))}
+    cat["resolved_layers"] = layers
+    return cat
+
+
+def terrain_class_means(tile_classes: dict, tileset) -> dict:
+    """Mean RGB of every terrain class over its non-transition tiles (tileset art)."""
+    sums, counts = {}, {}
+    for row in tile_classes.values():
+        if row.get("is_transition") == "1":
+            continue
+        ts = tileset(int(row["tileset"]))
+        if ts is None:
+            continue
+        cell = int(row["cell"])
+        x, y = (cell % 12) * 50, (cell // 12) * 50
+        if x + 50 > ts.width or y + 50 > ts.height:
+            continue
+        mean = np.asarray(ts.crop((x, y, x + 50, y + 50)), dtype=np.float64).reshape(-1, 3).mean(axis=0)
+        sums[row["terrain"]] = sums.get(row["terrain"], 0) + mean
+        counts[row["terrain"]] = counts.get(row["terrain"], 0) + 1
+    return {k: sums[k] / counts[k] for k in sums}
+
+
+def signed_shore_distance(water: np.ndarray, px_cm: float) -> np.ndarray:
+    """Signed distance (cm) to the waterline on a small boolean grid: positive on land, negative in water.
+    A screen without water returns +inf-like (far), one without land -far."""
+    far = 1.0e4
+    inside = np.argwhere(water)
+    outside = np.argwhere(~water)
+    out = np.full(water.shape, far)
+    if len(inside) == 0:
+        return out
+    if len(outside) == 0:
+        return -out
+    d = np.sqrt(((inside[:, None, :] - outside[None, :, :]) ** 2).sum(axis=2)) * px_cm
+    out[tuple(outside.T)] = d.min(axis=0) - 0.5 * px_cm
+    out[tuple(inside.T)] = -(d.min(axis=1) - 0.5 * px_cm)
+    return out
+
+
+def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False):
+    """-> (layers [dict], RGBA mask Image, grass cover base64 or None), or (None, None, None) when the screen
+    keeps its painted ground. Alpha is the signed distance to the waterline: 128 at the shore, 255 at 2 m or
+    more on land (also the value without water), 0 at 2 m or more into the water."""
+    layers = cat["resolved_layers"]
+    class_map = dict(cat["classes"])
+    if indoor:
+        class_map.update(cat.get("classes_indoor", {}))
+    class_layer = {c: l for c, l in class_map.items() if l in layers}
+    secondary = {c: v for c, v in cat.get("class_secondary", {}).items() if v[0] in layers}
+    px = TERRAIN_MASK_W // 12
+    small = np.asarray(ground.resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX), dtype=np.float64)
+    weights = {}
+    unmapped = 0
+
+    def add(layer, r, c, w):
+        a = weights.setdefault(layer, np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W)))
+        a[r * px:(r + 1) * px, c * px:(c + 1) * px] += w
+
+    for t in scr["tiles"]:
+        row = tile_classes.get(t["num"])
+        terrain = row["terrain"] if row else ""
+        r, c = t["row"], t["col"]
+        if terrain not in class_layer:
+            unmapped += 1
+            continue
+        parts = [p for p in (row.get("blend_classes") or "").split("|") if p in class_layer and p in means]
+        if row.get("is_transition") == "1" and len(parts) == 2 and class_layer[parts[0]] != class_layer[parts[1]]:
+            block = small[r * px:(r + 1) * px, c * px:(c + 1) * px]
+            d0 = np.linalg.norm(block - means[parts[0]], axis=2)
+            d1 = np.linalg.norm(block - means[parts[1]], axis=2)
+            w1 = np.clip(0.5 + (d0 - d1) / (np.linalg.norm(means[parts[0]] - means[parts[1]]) + 1e-6), 0.0, 1.0)
+            add(class_layer[parts[0]], r, c, 1.0 - w1)
+            add(class_layer[parts[1]], r, c, w1)
+            continue
+        if terrain in secondary:
+            add(class_layer[terrain], r, c, 1.0 - secondary[terrain][1])
+            add(secondary[terrain][0], r, c, secondary[terrain][1])
+        else:
+            add(class_layer[terrain], r, c, 1.0)
+    if not weights or unmapped > 0.10 * len(scr["tiles"]):
+        return None, None, None
+    names = sorted(weights, key=lambda k: (-weights[k].sum(), k))[:3]
+    stack = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W, 3))
+    for i, name in enumerate(names):
+        stack[:, :, i] = weights[name]
+    total = stack.sum(axis=2, keepdims=True)
+    stack = np.where(total > 1e-6, stack / np.maximum(total, 1e-6), np.array([1.0, 0.0, 0.0]))
+    # 3x3 box blur with edge clamp: one-texel soft edges, then the material's height blend shapes them
+    pad = np.pad(stack, ((1, 1), (1, 1), (0, 0)), mode="edge")
+    stack = sum(pad[dy:dy + TERRAIN_MASK_H, dx:dx + TERRAIN_MASK_W] for dy in range(3) for dx in range(3)) / 9.0
+    shore = np.full((TERRAIN_MASK_H, TERRAIN_MASK_W), 1.0)
+    water_small = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W), bool)
+    if fill_water is not None and fill_water.any():
+        fw = np.asarray(Image.fromarray(fill_water.astype(np.uint8) * 255).resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX))
+        water_small = fw > 127
+        px_cm = 600.0 / TERRAIN_MASK_W * 4.38  # about 4.4 cm per map pixel
+        shore = np.clip(0.5 + signed_shore_distance(water_small, px_cm) / 400.0, 0.0, 1.0)
+    rgba = np.dstack([np.clip(stack, 0.0, 1.0), shore])
+    img = Image.fromarray((rgba * 255.0 + 0.5).astype(np.uint8), "RGBA")
+    cover = None
+    grass = cat.get("grass_layer", "MeadowTurf")
+    if grass in names:
+        g = stack[:, :, names.index(grass)] * (~water_small)
+        g = g.reshape(TERRAIN_MASK_H // 4, 4, TERRAIN_MASK_W // 4, 4).mean(axis=(1, 3))
+        import base64
+        cover = base64.b64encode((np.clip(g, 0.0, 1.0) * 255.0 + 0.5).astype(np.uint8).tobytes()).decode("ascii")
+    return [layers[n] for n in names], img, cover
+
+
+
 def next_pow2(n: int) -> int:
     p = 1
     while p < n:
@@ -406,6 +544,10 @@ def main(argv=None) -> int:
 
     out.mkdir(parents=True, exist_ok=True)
     (out / "ground").mkdir(exist_ok=True)
+    (out / "ground_mask").mkdir(exist_ok=True)
+    terrain_cat = load_terrain_catalogue(here)
+    terrain_means = None
+    layer_cover = {}
     (out / "sprites").mkdir(exist_ok=True)
 
     layout = json.loads((analyse / "world_layout.json").read_text())
@@ -500,7 +642,6 @@ def main(argv=None) -> int:
         # native 600x400; the importer stretches it to a power of two (StretchToPowerOfTwo)
         write_png_if_changed(out / "ground" / f"{sid}.png", ground)
         ground_hash = sha1_bytes(ground.tobytes())
-
         # --- hardness -> collision rectangles
         hard = read_index_png(dinkex / scr["hardness"]["image"])
         if hard.shape != (400, 600):
@@ -557,6 +698,16 @@ def main(argv=None) -> int:
             problems.append(f"{sid}: {int(other.sum())} hardness pixels with unknown codes {sorted(set(hard[other].tolist()))}; treated as solid")
             classes_masks["solid"] |= other
         rects = {k: mask_to_rects(m) for k, m in classes_masks.items()}
+        ground_layers, ground_mask = (None, None)
+        if terrain_cat is not None:
+            if terrain_means is None:
+                terrain_means = terrain_class_means(tile_classes, tileset)
+            ground_layers, ground_mask, cover = terrain_mask(scr, ground, tile_classes, terrain_cat, terrain_means, fill_water, bool(scr["indoor"]))
+            if ground_mask is not None:
+                if cover is not None:
+                    layer_cover[str(n)] = cover
+                write_png_if_changed(out / "ground_mask" / f"{sid}.png", ground_mask)
+
         rect_total += sum(len(v) for v in rects.values())
         coll_hash = sha1_json(rects)
         collision_out[sid] = rects
@@ -631,6 +782,11 @@ def main(argv=None) -> int:
             "excluded": excluded.get(sid, ""),
         }
         screen_rec["hash"] = sha1_json(screen_rec)
+        # Presentation only, deliberately outside the screen hash: actors and collision do not depend on it.
+        if ground_mask is not None:
+            screen_rec["ground_layers"] = ground_layers
+            screen_rec["ground_mask"] = f"ground_mask/{sid}.png"
+            screen_rec["ground_mask_hash"] = sha1_bytes(ground_mask.tobytes() + json.dumps(ground_layers, sort_keys=True).encode())
         screens_out.append(screen_rec)
 
         # --- placements
@@ -888,6 +1044,15 @@ def main(argv=None) -> int:
         inputs[str(p.relative_to(data))] = sha1_file(p)
 
     write_json(out / "screens.json", {"schema": EXPORTER_VERSION + "/screens", "screens": screens_out})
+    if terrain_cat is not None:
+        # Runtime grass scatter hook (UDinkEnvironmentSubsystem): 24x16 meadow coverage per screen.
+        cover_dir = here / "Content/Dink/Data/Environment"
+        cover_dir.mkdir(parents=True, exist_ok=True)
+        cover_text = json.dumps({"schema": "dink-environment-layer-cover/1", "layer": terrain_cat.get("grass_layer", "MeadowTurf"),
+                                 "w": TERRAIN_MASK_W // 4, "h": TERRAIN_MASK_H // 4, "screens": layer_cover}, sort_keys=True)
+        cover_file = cover_dir / "layer_cover.json"
+        if not cover_file.exists() or cover_file.read_text() != cover_text:
+            cover_file.write_text(cover_text)
     write_json(out / "placements.json", {"schema": EXPORTER_VERSION + "/placements", "placements": placements_out})
     write_json(out / "warps.json", {"schema": EXPORTER_VERSION + "/warps", "warps": warps_out})
     write_json(out / "collision.json", {"schema": EXPORTER_VERSION + "/collision",

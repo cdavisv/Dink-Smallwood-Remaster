@@ -16,7 +16,7 @@ class Tests(unittest.TestCase):
  def test_visual_only_cache_and_actor_generation_salts(self):
   s=(I/'DinkGreyboxAssets.cpp').read_text();h=(I/'DinkGreyboxAssets.h').read_text();a=(I/'DinkGreyboxImporter.cpp').read_text()
   self.assertIn('AssetGeneratorVersion = TEXT("greybox-assets/3")',h)
-  self.assertIn('TEXT("visual-ground-water/1"), GeoHash, MiPkg',s);self.assertIn('TEXT("debug-blockers/1"), GeoHash',s)
+  self.assertIn('TEXT("visual-ground-water/2"), GeoHash, MiPkg',s);self.assertIn('TEXT("debug-blockers/1"), GeoHash',s)
   self.assertEqual(a.count('greybox-ground-water-debug-split/1'),1)
   self.assertIn('A->DebugBlockers->SetStaticMesh(Assets.ScreenMesh(S.Screen, TEXT("DebugBlockers")))',a)
  def test_normal_material_inventory_excludes_blocker_materials(self):

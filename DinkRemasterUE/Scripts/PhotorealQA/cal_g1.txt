@@ -1,0 +1,51 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw -45
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -360 30 60 0 0 12 67.38
+wait 2
+dink.MatParam MeadowGrass_Scatter Tint 0.60 0.58 0.34
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpet_a.png
+wait 1
+dink.MatParam MeadowGrass_Scatter Tint 0.48 0.50 0.28
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpet_b.png
+wait 1
+dink.MatParam MeadowGrass_Scatter Tint 0.72 0.64 0.36
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpet_c.png
+wait 1
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -600 0 290 30 0 20 74.61
+wait 2
+dink.MatParam MeadowGrass_Scatter Tint 0.60 0.58 0.34
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpetgame_a.png
+wait 1
+dink.MatParam MeadowGrass_Scatter Tint 0.48 0.50 0.28
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpetgame_b.png
+wait 1
+dink.MatParam MeadowGrass_Scatter Tint 0.72 0.64 0.36
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/g1_carpetgame_c.png
+wait 1
+quit

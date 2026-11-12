@@ -1,0 +1,121 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 30
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 1 314 161
+wait 1
+dink.View 180 -4
+wait 7
+dink.Player
+wait 2
+fps 01_interior_1
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/01_interior_1.png
+wait 1
+dink.Goto 1 330 250
+wait 1
+dink.View -60 -6
+wait 7
+dink.Player
+wait 2
+fps 02_interior_1_fire
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/02_interior_1_fire.png
+wait 1
+dink.Goto 439 300 385
+wait 1
+dink.View -90 -2
+wait 7
+dink.Player
+wait 2
+fps 03_yard_439_cottage
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/03_yard_439_cottage.png
+wait 1
+dink.Goto 439 300 385
+wait 1
+dink.View 25 -8
+wait 7
+dink.Player
+wait 2
+fps 04_yard_439_fields
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/04_yard_439_fields.png
+wait 1
+dink.Goto 439 300 385
+wait 1
+dink.View 100 -10
+wait 7
+dink.Player
+wait 2
+fps 05_yard_439_south
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/05_yard_439_south.png
+wait 1
+dink.Goto 471 215 125
+wait 1
+dink.View 10 -14
+wait 7
+dink.Player
+wait 2
+fps 06_pond_471
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/06_pond_471.png
+wait 1
+dink.Goto 438 300 290
+wait 1
+dink.View 5 -16
+wait 7
+dink.Player
+wait 2
+fps 07_pond_438
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/07_pond_438.png
+wait 1
+dink.Goto 407 300 330
+wait 1
+dink.View -90 -8
+wait 7
+dink.Player
+wait 2
+fps 08_pigpen_407
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/08_pigpen_407.png
+wait 1
+dink.Goto 238 300 300
+wait 1
+dink.View -80 -6
+wait 7
+dink.Player
+wait 2
+fps 09_forest_238
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/09_forest_238.png
+wait 1
+dink.Goto 383 150 215
+wait 1
+dink.View -70 -10
+wait 7
+dink.Player
+wait 2
+fps 10_beach_383
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/10_beach_383.png
+wait 1
+dink.Goto 28 300 200
+wait 1
+dink.View -45 -8
+wait 7
+dink.Player
+wait 2
+fps 11_darklands_28
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/11_darklands_28.png
+wait 1
+dink.Goto 47 300 200
+wait 1
+dink.View -45 -8
+wait 7
+dink.Player
+wait 2
+fps 12_snow_47
+shot <PROJECT>/Saved/PhotorealPass/lighting/r11/12_snow_47.png
+wait 1
+quit

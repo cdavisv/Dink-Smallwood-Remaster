@@ -1,0 +1,77 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw 30
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR 0.0 -200.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_Broken_PR.SM_Fence_SplitRail_4m_Broken_PR 0.0 200.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/Structures/SM_Fence_GatePost_PR.SM_Fence_GatePost_PR 0.0 420.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/Structures/SM_Fence_Gate_PR.SM_Fence_Gate_PR -2.0 434.0 8.0 115 1
+dink.CalSpawn /Game/Dink/Photoreal/Structures/SM_Well_Stone_PR.SM_Well_Stone_PR 400.0 100.0 0.0 90 1
+dink.CalCam -900 350 1000 150 100 80 69.79
+wait 2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal2/s7_Yard_gameplay.png
+wait 1
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_L.SM_Town_Wall_Window_L 0.0 0.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope_B.SM_Town_Roof_Slope_B 0.0 0.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope.SM_Town_Roof_Slope 551.0 250.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_R.SM_Town_Wall_Window_R 551.0 250.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Door.SM_Town_Wall_Door 0.0 250.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Dormer.SM_Town_Roof_Dormer 0.0 250.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope_B.SM_Town_Roof_Slope_B 551.0 500.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Plain.SM_Town_Wall_Plain 551.0 500.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_R.SM_Town_Wall_Window_R 0.0 500.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope_B.SM_Town_Roof_Slope_B 0.0 500.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope.SM_Town_Roof_Slope 551.0 750.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_R.SM_Town_Wall_Window_R 551.0 750.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Plain.SM_Town_Wall_Plain 0.0 750.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Dormer.SM_Town_Roof_Dormer 0.0 750.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope_B.SM_Town_Roof_Slope_B 551.0 1000.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Plain.SM_Town_Wall_Plain 551.0 1000.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_L.SM_Town_Wall_Window_L 0.0 1000.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope_B.SM_Town_Roof_Slope_B 0.0 1000.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Slope.SM_Town_Roof_Slope 551.0 1250.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_Window_R.SM_Town_Wall_Window_R 551.0 1250.0 0.0 -90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Door_Studded.SM_Town_Door_Studded -2.5 323.0 0.0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 -50.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 100.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 250.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 400.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 550.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 700.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 850.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 1000.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_RidgeCap.SM_Town_Roof_RidgeCap 275.5 1150.0 735.1 90 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_GableEnd.SM_Town_Wall_GableEnd 551.0 0.0 0.0 180 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Wall_GableEnd.SM_Town_Wall_GableEnd 0.0 1250.0 0.0 0 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Verge.SM_Town_Roof_Verge 551.0 0.0 0.0 180 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Roof_Verge.SM_Town_Roof_Verge 0.0 1250.0 0.0 0 1
+dink.CalSpawn /Game/Dink/Photoreal/TownExteriors/SM_Town_Chimney_Stack.SM_Town_Chimney_Stack 275.5 1262.0 0.0 0 1
+dink.CalCam -1019 930 1300 100 660 260 73.54
+wait 2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal2/s7_House_gameplay.png
+wait 1
+dink.CalCam -459 200 155 0 440 229 82.16
+wait 2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal2/s7_House_street.png
+wait 1
+quit

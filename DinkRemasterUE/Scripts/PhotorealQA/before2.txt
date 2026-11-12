@@ -1,0 +1,19 @@
+wait 25
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 47 300 200
+wait 1
+dink.View -45 -8
+wait 7
+dink.Player
+wait 2
+fps 12_snow_47
+shot <PROJECT>/Saved/PhotorealPass/lighting/before/12_snow_47.png
+wait 1
+quit

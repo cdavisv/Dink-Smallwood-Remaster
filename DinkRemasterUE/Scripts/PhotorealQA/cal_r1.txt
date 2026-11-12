@@ -1,0 +1,83 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw -45
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_01.SM_Veg_Oak_Large_01 0 0 0 90 1.0
+dink.CalCam -1100 100 360 0 0 260 83.27
+wait 2
+wait 25
+dink.EnvPost sky 1.5
+dink.MatParam M_Veg_Foliage CrownShade 1
+dink.MatParam M_Veg_Foliage CrownAO 1
+dink.MatParam M_Veg_Foliage Tint 1 1 1
+dink.MatParam M_Veg_Foliage Translucency 0.4
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_oak_a.png
+wait 1
+dink.EnvPost sky 1.0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_oak_b.png
+wait 1
+dink.MatParam M_Veg_Foliage CrownShade 0.35
+dink.MatParam M_Veg_Foliage CrownAO 0.2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_oak_c.png
+wait 1
+dink.MatParam M_Veg_Foliage Tint 0.6 0.6 0.5
+dink.MatParam M_Veg_Foliage Translucency 0.3
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_oak_d.png
+wait 1
+dink.MatParam M_Veg_Foliage Translucency 0.0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_oak_e.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01 0 0 0 90 1.0
+dink.CalCam -1100 100 360 0 0 260 83.27
+wait 2
+wait 25
+dink.EnvPost sky 1.5
+dink.MatParam M_Veg_Foliage CrownShade 1
+dink.MatParam M_Veg_Foliage CrownAO 1
+dink.MatParam M_Veg_Foliage Tint 1 1 1
+dink.MatParam M_Veg_Foliage Translucency 0.4
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_pine_a.png
+wait 1
+dink.EnvPost sky 1.0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_pine_b.png
+wait 1
+dink.MatParam M_Veg_Foliage CrownShade 0.35
+dink.MatParam M_Veg_Foliage CrownAO 0.2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_pine_c.png
+wait 1
+dink.MatParam M_Veg_Foliage Tint 0.6 0.6 0.5
+dink.MatParam M_Veg_Foliage Translucency 0.3
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_pine_d.png
+wait 1
+dink.MatParam M_Veg_Foliage Translucency 0.0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r1_pine_e.png
+wait 1
+quit

@@ -1,0 +1,164 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw -45
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_01.SM_Veg_Oak_Large_01 0 0 0 90 1.0
+dink.CalCam -1100 100 360 0 0 260 83.27
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_oak.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01 0 0 0 90 1.0
+dink.CalCam -1100 100 360 0 0 260 83.27
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_pine.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Willow_01.SM_Veg_Willow_01 0 0 0 90 1.0
+dink.CalCam -1100 100 360 0 0 260 83.27
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_willow.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Small_01.SM_Veg_Bush_Small_01 320 -400 0 90 1.0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Medium_01.SM_Veg_Bush_Round_Medium_01 320 -200 0 90 1.0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Large_01.SM_Veg_Bush_Round_Large_01 340 40 0 90 1.0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Wide_01.SM_Veg_Bush_Wide_01 340 360 0 90 1.0
+dink.CalCam 0 -50 120 340 60 50 70.83
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_bush.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 -247 -238 0 330 1.02
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -170 -249 0 301 0.96
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 -76 -246 0 195 1.04
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -7 -237 0 229 1.12
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 70 -242 0 280 0.94
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 166 -249 0 296 0.97
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 248 -236 0 257 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -238 -155 0 347 0.93
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -167 -168 0 78 1.14
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -73 -154 0 152 1.11
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 2 -163 0 210 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 71 -152 0 101 1.05
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 167 -167 0 347 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 243 -168 0 228 1.15
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -249 -84 0 307 1.15
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 -169 -83 0 323 0.91
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -73 -75 0 16 1.05
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 2 -82 0 198 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 90 -80 0 111 0.92
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 169 -79 0 350 0.97
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 231 -87 0 312 0.98
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 -242 8 0 166 1.03
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -156 7 0 37 1.14
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -77 -5 0 258 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 0 10 0 197 0.9
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 76 10 0 136 1.05
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 163 -9 0 168 1.07
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 236 2 0 176 1.05
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -243 70 0 226 0.97
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -163 76 0 113 0.99
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -74 75 0 38 1.1
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -7 84 0 180 1.06
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 74 75 0 157 1.07
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 169 82 0 243 0.96
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 245 72 0 78 1.04
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -248 155 0 191 0.95
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -164 154 0 291 1.06
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -87 157 0 105 1.1
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 3 159 0 105 1.04
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 73 168 0 2 1.14
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 159 170 0 342 1.13
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 239 151 0 271 1.09
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -232 241 0 310 1.11
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 -165 232 0 13 1.1
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_03.SM_Veg_GrassPatch_Dense_03 -72 248 0 324 1.04
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 -8 240 0 181 0.96
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 78 240 0 338 1.05
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_02.SM_Veg_GrassPatch_Dense_02 169 233 0 195 1.1
+dink.CalSpawn /Game/Dink/Photoreal/Vegetation/SM_Veg_GrassPatch_Dense_01.SM_Veg_GrassPatch_Dense_01 234 237 0 192 1.1
+dink.CalCam -360 30 60 0 0 12 67.38
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_grassgrid.png
+wait 1
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -360 30 60 0 0 12 67.38
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_carpet.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A 0 -390 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_B.SM_Wall_Plaster_Straight_B 0 -125 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_DoorJamb_L.SM_Wall_Plaster_DoorJamb_L 0 160 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_CornerPost_L.SM_Wall_Plaster_CornerPost_L 0 250 0 90 1
+dink.CalCam -700 80 180 0 60 150 62.73
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_plaster.png
+wait 1
+dink.GrassDensity 0
+dink.CalAnchor 0 0
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_A.SM_Wall_Dungeon_Straight_A 0 -420 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_B.SM_Wall_Dungeon_Straight_B 0 -150 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Curve.SM_Wall_Dungeon_Curve 0 140 0 90 1
+dink.CalSpawn /Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Arch.SM_Wall_Dungeon_Arch 0 480 0 90 1
+dink.CalCam -800 80 180 0 120 150 62.73
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_dungeon.png
+wait 1
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -600 0 290 30 0 20 74.61
+wait 2
+dink.EnvPost sky 1.0
+wait 6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r4_carpetgame.png
+wait 1
+quit

@@ -1,0 +1,43 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw -45
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -600 0 290 30 0 20 74.61
+wait 2
+wait 1
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r9_carpetgame_a.png
+wait 1
+dink.MatParam MI_Veg_Understory Translucency 0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r9_carpetgame_b.png
+wait 1
+dink.MatParam MI_Veg_Understory Specular 0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r9_carpetgame_c.png
+wait 1
+dink.MatParam MI_Veg_Understory Tint 0.2 0.25 0.1
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r9_carpetgame_d.png
+wait 1
+dink.MatParam MI_Veg_Understory Tint 0 0 0
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r9_carpetgame_e.png
+wait 1
+quit

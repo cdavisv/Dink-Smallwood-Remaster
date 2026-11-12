@@ -1,0 +1,25 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+wait 1
+dink.Goto 260 300 220
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -45 -6
+wait 7
+dink.Player
+wait 2
+fps 21_dungeon_260
+shot <PROJECT>/Saved/PhotorealPass/ingame6/21_dungeon_260.png
+wait 1
+quit

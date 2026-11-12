@@ -1,0 +1,31 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Goto 439 300 385
+dink.View 0 -4
+wait 3
+dink.CalAnchor 0 0
+dink.CalCam 95 30 168 0 0 160 40 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/hero_face_a.png
+wait 1
+dink.CalCam -95 30 168 0 0 160 40 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/hero_face_b.png
+wait 1
+dink.CalCam 20 100 168 0 0 160 40 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/hero_face_c.png
+wait 1
+dink.CalCam 20 -100 168 0 0 160 40 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/hero_face_d.png
+wait 1
+quit

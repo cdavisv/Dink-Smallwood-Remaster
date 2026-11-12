@@ -1,0 +1,31 @@
+wait 25
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Player
+shot <PROJECT>/Saved/PhotorealPass/lighting/explore/s1_start.png
+wait 1
+dink.Goto 439 300 300
+wait 6
+dink.Player
+dink.View 0 -10
+wait 2
+shot <PROJECT>/Saved/PhotorealPass/lighting/explore/439_y0.png
+wait 1
+dink.View 90 -10
+wait 2
+shot <PROJECT>/Saved/PhotorealPass/lighting/explore/439_y90.png
+wait 1
+dink.View 180 -10
+wait 2
+shot <PROJECT>/Saved/PhotorealPass/lighting/explore/439_y180.png
+wait 1
+dink.View -90 -10
+wait 2
+shot <PROJECT>/Saved/PhotorealPass/lighting/explore/439_y270.png
+wait 1
+fps yard
+quit
