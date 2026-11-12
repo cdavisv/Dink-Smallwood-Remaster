@@ -1,0 +1,81 @@
+{
+  "status": "Canonical archive artwork extracted byte-exact for sourceguide review",
+  "archive": "/home/davisc/Work/DinkPhotorealArtIntegration/bin/dink/graphics/struct/home/dir.ff",
+  "archive_sha256": "050662f8422e44efde5e920f163bb8a56b6db6cc7c810c3857b571a583be1538",
+  "dink_ini": "/home/davisc/Work/DinkPhotorealArtIntegration/bin/dink/dink.ini",
+  "sequence_mapping": "line198 load_sequence graphics\\struct\\home\\home- 63 NOTANIM",
+  "frames": [
+    {
+      "sequence": 63,
+      "frame": 1,
+      "archive_entry": "home-01.bmp",
+      "offset": 242,
+      "length": 87400,
+      "payload_sha256": "499bf77fc023d1329a9a97e0fc0817ad8081cf13bfc2860966cc4190573e3385",
+      "saved_path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-01.bmp",
+      "BMP_size": [
+        332,
+        260
+      ],
+      "operation": "Exact archived BMP bytes copied; no image edits/resizing",
+      "viewable_PNG": {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-01.png",
+        "sha256": "3d8f1131149dcee7cff02ed9a1a0e23fbb8a04c025f3aad83694be7af951241a",
+        "pixel_RGB_sha256": "da18ed3ca13204054bbdfb28fab57db0338ac38a5b1de3134d76a115fb5f4af7",
+        "operation": "Lossless BMPdecode\u2192PNG for viewer compatibility; exact decodedRGB, no resize/art edit"
+      }
+    },
+    {
+      "sequence": 63,
+      "frame": 2,
+      "archive_entry": "home-02.bmp",
+      "offset": 87642,
+      "length": 6064,
+      "payload_sha256": "2c1cf220ef995a5e43921aafdb92dec11c40747eed0d07d4bb1e119a7673e4c7",
+      "saved_path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-02.bmp",
+      "BMP_size": [
+        55,
+        89
+      ],
+      "operation": "Exact archived BMP bytes copied; no image edits/resizing",
+      "viewable_PNG": {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-02.png",
+        "sha256": "c71b6283c502321f78f6c6b0336769e512a7cd3f682cc7d38c4ea15f28d89c85",
+        "pixel_RGB_sha256": "5cc34764017bcadd53dd0c8f89ea9c2e6a8bf9eb0b8aad691af91b9cdb08efa3",
+        "operation": "Lossless BMPdecode\u2192PNG for viewer compatibility; exact decodedRGB, no resize/art edit"
+      }
+    },
+    {
+      "sequence": 63,
+      "frame": 11,
+      "archive_entry": "home-11.bmp",
+      "offset": 670182,
+      "length": 4328,
+      "payload_sha256": "477bd29cc2fe96fdc5b7feec2653b3ea3e5825605ff2587fe0a542f32b93fe67",
+      "saved_path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-11.bmp",
+      "BMP_size": [
+        55,
+        58
+      ],
+      "operation": "Exact archived BMP bytes copied; no image edits/resizing",
+      "viewable_PNG": {
+        "path": "/home/davisc/Work/DinkQA/PhotorealSessions/House439Facade/OriginalGuidesV1/home-11.png",
+        "sha256": "7abd4999a6cf6b19e5d64f928ed3df5b9786d28fe7cc8915547fd85d9fb739c6",
+        "pixel_RGB_sha256": "7017c59b862f994879395a7e948828cfc4c9b88afb238071a7cda3692b112b85",
+        "operation": "Lossless BMPdecode\u2192PNG for viewer compatibility; exact decodedRGB, no resize/art edit"
+      }
+    }
+  ],
+  "imported_texture_metadata": {
+    "file": "sprites/63_01.png",
+    "source": "sprites/63/01.png",
+    "width": 332,
+    "height": 260,
+    "tex_width": 512,
+    "tex_height": 512,
+    "hash": "0229b991be43755705f3bbab4a167d7566e72c47"
+  },
+  "processed_reference_correction": "ImportData/sprites/63_01.png is NEAREST independently resized to512x512 from332x260, not padded. export_import_bundle.py lines677-704. Use raw332x260BMP foraspect/silhouette/art guides; old512texture stillvalidpixelcontentreference but distorts shape proportions.",
+  "prior_inference_boundary": "Do not infer source game worlddimensions from rawspritepixels; preserve currentactorframe/doorwarp and6UCX pending reviewedsourceplan.",
+  "viewing_note": "view_image doesnot accept rawBMP; PNGdecodes provided with per-pixel equality checks."
+}

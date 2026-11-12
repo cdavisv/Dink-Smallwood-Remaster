@@ -1,0 +1,91 @@
+{
+  "status": "PROPOSED_SOURCE_FRAME_FOR_EXPLICIT_TANGENTS",
+  "frame": {
+    "source_to_native_direction": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        -1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "position_scale": 100,
+    "uv_v_flip": true,
+    "reverse_winding": false,
+    "provenance": "Frozen FBX actual Zup/-Yfront/+Xcoord/metres matches installed legacy importer target; ConvertPos/Dir flipsY; UV import flipsV; CreateTriangle uses original CornerInstanceIDs. Primary sources pinned below."
+  },
+  "metadata_sha256": "cfcdf3b5c0c3e7acfe466c47e030058a75192fcf1603ace1bf3502ee8d7e20ed",
+  "fbx_sha256": "22a2f8017cd8aaa3cc36c9102c4f778f4730e6ccc8bb7b3acdc5918491b37a3d",
+  "reasoning": [
+    "Frozen actual binary GlobalSettings matches importer target Z-up/right-handed/-Yfront, so no scene axis rotation is expected.",
+    "UnitScaleFactor100 means source metres become native centimetres.",
+    "Explicit imported node translation/rotation zero and scale1 plus default source node transforms introduce no extra transform.",
+    "ConvertPos and ConvertDir both apply diag(1,-1,1).",
+    "UV V reflection and spatial reflection cancel for tangent-basis handedness; source/native sign is expected unchanged and remains strictly checked.",
+    "Importer CreateTriangle consumes original CornerInstanceIDs without reordering.",
+    "Exporter omitted tangents: actual native imported/generated Mikk tangent direction must satisfy unchanged <.05degree gate; static inference is not acceptance."
+  ],
+  "primary_sources": {
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Source/Editor/UnrealEd/Private/Fbx/FbxUtilsImport.cpp": {
+      "sha256": "8e5cd322621915dd60140d277501b9f17506e110426a658bc1a3ca09fedeac7b",
+      "excerpts": [
+        {
+          "first_line": 63,
+          "last_line": 85,
+          "text": "FVector FFbxDataConverter::ConvertPos(FbxVector4 Vector)\n{\n\tFVector Out;\n\tOut[0] = Vector[0];\n\t// flip Y, then the right-handed axis system is converted to LHS\n\tOut[1] = -Vector[1];\n\tOut[2] = Vector[2];\n\tUE::Fbx::Private::VerifyFiniteValue(Out);\n\treturn Out;\n}\n\n\n\nFVector FFbxDataConverter::ConvertDir(FbxVector4 Vector)\n{\n\tFVector Out;\n\tOut[0] = Vector[0];\n\tOut[1] = -Vector[1];\n\tOut[2] = Vector[2];\n\tUE::Fbx::Private::VerifyFiniteValue(Out);\n\treturn Out;\n}\n"
+        }
+      ]
+    },
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Source/Editor/UnrealEd/Private/Fbx/FbxMainImport.cpp": {
+      "sha256": "1ee1b75fca964f270726eabd3f5982ecc8b6dd98d233092c2e2710a8d1678aa6",
+      "excerpts": [
+        {
+          "first_line": 1526,
+          "last_line": 1577,
+          "text": "\tif (GetImportOptions()->bConvertScene)\n\t{\n\t\t// we use -Y as forward axis here when we import. This is odd considering our forward axis is technically +X\n\t\t// but this is to mimic Maya/Max behavior where if you make a model facing +X facing, \n\t\t// when you import that mesh, you want +X facing in engine. \n\t\t// only thing that doesn't work is hand flipping because Max/Maya is RHS but UE is LHS\n\t\t// On the positive note, we now have import transform set up you can do to rotate mesh if you don't like default setting\n\t\tFbxAxisSystem::ECoordSystem CoordSystem = FbxAxisSystem::eRightHanded;\n\t\tFbxAxisSystem::EUpVector UpVector = FbxAxisSystem::eZAxis;\n\t\tFbxAxisSystem::EFrontVector FrontVector = (FbxAxisSystem::EFrontVector) - FbxAxisSystem::eParityOdd;\n\t\tif (GetImportOptions()->bForceFrontXAxis)\n\t\t{\n\t\t\tFrontVector = FbxAxisSystem::eParityEven;\n\t\t}\n\n\n\t\tFbxAxisSystem UnrealImportAxis(UpVector, FrontVector, CoordSystem);\n\n\t\tFbxAxisSystem SourceSetup = Scene->GetGlobalSettings().GetAxisSystem();\n\n\n\t\tif (SourceSetup != UnrealImportAxis)\n\t\t{\n\t\t\tFbxRootNodeUtility::RemoveAllFbxRoots(Scene);\n\t\t\tUnrealImportAxis.ConvertScene(Scene);\n\t\t\t\n\t\t\tFbxAMatrix SourceMatrix;\n\t\t\tSourceSetup.GetMatrix(SourceMatrix);\n\t\t\tFbxAMatrix UE4Matrix;\n\t\t\tUnrealImportAxis.GetMatrix(UE4Matrix);\n\t\t\tAxisConversionMatrix = SourceMatrix.Inverse() * UE4Matrix;\n\t\t\t\n\t\t\t\n\t\t\tif (GetImportOptions()->bForceFrontXAxis)\n\t\t\t{\n\t\t\t\tJointOrientationMatrix.SetR(FbxVector4(-90.0, -90.0, 0.0));\n\t\t\t}\n\t\t}\n\t}\n\n\tFFbxDataConverter::SetJointPostConversionMatrix(JointOrientationMatrix);\n\n\tFFbxDataConverter::SetAxisConversionMatrix(AxisConversionMatrix);\n\n\t// Convert the scene's units to what is used in this program, if needed.\n\t// The base unit used in both FBX and Unreal is centimeters.  So unless the units \n\t// are already in centimeters (ie: scalefactor 1.0) then it needs to be converted\n\tif (GetImportOptions()->bConvertSceneUnit && Scene->GetGlobalSettings().GetSystemUnit() != FbxSystemUnit::cm)\n\t{\n\t\tFbxSystemUnit::cm.ConvertScene(Scene);\n\t}\n"
+        }
+      ]
+    },
+    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Source/Editor/UnrealEd/Private/Fbx/FbxStaticMeshImport.cpp": {
+      "sha256": "7da42a17d57a268dab4128914484bed5c3d5f6b357abecb48b634c56df4279b9",
+      "excerpts": [
+        {
+          "first_line": 921,
+          "last_line": 930,
+          "text": "\t\t\t\t\t\t\tint UVMapIndex = (FBXUVs.UVMappingMode[UVLayerIndex] == FbxLayerElement::eByControlPoint) ? ControlPointIndex : RealFbxVertexIndex;\n\t\t\t\t\t\t\tint32 UVIndex = (FBXUVs.UVReferenceMode[UVLayerIndex] == FbxLayerElement::eDirect) ?\n\t\t\t\t\t\t\t\tUVMapIndex : FBXUVs.LayerElementUV[UVLayerIndex]->GetIndexArray().GetAt(UVMapIndex);\n\n\t\t\t\t\t\t\tFbxVector2\tUVVector = FBXUVs.LayerElementUV[UVLayerIndex]->GetDirectArray().GetAt(UVIndex);\n\t\t\t\t\t\t\tFinalUVVector.X = static_cast<float>(UVVector[0]);\n\t\t\t\t\t\t\tFinalUVVector.Y = 1.f - static_cast<float>(UVVector[1]);   //flip the Y of UVs for DirectX\n\t\t\t\t\t\t}\n\t\t\t\t\t\tVertexInstanceUVs.Set(AddedVertexInstanceId, UVLayerIndex, FinalUVVector);\n\t\t\t\t\t}"
+        },
+        {
+          "first_line": 993,
+          "last_line": 1011,
+          "text": "\t\t\t\t\t\t\tTempValue = LayerElementTangent->GetDirectArray().GetAt(TangentValueIndex);\n\t\t\t\t\t\t\tTempValue = TotalMatrixForNormal.MultT(TempValue);\n\t\t\t\t\t\t\tFVector3f TangentX = (FVector3f)Converter.ConvertDir(TempValue);\n\t\t\t\t\t\t\tVertexInstanceTangents[AddedVertexInstanceId] = TangentX.GetSafeNormal();\n\n\t\t\t\t\t\t\tint BinormalMapIndex = (BinormalMappingMode == FbxLayerElement::eByControlPoint) ?\n\t\t\t\t\t\t\t\tControlPointIndex : RealFbxVertexIndex;\n\t\t\t\t\t\t\tint BinormalValueIndex = (BinormalReferenceMode == FbxLayerElement::eDirect) ?\n\t\t\t\t\t\t\t\tBinormalMapIndex : LayerElementBinormal->GetIndexArray().GetAt(BinormalMapIndex);\n\n\t\t\t\t\t\t\tTempValue = LayerElementBinormal->GetDirectArray().GetAt(BinormalValueIndex);\n\t\t\t\t\t\t\tTempValue = TotalMatrixForNormal.MultT(TempValue);\n\t\t\t\t\t\t\tFVector3f TangentY = (FVector3f)-Converter.ConvertDir(TempValue);\n\t\t\t\t\t\t\tVertexInstanceBinormalSigns[AddedVertexInstanceId] = GetBasisDeterminantSign((FVector)TangentX.GetSafeNormal(), (FVector)TangentY.GetSafeNormal(), (FVector)TangentZ.GetSafeNormal());\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\n\t\t\t\t// Check if the polygon just discovered is non-degenerate if we haven't found one yet"
+        },
+        {
+          "first_line": 1158,
+          "last_line": 1165,
+          "text": "\t\t\t\tFPolygonGroupID PolygonGroupID = PolygonGroupMapping[RealMaterialIndex];\n\t\t\t\t// Insert a triangle into the mesh\n\t\t\t\t// @note: we only ever import triangulated meshes currently. This could easily change as we have the infrastructure set up for arbitrary ngons.\n\t\t\t\t// However, I think either we need to triangulate in the exact same way as Maya/Max if we do that.\n\t\t\t\tcheck(CornerInstanceIDs.Num() == 3);\n\t\t\t\tcheck(PolygonVertexCount == 3);\n\t\t\t\tTArray<FEdgeID> NewEdgeIDs;\n\t\t\t\tconst FTriangleID NewTriangleID = MeshDescription->CreateTriangle(PolygonGroupID, CornerInstanceIDs, &NewEdgeIDs);"
+        }
+      ]
+    }
+  },
+  "acceptance": {
+    "native_import": false,
+    "appearance": false,
+    "tolerance_waiver": false
+  },
+  "source_review": {
+    "proposed_sha256": "e468f7b19c1d16f685133dd8a69d21418295999dfd253821e8ac2a60d014626a",
+    "independent_review": "/home/davisc/Work/DinkQA/House439NativeGraphIndependentReview/NATIVE_FRAME_TRIAL_ENTRY_REVIEW.json",
+    "independent_review_sha256": "40e46d2bc42e83152ffc7d9e81048aa12c0435e976dada9206930eb3e0664ad1",
+    "qualification": "Source frame only. No UE/build lease, native readback, appearance, save or activation approval. Actual strict comparator gates remain required."
+  },
+  "successor_provenance": "Original axis/unit/model transforms exact, explicit UV0 tangents/binormals only; see same admission serialized core-equivalence receipt"
+}

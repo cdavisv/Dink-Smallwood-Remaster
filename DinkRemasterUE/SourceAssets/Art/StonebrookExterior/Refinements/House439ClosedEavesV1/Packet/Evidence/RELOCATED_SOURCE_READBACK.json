@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "actual_root": "/tmp/dink-all-eaves-relocated-ktu3qeov",
+  "source_sha256": "233f6041c201fc2d8a6e92fd9dad63e292f8e88ba67a4bfd83e6e965b96f28c2",
+  "exact_mesh_signatures": 945,
+  "exact_external_and_packed_images": 54,
+  "all_image_paths_relative_and_resolved_inside_packet": true,
+  "native_executed": false
+}

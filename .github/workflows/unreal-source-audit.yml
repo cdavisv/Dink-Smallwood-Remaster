@@ -4,11 +4,13 @@ on:
     paths:
       - 'DinkRemasterUE/**'
       - '.github/workflows/unreal-source-audit.yml'
+      - '.github/fixtures/house439-source-lfs.txt'
   push:
     branches: [master]
     paths:
       - 'DinkRemasterUE/**'
       - '.github/workflows/unreal-source-audit.yml'
+      - '.github/fixtures/house439-source-lfs.txt'
 permissions:
   contents: read
 jobs:
@@ -27,5 +29,11 @@ jobs:
         run: |
           git lfs install --local --skip-smudge
           git lfs pull --include="DinkRemasterUE/SourceAssets/Art/Stonebrook/Export/Game/Dink/Props/Stonebrook/SM_Barrel_Oak_01.fbx" --exclude=""
+      - name: Hydrate exact closed-eaves source test fixtures
+        run: |
+          house_include=$(paste -sd, .github/fixtures/house439-source-lfs.txt)
+          git lfs pull --include="$house_include" --exclude=""
+      - name: Install pinned numeric source-test dependency
+        run: python3 -m pip install 'numpy==2.5.4'
       - name: Exercise asset bootstrap and import protections
         run: python3 -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'

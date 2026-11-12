@@ -1,0 +1,90 @@
+{
+  "scope": "Actual disposable one-mesh full-house FBX plus6UCX export/import and rawColor0 arrays. Not native Unreal shader/material/collision/art acceptance.",
+  "triangles_before_after": [
+    182626,
+    182626
+  ],
+  "max_position_error_m": 0.0,
+  "UV_errors": {
+    "UV0": 0.0,
+    "UV1_SharedData": 0.0
+  },
+  "linear_RGBA_import_error": 0.0,
+  "normal_difference_degrees": [
+    0.0,
+    0.002785338181718847,
+    0.6800740636194439
+  ],
+  "Mikk_difference_degrees": [
+    0.0,
+    0.002160591579460259,
+    5.180272676173853
+  ],
+  "zeroT_counts": [
+    0,
+    0
+  ],
+  "bitangent_sign_changes": 0,
+  "material_roles_exact": true,
+  "actual_material_slots": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_WeatheredTimber2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial"
+  ],
+  "unused_export_slots_removed": [
+    "MI_Stonebrook_Thatch"
+  ],
+  "rawColor0": [
+    {
+      "geometry": "SM_Cottage_Stonebrook_01_Mesh.002",
+      "layer0": "SharedSurfaceData",
+      "corners": 547878,
+      "RGBA_error": 0.0
+    }
+  ],
+  "collision_hulls": [
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_01",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_02",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_03",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_04",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_05",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_06",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    }
+  ],
+  "source_sha256_unchanged": "233f6041c201fc2d8a6e92fd9dad63e292f8e88ba67a4bfd83e6e965b96f28c2",
+  "fbx_sha256": "a6beb14ce653cf68d4aa691853ce2bf42680e76c9942fd24461c4b8c86498700",
+  "pass": false
+}
