@@ -1,0 +1,37 @@
+{
+ "head": "Mother/Work/mother_head.blend",
+ "tex": "Mother/Textures",
+ "prefix": "T_Mother_PR",
+ "size": 4096,
+ "skin": "ThirdParty/MakeHuman/skins/middleage_caucasian_female/middleage_lightskinned_female_diffuse.png",
+ "hair_col": [
+  0.22,
+  0.15,
+  0.07
+ ],
+ "freckles": 0.25,
+ "redness": 1.25,
+ "age": 1.2,
+ "tan": [
+  0.95,
+  0.86,
+  0.78
+ ],
+ "grime": 0.3,
+ "stubble": 0.0,
+ "seed": 11,
+ "hairline": [
+  0.46,
+  0.12,
+  -0.5
+ ],
+ "capillary": 0.6,
+ "sun": 0.6,
+ "moles": 7,
+ "veins": 0.5,
+ "scalp_mix": 0.9,
+ "micro": 1.7,
+ "nrm_k": 0.27,
+ "rough_micro": 0.11,
+ "rough_meso": 0.08
+}
