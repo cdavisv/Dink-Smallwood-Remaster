@@ -1,0 +1,172 @@
+{
+ "name": "SK_Dragon_PR",
+ "class": "creature",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/SK_Dragon_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/SK_Dragon_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/SK_Dragon_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/SK_Dragon_PR_LOD2.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/SK_Dragon_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_dragon.py final",
+ "dimensions_m": [
+  6.712,
+  5.7589,
+  4.052
+ ],
+ "bounds_min_m": [
+  -3.3539,
+  -1.8254,
+  -0.0014
+ ],
+ "bounds_max_m": [
+  3.3581,
+  3.9335,
+  4.0507
+ ],
+ "lod0_triangles": 24000,
+ "lod1_triangles": 12000,
+ "lod2_triangles": 6000,
+ "triangle_budget": {
+  "soft": 25000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/T_Dragon_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/T_Dragon_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/T_Dragon_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Dragon_PR"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "neck_01",
+   "neck_02",
+   "neck_03",
+   "head",
+   "jaw",
+   "upperarm_l",
+   "lowerarm_l",
+   "wing_01_l",
+   "wing_02_l",
+   "wing_f1_l",
+   "wing_f2_l",
+   "wing_f3_l",
+   "upperarm_r",
+   "lowerarm_r",
+   "wing_01_r",
+   "wing_02_r",
+   "wing_f1_r",
+   "wing_f2_r",
+   "wing_f3_r",
+   "tail_01",
+   "tail_02",
+   "tail_03",
+   "tail_04",
+   "tail_05",
+   "tail_06",
+   "tail_07",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 38,
+  "weights": {
+   "method": "bone heat",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0041,
+   0.9959
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 78.1,
+   "p99": 150.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.465,
+   "p95": 0.619
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.648
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "dragon",
+  "202-208 foes/dragon/f2-w"
+ ],
+ "origin_ids": {
+  "dragon": [
+   "S074_P21",
+   "S074_P22",
+   "S123_P07",
+   "S124_P03",
+   "S124_P04",
+   "S127_P07",
+   "S127_P08",
+   "S127_P09",
+   "S127_P10",
+   "S156_P08",
+   "S159_P06",
+   "S159_P07",
+   "S159_P08",
+   "S159_P09",
+   "S160_P06",
+   "S191_P11"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "dragon standing upright on its hind legs, 3.4 m at the head with a 6.7 m wingspan: orange-brown scaled hide with a dark back and pale belly plates, long neck, horned head, green veined wing membranes reddening to the trailing edge, long tail, dorsal spines",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is a joint-graph blob with displaced belly plates; no modelled musculature, wing-finger joints, eyelids, nostrils or mouth interior (there is a jaw bone but no mouth opening). Wing membranes are 12 mm solid shells stretched between straight spars: opaque in the game material (no translucency map), with no folds when the wing bends. Game mesh is a decimation of the remeshed source (no edge loops at joints). Inverse-distance skin weights, checked in one pose; membranes follow the nearest finger bone and will stretch badly if the wings fold. No animation clips (the dragon of the game flies, breathes fire and dies: none of that is here), no Physics Asset. Scale is a guess from the sprite: 3.4 m at the head, 6.7 m wingspan.",
+ "contact_crop": 0.95
+}

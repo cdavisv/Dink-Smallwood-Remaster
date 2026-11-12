@@ -49,5 +49,9 @@
  "npc_knight_red_attacking": {
   "status": "partial",
   "why": "same mesh as the red knight (SK_Knight_PR with the red base-colour set); the attack itself is an animation clip and no clip is delivered"
+ },
+ "dragon": {
+  "status": "partial",
+  "why": "rigged creature (38-bone bespoke skeleton with wing and jaw bones, 3 LODs, bone-heat weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, flat opaque wing panels, no mouth opening, no animation clips (flight, fire, death)"
  }
 }
