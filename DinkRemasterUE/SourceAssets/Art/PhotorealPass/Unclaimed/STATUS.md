@@ -7,14 +7,14 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 | | families | placements |
 |---|---:|---:|
 | delivered | 5 | 146 |
-| partial | 4 | 76 |
-| not started | 102 | 379 |
+| partial | 5 | 97 |
+| not started | 101 | 358 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
 **partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.
 
-Contact sheet of every final render: `contact_sheet.png` (23 assets).
+Contact sheet of every final render: `contact_sheet.png` (24 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
@@ -24,7 +24,7 @@ Contact sheet of every final render: `contact_sheet.png` (23 assets).
 | 36 | `seashell_conch` | Conch shell | 29 | delivered | `SM_Seashell_Conch_PR` | 1 mesh: knobbed spiral shell, 14 cm, lying on its aperture; a few dark bake fringes at the canal tip and lip |
 | 38 | `burn_hole_decal` | Burnt hole / scorch mark | 26 | delivered | `Decal_Burn_Scorch_01`, `Decal_Burn_Scorch_02`, `Decal_Burn_Scorch_03` | 3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole |
 | 41 | `bonca_gray` | Bonca | 21 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
-| 43 | `slayer` | Slayer | 21 | not started | - | not reached yet |
+| 43 | `slayer` | Slayer | 21 | partial | `SK_Slayer_PR` | rigged creature (27-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, invented anatomy, no mouth or jaw, no animation clips |
 | 53 | `npc_knight_blue` | Knight | 18 | not started | - | not reached yet |
 | 62 | `dragon` | Dragon | 16 | not started | - | not reached yet |
 | 66 | `food_fruit` | Fruit | 15 | delivered | `SM_Aubergine_PR`, `SM_Pepper_Green_PR`, `SM_Pepper_Red_PR`, `SM_Pepper_Yellow_PR`, `SM_Pumpkin_PR`, `SM_Tomato_PR` | 6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine |

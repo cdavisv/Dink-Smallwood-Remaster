@@ -1,0 +1,167 @@
+{
+ "name": "SK_Slayer_PR",
+ "class": "creature",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/SK_Slayer_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/SK_Slayer_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/SK_Slayer_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/SK_Slayer_PR_LOD2.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/SK_Slayer_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_slayer.py final",
+ "dimensions_m": [
+  0.898,
+  3.5298,
+  2.3809
+ ],
+ "bounds_min_m": [
+  -0.4496,
+  -1.2198,
+  0.0055
+ ],
+ "bounds_max_m": [
+  0.4483,
+  2.31,
+  2.3864
+ ],
+ "lod0_triangles": 18000,
+ "lod1_triangles": 9000,
+ "lod2_triangles": 4500,
+ "triangle_budget": {
+  "soft": 25000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/T_Slayer_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/T_Slayer_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/slayer/Slayer/T_Slayer_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Slayer_PR"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "neck_01",
+   "head",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "tail_01",
+   "tail_02",
+   "tail_03",
+   "tail_04",
+   "tail_05",
+   "tail_06",
+   "tail_07",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 27,
+  "weights": {
+   "method": "inverse distance",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0051,
+   0.9949
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 68.0,
+   "p99": 150.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.436,
+   "p95": 0.656
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.609
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "slayer",
+  "641-649 foes/slayers/walk",
+  "632-636 foes/slayers/attack"
+ ],
+ "origin_ids": {
+  "slayer": [
+   "S028_P03",
+   "S028_P04",
+   "S035_P32",
+   "S106_P18",
+   "S127_P06",
+   "S137_P17",
+   "S138_P16",
+   "S156_P07",
+   "S157_P05",
+   "S157_P06",
+   "S157_P07",
+   "S157_P08",
+   "S166_P25",
+   "S166_P26",
+   "S448_P08",
+   "S448_P09",
+   "S652_P02",
+   "S663_P04",
+   "S695_P05",
+   "S696_P02",
+   "S696_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "slayer: a gaunt hunched biped, 1.7 m at the spines and about 3.5 m from snout to the tip of its whip tail; dark teal hide with brown blotches and raw red sores, one long amber scythe on each arm, seven raked dorsal spines, digitigrade clawed legs, red eyes",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is invented from 110-pixel sprites on a joint graph: no modelled muscle, tendon or joint structure beyond rib hoops and a vertebral ridge from displacement. Scythes, spines, claws and teeth are separate horn solids pushed into the body, without sockets or gums. The head has no mouth opening, lids or nostrils, and there is no jaw bone. The game mesh is a decimation of the remeshed source: no edge loops at joints, and the 1 cm tail tip keeps few triangles. Skin weights are inverse-distance, checked in one pose (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs with many islands.",
+ "contact_crop": 0.9
+}
