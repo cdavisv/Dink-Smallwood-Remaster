@@ -1,0 +1,262 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/Creatures/Duck/SK_Duck.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 3,
+    "assets_passed": 3,
+    "errors": 0,
+    "warnings": 9
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Duck",
+      "class": "creature",
+      "collection": "SK_Duck",
+      "tris_per_lod": {
+        "LOD0": 20898,
+        "LOD1": 10444,
+        "LOD2": 5176
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -26.677,
+          -10.615,
+          0.0
+        ],
+        "blender_max_cm": [
+          24.138,
+          10.457,
+          46.602
+        ],
+        "size_cm": [
+          50.815,
+          21.072,
+          46.602
+        ],
+        "unreal_min_cm": [
+          -26.677,
+          -10.457,
+          0.0
+        ],
+        "unreal_max_cm": [
+          24.138,
+          10.615,
+          46.602
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "2448 non-manifold edges (2448 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "boundary": 2448,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "1218 non-manifold edges (1218 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD1",
+          "data": {
+            "boundary": 1218,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "540 non-manifold edges (540 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD2",
+          "data": {
+            "boundary": 540,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Duck",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Duck_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "texel density 1512 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "density_px_per_m": 1511.7,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SK_Duck_Headless",
+      "class": "creature",
+      "collection": "SK_Duck_Headless",
+      "tris_per_lod": {
+        "LOD0": 20800,
+        "LOD1": 10396,
+        "LOD2": 5152
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -26.677,
+          -10.615,
+          0.0
+        ],
+        "blender_max_cm": [
+          14.223,
+          10.457,
+          33.67
+        ],
+        "size_cm": [
+          40.9,
+          21.072,
+          33.67
+        ],
+        "unreal_min_cm": [
+          -26.677,
+          -10.457,
+          0.0
+        ],
+        "unreal_max_cm": [
+          14.223,
+          10.615,
+          33.67
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "2448 non-manifold edges (2448 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_Headless_LOD0",
+          "data": {
+            "boundary": 2448,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "1218 non-manifold edges (1218 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_Headless_LOD1",
+          "data": {
+            "boundary": 1218,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "540 non-manifold edges (540 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_Headless_LOD2",
+          "data": {
+            "boundary": 540,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Duck_Headless",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Duck_Headless_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "texel density 1482 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SK_Duck_Headless_LOD0",
+          "data": {
+            "density_px_per_m": 1481.7,
+            "target": 512
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Duck_Head",
+      "class": "prop_small",
+      "collection": "SM_Duck_Head",
+      "tris_per_lod": {
+        "LOD0": 4604,
+        "LOD1": 2302,
+        "LOD2": 1150
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -8.991,
+          -3.518,
+          0.0
+        ],
+        "blender_max_cm": [
+          8.991,
+          3.518,
+          14.018
+        ],
+        "size_cm": [
+          17.981,
+          7.036,
+          14.018
+        ],
+        "unreal_min_cm": [
+          -8.991,
+          -3.518,
+          0.0
+        ],
+        "unreal_max_cm": [
+          8.991,
+          3.518,
+          14.018
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Duck_Head",
+          "message": "LOD0 has 4604 triangles, target for prop_small is 1500 (hard max 5000)",
+          "object": "SM_Duck_Head_LOD0",
+          "data": {
+            "tris": 4604,
+            "target": 1500
+          }
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

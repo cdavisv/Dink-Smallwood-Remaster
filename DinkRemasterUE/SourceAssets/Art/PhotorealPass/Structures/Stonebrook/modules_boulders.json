@@ -1,0 +1,107 @@
+[
+ {
+  "name": "SM_Boulder_Field_A_PR",
+  "class": "prop",
+  "fbx": "SM_Boulder_Field_A_PR.fbx",
+  "materials": [
+   "MI_Boulder_Field_A_PR"
+  ],
+  "source_blend": "Boulders.blend",
+  "lod0_triangles": 5600,
+  "lod1_triangles": 2520,
+  "lod2_triangles": 1120,
+  "dimensions_m": [
+   1.896,
+   1.404,
+   1.151
+  ],
+  "bounds_min_m": [
+   -0.947,
+   -0.703,
+   -0.001
+  ],
+  "bounds_max_m": [
+   0.949,
+   0.701,
+   1.15
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "textures": {
+   "BC": "Textures/T_Boulder_Field_A_PR_BC.png",
+   "N": "Textures/T_Boulder_Field_A_PR_N.png",
+   "ORM": "Textures/T_Boulder_Field_A_PR_ORM.png"
+  },
+  "texture_px": 2048
+ },
+ {
+  "name": "SM_Boulder_Field_B_PR",
+  "class": "prop",
+  "fbx": "SM_Boulder_Field_B_PR.fbx",
+  "materials": [
+   "MI_Boulder_Field_B_PR"
+  ],
+  "source_blend": "Boulders.blend",
+  "lod0_triangles": 4200,
+  "lod1_triangles": 1890,
+  "lod2_triangles": 840,
+  "dimensions_m": [
+   1.724,
+   0.975,
+   0.854
+  ],
+  "bounds_min_m": [
+   -0.863,
+   -0.487,
+   -0.0
+  ],
+  "bounds_max_m": [
+   0.861,
+   0.488,
+   0.854
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "textures": {
+   "BC": "Textures/T_Boulder_Field_B_PR_BC.png",
+   "N": "Textures/T_Boulder_Field_B_PR_N.png",
+   "ORM": "Textures/T_Boulder_Field_B_PR_ORM.png"
+  },
+  "texture_px": 1024
+ },
+ {
+  "name": "SM_Boulder_Field_C_PR",
+  "class": "prop",
+  "fbx": "SM_Boulder_Field_C_PR.fbx",
+  "materials": [
+   "MI_Boulder_Field_C_PR"
+  ],
+  "source_blend": "Boulders.blend",
+  "lod0_triangles": 3600,
+  "lod1_triangles": 1620,
+  "lod2_triangles": 720,
+  "dimensions_m": [
+   1.188,
+   1.012,
+   0.48
+  ],
+  "bounds_min_m": [
+   -0.594,
+   -0.506,
+   -0.0
+  ],
+  "bounds_max_m": [
+   0.594,
+   0.506,
+   0.48
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "textures": {
+   "BC": "Textures/T_Boulder_Field_C_PR_BC.png",
+   "N": "Textures/T_Boulder_Field_C_PR_N.png",
+   "ORM": "Textures/T_Boulder_Field_C_PR_ORM.png"
+  },
+  "texture_px": 1024
+ }
+]

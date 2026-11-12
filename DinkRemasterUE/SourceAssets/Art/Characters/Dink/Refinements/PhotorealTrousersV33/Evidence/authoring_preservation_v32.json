@@ -3,7 +3,7 @@
   "rows": [
     {
       "variant": "V22",
-      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothAtlasV22/Dink_Trousers_13PanelUV_SOURCE.blend",
+      "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothAtlasV22/Dink_Trousers_13PanelUV_SOURCE.blend",
       "V19_positions_weights_triangles_corner_normals_exact": true,
       "other7_meshes_exact_to_frozen": true,
       "other_material_graph_signatures_exact_to_frozen": true,
@@ -13,7 +13,7 @@
     },
     {
       "variant": "V30",
-      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
+      "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothSeamSourceV30/Dink_Trousers_COARSE_NO_STITCH_SOURCE.blend",
       "V19_positions_weights_triangles_corner_normals_exact": true,
       "other7_meshes_exact_to_frozen": true,
       "other_material_graph_signatures_exact_to_frozen": true,
@@ -23,7 +23,7 @@
     },
     {
       "variant": "V31",
-      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Dink_Trousers_Homespun_BAKED2K_SOURCE.blend",
+      "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothSeamCoarseBakedV31/Dink_Trousers_Homespun_BAKED2K_SOURCE.blend",
       "V19_positions_weights_triangles_corner_normals_exact": true,
       "other7_meshes_exact_to_frozen": true,
       "other_material_graph_signatures_exact_to_frozen": true,
@@ -33,7 +33,7 @@
     },
     {
       "variant": "V32",
-      "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
+      "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Dink_Trousers_METRIC_STITCH_SOURCE.blend",
       "V19_positions_weights_triangles_corner_normals_exact": true,
       "other7_meshes_exact_to_frozen": true,
       "other_material_graph_signatures_exact_to_frozen": true,

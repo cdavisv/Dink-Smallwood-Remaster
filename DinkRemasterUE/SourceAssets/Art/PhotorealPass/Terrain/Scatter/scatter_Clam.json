@@ -1,0 +1,60 @@
+[
+ {
+  "name": "SM_ClamShell_Closed",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_ClamShell_Closed.fbx",
+  "dimensions_m": [
+   0.0754,
+   0.0557,
+   0.0212
+  ],
+  "lod0_triangles": 1160,
+  "lod1_triangles": 486,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+   "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_Clam",
+  "families": [
+   "seashell_clam"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 0,
+   "uv_min": 0.001,
+   "uv_max": 0.9042
+  },
+  "source_blend": "Scatter/Scatter_Clam.blend"
+ },
+ {
+  "name": "SM_ClamShell_Open",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_ClamShell_Open.fbx",
+  "dimensions_m": [
+   0.0761,
+   0.1184,
+   0.022
+  ],
+  "lod0_triangles": 1068,
+  "lod1_triangles": 448,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+   "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_Clam",
+  "families": [
+   "seashell_clam"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 0,
+   "uv_min": 0.002,
+   "uv_max": 0.9783
+  },
+  "source_blend": "Scatter/Scatter_Clam.blend"
+ }
+]

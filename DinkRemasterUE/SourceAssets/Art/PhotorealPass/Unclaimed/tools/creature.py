@@ -172,11 +172,11 @@ def pose(arm, rots):
 
 
 def export_skeletal(path, arm, mesh):
-    L.activate(arm, [mesh]); os.makedirs(os.path.dirname(path), exist_ok=True)
+    L.activate(arm, [mesh]); final = path; path = L.scratch_export(final)
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, apply_unit_scale=True, global_scale=1.0, apply_scale_options='FBX_SCALE_ALL', axis_forward='Y', axis_up='Z',
                              bake_space_transform=False, use_triangles=True, mesh_smooth_type='FACE', use_tspace=False, add_leaf_bones=False, bake_anim=False, path_mode='STRIP',
                              object_types={'MESH', 'ARMATURE', 'EMPTY'}, colors_type='NONE', use_mesh_modifiers=False, use_armature_deform_only=True, primary_bone_axis='Y', secondary_bone_axis='X')
-    return path
+    import shutil; shutil.move(path, final); return final
 
 
 def finish_creature(asset, cls, lo, hi_obs, arm, outdir, px, families, origin, dresses, weaknesses, third_party=(), script=None, extrude=0.006, maxdist=0.02, ss=1,

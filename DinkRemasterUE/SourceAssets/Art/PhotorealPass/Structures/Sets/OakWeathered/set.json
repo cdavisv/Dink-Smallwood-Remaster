@@ -1,0 +1,49 @@
+{
+ "name": "OakWeathered",
+ "files": {
+  "BC": "OakWeathered/T_Terrain_OakWeathered_BC.png",
+  "N": "OakWeathered/T_Terrain_OakWeathered_N.png",
+  "ORM": "OakWeathered/T_Terrain_OakWeathered_ORM.png",
+  "H": "OakWeathered/T_Terrain_OakWeathered_H.png",
+  "Macro": "OakWeathered/T_Terrain_OakWeathered_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0132,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.695",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven old_planks_02 quarter-turned (grain along U, boards as rows), raised grain silvered, checks and joints darkened, graded to a grey-brown weathered oak",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "old_planks_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 91.0,
+  "max": 186.5
+ },
+ "mean_srgb": [
+  98,
+  90,
+  81
+ ],
+ "roughness_mean": 0.715,
+ "known_weaknesses": "sawn boards, not hewn baulks: adze facets, checks and pegs come from the geometry"
+}

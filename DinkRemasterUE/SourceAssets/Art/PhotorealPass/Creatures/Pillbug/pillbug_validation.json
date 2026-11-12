@@ -1,0 +1,176 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pillbug/SK_Pillbug.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 9
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Pillbug",
+      "class": "creature",
+      "collection": "SK_Pillbug",
+      "tris_per_lod": {
+        "LOD0": 26136,
+        "LOD1": 13068,
+        "LOD2": 6534
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -84.628,
+          -57.431,
+          1.052
+        ],
+        "blender_max_cm": [
+          100.551,
+          57.419,
+          50.571
+        ],
+        "size_cm": [
+          185.179,
+          114.85,
+          49.518
+        ],
+        "unreal_min_cm": [
+          -84.628,
+          -57.419,
+          1.052
+        ],
+        "unreal_max_cm": [
+          100.551,
+          57.431,
+          50.571
+        ]
+      },
+      "errors": 1,
+      "warnings": 9,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pillbug",
+          "message": "mesh data 'SK_Pillbug_LOD1.001' differs from object name 'SK_Pillbug_LOD1'",
+          "object": "SK_Pillbug_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pillbug",
+          "message": "mesh data 'SK_Pillbug_LOD2.001' differs from object name 'SK_Pillbug_LOD2'",
+          "object": "SK_Pillbug_LOD2"
+        },
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SK_Pillbug",
+          "message": "pivot is wrong for creature (rule feet): origin is 8.0 cm off, should move by (8.0, -0.0, 1.1) cm. ",
+          "object": "SK_Pillbug_LOD0",
+          "data": {
+            "rule": "feet",
+            "offset_cm": [
+              7.96,
+              -0.01,
+              1.05
+            ]
+          }
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "LOD0 has 26136 triangles, target for creature is 25000 (hard max 60000)",
+          "object": "SK_Pillbug_LOD0",
+          "data": {
+            "tris": 26136,
+            "target": 25000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "66 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Pillbug_LOD0",
+          "data": {
+            "vertices": 66
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "648 non-manifold edges (648 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Pillbug_LOD0",
+          "data": {
+            "boundary": 648,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "648 non-manifold edges (648 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Pillbug_LOD1",
+          "data": {
+            "boundary": 648,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "648 non-manifold edges (648 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Pillbug_LOD2",
+          "data": {
+            "boundary": 648,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Pillbug",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Pillbug_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "image 'T_Pillbug_Atlas_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "image 'T_Pillbug_Atlas_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "image 'T_Pillbug_Atlas_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pillbug",
+          "message": "image 'T_Pillbug_Atlas_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}

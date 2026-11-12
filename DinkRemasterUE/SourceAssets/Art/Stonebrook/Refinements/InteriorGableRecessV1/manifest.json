@@ -3,9 +3,9 @@
   "status": "candidate_source_visual_review_only",
   "base_origin_master": "b2824f9e1304d036c94e16c1cbcd42ce147b0eba",
   "candidate": "InteriorRoof_GableRecess20mmCandidate.blend",
-  "candidate_sha256": "785af1ffefcba86aa8ffd3232973b7f99a67758f9c045a6c8964b9d4c97dd3df",
+  "candidate_sha256": "126ec58d2c2f96545601656366ad294b0983eda3c78e1f45c71b7de0d112faf7",
   "original_source": "../InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
-  "original_source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "original_source_sha256": "68b16e12d2ddff37d32758d247bb2b5445de7bef2f095ef4fff3dfb82fa5652c",
   "original_geometry_issue": "../InteriorRoofSharedV1/GEOMETRY_ISSUE.json",
   "source_architecture": "Existing exposed-roof adaptation for starting-house screen1; no invented sprite counterpart or placementID",
   "changed_objects": [
@@ -21,12 +21,12 @@
   "unchanged_meshes": 324,
   "unchanged_render_roof_triangles": 17322,
   "recipe": "Scripts/repair_gable.py",
-  "recipe_sha256": "1b2b8479e732ff3b61369584ebac76777e35e73d037a6a647bbd22f84cb307af",
+  "recipe_sha256": "14b38cbaf7c3555348907d8d12e5e9b6d800d93676653620ded0bb0b787968db",
   "images": {
-    "Review/before_gable.png": "8380e02cfb57bf12d5413cf07e5acab3e67cea77c40eac7689bc4afb066c139e",
-    "Review/before_junction.png": "03ef338db81816576ef2433b2b0b17bc19987f94a45b7054bbae71b3e1bde36d",
-    "Review/recess_20mm_gable.png": "23fe42b974b592b249256aa57a1512fd81137962bf23a6beb3165c26cb4d7f2f",
-    "Review/recess_20mm_junction.png": "72e445c2d4b1bc78ad8e05dc164e2909ec7967172c7d338fea6006e0f3003144"
+    "Review/before_gable.png": "a6e3698aa62c291c63c9d54cda17f8fd18c1314a54d825406f1fcc00d49a99b1",
+    "Review/before_junction.png": "7cf1f1c4c5845921f6b5341c95f31b256beb0a7bf485d94394991f0396f41e84",
+    "Review/recess_20mm_gable.png": "dadf540eeb2acb3b980e00f3c311980a357694981ebc7ed889fc488c02870785",
+    "Review/recess_20mm_junction.png": "db032dca72e32706f7fb3965ab384eee7ff6b2f01ed9d032bc99ebc6b7aa024b"
   },
   "provenance": "Evidence/CANDIDATE_RECEIPT.json",
   "relocation_validation": "Evidence/SOURCE_VALIDATION.json",

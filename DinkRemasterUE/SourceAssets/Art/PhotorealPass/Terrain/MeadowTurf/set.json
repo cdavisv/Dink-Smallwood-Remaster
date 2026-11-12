@@ -1,0 +1,61 @@
+{
+ "name": "MeadowTurf",
+ "files": {
+  "BC": "MeadowTurf/T_Terrain_MeadowTurf_BC.png",
+  "N": "MeadowTurf/T_Terrain_MeadowTurf_N.png",
+  "ORM": "MeadowTurf/T_Terrain_MeadowTurf_ORM.png",
+  "H": "MeadowTurf/T_Terrain_MeadowTurf_H.png",
+  "Macro": "MeadowTurf/T_Terrain_MeadowTurf_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.8,
+ "texel_mm_per_px": 1.367,
+ "height_range_m": 0.0202,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.124",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "grass"
+ ],
+ "status": "finished",
+ "method": "ambientCG Grass004 (2x2) height-blended with Grass001 (2x2, shifted) and Poly Haven leafy_grass (true scale, worn patches), plus plants modelled here in Blender and baked top-down as decals (clover patches, plantain, daisy and dandelion rosettes, a few daisy flowers, dry leaves and straw blades); graded toward the original grass palette",
+ "third_party": [
+  {
+   "source": "ambientcg",
+   "asset_id": "Grass004",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "ambientcg",
+   "asset_id": "Grass001",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "leafy_grass",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.4
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.2,
+  "mean": 94.5,
+  "max": 229.3
+ },
+ "mean_srgb": [
+  86,
+  101,
+  59
+ ],
+ "roughness_mean": 0.666,
+ "known_weaknesses": "plants are stamped decals in albedo, normal and AO with only a few millimetres of height: they do not stand up at grazing view; the 1.4 m lawn period can still be found in a flat-lit 4x4 view"
+}

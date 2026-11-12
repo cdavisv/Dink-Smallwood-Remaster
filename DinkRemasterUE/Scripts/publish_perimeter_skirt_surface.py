@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 SOURCE_REL = 'SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1'
-HANDOFF_SHA = '36c3dd6d2a7f66669eb666ad1724e234b4250a5e3f61c7f2dc7360cf3eafac0d'
+HANDOFF_SHA = 'bc80a9888e85d6ab6dfab12bc684c057637ddce45620f144b48825cb5f207b2b'
 DEST = '/Game/Dink/Kits/Stonebrook/Refinements/PerimeterSkirtV1/SM_Stonebrook_PerimeterSkirt_V1'
 MAT = '/Game/Dink/Materials/Stonebrook/Refinements/M_Stonebrook_Underfloor_DarkOak_V1'
 PACKAGES = {p.replace('/Game/', 'Content/', 1) + '.uasset' for p in (DEST,)}

@@ -4,7 +4,7 @@ sys.path.insert(0,str(Path('Scripts').resolve()))
 import playtest_desktop as d
 import playtest_interactions as i
 out=Path('Saved/BasketReviewed/Render').resolve();log=out/'game.log'
-receipt=json.loads(Path('/home/artist/Work/DinkQA/Tools/game.json').read_text());pid=receipt['game_pid']
+receipt=json.loads(Path('<HOME>/Work/DinkQA/Tools/game.json').read_text());pid=receipt['game_pid']
 assert str(Path.cwd()/'DinkRemaster.uproject') in receipt['command']
 d.use_private_display(':189');w=d.window();assert int(w['pid'])==pid;d.focus(w)
 for n in range(15):

@@ -1,0 +1,57 @@
+{
+ "name": "TransitionDirt",
+ "files": {
+  "BC": "TransitionDirt/T_Terrain_TransitionDirt_BC.png",
+  "N": "TransitionDirt/T_Terrain_TransitionDirt_N.png",
+  "ORM": "TransitionDirt/T_Terrain_TransitionDirt_ORM.png",
+  "H": "TransitionDirt/T_Terrain_TransitionDirt_H.png",
+  "Macro": "TransitionDirt/T_Terrain_TransitionDirt_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0305,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.303",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "dirt",
+  "path",
+  "grass"
+ ],
+ "status": "finished",
+ "method": "Poly Haven dirt (fine dark soil) with rocky_trail grit patches; mid-value brown chosen to sit between MeadowTurf and EarthPath in a height-blended edge",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "dirt",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rocky_trail",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 33.4,
+  "mean": 90.2,
+  "max": 234.5
+ },
+ "mean_srgb": [
+  109,
+  87,
+  65
+ ],
+ "roughness_mean": 0.865,
+ "known_weaknesses": "plain by design; little relief (about a centimetre)"
+}

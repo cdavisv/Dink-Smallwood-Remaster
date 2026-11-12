@@ -37,7 +37,7 @@
   "rendered_input_receipt": "Saved/Playtest/evidence/movement-controls/summary.json",
   "rendered_scope": "Actual private XTest input captured before P2ownership fixes; unchanged locomotion/jump/wheel mapping. Final zoom-transition/Configure/lifecycle corrections verified by native final tests. No wider-world jump traversal claim.",
   "review_receipts": [
-    "/home/artist/Work/DinkQA/PhotorealSessions/movement_review_v1.json",
-    "/home/artist/Work/DinkQA/PhotorealSessions/movement_review_v2.json"
+    "<HOME>/Work/DinkQA/PhotorealSessions/movement_review_v1.json",
+    "<HOME>/Work/DinkQA/PhotorealSessions/movement_review_v2.json"
   ]
 }

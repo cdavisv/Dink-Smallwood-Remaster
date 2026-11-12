@@ -1,0 +1,51 @@
+{
+ "name": "CaveRock",
+ "files": {
+  "BC": "CaveRock/T_Terrain_CaveRock_BC.png",
+  "N": "CaveRock/T_Terrain_CaveRock_N.png",
+  "ORM": "CaveRock/T_Terrain_CaveRock_ORM.png",
+  "H": "CaveRock/T_Terrain_CaveRock_H.png",
+  "Macro": "CaveRock/T_Terrain_CaveRock_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0474,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.570",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "cave_wall",
+  "rock_mass",
+  "cliff_face"
+ ],
+ "status": "finished",
+ "method": "Poly Haven rock_face_04 (dark water-worn rock with mineral crusts), cooled and darkened; slightly lower roughness for a damp cave",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 70.6,
+  "max": 238.8
+ },
+ "mean_srgb": [
+  76,
+  70,
+  61
+ ],
+ "roughness_mean": 0.862,
+ "known_weaknesses": "single scan; the pale mineral crust patches are repeating landmarks on long walls"
+}

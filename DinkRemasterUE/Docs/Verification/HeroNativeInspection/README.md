@@ -2,7 +2,7 @@
 
 The editor-only `DinkHeroInspectionLibrary` exposes read-only Skeleton, skeletal LOD and texture inspection. This delivery adds three source files and private ImageCore/RHI dependencies. It changes no gameplay, assets, production avatar mapping or Engine configuration. See [API.md](API.md) for contracts and unavailable states, and [validation.json](validation.json) for source hashes and measured results.
 
-The isolated `test/hero-native-inspection` checkout at `/home/artist/Work/DinkHeroNativeProof` uses master24 `910cb599` as its base. Newer master27 audio/probe changes are outside this frozen verification snapshot and must be preserved during later integration.
+The isolated `test/hero-native-inspection` checkout at `<HOME>/Work/DinkHeroNativeProof` uses master24 `910cb599` as its base. Newer master27 audio/probe changes are outside this frozen verification snapshot and must be preserved during later integration.
 
 ## Results
 

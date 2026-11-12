@@ -1,0 +1,108 @@
+{
+ "name": "SM_Candle_Iron_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Candle_Iron/SM_Candle_Iron_PR.fbx",
+ "materials": [
+  "MI_Prop_Candle_Holder_01",
+  "MI_Prop_Candle_Holder_01_Wax"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Candle_Holder_01.blend",
+ "lod0_triangles": 1512,
+ "lod1_triangles": 756,
+ "lod2_triangles": 332,
+ "dimensions_m": [
+  0.201,
+  0.198,
+  0.45
+ ],
+ "bounds_min_m": [
+  -0.101,
+  -0.1,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1,
+  0.098,
+  0.45
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "opening cottage candles",
+  "candle"
+ ],
+ "supersedes": "Stonebrook/SM_Candle_Iron_01 (0.2 x 0.2 x 0.45 m, base_center)",
+ "dresses": "tallow candle on a forged iron pricket stick, 0.2 x 0.45 m: dished foot, knopped stem, drip pan with a puddle of wax, the candle guttered down one side with four runs of wax, a charred wick",
+ "fit": {
+  "pivot": "base centre",
+  "size": "as SM_Candle_Iron_01"
+ },
+ "emissive": {
+  "type": "flame (no flame mesh in the FBX: add the engine flame card or particle)",
+  "position_m": [
+   0.003,
+   0.0,
+   0.455
+  ],
+  "colour_temperature_K": 1850,
+  "attenuation_radius_m": 3.5,
+  "intensity_cd": 1.0,
+  "note": "as SM_Prop_Candle_Holder_01"
+ },
+ "baked": {
+  "texture_folder": "Prop_Candle_Holder_01",
+  "textures": {
+   "BC": "T_Prop_Candle_Holder_01_BC.png",
+   "N": "T_Prop_Candle_Holder_01_N.png",
+   "ORM": "T_Prop_Candle_Holder_01_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Prop_Candle_Holder_01",
+    "kind": "opaque"
+   },
+   {
+    "material": "MI_Prop_Candle_Holder_01_Wax",
+    "kind": "subsurface"
+   }
+  ],
+  "emissive_nits": null,
+  "params": {
+   "sss_radius": [
+    0.012,
+    0.007,
+    0.004
+   ]
+  },
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 94.2,
+    "p99": 207.5
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.503,
+    "p95": 0.709
+   },
+   "metallic_mean": 0.632
+  },
+  "hi_triangles": 12396,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Prop_Candle_Holder_01.blend"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Candle_Iron",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Same mesh and bake as SM_Prop_Candle_Holder_01 (textures T_Prop_Candle_Holder_01_* in Props/Prop_Candle_Holder_01); see there.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_ORM.png"
+ }
+}

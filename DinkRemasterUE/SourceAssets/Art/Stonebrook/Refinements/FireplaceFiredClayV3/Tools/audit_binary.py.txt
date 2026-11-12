@@ -1,0 +1,31 @@
+import bpy,numpy as np,json,sys,os,hashlib,gzip
+from pathlib import Path
+O=Path(__file__).resolve().parent;sys.path.insert(0,str(O));import fbxparse as F
+bpy.ops.wm.open_mainfile(filepath=str(O/'Fireplace_FiredClayV3.blend'));rows=[];raw={}
+def field(g,name,key,width,count):
+ node=g.first(name);assert node is not None,name;a=np.array(node.first(key).props[0]).reshape(-1,width)
+ ref=node.first('ReferenceInformationType').props[0]
+ if ref=='IndexToDirect':a=a[node.first(key+'Index').props[0]]
+ else:assert ref=='Direct'
+ if node.first('MappingInformationType').props[0]=='AllSame':a=np.repeat(a[:1],count,axis=0)
+ assert len(a)==count;return a
+def angle(a,b):
+ den=np.linalg.norm(a,axis=1)*np.linalg.norm(b,axis=1);valid=den>1e-8;assert np.array_equal(np.linalg.norm(a,axis=1)<1e-8,np.linalg.norm(b,axis=1)<1e-8);return float(np.degrees(np.arccos(np.clip(np.sum(a[valid]*b[valid],axis=1)/den[valid],-1,1))).max())
+for row in json.load(open(O/'FBX_ROUNDTRIP.json')):
+ o=bpy.data.objects[row['name']];m=o.data;m.calc_tangents(uvmap=m.uv_layers.active.name);count=len(m.loops)
+ _,top=F.parse(O/row['file']);top={n.name:n for n in top};objects={n.props[0]:n for n in top['Objects'].children};model=next(n for n in objects.values()if n.name=='Model'and n.props[1].split('\x00')[0]==o.name);geo=next(objects[c.props[1]]for c in top['Connections'].children if len(c.props)>2 and c.props[0]=='OO'and c.props[2]==model.props[0]and c.props[1]in objects and objects[c.props[1]].name=='Geometry')
+ uv=field(geo,'LayerElementUV','UV',2,count);n=field(geo,'LayerElementNormal','Normals',3,count);t=field(geo,'LayerElementTangent','Tangents',3,count);b=field(geo,'LayerElementBinormal','Binormals',3,count)
+ sn=np.array([v.vector[:]for v in m.corner_normals]);st=np.array([l.tangent[:]for l in m.loops]);ss=np.array([l.bitangent_sign for l in m.loops]);sb=np.cross(sn,st)*ss[:,None];su=np.array([l.uv[:]for l in m.uv_layers.active.data]);sign=np.sign(np.sum(np.cross(n,t)*b,axis=1))
+ r=dict(name=o.name,serialized_fields=['UV','N','T','B'],UV_max_error=float(abs(uv-su).max()),N_max_angle_deg=angle(n,sn),T_max_angle_deg=angle(t,st),B_max_angle_deg=angle(b,sb),handedness_changes=int(((sign!=ss)&(np.linalg.norm(t,axis=1)>1e-8)).sum()),zero_T_corners=int((np.linalg.norm(t,axis=1)<1e-8).sum()),zero_B_corners=int((np.linalg.norm(b,axis=1)<1e-8).sum()),finite=all(np.isfinite(a).all()for a in [uv,n,t,b]),corners=count)
+ assert r['UV_max_error']<1e-6 and max(r['N_max_angle_deg'],r['T_max_angle_deg'],r['B_max_angle_deg'])<.05 and not r['handedness_changes']and r['finite'],r
+ # Actual binary auxiliary UV selectors and linear RGBA, not just importer recomputation.
+ errors={}
+ for layer_idx,layer_name in [(1,'UV1_SharedData'),(2,'UVMap')]:
+  layer=next(x for x in geo.children if x.name=='LayerElementUV'and x.props[0]==layer_idx);a=np.array(layer.first('UV').props[0]).reshape(-1,2)
+  if layer.first('ReferenceInformationType').props[0]=='IndexToDirect':a=a[layer.first('UVIndex').props[0]]
+  expected=np.array([x.uv[:]for x in m.uv_layers[layer_name].data]);errors[layer_name]=float(abs(a-expected).max());assert errors[layer_name]==0
+ layer=geo.first('LayerElementColor');assert layer.first('Name').props[0]=='SharedSurfaceData';a=np.array(layer.first('Colors').props[0]).reshape(-1,4)
+ if layer.first('ReferenceInformationType').props[0]=='IndexToDirect':a=a[layer.first('ColorIndex').props[0]]
+ expected=np.array([x.color[:]for x in m.color_attributes['SharedSurfaceData'].data]);r['binary_RGBA_max_error']=float(abs(a-expected).max());r['auxiliary_UV_errors']=errors;assert r['binary_RGBA_max_error']==0
+ rows.append(r);raw[o.name]={k:v.tolist()for k,v in dict(UV=uv,N=n,T=t,B=b).items()}
+json.dump(dict(status='PASS_WITH_EXISTING_ZERO_FRAME_QUALIFICATION',scope='Actual serialized binary FBX corners vs saved Blender corners. Not native Unreal interpretation.',rows=rows),open(O/'BINARY_FBX_FRAME_REPORT.json','w'),indent=2);(O/'ACTUAL_BINARY_FBX_CORNERS.json.gz').write_bytes(gzip.compress(json.dumps(raw,separators=(',',':')).encode(),mtime=0));print('BINARY_PASS',flush=True);os._exit(0)

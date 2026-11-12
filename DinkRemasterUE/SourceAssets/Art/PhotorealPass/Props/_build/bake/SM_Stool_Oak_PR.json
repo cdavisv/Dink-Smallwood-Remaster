@@ -1,0 +1,59 @@
+{
+ "name": "SM_Stool_Oak_PR",
+ "class": "prop_small",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Stool_Oak",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Stool_Oak_PR_BC.png",
+  "N": "T_Stool_Oak_PR_N.png",
+  "ORM": "T_Stool_Oak_PR_ORM.png"
+ },
+ "lod_triangles": [
+  408,
+  204,
+  88
+ ],
+ "hi_triangles": 3236,
+ "bounds_min_m": [
+  -0.17,
+  -0.192,
+  -0.002
+ ],
+ "bounds_max_m": [
+  0.186,
+  0.163,
+  0.45
+ ],
+ "dimensions_m": [
+  0.356,
+  0.355,
+  0.452
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 51.0,
+   "p99": 100.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.494,
+   "p95": 0.716
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

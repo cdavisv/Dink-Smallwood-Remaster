@@ -1,0 +1,24 @@
+{
+  "SM_Chimney_Stonebrook_V8": {
+    "zero_T_corners": 5,
+    "zero_T_loop_ids": [
+      3003,
+      3007,
+      3148,
+      3238,
+      3252
+    ]
+  },
+  "SM_Fireplace_Stonebrook_V3Contact_LOD0": {
+    "zero_T_corners": 0,
+    "zero_T_loop_ids": []
+  },
+  "SM_Fireplace_Stonebrook_V3Contact_LOD1": {
+    "zero_T_corners": 0,
+    "zero_T_loop_ids": []
+  },
+  "SM_Fireplace_Stonebrook_V3Contact_LOD2": {
+    "zero_T_corners": 0,
+    "zero_T_loop_ids": []
+  }
+}

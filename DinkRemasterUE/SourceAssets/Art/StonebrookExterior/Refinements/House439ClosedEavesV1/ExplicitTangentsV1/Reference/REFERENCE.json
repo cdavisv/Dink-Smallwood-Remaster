@@ -1,0 +1,355 @@
+{
+  "scope": "Companion reference epoch for explicit tangent FBX; same immutable source geometry NPZ, no tolerance changes",
+  "fbx_sha256": "4d8c8f1eda4e37beed0dc1586bc3a72e1937660d990330d4473f8ec389c854e3",
+  "geometry_npz_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "bytes": 10581565,
+  "corners": 547878,
+  "triangles": 182626,
+  "material_roles": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_WeatheredTimber2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial"
+  ],
+  "hulls": [
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_01",
+      "array_prefix": "hull_0",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_02",
+      "array_prefix": "hull_1",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_03",
+      "array_prefix": "hull_2",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_04",
+      "array_prefix": "hull_3",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_05",
+      "array_prefix": "hull_4",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_06",
+      "array_prefix": "hull_5",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "source_frame": "metres, Blender Zup; explicit verified native conversion required, never autochoose closest frame",
+  "arrays": {
+    "position_m": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "normal": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "tangent": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "bitangent_sign": {
+      "shape": [
+        547878
+      ],
+      "dtype": "float64"
+    },
+    "uv0": {
+      "shape": [
+        547878,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "uv1": {
+      "shape": [
+        547878,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "color_linear_rgba": {
+      "shape": [
+        547878,
+        4
+      ],
+      "dtype": "float64"
+    },
+    "triangles": {
+      "shape": [
+        182626,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "triangle_material": {
+      "shape": [
+        182626
+      ],
+      "dtype": "int32"
+    },
+    "hull_0_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_0_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_1_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_1_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_2_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_2_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_3_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_3_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_4_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_4_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_5_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_5_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    }
+  },
+  "source_modified": false,
+  "explicit_tangent_successor_provenance": {
+    "old_reference_json_sha256": "b4052c1e378fabe9787dec45ab0565ef41d69bb0555ee6704cb52f5017802b4d",
+    "old_fbx_sha256": "aa4e091a48f3337f7b9bda4b1f044786c46149c163df511978bebb86bc210f27",
+    "packed_source_sha256": "f01cdbd2f679c9e4a11bf4424fe064ca5fa8229796702c67bdef883b2d7ca385",
+    "core_equivalence_receipt_sha256": "13aac0f6bb19979a0cc1df015f57b2bbcbe1fdae796e80ed8412e8a13f411eec",
+    "geometry_npz_unchanged": true
+  }
+}

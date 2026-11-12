@@ -1,0 +1,92 @@
+{
+ "name": "SM_Barrel_Oak_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Barrel_Oak/SM_Barrel_Oak_PR.fbx",
+ "materials": [
+  "MI_Barrel_Oak"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Barrel_Oak_PR.blend",
+ "lod0_triangles": 3208,
+ "lod1_triangles": 1604,
+ "lod2_triangles": 704,
+ "dimensions_m": [
+  0.837,
+  0.838,
+  1.003
+ ],
+ "bounds_min_m": [
+  -0.417,
+  -0.417,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.42,
+  0.42,
+  1.003
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "173 bonuses/barrels/barel- frame 1",
+  "barrel"
+ ],
+ "supersedes": "Stonebrook/SM_Barrel_Oak_01 (0.84 x 0.84 x 1.01 m, base_center) and the family binding of class barrel (97 placements)",
+ "dresses": "coopered oak barrel, 0.84 m at the bilge, 1.0 m: twenty separate staves of uneven width with gaps, five-board heads sawn round and set in the croze, four driven hoops a touch out of level with riveted laps (baked), a bung; true-metal hoops with rust, handling grease and a damp tide mark at the foot",
+ "fit": {
+  "pivot": "base centre",
+  "size": "same height and bilge as SM_Barrel_Oak_01",
+  "states": "the broken frames 2-6 (the barrel being smashed) are not built: keep the existing break effect"
+ },
+ "baked": {
+  "texture_folder": "Barrel_Oak",
+  "textures": {
+   "BC": "T_Barrel_Oak_PR_BC.png",
+   "N": "T_Barrel_Oak_PR_N.png",
+   "ORM": "T_Barrel_Oak_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Barrel_Oak",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 46.3,
+    "p99": 107.2
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.543,
+    "p95": 0.797
+   },
+   "metallic_mean": 0.02
+  },
+  "hi_triangles": 8672,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Barrel_Oak_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Barrel_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, three review rounds (r6). Last look still faults: the joints between staves are drawn as even dark lines (AO dirt) rather than varying gaps; rust runs under the hoops are faint; the hoops are flat strap with baked rivets at the lap only; head boards have no chalk or brand marks; the chime is not undercut. Broken states not built.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Barrel_Oak/T_Barrel_Oak_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Barrel_Oak/T_Barrel_Oak_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Barrel_Oak/T_Barrel_Oak_PR_ORM.png"
+ }
+}

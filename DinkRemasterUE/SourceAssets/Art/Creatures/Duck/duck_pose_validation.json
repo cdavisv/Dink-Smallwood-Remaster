@@ -1,0 +1,90 @@
+{
+  "Duck_Idle": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 2.499000702984396e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -1.1625486351363179e-08,
+    "loop": true,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_Walk": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 2.4491526124919314e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -1.2514676406283343e-08,
+    "loop": true,
+    "max_planted_foot_slip_m": 3.7e-05
+  },
+  "Duck_Run": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 3.1000593634495956e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -0.0024296590127050877,
+    "loop": true,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_Peck": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 3.1828894262453654e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 3.2311742677852644e-27,
+    "lowest_skinned_vertex_z_m": -0.0022635702043771744,
+    "loop": false,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_Quack": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 2.1721988524665314e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -8.351405789142063e-09,
+    "loop": false,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_Hit": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 2.986047331594191e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -2.0030661573855468e-08,
+    "loop": false,
+    "max_planted_foot_slip_m": 0.000891
+  },
+  "Duck_Death": {
+    "evaluated_mesh": "SK_Duck_LOD0",
+    "max_joint_gap_m": 4.012260442327338e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 1.3785896599292755,
+    "lowest_skinned_vertex_z_m": -1.8105799526324518e-08,
+    "loop": false,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_HeadlessRun": {
+    "evaluated_mesh": "SK_Duck_Headless_LOD0",
+    "max_joint_gap_m": 2.4728324352487463e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 0.0,
+    "lowest_skinned_vertex_z_m": -0.0026353118009865284,
+    "loop": true,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "Duck_HeadlessDeath": {
+    "evaluated_mesh": "SK_Duck_Headless_LOD0",
+    "max_joint_gap_m": 4.385135086995942e-08,
+    "root_motion_m": 0.0,
+    "start_end_pose_matrix_max_difference": 1.2086662650108337,
+    "lowest_skinned_vertex_z_m": -2.3992086539692536e-08,
+    "loop": false,
+    "max_planted_foot_slip_m": 0.0
+  },
+  "_solves": {
+    "peck_depth_scale": 0.6913,
+    "death_pelvis_drop_m": 0.0645,
+    "death_neck_slump": 2.4999,
+    "headless_death_pelvis_drop_m": 0.0645,
+    "death_foot_lift_max_m": 0.0
+  }
+}

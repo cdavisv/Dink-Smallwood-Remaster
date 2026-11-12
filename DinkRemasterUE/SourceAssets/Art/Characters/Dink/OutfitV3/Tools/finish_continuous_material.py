@@ -1,7 +1,7 @@
 import bpy,bmesh,json,numpy as np
 from pathlib import Path
 from mathutils import Vector
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));report=json.loads((ART/'continuous_shirt_report.json').read_text());tiles=[tuple(v) for v in report['allocated_tiles']];tile_indices={v:i for i,v in enumerate(tiles)};count=report['shirt_faces'];rows=[]
 for lod in range(4):
  ob=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'];m=ob.data;remove=[]

@@ -1,7 +1,7 @@
 from pathlib import Path
 import subprocess,os,json,time
 root=Path(__file__).resolve().parents[2];out=root/'Saved/BasketReviewed/Native';out.mkdir(parents=True,exist_ok=True)
-engine=Path('/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd')
+engine=Path('<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd')
 results=[]
 for mode in ['preflight','import','verify']:
  report=out/(mode+'.json');assert not report.exists(),report

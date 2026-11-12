@@ -1,0 +1,300 @@
+{
+  "schema": "dink-creature-art/1",
+  "assets": {
+    "SK_Duck": {
+      "fbx": "Export/SK_Duck_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SK_Duck_LOD0.fbx",
+        "Export/SK_Duck_LOD1.fbx",
+        "Export/SK_Duck_LOD2.fbx"
+      ],
+      "dimensions_m": [
+        0.5081475973129272,
+        0.21071961522102356,
+        0.46602004766464233
+      ],
+      "lod_union_dimensions_m": [
+        0.5083659887313843,
+        0.21071961522102356,
+        0.466347873210907
+      ],
+      "bounds_min_m": [
+        -0.2667721211910248,
+        -0.10615146160125732,
+        0.0
+      ],
+      "bounds_max_m": [
+        0.24137544631958008,
+        0.10456814616918564,
+        0.46602004766464233
+      ],
+      "materials": [
+        "MI_Duck_Feather",
+        "MI_Duck_Bill",
+        "MI_Duck_Feet",
+        "MI_Duck_Eye"
+      ],
+      "root_bone": "root",
+      "bones": [
+        "root",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "neck_01",
+        "neck_02",
+        "neck_03",
+        "head",
+        "jaw",
+        "wing_l",
+        "wingtip_l",
+        "wing_r",
+        "wingtip_r",
+        "tail_01",
+        "tail_02",
+        "thigh_l",
+        "calf_l",
+        "foot_l",
+        "toes_l",
+        "thigh_r",
+        "calf_r",
+        "foot_r",
+        "toes_r"
+      ],
+      "head_bone": "head",
+      "pelvis_bone": "pelvis",
+      "class": "creature",
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "forward": "+X",
+      "source_blend": "SK_Duck.blend",
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -3.503765821456909,
+            0.07916577160358429,
+            18.000057220458984
+          ],
+          "extent_cm": [
+            17.495689392089844,
+            11.535979270935059,
+            11.996854782104492
+          ]
+        },
+        {
+          "offset_cm": [
+            15.07248592376709,
+            -0.027761608362197876,
+            38.301422119140625
+          ],
+          "extent_cm": [
+            10.06506061553955,
+            4.819780349731445,
+            9.30058765411377
+          ]
+        }
+      ],
+      "body_boxes_note": "Measured rest-surface AABBs of trunk and neck/head, excluding tail fan and feet; 1 cm padding, actor-forward UE cm."
+    }
+  },
+  "materials": {
+    "MI_Duck_Feather": {
+      "base_color": [
+        0.7,
+        0.688,
+        0.64
+      ],
+      "roughness": 0.7,
+      "metallic": 0,
+      "masked": true,
+      "alpha_mask": true,
+      "opacity_mask_clip": 0.4,
+      "two_sided": true,
+      "subsurface": 0.0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Duck_Atlas_BC.png",
+        "N": "Textures/T_Duck_Atlas_N.png",
+        "ORM": "Textures/T_Duck_Atlas_ORM.png"
+      },
+      "notes": "Opacity mask = BC alpha (contour-feather cards, blood films); everything else alpha 1. Two-sided for the cards. Wound caps and blood films use this material too: their wet look comes from the ORM roughness. Blender preview adds sheen 0.22; recreate in Unreal optionally."
+    },
+    "MI_Duck_Bill": {
+      "base_color": [
+        0.8,
+        0.33,
+        0.035
+      ],
+      "roughness": 0.58,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.18,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Duck_Atlas_BC.png",
+        "N": "Textures/T_Duck_Atlas_N.png",
+        "ORM": "Textures/T_Duck_Atlas_ORM.png"
+      }
+    },
+    "MI_Duck_Feet": {
+      "base_color": [
+        0.74,
+        0.26,
+        0.04
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.1,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "textures": {
+        "BC": "Textures/T_Duck_Atlas_BC.png",
+        "N": "Textures/T_Duck_Atlas_N.png",
+        "ORM": "Textures/T_Duck_Atlas_ORM.png"
+      }
+    },
+    "MI_Duck_Eye": {
+      "base_color": [
+        0.105,
+        0.052,
+        0.022
+      ],
+      "roughness": 0.035,
+      "metallic": 0,
+      "masked": false,
+      "two_sided": false,
+      "subsurface": 0.0,
+      "normal_strength": 1,
+      "normal_flip_green": true,
+      "clear_coat": 1.0,
+      "textures": {
+        "BC": "Textures/T_Duck_Atlas_BC.png",
+        "N": "Textures/T_Duck_Atlas_N.png",
+        "ORM": "Textures/T_Duck_Atlas_ORM.png"
+      }
+    }
+  },
+  "animations": {
+    "Idle": {
+      "fbx": "Export/A_Duck_Idle.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 2.0,
+      "frames": [
+        1,
+        61
+      ],
+      "root_motion": false
+    },
+    "Walk": {
+      "fbx": "Export/A_Duck_Walk.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 0.4,
+      "frames": [
+        1,
+        13
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 32.3
+    },
+    "Run": {
+      "fbx": "Export/A_Duck_Run.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 0.266667,
+      "frames": [
+        1,
+        9
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 82.1
+    },
+    "Peck": {
+      "fbx": "Export/A_Duck_Peck.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 1.2,
+      "frames": [
+        1,
+        37
+      ],
+      "root_motion": false
+    },
+    "Quack": {
+      "fbx": "Export/A_Duck_Quack.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 0.6,
+      "frames": [
+        1,
+        19
+      ],
+      "root_motion": false
+    },
+    "Hit": {
+      "fbx": "Export/A_Duck_Hit.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 0.4,
+      "frames": [
+        1,
+        13
+      ],
+      "root_motion": false
+    },
+    "Death": {
+      "fbx": "Export/A_Duck_Death.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 1.5,
+      "frames": [
+        1,
+        46
+      ],
+      "root_motion": false,
+      "hold_last_frame": true
+    },
+    "HeadlessRun": {
+      "fbx": "Export/A_Duck_HeadlessRun.fbx",
+      "loop": true,
+      "fps": 30,
+      "duration_s": 0.3,
+      "frames": [
+        1,
+        10
+      ],
+      "root_motion": false,
+      "nominal_speed_cm_s": 69.8,
+      "mesh_variant": "SK_Duck_Headless",
+      "minimum_pose_rotation_rad": 0.1
+    },
+    "HeadlessDeath": {
+      "fbx": "Export/A_Duck_HeadlessDeath.fbx",
+      "loop": false,
+      "fps": 30,
+      "duration_s": 1.6,
+      "frames": [
+        1,
+        49
+      ],
+      "root_motion": false,
+      "mesh_variant": "SK_Duck_Headless",
+      "minimum_pose_rotation_rad": 0.1,
+      "hold_last_frame": true
+    }
+  },
+  "source": "Original project-authored domestic (Pekin-type) duck anatomy, procedural materials, own 23-bone rig and actions; no third-party geometry/textures.",
+  "export_units": "Source metres; temporary mesh/edit-bone/action-location coordinates 100x, scene 0.01 and FBX header 1 cm; identity root, no leaf bones.",
+  "origins_note": "Draft: no origins are applied. duck_origins.json lists the original duck placements (Quackers = s1-oldd).",
+  "variants_manifest": "duck_gore_manifest.json",
+  "status": "candidate",
+  "appearance_revision": "pekin-white-v2-feathered"
+}

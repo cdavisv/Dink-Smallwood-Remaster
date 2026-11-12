@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "prior_rows": 4543,
+  "new_rows": 33,
+  "current_rows": 4576,
+  "prior_bytes": 4000390,
+  "prior_sha256": "574d4c627b374b8c3cc586969451e1e0580ea20d3ab73165f9b44e38fe77f70b",
+  "prior_raw_prefix_exact": true,
+  "all_V3_and_shared_library_files_exact": true,
+  "protected_files": 193,
+  "audio_rows_unchanged": 2212
+}

@@ -1,0 +1,46 @@
+{
+  "scope": "Only new fireplace/chimney candidate import metadata; no shared roof behavior change",
+  "source": "SM_Chimney_Stonebrook_V8",
+  "existing_native_slots": [
+    {
+      "index": 0,
+      "role": "MI_Shared_Soot2m"
+    },
+    {
+      "index": 1,
+      "role": "MI_Shared_IronLead2m"
+    },
+    {
+      "index": 2,
+      "role": "MI_Shared_FiredClayMasonry2m"
+    }
+  ],
+  "append_only_unused_slots": [
+    {
+      "index": 3,
+      "role": "MI_Shared_FieldstoneSeed2m"
+    },
+    {
+      "index": 4,
+      "role": "MI_Shared_LimeMortar2m"
+    },
+    {
+      "index": 5,
+      "role": "MI_Shared_OakLonggrain2m"
+    }
+  ],
+  "must_not_change": [
+    "Existing slot0/1/2 names/interfaces/UV-channel metadata before binding",
+    "Raw MeshDescription vertexinstances/triangles/groups/IDs/UVs/colors/normals",
+    "Built vertices/indices/sections/materialindices/TBN/UVs/colors",
+    "Authored convex collision/body/import transform settings",
+    "Source FBX/blend/materials/textures/ledger/production packages",
+    "All fixed test tolerances"
+  ],
+  "fireplace_LOD_slots": "All5native==declared==used; exact no-op",
+  "native_used_only_semantics_valid": true,
+  "reason_for_append": "Explicit metadata delivery choice preserving complete admitted author-declared role inventory and existing strict six-role binder, not repairing valid used-only geometry/shading",
+  "native_slot_order_is_not_source_slot_order": true,
+  "source_declared_order_kept_separately": true,
+  "production_patch_approved": false
+}

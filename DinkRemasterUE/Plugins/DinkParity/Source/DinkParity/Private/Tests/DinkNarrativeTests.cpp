@@ -148,14 +148,22 @@ bool FDinkNarrativeStoryLoadsTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("930 entry points"), Story.Names().Entries.Num(), 930);
 	TestEqual(TEXT("63 globals"), Story.Names().GlobalToInk.Num(), 63);
 
-	// The 30 EXTERNAL functions of _decls.ink are all bound.
+	// The source value forms include the three original-hardness accessors.
 	const TArray<FString> Externals = {
 		TEXT("buttoninfo"), TEXT("compare_sprite_script"), TEXT("compare_weapon"), TEXT("count_item"), TEXT("count_magic"),
-		TEXT("create_sprite"), TEXT("free_items"), TEXT("free_magic"), TEXT("game_exist"), TEXT("get_burn"),
+		TEXT("create_sprite"), TEXT("editor_frame"), TEXT("editor_seq"), TEXT("free_items"), TEXT("free_magic"), TEXT("game_exist"), TEXT("get_burn"),
 		TEXT("get_last_bow_power"), TEXT("get_rand_sprite_with_this_brain"), TEXT("get_sprite_with_this_brain"), TEXT("get_version"), TEXT("inside_box"),
 		TEXT("is_base_game"), TEXT("is_script_attached"), TEXT("random"), TEXT("savegameinfo"), TEXT("scripts_used"), TEXT("sp"), TEXT("sp_brain"), TEXT("sp_dir"),
-		TEXT("sp_editor_num"), TEXT("sp_hitpoints"), TEXT("sp_pframe"), TEXT("sp_pseq"), TEXT("sp_target"), TEXT("sp_x"), TEXT("sp_y") };
-	TestEqual(TEXT("30 externals bound"), Env.Story->GetDirector()->GetExternalNames().Num(), 30);
+		TEXT("sp_editor_num"), TEXT("sp_hard"), TEXT("sp_hitpoints"), TEXT("sp_pframe"), TEXT("sp_pseq"), TEXT("sp_target"), TEXT("sp_x"), TEXT("sp_y") };
+	const TArray<FString>& Bound = Env.Story->GetDirector()->GetExternalNames();
+	TestEqual(TEXT("exact reviewed external vocabulary bound"), Bound.Num(), Externals.Num());
+	TSet<FString> UniqueBound;
+	for (const FString& Name : Bound)
+	{
+		TestTrue(TEXT("no unexpected external binding: ") + Name, Externals.Contains(Name));
+		TestFalse(TEXT("no duplicate external binding: ") + Name, UniqueBound.Contains(Name));
+		UniqueBound.Add(Name);
+	}
 	for (const FString& Name : Externals)
 	{
 		TestTrue(TEXT("external bound: ") + Name, Story.Ink().IsExternalFunctionBound(Name));

@@ -1,8 +1,8 @@
 {
   "stage": "SOURCE REVIEW CANDIDATE; parent visual gate pending. NO export, import, runtime, manifest or ledger promotion.",
-  "source_sha256": "59445d2de287a82ea980d5dca4d10cbfc7a8c02808eb180a0b38855bc5d98743",
+  "source_sha256": "c7fa7470980f163e940a313ab0fabe13173519fed82956f9551b8b522cbbaf3b",
   "source_modified_utc": "2026-11-07T22:57:45.486112+00:00",
-  "frozen_source_sha256": "bd9cc7f98a087c2cfe1dbc82f196243381700d5bb1b87044a571c07577f7ea97",
+  "frozen_source_sha256": "8ac6ee43b15b0f2a96e74a0072b24556562ea6e0a9a76a5948fa7d1be01b9cf2",
   "triangles": [
     36769,
     24041,
@@ -182,7 +182,7 @@
     }
   ],
   "remaining_normal_diagnostic": "All16 actual pose/LOD samples have0 visible opposing outer-shirt faces. Turned collar lining and top hem are separate geometric roles; all raw opposing-nearest-Skin flags retained, including hidden inward fold faces. This is not an unconditional all-face zero-normal claim.",
-  "real_walk_reference": "/home/artist/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx",
+  "real_walk_reference": "<HOME>/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx",
   "walk_reference_exported": false,
   "walk_reference_rest_matrix_max_error": 0.30148719996213913,
   "walk_reference_note": "Actual reference global bone poses are applied in temporary render memory. Max rest difference is at index_03_l; reference is not embedded or exported. Source frozen hand binding and all89 rest matrices unchanged.",
@@ -196,67 +196,67 @@
   },
   "images": {
     "outfit_idle_front.png": {
-      "sha256": "b6b815deef4e6fe9c4268b54f16f28557a33dde35dabdf3e9956c3a477095872",
+      "sha256": "587f6eb82c9691770bb6ac232355e871cc5b4173c712bf7da16460f6b618e7b7",
       "modified_utc": "2026-11-07T22:58:46.909971+00:00"
     },
     "outfit_idle_threequarter.png": {
-      "sha256": "9bc6d057e945589957ef4fa72f8c8073456af84ee894fe4d15f60d262ad7d624",
+      "sha256": "9dd44caf63a9af0e034c2f9f449acb21c66256325f476d3e2e9b0a7ea3fb4e56",
       "modified_utc": "2026-11-07T22:58:56.953275+00:00"
     },
     "outfit_idle_back.png": {
-      "sha256": "78cfbf67b409da6577fefe2703de98ba9b132b4e9fc28175a91922eb53782249",
+      "sha256": "064e06f7617f583cac6f6b65b7ad7ded5150c666b2eb95b00f5be73a1f076968",
       "modified_utc": "2026-11-07T22:59:06.271558+00:00"
     },
     "outfit_torso_detail.png": {
-      "sha256": "02fdd3a48764c15700c07e4026a2a90a5a14cef739da61d65bfb3e88147ab780",
+      "sha256": "35495a0d6e0054859ae890b98fff814ce787d0496ba81e1be2e598334fdb3ca1",
       "modified_utc": "2026-11-07T22:59:16.794876+00:00"
     },
     "outfit_backpack_detail.png": {
-      "sha256": "50893249d8d38a5062f3d8db0a1d18744a0586a38cfc8a3b1fc253dbc1abd359",
+      "sha256": "3d91628d9c6ce7d40efed3741a74f0aa2c13fd98678fa34a24ef0c4e17a2d8a4",
       "modified_utc": "2026-11-07T22:59:28.080218+00:00"
     },
     "outfit_fist_impact.png": {
-      "sha256": "38545d47b25aef8263ca96b3260181209e1662cd167ce05e7c7823df91479de3",
+      "sha256": "22668fe988cbbf0a77a428b95c9a0236598dc85a069c50dc87bea4b03558d7d1",
       "modified_utc": "2026-11-07T22:59:37.515504+00:00"
     },
     "outfit_fist_side.png": {
-      "sha256": "b172629addc66bc84676247f38105799bb0fbaa36e6ced7ea5a550ed1253fe65",
+      "sha256": "152cbfb65bd5c50428778643dc84da8b7718df067a9b0112da608b833dfcb183",
       "modified_utc": "2026-11-07T22:59:47.889819+00:00"
     },
     "outfit_fist_back.png": {
-      "sha256": "a645078ecb1ed043cfa9c6aeb65c1bca016146803ea1919a825d3868093227e8",
+      "sha256": "84b1edf55d14bd76eb0d8b8490a7e662b95fcce96a0cba9d7871ac25cacbaac1",
       "modified_utc": "2026-11-07T22:59:57.680115+00:00"
     },
     "outfit_walk_reference_0_front.png": {
-      "sha256": "54ec804d734598bbcc0d1b705691e9e22e5df0ae453bdf96b88b9495578fd58b",
+      "sha256": "b28b4b055a2fff337d514195239883bf88ee6770c9d623fbe99e3093d0360ddf",
       "modified_utc": "2026-11-07T23:00:07.225405+00:00"
     },
     "outfit_walk_reference_0_back.png": {
-      "sha256": "f2e0e68620094b2975a15113a79d40d855f3b137509a1ab59dd6da8965eb9d8e",
+      "sha256": "ba728f27a848c70f5771cbfbd70414f85950b1b73f92697d00afca8b943485d7",
       "modified_utc": "2026-11-07T23:00:17.031702+00:00"
     },
     "outfit_walk_reference_1_front.png": {
-      "sha256": "29787b0c75c0775509ffa38fc588e33a8c472a6fafe628a7225f2e9d69edd846",
+      "sha256": "692d8a33344ef9155a2d977e0a6ac3773a5dd63e7ae329703d5e328610258be7",
       "modified_utc": "2026-11-07T23:00:26.570991+00:00"
     },
     "outfit_walk_reference_1_back.png": {
-      "sha256": "7dc12bba845932bda75634e61ac6a08fc5665732ed0ea54d11d18e64ce50a860",
+      "sha256": "e4372ba0065c92673270d45972d78313e5cafcb1aed5989a2367f5441cfc316e",
       "modified_utc": "2026-11-07T23:00:36.326287+00:00"
     },
     "outfit_fist_LOD2_normal_front.png": {
-      "sha256": "531741597ae4ef39a4037590d8fa73dbaeac8648b1cd658f2e9c212bb6201b19",
+      "sha256": "d68c3237ec468719e306aba293029682f88756643bd0541747c8e4b48d3bfbff",
       "modified_utc": "2026-11-07T22:57:56.012431+00:00"
     },
     "outfit_fist_LOD2_normal_back.png": {
-      "sha256": "1031ecbb4bdc198e32c35b3d61c9f893b91c536c4cea9958a59c70135e0206a3",
+      "sha256": "557aeb743cb74227026ff6471ab87164309080d452c32dd20c16aded57156f92",
       "modified_utc": "2026-11-07T22:58:06.103736+00:00"
     },
     "outfit_fist_LOD3_normal_front.png": {
-      "sha256": "53581f65a195419f04a88bffea519d3a7ebdcb7ff42360ba86e782a0f9db50b4",
+      "sha256": "cba9db4cd44a6d4aa85883e91c5d21318e18855440d0f8170ff11632764c70db",
       "modified_utc": "2026-11-07T22:58:17.231073+00:00"
     },
     "outfit_fist_LOD3_normal_back.png": {
-      "sha256": "28c21727514cf132e75ae7375f349cd62015a562599059e693bf064c615e144f",
+      "sha256": "4b199de2cf3f263a96f2c2307e8b5d6435ece38d33993ac26fb9f5e104655455",
       "modified_utc": "2026-11-07T22:58:28.146403+00:00"
     }
   }

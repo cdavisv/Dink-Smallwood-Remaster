@@ -39,7 +39,7 @@
     "native_exit_code": 0,
     "postprocessor_exit_code": 1,
     "postprocessor_failure": "UTF-8 BOM rejected by original Saved-only JSON reader after native success and guards",
-    "derived_receipt_sha256": "1805daec2c0d09c65c5d6534302334ef77cda8befb901d5394f8717d2863d4e1",
+    "derived_receipt_sha256": "0a96340ed855ad0c2c82993c067fbb2356842e3ebaf85ada17e11bf54d18cd42",
     "raw_index_sha256": "55710b25688f6bcdb34471dbaae9560f8f27bc34b1cdf552231a3c8bce2215c0",
     "warning_classification": "14 tests SDL/Wayland initialization warnings;2 HTTP connectivity timeout warning tests; no suppression or threshold change"
   },

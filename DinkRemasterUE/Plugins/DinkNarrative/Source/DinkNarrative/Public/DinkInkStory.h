@@ -98,6 +98,7 @@ public:
 	static FString ArgToString(const Ink::FValueType& Value);
 
 private:
+    friend class FDinkHardnessRetainedLegacyOwner;
 	void HookState();
 	void HandleVariableChanged(const FString& Name, TSharedPtr<Ink::FObject> Value);
 

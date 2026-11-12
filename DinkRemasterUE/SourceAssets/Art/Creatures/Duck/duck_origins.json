@@ -1,0 +1,1299 @@
+{
+  "source": "tools/dinkex/out/screens (original dink.dat placements with duck sequences 21-29/111-129)",
+  "count": 184,
+  "quackers_s1_oldd": [
+    "S409_P07",
+    "S440_P02",
+    "S441_P11"
+  ],
+  "placements": [
+    {
+      "origin": "S002_P24",
+      "seq": 23,
+      "brain": 3,
+      "script": "s1-h2-dk",
+      "vision": 1
+    },
+    {
+      "origin": "S100_P27",
+      "seq": 127,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S100_P36",
+      "seq": 24,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P01",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P02",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P03",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P04",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P05",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P06",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P07",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P08",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P09",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P10",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P11",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P12",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P13",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P14",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P15",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P16",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P17",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P18",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P19",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P20",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P21",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P22",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P23",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P24",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P25",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P26",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P27",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P28",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P29",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P30",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P31",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P32",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P33",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P34",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P35",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P36",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P37",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P38",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P39",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P40",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P41",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P42",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P43",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P44",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P45",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P46",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P47",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P48",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P49",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P50",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P51",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P52",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P53",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P54",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P55",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P56",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P57",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P58",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P59",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P60",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P61",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P62",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P63",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P64",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P65",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P66",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P67",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P68",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P69",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P70",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P71",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P72",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P73",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P74",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P75",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P76",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P77",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P78",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P79",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P80",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P81",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P82",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P83",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P84",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P85",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P86",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P87",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P88",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P89",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S145_P90",
+      "seq": 121,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S161_P33",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S161_P34",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S161_P35",
+      "seq": 26,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S161_P36",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S162_P25",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S190_P11",
+      "seq": 23,
+      "brain": 0,
+      "script": "s7-duck",
+      "vision": 0
+    },
+    {
+      "origin": "S190_P12",
+      "seq": 23,
+      "brain": 0,
+      "script": "s7-duck",
+      "vision": 0
+    },
+    {
+      "origin": "S190_P13",
+      "seq": 24,
+      "brain": 0,
+      "script": "s7-duck",
+      "vision": 0
+    },
+    {
+      "origin": "S194_P26",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S196_P25",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P08",
+      "seq": 23,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P09",
+      "seq": 29,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P10",
+      "seq": 29,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P11",
+      "seq": 24,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P12",
+      "seq": 27,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S307_P14",
+      "seq": 23,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P06",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 1
+    },
+    {
+      "origin": "S374_P07",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P08",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P09",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P10",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P11",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P12",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P13",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S374_P14",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S397_P03",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S397_P04",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S397_P05",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S397_P06",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S397_P07",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S405_P01",
+      "seq": 26,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S409_P07",
+      "seq": 26,
+      "brain": 3,
+      "script": "s1-oldd",
+      "vision": 2
+    },
+    {
+      "origin": "S440_P02",
+      "seq": 26,
+      "brain": 3,
+      "script": "s1-oldd",
+      "vision": 2
+    },
+    {
+      "origin": "S441_P11",
+      "seq": 26,
+      "brain": 3,
+      "script": "s1-oldd",
+      "vision": 2
+    },
+    {
+      "origin": "S504_P11",
+      "seq": 21,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S521_P04",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S521_P05",
+      "seq": 121,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S532_P05",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S532_P06",
+      "seq": 23,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S532_P07",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S535_P06",
+      "seq": 26,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S536_P03",
+      "seq": 24,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P04",
+      "seq": 24,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P05",
+      "seq": 24,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P06",
+      "seq": 21,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P07",
+      "seq": 21,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P08",
+      "seq": 21,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P12",
+      "seq": 27,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P13",
+      "seq": 27,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P14",
+      "seq": 23,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P17",
+      "seq": 27,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P18",
+      "seq": 27,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P19",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P20",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P21",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P22",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P23",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P24",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P25",
+      "seq": 24,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P27",
+      "seq": 29,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P30",
+      "seq": 23,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P32",
+      "seq": 26,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P33",
+      "seq": 26,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P35",
+      "seq": 26,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P38",
+      "seq": 21,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P39",
+      "seq": 23,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P40",
+      "seq": 23,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S536_P41",
+      "seq": 21,
+      "brain": 3,
+      "script": "s4-duck",
+      "vision": 1
+    },
+    {
+      "origin": "S537_P14",
+      "seq": 21,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S564_P03",
+      "seq": 26,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S570_P02",
+      "seq": 29,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S570_P03",
+      "seq": 27,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S570_P04",
+      "seq": 26,
+      "brain": 3,
+      "script": "die",
+      "vision": 0
+    },
+    {
+      "origin": "S585_P18",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S604_P01",
+      "seq": 21,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S604_P02",
+      "seq": 21,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S604_P03",
+      "seq": 21,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S604_P04",
+      "seq": 21,
+      "brain": 3,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S652_P03",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S656_P05",
+      "seq": 23,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S656_P06",
+      "seq": 23,
+      "brain": 3,
+      "script": "ddie5",
+      "vision": 0
+    },
+    {
+      "origin": "S699_P10",
+      "seq": 26,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S699_P11",
+      "seq": 26,
+      "brain": 0,
+      "script": "",
+      "vision": 0
+    },
+    {
+      "origin": "S700_P04",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S700_P06",
+      "seq": 27,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S700_P09",
+      "seq": 24,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S711_P08",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S711_P09",
+      "seq": 29,
+      "brain": 3,
+      "script": "die5",
+      "vision": 0
+    },
+    {
+      "origin": "S762_P29",
+      "seq": 24,
+      "brain": 3,
+      "script": "s8-duck",
+      "vision": 0
+    },
+    {
+      "origin": "S762_P30",
+      "seq": 23,
+      "brain": 3,
+      "script": "s8-duck2",
+      "vision": 0
+    },
+    {
+      "origin": "S764_P13",
+      "seq": 23,
+      "brain": 3,
+      "script": "s8-duck3",
+      "vision": 0
+    }
+  ]
+}

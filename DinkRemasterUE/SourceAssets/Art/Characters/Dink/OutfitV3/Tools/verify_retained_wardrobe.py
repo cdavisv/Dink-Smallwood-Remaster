@@ -1,6 +1,6 @@
 import bpy,json,hashlib,struct
 from pathlib import Path
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));rows=[]
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));rows=[]
 for lod in range(4):
  ob=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'];m=ob.data;h=hashlib.sha256();count=0
  for p in m.polygons:

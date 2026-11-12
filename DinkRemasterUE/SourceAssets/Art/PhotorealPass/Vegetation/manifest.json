@@ -1,0 +1,5882 @@
+{
+ "schema": "dink-photoreal-vegetation/2",
+ "date": "2026-11-12",
+ "pivot_note": "trees and stumps: pivot at ground level at the trunk, mesh continues 0.18 m BELOW the pivot (buttress roots dive into the soil) so they sit on uneven terrain; hanging vines: pivot on the floor under them, strands hang from 2.8 m",
+ "uv_mask": "second UV channel UVMask on trees and stumps: U = ground blend weight (1 at/below ground, 0 from 0.9 m up) for soil / moss darkening of the bark material; V unused",
+ "validation": "work/fbx_validation.json: every FBX re-imported, triangles and size compared, non-manifold / zero-area / loose-vertex counts",
+ "unit": "metre",
+ "fbx": "one file per LOD (FBX_SCALE_ALL, apply_unit_scale, -Y forward, Z up, vertex colours exported LINEAR)",
+ "materials": {
+  "MI_Veg_PineBark": {
+   "texture_set": "T_Veg_PineBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_OakBark": {
+   "texture_set": "T_Veg_OakBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/jolcham_oak_bark_01"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_WillowBark": {
+   "texture_set": "T_Veg_WillowBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_PineNeedles": {
+   "texture_set": "T_Veg_PineNeedles",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_OakLeaves": {
+   "texture_set": "T_Veg_OakLeaves",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet016"
+   ],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_WillowLeaves": {
+   "texture_set": "T_Veg_WillowLeaves",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_GroundCover": {
+   "texture_set": "T_Veg_GroundCover",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_Deadwood": {
+   "texture_set": "T_Veg_Deadwood",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_DeadwoodEnd": {
+   "texture_set": "T_Veg_DeadwoodEnd",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "ambientcg/TreeEnd003"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_PineBarkDry": {
+   "texture_set": "T_Veg_PineBarkDry",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_PineNeedlesDry": {
+   "texture_set": "T_Veg_PineNeedlesDry",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_CharredBark": {
+   "texture_set": "T_Veg_CharredBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_DarkBark": {
+   "texture_set": "T_Veg_DarkBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_FrostBark": {
+   "texture_set": "T_Veg_FrostBark",
+   "maps": [
+    "BC",
+    "N",
+    "ORM"
+   ],
+   "third_party": [
+    "polyhaven/jolcham_oak_bark_01"
+   ],
+   "note": "",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_Understory": {
+   "texture_set": "T_Veg_Understory",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "note": "",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_Understory_Frost": {
+   "texture_set": "T_Veg_Understory",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "note": "instance of MI_Veg_Understory with base colour multiplied by about (2.6, 2.8, 3.2) (hoar frost on bare twigs), no subsurface",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Terrain_TransitionDirt_Tilled": {
+   "texture_set": null,
+   "maps": [],
+   "third_party": [],
+   "note": "the terrain agent's TransitionDirt set (PhotorealPass/Terrain/TransitionDirt), 2 m world tile, tinted about (0.5, 0.44, 0.4) for damp tilled soil; UVs are world-scale and wrap",
+   "blend_mode": "opaque",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_MeadowGrass": {
+   "texture_set": "T_Veg_MeadowGrass",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [],
+   "note": "NEW material (12 Nov): meadow grass atlas, 2048^2 = 1.6 m square, tiles in src/meadow_layout.py; masked two-sided foliage with _SSS like MI_Veg_GroundCover; mip generation should preserve alpha coverage (threshold 0.33) or thin blades vanish with distance",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  },
+  "MI_Veg_Shrub": {
+   "texture_set": "T_Veg_Shrub",
+   "maps": [
+    "BC",
+    "N",
+    "ORM",
+    "SSS"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "ambientcg/LeafSet029"
+   ],
+   "note": "NEW material (12 Nov): shrub leaf-spray atlas for the four bushes, 4 x 4 tiles of 0.5 m (two leaf types, graded light / mid / dark tiles, bare twig sprays); masked two-sided foliage with _SSS",
+   "blend_mode": "masked two-sided foliage (subsurface colour = _SSS)",
+   "normal": "OpenGL (green up); flip green on import like the rest of the library",
+   "orm": "R AO, G roughness, B metallic(0)"
+  }
+ },
+ "bark_uv_bands": "bark sets are 1024x2048 with three V bands: 0-0.25 trunk base (moss/soil, not tiling in V), 0.25-0.75 trunk body, 0.75-1 limb bark; meshes split UVs at band repeats so V never leaves 0-1; U runs 0-1 around a limb and 0-2 around the thick broadleaf trunks, so the texture address mode must be WRAP in U (V can be clamp or wrap)",
+ "wind_vertex_colour": {
+  "attribute": "Wind",
+  "R": "trunk sway weight, linear in height (0 ground, 1 top)",
+  "G": "per-branch phase 0-1",
+  "B": "leaf flutter weight (0 at twig attach / wood, 1 at free card edge or blade tip)",
+  "A": "branch bend weight (0 at trunk, 1 at limb tip); 0 on ground cover"
+ },
+ "card_normals": "card vertex normals are bent toward the outward direction from the crown centre (custom split normals in the FBX); import with normals = Import, do not recompute",
+ "alpha": "BC alpha is coverage with colour dilated past the edge; use masked with opacity clip about 0.33 (pine needles tolerate 0.25)",
+ "assets": [
+  {
+   "name": "SM_Veg_Pine_Large_01",
+   "class": "foliage",
+   "dimensions_m": [
+    7.952,
+    8.271,
+    17.053
+   ],
+   "lod0_triangles": 24237,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 24237,
+     "vertices": 40549,
+     "fbx": "Export/SM_Veg_Pine_Large_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 12752,
+     "vertices": 19713,
+     "fbx": "Export/SM_Veg_Pine_Large_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 4540,
+     "vertices": 7099,
+     "fbx": "Export/SM_Veg_Pine_Large_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBark",
+    "MI_Veg_PineNeedles"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_pine_large"
+   ],
+   "supersedes": "SM_Pine_Stonebrook_V3",
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedles"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "24.2k triangles at LOD0 (cap 25k): no budget left for more spray cards; LOD1 12.8k",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Pine_Medium_01",
+   "class": "foliage",
+   "dimensions_m": [
+    6.348,
+    6.329,
+    11.47
+   ],
+   "lod0_triangles": 17230,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 17230,
+     "vertices": 28717,
+     "fbx": "Export/SM_Veg_Pine_Medium_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 8992,
+     "vertices": 13999,
+     "fbx": "Export/SM_Veg_Pine_Medium_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 3028,
+     "vertices": 4930,
+     "fbx": "Export/SM_Veg_Pine_Medium_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBark",
+    "MI_Veg_PineNeedles"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_pine_large"
+   ],
+   "supersedes": "SM_Pine_Stonebrook_V3 (size variant)",
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedles"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Pine_Storm_01",
+   "class": "foliage",
+   "dimensions_m": [
+    10.866,
+    9.158,
+    12.718
+   ],
+   "lod0_triangles": 16300,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 16300,
+     "vertices": 25605,
+     "fbx": "Export/SM_Veg_Pine_Storm_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 8836,
+     "vertices": 12861,
+     "fbx": "Export/SM_Veg_Pine_Storm_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 2909,
+     "vertices": 4422,
+     "fbx": "Export/SM_Veg_Pine_Storm_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBark",
+    "MI_Veg_PineNeedles"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_pine_large"
+   ],
+   "supersedes": "SM_Pine_Stonebrook_V3 (damaged variant)",
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedles"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "the snapped top is a ring of long splinters and the fallen top is a small pine laid on its side with its underside flattened: there is no torn hinge of bark connecting the two",
+    "the fallen top widens the bounds to about 10 m; its position is fixed relative to the trunk",
+    "the most open of the pines: the bare-bough ladder is plain at 20 m",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Pine_Dry_01",
+   "class": "foliage",
+   "dimensions_m": [
+    7.333,
+    6.812,
+    14.961
+   ],
+   "lod0_triangles": 6201,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 6201,
+     "vertices": 7296,
+     "fbx": "Export/SM_Veg_Pine_Dry_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 3620,
+     "vertices": 3969,
+     "fbx": "Export/SM_Veg_Pine_Dry_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 1080,
+     "vertices": 1330,
+     "fbx": "Export/SM_Veg_Pine_Dry_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBarkDry",
+    "MI_Veg_PineNeedlesDry"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBarkDry_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBarkDry",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBarkDry_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBarkDry",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBarkDry_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBarkDry",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedlesDry_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedlesDry",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedlesDry_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedlesDry",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedlesDry_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedlesDry",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedlesDry_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedlesDry",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_pine_large (scripted burnable trees: s2-sec1, s2-sec3, s3-sec1 secret scripts)"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedlesDry"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "dead needles come from the green v2 atlas recoloured and thinned in numpy, not from separately modelled dead sprays; with the finer fronds the dry tree is very open",
+    "bark is the pine scan desaturated to grey, not a scan of dead barkless wood",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Pine_Burnt_01",
+   "class": "foliage",
+   "dimensions_m": [
+    4.617,
+    4.165,
+    12.047
+   ],
+   "lod0_triangles": 2483,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 2483,
+     "vertices": 1474,
+     "fbx": "Export/SM_Veg_Pine_Burnt_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..1.070"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 1274,
+     "vertices": 826,
+     "fbx": "Export/SM_Veg_Pine_Burnt_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 498,
+     "vertices": 359,
+     "fbx": "Export/SM_Veg_Pine_Burnt_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_CharredBark"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_CharredBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_CharredBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_CharredBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_CharredBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_CharredBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_CharredBark",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "tree_pine_large after burning (tree fire seq 20 end state)"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "charred bark is the pine bark scan darkened with a procedural ash layer; no burnt-through hollows, no ember colour",
+    "limbs are simple broken tubes with a cap, not snapped splintered ends",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_PineForestEdge_H_01",
+   "class": "foliage",
+   "dimensions_m": [
+    10.539,
+    5.259,
+    10.562
+   ],
+   "lod0_triangles": 18835,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 18835,
+     "vertices": 30703,
+     "fbx": "Export/SM_Veg_PineForestEdge_H_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 6004,
+     "vertices": 9177,
+     "fbx": "Export/SM_Veg_PineForestEdge_H_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 1544,
+     "vertices": 2500,
+     "fbx": "Export/SM_Veg_PineForestEdge_H_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBark",
+    "MI_Veg_PineNeedles"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "pine_forest_edge_strip"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedles"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "built from reduced pines; LOD0 now keeps 60 % of the sprays at 1.15x size (was 36 % at 1.5x, which read as broad leaves): 18.8k triangles. Still thinner-crowned than the single pines, lower trunks slender and bare; reviewed at 20 m only, not close",
+    "understory is pine saplings only",
+    "footprint about 10.5 x 5.5 m incl. crowns is my estimate from the sprite strip",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_PineForestEdge_V_01",
+   "class": "foliage",
+   "dimensions_m": [
+    6.467,
+    15.287,
+    13.048
+   ],
+   "lod0_triangles": 21363,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 21363,
+     "vertices": 33401,
+     "fbx": "Export/SM_Veg_PineForestEdge_V_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 8106,
+     "vertices": 11687,
+     "fbx": "Export/SM_Veg_PineForestEdge_V_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 1958,
+     "vertices": 3151,
+     "fbx": "Export/SM_Veg_PineForestEdge_V_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_PineBark",
+    "MI_Veg_PineNeedles"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_PineBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_PineBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_PineNeedles_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_PineNeedles",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "pine_forest_edge_strip_vert"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_pine.blend",
+   "generator": "src/veg_pine.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_PineNeedles"
+   ],
+   "third_party": [
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as the H module, LOD0 keeps 50 % of the sprays at 1.25x size: 21.4k triangles",
+    "footprint about 6.5 x 15 m incl. crowns, an estimate from sprites 32/09-10",
+    "needle atlas v4 (12 Nov): thin pinnate branchlets with comb rows of 16-18 mm needles and open sky between side twigs; alpha coverage per tile 0.31 / 0.39 (dense tips), 0.26-0.29 (open, young), 0.13-0.16 (narrow hanging, old, half dead); cards up to 60 cm, crossed in pairs, hanging twigs, sprays laid along the boughs. Within 2-3 m a spray is still a flat plane and reads fern- or cedar-like, and needles are drawn at 3 mm pitch, coarser than a real spruce",
+    "live boughs are now 5-10 cm thick (were up to 15 cm), but the inner third of each is still bare and rather straight, and the whorls are regular: from 20 m the tiers and bare boughs show as a ladder against the sky, and the crown is open rather than full",
+    "at distance the look depends on alpha-coverage-preserving mips (clip 0.25-0.33): with plain averaged mips the fronds will either fill in to blobs or vanish; untested in Unreal",
+    "it follows the sprite's full-skirted cone, so it reads as a spruce/fir-type conifer more than a long-trunked Scots pine",
+    "bark is a tiling scan in bands (no unique bake): knots are low geometric swellings without their own bark pattern; collars are a radius swell only",
+    "buttress roots are one surface with the bole and dive 0.18 m below the pivot, but the root ridges are smooth lobes and the thin root ends are tubes whose start is hidden inside the ridge",
+    "base soil/moss darkening is delivered as a UV-channel mask (UVMask.u) and a preview blend, not baked: the Unreal bark material has to use it",
+    "LOD0 is over the 8,000 soft target",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Oak_Large_01",
+   "class": "foliage",
+   "dimensions_m": [
+    11.673,
+    10.145,
+    12.13
+   ],
+   "lod0_triangles": 16292,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 16292,
+     "vertices": 20711,
+     "fbx": "Export/SM_Veg_Oak_Large_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 4566,
+     "vertices": 7285,
+     "fbx": "Export/SM_Veg_Oak_Large_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 1385,
+     "vertices": 2315,
+     "fbx": "Export/SM_Veg_Oak_Large_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_OakBark",
+    "MI_Veg_OakLeaves",
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_OakBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "SSS"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_oak_large"
+   ],
+   "supersedes": "SM_Oak_Stonebrook_01",
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_OakLeaves",
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet016",
+    "ambientcg/LeafSet022",
+    "polyhaven/jolcham_oak_bark_01"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "crown v4 (12 Nov): about 2.9k leaf-cluster cards of 0.46-0.78 m (first delivery: 1.3k of 0.85-1.25 m), three darker inner clusters per limb node, fewer sunlit tiles, crossed clusters on twigs standing 0.35-0.7 m clear of the outline; 16.3k triangles at LOD0, LOD1 4.6k (a large step)",
+    "single cards seen edge-on still show as thin streaks in places, and the leaves of one cluster are coplanar",
+    "value variation comes from three graded atlas tiles chosen by position; on the sunlit side the light tiles can still read as lighter patches",
+    "LOD2 (1.4k) uses 2.2x cards: clumps are plainly larger; meant for the far field only",
+    "leaf cards are single bent planes; from directly below some are seen edge-on",
+    "limbs thinner than about 2 cm radius have no geometry (twigs are only what the atlas shows)",
+    "bark is a tiling scan in bands; knots are low swellings; buttress roots as on the pines (smooth lobes, tube ends)",
+    "base darkening is a UV-channel mask, not baked",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Oak_Large_02",
+   "class": "foliage",
+   "dimensions_m": [
+    14.604,
+    11.071,
+    9.595
+   ],
+   "lod0_triangles": 16545,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 16545,
+     "vertices": 21431,
+     "fbx": "Export/SM_Veg_Oak_Large_02_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 4496,
+     "vertices": 7295,
+     "fbx": "Export/SM_Veg_Oak_Large_02_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 1424,
+     "vertices": 2373,
+     "fbx": "Export/SM_Veg_Oak_Large_02_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_OakBark",
+    "MI_Veg_OakLeaves",
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_OakBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_OakBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_OakLeaves_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_OakLeaves",
+     "role": "SSS"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_oak_large"
+   ],
+   "supersedes": "SM_Oak_Stonebrook_01 (variant)",
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_OakLeaves",
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet016",
+    "ambientcg/LeafSet022",
+    "polyhaven/jolcham_oak_bark_01"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as Oak_01 (16.5k triangles); broader and lower, larger in plan than the sprite suggests",
+    "leaf cards are single bent planes; from directly below some are seen edge-on",
+    "limbs thinner than about 2 cm radius have no geometry (twigs are only what the atlas shows)",
+    "bark is a tiling scan in bands; knots are low swellings; buttress roots as on the pines (smooth lobes, tube ends)",
+    "base darkening is a UV-channel mask, not baked",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Willow_01",
+   "class": "foliage",
+   "dimensions_m": [
+    8.204,
+    8.522,
+    9.252
+   ],
+   "lod0_triangles": 7124,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 7124,
+     "vertices": 7561,
+     "fbx": "Export/SM_Veg_Willow_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 1688,
+     "vertices": 2090,
+     "fbx": "Export/SM_Veg_Willow_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 482,
+     "vertices": 646,
+     "fbx": "Export/SM_Veg_Willow_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_WillowBark",
+    "MI_Veg_WillowLeaves"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_willow"
+   ],
+   "supersedes": "SM_Oak_Stonebrook_01 (stand-in binding)",
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_WillowLeaves"
+   ],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "hanging withes are 0.5-0.6 m wide strips: inside the curtain looking up they fan visibly",
+    "willow leaf is a procedural texture, not a scan",
+    "leaf cards are single bent planes; from directly below some are seen edge-on",
+    "limbs thinner than about 2 cm radius have no geometry (twigs are only what the atlas shows)",
+    "bark is a tiling scan in bands; knots are low swellings; buttress roots as on the pines (smooth lobes, tube ends)",
+    "base darkening is a UV-channel mask, not baked",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Willow_Large_01",
+   "class": "foliage",
+   "dimensions_m": [
+    12.309,
+    11.959,
+    11.99
+   ],
+   "lod0_triangles": 14629,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 14629,
+     "vertices": 16977,
+     "fbx": "Export/SM_Veg_Willow_Large_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 2988,
+     "vertices": 4362,
+     "fbx": "Export/SM_Veg_Willow_Large_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 932,
+     "vertices": 1400,
+     "fbx": "Export/SM_Veg_Willow_Large_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_WillowBark",
+    "MI_Veg_WillowLeaves"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_WillowBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_WillowLeaves_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_WillowLeaves",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_willow_large"
+   ],
+   "supersedes": "SM_Oak_Stonebrook_01 (stand-in binding)",
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_WillowLeaves"
+   ],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "long curtains are overlapping chained strips; where two strips overlap the foliage is denser in a band",
+    "14.6k triangles at LOD0",
+    "still fuller than the sprite, which shows long bare dark limbs with separate drooping tiers",
+    "leaf cards are single bent planes; from directly below some are seen edge-on",
+    "limbs thinner than about 2 cm radius have no geometry (twigs are only what the atlas shows)",
+    "bark is a tiling scan in bands; knots are low swellings; buttress roots as on the pines (smooth lobes, tube ends)",
+    "base darkening is a UV-channel mask, not baked",
+    "wind colours, UVMask and custom normals are untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_DeadTree_Dark_01",
+   "class": "foliage",
+   "dimensions_m": [
+    12.094,
+    10.565,
+    9.837
+   ],
+   "lod0_triangles": 5156,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 5156,
+     "vertices": 5341,
+     "fbx": "Export/SM_Veg_DeadTree_Dark_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 1942,
+     "vertices": 2469,
+     "fbx": "Export/SM_Veg_DeadTree_Dark_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 726,
+     "vertices": 1076,
+     "fbx": "Export/SM_Veg_DeadTree_Dark_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_dead_dark"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "fine twigs are bare-twig alpha cards at the branch ends: close up they read as flat twig fans, and there are few of them against a real tree's thousands of twigs",
+    "bark is a re-tinted scan (willow bark darkened / oak bark paled), not a scan of dead wood; no broken stubs, cavities or peeling bark",
+    "buttress roots as on the other trees"
+   ]
+  },
+  {
+   "name": "SM_Veg_DeadTree_DarkTall_01",
+   "class": "foliage",
+   "dimensions_m": [
+    8.645,
+    8.469,
+    13.702
+   ],
+   "lod0_triangles": 4224,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 4224,
+     "vertices": 4343,
+     "fbx": "Export/SM_Veg_DeadTree_DarkTall_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 1702,
+     "vertices": 2101,
+     "fbx": "Export/SM_Veg_DeadTree_DarkTall_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.000..2.000"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 618,
+     "vertices": 805,
+     "fbx": "Export/SM_Veg_DeadTree_DarkTall_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..2.167"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_dead_dark_tall"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "fine twigs are bare-twig alpha cards at the branch ends: close up they read as flat twig fans, and there are few of them against a real tree's thousands of twigs",
+    "bark is a re-tinted scan (willow bark darkened / oak bark paled), not a scan of dead wood; no broken stubs, cavities or peeling bark",
+    "buttress roots as on the other trees"
+   ]
+  },
+  {
+   "name": "SM_Veg_DeadTree_Frosted_01",
+   "class": "foliage",
+   "dimensions_m": [
+    6.955,
+    6.773,
+    9.039
+   ],
+   "lod0_triangles": 2412,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 2412,
+     "vertices": 2458,
+     "fbx": "Export/SM_Veg_DeadTree_Frosted_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 886,
+     "vertices": 1152,
+     "fbx": "Export/SM_Veg_DeadTree_Frosted_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 290,
+     "vertices": 451,
+     "fbx": "Export/SM_Veg_DeadTree_Frosted_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.000..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_FrostBark",
+    "MI_Veg_Understory_Frost"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_FrostBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_FrostBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_FrostBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_FrostBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_FrostBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_FrostBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory_Frost",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory_Frost",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory_Frost",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory_Frost",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "tree_dead_frosted"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory_Frost"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "polyhaven/jolcham_oak_bark_01"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "frost is only a pale tint on bark and twigs; there is no snow lying on the limbs",
+    "fine twigs are bare-twig alpha cards at the branch ends: close up they read as flat twig fans, and there are few of them against a real tree's thousands of twigs",
+    "bark is a re-tinted scan (willow bark darkened / oak bark paled), not a scan of dead wood; no broken stubs, cavities or peeling bark",
+    "buttress roots as on the other trees"
+   ]
+  },
+  {
+   "name": "SM_Veg_Bush_Small_01",
+   "class": "foliage",
+   "dimensions_m": [
+    2.097,
+    1.932,
+    1.359
+   ],
+   "lod0_triangles": 3474,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 3474,
+     "vertices": 5319,
+     "fbx": "Export/SM_Veg_Bush_Small_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 1700,
+     "vertices": 2659,
+     "fbx": "Export/SM_Veg_Bush_Small_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 515,
+     "vertices": 930,
+     "fbx": "Export/SM_Veg_Bush_Small_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Shrub"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "bush_small"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Shrub"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "ambientcg/LeafSet029",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Bush_Round_Medium_01",
+   "class": "foliage",
+   "dimensions_m": [
+    2.186,
+    2.082,
+    1.312
+   ],
+   "lod0_triangles": 3558,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 3558,
+     "vertices": 5460,
+     "fbx": "Export/SM_Veg_Bush_Round_Medium_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 1760,
+     "vertices": 2677,
+     "fbx": "Export/SM_Veg_Bush_Round_Medium_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 494,
+     "vertices": 877,
+     "fbx": "Export/SM_Veg_Bush_Round_Medium_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Shrub"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "bush_round_medium"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Shrub"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "ambientcg/LeafSet029",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Bush_Round_Large_01",
+   "class": "foliage",
+   "dimensions_m": [
+    3.159,
+    2.5,
+    1.669
+   ],
+   "lod0_triangles": 6784,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 6784,
+     "vertices": 10181,
+     "fbx": "Export/SM_Veg_Bush_Round_Large_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 3452,
+     "vertices": 4996,
+     "fbx": "Export/SM_Veg_Bush_Round_Large_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 950,
+     "vertices": 1704,
+     "fbx": "Export/SM_Veg_Bush_Round_Large_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Shrub"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "bush_round_large"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Shrub"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "ambientcg/LeafSet029",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Bush_Wide_01",
+   "class": "foliage",
+   "dimensions_m": [
+    3.39,
+    2.724,
+    1.509
+   ],
+   "lod0_triangles": 6628,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 6628,
+     "vertices": 9890,
+     "fbx": "Export/SM_Veg_Bush_Wide_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 3380,
+     "vertices": 4972,
+     "fbx": "Export/SM_Veg_Bush_Wide_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 970,
+     "vertices": 1753,
+     "fbx": "Export/SM_Veg_Bush_Wide_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark",
+    "MI_Veg_Shrub"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Shrub_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Shrub",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "bush_wide"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_broadleaf.blend",
+   "generator": "src/veg_broadleaf.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Shrub"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022",
+    "ambientcg/LeafSet029",
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_Grass_Meadow_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.638,
+    0.506,
+    0.413
+   ],
+   "lod0_triangles": 784,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 784,
+     "vertices": 754,
+     "fbx": "Export/SM_Veg_Grass_Meadow_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 120,
+     "vertices": 162,
+     "fbx": "Export/SM_Veg_Grass_Meadow_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 44,
+     "vertices": 66,
+     "fbx": "Export/SM_Veg_Grass_Meadow_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "grass_tall"
+   ],
+   "supersedes": "SM_Grass_Meadow_01",
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Grass_Meadow_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.863,
+    0.998,
+    1.017
+   ],
+   "lod0_triangles": 908,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 908,
+     "vertices": 898,
+     "fbx": "Export/SM_Veg_Grass_Meadow_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 178,
+     "vertices": 246,
+     "fbx": "Export/SM_Veg_Grass_Meadow_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 80,
+     "vertices": 120,
+     "fbx": "Export/SM_Veg_Grass_Meadow_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "grass_tall"
+   ],
+   "supersedes": "SM_Grass_Meadow_01",
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Grass_Meadow_03",
+   "class": "foliage",
+   "dimensions_m": [
+    0.562,
+    0.624,
+    0.27
+   ],
+   "lod0_triangles": 904,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 904,
+     "vertices": 876,
+     "fbx": "Export/SM_Veg_Grass_Meadow_03_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 164,
+     "vertices": 222,
+     "fbx": "Export/SM_Veg_Grass_Meadow_03_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 76,
+     "vertices": 114,
+     "fbx": "Export/SM_Veg_Grass_Meadow_03_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "grass_tall"
+   ],
+   "supersedes": "SM_Grass_Meadow_01",
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Weed_Small_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.373,
+    0.45,
+    0.291
+   ],
+   "lod0_triangles": 228,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 228,
+     "vertices": 217,
+     "fbx": "Export/SM_Veg_Weed_Small_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 96,
+     "vertices": 112,
+     "fbx": "Export/SM_Veg_Weed_Small_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 40,
+     "vertices": 48,
+     "fbx": "Export/SM_Veg_Weed_Small_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "weed_small"
+   ],
+   "supersedes": "SM_Grass_Meadow_01 (stand-in binding)",
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Weed_Small_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.533,
+    0.517,
+    0.255
+   ],
+   "lod0_triangles": 132,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 132,
+     "vertices": 138,
+     "fbx": "Export/SM_Veg_Weed_Small_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 48,
+     "vertices": 64,
+     "fbx": "Export/SM_Veg_Weed_Small_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 40,
+     "vertices": 56,
+     "fbx": "Export/SM_Veg_Weed_Small_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "weed_small"
+   ],
+   "supersedes": "SM_Grass_Meadow_01 (stand-in binding)",
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "only six leaves, each a 2x4 quad grid: the broad dock leaves look a little like paddles at 1 m",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Weed_Sprig_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.296,
+    0.258,
+    0.426
+   ],
+   "lod0_triangles": 504,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 504,
+     "vertices": 483,
+     "fbx": "Export/SM_Veg_Weed_Sprig_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 208,
+     "vertices": 264,
+     "fbx": "Export/SM_Veg_Weed_Sprig_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 104,
+     "vertices": 124,
+     "fbx": "Export/SM_Veg_Weed_Sprig_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "weed_sprig"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Flowers_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.697,
+    0.427,
+    0.32
+   ],
+   "lod0_triangles": 862,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 862,
+     "vertices": 1119,
+     "fbx": "Export/SM_Veg_Flowers_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 436,
+     "vertices": 563,
+     "fbx": "Export/SM_Veg_Flowers_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 138,
+     "vertices": 147,
+     "fbx": "Export/SM_Veg_Flowers_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "flower_small",
+    "flower_bed_row"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "petals are now geometry (13 cupped quads in two layers round a domed centre) but each petal is a two-quad strip textured from one painted petal",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Flowers_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.498,
+    0.528,
+    0.443
+   ],
+   "lod0_triangles": 726,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 726,
+     "vertices": 892,
+     "fbx": "Export/SM_Veg_Flowers_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 356,
+     "vertices": 456,
+     "fbx": "Export/SM_Veg_Flowers_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 120,
+     "vertices": 132,
+     "fbx": "Export/SM_Veg_Flowers_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "flower_small",
+    "flower_bed_row"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as Flowers_01; buttercup petals are five broad cupped quads with a procedural texture",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Mushroom_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.239,
+    0.189,
+    0.158
+   ],
+   "lod0_triangles": 888,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 888,
+     "vertices": 637,
+     "fbx": "Export/SM_Veg_Mushroom_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 510,
+     "vertices": 402,
+     "fbx": "Export/SM_Veg_Mushroom_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 210,
+     "vertices": 180,
+     "fbx": "Export/SM_Veg_Mushroom_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "mushroom"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "gills are a textured underside cone with a normal map, not separate plates; cap skin is procedural",
+    "real size (tallest about 13 cm), far smaller than the sprites",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Mushroom_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.22,
+    0.197,
+    0.155
+   ],
+   "lod0_triangles": 760,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 760,
+     "vertices": 554,
+     "fbx": "Export/SM_Veg_Mushroom_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 440,
+     "vertices": 354,
+     "fbx": "Export/SM_Veg_Mushroom_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 210,
+     "vertices": 180,
+     "fbx": "Export/SM_Veg_Mushroom_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "mushroom"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as Mushroom_01; fly-agaric warts are painted, not raised",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Dense_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.291,
+    1.166,
+    0.287
+   ],
+   "lod0_triangles": 120,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 120,
+     "vertices": 180,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 34,
+     "vertices": 68,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "(meadow grass scatter, no sprite class)"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "kept for compatibility; superseded for the carpet by SM_Veg_GrassPatch_Tall_01..03",
+   "known_weaknesses": [
+    "grass-clump alpha cards (about 30 per 0.9 m patch, 120 triangles): from above or at very low angles the fan shape of each clump card shows",
+    "the clump cards are modelled blades rendered to the understory atlas and then graded darker in numpy",
+    "meant to sit on a grass-coloured terrain; it does not hide bare ground on its own",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Dense_02",
+   "class": "foliage",
+   "dimensions_m": [
+    1.265,
+    1.055,
+    0.25
+   ],
+   "lod0_triangles": 112,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 112,
+     "vertices": 168,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 26,
+     "vertices": 52,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 12,
+     "vertices": 24,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "(meadow grass scatter, no sprite class)"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "kept for compatibility; superseded by SM_Veg_GrassPatch_Tall_01..03",
+   "known_weaknesses": [
+    "as GrassPatch_Dense_01, with more dry blades",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Dense_03",
+   "class": "foliage",
+   "dimensions_m": [
+    1.154,
+    1.128,
+    0.207
+   ],
+   "lod0_triangles": 96,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 96,
+     "vertices": 144,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_03_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 20,
+     "vertices": 40,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_03_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Dense_03_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "(meadow grass scatter, no sprite class)"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "kept for compatibility; superseded by SM_Veg_GrassPatch_Tall_01..03",
+   "known_weaknesses": [
+    "as GrassPatch_Dense_01, shorter and sparser",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Cabbage_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.557,
+    0.47,
+    0.159
+   ],
+   "lod0_triangles": 240,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 240,
+     "vertices": 225,
+     "fbx": "Export/SM_Veg_Cabbage_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 132,
+     "vertices": 132,
+     "fbx": "Export/SM_Veg_Cabbage_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 36,
+     "vertices": 54,
+     "fbx": "Export/SM_Veg_Cabbage_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "cabbage"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "15 leaves from the dock-leaf scan cupped into a head: it reads as a leafy cabbage or lettuce, the leaves have no thick white ribs",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_FlowerBed_Row_01",
+   "class": "foliage",
+   "dimensions_m": [
+    4.6,
+    1.201,
+    0.285
+   ],
+   "lod0_triangles": 1428,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 1428,
+     "vertices": 1461,
+     "fbx": "Export/SM_Veg_FlowerBed_Row_01_LOD0.fbx",
+     "issues": [
+      "uv range 0.502..3.150"
+     ]
+    },
+    {
+     "lod": 1,
+     "triangles": 456,
+     "vertices": 536,
+     "fbx": "Export/SM_Veg_FlowerBed_Row_01_LOD1.fbx",
+     "issues": [
+      "uv range 0.502..3.150"
+     ]
+    },
+    {
+     "lod": 2,
+     "triangles": 184,
+     "vertices": 239,
+     "fbx": "Export/SM_Veg_FlowerBed_Row_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.502..3.150"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_GroundCover",
+    "MI_Terrain_TransitionDirt_Tilled"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_GroundCover_SSS.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_GroundCover",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "flower_bed_row"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_ground.blend",
+   "generator": "src/veg_ground.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_GroundCover"
+   ],
+   "third_party": [
+    "ambientcg/Foliage003",
+    "ambientcg/LeafSet020",
+    "ambientcg/LeafSet022",
+    "in-repo: PhotorealPass/Terrain/TransitionDirt"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "soil is the terrain agent's TransitionDirt set with a tint, world-scale UVs: it depends on that texture set being imported; the mound is a smooth three-ridge height field with no clods",
+    "plants are small dock / plantain rosettes in two rows, greener than the dark hedge-like sprite",
+    "authored as separate tufts: the look depends on the terrain underneath and on scatter density",
+    "grass blades are real geometry with a centre crease at LOD0 only",
+    "blade strips and mushroom skins are procedural, not scans (no mushroom scan exists in the two allowed sources)"
+   ]
+  },
+  {
+   "name": "SM_Veg_Stump_01",
+   "class": "prop",
+   "dimensions_m": [
+    2.796,
+    2.197,
+    0.739
+   ],
+   "lod0_triangles": 1338,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 1338,
+     "vertices": 833,
+     "fbx": "Export/SM_Veg_Stump_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 513,
+     "vertices": 347,
+     "fbx": "Export/SM_Veg_Stump_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 54,
+     "vertices": 37,
+     "fbx": "Export/SM_Veg_Stump_01_LOD2.fbx",
+     "issues": [
+      "uv range 0.001..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_Deadwood",
+    "MI_Veg_DeadwoodEnd"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "tree_stump"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_deadwood.blend",
+   "generator": "src/veg_deadwood.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "ambientcg/TreeEnd003",
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "root buttresses are now one surface with the bole and dive below ground, but they are smooth lobes",
+    "bark rim round the cut is a low uneven lip with a few peeled sections, not loose bark sheets",
+    "bracket fungi reuse the end-grain texture for their zoning",
+    "cut face is a planar scan projection, greyed, with extra procedural drying checks",
+    "bark and bare wood come from tiling bands, not a unique bake",
+    "moss is small low-poly cushions plus the texture's moss band: the cushions are few and still read as blobs at 1 m",
+    "snapped ends are bundles of thin 3-sided splinters"
+   ]
+  },
+  {
+   "name": "SM_Veg_Stump_02",
+   "class": "prop",
+   "dimensions_m": [
+    1.871,
+    1.424,
+    0.589
+   ],
+   "lod0_triangles": 1136,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 1136,
+     "vertices": 709,
+     "fbx": "Export/SM_Veg_Stump_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 417,
+     "vertices": 285,
+     "fbx": "Export/SM_Veg_Stump_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 54,
+     "vertices": 37,
+     "fbx": "Export/SM_Veg_Stump_02_LOD2.fbx",
+     "issues": [
+      "uv range 0.001..1.083"
+     ]
+    }
+   ],
+   "materials": [
+    "MI_Veg_Deadwood",
+    "MI_Veg_DeadwoodEnd"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "tree_stump"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_deadwood.blend",
+   "generator": "src/veg_deadwood.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "ambientcg/TreeEnd003",
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as SM_Veg_Stump_01",
+    "bark and bare wood come from tiling bands, not a unique bake",
+    "moss is small low-poly cushions plus the texture's moss band: the cushions are few and still read as blobs at 1 m",
+    "snapped ends are bundles of thin 3-sided splinters"
+   ]
+  },
+  {
+   "name": "SM_Veg_FallenLog_01",
+   "class": "prop",
+   "dimensions_m": [
+    3.11,
+    0.827,
+    0.579
+   ],
+   "lod0_triangles": 2518,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 2518,
+     "vertices": 1598,
+     "fbx": "Export/SM_Veg_FallenLog_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 809,
+     "vertices": 534,
+     "fbx": "Export/SM_Veg_FallenLog_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 158,
+     "vertices": 114,
+     "fbx": "Export/SM_Veg_FallenLog_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Deadwood",
+    "MI_Veg_DeadwoodEnd"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "fallen_log"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_deadwood.blend",
+   "generator": "src/veg_deadwood.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "ambientcg/TreeEnd003",
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "bark sheets are missing in four fixed patches (bare wood core shows, 1.4 cm step, no thickness wall at the hole edge)",
+    "the rot hollow is a short dark tube, with no crumbling rim or debris",
+    "2.5k triangles at LOD0",
+    "bark and bare wood come from tiling bands, not a unique bake",
+    "moss is small low-poly cushions plus the texture's moss band: the cushions are few and still read as blobs at 1 m",
+    "snapped ends are bundles of thin 3-sided splinters"
+   ]
+  },
+  {
+   "name": "SM_Veg_FallenBranch_Forked_01",
+   "class": "prop",
+   "dimensions_m": [
+    2.149,
+    0.835,
+    0.191
+   ],
+   "lod0_triangles": 929,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 929,
+     "vertices": 576,
+     "fbx": "Export/SM_Veg_FallenBranch_Forked_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 526,
+     "vertices": 360,
+     "fbx": "Export/SM_Veg_FallenBranch_Forked_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 78,
+     "vertices": 59,
+     "fbx": "Export/SM_Veg_FallenBranch_Forked_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Deadwood",
+    "MI_Veg_DeadwoodEnd"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "fallen_branch_forked"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_deadwood.blend",
+   "generator": "src/veg_deadwood.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "ambientcg/TreeEnd003",
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "thin parts are 4- and 5-sided tubes; bark scale on them is arbitrary",
+    "bark and bare wood come from tiling bands, not a unique bake",
+    "moss is small low-poly cushions plus the texture's moss band: the cushions are few and still read as blobs at 1 m",
+    "snapped ends are bundles of thin 3-sided splinters"
+   ]
+  },
+  {
+   "name": "SM_Veg_TwigCluster_01",
+   "class": "prop",
+   "dimensions_m": [
+    0.84,
+    0.687,
+    0.217
+   ],
+   "lod0_triangles": 236,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 236,
+     "vertices": 151,
+     "fbx": "Export/SM_Veg_TwigCluster_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 99,
+     "vertices": 77,
+     "fbx": "Export/SM_Veg_TwigCluster_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 27,
+     "vertices": 21,
+     "fbx": "Export/SM_Veg_TwigCluster_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Deadwood",
+    "MI_Veg_DeadwoodEnd"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Deadwood_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_Deadwood",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_BC.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_N.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DeadwoodEnd_ORM.png",
+     "size": [
+      1024,
+      1024
+     ],
+     "material": "MI_Veg_DeadwoodEnd",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "twig"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_deadwood.blend",
+   "generator": "src/veg_deadwood.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "ambientcg/TreeEnd003",
+    "polyhaven/pine_bark"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "simple forked tubes; reads as twigs at gameplay distance only",
+    "bark and bare wood come from tiling bands, not a unique bake",
+    "moss is small low-poly cushions plus the texture's moss band: the cushions are few and still read as blobs at 1 m",
+    "snapped ends are bundles of thin 3-sided splinters"
+   ]
+  },
+  {
+   "name": "SM_Veg_ThornBush_01",
+   "class": "foliage",
+   "dimensions_m": [
+    3.847,
+    3.564,
+    1.173
+   ],
+   "lod0_triangles": 4104,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 4104,
+     "vertices": 2784,
+     "fbx": "Export/SM_Veg_ThornBush_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 516,
+     "vertices": 298,
+     "fbx": "Export/SM_Veg_ThornBush_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 150,
+     "vertices": 95,
+     "fbx": "Export/SM_Veg_ThornBush_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "thorn_bush"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "canes are 4-sided tubes with 3-sided thorn spikes: up close the canes are visibly faceted and all the same dark bark, with no dead leaves or berries",
+    "the tangle is arcs and loops from a formula, less knotted than the sprite",
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_ThornBush_02",
+   "class": "foliage",
+   "dimensions_m": [
+    2.225,
+    2.711,
+    0.854
+   ],
+   "lod0_triangles": 1704,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 1704,
+     "vertices": 1158,
+     "fbx": "Export/SM_Veg_ThornBush_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 216,
+     "vertices": 128,
+     "fbx": "Export/SM_Veg_ThornBush_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 60,
+     "vertices": 40,
+     "fbx": "Export/SM_Veg_ThornBush_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "thorn_bush"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as SM_Veg_ThornBush_01, sparser",
+    "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
+    "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
+    "leaves are small (2.5-3 cm) because the 0.5 m spray tiles are used on small cards; the lobed leaf is a flat, evenly green scan and reads slightly graphic up close",
+    "dead stems arch low and one can lie across the ground in front of the bush (Wide); dead-twig cards at the foot read as flat brown fans from close",
+    "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
+    "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
+    "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
+    "wind colours and custom normals untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_ThornBranch_01",
+   "class": "foliage",
+   "dimensions_m": [
+    0.856,
+    0.771,
+    0.167
+   ],
+   "lod0_triangles": 216,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 216,
+     "vertices": 150,
+     "fbx": "Export/SM_Veg_ThornBranch_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 30,
+     "vertices": 20,
+     "fbx": "Export/SM_Veg_ThornBranch_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 30,
+     "vertices": 20,
+     "fbx": "Export/SM_Veg_ThornBranch_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_DarkBark"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_BC.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_N.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_DarkBark_ORM.png",
+     "size": [
+      1024,
+      2048
+     ],
+     "material": "MI_Veg_DarkBark",
+     "role": "ORM"
+    }
+   ],
+   "families": [
+    "thorn_branch"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [],
+   "third_party": [
+    "polyhaven/bark_willow"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "two short canes with thorns; very simple"
+   ]
+  },
+  {
+   "name": "SM_Veg_Fern_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.473,
+    1.361,
+    0.578
+   ],
+   "lod0_triangles": 208,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 208,
+     "vertices": 195,
+     "fbx": "Export/SM_Veg_Fern_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 36,
+     "vertices": 54,
+     "fbx": "Export/SM_Veg_Fern_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 14,
+     "vertices": 28,
+     "fbx": "Export/SM_Veg_Fern_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "fern"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "each frond is one bent alpha card (4 segments with a centre fold): the pinnae do not droop individually",
+    "frond texture is modelled from a procedural leaf, not a fern scan"
+   ]
+  },
+  {
+   "name": "SM_Veg_Fern_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.991,
+    1.184,
+    0.354
+   ],
+   "lod0_triangles": 144,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 144,
+     "vertices": 135,
+     "fbx": "Export/SM_Veg_Fern_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 24,
+     "vertices": 36,
+     "fbx": "Export/SM_Veg_Fern_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_Fern_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "fern"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as SM_Veg_Fern_01"
+   ]
+  },
+  {
+   "name": "SM_Veg_HangingVines_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.254,
+    0.566,
+    2.293
+   ],
+   "lod0_triangles": 144,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 144,
+     "vertices": 216,
+     "fbx": "Export/SM_Veg_HangingVines_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 24,
+     "vertices": 48,
+     "fbx": "Export/SM_Veg_HangingVines_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 12,
+     "vertices": 24,
+     "fbx": "Export/SM_Veg_HangingVines_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "hanging_vines"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "strands are chains of alpha cards (two crossed planes at LOD0) cut from two vine tiles: repetition along a strand can be spotted",
+    "pivot is on the floor and the strands hang from 2.8 m: it needs something above it to hang from",
+    "the sprite is almost leafless; these carry sparse leaves"
+   ]
+  },
+  {
+   "name": "SM_Veg_HangingVines_02",
+   "class": "foliage",
+   "dimensions_m": [
+    0.865,
+    0.937,
+    2.29
+   ],
+   "lod0_triangles": 96,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 96,
+     "vertices": 144,
+     "fbx": "Export/SM_Veg_HangingVines_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 18,
+     "vertices": 36,
+     "fbx": "Export/SM_Veg_HangingVines_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 18,
+     "vertices": 36,
+     "fbx": "Export/SM_Veg_HangingVines_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_Understory"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_Understory_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_Understory_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_Understory",
+     "role": "SSS"
+    }
+   ],
+   "families": [
+    "hanging_vines"
+   ],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_under.blend",
+   "generator": "src/veg_under.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_Understory"
+   ],
+   "third_party": [
+    "ambientcg/LeafSet022"
+   ],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "known_weaknesses": [
+    "as SM_Veg_HangingVines_01"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Tall_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.175,
+    1.255,
+    0.624
+   ],
+   "lod0_triangles": 324,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 324,
+     "vertices": 494,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 166,
+     "vertices": 254,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field",
+   "known_weaknesses": [
+    "bounds are about 1.2-1.4 m because leaning cards overhang the 0.64 m root square",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Tall_02",
+   "class": "foliage",
+   "dimensions_m": [
+    1.354,
+    1.361,
+    0.649
+   ],
+   "lod0_triangles": 306,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 306,
+     "vertices": 468,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 168,
+     "vertices": 258,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field",
+   "known_weaknesses": [
+    "as Tall_01; shorter, more drooping",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Tall_03",
+   "class": "foliage",
+   "dimensions_m": [
+    1.113,
+    1.33,
+    0.63
+   ],
+   "lod0_triangles": 298,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 298,
+     "vertices": 454,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_03_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 144,
+     "vertices": 224,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_03_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Tall_03_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field",
+   "known_weaknesses": [
+    "as Tall_01; more flowering stems",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Dry_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.492,
+    1.291,
+    0.66
+   ],
+   "lod0_triangles": 312,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 312,
+     "vertices": 480,
+     "fbx": "Export/SM_Veg_GrassPatch_Dry_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 152,
+     "vertices": 240,
+     "fbx": "Export/SM_Veg_GrassPatch_Dry_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Dry_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field; straw-coloured, for dry / late-summer or scorched ground",
+   "known_weaknesses": [
+    "as Tall_01; dry tiles still contain about 10 % green blades",
+    "kinked dead blades are angular at the break",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Short_01",
+   "class": "foliage",
+   "dimensions_m": [
+    1.079,
+    1.085,
+    0.208
+   ],
+   "lod0_triangles": 256,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 256,
+     "vertices": 512,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_01_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 134,
+     "vertices": 268,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_01_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_01_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field; grazed turf 6-12 cm for yards, path edges and pasture",
+   "known_weaknesses": [
+    "single-quad cards 8-14 cm tall: from straight above the turf is mostly the terrain texture showing through",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  },
+  {
+   "name": "SM_Veg_GrassPatch_Short_02",
+   "class": "foliage",
+   "dimensions_m": [
+    1.099,
+    1.08,
+    0.202
+   ],
+   "lod0_triangles": 240,
+   "lods": [
+    {
+     "lod": 0,
+     "triangles": 240,
+     "vertices": 480,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_02_LOD0.fbx",
+     "issues": []
+    },
+    {
+     "lod": 1,
+     "triangles": 128,
+     "vertices": 256,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_02_LOD1.fbx",
+     "issues": []
+    },
+    {
+     "lod": 2,
+     "triangles": 8,
+     "vertices": 16,
+     "fbx": "Export/SM_Veg_GrassPatch_Short_02_LOD2.fbx",
+     "issues": []
+    }
+   ],
+   "materials": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "textures": [
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_BC.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "BC"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_N.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "N"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_ORM.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "ORM"
+    },
+    {
+     "file": "Export/Textures/T_Veg_MeadowGrass_SSS.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "material": "MI_Veg_MeadowGrass",
+     "role": "SSS"
+    }
+   ],
+   "families": [],
+   "supersedes": null,
+   "source_blend": "Blend/VEG_meadow.blend",
+   "generator": "src/veg_meadow.py",
+   "pivot": "base_center",
+   "two_sided": [
+    "MI_Veg_MeadowGrass"
+   ],
+   "third_party": [],
+   "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
+   "usage": "engine grass carpet only: bound to NO sprite family. Instance it on grass terrain with random yaw and uniform scale 0.8-1.25 at about 0.5 m spacing with 0.2 m jitter (roots fill a 0.6-0.68 m square, the leaning tips overhang to about 1.2-1.4 m, so neighbours interlock); no collision; LOD2 is two crossed quads for the far field; grazed turf 6-12 cm, with some dry blades",
+   "known_weaknesses": [
+    "as Short_01, with dry blades",
+    "alpha cards carrying modelled blades (rendered atlas), not blade geometry: under about 1 m, blades in one card are coplanar and a card's bend line can show as a node across all its blades",
+    "blades are modelled (creased strips, vertex-colour gradient), not scanned; no clover, flowers or other herbs in the atlas",
+    "card normals point up so a carpet lights evenly: no per-blade specular glint",
+    "thin blades (2-6 mm = 2.5-8 texels) depend on alpha-coverage-preserving mips; untested in Unreal",
+    "new material MI_Veg_MeadowGrass has to be created engine-side; wind colours untested in Unreal"
+   ]
+  }
+ ]
+}

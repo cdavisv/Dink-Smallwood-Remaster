@@ -1,0 +1,849 @@
+{
+ "version": "vfx-v1",
+ "generated": "2026-11-08",
+ "generator": "SourceAssets/Art/VFX/tools/build_vfx.py",
+ "libraries": {
+  "numpy": "2.5.4",
+  "pillow": "13.0.0"
+ },
+ "notes": [
+  "All textures are original procedural output (numpy + Pillow); no input images, downloads or generative models.",
+  "Colour textures: RGB is sRGB-encoded and STRAIGHT (not premultiplied) with colour bled into transparent texels so bilinear/mip filtering does not fringe; multiply by A in the material for additive/premultiplied use.",
+  "Data textures (Temp, 6-way, noise, masks, LUTs) must be imported with sRGB OFF.",
+  "Flipbook frames carry a transparent border; no frame content reaches its cell edge, so mips down to ~1/8 are free of neighbour bleed.",
+  "Frame order is row-major from the top-left, the Niagara SubUV convention."
+ ],
+ "complete": true,
+ "textures": [
+  {
+   "name": "T_VFX_AshFlakes_4x4",
+   "file": "Textures/T_VFX_AshFlakes_4x4.png",
+   "width": 512,
+   "height": 512,
+   "channels": 4,
+   "bytes": 190372,
+   "sha256": "5a92126db884467141d54b05345dfc79351c510bb43511eeee183fe985f2db6d",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "sprite_sheet",
+    "columns": 4,
+    "rows": 4,
+    "frames": 16,
+    "cell_px": 128,
+    "loop": false,
+    "cells": {
+     "all": "16 distinct torn flakes, charcoal (2/3) and pale grey ash (1/3)"
+    }
+   },
+   "role": "ash_flakes",
+   "channels_desc": "RGB = burnt-paper albedo (straight, bled); A = flake mask",
+   "blend_modes": [
+    "Masked/AlphaComposite (dithered translucency OK)"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite, random SubUV, random rotation; 3D spin via Rotation Rate",
+    "subuv": "Image Index random 0..15",
+    "material": "Lit translucent/masked; colour tint from fire proximity (lerp to dark red near flames via Fire_Temp)"
+   },
+   "seed": 199704
+  },
+  {
+   "name": "T_VFX_Blackbody_LUT_256x4",
+   "file": "Textures/T_VFX_Blackbody_LUT_256x4.png",
+   "width": 256,
+   "height": 4,
+   "channels": 4,
+   "bytes": 258,
+   "sha256": "220624a7747aca81296e0fe291250267a1cdbe31d48bf03ee2fa6712c6d40bdc",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "lut_row",
+    "kelvin_range": [
+     850,
+     2350
+    ],
+    "u_axis": "normalised temperature 0..1",
+    "sample": "V=0.5 (4 identical rows to satisfy minimum height); Clamp, Bilinear, NoMipmaps"
+   },
+   "role": "blackbody_ramp",
+   "channels_desc": "RGB = sRGB tone-mapped blackbody colour (true Planck chromaticity, compressed radiance); A (linear) = relative emissive multiplier / 4",
+   "ue_texture": {
+    "compression_settings": "TC_Default (uncompressed RGBA8 recommended)",
+    "srgb": true,
+    "mip_gen_settings": "NoMipmaps",
+    "lod_group": "TEXTUREGROUP_Pixels2D",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "u = Fire_Temp.R * Heat; Emissive = LUT.rgb * (LUT.a*4) * EmissiveScale"
+   },
+   "seed": 0
+  },
+  {
+   "name": "T_VFX_BlueNoise_128",
+   "file": "Textures/T_VFX_BlueNoise_128.png",
+   "width": 128,
+   "height": 128,
+   "channels": 1,
+   "bytes": 16580,
+   "sha256": "ccf05d2be88886dbb012afe6d8d62ed00dcc7b7b4ec1750513ddc83ebcd408ce",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "tile",
+    "tile_u": true,
+    "tile_v": true,
+    "rank_uniform": true
+   },
+   "role": "blue_noise_dither",
+   "channels_desc": "single channel, rank-uniform high-pass noise (void-and-cluster approximation via iterative FFT high-pass + rank remap)",
+   "ue_texture": {
+    "compression_settings": "TC_Grayscale",
+    "srgb": false,
+    "mip_gen_settings": "NoMipmaps",
+    "lod_group": "TEXTUREGROUP_Pixels2D",
+    "address_x": "Wrap",
+    "address_y": "Wrap",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Dithered opacity (Masked) for soft particles, temporal dithering of dissolve"
+   },
+   "seed": 199712
+  },
+  {
+   "name": "T_VFX_DustPuff_6x6",
+   "file": "Textures/T_VFX_DustPuff_6x6.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 2180980,
+   "sha256": "c05bfb57a12021d01789172e6b582782d775d80a94ba7e3fea24d15f9ee9175f",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "flipbook",
+    "columns": 6,
+    "rows": 6,
+    "frames": 36,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 341,
+    "fps": 30,
+    "duration_s": 1.2,
+    "loop": false,
+    "uv_note": "2048/6 = 341.33: frames are placed at round(i*341.333) and are 341 px; Unreal's SubUV cell is 341.33 px so drift is <0.7 px. Every frame has >=14 px of empty border."
+   },
+   "role": "dust_puff",
+   "channels_desc": "RGB = dust lit from above (baked, tan-grey albedo); A = opacity. Expanding hemispherical puff that thins out.",
+   "blend_modes": [
+    "AlphaComposite / Translucent"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (1-3 per impact, ground-aligned origin at bottom-centre of the puff), lifetime ~1.2 s @ 30 fps",
+    "subuv": "SubUV 6x6, Linear blend ON",
+    "material": "Colour = tex.rgb * SurfaceTint (sample ground albedo colour for fist-on-dirt vs stone dust); Opacity = tex.a; soft-particle depth fade 15 cm"
+   },
+   "seed": 199709
+  },
+  {
+   "name": "T_VFX_Embers_4x4",
+   "file": "Textures/T_VFX_Embers_4x4.png",
+   "width": 512,
+   "height": 512,
+   "channels": 4,
+   "bytes": 139229,
+   "sha256": "3e2ee7790bc15d3332ae49c3ae808e32a0d6cbef7be1f644cde36efc376e4dc9",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "sprite_sheet",
+    "columns": 4,
+    "rows": 4,
+    "frames": 16,
+    "cell_px": 128,
+    "loop": false,
+    "cells": {
+     "0-7": "ember dots (random sprite per particle)",
+     "8-11": "spark streaks, head at +X (align to velocity)",
+     "12-15": "one ember cooling hot->dark (use as SubUV over lifetime)"
+    }
+   },
+   "role": "embers_sparks",
+   "channels_desc": "RGB = blackbody colour (straight); A = coverage",
+   "blend_modes": [
+    "Additive"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (random SubUV 0-7) / Sprite velocity-aligned for 8-11 / Ribbon-free",
+    "subuv": "Niagara SubUV Image Index: Random 0..7 for dots; Linear 12..15 over Age for cooling",
+    "material": "Additive, emissive = rgb*a*EmissiveScale (10-40), flicker with per-particle sin(Age) multiplier"
+   },
+   "seed": 199703
+  },
+  {
+   "name": "T_VFX_Fire_Color_8x8",
+   "file": "Textures/T_VFX_Fire_Color_8x8.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 3132554,
+   "sha256": "9247ed4ed2632218dc0e253c573d6261204184f4e3390129824274daae0767ca",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "flipbook",
+    "columns": 8,
+    "rows": 8,
+    "frames": 64,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 30,
+    "duration_s": 2.1333,
+    "loop": true,
+    "loop_seam_ratio": 1.004,
+    "uv_note": "cell = atlas/8 exactly; 6% transparent border per cell"
+   },
+   "role": "fire_colour",
+   "channels_desc": "RGB = baked blackbody flame colour (straight, bled into transparent texels); A = flame opacity/density",
+   "blend_modes": [
+    "Additive (emissive = RGB*A*Intensity)",
+    "Translucent/AlphaComposite with soot from Fire_Temp.B"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (or TC_Default/BC3 if memory-bound)",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (SubUV)",
+    "subuv": "Niagara SubUV Animation, 8x8, Linear blend, loop over particle Age/LoopDuration",
+    "material": "M_VFX_Fire: Emissive = tex.rgb * tex.a * EmissiveScale (HDR 4-30 for bloom); Opacity = tex.a for translucent variant",
+    "sprite": "Facing=camera, vertical-up aligned, size ~ (width 0.6 x height 1.0) of flame height; per-particle random start frame offset"
+   },
+   "seed": 199701,
+   "generator": "vfx_fire.flame_field (curl-warped looping fBm erosion + blackbody ramp)"
+  },
+  {
+   "name": "T_VFX_Fire_Temp_8x8",
+   "file": "Textures/T_VFX_Fire_Temp_8x8.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 1455098,
+   "sha256": "3ace6819134fc68644169fa99b8237092f26ea1eab7aa90aeb04e9c2f1293ee6",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "flipbook",
+    "columns": 8,
+    "rows": 8,
+    "frames": 64,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 30,
+    "duration_s": 2.1333,
+    "loop": true,
+    "loop_seam_ratio": 1.004,
+    "uv_note": "cell = atlas/8 exactly; 6% transparent border per cell"
+   },
+   "role": "fire_temperature",
+   "channels_desc": "R = normalised temperature (0=850 K .. 1=2350 K); G = density; B = soot (cool dark smoke inside flame); A = hot-core mask",
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (linear)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (SubUV)",
+    "subuv": "same SubUV params as Fire_Color (shared frame index)",
+    "material": "Sample R, remap by (particle heat * k), look up T_VFX_Blackbody_LUT (U=R) for HDR colour; multiply LUT.A*4 as emissive intensity; use G as opacity, lerp toward black by B for soot. Lets one texture serve embers-to-white-hot flames and colour-graded fire (green/blue spell fire)."
+   },
+   "seed": 199701
+  },
+  {
+   "name": "T_VFX_Fireball_Core_4x4",
+   "file": "Textures/T_VFX_Fireball_Core_4x4.png",
+   "width": 1024,
+   "height": 1024,
+   "channels": 4,
+   "bytes": 870999,
+   "sha256": "aa842b26ef7c099e04c1d89c881ff45f089c466acbc1de54e4172fea2df4f6db",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "flipbook",
+    "columns": 4,
+    "rows": 4,
+    "frames": 16,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 24,
+    "duration_s": 0.6667,
+    "loop": true,
+    "loop_seam_ratio": 0.709,
+    "orientation": "head (sphere) at +U/right, flame streams toward -U; rotate sprite to velocity"
+   },
+   "role": "fireball_core",
+   "channels_desc": "RGB = blackbody colour (straight); A = density",
+   "blend_modes": [
+    "Additive"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite, Alignment = Velocity aligned (Facing Camera)",
+    "subuv": "SubUV 4x4 looping @24 fps",
+    "material": "Additive emissive; spawn a point light of the same colour (intensity ~ 3000-8000 cd) from the same emitter"
+   },
+   "seed": 199705
+  },
+  {
+   "name": "T_VFX_Fireball_Core_Temp_4x4",
+   "file": "Textures/T_VFX_Fireball_Core_Temp_4x4.png",
+   "width": 1024,
+   "height": 1024,
+   "channels": 4,
+   "bytes": 275735,
+   "sha256": "d5ecb689c4adbe63a3e9115117fa430b509a216512283e824ab6b18639e66a4e",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "flipbook",
+    "columns": 4,
+    "rows": 4,
+    "frames": 16,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 24,
+    "duration_s": 0.6667,
+    "loop": true,
+    "loop_seam_ratio": 0.709,
+    "orientation": "head (sphere) at +U/right, flame streams toward -U; rotate sprite to velocity"
+   },
+   "role": "fireball_core_temperature",
+   "channels_desc": "R temperature, G density, B soot, A hot core (same encoding as Fire_Temp)",
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (linear)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Blackbody LUT lookup for coloured (arcane/blue) fireball variants"
+   },
+   "seed": 199705
+  },
+  {
+   "name": "T_VFX_Fireball_Trail",
+   "file": "Textures/T_VFX_Fireball_Trail.png",
+   "width": 1024,
+   "height": 256,
+   "channels": 4,
+   "bytes": 298414,
+   "sha256": "749a5ac3693ba19395d9ff9d6973bc16d87376fe2a716c0c482634985521618f",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "strip",
+    "tile_u": true,
+    "tile_v": false,
+    "u_tile_seam_ratio": 0.427,
+    "u_axis": "along ribbon (pan toward tail via UV.x -= Time*Speed)",
+    "v_axis": "across ribbon"
+   },
+   "role": "fireball_trail",
+   "channels_desc": "RGB = blackbody colour; A = density. Tileable in U, constant along length (taper/fade in material using ribbon normalised age).",
+   "blend_modes": [
+    "Additive"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Wrap",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Ribbon, UV0 distribution = Tiled over Length (tile distance ~ 1 texture per 2*width), Facing=camera",
+    "material": "Opacity = tex.a * (1-NormalizedAge)^1.5 * edge fade; pan U for flow; Width over life 1->0.15"
+   },
+   "seed": 199706
+  },
+  {
+   "name": "T_VFX_Fireball_Trail_Temp",
+   "file": "Textures/T_VFX_Fireball_Trail_Temp.png",
+   "width": 1024,
+   "height": 256,
+   "channels": 4,
+   "bytes": 211667,
+   "sha256": "126cf59b9e25c6ccd42117320fd1016dc38db7ba062e6ed4aea8232cb06433bc",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "strip",
+    "tile_u": true,
+    "tile_v": false
+   },
+   "role": "fireball_trail_temperature",
+   "channels_desc": "R temperature, G density, B soot, A hot core",
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (linear)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Wrap",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Blackbody LUT lookup; cool the trail along ribbon age by subtracting age*0.6 from R"
+   },
+   "seed": 199706
+  },
+  {
+   "name": "T_VFX_Gradients_256x16",
+   "file": "Textures/T_VFX_Gradients_256x16.png",
+   "width": 256,
+   "height": 16,
+   "channels": 4,
+   "bytes": 1297,
+   "sha256": "086b24dc377e487327a430eb31989cc3969be74ecd006ca9cc33be88079e8f1b",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "lut_rows",
+    "rows": 16,
+    "row_names": [
+     "linear",
+     "smoothstep",
+     "smootherstep",
+     "ease_in_quad",
+     "ease_out_quad",
+     "ease_in_cubic",
+     "ease_out_cubic",
+     "gaussian_fall",
+     "inverse_square_fall",
+     "exp_decay",
+     "bell",
+     "triangle",
+     "attack_decay",
+     "age_fade",
+     "flicker_hold",
+     "flash_pop"
+    ],
+    "sample": "V = (row+0.5)/16, U = normalised value / age; Wrap=Clamp, filter=Bilinear, NoMipmaps"
+   },
+   "role": "curve_lut",
+   "channels_desc": "each row is one scalar curve replicated in RGB; A=1",
+   "ue_texture": {
+    "compression_settings": "TC_Default",
+    "srgb": false,
+    "mip_gen_settings": "NoMipmaps",
+    "lod_group": "TEXTUREGROUP_Pixels2D",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Cheap curve lookup in materials / Niagara texture sample (age fade, attack-decay, flicker hold)"
+   },
+   "seed": 0
+  },
+  {
+   "name": "T_VFX_HitFlash_6x6",
+   "file": "Textures/T_VFX_HitFlash_6x6.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 1402912,
+   "sha256": "b43af67739dc1b72f15fd5ca42abe4b08230cf1d673c842920ccc731cafaba69",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "flipbook",
+    "columns": 6,
+    "rows": 6,
+    "frames": 36,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 341,
+    "fps": 60,
+    "duration_s": 0.6,
+    "loop": false,
+    "uv_note": "2048/6 = 341.33: frames are placed at round(i*341.333) and are 341 px; Unreal's SubUV cell is 341.33 px so drift is <0.7 px. Every frame has >=14 px of empty border."
+   },
+   "role": "hit_flash",
+   "channels_desc": "RGB = blackbody flash/spark colour; A = coverage. Frame 0-5 white-hot core+starburst, then shock ring and ballistic sparks.",
+   "blend_modes": [
+    "Additive"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (1 particle per hit, lifetime 0.6 s @ 60 fps), random Rotation + mirror U",
+    "subuv": "SubUV 6x6, Linear blend OFF (flash wants crisp frames) or ON for smoothness",
+    "material": "Additive emissive, EmissiveScale 8-20; scale sword hits 1.0, fist hits 0.55 + desaturate via LUT"
+   },
+   "seed": 199708
+  },
+  {
+   "name": "T_VFX_MagicGlow_2x2",
+   "file": "Textures/T_VFX_MagicGlow_2x2.png",
+   "width": 512,
+   "height": 512,
+   "channels": 1,
+   "bytes": 33469,
+   "sha256": "61a8cfdee8ec8e74bffeec8cc65d227a17953b43902a9abfe8eccf4969c4213b",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "sprite_sheet",
+    "columns": 2,
+    "rows": 2,
+    "frames": 4,
+    "cell_px": 256,
+    "loop": false,
+    "cells": {
+     "0": "soft halo (truncated Lorentzian^1.5)",
+     "1": "4-point diffraction sparkle",
+     "2": "thin ring",
+     "3": "log-spiral swirl wisp"
+    }
+   },
+   "role": "magic_glow",
+   "channels_desc": "single-channel linear intensity; tint in material (any colour: heal=green, arcane=blue, pickup=gold)",
+   "blend_modes": [
+    "Additive"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_Grayscale (BC4)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite, Facing camera",
+    "subuv": "Image Index chosen per emitter (no animation)",
+    "material": "Emissive = tex.r * ColourHDR; Opacity = tex.r for translucent"
+   },
+   "seed": 199707
+  },
+  {
+   "name": "T_VFX_NoisePack_A_512",
+   "file": "Textures/T_VFX_NoisePack_A_512.png",
+   "width": 512,
+   "height": 512,
+   "channels": 4,
+   "bytes": 367292,
+   "sha256": "ba53aef24ea47f7a9e73ef89573979cceb4dfba5fd9afd66d21eb0fca0242950",
+   "colour_space": "linear (data)",
+   "role": "noise_pack",
+   "seam_ratio": 1.156,
+   "channels_desc": "R = Perlin fBm (6 oct, 4 cells), G = 1-Worley F1 (8 cells), B = Worley F2-F1 cell edges, A = Perlin-Worley (cloud base remap)",
+   "niagara": {
+    "material": "Erosion/dissolve masks, smoke detail, sprite UV distortion, Perlin-Worley for billowy opacity"
+   },
+   "layout": {
+    "type": "tile",
+    "tile_u": true,
+    "tile_v": true
+   },
+   "seed": 199710,
+   "ue_texture": {
+    "compression_settings": "TC_Default (BC7, sRGB off)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Wrap",
+    "address_y": "Wrap",
+    "filter": "Default"
+   }
+  },
+  {
+   "name": "T_VFX_NoisePack_B_512",
+   "file": "Textures/T_VFX_NoisePack_B_512.png",
+   "width": 512,
+   "height": 512,
+   "channels": 4,
+   "bytes": 319787,
+   "sha256": "8c9ccd6e2a114a3ef8eafa6eb2a0a9f2e8ed006ef78dd82c2b4c8f1dc70b0264",
+   "colour_space": "linear (data)",
+   "role": "curl_noise",
+   "seam_ratio": 0.43,
+   "channels_desc": "R = curl vx, G = curl vy (0.5 +/- 0.5*v/vmax, subtract 0.5 and *2 to recover), B = |curl| normalised, A = scalar potential (fBm 4 oct)",
+   "niagara": {
+    "material": "Flow-map/advection: UV += (RG*2-1)*Strength; Niagara Sample Texture for curl forces in particles (sampled as 2D field wrapped over world XY)"
+   },
+   "layout": {
+    "type": "tile",
+    "tile_u": true,
+    "tile_v": true
+   },
+   "seed": 199710,
+   "ue_texture": {
+    "compression_settings": "TC_Default (BC7, sRGB off)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Wrap",
+    "address_y": "Wrap",
+    "filter": "Default"
+   }
+  },
+  {
+   "name": "T_VFX_NoisePack_C_512",
+   "file": "Textures/T_VFX_NoisePack_C_512.png",
+   "width": 512,
+   "height": 512,
+   "channels": 4,
+   "bytes": 399635,
+   "sha256": "d89c1da55ef06139f7127c18948201b10f1849390058738e8a15c2916f9cfb8e",
+   "colour_space": "linear (data)",
+   "role": "noise_pack",
+   "seam_ratio": 1.042,
+   "channels_desc": "R = ridged turbulence, G = 1-Worley F1 (6 large cells), B = 1-Worley F1 (24 small cells), A = Worley cell random id",
+   "niagara": {
+    "material": "Per-cell random (A) for sparkle/flicker, ridged R for lightning/magic veins, Worley for embers/bubbles"
+   },
+   "layout": {
+    "type": "tile",
+    "tile_u": true,
+    "tile_v": true
+   },
+   "seed": 199710,
+   "ue_texture": {
+    "compression_settings": "TC_Default (BC7, sRGB off)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Wrap",
+    "address_y": "Wrap",
+    "filter": "Default"
+   }
+  },
+  {
+   "name": "T_VFX_Smoke_6Way_A_8x8",
+   "file": "Textures/T_VFX_Smoke_6Way_A_8x8.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 2941513,
+   "sha256": "c7162ca90a538bf54a27edd9cd796a7a13ff98303945468fdd597a471fcb6895",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "flipbook",
+    "columns": 8,
+    "rows": 8,
+    "frames": 64,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 24,
+    "duration_s": 2.6667,
+    "loop": true,
+    "loop_seam_ratio": 0.805
+   },
+   "role": "smoke_lightmap_A",
+   "channels_desc": "R = light from +X (right), G = light from -X (left), B = light from top (+Y), A = opacity (view-projected extinction)",
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (linear)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default",
+    "note": "do not use TC_Masks/BC1: RGB+A all carry data"
+   },
+   "niagara": {
+    "renderer": "Sprite (SubUV)",
+    "subuv": "Niagara SubUV Animation 8x8, Linear blend",
+    "material": "6-way lighting: dot(LightDir_world->camera-space, axes) -> weights max(+/-L.x..z,0) over (R,L,T,B,K,F); sum weights*maps; multiply by albedo colour and light colour; Opacity = map A.A"
+   },
+   "seed": 199702,
+   "generator": "vfx_smoke: curl-advected looping fBm density volume 128x128x32, Wrenninge multiple-scatter transmittance along 6 axes, projected along view"
+  },
+  {
+   "name": "T_VFX_Smoke_6Way_B_8x8",
+   "file": "Textures/T_VFX_Smoke_6Way_B_8x8.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 2328119,
+   "sha256": "91effbe959f25fa5f0afa6b53de36565b2ff8542f49513c94ca1b4e7244c99ce",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "flipbook",
+    "columns": 8,
+    "rows": 8,
+    "frames": 64,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 24,
+    "duration_s": 2.6667,
+    "loop": true,
+    "loop_seam_ratio": 0.805
+   },
+   "role": "smoke_lightmap_B",
+   "channels_desc": "R = light from bottom (-Y), G = light from back (-Z, away from camera), B = light from front (+Z, camera side), A = normalised optical thickness (for backlit translucency / SSS fudge)",
+   "ue_texture": {
+    "compression_settings": "TC_BC7 (linear)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (SubUV)",
+    "subuv": "Niagara SubUV Animation 8x8, Linear blend",
+    "material": "6-way lighting: dot(LightDir_world->camera-space, axes) -> weights max(+/-L.x..z,0) over (R,L,T,B,K,F); sum weights*maps; multiply by albedo colour and light colour; Opacity = map A.A"
+   },
+   "seed": 199702
+  },
+  {
+   "name": "T_VFX_Smoke_BakedTopLit_8x8",
+   "file": "Textures/T_VFX_Smoke_BakedTopLit_8x8.png",
+   "width": 2048,
+   "height": 2048,
+   "channels": 4,
+   "bytes": 3888903,
+   "sha256": "fae7180582d4b6a598af8ede30d3fa624fc71758680a9f0ca956b3e87fb6a082",
+   "colour_space": "sRGB (RGB), linear alpha",
+   "layout": {
+    "type": "flipbook",
+    "columns": 8,
+    "rows": 8,
+    "frames": 64,
+    "frame_order": "row-major, top-left first",
+    "cell_px": 256,
+    "fps": 24,
+    "duration_s": 2.6667,
+    "loop": true,
+    "loop_seam_ratio": 0.805
+   },
+   "role": "smoke_baked_colour",
+   "channels_desc": "RGB = smoke lit from above (sky 1.0) with warm key from upper-left/front, neutral grey albedo 0.45; A = opacity. Use when 6-way is overkill.",
+   "blend_modes": [
+    "AlphaComposite / Translucent"
+   ],
+   "ue_texture": {
+    "compression_settings": "TC_BC7",
+    "srgb": true,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "renderer": "Sprite (SubUV)",
+    "subuv": "SubUV 8x8",
+    "material": "Colour = tex.rgb * TintColour; Opacity = tex.a * ParticleAlpha; soft-particle depth fade 20-80 cm; tint dark (0.15-0.3) for house-fire smoke"
+   },
+   "seed": 199702
+  },
+  {
+   "name": "T_VFX_SoftMask_A_256",
+   "file": "Textures/T_VFX_SoftMask_A_256.png",
+   "width": 256,
+   "height": 256,
+   "channels": 4,
+   "bytes": 45325,
+   "sha256": "68335e352a0a067f0bbd6f784a598b69cd03a5d84b05ea418c9ced26a7d5f686",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "single"
+   },
+   "role": "soft_masks",
+   "channels_desc": "R = (1-r^2)^2 smooth falloff, G = gaussian exp(-4.5 r^2) windowed, B = linear cone, A = soft ring (r=0.62)",
+   "ue_texture": {
+    "compression_settings": "TC_Default (BC7/BC3, sRGB off)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Radial masks for sprite particles, decals, light-cookie-like glows, depth-fade shaping"
+   },
+   "seed": 199711
+  },
+  {
+   "name": "T_VFX_SoftMask_B_256",
+   "file": "Textures/T_VFX_SoftMask_B_256.png",
+   "width": 256,
+   "height": 256,
+   "channels": 4,
+   "bytes": 30077,
+   "sha256": "3c21c0ce219f5d471ae8118d75e17201cc215a4f3edb9efcd5f9346b3e7595e1",
+   "colour_space": "linear (data)",
+   "layout": {
+    "type": "single"
+   },
+   "role": "soft_masks",
+   "channels_desc": "R = soft superellipse square, G = horizontal streak (4:1), B = vertical edge fade, A = cloudy circle (radial * fBm)",
+   "ue_texture": {
+    "compression_settings": "TC_Default (BC7/BC3, sRGB off)",
+    "srgb": false,
+    "mip_gen_settings": "FromTextureGroup",
+    "lod_group": "TEXTUREGROUP_Effects",
+    "address_x": "Clamp",
+    "address_y": "Clamp",
+    "filter": "Default"
+   },
+   "niagara": {
+    "material": "Ground-contact dust shapes, light shafts, streak particles"
+   },
+   "seed": 199711
+  }
+ ]
+}

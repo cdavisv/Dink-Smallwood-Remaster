@@ -1,0 +1,59 @@
+{
+ "name": "SM_Barrel_Oak_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Barrel_Oak",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Barrel_Oak_PR_BC.png",
+  "N": "T_Barrel_Oak_PR_N.png",
+  "ORM": "T_Barrel_Oak_PR_ORM.png"
+ },
+ "lod_triangles": [
+  3208,
+  1604,
+  704
+ ],
+ "hi_triangles": 8672,
+ "bounds_min_m": [
+  -0.417,
+  -0.417,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.42,
+  0.42,
+  1.003
+ ],
+ "dimensions_m": [
+  0.837,
+  0.838,
+  1.003
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 46.3,
+   "p99": 107.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.543,
+   "p95": 0.797
+  },
+  "metallic_mean": 0.02
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

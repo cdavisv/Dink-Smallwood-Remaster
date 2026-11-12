@@ -4,7 +4,7 @@ from types import SimpleNamespace
 O=Path(__file__).resolve().parent;BASE=O.parent/'V5_OpticalLOD';sys.path.insert(0,str(BASE/'Pipeline'))
 from dinkasset.export_ue import export_fbx,unhidden
 try:
- sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();source=BASE/'PhotorealPieV1_Export.blend';pin=sha(source);assert pin=='2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a'
+ sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();source=BASE/'PhotorealPieV1_Export.blend';pin=sha(source);assert pin=='ca0400ba99ec2e547b5f006cc31e74d6b0c1ab8fdd3f96016b7f8b45c5851102'
  bpy.ops.wm.open_mainfile(filepath=str(source));rows=[]
  for i in range(3):
   ob=bpy.data.objects['SM_Pie_Rustic_01_LOD'+str(i)];path=O/(ob.name+'.fbx');assert not path.exists(),'Refuse existing perLOD file';assert all(abs(float(v))<1e-7 for v in ob.location)

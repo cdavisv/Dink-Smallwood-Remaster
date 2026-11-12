@@ -1,6 +1,6 @@
 {
   "status": "BOUNDED_COMPOSITION_VARIANT_WAIT_ROOT_COMPARISON",
-  "variant_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+  "variant_sha256": "ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5",
   "base_v4_sha256": "b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26",
   "base_ready_sha256": "37232ccf955f3eef905c6658ebcb5a07a1e2d53390a066df2ec1c3e65a58d22d",
   "base_files_unchanged": true,
@@ -29,16 +29,16 @@
   "export_native_runtime": false,
   "final_photoreal_approval": false,
   "files_sha256": {
-    "PhotorealBrokenBarrelV4_AsymmetricComposition.blend": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
+    "PhotorealBrokenBarrelV4_AsymmetricComposition.blend": "ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5",
     "BASELINE_CONTACTS.json": "acfab3df0c2b534f7d80c9d21adaf65d89daeceae410d3d0923d6e796ef9455e",
-    "VARIANT_RECEIPT.json": "02663a975229dd9e7458684e268782442e7319a638d33df70438d1ed08aacbe6",
-    "FINAL_VERIFY.json": "772be1d65094ab96c374de74252078b7498e8b900e7298bef3ae3b764e16309b",
+    "VARIANT_RECEIPT.json": "38266ea79bed876881e9298ea7cbaeca948f947155cf6fe79f6fc139b8d78db7",
+    "FINAL_VERIFY.json": "5853ba4de144481d2ab962936c4a3faa2f165605c495330b455878aa567b93b6",
     "README.md": "ed1461326a5b58ab90ca596ff4858b83573d72506e12424e29efff90b55c8263",
     "HANDOFF.md": "634c41a6324f299332b64ceac2ce64f85593a90ef415d7a57e49d860df88bca1",
-    "inspect_contacts.py": "8f3a612a2cce9f5ec7e2020161969682b8d7dbddb0da132b03b4323d1f441916",
-    "build_variant.py": "0a001b21ab7c73206f1e387e39c774b470940858c8259ff8bcbfc2e8556da2ca",
-    "verify_variant.py": "911ae6a75aff6d2423262ec0e75460438f6030d0251e81173675064fc5fe17b4",
-    "Renders/02_asymmetric_matched.png": "f2978402298d466cea33d057b51c5605b6a0ff8092bb4d9389968b63c2e84389",
-    "Renders/03_asymmetric_low_detail.png": "8d8d04aabb018bed4bda8e23b136671a6ff30e0ba9ee1191907f59fd415c0785"
+    "inspect_contacts.py": "4dda9f898cbd9697ed3a305b35de7fa80e32d61f35029f27669a983d0932bebe",
+    "build_variant.py": "b1ba29cd8d5d4f417abf3935b7aafd8fe4ab296c0b70befcb603f398fa992c3d",
+    "verify_variant.py": "2438479eaf43c7794580a47c44accb3b1de7f8d635fa631dc0dd6e516900552f",
+    "Renders/02_asymmetric_matched.png": "339c75055d8a988b17ed14705d5c6f86e244c54a0ddb856513eb38ff109d9dfe",
+    "Renders/03_asymmetric_low_detail.png": "eaf356a2a8acc8e47f9bb844b5e970ab0b838cad82ca0b5542d2e063d77bf14e"
   }
 }

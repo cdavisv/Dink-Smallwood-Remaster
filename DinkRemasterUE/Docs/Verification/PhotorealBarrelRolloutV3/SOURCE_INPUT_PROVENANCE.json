@@ -1,0 +1,12 @@
+{
+  "accepted_rollout_index_sha256": "c13f75c098d49f9c7719bd686ce2494a2345b30e28be347b7e83aff06e2bd440",
+  "unchanged_foundation_descriptors": 38,
+  "unchanged_original_hardness_layers": 114,
+  "exact_files_compared": 152,
+  "origins": 85,
+  "soft_exclusions": 10,
+  "authored_exclusions": 2,
+  "policy_schema": "dink-family-collision-fit/3",
+  "source_geometry_packages_modified": 0,
+  "native_world_launched": false
+}

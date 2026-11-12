@@ -1,0 +1,11 @@
+{
+  "prior": "e6830c642be541f6ee4cbd9ceb69fff0741fcce5",
+  "accepted_master": "c608c30316c5e9232bf00cb62aecd835c43f6c3e",
+  "protected_Root": "4fb68a9b9aec0da6fe1a880864452a1ea97b56b2",
+  "no_Cpp_Content_SourceAssets_Config_delta": true,
+  "ledger_rows": 4646,
+  "ledger_all_raw_bytes_exact": true,
+  "ledger_sha256": "f06de650572d714acfc8609d4a97e8d25267e1cbd376c999d0a1b2a055da0764",
+  "conflicts": "Only two leading status documents; both histories retained",
+  "no_native_execution": true
+}

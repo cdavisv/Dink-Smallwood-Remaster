@@ -1,0 +1,19 @@
+{
+  "status": "PASS_material_identity_swap_all_mesh_data_exact_GLASS_MAPPING_PENDING",
+  "donor_sha256_unchanged": "140622758031f459fc2b00f0886dd2e141ef6ab9d23dc85df67368bad283d089",
+  "source_sha256": "fed8cbd70095548c3bf5b38fc45b9145c15747e732a8021ffefc0d5f47a4134d",
+  "mesh_objects_checked": 319,
+  "material_aliases": {
+    "MI_Candidate_IndividualStone_2m": "MI_Shared_FieldstoneSeed2m",
+    "MI_Candidate_StoneWallFull_2m": "MI_Shared_FieldstoneWall2m",
+    "MI_Candidate_WeatheredTimber_2Role": "MI_Shared_WeatheredTimber2m",
+    "MI_Candidate_Metalwork_2Role": "MI_Shared_IronLead2m",
+    "MI_Candidate_Mineral_2Role": "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_WeatheredDressedReed_2m": "MI_Shared_DressedReed2m",
+    "MI_House439_OpticalGlass_SourceV21": "MI_Shared_ThinWavyGlass2m"
+  },
+  "reopened_exact": true,
+  "glass_mapping_qualification": "HistoricalUV0 not physical2m; sharedglass replacement not ready for admission until explicit physical coordinate binding is reviewed. Original UVs preserved exactly.",
+  "native_status": "No UE execution or final appearance approval",
+  "glass_mapping_correction": "Actual glass triangle metrics show main panes exactly2m/UV, areaweighted2.0045m/UV; prior wholeobjectbounds inference was wrong. ExistingUV0 already physical and tangent-compatible; owner notified, no UV mutation."
+}

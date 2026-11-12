@@ -1,0 +1,95 @@
+{
+ "name": "SM_Bed_Oak_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bed_Oak/SM_Bed_Oak_PR.fbx",
+ "materials": [
+  "MI_Bed_Oak"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Bed_Oak_PR.blend",
+ "lod0_triangles": 3288,
+ "lod1_triangles": 1868,
+ "lod2_triangles": 858,
+ "dimensions_m": [
+  2.5,
+  1.453,
+  1.148
+ ],
+ "bounds_min_m": [
+  -1.25,
+  -0.708,
+  -0.002
+ ],
+ "bounds_max_m": [
+  1.25,
+  0.744,
+  1.146
+ ],
+ "open_edges": 0,
+ "collision_hulls": 2,
+ "families": [
+  "64 inside/details/inacc- frame 3",
+  "bed"
+ ],
+ "supersedes": "Stonebrook/SM_Bed_Oak_01 (2.51 x 1.37 x 1.12 m, base_center) and the family binding of bed (16 placements)",
+ "dresses": "oak bed 2.5 x 1.36 x 1.15 m (head at -X): four capped posts, plank head and foot boards, pegged side rails, slats, a lumpy sagging straw tick in striped linen, a pressure-simulated pillow, a quilted wool blanket (olive-yellow, madder lining and border) simulated over the tick, hanging over the rails and turned back at the head end",
+ "fit": {
+  "pivot": "base centre; head to -X",
+  "size": "as SM_Bed_Oak_01"
+ },
+ "baked": {
+  "texture_folder": "Bed_Oak",
+  "textures": {
+   "BC": "T_Bed_Oak_PR_BC.png",
+   "N": "T_Bed_Oak_PR_N.png",
+   "ORM": "T_Bed_Oak_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Bed_Oak",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 67.7,
+    "p99": 151.5
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.66,
+    "p95": 0.857
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 52200,
+  "third_party": [
+   "rough_wood",
+   "rough_linen",
+   "caban"
+  ],
+  "source_blend": "_build/bake/SM_Bed_Oak_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bed_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake with cloth simulation (blanket and pillow; cached in _build/bake/cache), five review rounds (r6). Last look still faults: the blanket lies too flat on top (the 7 percent slack gave only shallow ripples, real folds show only at the turn-back and the hanging sides), its olive-yellow is even and the quilting is a regular diamond bump; the pillow is plump but smooth, without a sewn seam bead; tick stripes are printed-looking; the underside chart of the blanket bakes partly wrong where it lies on the tick (hidden in game). One 2048 set for a 2.5 m prop: soft at 1 m.",
+ "third_party": [
+  "caban",
+  "rough_linen",
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bed_Oak/T_Bed_Oak_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bed_Oak/T_Bed_Oak_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bed_Oak/T_Bed_Oak_PR_ORM.png"
+ }
+}

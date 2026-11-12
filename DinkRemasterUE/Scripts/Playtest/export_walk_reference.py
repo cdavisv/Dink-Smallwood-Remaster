@@ -2,7 +2,7 @@
 import unreal,json
 from pathlib import Path
 assert '-game' not in unreal.SystemLibrary.get_command_line().split(), 'Run only in a full editor session; never in -game'
-out=Path('/home/artist/Work/DinkQA/CharacterReference');out.mkdir(parents=True,exist_ok=True)
+out=Path(__file__).resolve().parents[2] / 'Saved/CharacterReference';out.mkdir(parents=True,exist_ok=True)
 paths=unreal.EditorAssetLibrary.list_assets('/Game/Characters/Mannequins/Anims',recursive=True,include_folder=False)
 paths=[p for p in paths if p.rsplit('/',1)[-1].split('.')[0]=='MF_Unarmed_Walk_Fwd']
 assert len(paths)==1,paths

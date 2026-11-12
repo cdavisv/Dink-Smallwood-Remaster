@@ -3,7 +3,7 @@ from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 from mathutils.geometry import barycentric_transform
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));size=4096
 pixels=np.empty(size*size*4,np.float32);bpy.data.images['T_Dink_WardrobeV3_BC'].pixels.foreach_get(pixels);colors=pixels.reshape(size,size,4)[4::8,4::8,:3].copy();del pixels
 rows=[]

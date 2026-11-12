@@ -1,0 +1,2402 @@
+[
+ {
+  "name": "SM_Barrel_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Barrel_Oak_PR.fbx",
+  "materials": [
+   "MI_Barrel_Oak"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3208,
+  "lod1_triangles": 1604,
+  "lod2_triangles": 704,
+  "dimensions_m": [
+   0.837,
+   0.838,
+   1.003
+  ],
+  "bounds_min_m": [
+   -0.417,
+   -0.417,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.42,
+   0.42,
+   1.003
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "173 bonuses/barrels/barel- frame 1",
+   "barrel"
+  ],
+  "supersedes": "Stonebrook/SM_Barrel_Oak_01 (0.84 x 0.84 x 1.01 m, base_center) and the family binding of class barrel (97 placements)",
+  "dresses": "coopered oak barrel, 0.84 m at the bilge, 1.0 m: twenty separate staves with their own thickness, four driven hoops each with a riveted lap, four-board heads set in the croze, a bung",
+  "fit": {
+   "pivot": "base centre",
+   "size": "same height and bilge as SM_Barrel_Oak_01",
+   "states": "the broken frames 2-6 (the barrel being smashed) are not built: keep the existing break effect"
+  },
+  "baked": {
+   "texture_folder": "Barrel_Oak",
+   "textures": {
+    "BC": "T_Barrel_Oak_PR_BC.png",
+    "N": "T_Barrel_Oak_PR_N.png",
+    "ORM": "T_Barrel_Oak_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Barrel_Oak",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 46.3,
+     "p99": 107.2
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.543,
+     "p95": 0.797
+    },
+    "metallic_mean": 0.02
+   },
+   "hi_triangles": 8672,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Barrel_Oak_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Crate_Large_PR",
+  "class": "prop",
+  "fbx": "SM_Crate_Large_PR.fbx",
+  "materials": [
+   "MI_Crate_Large"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 312,
+  "lod1_triangles": 244,
+  "lod2_triangles": 108,
+  "dimensions_m": [
+   0.983,
+   0.675,
+   0.577
+  ],
+  "bounds_min_m": [
+   -0.491,
+   -0.337,
+   -0.001
+  ],
+  "bounds_max_m": [
+   0.492,
+   0.338,
+   0.575
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "443 items/boxes/boxb1-",
+   "crate",
+   "crate_stack"
+  ],
+  "supersedes": "none (class was placeholder, 21 placements)",
+  "dresses": "slatted packing crate 0.90 x 0.62 x 0.55 m: corner posts, three slats a side with open gaps onto a dark interior, four lid boards under two nailed battens, forged nail heads",
+  "fit": {
+   "pivot": "base centre",
+   "stack": "class crate_stack (11 placements) is one large crate with a small one on top, turned about 20 degrees"
+  },
+  "baked": {
+   "texture_folder": "Crate_Large",
+   "textures": {
+    "BC": "T_Crate_Large_PR_BC.png",
+    "N": "T_Crate_Large_PR_N.png",
+    "ORM": "T_Crate_Large_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Crate_Large",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 58.7,
+     "p99": 132.0
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.558,
+     "p95": 0.807
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 4536,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Crate_Large_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Crate_Small_PR",
+  "class": "prop",
+  "fbx": "SM_Crate_Small_PR.fbx",
+  "materials": [
+   "MI_Crate_Small"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 300,
+  "lod1_triangles": 238,
+  "lod2_triangles": 90,
+  "dimensions_m": [
+   0.756,
+   0.555,
+   0.467
+  ],
+  "bounds_min_m": [
+   -0.381,
+   -0.277,
+   -0.001
+  ],
+  "bounds_max_m": [
+   0.375,
+   0.278,
+   0.466
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "444 items/boxes/boxb3-",
+   "crate_small"
+  ],
+  "supersedes": "none (class was placeholder, 13 placements)",
+  "dresses": "slatted packing crate 0.68 x 0.50 x 0.44 m: corner posts, three slats a side with open gaps onto a dark interior, four lid boards under two nailed battens, forged nail heads",
+  "fit": {
+   "pivot": "base centre",
+   "stack": "class crate_stack (11 placements) is one large crate with a small one on top, turned about 20 degrees"
+  },
+  "baked": {
+   "texture_folder": "Crate_Small",
+   "textures": {
+    "BC": "T_Crate_Small_PR_BC.png",
+    "N": "T_Crate_Small_PR_N.png",
+    "ORM": "T_Crate_Small_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Crate_Small",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 51.2,
+     "p99": 131.8
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.496,
+     "p95": 0.807
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 4356,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Crate_Small_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Jar_Storage_PR",
+  "class": "prop",
+  "fbx": "SM_Jar_Storage_PR.fbx",
+  "materials": [
+   "MI_Jar_Storage"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1344,
+  "lod1_triangles": 672,
+  "lod2_triangles": 294,
+  "dimensions_m": [
+   0.499,
+   0.491,
+   0.742
+  ],
+  "bounds_min_m": [
+   -0.247,
+   -0.245,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.251,
+   0.245,
+   0.742
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "448 items/cup/cup- frames 5, 9, 12",
+   "jar_vase"
+  ],
+  "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+  "dresses": "wheel-thrown storage jar, 0.51 x 0.74 m, rolled rim, brown glaze; thrown out of true, hollow to a real inner wall, glaze worn at rim and belly, unglazed foot",
+  "fit": {
+   "pivot": "base centre",
+   "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+   "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+  },
+  "baked": {
+   "texture_folder": "Jar_Storage",
+   "textures": {
+    "BC": "T_Jar_Storage_PR_BC.png",
+    "N": "T_Jar_Storage_PR_N.png",
+    "ORM": "T_Jar_Storage_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Jar_Storage",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 79.9,
+     "p99": 114.1
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.211,
+     "p95": 0.863
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 23808,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Jar_Storage_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Jar_Jug_PR",
+  "class": "prop",
+  "fbx": "SM_Jar_Jug_PR.fbx",
+  "materials": [
+   "MI_Jar_Jug"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1584,
+  "lod1_triangles": 792,
+  "lod2_triangles": 348,
+  "dimensions_m": [
+   0.53,
+   0.441,
+   0.584
+  ],
+  "bounds_min_m": [
+   -0.263,
+   -0.22,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.267,
+   0.22,
+   0.584
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "448 items/cup/cup- frames 6, 8, 16",
+   "jar_vase"
+  ],
+  "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+  "dresses": "two-handled crock, 0.55 x 0.58 m, blue-grey glaze; thrown out of true, hollow to a real inner wall, glaze worn at rim and belly, unglazed foot",
+  "fit": {
+   "pivot": "base centre",
+   "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+   "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+  },
+  "baked": {
+   "texture_folder": "Jar_Jug",
+   "textures": {
+    "BC": "T_Jar_Jug_PR_BC.png",
+    "N": "T_Jar_Jug_PR_N.png",
+    "ORM": "T_Jar_Jug_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Jar_Jug",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 52.7,
+     "p99": 135.3
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.076,
+     "p95": 0.175
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 23032,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Jar_Jug_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Jar_Vase_PR",
+  "class": "prop",
+  "fbx": "SM_Jar_Vase_PR.fbx",
+  "materials": [
+   "MI_Jar_Vase"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 924,
+  "lod1_triangles": 462,
+  "lod2_triangles": 202,
+  "dimensions_m": [
+   0.24,
+   0.242,
+   0.688
+  ],
+  "bounds_min_m": [
+   -0.119,
+   -0.121,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.121,
+   0.121,
+   0.688
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "448 items/cup/cup- frames 4, 7, 10, 11, 13-15, 17, 18",
+   "jar_vase"
+  ],
+  "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+  "dresses": "narrow-necked bottle vase, 0.25 x 0.68 m, ox-red glaze; thrown out of true, hollow to a real inner wall, glaze worn at rim and belly, unglazed foot",
+  "fit": {
+   "pivot": "base centre",
+   "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+   "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+  },
+  "baked": {
+   "texture_folder": "Jar_Vase",
+   "textures": {
+    "BC": "T_Jar_Vase_PR_BC.png",
+    "N": "T_Jar_Vase_PR_N.png",
+    "ORM": "T_Jar_Vase_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Jar_Vase",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 35.8,
+     "p99": 103.1
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.098,
+     "p95": 0.839
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 17440,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Jar_Vase_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Jar_Bowl_PR",
+  "class": "prop_small",
+  "fbx": "SM_Jar_Bowl_PR.fbx",
+  "materials": [
+   "MI_Jar_Bowl"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 728,
+  "lod1_triangles": 364,
+  "lod2_triangles": 160,
+  "dimensions_m": [
+   0.419,
+   0.419,
+   0.168
+  ],
+  "bounds_min_m": [
+   -0.208,
+   -0.209,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.211,
+   0.209,
+   0.168
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "448 items/cup/cup- frames 1-3",
+   "bowl"
+  ],
+  "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+  "dresses": "footed dish, 0.42 x 0.17 m; thrown out of true, hollow to a real inner wall, glaze worn at rim and belly, unglazed foot",
+  "fit": {
+   "pivot": "base centre",
+   "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+   "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+  },
+  "baked": {
+   "texture_folder": "Jar_Bowl",
+   "textures": {
+    "BC": "T_Jar_Bowl_PR_BC.png",
+    "N": "T_Jar_Bowl_PR_N.png",
+    "ORM": "T_Jar_Bowl_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Jar_Bowl",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 50.1,
+     "p99": 167.4
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.11,
+     "p95": 0.852
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 13320,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Jar_Bowl_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Sack_Grain_PR",
+  "class": "prop",
+  "fbx": "SM_Sack_Grain_PR.fbx",
+  "materials": [
+   "MI_Sack_Grain"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 950,
+  "lod1_triangles": 950,
+  "lod2_triangles": 410,
+  "dimensions_m": [
+   0.984,
+   0.692,
+   0.265
+  ],
+  "bounds_min_m": [
+   -0.47,
+   -0.347,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.514,
+   0.345,
+   0.265
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "463 items/grain/bag-",
+   "grain_sack"
+  ],
+  "supersedes": "none (grain_sack placeholder, 19 placements)",
+  "dresses": "full grain sack lying on its side, 0.95 x 0.64 x 0.3 m: slumped flat underneath, sewn mouth with nine twine stitches and a loose tail, gusset corners",
+  "fit": {
+   "pivot": "base centre; mouth to +X",
+   "colours": "frames are tan, olive and madder red: MI_Prop_Hessian, MI_Prop_Hessian_Olive, MI_Prop_Hessian_Red"
+  },
+  "baked": {
+   "texture_folder": "Sack_Grain",
+   "textures": {
+    "BC": "T_Sack_Grain_PR_BC.png",
+    "N": "T_Sack_Grain_PR_N.png",
+    "ORM": "T_Sack_Grain_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Sack_Grain",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 53.1,
+     "p99": 103.1
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.542,
+     "p95": 0.869
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 10726,
+   "third_party": [
+    "hessian_230"
+   ],
+   "source_blend": "_build/bake/SM_Sack_Grain_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_FeedSack_Jute_PR",
+  "class": "prop",
+  "fbx": "SM_FeedSack_Jute_PR.fbx",
+  "materials": [
+   "MI_FeedSack_Jute"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1272,
+  "lod1_triangles": 636,
+  "lod2_triangles": 278,
+  "dimensions_m": [
+   0.734,
+   0.542,
+   0.821
+  ],
+  "bounds_min_m": [
+   -0.364,
+   -0.275,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.369,
+   0.267,
+   0.821
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "opening cottage (screen 1) feed sacks"
+  ],
+  "supersedes": "Stonebrook/SM_FeedSack_Jute_01 (0.72 x 0.55 x 0.75 m, base_center)",
+  "dresses": "feed sack stood on end, 0.72 x 0.56 x 0.75 m: weight settled to the bottom, neck gathered in folds and whipped with twine, a flared ruff above the tie",
+  "fit": {
+   "pivot": "base centre",
+   "size": "as SM_FeedSack_Jute_01"
+  },
+  "baked": {
+   "texture_folder": "FeedSack_Jute",
+   "textures": {
+    "BC": "T_FeedSack_Jute_PR_BC.png",
+    "N": "T_FeedSack_Jute_PR_N.png",
+    "ORM": "T_FeedSack_Jute_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_FeedSack_Jute",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 54.5,
+     "p99": 123.5
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.573,
+     "p95": 0.87
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 14906,
+   "third_party": [
+    "hessian_230"
+   ],
+   "source_blend": "_build/bake/SM_FeedSack_Jute_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Table_Oak_Long_PR",
+  "class": "prop",
+  "fbx": "SM_Table_Oak_Long_PR.fbx",
+  "materials": [
+   "MI_Table_Oak_Long"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 252,
+  "lod1_triangles": 142,
+  "lod2_triangles": 62,
+  "dimensions_m": [
+   2.66,
+   1.499,
+   0.91
+  ],
+  "bounds_min_m": [
+   -1.327,
+   -0.748,
+   -0.002
+  ],
+  "bounds_max_m": [
+   1.333,
+   0.752,
+   0.908
+  ],
+  "open_edges": 0,
+  "collision_hulls": 5,
+  "families": [
+   "87 inside/details/table- frames 3, 5",
+   "table_long"
+  ],
+  "supersedes": "Stonebrook/SM_Table_Oak_01 (2.65 x 1.50 x 0.906 m, base_center) and the family binding of table_long (7 placements)",
+  "dresses": "oak table 2.65 x 1.5 x 0.905 m: six-board top with uneven ends, square tapered legs, rails pegged into the legs, foot rails and a long stretcher",
+  "fit": {
+   "pivot": "base centre",
+   "size": "as SM_Table_Oak_01"
+  },
+  "baked": {
+   "texture_folder": "Table_Oak_Long",
+   "textures": {
+    "BC": "T_Table_Oak_Long_PR_BC.png",
+    "N": "T_Table_Oak_Long_PR_N.png",
+    "ORM": "T_Table_Oak_Long_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Table_Oak_Long",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 51.5,
+     "p99": 105.1
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.504,
+     "p95": 0.713
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 2132,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Table_Oak_Long_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Table_Oak_Round_PR",
+  "class": "prop",
+  "fbx": "SM_Table_Oak_Round_PR.fbx",
+  "materials": [
+   "MI_Table_Oak_Round"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 684,
+  "lod1_triangles": 342,
+  "lod2_triangles": 174,
+  "dimensions_m": [
+   1.566,
+   1.583,
+   0.808
+  ],
+  "bounds_min_m": [
+   -0.783,
+   -0.791,
+   -0.002
+  ],
+  "bounds_max_m": [
+   0.783,
+   0.792,
+   0.806
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "87 inside/details/table- frame 9",
+   "table_round"
+  ],
+  "supersedes": "none (table_round placeholder, 9 placements)",
+  "dresses": "round oak table, 1.6 m across, 0.8 m: seven boards cut to the round on two battens, four tapered legs, crossed stretchers",
+  "fit": {
+   "pivot": "base centre",
+   "sprite_scale": "frame 9 is 65 px (1.6 m) wide"
+  },
+  "baked": {
+   "texture_folder": "Table_Oak_Round",
+   "textures": {
+    "BC": "T_Table_Oak_Round_PR_BC.png",
+    "N": "T_Table_Oak_Round_PR_N.png",
+    "ORM": "T_Table_Oak_Round_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Table_Oak_Round",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 52.0,
+     "p99": 110.4
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.525,
+     "p95": 0.714
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 2092,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Table_Oak_Round_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Chair_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Chair_Oak_PR.fbx",
+  "materials": [
+   "MI_Chair_Oak"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 328,
+  "lod1_triangles": 188,
+  "lod2_triangles": 80,
+  "dimensions_m": [
+   0.515,
+   0.548,
+   0.995
+  ],
+  "bounds_min_m": [
+   -0.257,
+   -0.241,
+   -0.001
+  ],
+  "bounds_max_m": [
+   0.258,
+   0.307,
+   0.993
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "chair (19 placements)",
+   "opening cottage chairs"
+  ],
+  "supersedes": "Stonebrook/SM_Chair_Oak_01 (0.65 x 0.54 x 1.005 m, base_center) and the family binding of chair",
+  "dresses": "joined oak side chair, 0.52 x 0.56 x 1.0 m: raked back legs with a kicked foot, three-board seat, seat rails and stretchers, crest rail and slat, pegged",
+  "fit": {
+   "pivot": "base centre; the sitter faces -Y",
+   "size": "seat 0.46 m high; 0.13 m narrower than SM_Chair_Oak_01, same height"
+  },
+  "baked": {
+   "texture_folder": "Chair_Oak",
+   "textures": {
+    "BC": "T_Chair_Oak_PR_BC.png",
+    "N": "T_Chair_Oak_PR_N.png",
+    "ORM": "T_Chair_Oak_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Chair_Oak",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 57.3,
+     "p99": 109.0
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.57,
+     "p95": 0.716
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 1112,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Chair_Oak_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Bench_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Bench_Oak_PR.fbx",
+  "materials": [
+   "MI_Bench_Oak"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 160,
+  "lod1_triangles": 104,
+  "lod2_triangles": 50,
+  "dimensions_m": [
+   2.303,
+   0.302,
+   0.462
+  ],
+  "bounds_min_m": [
+   -1.152,
+   -0.151,
+   -0.001
+  ],
+  "bounds_max_m": [
+   1.151,
+   0.151,
+   0.461
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "87 inside/details/table- frames 2, 4, 6",
+   "bench_long",
+   "bench_short"
+  ],
+  "supersedes": "none (bench_long 6, bench_short 8 placements)",
+  "dresses": "plank bench 2.3 x 0.3 x 0.45 m: one thick board on two slab ends with boot notches, through tenons showing in the seat, a stretcher",
+  "fit": {
+   "pivot": "base centre, along X",
+   "short": "bench_short (76 px) is the same bench scaled 0.8 in X, or build bench(L=1.9)"
+  },
+  "baked": {
+   "texture_folder": "Bench_Oak",
+   "textures": {
+    "BC": "T_Bench_Oak_PR_BC.png",
+    "N": "T_Bench_Oak_PR_N.png",
+    "ORM": "T_Bench_Oak_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Bench_Oak",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 43.3,
+     "p99": 106.7
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.395,
+     "p95": 0.711
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 400,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Bench_Oak_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Stool_Oak_PR",
+  "class": "prop_small",
+  "fbx": "SM_Stool_Oak_PR.fbx",
+  "materials": [
+   "MI_Stool_Oak"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 408,
+  "lod1_triangles": 204,
+  "lod2_triangles": 88,
+  "dimensions_m": [
+   0.356,
+   0.355,
+   0.452
+  ],
+  "bounds_min_m": [
+   -0.17,
+   -0.192,
+   -0.002
+  ],
+  "bounds_max_m": [
+   0.186,
+   0.163,
+   0.45
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "stool (10 placements)"
+  ],
+  "supersedes": "none",
+  "dresses": "three-legged turned stool, 0.36 m seat, 0.45 m",
+  "fit": {
+   "pivot": "base centre"
+  },
+  "baked": {
+   "texture_folder": "Stool_Oak",
+   "textures": {
+    "BC": "T_Stool_Oak_PR_BC.png",
+    "N": "T_Stool_Oak_PR_N.png",
+    "ORM": "T_Stool_Oak_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Stool_Oak",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 51.0,
+     "p99": 100.3
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.494,
+     "p95": 0.716
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 3236,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Stool_Oak_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Bed_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Bed_Oak_PR.fbx",
+  "materials": [
+   "MI_Bed_Oak"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3288,
+  "lod1_triangles": 1868,
+  "lod2_triangles": 858,
+  "dimensions_m": [
+   2.5,
+   1.453,
+   1.148
+  ],
+  "bounds_min_m": [
+   -1.25,
+   -0.708,
+   -0.002
+  ],
+  "bounds_max_m": [
+   1.25,
+   0.744,
+   1.146
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "64 inside/details/inacc- frame 3",
+   "bed"
+  ],
+  "supersedes": "Stonebrook/SM_Bed_Oak_01 (2.51 x 1.37 x 1.12 m, base_center) and the family binding of bed (16 placements)",
+  "dresses": "oak bed 2.5 x 1.36 x 1.15 m as sprite 64 frame 3: four capped posts, plank head and foot boards, pegged side rails, a sagging straw mattress in linen ticking, a quilted yellow-green blanket hanging over the sides and turned back in a madder roll, one dented pillow",
+  "fit": {
+   "pivot": "base centre; head to -X",
+   "size": "as SM_Bed_Oak_01"
+  },
+  "baked": {
+   "texture_folder": "Bed_Oak",
+   "textures": {
+    "BC": "T_Bed_Oak_PR_BC.png",
+    "N": "T_Bed_Oak_PR_N.png",
+    "ORM": "T_Bed_Oak_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Bed_Oak",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 67.7,
+     "p99": 151.5
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.66,
+     "p95": 0.857
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 52200,
+   "third_party": [
+    "rough_wood",
+    "rough_linen",
+    "caban"
+   ],
+   "source_blend": "_build/bake/SM_Bed_Oak_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Chest_Small_PR",
+  "class": "prop",
+  "fbx": "SM_Chest_Small_PR.fbx",
+  "materials": [
+   "MI_Chest_Small"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1448,
+  "lod1_triangles": 812,
+  "lod2_triangles": 438,
+  "dimensions_m": [
+   0.94,
+   0.528,
+   0.528
+  ],
+  "bounds_min_m": [
+   -0.47,
+   -0.264,
+   -0.0
+  ],
+  "bounds_max_m": [
+   0.47,
+   0.264,
+   0.528
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "175 bonuses/chest/chst1- frame 1",
+   "chest_small",
+   "chest_medium",
+   "chest_large"
+  ],
+  "supersedes": "none (chest_small placeholder, 14 placements)",
+  "dresses": "iron-bound chest 0.85 x 0.5 x 0.57 m, closed: red-stained plank carcase, coopered barrel lid of seven staves, three grey iron straps nailed over lid and body, corner irons, lock plate with hasp, drop handles",
+  "fit": {
+   "pivot": "base centre; lock faces -Y",
+   "states": "closed only: the opening frames 2-6 need the lid as a separate hinged mesh (not built)"
+  },
+  "baked": {
+   "texture_folder": "Chest_Small",
+   "textures": {
+    "BC": "T_Chest_Small_PR_BC.png",
+    "N": "T_Chest_Small_PR_N.png",
+    "ORM": "T_Chest_Small_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Chest_Small",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 48.5,
+     "p99": 128.0
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.565,
+     "p95": 0.855
+    },
+    "metallic_mean": 0.079
+   },
+   "hi_triangles": 10876,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Chest_Small_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  }
+ },
+ {
+  "name": "SM_Gravestone_Round_PR",
+  "class": "prop",
+  "fbx": "SM_Gravestone_Round_PR.fbx",
+  "materials": [
+   "MI_Struct_FieldBoulder",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 2448,
+  "lod1_triangles": 1224,
+  "lod2_triangles": 538,
+  "dimensions_m": [
+   1.085,
+   1.973,
+   1.413
+  ],
+  "bounds_min_m": [
+   -0.486,
+   -1.73,
+   -0.365
+  ],
+  "bounds_max_m": [
+   0.6,
+   0.243,
+   1.049
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "446 items/tomb/tomb- frame 1",
+   "gravestone"
+  ],
+  "supersedes": "none (gravestone placeholder, 14 placements)",
+  "dresses": "round-headed headstone 0.8 x 1.05 m, leaning, a cross in worn relief; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+  "fit": {
+   "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+  }
+ },
+ {
+  "name": "SM_Gravestone_Pointed_PR",
+  "class": "prop",
+  "fbx": "SM_Gravestone_Pointed_PR.fbx",
+  "materials": [
+   "MI_Struct_FieldBoulder",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 2448,
+  "lod1_triangles": 1224,
+  "lod2_triangles": 538,
+  "dimensions_m": [
+   1.082,
+   1.935,
+   1.568
+  ],
+  "bounds_min_m": [
+   -0.54,
+   -1.676,
+   -0.368
+  ],
+  "bounds_max_m": [
+   0.542,
+   0.259,
+   1.2
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "446 items/tomb/tomb- frame 3",
+   "gravestone"
+  ],
+  "supersedes": "none (gravestone placeholder, 14 placements)",
+  "dresses": "shouldered pointed headstone 0.66 x 1.2 m; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+  "fit": {
+   "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+  }
+ },
+ {
+  "name": "SM_Gravestone_Broken_PR",
+  "class": "prop",
+  "fbx": "SM_Gravestone_Broken_PR.fbx",
+  "materials": [
+   "MI_Struct_FieldBoulder",
+   "MI_Prop_OakWarm",
+   "MI_Struct_Earth",
+   "MI_Prop_Bone"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 4376,
+  "lod1_triangles": 2188,
+  "lod2_triangles": 962,
+  "dimensions_m": [
+   1.141,
+   1.981,
+   1.179
+  ],
+  "bounds_min_m": [
+   -0.544,
+   -1.704,
+   -0.385
+  ],
+  "bounds_max_m": [
+   0.597,
+   0.277,
+   0.794
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "446 items/tomb/tomb- frame 2",
+   "gravestone"
+  ],
+  "supersedes": "none (gravestone placeholder, 14 placements)",
+  "dresses": "headstone snapped across on a slant, its head lying face down on the grave, and a skull worked up out of the mound beside it; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+  "fit": {
+   "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+  }
+ },
+ {
+  "name": "SM_Skull_PR",
+  "class": "prop_small",
+  "fbx": "SM_Skull_PR.fbx",
+  "materials": [
+   "MI_Prop_Bone",
+   "MI_Prop_OakWarm"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1712,
+  "lod1_triangles": 856,
+  "lod2_triangles": 376,
+  "dimensions_m": [
+   0.172,
+   0.23,
+   0.202
+  ],
+  "bounds_min_m": [
+   -0.086,
+   -0.101,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.086,
+   0.129,
+   0.202
+  ],
+  "open_edges": 0,
+  "collision_hulls": 0,
+  "families": [
+   "90 lands/details/grave- (skull frames)",
+   "skull"
+  ],
+  "supersedes": "none (skull placeholder, 13 placements)",
+  "dresses": "human skull without the jaw, 0.17 x 0.22 x 0.2 m: cranium, brow ridge, cheek bones, eye sockets and nose as dark hollows, eight upper teeth; earth-stained, lichened",
+  "fit": {
+   "pivot": "base centre (resting on the palate), faces -Y; tip it on its side for variety"
+  }
+ },
+ {
+  "name": "SM_Bones_Scatter_PR",
+  "class": "prop",
+  "fbx": "SM_Bones_Scatter_PR.fbx",
+  "materials": [
+   "MI_Prop_Bone",
+   "MI_Prop_OakWarm"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3312,
+  "lod1_triangles": 1656,
+  "lod2_triangles": 728,
+  "dimensions_m": [
+   0.785,
+   0.685,
+   0.186
+  ],
+  "bounds_min_m": [
+   -0.422,
+   -0.372,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.363,
+   0.313,
+   0.186
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "90 lands/details/grave- (bones frames)",
+   "bones"
+  ],
+  "supersedes": "none (bones placeholder, 46 placements)",
+  "dresses": "scatter of human remains, 0.8 x 0.7 m: a skull on its side, four long bones with knuckled ends, five ribs (one snapped)",
+  "fit": {
+   "pivot": "ground centre; yaw at random",
+   "gore": "kept as the sprite has it: these lie about the graveyards and dungeons"
+  }
+ },
+ {
+  "name": "SM_Candle_Iron_PR",
+  "class": "prop_small",
+  "fbx": "SM_Candle_Iron_PR.fbx",
+  "materials": [
+   "MI_Prop_Candle_Holder_01",
+   "MI_Prop_Candle_Holder_01_Wax"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1512,
+  "lod1_triangles": 756,
+  "lod2_triangles": 332,
+  "dimensions_m": [
+   0.201,
+   0.198,
+   0.45
+  ],
+  "bounds_min_m": [
+   -0.101,
+   -0.1,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.1,
+   0.098,
+   0.45
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "opening cottage candles",
+   "candle"
+  ],
+  "supersedes": "Stonebrook/SM_Candle_Iron_01 (0.2 x 0.2 x 0.45 m, base_center)",
+  "dresses": "tallow candle on a forged iron pricket stick, 0.2 x 0.45 m: dished foot, knopped stem, drip pan with a puddle of wax, the candle guttered down one side with four runs of wax, a charred wick",
+  "fit": {
+   "pivot": "base centre",
+   "size": "as SM_Candle_Iron_01"
+  },
+  "emissive": {
+   "type": "flame (no flame mesh in the FBX: add the engine flame card or particle)",
+   "position_m": [
+    0.003,
+    0.0,
+    0.455
+   ],
+   "colour_temperature_K": 1850,
+   "attenuation_radius_m": 3.5,
+   "intensity_cd": 1.0,
+   "note": "point light 2 cm above the wick, soft source radius 1 cm, slow flicker 5-10 percent; the wax within 3 cm of the flame should glow (subsurface or a small emissive mask) and is not authored"
+  },
+  "baked": {
+   "texture_folder": "Prop_Candle_Holder_01",
+   "textures": {
+    "BC": "T_Prop_Candle_Holder_01_BC.png",
+    "N": "T_Prop_Candle_Holder_01_N.png",
+    "ORM": "T_Prop_Candle_Holder_01_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Prop_Candle_Holder_01",
+     "kind": "opaque"
+    },
+    {
+     "material": "MI_Prop_Candle_Holder_01_Wax",
+     "kind": "subsurface"
+    }
+   ],
+   "emissive_nits": null,
+   "params": {
+    "sss_radius": [
+     0.012,
+     0.007,
+     0.004
+    ]
+   },
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 94.2,
+     "p99": 207.5
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.503,
+     "p95": 0.709
+    },
+    "metallic_mean": 0.632
+   },
+   "hi_triangles": 12396,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Prop_Candle_Holder_01.blend"
+  }
+ },
+ {
+  "name": "SM_Fireplace_Fieldstone_PR",
+  "class": "prop_large",
+  "fbx": "SM_Fireplace_Fieldstone_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Prop_OakWarm",
+   "MI_Struct_FieldBoulder",
+   "MI_Prop_Iron"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3216,
+  "lod1_triangles": 1608,
+  "lod2_triangles": 706,
+  "dimensions_m": [
+   3.998,
+   1.575,
+   4.149
+  ],
+  "bounds_min_m": [
+   -1.997,
+   -0.772,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.001,
+   0.802,
+   4.149
+  ],
+  "open_edges": 0,
+  "collision_hulls": 6,
+  "families": [
+   "opening cottage (screen 1) fireplace",
+   "64 inside/details/inacc- frame 5 (fireplace_brick)"
+  ],
+  "supersedes": "Stonebrook/SM_Fireplace_Fieldstone_01 (4.02 x 1.54 x 4.145 m, base_center) and its FiredClay / V2 refinements",
+  "dresses": "fieldstone cottage hearth, 4.0 x 1.54 x 4.14 m: rubble jambs with dressed stones up the opening and corners, an oak bressummer and mantel shelf over a 1.6 x 1.5 m opening, a smoke-blackened fireback and breast, a stack in a second stage with weathered shoulders, a flagged hearth, two iron fire dogs carrying three logs burnt through in the middle on a bed of ash, a swinging crane with a pot hook",
+  "fit": {
+   "pivot": "base centre of the 4.0 x 1.54 m footprint; opening faces -Y, the back (+Y) stands against the wall",
+   "size": "as SM_Fireplace_Fieldstone_01"
+  },
+  "emissive": {
+   "type": "hearth fire (no flame mesh in the FBX: use the engine fire, sprite seq hearth_fire, on the logs)",
+   "position_m": [
+    0.0,
+    0.2,
+    0.42
+   ],
+   "colour_temperature_K": 1900,
+   "attenuation_radius_m": 7.0,
+   "intensity_cd": 60.0,
+   "note": "point light among the logs with a 15 cm soft source radius, flicker 10-20 percent at 4-9 Hz; a second dim red light (1200 K, 2 m radius) on the ash bed sells the embers; the logs carry no emissive ember mask"
+  }
+ },
+ {
+  "name": "SM_Basket_Wicker_PR",
+  "class": "prop",
+  "fbx": "SM_Basket_Wicker_PR.fbx",
+  "materials": [
+   "MI_Prop_Wicker"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 4880,
+  "lod1_triangles": 2440,
+  "lod2_triangles": 1072,
+  "dimensions_m": [
+   1.032,
+   0.83,
+   0.683
+  ],
+  "bounds_min_m": [
+   -0.515,
+   -0.414,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.517,
+   0.417,
+   0.683
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "opening cottage basket",
+   "basket_wicker"
+  ],
+  "supersedes": "Stonebrook/SM_Basket_Wicker_01 (1.14 x 0.94 x 0.67 m, base_center)",
+  "dresses": "oval willow basket 1.0 x 0.8 x 0.7 m with a bow handle: the stake-and-strand weave is modelled in the wall (22 rows over 22 stakes), waled foot, twisted border",
+  "fit": {
+   "pivot": "base centre",
+   "size": "0.14 m smaller in plan than SM_Basket_Wicker_01, same height over the handle; empty"
+  }
+ },
+ {
+  "name": "SM_Pie_Rustic_PR",
+  "class": "prop_small",
+  "fbx": "SM_Pie_Rustic_PR.fbx",
+  "materials": [
+   "MI_Prop_Glaze_Brown",
+   "MI_Prop_PieCrust"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 4912,
+  "lod1_triangles": 2456,
+  "lod2_triangles": 1080,
+  "dimensions_m": [
+   0.502,
+   0.502,
+   0.124
+  ],
+  "bounds_min_m": [
+   -0.251,
+   -0.251,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.251,
+   0.251,
+   0.124
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "opening cottage pie",
+   "421 items/food/food- (food_pie)"
+  ],
+  "supersedes": "Stonebrook/SM_Pie_Rustic_01 (0.49 x 0.49 x 0.12 m, base_center)",
+  "dresses": "raised pie in a brown earthenware dish, 0.49 m across: blistered domed crust with a thumb-crimped edge, whole",
+  "fit": {
+   "pivot": "base centre",
+   "size": "as SM_Pie_Rustic_01"
+  }
+ },
+ {
+  "name": "SM_Potion_Flask_PR",
+  "class": "prop_small",
+  "fbx": "SM_Potion_Flask_PR.fbx",
+  "materials": [
+   "MI_Prop_PotionGlass_Red"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 872,
+  "lod1_triangles": 436,
+  "lod2_triangles": 190,
+  "dimensions_m": [
+   0.159,
+   0.161,
+   0.36
+  ],
+  "bounds_min_m": [
+   -0.079,
+   -0.08,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.08,
+   0.081,
+   0.36
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "56 bonuses/bottles/botl-r",
+   "potion_red",
+   "potion_purple",
+   "potion_blue"
+  ],
+  "supersedes": "none (potion pickups placeholder: red 15, purple 11, blue 9 placements)",
+  "dresses": "round-bellied glass flask with a long neck, a cork and a twine tie, 0.16 x 0.36 m",
+  "fit": {
+   "pivot": "base centre",
+   "colours": "MI_Prop_PotionGlass_Red / _Purple / _Blue (the opaque dark-glass switch of the kit material, tinted): swap per pickup",
+   "scale": "the pickup sprite is 19 x 52 px, drawn large for visibility: scale the mesh 1.5-2x as a pickup"
+  },
+  "emissive": {
+   "type": "optional pickup glow",
+   "position_m": [
+    0,
+    0,
+    0.07
+   ],
+   "colour_temperature_K": null,
+   "colour_linear": [
+    1.0,
+    0.08,
+    0.05
+   ],
+   "attenuation_radius_m": 0.8,
+   "intensity_cd": 0.3,
+   "note": "only if pickups are meant to glow; the glass is opaque in this material"
+  }
+ },
+ {
+  "name": "SM_Counter_Oak_PR",
+  "class": "prop_large",
+  "fbx": "SM_Counter_Oak_PR.fbx",
+  "materials": [
+   "MI_Prop_OakWarm"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3124,
+  "lod1_triangles": 1562,
+  "lod2_triangles": 686,
+  "dimensions_m": [
+   3.912,
+   0.855,
+   1.007
+  ],
+  "bounds_min_m": [
+   -1.957,
+   -0.451,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.956,
+   0.403,
+   1.007
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "64 inside/details/inacc- frame 2",
+   "counter_wood"
+  ],
+  "supersedes": "none (counter_wood placeholder, 22 placements)",
+  "dresses": "shop counter 3.9 x 0.85 x 1.0 m: three-board top 6 cm thick on five front posts, boarded back and ends, a low shelf, open in front",
+  "fit": {
+   "pivot": "base centre; the open (shopkeeper) side faces -Y as the sprite shows it",
+   "sprite_scale": "frame 2 is 156 px (3.9 m) wide"
+  }
+ },
+ {
+  "name": "SM_Prop_Torch_Wall_01",
+  "class": "prop",
+  "fbx": "SM_Prop_Torch_Wall_01.fbx",
+  "materials": [
+   "MI_Prop_Torch_Wall_01"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 2548,
+  "lod1_triangles": 1274,
+  "lod2_triangles": 568,
+  "dimensions_m": [
+   0.157,
+   0.359,
+   0.952
+  ],
+  "bounds_min_m": [
+   -0.077,
+   -0.359,
+   -0.0
+  ],
+  "bounds_max_m": [
+   0.08,
+   0.0,
+   0.951
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "wall torch / sconce (integrator light sources with no visible source)",
+   "island_torch (the wall-mounted uses)"
+  ],
+  "supersedes": "none (new; asked for by the Unreal integrator)",
+  "dresses": "wall torch, 0.15 x 0.33 x 0.95 m: forged back plate on two spikes, a sheet-iron smoke plate above it curled at the top and blackened, a square bracket arm with two rings holding a cleft stave at 19 degrees from the wall, its head a wad of rag bound in six turns of strip, black with pitch",
+  "fit": {
+   "pivot": "on the wall plane (y = 0) at the foot of the back plate, centred in x; the torch stands out to -Y; mount with the origin about 1.45 m above the floor",
+   "socket": "flame socket (mesh space, metres, Z up, before the Unreal front flip): [0.0, -0.329, 0.768], on top of the head; the flame leans 19 degrees out from the wall"
+  },
+  "emissive": {
+   "type": "flame, done in engine (no flame mesh in the FBX)",
+   "flame_socket_m": [
+    0.0,
+    -0.329,
+    0.768
+   ],
+   "position_m": [
+    0.0,
+    -0.329,
+    0.768
+   ],
+   "colour_temperature_K": 1900,
+   "attenuation_radius_m": 6.0,
+   "intensity_cd": 18.0,
+   "note": "point light 10 cm above the socket, soft radius 5 cm, flicker 10-25 percent at 3-9 Hz; the smoke plate is authored sooted so no decal is needed on it; a wall soot decal above 0.95 m is the integrator's"
+  },
+  "baked": {
+   "texture_folder": "Prop_Torch_Wall_01",
+   "textures": {
+    "BC": "T_Prop_Torch_Wall_01_BC.png",
+    "N": "T_Prop_Torch_Wall_01_N.png",
+    "ORM": "T_Prop_Torch_Wall_01_ORM.png",
+    "E": "T_Prop_Torch_Wall_01_E.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Prop_Torch_Wall_01",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": 40.0,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 20.8,
+     "p99": 78.2
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.465,
+     "p95": 0.958
+    },
+    "metallic_mean": 0.012
+   },
+   "hi_triangles": 20378,
+   "third_party": [
+    "rough_wood",
+    "hessian_230"
+   ],
+   "source_blend": "_build/bake/SM_Prop_Torch_Wall_01.blend"
+  }
+ },
+ {
+  "name": "SM_Prop_Brazier_Standing_01",
+  "class": "prop",
+  "fbx": "SM_Prop_Brazier_Standing_01.fbx",
+  "materials": [
+   "MI_Prop_Brazier_Standing_01"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 2948,
+  "lod1_triangles": 1474,
+  "lod2_triangles": 648,
+  "dimensions_m": [
+   0.722,
+   0.702,
+   0.985
+  ],
+  "bounds_min_m": [
+   -0.321,
+   -0.405,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.401,
+   0.297,
+   0.985
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "standing brazier (integrator light sources)",
+   "small_fire_fx / fire_fx hosts"
+  ],
+  "supersedes": "none (new)",
+  "dresses": "standing fire basket, 0.75 x 0.75 x 0.97 m: three square forged legs with flattened feet, twisted, gathered in a collar with a stretcher ring, a basket of ten straps on three hoops over an ash pan, heaped with thirty-odd lumps of charcoal",
+  "fit": {
+   "pivot": "base centre",
+   "socket": "flame socket: [0.0, 0.0, 0.97], on top of the coals"
+  },
+  "emissive": {
+   "type": "flame, done in engine (no flame mesh in the FBX)",
+   "flame_socket_m": [
+    0.0,
+    0.0,
+    0.97
+   ],
+   "position_m": [
+    0.0,
+    0.0,
+    0.97
+   ],
+   "colour_temperature_K": 1800,
+   "attenuation_radius_m": 7.0,
+   "intensity_cd": 45.0,
+   "note": "point light 15 cm above the socket, soft radius 12 cm, flicker 10-20 percent; add a dim red light (1200 K, 1.5 m) inside the basket for the embers; the charcoal has no ember emissive mask"
+  },
+  "baked": {
+   "texture_folder": "Prop_Brazier_Standing_01",
+   "textures": {
+    "BC": "T_Prop_Brazier_Standing_01_BC.png",
+    "N": "T_Prop_Brazier_Standing_01_N.png",
+    "ORM": "T_Prop_Brazier_Standing_01_ORM.png",
+    "E": "T_Prop_Brazier_Standing_01_E.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Prop_Brazier_Standing_01",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": 120.0,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 56.9,
+     "p99": 171.6
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.567,
+     "p95": 0.96
+    },
+    "metallic_mean": 0.132
+   },
+   "hi_triangles": 38408,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Prop_Brazier_Standing_01.blend"
+  }
+ },
+ {
+  "name": "SM_Prop_Candle_Holder_01",
+  "class": "prop_small",
+  "fbx": "SM_Prop_Candle_Holder_01.fbx",
+  "materials": [
+   "MI_Prop_Candle_Holder_01",
+   "MI_Prop_Candle_Holder_01_Wax"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1512,
+  "lod1_triangles": 756,
+  "lod2_triangles": 332,
+  "dimensions_m": [
+   0.201,
+   0.198,
+   0.45
+  ],
+  "bounds_min_m": [
+   -0.101,
+   -0.1,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.1,
+   0.098,
+   0.45
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "candle on a holder (integrator light sources)",
+   "opening cottage candles"
+  ],
+  "supersedes": "Stonebrook/SM_Candle_Iron_01 (same mesh as SM_Candle_Iron_PR under the name the integrator asked for)",
+  "dresses": "tallow candle on a forged iron pricket stick, 0.2 x 0.45 m (identical to SM_Candle_Iron_PR)",
+  "fit": {
+   "pivot": "base centre",
+   "socket": "flame socket: [0.003, 0.0, 0.452] (top of the wick)"
+  },
+  "emissive": {
+   "type": "flame, done in engine (no flame mesh in the FBX)",
+   "flame_socket_m": [
+    0.003,
+    0.0,
+    0.452
+   ],
+   "position_m": [
+    0.003,
+    0.0,
+    0.452
+   ],
+   "colour_temperature_K": 1850,
+   "attenuation_radius_m": 3.5,
+   "intensity_cd": 1.0,
+   "note": "point light 2 cm above the wick, soft radius 1 cm, slow flicker 5-10 percent"
+  },
+  "baked": {
+   "texture_folder": "Prop_Candle_Holder_01",
+   "textures": {
+    "BC": "T_Prop_Candle_Holder_01_BC.png",
+    "N": "T_Prop_Candle_Holder_01_N.png",
+    "ORM": "T_Prop_Candle_Holder_01_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Prop_Candle_Holder_01",
+     "kind": "opaque"
+    },
+    {
+     "material": "MI_Prop_Candle_Holder_01_Wax",
+     "kind": "subsurface"
+    }
+   ],
+   "emissive_nits": null,
+   "params": {
+    "sss_radius": [
+     0.012,
+     0.007,
+     0.004
+    ]
+   },
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 94.2,
+     "p99": 207.5
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.503,
+     "p95": 0.709
+    },
+    "metallic_mean": 0.632
+   },
+   "hi_triangles": 12396,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Prop_Candle_Holder_01.blend"
+  }
+ },
+ {
+  "name": "SM_Prop_Lantern_Hanging_01",
+  "class": "prop",
+  "fbx": "SM_Prop_Lantern_Hanging_01.fbx",
+  "materials": [
+   "MI_Prop_Lantern_Hanging_01",
+   "MI_Prop_Lantern_Hanging_01_Horn"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1122,
+  "lod1_triangles": 624,
+  "lod2_triangles": 286,
+  "dimensions_m": [
+   0.193,
+   0.192,
+   0.781
+  ],
+  "bounds_min_m": [
+   -0.097,
+   -0.096,
+   -0.78
+  ],
+  "bounds_max_m": [
+   0.096,
+   0.096,
+   0.001
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "hanging lantern (integrator light sources)"
+  ],
+  "supersedes": "none (new)",
+  "dresses": "hanging lantern, 0.26 x 0.26 x 0.78 m with its chain: riveted iron tray and pyramid cap, four corner bars, four horn panes each with a glazing bar, a candle stub inside, seven links of chain to a ceiling hook and plate",
+  "fit": {
+   "pivot": "the ceiling plate (top of the hook): the lantern hangs down -Z from the origin; the lantern body spans z = -0.78 to -0.39",
+   "socket": "flame socket: [0.0, 0.0, -0.665], inside the body",
+   "panes": "the panes are the opaque amber switch of MI_Prop_LanternHorn (alpha 0 = glass_tint): give that material an emissive of about 2-4 nits x amber, or swap it for a translucent horn material, so the lantern reads as lit"
+  },
+  "emissive": {
+   "type": "flame, done in engine (no flame mesh in the FBX)",
+   "flame_socket_m": [
+    0.0,
+    0.0,
+    -0.665
+   ],
+   "position_m": [
+    0.0,
+    0.0,
+    -0.665
+   ],
+   "colour_temperature_K": 2000,
+   "attenuation_radius_m": 5.0,
+   "intensity_cd": 6.0,
+   "note": "point light at the socket with shadow casting OFF for the lantern mesh itself (the panes are opaque), soft radius 4 cm, flicker 3-8 percent"
+  },
+  "baked": {
+   "texture_folder": "Prop_Lantern_Hanging_01",
+   "textures": {
+    "BC": "T_Prop_Lantern_Hanging_01_BC.png",
+    "N": "T_Prop_Lantern_Hanging_01_N.png",
+    "ORM": "T_Prop_Lantern_Hanging_01_ORM.png",
+    "E": "T_Prop_Lantern_Hanging_01_E.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Prop_Lantern_Hanging_01",
+     "kind": "opaque"
+    },
+    {
+     "material": "MI_Prop_Lantern_Hanging_01_Horn",
+     "kind": "translucent"
+    }
+   ],
+   "emissive_nits": 60.0,
+   "params": {
+    "transmission": 0.6,
+    "ior": 1.5,
+    "thin": true
+   },
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 80.1,
+     "p99": 180.5
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.51,
+     "p95": 0.96
+    },
+    "metallic_mean": 0.27
+   },
+   "hi_triangles": 5512,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Prop_Lantern_Hanging_01.blend"
+  }
+ },
+ {
+  "name": "SM_Post_Support_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Post_Support_Oak_PR.fbx",
+  "materials": [
+   "MI_Prop_OakWarm",
+   "MI_Struct_FieldBoulder"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 480,
+  "lod1_triangles": 240,
+  "lod2_triangles": 104,
+  "dimensions_m": [
+   1.16,
+   0.452,
+   2.652
+  ],
+  "bounds_min_m": [
+   -0.58,
+   -0.23,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.58,
+   0.221,
+   2.652
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "87 inside/details/table- frame 10",
+   "support_post_timber"
+  ],
+  "supersedes": "none (support_post_timber placeholder, 21 placements)",
+  "dresses": "oak roof post 2.65 m on a two-course dressed stone pad, with a cross head and two pegged braces",
+  "fit": {
+   "pivot": "base centre; the cross head runs along X",
+   "sprite_scale": "frame 10 is 106 px (2.65 m) tall"
+  }
+ },
+ {
+  "name": "SM_Cabinet_Oak_PR",
+  "class": "prop",
+  "fbx": "SM_Cabinet_Oak_PR.fbx",
+  "materials": [
+   "MI_Prop_OakWarm"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1764,
+  "lod1_triangles": 882,
+  "lod2_triangles": 388,
+  "dimensions_m": [
+   2.368,
+   1.422,
+   0.925
+  ],
+  "bounds_min_m": [
+   -1.182,
+   -0.71,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.186,
+   0.712,
+   0.925
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "87 inside/details/table- frames 1, 7",
+   "cabinet_wood",
+   "cabinet_narrow"
+  ],
+  "supersedes": "none (cabinet_wood placeholder, 20 placements)",
+  "dresses": "heavy oak side table 2.35 x 1.42 x 0.92 m with deep two-board aprons all round (class cabinet_wood: frames 1 and 7 are its front and end views)",
+  "fit": {
+   "pivot": "base centre",
+   "sprite_scale": "frame 1 is 94 px (2.35 m) wide, frame 7 57 px (1.42 m)"
+  }
+ },
+ {
+  "name": "SM_Dungeon_Pillar_Twin_PR",
+  "class": "prop_large",
+  "fbx": "SM_Dungeon_Pillar_Twin_PR.fbx",
+  "materials": [
+   "MI_Struct_FieldBoulder"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 1912,
+  "lod1_triangles": 956,
+  "lod2_triangles": 420,
+  "dimensions_m": [
+   1.055,
+   0.76,
+   2.417
+  ],
+  "bounds_min_m": [
+   -0.525,
+   -0.449,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.53,
+   0.31,
+   2.417
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "80 inside/stnwalls/stonw- frames 27, 28",
+   "dungeon_pillar"
+  ],
+  "supersedes": "none (dungeon_pillar placeholder, 17 placements)",
+  "dresses": "twin stone columns on a two-step plinth, 1.04 x 0.6 x 2.4 m: each of four drums a little out of true, moulded base and capital, square abacus; a spall lying by the plinth",
+  "fit": {
+   "pivot": "base centre; the pair stands along X",
+   "moss": "painted damp and dirty with a trace of algae at the foot only"
+  }
+ },
+ {
+  "name": "SM_Rubble_Pile_PR",
+  "class": "prop",
+  "fbx": "SM_Rubble_Pile_PR.fbx",
+  "materials": [
+   "MI_Struct_FieldBoulder",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 3264,
+  "lod1_triangles": 1632,
+  "lod2_triangles": 718,
+  "dimensions_m": [
+   2.231,
+   1.246,
+   0.443
+  ],
+  "bounds_min_m": [
+   -1.169,
+   -0.668,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.061,
+   0.578,
+   0.443
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "80 inside/stnwalls/stonw- frame 23",
+   "rubble_pile"
+  ],
+  "supersedes": "none (rubble_pile placeholder, 12 placements)",
+  "dresses": "heap of fallen masonry 2.1 x 1.2 x 0.45 m: about a dozen squared blocks and twenty-odd broken stones tumbled over a low mound of dust",
+  "fit": {
+   "pivot": "ground centre; yaw at random"
+  }
+ },
+ {
+  "name": "SM_Shelf_Bottles_PR",
+  "class": "prop_large",
+  "fbx": "SM_Shelf_Bottles_PR.fbx",
+  "materials": [
+   "MI_Prop_Glaze_Blue",
+   "MI_Prop_OakWarm",
+   "MI_Prop_Glaze_Red",
+   "MI_Prop_Glaze_Green"
+  ],
+  "source_blend": "Props.blend",
+  "lod0_triangles": 6568,
+  "lod1_triangles": 3284,
+  "lod2_triangles": 1444,
+  "dimensions_m": [
+   3.864,
+   0.456,
+   2.906
+  ],
+  "bounds_min_m": [
+   -1.932,
+   -0.242,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.932,
+   0.215,
+   2.906
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "64 inside/details/inacc- frame 1",
+   "shelf_bottles",
+   "shelf_empty"
+  ],
+  "supersedes": "none (shelf_bottles placeholder, 12 placements; shelf_empty 12)",
+  "dresses": "apothecary wall unit 3.85 x 0.45 x 2.9 m: plank back and ends, a boarded dresser base, three shelves on brackets carrying about thirty corked glazed bottles of three shapes in blue, red and green",
+  "fit": {
+   "pivot": "base centre; the back (+Y) stands against the wall",
+   "sprite_scale": "frame 1 is 154 x 116 px (3.85 x 2.9 m)",
+   "empty": "class shelf_empty (sprite 459) is not built: it needs this unit without bottles"
+  }
+ },
+ {
+  "name": "SM_Chest_Small_Open_PR",
+  "class": "prop",
+  "fbx": "SM_Chest_Small_Open_PR.fbx",
+  "materials": [
+   "MI_Chest_Small"
+  ],
+  "source_blend": "Props.blend",
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "chest_small (opened state)",
+   "chest_medium / chest_large opened (scale)"
+  ],
+  "supersedes": "none (new: the opened state of SM_Chest_Small_PR)",
+  "dresses": "the iron-bound chest with its lid thrown back 102 degrees on the back hinges: same mesh and the same texture set as SM_Chest_Small_PR (T_Chest_Small_PR_*), empty plank interior",
+  "fit": {
+   "pivot": "base centre, identical to SM_Chest_Small_PR: swap the mesh in place to open the chest",
+   "hinge": "hinge axis along X through (y 0.257, z 0.36) m; lid angle 102 degrees; put loot or a glow inside the body cavity (floor at z 0.048)"
+  },
+  "lod0_triangles": 1448,
+  "lod1_triangles": 812,
+  "lod2_triangles": 438,
+  "bounds_min_m": [
+   -0.47,
+   -0.26,
+   -0.0
+  ],
+  "bounds_max_m": [
+   0.47,
+   0.481,
+   0.883
+  ],
+  "dimensions_m": [
+   0.94,
+   0.741,
+   0.883
+  ],
+  "baked": {
+   "texture_folder": "Chest_Small",
+   "textures": {
+    "BC": "T_Chest_Small_PR_BC.png",
+    "N": "T_Chest_Small_PR_N.png",
+    "ORM": "T_Chest_Small_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Chest_Small",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 48.5,
+     "p99": 128.0
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.565,
+     "p95": 0.855
+    },
+    "metallic_mean": 0.079
+   },
+   "hi_triangles": 10876,
+   "third_party": [
+    "rough_wood"
+   ],
+   "source_blend": "_build/bake/SM_Chest_Small_PR.blend",
+   "extra": null,
+   "shares_textures_of": "SM_Chest_Small_PR"
+  }
+ }
+]

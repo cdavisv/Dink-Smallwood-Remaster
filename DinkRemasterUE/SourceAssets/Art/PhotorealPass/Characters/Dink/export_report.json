@@ -1,0 +1,320 @@
+{
+ "asset": "SK_Dink_Photoreal",
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 22
+ },
+ "findings": [
+  [
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 60580 triangles, target for character_hero is 40000 (hard max 70000)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "12828 non-manifold edges (12828 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "12590 non-manifold edges (12590 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "11011 non-manifold edges (11011 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "6679 non-manifold edges (6679 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (157.6 % of UV area, 1098 triangles); class character_hero needs unique UVs"
+  ],
+  [
+   "warning",
+   "UV_DEGENERATE",
+   "3377 triangles are collapsed in UV space"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Outfit_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Outfit_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Gear_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Gear_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ]
+ ],
+ "normals": [
+  {
+   "mesh": "SK_Dink_Photoreal_LOD0",
+   "flat_faces_for_cancelled_normals": 0
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD1",
+   "flat_faces_for_cancelled_normals": 0
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD2",
+   "flat_faces_for_cancelled_normals": 4
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD3",
+   "flat_faces_for_cancelled_normals": 6
+  }
+ ],
+ "lods": [
+  {
+   "mesh": "SK_Dink_Photoreal_LOD0",
+   "triangles": 60580,
+   "vertices": 38042,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD1",
+   "triangles": 30290,
+   "vertices": 22778,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD2",
+   "triangles": 17903,
+   "vertices": 15605,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD3",
+   "triangles": 10699,
+   "vertices": 9417,
+   "max_influences": 4,
+   "unweighted": 0
+  }
+ ],
+ "bones": [
+  "root",
+  "pelvis",
+  "spine_01",
+  "spine_02",
+  "spine_03",
+  "spine_04",
+  "spine_05",
+  "neck_01",
+  "neck_02",
+  "head",
+  "clavicle_l",
+  "upperarm_l",
+  "lowerarm_l",
+  "lowerarm_twist_02_l",
+  "lowerarm_twist_01_l",
+  "hand_l",
+  "index_metacarpal_l",
+  "index_01_l",
+  "index_02_l",
+  "index_03_l",
+  "middle_metacarpal_l",
+  "middle_01_l",
+  "middle_02_l",
+  "middle_03_l",
+  "thumb_01_l",
+  "thumb_02_l",
+  "thumb_03_l",
+  "pinky_metacarpal_l",
+  "pinky_01_l",
+  "pinky_02_l",
+  "pinky_03_l",
+  "ring_metacarpal_l",
+  "ring_01_l",
+  "ring_02_l",
+  "ring_03_l",
+  "upperarm_twist_01_l",
+  "upperarm_twist_02_l",
+  "clavicle_r",
+  "upperarm_r",
+  "lowerarm_r",
+  "lowerarm_twist_02_r",
+  "lowerarm_twist_01_r",
+  "hand_r",
+  "pinky_metacarpal_r",
+  "pinky_01_r",
+  "pinky_02_r",
+  "pinky_03_r",
+  "ring_metacarpal_r",
+  "ring_01_r",
+  "ring_02_r",
+  "ring_03_r",
+  "middle_metacarpal_r",
+  "middle_01_r",
+  "middle_02_r",
+  "middle_03_r",
+  "index_metacarpal_r",
+  "index_01_r",
+  "index_02_r",
+  "index_03_r",
+  "thumb_01_r",
+  "thumb_02_r",
+  "thumb_03_r",
+  "upperarm_twist_01_r",
+  "upperarm_twist_02_r",
+  "thigh_r",
+  "calf_r",
+  "foot_r",
+  "ball_r",
+  "calf_twist_02_r",
+  "calf_twist_01_r",
+  "thigh_twist_01_r",
+  "thigh_twist_02_r",
+  "thigh_l",
+  "calf_l",
+  "foot_l",
+  "ball_l",
+  "calf_twist_02_l",
+  "calf_twist_01_l",
+  "thigh_twist_01_l",
+  "thigh_twist_02_l",
+  "ik_foot_root",
+  "ik_foot_l",
+  "ik_foot_r",
+  "ik_hand_root",
+  "ik_hand_gun",
+  "ik_hand_l",
+  "ik_hand_r",
+  "interaction",
+  "center_of_mass"
+ ],
+ "bone_count": 89,
+ "dimensions_m": [
+  1.1003458499908447,
+  0.554804801940918,
+  1.8085323572158813
+ ],
+ "materials": [
+  "MI_Dink_PR_Skin",
+  "MI_Dink_PR_Eyes",
+  "MI_Dink_PR_Hair",
+  "MI_Dink_PR_Outfit",
+  "MI_Dink_PR_Gear"
+ ],
+ "uv_per_slot": {
+  "MI_Dink_PR_Skin": {
+   "uv_area": 0.4978,
+   "texels_used_1k": 461500,
+   "texels_overlapping_1k": 0,
+   "overlap_fraction": 0.0,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Eyes": {
+   "uv_area": 1.5143,
+   "texels_used_1k": 714875,
+   "texels_overlapping_1k": 686837,
+   "overlap_fraction": 0.9608,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Hair": {
+   "uv_area": 59.2639,
+   "texels_used_1k": 835130,
+   "texels_overlapping_1k": 704482,
+   "overlap_fraction": 0.8436,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Outfit": {
+   "uv_area": 0.5503,
+   "texels_used_1k": 497349,
+   "texels_overlapping_1k": 8290,
+   "overlap_fraction": 0.0167,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Gear": {
+   "uv_area": 0.6762,
+   "texels_used_1k": 622380,
+   "texels_overlapping_1k": 5460,
+   "overlap_fraction": 0.0088,
+   "outside_0_1": 0
+  }
+ }
+}

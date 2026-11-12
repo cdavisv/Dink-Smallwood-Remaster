@@ -1,0 +1,59 @@
+{
+ "name": "SM_Bench_Oak_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Bench_Oak",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Bench_Oak_PR_BC.png",
+  "N": "T_Bench_Oak_PR_N.png",
+  "ORM": "T_Bench_Oak_PR_ORM.png"
+ },
+ "lod_triangles": [
+  160,
+  104,
+  50
+ ],
+ "hi_triangles": 400,
+ "bounds_min_m": [
+  -1.152,
+  -0.151,
+  -0.001
+ ],
+ "bounds_max_m": [
+  1.151,
+  0.151,
+  0.461
+ ],
+ "dimensions_m": [
+  2.303,
+  0.302,
+  0.462
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 43.3,
+   "p99": 106.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.395,
+   "p95": 0.711
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

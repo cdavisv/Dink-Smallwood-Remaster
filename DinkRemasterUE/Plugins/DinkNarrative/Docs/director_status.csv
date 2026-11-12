@@ -50,10 +50,10 @@ playmidi,audio,30,command,implemented,audio stub: logs the music cue
 sp_attack_wait,sprites,29,command,implemented,no attack before game time + ms (D:9335)
 sp_defense,sprites,28,command,implemented,defense of the actor's UDinkStatsComponent (recorded when it has none)
 sp_range,sprites,28,command,implemented,"melee reach of the sprite's attack (sword: 40 px instead of 28) and a missile's hit margin (D:15476, 14322)"
-sp_hard,sprites,28,command,implemented,"the sprite's hard flag (0 = its hardbox is hard); on a placement's sprite also the loaded map's flag, which draw_hard_sprite / draw_hard_map read (dink.cpp:9979-9998)"
+sp_hard,sprites,28,command,implemented,"the sprite's hard flag (0 = its hardbox is hard); on a placement's sprite also the loaded map's flag, which draw_hard_sprite / draw_hard_map read (dink.cpp:9979-9998); also bound as EXTERNAL (value form)"
 script_attach,sprites,26,command,implemented,re-owns the instance (1000 = survives screen changes)
-editor_frame,world,25,command,implemented,"stored as the override's Variant (""frame<N>"") when the placement has an override"
-editor_seq,world,25,command,implemented,"stored as the override's Variant (""seq<N>"") when the placement has an override"
+editor_frame,world,25,command,implemented,"stored as the override's Variant (""frame<N>"") when the placement has an override; also bound as EXTERNAL (value form)"
+editor_seq,world,25,command,implemented,"stored as the override's Variant (""seq<N>"") when the placement has an override; also bound as EXTERNAL (value form)"
 draw_hard_sprite,world,25,command,implemented,"the tile hardness back under the sprite's hardbox, then every hardbox whose flag is 0 stamped again (dink.cpp:8089-8104); the greybox's solid collision follows"
 sp_base_death,sprites,23,command,recorded,"2D death sequence base, recorded for the animation layer"
 sp_notouch,sprites,23,command,implemented,touch/missile immunity flag; as in the engine it clears on the next tick unless a hit set its timer
@@ -118,7 +118,7 @@ stopmidi,audio,3,command,implemented,audio stub: logs the music stop
 add_exp,stats,2,command,implemented,"experience for the player whoever dealt the last hit (add_exp(num, sprite, true), D:615), capped at 99,999"
 arm_weapon,inventory,2,command,implemented,"`disarm` of the armed item, then `arm` of the item in slot &cur_weapon (1-based) in a new instance (D:7850)"
 dink_can_walk_off_screen,world,2,command,recorded,flag kept; screen edges are not walls in 3D
-force_vision,world,2,command,implemented,sets &vision; the greybox shows that vision's placements
+force_vision,world,2,command,implemented,rebuilds admitted original hardness screens; legacy greybox retains its vision path
 get_burn,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 inside_box,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 is_script_attached,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false

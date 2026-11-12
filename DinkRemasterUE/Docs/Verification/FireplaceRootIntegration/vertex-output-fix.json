@@ -1,0 +1,15 @@
+{
+  "issue": "VertexColor RGB has an unnamed first output; RGB is not a valid named output",
+  "reviewed_by": "Root and independent Hair review; installed engine source checked in this lane",
+  "production_change": "fireplace_material.py: VERTEX_COLOR index0 output 'RGB' -> '' only; alpha A and TextureSample RGB unchanged",
+  "installed_rules": [
+    "MaterialExpressions.cpp:10022 VertexColor constructor outputs unnamed masks",
+    "MaterialEditingLibrary.cpp:81 empty selects first; only R/G/B/A masks accepted for unnamed outputs",
+    "MaterialEditingLibrary.cpp:1159 canonical first multi-channel output name is empty"
+  ],
+  "before": "3 actual-source parent subcases fail construction with installed output rules",
+  "after": "11 readback tests and all642 Python tests pass",
+  "native_run": false,
+  "source_ledger_Content_unchanged": true,
+  "contract_digest": "799a971943a4e16b4b587d544ca9370c8f6e539a23b443a402ddbab560a7c13d"
+}

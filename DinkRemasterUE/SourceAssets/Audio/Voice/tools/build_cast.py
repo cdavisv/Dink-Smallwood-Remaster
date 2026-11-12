@@ -1,5 +1,6 @@
 import csv, re, collections, random
-D='/tmp/claude-1000/-home-artist-Repos-Dink-Smallwood/00000000-0000-0000-0000-000000000000/scratchpad/voice/'
+from pathlib import Path
+D=str(Path(__file__).resolve().parents[1])+'/'
 rows=list(csv.DictReader(open(D+'lines_raw.csv',encoding='utf-8')))
 fields=list(rows[0].keys())
 

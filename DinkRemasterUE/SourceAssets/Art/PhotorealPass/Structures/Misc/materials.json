@@ -1,0 +1,502 @@
+{
+ "MI_Struct_Fieldstone": {
+  "set": "Fieldstone",
+  "dirt": [
+   0.36,
+   0.3,
+   0.22
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.62,
+   0.6,
+   0.52
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": true,
+  "glass_tint": null
+ },
+ "MI_Struct_Earth": {
+  "set": "EarthPath",
+  "dirt": [
+   0.36,
+   0.3,
+   0.24
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.075,
+   0.02
+  ],
+  "moss_roughness": 0.9,
+  "pale": [
+   0.8,
+   0.79,
+   0.77
+  ],
+  "pale_amount": 0.85,
+  "macro": 0.22,
+  "tint": [
+   0.62,
+   0.56,
+   0.5
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": true,
+  "glass_tint": null
+ },
+ "MI_Struct_Thatch": {
+  "set": "Thatch",
+  "dirt": [
+   0.105,
+   0.095,
+   0.08
+  ],
+  "dirt_amount": 0.95,
+  "dirt_mode": "mix",
+  "moss": [
+   0.05,
+   0.062,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.63,
+   0.33
+  ],
+  "pale_amount": 0.6,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": true,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ },
+ "MI_Struct_OakWeathered": {
+  "set": "OakWeathered",
+  "dirt": [
+   0.22,
+   0.16,
+   0.11
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.46,
+   0.45,
+   0.42
+  ],
+  "pale_amount": 0.55,
+  "macro": 0.22,
+  "tint": [
+   0.8,
+   0.62,
+   0.47
+  ],
+  "alpha_switch": true,
+  "alpha_lead": true,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ },
+ "MI_Struct_Rope": {
+  "set": "Thatch",
+  "dirt": [
+   0.5,
+   0.45,
+   0.38
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.7,
+   0.62,
+   0.45
+  ],
+  "pale_amount": 0.4,
+  "macro": 0.22,
+  "tint": [
+   0.9,
+   0.85,
+   0.8
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Struct_FieldBoulder": {
+  "set": "FieldBoulder",
+  "dirt": [
+   0.34,
+   0.27,
+   0.18
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.06,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.66,
+   0.66,
+   0.58
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Struct_CastleAshlar": {
+  "set": "CastleAshlar",
+  "dirt": [
+   0.3,
+   0.22,
+   0.12
+  ],
+  "dirt_amount": 0.92,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.04,
+   0.055,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.6,
+   0.6,
+   0.52
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Island_Bamboo": {
+  "set": "OakWeathered",
+  "dirt": [
+   0.3,
+   0.26,
+   0.14
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.74,
+   0.7,
+   0.5
+  ],
+  "pale_amount": 0.7,
+  "macro": 0.3,
+  "tint": [
+   1.0,
+   0.92,
+   0.6
+  ],
+  "alpha_switch": true,
+  "alpha_lead": true,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ },
+ "MI_Island_PalmThatch": {
+  "set": "Thatch",
+  "dirt": [
+   0.12,
+   0.085,
+   0.06
+  ],
+  "dirt_amount": 0.9,
+  "dirt_mode": "mix",
+  "moss": [
+   0.06,
+   0.075,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.85,
+   0.6,
+   0.3
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   1.0,
+   0.78,
+   0.6
+  ],
+  "alpha_switch": true,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ },
+ "MI_Island_DaubBlue": {
+  "set": "PlasterWall",
+  "dirt": [
+   0.3,
+   0.24,
+   0.16
+  ],
+  "dirt_amount": 0.95,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.78,
+   0.72
+  ],
+  "pale_amount": 0.35,
+  "macro": 0.22,
+  "tint": [
+   0.2,
+   0.33,
+   0.85
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Island_DaubOlive": {
+  "set": "PlasterWall",
+  "dirt": [
+   0.3,
+   0.24,
+   0.16
+  ],
+  "dirt_amount": 0.95,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.78,
+   0.72
+  ],
+  "pale_amount": 0.35,
+  "macro": 0.22,
+  "tint": [
+   0.3,
+   0.33,
+   0.13
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Island_DaubOxblood": {
+  "set": "PlasterWall",
+  "dirt": [
+   0.3,
+   0.24,
+   0.16
+  ],
+  "dirt_amount": 0.95,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.78,
+   0.72
+  ],
+  "pale_amount": 0.35,
+  "macro": 0.22,
+  "tint": [
+   0.42,
+   0.12,
+   0.06
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Island_Bone": {
+  "set": "PlasterWall",
+  "dirt": [
+   0.36,
+   0.33,
+   0.26
+  ],
+  "dirt_amount": 0.9,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.05,
+   0.07,
+   0.03
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.9,
+   0.9,
+   0.86
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   0.86,
+   0.9,
+   1.0
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Island_RedCloth": {
+  "set": "Thatch",
+  "dirt": [
+   0.3,
+   0.2,
+   0.16
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.4,
+   0.3
+  ],
+  "pale_amount": 0.4,
+  "macro": 0.22,
+  "tint": [
+   0.85,
+   0.12,
+   0.08
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Struct_OakDark": {
+  "set": "OakWeathered",
+  "dirt": [
+   0.2,
+   0.14,
+   0.1
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.5,
+   0.47,
+   0.42
+  ],
+  "pale_amount": 0.5,
+  "macro": 0.22,
+  "tint": [
+   0.6,
+   0.36,
+   0.23
+  ],
+  "alpha_switch": true,
+  "alpha_lead": true,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ }
+}

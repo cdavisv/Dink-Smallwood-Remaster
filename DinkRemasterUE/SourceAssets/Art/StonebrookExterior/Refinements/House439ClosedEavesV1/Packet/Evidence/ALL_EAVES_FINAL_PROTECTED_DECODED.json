@@ -1,0 +1,13 @@
+{
+  "protected_faces": 12452,
+  "protected_corners": 37356,
+  "max_angle_deg_by_shadingNormal_tangent_bitangent_decodedNormal": [
+    0.0,
+    1.720836167306575e-06,
+    3.4433258344051744e-06,
+    5.663294018578926e-06
+  ],
+  "normal_strength_carrier_applied": "SharedSurfaceData.R, endpoints0 otherwise1",
+  "source": "House439_LeftBridgeVerified.blend",
+  "candidate": "House439_AllEavesFinalSurface.blend"
+}

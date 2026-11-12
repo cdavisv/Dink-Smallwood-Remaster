@@ -1,0 +1,49 @@
+{
+ "name": "DungeonFlagstone",
+ "files": {
+  "BC": "DungeonFlagstone/T_Terrain_DungeonFlagstone_BC.png",
+  "N": "DungeonFlagstone/T_Terrain_DungeonFlagstone_N.png",
+  "ORM": "DungeonFlagstone/T_Terrain_DungeonFlagstone_ORM.png",
+  "H": "DungeonFlagstone/T_Terrain_DungeonFlagstone_H.png",
+  "Macro": "DungeonFlagstone/T_Terrain_DungeonFlagstone_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0136,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.488",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "stone_floor"
+ ],
+ "status": "finished",
+ "method": "Poly Haven stone_tiles_02 (large irregular split slabs with mortared joints), darkened to the original dungeon floor grey, with foot-polished slab tops along walked lines and dark grit packed in the joints. Floor only: irregular slabs, no courses",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "stone_tiles_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 32.0,
+  "mean": 73.0,
+  "max": 162.7
+ },
+ "mean_srgb": [
+  73,
+  73,
+  71
+ ],
+ "roughness_mean": 0.609,
+ "known_weaknesses": "single scan at 2 m; slabs are 25-45 cm, smaller than a great-hall flag"
+}

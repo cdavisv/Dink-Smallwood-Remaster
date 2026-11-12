@@ -1,0 +1,703 @@
+{
+ "schema": "dink-townexteriors/2",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors",
+ "round": "2 (12 Nov 2026): rebuilt from Structures/tools/kitlib.py; every part is a closed solid, LOD0-2, FBX holds <name>_LOD0/_LOD1/_LOD2 and UCX_ hulls; round 2b: lead is a lead material (alpha 0.75), glass is a paler sky-tinted pane with stronger facets, roof bays lap 15 cm into their neighbours on alternate courses, dark open joints low on the rubble, dirtier plaster",
+ "fit": {
+  "scale": "0.025 m per original pixel: a 100 px bay is 2.5 m, the 64 px corner pieces 1.6 m, the 60 px ridge cap 1.5 m",
+  "pivot": "Wall and roof bays share one pivot: left end (x = 0), centre line of the 0.45 m ground-floor wall on y = 0, ground z = 0, street face toward -Y. A roof bay placed at the same point as the wall bay under it fits. A family placement stands at the card's bottom centre, so offset by half the bay (-1.25 m along X).",
+  "heights": "CHANGED from round 1: the half-timbered storey is 1.25 m (was 0.9), so the wall plate is at 4.35 m (was 4.0), eaves at 4.07 m, ridge at 7.33 m, 2.755 m behind the front wall line. House depth between the two long-wall centre lines is 5.51 m.",
+  "card_vs_real": "The sprites are an oblique view. Use fit 'none'.",
+  "roof_frames": "town_roof_flat (100x200) and town_roof_slope (100x150) both bind to SM_Town_Roof_Slope with SM_Town_Roof_Slope_B as its variant (families.json 'variants'): bind only the lowest roof sprite of each column and hide the others (one module covers eaves to ridge).",
+  "class_ids": "town_wall_stone_window covers blank bays, window bays and the 64 px corner pieces: bind per sequence frame (see sprite_frames), not per class.",
+  "back": "Bays are street faces with a plain closed back. A house needs a second row turned 180 degrees about the ridge line: place at (x + 2.5, 5.51, 0) yaw 180.",
+  "gable": "SM_Town_Wall_GableEnd is the WHOLE end wall (6.4 m wide, to the ridge), no longer a 2.3 m slice: bind one per house end and hide the other gable-end sprites of that end. Left end of a row: (0, 5.51, 0) yaw -90; right end: (row length, 0, 0) yaw +90. SM_Town_Roof_Verge goes at the same point and yaw. The verge and barge boards oversail the gable by 0.42 m.",
+  "ridge": "SM_Town_Roof_RidgeCap: pivot on the ridge line, place at (x, 2.755, 7.35), 1.5 m each.",
+  "door": "SM_Town_Door_Studded hangs in SM_Town_Wall_Door: hinge at bay x = 0.73, y = -0.025.",
+  "chimney": "SM_Town_Chimney_Stack stands against a gable (pivot at the centre of its back face, stack toward local -Y): on a right-hand gable at (row length + 0.12, 2.755, 0) yaw 90.",
+  "outside_footprint": "door step 0.55 m in front of the wall; jetty 0.22 m; eaves 0.64 m; lantern bracket 0.6 m",
+  "existing_art": "Supersedes its own round 1 (ten interim modules, same names). No overlap with StonebrookExterior, Stonebrook440 or StonebrookRuins.",
+  "roof_lap": "Roof bays oversail their 2.5 m module by 15.5 cm at both ends on alternate courses: neighbouring bays interlock; at a row end the verge module covers the lap."
+ },
+ "materials": {
+  "see": "integration (exact slot, file, colour and formula contract)",
+  "material_exception": "These five are kit materials built on shared tiling sets with a vertex-colour weathering layer, not private bakes; they are not yet rows of ART_STANDARD.md section 2 (add them with the import)."
+ },
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "old_planks_02",
+   "used_by": "Structures/Sets/OakWeathered"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "castle_wall_slates",
+   "used_by": "Terrain/TownRubble"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "roof_slates_02",
+   "used_by": "Terrain/RoofShingle"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "medieval_wood",
+   "used_by": "Terrain/DoorPlanks"
+  },
+  {
+   "note": "Terrain/PlasterWall: painted_plaster_wall and others, see Terrain/manifest.json. All CC0-1.0, rows in ThirdParty/downloads.csv"
+  }
+ ],
+ "validator": {
+  "command": "python3 -I tools/blender/dink.py --summary validate --blend .../TownExteriors/TownExteriors.blend",
+  "result": "14 assets, 8 pass, 6 errors (round 1: 26), all by design; NON_MANIFOLD, NORMALS_INCONSISTENT, ZERO_AREA, SNAP and loose geometry are gone",
+  "errors_by_design": {
+   "PIVOT on SM_Town_Roof_Slope, _Slope_B, _Dormer, _Verge": "grid_piece wants the origin at the floor of the piece; roof pieces share the pivot of the wall bay under them (ground level) so one transform places wall and roof",
+   "PIVOT on SM_Town_Roof_RidgeCap": "pivot is on the ridge line (top of the roof), the natural snap point, not under the tiles",
+   "UV_OVERLAP on SM_Town_Door_Studded": "class door asks for unique UVs; the leaf uses the tiling plank library material (ART_STANDARD section 2 prefers library materials over a private bake)"
+  },
+  "warnings": "TRIS_OVER_TARGET on most bays (2,180-8,872 against the 3,000 soft target, 10,000 hard), UV_DEGENERATE (slate risers and bevels map to a line), NAME_TEXTURE (the Terrain sets are named T_Terrain_*)"
+ },
+ "not_done": "Hips (the sprite roofs of family 33 have none: frames 26/27 are verge ends). Shop sign bracket (no family 33 frame shows a sign). A dressed-stone texture set. Mortar loss. In-engine check: nothing here was imported into Unreal.",
+ "sheet_top": [
+  "House_gameplay",
+  "House_street",
+  "House_gable",
+  "House_roof"
+ ],
+ "prefix": "SM_Town_",
+ "all_modules": {
+  "status": "round 2, reviewed three times, not claimed photoreal",
+  "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported."
+ },
+ "modules": {
+  "SM_Town_Wall_Plain": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Tie plate is a plain X of flat bar. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Wall_Window_L": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Wall_Window_R": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Wall_Door": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Lantern is a simple box frame with dark panes, no candle or glow. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Wall_Narrow": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Roof_Slope": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). A run of the same bay repeats its slates and moss every 2.5 m (use the _B variant alternately); bay edges now lap: alternate courses run 15.5 cm into the next bay (4 mm proud), so the bay joint zigzags; the laps intersect the neighbour's slates rather than replacing them; slates are 0.31 m wide, wider than the scan's slates under them, so texture joints and geometry joints do not coincide close up; no hips or valleys. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Roof_Slope_B": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). As SM_Town_Roof_Slope. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Roof_Dormer": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). 7,046 triangles. Lead apron, soakers and ridge roll are the lead level of the oak material (flat dull grey, no dressing marks); dormer cheeks are boarded with the oak set mapped as one board; the dormer roof dies into the main slope without a modelled valley. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Roof_RidgeCap": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Ridge tiles are plain inverted-V prisms with the slate scan; no mortar bedding modelled. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Wall_GableEnd": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). 8,872 triangles (near the 10,000 cap). Frame members are straight boxes with hewn jitter, no jowled posts or curved braces; plaster is one panel per storey behind the frame, not separate panels; the plaster scan has a trowel line that falls behind the mid rail and tie beam by UV offset but shows near the apex. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Roof_Verge": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Meets the first roof bay with a straight butt joint. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Corner_Quoin": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Never rendered in an assembly, only alone. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Chimney_Stack": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). No flashing where it passes the verge; pots are plain tapered tubes; stones use the rubble scan. Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  },
+  "SM_Town_Door_Studded": {
+   "known_weaknesses": "Three review rounds (Structures/review/town1-3). Plank scan repeats across planks (no per-plank unique grain). Plaster is dirtier but still has no patch repairs or cracks. Dressed stones (pilasters, sills, plinth, quoins) carry the rubble scan tinted pale, not a dressed-stone set. Mortar loss is only dark vertex-colour spots low on the wall, not geometry. Glass is an opaque pane with a dim sky tint (0.035, 0.05, 0.065), roughness 0.06 and faceted quarries: it no longer reads black, but it is a tint, not a true sky reflection, from the game camera. Vertex-colour weathering is as coarse as the mesh (about 0.2 m). LOD0 is over the kit_piece soft target (hard cap respected)."
+  }
+ },
+ "render_dir": "town4",
+ "integration": {
+  "contract": {
+   "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+   "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+   "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+   "graph": [
+    "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+    "base = lerp(base, base * ORM.R, 0.5)",
+    "fd = saturate(R * (1.15 - 0.5 * H))",
+    "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+    "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+    "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+    "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+    "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+    "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+   ],
+   "colours": "all colours are linear RGB",
+   "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+  },
+  "materials": {
+   "MI_Town_Rubble": {
+    "dirt": [
+     0.34,
+     0.29,
+     0.22
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.5,
+     0.47,
+     0.4
+    ],
+    "pale_amount": 0.55,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/TownRubble/T_Terrain_TownRubble_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/TownRubble/T_Terrain_TownRubble_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/TownRubble/T_Terrain_TownRubble_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/TownRubble/T_Terrain_TownRubble_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/TownRubble/T_Terrain_TownRubble_Macro.png"
+    },
+    "third_party": [
+     "castle_wall_slates"
+    ],
+    "texture_set": "TownRubble"
+   },
+   "MI_Town_Oak": {
+    "dirt": [
+     0.22,
+     0.16,
+     0.11
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.46,
+     0.45,
+     0.42
+    ],
+    "pale_amount": 0.55,
+    "macro": 0.22,
+    "tint": [
+     0.8,
+     0.62,
+     0.47
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+    },
+    "third_party": [
+     "old_planks_02"
+    ],
+    "texture_set": "OakWeathered"
+   },
+   "MI_Town_Plaster": {
+    "dirt": [
+     0.3,
+     0.24,
+     0.16
+    ],
+    "dirt_amount": 0.95,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.78,
+     0.72
+    ],
+    "pale_amount": 0.0,
+    "macro": 0.22,
+    "tint": [
+     0.86,
+     0.83,
+     0.76
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+    },
+    "third_party": [
+     "painted_plaster_wall",
+     "plastered_wall_04"
+    ],
+    "texture_set": "PlasterWall"
+   },
+   "MI_Town_RoofShingle": {
+    "dirt": [
+     0.36,
+     0.33,
+     0.28
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.04,
+     0.052,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.62,
+     0.62,
+     0.5
+    ],
+    "pale_amount": 0.6,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 3.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/RoofShingle/T_Terrain_RoofShingle_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/RoofShingle/T_Terrain_RoofShingle_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/RoofShingle/T_Terrain_RoofShingle_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/RoofShingle/T_Terrain_RoofShingle_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/RoofShingle/T_Terrain_RoofShingle_Macro.png"
+    },
+    "third_party": [
+     "roof_slates_02"
+    ],
+    "texture_set": "RoofShingle"
+   },
+   "MI_Town_DoorPlanks": {
+    "dirt": [
+     0.3,
+     0.25,
+     0.2
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.42,
+     0.41,
+     0.38
+    ],
+    "pale_amount": 0.75,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_Macro.png"
+    },
+    "third_party": [
+     "medieval_wood"
+    ],
+    "texture_set": "DoorPlanks"
+   }
+  },
+  "assets": {
+   "SM_Town_Wall_Plain": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_Plain.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     4020,
+     1808,
+     804
+    ],
+    "bounds_min_m": [
+     -0.011,
+     -0.565,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.515,
+     0.241,
+     4.36
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Wall_Window_L": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_Window_L.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     4668,
+     2100,
+     932
+    ],
+    "bounds_min_m": [
+     -0.011,
+     -0.565,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.5,
+     0.237,
+     4.356
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Wall_Window_R": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_Window_R.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     4672,
+     2102,
+     934
+    ],
+    "bounds_min_m": [
+     -0.001,
+     -0.565,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.512,
+     0.237,
+     4.355
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Wall_Door": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_Door.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     3764,
+     1692,
+     752
+    ],
+    "bounds_min_m": [
+     -0.013,
+     -0.9,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.511,
+     0.237,
+     4.36
+    ],
+    "collision_hulls": 3
+   },
+   "SM_Town_Wall_Narrow": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_Narrow.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     2180,
+     980,
+     436
+    ],
+    "bounds_min_m": [
+     -0.017,
+     -0.565,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.6,
+     0.238,
+     4.36
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Roof_Slope": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Roof_Slope.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_RoofShingle",
+     "MI_Town_Oak"
+    ],
+    "lod_triangles": [
+     3662,
+     1646,
+     732
+    ],
+    "bounds_min_m": [
+     -0.155,
+     -0.903,
+     3.868
+    ],
+    "bounds_max_m": [
+     2.655,
+     2.812,
+     7.334
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Roof_Slope_B": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Roof_Slope_B.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_RoofShingle",
+     "MI_Town_Oak"
+    ],
+    "lod_triangles": [
+     3662,
+     1646,
+     732
+    ],
+    "bounds_min_m": [
+     -0.155,
+     -0.907,
+     3.869
+    ],
+    "bounds_max_m": [
+     2.655,
+     2.812,
+     7.334
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Roof_Dormer": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Roof_Dormer.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_RoofShingle",
+     "MI_Town_Oak"
+    ],
+    "lod_triangles": [
+     7046,
+     3170,
+     1408
+    ],
+    "bounds_min_m": [
+     -0.155,
+     -0.905,
+     3.865
+    ],
+    "bounds_max_m": [
+     2.655,
+     2.812,
+     7.334
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Roof_RidgeCap": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Roof_RidgeCap.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_RoofShingle",
+     "MI_Town_Oak"
+    ],
+    "lod_triangles": [
+     136,
+     60,
+     26
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.206,
+     -0.31
+    ],
+    "bounds_max_m": [
+     1.5,
+     0.206,
+     0.061
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Town_Wall_GableEnd": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Wall_GableEnd.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     8872,
+     3992,
+     1774
+    ],
+    "bounds_min_m": [
+     -0.482,
+     -0.177,
+     0.0
+    ],
+    "bounds_max_m": [
+     5.993,
+     0.114,
+     7.164
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Roof_Verge": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Roof_Verge.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_RoofShingle",
+     "MI_Town_Oak"
+    ],
+    "lod_triangles": [
+     1688,
+     758,
+     336
+    ],
+    "bounds_min_m": [
+     -0.927,
+     -0.458,
+     3.822
+    ],
+    "bounds_max_m": [
+     6.436,
+     -0.0,
+     7.335
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Town_Corner_Quoin": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Corner_Quoin.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble",
+     "MI_Town_Oak",
+     "MI_Town_Plaster"
+    ],
+    "lod_triangles": [
+     1200,
+     540,
+     240
+    ],
+    "bounds_min_m": [
+     -0.549,
+     -0.555,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.403,
+     0.408,
+     4.35
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Town_Chimney_Stack": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Chimney_Stack.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Town_Rubble"
+    ],
+    "lod_triangles": [
+     3196,
+     1438,
+     638
+    ],
+    "bounds_min_m": [
+     -0.574,
+     -0.76,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.575,
+     0.092,
+     7.96
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Town_Door_Studded": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/SM_Town_Door_Studded.fbx",
+    "class": "door",
+    "material_slots": [
+     "MI_Town_DoorPlanks"
+    ],
+    "lod_triangles": [
+     2848,
+     1280,
+     568
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.055,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.04,
+     0.055,
+     2.026
+    ],
+    "collision_hulls": 1
+   }
+  }
+ }
+}

@@ -22,7 +22,7 @@
     "images": [
       {
         "image": "T_Dink_Trousers_V31_BC.png",
-        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_BC.png",
+        "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_BC.png",
         "packed_file_sha_exact": true,
         "sha256": "35498b859d2deb7ac25520e4a2e4f54187e4e5f1d280b47ebc0b25c792825098",
         "size": [
@@ -32,7 +32,7 @@
       },
       {
         "image": "T_Dink_Trousers_V31_N.png",
-        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_N.png",
+        "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_N.png",
         "packed_file_sha_exact": true,
         "sha256": "948e43f2a40614800152c61daccdfbf4e42c74ad9848b46fecb70cddc5e6119d",
         "size": [
@@ -42,7 +42,7 @@
       },
       {
         "image": "T_Dink_Trousers_V31_ORM.png",
-        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_ORM.png",
+        "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Trousers_V31_ORM.png",
         "packed_file_sha_exact": true,
         "sha256": "4dd6c2191b16e53075cb9c5b725dbdcd417af428bf91747e9cf42e599fcae0ff",
         "size": [
@@ -52,7 +52,7 @@
       },
       {
         "image": "T_Dink_Homespun_MetricWeave_N256.png",
-        "path": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Homespun_MetricWeave_N256.png",
+        "path": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Textures/T_Dink_Homespun_MetricWeave_N256.png",
         "packed_file_sha_exact": true,
         "sha256": "b5599254d88eee53b01050e5a9cce8dbec4b69a8d7040e0b60f1003a36a85ad0",
         "size": [
@@ -146,28 +146,28 @@
     "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
     "files": [
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
         "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
         "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
         "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
         "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
         "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
-        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "36462c58f7a86b9adda71c52f40aa76aa3e02e9e84a7cb736d679d9f850dedef"
       }
     ],
     "visually_reviewed_original_images": [

@@ -1,0 +1,56 @@
+{
+ "name": "DungeonMasonryDamp",
+ "files": {
+  "BC": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_BC.png",
+  "N": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_N.png",
+  "ORM": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_ORM.png",
+  "H": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_H.png",
+  "Macro": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.5,
+ "texel_mm_per_px": 1.221,
+ "height_range_m": 0.05,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.380",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade",
+  "cave_wall"
+ ],
+ "status": "finished",
+ "method": "the DungeonMasonry wall with the same block layout (so the two blend by mask without ghosting): darker and glossier with vertical run-off streaks, and moss and lichen (from Poly Haven mossy_rock) grown in the joints and on the lower block faces. Meant for the lowest metre of a wall, blended in with the WallGrime R channel or vertex colour",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "stone_brick_wall_001",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "mossy_rock",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 0.83
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.2,
+  "mean": 81.5,
+  "max": 201.7
+ },
+ "mean_srgb": [
+  88,
+  82,
+  55
+ ],
+ "roughness_mean": 0.723,
+ "known_weaknesses": "moss is a colour and roughness layer with 3 mm of height, not tufts"
+}

@@ -1,0 +1,49 @@
+{
+ "name": "CastleAshlar",
+ "files": {
+  "BC": "CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+  "N": "CastleAshlar/T_Terrain_CastleAshlar_N.png",
+  "ORM": "CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+  "H": "CastleAshlar/T_Terrain_CastleAshlar_H.png",
+  "Macro": "CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.3,
+ "texel_mm_per_px": 1.611,
+ "height_range_m": 0.051,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.790",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven rock_wall_08 (coursed squared blocks, worn arrises, lost mortar) height-blended with a shifted copy of itself to break its period, laid 1.83x larger than life (tile 3.3 m) so its 0.3 m blocks stand at the 0.55 m courses of the original castle; relief and normals rescaled to match; faint ochre run-off streaks; graded grey-green",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_wall_08",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 31.9,
+  "mean": 101.6,
+  "max": 238.0
+ },
+ "mean_srgb": [
+  103,
+  102,
+  90
+ ],
+ "roughness_mean": 0.837,
+ "known_weaknesses": "enlarged scan: texel density 620 px/m and the stone grain is 1.8x coarse close up; one scan"
+}

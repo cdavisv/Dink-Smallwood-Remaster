@@ -1,0 +1,119 @@
+{
+  "status": "V2_SOURCE_ONLY_QA_PROTOTYPE_PENDING_INDEPENDENT_ADMISSION",
+  "profile": "house439_uv2_weld_seam_guard_v1",
+  "legacy_profile_unchanged": "legacy_2uv",
+  "original_reference_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "original_explicit_fbx_sha256": "4d8c8f1eda4e37beed0dc1586bc3a72e1937660d990330d4473f8ec389c854e3",
+  "cause": "Native weld selects earlier427969 for427972: UVdelta.0001621246<1/1024, identicalposition/N/sign/color andTcomponentdiff1.963e-5<.00002; unique unused correct-role source triangle excludes greedy-loss cause",
+  "uv_key": "Exact little-endian IEEE754 float32 bits of original UV0.x/y and UV1.x/y; signed zeros retained; actual serialized22a2 versus frozen20e tuple bits checked identical",
+  "id_assignment": "np.unique(axis=0) lexicographic unsigned32 4-tuples; dense stable ID0..137347; same tuple sameID, differenttuple differentID",
+  "guard_channel": "UV2_WeldSeamGuard=(ID %1024,ID //1024) as exact float32 integers; native Vflip gives (x,1-y)",
+  "channel_bounds": {
+    "x": [
+      0,
+      1023
+    ],
+    "y": [
+      0,
+      134
+    ]
+  },
+  "guard_invariants": [
+    "All137348IDs exactly decoded by x+1024*y",
+    "Everydifferent original tuple guard separation>=1, strictly greater than nativeUVweld1/1024",
+    "All old arrays pos/N/sign/RGBA/UV0/UV1/material/winding/6UCX exact; T/B have explicit bounded reevaluation under unchanged frozen-source .05 gate",
+    "BaseLayer0 remainsUV0/T0/B0; measured T/B scalar reevaluation<=5.96e-8; extraT/B layers never replacebase",
+    "All7materialgraphs retain UVchannels0/1 only; channel2 mustneverbeconsumed",
+    "No engine patch, original UV edit, tolerance change or reference-to-native injection"
+  ],
+  "material_uv_channels": {
+    "FieldstoneSeed2m": [
+      0
+    ],
+    "LimeMortarSoot2m": [
+      0,
+      1
+    ],
+    "WeatheredTimber2m": [
+      0,
+      1
+    ],
+    "IronLead2m": [
+      0,
+      1
+    ],
+    "ThinWavyGlass2m": [
+      0
+    ],
+    "FieldstoneWall2m": [
+      0
+    ],
+    "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": [
+      0,
+      1
+    ]
+  },
+  "pre_repair_model": {
+    "scope": "DESIGN ONLY CPU replay of actual PRE-repair native vertex welding; not an export or native acceptance",
+    "canonical_uv_tuple_definition": "IEEE754 float32 UV0.x/UV0.y/UV1.x/UV1.y bits, stable lexicographic unique IDs; signed zero retained",
+    "source_corners": 547878,
+    "distinct_exact_uv_tuples": 137348,
+    "maximum_tag_id": 137347,
+    "tags_exactly_representable_float32": true,
+    "existing_native_built_vertices": 297305,
+    "replayed_baseline_vertices": 297305,
+    "baseline_matches_actual": true,
+    "predicted_guarded_pre_repair_vertices": 297307,
+    "predicted_extra_vertices": 2,
+    "extra_uv_bytes_per_vertex": 8,
+    "guard_channel_bytes": 2378456,
+    "extra_positions_tbn_color_bytes_unestimated": true,
+    "shader_uv2_unreferenced_required": true,
+    "post_color_vertex_count_may_differ": true,
+    "no_source_or_mesh_modification": true,
+    "elapsed": 10.385185705003096
+  },
+  "expected_extra_uv_storage_bytes": 2378456,
+  "expected_extra_existing_vertex_stream_bytes": 96,
+  "raw_extra_uv_channel_bytes": 4383024,
+  "old_inputs_preserved": true,
+  "planned_strict_validation": [
+    "Explicit3UV profile only; unknownprofile refused; original2UV default unchanged",
+    "Raw/built rows require exactly3UV and compareALL original+guard coordinates at unchanged1e-6",
+    "Derive expected guard from canonical UV0/UV1 independently, validate denseID/grid/fullcorner association beforecolorwrites",
+    "New versionedreference NPZ mayadd onlyguardarray; comparealloriginal arrays dtype/shape/bytehash exact vs20e beforeadmission",
+    "NativeTBN/bytepacking/UCX/material/pixel/GPU gates unchanged; no acceptance fromCPUreplay"
+  ],
+  "primary_sources_sha256": {
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Source/Runtime/Engine/Public/MeshBuild.h": "f0be79821750fea4bbed908e308fe35ed6288279de4211d725755dee440c8731",
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Source/Developer/MeshBuilder/Private/StaticMeshBuilder.cpp": "161a6cf0c98adf39c356e2a9d3ad25a00fd799de22cc279392f2d98b4b33d73f"
+  },
+  "no_project_or_runtime_edits": true,
+  "design_revision": 2,
+  "prototype_fbx_sha256": "e2560be3e346428bdebaa41fc29a58aeee6d37b8cd3620cfe43eacda7f1d892d",
+  "base_T_B_bitidentical": false,
+  "qualified_base_T_B_reevaluation": [
+    {
+      "array": "Binormals",
+      "components_differ": 19,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 5.2110210415488964e-11
+    },
+    {
+      "array": "Tangents",
+      "components_differ": 32,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 2.4148604983127436e-06
+    }
+  ],
+  "source_normal_tangent_gate_degrees": 0.05,
+  "source_gate_unchanged": true,
+  "base_zero_vector_counts": {
+    "N": 0,
+    "T": 0,
+    "B": 0
+  },
+  "bitangent_sign_changes": 0,
+  "qualification": "Blender exporter explicitly recomputes tangent layers for eachUV; extra evaluation produced measured float32 ULP differences; precise low-level scheduling cause not established. Original frozen-source .05degree N/T gate unchanged; no native reference injection.",
+  "serialized_proof_sha256": "44424ebaae5ce7159d452e9aed7e89971698f298d4205cc24f8691ea724126f5"
+}

@@ -11,7 +11,7 @@
   "device": "CPU",
   "threads": 2,
   "target_geometry_graphs_maps_exact": true,
-  "frozen_source_sha256": "bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217",
+  "frozen_source_sha256": "a6d0dbad44c8a4df3f64223044c79894ef82c0533de20ae1e24900c2aa053b03",
   "reproduced_blend_sha256": "d8c819de70a5b3041514744163b56893ec9eaf51d786f6fe8bdf781f0d377ab0",
   "initial_verifier_failure": "Tuple vs JSON-list graph comparison; fixed by lossless JSON value conversion, successful rerun; no art changed. Failed log preserved off-tree.",
   "lineage_qualification": "Earlier tracked42ff raw local signatures differ from derived9d97 parent; no equivalence claimed. Embedded28 matches actual immediate9d97 parent exactly.",

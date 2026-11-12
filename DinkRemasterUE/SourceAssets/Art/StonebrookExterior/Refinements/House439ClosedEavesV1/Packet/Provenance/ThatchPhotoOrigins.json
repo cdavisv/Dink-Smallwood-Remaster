@@ -1,0 +1,96 @@
+{
+  "license": "CC0-1.0",
+  "asset_url": "https://polyhaven.com/a/riet_01",
+  "license_url": "https://polyhaven.com/license",
+  "author": "Rob Tuytel",
+  "verified_sources": [
+    {
+      "key": "Diffuse",
+      "file": "riet_01_diff_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/riet_01/riet_01_diff_2k.png",
+      "size": 26373435,
+      "md5": "a17ad20769003702808160b0dbbcb740",
+      "sha256": "115ecd69ddae9e351e1a057cb5b6ac61bebfbe7f1ca13419acb55bcc567bf616"
+    },
+    {
+      "key": "nor_gl",
+      "file": "riet_01_nor_gl_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/riet_01/riet_01_nor_gl_2k.png",
+      "size": 20416687,
+      "md5": "09ebc412ba3e1b06ff2f5dae7e658993",
+      "sha256": "cb941a5afcbda76eaf727a7e8acdb74dbf55673a8a0ae88e2b49160e03cba41a"
+    },
+    {
+      "key": "arm",
+      "file": "riet_01_arm_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/riet_01/riet_01_arm_2k.png",
+      "size": 16749570,
+      "md5": "5d8eccd031ca56dd8baeb3bc7db80158",
+      "sha256": "60ae71492337276a84d3c9ef0b5505e1b8d0e90c52a2db3310fc73b3c75e815a"
+    }
+  ],
+  "derived": [
+    {
+      "node": "Image Texture.003",
+      "file": "T_Shared_PhotoFrayedReed2m_BC.png",
+      "colorspace": "sRGB",
+      "sha256": "67608541851a258f40525dc3cbfe7f1cfd3d0ac90fb3fdd063466b9995acffc7"
+    },
+    {
+      "node": "Image Texture.004",
+      "file": "T_Shared_PhotoFrayedReed2m_N_GL.png",
+      "colorspace": "Non-Color",
+      "sha256": "652913d86762481e995396a9fac81877c2d5ec6fe5d20f94e39a4e059451f877"
+    },
+    {
+      "node": "Image Texture.005",
+      "file": "T_Shared_PhotoFrayedReed2m_ORM.png",
+      "colorspace": "Non-Color",
+      "sha256": "d19a5172774dcc93ccec032efd50c8e3233d792e62ced782b5d7dea51c2e4259"
+    }
+  ],
+  "source_dimensions_m": [
+    2.5,
+    2.5
+  ],
+  "canonical_dimensions_m": [
+    2,
+    2
+  ],
+  "physical_size_adaptation_percent": -20,
+  "conversion": "Pillow RGB16to8 decoding explicit; RGB linear-light global range-preserving odds gains to retainedgoldmedian; GLnormal decoded/renormalized PNG8 noYflip; ARM channels unchanged PNG8 AOunused. No UVdensity waiver.",
+  "linear_palette_gain": [
+    3.0424039167202346,
+    2.0708361256690977,
+    1.0287607020985507
+  ],
+  "source_linear_median": [
+    0.10461648409110419,
+    0.09084171118340768,
+    0.07421356838014963
+  ],
+  "target_linear_median": [
+    0.262250721,
+    0.171441093,
+    0.07618539
+  ],
+  "actual_encoded_linear_median": [
+    0.26225065752969623,
+    0.1714411007328226,
+    0.07618538148130784
+  ],
+  "scope": "Photo fibrousfrayed reed, NOT calibratedhollowcrosssection. Realhollowtips modeledseparately. No perfacepainting or fabricatedbores. Source originals immutable; artreview pending.",
+  "current_role_usage": {
+    "coat_nodes": [
+      "Image Texture",
+      "Image Texture.001",
+      "Image Texture.002"
+    ],
+    "cut_nodes": [
+      "Image Texture.003",
+      "Image Texture.004",
+      "Image Texture.005"
+    ],
+    "qualification": "6active role nodes reuse3uniqueverifiedriet01derivedBC/NGL/ORMimages; not6distinctimages. -20%physicalsizeadaptation/sourceCC0 unchanged, newcoatuseexplicit."
+  }
+}

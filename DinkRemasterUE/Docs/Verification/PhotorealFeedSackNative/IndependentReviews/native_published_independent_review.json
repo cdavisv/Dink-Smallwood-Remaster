@@ -7,7 +7,7 @@
   "native_assets_and_all6package_hashes": "identical to independently reviewed author import/freshverify",
   "root_default_and_apply": "both0writes;9256before/afterpinsidentical",
   "independent_default_replay": "0writes,currentContentunchanged",
-  "source_receipt_sha256": "694d26855c632447f645aeb3193b19c731b74fe118f2fd926895c34b0669698c",
+  "source_receipt_sha256": "330cb188e8239b46d528e832a2c82a9a82074253593e9f94d44206cb083cbdd0",
   "runner": "exit0normal38.262s as root recorded",
   "limitations": "No Unreal rerun by this reviewer; no live game input; native logs not claimed warning-free. Full regression/render/pickup acceptance remain root-owned."
 }

@@ -1,0 +1,157 @@
+"""Warm fired-clay successor. Only fireplace render masonry rebuilt; no UCX/chimney/roof geometry edits."""
+import bpy,bmesh,math,json,hashlib,os,random
+from pathlib import Path
+from mathutils import Vector
+D=Path(__file__).resolve().parent;SRC=D.parent/'SuccessorV2/Fireplace_SharedContractV2.blend';bpy.ops.wm.open_mainfile(filepath=str(SRC));rng=random.Random(31067)
+def digest(o):
+ m=o.data;return hashlib.sha256(repr(([(tuple(v.co))for v in m.vertices],[(tuple(p.vertices),p.use_smooth)for p in m.polygons],[tuple(n.vector)for n in m.corner_normals],[tuple(r)for r in o.matrix_world],[[tuple(q.uv)for q in u.data]for u in m.uv_layers],[x.name if x else None for x in m.materials])).encode()).hexdigest()
+before={o.name:digest(o)for o in bpy.data.objects if o.type=='MESH'}
+# Actual shared donors remain untouched.
+soot=bpy.data.materials['MI_Shared_Soot2m'];mortar=bpy.data.materials['MI_Shared_LimeMortar2m'];oak=bpy.data.materials['MI_Shared_OakLonggrain2m'];metal=bpy.data.materials['MI_Shared_IronLead2m']
+def clay(name,stem):
+ m=bpy.data.materials.new(name);m.use_nodes=True;nt=m.node_tree;n=nt.nodes;l=nt.links;n.clear();p=n.new('ShaderNodeBsdfPrincipled');p.inputs['IOR'].default_value=1.5;p.inputs['Specular IOR Level'].default_value=.35;p.inputs['Alpha'].default_value=1;out=n.new('ShaderNodeOutputMaterial');l.new(p.outputs[0],out.inputs[0]);uv=n.new('ShaderNodeUVMap');uv.uv_map='UV0';vc=n.new('ShaderNodeVertexColor');vc.layer_name='SharedSurfaceData';bc={};norm={};rough={}
+ for kind,prefix in [('clay',stem),('soot','Soot2m')]:
+  for suffix in ['BC','N_GL','ORM']:
+   im=bpy.data.images.load(str(D/'Textures'/f'T_Shared_{prefix}_{suffix}.png'),check_existing=True);im.colorspace_settings.name='sRGB'if suffix=='BC'else'Non-Color';im.pack();t=n.new('ShaderNodeTexImage');t.image=im;t.extension='REPEAT';l.new(uv.outputs[0],t.inputs['Vector'])
+   if suffix=='BC':bc[kind]=t.outputs['Color']
+   elif suffix=='N_GL':norm[kind]=t.outputs['Color']
+   else:
+    sep=n.new('ShaderNodeSeparateColor');l.new(t.outputs['Color'],sep.inputs[0]);rough[kind]=sep.outputs[1]
+ tint=n.new('ShaderNodeMixRGB');tint.blend_type='MULTIPLY';tint.inputs[0].default_value=1;l.new(bc['clay'],tint.inputs[1]);l.new(vc.outputs['Color'],tint.inputs[2])
+ for materialinput,a,b in [('Base Color',tint.outputs[0],bc['soot']),('Roughness',rough['clay'],rough['soot'])]:
+  mix=n.new('ShaderNodeMixRGB');l.new(vc.outputs['Alpha'],mix.inputs[0]);l.new(a,mix.inputs[1]);l.new(b,mix.inputs[2]);l.new(mix.outputs[0],p.inputs[materialinput])
+ mix=n.new('ShaderNodeMixRGB');l.new(vc.outputs['Alpha'],mix.inputs[0]);l.new(norm['clay'],mix.inputs[1]);l.new(norm['soot'],mix.inputs[2]);normal=n.new('ShaderNodeNormalMap');normal.uv_map='UV0';normal.inputs['Strength'].default_value=1;l.new(mix.outputs[0],normal.inputs['Color']);l.new(normal.outputs[0],p.inputs['Normal']);m['generic_contract']='UV0physicalmetres/2;SharedSurfaceDataRGBclaytint/Asootcoverage;opaqueAlpha1;noobjectpositionorprivateatlas';return m
+body=clay('MI_Shared_FiredClay2m','FiredClay2m');masonry=clay('MI_Shared_FiredClayMasonry2m','FiredClayMasonry2m');materials=[body,mortar,soot,oak,metal]
+# Fourteen physical bond courses per1.022m. Cut perimeter bricks remain genuine shorter closures.
+BL=.220;BW=.105;BH=.065;JOINT=.008;STEP=BL+JOINT;COURSE=BH+JOINT;B=bpy.data.objects['SM_Fireplace_Stonebrook_V3Contact_LOD0'];bb=[v.co for v in B.data.vertices];xmin=min(v.x for v in bb);xmax=max(v.x for v in bb);ymin=min(v.y for v in bb);ymax=max(v.y for v in bb);zmin=min(v.z for v in bb);zmax=max(v.z for v in bb)
+parts=[];metrics=[]
+def add_box(lo,hi,role=0,bevel=True,tint=None,sootamount=None,tag='brick'):
+ lo=Vector(lo);hi=Vector(hi)
+ if min(hi-lo)<.007:return
+ center=(lo+hi)/2
+ if tint is None:
+  burn=rng.uniform(.66,1.02);tint=(burn,rng.uniform(.88,.99)*burn,rng.uniform(.81,.96)*burn)
+ if sootamount is None:sootamount=min(.85,.83*math.exp(-(center.x/.66)**2)*math.exp(-((center.z-1.25)/.18)**2))if center.y<-.23 else 0
+ parts.append(dict(lo=lo,hi=hi,role=role,bevel=bevel,tint=tint,soot=sootamount,tag=tag,wear=rng.uniform(.0016,.0036)))
+ if role==0:metrics.append(dict(size=list(hi-lo),center=list(center),tag=tag,wear=rng.uniform(.0016,.0036)))
+def cuts(lo,hi,step,offset=0):
+ marks=[lo];k=math.floor((lo-offset)/step)+1
+ while offset+k*step<hi-1e-7:marks.append(offset+k*step);k+=1
+ marks.append(hi);return list(zip(marks[:-1],marks[1:]))
+def wall(x0,x1,y0,y1,z0,z1,axis=0,front=True,sootamount=None,step=STEP,course=COURSE,tag='runningbond'):
+ z=z0;row=0
+ while z<z1-.006:
+  top=min(z+course-JOINT,z1);offset=(row%2)*step/2;lo,hi=(x0,x1)if axis==0 else(y0,y1)
+  for a,b in cuts(lo,hi,step,offset):
+   aa=a+(JOINT/2 if a>lo+1e-7 else 0);bb=b-(JOINT/2 if b<hi-1e-7 else 0)
+   l=[aa,y0,z]if axis==0 else[x0,aa,z];h=[bb,y1,top]if axis==0 else[x1,bb,top];add_box(l,h,bevel=front,sootamount=sootamount,tag=tag)
+  z+=course;row+=1
+# Hearth: original exact outer footprint and depth, two bed courses + cut paving topping.
+add_box((xmin+.004,ymin+.004,zmin+.003),(xmax-.004,ymax-.004,.175),1,False,tag='hearth_mortar_core')
+wall(xmin,xmax,ymin,ymin+BW,zmin,.146,front=True,tag='hearth_front');wall(xmin,xmax,ymax-BW,ymax,zmin,.146,front=False,tag='hearth_back')
+wall(xmin,xmin+BW,ymin+BW,ymax-BW,zmin,.146,axis=1,tag='hearth_return');wall(xmax-BW,xmax,ymin+BW,ymax-BW,zmin,.146,axis=1,tag='hearth_return')
+for y0,y1 in cuts(ymin,ymax,BW+JOINT):wall(xmin,xmax,y0+(JOINT/2 if y0>ymin else 0),y1-(JOINT/2 if y1<ymax else 0),.146,.18,tag='cut_hearth_pavers')
+# Piers: unchanged1.18m clear opening,1.06m above hearth. Solid backing, true bond skins.
+for x0,x1 in [(xmin,-.59),(.59,xmax)]:
+ add_box((x0+.005,-.424,.18),(x1-.005,.365,1.24),1,False,tag='pier_mortar_core')
+ wall(x0,x1,-.429,-.429+BW,.18,1.24,tag='pier_front');wall(x0,x1,.369-BW,.369,.18,1.24,front=False,tag='pier_back')
+ wall(x0,x0+BW,-.429+BW,.369-BW,.18,1.24,axis=1,tag='pier_return');wall(x1-BW,x1,-.429+BW,.369-BW,.18,1.24,axis=1,sootamount=.38,tag='pier_reveal')
+# Brick soldier lintel and brick cornice, same aperture/mantel envelope. No giant stone spans.
+# Lintel backing/caps preserve the original flue rectangle, no hollow open-ended lintel.
+add_box((xmin+.004,-.437,1.24),(-.3052,.407,1.493),1,False,tag='lintel_left_core')
+add_box((.3052,-.437,1.24),(xmax-.004,.407,1.493),1,False,tag='lintel_right_core')
+add_box((-.3052,-.437,1.24),(.3052,-.0102,1.493),1,False,tag='lintel_front_core')
+add_box((-.3052,.2402,1.24),(.3052,.407,1.493),1,False,tag='lintel_back_core')
+wall(xmin,xmin+BW,-.337,.307,1.24,1.493,axis=1,tag='lintel_return')
+wall(xmax-BW,xmax,-.337,.307,1.24,1.493,axis=1,tag='lintel_return')
+
+wall(xmin,xmax,-.442,-.442+BW,1.24,1.46,step=.073,course=.228,tag='soldier_lintel');wall(xmin,xmax,.412-BW,.412,1.24,1.46,step=.073,course=.228,front=False,tag='soldier_lintel_back')
+wall(xmin,xmax,-.442,-.337,1.468,1.493,tag='cut_lintel_closures')
+add_box((-1.235,-.522,1.493),(1.234,.492,1.66),1,False,tag='cornice_mortar_core')
+wall(-1.241,1.240,-.527,-.527+BW,1.493,1.639,tag='cornice_front');wall(-1.241,1.240,.497-BW,.497,1.493,1.639,front=False,tag='cornice_back')
+wall(-1.241,-1.241+BW,-.527+BW,.497-BW,1.493,1.639,axis=1,tag='cornice_return');wall(1.240-BW,1.240,-.527+BW,.497-BW,1.493,1.639,axis=1,tag='cornice_return')
+for y0,y1 in cuts(-.527,.497,BW+JOINT):wall(-1.241,1.240,y0+(JOINT/2 if y0>-.527 else 0),y1-(JOINT/2 if y1<.497 else 0),1.639,1.665,tag='cut_cornice_pavers')
+# Hood stepped at true brick courses, within prior taper envelope; open rectangular flue retained.
+z=1.665;row=0
+while z<zmax-.006:
+ top=min(z+BH,zmax);half=1.047-(z-1.665)*(.156/(2.8-1.665));off=(row%2)*STEP/2
+ for y0,y1,front in [(-.2465,-.2465+BW,True),(.4765-BW,.4765,False)]:
+  for a,b in cuts(-half,half,STEP,off):add_box((a+(JOINT/2 if a>-half else 0),y0,z),(b-(JOINT/2 if b<half else 0),y1,top),bevel=front,tag='hood_runningbond')
+ for side in [-1,1]:
+  x0,x1=(-half,-half+BW)if side<0 else(half-BW,half)
+  for a,b in cuts(-.2465+BW,.4765-BW,STEP,off):add_box((x0,a+(JOINT/2 if a>-.2465+BW else 0),z),(x1,b-(JOINT/2 if b<.4765-BW else 0),top),tag='hood_return')
+ # Mortar backing follows shell only; no core intersects the protected flue.
+ add_box((-half+.005,-.2405,z),(half-.005,-.2465+BW+.008,min(top+.007,zmax)),1,False,tag='hood_mortar_front')
+ add_box((-half+.005,.4765-BW-.008,z),(half-.005,.4705,min(top+.007,zmax)),1,False,tag='hood_mortar_back')
+ for side in [-1,1]:
+  a,b=(-half+.005,-half+BW+.008)if side<0 else(half-BW-.008,half-.005);add_box((a,-.2465+BW,z),(b,.4765-BW,min(top+.007,zmax)),1,False,tag='hood_mortar_return')
+ z+=COURSE;row+=1
+# Rear firebrick lining follows the same small brick dimensions, with authored soot exposure.
+wall(-.730,.730,.304,.332,.18,1.258,sootamount=.87,tag='firebox_lining')
+# Preserve the original continuous flue through every NEW brick/core/crown piece.
+# Exact box difference yields closed cut bricks; no hidden slab crosses the channel.
+flue_lo=Vector((-.3052,-.0102,1.235));flue_hi=Vector((.3052,.2402,zmax+.01));clipped=[];cut_count=0
+for part in parts:
+ lo,hi=part['lo'],part['hi'];a=Vector(tuple(max(lo[i],flue_lo[i])for i in range(3)));b=Vector(tuple(min(hi[i],flue_hi[i])for i in range(3)))
+ if any(b[i]-a[i]<=1e-7 for i in range(3)):clipped.append(part);continue
+ cut_count+=1;pieces=[(Vector((lo.x,lo.y,lo.z)),Vector((a.x,hi.y,hi.z))),(Vector((b.x,lo.y,lo.z)),Vector((hi.x,hi.y,hi.z))),(Vector((a.x,lo.y,lo.z)),Vector((b.x,a.y,hi.z))),(Vector((a.x,b.y,lo.z)),Vector((b.x,hi.y,hi.z))),(Vector((a.x,a.y,lo.z)),Vector((b.x,b.y,a.z))),(Vector((a.x,a.y,b.z)),Vector((b.x,b.y,hi.z)))]
+ for aa,bb in pieces:
+  if min(bb-aa)<=.001:continue
+  q=dict(part);q['lo']=aa;q['hi']=bb;q['tag']=part['tag']+'_flue_cut';clipped.append(q)
+parts=clipped;metrics=[dict(size=list(p['hi']-p['lo']),center=list((p['hi']+p['lo'])/2),tag=p['tag'])for p in parts if p['role']==0]
+
+# Preserve all non-masonry components independently for each existing LOD.
+def component_groups(m):
+ par=list(range(len(m.vertices)))
+ def rt(a):
+  while par[a]!=a:par[a]=par[par[a]];a=par[a]
+  return a
+ for e in m.edges:par[rt(e.vertices[0])]=rt(e.vertices[1])
+ groups={}
+ for p in m.polygons:groups.setdefault(rt(p.vertices[0]),[]).append(p)
+ return list(groups.values())
+report=[]
+for lod in range(3):
+ o=bpy.data.objects[f'SM_Fireplace_Stonebrook_V3Contact_LOD{lod}'];old=o.data;verts=[];faces=[];face_roles=[];colors=[];normals=[];smooth=[];uvs=[];roleuv=[];preserved=[]
+ for ps in component_groups(old):
+  ids={v for p in ps for v in p.vertices};vs=[old.vertices[i].co for i in ids];lo=[min(v[a]for v in vs)for a in range(3)];hi=[max(v[a]for v in vs)for a in range(3)];roles={p.material_index for p in ps}
+  throat=0 in roles and hi[0]-lo[0]>1.4 and lo[1]>.18 and lo[2]>1.23 and hi[2]<1.71
+  remove=(0 in roles and not throat)or(2 in roles and lo[2]>.17 and hi[2]<1.35 and (lo[1]>.29 or(hi[0]-lo[0]<.16 and hi[2]-lo[2]>.8)))
+  if remove:continue
+  mapping={i:len(verts)+k for k,i in enumerate(sorted(ids))};verts.extend(tuple(old.vertices[i].co)for i in sorted(ids))
+  for p in ps:
+   faces.append(tuple(mapping[i]for i in p.vertices));face_roles.append(0 if p.material_index==0 else p.material_index);smooth.append(p.use_smooth)
+   for li in p.loop_indices:
+    colors.append((.76,.70,.66,.82)if throat else tuple(old.color_attributes['SharedSurfaceData'].data[li].color));uvs.append(tuple(old.uv_layers['UV0'].data[li].uv));roleuv.append(tuple(old.uv_layers['UV1_SharedData'].data[li].uv));normals.append(tuple(old.corner_normals[li].vector))
+  preserved.append(dict(vertex_count=len(ids),faces=len(ps),position_digest=hashlib.sha256(repr([tuple(old.vertices[i].co)for i in sorted(ids)]).encode()).hexdigest()))
+ retained_v=len(verts);retained_f=len(faces)
+ for k,part in enumerate(parts):
+  bm=bmesh.new();bmesh.ops.create_cube(bm,size=1.);lo,hi=part['lo'],part['hi'];center=(lo+hi)/2;dim=hi-lo
+  for v in bm.verts:v.co=Vector((v.co.x*dim.x,v.co.y*dim.y,v.co.z*dim.z))+center
+  detail=part['bevel']and(lod==0 or(lod==1 and k%2==0))
+  if detail:bmesh.ops.bevel(bm,geom=list(bm.edges),offset=min(part['wear'],min(dim)*.18),segments=1,affect='EDGES',profile=.5)
+  bmesh.ops.triangulate(bm,faces=list(bm.faces));bm.verts.ensure_lookup_table();bm.verts.index_update();bm.normal_update();offset=len(verts);verts.extend(tuple(v.co)for v in bm.verts)
+  for f in bm.faces:
+   faces.append(tuple(offset+v.index for v in f.verts));face_roles.append(part['role']);smooth.append(False);axis=max(range(3),key=lambda a:abs(f.normal[a]));axes={0:(1,2),1:(0,2),2:(0,1)}[axis]
+   for v in f.verts:
+    world=o.matrix_world@v.co;uvs.append((world[axes[0]]/2,world[axes[1]]/2));roleuv.append((0,0));colors.append((*part['tint'],part['soot']));normals.append(tuple(f.normal))
+  bm.free()
+ me=bpy.data.meshes.new(o.name+'_FiredClayV3');me.from_pydata(verts,[],faces);me.update()
+ for mat in materials:me.materials.append(mat)
+ for p,idx,sm in zip(me.polygons,face_roles,smooth):p.material_index=idx;p.use_smooth=sm
+ for name,values in [('UV0',uvs),('UV1_SharedData',roleuv),('UVMap',uvs)]:
+  u=me.uv_layers.new(name=name)
+  for q,val in zip(u.data,values):q.uv=val
+ me.uv_layers.active_index=0;me.uv_layers['UV0'].active_render=True;c=me.color_attributes.new(name='SharedSurfaceData',type='FLOAT_COLOR',domain='CORNER')
+ for q,val in zip(c.data,colors):q.color=val
+ me.color_attributes.active_color=c;me.normals_split_custom_set(normals);o.data=me;me.calc_loop_triangles();me.calc_tangents(uvmap='UV0');assert len(me.loop_triangles)<60000
+ report.append(dict(name=o.name,triangles=len(me.loop_triangles),vertices=len(me.vertices),retained_nonbrick_vertices=retained_v,retained_nonbrick_faces=retained_f,retained_components=preserved,zero_T_corners=sum(l.tangent.length<1e-8 for l in me.loops),dimensions=list(o.dimensions)))
+# Chimney shape/collision strictly unchanged; masonry material continuation changes only role binding.
+chimney=bpy.data.objects['SM_Chimney_Stonebrook_V8'];old=list(chimney.data.materials)
+for i,mat in enumerate(old):
+ if mat and mat.name=='MI_Shared_FieldstoneCoursed2m':chimney.data.materials[i]=masonry
+color=chimney.data.color_attributes['SharedSurfaceData']
+for q in color.data:q.color=(.77,.72,.69,0.)
+# Ensure chimney coordinates/normals/UV/TRS exact while slot change is intentional.
+changed={r['name']for r in report};protected={o.name:digest(o)==before[o.name]for o in bpy.data.objects if o.type=='MESH'and o.name not in changed and o.name!=chimney.name};assert all(protected.values());json.dump(dict(source=str(SRC),source_sha256=hashlib.sha256(SRC.read_bytes()).hexdigest(),target_LODs=report,protected_objects=protected,protected_UCX=sum(n.startswith('UCX_')for n in protected),roof8_exact=sum(n.startswith('SM_IndoorRoof')for n in protected),brick_design_m=dict(length=BL,width=BW,height=BH,mortar=JOINT,course=COURSE),brick_cells=len(metrics),flue_cut_original_cells=cut_count,actual_brick_cells=metrics,opening_m=dict(width=1.18,height=1.06,sill=.18,lintel=1.24),original_bounds=dict(min=[xmin,ymin,zmin],max=[xmax,ymax,zmax]),known_chimney_zero_frames=[3003,3007,3148,3238,3252]),open(D/'SOURCE_GEOMETRY_METRICS.json','w'),indent=2)
+bpy.ops.wm.save_as_mainfile(filepath=str(D/'Fireplace_FiredClayV3.blend'),compress=True);print('FIRED_CLAY_SAVED',[(r['name'],r['triangles'])for r in report],flush=True);os._exit(0)

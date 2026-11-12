@@ -2,12 +2,12 @@
   {
     "source": "WillowGameDelivery",
     "published_candidate": "PhotorealWillowV1",
-    "handoff_sha256": "aab276ad3fb63ec9282f0ea573f63d3c76a386d6c629acfba4cad7a59fdf40b6",
+    "handoff_sha256": "7fe07de587bee8f2183bd8e8fb21e3e41dd521325c37e0ce9bdeec9ff549c269",
     "copied_core_files": 45,
     "records": [
       {
         "file": "ExportV6/Game/Dink/Foliage/Stonebrook/SharedVista/SM_Shared_Willow_01.fbx",
-        "sha256": "fd07442b1e0fff273376539ae4e5a17652e2eab9cbb8119dfbb16730279077f8",
+        "sha256": "9e10af859ef6b2ff3f856f3cce55314b9a4a1ef13b5a1fb8d036128b1e09f652",
         "independent_inode": true
       },
       {
@@ -47,47 +47,47 @@
       },
       {
         "file": "ExportV6/manifest.json",
-        "sha256": "1a72dca6a51f433e35b40678663b65345049ea9f739b1bb0328e712fe6d4f9b8",
+        "sha256": "0afe8e0723d18c0edc4f8e7a480b7803dea1f0ec9304789ca52b83fe4bc1ad5b",
         "independent_inode": true
       },
       {
         "file": "HANDOFF.md",
-        "sha256": "5451278a8e4cc86da39f5ae45ada46b3a4f55f82526a651c116da3731bbd6b08",
+        "sha256": "3da548446b63e4c75e2cd9a68c4ec09d7da55c7669f51bc467d029c857efc4fc",
         "independent_inode": true
       },
       {
         "file": "LOD_V6/SM_Shared_Willow_01_LOD0.fbx",
-        "sha256": "5352d977533ca36d463ed675f25058d60bae72afac54f62b2f528159f8577093",
+        "sha256": "2a858bef487fe61ba3943abc302d8e97fd0ad9725ab7394e8f630765c977d056",
         "independent_inode": true
       },
       {
         "file": "LOD_V6/SM_Shared_Willow_01_LOD1.fbx",
-        "sha256": "0d311d61efc55bcc296cbda61cc9254e83099eb33874d8f5706a3bdb667e932d",
+        "sha256": "6e1e90d9f1047662b93f4b1c68bf2133b5cacb93449ac12cb1a9c6affedfef6a",
         "independent_inode": true
       },
       {
         "file": "LOD_V6/SM_Shared_Willow_01_LOD2.fbx",
-        "sha256": "50c9f6f7d48ac18ec3f2c39931e3c248aa6f140938ee3fbf0d382261485c6a95",
+        "sha256": "3411adc2646c4c780a01239779e905ef7d6414d01ba0a7a3d1021da5a55a29d5",
         "independent_inode": true
       },
       {
         "file": "Previews/donor_high.png",
-        "sha256": "986ccc1b7078de29fdd398df76062134eb24bc57c91c6e79064fb9fd64863b9d",
+        "sha256": "61fe7c6c51d148cfa71074dda786cd1a467b19e4a2b111fd01ce3c235e3b9ba8",
         "independent_inode": true
       },
       {
         "file": "PreviewsV6/game_LOD0.png",
-        "sha256": "b0b3563194529c423be21d5c4491a47e3f1b828d6d2c83ccc83ce0f1788edc6e",
+        "sha256": "04b8254f69ca4d464533b323f713511146c6d4b2267f8564a95ba72bfad9cbca",
         "independent_inode": true
       },
       {
         "file": "PreviewsV6/game_LOD1.png",
-        "sha256": "edd6d2ae6be7462db89da06245a0a98eb161c38564d1fe15be5dcfc715ff72bc",
+        "sha256": "4012955b45d7024143fd0f57498ab3dd18bfd55db3377158403ddd8312788081",
         "independent_inode": true
       },
       {
         "file": "PreviewsV6/game_LOD2.png",
-        "sha256": "15d3181c31d92b0911a81f2aa1ef136675687d196aaa57498e17249fa8e60f67",
+        "sha256": "b8443251dc893acaa39f6b4c7328929318de55101814a086c754c0bfc3951ced",
         "independent_inode": true
       },
       {
@@ -157,7 +157,7 @@
       },
       {
         "file": "WillowGameV6.blend",
-        "sha256": "63b18e48c63c670c4b840bf713b3a08182a72cbcf0e1578880999a5f3c960065",
+        "sha256": "0a07151afea4a646cb1e6e8e9e0103cc360874cb0723123b815e6d8eccea4f9d",
         "independent_inode": true
       },
       {
@@ -167,7 +167,7 @@
       },
       {
         "file": "actual_fbx_verification_v6.json",
-        "sha256": "efed5941108a2456b478ebe97aed1ddd5f34963df62d93080d2b45ceb03e1a81",
+        "sha256": "ae476a158adec2d6e650e83e146534f35a6a22b301070161aa3b90e76175f6f9",
         "independent_inode": true
       },
       {
@@ -177,12 +177,12 @@
       },
       {
         "file": "combined_export_audit_v6.json",
-        "sha256": "07dc09ac4642cfeb9f741a77d62e20fa66800ebe12adfdeac01edeff79b6759a",
+        "sha256": "0c4b556635e9165ba63e707d88485cb19fae58435b9304ead70b62d79e775260",
         "independent_inode": true
       },
       {
         "file": "export_report_v6.json",
-        "sha256": "cd973f87427c7787f4ffbfb9e1f590b78e877bffa20c256955d1d33b77c42649",
+        "sha256": "28f550e82b3558548e75e31d6612bd1052ae8f261e46ea54cbfb7e44fff862a2",
         "independent_inode": true
       },
       {
@@ -192,17 +192,17 @@
       },
       {
         "file": "geometry_portable_v6.json",
-        "sha256": "09df83d8801fe1c07b116b22a4b7847f013ce435adc8b05c80afb1e71898f456",
+        "sha256": "7665b9e24cd1a685c335fac168fd20e43d7af37b59c1a4d5f0c4620983306970",
         "independent_inode": true
       },
       {
         "file": "guide_portable_v6.json",
-        "sha256": "a1dd627f416c81d6900b239ceea4c02ebe3ab8d0736b7a35f3fa57e901d10f9d",
+        "sha256": "3bc8e159c7b6a17afb20dce4dea8fc0e538c667a1ea010d72101ccb43f00a9de",
         "independent_inode": true
       },
       {
         "file": "high_source_extraction.json",
-        "sha256": "943b631491dcd3d94f5412ac347f2f001d5593d11f7042f9d5756022cd6e3a00",
+        "sha256": "46c8982c5af49ebe9d0cccdecab5c66c2dda0c6e125a2844798da0288044e6da",
         "independent_inode": true
       },
       {
@@ -212,7 +212,7 @@
       },
       {
         "file": "packed_roundtrip_v6.json",
-        "sha256": "91b15d84a647f1e0fa1011eb99c7248c6a212cd808bf7cf5cb87e2e21a60949e",
+        "sha256": "f59800c93e71b8d09f68f7e4432e79213884182c15209ae688b6e01e49194f33",
         "independent_inode": true
       },
       {
@@ -235,647 +235,647 @@
   {
     "source": "SharedGroundDelivery",
     "published_candidate": "SharedGroundV1",
-    "handoff_sha256": "b388dcc4a4a54f6629b57d62a2b95cd0dd783084e7bf9a68d02a9b8475451ed5",
+    "handoff_sha256": "e40da882e57bb6ad885c96a6c36b431dd291d1e05049a4ad34c1c78039a0031c",
     "copied_core_files": 255,
     "records": [
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM2_YM2_01.fbx",
-        "sha256": "597c3f521d6889ec7dbe4f488745d0153d9974658e1707c49fc89fdd8b33b8e8",
+        "sha256": "45faa82abe4a04a686d1f22d28a64ea19f23c01b5303117b287b573ab1200921",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM1_01.fbx",
-        "sha256": "e9d66dd3aed8b5a2f594b53edfb63aa32146cfe6b2adc914a2dc1b3b6c428189",
+        "sha256": "ebbd3a0450dba2ef73f881dd14d3caed15c9cb5da6b76c346d3ac424d2bd6b95",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM3_YM2_01.fbx",
-        "sha256": "6b6c3500df0d8705fa81e14debe809ca56ee8bab780cecf38a4646cdacbbd61c",
+        "sha256": "7a81ed95f725de77270bf39840bdb3b4a9ebce6601a054aeeb80e3fb3ba90f1a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM1_01.fbx",
-        "sha256": "7c2880bc2ca21fb478b0440ad5f39312e183b2ccfbfc60a4f6f50a53a59d5f9e",
+        "sha256": "1730b3b7682cbab4975a54acaed0633f708b373065ea2c203e79a91fc5bcf798",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM4_YM2_01.fbx",
-        "sha256": "ff80203273d55555fbf5db1e20ed49123cafc3ca082adf1ed21fe75428ee94f9",
+        "sha256": "a9914dc65be0be582acd8a80cc35ff7a5fbda42e6700248b38544b29b2e137bb",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM1_01.fbx",
-        "sha256": "e6efccf98921f63b473575e2d1902d4514b742f9c20bd086e7e1fbc9d1bd49e0",
+        "sha256": "06ac54b58761160f4fd22da55c801ef9ef8458a0b921ded79cf471cc870edfb1",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S470_XM5_YM2_01.fbx",
-        "sha256": "6f2700b8250d714949bf697f7512815c3eea2cc7673e783cfa51d53eeca16bd7",
+        "sha256": "217588a88643614fd26f0060b37e99ea0269b848b96f1b3fb47646fe76535a99",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM1_01.fbx",
-        "sha256": "4a59a6f241145b367cfbb312f2c2a80af00102d65908dd111b5603741f4825df",
+        "sha256": "b9c36a329a31a55a8ba014017639d3b141fd69586522b57ff46a7c816f0f494a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP1_YM2_01.fbx",
-        "sha256": "162897740476db75a4f23332846df7d02a0db39451275552f395ecd6e81b8767",
+        "sha256": "4903938a2149f5e0368a9c973a56c174c7eeb579224d785e27df06d05c0b15f1",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM1_01.fbx",
-        "sha256": "f39cd449cfae613c480dd06efdfb8af9c657186155aef5d17a3ef6929b4de191",
+        "sha256": "a6fd4e44d08e1e05ef1153a1e6147288d260d627a5030ea1c0c9dbc6159b1fc9",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP2_YM2_01.fbx",
-        "sha256": "6ffdbf268c699068ae0dccdbfd4aff6b72f17b02e8228a986abc2756cacdbc6e",
+        "sha256": "0b3f21b70cb28b019875879c5c9a731957ea4f8157955dae8f114e1737793fe4",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM1_01.fbx",
-        "sha256": "3293e7a02aecbb286724500367c40977083245cdef8ed05779babc0a65f51a81",
+        "sha256": "1a71db86135b1569aa21e70e013eb7d66e7aff24d6b030568074986f4c57e3b3",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP3_YM2_01.fbx",
-        "sha256": "4cdf1693fdb01bc101208642bf94d95c099fa5e3c9ac65fe6159f2b9bbe970e9",
+        "sha256": "e63026f81a46a0a686a9adc1d5b96a5265efeb3c26252501a6f5870604a7bfbe",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Bank_S472_XP4_YM2_01.fbx",
-        "sha256": "bb13cd46cb9916d8d9da3388aa5aaa5a4a2d38b0aee1b4b840356ff9bd234781",
+        "sha256": "f645f34bf91e9b3790af41279b040790287d727add1b9dcaf92fd75131cd4ba4",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP1_01.fbx",
-        "sha256": "3313d60b90fb8e4f67c455337a9eee1a03a959f6d05c74a6b390c7e986201647",
+        "sha256": "be0400c76246cae579e6a3970c92f6cfe86abe60da99896e995d302fe969d281",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP2_01.fbx",
-        "sha256": "4af8b17ffe91545f468e69fe901bb564023bbe89208fd8ecd77414525d9637c0",
+        "sha256": "e3d5db2de3aa87d2bd8d9c7fa8b9faf7ec9e524ca9de874dcecd0efb6f1eb62b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM2_YP3_01.fbx",
-        "sha256": "538f0b60f22d560232f270a48127d309348be9da725ee6373c4e7d7592bc9184",
+        "sha256": "8539663bf422a94fca1d69f81d6f2c60e828f4b442f01345e46725eb13590f88",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP1_01.fbx",
-        "sha256": "cb8dae241312629b774069b9123aeae845ee8e0c2c9ef2a44dd934787d75eb3b",
+        "sha256": "4f871db3798c2302bffb781d2f64b4352a263b0300d894833205f54c33028804",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP2_01.fbx",
-        "sha256": "eb1c854cd05ca6e6e916858c4ebcf5a92efcffeb9ccfd9a3088130b6c23d9f16",
+        "sha256": "0529cb9caf4f77e47e98ba0098fc99902c41a8a2100047de22369a63a4c57be8",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM3_YP3_01.fbx",
-        "sha256": "0c58f38381339ec2ff27de55ab68c945ef9014c6e7bbdb955f81eb468e596706",
+        "sha256": "567f06198fa32c107e9a61ccff62d0f6f81468ea60b79c7f6922ef2c4bed20fe",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP1_01.fbx",
-        "sha256": "c5bd84d7253b4cbbb781f44ed4940de2b36ab4ac5d31e3be4506c6ce85f612c7",
+        "sha256": "c4c700585cec41533607093e37bd404dd5b023ba89c4deacc611e544fc0b24c2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP2_01.fbx",
-        "sha256": "fead4a69f046df3d71d3f1c95842c85edba2e5cda341532d89774ab6a1e7f79f",
+        "sha256": "9e43bbe79e028f7f474615234d70008cd75bb29c126334f0dfd9ad8330c6492a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM4_YP3_01.fbx",
-        "sha256": "986efcb8dfe5944bd015abc7481475ddb443bd667f9eae2de0d70ba5aa9dd475",
+        "sha256": "87e481fb23ae27ce4744de93290f61af9236526277d6c90901a01e1061a9dc28",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP1_01.fbx",
-        "sha256": "f3766140b39257a6fd60593176fad1da7c8d2dc0207065c8ab51fc926b4c2b5b",
+        "sha256": "a7fc427de841f3e711ba2690b4bc7cc8b818816131785290d1ef193c1c072467",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP2_01.fbx",
-        "sha256": "4cec6cfd3a6ea532c709faac35c8cf187bcfe2030739d3535d58d6482a4fc950",
+        "sha256": "faf17fb7807004f51b519a613073647099dcc0d1299937d29d7001a7aa3a8fc5",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S406_XM5_YP3_01.fbx",
-        "sha256": "334deec5ed3a23cc09882dd3a09a86640539bb3902e40b4a1bb320b67cf51b5d",
+        "sha256": "4694cd9682876a32fca0529f3732714f73a665a6529da8144fe050d419054603",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP1_01.fbx",
-        "sha256": "79c8b1e251768b723171d4dd6c3ab5ad580367fd8b0031f3d50a7f32a33c4515",
+        "sha256": "0725f5e1ab33f0f86dc874b886287ca342adef1e7a854211bce322a142fa2195",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP2_01.fbx",
-        "sha256": "7200ecba6e41363fb32d07824c60cfc42402cb527cb5f5e25be48d46305885ae",
+        "sha256": "442b5df51b9503ecc11315a9dc109f882338e00f32a30825b0180784cceb135c",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM1_YP3_01.fbx",
-        "sha256": "415fc5024fdab89bc4bad657b7ee30899ef3ab73e89a4963ce4b79b64f3b5200",
+        "sha256": "de89bfb3cf1295f488f4222c471286dcc3ba66f9d6e8aaecce9563a89adefb29",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP1_01.fbx",
-        "sha256": "c6de81b92be8802b28caef893db59939f6f7c795eac3ffc649f903ca67ca4c76",
+        "sha256": "32f2170318e3104e91b10803f73f290f628d61515ff4df8bc19fe45adad18823",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP2_01.fbx",
-        "sha256": "e43b6f51789223466af34adcc0ac1a1e7f5044315ac0b4214c5a8c56d296b4e1",
+        "sha256": "f6e68c737642578d08e3b1597cc783428eb536d9044875ed0fefa5b58997d5c6",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XM2_YP3_01.fbx",
-        "sha256": "a0106cc051de1ba2007766260dba3ca4e3d2cfe66d31ed6c49e38f1f2f867501",
+        "sha256": "8db95d7374a54b97e5401451ce8368d6a77f1dccfcf0aa6da131dffe914d6180",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP1_01.fbx",
-        "sha256": "3d31d8cdc61549fd5d0fa0655f93ef79ba13c0fd8efbfd86a68265fc09c29f9e",
+        "sha256": "23e79ea0af3eb4b31df5264db30d7d8cc0fd98523febc0af296253d6ae0f0dc2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP2_01.fbx",
-        "sha256": "16ee4e054a47953243cb18f8ef8d09a97a5cd9853104fa868ff4ee92fe9857fb",
+        "sha256": "70148af6216f0b4198ad4d49819860e232201166fc295170fbc12acd46bb7750",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP0_YP3_01.fbx",
-        "sha256": "3e1e398f224c6355b7108fb6e74147f1e705139e976e8906a6970b60f9c11f24",
+        "sha256": "3599f333af910e258ba2cc63effeabdb56d8c74eee922af1dfa0d69b61b011fd",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP1_01.fbx",
-        "sha256": "bd9f624db461f2bc756cdf156547b79f7f2d78399ddeb0cda47e83e470d8bab1",
+        "sha256": "8e523886954d010bd03b5451e4a190dccd6b0f0272aaf907c04cba9fa210d2ea",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP2_01.fbx",
-        "sha256": "3f8996a7b2077d72953d48df1078703dbf0d34df8c5d7aaa0c2c549474118679",
+        "sha256": "6e5810e2d53528f194bc3c8dd9ece9229915ead28e0edcc4fd39f84fadaeec44",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S407_XP1_YP3_01.fbx",
-        "sha256": "d55c137233c7bd8e49ccc1b9ebb4fa85f9f917061101b71a268d7ac15ac98f7f",
+        "sha256": "b2fc6010cb4008064acfd24953d41f3caafd2ca1f48cc38901e5ad67f18c30e0",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP1_01.fbx",
-        "sha256": "7063e9b298e676f81776bb70e0034adf54f17f6cf73d4ae9e252e59362982841",
+        "sha256": "8ad36bf4d0204a2fe0ef54f34ce05d38ffcb5389c9d6486ea1d8ffd446e96a01",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP2_01.fbx",
-        "sha256": "308359fc81c06f5be0be93a14e4455fee26dc721a43da36f135f0fa561576d9a",
+        "sha256": "837d14fac9510d5b14d2dc935a6e1ea5608b263c6f4a6ebcb40db4a0647b4e99",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP1_YP3_01.fbx",
-        "sha256": "090527731a7033c8c77e10e1c08d1f544e93f6e3031c428759a9e53e8bc2a5c6",
+        "sha256": "8d57010504b0b77a4d717e95d73da463f6d2cc334af7bdce3177a1d314066f07",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP1_01.fbx",
-        "sha256": "392b2737c2023dc4c9192115d91e198e7e9ca2f7b5d100c4d6a5a7a8f7ee9161",
+        "sha256": "6898e27ab649802df7d6867e9aff2a15952a7d0cd52d086e40336f05066db20d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP2_01.fbx",
-        "sha256": "28fd273cad51168d82ce92ffcacff83970b1f65f09a7db61e16cf415109a83ba",
+        "sha256": "2b1d2712496bf9f0eb45b3634592f9d8309c8e18e9c4d28b096ddda9deb3a930",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP2_YP3_01.fbx",
-        "sha256": "2b92dfbf1c1b297574fb7a369c56bb7569e7a6921fc740606b72778285e85125",
+        "sha256": "04ee916952f050dbd7f8e7233038e40bc3c8e2dad04d621eb0da90be76c25b9b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP1_01.fbx",
-        "sha256": "62f953ae0eb7297025861aed7c39e9d445fb393f4fce19968d0e885fcdff8c61",
+        "sha256": "e904bc295288b2c8e5db7a0fd6eff276743f4b517e77eaefca2b162f6bfac550",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP2_01.fbx",
-        "sha256": "d0782010fc5e2d7fda38035e4b12f82cd43158164d7da7ef180638a42c7cbb76",
+        "sha256": "3708bd88d4ffd8323792cf43156a1aad0eae403794d328ee950d18b534d8a19d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP3_YP3_01.fbx",
-        "sha256": "7e5bed075425823e711544c96604ec7208c15d969b5faf84b47a068531187f03",
+        "sha256": "9731f71ccfeef47e2b2dd19aa4b9ba37885b28bdaa68fb091dac93bb63779e48",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP1_01.fbx",
-        "sha256": "76fe55f3d5292885b14f4991ea86343a2e9dcccf04daa7034d19d3967fb4860e",
+        "sha256": "ac3a9e99d415f90476b7a3630222b6e74c8b566374e7a453ecda0a68f67fb050",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP2_01.fbx",
-        "sha256": "d9cc523fdab858e5069335fb5829cf4a374148764835dcc8b0fba06169bbd057",
+        "sha256": "9decda1e419da688b6c83c5a612301367b3c4bafd5d8164e1e124d5f3bd26bb9",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S408_XP4_YP3_01.fbx",
-        "sha256": "06aa8a12de61e6dfc46cd925b19520298e7609c4b529233b1f3ca3ee755b326e",
+        "sha256": "eeb81ea2658c566080bd2bf979f6e9dba5f1f1d0d128827e7dd00214b1963f40",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YM1_01.fbx",
-        "sha256": "89630dc4f2ae9ad60f046b8044264dcdf7051cf11e51f3a73d2a4f99877d808f",
+        "sha256": "584bb64476218e14d03b0e01c737ba36a3d75cfd013959cd5af55467285b6e68",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP0_01.fbx",
-        "sha256": "48a3a5a891ad232564da8e29482f57669a640658c2a33848965d947707431bcf",
+        "sha256": "79416694bd4f39ed35195fb21890f6adafb00da0924f35571c1d14a183470cf2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP1_YP1_01.fbx",
-        "sha256": "28a5e7f5b36dd34cf1fdf445df88859f65d5ed3c52f43f02e47e077f8e62891f",
+        "sha256": "26aa1a167fff3961f8b7da4afadd12c1ed30bf9ce6c74ce6a72a4ce50c762702",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YM1_01.fbx",
-        "sha256": "e1353a8a3033d89e9e8137e7abf28b7d768f0925cb91bdf973e3a20ca006d3b2",
+        "sha256": "2d03a7c857f78507f35bba22f3d615b3c2a7e41fbf9581459905557952388a8b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP0_01.fbx",
-        "sha256": "671b61644d05303f9b8b1d27a4832ccd8dfed0c908aa8a579f702bf16d94eda6",
+        "sha256": "f00bfb5973d27a30da943a2d336db86302283e781437a2eaceab5a622e9e0013",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP2_YP1_01.fbx",
-        "sha256": "a974edd33417a48065eada5cda37920371074a470a29cac61fdddb1bb5638494",
+        "sha256": "08bcd27d685cc97ba2bf78f22a5727e77f8232dcf9e562147eb95910c44a0cb0",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YM1_01.fbx",
-        "sha256": "b89724a09f5ea709fd89a24eaab25ceba30411e1dba616ed8f535b949663a44d",
+        "sha256": "bb6c912eed91283d1a729e565be9431c9fbabff30d864ec7a2da4af1141d7a1d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP0_01.fbx",
-        "sha256": "d2e1b2450647f8c45de17c90f3c9ab66535240bf8ae994b993886d385f072fbb",
+        "sha256": "9585739b42f956d252d541514389cd0de632b51921c43c0d0b15d5fa0f99493a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP3_YP1_01.fbx",
-        "sha256": "fa5b8e03d03ca99b5a9ccaa4bb2cfd54dacc570f0cf8cb5b01c167a0bb24d5c1",
+        "sha256": "8a2068c5db469c52bcc4176d3bef600fa28a086be83ad7296f5d77995a17404e",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YM1_01.fbx",
-        "sha256": "544530464a89060bbb4626c084a4a63da7b58b236c4eed8fd24df124d95648a9",
+        "sha256": "c0130fa939cae4845d061ce60907e9e99e93a3bb3e7f5cb5c69dd19b1a575823",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP0_01.fbx",
-        "sha256": "255c08cb49428978399210c4ec4ffa8daf6c9012b69a27c2bdbcf6a8c94e6c1b",
+        "sha256": "f7f8d8cd2a983043c7dd462bffd79d3d1fa5c8f06a1bea09016d6fa3e2d5524d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S440_XP4_YP1_01.fbx",
-        "sha256": "cf3065641d2b1d238ea8bf2349ba5292a6a15c79ff9468844c336f4223fd2971",
+        "sha256": "8e9b93b952231b4ed57c8f63ffdddea42c32b50fdec0a91e9953176ea401acb1",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM1_01.fbx",
-        "sha256": "2074a6312271e4331de10288080bd2324233b7557ae6442fdd6b4f41efeb7e6d",
+        "sha256": "67bd19854b721aef160f93d6a1d04cde8020917271ff9ad56f565f817cf38c9b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM2_YM2_01.fbx",
-        "sha256": "f94d3e2166c1b3e1f7a68b5276301f7ea89f9fd320f66bdbf188da4959637a92",
+        "sha256": "4f83c45c08a3b3b952a135c0b57239b5ecd4bb240f2b93429948004c0e6b0444",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM1_01.fbx",
-        "sha256": "6f98b9bd647ac2d3088352c875cbe7b949b5589ba51c36a88fe71f7834dac64c",
+        "sha256": "2cabda5675e2dab3d1bf4e7b4a38ec4d8c49cab3a88e835e0a4216a67bb86f5d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM3_YM2_01.fbx",
-        "sha256": "91a482752a33b7e13d2d2e7ffd4c5646905360ef75d6fdedb5b35c51b9852198",
+        "sha256": "1418e84e82f3a2883a69b3a095aa436331f0ce367a3cb3f03e102f98068c1590",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM1_01.fbx",
-        "sha256": "a91d17cc36d8ad2b4320370b480ce1046218b0fbe4ebf85f38bdb0c9daecb6f9",
+        "sha256": "ecb735c52fbdee6c052a0190237e31a9be6fe1821da6c93c8da68c4e5edebbd9",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM4_YM2_01.fbx",
-        "sha256": "4ebd4aa9da912da87175883862f7e6f0db0136a44a218e701b49bd4fb367e6f5",
+        "sha256": "57ea38489c457a09bf216fe34f21bb39f47ef884054f85c843b1f5086b04bd9e",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM1_01.fbx",
-        "sha256": "42a5ff0935ba60e337817b83699c177edd9452633e3716a4461e4a270a2aa33a",
+        "sha256": "f2703f4cd3b0b3993653e881a7c0fccdec998c3305af2e0d0e7bdea060458024",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S470_XM5_YM2_01.fbx",
-        "sha256": "eae20b526722ef0613444571e378ebba7886735eec69460e7787a411ce593e05",
+        "sha256": "44b3d106474cd5f3bcc07955a6e2ce3969f32dcf6026f18596cd07013eaeb899",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM1_01.fbx",
-        "sha256": "db4f99f4fc58ba449fc709c5bed3bb6ab63fc9e51d632638dd92cf435608bb56",
+        "sha256": "24504fda02431c2b1be8ad6dcfc4b44fecef80b762a5325394e6ac3c760470cc",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP1_YM2_01.fbx",
-        "sha256": "f2a51eb2375096266fd05cadfb893a26ba3185a22bb220a0971161b4b9650110",
+        "sha256": "5b72d61a7b2254fbaa9220258ec1834be71faac07032c7948bd5588b5d3bbb46",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM1_01.fbx",
-        "sha256": "7648c88d3894c800525c9dc04c2b9eedae5ab6aeeb6ed931ead95fad69106554",
+        "sha256": "23787bfb56153c156c57cd16fc0fb16cdff78133735409c190558540265fc89d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP2_YM2_01.fbx",
-        "sha256": "f76839cd36ab0753d42e6ee4ad4a460f02b88baf21591e3c3e5d3e668a0f880d",
+        "sha256": "16652d48afd8f918b3a6fbd8165a22234113b89b7ccbd42ff9c68a4e57f459d4",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM1_01.fbx",
-        "sha256": "38df129b93bab85d21b277599cdfa078e6257e1f68707bbb48e64bab056c3d60",
+        "sha256": "fe2617c18eb9a59018c09b0325aa3ead111bc899a357bd7a0d9258c2a5c7d2b3",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP3_YM2_01.fbx",
-        "sha256": "a89c1254a26b143faf66fea71e353a9ee326ada942253c80d1ebcd475f81971d",
+        "sha256": "57dde50a5b48a9751cfc5270871569f72f7b06e5db0cb8d640505b78ad38cb80",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM1_01.fbx",
-        "sha256": "27710c39ee0d75d43998edb97df51f3bd7ba65154a67d1bbcd8597f8183ae6ae",
+        "sha256": "59955ecd2d92c3bdd7113dd27be0fd5dd1145b8468f26f9884843d971489e06d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S472_XP4_YM2_01.fbx",
-        "sha256": "b5cc504d5c79e74281feda7db9aa5553bcbd74805d0b287922edcc7b5c6f9806",
+        "sha256": "e4bd2fdb1e22db45c74945a5ce749a348bafd4236bf647f9b775f106b01cf24b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM2_01.fbx",
-        "sha256": "7514eb2d9024b619c4fcbeea3b350dd14a58b1906f2dd67b69650ab82ebe53c1",
+        "sha256": "3133af465034c3ea68597ab4b52b28a4b095bfc0391943032268709a894923f3",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM3_01.fbx",
-        "sha256": "70a82a7c2a28c2d3f6af4a814a2e2fe9527ad8ee83c1ec911aa920b6e8d93140",
+        "sha256": "1783562ab662d544c2c2116f66cb2d0aa5ee2b24e6a56c47e20692dd36096474",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM2_YM4_01.fbx",
-        "sha256": "cb6f2aaebc332f66c4d5a1ad8cdb05e911e1722e77cbb3aa07011d32e920e794",
+        "sha256": "417a138694997da0c9a2fc02d92f1c6558aeb58f6830ab981c784e93a403a749",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM2_01.fbx",
-        "sha256": "4982ce6dbf4561ea6ca108e630bb1b3040518f78fab6526cd43723fc711b2a17",
+        "sha256": "7ba849bf9715f75e6f3abf6dfc6004900fa27e74e638d95200caa5c80a7997c5",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM3_01.fbx",
-        "sha256": "06b5ba6c671487dd78900c52c21158ce1e1cf786c389b3a394d18faeed1d9a5d",
+        "sha256": "9dd24de2c6a1f9a8a345f01f50958318b641c171a30365aa3ff7c3515dfc53e6",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM3_YM4_01.fbx",
-        "sha256": "b565ca9a355e124d0e7f328a54f6d25c5797c812929272af7508ca38dc3682ae",
+        "sha256": "f021d148fef71a1c388e16d553c121fd3a4adbcde81640a2014de6fc04f1ab25",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM2_01.fbx",
-        "sha256": "c9d6da8eb45c34cb0289a62f341df6f6266b1ea1a908028f02b2e4022d08c935",
+        "sha256": "284850ac87c19c166d1bdf8198f1bd707608ea86438cb7609281e363e7c52733",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM3_01.fbx",
-        "sha256": "7da03d5d35b394adce999be3a3fc63794f9a14cb5413e91e07dd0af14562b837",
+        "sha256": "f8fb8b510d963c935ecb1bd75ba15c3eea15eba5bee8865c3bb6834b7c3d842d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM4_YM4_01.fbx",
-        "sha256": "8b9adaf79e0bc77377776505a198a703f09a12c6c4578f4684e052d0190674c0",
+        "sha256": "f6b18eceb9769e0dfef5cffb5a3fabc54f2e1e9bd76118fac6eb5319239fe435",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM2_01.fbx",
-        "sha256": "2dad77aa6d115a744206ba22b1f0dd0ea9e26815ac69f72c5cf58cbc8c6b9f7b",
+        "sha256": "b1d8cc2e29958ef87473a7ec751c4527a34389f907e563f4550050f2600a35f5",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM3_01.fbx",
-        "sha256": "181df35d822171662311beaf711516b9b8637031b0ff2ffdfa09bd9f171a8a16",
+        "sha256": "58f825db527d90f8282c3d703cd9441bc0219bf82d3094b54175bff6180c7b6d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S502_XM5_YM4_01.fbx",
-        "sha256": "e66ea5cc8d996bdcd3c708697959f7157552a264a3ce58c44c8ee84f659d282d",
+        "sha256": "06ad622bb3ba2ce6064bd59137f2faf43be60cd60ac9ec42df265aa49dfa4c6f",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM2_01.fbx",
-        "sha256": "07dcfc6d6fdeee1b04da115fb06d67ab0237ac4698acbfa4116babfb3b17976d",
+        "sha256": "ec4577794601f10133a01f50ce87a14aa877404a0e491f5f3b368c02ff262ce5",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM3_01.fbx",
-        "sha256": "71f7fc8f4e8218d89b61a99d8ff67443cc4c2b5367fcaabbaf964afcd0576a09",
+        "sha256": "1a67576ec64f32da88898b8329e961d90a85f300f889c1a4104f86d51b13a933",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM1_YM4_01.fbx",
-        "sha256": "706401d5168e8a27bab601b16353c265a36ae06fd0e16ea4097363a24f2f1d2d",
+        "sha256": "9c31436d66fdf3c3d6f30fa5b359051b90efd9880ec5788d83a6f40c6797f3c9",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM2_01.fbx",
-        "sha256": "d77fc7d9e1958181119e4a88153512eb310e5f12b02bd9de827fde797b37823e",
+        "sha256": "7346fec054cff50f8421c206b0c90d078afb6322543e727bbc27158b05dab697",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM3_01.fbx",
-        "sha256": "3b6707300dc3ac0292969bb0312511a3e04a79477acad9aa89054d3552a048a8",
+        "sha256": "a91570cd494e7828e9854a90ff413020f3777eceb3608a197b45366d3c969c6a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XM2_YM4_01.fbx",
-        "sha256": "ef2736f1478f5a3372b0af5f2419f177764f87e0f131e6af4ee1016811df38a3",
+        "sha256": "e0163cf1e53687c61303c5d352cbbeb8c43376fa3c43af90b972bb658ce2fe2c",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM2_01.fbx",
-        "sha256": "01eb1f3759023b0d824c29959d4a4173698322f4616ce3a1377e3889b5520882",
+        "sha256": "0fa6c9ef43b7a6529e51ff813504ba989042f3be5a6b24fe96744633f0847f0d",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM3_01.fbx",
-        "sha256": "10f8f37f8845d7ebd4235397ad581c4cc6b3f7f102adaeadaaf05a9677609a55",
+        "sha256": "6559c48de10a25ee17c14c23cffed495fd99ae28475a43a1a71891e9e83ef3e8",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP0_YM4_01.fbx",
-        "sha256": "c752fc16427d90d7832414f5a865df57d590e051c95df9004990fa62fc73bfb2",
+        "sha256": "ca897c45686614a7335eb25656ad5e4b73ff18d2007bdb2c4dbfb4fc6ada4fe4",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM2_01.fbx",
-        "sha256": "a5692aee3156c2cd6915d864abd3c547fa8e82f4c924e29dc4080ff2b32878e6",
+        "sha256": "90552a269918502fe66fed2db6959538cfd5e6c26b724c5904fbe6ce3a9c5687",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM3_01.fbx",
-        "sha256": "ad22b0fcb04efff9392a4dea48a8b16f4e74add66ce5a9c1c1ae8f9f31d76e85",
+        "sha256": "79979669d098a15e6be3b9ce977ffd887ab98f69f6195082cf22a6e7e9f7f4ba",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S503_XP1_YM4_01.fbx",
-        "sha256": "40108949c32d7d09fe8b75e032f69e478761f8640ae717611206c9ed377c821b",
+        "sha256": "73cfa04f5593545212f4b8ee5f0ad2b63443a63ac02ffe7583748e85f150fab2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM2_01.fbx",
-        "sha256": "b9971663c649f22a181f3bba3ca22e8eec3febe5cc43233542126170c9929b46",
+        "sha256": "3c7a3ba3dee77834123b69679d3455c9343e73e8d4841d69457b56cbdbda6983",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM3_01.fbx",
-        "sha256": "9e72266ddf7fdbad8e573ef427f3a56f662c8aa50cddc1ffa8a8b1a530fe8779",
+        "sha256": "2f80bf2601904bcb6c1e15fd2fb8fda820f57761618b09f2c068c2e69d6c53e0",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP1_YM4_01.fbx",
-        "sha256": "8de2d07d5bae9ac2e36cf1232ed187eff31713a9e394e234bdc561b34f6759bd",
+        "sha256": "dca2e76f47c955d9d7062e55ab7e15004cc9d2cc8f1e52ce0b5c49e9ce63246f",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM2_01.fbx",
-        "sha256": "7c53494e7e3f9b77e1ccae8eb58247df86ff9a5d37015f331b37a2b05d89a0a6",
+        "sha256": "7c139d2fd80730ac007ef6b509926736ebc65e928828e4ad74fa43f99ac2eb23",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM3_01.fbx",
-        "sha256": "8b01725b4c09723942fe52395481ffa026cb608383466ea5795e7b1481c74585",
+        "sha256": "042234cfb0cfd7878a2a98002e38014e5a854e5d7830e0db866aac477d6f9423",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP2_YM4_01.fbx",
-        "sha256": "6447056b351cd80c7c1707badc859767c9c2d09fc53d463f56552870962e840c",
+        "sha256": "23b98d2f0be48b114e47dbe19e3976a503174f80063a08c75f5c601cc8cd567c",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM2_01.fbx",
-        "sha256": "d1a8c069ee593490ad2d506f4d1f85aec8ad54bbbac697734affcd2e2cefaaba",
+        "sha256": "b69004395dd749547c283068536820e28e5359162ac4c3a4e06158c502920c83",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM3_01.fbx",
-        "sha256": "507feb890a03e63cd07e2c164fde92ec828c98cf875bc9c0404b49de7678388b",
+        "sha256": "a3ea3db0856150e5e4d84f32acce36e10c104c63fa92e623cff42f589b5d1776",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP3_YM4_01.fbx",
-        "sha256": "323049a292546a8d96e1ff2c5f1cbfc4a0c2b409befa12f7d58b913a3ad6c396",
+        "sha256": "19999a9d57ec957506f61e2eb324a8515bb7f0811eb4544c9fc333459f2873a7",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM2_01.fbx",
-        "sha256": "84b1d439b189b43f2795252a2c1b91e10a3b573995c81df409e2e48f7fdedd02",
+        "sha256": "3d41dd0525cfa731e1e0341c19e4c9b45f8e729b3f987cc0640b594c0cf51258",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM3_01.fbx",
-        "sha256": "57ea4fe2b57b60820ba3a62eeb18e18d124357baa4bb18f122b4098be6874591",
+        "sha256": "af194c44a16b9bbbd3203930412a16da85080190cd1627196829fe4ce0273d54",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Land_S504_XP4_YM4_01.fbx",
-        "sha256": "df2f799420357b4dad229b4d526b8e82bcf4bf7c10db10caf9a06bb4106a4112",
+        "sha256": "4fea0ab07e6a282ad2db28092334895918724e5bb2f02670738749a3f4aeefea",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM2_YM2_01.fbx",
-        "sha256": "7430d57dbc9100bdc86a8872b2830eaa9dfeba63fc8e930c7758567008fd98c2",
+        "sha256": "bcd82db3942a2c13ee06692d319d96176f0e4e8a3b22151713e7b832c2cc3e15",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM1_01.fbx",
-        "sha256": "58240ebdb04bb9521519bfe8b8bb430408e0ff06e8ffc5f1940d055ef8961a2d",
+        "sha256": "d75d9fd12cb7cb4a7d27095eab05a34f87d9bf19c190dc07e9b2cbc83b078cd7",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM3_YM2_01.fbx",
-        "sha256": "082236ba4cb919b3a852eeb27cad03ab4cf9d71b8184e739f606cccf9114c71a",
+        "sha256": "8b6c2414568c2d845111803dbe531ae0af19997c092fc317ec78d52fd9c1a6c5",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM1_01.fbx",
-        "sha256": "d05dbef048ec12411bdb6e49b2b2abc0fd8d7b7afec799644acac8a1c32f5dc8",
+        "sha256": "2ad7120e2ecca8211038debfae93f85b24ca62fa929239c1046991a137e680bb",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM4_YM2_01.fbx",
-        "sha256": "ff1e3bb84db5929c1083399106d7300aebf25487d9d3e06c4b5f6f623321bf3a",
+        "sha256": "51f56ee88550ab3c120d90c643d63d90018379fbdc7cb528974552531a03217c",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM1_01.fbx",
-        "sha256": "fe6cf47576017f35d03cfc2f7b36252a576e3b19beab9abf0f48e2fd253122d0",
+        "sha256": "a17fc1fa509b66dc1f7481ccf0c083fa977f0f77f80808676015838eb1e3663f",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S470_XM5_YM2_01.fbx",
-        "sha256": "a0b1bd1e71f521f922013ba08e068e50e20a8d0ba309af81ac164042c36fc0e7",
+        "sha256": "7d076a1e54ac17e8efe11351bf43d4905c498de83dafb17bac71d92a5185bfd9",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM1_01.fbx",
-        "sha256": "b9159baa9957d3cad02143b5e19ef7b23dd013ca2d851cfbca9d1c092da1a071",
+        "sha256": "04e604edb568bc0c41c89bcdedb98f0ada221ff8098a0e4744cbefb692f75f6b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP1_YM2_01.fbx",
-        "sha256": "4e5a372b9941a8d3492a281b42e5e2239c8538af2e30340eca499c84ec96aa71",
+        "sha256": "cb1bf9e4256da6fa9ee8770485b369e1ade0db697f9cfd1db155751742bac2e0",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM1_01.fbx",
-        "sha256": "f10dbb62c827a2de9144f57f179614f273a1feb3e8a03157528be236c0e7a187",
+        "sha256": "3f7cf49da1feb304913498f831727f806f6ba0606791775a3e4b148792a1e3a4",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP2_YM2_01.fbx",
-        "sha256": "06dfcd18090d733ed18c4ea168edb73644bfdd32abcd31aece587333c49e54fa",
+        "sha256": "78336a7f7d0f08471dc3b74592787f276d0c61ba11384edcd0025dd0ca9f8500",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM1_01.fbx",
-        "sha256": "bac163fb1eedbed6810430b9222e05bdcc9416b104af6ee8ef27e280db0563d8",
+        "sha256": "b6854317f828fcd9db95a0eecdd42043938becf7757bf6ee97b622342ad86d0f",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP3_YM2_01.fbx",
-        "sha256": "52760f471077f7f23bc7bda9cbe06930b3603c26a511a8d3144ce67cc8f9a592",
+        "sha256": "8b21983dc0c9709f6e6b2a00e374750f34474e4506cba4ffcd036c484997a7ee",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Buildings/Stonebrook/SharedVista/Ground/SM_Vista_Water_S472_XP4_YM2_01.fbx",
-        "sha256": "803cb8940ba1bf21d3fa8ebd6d7e7fcf6f141c259d5dba83a874ab7e6216a4ee",
+        "sha256": "b6a7155f73d75fe12bf7e10c880e6ce3075a70eadda4d3553b53b691739c7bd8",
         "independent_inode": true
       },
       {
@@ -925,72 +925,72 @@
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM2_01.fbx",
-        "sha256": "61daa8807b4f8fc6ddab2e6742952f73a028dbd07fc215815d8b071baedc2c94",
+        "sha256": "81fc2fb17479dd911349e5c975aa037a8950a7629dac43151a48b8a99181240a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM2_YM3_01.fbx",
-        "sha256": "46786b89dbae423177822f65c37c198b293993fe1f7f8a749f13a671c231b67c",
+        "sha256": "190f228913e43543ba81bd56dc6a84a9d3b681790f1e8d35bff5ba8f7353f0d2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM3_YM2_01.fbx",
-        "sha256": "8d5631a2dc2c31ceefc294aa5343d86249048a1ac63d6480d8f40f1fbf4a89b3",
+        "sha256": "43b8c15d03f5f60c1343f7319f71e2b9e83b442b1d6550ed98cfee20a047910f",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM4_YM1_01.fbx",
-        "sha256": "491eaf3ac820bb5b22e8a67e6d15cc6b5fb8e288bf975ca6f823e3a094c6a82f",
+        "sha256": "efa0e87b19c8a6c7c842c33292539541a8a7fd3b4d874e75527f5ca8db795072",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM5_YM2_01.fbx",
-        "sha256": "5788873c5065184678d28304d08ca20d32d1909bb3e282a10d84406531d08d44",
+        "sha256": "01e81203db1a18598e1da6d0aaada89cf68c313871013073deb9e496573ea7bd",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XM6_YM1_01.fbx",
-        "sha256": "83e0e0ed3040983ec20945bc5dc907dde86a670fa28e10e7395426491496d7b6",
+        "sha256": "d2740c43750263ec7ee8a52854909d86aaa5f888c88600b51942d1e042ebb31b",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP1_YM1_01.fbx",
-        "sha256": "9cc21a7bcb84320989a39ff1ccc8ea005c317d7d65d844af458674b111c4a828",
+        "sha256": "960f1deebb44095a6a016b09161807a93874d724f4073d10b57a6749d2f600cc",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP2_YM2_01.fbx",
-        "sha256": "93e43c87a05b3aa4eacea560cac99c3b0161b61bc4a9430e267b52c1ecc13e1b",
+        "sha256": "0fc5784067472886311bd8627c636ae9e2c1d60b3e1b0e3a44191bb1da8182f1",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM1_01.fbx",
-        "sha256": "aa5de732ed80287ceace50c9f833207d4de9d9622f0bb893f1a6116f67da529e",
+        "sha256": "1c9118df61a8a477b0e18752c473f2d615a09be03a9a101151d2ea4abd55790a",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP3_YM2_01.fbx",
-        "sha256": "88e2274925ae2fd4c82f94037f5a748dee16bde06c3ec4f26650d2c48ab20038",
+        "sha256": "a7ef551d6ab81144bdfe203b177c8e618889284d78ef3f253672726a5ccce237",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM1_01.fbx",
-        "sha256": "eafcfdf896933babfdbc27b929144ff4e7db044eb79852dd5c3912371307a578",
+        "sha256": "c592e1dfa0c8120adde1e94e74ce670265a1949734d59dcac267770e6d37d8aa",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM2_01.fbx",
-        "sha256": "9bf141cbafaba2638c7084178e98df8472a59bc1841416495b1c1c94a58c6605",
+        "sha256": "69a97504035728cb64327e62b4e07f281490ac317e8661792e478ca3152562f2",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP4_YM3_01.fbx",
-        "sha256": "d9598b0e0937efb1ad67b69b5520f0f02369f87f24fac0df30bed7e2cd972984",
+        "sha256": "66694058c06e6066fd9a172ff0cffe42847a2773f23dc0cb73a1c9e7dab90224",
         "independent_inode": true
       },
       {
         "file": "ExportV2/Game/Dink/Foliage/Stonebrook/SharedVista/Reeds/SM_Vista_Reeds_XP5_YM2_01.fbx",
-        "sha256": "d82036f81dc3563d9c396e47ef29d2a24f1a3fb3de575612cd53282716eea47e",
+        "sha256": "4a21eebe5c8a5cd11b841010cba575517b13135ecb7f4ef5288f5d70477bc062",
         "independent_inode": true
       },
       {
@@ -1010,17 +1010,17 @@
       },
       {
         "file": "ExportV2/manifest.json",
-        "sha256": "1c8f3d7366bb71fc9c0c68b619cb45381d98276d0e71ab3990911b10110fee75",
+        "sha256": "592a88de82181cb55127cc23a1191ad5b127c378d7afadc415c35b2f80de2c48",
         "independent_inode": true
       },
       {
         "file": "HANDOFF.md",
-        "sha256": "f27c8229916dab1066183971157b2df4c74c5ee4fbb941f58931c6433a316481",
+        "sha256": "76460d8e2c3bf62e075c67bfc1ebbbabc71bb6d22d7d12f963794007d11f6427",
         "independent_inode": true
       },
       {
         "file": "Inputs/coordinate_contract.json",
-        "sha256": "1c25ca997ed175a38dd3269ddccad9182c151b4ca67506e55cfb6fc54bc4ca2d",
+        "sha256": "9f8ebac92c953a17d10e21b3445a589fbcf46c11a5d66a463356344b4de4e323",
         "independent_inode": true
       },
       {
@@ -1030,7 +1030,7 @@
       },
       {
         "file": "Inputs/meadow_generation.json",
-        "sha256": "3b87941b391a47e02c5353c958b08de9f56063e99b5494bbc8b30a76cd28ed5b",
+        "sha256": "a708851971868c4c0ef638a06c4a62ff05a393a4cbf4962b69eb4e6692de1925",
         "independent_inode": true
       },
       {
@@ -1040,242 +1040,242 @@
       },
       {
         "file": "PreviewsV2/inside-door.png",
-        "sha256": "90c39b416be0cd81fd4ed118a94ecc1c9a78e3b353935cbe0600593625134c1e",
+        "sha256": "823f5a4ccb604ec26bc6513fb434c0d222d5a1ecb9b4642353dc8cee6f24cba6",
         "independent_inode": true
       },
       {
         "file": "PreviewsV2/inside-east-window-exact.png",
-        "sha256": "698b2be9757f74624ffd551e02d8529266e642cf9227f313dd9782f4a604b8e9",
+        "sha256": "56256b4482b7ce66e8e8874b53bd5bddc5a7e65c0dd20a700a52b433d240d0ce",
         "independent_inode": true
       },
       {
         "file": "PreviewsV2/yard-east.png",
-        "sha256": "7591d4b8b0cfac77b2c54f91e51460ed1fcf255ed7ecf27d3400063f0d33ce25",
+        "sha256": "bbf9870d4e59681ca4132a1e29da25f53eb26dea82ab96a37334e650711bc7eb",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD0.fbx",
-        "sha256": "f5c80c786b6e7e2f6d8b9b3d061b1a5fba4fcda323a7fcfeca56bca9eb2f8856",
+        "sha256": "9c30d794e2e586586009c7a40f4793e2ae06810081091852ecaa620dbe7e5df7",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD1.fbx",
-        "sha256": "37216eebea17e9ec66449abbf9d3b903c1f136dc1b93d7a11be6c7e10029ab15",
+        "sha256": "eeb32e937e2a56eb0568bc0bbf4ddc6cfb553f2cc144851e2c9e680ad8eba1b2",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM2_01_LOD2.fbx",
-        "sha256": "bd46b6f9a08a38b4e241b597c92875944323ee2479400273263aa74879c73bde",
+        "sha256": "bc84395b6842e77031485aec4b9aad7031ead64666eadb061ab88d8ae9eedce8",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD0.fbx",
-        "sha256": "c398cf5f759030f103b90ac4df314db3aabcc3be54fc2712e6157fd5a9d7d184",
+        "sha256": "80fab7f51a6edf453043555f251674f914d8af0bc307069616a155f912fca725",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD1.fbx",
-        "sha256": "30462079ddd1352abd815e7486546c59cf1d2757aa5a9b28f3a8c4d9f1f7a79d",
+        "sha256": "e41e1a9ef7efc90b524680248633dd5e64188ada81a5057c6b5592d20ce45a4d",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM2_YM3_01_LOD2.fbx",
-        "sha256": "49983572c5d93c51b45db9ad1564bccaac7af57f6da65a3839d808e3b12e2d9e",
+        "sha256": "d189378e737381f153958d63ec92e31c6aaa26e0dd6a582780f6e3db428e6088",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD0.fbx",
-        "sha256": "9313c65ddeb529547400e82c74fd28809b5be1dec674ca0e750f813a861d822b",
+        "sha256": "cf8616ced34bbd97ae4afab4a59c193de19ea42a29c8b214bc33ce850d63aa38",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD1.fbx",
-        "sha256": "16a0034e91522b0270edb4d755b687d83a7f9f938decb03970dfa96bb671c809",
+        "sha256": "f5f371429405033bb28222d60986d1f0e6a14cd199c6aaffc346df5b2496fba6",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM3_YM2_01_LOD2.fbx",
-        "sha256": "0e6e687de3e50e946ef1658edf6efcb27ecc6ca58c2067e767d74d0d24da5010",
+        "sha256": "cfb2ff0032e44afca7d5be84f50833866d8f94b690819a9be0a3381a0d2ef7f8",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD0.fbx",
-        "sha256": "d3926b2b29c78d4a4d37ac448920b23e856b5ebea3f6979b68bc8dc5fece7943",
+        "sha256": "13c956e370315afb84d2cc4ef2ce585ff73ef9cfbb5cba051024ccb8cb5b2d4e",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD1.fbx",
-        "sha256": "b9ebcb471746f85e9ae8105b090d528ee6883371bbdc581cc6539b886a0408cd",
+        "sha256": "5e8c49010117296330c9cc298234d789a43c5c39f51cad40349a03eecc921c65",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM4_YM1_01_LOD2.fbx",
-        "sha256": "fe570a5316db318fbc9d92473212f2684f783cd985f226de22ad5264d2477ec0",
+        "sha256": "dd5d20fb94891ed9220f507a67bce1c5779d7171c0e8b7aa27d29285b835d2fd",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD0.fbx",
-        "sha256": "bd5e10071b2fcc4de0ef4ac09421894526d4d543c4a9f4818100321645c3a99f",
+        "sha256": "70ef21b01cabbee3d409db6b4e07304dbbe62ca3a8b34db642c67cfaf784b5b4",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD1.fbx",
-        "sha256": "f9ce3ad667785a2e794c7683139f9c436f589f52341f409c18e81e03b73c168f",
+        "sha256": "639f9992bea058e6a16769fce1601f9435db05eee2ea0b0a63323ebcee65d334",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM5_YM2_01_LOD2.fbx",
-        "sha256": "c49459d64bef0fc7c30ac5800ee51d1b99709cdeb0f6bed93710917abd77adaa",
+        "sha256": "6bc152cbe1025ecefbc9d00b2b5716595eb291d209b30b819f5055c62275e4ad",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD0.fbx",
-        "sha256": "87f9e7416ee1ab11bd42b3265225b3c8dbaf3bd441fc20e78515f7eabd45cc13",
+        "sha256": "e1f00fdac796c2478da0be21b22bc270b66e6093fb42044da6e6f780146e9888",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD1.fbx",
-        "sha256": "c97c2d5277c9cb777045f1f3347b5af2cdfed15006a9168b29223990655a3599",
+        "sha256": "b8b841b1ac7b66a6617c9f050eb95ae00d0b44cd50c29fb6dbaf06b3cbaab436",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XM6_YM1_01_LOD2.fbx",
-        "sha256": "cdc35ff47f7f6df3dbcac62db152f77287e231348fc981639f8f52a9b6205708",
+        "sha256": "a9548ca04d0f3fe681fe2fef0de358ba7d7c132570854b4c6c717c6b08cfa905",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD0.fbx",
-        "sha256": "af8a9a66595dcda219c2d51196afd7d9d6632395af387fc71eef7929179ea8e9",
+        "sha256": "64c12a075f21390443fd1bc0a4dcef6e2d61325cdd53835976085174742b5147",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD1.fbx",
-        "sha256": "55fbc5c7843b6bb002dd24884994822b94c79bf01fa8bb962def06d735cf00ac",
+        "sha256": "5bcb55ffa9d0b7c40425c1934472221bc937ded5657aeb113b4cf1df1352d07b",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP1_YM1_01_LOD2.fbx",
-        "sha256": "98ebed37ced84e794543a5cd6a6d85efbf747bf8bb6fdf7add3dee8870b76c4a",
+        "sha256": "e52eb49eca9b1f09d5810455787354b9c9d6005a008aabf67128d59c82d8f158",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD0.fbx",
-        "sha256": "9a6074113c667863540fc0da1fe5edfea7244fab21a4041a54e4cc941fbe3277",
+        "sha256": "380b4c67b9af4aecf753ba3c4d7adbf6abda37bcfdd9dd84fb16cff5fe10d2bd",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD1.fbx",
-        "sha256": "e3251bf944f68d11e014e52356d5ad261d7ea03d3027a31ea1366b99f8ccfc07",
+        "sha256": "733d99e3ddb4eb382a4c14b952b74cc3300b182b1285a3a2c6723d695a776064",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP2_YM2_01_LOD2.fbx",
-        "sha256": "b719bbf94b03159c26df4157979f887051e0e5adb1c8491ad69ff9c910102d22",
+        "sha256": "3ccfb1de8f79a11d4ef52c37a96ff641b72233c6ade21c63def1782fa5f9a6f2",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD0.fbx",
-        "sha256": "9c9272bbc3552832d4064d55b2b99ea5f5456c76ffb7d9ba2a9b18093d6014b5",
+        "sha256": "0eb79514fd837fb7022ad0586ccf0d7b3a42af2520b621a89f6f9d82b9922bff",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD1.fbx",
-        "sha256": "95f3d99d6697913f26bc1533b7ce50a2aa3a897340da5772a2ff583da289b6a2",
+        "sha256": "cc678cbb1ced4c485c9cfadde5f1fe2d5d0356d2a7a5277a04b0b0e2ac20706c",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM1_01_LOD2.fbx",
-        "sha256": "0bbe759a939c7f66d2bf5b38502acb61ac4e7dfc241ca3dc024e1ed9941d1c1e",
+        "sha256": "b9b206abd8c372bd00dae9dcfae83910b83169de7a8c3e28972f532e3a2acebd",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD0.fbx",
-        "sha256": "5b5818b2bd786ac611a9841364e28ff6dfa4c1da281d695640c4b6e7ede51b15",
+        "sha256": "0f9603fcd67574191b30e7438fd460664ede68b939713870216a653a8975763d",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD1.fbx",
-        "sha256": "9803e92eecf8c9b7b27593661c2cb5f88016a6da75dae7701903cdd6969973e9",
+        "sha256": "b07867b5e600ebe82a408647bbff920f3b1822948843461e2332c1d1ba07b0e2",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP3_YM2_01_LOD2.fbx",
-        "sha256": "c476a64a49a3c23bd226ec370bad535ca4fdc192a955284c432fd862c8dd1c8a",
+        "sha256": "d099f8cc3d41b03837c6508a7acd3661aa8cfdc0f8ba307df42d264398d391c6",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD0.fbx",
-        "sha256": "343f1ac33a0ff87188af707c5b383281eeb96c6f314949b5b4406edf1663ece5",
+        "sha256": "ffb812e7d27a86f1d13dfc8a9a3c05e687d239bed5db070068ad7e26f0154d4c",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD1.fbx",
-        "sha256": "889823416d477c74eac89f4cd5472b2bea88d1ec88770d8caa80def0a25c5223",
+        "sha256": "f845dded7c4f6ab0969efdf407b716ee4d0fd17ff035a3614e8b80f030429182",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM1_01_LOD2.fbx",
-        "sha256": "c36cbdd974abba5798ebe4155bd5a9eacc6a0fd944dba1146092287a46e0433b",
+        "sha256": "9789a5aa5c46d7d8de25703bad2c7e000eeb7f6f29b82cbcf439f7eaf657cec4",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD0.fbx",
-        "sha256": "ba856930662bb45e5585b94899ef55624d7f1a762bc5a01b442cb6a8c24323b7",
+        "sha256": "73e0a258ae59cb93c0d1b25cba5b516391c3fba595552e9fd207f642e2cb0ddb",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD1.fbx",
-        "sha256": "35e7ca61387d0a7032c3fbfcada89074fe4198c59f932338e13aa17858288c54",
+        "sha256": "e94e9097632c7eb6d3f1775594a817f534377c9c789ba4ada5a4a94ffcd7fc5b",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM2_01_LOD2.fbx",
-        "sha256": "1ceffe0e9544167ce3e34efa0ec89bf286c4919cff5e0a983c7cbc7db4a02b05",
+        "sha256": "6f266e42c2cfe9fc59703cc4946932f08103cf1a6d47b9a7a1884ee6db27f1cd",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD0.fbx",
-        "sha256": "167c240392c0b4783e1a2a5cd751139b8f758984f693a98568de093c30a715de",
+        "sha256": "b8c95d005c17700f4ede2bde164d89dbe53de26dc8e37ef49f78aeaa7f3536f2",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD1.fbx",
-        "sha256": "d9c23fe6107f1942e66c499b929cf85753d246f50c0091b9eed2f0200f408374",
+        "sha256": "44a7155a7e4dc40d3c5bd25893013c5d213730b83b4c56b02b35201f943faa24",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP4_YM3_01_LOD2.fbx",
-        "sha256": "74047cc128e8dc4a1a41b791e5388e77666abecefa147a211b700dec588eabcf",
+        "sha256": "1fa1720a2168ab190e620372acb6f8f780cacc11aa51ed5f6f3770b67c0dc4b4",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD0.fbx",
-        "sha256": "46beabb7d2e51e2966e4e6202892c54694853f2936841b988b72a3448d269e56",
+        "sha256": "19bb72789ffbb9d01449e1435238489a601e799b14d9e04612f41bde0553894d",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD1.fbx",
-        "sha256": "a2ce61caa41ff551835fdd18b5fa9fc144f644e55afe1a346dd658f3820d20bc",
+        "sha256": "67145ba95bd399613ce3538a30db13c7758a4afc049e2eed31967da4b427db6d",
         "independent_inode": true
       },
       {
         "file": "ReedLOD/SM_Vista_Reeds_XP5_YM2_01_LOD2.fbx",
-        "sha256": "ad169f6ae6dce5b1228981435875f1b8ca17700a75720dd4eed8aa6f97bce050",
+        "sha256": "55ac8fb8b822c51f1bbdf1a473a0fac123b2e93012d21eb258116b08b66f7d3e",
         "independent_inode": true
       },
       {
         "file": "SharedGroundDonorV11.blend",
-        "sha256": "41f90361c74c8fc584a6447a959a7df2f69c85966034f1209206622148fd96c5",
+        "sha256": "679db9714a06f06ea47154a6b834456ce5fbaab257e9f7d0c74c303eb0fc479f",
         "independent_inode": true
       },
       {
         "file": "SharedGroundGameV2.blend",
-        "sha256": "9ea680849a3125a33ef9868bb72533a889a69dcace7cd4957724dd60298ebbcc",
+        "sha256": "b1114b28f3490b7d5baa8b6eaedbbdae4fbf65fc064ecd70f137b6b8dc625259",
         "independent_inode": true
       },
       {
         "file": "SharedGroundMaterials.blend",
-        "sha256": "61620e9c28696e45ef62ab43ac241bfbacbac5cc6d403db1e0d6b1ec5c98f4b3",
+        "sha256": "8feca406eff91461038bfa9fbefd1990573dc80cd51e089d7c8d4e3a4b36d8ac",
         "independent_inode": true
       },
       {
@@ -1380,12 +1380,12 @@
       },
       {
         "file": "actual_fbx_proof_v2.json",
-        "sha256": "f2ecca3e25e9cdba31317101f59ee3537a9918575570ef81c50f5662156b7d7c",
+        "sha256": "3a2a3926e64c54de047fc4ffaed269ce0cac8a92ea4a71cfe96d14029c0d0ffe",
         "independent_inode": true
       },
       {
         "file": "asset_preparation_v2.json",
-        "sha256": "1f6c6522bf6bf4d68c31ddac8bdccfc0db2048f05a526d72cb4a441117cf8c6a",
+        "sha256": "101929dc01d78a76001a79f6334511b3c34d814512dd39c1cac06f83c04f1517",
         "independent_inode": true
       },
       {
@@ -1395,12 +1395,12 @@
       },
       {
         "file": "author_source_extraction.json",
-        "sha256": "38f919d3872adc7f2a0ebd19a077a363ee500922ee5efe9b899f4df35f3255d5",
+        "sha256": "155e324c8f70110d1a6d3b46cbcc6dd2ddd734a747570958db480e973772cb95",
         "independent_inode": true
       },
       {
         "file": "context_preview_v2.json",
-        "sha256": "3eb352a884f38df55b5bbf009ad9bc4de5e9b4f1f5b5eebae8678c2d97f9ab35",
+        "sha256": "05420b9e89907f5a68b0dc4ff8683312706187835414e9cb5f2bb892504b4a58",
         "independent_inode": true
       },
       {
@@ -1410,32 +1410,32 @@
       },
       {
         "file": "export_report_v2.json",
-        "sha256": "cb3aad1d33e23127e2a4eaf2e185d689f65c3f8c7d1b3c7afebada7cafeed67b",
+        "sha256": "b62bf900d0160fb3f2178cbc4874d536991aba37cf70a7c015a63a7c44a070e3",
         "independent_inode": true
       },
       {
         "file": "geometry_audit_v2.json",
-        "sha256": "af765bc7640b2c940bbdb94d1b2903abdbe96bb9100169fb32b90c99d6e14b75",
+        "sha256": "b21c580d07a065d1cb11a9e1a163686beb1290c33aa47cf5ee85d5a1e2c76ce4",
         "independent_inode": true
       },
       {
         "file": "guide_adaptive_v1.json",
-        "sha256": "4a81bac3afe0bb8dbeaf4e386eaa2b0479a84cdab375d1862feb3c8f44f0b5ec",
+        "sha256": "35ca02f4d399e8fb82410284de3e551119d83683e94c8eb9f51f77babd6102c0",
         "independent_inode": true
       },
       {
         "file": "guide_raw_v1.json",
-        "sha256": "4a81bac3afe0bb8dbeaf4e386eaa2b0479a84cdab375d1862feb3c8f44f0b5ec",
+        "sha256": "35ca02f4d399e8fb82410284de3e551119d83683e94c8eb9f51f77babd6102c0",
         "independent_inode": true
       },
       {
         "file": "guide_raw_v2.json",
-        "sha256": "e20ed284c04801af6b0ea272208817f1ea06e9f4cbc5e475e4d889e46ba5b2b8",
+        "sha256": "2b8f29cbe50de9e15b4f1125691cd63a6c1de7b7b9fff9378876a019c952b2d5",
         "independent_inode": true
       },
       {
         "file": "input_copy_provenance.json",
-        "sha256": "6bad7b5cc2eff8f056262b740ca045b4cdfd95ad0175cc8ab42cc3c3d00e8e5a",
+        "sha256": "2ce638ba4a76170db38d1071d112f8d1f62840a6f931157a8a83a94c9dcf094a",
         "independent_inode": true
       },
       {
@@ -1450,17 +1450,17 @@
       },
       {
         "file": "native_contract_v2.json",
-        "sha256": "868ec6f00264e5a2a3b199485196ccf2c2cfc0df9b6c6016bd52bf8ec29ac09e",
+        "sha256": "16e47283f2297a0522721748b18941afc587bbfc22a94113e0bb424e1046716f",
         "independent_inode": true
       },
       {
         "file": "packed_roundtrip_v2.json",
-        "sha256": "873b6b7ff7d93e781b056eaa8c8aedae3f162b4952d1453277a4438ac6c7d225",
+        "sha256": "a2f7448e9eb83b2649dfa096739b0686d2705314446aee1afffd59b6550c6ef1",
         "independent_inode": true
       },
       {
         "file": "preview_crash_272193.txt",
-        "sha256": "4ad5ec7417db9430ebcbf66dbe557ae97bcb9c2f633b8b0d502f0b82cf584a54",
+        "sha256": "ae3379d26c76e25e3860a74ccfae3ea36f7dfa0dd5ffa7b64ec62b2832a61e7c",
         "independent_inode": true
       },
       {
@@ -1470,7 +1470,7 @@
       },
       {
         "file": "qualified_terrain_policy_v2.json",
-        "sha256": "c88cdc0e5be0c5739424bf90f73d14687ec21aaf64ba041a83bf7bd81b5714da",
+        "sha256": "4b7c143b3978436a2e41ca45b8d520ecfedba96a506bb4deb33500fbf6e4c4f6",
         "independent_inode": true
       },
       {

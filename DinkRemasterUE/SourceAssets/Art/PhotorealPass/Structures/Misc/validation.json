@@ -1,0 +1,2943 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/Misc.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 17,
+    "assets_passed": 0,
+    "errors": 28,
+    "warnings": 267
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Bridge_Wood_Deck_PR",
+      "class": "kit_piece",
+      "collection": "SM_Bridge_Wood_Deck_PR",
+      "tris_per_lod": {
+        "LOD0": 2376,
+        "LOD1": 1068,
+        "LOD2": 474
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.222,
+          -87.537,
+          -21.145
+        ],
+        "blender_max_cm": [
+          125.533,
+          88.625,
+          6.731
+        ],
+        "size_cm": [
+          250.756,
+          176.162,
+          27.876
+        ],
+        "unreal_min_cm": [
+          -125.222,
+          -88.625,
+          -21.145
+        ],
+        "unreal_max_cm": [
+          125.533,
+          87.537,
+          6.731
+        ]
+      },
+      "errors": 1,
+      "warnings": 6,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "pivot is wrong for kit_piece (rule grid_piece): origin is 21.1 cm off, should move by (0.0, 0.0, -21.1) cm. origin must be on a grid vertex at floor level inside the footprint",
+          "object": "SM_Bridge_Wood_Deck_PR_LOD0",
+          "data": {
+            "rule": "grid_piece",
+            "offset_cm": [
+              0.0,
+              0.0,
+              -21.15
+            ]
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "144 triangles are collapsed in UV space",
+          "object": "SM_Bridge_Wood_Deck_PR_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Bridge_Wood_Deck_PR",
+          "message": "kit_piece uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Bridge_Wood_Rail_Rope_PR",
+      "class": "prop",
+      "collection": "SM_Bridge_Wood_Rail_Rope_PR",
+      "tris_per_lod": {
+        "LOD0": 3646,
+        "LOD1": 1640,
+        "LOD2": 728
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.291,
+          -9.882,
+          -30.0
+        ],
+        "blender_max_cm": [
+          125.282,
+          8.734,
+          128.052
+        ],
+        "size_cm": [
+          250.572,
+          18.616,
+          158.052
+        ],
+        "unreal_min_cm": [
+          -125.291,
+          -8.734,
+          -30.0
+        ],
+        "unreal_max_cm": [
+          125.282,
+          9.882,
+          128.052
+        ]
+      },
+      "errors": 2,
+      "warnings": 13,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "pivot is wrong for prop (rule base_center): origin is 30.0 cm off, should move by (-0.0, -0.6, -30.0) cm. ",
+          "object": "SM_Bridge_Wood_Rail_Rope_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              -0.0,
+              -0.57,
+              -30.0
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "1 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Bridge_Wood_Rail_Rope_PR_LOD0",
+          "data": {
+            "vertices": 1
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "UV0 islands overlap (91.6 % of UV area, 3510 triangles); class prop needs unique UVs",
+          "object": "SM_Bridge_Wood_Rail_Rope_PR_LOD0",
+          "data": {
+            "overlap_ratio": 0.91562
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "2976 triangles have UVs outside 0-1",
+          "object": "SM_Bridge_Wood_Rail_Rope_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "texel density 3103 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Bridge_Wood_Rail_Rope_PR_LOD0",
+          "data": {
+            "density_px_per_m": 3103.4,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Bridge_Wood_Rail_Rope_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Bridge_Wood_Rail_Plank_PR",
+      "class": "prop",
+      "collection": "SM_Bridge_Wood_Rail_Plank_PR",
+      "tris_per_lod": {
+        "LOD0": 5890,
+        "LOD1": 2650,
+        "LOD2": 1178
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -125.467,
+          -11.735,
+          -30.0
+        ],
+        "blender_max_cm": [
+          125.31,
+          14.714,
+          128.02
+        ],
+        "size_cm": [
+          250.777,
+          26.449,
+          158.02
+        ],
+        "unreal_min_cm": [
+          -125.467,
+          -14.714,
+          -30.0
+        ],
+        "unreal_max_cm": [
+          125.31,
+          11.735,
+          128.02
+        ]
+      },
+      "errors": 2,
+      "warnings": 14,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "pivot is wrong for prop (rule base_center): origin is 30.0 cm off, should move by (-0.1, 1.5, -30.0) cm. ",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              -0.08,
+              1.49,
+              -30.0
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "1 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0",
+          "data": {
+            "vertices": 1
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "UV0 islands overlap (161.8 % of UV area, 5391 triangles); class prop needs unique UVs",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.6183
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "3570 triangles have UVs outside 0-1",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "180 triangles are collapsed in UV space",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "texel density 1711 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Bridge_Wood_Rail_Plank_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1710.9,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Bridge_Wood_Rail_Plank_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Bridge_Stone_PR",
+      "class": "prop_large",
+      "collection": "SM_Bridge_Stone_PR",
+      "tris_per_lod": {
+        "LOD0": 11420,
+        "LOD1": 5138,
+        "LOD2": 2284
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -401.259,
+          -231.883,
+          -250.0
+        ],
+        "blender_max_cm": [
+          401.083,
+          230.484,
+          53.149
+        ],
+        "size_cm": [
+          802.342,
+          462.367,
+          303.149
+        ],
+        "unreal_min_cm": [
+          -401.259,
+          -230.484,
+          -250.0
+        ],
+        "unreal_max_cm": [
+          401.083,
+          231.883,
+          53.149
+        ]
+      },
+      "errors": 2,
+      "warnings": 16,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "pivot is wrong for prop_large (rule base_center): origin is 250.0 cm off, should move by (-0.1, -0.7, -250.0) cm. ",
+          "object": "SM_Bridge_Stone_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              -0.09,
+              -0.7,
+              -250.0
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "108 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Bridge_Stone_PR_LOD0",
+          "data": {
+            "vertices": 108
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "13 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Bridge_Stone_PR_LOD1",
+          "data": {
+            "vertices": 13
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "13 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Bridge_Stone_PR_LOD2",
+          "data": {
+            "vertices": 13
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "UV0 islands overlap (154.7 % of UV area, 4514 triangles); class prop_large needs unique UVs",
+          "object": "SM_Bridge_Stone_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.54693
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "9899 triangles have UVs outside 0-1",
+          "object": "SM_Bridge_Stone_PR_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "3 triangles are collapsed in UV space",
+          "object": "SM_Bridge_Stone_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Bridge_Stone_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "texel density 1585 px/m at the declared 2048 px texture; target 256 px/m (accepted 128-512)",
+          "object": "SM_Bridge_Stone_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1585.3,
+            "target": 256
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_CastleAshlar_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_CastleAshlar_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_CastleAshlar_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_CastleAshlar_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_CastleAshlar_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_FieldBoulder_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_FieldBoulder_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_FieldBoulder_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_FieldBoulder_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "image 'T_Terrain_FieldBoulder_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Bridge_Stone_PR",
+          "message": "prop_large uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Door_Wood_Single_PR",
+      "class": "door",
+      "collection": "SM_Door_Wood_Single_PR",
+      "tris_per_lod": {
+        "LOD0": 1922,
+        "LOD1": 864,
+        "LOD2": 384
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -5.6,
+          0.0
+        ],
+        "blender_max_cm": [
+          97.759,
+          5.563,
+          201.158
+        ],
+        "size_cm": [
+          97.759,
+          11.163,
+          201.158
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -5.563,
+          0.0
+        ],
+        "unreal_max_cm": [
+          97.759,
+          5.6,
+          201.158
+        ]
+      },
+      "errors": 1,
+      "warnings": 8,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Door_Wood_Single_PR_LOD0",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "UV0 islands overlap (149.6 % of UV area, 1022 triangles); class door needs unique UVs",
+          "object": "SM_Door_Wood_Single_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.49574
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "1013 triangles have UVs outside 0-1",
+          "object": "SM_Door_Wood_Single_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "texel density 1217 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Door_Wood_Single_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1216.6,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Door_Wood_Single_PR",
+          "message": "door uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Door_Wood_Wide_PR",
+      "class": "door",
+      "collection": "SM_Door_Wood_Wide_PR",
+      "tris_per_lod": {
+        "LOD0": 2502,
+        "LOD1": 1124,
+        "LOD2": 500
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -6.088,
+          0.0
+        ],
+        "blender_max_cm": [
+          152.689,
+          5.572,
+          209.312
+        ],
+        "size_cm": [
+          152.689,
+          11.66,
+          209.312
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -5.572,
+          0.0
+        ],
+        "unreal_max_cm": [
+          152.689,
+          6.088,
+          209.312
+        ]
+      },
+      "errors": 1,
+      "warnings": 8,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "5 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Door_Wood_Wide_PR_LOD0",
+          "data": {
+            "vertices": 5
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "UV0 islands overlap (218.0 % of UV area, 1695 triangles); class door needs unique UVs",
+          "object": "SM_Door_Wood_Wide_PR_LOD0",
+          "data": {
+            "overlap_ratio": 2.18026
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "1608 triangles have UVs outside 0-1",
+          "object": "SM_Door_Wood_Wide_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "texel density 1175 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Door_Wood_Wide_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1175.3,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Door_Wood_Wide_PR",
+          "message": "door uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_SignPost_Single_PR",
+      "class": "prop",
+      "collection": "SM_SignPost_Single_PR",
+      "tris_per_lod": {
+        "LOD0": 896,
+        "LOD1": 402,
+        "LOD2": 178
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -50.774,
+          -18.43,
+          0.0
+        ],
+        "blender_max_cm": [
+          56.351,
+          12.44,
+          235.023
+        ],
+        "size_cm": [
+          107.125,
+          30.87,
+          235.023
+        ],
+        "unreal_min_cm": [
+          -50.774,
+          -12.44,
+          0.0
+        ],
+        "unreal_max_cm": [
+          56.351,
+          18.43,
+          235.023
+        ]
+      },
+      "errors": 1,
+      "warnings": 13,
+      "findings": [
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "UV0 islands overlap (116.4 % of UV area, 733 triangles); class prop needs unique UVs",
+          "object": "SM_SignPost_Single_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.1642
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "296 triangles have UVs outside 0-1",
+          "object": "SM_SignPost_Single_PR_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "48 triangles are collapsed in UV space",
+          "object": "SM_SignPost_Single_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "texel density 1383 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_SignPost_Single_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1383.2,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_SignPost_Single_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_SignPost_Double_PR",
+      "class": "prop",
+      "collection": "SM_SignPost_Double_PR",
+      "tris_per_lod": {
+        "LOD0": 1316,
+        "LOD1": 592,
+        "LOD2": 262
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -51.333,
+          -16.501,
+          0.0
+        ],
+        "blender_max_cm": [
+          54.89,
+          16.215,
+          234.948
+        ],
+        "size_cm": [
+          106.223,
+          32.716,
+          234.948
+        ],
+        "unreal_min_cm": [
+          -51.333,
+          -16.215,
+          0.0
+        ],
+        "unreal_max_cm": [
+          54.89,
+          16.501,
+          234.948
+        ]
+      },
+      "errors": 1,
+      "warnings": 13,
+      "findings": [
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "UV0 islands overlap (120.7 % of UV area, 1015 triangles); class prop needs unique UVs",
+          "object": "SM_SignPost_Double_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.20702
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "450 triangles have UVs outside 0-1",
+          "object": "SM_SignPost_Double_PR_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "84 triangles are collapsed in UV space",
+          "object": "SM_SignPost_Double_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "texel density 1399 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_SignPost_Double_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1399.0,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_SignPost_Double_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_SignPost_Triple_PR",
+      "class": "prop",
+      "collection": "SM_SignPost_Triple_PR",
+      "tris_per_lod": {
+        "LOD0": 1456,
+        "LOD1": 654,
+        "LOD2": 290
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -67.167,
+          -17.921,
+          0.0
+        ],
+        "blender_max_cm": [
+          73.69,
+          11.095,
+          234.998
+        ],
+        "size_cm": [
+          140.857,
+          29.016,
+          234.998
+        ],
+        "unreal_min_cm": [
+          -67.167,
+          -11.095,
+          0.0
+        ],
+        "unreal_max_cm": [
+          73.69,
+          17.921,
+          234.998
+        ]
+      },
+      "errors": 2,
+      "warnings": 13,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "pivot is wrong for prop (rule base_center): origin is 4.7 cm off, should move by (3.3, -3.4, 0.0) cm. ",
+          "object": "SM_SignPost_Triple_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              3.26,
+              -3.41,
+              0.0
+            ]
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "UV0 islands overlap (163.0 % of UV area, 1167 triangles); class prop needs unique UVs",
+          "object": "SM_SignPost_Triple_PR_LOD0",
+          "data": {
+            "overlap_ratio": 1.6297
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "377 triangles have UVs outside 0-1",
+          "object": "SM_SignPost_Triple_PR_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "96 triangles are collapsed in UV space",
+          "object": "SM_SignPost_Triple_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "texel density 1399 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_SignPost_Triple_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1398.6,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_SignPost_Triple_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Chimney_Stone_Short_PR",
+      "class": "prop",
+      "collection": "SM_Chimney_Stone_Short_PR",
+      "tris_per_lod": {
+        "LOD0": 864,
+        "LOD1": 388,
+        "LOD2": 172
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.234,
+          -47.398,
+          -0.284
+        ],
+        "blender_max_cm": [
+          54.949,
+          47.734,
+          145.005
+        ],
+        "size_cm": [
+          110.183,
+          95.132,
+          145.288
+        ],
+        "unreal_min_cm": [
+          -55.234,
+          -47.734,
+          -0.284
+        ],
+        "unreal_max_cm": [
+          54.949,
+          47.398,
+          145.005
+        ]
+      },
+      "errors": 1,
+      "warnings": 17,
+      "findings": [
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "UV0 islands overlap (580.4 % of UV area, 844 triangles); class prop needs unique UVs",
+          "object": "SM_Chimney_Stone_Short_PR_LOD0",
+          "data": {
+            "overlap_ratio": 5.80376
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "665 triangles have UVs outside 0-1",
+          "object": "SM_Chimney_Stone_Short_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "texel density 1798 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Chimney_Stone_Short_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1797.9,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_FieldBoulder_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_FieldBoulder_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_FieldBoulder_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_FieldBoulder_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "image 'T_Terrain_FieldBoulder_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Chimney_Stone_Short_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Chimney_Stone_Tall_PR",
+      "class": "prop_large",
+      "collection": "SM_Chimney_Stone_Tall_PR",
+      "tris_per_lod": {
+        "LOD0": 3328,
+        "LOD1": 1496,
+        "LOD2": 664
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -68.398,
+          -40.991,
+          0.0
+        ],
+        "blender_max_cm": [
+          67.935,
+          40.369,
+          473.5
+        ],
+        "size_cm": [
+          136.334,
+          81.36,
+          473.5
+        ],
+        "unreal_min_cm": [
+          -68.398,
+          -40.369,
+          0.0
+        ],
+        "unreal_max_cm": [
+          67.935,
+          40.991,
+          473.5
+        ]
+      },
+      "errors": 1,
+      "warnings": 17,
+      "findings": [
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "UV0 islands overlap (803.2 % of UV area, 3252 triangles); class prop_large needs unique UVs",
+          "object": "SM_Chimney_Stone_Tall_PR_LOD0",
+          "data": {
+            "overlap_ratio": 8.0325
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "3110 triangles have UVs outside 0-1",
+          "object": "SM_Chimney_Stone_Tall_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "texel density 1818 px/m at the declared 2048 px texture; target 256 px/m (accepted 128-512)",
+          "object": "SM_Chimney_Stone_Tall_PR_LOD0",
+          "data": {
+            "density_px_per_m": 1818.2,
+            "target": 256
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_FieldBoulder_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_FieldBoulder_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_FieldBoulder_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_FieldBoulder_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "image 'T_Terrain_FieldBoulder_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Chimney_Stone_Tall_PR",
+          "message": "prop_large uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Cottage_Thatched_TwoStorey_PR",
+      "class": "building",
+      "collection": "SM_Cottage_Thatched_TwoStorey_PR",
+      "tris_per_lod": {
+        "LOD0": 40126,
+        "LOD1": 18056,
+        "LOD2": 8024
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -415.026,
+          -388.774,
+          0.0
+        ],
+        "blender_max_cm": [
+          410.0,
+          380.0,
+          921.988
+        ],
+        "size_cm": [
+          825.026,
+          768.774,
+          921.988
+        ],
+        "unreal_min_cm": [
+          -415.026,
+          -380.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          410.0,
+          388.774,
+          921.988
+        ]
+      },
+      "errors": 3,
+      "warnings": 22,
+      "findings": [
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "6 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD0",
+          "data": {
+            "faces": 6
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "140 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD0",
+          "data": {
+            "vertices": 140
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "1 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD1",
+          "data": {
+            "faces": 1
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "1 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD2",
+          "data": {
+            "faces": 1
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "630 triangles are collapsed in UV space",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Cottage_Thatched_TwoStorey_PR_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Cottage_Thatched_TwoStorey_PR",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Cottage_Thatched_LShape_PR",
+      "class": "building",
+      "collection": "SM_Cottage_Thatched_LShape_PR",
+      "tris_per_lod": {
+        "LOD0": 63110,
+        "LOD1": 28398,
+        "LOD2": 12622
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -530.0,
+          -620.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          530.0,
+          520.0,
+          921.541
+        ],
+        "size_cm": [
+          1060.0,
+          1140.0,
+          921.541
+        ],
+        "unreal_min_cm": [
+          -530.0,
+          -520.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          530.0,
+          620.0,
+          921.541
+        ]
+      },
+      "errors": 3,
+      "warnings": 23,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "LOD0 has 63110 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD0",
+          "data": {
+            "tris": 63110,
+            "target": 60000
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "13 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD0",
+          "data": {
+            "faces": 13
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "224 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD0",
+          "data": {
+            "vertices": 224
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "2 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD1",
+          "data": {
+            "faces": 2
+          }
+        },
+        {
+          "code": "ZERO_AREA",
+          "severity": "error",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "1 zero-area faces (area < 1e-8 m2)",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD2",
+          "data": {
+            "faces": 1
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "1112 triangles are collapsed in UV space",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Cottage_Thatched_LShape_PR_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_EarthPath_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_EarthPath_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_EarthPath_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_EarthPath_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "image 'T_Terrain_EarthPath_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Cottage_Thatched_LShape_PR",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Island_Hut_Round_PR",
+      "class": "building",
+      "collection": "SM_Island_Hut_Round_PR",
+      "tris_per_lod": {
+        "LOD0": 15684,
+        "LOD1": 7056,
+        "LOD2": 3136
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -311.772,
+          -454.725,
+          -6.817
+        ],
+        "blender_max_cm": [
+          330.146,
+          318.072,
+          460.2
+        ],
+        "size_cm": [
+          641.918,
+          772.798,
+          467.017
+        ],
+        "unreal_min_cm": [
+          -311.772,
+          -318.072,
+          -6.817
+        ],
+        "unreal_max_cm": [
+          330.146,
+          454.725,
+          460.2
+        ]
+      },
+      "errors": 2,
+      "warnings": 25,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "pivot is wrong for building (rule base_center): origin is 69.3 cm off, should move by (9.2, -68.3, -6.8) cm. ",
+          "object": "SM_Island_Hut_Round_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              9.19,
+              -68.33,
+              -6.82
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "417 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_Round_PR_LOD0",
+          "data": {
+            "vertices": 417
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "125 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_Round_PR_LOD1",
+          "data": {
+            "vertices": 125
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "12 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_Round_PR_LOD2",
+          "data": {
+            "vertices": 12
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "1245 triangles are collapsed in UV space",
+          "object": "SM_Island_Hut_Round_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Island_Hut_Round_PR_LOD0"
+        },
+        {
+          "code": "SLOTS_OVER",
+          "severity": "error",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "7 material slots, limit for building is 6",
+          "object": "SM_Island_Hut_Round_PR_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_PlasterWall_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_PlasterWall_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_PlasterWall_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_PlasterWall_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_PlasterWall_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_EarthPath_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_EarthPath_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_EarthPath_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_EarthPath_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "image 'T_Terrain_EarthPath_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "COLLISION_BOUNDS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "collision extends 8 cm beyond the render mesh bounds",
+          "object": "UCX_SM_Island_Hut_Round_PR_LOD0_01"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Island_Hut_Round_PR",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Island_Hut_TwoStorey_PR",
+      "class": "building",
+      "collection": "SM_Island_Hut_TwoStorey_PR",
+      "tris_per_lod": {
+        "LOD0": 29720,
+        "LOD1": 13374,
+        "LOD2": 5944
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -350.819,
+          -494.725,
+          -6.817
+        ],
+        "blender_max_cm": [
+          370.146,
+          357.983,
+          685.21
+        ],
+        "size_cm": [
+          720.966,
+          852.709,
+          692.027
+        ],
+        "unreal_min_cm": [
+          -350.819,
+          -357.983,
+          -6.817
+        ],
+        "unreal_max_cm": [
+          370.146,
+          494.725,
+          685.21
+        ]
+      },
+      "errors": 2,
+      "warnings": 24,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "pivot is wrong for building (rule base_center): origin is 69.4 cm off, should move by (9.7, -68.4, -6.8) cm. ",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              9.66,
+              -68.37,
+              -6.82
+            ]
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "849 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD0",
+          "data": {
+            "vertices": 849
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "216 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD1",
+          "data": {
+            "vertices": 216
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "16 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD2",
+          "data": {
+            "vertices": 16
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "2479 triangles are collapsed in UV space",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD0"
+        },
+        {
+          "code": "SLOTS_OVER",
+          "severity": "error",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "7 material slots, limit for building is 6",
+          "object": "SM_Island_Hut_TwoStorey_PR_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_PlasterWall_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_PlasterWall_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_PlasterWall_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_PlasterWall_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_PlasterWall_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "image 'T_Terrain_EarthPath_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Island_Hut_TwoStorey_PR",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Island_Fence_Lattice_PR",
+      "class": "prop_large",
+      "collection": "SM_Island_Fence_Lattice_PR",
+      "tris_per_lod": {
+        "LOD0": 11040,
+        "LOD1": 4968,
+        "LOD2": 2208
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -240.523,
+          -24.247,
+          0.0
+        ],
+        "blender_max_cm": [
+          236.034,
+          15.914,
+          178.399
+        ],
+        "size_cm": [
+          476.556,
+          40.161,
+          178.399
+        ],
+        "unreal_min_cm": [
+          -240.523,
+          -15.914,
+          0.0
+        ],
+        "unreal_max_cm": [
+          236.034,
+          24.247,
+          178.399
+        ]
+      },
+      "errors": 2,
+      "warnings": 17,
+      "findings": [
+        {
+          "code": "PIVOT",
+          "severity": "error",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "pivot is wrong for prop_large (rule base_center): origin is 4.7 cm off, should move by (-2.2, -4.2, 0.0) cm. ",
+          "object": "SM_Island_Fence_Lattice_PR_LOD0",
+          "data": {
+            "rule": "base_center",
+            "offset_cm": [
+              -2.24,
+              -4.17,
+              0.0
+            ]
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "UV0 islands overlap (249.2 % of UV area, 4919 triangles); class prop_large needs unique UVs",
+          "object": "SM_Island_Fence_Lattice_PR_LOD0",
+          "data": {
+            "overlap_ratio": 2.49215
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "8828 triangles have UVs outside 0-1",
+          "object": "SM_Island_Fence_Lattice_PR_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SM_Island_Fence_Lattice_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "texel density 3294 px/m at the declared 2048 px texture; target 256 px/m (accepted 128-512)",
+          "object": "SM_Island_Fence_Lattice_PR_LOD0",
+          "data": {
+            "density_px_per_m": 3293.6,
+            "target": 256
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Island_Fence_Lattice_PR",
+          "message": "prop_large uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "SM_Island_TorchPole_PR",
+      "class": "prop",
+      "collection": "SM_Island_TorchPole_PR",
+      "tris_per_lod": {
+        "LOD0": 1258,
+        "LOD1": 566,
+        "LOD2": 250
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -23.772,
+          -13.478,
+          0.0
+        ],
+        "blender_max_cm": [
+          18.478,
+          19.975,
+          259.2
+        ],
+        "size_cm": [
+          42.25,
+          33.453,
+          259.2
+        ],
+        "unreal_min_cm": [
+          -23.772,
+          -19.975,
+          0.0
+        ],
+        "unreal_max_cm": [
+          18.478,
+          13.478,
+          259.2
+        ]
+      },
+      "errors": 1,
+      "warnings": 18,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "2 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Island_TorchPole_PR_LOD0",
+          "data": {
+            "vertices": 2
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "UV0 islands overlap (6.1 % of UV area, 466 triangles); class prop needs unique UVs",
+          "object": "SM_Island_TorchPole_PR_LOD0",
+          "data": {
+            "overlap_ratio": 0.06083
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "613 triangles have UVs outside 0-1",
+          "object": "SM_Island_TorchPole_PR_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "texel density 3073 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Island_TorchPole_PR_LOD0",
+          "data": {
+            "density_px_per_m": 3073.4,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Fieldstone_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Fieldstone_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Fieldstone_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Fieldstone_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Fieldstone_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Thatch_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "image 'T_Terrain_Thatch_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Island_TorchPole_PR",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}

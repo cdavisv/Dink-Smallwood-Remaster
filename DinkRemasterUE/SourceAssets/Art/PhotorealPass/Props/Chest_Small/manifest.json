@@ -1,0 +1,93 @@
+{
+ "name": "SM_Chest_Small_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/SM_Chest_Small_PR.fbx",
+ "materials": [
+  "MI_Chest_Small"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Chest_Small_PR.blend",
+ "lod0_triangles": 1448,
+ "lod1_triangles": 812,
+ "lod2_triangles": 438,
+ "dimensions_m": [
+  0.94,
+  0.528,
+  0.528
+ ],
+ "bounds_min_m": [
+  -0.47,
+  -0.264,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.47,
+  0.264,
+  0.528
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "175 bonuses/chest/chst1- frame 1",
+  "chest_small",
+  "chest_medium",
+  "chest_large"
+ ],
+ "supersedes": "none (chest_small placeholder, 14 placements)",
+ "dresses": "iron-bound chest 0.94 x 0.52 x 0.53 m, closed: red-stained plank carcase on two battens, coopered lid of seven staves between D-shaped ends, three forged straps riveted over lid and body with hinge knuckles at the back, eight corner irons, lock plate with keyhole and hasp, drop handles on eyes; real plank interior (see SM_Chest_Small_Open_PR)",
+ "fit": {
+  "pivot": "base centre; lock faces -Y",
+  "states": "closed only: the opening frames 2-6 need the lid as a separate hinged mesh (not built)"
+ },
+ "baked": {
+  "texture_folder": "Chest_Small",
+  "textures": {
+   "BC": "T_Chest_Small_PR_BC.png",
+   "N": "T_Chest_Small_PR_N.png",
+   "ORM": "T_Chest_Small_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Chest_Small",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 48.5,
+    "p99": 128.0
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.565,
+    "p95": 0.855
+   },
+   "metallic_mean": 0.079
+  },
+  "hi_triangles": 10876,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Chest_Small_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: the red stain is rather even from board to board (edge wear to pale oak is there but slight), lid staves are hard to tell apart, the inside is stained like the outside instead of raw wood, rivets and the keyhole are baked not modelled, handles are plain bent rod.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_ORM.png"
+ }
+}

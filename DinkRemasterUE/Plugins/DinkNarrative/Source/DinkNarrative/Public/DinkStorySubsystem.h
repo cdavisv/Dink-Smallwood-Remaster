@@ -295,7 +295,8 @@ public:
 	/** The talk key: runs `talk` of the nearest scripted actor in front of Pawn. True if one started. */
 	bool TryTalk(APawn* Pawn);
 	/** Screen load (the engine's load_screen + draw_screen): kills scripts of the old screen, runs `main` of the new one. */
-	void OnScreenEntered(int32 Screen);
+	void OnScreenEntered(int32 Screen, bool bForceVisionRebuild=false, int32 InitialVision=0, bool bRestartSavedRuntime=false);
+    bool ForceOriginalHardnessVision(FDinkScriptInstance& Caller,int32 Vision);
 	/** Run screen and placement `main` procedures when the player enters a screen (dink.ScreenScripts). */
 	bool bRunScreenScripts = true;
 	/** A new game (no save loaded): newgame.c `main` runs before the first screen's scripts. Set in Initialize. */
@@ -363,6 +364,8 @@ public:
 	void DrawHUD(AHUD* HUD, UCanvas* Canvas);
 
 private:
+    friend class FDinkHardnessAdapterTransitions;
+    friend class FDinkHardnessMarkedLoadAndVision;
 	friend class UDinkDirector;
 	friend class UDinkGameplay;
 

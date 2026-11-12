@@ -1,0 +1,91 @@
+{
+ "name": "SM_Crate_Small_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Small/SM_Crate_Small_PR.fbx",
+ "materials": [
+  "MI_Crate_Small"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Crate_Small_PR.blend",
+ "lod0_triangles": 300,
+ "lod1_triangles": 238,
+ "lod2_triangles": 90,
+ "dimensions_m": [
+  0.756,
+  0.555,
+  0.467
+ ],
+ "bounds_min_m": [
+  -0.381,
+  -0.277,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.375,
+  0.278,
+  0.466
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "444 items/boxes/boxb3-",
+  "crate_small"
+ ],
+ "supersedes": "none (class was placeholder, 13 placements)",
+ "dresses": "slatted packing crate 0.74 x 0.55 x 0.47 m, built as SM_Crate_Large_PR with three lid boards",
+ "fit": {
+  "pivot": "base centre",
+  "stack": "class crate_stack (11 placements) is one large crate with a small one on top, turned about 20 degrees"
+ },
+ "baked": {
+  "texture_folder": "Crate_Small",
+  "textures": {
+   "BC": "T_Crate_Small_PR_BC.png",
+   "N": "T_Crate_Small_PR_N.png",
+   "ORM": "T_Crate_Small_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Crate_Small",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 51.2,
+    "p99": 131.8
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.496,
+    "p95": 0.807
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 4356,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Crate_Small_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Small",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "As SM_Crate_Large_PR (same generator, its own bake and board layout).",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Small/T_Crate_Small_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Small/T_Crate_Small_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Small/T_Crate_Small_PR_ORM.png"
+ }
+}

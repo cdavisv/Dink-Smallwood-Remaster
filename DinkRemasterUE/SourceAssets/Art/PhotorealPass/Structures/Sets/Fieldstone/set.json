@@ -1,0 +1,49 @@
+{
+ "name": "Fieldstone",
+ "files": {
+  "BC": "Fieldstone/T_Terrain_Fieldstone_BC.png",
+  "N": "Fieldstone/T_Terrain_Fieldstone_N.png",
+  "ORM": "Fieldstone/T_Terrain_Fieldstone_ORM.png",
+  "H": "Fieldstone/T_Terrain_Fieldstone_H.png",
+  "Macro": "Fieldstone/T_Terrain_Fieldstone_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0531,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.772",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven old_stone_wall (random rubble in lime mortar), flattened, graded to the pale grey-buff of the original cottage walls",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "old_stone_wall",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 33.1,
+  "mean": 125.3,
+  "max": 235.3
+ },
+ "mean_srgb": [
+  132,
+  125,
+  110
+ ],
+ "roughness_mean": 0.937,
+ "known_weaknesses": "one scan at its true 2 m period"
+}

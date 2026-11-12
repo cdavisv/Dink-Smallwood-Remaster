@@ -460,10 +460,10 @@
 		5D9831F10F7BD64B00D94D9B /* RTFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTFont.h; path = GUI/RTFont.h; sourceTree = "<group>"; };
 		5D9A119D0FD2B19C005001E0 /* ProgressBarComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProgressBarComponent.cpp; path = Entity/ProgressBarComponent.cpp; sourceTree = "<group>"; };
 		5D9A119E0FD2B19C005001E0 /* ProgressBarComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressBarComponent.h; path = Entity/ProgressBarComponent.h; sourceTree = "<group>"; };
-		5D9BCCC828151D8500C696D5 /* libnghttp2.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libnghttp2.xcframework; path = "../../../../Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libnghttp2.xcframework"; sourceTree = "<group>"; };
-		5D9BCCC928151D8500C696D5 /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcrypto.xcframework; path = "../../../../Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libcrypto.xcframework"; sourceTree = "<group>"; };
-		5D9BCCCA28151D8500C696D5 /* libcurl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcurl.xcframework; path = "../../../../Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libcurl.xcframework"; sourceTree = "<group>"; };
-		5D9BCCCB28151D8500C696D5 /* libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssl.xcframework; path = "../../../../Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libssl.xcframework"; sourceTree = "<group>"; };
+		5D9BCCC828151D8500C696D5 /* libnghttp2.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libnghttp2.xcframework; path = "../../../..<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libnghttp2.xcframework"; sourceTree = "<group>"; };
+		5D9BCCC928151D8500C696D5 /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcrypto.xcframework; path = "../../../..<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libcrypto.xcframework"; sourceTree = "<group>"; };
+		5D9BCCCA28151D8500C696D5 /* libcurl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcurl.xcframework; path = "../../../..<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libcurl.xcframework"; sourceTree = "<group>"; };
+		5D9BCCCB28151D8500C696D5 /* libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libssl.xcframework; path = "../../../..<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/xcframework/libssl.xcframework"; sourceTree = "<group>"; };
 		5D9BCCD02815219F00C696D5 /* NetHTTP_libCURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetHTTP_libCURL.cpp; path = ../shared/Network/NetHTTP_libCURL.cpp; sourceTree = "<group>"; };
 		5D9BCCD228152E9E00C696D5 /* curl-ca-bundle.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "curl-ca-bundle.crt"; path = "bin/curl-ca-bundle.crt"; sourceTree = "<group>"; };
 		5D9BCCD42816098E00C696D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RTDink/Images.xcassets; sourceTree = "<group>"; };
@@ -1753,7 +1753,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
-				LIBRARY_SEARCH_PATHS = /Users/Seth/dev/Frameworks/fmodios/api/core/lib;
+				LIBRARY_SEARCH_PATHS = <HOME>/dev/Frameworks/fmodios/api/core/lib;
 				OTHER_LDFLAGS = "-lfmod_$PLATFORM_NAME";
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = RTDink;
@@ -1811,8 +1811,8 @@
 					../shared,
 					../shared/util/boost/,
 					"../shared/ClanLib-2.0/Sources",
-					"/Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/include",
-					/Users/Seth/dev/Frameworks/fmodios/api/core/inc,
+					"<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/include",
+					<HOME>/dev/Frameworks/fmodios/api/core/inc,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = "";
@@ -1835,7 +1835,7 @@
 				DEVELOPMENT_TEAM = 7DA5SJEYK8;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
-				LIBRARY_SEARCH_PATHS = /Users/Seth/dev/Frameworks/fmodios/api/core/lib;
+				LIBRARY_SEARCH_PATHS = <HOME>/dev/Frameworks/fmodios/api/core/lib;
 				OTHER_LDFLAGS = "-lfmod_$PLATFORM_NAME";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rtsoft.RTDink;
 				PRODUCT_NAME = RTDink;
@@ -1894,8 +1894,8 @@
 					../shared,
 					../shared/util/boost/,
 					"../shared/ClanLib-2.0/Sources",
-					"/Users/Seth/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/include",
-					/Users/Seth/dev/Frameworks/fmodios/api/core/inc,
+					"<HOME>/dev/Frameworks/libcurl-7.74.0-openssl-1.1.1i-nghttp2-1.42.0/include",
+					<HOME>/dev/Frameworks/fmodios/api/core/inc,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;

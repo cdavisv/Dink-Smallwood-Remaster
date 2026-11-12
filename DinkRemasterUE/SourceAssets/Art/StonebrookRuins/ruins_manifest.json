@@ -1,0 +1,1409 @@
+{
+  "schema": "dink-stonebrook-art/1",
+  "units": "metres; FBX UnitScaleFactor 100 converts to Unreal cm",
+  "seed": 31439,
+  "source": "KIT_StonebrookRuins.blend",
+  "assets": {
+    "SM_Cottage_Stonebrook_Burning_01": {
+      "class": "building",
+      "dimensions_m": [
+        18.829999923706055,
+        10.5467209815979,
+        7.930000305175781
+      ],
+      "materials": [
+        "MI_Ruin_FacadeFrontBack_Burning",
+        "MI_Ruin_FacadeSides_Burning",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch",
+        "MI_Ruin_AshEmber"
+      ],
+      "fbx": "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01.fbx",
+      "blend_collection": "SM_Cottage_Stonebrook_Burning_01",
+      "pivot_offset_from_construction_m": [
+        0.014999007806181908,
+        0.0,
+        0.0
+      ],
+      "notes": "burning state of SM_Cottage_Stonebrook_01; 3043 reed bundles; 2 roof openings",
+      "state": "burning",
+      "vision": 1,
+      "roof_openings_m": [
+        [
+          0.779,
+          -3.143,
+          0.75,
+          0.75
+        ],
+        [
+          -3.561,
+          -2.223,
+          0.5,
+          0.6
+        ]
+      ],
+      "replaces": "SM_Cottage_Stonebrook_01 (same pivot, same collision hulls)",
+      "lod_fbx": [
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD0.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD1.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Cottage_Stonebrook_Burnt_01": {
+      "class": "building",
+      "dimensions_m": [
+        18.8799991607666,
+        10.597512245178223,
+        7.930000305175781
+      ],
+      "materials": [
+        "MI_Ruin_FacadeFrontBack",
+        "MI_Ruin_FacadeSides",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch",
+        "MI_Ruin_AshEmber"
+      ],
+      "fbx": "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01.fbx",
+      "blend_collection": "SM_Cottage_Stonebrook_Burnt_01",
+      "pivot_offset_from_construction_m": [
+        0.014999007806181908,
+        0.0,
+        0.0
+      ],
+      "notes": "burnt state of SM_Cottage_Stonebrook_01; 246 reed bundles; 11 roof openings",
+      "state": "burnt",
+      "vision": 2,
+      "roof_openings_m": [
+        [
+          0.779,
+          -3.143,
+          1.125,
+          0.975
+        ],
+        [
+          -3.561,
+          -2.223,
+          0.75,
+          0.75
+        ],
+        [
+          7.34,
+          -0.41,
+          0.55,
+          0.708
+        ],
+        [
+          -6.134,
+          -0.632,
+          0.55,
+          0.708
+        ],
+        [
+          2.786,
+          -4.363,
+          1.05,
+          1.033
+        ],
+        [
+          2.887,
+          -2.207,
+          1.05,
+          1.033
+        ],
+        [
+          -7.376,
+          -1.235,
+          0.55,
+          0.708
+        ],
+        [
+          6.88,
+          -2.867,
+          1.95,
+          1.618
+        ],
+        [
+          -0.709,
+          -3.006,
+          1.95,
+          1.618
+        ],
+        [
+          -2.6,
+          2.4,
+          1.35,
+          1.2
+        ],
+        [
+          4.2,
+          1.6,
+          0.9,
+          0.9
+        ]
+      ],
+      "replaces": "SM_Cottage_Stonebrook_01 (same pivot, same collision hulls)",
+      "lod_fbx": [
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD0.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD1.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Door_Cottage_Fallen_01": {
+      "class": "kit_piece",
+      "dimensions_m": [
+        1.3322734832763672,
+        2.2207530736923218,
+        0.09879715176066384
+      ],
+      "materials": [
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01.fbx",
+      "blend_collection": "SM_Door_Cottage_Fallen_01",
+      "pivot_offset_from_construction_m": [
+        -0.00014263391494750977,
+        -0.033650338649749756,
+        0.0008086320594884455
+      ],
+      "notes": "Fallen, top-burnt plank door for the burnt cottage; lies outside the doorway clear of the walk-in path.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Debris_AshPile_Large_01": {
+      "class": "kit_piece",
+      "dimensions_m": [
+        2.6236040592193604,
+        2.1117770671844482,
+        0.6010932857170701
+      ],
+      "materials": [
+        "MI_Ruin_AshEmber",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01.fbx",
+      "blend_collection": "SM_Debris_AshPile_Large_01",
+      "pivot_offset_from_construction_m": [
+        0.06200289726257324,
+        -0.005168795585632324,
+        -0.010215752758085728
+      ],
+      "notes": "Ash, charcoal, collapsed thatch and charred timber; ember emissive mask in MI_Ruin_AshEmber (E).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Debris_AshPile_Small_01": {
+      "class": "kit_piece",
+      "dimensions_m": [
+        1.1909821033477783,
+        0.9009920358657837,
+        0.28157354332506657
+      ],
+      "materials": [
+        "MI_Ruin_AshEmber",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.fbx",
+      "blend_collection": "SM_Debris_AshPile_Small_01",
+      "pivot_offset_from_construction_m": [
+        0.020535767078399658,
+        -0.01193198561668396,
+        -0.009999999776482582
+      ],
+      "notes": "Ash, charcoal, collapsed thatch and charred timber; ember emissive mask in MI_Ruin_AshEmber (E).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Ground_3m_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        3.0,
+        3.0,
+        0.022921273484826088
+      ],
+      "materials": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.fbx",
+      "blend_collection": "SM_Decal_Scorch_Ground_3m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked, feathered burn patch (singed grass, stubble, partial char, ash drift). Scatter several, rotated, 0.3-0.6 cm above the meadow; collision off in layout.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Ground_2m_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.022714974358677864
+      ],
+      "materials": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.fbx",
+      "blend_collection": "SM_Decal_Scorch_Ground_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked, feathered burn patch (singed grass, stubble, partial char, ash drift). Scatter several, rotated, 0.3-0.6 cm above the meadow; collision off in layout.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Ground_2m_02": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.023199792951345444
+      ],
+      "materials": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.fbx",
+      "blend_collection": "SM_Decal_Scorch_Ground_2m_02",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked, feathered burn patch (singed grass, stubble, partial char, ash drift). Scatter several, rotated, 0.3-0.6 cm above the meadow; collision off in layout.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Ground_1m5_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.5,
+        1.5,
+        0.02530570514500141
+      ],
+      "materials": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.fbx",
+      "blend_collection": "SM_Decal_Scorch_Ground_1m5_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked, feathered burn patch (singed grass, stubble, partial char, ash drift). Scatter several, rotated, 0.3-0.6 cm above the meadow; collision off in layout.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Mother_Remains_Fire_01": {
+      "class": "foliage",
+      "dimensions_m": [
+        1.1079223155975342,
+        1.8053741455078125,
+        0.3747389018535614
+      ],
+      "materials": [
+        "MI_RuinMother_Body",
+        "MI_RuinMother_Hair"
+      ],
+      "fbx": "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01.fbx",
+      "blend_collection": "SM_Mother_Remains_Fire_01",
+      "lods_authored": "posed copies of SK_Mother LOD1-LOD3 (not decimated)",
+      "class_note": "foliage class used for its technical profile (non-Nanite, open surfaces allowed, 3 LODs); it is a static prop",
+      "replaces": "S001_P34 seq 355 'people/mom/death-' (vision 1 only)",
+      "vision": 1,
+      "notes": "The mother lies dead face-down in the burning room, as in the 1997 vision-1 sprite. Owner decision: keep the original's grim content.",
+      "lod_fbx": [
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD0.fbx",
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD1.fbx",
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Blood_Floor_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.004000000189989805
+      ],
+      "materials": [
+        "MI_RuinInt_Blood"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01.fbx",
+      "blend_collection": "SM_Decal_Blood_Floor_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked blood pool + cast-off droplets for S001_P34 (vision 1). Wet glossy centre, drying rim. Collision off.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Wall_Limewash_Burnt_2m_01": {
+      "class": "kit_wall",
+      "dimensions_m": [
+        2.0,
+        0.3558618873357773,
+        3.5
+      ],
+      "materials": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.fbx",
+      "blend_collection": "SM_Wall_Limewash_Burnt_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        -0.030288569629192352,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Wall_Limewash_2m_01 (same 2.0 x 3.5 m grid footprint and hull).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Window_Limewash_Burnt_2m_01": {
+      "class": "kit_wall",
+      "dimensions_m": [
+        2.0,
+        0.40835894644260406,
+        3.5
+      ],
+      "materials": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.fbx",
+      "blend_collection": "SM_Window_Limewash_Burnt_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        -0.020253337919712067,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Window_Limewash_2m_01; casement mullion burnt short, frame charred.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Doorway_Limewash_Burnt_4m_01": {
+      "class": "kit_piece",
+      "dimensions_m": [
+        4.0,
+        0.3148080110549927,
+        3.5
+      ],
+      "materials": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01.fbx",
+      "blend_collection": "SM_Doorway_Limewash_Burnt_4m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Doorway_Limewash_4m_01; the 1.5 m clear opening is unchanged.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Floor_Oak_Burnt_2m_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.9939999803900719,
+        1.9920000433921814,
+        0.10999999940395355
+      ],
+      "materials": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.fbx",
+      "blend_collection": "SM_Floor_Oak_Burnt_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.00299999862909317,
+        0.0040000081062316895,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Floor_Oak_2m_01, UV variant 1 of 4 (different 2 m quadrant of the 4 m ash/char sheet).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Floor_Oak_Burnt_2m_02": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.9939999803900719,
+        1.9920000433921814,
+        0.10999999940395355
+      ],
+      "materials": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.fbx",
+      "blend_collection": "SM_Floor_Oak_Burnt_2m_02",
+      "pivot_offset_from_construction_m": [
+        0.00299999862909317,
+        0.0040000081062316895,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Floor_Oak_2m_01, UV variant 2 of 4 (different 2 m quadrant of the 4 m ash/char sheet).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Floor_Oak_Burnt_2m_03": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.9939999803900719,
+        1.9920000433921814,
+        0.10999999940395355
+      ],
+      "materials": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.fbx",
+      "blend_collection": "SM_Floor_Oak_Burnt_2m_03",
+      "pivot_offset_from_construction_m": [
+        0.00299999862909317,
+        0.0040000081062316895,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Floor_Oak_2m_01, UV variant 3 of 4 (different 2 m quadrant of the 4 m ash/char sheet).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Floor_Oak_Burnt_2m_04": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.9939999803900719,
+        1.9920000433921814,
+        0.10999999940395355
+      ],
+      "materials": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.fbx",
+      "blend_collection": "SM_Floor_Oak_Burnt_2m_04",
+      "pivot_offset_from_construction_m": [
+        0.00299999862909317,
+        0.0040000081062316895,
+        0.0
+      ],
+      "notes": "Burnt twin of SM_Floor_Oak_2m_01, UV variant 4 of 4 (different 2 m quadrant of the 4 m ash/char sheet).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Ceiling_Oak_Burnt_2m_01": {
+      "class": "kit_ceiling",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.20000000298023224
+      ],
+      "materials": [
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.fbx",
+      "blend_collection": "SM_Ceiling_Oak_Burnt_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Burnt ceiling module; the Hole variant is burnt through between y 0.4-1.6 m (sky/roof shows through).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Ceiling_Oak_BurntHole_2m_01": {
+      "class": "kit_ceiling",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.22206448018550873
+      ],
+      "materials": [
+        "MI_Ruin_Timber"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.fbx",
+      "blend_collection": "SM_Ceiling_Oak_BurntHole_2m_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        -0.02206447720527649
+      ],
+      "notes": "Burnt ceiling module; the Hole variant is burnt through between y 0.4-1.6 m (sky/roof shows through).",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Floor_01": {
+      "class": "kit_floor",
+      "dimensions_m": [
+        1.5,
+        1.5,
+        0.004000000189989805
+      ],
+      "materials": [
+        "MI_RuinInt_ScorchFloor"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.fbx",
+      "blend_collection": "SM_Decal_Scorch_Floor_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Masked burn-mark decal mesh replacing the original seq-158 \"hole\" sprites; place 3 mm proud of the surface, collision off.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    },
+    "SM_Decal_Scorch_Wall_01": {
+      "class": "kit_wall",
+      "dimensions_m": [
+        1.5,
+        0.004000000189989805,
+        2.0
+      ],
+      "materials": [
+        "MI_RuinInt_ScorchWall"
+      ],
+      "fbx": "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.fbx",
+      "blend_collection": "SM_Decal_Scorch_Wall_01",
+      "pivot_offset_from_construction_m": [
+        0.0,
+        0.0020000000949949026,
+        0.0
+      ],
+      "notes": "Masked burn-mark decal mesh replacing the original seq-158 \"hole\" sprites; place 3 mm proud of the surface, collision off.",
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD2.fbx"
+      ],
+      "expected_lods": 3
+    }
+  },
+  "materials": {
+    "MI_Ruin_FacadeFrontBack": {
+      "name": "MI_Ruin_FacadeFrontBack",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_FacadeFrontBack_BC.png",
+        "N": "Textures/T_Ruin_FacadeFrontBack_N.png",
+        "ORM": "Textures/T_Ruin_FacadeFrontBack_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Ruin_FacadeSides": {
+      "name": "MI_Ruin_FacadeSides",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_FacadeSides_BC.png",
+        "N": "Textures/T_Ruin_FacadeSides_N.png",
+        "ORM": "Textures/T_Ruin_FacadeSides_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Ruin_Timber": {
+      "name": "MI_Ruin_Timber",
+      "roughness": 0.8,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_Timber_BC.png",
+        "N": "Textures/T_Ruin_Timber_N.png",
+        "ORM": "Textures/T_Ruin_Timber_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "notes": "Atlas: U<0.5 deep alligatored char, U>=0.5 scorched oak with char patches."
+    },
+    "MI_Ruin_Thatch": {
+      "name": "MI_Ruin_Thatch",
+      "roughness": 0.88,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_Thatch_BC.png",
+        "N": "Textures/T_Ruin_Thatch_N.png",
+        "ORM": "Textures/T_Ruin_Thatch_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "notes": "Atlas: U<0.5 weathered/smoke-stained thatch, U>=0.5 charred thatch."
+    },
+    "MI_Ruin_AshEmber": {
+      "name": "MI_Ruin_AshEmber",
+      "roughness": 0.93,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_AshEmber_BC.png",
+        "N": "Textures/T_Ruin_AshEmber_N.png",
+        "ORM": "Textures/T_Ruin_AshEmber_ORM.png",
+        "E": "Textures/T_Ruin_AshEmber_E.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "emissive": {
+        "texture": "E",
+        "default_intensity_burnt": 0.0,
+        "suggested_intensity_burning": 6.0
+      }
+    },
+    "MI_Ruin_ScorchGround": {
+      "name": "MI_Ruin_ScorchGround",
+      "roughness": 0.92,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_ScorchGround_BC.png",
+        "N": "Textures/T_Ruin_ScorchGround_N.png",
+        "ORM": "Textures/T_Ruin_ScorchGround_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "blend_mode": "masked",
+      "opacity_mask": "BC alpha",
+      "opacity_clip": 0.5
+    },
+    "MI_RuinInt_PlasterSoot": {
+      "name": "MI_RuinInt_PlasterSoot",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinInt_PlasterSoot_BC.png",
+        "N": "Textures/T_RuinInt_PlasterSoot_N.png",
+        "ORM": "Textures/T_RuinInt_PlasterSoot_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_RuinInt_FloorAsh": {
+      "name": "MI_RuinInt_FloorAsh",
+      "roughness": 0.8,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinInt_FloorAsh_BC.png",
+        "N": "Textures/T_RuinInt_FloorAsh_N.png",
+        "ORM": "Textures/T_RuinInt_FloorAsh_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_RuinInt_ScorchFloor": {
+      "name": "MI_RuinInt_ScorchFloor",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinInt_ScorchFloor_BC.png",
+        "N": "Textures/T_RuinInt_ScorchFloor_N.png",
+        "ORM": "Textures/T_RuinInt_ScorchFloor_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "blend_mode": "masked",
+      "opacity_mask": "BC alpha",
+      "opacity_clip": 0.5
+    },
+    "MI_RuinInt_ScorchWall": {
+      "name": "MI_RuinInt_ScorchWall",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinInt_ScorchWall_BC.png",
+        "N": "Textures/T_RuinInt_ScorchWall_N.png",
+        "ORM": "Textures/T_RuinInt_ScorchWall_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "blend_mode": "masked",
+      "opacity_mask": "BC alpha",
+      "opacity_clip": 0.5
+    },
+    "MI_Ruin_FacadeFrontBack_Burning": {
+      "name": "MI_Ruin_FacadeFrontBack_Burning",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_FacadeFrontBack_Burning_BC.png",
+        "N": "Textures/T_Ruin_FacadeFrontBack_Burning_N.png",
+        "ORM": "Textures/T_Ruin_FacadeFrontBack_Burning_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_Ruin_FacadeSides_Burning": {
+      "name": "MI_Ruin_FacadeSides_Burning",
+      "roughness": 0.9,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_Ruin_FacadeSides_Burning_BC.png",
+        "N": "Textures/T_Ruin_FacadeSides_Burning_N.png",
+        "ORM": "Textures/T_Ruin_FacadeSides_Burning_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_RuinInt_Blood": {
+      "name": "MI_RuinInt_Blood",
+      "roughness": 0.3,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinInt_Blood_BC.png",
+        "N": "Textures/T_RuinInt_Blood_N.png",
+        "ORM": "Textures/T_RuinInt_Blood_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "blend_mode": "masked",
+      "opacity_mask": "BC alpha",
+      "opacity_clip": 0.5
+    },
+    "MI_RuinMother_Body": {
+      "name": "MI_RuinMother_Body",
+      "roughness": 0.6,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinMother_Atlas_BC.png",
+        "N": "Textures/T_RuinMother_Atlas_N.png",
+        "ORM": "Textures/T_RuinMother_Atlas_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38
+    },
+    "MI_RuinMother_Hair": {
+      "name": "MI_RuinMother_Hair",
+      "roughness": 0.5,
+      "metallic": 0,
+      "textures": {
+        "BC": "Textures/T_RuinMother_Atlas_BC.png",
+        "N": "Textures/T_RuinMother_Atlas_N.png",
+        "ORM": "Textures/T_RuinMother_Atlas_ORM.png"
+      },
+      "normal_flip_green": true,
+      "normal_strength": 0.38,
+      "blend_mode": "masked",
+      "opacity_mask": "BC alpha",
+      "opacity_clip": 0.5
+    }
+  },
+  "intact_cottage": {
+    "asset": "SM_Cottage_Stonebrook_01",
+    "dimensions_m": [
+      18.829998016357422,
+      10.546720504760742,
+      7.930000305175781
+    ],
+    "bounds_local_m": [
+      [
+        -9.414999008178711,
+        -5.273360252380371,
+        0.0
+      ],
+      [
+        9.414999008178711,
+        5.273360252380371,
+        7.930000305175781
+      ]
+    ],
+    "collision_hulls_copied": 6
+  },
+  "lod_generation": {
+    "SM_Cottage_Stonebrook_Burning_01": [
+      {
+        "action": "rename",
+        "from": "SM_Cottage_Stonebrook_Burning_01",
+        "to": "SM_Cottage_Stonebrook_Burning_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Cottage_Stonebrook_Burning_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 84966,
+        "tris_lod0": 169932,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Cottage_Stonebrook_Burning_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 42482,
+        "tris_lod0": 169932,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Cottage_Stonebrook_Burnt_01": [
+      {
+        "action": "rename",
+        "from": "SM_Cottage_Stonebrook_Burnt_01",
+        "to": "SM_Cottage_Stonebrook_Burnt_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Cottage_Stonebrook_Burnt_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 81142,
+        "tris_lod0": 162286,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Cottage_Stonebrook_Burnt_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 40571,
+        "tris_lod0": 162286,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Door_Cottage_Fallen_01": [
+      {
+        "action": "rename",
+        "from": "SM_Door_Cottage_Fallen_01",
+        "to": "SM_Door_Cottage_Fallen_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Door_Cottage_Fallen_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 1658,
+        "tris_lod0": 3316,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Door_Cottage_Fallen_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 828,
+        "tris_lod0": 3316,
+        "ratio_achieved": 0.2497
+      }
+    ],
+    "SM_Debris_AshPile_Large_01": [
+      {
+        "action": "rename",
+        "from": "SM_Debris_AshPile_Large_01",
+        "to": "SM_Debris_AshPile_Large_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Debris_AshPile_Large_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 1772,
+        "tris_lod0": 3546,
+        "ratio_achieved": 0.4997
+      },
+      {
+        "action": "lod",
+        "name": "SM_Debris_AshPile_Large_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 886,
+        "tris_lod0": 3546,
+        "ratio_achieved": 0.2499
+      }
+    ],
+    "SM_Debris_AshPile_Small_01": [
+      {
+        "action": "rename",
+        "from": "SM_Debris_AshPile_Small_01",
+        "to": "SM_Debris_AshPile_Small_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Debris_AshPile_Small_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 796,
+        "tris_lod0": 1594,
+        "ratio_achieved": 0.4994
+      },
+      {
+        "action": "lod",
+        "name": "SM_Debris_AshPile_Small_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 398,
+        "tris_lod0": 1594,
+        "ratio_achieved": 0.2497
+      }
+    ],
+    "SM_Decal_Scorch_Ground_3m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Ground_3m_01",
+        "to": "SM_Decal_Scorch_Ground_3m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_3m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 720,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_3m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 360,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Decal_Scorch_Ground_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Ground_2m_01",
+        "to": "SM_Decal_Scorch_Ground_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 720,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 360,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Decal_Scorch_Ground_2m_02": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Ground_2m_02",
+        "to": "SM_Decal_Scorch_Ground_2m_02_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_2m_02_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 720,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_2m_02_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 360,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Decal_Scorch_Ground_1m5_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Ground_1m5_01",
+        "to": "SM_Decal_Scorch_Ground_1m5_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_1m5_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 720,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Ground_1m5_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 360,
+        "tris_lod0": 1440,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Mother_Remains_Fire_01": [
+      {
+        "action": "authored",
+        "why": "posed copies of the character LOD0-LOD2"
+      }
+    ],
+    "SM_Decal_Blood_Floor_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Blood_Floor_01",
+        "to": "SM_Decal_Blood_Floor_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Blood_Floor_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 336,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Blood_Floor_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 168,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Wall_Limewash_Burnt_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Wall_Limewash_Burnt_2m_01",
+        "to": "SM_Wall_Limewash_Burnt_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Wall_Limewash_Burnt_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 836,
+        "tris_lod0": 1672,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Wall_Limewash_Burnt_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 418,
+        "tris_lod0": 1672,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Window_Limewash_Burnt_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Window_Limewash_Burnt_2m_01",
+        "to": "SM_Window_Limewash_Burnt_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Window_Limewash_Burnt_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 912,
+        "tris_lod0": 1824,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Window_Limewash_Burnt_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 456,
+        "tris_lod0": 1824,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Doorway_Limewash_Burnt_4m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Doorway_Limewash_Burnt_4m_01",
+        "to": "SM_Doorway_Limewash_Burnt_4m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Doorway_Limewash_Burnt_4m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 1086,
+        "tris_lod0": 2172,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Doorway_Limewash_Burnt_4m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 542,
+        "tris_lod0": 2172,
+        "ratio_achieved": 0.2495
+      }
+    ],
+    "SM_Floor_Oak_Burnt_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Floor_Oak_Burnt_2m_01",
+        "to": "SM_Floor_Oak_Burnt_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 544,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 272,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Floor_Oak_Burnt_2m_02": [
+      {
+        "action": "rename",
+        "from": "SM_Floor_Oak_Burnt_2m_02",
+        "to": "SM_Floor_Oak_Burnt_2m_02_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_02_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 544,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_02_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 272,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Floor_Oak_Burnt_2m_03": [
+      {
+        "action": "rename",
+        "from": "SM_Floor_Oak_Burnt_2m_03",
+        "to": "SM_Floor_Oak_Burnt_2m_03_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_03_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 544,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_03_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 272,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Floor_Oak_Burnt_2m_04": [
+      {
+        "action": "rename",
+        "from": "SM_Floor_Oak_Burnt_2m_04",
+        "to": "SM_Floor_Oak_Burnt_2m_04_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_04_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 544,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Floor_Oak_Burnt_2m_04_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 272,
+        "tris_lod0": 1088,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Ceiling_Oak_Burnt_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Ceiling_Oak_Burnt_2m_01",
+        "to": "SM_Ceiling_Oak_Burnt_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Ceiling_Oak_Burnt_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 1170,
+        "tris_lod0": 2340,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Ceiling_Oak_Burnt_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 584,
+        "tris_lod0": 2340,
+        "ratio_achieved": 0.2496
+      }
+    ],
+    "SM_Ceiling_Oak_BurntHole_2m_01": [
+      {
+        "action": "rename",
+        "from": "SM_Ceiling_Oak_BurntHole_2m_01",
+        "to": "SM_Ceiling_Oak_BurntHole_2m_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Ceiling_Oak_BurntHole_2m_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 1126,
+        "tris_lod0": 2252,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Ceiling_Oak_BurntHole_2m_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 562,
+        "tris_lod0": 2252,
+        "ratio_achieved": 0.2496
+      }
+    ],
+    "SM_Decal_Scorch_Floor_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Floor_01",
+        "to": "SM_Decal_Scorch_Floor_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Floor_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 336,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Floor_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 168,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "SM_Decal_Scorch_Wall_01": [
+      {
+        "action": "rename",
+        "from": "SM_Decal_Scorch_Wall_01",
+        "to": "SM_Decal_Scorch_Wall_01_LOD0",
+        "why": "LOD chain needs _LOD0 suffix"
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Wall_01_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 336,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Decal_Scorch_Wall_01_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 168,
+        "tris_lod0": 672,
+        "ratio_achieved": 0.25
+      }
+    ]
+  },
+  "notes": [
+    "Fire-ruin variants of Dink's cottage (SCR_439 vision 1 burning, vision 2 burnt) and burnt SCR_001 modules.",
+    "Cottage variants share the intact cottage pivot and its six UCX hulls exactly, so the walkable/blocked footprint is unchanged.",
+    "The original vision 1/2 hardness maps equal vision 0 (checked: 0 differing pixels for SCR_001 and SCR_439).",
+    "Ruin debris, decals and the fallen door have collision only for the kit contract; layouts set collision false."
+  ]
+}

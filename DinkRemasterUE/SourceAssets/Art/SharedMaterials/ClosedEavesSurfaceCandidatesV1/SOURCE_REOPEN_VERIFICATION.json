@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "sources": [
+    {
+      "source": "ClosedEavesSurfaces_Source.blend",
+      "sha256": "106df33e311e6c6e28a4a8450ea094675742490e54818b52315c6d2634808efe",
+      "exact_material_graphs": 7,
+      "exact_external_packed_images": 36,
+      "mesh_objects": 0,
+      "passed": true
+    },
+    {
+      "source": "IndependentReuse_2m4m.blend",
+      "sha256": "57fd7500192a7c7f3c750d766719bc9e54feed6b0c156ba5055a384448afdf6d",
+      "exact_material_graphs": 7,
+      "exact_external_packed_images": 36,
+      "mesh_objects": 22,
+      "passed": true
+    }
+  ],
+  "scope": "portable material sources/independent repeat fixtures only; not registry or native acceptance"
+}

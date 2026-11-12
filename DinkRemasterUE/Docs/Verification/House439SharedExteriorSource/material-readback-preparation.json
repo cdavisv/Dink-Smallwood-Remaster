@@ -1,0 +1,42 @@
+{
+  "status": "SOURCE_INSPECTOR_PREPARED_NATIVE_UNEXECUTED",
+  "contract_digest": "3c15003e4d6a059a3b26f915eaae1df1ec1192278d6e017a4b0374a7b9260256",
+  "module": "Scripts/RoofNative/house439_material_readback.py",
+  "engine_API_evidence_sha256": {
+    "Source/Editor/MaterialEditor/Private/MaterialEditingLibrary.cpp": "3fb8a6627d0243406031d23550580aeb01b369155e6bc8c8d123f7aa99d3e484",
+    "Source/Editor/UnrealEd/Private/MaterialGraphNode.cpp": "14a1ec7c6079e1936a32a1f437ec293d34795b7330ab1956551f9fdc813b0e6c"
+  },
+  "inspection": [
+    "Actualmasterproperties/types/constants/texturepaths/UV/mipsettings",
+    "Actualnamedinputedgesandoutputchannels",
+    "Exactnodecoverageincludingthintransmissioncustomoutput",
+    "UV1decodeandglassOpacity0/SurfaceCoverage1",
+    "Noactualsetters/imports/recompile/savecalls; expectedgraphrecordingonly"
+  ],
+  "tests": {
+    "all_seven_source_graph_doubles": "PASS",
+    "tampered_UV1_decode": "REJECT",
+    "wrong_specular": "REJECT",
+    "hidden_node": "REJECT",
+    "wrong_normal_sampler": "REJECT",
+    "glass_top_opacity1": "REJECT",
+    "glass_surface_coverage0": "REJECT",
+    "extra_master_property": "REJECT",
+    "wrong_edge_channel": "REJECT",
+    "native_graph_mutation_count": "UNCHANGED",
+    "shared_clamp_sampler_override": "REJECT"
+  },
+  "qualifications": [
+    "Expectedtopologysharesreviewedbuilder: correspondenceinspectiondoesnotindependentlyproverenderalgorithm",
+    "TestsuseAPI-shapedgraphdoubles,notactualUnrealexecution",
+    "IndependentUVsemanticregressions/sourceCPUrendersremainseparate",
+    "RootmustvalidateactualAPIreflection/shadercompile/sourcepixels/compressednormal/wholemesh/savedreadback/nativeopticsbeforeacceptance"
+  ],
+  "tests_count": 11,
+  "current_house439_tests": 38,
+  "actual_source_audits": {
+    "full": "material-readback-full-source-audit.json",
+    "metadata": "material-readback-metadata-source-audit.json",
+    "passed": true
+  }
+}
