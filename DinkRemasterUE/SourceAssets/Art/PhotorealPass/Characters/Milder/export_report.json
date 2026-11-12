@@ -1,0 +1,350 @@
+{
+ "asset": "SK_Milder_Photoreal",
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 6,
+  "warnings": 23
+ },
+ "findings": [
+  [
+   "error",
+   "TRIS_OVER_BUDGET",
+   "LOD0 has 36001 triangles, hard budget for character_humanoid is 35000"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "8423 non-manifold edges (8390 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "NORMALS_INCONSISTENT",
+   "5 edges join faces with opposite winding (flipped faces)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "8273 non-manifold edges (8240 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "NORMALS_INCONSISTENT",
+   "5 edges join faces with opposite winding (flipped faces)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "7018 non-manifold edges (6985 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "NORMALS_INCONSISTENT",
+   "2 edges join faces with opposite winding (flipped faces)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 114 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "4011 non-manifold edges (3864 open boundary, 33 >2 faces, 114 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "NORMALS_INCONSISTENT",
+   "2 edges join faces with opposite winding (flipped faces)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (5.3 % of UV area, 5914 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "warning",
+   "UV_DEGENERATE",
+   "3958 triangles are collapsed in UV space"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Outfit_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Outfit_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Gear_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Gear_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Milder_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ]
+ ],
+ "normals": [
+  {
+   "mesh": "SK_Milder_Photoreal_LOD0",
+   "flat_faces_for_cancelled_normals": 0
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD1",
+   "flat_faces_for_cancelled_normals": 22
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD2",
+   "flat_faces_for_cancelled_normals": 26
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD3",
+   "flat_faces_for_cancelled_normals": 26
+  }
+ ],
+ "lods": [
+  {
+   "mesh": "SK_Milder_Photoreal_LOD0",
+   "triangles": 36001,
+   "vertices": 23196,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD1",
+   "triangles": 19799,
+   "vertices": 15020,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD2",
+   "triangles": 11330,
+   "vertices": 10014,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Milder_Photoreal_LOD3",
+   "triangles": 6069,
+   "vertices": 5515,
+   "max_influences": 4,
+   "unweighted": 0
+  }
+ ],
+ "bones": [
+  "root",
+  "pelvis",
+  "spine_01",
+  "spine_02",
+  "spine_03",
+  "spine_04",
+  "spine_05",
+  "neck_01",
+  "neck_02",
+  "head",
+  "clavicle_l",
+  "upperarm_l",
+  "lowerarm_l",
+  "lowerarm_twist_02_l",
+  "lowerarm_twist_01_l",
+  "hand_l",
+  "index_metacarpal_l",
+  "index_01_l",
+  "index_02_l",
+  "index_03_l",
+  "middle_metacarpal_l",
+  "middle_01_l",
+  "middle_02_l",
+  "middle_03_l",
+  "thumb_01_l",
+  "thumb_02_l",
+  "thumb_03_l",
+  "pinky_metacarpal_l",
+  "pinky_01_l",
+  "pinky_02_l",
+  "pinky_03_l",
+  "ring_metacarpal_l",
+  "ring_01_l",
+  "ring_02_l",
+  "ring_03_l",
+  "upperarm_twist_01_l",
+  "upperarm_twist_02_l",
+  "clavicle_r",
+  "upperarm_r",
+  "lowerarm_r",
+  "lowerarm_twist_02_r",
+  "lowerarm_twist_01_r",
+  "hand_r",
+  "pinky_metacarpal_r",
+  "pinky_01_r",
+  "pinky_02_r",
+  "pinky_03_r",
+  "ring_metacarpal_r",
+  "ring_01_r",
+  "ring_02_r",
+  "ring_03_r",
+  "middle_metacarpal_r",
+  "middle_01_r",
+  "middle_02_r",
+  "middle_03_r",
+  "index_metacarpal_r",
+  "index_01_r",
+  "index_02_r",
+  "index_03_r",
+  "thumb_01_r",
+  "thumb_02_r",
+  "thumb_03_r",
+  "upperarm_twist_01_r",
+  "upperarm_twist_02_r",
+  "thigh_r",
+  "calf_r",
+  "foot_r",
+  "ball_r",
+  "calf_twist_02_r",
+  "calf_twist_01_r",
+  "thigh_twist_01_r",
+  "thigh_twist_02_r",
+  "thigh_l",
+  "calf_l",
+  "foot_l",
+  "ball_l",
+  "calf_twist_02_l",
+  "calf_twist_01_l",
+  "thigh_twist_01_l",
+  "thigh_twist_02_l",
+  "ik_foot_root",
+  "ik_foot_l",
+  "ik_foot_r",
+  "ik_hand_root",
+  "ik_hand_gun",
+  "ik_hand_l",
+  "ik_hand_r",
+  "interaction",
+  "center_of_mass"
+ ],
+ "bone_count": 89,
+ "dimensions_m": [
+  1.1510167121887207,
+  0.5068691968917847,
+  1.8619554042816162
+ ],
+ "materials": [
+  "MI_Milder_PR_Skin",
+  "MI_Milder_PR_Eyes",
+  "MI_Milder_PR_Hair",
+  "MI_Milder_PR_Outfit",
+  "MI_Milder_PR_Gear"
+ ],
+ "uv_per_slot": {
+  "MI_Milder_PR_Skin": {
+   "uv_area": 0.4033,
+   "texels_used_1k": 371627,
+   "texels_overlapping_1k": 1993,
+   "overlap_fraction": 0.0054,
+   "outside_0_1": 0
+  },
+  "MI_Milder_PR_Eyes": {
+   "uv_area": 1.5143,
+   "texels_used_1k": 712642,
+   "texels_overlapping_1k": 689152,
+   "overlap_fraction": 0.967,
+   "outside_0_1": 0
+  },
+  "MI_Milder_PR_Hair": {
+   "uv_area": 11.2155,
+   "texels_used_1k": 614986,
+   "texels_overlapping_1k": 357334,
+   "overlap_fraction": 0.581,
+   "outside_0_1": 0
+  },
+  "MI_Milder_PR_Outfit": {
+   "uv_area": 0.3182,
+   "texels_used_1k": 287412,
+   "texels_overlapping_1k": 7499,
+   "overlap_fraction": 0.0261,
+   "outside_0_1": 0
+  },
+  "MI_Milder_PR_Gear": {
+   "uv_area": 0.8601,
+   "texels_used_1k": 797148,
+   "texels_overlapping_1k": 2141,
+   "overlap_fraction": 0.0027,
+   "outside_0_1": 0
+  }
+ }
+}

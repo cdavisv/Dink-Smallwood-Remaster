@@ -1,0 +1,519 @@
+[
+ {
+  "name": "SM_Town_Wall_Plain",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_Plain.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 4020,
+  "lod1_triangles": 1808,
+  "lod2_triangles": 804,
+  "dimensions_m": [
+   2.526,
+   0.806,
+   4.36
+  ],
+  "bounds_min_m": [
+   -0.011,
+   -0.565,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.515,
+   0.241,
+   4.36
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_wall_stone_window"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 17, 46 (blank bays between two quoin strips)",
+  "dresses": "ground-floor rubble wall with dressed-stone pilasters at both ends, plinth course and an iron tie plate; jettied close-studded upper storey with a small two-light leaded window. NOTE: the class id says window, but these frames are blank bays: bind by sequence frame",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Wall_Window_L",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_Window_L.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 4668,
+  "lod1_triangles": 2100,
+  "lod2_triangles": 932,
+  "dimensions_m": [
+   2.512,
+   0.802,
+   4.356
+  ],
+  "bounds_min_m": [
+   -0.011,
+   -0.565,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.5,
+   0.237,
+   4.356
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_wall_stone_window"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 1, 14-16, 35-37, 40-45 (100 px bays with a lattice window)",
+  "dresses": "bay with a 1.1 x 1.25 m diamond-leaded two-light window (stone sill and lintel, oak frame, iron saddle bars) and one pilaster at its left end; jettied upper storey with a raking brace. Choose L or R by the side the sprite frame has its quoin strip",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Wall_Window_R",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_Window_R.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 4672,
+  "lod1_triangles": 2102,
+  "lod2_triangles": 934,
+  "dimensions_m": [
+   2.513,
+   0.802,
+   4.355
+  ],
+  "bounds_min_m": [
+   -0.001,
+   -0.565,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.512,
+   0.237,
+   4.355
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_wall_stone_window"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 1, 14-16, 35-37, 40-45 (100 px bays with a lattice window)",
+  "dresses": "bay with a 1.1 x 1.25 m diamond-leaded two-light window (stone sill and lintel, oak frame, iron saddle bars) and one pilaster at its right end; jettied upper storey with a raking brace. Choose L or R by the side the sprite frame has its quoin strip",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Wall_Door",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_Door.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 3764,
+  "lod1_triangles": 1692,
+  "lod2_triangles": 752,
+  "dimensions_m": [
+   2.524,
+   1.137,
+   4.36
+  ],
+  "bounds_min_m": [
+   -0.013,
+   -0.9,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.511,
+   0.237,
+   4.36
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3,
+  "families": [
+   "town_wall_stone_door"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 3, 5, 6, 21, 23, 33, 34, 38, 39",
+  "dresses": "bay with a 1.1 x 2.1 m door opening between two pilasters, oak lintel and jambs, worn stone step 0.55 m out from the wall, a wrought-iron lantern bracket right of the door; jettied upper storey. The leaf is the separate SM_Town_Door_Studded, hinge at x = 0.73 on the back of the jamb",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Wall_Narrow",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_Narrow.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 2180,
+  "lod1_triangles": 980,
+  "lod2_triangles": 436,
+  "dimensions_m": [
+   1.617,
+   0.803,
+   4.36
+  ],
+  "bounds_min_m": [
+   -0.017,
+   -0.565,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.6,
+   0.238,
+   4.36
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_wall_stone_window"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 2, 11, 18, 19 (64 px corner pieces)",
+  "dresses": "1.6 m bay with one pilaster, for corners and short returns; yaw 90 degrees for the return wall",
+  "module_length_m": 1.6
+ },
+ {
+  "name": "SM_Town_Roof_Slope",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Roof_Slope.fbx",
+  "materials": [
+   "MI_Town_RoofShingle",
+   "MI_Town_Oak"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 3662,
+  "lod1_triangles": 1646,
+  "lod2_triangles": 732,
+  "dimensions_m": [
+   2.81,
+   3.715,
+   3.466
+  ],
+  "bounds_min_m": [
+   -0.155,
+   -0.903,
+   3.868
+  ],
+  "bounds_max_m": [
+   2.655,
+   2.812,
+   7.334
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_roof_flat",
+   "town_roof_slope"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 12, 29, 30 (100x200 px) and 9, 26, 27 (100x150 px)",
+  "dresses": "one bay of stone-slate roof slope at 42 degrees, one closed solid 8.5 cm thick: eaves 0.42 m in front of the jetty at 4.07 m, ridge 2.76 m behind the wall line at 7.33 m; doubled eaves course, fascia, rafter feet; slipped, lifted and missing slates. Shares the wall pivot",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Roof_Slope_B",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Roof_Slope_B.fbx",
+  "materials": [
+   "MI_Town_RoofShingle",
+   "MI_Town_Oak"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 3662,
+  "lod1_triangles": 1646,
+  "lod2_triangles": 732,
+  "dimensions_m": [
+   2.81,
+   3.719,
+   3.465
+  ],
+  "bounds_min_m": [
+   -0.155,
+   -0.907,
+   3.869
+  ],
+  "bounds_max_m": [
+   2.655,
+   2.812,
+   7.334
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_roof_flat",
+   "town_roof_slope"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "variant of SM_Town_Roof_Slope for the same frames",
+  "dresses": "second roof bay with different slates, defects and moss, so a run of bays does not repeat: list it as a variant of SM_Town_Roof_Slope in families.json",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Roof_Dormer",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Roof_Dormer.fbx",
+  "materials": [
+   "MI_Town_RoofShingle",
+   "MI_Town_Oak"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 7046,
+  "lod1_triangles": 3170,
+  "lod2_triangles": 1408,
+  "dimensions_m": [
+   2.81,
+   3.717,
+   3.469
+  ],
+  "bounds_min_m": [
+   -0.155,
+   -0.905,
+   3.865
+  ],
+  "bounds_max_m": [
+   2.655,
+   2.812,
+   7.334
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_roof_dormer"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 13, 31, 32",
+  "dresses": "the roof bay with a gabled dormer standing on it: oak front with a two-light leaded window, boarded cheeks, lead apron and soakers, its own slate roof with barge boards and a lead ridge",
+  "module_length_m": 2.5
+ },
+ {
+  "name": "SM_Town_Roof_RidgeCap",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Roof_RidgeCap.fbx",
+  "materials": [
+   "MI_Town_RoofShingle",
+   "MI_Town_Oak"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 136,
+  "lod1_triangles": 60,
+  "lod2_triangles": 26,
+  "dimensions_m": [
+   1.5,
+   0.413,
+   0.371
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.206,
+   -0.31
+  ],
+  "bounds_max_m": [
+   1.5,
+   0.206,
+   0.061
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "town_roof_ridge_cap"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 8, 25 (60x45 px)",
+  "dresses": "1.5 m of ridge: lapped stone ridge tiles on a ridge board. Pivot on the ridge line at its left end; sits at z = 7.33, 2.76 m behind the front wall line",
+  "module_length_m": 1.5
+ },
+ {
+  "name": "SM_Town_Wall_GableEnd",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Wall_GableEnd.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 8872,
+  "lod1_triangles": 3992,
+  "lod2_triangles": 1774,
+  "dimensions_m": [
+   6.475,
+   0.292,
+   7.164
+  ],
+  "bounds_min_m": [
+   -0.482,
+   -0.177,
+   0.0
+  ],
+  "bounds_max_m": [
+   5.993,
+   0.114,
+   7.164
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "town_wall_gable_end"
+  ],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "frames 7, 10, 24 (92x200 px)",
+  "dresses": "the whole end wall of a house, 5.51 m between the long-wall centre lines: stone plinth, pegged box frame with St Andrew's crosses and a leaded window, jettied upper frame, tie beam, gable triangle with king post, collar and struts (the roof verge over it is SM_Town_Roof_Verge, placed at the same point). Bind ONE per house end (the sprite is a 92 px slice of the same wall): left end of a row at (0, 5.51, 0) yaw -90, right end at (row length, 0, 0) yaw +90",
+  "module_length_m": 5.51
+ },
+ {
+  "name": "SM_Town_Roof_Verge",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Roof_Verge.fbx",
+  "materials": [
+   "MI_Town_RoofShingle",
+   "MI_Town_Oak"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 1688,
+  "lod1_triangles": 758,
+  "lod2_triangles": 336,
+  "dimensions_m": [
+   7.363,
+   0.458,
+   3.514
+  ],
+  "bounds_min_m": [
+   -0.927,
+   -0.458,
+   3.822
+  ],
+  "bounds_max_m": [
+   6.436,
+   -0.0,
+   7.335
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "the shingled verge drawn at the top of frames 7, 10, 24",
+  "dresses": "roof verge for a gable end: 0.56 m strips of both slopes oversailing the wall by 0.3 m, barge boards with capping fillets and a finial post. Place at the same point and yaw as SM_Town_Wall_GableEnd",
+  "module_length_m": 5.51
+ },
+ {
+  "name": "SM_Town_Corner_Quoin",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Corner_Quoin.fbx",
+  "materials": [
+   "MI_Town_Rubble",
+   "MI_Town_Oak",
+   "MI_Town_Plaster"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 1200,
+  "lod1_triangles": 540,
+  "lod2_triangles": 240,
+  "dimensions_m": [
+   0.953,
+   0.962,
+   4.35
+  ],
+  "bounds_min_m": [
+   -0.549,
+   -0.555,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.403,
+   0.408,
+   4.35
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "the pale quoin strip at the outer corner of frames 2, 11, 18, 19",
+  "dresses": "outer corner of two stone bay rows: alternating long and short dressed quoins, jetty corner post on a dragon bracket. Not family-bound: place where two rows meet at a right angle (pivot on the meeting point of the wall centre lines, faces toward -X and -Y)",
+  "module_length_m": 0.8
+ },
+ {
+  "name": "SM_Town_Chimney_Stack",
+  "class": "kit_piece",
+  "fbx": "SM_Town_Chimney_Stack.fbx",
+  "materials": [
+   "MI_Town_Rubble"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 3196,
+  "lod1_triangles": 1438,
+  "lod2_triangles": 638,
+  "dimensions_m": [
+   1.15,
+   0.853,
+   7.96
+  ],
+  "bounds_min_m": [
+   -0.574,
+   -0.76,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.575,
+   0.092,
+   7.96
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "no sprite frame in family 33 (the town roofs show no stack); family 63 chimney_stone frame 13 (61x187 px) is the same object",
+  "dresses": "external stone chimney stack, 7.6 m to the cap plus pots: battered base, two weathered offsets, drip course, cap slab, two sooted clay pots. Stands against a gable end or long wall (pivot at the centre of its back face on the ground)",
+  "module_length_m": 1.15
+ },
+ {
+  "name": "SM_Town_Door_Studded",
+  "class": "door",
+  "fbx": "SM_Town_Door_Studded.fbx",
+  "materials": [
+   "MI_Town_DoorPlanks"
+  ],
+  "source_blend": "TownExteriors.blend",
+  "lod0_triangles": 2848,
+  "lod1_triangles": 1280,
+  "lod2_triangles": 568,
+  "dimensions_m": [
+   1.04,
+   0.11,
+   2.026
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.055,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.04,
+   0.055,
+   2.026
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "sprite_family": "33 struct/outinn/oinn-",
+  "sprite_frames": "the door drawn inside the town_wall_stone_door frames",
+  "dresses": "studded door leaf of seven separate oak planks, 1.04 x 2.04 m, ledges, strap hinges, 48 iron studs and a ring pull. Pivot on the hinge edge. Not family-bound: place in each Wall_Door opening",
+  "module_length_m": 1.04
+ }
+]

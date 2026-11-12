@@ -1,0 +1,21 @@
+{
+ "lods": [
+  {
+   "name": "SM_Pillbug_Corpse_LOD0",
+   "triangles": 21456
+  },
+  {
+   "name": "SM_Pillbug_Corpse_LOD1",
+   "triangles": 10728
+  },
+  {
+   "name": "SM_Pillbug_Corpse_LOD2",
+   "triangles": 5363
+  }
+ ],
+ "dimensions_m": [
+  2.557528257369995,
+  2.1733245849609375,
+  0.47241321206092834
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "name": "SM_Potion_Flask_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Potion_Flask/SM_Potion_Flask_PR.fbx",
+ "materials": [
+  "MI_Prop_PotionGlass_Red"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 872,
+ "lod1_triangles": 436,
+ "lod2_triangles": 190,
+ "dimensions_m": [
+  0.159,
+  0.161,
+  0.36
+ ],
+ "bounds_min_m": [
+  -0.079,
+  -0.08,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.08,
+  0.081,
+  0.36
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "56 bonuses/bottles/botl-r",
+  "potion_red",
+  "potion_purple",
+  "potion_blue"
+ ],
+ "supersedes": "none (potion pickups placeholder: red 15, purple 11, blue 9 placements)",
+ "dresses": "round-bellied glass flask with a long neck, a cork and a twine tie, 0.16 x 0.36 m",
+ "fit": {
+  "pivot": "base centre",
+  "colours": "MI_Prop_PotionGlass_Red / _Purple / _Blue (the opaque dark-glass switch of the kit material, tinted): swap per pickup",
+  "scale": "the pickup sprite is 19 x 52 px, drawn large for visibility: scale the mesh 1.5-2x as a pickup"
+ },
+ "emissive": {
+  "type": "optional pickup glow",
+  "position_m": [
+   0,
+   0,
+   0.07
+  ],
+  "colour_temperature_K": null,
+  "colour_linear": [
+   1.0,
+   0.08,
+   0.05
+  ],
+  "attenuation_radius_m": 0.8,
+  "intensity_cd": 0.3,
+  "note": "only if pickups are meant to glow; the glass is opaque in this material"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Potion_Flask",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "NOT photoreal: the contract has no translucent material, so the flask is opaque dark glossy glass in one piece with a wood-coloured cork; no liquid level, no refraction.",
+ "third_party": [
+  "old_planks_02"
+ ],
+ "texture_sets": [
+  "OakWeathered"
+ ],
+ "textures_px": 2048
+}

@@ -1,0 +1,58 @@
+{
+ "name": "SM_Shelf_Bottles_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Shelf_Bottles/SM_Shelf_Bottles_PR.fbx",
+ "materials": [
+  "MI_Prop_Glaze_Blue",
+  "MI_Prop_OakWarm",
+  "MI_Prop_Glaze_Red",
+  "MI_Prop_Glaze_Green"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 6568,
+ "lod1_triangles": 3284,
+ "lod2_triangles": 1444,
+ "dimensions_m": [
+  3.864,
+  0.456,
+  2.906
+ ],
+ "bounds_min_m": [
+  -1.932,
+  -0.242,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.932,
+  0.215,
+  2.906
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "64 inside/details/inacc- frame 1",
+  "shelf_bottles",
+  "shelf_empty"
+ ],
+ "supersedes": "none (shelf_bottles placeholder, 12 placements; shelf_empty 12)",
+ "dresses": "apothecary wall unit 3.85 x 0.45 x 2.9 m: plank back and ends, a boarded dresser base, three shelves on brackets carrying about thirty corked glazed bottles of three shapes in blue, red and green",
+ "fit": {
+  "pivot": "base centre; the back (+Y) stands against the wall",
+  "sprite_scale": "frame 1 is 154 x 116 px (3.85 x 2.9 m)",
+  "empty": "class shelf_empty (sprite 459) is not built: it needs this unit without bottles"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Shelf_Bottles",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "One review round. Bottles are opaque glazed lathes of three shapes in three colours (sprite also has purple and teal), ten sides each, all upright and evenly spaced; the sprite's bottles are glass. Plank work is plain.",
+ "third_party": [
+  "old_planks_02",
+  "rusty_metal_02"
+ ],
+ "texture_sets": [
+  "Earthenware",
+  "OakWeathered"
+ ],
+ "textures_px": 2048
+}

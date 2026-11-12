@@ -1,0 +1,50 @@
+{
+ "name": "TimberBeam",
+ "files": {
+  "BC": "TimberBeam/T_Terrain_TimberBeam_BC.png",
+  "N": "TimberBeam/T_Terrain_TimberBeam_N.png",
+  "ORM": "TimberBeam/T_Terrain_TimberBeam_ORM.png",
+  "H": "TimberBeam/T_Terrain_TimberBeam_H.png",
+  "Macro": "TimberBeam/T_Terrain_TimberBeam_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 1.8,
+ "texel_mm_per_px": 0.879,
+ "height_range_m": 0.0094,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.630",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade",
+  "wood_floor"
+ ],
+ "status": "interim",
+ "method": "Poly Haven weathered_brown_planks (broad sawn boards, grain along U), graded to the orange-brown of the original exterior timbers; beams map inside single boards",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "weathered_brown_planks",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.2,
+  "mean": 91.0,
+  "max": 204.2
+ },
+ "mean_srgb": [
+  127,
+  84,
+  53
+ ],
+ "roughness_mean": 0.654,
+ "known_weaknesses": "sawn, not hewn: adze marks come only from the beam geometry; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+}

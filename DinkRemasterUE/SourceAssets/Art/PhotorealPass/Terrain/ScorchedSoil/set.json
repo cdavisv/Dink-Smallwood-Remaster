@@ -1,0 +1,55 @@
+{
+ "name": "ScorchedSoil",
+ "files": {
+  "BC": "ScorchedSoil/T_Terrain_ScorchedSoil_BC.png",
+  "N": "ScorchedSoil/T_Terrain_ScorchedSoil_N.png",
+  "ORM": "ScorchedSoil/T_Terrain_ScorchedSoil_ORM.png",
+  "H": "ScorchedSoil/T_Terrain_ScorchedSoil_H.png",
+  "Macro": "ScorchedSoil/T_Terrain_ScorchedSoil_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 4.0,
+ "texel_mm_per_px": 1.953,
+ "height_range_m": 0.0148,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.570",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "wasteland"
+ ],
+ "status": "finished",
+ "method": "Poly Haven mud_cracked_dry_riverbed_002 (2x2, self-blended with a quarter-turned copy) height-blended with burned_ground_01 (charred turf, dead straw; non-commensurate scale), desaturated to char with pale ash settled in the hollows",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "mud_cracked_dry_riverbed_002",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "burned_ground_01",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2.92
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 65.7,
+  "max": 198.5
+ },
+ "mean_srgb": [
+  68,
+  65,
+  63
+ ],
+ "roughness_mean": 0.686,
+ "known_weaknesses": "1.95 mm per pixel: cracks soften under 1 m; the burnt-straw layer is 1.37 times life size; the original wasteland tiles are grey-green rock, this is the darker scorched reading the brief asks for"
+}

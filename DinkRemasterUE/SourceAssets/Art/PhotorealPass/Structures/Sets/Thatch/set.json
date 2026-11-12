@@ -1,0 +1,49 @@
+{
+ "name": "Thatch",
+ "files": {
+  "BC": "Thatch/T_Terrain_Thatch_BC.png",
+  "N": "Thatch/T_Terrain_Thatch_N.png",
+  "ORM": "Thatch/T_Terrain_Thatch_ORM.png",
+  "H": "Thatch/T_Terrain_Thatch_H.png",
+  "Macro": "Thatch/T_Terrain_Thatch_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 1.08,
+ "texel_mm_per_px": 0.527,
+ "height_range_m": 0.0046,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.398",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven thatch_roof_angled (0.54 m scan of weathered water-reed thatch, stalks down V) 2x2, blended with a shifted copy under an anisotropic mask, slope streaks, graded to the dull gold of the original roofs (weathered grey and fresh straw are vertex-colour blends in the material)",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "thatch_roof_angled",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 31.1,
+  "mean": 106.7,
+  "max": 229.6
+ },
+ "mean_srgb": [
+  130,
+  104,
+  61
+ ],
+ "roughness_mean": 0.89,
+ "known_weaknesses": "0.54 m scan period is findable close up; butt ends of the courses are geometry, not texture"
+}

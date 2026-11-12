@@ -1,0 +1,59 @@
+{
+ "name": "SM_FeedSack_Jute_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_FeedSack_Jute",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_FeedSack_Jute_PR_BC.png",
+  "N": "T_FeedSack_Jute_PR_N.png",
+  "ORM": "T_FeedSack_Jute_PR_ORM.png"
+ },
+ "lod_triangles": [
+  1272,
+  636,
+  278
+ ],
+ "hi_triangles": 14906,
+ "bounds_min_m": [
+  -0.364,
+  -0.275,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.369,
+  0.267,
+  0.821
+ ],
+ "dimensions_m": [
+  0.734,
+  0.542,
+  0.821
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 54.5,
+   "p99": 123.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.573,
+   "p95": 0.87
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "hessian_230"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

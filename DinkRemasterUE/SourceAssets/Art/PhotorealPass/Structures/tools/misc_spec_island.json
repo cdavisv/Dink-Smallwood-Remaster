@@ -1,0 +1,4 @@
+{"ground": "DrySand", "modules": [], "res": [1100, 760],
+ "assemblies": [
+  {"name": "Island", "items": [["SM_Island_Hut_Round_PR", -4.5, 0, 0, 0], ["SM_Island_Hut_TwoStorey_PR", 4.5, 1.0, 0, 0], ["SM_Island_Fence_Lattice_PR", -3.5, -5.5, 0, 0], ["SM_Island_TorchPole_PR", 0.2, -4.6, 0, 0]],
+   "cams": [{"name": "gameplay", "loc": [4.5, -17.0, 17.5], "tgt": [0.2, -1.0, 2.2], "lens": 30}, {"name": "eye", "loc": [-1.5, -8.0, 1.6], "tgt": [-4.2, -1.0, 1.9], "lens": 22}, {"name": "fence", "loc": [-1.2, -8.3, 1.4], "tgt": [-2.0, -5.5, 1.0], "lens": 28}]}]}

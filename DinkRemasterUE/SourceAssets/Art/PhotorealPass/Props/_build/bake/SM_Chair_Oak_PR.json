@@ -1,0 +1,59 @@
+{
+ "name": "SM_Chair_Oak_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Chair_Oak",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Chair_Oak_PR_BC.png",
+  "N": "T_Chair_Oak_PR_N.png",
+  "ORM": "T_Chair_Oak_PR_ORM.png"
+ },
+ "lod_triangles": [
+  328,
+  188,
+  80
+ ],
+ "hi_triangles": 1112,
+ "bounds_min_m": [
+  -0.257,
+  -0.241,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.258,
+  0.307,
+  0.993
+ ],
+ "dimensions_m": [
+  0.515,
+  0.548,
+  0.995
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 57.3,
+   "p99": 109.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.57,
+   "p95": 0.716
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

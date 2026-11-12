@@ -1,0 +1,50 @@
+{
+ "name": "WetSand",
+ "files": {
+  "BC": "WetSand/T_Terrain_WetSand_BC.png",
+  "N": "WetSand/T_Terrain_WetSand_N.png",
+  "ORM": "WetSand/T_Terrain_WetSand_ORM.png",
+  "H": "WetSand/T_Terrain_WetSand_H.png",
+  "Macro": "WetSand/T_Terrain_WetSand_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0097,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.755",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "sand",
+  "water"
+ ],
+ "status": "finished",
+ "method": "Poly Haven damp_beach_sand with periodic wet sheen patches (darker, lower roughness); same hue as DrySand at lower value so the shoreline blend is only a value and gloss change",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "damp_beach_sand",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 31.0,
+  "mean": 119.2,
+  "max": 185.3
+ },
+ "mean_srgb": [
+  131,
+  118,
+  95
+ ],
+ "roughness_mean": 0.68,
+ "known_weaknesses": "very plain; no shells or drainage rills (shells are the 3D scatter)"
+}

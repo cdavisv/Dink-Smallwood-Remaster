@@ -1,0 +1,170 @@
+{
+ "MI_Town_Rubble": {
+  "set": "TownRubble",
+  "dirt": [
+   0.34,
+   0.29,
+   0.22
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.5,
+   0.47,
+   0.4
+  ],
+  "pale_amount": 0.55,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Town_Oak": {
+  "set": "OakWeathered",
+  "dirt": [
+   0.22,
+   0.16,
+   0.11
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.46,
+   0.45,
+   0.42
+  ],
+  "pale_amount": 0.55,
+  "macro": 0.22,
+  "tint": [
+   0.8,
+   0.62,
+   0.47
+  ],
+  "alpha_switch": true,
+  "alpha_lead": true,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ },
+ "MI_Town_Plaster": {
+  "set": "PlasterWall",
+  "dirt": [
+   0.3,
+   0.24,
+   0.16
+  ],
+  "dirt_amount": 0.95,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.8,
+   0.78,
+   0.72
+  ],
+  "pale_amount": 0.0,
+  "macro": 0.22,
+  "tint": [
+   0.86,
+   0.83,
+   0.76
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Town_RoofShingle": {
+  "set": "RoofShingle",
+  "dirt": [
+   0.36,
+   0.33,
+   0.28
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.04,
+   0.052,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.62,
+   0.62,
+   0.5
+  ],
+  "pale_amount": 0.6,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": false,
+  "alpha_lead": false,
+  "alpha_soot": false,
+  "glass_tint": null
+ },
+ "MI_Town_DoorPlanks": {
+  "set": "DoorPlanks",
+  "dirt": [
+   0.3,
+   0.25,
+   0.2
+  ],
+  "dirt_amount": 0.85,
+  "dirt_mode": "multiply",
+  "moss": [
+   0.045,
+   0.058,
+   0.02
+  ],
+  "moss_roughness": 0.95,
+  "pale": [
+   0.42,
+   0.41,
+   0.38
+  ],
+  "pale_amount": 0.75,
+  "macro": 0.22,
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "alpha_switch": true,
+  "alpha_lead": true,
+  "alpha_soot": false,
+  "glass_tint": [
+   0.035,
+   0.05,
+   0.065
+  ]
+ }
+}

@@ -1,0 +1,173 @@
+{
+ "uv": {
+  "uv_area": 0.44007577573694656,
+  "area_3d": 1.0218170376994562,
+  "overlap_area": 0.0,
+  "overlap_ratio": 0.0,
+  "overlapping_tris": 0,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": false,
+  "tris": 8600
+ },
+ "texture_px": 2048,
+ "lods": [
+  {
+   "name": "SK_Slime_LOD0",
+   "triangles": 13678
+  },
+  {
+   "name": "SK_Slime_LOD1",
+   "triangles": 6839
+  },
+  {
+   "name": "SK_Slime_LOD2",
+   "triangles": 3420
+  }
+ ],
+ "dimensions_m": [
+  1.0512681007385254,
+  0.6670642495155334,
+  0.3129276633262634
+ ],
+ "actions": {
+  "Idle": {
+   "action": "Slime_Idle",
+   "frames": [
+    1,
+    61
+   ],
+   "fps": 30,
+   "duration_s": 2.0,
+   "loop": true,
+   "root_motion": false
+  },
+  "Walk": {
+   "action": "Slime_Walk",
+   "frames": [
+    1,
+    28
+   ],
+   "fps": 30,
+   "duration_s": 0.9,
+   "loop": true,
+   "root_motion": false,
+   "nominal_speed_cm_s": 30
+  },
+  "Attack": {
+   "action": "Slime_Attack",
+   "frames": [
+    1,
+    16
+   ],
+   "fps": 30,
+   "duration_s": 0.5,
+   "loop": false,
+   "root_motion": false
+  },
+  "Death": {
+   "action": "Slime_Death",
+   "frames": [
+    1,
+    31
+   ],
+   "fps": 30,
+   "duration_s": 1.0,
+   "loop": false,
+   "root_motion": false,
+   "hold_last_frame": true
+  }
+ },
+ "bones": [
+  {
+   "name": "root",
+   "parent": null,
+   "head": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "pelvis",
+   "parent": "root",
+   "head": [
+    0.0,
+    0.0,
+    0.05999999865889549
+   ]
+  },
+  {
+   "name": "body_01",
+   "parent": "pelvis",
+   "head": [
+    -0.30000001192092896,
+    0.0,
+    0.05000000074505806
+   ]
+  },
+  {
+   "name": "body_02",
+   "parent": "pelvis",
+   "head": [
+    -0.15000000596046448,
+    0.0,
+    0.05000000074505806
+   ]
+  },
+  {
+   "name": "hump_02",
+   "parent": "body_02",
+   "head": [
+    -0.15000000596046448,
+    0.0,
+    0.15000000596046448
+   ]
+  },
+  {
+   "name": "body_03",
+   "parent": "pelvis",
+   "head": [
+    0.0,
+    0.0,
+    0.05000000074505806
+   ]
+  },
+  {
+   "name": "hump_03",
+   "parent": "body_03",
+   "head": [
+    0.0,
+    0.0,
+    0.20000000298023224
+   ]
+  },
+  {
+   "name": "body_04",
+   "parent": "pelvis",
+   "head": [
+    0.14000000059604645,
+    0.0,
+    0.05000000074505806
+   ]
+  },
+  {
+   "name": "hump_04",
+   "parent": "body_04",
+   "head": [
+    0.14000000059604645,
+    0.0,
+    0.20999999344348907
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "pelvis",
+   "head": [
+    0.27000001072883606,
+    0.0,
+    0.05000000074505806
+   ]
+  }
+ ]
+}

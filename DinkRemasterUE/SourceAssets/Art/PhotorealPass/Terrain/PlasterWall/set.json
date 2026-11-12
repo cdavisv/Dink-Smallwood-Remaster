@@ -1,0 +1,57 @@
+{
+ "name": "PlasterWall",
+ "files": {
+  "BC": "PlasterWall/T_Terrain_PlasterWall_BC.png",
+  "N": "PlasterWall/T_Terrain_PlasterWall_N.png",
+  "ORM": "PlasterWall/T_Terrain_PlasterWall_ORM.png",
+  "H": "PlasterWall/T_Terrain_PlasterWall_H.png",
+  "Macro": "PlasterWall/T_Terrain_PlasterWall_Macro.png",
+  "WallGrime": "PlasterWall/T_Terrain_PlasterWall_WallGrime.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.5,
+ "texel_mm_per_px": 1.221,
+ "height_range_m": 0.0054,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.291",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "finished",
+ "method": "lime plaster built from Poly Haven painted_plaster_wall and plastered_wall_04 (both at non-commensurate scales) with trowel sweeps (overlapping arcs with a burnished lip, in height, normal and roughness), limewash coat variation in brushed strokes, and a hairline crack network with branches; graded to the grey-olive limewash of the original interior wall sprites",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "painted_plaster_wall",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.25
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "plastered_wall_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 0.78
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 32.6,
+  "mean": 167.7,
+  "max": 199.1
+ },
+ "mean_srgb": [
+  173,
+  168,
+  152
+ ],
+ "roughness_mean": 0.929,
+ "known_weaknesses": "trowel sweeps and hairline cracks are synthesised and faint beyond 2 m; fairly even tone; one tile is one 2.5 m wall module, so offset UVs between modules (the wall kit does)",
+ "wall_grime_mask": "non-tiling in V (0 floor, 1 ceiling), tiles in U; R damp at the base (darken x0.7, tint green-brown, roughness -0.15, or blend to the Damp/Broken variant), G soot under the ceiling (multiply toward 0.25 grey), B drip streaks"
+}

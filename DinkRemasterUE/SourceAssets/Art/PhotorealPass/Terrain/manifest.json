@@ -1,0 +1,2129 @@
+{
+ "schema": "dink-terrain-sets/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain",
+ "conventions": "BC sRGB RGB; N OpenGL green-up; ORM R=AO G=roughness B=metallic; H 16-bit, spans height_range_m; world tile = tile_size_m x 100 cm; Macro = companion low-frequency RGB mask (512 px) to break repetition",
+ "sets": [
+  {
+   "name": "MeadowTurf",
+   "files": {
+    "BC": "MeadowTurf/T_Terrain_MeadowTurf_BC.png",
+    "N": "MeadowTurf/T_Terrain_MeadowTurf_N.png",
+    "ORM": "MeadowTurf/T_Terrain_MeadowTurf_ORM.png",
+    "H": "MeadowTurf/T_Terrain_MeadowTurf_H.png",
+    "Macro": "MeadowTurf/T_Terrain_MeadowTurf_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.8,
+   "texel_mm_per_px": 1.367,
+   "height_range_m": 0.0202,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.124",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "grass"
+   ],
+   "status": "finished",
+   "method": "ambientCG Grass004 (2x2) height-blended with Grass001 (2x2, shifted) and Poly Haven leafy_grass (true scale, worn patches), plus plants modelled here in Blender and baked top-down as decals (clover patches, plantain, daisy and dandelion rosettes, a few daisy flowers, dry leaves and straw blades); graded toward the original grass palette",
+   "third_party": [
+    {
+     "source": "ambientcg",
+     "asset_id": "Grass004",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "ambientcg",
+     "asset_id": "Grass001",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "leafy_grass",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.4
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.2,
+    "mean": 94.5,
+    "max": 229.3
+   },
+   "mean_srgb": [
+    86,
+    101,
+    59
+   ],
+   "roughness_mean": 0.666,
+   "known_weaknesses": "plants are stamped decals in albedo, normal and AO with only a few millimetres of height: they do not stand up at grazing view; the 1.4 m lawn period can still be found in a flat-lit 4x4 view"
+  },
+  {
+   "name": "WildGrass",
+   "files": {
+    "BC": "WildGrass/T_Terrain_WildGrass_BC.png",
+    "N": "WildGrass/T_Terrain_WildGrass_N.png",
+    "ORM": "WildGrass/T_Terrain_WildGrass_ORM.png",
+    "H": "WildGrass/T_Terrain_WildGrass_H.png",
+    "Macro": "WildGrass/T_Terrain_WildGrass_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 4.0,
+   "texel_mm_per_px": 1.953,
+   "height_range_m": 0.0427,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.409",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "grass",
+    "grass_rocky",
+    "forest_canopy"
+   ],
+   "status": "interim",
+   "method": "Poly Haven sparse_grass (2x2, long dry-strawed grass) with patches of ambientCG Grass001 and Poly Haven leafy_grass at true scale, plus modelled-and-baked plant decals (plantain, dandelion, clover, dry leaves and straw); darker and rougher than MeadowTurf",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "sparse_grass",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "ambientcg",
+     "asset_id": "Grass001",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2.86
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "leafy_grass",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2.0
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 83.0,
+    "max": 228.3
+   },
+   "mean_srgb": [
+    79,
+    87,
+    53
+   ],
+   "roughness_mean": 0.754,
+   "known_weaknesses": "third pass: tussock relief and more straw make it rougher, but it is lumpy pasture, not long grass: length must come from 3D tufts"
+  },
+  {
+   "name": "EarthPath",
+   "files": {
+    "BC": "EarthPath/T_Terrain_EarthPath_BC.png",
+    "N": "EarthPath/T_Terrain_EarthPath_N.png",
+    "ORM": "EarthPath/T_Terrain_EarthPath_ORM.png",
+    "H": "EarthPath/T_Terrain_EarthPath_H.png",
+    "Macro": "EarthPath/T_Terrain_EarthPath_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 4.0,
+   "texel_mm_per_px": 1.953,
+   "height_range_m": 0.0558,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.423",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "path",
+    "dirt",
+    "gravel"
+   ],
+   "status": "finished",
+   "method": "Poly Haven dirt_floor (2x2, compacted earth with dry crazing) height-blended with rocky_trail (2x2, embedded stones and grit) plus a periodic footprint-scale undulation with damp hollows",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "dirt_floor",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rocky_trail",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 31.2,
+    "mean": 120.4,
+    "max": 207.0
+   },
+   "mean_srgb": [
+    137,
+    118,
+    97
+   ],
+   "roughness_mean": 0.8,
+   "known_weaknesses": "no explicit wheel ruts or readable footprints (kept direction-free so it tiles under any path shape); stones are at most a few centimetres"
+  },
+  {
+   "name": "TransitionDirt",
+   "files": {
+    "BC": "TransitionDirt/T_Terrain_TransitionDirt_BC.png",
+    "N": "TransitionDirt/T_Terrain_TransitionDirt_N.png",
+    "ORM": "TransitionDirt/T_Terrain_TransitionDirt_ORM.png",
+    "H": "TransitionDirt/T_Terrain_TransitionDirt_H.png",
+    "Macro": "TransitionDirt/T_Terrain_TransitionDirt_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0305,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.303",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "dirt",
+    "path",
+    "grass"
+   ],
+   "status": "finished",
+   "method": "Poly Haven dirt (fine dark soil) with rocky_trail grit patches; mid-value brown chosen to sit between MeadowTurf and EarthPath in a height-blended edge",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "dirt",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rocky_trail",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 33.4,
+    "mean": 90.2,
+    "max": 234.5
+   },
+   "mean_srgb": [
+    109,
+    87,
+    65
+   ],
+   "roughness_mean": 0.865,
+   "known_weaknesses": "plain by design; little relief (about a centimetre)"
+  },
+  {
+   "name": "ForestFloor",
+   "files": {
+    "BC": "ForestFloor/T_Terrain_ForestFloor_BC.png",
+    "N": "ForestFloor/T_Terrain_ForestFloor_N.png",
+    "ORM": "ForestFloor/T_Terrain_ForestFloor_ORM.png",
+    "H": "ForestFloor/T_Terrain_ForestFloor_H.png",
+    "Macro": "ForestFloor/T_Terrain_ForestFloor_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0474,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.281",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "forest_canopy",
+    "grass"
+   ],
+   "status": "finished",
+   "method": "Poly Haven forest_leaves_04 (2x2, self-blended with a quarter-turned copy) with forest_leaves_02 (moss, sticks, leaves; non-commensurate scale, relief halved) and patches of forrest_ground_03 (pine needle mat); every layer has its large-scale brightness drift removed so no band survives at 4x4; desaturated and darkened for shade",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "forest_leaves_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "forest_leaves_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 0.83
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "forrest_ground_03",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.5
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 71.1,
+    "max": 173.9
+   },
+   "mean_srgb": [
+    83,
+    70,
+    51
+   ],
+   "roughness_mean": 0.847,
+   "known_weaknesses": "no cones; moss is sparse and olive rather than deep green"
+  },
+  {
+   "name": "DrySand",
+   "files": {
+    "BC": "DrySand/T_Terrain_DrySand_BC.png",
+    "N": "DrySand/T_Terrain_DrySand_N.png",
+    "ORM": "DrySand/T_Terrain_DrySand_ORM.png",
+    "H": "DrySand/T_Terrain_DrySand_H.png",
+    "Macro": "DrySand/T_Terrain_DrySand_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0256,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.634",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "sand"
+   ],
+   "status": "finished",
+   "method": "Poly Haven sand_01 (scuffed dry beach sand with small debris), 2x2, height-blended with a quarter-turned, shifted copy of itself under a 3 m mask so the 1.5 m scan period is broken; relief eased; graded to the original warm sand",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "sand_01",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.2,
+    "mean": 184.2,
+    "max": 238.7
+   },
+   "mean_srgb": [
+    203,
+    183,
+    142
+   ],
+   "roughness_mean": 0.988,
+   "known_weaknesses": "one scan only: the same debris cluster appears a few times per tile in two orientations; no wind ripples"
+  },
+  {
+   "name": "WetSand",
+   "files": {
+    "BC": "WetSand/T_Terrain_WetSand_BC.png",
+    "N": "WetSand/T_Terrain_WetSand_N.png",
+    "ORM": "WetSand/T_Terrain_WetSand_ORM.png",
+    "H": "WetSand/T_Terrain_WetSand_H.png",
+    "Macro": "WetSand/T_Terrain_WetSand_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0097,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.755",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "sand",
+    "water"
+   ],
+   "status": "finished",
+   "method": "Poly Haven damp_beach_sand with periodic wet sheen patches (darker, lower roughness); same hue as DrySand at lower value so the shoreline blend is only a value and gloss change",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "damp_beach_sand",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 31.0,
+    "mean": 119.2,
+    "max": 185.3
+   },
+   "mean_srgb": [
+    131,
+    118,
+    95
+   ],
+   "roughness_mean": 0.68,
+   "known_weaknesses": "very plain; no shells or drainage rills (shells are the 3D scatter)"
+  },
+  {
+   "name": "ShingleBeach",
+   "files": {
+    "BC": "ShingleBeach/T_Terrain_ShingleBeach_BC.png",
+    "N": "ShingleBeach/T_Terrain_ShingleBeach_N.png",
+    "ORM": "ShingleBeach/T_Terrain_ShingleBeach_ORM.png",
+    "H": "ShingleBeach/T_Terrain_ShingleBeach_H.png",
+    "Macro": "ShingleBeach/T_Terrain_ShingleBeach_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.16,
+   "texel_mm_per_px": 1.055,
+   "height_range_m": 0.0529,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.483",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "sand",
+    "gravel"
+   ],
+   "status": "finished",
+   "method": "Poly Haven ganges_river_pebbles, warmed slightly toward the sand so pebble banks sit in it",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "ganges_river_pebbles",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 35.7,
+    "mean": 122.5,
+    "max": 230.8
+   },
+   "mean_srgb": [
+    130,
+    121,
+    110
+   ],
+   "roughness_mean": 0.808,
+   "known_weaknesses": "single scan: the few bright white cobbles are repeating landmarks at 4x4; use the Macro mask to tint"
+  },
+  {
+   "name": "CliffRock",
+   "files": {
+    "BC": "CliffRock/T_Terrain_CliffRock_BC.png",
+    "N": "CliffRock/T_Terrain_CliffRock_N.png",
+    "ORM": "CliffRock/T_Terrain_CliffRock_ORM.png",
+    "H": "CliffRock/T_Terrain_CliffRock_H.png",
+    "Macro": "CliffRock/T_Terrain_CliffRock_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.7,
+   "texel_mm_per_px": 1.318,
+   "height_range_m": 0.07,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.488",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "cliff_face",
+    "rock_mass"
+   ],
+   "status": "finished",
+   "method": "Poly Haven rock_face_03 with its two straight through-going joints located and covered by a turned, enlarged copy of itself, plus patches of Poly Haven rock_face at a non-commensurate scale; large-scale brightness drift removed; graded to the dark grey-brown of the original cliffs",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_03",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.13
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 33.2,
+    "mean": 90.6,
+    "max": 235.2
+   },
+   "mean_srgb": [
+    103,
+    88,
+    73
+   ],
+   "roughness_mean": 0.819,
+   "known_weaknesses": "no bedding direction, so it does not read as layered strata; relief of 8 cm needs parallax or tessellation to show on a flat cliff mesh"
+  },
+  {
+   "name": "CaveRock",
+   "files": {
+    "BC": "CaveRock/T_Terrain_CaveRock_BC.png",
+    "N": "CaveRock/T_Terrain_CaveRock_N.png",
+    "ORM": "CaveRock/T_Terrain_CaveRock_ORM.png",
+    "H": "CaveRock/T_Terrain_CaveRock_H.png",
+    "Macro": "CaveRock/T_Terrain_CaveRock_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0474,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.570",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "cave_wall",
+    "rock_mass",
+    "cliff_face"
+   ],
+   "status": "finished",
+   "method": "Poly Haven rock_face_04 (dark water-worn rock with mineral crusts), cooled and darkened; slightly lower roughness for a damp cave",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 70.6,
+    "max": 238.8
+   },
+   "mean_srgb": [
+    76,
+    70,
+    61
+   ],
+   "roughness_mean": 0.862,
+   "known_weaknesses": "single scan; the pale mineral crust patches are repeating landmarks on long walls"
+  },
+  {
+   "name": "CaveFloor",
+   "files": {
+    "BC": "CaveFloor/T_Terrain_CaveFloor_BC.png",
+    "N": "CaveFloor/T_Terrain_CaveFloor_N.png",
+    "ORM": "CaveFloor/T_Terrain_CaveFloor_ORM.png",
+    "H": "CaveFloor/T_Terrain_CaveFloor_H.png",
+    "Macro": "CaveFloor/T_Terrain_CaveFloor_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0453,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.449",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "cave_floor"
+   ],
+   "status": "finished",
+   "method": "Poly Haven rock_ground (2x2: grit, rubble and trodden dirt) with patches of bare rock from rock_face_04 showing through",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_ground",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.5
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 66.4,
+    "max": 209.4
+   },
+   "mean_srgb": [
+    70,
+    66,
+    57
+   ],
+   "roughness_mean": 0.864,
+   "known_weaknesses": "the grit layer repeats at 1.5 m; bedrock patches are few"
+  },
+  {
+   "name": "CobbleStreet",
+   "files": {
+    "BC": "CobbleStreet/T_Terrain_CobbleStreet_BC.png",
+    "N": "CobbleStreet/T_Terrain_CobbleStreet_N.png",
+    "ORM": "CobbleStreet/T_Terrain_CobbleStreet_ORM.png",
+    "H": "CobbleStreet/T_Terrain_CobbleStreet_H.png",
+    "Macro": "CobbleStreet/T_Terrain_CobbleStreet_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.4,
+   "texel_mm_per_px": 1.172,
+   "height_range_m": 0.0549,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.496",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "path",
+    "stone_floor",
+    "structure_facade"
+   ],
+   "status": "finished",
+   "method": "Poly Haven cobblestone_05 (worn setts with sandy joints and a little moss)",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "cobblestone_05",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 96.1,
+    "max": 205.0
+   },
+   "mean_srgb": [
+    102,
+    96,
+    84
+   ],
+   "roughness_mean": 0.773,
+   "known_weaknesses": "single scan; setts are coursed, so the course direction must follow the street"
+  },
+  {
+   "name": "DungeonFlagstone",
+   "files": {
+    "BC": "DungeonFlagstone/T_Terrain_DungeonFlagstone_BC.png",
+    "N": "DungeonFlagstone/T_Terrain_DungeonFlagstone_N.png",
+    "ORM": "DungeonFlagstone/T_Terrain_DungeonFlagstone_ORM.png",
+    "H": "DungeonFlagstone/T_Terrain_DungeonFlagstone_H.png",
+    "Macro": "DungeonFlagstone/T_Terrain_DungeonFlagstone_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0136,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.488",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "stone_floor"
+   ],
+   "status": "finished",
+   "method": "Poly Haven stone_tiles_02 (large irregular split slabs with mortared joints), darkened to the original dungeon floor grey, with foot-polished slab tops along walked lines and dark grit packed in the joints. Floor only: irregular slabs, no courses",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_tiles_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 32.0,
+    "mean": 73.0,
+    "max": 162.7
+   },
+   "mean_srgb": [
+    73,
+    73,
+    71
+   ],
+   "roughness_mean": 0.609,
+   "known_weaknesses": "single scan at 2 m; slabs are 25-45 cm, smaller than a great-hall flag"
+  },
+  {
+   "name": "DungeonMasonry",
+   "files": {
+    "BC": "DungeonMasonry/T_Terrain_DungeonMasonry_BC.png",
+    "N": "DungeonMasonry/T_Terrain_DungeonMasonry_N.png",
+    "ORM": "DungeonMasonry/T_Terrain_DungeonMasonry_ORM.png",
+    "H": "DungeonMasonry/T_Terrain_DungeonMasonry_H.png",
+    "Macro": "DungeonMasonry/T_Terrain_DungeonMasonry_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.5,
+   "texel_mm_per_px": 1.221,
+   "height_range_m": 0.0492,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.387",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade",
+    "cave_wall"
+   ],
+   "status": "finished",
+   "method": "Poly Haven stone_brick_wall_001 (coursed rough-faced ashlar, mixed block sizes, deeply recessed mortar), graded to the golden olive-brown of the original dungeon wall sprites. Walls only: horizontal courses along U",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_brick_wall_001",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 93.0,
+    "max": 225.7
+   },
+   "mean_srgb": [
+    106,
+    92,
+    67
+   ],
+   "roughness_mean": 0.838,
+   "known_weaknesses": "single scan at 2.5 m, the same as one wall module, so the block layout repeats per module unless the mesh UVs are offset (the wall kit does this); courses are 15-35 cm",
+   "wall_grime_mask": "PlasterWall/T_Terrain_PlasterWall_WallGrime.png works for this set too (R damp at the base: blend toward DungeonMasonryDamp)"
+  },
+  {
+   "name": "DungeonMasonryDamp",
+   "files": {
+    "BC": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_BC.png",
+    "N": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_N.png",
+    "ORM": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_ORM.png",
+    "H": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_H.png",
+    "Macro": "DungeonMasonryDamp/T_Terrain_DungeonMasonryDamp_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.5,
+   "texel_mm_per_px": 1.221,
+   "height_range_m": 0.05,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.380",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade",
+    "cave_wall"
+   ],
+   "status": "finished",
+   "method": "the DungeonMasonry wall with the same block layout (so the two blend by mask without ghosting): darker and glossier with vertical run-off streaks, and moss and lichen (from Poly Haven mossy_rock) grown in the joints and on the lower block faces. Meant for the lowest metre of a wall, blended in with the WallGrime R channel or vertex colour",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_brick_wall_001",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "mossy_rock",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 0.83
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.2,
+    "mean": 81.5,
+    "max": 201.7
+   },
+   "mean_srgb": [
+    88,
+    82,
+    55
+   ],
+   "roughness_mean": 0.723,
+   "known_weaknesses": "moss is a colour and roughness layer with 3 mm of height, not tufts"
+  },
+  {
+   "name": "PlasterWall",
+   "files": {
+    "BC": "PlasterWall/T_Terrain_PlasterWall_BC.png",
+    "N": "PlasterWall/T_Terrain_PlasterWall_N.png",
+    "ORM": "PlasterWall/T_Terrain_PlasterWall_ORM.png",
+    "H": "PlasterWall/T_Terrain_PlasterWall_H.png",
+    "Macro": "PlasterWall/T_Terrain_PlasterWall_Macro.png",
+    "WallGrime": "PlasterWall/T_Terrain_PlasterWall_WallGrime.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.5,
+   "texel_mm_per_px": 1.221,
+   "height_range_m": 0.0054,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.291",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "finished",
+   "method": "lime plaster built from Poly Haven painted_plaster_wall and plastered_wall_04 (both at non-commensurate scales) with trowel sweeps (overlapping arcs with a burnished lip, in height, normal and roughness), limewash coat variation in brushed strokes, and a hairline crack network with branches; graded to the grey-olive limewash of the original interior wall sprites",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "painted_plaster_wall",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.25
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "plastered_wall_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 0.78
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 32.6,
+    "mean": 167.7,
+    "max": 199.1
+   },
+   "mean_srgb": [
+    173,
+    168,
+    152
+   ],
+   "roughness_mean": 0.929,
+   "known_weaknesses": "trowel sweeps and hairline cracks are synthesised and faint beyond 2 m; fairly even tone; one tile is one 2.5 m wall module, so offset UVs between modules (the wall kit does)",
+   "wall_grime_mask": "non-tiling in V (0 floor, 1 ceiling), tiles in U; R damp at the base (darken x0.7, tint green-brown, roughness -0.15, or blend to the Damp/Broken variant), G soot under the ceiling (multiply toward 0.25 grey), B drip streaks"
+  },
+  {
+   "name": "PlasterWallBroken",
+   "files": {
+    "BC": "PlasterWallBroken/T_Terrain_PlasterWallBroken_BC.png",
+    "N": "PlasterWallBroken/T_Terrain_PlasterWallBroken_N.png",
+    "ORM": "PlasterWallBroken/T_Terrain_PlasterWallBroken_ORM.png",
+    "H": "PlasterWallBroken/T_Terrain_PlasterWallBroken_H.png",
+    "Macro": "PlasterWallBroken/T_Terrain_PlasterWallBroken_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.5,
+   "texel_mm_per_px": 1.221,
+   "height_range_m": 0.0256,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.381",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "PlasterWall with the same trowel and crack layout, plus flaking and patched plaster from Poly Haven rough_plaster_broken and areas where the plaster has fallen off the rubble stone behind (stone_brick_wall_001), with a broken 12 mm edge and stained margin. A dressing variant to blend into PlasterWall by vertex colour or mask on a few modules, not for whole rooms",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "painted_plaster_wall",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.25
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "plastered_wall_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 0.78
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rough_plaster_broken",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.67
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_brick_wall_001",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 158.3,
+    "max": 240.0
+   },
+   "mean_srgb": [
+    166,
+    158,
+    140
+   ],
+   "roughness_mean": 0.896,
+   "known_weaknesses": "third pass: the fallen areas now read as lime-stained backing and flaking rather than dark pits, but they repeat as landmarks at 4x4 and the backing is stone, not lath: a dressing variant for single modules",
+   "wall_grime_mask": "non-tiling in V (0 floor, 1 ceiling), tiles in U; R damp at the base (darken x0.7, tint green-brown, roughness -0.15, or blend to the Damp/Broken variant), G soot under the ceiling (multiply toward 0.25 grey), B drip streaks"
+  },
+  {
+   "name": "PlankFloor",
+   "files": {
+    "BC": "PlankFloor/T_Terrain_PlankFloor_BC.png",
+    "N": "PlankFloor/T_Terrain_PlankFloor_N.png",
+    "ORM": "PlankFloor/T_Terrain_PlankFloor_ORM.png",
+    "H": "PlankFloor/T_Terrain_PlankFloor_H.png",
+    "Macro": "PlankFloor/T_Terrain_PlankFloor_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0208,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.781",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "wood_floor"
+   ],
+   "status": "finished",
+   "method": "Poly Haven old_wood_floor (worn, gapped softwood boards with nail heads and traffic wear), warmed to the original floor brown",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "old_wood_floor",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 31.2,
+    "mean": 81.4,
+    "max": 204.6
+   },
+   "mean_srgb": [
+    106,
+    77,
+    56
+   ],
+   "roughness_mean": 0.733,
+   "known_weaknesses": "boards are narrow (about 12 cm) and run across the full tile width: butt joints are rare; single scan"
+  },
+  {
+   "name": "Snow",
+   "files": {
+    "BC": "Snow/T_Terrain_Snow_BC.png",
+    "N": "Snow/T_Terrain_Snow_N.png",
+    "ORM": "Snow/T_Terrain_Snow_ORM.png",
+    "H": "Snow/T_Terrain_Snow_H.png",
+    "Macro": "Snow/T_Terrain_Snow_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0683,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.459",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "snow",
+    "ice"
+   ],
+   "status": "finished",
+   "method": "wind-sculpted fresh snow built here: sastrugi as wind-aligned terraced ridges with undercut risers over low drift swells (synthesised height, 3 m period), fine crust normal from ambientCG Snow008A, glazed wind-packed crests and sparse crystal glints in roughness. No tracks. Wind runs along U",
+   "third_party": [
+    {
+     "source": "ambientcg",
+     "asset_id": "Snow008A",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.5
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 209.6,
+    "mean": 225.8,
+    "max": 235.2
+   },
+   "mean_srgb": [
+    219,
+    227,
+    231
+   ],
+   "roughness_mean": 0.673,
+   "known_weaknesses": "sastrugi are synthesised, fine and even in size (no large drifts); wind direction is fixed along U; albedo is capped at 240 so subsurface and sparkle bloom must come from the Unreal material; two review rounds on this version"
+  },
+  {
+   "name": "SnowTrampled",
+   "files": {
+    "BC": "SnowTrampled/T_Terrain_SnowTrampled_BC.png",
+    "N": "SnowTrampled/T_Terrain_SnowTrampled_N.png",
+    "ORM": "SnowTrampled/T_Terrain_SnowTrampled_ORM.png",
+    "H": "SnowTrampled/T_Terrain_SnowTrampled_H.png",
+    "Macro": "SnowTrampled/T_Terrain_SnowTrampled_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 4.0,
+   "texel_mm_per_px": 1.953,
+   "height_range_m": 0.0313,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.398",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "snow",
+    "path"
+   ],
+   "status": "finished",
+   "method": "Poly Haven snow_01 (boot-trodden snow), 2x2, levelled, then height-blended with a shifted copy of itself under a 4 m mask so the 2 m period is broken; prints still run along V and the 2 m period is broken",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "snow_01",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 211.3,
+    "max": 239.1
+   },
+   "mean_srgb": [
+    206,
+    212,
+    216
+   ],
+   "roughness_mean": 0.938,
+   "known_weaknesses": "prints run along V only (a turned copy shades differently under a low sun, so the self-blend is shift-only); modern boot treads are visible under 1 m; 1.95 mm per pixel"
+  },
+  {
+   "name": "ScorchedSoil",
+   "files": {
+    "BC": "ScorchedSoil/T_Terrain_ScorchedSoil_BC.png",
+    "N": "ScorchedSoil/T_Terrain_ScorchedSoil_N.png",
+    "ORM": "ScorchedSoil/T_Terrain_ScorchedSoil_ORM.png",
+    "H": "ScorchedSoil/T_Terrain_ScorchedSoil_H.png",
+    "Macro": "ScorchedSoil/T_Terrain_ScorchedSoil_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 4.0,
+   "texel_mm_per_px": 1.953,
+   "height_range_m": 0.0148,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.570",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "wasteland"
+   ],
+   "status": "finished",
+   "method": "Poly Haven mud_cracked_dry_riverbed_002 (2x2, self-blended with a quarter-turned copy) height-blended with burned_ground_01 (charred turf, dead straw; non-commensurate scale), desaturated to char with pale ash settled in the hollows",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "mud_cracked_dry_riverbed_002",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "burned_ground_01",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2.92
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 65.7,
+    "max": 198.5
+   },
+   "mean_srgb": [
+    68,
+    65,
+    63
+   ],
+   "roughness_mean": 0.686,
+   "known_weaknesses": "1.95 mm per pixel: cracks soften under 1 m; the burnt-straw layer is 1.37 times life size; the original wasteland tiles are grey-green rock, this is the darker scorched reading the brief asks for"
+  },
+  {
+   "name": "LavaCrust",
+   "files": {
+    "BC": "LavaCrust/T_Terrain_LavaCrust_BC.png",
+    "N": "LavaCrust/T_Terrain_LavaCrust_N.png",
+    "ORM": "LavaCrust/T_Terrain_LavaCrust_ORM.png",
+    "H": "LavaCrust/T_Terrain_LavaCrust_H.png",
+    "Macro": "LavaCrust/T_Terrain_LavaCrust_Macro.png",
+    "E": "LavaCrust/T_Terrain_LavaCrust_E.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0826,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.503",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "lava",
+    "wasteland"
+   ],
+   "status": "interim",
+   "method": "built here (no CC0 lava scan is usable): plates of varied size from three overlaid crack fields, each plate at its own level and tilt, ropy pahoehoe folds with a glassy skin on some plates and rough aa clinker on the others, oxidised rims, Poly Haven rock_face_04 for surface grain. The E mask is the floor of the main cracks only, in the hot 40 percent of the field, with a faint halo up the crack walls",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.5
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 48.0,
+    "max": 140.2
+   },
+   "mean_srgb": [
+    50,
+    47,
+    50
+   ],
+   "roughness_mean": 0.613,
+   "known_weaknesses": "third pass: the glow is now broken into lengths in the deep cracks, but plate outlines are still smooth-noise contours (rounded, loop-shaped) rather than fracture; still fails as photoreal lava crust",
+   "emissive": "E mask 0..1; suggested colour ramp (1.0,0.12,0.0) to (1.0,0.75,0.25), strength 20-60 nits scaled by E"
+  },
+  {
+   "name": "PondMud",
+   "files": {
+    "BC": "PondMud/T_Terrain_PondMud_BC.png",
+    "N": "PondMud/T_Terrain_PondMud_N.png",
+    "ORM": "PondMud/T_Terrain_PondMud_ORM.png",
+    "H": "PondMud/T_Terrain_PondMud_H.png",
+    "Macro": "PondMud/T_Terrain_PondMud_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.6,
+   "texel_mm_per_px": 1.27,
+   "height_range_m": 0.0586,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.486",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "dirt",
+    "water",
+    "grass"
+   ],
+   "status": "finished",
+   "method": "Poly Haven brown_mud_03 and brown_mud_02 (2x2 each, shifted) height-blended; hollows are wetter (lower roughness, darker)",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "brown_mud_03",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "brown_mud_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 63.6,
+    "max": 190.2
+   },
+   "mean_srgb": [
+    72,
+    62,
+    51
+   ],
+   "roughness_mean": 0.509,
+   "known_weaknesses": "no standing-water film or reeds; the 1.3 m period of both scans can be found at 4x4"
+  },
+  {
+   "name": "RockyGrass",
+   "files": {
+    "BC": "RockyGrass/T_Terrain_RockyGrass_BC.png",
+    "N": "RockyGrass/T_Terrain_RockyGrass_N.png",
+    "ORM": "RockyGrass/T_Terrain_RockyGrass_ORM.png",
+    "H": "RockyGrass/T_Terrain_RockyGrass_H.png",
+    "Macro": "RockyGrass/T_Terrain_RockyGrass_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.8,
+   "texel_mm_per_px": 1.367,
+   "height_range_m": 0.031,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.315",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "grass_rocky"
+   ],
+   "status": "finished",
+   "method": "MeadowTurf grass (Grass004) with thin worn turf (leafy_grass) and stony ground (rocky_trail) breaking through in patches",
+   "third_party": [
+    {
+     "source": "ambientcg",
+     "asset_id": "Grass004",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "leafy_grass",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.4
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rocky_trail",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1.4
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.9,
+    "mean": 98.5,
+    "max": 192.7
+   },
+   "mean_srgb": [
+    97,
+    101,
+    73
+   ],
+   "roughness_mean": 0.583,
+   "known_weaknesses": "stones are gravel-sized; the larger rocks of the original tiles must be meshes"
+  },
+  {
+   "name": "TownRubble",
+   "files": {
+    "BC": "TownRubble/T_Terrain_TownRubble_BC.png",
+    "N": "TownRubble/T_Terrain_TownRubble_N.png",
+    "ORM": "TownRubble/T_Terrain_TownRubble_ORM.png",
+    "H": "TownRubble/T_Terrain_TownRubble_H.png",
+    "Macro": "TownRubble/T_Terrain_TownRubble_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.5,
+   "texel_mm_per_px": 1.221,
+   "height_range_m": 0.0489,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.722",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven castle_wall_slates (coursed rubble of thin slabs in lime mortar), darkened to the grey-brown ground-floor stone of the original town house sprites",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "castle_wall_slates",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 79.9,
+    "max": 165.6
+   },
+   "mean_srgb": [
+    85,
+    79,
+    69
+   ],
+   "roughness_mean": 0.522,
+   "known_weaknesses": "single scan; one pale block is a landmark every 2.5 m; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+  },
+  {
+   "name": "RoofShingle",
+   "files": {
+    "BC": "RoofShingle/T_Terrain_RoofShingle_BC.png",
+    "N": "RoofShingle/T_Terrain_RoofShingle_N.png",
+    "ORM": "RoofShingle/T_Terrain_RoofShingle_ORM.png",
+    "H": "RoofShingle/T_Terrain_RoofShingle_H.png",
+    "Macro": "RoofShingle/T_Terrain_RoofShingle_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 3.0,
+   "texel_mm_per_px": 1.465,
+   "height_range_m": 0.0189,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.474",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven roof_slates_02 (weathered split shingles in courses), graded to the pale grey-olive of the original roof sprites, with moss in the laps. Courses run along U, eaves toward -V",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "roof_slates_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 99.9,
+    "max": 202.8
+   },
+   "mean_srgb": [
+    104,
+    100,
+    88
+   ],
+   "roughness_mean": 0.848,
+   "known_weaknesses": "single scan; shingles are small (about 8 cm) against the broad courses of the sprite; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+  },
+  {
+   "name": "DoorPlanks",
+   "files": {
+    "BC": "DoorPlanks/T_Terrain_DoorPlanks_BC.png",
+    "N": "DoorPlanks/T_Terrain_DoorPlanks_N.png",
+    "ORM": "DoorPlanks/T_Terrain_DoorPlanks_ORM.png",
+    "H": "DoorPlanks/T_Terrain_DoorPlanks_H.png",
+    "Macro": "DoorPlanks/T_Terrain_DoorPlanks_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0245,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.446",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven medieval_wood (vertical riven planks with rows of iron stud nails), warmed to the dark brown of the original doors. Planks run along V",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "medieval_wood",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 65.7,
+    "max": 165.8
+   },
+   "mean_srgb": [
+    84,
+    62,
+    47
+   ],
+   "roughness_mean": 0.535,
+   "known_weaknesses": "single scan; studs are part of the texture, not geometry; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+  },
+  {
+   "name": "TimberBeam",
+   "files": {
+    "BC": "TimberBeam/T_Terrain_TimberBeam_BC.png",
+    "N": "TimberBeam/T_Terrain_TimberBeam_N.png",
+    "ORM": "TimberBeam/T_Terrain_TimberBeam_ORM.png",
+    "H": "TimberBeam/T_Terrain_TimberBeam_H.png",
+    "Macro": "TimberBeam/T_Terrain_TimberBeam_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 1.8,
+   "texel_mm_per_px": 0.879,
+   "height_range_m": 0.0094,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.630",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade",
+    "wood_floor"
+   ],
+   "status": "interim",
+   "method": "Poly Haven weathered_brown_planks (broad sawn boards, grain along U), graded to the orange-brown of the original exterior timbers; beams map inside single boards",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "weathered_brown_planks",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.2,
+    "mean": 91.0,
+    "max": 204.2
+   },
+   "mean_srgb": [
+    127,
+    84,
+    53
+   ],
+   "roughness_mean": 0.654,
+   "known_weaknesses": "sawn, not hewn: adze marks come only from the beam geometry; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+  }
+ ],
+ "scatter_meshes": [
+  {
+   "name": "SM_BeachPebbles_A",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_BeachPebbles_A.fbx",
+   "dimensions_m": [
+    0.1379,
+    0.144,
+    0.0378
+   ],
+   "lod0_triangles": 1158,
+   "lod1_triangles": 486,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_BeachPebbles",
+   "families": [
+    "beach_pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0025,
+    "uv_max": 0.4975
+   },
+   "source_blend": "Scatter/Scatter_BeachPebbles.blend",
+   "supersedes": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1 (seven near-identical grey stones on a shared fieldstone material)",
+   "sprite_frames": "92 beach-05..11",
+   "placement_note": "pivot is the base centre at sand level; stones are already cut where they sink into the sand, add 2-5 mm extra sink and a random yaw",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "cliff_side",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_tiles_02",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "dry_riverbed_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "mossy_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the basalt stones carry a few bright white specks from the scan; stones meet the sand with a hard intersection; smart-projected UV islands; clusters B and C are about 1,500-1,630 triangles (soft target 1,500); validator: 3 clusters still have a few zero-area faces at the ground cut and one has open edges there",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_BeachPebbles_B",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_BeachPebbles_B.fbx",
+   "dimensions_m": [
+    0.2892,
+    0.2234,
+    0.0326
+   ],
+   "lod0_triangles": 1511,
+   "lod1_triangles": 633,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_BeachPebbles",
+   "families": [
+    "beach_pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 5,
+    "uv_min": 0.0035,
+    "uv_max": 0.9951
+   },
+   "source_blend": "Scatter/Scatter_BeachPebbles.blend",
+   "supersedes": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1 (seven near-identical grey stones on a shared fieldstone material)",
+   "sprite_frames": "92 beach-05..11",
+   "placement_note": "pivot is the base centre at sand level; stones are already cut where they sink into the sand, add 2-5 mm extra sink and a random yaw",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "cliff_side",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_tiles_02",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "dry_riverbed_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "mossy_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the basalt stones carry a few bright white specks from the scan; stones meet the sand with a hard intersection; smart-projected UV islands; clusters B and C are about 1,500-1,630 triangles (soft target 1,500); validator: 3 clusters still have a few zero-area faces at the ground cut and one has open edges there",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_BeachPebbles_C",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_BeachPebbles_C.fbx",
+   "dimensions_m": [
+    0.4532,
+    0.3011,
+    0.0338
+   ],
+   "lod0_triangles": 1618,
+   "lod1_triangles": 678,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_BeachPebbles",
+   "families": [
+    "beach_pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0038,
+    "uv_max": 0.9911
+   },
+   "source_blend": "Scatter/Scatter_BeachPebbles.blend",
+   "supersedes": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1 (seven near-identical grey stones on a shared fieldstone material)",
+   "sprite_frames": "92 beach-05..11",
+   "placement_note": "pivot is the base centre at sand level; stones are already cut where they sink into the sand, add 2-5 mm extra sink and a random yaw",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "cliff_side",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_tiles_02",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "dry_riverbed_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "mossy_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the basalt stones carry a few bright white specks from the scan; stones meet the sand with a hard intersection; smart-projected UV islands; clusters B and C are about 1,500-1,630 triangles (soft target 1,500); validator: 3 clusters still have a few zero-area faces at the ground cut and one has open edges there",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_BeachPebbles_D",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_BeachPebbles_D.fbx",
+   "dimensions_m": [
+    0.2178,
+    0.1464,
+    0.0469
+   ],
+   "lod0_triangles": 780,
+   "lod1_triangles": 326,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_BeachPebbles",
+   "families": [
+    "beach_pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.5021,
+    "uv_max": 0.998
+   },
+   "source_blend": "Scatter/Scatter_BeachPebbles.blend",
+   "supersedes": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1 (seven near-identical grey stones on a shared fieldstone material)",
+   "sprite_frames": "92 beach-05..11",
+   "placement_note": "pivot is the base centre at sand level; stones are already cut where they sink into the sand, add 2-5 mm extra sink and a random yaw",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "cliff_side",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "stone_tiles_02",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "dry_riverbed_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "mossy_rock",
+     "licence": "CC0-1.0",
+     "use": "box-projected lithology on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the basalt stones carry a few bright white specks from the scan; stones meet the sand with a hard intersection; smart-projected UV islands; clusters B and C are about 1,500-1,630 triangles (soft target 1,500); validator: 3 clusters still have a few zero-area faces at the ground cut and one has open edges there",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Pebbles_A",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Pebbles_A.fbx",
+   "dimensions_m": [
+    0.1487,
+    0.1532,
+    0.0406
+   ],
+   "lod0_triangles": 1140,
+   "lod1_triangles": 478,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Pebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Pebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Pebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Pebbles",
+   "families": [
+    "pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0027,
+    "uv_max": 0.4973
+   },
+   "source_blend": "Scatter/Scatter_Pebbles.blend",
+   "supersedes": "none (family was unbound; a boulder is not pebbles)",
+   "sprite_frames": "97 rocks-02..15",
+   "placement_note": "as BeachPebbles; dark angular stones for paths, cave floors and grass",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected colour and bump on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the large stone of cluster D is rounder now but still blocky from some angles; clusters B and C are about 1,600-1,750 triangles (over the soft target, under the hard cap); validator: 2 clusters still have a few zero-area faces at the ground cut",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Pebbles_B",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Pebbles_B.fbx",
+   "dimensions_m": [
+    0.3245,
+    0.2535,
+    0.0304
+   ],
+   "lod0_triangles": 1596,
+   "lod1_triangles": 670,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Pebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Pebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Pebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Pebbles",
+   "families": [
+    "pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0031,
+    "uv_max": 0.9837
+   },
+   "source_blend": "Scatter/Scatter_Pebbles.blend",
+   "supersedes": "none (family was unbound; a boulder is not pebbles)",
+   "sprite_frames": "97 rocks-02..15",
+   "placement_note": "as BeachPebbles; dark angular stones for paths, cave floors and grass",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected colour and bump on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the large stone of cluster D is rounder now but still blocky from some angles; clusters B and C are about 1,600-1,750 triangles (over the soft target, under the hard cap); validator: 2 clusters still have a few zero-area faces at the ground cut",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Pebbles_C",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Pebbles_C.fbx",
+   "dimensions_m": [
+    0.5195,
+    0.3396,
+    0.0254
+   ],
+   "lod0_triangles": 1744,
+   "lod1_triangles": 732,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Pebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Pebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Pebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Pebbles",
+   "families": [
+    "pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0039,
+    "uv_max": 0.9946
+   },
+   "source_blend": "Scatter/Scatter_Pebbles.blend",
+   "supersedes": "none (family was unbound; a boulder is not pebbles)",
+   "sprite_frames": "97 rocks-02..15",
+   "placement_note": "as BeachPebbles; dark angular stones for paths, cave floors and grass",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected colour and bump on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the large stone of cluster D is rounder now but still blocky from some angles; clusters B and C are about 1,600-1,750 triangles (over the soft target, under the hard cap); validator: 2 clusters still have a few zero-area faces at the ground cut",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Pebbles_D",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Pebbles_D.fbx",
+   "dimensions_m": [
+    0.2425,
+    0.1372,
+    0.0742
+   ],
+   "lod0_triangles": 872,
+   "lod1_triangles": 366,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Pebbles_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Pebbles_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Pebbles_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Pebbles",
+   "families": [
+    "pebbles"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.502,
+    "uv_max": 0.998
+   },
+   "source_blend": "Scatter/Scatter_Pebbles.blend",
+   "supersedes": "none (family was unbound; a boulder is not pebbles)",
+   "sprite_frames": "97 rocks-02..15",
+   "placement_note": "as BeachPebbles; dark angular stones for paths, cave floors and grass",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "use": "box-projected colour and bump on the high-detail source, baked into the atlas"
+    }
+   ],
+   "status": "finished",
+   "known_weaknesses": "the large stone of cluster D is rounder now but still blocky from some angles; clusters B and C are about 1,600-1,750 triangles (over the soft target, under the hard cap); validator: 2 clusters still have a few zero-area faces at the ground cut",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_ClamShell_Closed",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_ClamShell_Closed.fbx",
+   "dimensions_m": [
+    0.0754,
+    0.0557,
+    0.0212
+   ],
+   "lod0_triangles": 1160,
+   "lod1_triangles": 486,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Clam",
+   "families": [
+    "seashell_clam"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.001,
+    "uv_max": 0.9042
+   },
+   "source_blend": "Scatter/Scatter_Clam.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-02, beach-03",
+   "third_party": [],
+   "status": "finished",
+   "known_weaknesses": "ribs fairly even; validator UV_OVERLAP error not resolved",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_ClamShell_Open",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_ClamShell_Open.fbx",
+   "dimensions_m": [
+    0.0761,
+    0.1184,
+    0.022
+   ],
+   "lod0_triangles": 1068,
+   "lod1_triangles": 448,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Clam",
+   "families": [
+    "seashell_clam"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.002,
+    "uv_max": 0.9783
+   },
+   "source_blend": "Scatter/Scatter_Clam.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-02, beach-03",
+   "third_party": [],
+   "status": "interim",
+   "known_weaknesses": "open shell: the valves now sit side by side at the hinge with a small dark gap, no ligament or teeth; nacre and scars are painted. Validator UV_OVERLAP error on both clams not resolved (cause not found; the ground-cap UVs were parked and it persists)",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Starfish_A",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Starfish_A.fbx",
+   "dimensions_m": [
+    0.1368,
+    0.1003,
+    0.017
+   ],
+   "lod0_triangles": 1440,
+   "lod1_triangles": 604,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Starfish_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Starfish_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Starfish_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Starfish",
+   "families": [
+    "starfish"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0553,
+    "uv_max": 0.9501
+   },
+   "source_blend": "Scatter/Scatter_Starfish.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-01",
+   "third_party": [],
+   "status": "interim",
+   "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
+   "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_Starfish_B",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Starfish_B.fbx",
+   "dimensions_m": [
+    0.1371,
+    0.1354,
+    0.017
+   ],
+   "lod0_triangles": 1440,
+   "lod1_triangles": 604,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Starfish_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Starfish_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Starfish_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Starfish",
+   "families": [
+    "starfish"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0257,
+    "uv_max": 0.9788
+   },
+   "source_blend": "Scatter/Scatter_Starfish.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-01",
+   "third_party": [],
+   "status": "interim",
+   "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
+   "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator",
+   "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  }
+ ]
+}

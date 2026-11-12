@@ -1,0 +1,185 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 10
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Pig",
+      "class": "creature_quadruped",
+      "collection": "SK_Pig",
+      "tris_per_lod": {
+        "LOD0": 16228,
+        "LOD1": 8114,
+        "LOD2": 4056
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -78.506,
+          -38.263,
+          -0.0
+        ],
+        "blender_max_cm": [
+          100.877,
+          38.427,
+          99.986
+        ],
+        "size_cm": [
+          179.384,
+          76.69,
+          99.986
+        ],
+        "unreal_min_cm": [
+          -78.506,
+          -38.427,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          100.877,
+          38.263,
+          99.986
+        ]
+      },
+      "errors": 1,
+      "warnings": 10,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pig",
+          "message": "mesh data 'SK_Pig_LOD0.001' differs from object name 'SK_Pig_LOD0'",
+          "object": "SK_Pig_LOD0"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pig",
+          "message": "mesh data 'SK_Pig_LOD1.001' differs from object name 'SK_Pig_LOD1'",
+          "object": "SK_Pig_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Pig",
+          "message": "mesh data 'SK_Pig_LOD2.001' differs from object name 'SK_Pig_LOD2'",
+          "object": "SK_Pig_LOD2"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "LOD0 has 16228 triangles, target for creature_quadruped is 15000 (hard max 30000)",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "tris": 16228,
+            "target": 15000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "6056 non-manifold edges (6056 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "boundary": 6056,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "6056 non-manifold edges (6056 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD1",
+          "data": {
+            "boundary": 6056,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "6024 non-manifold edges (6024 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "object": "SK_Pig_LOD2",
+          "data": {
+            "boundary": 6024,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SK_Pig",
+          "message": "UV0 islands overlap (4748.6 % of UV area, 776 triangles); class creature_quadruped needs unique UVs",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "overlap_ratio": 47.48647
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Pig",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Pig_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "texel density 11845 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SK_Pig_LOD0",
+          "data": {
+            "density_px_per_m": 11845.1,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "image 'T_Pig_Atlas_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "image 'T_Pig_Atlas_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "image 'T_Pig_Atlas_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "image 'T_Pig_Atlas_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Pig",
+          "message": "image 'T_Pig_BristleCards_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}

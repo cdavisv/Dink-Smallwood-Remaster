@@ -1,0 +1,28 @@
+{
+ "summary": {
+  "assets": 17,
+  "assets_passed": 0,
+  "errors": 28,
+  "warnings": 267
+ },
+ "errors": {
+  "PIVOT": [
+   "Bridge_Stone_PR",
+   "Bridge_Wood_Deck_PR",
+   "Bridge_Wood_Rail_Plank_PR",
+   "Bridge_Wood_Rail_Rope_PR",
+   "Island_Fence_Lattice_PR",
+   "Island_Hut_Round_PR",
+   "Island_Hut_TwoStorey_PR",
+   "SignPost_Triple_PR"
+  ],
+  "ZERO_AREA": [
+   "Cottage_Thatched_LShape_PR",
+   "Cottage_Thatched_TwoStorey_PR"
+  ],
+  "SLOTS_OVER": [
+   "Island_Hut_Round_PR",
+   "Island_Hut_TwoStorey_PR"
+  ]
+ }
+}

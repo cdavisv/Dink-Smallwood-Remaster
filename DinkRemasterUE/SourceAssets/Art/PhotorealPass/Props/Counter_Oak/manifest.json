@@ -1,0 +1,51 @@
+{
+ "name": "SM_Counter_Oak_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Counter_Oak/SM_Counter_Oak_PR.fbx",
+ "materials": [
+  "MI_Prop_OakWarm"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 3124,
+ "lod1_triangles": 1562,
+ "lod2_triangles": 686,
+ "dimensions_m": [
+  3.912,
+  0.855,
+  1.007
+ ],
+ "bounds_min_m": [
+  -1.957,
+  -0.451,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.956,
+  0.403,
+  1.007
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "64 inside/details/inacc- frame 2",
+  "counter_wood"
+ ],
+ "supersedes": "none (counter_wood placeholder, 22 placements)",
+ "dresses": "shop counter 3.9 x 0.85 x 1.0 m: three-board top 6 cm thick on five front posts, boarded back and ends, a low shelf, open in front",
+ "fit": {
+  "pivot": "base centre; the open (shopkeeper) side faces -Y as the sprite shows it",
+  "sprite_scale": "frame 2 is 156 px (3.9 m) wide"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Counter_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Plain plank counter, believable but new-looking: no wear on the customer edge beyond vertex colour, dark box behind the open front instead of real shelves with goods.",
+ "third_party": [
+  "old_planks_02"
+ ],
+ "texture_sets": [
+  "OakWeathered"
+ ],
+ "textures_px": 2048
+}
