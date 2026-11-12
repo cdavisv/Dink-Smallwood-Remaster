@@ -1,0 +1,57 @@
+{
+ "name": "PondMud",
+ "files": {
+  "BC": "PondMud/T_Terrain_PondMud_BC.png",
+  "N": "PondMud/T_Terrain_PondMud_N.png",
+  "ORM": "PondMud/T_Terrain_PondMud_ORM.png",
+  "H": "PondMud/T_Terrain_PondMud_H.png",
+  "Macro": "PondMud/T_Terrain_PondMud_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.6,
+ "texel_mm_per_px": 1.27,
+ "height_range_m": 0.0586,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.486",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "dirt",
+  "water",
+  "grass"
+ ],
+ "status": "finished",
+ "method": "Poly Haven brown_mud_03 and brown_mud_02 (2x2 each, shifted) height-blended; hollows are wetter (lower roughness, darker)",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "brown_mud_03",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "brown_mud_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 63.6,
+  "max": 190.2
+ },
+ "mean_srgb": [
+  72,
+  62,
+  51
+ ],
+ "roughness_mean": 0.509,
+ "known_weaknesses": "no standing-water film or reeds; the 1.3 m period of both scans can be found at 4x4"
+}

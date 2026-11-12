@@ -1,0 +1,85 @@
+{
+ "BeachPebbles": {
+  "supersedes": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1 (seven near-identical grey stones on a shared fieldstone material)",
+  "sprite_frames": "92 beach-05..11",
+  "placement_note": "pivot is the base centre at sand level; stones are already cut where they sink into the sand, add 2-5 mm extra sink and a random yaw",
+  "third_party": [
+   {
+    "source": "polyhaven",
+    "asset_id": "cliff_side",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   },
+   {
+    "source": "polyhaven",
+    "asset_id": "stone_tiles_02",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   },
+   {
+    "source": "polyhaven",
+    "asset_id": "rock_face_04",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   },
+   {
+    "source": "polyhaven",
+    "asset_id": "dry_riverbed_rock",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   },
+   {
+    "source": "polyhaven",
+    "asset_id": "rock_face",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   },
+   {
+    "source": "polyhaven",
+    "asset_id": "mossy_rock",
+    "licence": "CC0-1.0",
+    "use": "box-projected lithology on the high-detail source, baked into the atlas"
+   }
+  ],
+  "status": "finished",
+  "known_weaknesses": "the basalt stones carry a few bright white specks from the scan; stones meet the sand with a hard intersection; smart-projected UV islands; clusters B and C are about 1,500-1,630 triangles (soft target 1,500); validator: 3 clusters still have a few zero-area faces at the ground cut and one has open edges there",
+  "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+ },
+ "Pebbles": {
+  "supersedes": "none (family was unbound; a boulder is not pebbles)",
+  "sprite_frames": "97 rocks-02..15",
+  "placement_note": "as BeachPebbles; dark angular stones for paths, cave floors and grass",
+  "third_party": [
+   {
+    "source": "polyhaven",
+    "asset_id": "rock_face_04",
+    "licence": "CC0-1.0",
+    "use": "box-projected colour and bump on the high-detail source, baked into the atlas"
+   }
+  ],
+  "status": "finished",
+  "known_weaknesses": "the large stone of cluster D is rounder now but still blocky from some angles; clusters B and C are about 1,600-1,750 triangles (over the soft target, under the hard cap); validator: 2 clusters still have a few zero-area faces at the ground cut",
+  "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+ },
+ "Clam": {
+  "supersedes": "none",
+  "sprite_frames": "92 beach-02, beach-03",
+  "third_party": [],
+  "status": "interim",
+  "known_weaknesses": "open shell: the valves now sit side by side at the hinge with a small dark gap, no ligament or teeth; nacre and scars are painted. Validator UV_OVERLAP error on both clams not resolved (cause not found; the ground-cap UVs were parked and it persists)",
+  "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+ },
+ "Starfish": {
+  "supersedes": "none",
+  "sprite_frames": "92 beach-01",
+  "third_party": [],
+  "status": "interim",
+  "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
+  "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator",
+  "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+ },
+ "SM_ClamShell_Closed": {
+  "status": "finished",
+  "known_weaknesses": "ribs fairly even; validator UV_OVERLAP error not resolved"
+ }
+}

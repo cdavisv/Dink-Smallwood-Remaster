@@ -1,0 +1,49 @@
+{
+ "name": "RoofShingle",
+ "files": {
+  "BC": "RoofShingle/T_Terrain_RoofShingle_BC.png",
+  "N": "RoofShingle/T_Terrain_RoofShingle_N.png",
+  "ORM": "RoofShingle/T_Terrain_RoofShingle_ORM.png",
+  "H": "RoofShingle/T_Terrain_RoofShingle_H.png",
+  "Macro": "RoofShingle/T_Terrain_RoofShingle_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0189,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.474",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven roof_slates_02 (weathered split shingles in courses), graded to the pale grey-olive of the original roof sprites, with moss in the laps. Courses run along U, eaves toward -V",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "roof_slates_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 99.9,
+  "max": 202.8
+ },
+ "mean_srgb": [
+  104,
+  100,
+  88
+ ],
+ "roughness_mean": 0.848,
+ "known_weaknesses": "single scan; shingles are small (about 8 cm) against the broad courses of the sprite; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+}

@@ -1,0 +1,62 @@
+{
+ "name": "ForestFloor",
+ "files": {
+  "BC": "ForestFloor/T_Terrain_ForestFloor_BC.png",
+  "N": "ForestFloor/T_Terrain_ForestFloor_N.png",
+  "ORM": "ForestFloor/T_Terrain_ForestFloor_ORM.png",
+  "H": "ForestFloor/T_Terrain_ForestFloor_H.png",
+  "Macro": "ForestFloor/T_Terrain_ForestFloor_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0474,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.281",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "forest_canopy",
+  "grass"
+ ],
+ "status": "finished",
+ "method": "Poly Haven forest_leaves_04 (2x2, self-blended with a quarter-turned copy) with forest_leaves_02 (moss, sticks, leaves; non-commensurate scale, relief halved) and patches of forrest_ground_03 (pine needle mat); every layer has its large-scale brightness drift removed so no band survives at 4x4; desaturated and darkened for shade",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "forest_leaves_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "forest_leaves_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 0.83
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "forrest_ground_03",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.5
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 71.1,
+  "max": 173.9
+ },
+ "mean_srgb": [
+  83,
+  70,
+  51
+ ],
+ "roughness_mean": 0.847,
+ "known_weaknesses": "no cones; moss is sparse and olive rather than deep green"
+}
