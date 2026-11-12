@@ -1,14 +1,14 @@
 {
   "status": "Historical continuation evidence; different importer/tool versions, not authority for reviewed assets",
   "raw_README_sha256": "d4e95230f7cab9c8b4982a15117357d18460cca24bf17eb6e62d6b584652b06a",
-  "work_only_full_history": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative",
-  "external_immutable_archive": "/home/artist/Work/DinkQA/BarrelNative/ContinuationCandidateArchive_20261108",
-  "root_owned_exact_candidate_archive": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/PriorContinuationCandidate",
+  "work_only_full_history": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelNative",
+  "external_immutable_archive": "<HOME>/Work/DinkQA/BarrelNative/ContinuationCandidateArchive_20261108",
+  "root_owned_exact_candidate_archive": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/PriorContinuationCandidate",
   "archive_manifest_sha256": "e8044cc23f0cd4f39fa19758db4a60c42f8dbd5626050d224277c1b794572d8d",
   "copied_small_receipts": {
     "Saved/BarrelNative/Attempt01_preflight/receipt.json": {
       "copied_to": "HistoricalContinuation/Attempt01_preflight/receipt.json",
-      "sha256": "d227bbd390351db35abebd830c55357f75641034cf58496db8cc61ff82a1deda"
+      "sha256": "bb680cbc782674b025ae828b4cd71f5e9d9d1fe94583c97200cc09f5f55a2cf9"
     },
     "Saved/BarrelNative/Attempt01_preflight/terminal.json": {
       "copied_to": "HistoricalContinuation/Attempt01_preflight/terminal.json",
@@ -16,11 +16,11 @@
     },
     "Saved/BarrelNative/Attempt01_preflight/launch.json": {
       "copied_to": "HistoricalContinuation/Attempt01_preflight/launch.json",
-      "sha256": "3541c6c60014f431cd10d650f7ff553f3ba5eb7c22d904c96a7732987bd29445"
+      "sha256": "749e4f10bd7fab918394713cd7f267b3a5c3b9fd888ac2b5c84d7788554f5369"
     },
     "Saved/BarrelNative/Attempt02_import/receipt.json": {
       "copied_to": "HistoricalContinuation/Attempt02_import/receipt.json",
-      "sha256": "291b551980aa4c6de6c376e74e9e64282fc6307e863489b9e791996581a212eb"
+      "sha256": "98004ac76a178049b911a85e5b9c3a77906c1b78648fa9964dcf666645859964"
     },
     "Saved/BarrelNative/Attempt02_import/terminal.json": {
       "copied_to": "HistoricalContinuation/Attempt02_import/terminal.json",
@@ -28,11 +28,11 @@
     },
     "Saved/BarrelNative/Attempt02_import/launch.json": {
       "copied_to": "HistoricalContinuation/Attempt02_import/launch.json",
-      "sha256": "43b214bd6d0b552b60e54fc23afdc92854fd7c09f1c32614362ed63525e38101"
+      "sha256": "688ec5068893dbedc0f763a9b6354ff16723b37c94e7aa1c77e0de19c700b97b"
     },
     "Saved/BarrelNative/Attempt03_verify/receipt.json": {
       "copied_to": "HistoricalContinuation/Attempt03_verify/receipt.json",
-      "sha256": "e2df43cef1de8c7e82b0af8fe224471ab3dce6f64ebb392c8ec626c8c202abb9"
+      "sha256": "3bb873147409c439ab725d7f26e8c892beb75564a31ab32731f295c39067616c"
     },
     "Saved/BarrelNative/Attempt03_verify/terminal.json": {
       "copied_to": "HistoricalContinuation/Attempt03_verify/terminal.json",
@@ -40,7 +40,7 @@
     },
     "Saved/BarrelNative/Attempt03_verify/launch.json": {
       "copied_to": "HistoricalContinuation/Attempt03_verify/launch.json",
-      "sha256": "40ad3c07abf4fe1c280ab910a2e091b3a570319cf4e8e6bb1896071899188f2e"
+      "sha256": "fba2ef40f025c129ff455f209ac893572de3d706f4b26e285d38baaa553a4571"
     }
   },
   "native_package_payloads_copied_to_docs": false

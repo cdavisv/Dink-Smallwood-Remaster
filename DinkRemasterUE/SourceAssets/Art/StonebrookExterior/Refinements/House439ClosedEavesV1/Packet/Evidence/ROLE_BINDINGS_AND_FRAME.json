@@ -1,0 +1,1378 @@
+{
+  "assembled_render_bounds_m": [
+    [
+      -9.407503128051758,
+      -5.268467903137207,
+      0.0
+    ],
+    [
+      9.40833854675293,
+      5.267877101898193,
+      7.930000305175781
+    ]
+  ],
+  "source_sha256": "f01cdbd2f679c9e4a11bf4424fe064ca5fa8229796702c67bdef883b2d7ca385",
+  "fbx_sha256": "aa4e091a48f3337f7b9bda4b1f044786c46149c163df511978bebb86bc210f27",
+  "fbx_version": 7400,
+  "fbx_frame": {
+    "UpAxis": 2,
+    "UpAxisSign": 1,
+    "FrontAxis": 1,
+    "FrontAxisSign": -1,
+    "CoordAxis": 0,
+    "CoordAxisSign": 1,
+    "UnitScaleFactor": 100.0,
+    "OriginalUnitScaleFactor": 100.0
+  },
+  "export_world_TRS": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "roles": [
+    {
+      "export_slot": 0,
+      "source_material": "MI_Shared_FieldstoneSeed2m",
+      "triangles": 20924,
+      "connected_images": [
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL_a2bd3b4839.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneSeed2m_Stone_ORM_41feddac62.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_FieldstoneSeed2m_Stone_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneSeed2m_Stone_BC_349d284568.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 1,
+      "source_material": "MI_Shared_LimeMortarSoot2m",
+      "triangles": 564,
+      "connected_images": [
+        {
+          "node": "Image Texture.003",
+          "image": "T_Shared_LimeMortarSoot2m_Soot_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL_9c88a7a66b.png",
+          "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL_961ecced7c.png",
+          "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.005",
+          "image": "T_Shared_LimeMortarSoot2m_Soot_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Soot_ORM_36eb1478ec.png",
+          "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.004",
+          "image": "T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Lime_ORM_bcbd8bf960.png",
+          "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_LimeMortarSoot2m_Soot_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Soot_BC_d1975c8e29.png",
+          "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+          "colorspace": "sRGB"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_LimeMortarSoot2m_Lime_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_LimeMortarSoot2m_Lime_BC_2d043f56ec.png",
+          "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 2,
+      "source_material": "MI_Shared_WeatheredTimber2m",
+      "triangles": 6672,
+      "connected_images": [
+        {
+          "node": "Image Texture.003",
+          "image": "T_Shared_WeatheredTimber2m_Endgrain_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL_9c88a7a66b.png",
+          "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL_9614afd66c.png",
+          "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.005",
+          "image": "T_Shared_WeatheredTimber2m_Endgrain_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM_fd074489d7.png",
+          "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.004",
+          "image": "T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM_742741518f.png",
+          "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_WeatheredTimber2m_Endgrain_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Endgrain_BC_bb8ec47e55.png",
+          "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+          "colorspace": "sRGB"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_WeatheredTimber2m_Longgrain_BC_dbd2947d8d.png",
+          "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 3,
+      "source_material": "MI_Shared_IronLead2m",
+      "triangles": 4856,
+      "connected_images": [
+        {
+          "node": "Image Texture.003",
+          "image": "T_Shared_IronLead2m_DullLead_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_DullLead_N_GL_64aea4856a.png",
+          "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_BlackenedIron_N_GL_4a8923746b.png",
+          "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.005",
+          "image": "T_Shared_IronLead2m_DullLead_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_DullLead_ORM_7114aeb90b.png",
+          "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.004",
+          "image": "T_Shared_IronLead2m_BlackenedIron_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_BlackenedIron_ORM_a045cd8f0b.png",
+          "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_IronLead2m_DullLead_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_DullLead_BC_d99a7e616a.png",
+          "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+          "colorspace": "sRGB"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_IronLead2m_BlackenedIron_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_IronLead2m_BlackenedIron_BC_333f4fdc9e.png",
+          "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 4,
+      "source_material": "MI_Shared_ThinWavyGlass2m",
+      "triangles": 5184,
+      "connected_images": [
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_ThinWavyGlass2m_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_ThinWavyGlass2m_N_GL_5a9306e23b.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_ThinWavyGlass2m_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_ThinWavyGlass2m_ORM_a3bc1f3e47.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_ThinWavyGlass2m_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_ThinWavyGlass2m_BC_5b6431ab46.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 5,
+      "source_material": "MI_Shared_FieldstoneWall2m",
+      "triangles": 81212,
+      "connected_images": [
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneWall2m_Wall_N_GL_547f592573.png",
+          "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.001",
+          "image": "T_Shared_FieldstoneWall2m_Wall_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneWall2m_Wall_ORM_7c8744d2a3.png",
+          "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_Shared_FieldstoneWall2m_Wall_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_FieldstoneWall2m_Wall_BC_147371608a.png",
+          "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": []
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    },
+    {
+      "export_slot": 6,
+      "source_material": "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "triangles": 63214,
+      "connected_images": [
+        {
+          "node": "Image Texture.004",
+          "image": "T_Shared_PhotoFrayedReed2m_N_GL.png",
+          "relative_path": "Source/../Textures/T_Shared_PhotoFrayedReed2m_N_GL_652913d867.png",
+          "sha256": "652913d86762481e995396a9fac81877c2d5ec6fe5d20f94e39a4e059451f877",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.001",
+          "image": "T_WarmBundleCoat_N_GL.png",
+          "relative_path": "Source/../Textures/T_WarmBundleCoat_N_GL_cce06a1f47.png",
+          "sha256": "cce06a1f47031a0281823afa8f583556b851ca639784d828aa8a04c64195beb4",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.005",
+          "image": "T_Shared_PhotoFrayedReed2m_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_PhotoFrayedReed2m_ORM_d19a517277.png",
+          "sha256": "d19a5172774dcc93ccec032efd50c8e3233d792e62ced782b5d7dea51c2e4259",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.002",
+          "image": "T_Shared_LaidWeatheredPhotoCoat2m_ORM.png",
+          "relative_path": "Source/../Textures/T_Shared_LaidWeatheredPhotoCoat2m_ORM_ca992ab35f.png",
+          "sha256": "ca992ab35fe3e370d61de418f48a5f50534580fa15d28cf52e64ec5f31950984",
+          "colorspace": "Non-Color"
+        },
+        {
+          "node": "Image Texture.003",
+          "image": "T_Shared_PhotoFrayedReed2m_BC.png",
+          "relative_path": "Source/../Textures/T_Shared_PhotoFrayedReed2m_BC_6760854185.png",
+          "sha256": "67608541851a258f40525dc3cbfe7f1cfd3d0ac90fb3fdd063466b9995acffc7",
+          "colorspace": "sRGB"
+        },
+        {
+          "node": "Image Texture",
+          "image": "T_WarmBundleCoat_BC.png",
+          "relative_path": "Source/../Textures/T_WarmBundleCoat_BC_2ed02bd030.png",
+          "sha256": "2ed02bd030999f813575b5c135668fed168428c7ea3496562d5ac8f64b4c2823",
+          "colorspace": "sRGB"
+        }
+      ],
+      "normal_maps": [
+        {
+          "node": "Normal Map",
+          "space": "TANGENT",
+          "uv_map": "UV0",
+          "default_strength": 1.0,
+          "strength_links": [
+            {
+              "node": "Separate Color.001",
+              "socket": "Red"
+            }
+          ]
+        }
+      ],
+      "source_graph_only": true,
+      "native_destination": null,
+      "native_rebind_requires_current_manifest_inventory": true
+    }
+  ],
+  "source_object_roles": {
+    "SM_Cottage_Stonebrook_01": {
+      "MI_Shared_FieldstoneSeed2m": 6348,
+      "MI_Shared_WeatheredTimber2m": 324,
+      "MI_Shared_LimeMortarSoot2m": 108
+    },
+    "WindowJamb": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.001": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.001": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.001": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.001": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.002": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.003": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.004": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.005": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.001": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.002": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.003": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.002": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.003": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.002": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.003": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.002": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.003": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.001": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.006": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.007": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.008": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.009": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.010": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.011": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.004": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.005": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.006": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.007": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.004": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.005": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.004": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.005": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.004": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.005": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.002": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.012": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.013": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.014": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.015": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.016": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.017": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.008": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.009": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.010": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.011": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.006": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.007": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.006": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.007": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.006": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.007": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.003": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.018": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.019": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.020": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.021": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.022": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.023": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.012": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.013": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.014": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.015": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.008": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.009": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.008": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.009": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.008": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.009": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.004": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.024": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.025": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.026": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.027": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.028": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.029": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.016": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.017": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.018": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.019": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.010": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.011": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.010": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.011": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.010": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.011": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.005": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.030": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.031": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.032": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.033": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.034": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.035": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.020": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.021": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.022": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.023": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.012": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.013": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.012": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.013": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.012": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.013": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.006": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.036": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.037": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.038": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.039": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.040": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.041": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.024": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.025": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.026": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.027": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "WindowJamb.014": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowJamb.015": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.014": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowHeadSill.015": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.014": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowMullion.015": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "WindowTransom.007": {
+      "MI_Shared_WeatheredTimber2m": 108
+    },
+    "InsetGlassPane.042": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.043": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.044": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.045": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.046": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "InsetGlassPane.047": {
+      "MI_Shared_ThinWavyGlass2m": 108
+    },
+    "ShutterHinge.028": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.029": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.030": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ShutterHinge.031": {
+      "MI_Shared_IronLead2m": 108
+    },
+    "ChimneyMortarShell": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "ChimneyMortarShell.001": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "ChimneyMortarShell.002": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "ChimneyMortarShell.003": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "OpenChimneyCap": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "OpenChimneyCap.001": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "OpenChimneyCap.002": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "OpenChimneyCap.003": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "FlueSootLiner": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "FlueSootLiner.001": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "FlueSootLiner.002": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "FlueSootLiner.003": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "ContinuousCornerQuoin": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.001": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.002": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.003": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.001": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.002": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.003": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.004": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.005": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.006": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.007": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.004": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.005": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.006": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.007": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.008": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.009": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.010": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.011": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.008": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.009": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.010": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.011": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.012": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.013": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.014": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.015": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.012": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.013": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.014": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.015": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.016": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.017": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.018": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.019": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.016": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.017": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.018": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.019": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.020": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.021": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.022": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.023": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.020": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.021": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.022": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.023": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.024": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.025": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.026": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.027": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.024": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.025": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.026": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.027": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.028": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.029": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.030": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.031": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.028": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.029": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.030": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.031": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.032": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.033": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.034": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.035": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.032": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.033": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.034": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.035": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.036": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.037": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.038": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.039": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.036": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.037": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.038": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.039": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.040": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.041": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.042": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.043": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.040": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.041": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.042": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.043": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.044": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.045": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.046": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.047": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.044": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.045": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.046": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.047": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ContinuousCornerQuoin.048": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.049": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.050": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ContinuousCornerQuoin.051": {
+      "MI_Shared_FieldstoneSeed2m": 164
+    },
+    "ChimneyMiddleStone.048": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.049": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.050": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "ChimneyMiddleStone.051": {
+      "MI_Shared_FieldstoneSeed2m": 108
+    },
+    "UnevenLimeBedding": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.001": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.002": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.003": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.004": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.005": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.006": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.007": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.008": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.009": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.010": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.011": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.012": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.013": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.014": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.015": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.016": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.017": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.018": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.019": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.020": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.021": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.022": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.023": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.024": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.025": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.026": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.027": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.028": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "UnevenLimeBedding.029": {
+      "MI_Shared_LimeMortarSoot2m": 12
+    },
+    "NaturalBeddedReliefWall": {
+      "MI_Shared_FieldstoneWall2m": 24996
+    },
+    "NaturalBeddedReliefWall.001": {
+      "MI_Shared_FieldstoneWall2m": 26664
+    },
+    "NaturalBeddedReliefWall.002": {
+      "MI_Shared_FieldstoneWall2m": 14776
+    },
+    "NaturalBeddedReliefWall.003": {
+      "MI_Shared_FieldstoneWall2m": 14776
+    },
+    "RoofFlashing_FrontApron": {
+      "MI_Shared_IronLead2m": 60
+    },
+    "RoofFlashing_BackGutter": {
+      "MI_Shared_IronLead2m": 60
+    },
+    "RoofFlashing_LeftSoaker0": {
+      "MI_Shared_IronLead2m": 44
+    },
+    "RoofFlashing_LeftCounter0": {
+      "MI_Shared_IronLead2m": 44
+    },
+    "RoofFlashing_LeftSoaker1": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_LeftCounter1": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_LeftSoaker2": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_LeftCounter2": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_LeftSoaker3": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_LeftCounter3": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightSoaker0": {
+      "MI_Shared_IronLead2m": 44
+    },
+    "RoofFlashing_RightCounter0": {
+      "MI_Shared_IronLead2m": 44
+    },
+    "RoofFlashing_RightSoaker1": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightCounter1": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightSoaker2": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightCounter2": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightSoaker3": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFlashing_RightCounter3": {
+      "MI_Shared_IronLead2m": 92
+    },
+    "RoofFamily_CoreShell": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 31934
+    },
+    "RoofFamily_RolledEaveCorners": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 5568
+    },
+    "RoofFamily_VisibleRoofRafters": {
+      "MI_Shared_WeatheredTimber2m": 300
+    },
+    "RoofFamily_PhysicalHollowReedTips": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 15488
+    },
+    "RoofFamily_ConformedRoll_Ridge": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 3168
+    },
+    "RoofFamily_ConformedRoll_Hip_-1_-1": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 1764
+    },
+    "RoofFamily_ConformedRoll_Hip_-1_1": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 1764
+    },
+    "RoofFamily_ConformedRoll_Hip_1_-1": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 1764
+    },
+    "RoofFamily_ConformedRoll_Hip_1_1": {
+      "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": 1764
+    }
+  },
+  "native_requirements": [
+    "Preserve current-master PR59 lighting and PR60 fireplace/chimney/material bindings",
+    "Inventory fresh current native role destinations before staging; no old AB Data overlay",
+    "Roof source Normal Map Strength uses SharedSurfaceData.R; explicit native carrier support required",
+    "Source OpenGL +Y normal maps need appropriate native green-channel handling; do not reinterpret color maps",
+    "Use approved normal/Mikk edge-smoothing exporter; face-smoothing failure retained"
+  ],
+  "native_import_executed": false
+}

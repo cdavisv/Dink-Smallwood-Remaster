@@ -3,9 +3,9 @@
   "status": "NO_SOURCE_CANDIDATE_BLOCKERS_NOT_NATIVE_OR_PRODUCTION_ACCEPTANCE",
   "branch": "art/photoreal-trousers-source",
   "base": "7c6e41e4035a41507a84b7e745851aa35d8cc425",
-  "packet": "~/Work/DinkTrouserSourceDelivery/DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33",
-  "index_SHA256": "e2890ddad8be1ba04d9bf60b79c0da68d1ebc6bc546df0021bc047099ef5a22a",
-  "manifest_SHA256": "f627794b315a19268040d1170c38680fc0bd19992d776e03922381ca9b7592dc",
+  "packet": "<HOME>/Work/DinkTrouserSourceDelivery/DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33",
+  "index_SHA256": "936f896e5e68c955295952d336fbe2d5e863389b2205b9f9e4749ccb71714ccb",
+  "manifest_SHA256": "9c846bb6c86bd80265826af6229a4f1c812d50e3561a9c78d90e87513fcc8f25",
   "checked": {
     "payload_hashes_equal_frozen_source": 131,
     "independent_regular_single_link_copies": 131,

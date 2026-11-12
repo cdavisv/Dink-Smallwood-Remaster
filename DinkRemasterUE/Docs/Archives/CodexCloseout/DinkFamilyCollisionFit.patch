@@ -1,0 +1,81 @@
+diff --git c/DinkRemasterUE/HANDOFF.md w/DinkRemasterUE/HANDOFF.md
+index 87ebd49..9dbbd00 100644
+--- c/DinkRemasterUE/HANDOFF.md
++++ w/DinkRemasterUE/HANDOFF.md
+@@ -334,3 +334,8 @@ Own worktree `<HOME>/Work/DinkRoofSourceDelivery`, branch `art/roof-chimne
+ Hydrated4264 existing LFS files from shared local storage; no remote/cold-LFS claim. Appended103 candidate ledger rows preserving4044 prior raw rows and2212 audio rows. Full source audit passes, zero missing/hash/secret errors; separate new-source closure verifies100 payloads and38 packet records (blend+12FBX+25PNG),48090 render triangles. Actual relocated Blender5.2.2LTS reopened both editable sources,324 exact object records/12renderLODs/312hulls and25 exact packed images/all active image nodes packed; no save/export/render. See `Docs/Verification/RoofChimneySource` and raw `Saved/RoofSourceDelivery`.
+ 
+ No commit/push/PR yet: Root must review this concrete source-only result first. Native production route prefers fresh bounded import from canonical source/new namespace, to decide after ongoing temporary roof-world tests; never filesystem-rename the50QA packages. Existing saved-native25pixels/15graphs/312hulls PASS is qualified historical evidence, not storedTangentY/cook/world/roofgame/photographic approval. Earlier failures remain preserved in original QA. Source finish remains incomplete.
++
++
++## Fitted family barrel producer source checkpoint
++
++Branch fix/family-barrel-collision-fit in <HOME>/Work/DinkFamilyCollisionFit, base5d65, implements strict optional two-origin policy/actual cooked geometry+UCX provenance/native fingerprint/ground anchor/convex world and cell-centre raster candidate/ValidateCurrent/authority-gated visual apply. Original pivot41,44 confirms script ground rather than whole-image center28. No Content/Data/assets/scripts changed, no automatic caller or second collision authority. Five portable tests pass including actual FBX points; two native fixture sources are prepared but no UE build/native action permitted in this source task. Roof coordinator owns actual body/logical/hit/clear/break/save integration and must extend beyond existing fixed300cm rectangles before activation. Current master72fa owner decisions/sp_prop must survive later minimal integration. Full per-fixture plan and limitations in Docs/Verification/FamilyCollisionFit. Root independent source review and later compiled/native proof required before commit/publication.
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/DinkCore.Build.cs w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/DinkCore.Build.cs
+index e9fd17f..828931b 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/DinkCore.Build.cs
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/DinkCore.Build.cs
+@@ -6,7 +6,8 @@ public class DinkCore : ModuleRules
+ 	{
+ 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+ 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "GameplayTags" });
+-		// ProceduralMeshComponent: the runtime solid collision of a screen whose hardness a script redraws (Greybox/DinkGreyboxHardness.cpp).
+-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore", "ProceduralMeshComponent" });
++		// ProceduralMeshComponent: PR41 runtime screen collision. PhysicsCore/Chaos:
++		// read-only cooked family-fit descriptors; no second physical authority.
++		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore", "ProceduralMeshComponent", "PhysicsCore", "Chaos" });
+ 	}
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp
+index 64449f0..480328d 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp
+@@ -328,6 +328,10 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
+ 	if (!FFileHelper::LoadFileToString(Text, *DinkArtFamily::DefaultFamiliesPath())) return;
+ 	TArray<FString> Errors;
+ 	DinkArtFamily::ParseFamilies(Text, Bindings, Errors);
++    FString CollisionFitError;
++    bCollisionFitPolicyError=!DinkFamilyCollisionFit::ParsePolicy(Text,CollisionFitRules,CollisionFitError);
++    if(bCollisionFitPolicyError)
++        UE_LOG(LogDink,Warning,TEXT("Family collision fit policy refused: %s"),*CollisionFitError);
+ 	for (const FString& Error : Errors) UE_LOG(LogDink, Warning, TEXT("Family art: %s"), *Error);
+ 	if (Bindings.IsEmpty()) return;
+ 	// No greybox screens (a test or an unrelated map): nothing to dress.
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h
+index e5af7a7..f61a66a 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h
+@@ -2,6 +2,7 @@
+ 
+ #include "CoreMinimal.h"
+ #include "Subsystems/WorldSubsystem.h"
++#include "Hardness/DinkFamilyCollisionFit.h"
+ #include "DinkArtFamilySubsystem.generated.h"
+ 
+ class ADinkGreyboxScreen;
+@@ -136,6 +137,16 @@ public:
+ 	bool IsScreenApplied(int32 ScreenNumber) const { return AppliedScreens.Contains(ScreenNumber); }
+ 	bool IsReady() const { return bReady; }
+ 	const TArray<FDinkFamilyBinding>& GetBindings() const { return Bindings; }
++    /** No automatic caller: source-only candidate producer for a future single
++     * marked-world collision authority. Absence of policy preserves PR40/41. */
++    bool PrepareCollisionFit(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Sprite,
++        FDinkFamilyCollisionFitCandidate& Out,FString& Error) const;
++    bool ValidateCollisionFit(const FDinkFamilyCollisionFitCandidate& Candidate,
++        const FDinkFamilyFitSpriteState& Current,FString& Error) const;
++    bool ApplyCollisionFitVisual(FDinkFamilyCollisionFitCandidate& Candidate,
++        const FDinkFamilyFitSpriteState& Current,const IDinkFamilyFitVisualAuthority& Authority,FString& Error);
++    const TArray<FDinkFamilyCollisionFitRule>& GetCollisionFitRules() const { return CollisionFitRules; }
++    bool HasCollisionFitPolicyError() const { return bCollisionFitPolicyError; }
+ 	const FDinkFamilyPrecedence& GetPrecedence() const { return Precedence; }
+ 	/** Placements dressed so far, and skip counts by decision. */
+ 	int32 GetDressedCount() const { return Dressed; }
+@@ -152,6 +163,8 @@ private:
+ 	int32 DressInstances(ADinkGreyboxScreen& Screen);
+ 
+ 	TArray<FDinkFamilyBinding> Bindings;
++    TArray<FDinkFamilyCollisionFitRule> CollisionFitRules;
++    bool bCollisionFitPolicyError=false;
+ 	FDinkFamilyPrecedence Precedence;
+ 	UPROPERTY(Transient)
+ 	TMap<FString, TObjectPtr<UStaticMesh>> Meshes;

@@ -27,7 +27,7 @@ def apply_lod_builds(mesh, subsystem, expected_lods, guard):
     mesh.set_editor_property('allow_cpu_access', True)
 
 
-def _import_base_profile(U, packet, record, package, guard, prefix):
+def _import_base_profile(U, packet, record, package, guard, prefix, import_vertex_colors=False, import_translation_cm=None):
     path = source_file(packet, record)
     require(package.startswith(prefix) and '.' not in package, 'Unexpected mesh package')
     require(U.SystemLibrary.get_console_variable_int_value('Interchange.FeatureFlags.Import.FBX') == 0, 'Legacy FBX importer required')
@@ -43,9 +43,12 @@ def _import_base_profile(U, packet, record, package, guard, prefix):
                        'auto_generate_collision': False, 'one_convex_hull_per_ucx': True,
                        'generate_lightmap_u_vs': False, 'convert_scene': True, 'convert_scene_unit': True,
                        'force_front_x_axis': False, 'import_uniform_scale': 1.0,
-                       'import_translation': U.Vector(0, 0, 0), 'import_rotation': U.Rotator(0, 0, 0),
+                       'import_translation': U.Vector(*(import_translation_cm or [0.,0.,0.])), 'import_rotation': U.Rotator(0, 0, 0),
                        'transform_vertex_to_absolute': True, 'bake_pivot_in_vertex': False}.items():
         ui.static_mesh_import_data.set_editor_property(key, value)
+    if import_vertex_colors:
+        guard()
+        ui.static_mesh_import_data.set_editor_property('vertex_color_import_option', U.VertexColorImportOption.REPLACE)
     folder, name = package.rsplit('/', 1)
     task = U.AssetImportTask()
     task.filename, task.destination_path, task.destination_name = str(path), folder, name
@@ -103,3 +106,21 @@ def configure_policy(U, mesh, collision_policy, guard, approved_fireplace_nanite
     guard()
     mesh.get_editor_property('body_setup').set_editor_property('collision_trace_flag', flags[policy])
     # Navigation/overlap are component/scene gates, never silently set here.
+
+
+def import_house439_base(U, packet, record, package, guard):
+    from house439_contract import NAME, TRIAL
+    require(package == TRIAL + 'Meshes/' + NAME and record['file'] == 'FBX/' + NAME + '.fbx', 'Outside exact House439 mesh scope')
+    require(record['triangles'] == 194192 and record['UCX'] == 6, 'Reviewed whole-cottage geometry differs')
+    return _import_base_profile(U, packet, record, package, guard, TRIAL + 'Meshes/', import_vertex_colors=True)
+
+
+def import_fireplace_base(U,packet,record,package,guard):
+    """Exact four fresh one-LOD trial meshes; preserve local pivot via pinned compensation."""
+    from fireplace_contract import NAMES,COUNTS,SOURCE,TRIAL,fbx_model_metadata
+    root=Path(U.Paths.convert_relative_path_to_full(U.Paths.project_dir())).resolve()
+    require(Path(packet).resolve()==root/SOURCE,'Outside exact fireplace source packet')
+    name=record['name'];require(name in NAMES and package==TRIAL+'Meshes/'+name and record['file']=='FBX/'+name+'.fbx','Outside exact four fireplace targets')
+    require((record['triangles'],record['UCX'])==COUNTS[name],'Reviewed fireplace inventory differs')
+    metadata=fbx_model_metadata(root,record);require(metadata==record['FBX_metadata']and metadata['import_translation_cm']==record['import_translation_cm'],'Unreviewed FBX unit/pivot compensation')
+    return _import_base_profile(U,packet,record,package,guard,TRIAL+'Meshes/',import_vertex_colors=True,import_translation_cm=record['import_translation_cm'])

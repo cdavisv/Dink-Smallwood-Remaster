@@ -1,8 +1,8 @@
 {
   "scope": "Original-source read-only extraction and candidate inventory, no runtime/source asset changes",
-  "archive": "/home/artist/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/graphics/lands/details/dir.ff",
+  "archive": "<HOME>/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/graphics/lands/details/dir.ff",
   "archive_sha256": "3765caa25eb342bfe700128052e0f0defd029d8b2209b972d825e22db134933d",
-  "class_table_sha256": "a26dc848ce0ebab66929a99954c8721d32b246a36a45f3b9b9fa01da8dbca371",
+  "class_table_sha256": "139b42dfcfb357fa73edcfb941d0bb3f873dbf4e431ea39d6fa62cd6bffee04f",
   "rows": [
     {
       "frame": 5,
@@ -13,7 +13,7 @@
         4
       ],
       "placement_count_in_class_table": 63,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-05.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-05.bmp.png"
     },
     {
       "frame": 11,
@@ -24,7 +24,7 @@
         19
       ],
       "placement_count_in_class_table": 49,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-11.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-11.bmp.png"
     },
     {
       "frame": 10,
@@ -35,7 +35,7 @@
         16
       ],
       "placement_count_in_class_table": 44,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-10.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-10.bmp.png"
     },
     {
       "frame": 6,
@@ -46,7 +46,7 @@
         6
       ],
       "placement_count_in_class_table": 41,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-06.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-06.bmp.png"
     },
     {
       "frame": 7,
@@ -57,7 +57,7 @@
         10
       ],
       "placement_count_in_class_table": 36,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-07.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-07.bmp.png"
     },
     {
       "frame": 9,
@@ -68,7 +68,7 @@
         16
       ],
       "placement_count_in_class_table": 26,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-09.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-09.bmp.png"
     },
     {
       "frame": 8,
@@ -79,7 +79,7 @@
         12
       ],
       "placement_count_in_class_table": 22,
-      "rendered_guide": "/home/artist/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-08.bmp.png"
+      "rendered_guide": "<HOME>/Work/DinkQA/BeachPebbleSourceInventoryV1/References/beach-08.bmp.png"
     }
   ],
   "existing_source_search": "No dedicated beach cluster found in current frozen SourceAssets; scaled boulder decor is not silhouette-equivalent",

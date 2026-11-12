@@ -1,0 +1,742 @@
+{
+  "SM_Cottage_Stonebrook_Burning_01": [
+    {
+      "socket": "SOCKET_Fire_01",
+      "origin": "S439_P05",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 1,
+      "source_pixel": [
+        328,
+        127
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 1.0,
+      "local_m": [
+        6.0003,
+        -0.5836,
+        7.0373
+      ],
+      "local_ue_cm": [
+        600.03,
+        58.36,
+        703.73
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_02",
+      "origin": "S439_P09",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 4,
+      "source_pixel": [
+        427,
+        165
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.97,
+      "local_m": [
+        8.8093,
+        -3.5978,
+        4.7767
+      ],
+      "local_ue_cm": [
+        880.93,
+        359.78,
+        477.67
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_03",
+      "origin": "S439_P11",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 2,
+      "source_pixel": [
+        203,
+        195
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.96,
+      "local_m": [
+        -9.015,
+        -1.0788,
+        6.6659
+      ],
+      "local_ue_cm": [
+        -901.5,
+        107.88,
+        666.59
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_04",
+      "origin": "S439_P21",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 5,
+      "source_pixel": [
+        254,
+        222
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.95,
+      "local_m": [
+        -5.0036,
+        -2.7184,
+        5.4362
+      ],
+      "local_ue_cm": [
+        -500.36,
+        271.84,
+        543.62
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_05",
+      "origin": "S439_P29",
+      "effect": "smoulder_damage",
+      "original_sequence": 154,
+      "original_sequence_path": "struct/details/damage/damag-",
+      "original_frame": 1,
+      "source_pixel": [
+        306,
+        193
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 1.12,
+      "local_m": [
+        0.7642,
+        -3.2513,
+        5.0365
+      ],
+      "local_ue_cm": [
+        76.42,
+        325.13,
+        503.65
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_06",
+      "origin": "S439_P31",
+      "effect": "flame_small",
+      "original_sequence": 155,
+      "original_sequence_path": "struct/details/damage/fire2-",
+      "original_frame": 1,
+      "source_pixel": [
+        284,
+        106
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_m": [
+        3.5859,
+        -0.6847,
+        6.9615
+      ],
+      "local_ue_cm": [
+        358.59,
+        68.47,
+        696.15
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_07",
+      "origin": "S439_P32",
+      "effect": "flame_small",
+      "original_sequence": 156,
+      "original_sequence_path": "struct/details/damage/fire3-",
+      "original_frame": 1,
+      "source_pixel": [
+        198,
+        188
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_m": [
+        -7.4471,
+        -2.1919,
+        5.8311
+      ],
+      "local_ue_cm": [
+        -744.71,
+        219.19,
+        583.11
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_08",
+      "origin": "S439_P33",
+      "effect": "flame_medium",
+      "original_sequence": 157,
+      "original_sequence_path": "struct/details/damage/fire4-",
+      "original_frame": 1,
+      "source_pixel": [
+        371,
+        147
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.53,
+      "local_m": [
+        6.1724,
+        -3.6759,
+        4.7181
+      ],
+      "local_ue_cm": [
+        617.24,
+        367.59,
+        471.81
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoke_01",
+      "origin": "S439_P46",
+      "effect": "smoke_vent",
+      "original_sequence": 158,
+      "original_sequence_path": "struct/details/damage/hole-",
+      "original_frame": 1,
+      "source_pixel": [
+        238,
+        182
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_m": [
+        -3.5756,
+        -2.3311,
+        5.7267
+      ],
+      "local_ue_cm": [
+        -357.56,
+        233.11,
+        572.67
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoke_Chimney",
+      "origin": null,
+      "effect": "smoke_column",
+      "original_sequence": null,
+      "surface": "chimney",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 1.0,
+      "remaster_addition": true,
+      "local_m": [
+        -5.415,
+        1.9,
+        8.0
+      ],
+      "local_ue_cm": [
+        -541.5,
+        -190.0,
+        800.0
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_Door_01",
+      "origin": null,
+      "effect": "flame_medium",
+      "original_sequence": null,
+      "surface": "doorway_interior",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "scale_hint": 0.8,
+      "remaster_addition": true,
+      "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+      "local_m": [
+        4.835,
+        -3.9,
+        1.2
+      ],
+      "local_ue_cm": [
+        483.5,
+        390.0,
+        120.0
+      ],
+      "normal_ue": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Fire_Door_02",
+      "origin": null,
+      "effect": "flame_medium",
+      "original_sequence": null,
+      "surface": "doorway_interior",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "scale_hint": 0.8,
+      "remaster_addition": true,
+      "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+      "local_m": [
+        5.685,
+        -3.9,
+        1.9
+      ],
+      "local_ue_cm": [
+        568.5,
+        390.0,
+        190.0
+      ],
+      "normal_ue": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "SM_Cottage_Stonebrook_Burnt_01": [
+    {
+      "socket": "SOCKET_Smoulder_01",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        0.7642,
+        -3.1433,
+        0.7175
+      ],
+      "local_ue_cm": [
+        76.42,
+        314.33,
+        71.75
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_02",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        -3.5756,
+        -2.2231,
+        0.635
+      ],
+      "local_ue_cm": [
+        -357.56,
+        222.31,
+        63.5
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_03",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        7.3252,
+        -0.4105,
+        0.591
+      ],
+      "local_ue_cm": [
+        732.52,
+        41.05,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_04",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        -6.1493,
+        -0.632,
+        0.591
+      ],
+      "local_ue_cm": [
+        -614.93,
+        63.2,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_05",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        2.7714,
+        -3.3,
+        0.701
+      ],
+      "local_ue_cm": [
+        277.14,
+        330.0,
+        70.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_06",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        2.8715,
+        -2.2073,
+        0.701
+      ],
+      "local_ue_cm": [
+        287.15,
+        220.73,
+        70.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_07",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        -7.3914,
+        -1.2354,
+        0.591
+      ],
+      "local_ue_cm": [
+        -739.14,
+        123.54,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_08",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        6.8649,
+        -2.8673,
+        0.899
+      ],
+      "local_ue_cm": [
+        686.49,
+        286.73,
+        89.9
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_09",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        -0.7237,
+        -3.0059,
+        0.899
+      ],
+      "local_ue_cm": [
+        -72.37,
+        300.59,
+        89.9
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_10",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        -2.615,
+        2.4,
+        0.767
+      ],
+      "local_ue_cm": [
+        -261.5,
+        -240.0,
+        76.7
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "socket": "SOCKET_Smoulder_11",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_m": [
+        4.185,
+        1.6,
+        0.668
+      ],
+      "local_ue_cm": [
+        418.5,
+        -160.0,
+        66.8
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ]
+    }
+  ]
+}

@@ -15,6 +15,7 @@ from .bmp import bmp_size, load_rgb, to_rgba
 from .fsutil import CIResolver
 from .gfx import Graphics
 from .jsonfmt import write_json
+from .runtime_hardness import runtime_layers
 from .sequences import SequenceModel, image_path
 
 ALL_STEPS = ("screens", "sequences", "sprites", "tiles", "hardness", "world")
@@ -260,11 +261,18 @@ class Extractor:
                 self._save_codes(codes, "hardness/%s.png" % screen_id(n))
                 self._save_owner(owner, "hardness/%s_owner.png" % screen_id(n))
                 hard_pngs += 2
+                # Additive source packet: retain tile pixels hidden beneath stamps.
+                write_json(os.path.join(self.out, "hardness", "%s_layers.json" % screen_id(n)),
+                           runtime_layers(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, editor_hard_flags=scr.editor_hard_flags),
+                           expand_levels=1)
                 for v in visions:
                     c2, o2, _ = hardmod.build_hitmap(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, vision=v)
                     self._save_codes(c2, "hardness/%s_v%d.png" % (screen_id(n), v))
                     self._save_owner(o2, "hardness/%s_v%d_owner.png" % (screen_id(n), v))
                     hard_info["vision_variants"][str(v)] = "hardness/%s_v%d.png" % (screen_id(n), v)
+                    write_json(os.path.join(self.out, "hardness", "%s_v%d_layers.json" % (screen_id(n), v)),
+                               runtime_layers(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, vision=v, editor_hard_flags=scr.editor_hard_flags),
+                               expand_levels=1)
                     hard_variants += 1
                     hard_pngs += 2
             else:
@@ -277,6 +285,7 @@ class Extractor:
                     "id": screen_id(n), "screen": n,
                     "col": col, "row": row,
                     "map_record": self.world.loc[n],
+                    "editor_hard_flags": scr.editor_hard_flags,
                     "name": scr.name,
                     "indoor": indoor_raw != 0, "indoor_raw": indoor_raw,
                     "music": music,

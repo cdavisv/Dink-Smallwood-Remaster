@@ -10,7 +10,7 @@ if not (PROJECT/'DinkRemaster.uproject').is_file():raise ValueError('Exact proje
 if Q.exists() or Q==PROJECT or Q.is_relative_to(PROJECT) or PROJECT.is_relative_to(Q):raise ValueError('New disposable output outside project required')
 SRC=PROJECT/'SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/PhotorealBarrelV1_Source.blend'
 LIBRARY=PROJECT/'SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend'
-for p,expected in [(SRC,'b0983eeb9eb6fdbbc4ea14d5b6528db7f9817530fa07b81f96cc40eb1b569350'),(LIBRARY,'561e921cd922cf143a834eda87038e2600c737bbdca58d81c7caeaafa6e54a2e')]:
+for p,expected in [(SRC,'2cab573f8f40a99a2b513a454b8d0e006e73353171e3a25bc94254580cf9c0f7'),(LIBRARY,'2b072073ff3c8673a63391f4390f87ebb7e0d8fd0a09144607e39bd568f2b488')]:
  if hashlib.sha256(p.read_bytes()).hexdigest()!=expected:raise ValueError('Hydrate exact tracked parent/library LFS objects')
 Q.mkdir(parents=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()

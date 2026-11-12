@@ -1,7 +1,7 @@
 {
   "status": "SOURCE_EXPORT_CANDIDATE__BLENDER_NORMAL_ROUNDTRIP_FAILED",
-  "source_sha256": "de68432d3a74d3dd0193b535d9821558d173882f506153822d2d77af66e954f4",
-  "fbx_sha256": "7234a729292bd0fb93310d888b67988ad1ce341a0f532c1ff71f741d34d120e0",
+  "source_sha256": "ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5",
+  "fbx_sha256": "bb84fe22bdd116cbe6d1beb1af3a8051039263f419c5347d1a016e90065448d3",
   "single_mesh_LOD0_triangles": 15680,
   "serialized_source_position_UV_normal_material_exact": true,
   "fresh_Blender_positions_UV_materials_exact": true,
@@ -12,16 +12,16 @@
   "both_source_freeze_inventories_unchanged": true,
   "no_UE_native_activation": true,
   "guide_source_sha256": {
-    "AGENTS.md": "4b782363e7efeaf6ac5197240822578227985589799e4882e3e783d967306cd3",
+    "AGENTS.md": "2b3054b56f6bb6709fe39f34c5fabb1d938d4df48233c8c3830fec5c3ef42b96",
     "DinkRemasterUE/SourceAssets/Art/ART_STANDARD.md": "64efd1ed614ee219e16bd01db11ee5baf189cf624798bc64ca800824e99284f0",
     "tools/blender/CONVENTIONS.md": "de3138732f8bd968557abdbd1657e37d5773843431471d3a380705aecac35607",
     "DinkRemasterUE/Scripts/ART_PIPELINE.md": "50c532f38b6a3344b01be1012c769283fc7b06f8d8d2b0bca0308977ff62c58b",
     "tools/blender/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
   },
   "files_sha256": {
-    "BLENDER_ROUNDTRIP.json": "9710e6a18d495790d85ba18295992c0c5cbd0e64f84efdb95924679cda599ddc",
+    "BLENDER_ROUNDTRIP.json": "a345fe2ee78b13a76e0cc0ca203face3971f4bd170a5c2b3a18da4765d747919",
     "BrokenBarrelCurvedV4_ExportOnly.blend": "9a7c54001d8aee010f28a10c62220d478975c7939e4fe78ac1017ad3c3041ed7",
-    "EXPORT_RECEIPT.json": "1541eadfbfba03f373ba5ed0fac529594941f908f6a59838a2cab967ff3ada23",
+    "EXPORT_RECEIPT.json": "0fc389222ea22265e20a1eee976dba393201caabcb444b29acef3637ab752fc5",
     "FAILED_numpy_uv_check.log": "9780684da4fec12e1be697d58ef53dccc865abb0abd85ecb71ece8e9287245bb",
     "HANDOFF.md": "99ae469a01267adbeeae736675666a88ef8f307651822163d0ace9751cfffb79",
     "PREEXPORT.npz": "c48886e7123456c3c7e38761b7a40a72339088503f7faecda1888762cc1eeb78",
@@ -36,14 +36,14 @@
     "RejectedSmoothUnion/PREEXPORT.npz": "9a1aa5a6e35a4f728d84c45c057620afb85ac5127f26e6622ecda56145096d9d",
     "RejectedSmoothUnion/export.log": "d65b74684c0b566d54865eb2a88fe0292b8f67825c90fd7a7197e6d9fa0b1dba",
     "RejectedSmoothUnion/export_lod0.py": "dddedeffa6b5e9ae7e081796aad365391ff4bb6a25ab13c6fe896b294770bd2a",
-    "SELECTION.md": "cc5167f4253bac35750554d1b0212a85ad71b8c987b756b34b28c6d1d65642a7",
-    "SERIALIZED_FBX_CHECK.json": "2607fa599dcf2841be1d4e6c5048b4764f30c1d8d0174726fdccf98e56b7e7b4",
-    "SM_Barrel_Broken_CurvedV4_LOD0.fbx": "7234a729292bd0fb93310d888b67988ad1ce341a0f532c1ff71f741d34d120e0",
+    "SELECTION.md": "47d2d8e55bb4b549179b3e27d7a762ca78c53c7b635364ad8d59d86969da8d34",
+    "SERIALIZED_FBX_CHECK.json": "7cf6f43942511e6ef3a744420aed1c58574e6a0c454194f1d03e937bbf718021",
+    "SM_Barrel_Broken_CurvedV4_LOD0.fbx": "bb84fe22bdd116cbe6d1beb1af3a8051039263f419c5347d1a016e90065448d3",
     "SOURCE_TRIANGLES.npz": "f116f82882ae63e6d73d556205190d32dc22a18c37bef9dcb3a7f7a9d7b3ff85",
     "export.log": "f224ed7bd2959193881c86d2f08b268ff553e2bb59a9a6dafb8ca86637bc74c6",
-    "export_lod0.py": "3e92a3fa585726d7cd9be49595d7c7dd95d4c309827cbdbe7f84ac48c8a7e114",
+    "export_lod0.py": "c8c0c835c005dedfe151b48f9fa8c7f0935091473727e7139338d1216658649e",
     "roundtrip.log": "4cb84106db5f3e5e5b52d6ade72b78443a56d920d6e6a1a1e6e29196970729e1",
     "roundtrip_blender.py": "17977487c36c88ac2d700e4274228d3311cbacf01bd337567832fe164284689e",
-    "verify_fbx.py": "f51bd6bc7596082fb7d92420b84d59e5fb03b82753260d32225b33f53c288877"
+    "verify_fbx.py": "793ca50c1105b536e35b8c2dc587d3b789a73aeedcb1eaa1761de6185c538b1a"
   }
 }

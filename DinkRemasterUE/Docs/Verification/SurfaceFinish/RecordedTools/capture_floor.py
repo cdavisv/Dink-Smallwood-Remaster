@@ -1,18 +1,18 @@
 import json,os,sys,time
 from pathlib import Path
-ROOT=Path(Path.home()/'Work/DinkSurfaceDelivery/DinkRemasterUE')
+ROOT=Path('<HOME>/Work/DinkSurfaceDelivery/DinkRemasterUE')
 PHASE=os.environ.get('DINK_FLOOR_PHASE','Before')
 RESUME=os.environ.get('DINK_FLOOR_RESUME_PHOTOS')=='1'
 PHOTOS_ONLY=os.environ.get('DINK_FLOOR_PHOTOS_ONLY')=='1'
 EXPECT_UNDERLAY=os.environ.get('DINK_FLOOR_EXPECT_UNDERLAY')=='1'
 assert not (RESUME and PHOTOS_ONLY)
-OUT=Path(Path.home()/'Work/DinkQA/SurfaceNative')/PHASE
+OUT=Path('<HOME>/Work/DinkQA/SurfaceNative')/PHASE
 LOG=OUT/'game.log'
 sys.path.insert(0,str(ROOT/'Scripts'))
 import playtest_desktop as d
 import playtest_interactions as q
 d.use_private_display()
-launch=json.loads(Path(Path.home()/'Work/DinkQA/Tools/game.json').read_text())
+launch=json.loads(Path('<HOME>/Work/DinkQA/Tools/game.json').read_text())
 window=d.window();assert window['pid']==launch['game_pid']
 assert str(ROOT/'DinkRemaster.uproject') in launch['command']
 assert not (OUT/'receipt.json').exists()
@@ -26,8 +26,8 @@ records=[]
 def command(value):
  response=q.command_output(value,LOG);records.append({'command':value,'response':response});return response
 command('dink.ScreenInfo 0');command('DisableAllScreenMessages')
-assert 'QA_FLOOR_READER_READY' in command(f"py QA_FLOOR_PHASE={PHASE!r}; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())")
-assert 'QA_NATIVE_CAMERA_READER_READY' in command("py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())")
+assert 'QA_FLOOR_READER_READY' in command(f"py QA_FLOOR_PHASE={PHASE!r}; exec(open('<HOME>/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())")
+assert 'QA_NATIVE_CAMERA_READER_READY' in command("py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('<HOME>/Work/DinkQA/read_native_camera.py').read())")
 if not RESUME:
  for attempt in range(30):
   if not d.player(LOG)['move_ignored']:break

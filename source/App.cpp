@@ -889,8 +889,8 @@ bool App::Init()
 	if (DoesCommandLineParmExist("--help"))
 	{
 		std::string s;
-		s = std::string("-game <dmod directory> (Example: dink -game /home/user/dmods/island) (this also sets -dmodpath automatically to the dmods parent directory)\n\n") +
-		std::string("-dmodpath or --refdir <dir containing DMOD dirs> (Example: dink --refdir /home/user/dmods)\n\n") +
+		s = std::string("-game <dmod directory> (Example: dink -game <HOME>/dmods/island) (this also sets -dmodpath automatically to the dmods parent directory)\n\n") +
+		std::string("-dmodpath or --refdir <dir containing DMOD dirs> (Example: dink --refdir <HOME>/dmods)\n\n") +
 		std::string("-debug (turns on extra debug mode options for dmod authors, available from Dink HD menu as well)\n\n") +
 		std::string("-window (Forces windowed mode)\n\n") +
 		std::string("-skip (skips latest version check)\n\n") +

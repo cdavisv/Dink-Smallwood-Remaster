@@ -1,7 +1,7 @@
 {
   "base_commit": "286da79bf1b2adc04961c4c089c3221a2217c14e",
   "branch": "fix/optional-screen-debug-labels",
-  "project": "~/Work/DinkScreenLabelFix/DinkRemasterUE",
+  "project": "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE",
   "compiled_source_sha256": {
     "Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxSubsystem.cpp": "9cacc4e6402788e2fa4fd5f069a3cd979fa46a0fce78e51e92fbdf052768a7cf",
     "Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxSubsystem.h": "6082cf7a94b58a900820c41abd03195a99360eccb726415909aca3cfb788c29a"
@@ -26,13 +26,13 @@
       "exit_code": 255,
       "elapsed_seconds": 76.132907918,
       "loaded_custom_modules": [
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
       ],
       "tests": 7,
       "failed": 1,
@@ -51,13 +51,13 @@
       "exit_code": 0,
       "elapsed_seconds": 18.180274394000207,
       "loaded_custom_modules": [
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
       ],
       "tests": 7,
       "failed": 0,
@@ -76,13 +76,13 @@
       "exit_code": 0,
       "elapsed_seconds": 581.1948616589998,
       "loaded_custom_modules": [
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-        "~/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "<HOME>/Work/DinkScreenLabelFix/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
       ],
       "tests": 168,
       "failed": 0,

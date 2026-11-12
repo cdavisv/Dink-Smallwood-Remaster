@@ -1,0 +1,61 @@
+{
+  "source": "DinkRoofNativeDelivery/DinkRemasterUE/ImportData/placements.json",
+  "placement": {
+    "id": "S001_P19",
+    "screen": 1,
+    "index": 19,
+    "map_x": 288,
+    "map_y": 120,
+    "world": [
+      -1838.7391,
+      3923.7098
+    ],
+    "m_per_px": 0.0438,
+    "scale_x": 0.0438,
+    "scale_y": 0.0438,
+    "rot_deg": 0.0,
+    "size_factor": 1.75,
+    "seq": 64,
+    "frame": 5,
+    "type": 1,
+    "kind": "live",
+    "size_percent": 100,
+    "brain": 0,
+    "script": "s1-h1-2",
+    "script_kind": "object",
+    "vision": 0,
+    "vision_rule": null,
+    "hardness": {
+      "rect": [
+        234,
+        99,
+        345,
+        128
+      ],
+      "kind": "solid"
+    },
+    "is_warp": false,
+    "class_id": "fireplace_brick",
+    "category": "structure_part",
+    "name": "Brick fireplace",
+    "treatment": "generated",
+    "card": {
+      "sprite": "64_05",
+      "scale_mode": "layout",
+      "width_m": 4.2486,
+      "height_m": 4.9932,
+      "offset_x_m": 0.0657,
+      "offset_z_m": -0.0438,
+      "pixel_w": 97,
+      "pixel_h": 114
+    },
+    "representation": "actor",
+    "group": "interiors",
+    "region": "stonebrook",
+    "excluded": "",
+    "hash": "a389b49ae6ecdd63c0dfa71aa7c6e02cc20bd985"
+  },
+  "guide": "64_05.png",
+  "guide_sha256": "0ea319149e3ecff64b01a7b9286be9dcdb4639087e80ab58110f8d0c0d34d043",
+  "interpretation": "Original brick/coursed masonry surround with dark recess, broad mantel, low hearth and fuel/grate. Existing stone geometry authority preserved; no silhouette redesign or claim of original exact bricks."
+}

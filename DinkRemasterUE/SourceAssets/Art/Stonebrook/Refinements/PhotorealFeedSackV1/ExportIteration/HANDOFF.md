@@ -1,8 +1,8 @@
 # Feed sack V3 fresh export iteration
 
-QA-only directory /home/artist/Work/DinkQA/PhotorealSessions/FeedSack/V3_ExportIteration, outside Git. Coordinating root approved V3 source appearance for this bounded CPU bake/export iteration. No native/runtime/ledger/root checkout changes, no GPU use, no publication/commit/push.
+QA-only directory <HOME>/Work/DinkQA/PhotorealSessions/FeedSack/V3_ExportIteration, outside Git. Coordinating root approved V3 source appearance for this bounded CPU bake/export iteration. No native/runtime/ledger/root checkout changes, no GPU use, no publication/commit/push.
 
-Approved source SHA fed50602908644f26ec7c47563e8d8e1edf6e5bd8a327dc3b776492bcd1b2bdf unchanged. Export SHA e283666f276d79c6d50ff9edcb6613feab329b48dd06691f2fc5496216deeef9; actual FBX SHA f5a7a798266ba43572410d5f4b1ae8689b610bec2de310b51a8f662d642850d9. All 19644 cyclic oriented faces, UVs, stored normals, two material slots/every triangle material assignment and original authored UCX vertex cloud survive actual FBX roundtrip. Jute IOR1.46 and cord1.5; both Specular IOR Level.22 preserved. Do not flatten or blindly reuse barrel nativeSpecular.35.
+Approved source SHA 7b5363fb25428eaa5cf560597024abbef81ad22377b2acd263c39abcaae82fd6 unchanged. Export SHA 8768608ee0ff980d7059dfa4a9c197458655b9f45d127135c7677ea2bee7ee04; actual FBX SHA ac38614eb7635d179770fa24c5b814125e8e1da72a72835d5904d7e4835586e1. All 19644 cyclic oriented faces, UVs, stored normals, two material slots/every triangle material assignment and original authored UCX vertex cloud survive actual FBX roundtrip. Jute IOR1.46 and cord1.5; both Specular IOR Level.22 preserved. Do not flatten or blindly reuse barrel nativeSpecular.35.
 
 Fresh 2048 RGB BC/N/ORM maps; exported bytes match baked maps. BC sRGB; N linear with manifest UE green flip; ORM R255/Grough/B0. Packed export reopens with all image paths nonexistent. Source and triangulated export full UV checks untruncated at10M pair budget: zero overlap, degenerate and out-of-range triangles. Guide0errors/2retainedwarnings: soft triangle target, declared texel density. No universal visual/native acceptance.
 

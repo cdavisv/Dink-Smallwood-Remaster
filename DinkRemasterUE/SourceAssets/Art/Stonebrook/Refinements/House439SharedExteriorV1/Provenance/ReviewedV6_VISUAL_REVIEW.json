@@ -1,0 +1,24 @@
+{
+  "status": "SOURCE_REVIEW_READY_NOT_FINAL_ART_OR_NATIVE_ACCEPTANCE",
+  "candidate": "House439_RoofWeatheredBundleCandidateV6.blend",
+  "source_sha256": "140622758031f459fc2b00f0886dd2e141ef6ab9d23dc85df67368bad283d089",
+  "actual_views": "All4fixedbroad/window/hip-eave/cutviews viewed, no generatedpixels inactualrenders",
+  "improvements": "Roundednosecontinuousshortdirectionalstalkfield,weatheredstraw/graybrownvariation,shallowbundlebeddingandroundedhip/ridgesurface,nomoreseparatefasciaorhollowringbank.",
+  "limits": "Closefragmentsstillauthored/stylizedandgamereadability/finalphotorealnotindependentlyapproved. Windowstillgray/opaqueinactualview; transmission/reflectionrequiresnativeproof. HipterminationandmesodepthneedRootactualreview. No fullselfintersection/exhaustiveclearance proof.",
+  "technical": {
+    "triangles": 194192,
+    "roles": "6opaque+glass",
+    "UVmetric": "~1.98..2.02mUVall3roofobjects;0degenerate",
+    "FBX": "3actualroofobjectsPASSpositions/allUV/N/Mikk/sign,zeroT0",
+    "protected": "317preexistingnon-bodymeshP/topology/N/TRS/colors exact,nonroofUVexact;6UCX;1026flueguard+102ridgebodyverticesexact",
+    "triangle_deformation": "0degenerates/0orientationreversals;minnormaldot.7538 vsbase",
+    "contacts": "18matchedsourcewall-roofbottomgapsunchangedwithin2.4e-7m;notcookedphysics"
+  },
+  "images": {
+    "color_broad_front.png": "3fc51feeb8d3aee01f0a2c767dfcd397172fefdef11c4f88c30c68f14dc9fae6",
+    "color_wood_window_closeup.png": "f30214717655113b8c42c780bda5a33828ce3d7af39c40713cf0401a3e18295f",
+    "color_hip_eave_closeup.png": "ff4d6926fd32e27cc0645b2cc5dcf7e727834932e4fe19ed145c59cb81457e6e",
+    "color_eave_cutfield_closeup.png": "00a728fc4cad61823796b467f69784ed6ba68136af1282d7a845a5f22faf7a6e"
+  },
+  "next": "Rootindependent4viewreview; ifapprovedactualnativegametrialwithmaterialpolicy/normalreadback anddoor/window/flue/LOD/camera collision checks;finalintegration/sessionreconciliationstillrequired"
+}

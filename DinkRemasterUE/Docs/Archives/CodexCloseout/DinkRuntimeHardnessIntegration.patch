@@ -1,0 +1,1385 @@
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+index 1aa1984..e4c4349 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+@@ -1,4 +1,5 @@
+ #include "DinkArtSubsystem.h"
++#include "Misc/ScopeExit.h"
+ #include "DinkArtContextActor.h"
+ #include "DinkEarlyPostureAnimInstance.h"
+ #include "DinkPostureComponent.h"
+@@ -63,6 +64,9 @@ bool UDinkArtSubsystem::DoesSupportWorldType(EWorldType::Type WorldType) const
+ 
+ void UDinkArtSubsystem::OnWorldBeginPlay(UWorld& World)
+ {
++    bInitialApplicationComplete = false;
++    AuthoredCollisionScreens.Reset();
++    ON_SCOPE_EXIT { bInitialApplicationComplete = true; };
+ 	Super::OnWorldBeginPlay(World);
+ 	if (!CVarDinkArtEnabled.GetValueOnGameThread()) return;
+ 	TArray<FString> DressingFiles;
+@@ -205,6 +209,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
+ 	{
+ 		TSet<int32> Screens, PreserveLow;
+ 		for (const TSharedPtr<FJsonValue>& Value : *Rows) Screens.Add(int32(Value->AsNumber()));
++        for (int32 Screen : Screens) AuthoredCollisionScreens.Add(Screen);
+ 		const TArray<TSharedPtr<FJsonValue>>* LowScreens = nullptr;
+ 		if (Manifest->TryGetArrayField(TEXT("preserve_low_collision_screens"), LowScreens))
+ 			for (const TSharedPtr<FJsonValue>& Value : *LowScreens) PreserveLow.Add(int32(Value->AsNumber()));
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtSubsystem.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtSubsystem.h
+index 9614b8d..d9fdb1a 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtSubsystem.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtSubsystem.h
+@@ -13,6 +13,10 @@ class DINKCORE_API UDinkArtSubsystem : public UWorldSubsystem
+ {
+ 	GENERATED_BODY()
+ public:
++    /** Hardness migration waits for the actual art application and excludes
++     * screens whose legacy collision this subsystem replaced. Read-only state. */
++    bool HasCompletedInitialApplication() const { return bInitialApplicationComplete; }
++    bool UsesAuthoredCollision(int32 Screen) const { return AuthoredCollisionScreens.Contains(Screen); }
+ 	/** Applies an optional authored player mesh after the pawn has loaded its animation rig. */
+ 	bool ApplyPlayer(class USkeletalMeshComponent& Component);
+     /** Cosmetic only: original script sequence and175ms damage scheduling remain authoritative. */
+@@ -24,6 +28,8 @@ protected:
+ 	virtual bool DoesSupportWorldType(EWorldType::Type WorldType) const override;
+ private:
+ 	friend struct FDinkArtNavigationTestAccess;
++    bool bInitialApplicationComplete = false;
++    TSet<int32> AuthoredCollisionScreens;
+ 	void ApplyManifest(UWorld& World, const FString& ManifestFile);
+ 	void ApplyManifest(UWorld& World, const TSharedPtr<class FJsonObject>& Manifest, const FString& ManifestFile);
+ 	void ApplyCharacters(UWorld& World);
+diff --git c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/DinkImport.Build.cs w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/DinkImport.Build.cs
+index 7a46259..765ce2c 100644
+--- c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/DinkImport.Build.cs
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/DinkImport.Build.cs
+@@ -8,7 +8,7 @@ public class DinkImport : ModuleRules
+ 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "DinkCore" });
+ 		PrivateDependencyModuleNames.AddRange(new string[] {
+ 			"UnrealEd", "Json", "ImageWrapper", "MaterialEditor", "MeshDescription", "StaticMeshDescription",
+-			"AssetRegistry", "LevelEditor", "RenderCore", "ImageCore", "RHI"
++			"AssetRegistry", "LevelEditor", "RenderCore", "ImageCore", "RHI", "PhysicsCore", "Chaos", "DinkNarrative"
+ 		});
+ 	}
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp
+index f9b1ef2..2538fdf 100644
+--- c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxAssets.cpp
+@@ -1,4 +1,12 @@
+ #include "DinkGreyboxAssets.h"
++#include "DinkHardnessFoundationBuilder.h"
++#include "Hardness/DinkHardnessShell.h"
++#include "UObject/MetaData.h"
++#include "DinkCollision.h"
++#include "Components/StaticMeshComponent.h"
++#include "Engine/CollisionProfile.h"
++#include "Chaos/TriangleMeshImplicitObject.h"
++#include "Physics/PhysicsInterfaceCore.h"
+ #include "DinkImportLog.h"
+ #include "AssetCompilingManager.h"
+ #include "AssetRegistry/AssetRegistryModule.h"
+@@ -868,4 +876,210 @@ namespace DinkGreybox
+ 	{
+ 		return Cast<UStaticMesh>(LoadGenerated(FString::Printf(TEXT("%s/SM_SCR_%03d_%s"), *ScreenFolder(Screen), Screen, Which)));
+ 	}
++    bool BuildRuntimeHardnessFoundationV1(const FDinkBundle& Bundle, int32 ScreenNumber,
++        FDinkHardnessFoundationCandidate& Out, FString& Error)
++    {
++        const FDinkBundleScreen* Screen = Bundle.FindScreen(ScreenNumber);
++        const FDinkBundleCollision* Collision = Screen ? Bundle.Collision.Find(Screen->Id) : nullptr;
++        if (!Screen || !Collision) { Error = TEXT("source screen/collision missing"); return false; }
++        const FString Folder = FString::Printf(TEXT("/Game/Dink/RuntimeHardnessV1/SCR_%03d"), ScreenNumber);
++        const FString SolidPath = Folder / FString::Printf(TEXT("SM_SCR_%03d_FixedSolidV1"), ScreenNumber);
++        const FString LowPath = Folder / FString::Printf(TEXT("SM_SCR_%03d_FixedLowV1"), ScreenNumber);
++        // Refuse all targets before creating anything. A changed candidate needs
++        // a declared successor generation, never overwrite historical packages.
++        for (const FString& Path : {SolidPath, LowPath})
++            if (FindPackage(nullptr, *Path) || FPackageName::DoesPackageExist(Path))
++            { Error = TEXT("foundation candidate target already exists: ") + Path; return false; }
++        const FVector Pivot = FAssetSet::ScreenPivot(*Screen);
++        auto At = [&](double X, double Y, double HeightM) {
++            return FVector3f(DinkLayout::MapPixelToUnreal(Screen->Corners, X, Y, HeightM) - Pivot);
++        };
++        auto AddFill = [&](FMeshWriter& Writer, const TCHAR* Class) {
++            if (const auto* Rects = Collision->ByClass.Find(Class))
++                for (const auto& R : *Rects)
++                {
++                    FVector3f Points[4] = {At(R.Min.X,R.Min.Y,0),At(R.Max.X,R.Min.Y,0),
++                        At(R.Max.X,R.Max.Y,0),At(R.Min.X,R.Max.Y,0)};
++                    Writer.Prism(TEXT("Collision"), Points, float(CollisionHeightM * 100.0));
++                }
++        };
++        FMeshWriter Solid;
++        FVector3f Ground[4] = {At(0,0,0),At(600,0,0),At(600,400,0),At(0,400,0)};
++        FVector2f UVs[4] = {{0,0},{1,0},{1,1},{0,1}};
++        Solid.Quad(TEXT("Collision"), Ground, UVs, FVector3f(0,0,1));
++        AddFill(Solid, TEXT("fill_solid"));
++        FDinkHardnessFoundationCandidate Candidate;
++        Candidate.Screen = ScreenNumber; Candidate.Pivot = Pivot;
++        Candidate.CollisionSourceHash = Screen->CollisionHash;
++        bool Existed = false;
++        Candidate.FixedSolid = CommitMesh(SolidPath, Solid, {}, true, Existed);
++        if (!Candidate.FixedSolid || Existed) { Error = TEXT("new solid foundation creation failed"); return false; }
++        const auto* Water = Collision->ByClass.Find(TEXT("fill_water"));
++        if (Water && !Water->IsEmpty())
++        {
++            FMeshWriter Low; AddFill(Low, TEXT("fill_water"));
++            Candidate.FixedLow = CommitMesh(LowPath, Low, {}, true, Existed);
++            if (!Candidate.FixedLow || Existed) { Error = TEXT("new low foundation creation failed"); return false; }
++        }
++        auto Provenance = [&](UStaticMesh* Mesh, const TCHAR* Role) {
++            if (!Mesh) return;
++            auto& Meta = Mesh->GetOutermost()->GetMetaData();
++            Meta.SetValue(Mesh, TEXT("DinkHardnessSchema"), TEXT("foundation/1"));
++            Meta.SetValue(Mesh, TEXT("DinkHardnessRole"), Role);
++            Meta.SetValue(Mesh, TEXT("DinkHardnessScreen"), *FString::FromInt(ScreenNumber));
++            Meta.SetValue(Mesh, TEXT("DinkHardnessCollisionSource"), *Screen->CollisionHash);
++        };
++        Provenance(Candidate.FixedSolid, TEXT("ground+fill_solid"));
++        Provenance(Candidate.FixedLow, TEXT("fill_water"));
++        if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle, Candidate, Error)) return false;
++        Out = Candidate; Error.Reset(); return true;
++        // Deliberately no SavePackage, old manifest update, orphan deletion or
++        // default importer call. Stage/geometry/profile verification precedes save.
++    }
++
++    bool VerifyRuntimeHardnessFoundationSourceV1(const FDinkBundle& Bundle,
++        const FDinkHardnessFoundationCandidate& Candidate, FString& Error)
++    {
++        const auto* Screen = Bundle.FindScreen(Candidate.Screen);
++        const auto* Collision = Screen ? Bundle.Collision.Find(Screen->Id) : nullptr;
++        if (!Screen || !Collision || Candidate.CollisionSourceHash != Screen->CollisionHash ||
++            !Candidate.Pivot.Equals(FAssetSet::ScreenPivot(*Screen), 0))
++        { Error = TEXT("foundation source binding mismatch"); return false; }
++        auto Signature = [](FVector3f A, FVector3f B, FVector3f C) {
++            FString Best;
++            const FVector3f V[3] = {A,B,C};
++            for (int32 Rotation=0;Rotation<3;++Rotation)
++            {
++                FString S;
++                for (int32 I=0;I<3;++I)
++                {
++                    const auto& P=V[(I+Rotation)%3];
++                    S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"), P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z);
++                }
++                if (Rotation==0 || S<Best) Best=MoveTemp(S);
++            }
++            return Best;
++        };
++        auto At = [&](double X,double Y,double HeightM) {
++            return FVector3f(DinkLayout::MapPixelToUnreal(Screen->Corners,X,Y,HeightM)-Candidate.Pivot);
++        };
++        auto Verify = [&](UStaticMesh* Mesh, const TCHAR* Role, const TCHAR* FillClass, bool Floor) {
++            TArray<FString> Expected;
++            if (Floor)
++            {
++                FVector3f P[4]={At(0,0,0),At(600,0,0),At(600,400,0),At(0,400,0)};
++                if (FVector3f::CrossProduct(P[1]-P[0],P[3]-P[0]).Z<0) Swap(P[1],P[3]);
++                Expected.Add(Signature(P[0],P[2],P[1])); Expected.Add(Signature(P[0],P[3],P[2]));
++            }
++            if (const auto* Rects=Collision->ByClass.Find(FillClass))
++                for (const auto& R:*Rects)
++                {
++                    std::array<DinkHardness::ShellPoint,8> Points;
++                    const FVector3f P[4]={At(R.Min.X,R.Min.Y,0),At(R.Max.X,R.Min.Y,0),
++                        At(R.Max.X,R.Max.Y,0),At(R.Min.X,R.Max.Y,0)};
++                    for (int32 I=0;I<4;++I)
++                    {
++                        Points[I]={P[I].X,P[I].Y,P[I].Z};
++                        Points[I+4]={P[I].X,P[I].Y,P[I].Z+float(CollisionHeightM*100.0)};
++                    }
++                    const auto Shell=DinkHardness::OpenPrismShell(Points);
++                    if (!Shell) return false;
++                    for (const auto& T:*Shell)
++                    {
++                        auto V=[](const DinkHardness::ShellPoint& P) { return FVector3f(P.X,P.Y,P.Z); };
++                        // Source MeshDescription precedes StaticMesh's cooking flip.
++                        Expected.Add(Signature(V(T[1]),V(T[0]),V(T[2])));
++                    }
++                }
++            if (Expected.IsEmpty()) return Mesh==nullptr;
++            if (!Mesh || !Mesh->GetPathName().Contains(TEXT("/RuntimeHardnessV1/")) ||
++                !Mesh->GetBodySetup() || Mesh->GetBodySetup()->CollisionTraceFlag!=CTF_UseComplexAsSimple ||
++                Mesh->GetNaniteSettings().bEnabled) return false;
++            auto& Meta=Mesh->GetOutermost()->GetMetaData();
++            if (Meta.GetValue(Mesh,TEXT("DinkHardnessSchema"))!=TEXT("foundation/1") ||
++                Meta.GetValue(Mesh,TEXT("DinkHardnessRole"))!=Role ||
++                Meta.GetValue(Mesh,TEXT("DinkHardnessScreen"))!=FString::FromInt(Candidate.Screen) ||
++                Meta.GetValue(Mesh,TEXT("DinkHardnessCollisionSource"))!=Screen->CollisionHash) return false;
++            const FMeshDescription* Description=Mesh->GetMeshDescription(0);
++            if (!Description || Description->Triangles().Num()!=Expected.Num()) return false;
++            const FStaticMeshConstAttributes Attributes(*Description);
++            const auto Positions=Attributes.GetVertexPositions();
++            TArray<FString> Actual;
++            for (const FTriangleID Triangle:Description->Triangles().GetElementIDs())
++            {
++                const auto Instances=Description->GetTriangleVertexInstances(Triangle);
++                Actual.Add(Signature(Positions[Description->GetVertexInstanceVertex(Instances[0])],
++                    Positions[Description->GetVertexInstanceVertex(Instances[1])],Positions[Description->GetVertexInstanceVertex(Instances[2])]));
++            }
++            Expected.Sort(); Actual.Sort(); return Actual==Expected;
++        };
++        if (!Verify(Candidate.FixedSolid,TEXT("ground+fill_solid"),TEXT("fill_solid"),true) ||
++            !Verify(Candidate.FixedLow,TEXT("fill_water"),TEXT("fill_water"),false))
++        { Error = TEXT("actual source triangles/provenance do not match floor/fill-only authority"); return false; }
++        Error.Reset(); return true;
++    }
++
++    bool VerifyRuntimeHardnessFoundationInstanceV1(const FDinkBundle& Bundle,
++        const FDinkHardnessFoundationCandidate& Candidate, UStaticMeshComponent& Solid,
++        UStaticMeshComponent* Low, FString& Error)
++    {
++        if (!VerifyRuntimeHardnessFoundationSourceV1(Bundle,Candidate,Error)) return false;
++        auto Signature=[](const FVector3f& A,const FVector3f& B,const FVector3f& C) {
++            const FVector3f V[3]={A,B,C}; FString Best;
++            for(int32 R=0;R<3;++R)
++            {
++                FString S;
++                for(int32 I=0;I<3;++I) { const auto& P=V[(I+R)%3];
++                    S+=FString::Printf(TEXT("%.9g,%.9g,%.9g;"),P.X==0?0.f:P.X,P.Y==0?0.f:P.Y,P.Z==0?0.f:P.Z); }
++                if(R==0 || S<Best) Best=MoveTemp(S);
++            }
++            return Best;
++        };
++        auto Verify=[&](UStaticMeshComponent* C,UStaticMesh* Mesh,FName Profile,ECollisionChannel Channel,const TCHAR* RoleTag) {
++            if(!Mesh) return C==nullptr || C->GetStaticMesh()==nullptr;
++            FCollisionResponseTemplate Template;
++            if(!C || C->GetStaticMesh()!=Mesh || !C->IsRegistered() || !C->IsPhysicsStateCreated() ||
++                !C->GetBodyInstance() || !C->GetBodyInstance()->IsValidBodyInstance() || C->GetBodyInstance()->bSimulatePhysics ||
++                !C->ComponentHasTag(RoleTag) || C->Mobility!=EComponentMobility::Static ||
++                !C->GetComponentTransform().Equals(FTransform(Candidate.Pivot),0) || C->GetGenerateOverlapEvents() ||
++                !C->CanEverAffectNavigation() || !UCollisionProfile::Get()->GetProfileTemplate(Profile,Template) ||
++                C->GetCollisionProfileName()!=Profile || C->GetCollisionEnabled()!=ECollisionEnabled::QueryAndPhysics ||
++                C->GetCollisionObjectType()!=Channel || Template.ObjectType!=Channel ||
++                C->GetCollisionResponseToChannels()!=Template.ResponseToChannels) return false;
++            const FMeshDescription* Description=Mesh->GetMeshDescription(0);
++            if(!Description) return false;
++            const FStaticMeshConstAttributes Attributes(*Description);
++            const auto Positions=Attributes.GetVertexPositions();
++            TArray<FString> Expected;
++            for(const FTriangleID T:Description->Triangles().GetElementIDs())
++            {
++                const auto VI=Description->GetTriangleVertexInstances(T);
++                // StaticMesh cooks by swapping first two vertices.
++                Expected.Add(Signature(Positions[Description->GetVertexInstanceVertex(VI[1])],
++                    Positions[Description->GetVertexInstanceVertex(VI[0])],Positions[Description->GetVertexInstanceVertex(VI[2])]));
++            }
++            TArray<FString> Actual; bool Read=false;
++            FPhysicsCommand::ExecuteRead(C->GetBodyInstance()->GetPhysicsActorHandle(),[&](const FPhysicsActorHandle& Actor) {
++                TArray<FPhysicsShapeHandle> Shapes;
++                if(FPhysicsInterface::GetAllShapes_AssumedLocked(Actor,Shapes)!=1 ||
++                    FPhysicsInterface::GetShapeType(Shapes[0])!=ECollisionShapeType::Trimesh ||
++                    !FPhysicsInterface::IsQueryShape(Shapes[0]) || !FPhysicsInterface::IsSimulationShape(Shapes[0])) return;
++                const auto Geometry=FPhysicsInterface::GetGeometryCollection(Shapes[0]);
++                const auto& MeshGeometry=Geometry.GetTriMeshGeometry();
++                auto ReadIndices=[&](const auto& Indices) {
++                    for(const auto& Index:Indices) Actual.Add(Signature(FVector3f(MeshGeometry.Particles().GetX(Index[0])),
++                        FVector3f(MeshGeometry.Particles().GetX(Index[1])),FVector3f(MeshGeometry.Particles().GetX(Index[2]))));
++                };
++                if(MeshGeometry.Elements().RequiresLargeIndices()) ReadIndices(MeshGeometry.Elements().GetLargeIndexBuffer());
++                else ReadIndices(MeshGeometry.Elements().GetSmallIndexBuffer());
++                Read=true;
++            });
++            Expected.Sort(); Actual.Sort(); return Read && Actual==Expected;
++        };
++        if(!Verify(&Solid,Candidate.FixedSolid,DinkCollision::ProfileHardSolid,DinkCollision::HardSolid,TEXT("DinkHardnessFixedFloorFillV1")) ||
++            !Verify(Low,Candidate.FixedLow,DinkCollision::ProfileHardLow,DinkCollision::HardLow,TEXT("DinkHardnessFixedWaterV1")))
++        { Error=TEXT("actual foundation instance geometry/channel/profile/nav/overlap proof failed"); return false; }
++        Error.Reset(); return true;
++    }
++
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/DinkNarrative.Build.cs w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/DinkNarrative.Build.cs
+index e3d5840..2316966 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/DinkNarrative.Build.cs
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/DinkNarrative.Build.cs
+@@ -6,6 +6,6 @@ public class DinkNarrative : ModuleRules
+ 	{
+ 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+ 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "DinkCore", "InkPlusPlus" });
+-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "Slate", "SlateCore", "InputCore" });
++		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "Slate", "SlateCore", "InputCore", "PhysicsCore", "Chaos" });
+ 	}
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkBrains.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkBrains.cpp
+index 3f317d6..0b01725 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkBrains.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkBrains.cpp
+@@ -277,12 +277,18 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
+ 		if (Y1 < 0 && Y1 > -5) { Y1 = 0; }
+ 		else if (Y1 > 399 && X1 < 405) { Y1 = 399; }
+ 	}
+-	if (const FLiveHardness* Live = LiveHardness.Find(Screen))
++    if(IsHardnessLoading())return 1;
++	if (!RequiresOriginalHardnessScreen(Screen))if (const FLiveHardness* Live = LiveHardness.Find(Screen))
+ 	{
+ 		// A script redrew the map in this screen visit (draw_hard_sprite / draw_hard_map): g_hitmap as they left it.
+ 		return Live->Map->Get(X1, Y1);
+ 	}
+ 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
++    int32 RuntimeCode = 0;
++    if (TryRuntimeHardnessCode(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0, X1, Y1, RuntimeCode)) return RuntimeCode;
++    // A failed marked-world admission is a stopped loading state, never a
++    // license to read the legacy composed map while new bodies are unready.
++    if (IsHardnessLoading()) return 1;
+ 	const FDinkHardnessMap* Map = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
+ 	const int32 Code = Map ? Map->Get(X1, Y1) : 0;
+ 	if (Code > 100)
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkDirector.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkDirector.cpp
+index a703e6c..c98265f 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkDirector.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkDirector.cpp
+@@ -1,4 +1,5 @@
+ #include "DinkDirector.h"
++#include "Hardness/DinkHardnessActivation.h"
+ #include "DinkAudioSubsystem.h"
+ #include "DinkCreatureSubsystem.h"
+ #include "DinkArtSubsystem.h"
+@@ -15,9 +16,12 @@
+ #include "Greybox/DinkGreyboxSubsystem.h"
+ #include "Greybox/DinkPlaceholderActor.h"
+ #include "Greybox/DinkScreenVolume.h"
++#include "Greybox/DinkWarpComponent.h"
+ #include "Dom/JsonObject.h"
+ #include "Engine/GameInstance.h"
+ #include "Engine/World.h"
++#include "Components/MeshComponent.h"
++#include "Materials/MaterialInstanceDynamic.h"
+ #include "EngineUtils.h"
+ #include "GameFramework/Character.h"
+ #include "GameFramework/CharacterMovementComponent.h"
+@@ -386,9 +390,9 @@ void UDinkDirector::RegisterCommands()
+ 		const FDinkSprite* Sprite = FindSprite(Handle);
+ 		UDinkGameplay* Game = Story->GetGameplay();
+ 		// g_smallMap.sprite[sp_index].hard = the sprite's new flag, for a placement's sprite and a value that is not -1 (D:9993-9998).
+-		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1)
++		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1 && !Game->RequiresOriginalHardnessScreen(Sprite->Screen))
+ 		{
+-			Game->SetPlacementHard(Sprite->Origin, Now);
++			Game->SetPlacementHard(Sprite->bRetainedOriginalEditor?Game->OriginalHardnessOwnerOrigin(*Sprite):Sprite->Origin, Now);
+ 		}
+ 		return FDinkCommandResult();
+ 	});
+@@ -404,6 +408,7 @@ void UDinkDirector::RegisterCommands()
+ 			if (FDinkSprite* Sprite = FindSprite(Handle))
+ 			{
+ 				Sprite->bActive = true;
++                if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessReactivation(Handle);
+ 				if (AActor* Actor = Sprite->Actor.Get())
+ 				{
+ 					Actor->SetActorHiddenInGame(false);
+@@ -551,6 +556,9 @@ void UDinkDirector::RegisterCommands()
+ 	auto EditorVariant = [this, OriginFor](FDinkCommandContext& Ctx, const TCHAR* Part)
+ 	{
+ 		const FDinkOriginId Origin = OriginFor(Ctx, Ctx.Int(0));
++        UDinkGameplay* Game = Story ? Story->GetGameplay() : nullptr;
++        if (Game) Game->EditorHardnessPicture(Origin, FString(Part) == TEXT("seq"), Ctx.Int(1, -1));
++        if (Ctx.Int(1, -1) == -1) return FDinkCommandResult();
+ 		UDinkWorldStateSubsystem* World = Story->GetWorldState();
+ 		FDinkWorldOverride Existing;
+ 		if (World && Origin.IsValid() && World->TryGetOverride(Origin, Existing))
+@@ -561,8 +569,9 @@ void UDinkDirector::RegisterCommands()
+ 	};
+ 	Register(TEXT("editor_seq"), S::Implemented, TEXT("stored as the override's Variant (\"seq<N>\") when the placement has an override"), [EditorVariant](FDinkCommandContext& Ctx) { return EditorVariant(Ctx, TEXT("seq")); });
+ 	Register(TEXT("editor_frame"), S::Implemented, TEXT("stored as the override's Variant (\"frame<N>\") when the placement has an override"), [EditorVariant](FDinkCommandContext& Ctx) { return EditorVariant(Ctx, TEXT("frame")); });
+-	Register(TEXT("force_vision"), S::Implemented, TEXT("sets &vision; the greybox shows that vision's placements"), [this](FDinkCommandContext& Ctx)
++	Register(TEXT("force_vision"), S::Implemented, TEXT("rebuilds admitted original hardness screens; legacy greybox retains its vision path"), [this](FDinkCommandContext& Ctx)
+ 	{
++        if(Story->ForceOriginalHardnessVision(Ctx.Instance,Ctx.Int(0)))return FDinkCommandResult();
+ 		if (UDinkFactSubsystem* Facts = Story->GetFacts())
+ 		{
+ 			Facts->SetFact(TEXT("vision"), Ctx.Int(0));
+@@ -961,7 +970,23 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
+ 		const FDinkSprite* Sprite = FindSprite(Arg(Args, 0));
+ 		return IntResult(Sprite && Sprite->Origin.IsValid() ? Sprite->Origin.Placement : 0);
+ 	});
+-	for (const TCHAR* Prop : { TEXT("brain"), TEXT("dir"), TEXT("hitpoints"), TEXT("pframe"), TEXT("pseq"), TEXT("target"), TEXT("x"), TEXT("y") })
++    for (const bool bSequence : {true, false})
++    {
++        Bind(bSequence ? TEXT("editor_seq") : TEXT("editor_frame"), [this, Arg, bSequence](const TArray<Ink::FValueType>& Args)
++        {
++            const auto* Instance = Story->GetCurrentInstance();
++            const FDinkOriginId Origin(Instance ? InstanceScreen(*Instance) : GetCurrentScreen(), Arg(Args, 0));
++            const int32 Value = Args.Num() > 1 ? Arg(Args, 1) : -1;
++            UDinkGameplay* Game = Story->GetGameplay();
++            const int32 Result = Game ? Game->EditorHardnessPicture(Origin, bSequence, Value) : 0;
++            FDinkWorldOverride Existing;
++            if (Value != -1 && Story->GetWorldState() && Story->GetWorldState()->TryGetOverride(Origin, Existing))
++                Story->GetWorldState()->SetOverride(Origin, Existing.Type,
++                    FName(*FString::Printf(TEXT("%s%d"), bSequence ? TEXT("seq") : TEXT("frame"), Result)));
++            return IntResult(Result);
++        });
++    }
++	for (const TCHAR* Prop : { TEXT("brain"), TEXT("dir"), TEXT("hitpoints"), TEXT("pframe"), TEXT("pseq"), TEXT("target"), TEXT("x"), TEXT("y"), TEXT("hard") })
+ 	{
+ 		const FName PropName(Prop);
+ 		Bind(*FString::Printf(TEXT("sp_%s"), Prop), [this, Arg, PropName](const TArray<Ink::FValueType>& Args)
+@@ -1102,7 +1127,7 @@ int32 UDinkDirector::HandleForActor(AActor* Actor)
+ 	FDinkSprite& Sprite = Sprites[Handle];
+ 	Sprite.Actor = Actor;
+ 	HandleByActor.Add(Actor, Handle);
+-	if (Sprite.Origin.IsValid())
++	if (Sprite.Origin.IsValid()&&!Sprite.bRetainedOriginalEditor)
+ 	{
+ 		HandleByOrigin.Add(Sprite.Origin, Handle);
+ 	}
+@@ -1113,6 +1138,7 @@ int32 UDinkDirector::HandleForActor(AActor* Actor)
+ 		Comp->Script = Sprite.Script;
+ 		Comp->Props = Sprite.Props; // map.dat's brain, hitpoints, touch damage... for the AI/animation layers
+ 	}
++    if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessBirth(Handle);
+ 	return Handle;
+ }
+ 
+@@ -1146,6 +1172,7 @@ int32 UDinkDirector::HandleForPlacement(int32 Screen, int32 Placement)
+ 		Game->InitPlacementSprite(Sprite);
+ 	}
+ 	HandleByOrigin.Add(Origin, Handle);
++    if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessBirth(Handle);
+ 	return Handle;
+ }
+ 
+@@ -1172,6 +1199,7 @@ int32 UDinkDirector::CreateVirtualSprite(int32 Screen, double X, double Y)
+ 	Sprite.X = X;
+ 	Sprite.Y = Y;
+ 	Sprite.bSpawned = true;
++    if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessBirth(Handle);
+ 	return Handle;
+ }
+ 
+@@ -1187,6 +1215,7 @@ void UDinkDirector::DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool
+ 		return;
+ 	}
+ 	Sprite->bActive = false;
++    if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessRelease(Handle);
+ 	Sprite->bMoving = false;
+ 	if (AActor* Actor = Sprite->Actor.Get())
+ 	{
+@@ -1224,6 +1253,126 @@ void UDinkDirector::DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool
+ 	}
+ }
+ 
++bool UDinkDirector::CarryOriginalLiveSprites(int32 Screen,FString& Error)
++{
++    struct FCarry {FDinkSprite* Sprite;FVector World;AActor* Clone=nullptr;};
++    TArray<FCarry> Carries;
++    auto Rollback=[&](const TCHAR* Why){for(auto& C:Carries)if(C.Clone)C.Clone->Destroy();Error=Why;return false;};
++    for(auto& Pair:Sprites)
++    {
++        auto& S=Pair.Value;
++        if(S.Handle==1||!S.bActive||!S.GetProp(TEXT("live")))continue;
++        // Full rebuilds recreate eligible editor records even on the same
++        // screen. Detach the live editor survivor before that new birth.
++        if(S.Screen==Screen&&(!S.Origin.IsValid()||S.bRetainedOriginalEditor))continue;
++        FVector Target=FVector::ZeroVector;
++        if(const AActor* Actor=S.Actor.Get())
++        {
++            FVector Before;
++            if(!PixelToWorld(S.Screen,S.X,S.Y,Before)||!PixelToWorld(Screen,S.X,S.Y,Target))
++                return Rollback(TEXT("retained live actor screen transform unavailable"));
++            Target.Z+=Actor->GetActorLocation().Z-Before.Z;
++        }
++        Carries.Add({&S,Target,nullptr});
++    }
++    // A carried editor keeps its source Origin, but no longer owns the source
++    // placement actor. Template preserves its actual meshes/materials/profiles;
++    // only the new transient copy may move to another screen.
++    for(auto& C:Carries)if(C.Sprite->Origin.IsValid()&&!C.Sprite->bRetainedOriginalEditor)
++    {
++        AActor* Source=C.Sprite->Actor.Get();if(!Source)continue; // headless virtual editor
++        UWorld* World=GetWorld();if(!World||Source->GetWorld()!=World)return Rollback(TEXT("retained editor world expired"));
++        if(!Source->GetClass()->HasAnyClassFlags(CLASS_Native))
++            return Rollback(TEXT("retained editor requires reviewed native template class"));
++        FTransform Transform=Source->GetActorTransform();Transform.SetLocation(C.World);
++        FActorSpawnParameters Params;Params.Template=Source;Params.ObjectFlags|=RF_Transient;
++        Params.bDeferConstruction=true;Params.TransformScaleMethod=ESpawnActorScaleMethod::OverrideRootScale;
++        Params.SpawnCollisionHandlingOverride=ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
++        C.Clone=World->SpawnActor<AActor>(Source->GetClass(),Transform,Params);
++        if(!C.Clone)return Rollback(TEXT("retained editor template clone refused"));
++        C.Clone->Tags.AddUnique(TEXT("DinkRetainedLiveSprite"));
++        TInlineComponentArray<UDinkOriginComponent*> Origins(C.Clone);
++        for(auto* Origin:Origins){Origin->OriginId=FDinkOriginId();Origin->ScriptName=NAME_None;}
++        if(auto* Card=Cast<ADinkPlaceholderActor>(C.Clone)){Card->ScreenNumber=Screen;Card->Vision=0;}
++        TInlineComponentArray<UDinkWarpComponent*> Warps(C.Clone);
++        for(auto* Warp:Warps){Warp->bTriggerEnabled=false;Warp->SetGenerateOverlapEvents(false);Warp->SetCollisionEnabled(ECollisionEnabled::NoCollision);}
++        C.Clone->FinishSpawning(Transform,false,nullptr,ESpawnActorScaleMethod::OverrideRootScale);
++        if(!IsValid(C.Clone))return Rollback(TEXT("retained editor clone construction failed"));
++        // Construction may have restored template bindings; strip again before
++        // exposing the actor to the director's handle and origin tables.
++        TInlineComponentArray<UDinkOriginComponent*> OriginsAfter(C.Clone);
++        for(auto* Origin:OriginsAfter){Origin->OriginId=FDinkOriginId();Origin->ScriptName=NAME_None;}
++        TInlineComponentArray<UDinkWarpComponent*> WarpsAfter(C.Clone);
++        for(auto* Warp:WarpsAfter){Warp->bTriggerEnabled=false;Warp->SetGenerateOverlapEvents(false);Warp->SetCollisionEnabled(ECollisionEnabled::NoCollision);}
++        if(auto* Card=Cast<ADinkPlaceholderActor>(C.Clone)){Card->ScreenNumber=Screen;Card->Vision=0;}
++        // Runtime family/humanoid children are instanced components, not native
++        // defaults. Refuse a template that lost one instead of admitting an
++        // invisible sprite after its persistent Origin was deliberately removed.
++        TInlineComponentArray<UActorComponent*> CopiedComponents(C.Clone);
++        for(const UActorComponent* Original:Source->GetInstanceComponents())
++        {
++            if(!IsValid(Original))return Rollback(TEXT("retained source instance component expired"));
++            bool Found=false;
++            for(const auto* Copied:CopiedComponents)
++                if(Copied!=Original&&Copied->GetOuter()==C.Clone&&Copied->GetFName()==Original->GetFName()&&Copied->GetClass()==Original->GetClass())Found=true;
++            if(!Found)return Rollback(TEXT("retained template lost an instance component"));
++        }
++        // Shared immutable material assets are fine; per-actor MIDs must have
++        // independent override arrays and a detached MID parent chain.
++        TMap<UMaterialInstanceDynamic*,UMaterialInstanceDynamic*> MaterialCopies;
++        TSet<UMaterialInstanceDynamic*> MaterialStack;
++        TFunction<UMaterialInterface*(UMaterialInterface*)> CopyMaterial;
++        CopyMaterial=[&](UMaterialInterface* Material)->UMaterialInterface* {
++            auto* Dynamic=Cast<UMaterialInstanceDynamic>(Material);if(!Dynamic)return Material;
++            if(auto* Existing=MaterialCopies.Find(Dynamic))return *Existing;
++            if(MaterialStack.Contains(Dynamic)||MaterialStack.Num()>=32||!Dynamic->Parent)return nullptr;
++            MaterialStack.Add(Dynamic);
++            auto* Parent=CopyMaterial(Dynamic->Parent);
++            MaterialStack.Remove(Dynamic);if(!Parent)return nullptr;
++            auto* Copy=UMaterialInstanceDynamic::Create(Parent,C.Clone);if(!Copy)return nullptr;
++            Copy->CopyParameterOverrides(Dynamic);MaterialCopies.Add(Dynamic,Copy);return Copy;
++        };
++        TInlineComponentArray<UMeshComponent*> Meshes(C.Clone);
++        for(auto* Mesh:Meshes)for(int32 I=0;I<Mesh->GetNumMaterials();++I)
++        {
++            auto* Material=Mesh->GetMaterial(I);auto* Copy=CopyMaterial(Material);
++            if(Material&&!Copy)return Rollback(TEXT("retained material override clone refused"));
++            if(Copy!=Material)Mesh->SetMaterial(I,Copy);
++        }
++    }
++    // All fallible preparation precedes sprite identity/source-actor exchange.
++    for(auto& C:Carries)
++    {
++        auto& S=*C.Sprite;
++        if(S.Origin.IsValid())
++        {
++            if(S.HardnessEditorIndex==0)S.HardnessEditorIndex=S.Origin.Placement;
++            if(!S.bRetainedOriginalEditor)
++            {
++                if(const int32* Bound=HandleByOrigin.Find(S.Origin);Bound&&*Bound==S.Handle)HandleByOrigin.Remove(S.Origin);
++                if(AActor* Source=S.Actor.Get())
++                {
++                    HandleByActor.Remove(Source);
++                    if(auto* Comp=Source->FindComponentByClass<UDinkScriptSpriteComponent>())
++                    {Comp->Handle=0;} // detach stale binding; retain source presentation props
++                }
++                S.bRetainedOriginalEditor=true;S.bSpawned=true;
++            }
++        }
++        DinkHardness::CarryLiveScreenIdentity(S,Screen);
++        if(C.Clone){S.Actor=C.Clone;HandleByActor.Add(C.Clone,S.Handle);}
++        if(AActor* Actor=S.Actor.Get())
++        {
++            MakeMovable(Actor);Actor->SetActorLocation(C.World,false,nullptr,ETeleportType::TeleportPhysics);
++            if(auto* Card=Cast<ADinkPlaceholderActor>(Actor);Card&&S.bRetainedOriginalEditor){Card->ScreenNumber=Screen;Card->Vision=0;}
++            if(auto* Comp=UDinkScriptSpriteComponent::FindOrAdd(Actor))
++            {Comp->Handle=S.Handle;Comp->Props=S.Props;Comp->Script=S.Script;Comp->Dir=S.Dir;}
++            ApplyDir(S);
++        }
++    }
++    Error.Reset();return true;
++}
++
+ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& KeepHandles)
+ {
+ 	TArray<int32> Remove;
+@@ -1245,7 +1394,8 @@ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& Ke
+ 				Actor->Destroy();
+ 			}
+ 		}
+-		HandleByOrigin.Remove(Sprite.Origin);
++        if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessRelease(H);
++        if(!Sprite.bRetainedOriginalEditor)HandleByOrigin.Remove(Sprite.Origin);
+ 		HandleByActor.Remove(Sprite.Actor);
+ 		Sprites.Remove(H);
+ 	}
+@@ -1256,6 +1406,7 @@ void UDinkDirector::ResetSprites()
+ {
+ 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
+ 	{
++        if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessRelease(Pair.Key);
+ 		if (Pair.Value.bSpawned)
+ 		{
+ 			if (AActor* Actor = Pair.Value.Actor.Get())
+@@ -1278,11 +1429,21 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
+ 		Strength(TEXT("strength")), Defense(TEXT("defense")), TouchDamage(TEXT("touch_damage")), NoDraw(TEXT("nodraw")),
+ 		Size(TEXT("size")), Kill(TEXT("kill")), NoTouch(TEXT("notouch")), Seq(TEXT("seq")), Speed(TEXT("speed")), AttackWait(TEXT("attack_wait"));
+ 	FDinkSprite* Sprite = FindSprite(Handle);
++    const bool HardnessProperty=Prop==FName(TEXT("hard"))&&Story&&Story->GetGameplay()&&
++        ((Sprite&&Sprite->bRetainedOriginalEditor)||Story->GetGameplay()->RequiresOriginalHardnessScreen(Sprite?Sprite->Screen:Instance?Instance->Screen:GetCurrentScreen()));
+ 	if (!Sprite)
+ 	{
+ 		UE_LOG(LogDinkDirector, Verbose, TEXT("sp_%s(%d, %d): no such sprite"), *Prop.ToString(), Handle, Value);
+-		return 0;
++		return HardnessProperty ? -1 : 0;
+ 	}
++    if(HardnessProperty&&!Sprite->bActive)
++    {
++        // Original sp_hard calls change_sprite (inactive=>-1) then copies that
++        // result into an editor placement on a setter, even for the inactive case.
++        if(Value!=-1&&Sprite->Origin.IsValid())
++            if(auto* G=Story->GetGameplay())G->RecordEditorHardness(G->OriginalHardnessOwnerOrigin(*Sprite),-1);
++        return -1;
++    }
+ 	AActor* Actor = Sprite->Actor.Get();
+ 	UDinkStatsComponent* Stats = Actor ? Actor->FindComponentByClass<UDinkStatsComponent>() : nullptr;
+ 	// -1 means "read only" except for the setters the engine implements with change_sprite_noreturn
+@@ -1322,6 +1483,9 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
+ 		else
+ 		{
+ 			Sprite->Props.Add(Prop, Value);
++            if (HardnessProperty)
++                if (UDinkGameplay* Game = Story ? Story->GetGameplay() : nullptr)
++                    Game->RecordEditorHardness(Game->OriginalHardnessOwnerOrigin(*Sprite), Value);
+ 			if (Stats && (Prop == Hitpoints || Prop == Strength || Prop == Defense || Prop == TouchDamage))
+ 			{
+ 				FDinkStats NewStats = Stats->Stats;
+@@ -1753,6 +1917,7 @@ void UDinkDirector::BuildOriginIndex()
+ 	}
+ 	for (TActorIterator<AActor> It(World); It; ++It)
+ 	{
++        if(It->ActorHasTag(TEXT("DinkRetainedLiveSprite")))continue;
+ 		if (const UDinkOriginComponent* Origin = UDinkOriginComponent::FindOnActor(*It))
+ 		{
+ 			OriginIndex.Add(Origin->OriginId, *It);
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkGameplay.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkGameplay.cpp
+index 7e69c3d..744eb95 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkGameplay.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkGameplay.cpp
+@@ -1,4 +1,5 @@
+ #include "DinkGameplay.h"
++#include "Hardness/DinkRuntimeHardnessSource.h"
+ #include "DinkCombat.h"
+ #include "DinkDirector.h"
+ #include "DinkArtSubsystem.h"
+@@ -165,6 +166,7 @@ bool FDinkGameplayData::Load(FString* OutError)
+ 		P.Hard = Int(TEXT("hard"));
+ 		P.Sound = Int(TEXT("sound"));
+ 		P.Que = Int(TEXT("que"));
++		P.bHasQueSource = Col.Contains(TEXT("que"));
+ 		ByScreen.FindOrAdd(P.Origin.Screen).Add(P.Origin);
+ 		Placements.Add(P.Origin, P);
+ 	}
+@@ -188,6 +190,7 @@ bool FDinkGameplayData::Load(FString* OutError)
+ 		Pair.Value.Sort([](const FDinkOriginId& A, const FDinkOriginId& B) { return A.Placement < B.Placement; });
+ 	}
+ 	Hardness.Reset();
++    EditorHardFlags.Reset();
+ 	return IsLoaded() || Fail(TEXT("frames.csv or placements.csv has no rows"));
+ }
+ 
+@@ -297,6 +300,14 @@ const FDinkHardnessMap* FDinkGameplayData::GetTileHardness(int32 Screen) const
+ 	return Tiles ? Tiles->Get() : nullptr;
+ }
+ 
++const std::array<int,100>* FDinkGameplayData::GetEditorHardFlags(int32 Screen) const
++{
++    if(const auto* Found=EditorHardFlags.Find(Screen))return Found;
++    FDinkEditorHardSource Source;FString Error;
++    if(!FDinkEditorHardSource::Load(GetDataPath(*FString::Printf(TEXT("Hardness/SCR_%03d_editor_hard.json"),Screen)),Screen,Source,Error))return nullptr;
++    return &EditorHardFlags.Add(Screen,Source.EditorHard);
++}
++
+ void FDinkGameplayData::SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map)
+ {
+ 	if (Map.IsValid())
+@@ -520,6 +531,10 @@ bool UDinkGameplay::IsFrozenDink() const
+ 
+ void UDinkGameplay::Reset()
+ {
++    InvalidateRuntimeHardnessForScreenLoad();
++    HardnessProjection.Reset(); // save/load/new-game never restores a prior original slot identity
++    ResetOriginalSlotHistory();
++    EditorHardness.Reset();
+ 	WeaponInstance = MagicInstance = DeathInstance = 0;
+ 	PendingHits.Reset();
+ 	// A new game or a load puts the bow down (dink.cpp:1324 load_game, 17693 the start of a game).
+@@ -550,6 +565,7 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
+ 	{
+ 		return;
+ 	}
++    S.HardnessEditorIndex=P->Origin.Placement;
+ 	S.X = P->X;
+ 	S.Y = P->Y;
+ 	S.Dir = 0; // add_sprite_dumb leaves dir 0 (D:3089)
+@@ -566,6 +582,7 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
+ 	Set(P_BaseHit, P->BaseHit);
+ 	Set(TEXT("base_death"), P->BaseDie);
+ 	Set(TEXT("hard"), P->Hard);
++	Set(TEXT("que"), P->Que);
+ 	Set(TEXT("timing"), P->Timing);
+ 	Set(P_Strength, P->Strength);
+ 	Set(P_Defense, P->Defense);
+@@ -1845,7 +1862,13 @@ void UDinkGameplay::FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const
+ 	{
+ 		const FDinkSprite& S = *C.S;
+ 		uint8 Code = 0;
+-		if (S.Origin.IsValid() && S.Origin.Screen == Screen)
++        if(S.bRetainedOriginalEditor)
++        {
++            const FDinkOriginId Owner=OriginalHardnessOwnerOrigin(S);int32 Hard=1;
++            if(!OriginalEditorHardFlag(Screen,Owner.Placement,Hard))return; // preflight already validated flags
++            if(Hard==0)Code=static_cast<uint8>(100+Owner.Placement);
++        }
++		else if (S.Origin.IsValid() && S.Origin.Screen == Screen)
+ 		{
+ 			const FDinkPlacementInfo* P = Data.FindPlacement(S.Origin);
+ 			bool bActive = false;
+@@ -1869,6 +1892,9 @@ void UDinkGameplay::FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const
+ 
+ void UDinkGameplay::DrawHardSprite(int32 Handle)
+ {
++    if(const auto* D=Director())if(const auto* S=D->FindSprite(Handle))
++        if(RequiresOriginalHardnessScreen(S->Screen))
++        {if(!UsesOriginalHardnessProjection(S->Screen))GateOriginalHardnessTransition();FString Error;if(!RedrawRuntimeHardness(Handle,Error))UE_LOG(LogDinkDirector,Warning,TEXT("marked draw_hard_sprite refused: %s"),*Error);return;}
+ 	UDinkDirector* D = Director();
+ 	const FDinkSprite* S = D ? D->FindSprite(Handle) : nullptr;
+ 	if (!S)
+@@ -1876,6 +1902,8 @@ void UDinkGameplay::DrawHardSprite(int32 Handle)
+ 		return;
+ 	}
+ 	const int32 Screen = S->Screen;
++    FString FlagError;if(!ValidateRetainedLegacyEditorFlags(Screen,FlagError))
++    {GateOriginalHardnessTransition();UE_LOG(LogDinkDirector,Warning,TEXT("retained legacy draw refused: %s"),*FlagError);return;}
+ 	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
+ 	// fill_hardxy (D:597-614) of the sprite's picture's hardbox at its position (D:8098-8102): the tile layer comes back there (get_hard_map,
+ 	// D:582: 0 outside the map), with the engine's clamps (right > 599 -> 600, bottom > 399 -> 400, top and left at least 0).
+@@ -1905,6 +1933,10 @@ void UDinkGameplay::DrawHardSprite(int32 Handle)
+ 
+ void UDinkGameplay::DrawHardMap(int32 Screen)
+ {
++    if(RequiresOriginalHardnessScreen(Screen))
++    {if(!UsesOriginalHardnessProjection(Screen))GateOriginalHardnessTransition();FString Error;if(!RedrawRuntimeHardnessMap(Screen,Error))UE_LOG(LogDinkDirector,Warning,TEXT("marked draw_hard_map refused: %s"),*Error);return;}
++    FString FlagError;if(!ValidateRetainedLegacyEditorFlags(Screen,FlagError))
++    {GateOriginalHardnessTransition();UE_LOG(LogDinkDirector,Warning,TEXT("retained legacy draw refused: %s"),*FlagError);return;}
+ 	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
+ 	// fill_whole_hard (D:654-681): the tile layer over the whole map; then fill_hard_sprites and fill_back_sprites (D:8229-8231).
+ 	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
+@@ -1924,6 +1956,7 @@ void UDinkGameplay::DrawHardMap(int32 Screen)
+ 
+ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
+ {
++    if(RequiresOriginalHardnessScreen(Screen))return; // one physical owner, never PR41 proxy too
+ 	UWorld* World = Story ? Story->GetWorld() : nullptr;
+ 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+ 	const FLiveHardness* Live = LiveHardness.Find(Screen);
+@@ -1970,6 +2003,7 @@ void UDinkGameplay::RestoreGreyboxHardness()
+ TSharedPtr<FJsonObject> UDinkGameplay::SaveState() const
+ {
+ 	TSharedRef<FJsonObject> O = MakeShared<FJsonObject>();
++    SaveEditorPictures(O);
+ 	O->SetNumberField(TEXT("weapon"), WeaponInstance);
+ 	O->SetNumberField(TEXT("magic"), MagicInstance);
+ 	O->SetNumberField(TEXT("death"), DeathInstance);
+@@ -2013,6 +2047,7 @@ void UDinkGameplay::LoadState(const TSharedPtr<FJsonObject>& State)
+ 	{
+ 		return;
+ 	}
++    LoadEditorPictures(State);
+ 	WeaponInstance = State->GetIntegerField(TEXT("weapon"));
+ 	MagicInstance = State->GetIntegerField(TEXT("magic"));
+ 	DeathInstance = State->GetIntegerField(TEXT("death"));
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkStorySubsystem.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkStorySubsystem.cpp
+index 095a436..d9a2316 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkStorySubsystem.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkStorySubsystem.cpp
+@@ -1,6 +1,7 @@
+ #include "DinkStorySubsystem.h"
+ #include "DinkDirector.h"
+ #include "DinkGameplay.h"
++#include "Hardness/DinkHardnessActivation.h"
+ #include "DinkNarrativeInput.h"
+ #include "DinkFactSubsystem.h"
+ #include "DinkOriginComponent.h"
+@@ -183,7 +184,8 @@ void UDinkStorySubsystem::HandleFactChanged(FName Fact, int32 OldValue, int32 Ne
+ 	// Side effects of engine-bound facts, whoever wrote them.
+ 	if (Fact == NAME_Vision)
+ 	{
+-		if (UWorld* World = GetWorld())
++        if (Gameplay) Gameplay->OriginalHardnessVisionChanged(NewValue);
++		if (UWorld* World = GetWorld();World&&DinkHardness::ApplyFactVisionImmediately(Gameplay&&Gameplay->RequiresOriginalHardnessScreen(Director->GetCurrentScreen())))
+ 		{
+ 			if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
+ 			{
+@@ -441,6 +443,8 @@ void UDinkStorySubsystem::RemoveFinishedInstances()
+ 
+ void UDinkStorySubsystem::SwapIn(FDinkScriptInstance& I)
+ {
++    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
++    I.Vars.Add(TEXT("current_script"),I.Id);
+ 	TGuardValue<bool> Guard(bSyncingFacts, true);
+ 	for (const TPair<FString, int32>& Var : I.Vars)
+ 	{
+@@ -454,6 +458,12 @@ void UDinkStorySubsystem::SwapOut(FDinkScriptInstance& I)
+ 	{
+ 		Var.Value = Story.GetInt(Var.Key, Var.Value);
+ 	}
++    // Original decipher/var_equals resolves these from the live instance,
++    // not a cached local that predates force_vision's sprite1000 reassignment.
++    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
++    I.Vars.Add(TEXT("current_script"),I.Id);
++    Story.SetInt(TEXT("current_sprite"),I.Sprite);
++    Story.SetInt(TEXT("current_script"),I.Id);
+ }
+ 
+ void UDinkStorySubsystem::TakeInkErrors(const FDinkScriptInstance* I)
+@@ -474,7 +484,7 @@ int32 UDinkStorySubsystem::StepInstance(int32 InstanceId, int32 MaxLines)
+ 	TGuardValue<int32> Current(CurrentInstanceId, InstanceId);
+ 	SwapIn(*I);
+ 	int32 Lines = 0;
+-	while (Lines < MaxLines && I->State == EDinkInstanceState::Running)
++	while (Lines < MaxLines && I->State == EDinkInstanceState::Running && (!Gameplay||!Gameplay->IsHardnessLoading()))
+ 	{
+ 		Story.SwitchFlow(I->FlowName());
+ 		if (!Story.CanContinue())
+@@ -664,6 +674,7 @@ int32 UDinkStorySubsystem::ShowText(const FDinkStoryLine& Line, int32 Speaker, i
+ 	// strlen of the original string, which still had its 2-character colour code when it had a colour.
+ 	const int32 Length = Line.Text.Len() + (Line.Color != 14 ? 2 : 0);
+ 	T.ExpireMs = NowMs + DinkNarrative::TextDurationMs(Length);
++    if(Gameplay)Gameplay->RecordOriginalHardnessBirth(T.Handle);
+ 	ActiveTexts.Add(T);
+ 	return T.Handle;
+ }
+@@ -685,6 +696,7 @@ void UDinkStorySubsystem::RemoveTextSprite(int32 Handle)
+ 	{
+ 		if (const FDinkSprite* Sprite = Director->FindSprite(Handle); Sprite && Sprite->bText)
+ 		{
++            if(Gameplay)Gameplay->RecordOriginalHardnessRelease(Handle);
+ 			Director->Sprites.Remove(Handle);
+ 		}
+ 	}
+@@ -697,6 +709,7 @@ void UDinkStorySubsystem::RemoveText(int32 Handle)
+ 	{
+ 		if (const FDinkSprite* S = Director->FindSprite(Handle); S && S->bText)
+ 		{
++            if(Gameplay)Gameplay->RecordOriginalHardnessRelease(Handle);
+ 			Director->Sprites.Remove(Handle);
+ 		}
+ 	}
+@@ -850,6 +863,10 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
+ 	{
+ 		return;
+ 	}
++    // Keep screen/load entry available while a previous capability is gated;
++    // stop simulation only after giving the new screen its admission boundary.
++    if(Gameplay&&Gameplay->IsHardnessLoading())
++    {PollScreenChange();if(Gameplay->IsHardnessLoading())return;}
+ 	const double DeltaMs = FMath::Max(0.0, DeltaSeconds * 1000.0);
+ 	NowMs += DeltaMs;
+ 	// The world-state clock (respawn timers) is game time too.
+@@ -861,6 +878,7 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
+ 		World->AdvanceGameTime(Whole);
+ 	}
+ 	PollScreenChange();
++    if(Gameplay&&Gameplay->IsHardnessLoading())return;
+ 	Director->Tick(DeltaMs, NowMs);
+ 	UpdatePlayerPush();
+ 	Gameplay->Tick(DeltaMs, NowMs);
+@@ -1019,12 +1037,32 @@ void UDinkStorySubsystem::PollScreenChange()
+ 	}
+ }
+ 
+-void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
++bool UDinkStorySubsystem::ForceOriginalHardnessVision(FDinkScriptInstance& Caller,int32 Vision)
+ {
+-	if (Screen == LastScreen)
++    if(!Gameplay||!Gameplay->UsesOriginalHardnessProjection(Caller.Screen))return false;
++    // Original force_vision moves the caller to sprite1000 before kill_all_scripts.
++    DinkHardness::PreserveForceVisionCaller(Caller,UDinkDirector::HandleNoSprite);
++    if(Facts.IsValid())Facts->SetFact(NAME_Vision,Vision);
++    // This is nested script execution just like RunNow: save caller locals
++    // before base/placement mains and restore its Ink flow afterwards.
++    SwapOut(Caller);
++    OnScreenEntered(Caller.Screen,true,Vision);
++    if(Caller.IsAlive()){Story.SwitchFlow(Caller.FlowName());SwapIn(Caller);}
++    return true;
++}
++
++void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,int32 InitialVision,bool bRestartSavedRuntime)
++{
++	if (Screen == LastScreen && !bForceVisionRebuild)
+ 	{
+ 		return;
+ 	}
++    const bool OriginalTransition=Gameplay&&(Gameplay->RequiresOriginalHardnessScreen(Screen)||Gameplay->RequiresOriginalHardnessScreen(LastScreen)||Gameplay->HasSelectedOriginalHardness());
++    if (Gameplay)
++    {
++        Gameplay->InvalidateRuntimeHardnessForScreenLoad(!bForceVisionRebuild);
++        if(Gameplay->RequiresOriginalHardnessScreen(Screen))Gameplay->GateOriginalHardnessTransition();
++    }
+ 	const int32 Previous = LastScreen;
+ 	LastScreen = Screen;
+ 	AddEvent(TEXT("screen"), FString::FromInt(Screen), FString::Printf(TEXT("from %d"), Previous));
+@@ -1035,7 +1073,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
+ 	}
+ 	// Respawn clock: leaving a screen stamps its time (update_screen_time, D:1602); entering one clears
+ 	// the timed overrides (editor_type 6/7/8) whose time is up (fix_dead_sprites, D:917).
+-	if (UDinkWorldStateSubsystem* World = WorldState.Get())
++	if (UDinkWorldStateSubsystem* World = bForceVisionRebuild?nullptr:WorldState.Get())
+ 	{
+ 		if (Previous > 0)
+ 		{
+@@ -1080,7 +1118,18 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
+ 		}
+ 	}
+ 	RemoveFinishedInstances();
++    // kill_last_sprite preserves every live sprite, independently of whether
++    // its old script survives kill_all_scripts.
++    if(OriginalTransition)for(const auto& Pair:Director->GetSprites())if(Pair.Value.bActive&&Pair.Value.GetProp(TEXT("live")))Keep.Add(Pair.Key);
++    FString HardnessError;
++    if(OriginalTransition&&
++        ((Gameplay->RequiresOriginalHardnessScreen(Screen)&&!Gameplay->ValidateOriginalEditorCarry(Screen,InitialVision,HardnessError))||!Director->CarryOriginalLiveSprites(Screen,HardnessError)))
++    {Gameplay->GateOriginalHardnessTransition();UE_LOG(LogDinkNarrative,Error,TEXT("original live carry refused: %s"),*HardnessError);return;}
+ 	Director->ReleaseScreenSprites(Screen, Keep);
++    Gameplay->BeginOriginalIdentityScreen(Screen);
++    if(!Gameplay->BeginOriginalHardnessScreen(Screen,HardnessError,InitialVision))
++    {UE_LOG(LogDinkNarrative,Error,TEXT("hardness screen admission refused: %s"),*HardnessError);return;}
++    if(bRestartSavedRuntime){Gameplay->ArmWeapon();Gameplay->ArmMagic();}
+ 	Gameplay->SyncDinkFromActor();
+ 	// Remaster safety rule: the original cannot change screens while Dink is frozen, but a warp or
+ 	// dink.Goto can. If no surviving script is running (one that could unfreeze him), do it here.
+@@ -1091,14 +1140,14 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
+ 	}
+ 
+ 	// load_map clears screenlock (D:1016): a lock never outlives its screen.
+-	if (Director->bScreenLocked)
++	if (!bForceVisionRebuild && Director->bScreenLocked)
+ 	{
+ 		Gameplay->SetScreenLock(false);
+ 	}
+ 	// &vision is 0 when a screen loads; the base script may change it in main.
+ 	if (UDinkFactSubsystem* F = Facts.Get())
+ 	{
+-		F->SetFact(NAME_Vision, 0);
++		F->SetFact(NAME_Vision, InitialVision);
+ 	}
+ 	// The screen's base script (map.dat): from its screen volume, or from the data table when headless.
+ 	const ADinkScreenVolume* Volume = GetWorld() ? Director->FindScreenVolume(Screen) : nullptr;
+@@ -1115,6 +1164,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen)
+ 
+ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
+ {
++    if(Gameplay&&Gameplay->IsHardnessLoading())return;
+ 	const int32 Vision = Facts.IsValid() ? Facts->GetFact(NAME_Vision) : 0;
+ 	UWorld* World = GetWorld();
+ 	TMap<int32, AActor*> Actors;
+@@ -1163,10 +1213,23 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
+ 	// place_sprites_game (D:6040-6140): every active live placement (type 1) of the current vision becomes
+ 	// a sprite with map.dat's fields, and its script is loaded; then every script's main runs.
+ 	// Placements without an actor in this world (headless tests, other maps) become virtual sprites.
++    // Only migrated layered sources enter the original mixed-placement phase.
++    // Legacy data/UE script handles retain their existing path.
++    const bool Projected=Gameplay->UsesOriginalHardnessProjection(Screen);
++    if(!Projected)Gameplay->PrepareLegacyOriginalIdentity(Screen);
++    FString ProjectionError;
++    if(Projected&&!Gameplay->PrepareOriginalHardnessPlacements(Screen,ProjectionError))
++    {UE_LOG(LogDinkNarrative,Error,TEXT("original hardness placement phase refused: %s"),*ProjectionError);return;}
++    // Allocate/reuse actual UE handles in the existing data order. The separate
++    // original-slot plan controls hardness ties and original main dispatch only.
++    const auto Placements=Gameplay->GetData().GetPlacementsOnScreen(Screen);
++    const auto OriginalOrder=Projected?Gameplay->OriginalHardnessPlacementOrder(Screen):TArray<int32>();
++    TMap<int32,int32> OriginalMains;
+ 	TArray<int32> Mains;
+-	for (const FDinkPlacementInfo* P : Gameplay->GetData().GetPlacementsOnScreen(Screen))
++	for (const FDinkPlacementInfo* P : Placements)
+ 	{
+-		if (P->Type != 1 || (P->Vision != 0 && P->Vision != Vision))
++        const int32 Type=Projected?Gameplay->EffectiveHardnessPlacementType(*P):P->Type;
++		if (Type != 1 || (P->Vision != 0 && P->Vision != Vision) || (Projected&&!OriginalOrder.Contains(P->Origin.Placement)))
+ 		{
+ 			continue;
+ 		}
+@@ -1185,8 +1248,13 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
+ 			Actor->SetActorHiddenInGame(false);
+ 			Actor->SetActorEnableCollision(true);
+ 		}
++        if(Projected){Gameplay->BindOriginalHardnessPlacement(P->Origin,Handle);OriginalMains.Add(P->Origin.Placement,Handle);}
++        else Gameplay->BindLegacyOriginalIdentity(P->Origin,Handle);
+ 		Mains.Add(Handle);
+ 	}
++    if(Projected){Mains.Reset();for(int32 Owner:OriginalOrder)if(const auto* H=OriginalMains.Find(Owner))Mains.Add(*H);}
++    if(Projected&&!Gameplay->FinishOriginalHardnessPlacements(Screen,ProjectionError))
++    {UE_LOG(LogDinkNarrative,Error,TEXT("original hardness bindings refused: %s"),*ProjectionError);return;}
+ 	for (const int32 Handle : Mains)
+ 	{
+ 		const FDinkSprite* S = Director->FindSprite(Handle);
+@@ -1502,6 +1570,7 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
+ 		ReportError(TEXT("narrative save state does not parse (version 1 expected)"));
+ 		return false;
+ 	}
++    if(Gameplay&&Gameplay->RequiresOriginalHardnessScreen(Root->GetIntegerField(TEXT("lastScreen"))))Gameplay->GateOriginalHardnessTransition();
+ 	ResetRuntime();
+ 	if (!Story.LoadStateJson(Root->GetStringField(TEXT("ink"))))
+ 	{
+@@ -1511,7 +1580,26 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
+ 	NowMs = Root->GetNumberField(TEXT("nowMs"));
+ 	NextInstanceId = Root->GetIntegerField(TEXT("nextInstanceId"));
+ 	LastScreen = Root->GetIntegerField(TEXT("lastScreen"));
+-	Director->LoadState(Root->GetObjectField(TEXT("director")));
++    bool SavedOriginal=false;
++    const TSharedPtr<FJsonObject>* SavedGameplayPtr=nullptr;
++    const auto SavedGameplay=Root->TryGetObjectField(TEXT("gameplay"),SavedGameplayPtr)?*SavedGameplayPtr:TSharedPtr<FJsonObject>();
++    if(SavedGameplay.IsValid())
++    {
++        const auto Policy=SavedGameplay->TryGetField(TEXT("originalHardnessVisitV1"));
++        if(Policy.IsValid()&&Policy->Type!=EJson::Boolean)
++        {Gameplay->GateOriginalHardnessTransition();ReportError(TEXT("original hardness visit policy must be bool"));return false;}
++        SavedGameplay->TryGetBoolField(TEXT("originalHardnessVisitV1"),SavedOriginal);
++    }
++    const bool RestartOriginalLoad=Gameplay->RequiresOriginalHardnessScreen(LastScreen)||SavedOriginal;
++    if(RestartOriginalLoad)
++    {
++        auto DirectorState=MakeShared<FJsonObject>(*Root->GetObjectField(TEXT("director")));
++        TArray<TSharedPtr<FJsonValue>> DinkOnly;
++        for(const auto& V:DirectorState->GetArrayField(TEXT("sprites")))
++            if(V->AsObject()->GetIntegerField(TEXT("handle"))==1)DinkOnly.Add(V);
++        DirectorState->SetArrayField(TEXT("sprites"),DinkOnly);Director->LoadState(DirectorState);
++    }
++    else Director->LoadState(Root->GetObjectField(TEXT("director")));
+ 	const TSharedPtr<FJsonObject>* GameplayState = nullptr;
+ 	Gameplay->LoadState(Root->TryGetObjectField(TEXT("gameplay"), GameplayState) ? *GameplayState : nullptr);
+ 	for (const TSharedPtr<FJsonValue>& V : Root->GetArrayField(TEXT("instances")))
+@@ -1583,6 +1671,23 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
+ 	}
+ 	// The fact store is the source of truth: whatever the Ink state held, facts win.
+ 	PushAllFactsToInk();
++    Gameplay->RebuildOriginalIdentityFromActualSprites();
++    if(DinkHardness::RestartOriginalScreenOnLoad(RestartOriginalLoad))
++    {
++        const int32 LoadedScreen=LastScreen;
++        for(const auto& Instance:Instances)if(Instance->IsAlive())FinishInstance(*Instance,TEXT("original marked-world load rebuild"));
++        RemoveFinishedInstances();
++        for(const auto& Text:ActiveTexts)RemoveTextSprite(Text.Handle);
++        ActiveTexts.Reset();Menu=FDinkMenu();
++        // Original load_game kills all runtime sprites, reloads smallMap and
++        // restarts the screen. Saved editor overrides/pictures remain loaded.
++        Director->ReleaseScreenSprites(LoadedScreen,{});
++        Gameplay->RestartOriginalSavedRuntime();
++        OnScreenEntered(LoadedScreen,true,0,true);
++        if(Gameplay->IsHardnessLoading())
++        {ReportError(TEXT("marked-world saved screen admission failed; gameplay remains gated"));return false;}
++    }
++    else Gameplay->FinishLegacyHardnessLoad(LastScreen);
+ 	AddEvent(TEXT("load"), FString::Printf(TEXT("%d instances, %d texts"), Instances.Num(), ActiveTexts.Num()));
+ 	return true;
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkDirector.h w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkDirector.h
+index 4e258ed..f099c89 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkDirector.h
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkDirector.h
+@@ -38,6 +38,10 @@ struct DINKNARRATIVE_API FDinkSprite
+ 	TWeakObjectPtr<AActor> Actor;
+ 	/** Placement the sprite came from (invalid for spawned and text sprites). */
+ 	FDinkOriginId Origin;
++    // Transient original sp_index domain. Origin remains persistent source
++    // identity; this index addresses the CURRENT screen's smallMap instead.
++    int32 HardnessEditorIndex=0;
++    bool bRetainedOriginalEditor=false;
+ 	/** Screen whose pixel space X/Y are in. */
+ 	int32 Screen = 0;
+ 	/** Script attached (sp_script / the placement's script); None after kill_this_task. */
+@@ -203,6 +207,7 @@ public:
+ 	void DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool bEndScripts = true);
+ 	/** Frees handles of sprites that belong to another screen (screen change). Dink, 1000-attached and spawned sprites of live instances stay. */
+ 	void ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& KeepHandles);
++    bool CarryOriginalLiveSprites(int32 Screen,FString& Error);
+ 	const TMap<int32, FDinkSprite>& GetSprites() const { return Sprites; }
+ 	void ResetSprites();
+ 
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkGameplay.h w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkGameplay.h
+index a29be1d..c15f71c 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkGameplay.h
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkGameplay.h
+@@ -4,9 +4,16 @@
+ #include "UObject/Object.h"
+ #include "DinkOriginId.h"
+ #include "DinkRandom.h"
++#include <vector>
++#include <array>
+ #include "DinkGameplay.generated.h"
+ 
++class APlayerController;
+ class UDinkStorySubsystem;
++struct FDinkRuntimeHardnessState;
++struct FDinkHardnessProjection;
++struct FDinkOriginalSlotHistory;
++namespace DinkHardness { struct PhysicsOwner; struct Stamp; }
+ class UDinkDirector;
+ class FJsonObject;
+ struct FDinkSprite;
+@@ -131,8 +138,8 @@ struct DINKNARRATIVE_API FDinkPlacementInfo
+ 	/** map.dat's hard flag, inverted: 0 = the hardbox is stamped into the hardness (D:6136), 1 = none. */
+ 	int32 Hard = 0;
+ 	int32 Sound = 0;
+-	/** Draw order (0 = by y); it also orders the hardbox stamps (place_sprites_game D:5966, fill_back_sprites D:6832). */
+ 	int32 Que = 0;
++	bool bHasQueSource = false;
+ };
+ 
+ /** The original's per-frame and per-placement data (Scripts/sync_gameplay_data.py; never hand-edited). */
+@@ -157,6 +164,7 @@ public:
+ 	void SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map);
+ 	/** The screen's tile layer (get_hard_map, D:582: what fill_hardxy and fill_whole_hard copy back); null without data or with a test override. */
+ 	const FDinkHardnessMap* GetTileHardness(int32 Screen) const;
++    const std::array<int,100>* GetEditorHardFlags(int32 Screen) const;
+ 	/**
+ 	 * A sequence a script's init("load_sequence_now ...") defines that dink.ini does not (s7-mil.c:13: Seth's pose 580): its hardbox, for every
+ 	 * frame (figure_out, dink.cpp:2335-2344: a sequence not yet active is read from the line, ReadFromLoadSequenceString 2216-2226, and every
+@@ -176,6 +184,8 @@ public:
+ 	int32 NumPlacements() const { return Placements.Num(); }
+ 
+ private:
++    friend class FDinkHardnessRetainedLegacyOwner;
++    mutable TMap<int32,std::array<int,100>> EditorHardFlags;
+ 	static int64 Key(int32 Seq, int32 Frame) { return static_cast<int64>(Seq) * 1000 + Frame; }
+ 	TMap<int64, FDinkFrameInfo> Frames;
+ 	TMap<int32, int32> FrameCounts;
+@@ -262,6 +272,45 @@ public:
+ 	const FDinkGameplayData& GetData() const { return Data; }
+ 	bool HasData() const { return Data.IsLoaded(); }
+ 
++    // Explicit staged-world admission only; legacy aggregate collision is never toggled here.
++    // Observes original birth/rank phases without changing UE script handles.
++    void ResetOriginalSlotHistory();
++    void BeginOriginalIdentityScreen(int32 Screen);
++    void PrepareLegacyOriginalIdentity(int32 Screen);
++    void BindLegacyOriginalIdentity(const FDinkOriginId& Origin,int32 Handle);
++    void RebuildOriginalIdentityFromActualSprites();
++    bool HasSelectedOriginalHardness() const;
++    bool HasOriginalIdentityOnScreen(int32 Screen) const;
++    bool BeginOriginalHardnessScreen(int32 Screen, FString& Error, int32 InitialVision=0);
++    void RestartOriginalSavedRuntime();
++    void FinishLegacyHardnessLoad(int32 Screen) { if(!RequiresOriginalHardnessScreen(Screen))SetHardnessLoading(false); }
++    void GateOriginalHardnessTransition() { SetHardnessLoading(true); }
++    bool IsHardnessLoading() const { return bHardnessLoading; }
++    bool UsesOriginalHardnessProjection(int32 Screen) const;
++    bool RequiresOriginalHardnessScreen(int32 Screen) const;
++    FDinkOriginId OriginalHardnessOwnerOrigin(const FDinkSprite& Sprite) const;
++    bool ValidateOriginalEditorCarry(int32 Screen,int32 Vision,FString& Error) const;
++    bool OriginalEditorHardFlag(int32 Screen,int32 Index,int32& Hard) const;
++    void ApplyOriginalHardnessVision(int32 Screen,int32 Vision,bool bBackgroundOnly);
++    bool PrepareOriginalHardnessPlacements(int32 Screen, FString& Error);
++    TArray<int32> OriginalHardnessPlacementOrder(int32 Screen) const;
++    void BindOriginalHardnessPlacement(const FDinkOriginId& Origin, int32 Handle);
++    bool FinishOriginalHardnessPlacements(int32 Screen, FString& Error);
++    int32 EffectiveHardnessPlacementType(const FDinkPlacementInfo& Placement) const;
++    void RecordOriginalHardnessBirth(int32 Handle);
++    void RecordOriginalHardnessRelease(int32 Handle);
++    void RecordOriginalHardnessReactivation(int32 Handle);
++    void OriginalHardnessVisionChanged(int32 Vision);
++    bool AdmitRuntimeHardness(int32 Screen, int32 Vision, TSharedPtr<DinkHardness::PhysicsOwner> Owner, FString& Error);
++    bool GetDisplayedHardnessBox(const FDinkSprite& Sprite, int32& L, int32& T, int32& R, int32& B) const;
++    bool RedrawRuntimeHardness(int32 Handle, FString& Error);
++    bool RedrawRuntimeHardnessMap(int32 Screen,FString& Error);
++    void InvalidateRuntimeHardnessForScreenLoad(bool bResetTransientEditorHard=true);
++    void RecordEditorHardness(const FDinkOriginId& Origin, int32 Value);
++    int32 EditorHardnessPicture(const FDinkOriginId& Origin, bool bSequence, int32 Value);
++    bool TryRuntimeHardnessCode(int32 Screen, int32 Vision, int32 MapX, int32 MapY, int32& Code) const;
++
++
+ 	// ---- Random ----
+ 
+ 	/** Reseeds the default stream (and drops an injected source). */
+@@ -522,6 +571,30 @@ private:
+ 	UPROPERTY()
+ 	TObjectPtr<UDinkStorySubsystem> Story;
+ 
++    void SaveEditorPictures(TSharedRef<FJsonObject> State) const;
++    void LoadEditorPictures(const TSharedPtr<FJsonObject>& State);
++    void RefuseOriginalHardnessProjection();
++    int32 EffectiveHardnessFlag(const FDinkPlacementInfo& Placement) const;
++    void EffectiveHardnessPicture(const FDinkPlacementInfo& Placement, int32& Seq, int32& Frame) const;
++    bool BuildHardnessDrawStamps(int32 Screen, int32 Vision, std::vector<DinkHardness::Stamp>& Out, FString& Error, bool bWholeMap=false) const;
++    friend class FDinkHardnessShadowRoundTrip;
++    friend class FDinkHardnessRetainedLegacyOwner;
++    friend class FDinkHardnessEditorCarryActor;
++    bool ValidateRetainedLegacyEditorFlags(int32 Screen,FString& Error) const;
++    int32 InspectOriginalShadowSlot(int32 Handle) const;
++    bool ReserveOriginalEditorSlot(int32 Owner);
++    TSharedPtr<FDinkOriginalSlotHistory> OriginalSlotHistory;
++    void SetHardnessLoading(bool Loading);
++    bool bHardnessLoading=false;
++    TWeakObjectPtr<APlayerController> HardnessBlockedController;
++    TSharedPtr<FDinkHardnessProjection> HardnessProjection;
++    // Retain registered physical bodies independently of transient map/session lifetime.
++    TMap<int32, TSharedPtr<DinkHardness::PhysicsOwner>> HardnessOwners;
++    struct FEditorHardnessState { int32 Hard = 0, Seq = 0, Frame = 0; bool bHardSet = false; };
++    TMap<FDinkOriginId, FEditorHardnessState> EditorHardness;
++    TMap<int64, TSharedPtr<FDinkRuntimeHardnessState>> RuntimeHardness;
++    static int64 RuntimeHardnessKey(int32 Screen, int32 Vision)
++    { return (static_cast<int64>(Screen) << 32) | static_cast<uint32>(Vision); }
+ 	FDinkGameplayData Data;
+ 	TSharedPtr<IDinkRandomSource> RandomSource;
+ 	/** The seeded stream (RandomSource points at it unless a test injected another source). */
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkStorySubsystem.h w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkStorySubsystem.h
+index 20990d5..4204796 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkStorySubsystem.h
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/DinkStorySubsystem.h
+@@ -295,7 +295,8 @@ public:
+ 	/** The talk key: runs `talk` of the nearest scripted actor in front of Pawn. True if one started. */
+ 	bool TryTalk(APawn* Pawn);
+ 	/** Screen load (the engine's load_screen + draw_screen): kills scripts of the old screen, runs `main` of the new one. */
+-	void OnScreenEntered(int32 Screen);
++	void OnScreenEntered(int32 Screen, bool bForceVisionRebuild=false, int32 InitialVision=0, bool bRestartSavedRuntime=false);
++    bool ForceOriginalHardnessVision(FDinkScriptInstance& Caller,int32 Vision);
+ 	/** Run screen and placement `main` procedures when the player enters a screen (dink.ScreenScripts). */
+ 	bool bRunScreenScripts = true;
+ 	/** A new game (no save loaded): newgame.c `main` runs before the first screen's scripts. Set in Initialize. */
+@@ -363,6 +364,8 @@ public:
+ 	void DrawHUD(AHUD* HUD, UCanvas* Canvas);
+ 
+ private:
++    friend class FDinkHardnessAdapterTransitions;
++    friend class FDinkHardnessMarkedLoadAndVision;
+ 	friend class UDinkDirector;
+ 	friend class UDinkGameplay;
+ 
+diff --git c/DinkRemasterUE/Scripts/sync_gameplay_data.py w/DinkRemasterUE/Scripts/sync_gameplay_data.py
+index c7c1e5e..ce6664e 100644
+--- c/DinkRemasterUE/Scripts/sync_gameplay_data.py
++++ w/DinkRemasterUE/Scripts/sync_gameplay_data.py
+@@ -31,6 +31,7 @@ writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToA
+                       (brain, script, hitpoints, strength, defense, exp, nohit, touch_damage, speed,
+                       timing, base_walk/idle/attack/hit/die, hard, sound, que: the draw order that also
+                       orders the hardbox stamps, D:5966 and fill_back_sprites D:6832).
++    Hardness/*_layers.json additive exact tile-base/stamp packets; absent in legacy extractions.
+     screens.csv       screen,base_script: the script whose `main` runs when the screen loads (headless
+                       screen entry uses it when there is no ADinkScreenVolume)
+     gameplay_manifest.json   data repo commit and sha256 of each file
+@@ -48,6 +49,7 @@ import hashlib
+ import io
+ import json
+ import pathlib
++import re
+ import subprocess
+ import sys
+ 
+@@ -163,6 +165,58 @@ def hardness(dinkex: pathlib.Path, tiles=None):
+     return out
+ 
+ 
++def validate_editor_hard_flags(packet):
++    flags=packet.get('editor_hard_flags')
++    if type(flags) is not list or len(flags)!=99 or any(type(v) is not int or not -(2**31)<=v<2**31 for v in flags):
++        raise ValueError('all99 explicit signed int32 raw editor hard flags required')
++    return flags
++
++
++def editor_hard_flags_files(dinkex):
++    """Independent raw99 metadata, usable without layered-map activation."""
++    out={}
++    for path in sorted((dinkex/'screens').glob('SCR_*.json')):
++        packet=json.loads(path.read_text())
++        if 'editor_hard_flags' not in packet:
++            continue # historical extraction: no bridge data, never invent flags
++        screen=packet.get('screen');record=packet.get('map_record')
++        if (type(screen)is not int or not 1<=screen<=768 or path.stem!=f'SCR_{screen:03d}'
++                or type(record)is not int or not 1<=record<2**31):
++            raise ValueError('invalid raw editor source screen/record')
++        flags=validate_editor_hard_flags(packet)
++        data=dict(schema='dinkex.editor-hard/1',screen=screen,map_record=record,editor_hard_flags=flags)
++        out[f'Hardness/SCR_{screen:03d}_editor_hard.json']=(json.dumps(data,sort_keys=True)+'\n').encode()
++    return out
++
++
++def hardness_layers(dinkex: pathlib.Path):
++    """Copy additive source sidecars byte-exact; never synthesize layers from PNGs.
++
++    Legacy extractions without sidecars stay legacy. Unsupported envelopes refuse
++    before the writer starts; runtime consumers additionally validate every run.
++    """
++    out = {}
++    for path in sorted((dinkex / "hardness").glob("SCR_*_layers.json")):
++        match = re.fullmatch(r"SCR_(\d{3})(?:_v(-?\d+))?_layers\.json", path.name)
++        if not match or not 1 <= int(match[1]) <= 768:
++            raise ValueError(f"invalid runtime hardness filename: {path.name}")
++        expected_vision = int(match[2]) if match[2] is not None else 0
++        raw = path.read_bytes()
++        packet = json.loads(raw)
++        if not isinstance(packet, dict):
++            raise ValueError(f"invalid runtime hardness object: {path.name}")
++        if (packet.get("schema") != "dinkex.runtime-hardness/2"
++                or type(packet.get("width")) is not int or packet["width"] != 600
++                or type(packet.get("height")) is not int or packet["height"] != 400
++                or type(packet.get("vision")) is not int or packet["vision"] != expected_vision
++                or not -(2**31) <= expected_vision < 2**31
++                or packet.get("skipped_tile_indices") != []):
++            raise ValueError(f"unsupported runtime hardness envelope: {path.name}")
++        validate_editor_hard_flags(packet)
++        out[f"Hardness/{path.name}"] = raw
++    return out
++
++
+ def placements(dinkex: pathlib.Path):
+     rows = []
+     for path in sorted((dinkex / "screens").glob("SCR_*.json")):
+@@ -189,6 +243,8 @@ def main() -> int:
+     files = {"frames.csv": to_csv(FRAME_COLS, f_rows), "placements.csv": to_csv(PLACEMENT_COLS, p_rows),
+              "screens.csv": to_csv(["screen", "base_script"], s_rows)}
+     files.update(hardness(dinkex, tile_layers(args.data, dinkex)))
++    files.update(hardness_layers(dinkex))
++    files.update(editor_hard_flags_files(dinkex))
+     manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/); bin/dink/hard.dat (tile layers)",
+                 "data_repo_commit": git_commit(args.data),
+                 "files": {n: hashlib.sha256(b).hexdigest() for n, b in sorted(files.items())},
+diff --git c/tools/dinkex/dinkex/extract.py w/tools/dinkex/dinkex/extract.py
+index 9d58c1e..de09542 100644
+--- c/tools/dinkex/dinkex/extract.py
++++ w/tools/dinkex/dinkex/extract.py
+@@ -15,6 +15,7 @@ from .bmp import bmp_size, load_rgb, to_rgba
+ from .fsutil import CIResolver
+ from .gfx import Graphics
+ from .jsonfmt import write_json
++from .runtime_hardness import runtime_layers
+ from .sequences import SequenceModel, image_path
+ 
+ ALL_STEPS = ("screens", "sequences", "sprites", "tiles", "hardness", "world")
+@@ -260,11 +261,18 @@ class Extractor:
+                 self._save_codes(codes, "hardness/%s.png" % screen_id(n))
+                 self._save_owner(owner, "hardness/%s_owner.png" % screen_id(n))
+                 hard_pngs += 2
++                # Additive source packet: retain tile pixels hidden beneath stamps.
++                write_json(os.path.join(self.out, "hardness", "%s_layers.json" % screen_id(n)),
++                           runtime_layers(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, editor_hard_flags=scr.editor_hard_flags),
++                           expand_levels=1)
+                 for v in visions:
+                     c2, o2, _ = hardmod.build_hitmap(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, vision=v)
+                     self._save_codes(c2, "hardness/%s_v%d.png" % (screen_id(n), v))
+                     self._save_owner(o2, "hardness/%s_v%d_owner.png" % (screen_id(n), v))
+                     hard_info["vision_variants"][str(v)] = "hardness/%s_v%d.png" % (screen_id(n), v)
++                    write_json(os.path.join(self.out, "hardness", "%s_v%d_layers.json" % (screen_id(n), v)),
++                               runtime_layers(self.hard, scr.tiles[:TILES_PER_SCREEN], engine_sprites, hb_of, vision=v, editor_hard_flags=scr.editor_hard_flags),
++                               expand_levels=1)
+                     hard_variants += 1
+                     hard_pngs += 2
+             else:
+@@ -277,6 +285,7 @@ class Extractor:
+                     "id": screen_id(n), "screen": n,
+                     "col": col, "row": row,
+                     "map_record": self.world.loc[n],
++                    "editor_hard_flags": scr.editor_hard_flags,
+                     "name": scr.name,
+                     "indoor": indoor_raw != 0, "indoor_raw": indoor_raw,
+                     "music": music,
+diff --git c/tools/dinkex/dinkex/mapdata.py w/tools/dinkex/dinkex/mapdata.py
+index 202b825..ecfd851 100644
+--- c/tools/dinkex/dinkex/mapdata.py
++++ w/tools/dinkex/dinkex/mapdata.py
+@@ -130,6 +130,7 @@ class ScreenRecord:
+     v: list
+     s: str
+     sprites: dict               # index (0..100) -> dict (only active ones)
++    editor_hard_flags: list     # raw map.dat slots1..99, including inactive records
+     sprite_slots_total: int
+     script: str                 # base script (raw case)
+     random: str
+@@ -150,7 +151,7 @@ def parse_screen(blk, record):
+     return ScreenRecord(
+         record=record, name=cstr(blk[0:20]), tiles=tiles,
+         v=list(struct.unpack_from("<40i", blk, 7780)), s=cstr(blk[7940:8020]),
+-        sprites=sprites, sprite_slots_total=SPRITE_SLOTS,
++        sprites=sprites, editor_hard_flags=[struct.unpack_from("<i",blk,SPRITE_BASE+i*SPRITE_SIZE+120)[0] for i in range(1,ENGINE_SPRITE_MAX+1)], sprite_slots_total=SPRITE_SLOTS,
+         script=cstr(blk[30240:30253]), random=cstr(blk[30253:30266]), load=cstr(blk[30266:30279]),
+         buffer_nonzero=any(blk[30279:31280]),
+     )

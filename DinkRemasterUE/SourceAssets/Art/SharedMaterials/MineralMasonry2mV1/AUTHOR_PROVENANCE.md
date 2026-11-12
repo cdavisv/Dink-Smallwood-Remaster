@@ -1,6 +1,6 @@
 # Source and materials
 
-Authoring: local Blender 5.2.2 LTS, Python/NumPy/Pillow. No paid services, network downloads, Unreal operations, canonical writes, commit or push. Only this QA folder is owned. The canonical derivative input path/hash and all 328 mesh records are in SOURCE_PRESERVATION.json. Checkout observed art/roof-native-current in /home/artist/Work/DinkRoofNativeDelivery; output is outside Git in this QA folder.
+Authoring: local Blender 5.2.2 LTS, Python/NumPy/Pillow. No paid services, network downloads, Unreal operations, canonical writes, commit or push. Only this QA folder is owned. The canonical derivative input path/hash and all 328 mesh records are in SOURCE_PRESERVATION.json. Checkout observed art/roof-native-current in <HOME>/Work/DinkRoofNativeDelivery; output is outside Git in this QA folder.
 
 Original guide: References/64_05.png and placement receipt identify real S001_P19 / fireplace_brick / s1-h1-2, not sequence86 (which is the separate animated fire). Existing source geometry is authority for silhouette, aperture, chimney/roof interface and collision. Materials preserve coursed-masonry character and dark firebox; they do not reproduce the sprite's baked lighting.
 

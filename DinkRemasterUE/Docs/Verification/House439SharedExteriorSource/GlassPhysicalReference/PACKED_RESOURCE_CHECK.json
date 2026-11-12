@@ -1,0 +1,54 @@
+{
+  "status": "PASS_registered_map_bytes_exact_packed_relative_paths",
+  "scenes": [
+    {
+      "file": "ActualCottagePane_OpticalReference.blend",
+      "sha256": "c678f5712cb409e1f2cdd67a2a6f3b9f6d97fd0abd8faf2fdea4549e05468a87",
+      "maps": [
+        {
+          "name": "T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png"
+        },
+        {
+          "name": "T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png"
+        },
+        {
+          "name": "T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png"
+        }
+      ]
+    },
+    {
+      "file": "ActualCottagePane_ReflectionControl.blend",
+      "sha256": "8c71cd97970b068a7d70fdb1c8fcc84abf1dcb36a79f92c6c353dbf519ae2c9e",
+      "maps": [
+        {
+          "name": "T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png"
+        },
+        {
+          "name": "T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png"
+        },
+        {
+          "name": "T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "packed": true,
+          "relative_path": "//../../../../SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png"
+        }
+      ]
+    }
+  ],
+  "scope": "Study scenes only; cottage/library source bytes unchanged"
+}

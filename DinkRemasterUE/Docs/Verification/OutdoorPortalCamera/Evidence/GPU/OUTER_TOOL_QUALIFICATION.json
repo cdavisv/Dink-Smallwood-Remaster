@@ -27,9 +27,9 @@
     "identity": {
       "pid": 828344,
       "start_ticks": 8647339,
-      "exe": "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "exe": "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
       "argv": [
-        "/home/artist/Work/DinkQA/Tools/usr/bin/Xvfb",
+        "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
         ":207",
         "-screen",
         "0",
@@ -37,7 +37,7 @@
         "-nolisten",
         "tcp",
         "-auth",
-        "/home/artist/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/authority",
+        "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/authority",
         "-noreset"
       ]
     },
@@ -48,8 +48,8 @@
   "proof_sha256": {
     "launch.json": "0656ea1e4b572537f81360f8120779396146de3aaf610a4a0aa625d9166c39bb",
     "result.json": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
-    "DISPLAY_CLOSED.json": "f3092d2bb83ddb06d1684b3fe26c9bb2893f13bf6e3490405b3e6e060dc02164",
-    "DRIVER_REVIEW_FINAL.json": "0c1109658fa141f18b564a71f213744f41eb8310e7e45b403d2efc52294b66a2"
+    "DISPLAY_CLOSED.json": "3387b3b80a984a2dc48a25f4fca91e68ddb0d3f78ef8cb00416c046c6fc71b63",
+    "DRIVER_REVIEW_FINAL.json": "c177eed5b96681b86529383da2542c1b1321a2a59d08c99b2a7f9894bf3026fa"
   },
   "qualification": "Priorreview scopegame/display/observeddriver results only; outertool143 is separate retainednonzeroqualification. No restart/sourcechange."
 }

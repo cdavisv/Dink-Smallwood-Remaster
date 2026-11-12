@@ -1,4 +1,5 @@
 #include "DinkGameplay.h"
+#include "Hardness/DinkRuntimeHardnessSource.h"
 #include "DinkCombat.h"
 #include "DinkDirector.h"
 #include "DinkArtSubsystem.h"
@@ -98,6 +99,8 @@ bool FDinkGameplayData::Load(FString* OutError)
 		Info.bEmpty = F.Num() > 9 && FCString::Atoi(*F[9]) != 0;
 		Info.Width = F.Num() > 10 ? FCString::Atoi(*F[10]) : 0;
 		Info.Height = F.Num() > 11 ? FCString::Atoi(*F[11]) : 0;
+        if(F.Num()>=15&&!F[12].IsEmpty()&&!F[13].IsEmpty())
+        {Info.OriginX=FCString::Atoi(*F[12]);Info.OriginY=FCString::Atoi(*F[13]);Info.PictureDescriptorSha1=F[14];}
 		Frames.Add(Key(Seq, Frame), Info);
 		int32& Count = FrameCounts.FindOrAdd(Seq);
 		Count = FMath::Max(Count, Frame);
@@ -165,6 +168,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 		P.Hard = Int(TEXT("hard"));
 		P.Sound = Int(TEXT("sound"));
 		P.Que = Int(TEXT("que"));
+		P.bHasQueSource = Col.Contains(TEXT("que"));
 		P.Prop = Int(TEXT("prop"));
 		P.WarpMap = Int(TEXT("warp_map"));
 		ByScreen.FindOrAdd(P.Origin.Screen).Add(P.Origin);
@@ -190,6 +194,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 		Pair.Value.Sort([](const FDinkOriginId& A, const FDinkOriginId& B) { return A.Placement < B.Placement; });
 	}
 	Hardness.Reset();
+    EditorHardFlags.Reset();
 	return IsLoaded() || Fail(TEXT("frames.csv or placements.csv has no rows"));
 }
 
@@ -297,6 +302,14 @@ const FDinkHardnessMap* FDinkGameplayData::GetTileHardness(int32 Screen) const
 	}
 	const TSharedPtr<FDinkHardnessMap>* Tiles = Hardness.FindChecked(Screen).Find(FDinkHardnessMap::TileLayerVision);
 	return Tiles ? Tiles->Get() : nullptr;
+}
+
+const std::array<int,100>* FDinkGameplayData::GetEditorHardFlags(int32 Screen) const
+{
+    if(const auto* Found=EditorHardFlags.Find(Screen))return Found;
+    FDinkEditorHardSource Source;FString Error;
+    if(!FDinkEditorHardSource::Load(GetDataPath(*FString::Printf(TEXT("Hardness/SCR_%03d_editor_hard.json"),Screen)),Screen,Source,Error))return nullptr;
+    return &EditorHardFlags.Add(Screen,Source.EditorHard);
 }
 
 void FDinkGameplayData::SetHardnessOverride(int32 Screen, TSharedPtr<FDinkHardnessMap> Map)
@@ -522,6 +535,10 @@ bool UDinkGameplay::IsFrozenDink() const
 
 void UDinkGameplay::Reset()
 {
+    InvalidateRuntimeHardnessForScreenLoad();
+    HardnessProjection.Reset(); // save/load/new-game never restores a prior original slot identity
+    ResetOriginalSlotHistory();
+    EditorHardness.Reset();
 	WeaponInstance = MagicInstance = DeathInstance = 0;
 	PendingHits.Reset();
 	// A new game or a load puts the bow down (dink.cpp:1324 load_game, 17693 the start of a game).
@@ -552,6 +569,7 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
 	{
 		return;
 	}
+    S.HardnessEditorIndex=P->Origin.Placement;
 	S.X = P->X;
 	S.Y = P->Y;
 	S.Dir = 0; // add_sprite_dumb leaves dir 0 (D:3089)
@@ -568,6 +586,7 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
 	Set(P_BaseHit, P->BaseHit);
 	Set(TEXT("base_death"), P->BaseDie);
 	Set(TEXT("hard"), P->Hard);
+	Set(TEXT("que"), P->Que);
 	Set(TEXT("timing"), P->Timing);
 	Set(P_Strength, P->Strength);
 	Set(P_Defense, P->Defense);
@@ -1680,6 +1699,8 @@ void UDinkGameplay::OnScreenLoaded()
 
 void UDinkGameplay::SetPlacementProp(const FDinkOriginId& Origin, int32 Prop)
 {
+    const int32* Previous=VisitPlacementProp.Find(Origin);
+    const TOptional<int32> PreviousVisit=Previous?TOptional<int32>(*Previous):TOptional<int32>();
 	// g_smallMap.sprite[n].prop = Prop (owner decision OD1: no 1997 command writes it). get_hard and special_block read the flag whenever they
 	// run (dink.cpp:569-575, 15339), so unlike sp_hard it needs no redraw: it acts at once and until the screen loads again.
 	const FDinkPlacementInfo* P = Data.FindPlacement(Origin);
@@ -1692,6 +1713,15 @@ void UDinkGameplay::SetPlacementProp(const FDinkOriginId& Origin, int32 Prop)
 	{
 		VisitPlacementProp.Add(Origin, Prop);
 	}
+    if(RequiresOriginalHardnessScreen(Origin.Screen))
+    {
+        FString Error;
+        if(!RefreshOriginalHardnessProp(Origin.Screen,Error))
+        {
+            if(PreviousVisit.IsSet())VisitPlacementProp.Add(Origin,PreviousVisit.GetValue());else VisitPlacementProp.Remove(Origin);
+            GateOriginalHardnessTransition();UE_LOG(LogDinkDirector,Warning,TEXT("marked sp_prop refused: %s"),*Error);return;
+        }
+    }
 	Note(FString::Printf(TEXT("prop %s %d"), *Origin.ToString(), Prop));
 	UWorld* World = Story ? Story->GetWorld() : nullptr;
 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
@@ -1910,7 +1940,13 @@ void UDinkGameplay::FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const
 	{
 		const FDinkSprite& S = *C.S;
 		uint8 Code = 0;
-		if (S.Origin.IsValid() && S.Origin.Screen == Screen)
+        if(S.bRetainedOriginalEditor)
+        {
+            const FDinkOriginId Owner=OriginalHardnessOwnerOrigin(S);int32 Hard=1;
+            if(!OriginalEditorHardFlag(Screen,Owner.Placement,Hard))return; // preflight already validated flags
+            if(Hard==0)Code=static_cast<uint8>(100+Owner.Placement);
+        }
+		else if (S.Origin.IsValid() && S.Origin.Screen == Screen)
 		{
 			const FDinkPlacementInfo* P = Data.FindPlacement(S.Origin);
 			bool bActive = false;
@@ -1934,6 +1970,9 @@ void UDinkGameplay::FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const
 
 void UDinkGameplay::DrawHardSprite(int32 Handle)
 {
+    if(const auto* D=Director())if(const auto* S=D->FindSprite(Handle))
+        if(RequiresOriginalHardnessScreen(S->Screen))
+        {if(!UsesOriginalHardnessProjection(S->Screen))GateOriginalHardnessTransition();FString Error;if(!RedrawRuntimeHardness(Handle,Error))UE_LOG(LogDinkDirector,Warning,TEXT("marked draw_hard_sprite refused: %s"),*Error);return;}
 	UDinkDirector* D = Director();
 	const FDinkSprite* S = D ? D->FindSprite(Handle) : nullptr;
 	if (!S)
@@ -1941,6 +1980,8 @@ void UDinkGameplay::DrawHardSprite(int32 Handle)
 		return;
 	}
 	const int32 Screen = S->Screen;
+    FString FlagError;if(!ValidateRetainedLegacyEditorFlags(Screen,FlagError))
+    {GateOriginalHardnessTransition();UE_LOG(LogDinkDirector,Warning,TEXT("retained legacy draw refused: %s"),*FlagError);return;}
 	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
 	// fill_hardxy (D:597-614) of the sprite's picture's hardbox at its position (D:8098-8102): the tile layer comes back there (get_hard_map,
 	// D:582: 0 outside the map), with the engine's clamps (right > 599 -> 600, bottom > 399 -> 400, top and left at least 0).
@@ -1970,6 +2011,10 @@ void UDinkGameplay::DrawHardSprite(int32 Handle)
 
 void UDinkGameplay::DrawHardMap(int32 Screen)
 {
+    if(RequiresOriginalHardnessScreen(Screen))
+    {if(!UsesOriginalHardnessProjection(Screen))GateOriginalHardnessTransition();FString Error;if(!RedrawRuntimeHardnessMap(Screen,Error))UE_LOG(LogDinkDirector,Warning,TEXT("marked draw_hard_map refused: %s"),*Error);return;}
+    FString FlagError;if(!ValidateRetainedLegacyEditorFlags(Screen,FlagError))
+    {GateOriginalHardnessTransition();UE_LOG(LogDinkDirector,Warning,TEXT("retained legacy draw refused: %s"),*FlagError);return;}
 	FDinkHardnessMap& Map = EnsureLiveHardness(Screen);
 	// fill_whole_hard (D:654-681): the tile layer over the whole map; then fill_hard_sprites and fill_back_sprites (D:8229-8231).
 	const FDinkHardnessMap* Tiles = Data.GetTileHardness(Screen);
@@ -1989,6 +2034,7 @@ void UDinkGameplay::DrawHardMap(int32 Screen)
 
 void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 {
+    if(RequiresOriginalHardnessScreen(Screen))return; // one physical owner, never PR41 proxy too
 	UWorld* World = Story ? Story->GetWorld() : nullptr;
 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
 	if (!Greybox)
@@ -2053,6 +2099,7 @@ void UDinkGameplay::RestoreGreyboxHardness()
 TSharedPtr<FJsonObject> UDinkGameplay::SaveState() const
 {
 	TSharedRef<FJsonObject> O = MakeShared<FJsonObject>();
+    SaveEditorPictures(O);
 	O->SetNumberField(TEXT("weapon"), WeaponInstance);
 	O->SetNumberField(TEXT("magic"), MagicInstance);
 	O->SetNumberField(TEXT("death"), DeathInstance);
@@ -2096,6 +2143,7 @@ void UDinkGameplay::LoadState(const TSharedPtr<FJsonObject>& State)
 	{
 		return;
 	}
+    LoadEditorPictures(State);
 	WeaponInstance = State->GetIntegerField(TEXT("weapon"));
 	MagicInstance = State->GetIntegerField(TEXT("magic"));
 	DeathInstance = State->GetIntegerField(TEXT("death"));

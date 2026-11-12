@@ -1,6 +1,6 @@
 import bpy,json
 from pathlib import Path
-ART=Path(Path(__file__).resolve().parents[1]);bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));high=bpy.data.objects['SK_Dink_OutfitV3_LOD0'];hm=high.data;hp=[p for p in hm.polygons if p.material_index==4];hid=sorted({i for p in hp for i in p.vertices});hco={i:tuple(hm.vertices[i].co) for i in hid};hw={i:{high.vertex_groups[g.group].name:g.weight for g in hm.vertices[i].groups} for i in hid};rows=[]
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));high=bpy.data.objects['SK_Dink_OutfitV3_LOD0'];hm=high.data;hp=[p for p in hm.polygons if p.material_index==4];hid=sorted({i for p in hp for i in p.vertices});hco={i:tuple(hm.vertices[i].co) for i in hid};hw={i:{high.vertex_groups[g.group].name:g.weight for g in hm.vertices[i].groups} for i in hid};rows=[]
 for lod in range(1,4):
  ob=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'];old=ob.data;verts=[tuple(v.co) for v in old.vertices];weights=[{ob.vertex_groups[g.group].name:g.weight for g in v.groups} for v in old.vertices];faces=[];mis=[];smooth=[];uvs=[];normals=[]
  for p in old.polygons:

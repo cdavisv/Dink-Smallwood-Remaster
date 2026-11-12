@@ -2,7 +2,7 @@ import bpy,json,hashlib,sys,os,traceback
 from pathlib import Path
 O=Path(__file__).resolve().parent
 try:
- p=O/'Inputs/V4_Export.blend';assert hashlib.sha256(p.read_bytes()).hexdigest()=='023e6474169d9cfb2a61436a3849c26ca7411c958fa0d50827afd3e400f37279'
+ p=O/'Inputs/V4_Export.blend';assert hashlib.sha256(p.read_bytes()).hexdigest()=='ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1'
  bpy.ops.wm.open_mainfile(filepath=str(p));lod0=bpy.data.objects['SM_Pie_Rustic_01_LOD0'].data;dish=[p.index for p in lod0.polygons if p.material_index==0];assert len(dish)==860;reports=[]
  for level in [1,2]:
   ob=bpy.data.objects['SM_Pie_Rustic_01_LOD'+str(level)];old=ob.data;food=[p.index for p in old.polygons if p.material_index==1];sources=[(old,i)for i in food]+[(lod0,i)for i in dish]

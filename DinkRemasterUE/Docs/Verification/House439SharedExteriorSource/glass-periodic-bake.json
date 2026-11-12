@@ -1,0 +1,25 @@
+{
+  "status": "BAKE_COMPLETE_PIXEL_AND_RENDER_REVIEW_PENDING",
+  "map_size": [
+    1024,
+    1024
+  ],
+  "repeat_m": 2,
+  "normal_orientation": "OpenGL +Y tangent",
+  "normal_strength": 1,
+  "recipe": "Four 2m-offset Noise samples, smoothstep UV blends; matched value and first derivative at repeat boundaries",
+  "roughness_range_nominal": [
+    0.06,
+    0.115
+  ],
+  "IOR": 1.48,
+  "transmission": 1,
+  "thin_wall": true,
+  "BC_interpretation": "Authored near-clear tint, not measured transmittance",
+  "textures": {
+    "T_Candidate_ThinGlass2m_N_GL.png": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+    "T_Candidate_ThinGlass2m_ORM.png": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+    "T_Candidate_ThinGlass2m_BC.png": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4"
+  },
+  "qualification": "Periodic derivative alters prior world-space noise correlation. No cottage/native mutation or appearance approval."
+}

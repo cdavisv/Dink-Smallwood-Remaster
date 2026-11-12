@@ -1,8 +1,8 @@
 {
   "status": "OFF_TREE_BLENDER_SOURCE_CANDIDATE_RENDERED_NOT_NATIVE_ACCEPTANCE",
   "selected": "recess_20mm.blend",
-  "source_sha256": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
-  "candidate_sha256": "c1cc7707256c749d73579271938c4f06d47892d4099bf3ef5e8ab2e2f44fe487",
+  "source_sha256": "68b16e12d2ddff37d32758d247bb2b5445de7bef2f095ef4fff3dfb82fa5652c",
+  "candidate_sha256": "126ec58d2c2f96545601656366ad294b0983eda3c78e1f45c71b7de0d112faf7",
   "recipe_sha256": "e5a13eda9928628d11fb49171e8e8b0aa33c9781a363fe380d2e3cbc827f23af",
   "change": "Compress only each end-cap X depth toward its fixed exterior face; room-side plaster moves20mm outward. Four gables93verticeseach, allmovedZ>=3.5m; YZ silhouette and outerbounds fixed. Correct cap normals by inverse-transpose depth transform.",
   "visual_review": "Allsix actualmatched24sampleCPU images personallyviewed. Originalblacktriangularslivers disappear inrecess fullgable+crop; architecture/beams/materiallook maintained. Proud8mm control also removesdarkbands butcreates exposedbrace/plaster notch, so recess preferred. Root separatelyviewed before/recess subset.",
@@ -40,8 +40,8 @@
     "Two completedinspectors requiredexactownedSIGTERM afterfutexwait; causeunproven. Finalrender/validation scripts exit0 aftersynchronousoutputs withos._exit toavoidshutdownwait."
   ],
   "files_sha256": {
-    "Original.blend": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
-    "recess_20mm.blend": "c1cc7707256c749d73579271938c4f06d47892d4099bf3ef5e8ab2e2f44fe487",
+    "Original.blend": "68b16e12d2ddff37d32758d247bb2b5445de7bef2f095ef4fff3dfb82fa5652c",
+    "recess_20mm.blend": "126ec58d2c2f96545601656366ad294b0983eda3c78e1f45c71b7de0d112faf7",
     "proud_8mm.blend": "dd161479df26f62ba0c4c07a6f82a8aceee322c6e094e3ec1ad15f585a282693",
     "build_and_render.py": "e5a13eda9928628d11fb49171e8e8b0aa33c9781a363fe380d2e3cbc827f23af",
     "validate_geometry.py": "3f5b134950feed0182284ea9dbad05409bc36e55e3211a11ac3301523742366a",
@@ -52,14 +52,14 @@
     "GEOMETRY_PRESERVATION.json": "ad704b411d4fd08940b6ea45601bfb3565abcf977b9a6398cf096c594bdc6336",
     "ENCLOSURE_RAYS.json": "8e9015ecb00bb85cb16851b66d72740cc8fcc3cc0f48cd28edf2c7ad308509ec",
     "TRIANGLE_INTEGRITY.json": "3b259789120751b62ec1d4ea694ee44f7b208b43e504761786908f8ecb334d4e",
-    "Original_OVERLAP.json": "945cf2995b2c832bcd726f2e493fa35fe6d47b01f1c2cf47a66983761bcc5134",
-    "recess_20mm_OVERLAP.json": "ad66be162711af704c590213c514ce87986052590d276cb02bb2b9eb4e04e185",
+    "Original_OVERLAP.json": "989c670afdc6235138b7de06644f7e0f5f338e886a8e48eba3fda287ab816220",
+    "recess_20mm_OVERLAP.json": "14349850914e81488da7d904a536f07c7a4c6505c1287e177967b74852813b16",
     "proud_8mm_OVERLAP.json": "f08883306db2e282a5612a542410af6e4406e5cb91692939f6801c07a2cc54d9",
-    "Renders/before_gable.png": "07663ee1d97598cb29b21465ba1ffdd4f8a4155b31ef0366c4c01bb413dd75b0",
-    "Renders/before_junction.png": "1a573b8120fd3027e18ae28bef9b818e4af4a8e84f47c62e8aa4fa465054005f",
+    "Renders/before_gable.png": "a6e3698aa62c291c63c9d54cda17f8fd18c1314a54d825406f1fcc00d49a99b1",
+    "Renders/before_junction.png": "7cf1f1c4c5845921f6b5341c95f31b256beb0a7bf485d94394991f0396f41e84",
     "Renders/proud_8mm_gable.png": "ca3cf7444bc0e06a7be183c9d4b19ea6c43c0f9d75da0635177e00093c991de3",
     "Renders/proud_8mm_junction.png": "e3b98f50ff80425d926ea04f2a9b23ad60cef4aa7d794efbe2c1994bc08695ca",
-    "Renders/recess_20mm_gable.png": "520d7424ee364aa368b030a0dc2f4c37322c683b504a08e1afe249191a726ee1",
-    "Renders/recess_20mm_junction.png": "182945fbc95258490a5909967b7487898af332df473d0597805de9f4b63180ea"
+    "Renders/recess_20mm_gable.png": "dadf540eeb2acb3b980e00f3c311980a357694981ebc7ed889fc488c02870785",
+    "Renders/recess_20mm_junction.png": "db032dca72e32706f7fb3965ab384eee7ff6b2f01ed9d032bc99ebc6b7aa024b"
   }
 }

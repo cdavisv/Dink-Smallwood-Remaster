@@ -1,10 +1,10 @@
 {
   "passed": true,
-  "export_sha256": "4448f73519e2e170efdecc39625c1d6bfc7493989ea99e7d352bee61d142d411",
+  "export_sha256": "f108098793a8f16c22f3fd7130c981786d91885c80c9f7e180ef067c85b4af89",
   "LODs": [
     {
       "LOD": 0,
-      "FBX_sha256": "0683bb4104616fb6b1ba3649892762348213dcca91ff260341e954f69e0268bd",
+      "FBX_sha256": "b0ee83de5820ac2bd65ca2664cfd0f9939ee37b87383093ce8e33621536fc24b",
       "single_render_mesh": true,
       "triangles": 4870,
       "max_position_delta_m": 0,
@@ -16,7 +16,7 @@
     },
     {
       "LOD": 1,
-      "FBX_sha256": "c00b2de9b9f9ad9e735dac994b61b5a994f70a209336f36bbe1720cc3a254a8f",
+      "FBX_sha256": "dddab43380a36fe130a9278eb4606c55156a6637a0b405e420ed13b6d75e9ad5",
       "single_render_mesh": true,
       "triangles": 2434,
       "max_position_delta_m": 0,
@@ -28,7 +28,7 @@
     },
     {
       "LOD": 2,
-      "FBX_sha256": "1a10958a29de30acfcd796268faf41c6355dc77e2924995a8cc75bad12a3a1ff",
+      "FBX_sha256": "0dc450f363525cac82d2149986d1a0f06c6010ff524821370cf47c4b816bcf83",
       "single_render_mesh": true,
       "triangles": 1218,
       "max_position_delta_m": 0,

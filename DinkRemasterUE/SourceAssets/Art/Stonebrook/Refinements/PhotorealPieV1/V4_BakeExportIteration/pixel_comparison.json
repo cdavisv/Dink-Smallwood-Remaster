@@ -10,8 +10,8 @@
       ],
       "mean_abs_RGB_255": 0.3641592562198639,
       "p95_abs_RGB_255": 2.0,
-      "source_sha256": "aa17631516a8b6b11ba33edfe12360ae4b812d8344697d00ae8b0b9389b89b1b",
-      "actualFBX_baked_sha256": "096b44693172ede7cdc470266bd8f442f33ac6a117dc1d9b17db6882c6431e76"
+      "source_sha256": "3f49731762d08ed93b3c24b6a9c523eff56577433d2291dc45518c986a73ed22",
+      "actualFBX_baked_sha256": "1cb16af926a59f7cc2141fc0654a5a14a0caa88a4e158672ecb9769a045f81e3"
     },
     "crust": {
       "ROI_xyxy": [
@@ -22,8 +22,8 @@
       ],
       "mean_abs_RGB_255": 1.291100263595581,
       "p95_abs_RGB_255": 4.0,
-      "source_sha256": "6a55639a6bd89cdc32f4579b5da4c81915123a6243d581166115e253dc7a57a7",
-      "actualFBX_baked_sha256": "e8fa8d64247e34cd96c87f1e182cf7a25653e84df3d4fc7958d0e8c2b86f8d72"
+      "source_sha256": "4abdd596a238da142974696d8517ea50b9d3590062a0316a66eec733b9c8f5ea",
+      "actualFBX_baked_sha256": "2b819f76b4fe44dd0cf73a199b38d2348adf0664a74560345470c418699e1e50"
     },
     "dish": {
       "ROI_xyxy": [
@@ -34,8 +34,8 @@
       ],
       "mean_abs_RGB_255": 1.1399561166763306,
       "p95_abs_RGB_255": 4.0,
-      "source_sha256": "90121abc4c1ff47fa2632d7d52aee5161c5fe33a060d89d45de7fb770acdfc8f",
-      "actualFBX_baked_sha256": "3393b29d6be2e9452038b4968178e7f6c531fd417ab7b7ea3efec4696509cdc2"
+      "source_sha256": "26e079457511895e8c7820e4ffec7458f499b02e0a7a17b196d448576595ba9d",
+      "actualFBX_baked_sha256": "f2198cbf93a23a5cb376ad31bea3a5547ad3b6425eb7fb9c497a3c3785abd7ae"
     },
     "game-distance": {
       "ROI_xyxy": [
@@ -46,8 +46,8 @@
       ],
       "mean_abs_RGB_255": 0.1658838391304016,
       "p95_abs_RGB_255": 1.0,
-      "source_sha256": "7f28ecf787f4f261e51b696908e726c5b509c91122ce5cfa19c995471eb19d3d",
-      "actualFBX_baked_sha256": "34180d66dc2b221f6921296e2066a2a11f60af4131bd6983f92f31fe4bd227ee"
+      "source_sha256": "659752a6924d6ea0aedaa244a09b50c2a5302eac5471cddea972b7e1c3e0ee2e",
+      "actualFBX_baked_sha256": "6743d17c3541b31c2cd8d12e60e221cab2b6989b55c075c37d45e649a7a0cd5f"
     }
   },
   "limits": "Not universalvisualthresholds, nativefiltering/lighting/LODdistance/foodpickupacceptance"

@@ -1,7 +1,7 @@
 from pathlib import Path
 import bpy,json,hashlib,os
-root=Path(Path.home()/'Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1')
-out=Path(Path.home()/'Work/DinkQA/BasketImportDevelopment')
+root=Path('<HOME>/Work/DinkBasketSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1')
+out=Path('<HOME>/Work/DinkQA/BasketImportDevelopment')
 rows=[]
 for obj in bpy.data.objects:
  if obj.type!='MESH' or not obj.name.startswith('SM_Basket_Wicker_01') or obj.name.startswith('UCX_'):continue

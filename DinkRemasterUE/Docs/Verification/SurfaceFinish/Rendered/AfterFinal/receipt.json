@@ -4,7 +4,7 @@
   "underfloor_runtime_checked": true,
   "controller_recovery_same_process": true,
   "method": "Actual keyboard exit passed before reader error on unexposed Python navigation alias. Reader corrected to native reflected name; same owned game resumed outdoors without restart/teleport/asset changes. Actual keyboard return then passed; only afterward separate photographic fixture teleports. Read-only inspection, normal view yaw/pitch only.",
-  "preserved_exit_sha256": "f9b4b633c4a07a5c2c0182eec0b38fc819f815fb5087cc39e3eb85f87acdf5e6",
+  "preserved_exit_sha256": "9abdc98892fa873f516d99a20b83a834899cd1df5a5a221695cbdc4ccf5b65d5",
   "recovery_outside": {
     "screen": 439,
     "map": [
@@ -39,11 +39,11 @@
   },
   "records": [
     {
-      "command": "py QA_FLOOR_PHASE='AfterFinal'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
+      "command": "py QA_FLOOR_PHASE='AfterFinal'; exec(open('<HOME>/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
       "response": "[2026.11.08-05.49.11:439][267]LogPython: QA_FLOOR_READER_READY\n"
     },
     {
-      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('<HOME>/Work/DinkQA/read_native_camera.py').read())",
       "response": "[2026.11.08-05.49.14:400][463]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
     },
     {

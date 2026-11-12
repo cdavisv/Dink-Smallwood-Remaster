@@ -1,0 +1,281 @@
+diff --git c/DinkRemasterUE/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json w/DinkRemasterUE/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json
+index 37e6b19..3dddfbf 100644
+--- c/DinkRemasterUE/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json
++++ w/DinkRemasterUE/Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json
+@@ -20,7 +20,7 @@
+         1,
+         1
+       ],
+-      "mesh": "/Game/Dink/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.SM_Fireplace_Stonebrook_V2"
++      "mesh": "/Game/Dink/QA/IndoorRoofV12/Meshes/SM_Fireplace_Stonebrook_V3Contact.SM_Fireplace_Stonebrook_V3Contact"
+     }
+   ],
+   "elements": [],
+diff --git c/DinkRemasterUE/HANDOFF.md w/DinkRemasterUE/HANDOFF.md
+index d57193b..89aec8b 100644
+--- c/DinkRemasterUE/HANDOFF.md
++++ w/DinkRemasterUE/HANDOFF.md
+@@ -1,3 +1,17 @@
++# Roof-first master31 runtime QA — current local checkout
++
++Worktree <HOME>/Work/DinkRoofFirstPlaytest31, branch qa/roof-first-master31, base286da79bf1b2adc04961c4c089c3221a2217c14e (merged master31). Source-only trousers in master31 do not replace runtime hero. Root requested independent own Editor+Game builds and focused movement/navigation/door baseline only. No art admitted, runtime Data edited or GPU/visible game launched.
++
++All3649GitLFSobjects checked out from local common cache into regular own worktree files. Copied5478independent regular Content/ImportData fixture files from frozenQA29 withSHA and independentinode checks; no DLLs or generated build outputs copied. Fixture receipt Saved/RoofFirst31/Prepare/FIXTURE_COPY.json. Own cold build/test scripts/logs/DDC/UserDir/privateEpic/tmp remain under Saved/RoofFirst31. Preserve failures; no assertion/tolerance loosening. RootroofV12 job/oldV11/donorDLLs/oldRootruntime/QA29 and usergame89615LatestPlaytest real:0 remain untouched.
++
++Own Editor build passed152actions/117.31s and Game passed85actions/61.168s, normal0 with0compiler diagnostics. Both raw UBA store-failure footers remain visible despite finalResultSucceeded. Cold focused11 failed10/11: DoorOverlapIntentRetry hit unchanged100s fixture timeout while cold distancefields built; native255 intentional automation-failure exit, no crash/signal diagnosis. Raw cold logs/report preserved. Parent explicitly authorized separate same11 warm-DDC run with fresh UserDir/saves, unchanged code/assertions/timeouts/fixtures. Warm11 passed11/11, zero warnings/error events, native0/51.636s. All11862source/fixture and11877native/module pins remained unchanged through tests; seven ownEditorDLLs retain hashes and were actually mapped. All cold/warm owned supervisor/native/bwrap handles are HOST-confirmed absent; no signals sent.
++
++Baseline receipt Saved/RoofFirst31/BASELINE_READY.json SHA27178b61528e94ed97bed4dd6d6f93efc594c32fd220ebd7c9790603fa5925b1. This localHANDOFF update occurs AFTER frozen checks; only its tracked documentation bytes change afterward. Post-doc checkpoint records that one expected delta. No roof50copies/art/Data/GPU/display admission yet. Project is ready for later deliberately accepted roof-only package/Data admission and actual world/collision/gameplay review. Full168suite deferred until that actual art admission, not claimed as baseline validation.
++
++---
++
++Inherited master31 historical handoff below.
++
+ # Current trousers source delivery
+ 
+ Worktree <HOME>/Work/DinkTrouserSourceDelivery, branch art/photoreal-trousers-source, base master30 7c6e41e4035a41507a84b7e745851aa35d8cc425. Adds source-only PhotorealTrousersV33; no Content/runtime changes. Root integration runtime remains separate/frozen at /Work/DinkPhotorealArtIntegration. Source-only independent review has no blockers; commit/push/PR/CI/cold-LFS verification are in progress.
+diff --git c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
+index bddb052..74ecf6b 100644
+--- c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkMaterialArtLibrary.cpp
+@@ -1,4 +1,5 @@
+ #include "DinkMaterialArtLibrary.h"
++#include "Components/PrimitiveComponent.h"
+ #include "Materials/Material.h"
+ #include "Engine/StaticMesh.h"
+ #include "Engine/StaticMeshSourceData.h"
+@@ -10,6 +11,19 @@
+ #include "Serialization/JsonSerializer.h"
+ #include "Serialization/JsonWriter.h"
+ 
++TArray<int32> UDinkMaterialArtLibrary::InspectPrimitiveCollisionResponses(UPrimitiveComponent* Component)
++{
++	static_assert(static_cast<int32>(ECC_OverlapAll_Deprecated) == 64,
++		"Review the serialized collision-channel schema before changing this snapshot.");
++	TArray<int32> Result;
++	if (!Component) return Result;
++	const FCollisionResponseContainer& Responses = Component->GetCollisionResponseToChannels();
++	Result.Reserve(static_cast<int32>(ECC_OverlapAll_Deprecated));
++	for (int32 Index = 0; Index < static_cast<int32>(ECC_OverlapAll_Deprecated); ++Index)
++		Result.Add(static_cast<int32>(Responses.GetResponse(static_cast<ECollisionChannel>(Index))));
++	return Result;
++}
++
+ TArray<int32> UDinkMaterialArtLibrary::GetConnectedMaterialProperties(UMaterial* Material)
+ {
+ 	TArray<int32> Connected;
+diff --git c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
+index 5ef7696..adc5e3e 100644
+--- c/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
++++ w/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h
+@@ -6,6 +6,7 @@
+ 
+ class UMaterial;
+ class UStaticMesh;
++class UPrimitiveComponent;
+ 
+ /** Detached read-only snapshot; modifying this value cannot mutate its source body. */
+ USTRUCT(BlueprintType)
+@@ -28,6 +29,10 @@ class DINKIMPORT_API UDinkMaterialArtLibrary : public UBlueprintFunctionLibrary
+ {
+ 	GENERATED_BODY()
+ public:
++	/** Detached live responses for all64 serialized channels, including hidden enum values. No writes. */
++	UFUNCTION(BlueprintPure, Category = "Dink|Art")
++	static TArray<int32> InspectPrimitiveCollisionResponses(UPrimitiveComponent* Component);
++
+ 	/** Detached JSON per-LOD import metadata via public source-model accessors. Never edits/cooks/saves. */
+ 	UFUNCTION(BlueprintPure, Category = "Dink|Art")
+ 	static FString InspectStaticMeshSourceLods(UStaticMesh* Mesh);
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+index 1f7070d..76c982f 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+@@ -1,4 +1,9 @@
+ #include "DinkTestHelpers.h"
++#include "Dom/JsonObject.h"
++#include "Misc/FileHelper.h"
++#include "Misc/Paths.h"
++#include "Serialization/JsonReader.h"
++#include "Serialization/JsonSerializer.h"
+ #include <limits>
+ #include "DinkInteriorCameraComponent.h"
+ #include "DinkCameraOcclusion.h"
+@@ -30,6 +35,32 @@
+ 
+ namespace
+ {
++const TSet<FString>& ExactOpaqueRoofAssets()
++{
++    static const TSet<FString> Paths = {
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
++    };
++    return Paths;
++}
++const TSet<FString>& ExactRoofPanelAssets()
++{
++    static const TSet<FString> Paths = {
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01"),
++        TEXT("/Game/Dink/QA/IndoorRoofV12/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01"),
++    };
++    return Paths;
++}
++
+ struct FMeshBefore
+ {
+     UStaticMeshComponent* Mesh=nullptr;
+@@ -41,10 +72,15 @@ struct FMeshBefore
+     FCollisionResponseContainer Responses;
+     ECollisionChannel ObjectType=ECC_WorldStatic;
+     TArray<TObjectPtr<UMaterialInterface>> Materials, Overrides;
++    bool Navigation=false, Overlap=false, CastsShadow=false, Visible=false, ActorCollision=false;
+     explicit FMeshBefore(UStaticMeshComponent* M) : Mesh(M), Asset(M->GetStaticMesh()), Transform(M->GetComponentTransform()),
+         Extent(M->Bounds.BoxExtent), BoundsOrigin(M->Bounds.Origin), Enabled(M->GetCollisionEnabled()),
+         Profile(M->GetCollisionProfileName()), Responses(M->GetCollisionResponseToChannels()), ObjectType(M->GetCollisionObjectType()), Overrides(M->OverrideMaterials)
+-    { for (int32 I=0; I<M->GetNumMaterials(); ++I) Materials.Add(M->GetMaterial(I)); }
++    {
++        for (int32 I=0; I<M->GetNumMaterials(); ++I) Materials.Add(M->GetMaterial(I));
++        Navigation=M->CanEverAffectNavigation(); Overlap=M->GetGenerateOverlapEvents();
++        CastsShadow=M->CastShadow; Visible=M->IsVisible(); ActorCollision=M->GetOwner()->GetActorEnableCollision();
++    }
+ };
+ class FInteriorCameraPIE : public IAutomationLatentCommand
+ {
+@@ -90,11 +126,17 @@ public:
+             Move(Hero,Grey,Yard,300,200); Phase=1; At=FPlatformTime::Seconds(); return false;
+         }
+         if (FPlatformTime::Seconds()-At<.6) return false;
++        if (Phase>1) CheckOpaqueRoofs();
+         if (Phase==1)
+         {
+             Test->TestEqual(TEXT("outdoor439 selected before capturing original wall state"),Grey->GetCurrentScreen(),Yard);
+             CheckCamera(Hero,false); CheckInput(Hero,PC);
+             Test->TestFalse(TEXT("outdoor camera mode"),C->bInteriorMode);
++            // Derive supported membership independently from the committed full material
++            // mapping, never from the manager's post-state count. Exact new roof roles
++            // remain deliberately unmapped/opaque and receive separate invariants.
++            TMap<FString, UMaterialInterface*> Variants;
++            if (!ReadCameraVariants(Variants)) return true;
+             // Exercise a nonempty override array with the same original material, as well as the
+             // untouched empty/full arrays on every other real wall and ceiling.
+             for (TActorIterator<AActor> It(W); It; ++It)
+@@ -103,6 +145,20 @@ public:
+                 TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
+                 for (UStaticMeshComponent* M : Meshes)
+                 {
++                    const UStaticMesh* Asset=M->GetStaticMesh();
++                    if (!Test->TestTrue(TEXT("tagged camera fixture has a registered mesh/materials"),M->IsRegistered() && Asset && M->GetNumMaterials()>0)) return true;
++                    bool Complete=true;
++                    for (int32 Slot=0; Slot<M->GetNumMaterials(); ++Slot)
++                    {
++                        UMaterialInterface* Material=M->GetMaterial(Slot);
++                        Complete &= Material && Variants.Contains(Material->GetPathName().ToLower());
++                    }
++                    if (ExactOpaqueRoofAssets().Contains(Asset->GetPathName()))
++                    {
++                        Test->TestFalse(TEXT("admitted roof has no unreviewed camera fade mapping"),Complete);
++                        OpaqueRoofs.Emplace(M); continue;
++                    }
++                    if (!Test->TestTrue(TEXT("every other tagged real occluder has a complete reviewed fade mapping"),Complete)) return true;
+                     if (!OverrideFixture && M->GetNumMaterials()>0)
+                     {
+                         OverrideFixture=M; FixtureOverrides=M->OverrideMaterials; M->SetMaterial(0,M->GetMaterial(0));
+@@ -119,8 +175,19 @@ public:
+             }
+             Test->TestEqual(TEXT("actual house floor union contains56 authored floor tiles"),Floors.Num(),56);
+             Test->TestTrue(TEXT("real house has multiple tagged wall/ceiling meshes"),Before.Num()>2);
++            if (!OpaqueRoofs.IsEmpty())
++            {
++                TSet<FString> Seen;
++                for (const FMeshBefore& B : OpaqueRoofs) Seen.Add(B.Asset->GetPathName());
++                Test->TestEqual(TEXT("all9 exact new roof roles are inventoried separately"),OpaqueRoofs.Num(),9);
++                bool CompleteSet=Seen.Num()==9;
++                for (const FString& Path : ExactOpaqueRoofAssets()) CompleteSet &= Seen.Contains(Path);
++                Test->TestTrue(TEXT("opaque roof identities are exact and unique"),CompleteSet);
++                CheckOpaqueRoofs();
++            }
+             bool Wall=false, Ceiling=false, Door=false;
+             for (const FMeshBefore& B : Before) { Wall|=B.Asset && B.Asset->GetName().Contains(TEXT("Wall")); Ceiling|=B.Asset && B.Asset->GetName().Contains(TEXT("Ceiling")); Door|=B.Asset && B.Asset->GetName().Contains(TEXT("Doorway")); }
++            for (const FMeshBefore& B : OpaqueRoofs) Ceiling |= ExactRoofPanelAssets().Contains(B.Asset->GetPathName());
+             Test->TestTrue(TEXT("fixture includes real walls"),Wall); Test->TestTrue(TEXT("fixture includes real ceiling"),Ceiling); Test->TestTrue(TEXT("returned-door lintel is explicitly tagged for camera management"),Door);
+             UnknownActor=W->SpawnActor<AActor>(); Unknown=NewObject<UStaticMeshComponent>(UnknownActor,TEXT("UnknownCameraMaterial"));
+             UnknownActor->SetRootComponent(Unknown); UnknownActor->AddInstanceComponent(Unknown);
+@@ -272,6 +339,7 @@ public:
+             for (int32 I=0;I<Before[5].Materials.Num();++I)
+                 ExpectedOverrides[I]=Before[5].Overrides.IsValidIndex(I) ? Before[5].Overrides[I] : nullptr;
+             C->DestroyComponent();
++            CheckOpaqueRoofs();
+             Test->TestEqual(TEXT("external NoCollision survives manager destruction"),Before[0].Mesh->GetCollisionEnabled(),ECollisionEnabled::NoCollision);
+             Test->TestEqual(TEXT("external object type survives manager destruction"),Before[1].Mesh->GetCollisionObjectType(),ECC_WorldDynamic);
+             Test->TestEqual(TEXT("external named profile survives manager destruction"),Before[2].Mesh->GetCollisionProfileName(),ExternalProfile);
+@@ -307,6 +375,44 @@ public:
+         return false;
+     }
+ private:
++    bool ReadCameraVariants(TMap<FString, UMaterialInterface*>& Out)
++    {
++        FString Text; TSharedPtr<FJsonObject> Root;
++        if (!Test->TestTrue(TEXT("independent camera configuration loads and parses"),
++            FFileHelper::LoadFileToString(Text,*(FPaths::ProjectContentDir()/TEXT("Dink/Data/Art/camera_materials.json"))) &&
++            FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Root) && Root.IsValid())) return false;
++        FString Schema; const TSharedPtr<FJsonObject>* Variants=nullptr;
++        if (!Test->TestTrue(TEXT("independent camera schema and complete mapping exist"),Root->TryGetStringField(TEXT("schema"),Schema) && Schema==TEXT("dink-camera/1") && Root->TryGetObjectField(TEXT("material_variants"),Variants) && !(*Variants)->Values.IsEmpty())) return false;
++        for (const auto& Pair : (*Variants)->Values)
++        {
++            FString Path;
++            if (!Test->TestTrue(TEXT("camera variant row is a unique nonempty string"),!Pair.Key.IsEmpty() && Pair.Value->TryGetString(Path) && !Path.IsEmpty() && !Out.Contains(FString(*Pair.Key).ToLower()))) return false;
++            UMaterialInterface* Variant=LoadObject<UMaterialInterface>(nullptr,*Path); float Opacity=0;
++            if (!Test->TestTrue(TEXT("configured fade variant is an actual masked opacity1 material"),Variant && Variant->GetBlendMode()==BLEND_Masked && Variant->GetScalarParameterValue(FMaterialParameterInfo(TEXT("DinkCameraOpacity")),Opacity) && FMath::IsNearlyEqual(Opacity,1.f))) return false;
++            Out.Add(FString(*Pair.Key).ToLower(),Variant);
++        }
++        return true;
++    }
++    void CheckOpaqueRoofs()
++    {
++        for (const FMeshBefore& B : OpaqueRoofs)
++        {
++            CheckGeometry(B);
++            Test->TestTrue(TEXT("unmapped roof keeps all64 collision responses"),B.Mesh->GetCollisionResponseToChannels()==B.Responses);
++            Test->TestEqual(TEXT("unmapped roof keeps named profile"),B.Mesh->GetCollisionProfileName(),B.Profile);
++            Test->TestEqual(TEXT("unmapped roof keeps object type"),B.Mesh->GetCollisionObjectType(),B.ObjectType);
++            Test->TestTrue(TEXT("unmapped roof keeps exact material override array"),B.Mesh->OverrideMaterials==B.Overrides);
++            Test->TestEqual(TEXT("unmapped roof keeps material count"),B.Mesh->GetNumMaterials(),B.Materials.Num());
++            for (int32 I=0; I<B.Materials.Num(); ++I) Test->TestEqual(TEXT("unmapped roof remains original opaque material"),B.Mesh->GetMaterial(I),B.Materials[I].Get());
++            Test->TestFalse(TEXT("new roof navigation was false at capture"),B.Navigation);
++            Test->TestFalse(TEXT("new roof overlaps were false at capture"),B.Overlap);
++            Test->TestEqual(TEXT("unmapped roof preserves navigation"),B.Mesh->CanEverAffectNavigation(),B.Navigation);
++            Test->TestEqual(TEXT("unmapped roof preserves overlaps"),B.Mesh->GetGenerateOverlapEvents(),B.Overlap);
++            Test->TestEqual(TEXT("unmapped roof preserves shadows"),bool(B.Mesh->CastShadow),B.CastsShadow);
++            Test->TestEqual(TEXT("unmapped roof preserves visibility"),B.Mesh->IsVisible(),B.Visible);
++            Test->TestEqual(TEXT("unmapped roof preserves actor collision"),B.Mesh->GetOwner()->GetActorEnableCollision(),B.ActorCollision);
++        }
++    }
+     void Move(ADinkGreyboxCharacter* H,UDinkGreyboxSubsystem* G,ADinkScreenVolume* S,double X,double Y)
+     { H->GetCharacterMovement()->StopMovementImmediately(); H->SetActorLocation(S->MapPixelToWorld(X,Y)+FVector(0,0,98),false,nullptr,ETeleportType::TeleportPhysics); G->RefreshCurrentScreen(); }
+     void CheckGeometry(const FMeshBefore& B)
+@@ -319,6 +425,7 @@ private:
+     }
+     void CheckRestored()
+     {
++        CheckOpaqueRoofs();
+         for (const FMeshBefore& B : Before)
+         {
+             CheckGeometry(B); Test->TestEqual(TEXT("original collision profile restored"),B.Mesh->GetCollisionProfileName(),B.Profile);
+@@ -455,7 +562,7 @@ private:
+     }
+     FAutomationTestBase* Test; int32 Phase=0; double Began=0,At=0;
+     ADinkScreenVolume* Home=nullptr; ADinkScreenVolume* Yard=nullptr;
+-    TArray<FMeshBefore> Before; TArray<UStaticMeshComponent*> Floors; UInputComponent* InputBefore=nullptr;
++    TArray<FMeshBefore> Before, OpaqueRoofs; TArray<UStaticMeshComponent*> Floors; UInputComponent* InputBefore=nullptr;
+     UStaticMeshComponent* OverrideFixture=nullptr; TArray<TObjectPtr<UMaterialInterface>> FixtureOverrides;
+     AActor* UnknownActor=nullptr; UStaticMeshComponent* Unknown=nullptr; UMaterialInterface* UnknownMaterial=nullptr;
+     FRotator ExpectedControl; bool ViewportReady=false,MoveIgnored=false,LookIgnored=false; FCollisionResponseContainer CapsuleResponses; ECollisionEnabled::Type CapsuleEnabled=ECollisionEnabled::NoCollision;

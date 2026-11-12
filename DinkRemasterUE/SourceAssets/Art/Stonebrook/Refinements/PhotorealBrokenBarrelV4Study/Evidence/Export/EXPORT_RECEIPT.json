@@ -1,6 +1,6 @@
 {
-  "source": "/home/artist/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend",
-  "source_sha256": "de68432d3a74d3dd0193b535d9821558d173882f506153822d2d77af66e954f4",
+  "source": "<HOME>/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend",
+  "source_sha256": "ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5",
   "pieces": [
     {
       "piece": "V4_Bent_thin_iron_hoop_00",
@@ -878,6 +878,6 @@
   "temporary_union_codec_normal_angle_degrees": 0.6499429828180382,
   "normal_serialization": "Original transformed source normals injected into installed public exporter array writer; identity NormalsIndex; independent binary verification required",
   "tangent_basis": "Omitted: no claim that temporary union codec tangents preserve authored basis; native Mikk generation remains untested",
-  "fbx_sha256": "7234a729292bd0fb93310d888b67988ad1ce341a0f532c1ff71f741d34d120e0",
+  "fbx_sha256": "bb84fe22bdd116cbe6d1beb1af3a8051039263f419c5347d1a016e90065448d3",
   "union_blend_sha256": "9a7c54001d8aee010f28a10c62220d478975c7939e4fe78ac1017ad3c3041ed7"
 }

@@ -1,0 +1,720 @@
+#include "DinkTestHelpers.h"
+#include "DinkArtFamilySubsystem.h"
+#include "DinkDirector.h"
+#include "DinkGameplay.h"
+#include "DinkFactSubsystem.h"
+#include "DinkWorldStateSubsystem.h"
+#include "Hardness/DinkRuntimeHardnessSource.h"
+#include "Hardness/DinkHardnessSlots.h"
+#include "Hardness/DinkDisplayedHardness.h"
+#include "DinkInstanceOriginsComponent.h"
+#include "DinkLayout.h"
+#include "DinkOriginComponent.h"
+#include "DinkStorySubsystem.h"
+#include "Greybox/DinkGreyboxCharacter.h"
+#include "Greybox/DinkGreyboxSubsystem.h"
+#include "Greybox/DinkPlaceholderActor.h"
+#include "Greybox/DinkScreenVolume.h"
+#include "Hardness/DinkHardnessFoundationSource.h"
+#include "Hardness/DinkHardnessPrismComponent.h"
+#include "Engine/OverlapResult.h"
+#include "Hardness/DinkRuntimeHardnessWorldSubsystem.h"
+#include "AssetCompilingManager.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Dom/JsonObject.h"
+#include "Editor.h"
+#include "EngineUtils.h"
+#include "Engine/StaticMesh.h"
+#include "FileHelpers.h"
+#include "GameFramework/PlayerController.h"
+#include "GameMapsSettings.h"
+#include "Misc/FileHelper.h"
+#include "Misc/PackageName.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonSerializer.h"
+#include "Tests/AutomationEditorCommon.h"
+
+namespace
+{
+#include "DinkBarrelRolloutSourcePins.inl"
+bool ReadRules(FAutomationTestBase& Test, TArray<FDinkFamilyCollisionFitRule>& Rules)
+{
+    FString Text, Error;
+    if (!Test.TestTrue(TEXT("rollout source policy available"),
+        FFileHelper::LoadFileToString(Text, *DinkArtFamily::DefaultFamiliesPath())) ||
+        !Test.TestTrue(TEXT("rollout policy parses"), DinkFamilyCollisionFit::ParsePolicy(Text, Rules, Error)))
+        return false;
+    if (!Test.TestEqual(TEXT("whole rollout has exactly 85 rules"), Rules.Num(), 85)) return false;
+    TSet<FString> ExpectedPins;
+    for (const TCHAR* Pin : RolloutSourcePins) ExpectedPins.Add(Pin);
+    int32 Backgrounds = 0, Anonymous = 0;
+    TSet<FString> Origins;
+    for (const auto& Rule : Rules)
+    {
+        Test.TestEqual(TEXT("rollout source hash pinned"), Rule.SourceHash.Len(), 40);
+        Test.TestFalse(TEXT("each origin has one rule"), Origins.Contains(Rule.Origin.ToString()));
+        Origins.Add(Rule.Origin.ToString());
+        const FString Pin = FString::Printf(TEXT("%s|%s|%s|%d"), *Rule.Origin.ToString(),
+            *Rule.SourceHash, Rule.SourceScript.IsNone() ? TEXT("") : *Rule.SourceScript.ToString(), Rule.SourceType);
+        if (!Test.TestEqual(TEXT("exact frozen source identity present once: ") + Pin, ExpectedPins.Remove(Pin), 1))
+            return false;
+        Backgrounds += Rule.IsStaticBackground();
+        Anonymous += !Rule.IsStaticBackground() && Rule.SourceScript.IsNone();
+    }
+    if (!Test.TestEqual(TEXT("all frozen source identities consumed"), ExpectedPins.Num(), 0)) return false;
+    Test.TestEqual(TEXT("three original backgrounds"), Backgrounds, 3);
+    Test.TestEqual(TEXT("eight anonymous original live barrels"), Anonymous, 8);
+    for (const TCHAR* Control : {TEXT("S060_P08"), TEXT("S060_P09"), TEXT("S060_P10"), TEXT("S063_P06"),
+        TEXT("S063_P07"), TEXT("S096_P06"), TEXT("S222_P06"), TEXT("S222_P07"), TEXT("S222_P08"),
+        TEXT("S224_P07"), TEXT("S439_P06"), TEXT("S439_P22")})
+        Test.TestFalse(TEXT("soft and authored controls excluded"), Origins.Contains(Control));
+    return true;
+}
+
+UWorld* LoadRolloutWorld(FAutomationTestBase& Test)
+{
+    const FString File = FPackageName::LongPackageNameToFilename(
+        UGameMapsSettings::GetGameDefaultMap(), FPackageName::GetMapPackageExtension());
+    if (!Test.TestTrue(TEXT("ordinary generated world saved"), IFileManager::Get().FileExists(*File)))
+        return nullptr;
+    UWorld* World = UEditorLoadingAndSavingUtils::LoadMap(File);
+    if (!Test.TestNotNull(TEXT("fresh ordinary generated world loads"), World)) return nullptr;
+    FAssetCompilingManager::Get().FinishAllCompilation();
+    return World;
+}
+
+ADinkPlaceholderActor* SourceActor(UWorld& World, const FDinkOriginId& Origin, FAutomationTestBase& Test)
+{
+    ADinkPlaceholderActor* Found = nullptr;
+    for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It)
+    {
+        if (!It->Origin || It->Origin->OriginId != Origin) continue;
+        if (It->ActorHasTag(TEXT("DinkRetainedLiveSprite"))) continue;
+        if (Found)
+        {
+            Test.AddError(TEXT("duplicate rollout source actor: ") + Origin.ToString());
+            return nullptr;
+        }
+        Found = *It;
+    }
+    Test.TestNotNull(TEXT("actual rollout source actor: ") + Origin.ToString(), Found);
+    return Found;
+}
+
+bool SourceMatches(FAutomationTestBase& Test, ADinkPlaceholderActor& Actor,
+    const FDinkFamilyCollisionFitRule& Rule)
+{
+    return Test.TestTrue(TEXT("saved actor retains exact source identity: ") + Rule.Origin.ToString(),
+        Actor.Origin && Actor.Origin->SourceHash == Rule.SourceHash &&
+        Actor.Origin->ScriptName == Rule.SourceScript && Actor.Origin->PlacementType == Rule.SourceType &&
+        Actor.Origin->Sequence == 173 && Actor.Origin->Frame == 1 && Actor.Origin->ClassId == TEXT("barrel") &&
+        Actor.ScreenNumber == Rule.Origin.Screen && Actor.bHasHardness &&
+        Actor.ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag) == Rule.IsStaticBackground());
+}
+
+FCollisionQueryParams OnlyBody(UWorld& World, UPrimitiveComponent& Body)
+{
+    FCollisionQueryParams Query(SCENE_QUERY_STAT(DinkRolloutCardinal), true);
+    for (TActorIterator<AActor> It(&World); It; ++It)
+    {
+        TArray<UPrimitiveComponent*> Components;
+        It->GetComponents(Components);
+        for (auto* Component : Components)
+            if (Component != &Body) Query.AddIgnoredComponent(Component);
+    }
+    return Query;
+}
+
+void WriteRows(FAutomationTestBase& Test, const TArray<TSharedPtr<FJsonValue>>& Rows)
+{
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetArrayField(TEXT("origins"), Rows);
+    FString Text;
+    FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text));
+    const FString Directory = FPaths::ProjectSavedDir() / TEXT("Automation");
+    IFileManager::Get().MakeDirectory(*Directory, true);
+    Test.TestTrue(TEXT("actual all-origin physics report saved"),
+        FFileHelper::SaveStringToFile(Text, *(Directory / TEXT("BarrelRolloutBodies.json"))));
+}
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkRolloutSavedInventory,
+    "Dink.Gameplay.BarrelRollout.SavedInventory", DINK_TEST_FLAGS)
+bool FDinkRolloutSavedInventory::RunTest(const FString&)
+{
+    TArray<FDinkFamilyCollisionFitRule> Rules;
+    if (!ReadRules(*this, Rules)) return false;
+    UWorld* World = LoadRolloutWorld(*this);
+    if (!World) return false;
+    TMap<int32, ADinkGreyboxScreen*> Hosts;
+    TMap<int32, ADinkScreenVolume*> Volumes;
+    TSet<int32> Screens;
+    for (const auto& Rule : Rules) Screens.Add(Rule.Origin.Screen);
+    TestEqual(TEXT("38 affected screens"), Screens.Num(), 38);
+    for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
+    {
+        if (It->InstanceOrigins)
+            for (const auto& Instance : It->InstanceOrigins->Origins)
+                for (const auto& Rule : Rules)
+                    TestTrue(TEXT("rollout source represented exactly once"), Instance.OriginId != Rule.Origin);
+        if (!Screens.Contains(It->ScreenNumber)) continue;
+        TestFalse(TEXT("unique marked foundation host"), Hosts.Contains(It->ScreenNumber));
+        Hosts.Add(It->ScreenNumber, *It);
+    }
+    for (TActorIterator<ADinkScreenVolume> It(World); It; ++It)
+    {
+        if (!Screens.Contains(It->ScreenNumber)) continue;
+        TestFalse(TEXT("unique saved screen volume"), Volumes.Contains(It->ScreenNumber));
+        Volumes.Add(It->ScreenNumber, *It);
+    }
+    for (int32 Screen : Screens)
+    {
+        auto* Host = Hosts.FindRef(Screen);
+        auto* Volume = Volumes.FindRef(Screen);
+        if (!TestNotNull(TEXT("saved foundation host"), Host) || !TestNotNull(TEXT("saved screen volume"), Volume))
+            return false;
+        FDinkHardnessFoundationSource Source;
+        FString Error;
+        const FString Path = FPaths::ProjectContentDir() / FString::Printf(
+            TEXT("Dink/Data/Gameplay/Hardness/Foundations/SCR_%03d.json"), Screen);
+        if (!TestTrue(TEXT("foundation source loads"), FDinkHardnessFoundationSource::Load(Path, Screen, Source, Error)) ||
+            !TestTrue(TEXT("foundation gameplay inputs match"), Source.VerifyGameplayInputs(Error)) ||
+            !TestTrue(TEXT("fresh saved foundation geometry and profile match"),
+                Source.VerifyInstances(*Volume, *Host, Error)))
+        {
+            AddError(Error);
+            return false;
+        }
+    }
+    for (const auto& Rule : Rules)
+    {
+        auto* Actor = SourceActor(*World, Rule.Origin, *this);
+        if (!Actor || !SourceMatches(*this, *Actor, Rule)) return false;
+        auto* Mesh = LoadObject<UStaticMesh>(nullptr, *Rule.Mesh);
+        FDinkFamilyFittedGeometry Geometry;
+        FString Error;
+        if (!TestNotNull(TEXT("source kit mesh loads"), Mesh) ||
+            !TestTrue(TEXT("exact cooked mesh readable"), DinkFamilyCollisionFit::ReadCookedGeometry(*Mesh, Geometry, Error)) ||
+            !TestEqual(TEXT("actual canonical cooked surface hash"), Geometry.CanonicalSurfaceSha1, Rule.CanonicalSurfaceSha1))
+        {
+            AddError(Error);
+            return false;
+        }
+    }
+    return true;
+}
+
+class FDinkRolloutRuntimeCheck : public IAutomationLatentCommand
+{
+public:
+    FDinkRolloutRuntimeCheck(FAutomationTestBase* InTest, TArray<FDinkFamilyCollisionFitRule> InRules)
+        : Test(InTest), Rules(MoveTemp(InRules)), Began(FPlatformTime::Seconds())
+    {
+        for (const auto& Rule : Rules) Screens.AddUnique(Rule.Origin.Screen);
+        Screens.Sort();
+    }
+
+    bool Update() override
+    {
+        if (FPlatformTime::Seconds() - Began > 600)
+        {
+            Test->AddError(FString::Printf(TEXT("whole rollout runtime screen traversal timed out; initialReady=%d %s"),int32(InitialReady),*StartupState));
+            return true;
+        }
+        UWorld* World = GEditor ? GEditor->PlayWorld.Get() : nullptr;
+        auto* PC = World ? World->GetFirstPlayerController() : nullptr;
+        auto* Hero = PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
+        auto* Story = World && World->GetGameInstance()
+            ? World->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>() : nullptr;
+        auto* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+        if (!Hero || !Story || !Story->IsReady() || !Greybox) return false;
+        auto* Gameplay = Story->GetGameplay();
+        auto* Director = Story->GetDirector();
+        const double Now = World->GetTimeSeconds();
+        if (Now < Until) return false;
+        if (ScreenIndex == Screens.Num())
+        {
+            Test->TestEqual(TEXT("every exact origin has an actual registered body record"), Rows.Num(), Rules.Num());
+            WriteRows(*Test, Rows);
+            return true;
+        }
+        const int32 Screen = Screens[ScreenIndex];
+        if (!Entered)
+        {
+            if (!InitialReady)
+            {
+                const auto* InitialScreen = Greybox->GetCurrentScreen();
+                const auto* PhysicalScreen = Greybox->FindScreenAt(Hero->GetActorLocation());
+                const int32 Remaining = FAssetCompilingManager::Get().GetNumRemainingAssets();
+                StartupState = FString::Printf(TEXT("begun=%d pawnBegun=%d capsuleRegistered=%d paused=%d remainingAssets=%d worldTime=%.9g pendingNewGame=%d director=%d greybox=%d physical=%d loading=%d"),int32(World->HasBegunPlay()),int32(Hero->HasActorBegunPlay()),int32(Hero->GetCapsuleComponent()->IsRegistered()),int32(World->IsPaused()),Remaining,Now,int32(Story->bNewGamePending),Director->GetDink().Screen,InitialScreen?InitialScreen->ScreenNumber:-1,PhysicalScreen?PhysicalScreen->ScreenNumber:-1,int32(Gameplay->IsHardnessLoading()));
+                if (!World->HasBegunPlay() || !Hero->HasActorBegunPlay() || !Hero->GetCapsuleComponent()->IsRegistered() || World->IsPaused() || Remaining != 0 || Story->bNewGamePending || !InitialScreen || PhysicalScreen != InitialScreen || InitialScreen->ScreenNumber != Director->GetDink().Screen || Gameplay->IsHardnessLoading() || (Gameplay->RequiresOriginalHardnessScreen(InitialScreen->ScreenNumber) && !Gameplay->UsesOriginalHardnessProjection(InitialScreen->ScreenNumber)))
+                { InitialReadyTime = -1;return false; }
+                if (InitialReadyTime < 0 || InitialHero.Get() != Hero || InitialController.Get() != PC)
+                { InitialReadyTime = Now;InitialHero = Hero;InitialController = PC;return false; }
+                if (Now <= InitialReadyTime) return false;
+                InitialReady = true;
+                Test->AddInfo(TEXT("ROLLOUT_INITIAL_READY ")+StartupState);
+            }
+            Story->bNewGamePending = false;
+            Story->bInstantMode = true;
+            Test->AddInfo(FString::Printf(TEXT("ROLLOUT_BEFORE_GOTO requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
+            TArray<FVector2D> Entries{FVector2D(300,200)};
+            for (const auto& Rule : Rules) if (Rule.Origin.Screen == Screen)
+                if (const auto* Placement = Gameplay->GetData().FindPlacement(Rule.Origin))
+                    for (const FVector2D Offset : {FVector2D(20,0),FVector2D(-20,0),FVector2D(0,20),FVector2D(0,-20)})
+                        Entries.AddUnique(FVector2D(Placement->X-20,Placement->Y)+Offset);
+            bool DidEnter = false;
+            for (const FVector2D& Entry : Entries)
+                if (Greybox->GotoScreen(Screen,float(Entry.X),float(Entry.Y)))
+                {
+                    Test->AddInfo(FString::Printf(TEXT("ROLLOUT_PUBLIC_ENTRY screen=%d map=(%.9g,%.9g)"),Screen,Entry.X,Entry.Y));
+                    DidEnter = true;break;
+                }
+            if (!Test->TestTrue(TEXT("ordinary collision-checked entry into rollout screen"), DidEnter)) return true;
+            Entered = true;
+            EntryDeadline = FPlatformTime::Seconds() + 5;
+            Until = Now;
+            return false;
+        }
+        // Goto updates the director before the next Story tick admits this screen.
+        // A guessed world-time delay can expire within that same frame during startup.
+        if (Director->GetDink().Screen != Screen || !Gameplay->UsesOriginalHardnessProjection(Screen) || Gameplay->IsHardnessLoading())
+        {
+            if (FPlatformTime::Seconds() < EntryDeadline) return false;
+            Test->AddError(FString::Printf(TEXT("rollout admission deadline requested=%d current=%d capability=%d projected=%d loading=%d; see actual HARDNESS_BEGIN/ENTRY_COMPLETE refusal traces"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
+            return true;
+        }
+        if (!Test->TestEqual(TEXT("requested source screen became current"), Director->GetDink().Screen, Screen) ||
+            !Test->TestFalse(TEXT("all-origin initial projection released loading gate"), Gameplay->IsHardnessLoading()))
+            return true;
+        Test->AddInfo(FString::Printf(TEXT("ROLLOUT_AFTER_ENTRY requested=%d current=%d capability=%d projected=%d loading=%d"),Screen,Director->GetDink().Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading())));
+        const auto OriginalOrder = Gameplay->OriginalHardnessPlacementOrder(Screen);
+        std::vector<uint8> ExpectedPixels;TMap<FDinkOriginId,TArray<FIntPoint>> ExpectedMasks;
+        if(!BuildSourceOracle(*World,*Story,*Greybox,Screen,ExpectedPixels,ExpectedMasks))return true;
+        for (const auto& Rule : Rules)
+        {
+            if (Rule.Origin.Screen != Screen) continue;
+            auto* Actor = SourceActor(*World, Rule.Origin, *Test);
+            if (!Actor || !SourceMatches(*Test, *Actor, Rule)) return true;
+            const FDinkSprite* ExistingLive=nullptr;int32 ExistingHandle=0;
+            for(const auto& Pair:Director->GetSprites())
+                if(Pair.Value.bActive&&Pair.Value.Origin==Rule.Origin&&Pair.Value.Actor.Get()==Actor)
+                {ExistingLive=&Pair.Value;ExistingHandle=Pair.Key;break;}
+            const auto* OriginalPlacement=Gameplay->GetData().FindPlacement(Rule.Origin);
+            FString OrderText;for(int32 Index:OriginalOrder)OrderText+=FString::Printf(TEXT("%d,"),Index);
+            Test->AddInfo(FString::Printf(TEXT("ORIGINAL_BIRTH origin=%s sourceType=%d static=%d effectiveType=%d override=%d projected=%d capability=%d liveHandle=%d order=[%s]"),
+                *Rule.Origin.ToString(),Rule.SourceType,Rule.IsStaticBackground(),
+                OriginalPlacement?Gameplay->EffectiveHardnessPlacementType(*OriginalPlacement):-1,
+                int32(Story->GetWorldState()->GetOverrideType(Rule.Origin)),Gameplay->UsesOriginalHardnessProjection(Screen),
+                World->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>()->RequiresScreenCapability(Screen),
+                ExistingHandle,*OrderText));
+            if (!Test->TestEqual(TEXT("original live birth order matches exact source type: ")+Rule.Origin.ToString(),
+                OriginalOrder.Contains(Rule.Origin.Placement), !Rule.IsStaticBackground()))
+                return true;
+            if (!Rule.IsStaticBackground())
+            {
+                if (!Test->TestTrue(TEXT("original live birth keeps source script identity"),
+                    ExistingLive && ExistingLive->bActive && ExistingLive->Actor.Get() == Actor && ExistingLive->Script == Rule.SourceScript))
+                    return true;
+            }
+            FDinkSprite QueryActor;
+            QueryActor.Actor = Actor;
+            QueryActor.Screen = Screen;
+            FString Error;
+            auto* Body = Gameplay->FindHardnessFitPrimitive(QueryActor, &Error);
+            if (!Test->TestNotNull(TEXT("published actual fitted body for ") + Rule.Origin.ToString(), Body))
+            {
+                Test->AddError(Error);
+                return true;
+            }
+            UStaticMeshComponent* Family = nullptr;
+            TInlineComponentArray<UStaticMeshComponent*> Components(Actor);
+            for (auto* Component : Components)
+                if (Component->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) Family = Component;
+            if (!Test->TestNotNull(TEXT("actual family component"), Family) ||
+                !Test->TestNotNull(TEXT("actual family static mesh"), Family->GetStaticMesh().Get()) ||
+                !Test->TestTrue(TEXT("family visible and original card hidden"),
+                    Family->IsVisible() && !Family->bHiddenInGame && Actor->Card && Actor->Card->bHiddenInGame))
+                return true;
+            FDinkFamilyFittedGeometry Geometry;
+            if (!Test->TestTrue(TEXT("runtime exact cooked mesh readable"),
+                DinkFamilyCollisionFit::ReadCookedGeometry(*Family->GetStaticMesh(), Geometry, Error)))
+            {
+                Test->AddError(Error);
+                return true;
+            }
+            FBox Expected(ForceInit);
+            for (const auto& Vertex : Geometry.Vertices)
+                Expected += Family->GetComponentTransform().TransformPosition(FVector(Vertex));
+            if (!Test->TestTrue(TEXT("actual fitted extent equals the transformed cooked mesh"),
+                Body->Bounds.Origin.Equals(Expected.GetCenter(), .05) &&
+                Body->Bounds.BoxExtent.Equals(Expected.GetExtent(), .05)))
+                return true;
+            const auto* Placement = Gameplay->GetData().FindPlacement(Rule.Origin);
+            if (!Test->TestNotNull(TEXT("original gameplay placement"), Placement)) return true;
+            const auto* Volume = Greybox->FindScreen(Screen);
+            if (!Test->TestNotNull(TEXT("runtime screen volume"), Volume)) return true;
+            const FVector Ground = Volume->MapPixelToWorld(float(Placement->X - 20), float(Placement->Y));
+            const auto Query = OnlyBody(*World, *Body);
+            const auto Capsule = FCollisionShape::MakeCapsule(
+                Hero->GetCapsuleComponent()->GetScaledCapsuleRadius(),
+                Hero->GetCapsuleComponent()->GetScaledCapsuleHalfHeight());
+            auto* Host = Cast<ADinkGreyboxScreen>(Body->GetOwner());
+            if (!Test->TestTrue(TEXT("actual fitted owner binds the current source screen"),
+                Host && Host->ScreenNumber == Screen)) return true;
+            int32 MatchingBodies = 0;
+            TInlineComponentArray<UDinkHardnessPrismComponent*> OwnedBodies(Host);
+            for (auto* Owned : OwnedBodies)
+                if (Owned->IsRegistered() && Owned->IsQueryCollisionEnabled() &&
+                    Owned->HardnessCode == 100 + Rule.Origin.Placement)
+                {
+                    ++MatchingBodies;
+                    if (!Test->TestTrue(TEXT("no active same-screen legacy prism retains fitted owner code"), Owned == Body))
+                        return true;
+                }
+            if (!Test->TestEqual(TEXT("one active body owns fitted source code"), MatchingBodies, 1)) return true;
+            const auto* OwnMask=ExpectedMasks.Find(Rule.Origin);
+            if(!Test->TestTrue(TEXT("source-backed fitted mask is nonempty"),OwnMask&&!OwnMask->IsEmpty()))return true;
+            int32 VisibleOwnerCells=0,OverlaidCells=0;
+            for(const FIntPoint& Cell:*OwnMask)
+            {
+                const int32 ExpectedCode=ExpectedPixels[Cell.Y*600+Cell.X];
+                const int32 ActualCode=Gameplay->GetHard(Screen,Cell.X+20,Cell.Y);
+                if(!Test->TestEqual(FString::Printf(TEXT("%s source-ordered fitted cell map=(%d,%d) engine=(%d,%d)"),*Rule.Origin.ToString(),Cell.X,Cell.Y,Cell.X+20,Cell.Y),ActualCode,ExpectedCode))return true;
+                if(ExpectedCode==100+Rule.Origin.Placement)++VisibleOwnerCells;else++OverlaidCells;
+            }
+            // Scan actual original hardbox cells against the published fitted logical owner.
+            FDinkSprite SourceSprite;
+            SourceSprite.Origin = Rule.Origin;
+            SourceSprite.Screen = Screen;
+            SourceSprite.X = Placement->X;
+            SourceSprite.Y = Placement->Y;
+            SourceSprite.Props.Add(TEXT("pseq"), 173);
+            SourceSprite.Props.Add(TEXT("pframe"), 1);
+            int32 Left, Top, Right, Bottom;
+            bool OwnedCell = false, GapCell = false;
+            if (!Test->TestTrue(TEXT("original source hardbox readable"),
+                Gameplay->GetHardbox(SourceSprite, Left, Top, Right, Bottom))) return true;
+            for (int32 Y = Top + 1; Y < Bottom; ++Y)
+                for (int32 X = Left + 1; X < Right; ++X)
+                {
+                    const int32 Code = Gameplay->GetHard(Screen, X, Y);
+                    OwnedCell |= Code == 100 + Rule.Origin.Placement;
+                    const FVector Point = Volume->MapPixelToWorld(float(X - 20), float(Y)) + FVector(0,0,90);
+                    if (!GapCell && Expected.ComputeSquaredDistanceToPoint(Point) >
+                        FMath::Square(Capsule.GetCapsuleRadius() + 2))
+                    {
+                        if (!Test->TestNotEqual(TEXT("old hardbox gap loses this barrel's logical owner"),
+                            Code, 100 + Rule.Origin.Placement)) return true;
+                        if (!Test->TestFalse(TEXT("capsule gap clears the actual barrel body"),
+                            World->OverlapBlockingTestByChannel(Point, FQuat::Identity, ECC_Pawn, Capsule, Query))) return true;
+                        // Unfiltered query retains unrelated valid blockers; report them without claiming global clearance.
+                        TArray<FOverlapResult> Hits;
+                        World->OverlapMultiByChannel(Hits, Point, FQuat::Identity, ECC_Pawn, Capsule);
+                        for (const auto& Hit : Hits)
+                        {
+                            const auto* Prism = Cast<UDinkHardnessPrismComponent>(Hit.GetComponent());
+                            if (!Test->TestFalse(TEXT("unfiltered gap has no same-screen barrel owner overlap"),
+                                Prism && Prism->GetOwner() == Host && Prism->HardnessCode == 100 + Rule.Origin.Placement))
+                                return true;
+                        }
+                        Test->AddInfo(FString::Printf(TEXT("%s old-hardbox gap unfiltered overlaps=%d; unrelated blockers retained"),
+                            *Rule.Origin.ToString(), Hits.Num()));
+                        GapCell = true;
+                    }
+                }
+            if (!OwnedCell)
+            {
+                auto Diagnostic = MakeShared<FJsonObject>();
+                Diagnostic->SetStringField(TEXT("origin"),Rule.Origin.ToString());
+                Diagnostic->SetStringField(TEXT("old_hardbox"),FString::Printf(TEXT("%d,%d,%d,%d"),Left,Top,Right,Bottom));
+                Diagnostic->SetStringField(TEXT("world_bounds"),Expected.ToString());
+                Diagnostic->SetStringField(TEXT("family_transform"),Family->GetComponentTransform().ToString());
+                TArray<FVector2D> Polygon;TArray<FIntPoint> Cells;double Low,High,Boundary;
+                const bool Built = DinkFamilyCollisionFit::BuildFootprint(Geometry,Family->GetComponentTransform(),Volume->Corners,Polygon,Cells,Low,High,Boundary,Error);
+                Diagnostic->SetBoolField(TEXT("actual_footprint_built"),Built);
+                Diagnostic->SetStringField(TEXT("footprint_error"),Error);
+                TArray<TSharedPtr<FJsonValue>> CellRows,Stamps;
+                for (const auto& Cell : Cells)
+                {
+                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("map_local_x"),Cell.X);Row->SetNumberField(TEXT("engine_x"),Cell.X+20);Row->SetNumberField(TEXT("y"),Cell.Y);
+                    Row->SetNumberField(TEXT("expected_code"),ExpectedPixels[Cell.Y*600+Cell.X]);Row->SetNumberField(TEXT("actual_code"),Gameplay->GetHard(Screen,Cell.X+20,Cell.Y));CellRows.Add(MakeShared<FJsonValueObject>(Row));
+                }
+                for (int32 Owner : OriginalOrder) if (const auto* Other = Gameplay->GetData().FindPlacement(FDinkOriginId(Screen,Owner)))
+                {
+                    FDinkSprite Sprite;Sprite.X=Other->X;Sprite.Y=Other->Y;Sprite.Props.Add(TEXT("pseq"),Other->Seq);Sprite.Props.Add(TEXT("pframe"),Other->Frame);
+                    int32 L,T,R,B;if(!Gameplay->GetHardbox(Sprite,L,T,R,B))continue;
+                    auto Row = MakeShared<FJsonObject>();Row->SetNumberField(TEXT("owner"),Owner);Row->SetNumberField(TEXT("seq"),Other->Seq);Row->SetNumberField(TEXT("frame"),Other->Frame);
+                    Row->SetStringField(TEXT("hardbox"),FString::Printf(TEXT("%d,%d,%d,%d"),L,T,R,B));Stamps.Add(MakeShared<FJsonValueObject>(Row));
+                }
+                Diagnostic->SetArrayField(TEXT("actual_fitted_cells"),CellRows);Diagnostic->SetArrayField(TEXT("ordered_source_stamps"),Stamps);
+                FString Text;FJsonSerializer::Serialize(Diagnostic,TJsonWriterFactory<>::Create(&Text));
+                const FString Path=FPaths::ProjectSavedDir()/TEXT("Automation/BarrelLogicalOwnerDiagnostic.json");
+                if(!FFileHelper::SaveStringToFile(Text,*Path))Test->AddError(TEXT("cannot save actual logical-owner diagnostic"));
+                Test->AddInfo(TEXT("actual masked logical-owner diagnostic: ")+Path);
+            }
+            if (!Test->TestTrue(TEXT("original hardbox has a capsule-sized released gap"), GapCell)) return true;
+            for (const FVector Direction : {FVector(1,0,0), FVector(-1,0,0), FVector(0,1,0), FVector(0,-1,0)})
+            {
+                FHitResult Hit;
+                if (!Test->TestTrue(TEXT("actual Pawn query blocks on fitted mesh from each side"),
+                    World->SweepSingleByChannel(Hit, Ground + Direction * 200 + FVector(0,0,90),
+                        Ground + FVector(0,0,90), FQuat::Identity, ECC_Pawn, Capsule, Query) &&
+                    Hit.GetComponent() == Body))
+                    return true;
+            }
+            auto Row = MakeShared<FJsonObject>();
+            Row->SetStringField(TEXT("origin"), Rule.Origin.ToString());
+            Row->SetStringField(TEXT("source_hash"), Rule.SourceHash);
+            Row->SetStringField(TEXT("script"), Rule.SourceScript.ToString());
+            Row->SetBoolField(TEXT("background"), Rule.IsStaticBackground());
+            Row->SetStringField(TEXT("body"), Body->GetPathName());
+            Row->SetStringField(TEXT("geometry_sha1"), Geometry.CookedGeometrySha1);
+            Row->SetStringField(TEXT("surface_sha1"), Geometry.CanonicalSurfaceSha1);
+            Row->SetStringField(TEXT("extent_cm"), Body->Bounds.BoxExtent.ToString());
+            Row->SetBoolField(TEXT("four_pawn_sweeps"), true);
+            Row->SetBoolField(TEXT("logical_ordered_overlay"), true);
+            Row->SetNumberField(TEXT("logical_fitted_cells"), OwnMask->Num());
+            Row->SetNumberField(TEXT("logical_visible_owner_cells"), VisibleOwnerCells);
+            Row->SetNumberField(TEXT("logical_overlaid_cells"), OverlaidCells);
+            Row->SetBoolField(TEXT("released_old_hardbox_gap"), GapCell);
+            Row->SetNumberField(TEXT("active_same_code_prisms"), MatchingBodies);
+            Rows.Add(MakeShared<FJsonValueObject>(Row));
+        }
+        ++ScreenIndex;
+        Entered = false;
+        return false;
+    }
+
+private:
+    bool BuildSourceOracle(UWorld& World,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 Screen,
+        std::vector<uint8>& Pixels,TMap<FDinkOriginId,TArray<FIntPoint>>& Masks)
+    {
+        auto* G=Story.GetGameplay();const auto& Data=G->GetData();
+        const int32 Vision=Story.GetFacts()->GetFact(TEXT("vision"));
+        FDinkRuntimeHardnessSource Source;FString Error;
+        const FString Layer=Vision==0?FString::Printf(TEXT("Hardness/SCR_%03d_layers.json"),Screen):FString::Printf(TEXT("Hardness/SCR_%03d_v%d_layers.json"),Screen,Vision);
+        if(!Test->TestTrue(TEXT("independent source tile baseline loads"),FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*Layer),Vision,Source,Error)))
+        {Test->AddError(Error);return false;}
+        // Reconstruct the initial source overlay, never copy the published runtime map.
+        // Any unmodelled script redraw that changes a checked cell must fail below.
+        Pixels=Source.TileBase;
+        std::vector<DinkHardness::InitialPlacement> SourceRows;
+        for(const auto* P:Data.GetPlacementsOnScreen(Screen))
+            if(!Story.GetWorldState()->IsPlacementRemoved(P->Origin))SourceRows.push_back({P->Origin.Placement,G->EffectiveHardnessPlacementType(*P),P->Y,P->Que,P->Vision});
+        const auto Ordered=DinkHardness::MixedInitialOrder(std::move(SourceRows),Vision);
+        if(!Test->TestTrue(TEXT("independent effective mixed source order is valid"),Ordered.has_value()))return false;
+        for(const auto& Entry:*Ordered)
+        {
+            const FDinkOriginId Origin(Screen,Entry.Owner);const auto* P=Data.FindPlacement(Origin);
+            if(!Test->TestNotNull(TEXT("ordered source placement exists"),P))return false;
+            if(G->EffectiveHardnessFlag(*P)!=0)continue;
+            const auto* Fit=Rules.FindByPredicate([&](const auto& R){return R.Origin==Origin;});
+            if(Fit)
+            {
+                auto* A=SourceActor(World,Origin,*Test);if(!A||!SourceMatches(*Test,*A,*Fit))return false;
+                UStaticMeshComponent* Family=nullptr;TInlineComponentArray<UStaticMeshComponent*> Cs(A);
+                for(auto* C:Cs)if(C->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag))Family=C;
+                if(!Test->TestTrue(TEXT("oracle source family mesh exists"),Family&&Family->GetStaticMesh()))return false;
+                FDinkFamilyFittedGeometry Shape;TArray<FVector2D> Polygon;TArray<FIntPoint> Cells;double Low,High,Boundary;
+                auto* Volume=Greybox.FindScreen(Screen);
+                if(!Test->TestTrue(TEXT("oracle exact source cooked geometry and raster load"),Volume&&DinkFamilyCollisionFit::ReadCookedGeometry(*Family->GetStaticMesh(),Shape,Error)&&Shape.CanonicalSurfaceSha1==Fit->CanonicalSurfaceSha1&&DinkFamilyCollisionFit::BuildFootprint(Shape,Family->GetComponentTransform(),Volume->Corners,Polygon,Cells,Low,High,Boundary,Error)))
+                {Test->AddError(Error);return false;}
+                if(!Test->TestFalse(TEXT("each source fitted contributor retains nonempty underlying cells"),Cells.IsEmpty()))return false;
+                for(const auto& Cell:Cells)
+                {
+                    if(!Test->TestTrue(TEXT("source fitted cell lies within map"),Cell.X>=0&&Cell.X<600&&Cell.Y>=0&&Cell.Y<400))return false;
+                    Pixels[Cell.Y*600+Cell.X]=uint8(100+Entry.Owner);
+                }
+                Masks.Add(Origin,MoveTemp(Cells));
+            }
+            else
+            {
+                int32 Seq=0,Frame=0;G->EffectiveHardnessPicture(*P,Seq,Frame);
+                const auto Bounds=DinkHardness::DisplayedBounds(Seq,Frame,P->X,P->Y,[&](int S,int F)->std::optional<DinkHardness::Rect>{
+                    const auto* Info=Data.FindFrame(S,F);if(!Info)return std::nullopt;
+                    return DinkHardness::Rect{Info->Left,Info->Top,Info->Right,Info->Bottom};});
+                if(!Test->TestTrue(TEXT("nonfit effective displayed source picture exists"),Bounds.has_value()))return false;
+                for(int32 Y=FMath::Max(0,Bounds->Top);Y<FMath::Min(400,Bounds->Bottom);++Y)
+                    for(int32 X=FMath::Max(0,Bounds->Left);X<FMath::Min(600,Bounds->Right);++X)Pixels[Y*600+X]=uint8(100+Entry.Owner);
+            }
+        }
+        // Apply the original per-query prop rule after all ordered contributors.
+        for(auto& Code:Pixels)if(G->IsWalkThroughByProp(Screen,Code))Code=0;
+        return true;
+    }
+    FAutomationTestBase* Test;
+    TArray<FDinkFamilyCollisionFitRule> Rules;
+    TArray<int32> Screens;
+    TArray<TSharedPtr<FJsonValue>> Rows;
+    double Began;
+    FString StartupState;
+    TWeakObjectPtr<ADinkGreyboxCharacter> InitialHero;
+    TWeakObjectPtr<APlayerController> InitialController;
+    double InitialReadyTime = -1;
+    bool InitialReady = false;
+    double EntryDeadline = 0;
+    double Until = 0;
+    int32 ScreenIndex = 0;
+    bool Entered = false;
+};
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkRolloutRuntimeBodies,
+    "Dink.Gameplay.BarrelRollout.AllOriginBodies", DINK_TEST_FLAGS)
+bool FDinkRolloutRuntimeBodies::RunTest(const FString&)
+{
+    TArray<FDinkFamilyCollisionFitRule> Rules;
+    if (!ReadRules(*this, Rules) || !LoadRolloutWorld(*this)) return false;
+    ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
+    ADD_LATENT_AUTOMATION_COMMAND(FDinkRolloutRuntimeCheck(this, MoveTemp(Rules)));
+    ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
+    return true;
+}
+
+
+class FDinkRolloutBackgroundCheck : public IAutomationLatentCommand
+{
+public:
+    FDinkRolloutBackgroundCheck(FAutomationTestBase* InTest, FDinkFamilyCollisionFitRule InRule)
+        : Test(InTest), Rule(MoveTemp(InRule)), Began(FPlatformTime::Seconds()) {}
+
+    bool Update() override
+    {
+        if (FPlatformTime::Seconds() - Began > 120)
+        {
+            Test->AddError(TEXT("background lifecycle timed out: ") + Rule.Origin.ToString());
+            return true;
+        }
+        UWorld* World = GEditor ? GEditor->PlayWorld.Get() : nullptr;
+        auto* Story = World && World->GetGameInstance()
+            ? World->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>() : nullptr;
+        auto* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+        if (!Story || !Story->IsReady() || !Greybox) return false;
+        const double Now = World->GetTimeSeconds();
+        if (Now < Until) return false;
+        Story->bNewGamePending = false;
+        Story->bInstantMode = true;
+        if (Phase == 0)
+        {
+            if (!Enter(*Greybox)) return true;
+            Phase = 1;
+            Until = Now + .5;
+            return false;
+        }
+        if (!Check(*World, *Story)) return true;
+        if (Phase == 1)
+        {
+            Overrides = Story->GetWorldState()->ExportOverrides();
+            ExitTimes = Story->GetWorldState()->ExportScreenExitTimes();
+            GameTimeMs = Story->GetWorldState()->GetGameTimeMs();
+            Narrative = Story->SaveStateToJson();
+            if (!Test->TestFalse(TEXT("background intact save captured"), Narrative.IsEmpty())) return true;
+            if (!Test->TestTrue(TEXT("ordinary background leave"),
+                Greybox->GotoScreen(Rule.Origin.Screen == 31 ? 209 : 31)))
+                return true;
+            Phase = 2;
+            Until = Now + .5;
+            return false;
+        }
+        if (Phase == 2)
+        {
+            if (!Enter(*Greybox)) return true;
+            Phase = 3;
+            Until = Now + .5;
+            return false;
+        }
+        if (Phase == 3)
+        {
+            Story->GetWorldState()->ImportState(Overrides, ExitTimes, GameTimeMs);
+            if (!Test->TestTrue(TEXT("ordinary background same-screen save restore"),
+                Story->LoadStateFromJson(Narrative)))
+                return true;
+            Phase = 4;
+            Until = Now + .5;
+            return false;
+        }
+        return true;
+    }
+
+private:
+    bool Enter(UDinkGreyboxSubsystem& Greybox)
+    {
+        return Test->TestTrue(TEXT("ordinary background screen entry"),
+            Greybox.GotoScreen(Rule.Origin.Screen, 300, 200));
+    }
+
+    bool Check(UWorld& World, UDinkStorySubsystem& Story)
+    {
+        // The leave phase validates after returning to the source screen.
+        if (Phase == 2) return true;
+        auto* Gameplay = Story.GetGameplay();
+        auto* Actor = SourceActor(World, Rule.Origin, *Test);
+        if (!Actor || !SourceMatches(*Test, *Actor, Rule)) return false;
+        if (!Test->TestEqual(TEXT("background lifecycle remains on its current source screen"),
+            Story.GetDirector()->GetDink().Screen, Rule.Origin.Screen) ||
+            !Test->TestFalse(TEXT("background is absent from actual original live birth dispatch"),
+                Gameplay->OriginalHardnessPlacementOrder(Rule.Origin.Screen).Contains(Rule.Origin.Placement)) ||
+            !Test->TestFalse(TEXT("background body publication releases loading gate"), Gameplay->IsHardnessLoading()))
+            return false;
+        FDinkSprite QueryActor;
+        QueryActor.Actor = Actor;
+        QueryActor.Screen = Rule.Origin.Screen;
+        FString Error;
+        auto* Body = Gameplay->FindHardnessFitPrimitive(QueryActor, &Error);
+        if (!Test->TestNotNull(TEXT("background actual body survives entry/reentry/save load"), Body))
+        {
+            Test->AddError(Error);
+            return false;
+        }
+        auto* Controller = World.GetFirstPlayerController();
+        UStaticMeshComponent* Family = nullptr;
+        TArray<UStaticMeshComponent*> Components;
+        Actor->GetComponents(Components);
+        for (auto* Component : Components)
+            if (Component->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) Family = Component;
+        return Test->TestNotNull(TEXT("background controller exists"), Controller) &&
+            Test->TestFalse(TEXT("background publication releases controller movement"), Controller->IsMoveInputIgnored()) &&
+            Test->TestFalse(TEXT("background publication releases Dink"), Story.GetDirector()->GetDink().bFrozen) &&
+            Test->TestNotNull(TEXT("background published family component exists"), Family) &&
+            Test->TestNotNull(TEXT("background published family mesh exists"), Family->GetStaticMesh().Get()) &&
+            Test->TestTrue(TEXT("background retains its visible family and hides its legacy card"),
+                Actor->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) && !Actor->IsHidden() &&
+                Family->IsVisible() && !Family->bHiddenInGame && Actor->Card && Actor->Card->bHiddenInGame);
+    }
+
+    FAutomationTestBase* Test;
+    FDinkFamilyCollisionFitRule Rule;
+    double Began;
+    double Until = 0;
+    int32 Phase = 0;
+    FString Narrative;
+    TArray<FDinkWorldOverride> Overrides;
+    TArray<FDinkScreenExitTime> ExitTimes;
+    int64 GameTimeMs = 0;
+};
+
+IMPLEMENT_COMPLEX_AUTOMATION_TEST(FDinkRolloutBackgroundLifecycle,
+    "Dink.Gameplay.BarrelRollout.BackgroundLifecycle", DINK_TEST_FLAGS)
+void FDinkRolloutBackgroundLifecycle::GetTests(TArray<FString>& Names, TArray<FString>& Commands) const
+{
+    for (const TCHAR* Origin : {TEXT("S034_P49"), TEXT("S034_P50"), TEXT("S469_P16")})
+    {
+        Names.Add(Origin);
+        Commands.Add(Origin);
+    }
+}
+bool FDinkRolloutBackgroundLifecycle::RunTest(const FString& Parameters)
+{
+    TArray<FDinkFamilyCollisionFitRule> Rules;
+    if (!ReadRules(*this, Rules)) return false;
+    const auto* Rule = Rules.FindByPredicate([&](const auto& Row)
+        { return Row.Origin.ToString() == Parameters; });
+    if (!TestTrue(TEXT("promoted background has an exact static rule"), Rule && Rule->IsStaticBackground()) ||
+        !LoadRolloutWorld(*this))
+        return false;
+    ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
+    ADD_LATENT_AUTOMATION_COMMAND(FDinkRolloutBackgroundCheck(this, *Rule));
+    ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
+    return true;
+}

@@ -1,0 +1,394 @@
+{
+  "scope": "Explicit versioned3UV source transport prototype; all original reference arrays byte-exact, only seam guard array added",
+  "fbx_sha256": "e2560be3e346428bdebaa41fc29a58aeee6d37b8cd3620cfe43eacda7f1d892d",
+  "geometry_npz_sha256": "886f0bbc726191204d97d2459f8a1bab64533665b36c60a41c43256a94558994",
+  "bytes": 11549147,
+  "corners": 547878,
+  "triangles": 182626,
+  "material_roles": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_WeatheredTimber2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial"
+  ],
+  "hulls": [
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_01",
+      "array_prefix": "hull_0",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_02",
+      "array_prefix": "hull_1",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_03",
+      "array_prefix": "hull_2",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_04",
+      "array_prefix": "hull_3",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_05",
+      "array_prefix": "hull_4",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_06",
+      "array_prefix": "hull_5",
+      "world_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "source_frame": "metres, Blender Zup; explicit verified native conversion required, never autochoose closest frame",
+  "arrays": {
+    "position_m": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "normal": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "tangent": {
+      "shape": [
+        547878,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "bitangent_sign": {
+      "shape": [
+        547878
+      ],
+      "dtype": "float64"
+    },
+    "uv0": {
+      "shape": [
+        547878,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "uv1": {
+      "shape": [
+        547878,
+        2
+      ],
+      "dtype": "float64"
+    },
+    "color_linear_rgba": {
+      "shape": [
+        547878,
+        4
+      ],
+      "dtype": "float64"
+    },
+    "triangles": {
+      "shape": [
+        182626,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "triangle_material": {
+      "shape": [
+        182626
+      ],
+      "dtype": "int32"
+    },
+    "hull_0_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_0_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_1_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_1_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_2_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_2_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_3_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_3_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_4_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_4_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "hull_5_position_m": {
+      "shape": [
+        8,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "hull_5_triangles": {
+      "shape": [
+        12,
+        3
+      ],
+      "dtype": "int32"
+    },
+    "uv2_weld_seam_guard": {
+      "dtype": "float32",
+      "shape": [
+        547878,
+        2
+      ]
+    }
+  },
+  "source_modified": false,
+  "transport_profile": "house439_uv2_weld_seam_guard_v1",
+  "expected_uv_channels": 3,
+  "base_geometry_npz_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "guard_profile": {
+    "name": "UV2_WeldSeamGuard",
+    "source_channel": 2,
+    "encoding": "(denseID %1024,denseID //1024)",
+    "canonical_original_uv_key": "exact IEEE754 float32 UV0/UV1 bits; signed zero retained",
+    "unique_tuple_count": 137348,
+    "render_material_channels": [
+      0,
+      1
+    ],
+    "strict_guard_epsilon": 1e-06
+  },
+  "base_T_B_reevaluation": [
+    {
+      "array": "Binormals",
+      "components_differ": 19,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 5.2110210415488964e-11
+    },
+    {
+      "array": "Tangents",
+      "components_differ": 32,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 2.4148604983127436e-06
+    }
+  ],
+  "serialized_proof_sha256": "44424ebaae5ce7159d452e9aed7e89971698f298d4205cc24f8691ea724126f5",
+  "two_uv_predecessor_provenance": {
+    "old_reference_json_sha256": "b4052c1e378fabe9787dec45ab0565ef41d69bb0555ee6704cb52f5017802b4d",
+    "old_fbx_sha256": "aa4e091a48f3337f7b9bda4b1f044786c46149c163df511978bebb86bc210f27",
+    "packed_source_sha256": "f01cdbd2f679c9e4a11bf4424fe064ca5fa8229796702c67bdef883b2d7ca385",
+    "core_equivalence_receipt_sha256": "13aac0f6bb19979a0cc1df015f57b2bbcbe1fdae796e80ed8412e8a13f411eec",
+    "geometry_npz_unchanged": true
+  },
+  "two_uv_predecessor_metadata_sha256": "a268c2f32b64d4ccb0c7d62169dbc1b773728a58e0976de085f25b698583b842",
+  "two_uv_predecessor_fbx_sha256": "4d8c8f1eda4e37beed0dc1586bc3a72e1937660d990330d4473f8ec389c854e3"
+}

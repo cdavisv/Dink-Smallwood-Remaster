@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "active_registry_unchanged": true,
+  "texture_checks_include_existing_LFS_OID_metadata": true,
+  "rows": [
+    {
+      "role": "LimeMortarSoot2m",
+      "texture_reference_checks": 9,
+      "source_library_exists": true,
+      "passed": true
+    },
+    {
+      "role": "WeatheredTimber2m",
+      "texture_reference_checks": 9,
+      "source_library_exists": true,
+      "passed": true
+    },
+    {
+      "role": "ThinWavyGlass2m",
+      "texture_reference_checks": 3,
+      "source_library_exists": true,
+      "passed": true
+    },
+    {
+      "role": "FieldstoneWall2m",
+      "texture_reference_checks": 6,
+      "source_library_exists": true,
+      "passed": true
+    },
+    {
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "texture_reference_checks": 9,
+      "source_library_exists": true,
+      "passed": true
+    }
+  ],
+  "source_reopen_verification": "SOURCE_REOPEN_VERIFICATION.json",
+  "source_graph_or_pixels_modified": false,
+  "native_executed": false
+}

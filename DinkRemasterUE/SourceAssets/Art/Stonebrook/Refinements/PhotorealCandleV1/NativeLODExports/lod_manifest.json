@@ -1,10 +1,10 @@
 {
-  "source_export_sha256": "4448f73519e2e170efdecc39625c1d6bfc7493989ea99e7d352bee61d142d411",
+  "source_export_sha256": "f108098793a8f16c22f3fd7130c981786d91885c80c9f7e180ef067c85b4af89",
   "files": [
     {
       "LOD": 0,
       "file": "SM_Candle_Iron_01_LOD0.fbx",
-      "sha256": "0683bb4104616fb6b1ba3649892762348213dcca91ff260341e954f69e0268bd",
+      "sha256": "b0ee83de5820ac2bd65ca2664cfd0f9939ee37b87383093ce8e33621536fc24b",
       "triangles": 4870,
       "source_object": "SM_Candle_Iron_01_LOD0",
       "material_slots": [
@@ -15,7 +15,7 @@
     {
       "LOD": 1,
       "file": "SM_Candle_Iron_01_LOD1.fbx",
-      "sha256": "c00b2de9b9f9ad9e735dac994b61b5a994f70a209336f36bbe1720cc3a254a8f",
+      "sha256": "dddab43380a36fe130a9278eb4606c55156a6637a0b405e420ed13b6d75e9ad5",
       "triangles": 2434,
       "source_object": "SM_Candle_Iron_01_LOD1",
       "material_slots": [
@@ -26,7 +26,7 @@
     {
       "LOD": 2,
       "file": "SM_Candle_Iron_01_LOD2.fbx",
-      "sha256": "1a10958a29de30acfcd796268faf41c6355dc77e2924995a8cc75bad12a3a1ff",
+      "sha256": "0dc450f363525cac82d2149986d1a0f06c6010ff524821370cf47c4b816bcf83",
       "triangles": 1218,
       "source_object": "SM_Candle_Iron_01_LOD2",
       "material_slots": [

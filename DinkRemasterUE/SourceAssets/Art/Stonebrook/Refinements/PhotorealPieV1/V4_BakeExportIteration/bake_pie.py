@@ -4,7 +4,7 @@ import numpy as np
 O=Path(__file__).resolve().parent;source=O/'PhotorealPieV1_Source.blend';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();pin=sha(source)
 try:
  authorization=json.loads((O/'review_authorization.json').read_text());assert authorization['source_sha256']==pin and authorization['source_appearance_approved'] is True,'Appearance review required before bake'
- assert pin=='80d892afe34c2bf09748f90c19beb784e4b897b0163b8a5f0d93f7801a6022e9','Unexpected source checkpoint'
+ assert pin=='9b95c90fbdd5166ebc0d88b6107ec43e7f5ad985f44f18c3b5fa63cb8056fb55','Unexpected source checkpoint'
  assert not (O/'PhotorealPieV1_Export.blend').exists(),'Refuse existing export'
  bpy.ops.wm.open_mainfile(filepath=str(source));bpy.context.preferences.filepaths.save_version=0
  collection=bpy.data.collections['SM_Pie_Rustic_01'];s=next(s for s in bpy.data.scenes if collection.name in s.collection.children);bpy.context.window.scene=s

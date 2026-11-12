@@ -1,0 +1,1860 @@
+{
+  "schema": "dink-fire-emitters/1",
+  "units": "local_ue_cm: centimetres in the static mesh's Unreal asset space (+Y = cottage front); world_cm: level space",
+  "effect_kinds": {
+    "flame_large": "tall licking flame sheet, ~2 m",
+    "flame_medium": "flame ~1.2 m",
+    "flame_small": "flame ~0.7 m",
+    "smoulder_damage": "charring patch: embers + dense smoke",
+    "smoke_vent": "smoke column out of a roof opening",
+    "smoke_column": "chimney smoke",
+    "fire_column": "tall burst/column of flame (interior)",
+    "burst_oneshot": "one-shot flare-up",
+    "smoulder_wisp": "faint smoke wisps (optional, off by default)"
+  },
+  "exterior_439": {
+    "mesh_sockets": {
+      "SM_Cottage_Stonebrook_Burning_01": [
+        {
+          "socket": "SOCKET_Fire_01",
+          "origin": "S439_P05",
+          "effect": "flame_large",
+          "original_sequence": 427,
+          "original_sequence_path": "graphics/effects/fire/fire1-",
+          "original_frame": 1,
+          "source_pixel": [
+            328,
+            127
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 1.0,
+          "local_m": [
+            6.0003,
+            -0.5836,
+            7.0373
+          ],
+          "local_ue_cm": [
+            600.03,
+            58.36,
+            703.73
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_02",
+          "origin": "S439_P09",
+          "effect": "flame_large",
+          "original_sequence": 427,
+          "original_sequence_path": "graphics/effects/fire/fire1-",
+          "original_frame": 4,
+          "source_pixel": [
+            427,
+            165
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.97,
+          "local_m": [
+            8.8093,
+            -3.5978,
+            4.7767
+          ],
+          "local_ue_cm": [
+            880.93,
+            359.78,
+            477.67
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_03",
+          "origin": "S439_P11",
+          "effect": "flame_large",
+          "original_sequence": 427,
+          "original_sequence_path": "graphics/effects/fire/fire1-",
+          "original_frame": 2,
+          "source_pixel": [
+            203,
+            195
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.96,
+          "local_m": [
+            -9.015,
+            -1.0788,
+            6.6659
+          ],
+          "local_ue_cm": [
+            -901.5,
+            107.88,
+            666.59
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_04",
+          "origin": "S439_P21",
+          "effect": "flame_large",
+          "original_sequence": 427,
+          "original_sequence_path": "graphics/effects/fire/fire1-",
+          "original_frame": 5,
+          "source_pixel": [
+            254,
+            222
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.95,
+          "local_m": [
+            -5.0036,
+            -2.7184,
+            5.4362
+          ],
+          "local_ue_cm": [
+            -500.36,
+            271.84,
+            543.62
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_05",
+          "origin": "S439_P29",
+          "effect": "smoulder_damage",
+          "original_sequence": 154,
+          "original_sequence_path": "struct/details/damage/damag-",
+          "original_frame": 1,
+          "source_pixel": [
+            306,
+            193
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 1.12,
+          "local_m": [
+            0.7642,
+            -3.2513,
+            5.0365
+          ],
+          "local_ue_cm": [
+            76.42,
+            325.13,
+            503.65
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_06",
+          "origin": "S439_P31",
+          "effect": "flame_small",
+          "original_sequence": 155,
+          "original_sequence_path": "struct/details/damage/fire2-",
+          "original_frame": 1,
+          "source_pixel": [
+            284,
+            106
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.29,
+          "local_m": [
+            3.5859,
+            -0.6847,
+            6.9615
+          ],
+          "local_ue_cm": [
+            358.59,
+            68.47,
+            696.15
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_07",
+          "origin": "S439_P32",
+          "effect": "flame_small",
+          "original_sequence": 156,
+          "original_sequence_path": "struct/details/damage/fire3-",
+          "original_frame": 1,
+          "source_pixel": [
+            198,
+            188
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.29,
+          "local_m": [
+            -7.4471,
+            -2.1919,
+            5.8311
+          ],
+          "local_ue_cm": [
+            -744.71,
+            219.19,
+            583.11
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_08",
+          "origin": "S439_P33",
+          "effect": "flame_medium",
+          "original_sequence": 157,
+          "original_sequence_path": "struct/details/damage/fire4-",
+          "original_frame": 1,
+          "source_pixel": [
+            371,
+            147
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.53,
+          "local_m": [
+            6.1724,
+            -3.6759,
+            4.7181
+          ],
+          "local_ue_cm": [
+            617.24,
+            367.59,
+            471.81
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoke_01",
+          "origin": "S439_P46",
+          "effect": "smoke_vent",
+          "original_sequence": 158,
+          "original_sequence_path": "struct/details/damage/hole-",
+          "original_frame": 1,
+          "source_pixel": [
+            238,
+            182
+          ],
+          "surface": "roof_front",
+          "normal": [
+            0.0,
+            -0.6000000238418579,
+            0.800000011920929
+          ],
+          "scale_hint": 0.29,
+          "local_m": [
+            -3.5756,
+            -2.3311,
+            5.7267
+          ],
+          "local_ue_cm": [
+            -357.56,
+            233.11,
+            572.67
+          ],
+          "normal_ue": [
+            0.0,
+            0.6,
+            0.8
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoke_Chimney",
+          "origin": null,
+          "effect": "smoke_column",
+          "original_sequence": null,
+          "surface": "chimney",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 1.0,
+          "remaster_addition": true,
+          "local_m": [
+            -5.415,
+            1.9,
+            8.0
+          ],
+          "local_ue_cm": [
+            -541.5,
+            -190.0,
+            800.0
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_Door_01",
+          "origin": null,
+          "effect": "flame_medium",
+          "original_sequence": null,
+          "surface": "doorway_interior",
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "scale_hint": 0.8,
+          "remaster_addition": true,
+          "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+          "local_m": [
+            4.835,
+            -3.9,
+            1.2
+          ],
+          "local_ue_cm": [
+            483.5,
+            390.0,
+            120.0
+          ],
+          "normal_ue": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Fire_Door_02",
+          "origin": null,
+          "effect": "flame_medium",
+          "original_sequence": null,
+          "surface": "doorway_interior",
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "scale_hint": 0.8,
+          "remaster_addition": true,
+          "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+          "local_m": [
+            5.685,
+            -3.9,
+            1.9
+          ],
+          "local_ue_cm": [
+            568.5,
+            390.0,
+            190.0
+          ],
+          "normal_ue": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "SM_Cottage_Stonebrook_Burnt_01": [
+        {
+          "socket": "SOCKET_Smoulder_01",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            0.7642,
+            -3.1433,
+            0.7175
+          ],
+          "local_ue_cm": [
+            76.42,
+            314.33,
+            71.75
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_02",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            -3.5756,
+            -2.2231,
+            0.635
+          ],
+          "local_ue_cm": [
+            -357.56,
+            222.31,
+            63.5
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_03",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            7.3252,
+            -0.4105,
+            0.591
+          ],
+          "local_ue_cm": [
+            732.52,
+            41.05,
+            59.1
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_04",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            -6.1493,
+            -0.632,
+            0.591
+          ],
+          "local_ue_cm": [
+            -614.93,
+            63.2,
+            59.1
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_05",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            2.7714,
+            -3.3,
+            0.701
+          ],
+          "local_ue_cm": [
+            277.14,
+            330.0,
+            70.1
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_06",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            2.8715,
+            -2.2073,
+            0.701
+          ],
+          "local_ue_cm": [
+            287.15,
+            220.73,
+            70.1
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_07",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            -7.3914,
+            -1.2354,
+            0.591
+          ],
+          "local_ue_cm": [
+            -739.14,
+            123.54,
+            59.1
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_08",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            6.8649,
+            -2.8673,
+            0.899
+          ],
+          "local_ue_cm": [
+            686.49,
+            286.73,
+            89.9
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_09",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            -0.7237,
+            -3.0059,
+            0.899
+          ],
+          "local_ue_cm": [
+            -72.37,
+            300.59,
+            89.9
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_10",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            -2.615,
+            2.4,
+            0.767
+          ],
+          "local_ue_cm": [
+            -261.5,
+            -240.0,
+            76.7
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "socket": "SOCKET_Smoulder_11",
+          "origin": null,
+          "effect": "smoulder_wisp",
+          "original_sequence": null,
+          "surface": "debris",
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "scale_hint": 0.5,
+          "optional": true,
+          "default_enabled": false,
+          "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+          "local_m": [
+            4.185,
+            1.6,
+            0.668
+          ],
+          "local_ue_cm": [
+            418.5,
+            -160.0,
+            66.8
+          ],
+          "normal_ue": [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    "emitters": [
+      {
+        "socket": "SOCKET_Fire_01",
+        "origin": "S439_P05",
+        "effect": "flame_large",
+        "original_sequence": 427,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "original_frame": 1,
+        "source_pixel": [
+          328,
+          127
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 1.0,
+        "local_ue_cm": [
+          600.03,
+          58.36,
+          703.73
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97731.64092968748,
+          36978.684198125,
+          703.73
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_02",
+        "origin": "S439_P09",
+        "effect": "flame_large",
+        "original_sequence": 427,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "original_frame": 4,
+        "source_pixel": [
+          427,
+          165
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.97,
+        "local_ue_cm": [
+          880.93,
+          359.78,
+          477.67
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          98012.54092968747,
+          37280.104198125,
+          477.67
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_03",
+        "origin": "S439_P11",
+        "effect": "flame_large",
+        "original_sequence": 427,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "original_frame": 2,
+        "source_pixel": [
+          203,
+          195
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.96,
+        "local_ue_cm": [
+          -901.5,
+          107.88,
+          666.59
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          96230.11092968748,
+          37028.204198125,
+          666.59
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_04",
+        "origin": "S439_P21",
+        "effect": "flame_large",
+        "original_sequence": 427,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "original_frame": 5,
+        "source_pixel": [
+          254,
+          222
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.95,
+        "local_ue_cm": [
+          -500.36,
+          271.84,
+          543.62
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          96631.25092968748,
+          37192.164198125,
+          543.62
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_05",
+        "origin": "S439_P29",
+        "effect": "smoulder_damage",
+        "original_sequence": 154,
+        "original_sequence_path": "struct/details/damage/damag-",
+        "original_frame": 1,
+        "source_pixel": [
+          306,
+          193
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 1.12,
+        "local_ue_cm": [
+          76.42,
+          325.13,
+          503.65
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97208.03092968748,
+          37245.454198125,
+          503.65
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_06",
+        "origin": "S439_P31",
+        "effect": "flame_small",
+        "original_sequence": 155,
+        "original_sequence_path": "struct/details/damage/fire2-",
+        "original_frame": 1,
+        "source_pixel": [
+          284,
+          106
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.29,
+        "local_ue_cm": [
+          358.59,
+          68.47,
+          696.15
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97490.20092968747,
+          36988.794198125004,
+          696.15
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_07",
+        "origin": "S439_P32",
+        "effect": "flame_small",
+        "original_sequence": 156,
+        "original_sequence_path": "struct/details/damage/fire3-",
+        "original_frame": 1,
+        "source_pixel": [
+          198,
+          188
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.29,
+        "local_ue_cm": [
+          -744.71,
+          219.19,
+          583.11
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          96386.90092968747,
+          37139.514198125005,
+          583.11
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_08",
+        "origin": "S439_P33",
+        "effect": "flame_medium",
+        "original_sequence": 157,
+        "original_sequence_path": "struct/details/damage/fire4-",
+        "original_frame": 1,
+        "source_pixel": [
+          371,
+          147
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.53,
+        "local_ue_cm": [
+          617.24,
+          367.59,
+          471.81
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97748.85092968748,
+          37287.914198125,
+          471.81
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Smoke_01",
+        "origin": "S439_P46",
+        "effect": "smoke_vent",
+        "original_sequence": 158,
+        "original_sequence_path": "struct/details/damage/hole-",
+        "original_frame": 1,
+        "source_pixel": [
+          238,
+          182
+        ],
+        "surface": "roof_front",
+        "normal": [
+          0.0,
+          -0.6000000238418579,
+          0.800000011920929
+        ],
+        "scale_hint": 0.29,
+        "local_ue_cm": [
+          -357.56,
+          233.11,
+          572.67
+        ],
+        "normal_ue": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          96774.05092968748,
+          37153.434198125,
+          572.67
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Smoke_Chimney",
+        "origin": null,
+        "effect": "smoke_column",
+        "original_sequence": null,
+        "surface": "chimney",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 1.0,
+        "remaster_addition": true,
+        "local_ue_cm": [
+          -541.5,
+          -190.0,
+          800.0
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          96590.11092968748,
+          36730.324198125,
+          800.0
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_Door_01",
+        "origin": null,
+        "effect": "flame_medium",
+        "original_sequence": null,
+        "surface": "doorway_interior",
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "scale_hint": 0.8,
+        "remaster_addition": true,
+        "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+        "local_ue_cm": [
+          483.5,
+          390.0,
+          120.0
+        ],
+        "normal_ue": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97615.11092968748,
+          37310.324198125,
+          120.0
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Fire_Door_02",
+        "origin": null,
+        "effect": "flame_medium",
+        "original_sequence": null,
+        "surface": "doorway_interior",
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "scale_hint": 0.8,
+        "remaster_addition": true,
+        "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+        "local_ue_cm": [
+          568.5,
+          390.0,
+          190.0
+        ],
+        "normal_ue": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "attach_to": "DinksCottage_V1",
+        "world_cm": [
+          97700.11092968748,
+          37310.324198125,
+          190.0
+        ],
+        "vision": 1
+      },
+      {
+        "socket": "SOCKET_Smoulder_01",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          76.42,
+          314.33,
+          71.75
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97208.03092968748,
+          37234.654198125005,
+          71.75
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_02",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          -357.56,
+          222.31,
+          63.5
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          96774.05092968748,
+          37142.634198125,
+          63.5
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_03",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          732.52,
+          41.05,
+          59.1
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97864.13092968748,
+          36961.374198125006,
+          59.1
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_04",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          -614.93,
+          63.2,
+          59.1
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          96516.68092968749,
+          36983.524198125,
+          59.1
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_05",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          277.14,
+          330.0,
+          70.1
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97408.75092968748,
+          37250.324198125,
+          70.1
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_06",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          287.15,
+          220.73,
+          70.1
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97418.76092968747,
+          37141.054198125006,
+          70.1
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_07",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          -739.14,
+          123.54,
+          59.1
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          96392.47092968748,
+          37043.864198125004,
+          59.1
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_08",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          686.49,
+          286.73,
+          89.9
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97818.10092968748,
+          37207.054198125006,
+          89.9
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_09",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          -72.37,
+          300.59,
+          89.9
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97059.24092968748,
+          37220.914198125,
+          89.9
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_10",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          -261.5,
+          -240.0,
+          76.7
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          96870.11092968748,
+          36680.324198125,
+          76.7
+        ],
+        "vision": 2
+      },
+      {
+        "socket": "SOCKET_Smoulder_11",
+        "origin": null,
+        "effect": "smoulder_wisp",
+        "original_sequence": null,
+        "surface": "debris",
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "scale_hint": 0.5,
+        "optional": true,
+        "default_enabled": false,
+        "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+        "local_ue_cm": [
+          418.5,
+          -160.0,
+          66.8
+        ],
+        "normal_ue": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "attach_to": "DinksCottage_V2",
+        "world_cm": [
+          97550.11092968748,
+          36760.324198125,
+          66.8
+        ],
+        "vision": 2
+      }
+    ]
+  },
+  "interior_001": {
+    "emitters": [
+      {
+        "origin": "S001_P21",
+        "source_pixel": [
+          467,
+          294
+        ],
+        "placement_pixel": [
+          436.0,
+          266.8
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -183226.40999999997,
+          393013.23000000004,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 427,
+        "original_frame": 1,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "effect": "flame_large",
+        "scale_hint": 1.0
+      },
+      {
+        "origin": "S001_P27",
+        "source_pixel": [
+          389,
+          88
+        ],
+        "placement_pixel": [
+          357.0,
+          104.0
+        ],
+        "surface": "wall_north",
+        "world_cm": [
+          -183572.035,
+          392300.98,
+          175.0
+        ],
+        "height_cm": 175.0,
+        "vision": 1,
+        "original_sequence": 427,
+        "original_frame": 3,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "effect": "flame_large",
+        "scale_hint": 0.97
+      },
+      {
+        "origin": "S001_P28",
+        "source_pixel": [
+          210,
+          250
+        ],
+        "placement_pixel": [
+          196.0,
+          233.5
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -184276.40999999997,
+          392867.5425,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 70,
+        "original_frame": 1,
+        "original_sequence_path": "effects/splode/explo-",
+        "effect": "burst_oneshot",
+        "scale_hint": 0.75
+      },
+      {
+        "origin": "S001_P29",
+        "source_pixel": [
+          286,
+          182
+        ],
+        "placement_pixel": [
+          272.0,
+          165.5
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -183943.90999999997,
+          392570.0425,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 70,
+        "original_frame": 1,
+        "original_sequence_path": "effects/splode/explo-",
+        "effect": "burst_oneshot",
+        "scale_hint": 0.75
+      },
+      {
+        "origin": "S001_P30",
+        "source_pixel": [
+          225,
+          81
+        ],
+        "placement_pixel": [
+          193.0,
+          104.0
+        ],
+        "surface": "wall_north",
+        "world_cm": [
+          -184289.535,
+          392300.98000000004,
+          196.9
+        ],
+        "height_cm": 196.9,
+        "vision": 1,
+        "original_sequence": 427,
+        "original_frame": 4,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "effect": "flame_large",
+        "scale_hint": 0.97
+      },
+      {
+        "origin": "S001_P31",
+        "source_pixel": [
+          143,
+          124
+        ],
+        "placement_pixel": [
+          134.0,
+          104.0
+        ],
+        "surface": "wall_north",
+        "world_cm": [
+          -184547.66,
+          392300.98,
+          41.7
+        ],
+        "height_cm": 41.7,
+        "vision": 1,
+        "original_sequence": 427,
+        "original_frame": 6,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "effect": "flame_large",
+        "scale_hint": 0.97
+      },
+      {
+        "origin": "S001_P32",
+        "source_pixel": [
+          241,
+          178
+        ],
+        "placement_pixel": [
+          209.0,
+          150.8
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -184219.535,
+          392505.73,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 427,
+        "original_frame": 4,
+        "original_sequence_path": "graphics/effects/fire/fire1-",
+        "effect": "flame_large",
+        "scale_hint": 0.97
+      },
+      {
+        "origin": "S001_P33",
+        "source_pixel": [
+          165,
+          206
+        ],
+        "placement_pixel": [
+          154.5,
+          212.7
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -184457.97249999997,
+          392776.5425,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 161,
+        "original_frame": 4,
+        "original_sequence_path": "effects/atomic/atomc-",
+        "effect": "fire_column",
+        "scale_hint": 1.16
+      },
+      {
+        "origin": "S001_P34",
+        "source_pixel": [
+          194,
+          141
+        ],
+        "placement_pixel": [
+          174.0,
+          157.0
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -184372.65999999997,
+          392532.85499999986,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 355,
+        "original_frame": 1,
+        "original_sequence_path": "people/mom/death-",
+        "effect": null,
+        "note": "mother's death sprite: reproduced as the SM_Mother_Remains_Fire_01 prop + blood decal (elements MotherBody/MotherBlood), not an emitter"
+      },
+      {
+        "origin": "S001_P35",
+        "source_pixel": [
+          164,
+          47
+        ],
+        "placement_pixel": [
+          160.5,
+          104.0
+        ],
+        "surface": "wall_north",
+        "world_cm": [
+          -184431.72249999997,
+          392300.98,
+          209.1
+        ],
+        "height_cm": 209.1,
+        "vision": 1,
+        "original_sequence": 155,
+        "original_frame": 1,
+        "original_sequence_path": "struct/details/damage/fire2-",
+        "effect": "flame_small",
+        "scale_hint": 0.29
+      },
+      {
+        "origin": "S001_P36",
+        "source_pixel": [
+          421,
+          34
+        ],
+        "placement_pixel": [
+          417.5,
+          104.0
+        ],
+        "surface": "wall_north",
+        "world_cm": [
+          -183307.3475,
+          392300.98,
+          256.9
+        ],
+        "height_cm": 256.9,
+        "vision": 1,
+        "original_sequence": 156,
+        "original_frame": 1,
+        "original_sequence_path": "struct/details/damage/fire3-",
+        "effect": "flame_small",
+        "scale_hint": 0.29
+      },
+      {
+        "origin": "S001_P38",
+        "source_pixel": [
+          431,
+          361
+        ],
+        "placement_pixel": [
+          424.0,
+          396.0
+        ],
+        "surface": "wall_south",
+        "world_cm": [
+          -183278.91,
+          393578.48,
+          109.2
+        ],
+        "height_cm": 109.2,
+        "vision": 1,
+        "original_sequence": 157,
+        "original_frame": 1,
+        "original_sequence_path": "struct/details/damage/fire4-",
+        "effect": "flame_medium",
+        "scale_hint": 0.53
+      },
+      {
+        "origin": "S001_P41",
+        "source_pixel": [
+          436,
+          200
+        ],
+        "placement_pixel": [
+          423.0,
+          205.8
+        ],
+        "surface": "floor",
+        "world_cm": [
+          -183283.28499999997,
+          392746.355,
+          0.0
+        ],
+        "height_cm": 0.0,
+        "vision": 1,
+        "original_sequence": 161,
+        "original_frame": 14,
+        "original_sequence_path": "effects/atomic/atomc-",
+        "effect": "fire_column",
+        "scale_hint": 1.1
+      }
+    ]
+  },
+  "mapping": "Exterior: original sprite visual points mapped onto the 3D roof/walls by ruin_common.sprite_to_cottage_roofaware (inverse-bilinear on the sprite roof quad; oblique fit for walls). Interior: room source pixels; wall-painted fires lifted to the wall face."
+}

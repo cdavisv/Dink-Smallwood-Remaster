@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "base_source_commit": "f96d0b9",
+  "reviewed_nine_cottage_dependencies_exact": true,
+  "prior_cpp_metadata_scopes_byte_exact_prefix": true,
+  "source_pins": 294,
+  "code_dependencies": 52,
+  "fresh_packages": 35,
+  "source_blockers": [],
+  "contract_digest": "4b17690f71e5f681282347a9268326e5bc4fc4737cc3f4634be16b6688481961",
+  "native_run": false,
+  "full_contract_equality_required": true,
+  "symlinked_package_ancestors_refused": true,
+  "saved_import_policy_fields_checked": 15
+}

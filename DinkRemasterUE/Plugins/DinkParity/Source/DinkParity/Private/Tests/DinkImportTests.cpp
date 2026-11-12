@@ -11,6 +11,10 @@
 #include "DinkLayout.h"
 #include "DinkOriginComponent.h"
 #include "DinkStorySubsystem.h"
+#include "DinkGameplay.h"
+#include "DinkArtFamilySubsystem.h"
+#include "Hardness/DinkFamilyCollisionFit.h"
+#include "Hardness/DinkHardnessFoundationSource.h"
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkPlaceholderActor.h"
@@ -371,18 +375,46 @@ void DinkImportTest::CheckContentIn(FAutomationTestBase& Test, UWorld* World, co
 	const bool bAll = RegionKey == TEXT("all");
 	const TSharedPtr<FJsonObject> Expect = Manifest->GetObjectField(TEXT("counts"))->GetObjectField(RegionKey);
 	const int32 ExpScreens = (int32)Expect->GetNumberField(TEXT("screens"));
-	const int32 ExpActors = (int32)Expect->GetNumberField(TEXT("placement_actors"));
-	const int32 ExpInstances = (int32)Expect->GetNumberField(TEXT("placement_instances"));
+	int32 ExpActors = (int32)Expect->GetNumberField(TEXT("placement_actors"));
+	int32 ExpInstances = (int32)Expect->GetNumberField(TEXT("placement_instances"));
 	const int32 ExpWarps = (int32)Expect->GetNumberField(TEXT("warps"));
 	const int32 ExpVision = (int32)Expect->GetNumberField(TEXT("vision_gated"));
 
+	FString FamiliesText, PolicyError;
+	TArray<FDinkFamilyCollisionFitRule> FitRules;
+	if (!Test.TestTrue(TEXT("source collision-fit policy loads"),
+		FFileHelper::LoadFileToString(FamiliesText, *DinkArtFamily::DefaultFamiliesPath()) &&
+		DinkFamilyCollisionFit::ParsePolicy(FamiliesText, FitRules, PolicyError)))
+	{
+		Test.AddError(PolicyError); return;
+	}
+	TSet<int32> MarkedScreens;
+	for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
+		if (It->ActorHasTag(TEXT("DinkHardnessWorldV1"))) MarkedScreens.Add(It->ScreenNumber);
+	TMap<FString, const FDinkFamilyCollisionFitRule*> Promoted;
+	TMap<FString, bool> ExpectedActors;
 	TSet<FString> Expected;
 	for (const TSharedPtr<FJsonValue>& V : Placements->GetArrayField(TEXT("placements")))
 	{
 		const TSharedPtr<FJsonObject> P = V->AsObject();
 		if ((bAll || P->GetStringField(TEXT("region")) == RegionKey) && P->GetStringField(TEXT("excluded")).IsEmpty())
 		{
-			Expected.Add(P->GetStringField(TEXT("id")));
+			const FString Id = P->GetStringField(TEXT("id"));
+			Expected.Add(Id);
+			const FString Representation = P->GetStringField(TEXT("representation"));
+			if (!Test.TestTrue(TEXT("source representation is explicit: ") + Id,
+				Representation == TEXT("actor") || Representation == TEXT("instance"))) return;
+			const auto* Rule = FitRules.FindByPredicate([&](const auto& R) { return R.Origin.ToString() == Id; });
+			const bool Promote = Rule && Rule->IsStaticBackground() && MarkedScreens.Contains(Rule->Origin.Screen);
+			if (Promote)
+			{
+				if (!Test.TestTrue(TEXT("promoted source remains an exact original background: ") + Id,
+					Representation == TEXT("instance") && P->GetNumberField(TEXT("type")) == 0 &&
+					P->GetStringField(TEXT("hash")) == Rule->SourceHash &&
+					FName(*P->GetStringField(TEXT("script"))) == Rule->SourceScript)) return;
+				Promoted.Add(Id, Rule); ++ExpActors; --ExpInstances;
+			}
+			ExpectedActors.Add(Id, Representation == TEXT("actor") || Promote);
 		}
 	}
 
@@ -406,6 +438,12 @@ void DinkImportTest::CheckContentIn(FAutomationTestBase& Test, UWorld* World, co
 		{
 			++OriginActors;
 			See(O->OriginId);
+			const FString Id = O->OriginId.ToString();
+			Test.TestTrue(TEXT("source expects this placement as an actor: ") + Id, ExpectedActors.FindRef(Id));
+			if (const auto* Rule = Promoted.FindRef(Id))
+				Test.TestTrue(TEXT("promoted carrier retains type, script, hash and promotion tag: ") + Id,
+					O->PlacementType == 0 && O->ScriptName == Rule->SourceScript && O->SourceHash == Rule->SourceHash &&
+					A->ActorHasTag(DinkFamilyCollisionFit::PromotedBackgroundTag));
 			Test.TestTrue(TEXT("origin has a category"), !O->Category.IsNone());
 		}
 		if (const UDinkInstanceOriginsComponent* IO = A->FindComponentByClass<UDinkInstanceOriginsComponent>())
@@ -414,6 +452,9 @@ void DinkImportTest::CheckContentIn(FAutomationTestBase& Test, UWorld* World, co
 			{
 				++Instances;
 				See(I.OriginId);
+				const FString Id = I.OriginId.ToString();
+				Test.TestTrue(TEXT("source expects this placement as an instance: ") + Id,
+					ExpectedActors.Contains(Id) && !ExpectedActors.FindRef(Id));
 			}
 		}
 		if (const ADinkScreenVolume* S = Cast<ADinkScreenVolume>(A))
@@ -476,7 +517,30 @@ void DinkImportTest::CheckCollision(FAutomationTestBase& Test, const FString& Ma
 	{
 		return;
 	}
-	int32 Walk = 0, WalkBad = 0, Solid = 0, SolidBad = 0, Low = 0, LowBad = 0, Ground = 0, GroundBad = 0;
+	// A versioned host stores immutable floor/fill in the editor. Original tile
+	// and placement bodies are admitted by the game-world owner, not baked back
+	// into these meshes. Verify every actual foundation triangle before using
+	// source fill rectangles as the editor's expected collision at sample points.
+	TMap<FString, FDinkHardnessFoundationSource> Foundations;
+	for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
+	{
+		if (!It->ActorHasTag(TEXT("DinkHardnessWorldV1"))) continue;
+		const FString Id = FString::Printf(TEXT("SCR_%03d"), It->ScreenNumber);
+		ADinkScreenVolume* Volume = nullptr;
+		int32 VolumeCount = 0;
+		for (TActorIterator<ADinkScreenVolume> V(World); V; ++V)
+			if (V->ScreenNumber == It->ScreenNumber) { Volume = *V; ++VolumeCount; }
+		if (!Test.TestTrue(TEXT("versioned editor host has one source volume: ") + Id,
+			VolumeCount == 1 && !Foundations.Contains(Id))) return;
+		FDinkHardnessFoundationSource Source; FString Error;
+		const FString File = FDinkGameplayData::GetDataPath(*FString::Printf(TEXT("Hardness/Foundations/%s.json"), *Id));
+		if (!Test.TestTrue(TEXT("complete source-backed editor foundation geometry: ") + Id,
+			FDinkHardnessFoundationSource::Load(File, It->ScreenNumber, Source, Error) &&
+			Source.VerifyGameplayInputs(Error) && Source.VerifyInstances(*Volume, **It, Error)))
+		{ Test.AddError(Error); return; }
+		Foundations.Add(Id, MoveTemp(Source));
+	}
+	int32 Walk = 0, WalkBad = 0, Solid = 0, SolidBad = 0, Low = 0, LowBad = 0, Ground = 0, GroundBad = 0, FoundationSamples = 0;
 	TArray<FString> Bad;
 	const TSharedPtr<FJsonObject> PerScreen = Samples->GetObjectField(TEXT("screens"));
 	for (const auto& Pair : Screens.ById)
@@ -519,14 +583,27 @@ void DinkImportTest::CheckCollision(FAutomationTestBase& Test, const FString& Ma
 			const bool bLow = P->GetStringField(TEXT("class")) == TEXT("low");
 			const bool bPawn = HitsBlocker(World, M, ECC_Pawn);
 			const bool bProjectile = HitsBlocker(World, M, DinkCollision::Projectile);
-			// low hardness: blocks walkers, projectiles cross; solid: blocks both
-			const bool bOk = bPawn && (bLow ? !bProjectile : bProjectile);
+			// Legacy hosts retain their full original prisms. Versioned hosts expose
+			// only verified immutable fill here; all old samples are still checked,
+			// including required clearance outside that fill. Dedicated game-world
+			// tests validate admitted original bodies and fitted logical overlays.
+			bool ExpectedPawn = true, ExpectedProjectile = !bLow;
+			if (const auto* Foundation = Foundations.Find(Pair.Key))
+			{
+				const FIntPoint Cell(FMath::FloorToInt(P->GetNumberField(TEXT("x"))), FMath::FloorToInt(P->GetNumberField(TEXT("y"))));
+				auto Contains = [&](const TArray<FIntRect>& Rects)
+				{ for (const auto& Rect : Rects) if (Rect.Contains(Cell)) return true; return false; };
+				ExpectedProjectile = Contains(Foundation->SolidFill);
+				ExpectedPawn = ExpectedProjectile || Contains(Foundation->WaterFill);
+				++FoundationSamples;
+			}
+			const bool bOk = bPawn == ExpectedPawn && bProjectile == ExpectedProjectile;
 			(bLow ? Low : Solid)++;
 			if (!bOk)
 			{
 				(bLow ? LowBad : SolidBad)++;
-				Bad.Add(FString::Printf(TEXT("%s %s code %d at (%.1f,%.1f): pawn %d projectile %d"), *Pair.Key, bLow ? TEXT("low") : TEXT("solid"),
-					(int32)P->GetNumberField(TEXT("code")), P->GetNumberField(TEXT("x")), P->GetNumberField(TEXT("y")), bPawn, bProjectile));
+				Bad.Add(FString::Printf(TEXT("%s %s code %d at (%.1f,%.1f): pawn %d projectile %d expected pawn %d projectile %d"), *Pair.Key, bLow ? TEXT("low") : TEXT("solid"),
+					(int32)P->GetNumberField(TEXT("code")), P->GetNumberField(TEXT("x")), P->GetNumberField(TEXT("y")), bPawn, bProjectile, ExpectedPawn, ExpectedProjectile));
 			}
 		}
 	}
@@ -599,6 +676,7 @@ void DinkImportTest::CheckCollision(FAutomationTestBase& Test, const FString& Ma
 	}
 	Test.AddInfo(FString::Printf(TEXT("walkable %d (%d blocked), ground %d (%d missing), solid %d (%d wrong), low %d (%d wrong), warp destinations %d (%d blocked)"),
 		Walk, WalkBad, Ground, GroundBad, Solid, SolidBad, Low, LowBad, Dest, DestBad));
+	Test.AddInfo(FString::Printf(TEXT("%d versioned editor foundations verified in full; %d old blocked samples checked against immutable fill (game-world bodies tested separately)"), Foundations.Num(), FoundationSamples));
 	Test.TestTrue(TEXT("samples present"), Walk > 100 && Solid > 50);
 	Test.TestEqual(TEXT("known-walkable points are free"), WalkBad, 0);
 	Test.TestEqual(TEXT("ground under walkable points"), GroundBad, 0);

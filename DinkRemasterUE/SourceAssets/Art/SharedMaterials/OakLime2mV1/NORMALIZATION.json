@@ -3,17 +3,17 @@
   "sources": [
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_ProceduralSources.blend",
-      "sha256": "bd8bc6eed0fdad9d2b651a952cbbe5217d7ead02dabf9c629a88757cc330486e",
+      "sha256": "e082fc88413e2115d9b82163ebf2e2890b0a4cfc2a99414eba07a4c7fb70938a",
       "allowed_changes": "Material/image names and relative image paths only. Source procedural shader values and packed image bytes retained."
     },
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend",
-      "sha256": "561e921cd922cf143a834eda87038e2600c737bbdca58d81c7caeaafa6e54a2e",
+      "sha256": "2b072073ff3c8673a63391f4390f87ebb7e0d8fd0a09144607e39bd568f2b488",
       "allowed_changes": "Material/image names and relative image paths only. Source procedural shader values and packed image bytes retained."
     },
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/GenericReuse_2m4m.blend",
-      "sha256": "9cef4c0f1edd7349771e5910609818de65fc6ce6a3cde0db98aa830e8040a4db",
+      "sha256": "5214247b013b4d55747dfa8846dc363626817203596f37b9d76f1387b9bb315d",
       "allowed_changes": "Material/image names and relative image paths only. Source procedural shader values and packed image bytes retained."
     }
   ]

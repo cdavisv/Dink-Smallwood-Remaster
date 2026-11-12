@@ -1,0 +1,27 @@
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
+index 6721755..5879728 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
+@@ -67,6 +67,7 @@ public:
+ 	static constexpr float RunSpeed = 600.f;
+ 	static constexpr float WalkSpeed = 200.f;
+ 	virtual void Tick(float DeltaSeconds) override;
++	virtual void CalcCamera(float DeltaTime, FMinimalViewInfo& OutResult) override;
+ 	virtual void Jump() override;
+ 	virtual void Landed(const FHitResult& Hit) override;
+ 	virtual void OnJumped_Implementation() override;
+@@ -117,6 +118,14 @@ public:
+ 	static constexpr float HeadReach = 13.f, HeadLift = 5.f, ShoulderReach = 9.f, WallProbeRadius = 3.f;
+ 
+ private:
++#if WITH_DEV_AUTOMATION_TESTS
++	friend class FDinkOwnerCameraVisibilityTest;
++#endif
++	bool HasLocalFollowCameraView() const;
++	void UpdateLocalCameraOwnerVisibility(const FVector& ViewLocation);
++	void RestoreLocalCameraOwnerVisibility();
++	TWeakObjectPtr<USkeletalMeshComponent> CameraHiddenOwnerMesh;
++	bool bCameraOwnerNoSeeWasSet = false;
+ 	void StartWalking() { SetWalking(true); }
+ 	void StopWalking() { SetWalking(false); }
+ 	void Zoom(const FInputActionValue& Value);

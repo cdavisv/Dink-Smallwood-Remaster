@@ -95,7 +95,7 @@
     "generator": "SourceAssets/Art/tools/build_exterior.py",
     "generator_sha256": "8c8d76e62166c88809a8a4d66da09dde80ff2c46dd9a4844dc81fea733fd874a",
     "export_manifest": "SourceAssets/Art/StonebrookExterior/Export/manifest.json",
-    "export_manifest_sha256": "502f7ac5e7a88af04effa7d832ea0bc55a22aa02f763ba520ae3133f85d4fee1",
+    "export_manifest_sha256": "f7d5fd4f77ab2e3d024070d4fc3f13a3641843d6f95086d7daf26b04c9dc68cd",
     "native_mesh_package": "Content/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.uasset",
     "native_mesh_package_sha256": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
     "qualification": "Authored structural camera envelope derived from existing generator: wallinnerfaces875/425; floor22; roofunderside z+.75|y|<=698 normalized; jambfront457+22.5=479.5; doorinnerwidth150/h250. No geometry/physics/package rewrite. Actualnative/world/pixels pending."

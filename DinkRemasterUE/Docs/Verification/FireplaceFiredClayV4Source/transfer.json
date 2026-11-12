@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "copies": [
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Fireplace_FiredClayV4.blend",
+      "sha256": "f0fc970809106613126d8b148116c80c8b9f5e7db26b61e496386dab17bf7e45",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Chimney_Stonebrook_V8.fbx",
+      "sha256": "4cd7b54813d5eba685aaeeea8a8d2818f47388103528f24fabeaa539f98c8413",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+      "sha256": "1280616f71af17e0c20b728c1818f1dfe6049234714dd42086fb8a131fb18cb4",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+      "sha256": "9573ace7963f96a828e3853cdc79ab9e80a17fa225e1e2dfa347349f0827b291",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+      "sha256": "9cdec5823993dbc984f0d46c2e7890e32e5d8ec8af0e833d91ec4bbb094f5b36",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/SOURCE_NORMALIZATION_PROOF.json",
+      "sha256": "3d9432c2426fecebc7cb6c128d3e28f2e925e4db9d08a25073e4e09c3ebb4280",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/BINARY_SUCCESSOR_PROOF.json",
+      "sha256": "6448e516e6036c22da3e6b7165156a636da78d4ac62e173c7d2dd8fccfb0a156",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/FBX_ROUNDTRIP.json",
+      "sha256": "6e597bdf116bd35b1dd08442b6b654a616fa62e821c37d5fb7b3e9331f66dc37",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/ACTUAL_SOURCE_GRAPHS.json",
+      "sha256": "7cd5f3d0fbca44008c89177f3c63baec19288384db4b91bfba82285259389093",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/RENDER_COLOR_DIFFERENCE.json",
+      "sha256": "87820baad9373a2933869e4828c93e09e27255b3642a1a1df2c2751163d3058a",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/ROOT_BINARY_REVIEW.json",
+      "sha256": "0589c88660789b1f0bef4f3c3f33cc0663aec840b51937895c91dab21c0cd985",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/candidate/hearth.png",
+      "sha256": "5013937c118ac9c19385ef55dde9e3aa1136b9e5934b872ace5d4711a0420288",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/candidate/cavity.png",
+      "sha256": "0e831d4c83e4f49b5f830eba985f7a44ddf4201cab45e643b189a9a1f76bbb33",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/candidate/chimney.png",
+      "sha256": "a8afde876827634a59ff132a85052f82fcbab71a1c02a0ca9596bae8ae99837a",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/candidate/receipt.json",
+      "sha256": "63f5c9adcb2c2dab4381256ceae25ccbcd956f809b6798c8fe8babc4d35de034",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/baseline/hearth.png",
+      "sha256": "6c8eb77b1fd31896308dae2df3fb9a4cb53595929280dbb5ea8bf32dba837130",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/baseline/cavity.png",
+      "sha256": "c05d6163202cfed04a767df9c81134cf0af4a939894d470d2bbec93368ff95a1",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/baseline/chimney.png",
+      "sha256": "93b2be4940aaffc417e40cd595e6d9de5f453f5047a36489a8d2478bc7f8fa10",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Review/baseline/receipt.json",
+      "sha256": "c34513318c5cfbc5c9afe795dd3077133938b6ee3f078d0b94177edfe1730ede",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/V3/SOURCE_GEOMETRY_METRICS.json",
+      "sha256": "d720dcf0a919eb31b8bcfe1a0a6df46dbb26d90565422163c039adaada0d8b8b",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Evidence/V3/SOURCE_PRESERVATION_AND_OPENINGS.json",
+      "sha256": "b2bde9bb371e3ecd6b020693f85a5892c297f95042fe3456ea7007f8642459b4",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/shared_bindings.json",
+      "sha256": "6cda7e3adf7af072802de703eec4c8a84b73194dd05153eece4ee94b75898b23",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/PROVENANCE.md",
+      "sha256": "63495883299677cd20777963ba82896a59e47927cc4cb57c00dc62202598e3b6",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/fbxparse.py",
+      "sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/graph_fingerprint.py",
+      "sha256": "a42bb8eb30277068fa91ed5124ecda44ae1ccf51d2e91c00d4b234664d6416ac",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/normalize_source.py.txt",
+      "sha256": "620d3735a2113045d584d065feea1c2065a035f6eab3f5c1071d32be2bf186ff",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/compare_binary.py.txt",
+      "sha256": "089dc01b3c7be889a74344a58e83ec68fecb19f553edbdb0f86417fcaeb453cd",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/export_verify.py.txt",
+      "sha256": "5c66d24b3fae78cb47b85d8741f2681529426364e2eb5160b54ee57d34f1a930",
+      "independent_inode": true
+    },
+    {
+      "file": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Tools/render_review.py.txt",
+      "sha256": "52456d8234608540d5e6c90ae81d9adc8f65227339c94e0d7ac7aae21de4aa8c",
+      "independent_inode": true
+    }
+  ]
+}

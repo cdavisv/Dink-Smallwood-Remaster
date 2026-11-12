@@ -1599,7 +1599,7 @@
    "open_edges": 0,
    "collision_hulls": 1,
    "families": [
-    "63 struct/home/home- frames 11, 12",
+    "63 struct<HOME> frames 11, 12",
     "chimney_stone"
    ],
    "supersedes": "none",
@@ -1642,7 +1642,7 @@
    "open_edges": 0,
    "collision_hulls": 1,
    "families": [
-    "63 struct/home/home- frame 13",
+    "63 struct<HOME> frame 13",
     "chimney_stone"
    ],
    "supersedes": "none",
@@ -1686,7 +1686,7 @@
    "open_edges": 0,
    "collision_hulls": 5,
    "families": [
-    "63 struct/home/home- frames 4, 5",
+    "63 struct<HOME> frames 4, 5",
     "cottage_thatched_two_storey"
    ],
    "supersedes": "none (not built in round 1)",
@@ -1732,7 +1732,7 @@
    "open_edges": 0,
    "collision_hulls": 8,
    "families": [
-    "63 struct/home/home- frame 10",
+    "63 struct<HOME> frame 10",
     "cottage_thatched_l_shape"
    ],
    "supersedes": "none (not built in round 1)",

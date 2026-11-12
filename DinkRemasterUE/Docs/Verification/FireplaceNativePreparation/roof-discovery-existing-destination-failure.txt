@@ -1,0 +1,17 @@
+E..............
+======================================================================
+ERROR: setUpClass (test_offline.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkFireplaceV4NativePreparation/DinkRemasterUE/Scripts/RoofNative/test_offline.py", line 13, in setUpClass
+    def setUpClass(cls):cls.proposal,cls.recipe,cls.binding=load(P)
+                                                            ~~~~^^^
+  File "<HOME>/Work/DinkFireplaceV4NativePreparation/DinkRemasterUE/Scripts/RoofNative/canonical_contract.py", line 21, in load
+    if mode=='import':assert not f.exists(),'Existing canonical destination; no automatic resume'
+                             ^^^^^^^^^^^^^^
+AssertionError: Existing canonical destination; no automatic resume
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.262s
+
+FAILED (errors=1)

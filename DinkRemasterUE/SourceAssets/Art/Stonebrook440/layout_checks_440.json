@@ -1,0 +1,145 @@
+{
+  "house_source_pixel": [
+    330.684,
+    247.246
+  ],
+  "house_world_m": [
+    1034.8688029485575,
+    369.3925657640839
+  ],
+  "door_face_world_m": [
+    1033.1244382291666,
+    373.63179234375
+  ],
+  "door_target_px": [
+    312.5,
+    290.0
+  ],
+  "original_warp_stamp_px": [
+    295,
+    263,
+    330,
+    293
+  ],
+  "door_inside_original_trigger": true,
+  "lower_footprint_px": [
+    275.26,
+    204.672,
+    386.112,
+    289.825
+  ],
+  "footprint_codes_px": {
+    "0": 7435,
+    "1": 1168,
+    "100": 84,
+    "200": 945
+  },
+  "footprint_fraction_inside_original_solid_or_sprite": 0.22809385382059802,
+  "original_house_solid_px_now_open_ground": 14935,
+  "original_house_solid_px": 16103,
+  "east_wall_world_x_m": 1040.3943382291666,
+  "leaning_tool_contact": [
+    {
+      "mesh": "SM_Pitchfork_Ash_01",
+      "tilt_deg": 10,
+      "spin_deg": -90,
+      "hull_points": 92,
+      "min_gap_cm": 0.0,
+      "points_within_5mm": 34,
+      "contact_height_m": 1.451,
+      "foot_to_wall_m": 0.238
+    },
+    {
+      "mesh": "SM_Scythe_Ash_01",
+      "tilt_deg": 8,
+      "spin_deg": -90,
+      "hull_points": 141,
+      "min_gap_cm": 0.0,
+      "points_within_5mm": 4,
+      "contact_height_m": 1.496,
+      "foot_to_wall_m": 0.304
+    },
+    {
+      "mesh": "SM_Shovel_Ash_01",
+      "tilt_deg": 11,
+      "spin_deg": -90,
+      "hull_points": 152,
+      "min_gap_cm": 0.0,
+      "points_within_5mm": 6,
+      "contact_height_m": 1.032,
+      "foot_to_wall_m": 0.269
+    },
+    {
+      "mesh": "SM_Hoe_Ash_01",
+      "tilt_deg": 10,
+      "spin_deg": -90,
+      "hull_points": 68,
+      "min_gap_cm": 0.0,
+      "points_within_5mm": 6,
+      "contact_height_m": 1.407,
+      "foot_to_wall_m": 0.269
+    }
+  ],
+  "west_wall_world_x_m": 1029.2988029485575,
+  "fence_segments": 15,
+  "fence_first_center_px": [
+    26.636,
+    366.0
+  ],
+  "element_count": 125,
+  "replacement_count": 7,
+  "notes": [
+    "The original roof-projected tile outline covers ~25 x 20 m; the 11 x 8.5 m stone footprint lies inside it and the remaining band becomes walkable yard under the eaves, the same deliberate policy as screen 439 (README)."
+  ],
+  "prop_ground_codes": {
+    "Shovel_AshLean": {
+      "0": 16
+    },
+    "Hoe_AshLean": {
+      "0": 6
+    },
+    "Woodpile": {
+      "0": 529
+    },
+    "ChoppingBlock": {
+      "0": 30,
+      "1": 25,
+      "100": 45
+    },
+    "Wheelbarrow": {
+      "0": 42,
+      "1": 270,
+      "100": 12
+    },
+    "HayBale_A": {
+      "0": 144
+    },
+    "HayBale_B": {
+      "0": 156
+    },
+    "HayBale_C": {
+      "0": 144
+    },
+    "WaterTrough": {
+      "0": 256
+    },
+    "S440_P21": {
+      "0": 9
+    },
+    "S440_P22": {
+      "0": 90
+    },
+    "S440_P23": {
+      "0": 99,
+      "1": 1
+    },
+    "S440_P24": {
+      "0": 36
+    },
+    "S440_P25": {
+      "0": 14,
+      "1": 12,
+      "100": 10
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "status": "SOURCE_PROPOSAL_NOT_PUBLISHED_OR_NATIVE_ADMITTED",
+  "material": "MI_Candidate_Metalwork_2Role",
+  "proposed_library_name": "MI_Shared_Metalwork",
+  "reuse_scope": "Generic forged fittings/brackets/hoops and lead sheet/flashing; independent two-variant shader, no prop UV bake",
+  "shader_contract": "One opaque material with two standard BC/N/ORM2m sets. UV0=physical metres/2; UV1.x=role (0iron/1lead), constant per face; Alpha1 unlinked. NormalMap basis UV0. Six separate image resources avoid cross-variant atlas mip bleeding. Native material factory must implement explicit variant binding.",
+  "variants": {
+    "BlackenedIron": {
+      "BC": {
+        "file": "TexturesV2/T_SharedCandidate_BlackenedIron_BC.png",
+        "sRGB": true,
+        "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd"
+      },
+      "N": {
+        "file": "TexturesV2/T_SharedCandidate_BlackenedIron_N_GL.png",
+        "sRGB": false,
+        "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700"
+      },
+      "ORM": {
+        "file": "TexturesV2/T_SharedCandidate_BlackenedIron_ORM.png",
+        "sRGB": false,
+        "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c"
+      }
+    },
+    "DullLead": {
+      "BC": {
+        "file": "TexturesV2/T_SharedCandidate_DullLead_BC.png",
+        "sRGB": true,
+        "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9"
+      },
+      "N": {
+        "file": "TexturesV2/T_SharedCandidate_DullLead_N_GL.png",
+        "sRGB": false,
+        "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d"
+      },
+      "ORM": {
+        "file": "TexturesV2/T_SharedCandidate_DullLead_ORM.png",
+        "sRGB": false,
+        "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b"
+      }
+    }
+  },
+  "scan_source": {
+    "asset": "https://polyhaven.com/a/metal_plate_02",
+    "author": "Rob Tuytel",
+    "license": "CC0-1.0",
+    "published_width_m": 2,
+    "unchanged_source_files": [
+      {
+        "file": "metal_plate_02_diff_1k.png",
+        "sha256": "6565bd25062e3f724018cc6ddd83ba896bdae7a7026635d670491eced3294463"
+      },
+      {
+        "file": "metal_plate_02_nor_gl_1k.png",
+        "sha256": "a39eee156a992afef4f1453010f2f2ff3c01cd6b5e0ce408259954ce25dd049f"
+      },
+      {
+        "file": "metal_plate_02_arm_1k.png",
+        "sha256": "7b8221dcba57767eac0509066cfc50bc3183bc4a0c2613c2c61047083ee8e202"
+      }
+    ]
+  },
+  "iron_recipe": "Source joint-free .5m square atpixel(186,174), registered .4m overlap repeat/.1m seam band, tiled5x over2m. Linear-albedo and roughness high-pass sigma.025m; normal-slope high-pass sigma.015m. Legacy-library mean albedo/roughness/metallic set artist blackened coating; fine scanned detail retained. Not unchanged scan BRDF/calibrated oxide or exact legacy shader. V1 broad-sheet wear rejected.",
+  "lead_recipe": "Retains reviewed constant linearBC(.18,.195,.20), effectiveMetallic.25; artist-estimated periodic roughness.65..70/correlation sigma.006m and20micrometre peak-to-peak height/sigma.0035m. Reproducible seed614029. Not a scanned lead surface or exact Blender world-noise equivalence.",
+  "physical_repeat_m": [
+    2,
+    2
+  ],
+  "resolution": [
+    1024,
+    1024
+  ],
+  "density_px_m": 512,
+  "normal_convention": "OpenGL; explicit normal green flip needed on native DirectX import",
+  "ORM": "R AO/G roughness/B metallic; source ARM channels retained for iron, unoccluded AO1 for lead",
+  "opacity": "Maps RGB16, no alpha; shaderAlpha1",
+  "v2_iron_finish_qualification": "Broad sheet-corrosion albedo/roughness/normal variations removed with periodic Gaussian .025/.015m. Fine scanned structure retained; basecolour and mean metallic/roughness match legacy library averages. Artist-authored blackened coating, not unchanged photographic BRDF or calibrated oxide.",
+  "known_remaining": "Source numerical/image QA, independent actual views, UV1/basis true FBX transport, whole-cottage physical chart conversion, six-slot/library/native validation"
+}

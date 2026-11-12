@@ -1,12 +1,12 @@
 {
   "status": "Actual independently parsed perLOD FBX geometry/front/normal/UV/material/header proofs",
-  "source_sha256": "17e5040e172bfa66e24f4328f317bb9e85a9d2e45565ce598632b42345136cb8",
+  "source_sha256": "0a07151afea4a646cb1e6e8e9e0103cc360874cb0723123b815e6d8eccea4f9d",
   "source_unchanged": true,
   "frozen_V11_unchanged": true,
   "LODs": [
     {
       "file": "LOD_V6/SM_Shared_Willow_01_LOD0.fbx",
-      "sha256": "e71d2b66872c7d2e09b3f754f285d15f81b5352c879b261ff5bf8bc6c61a4450",
+      "sha256": "2a858bef487fe61ba3943abc302d8e97fd0ad9725ab7394e8f630765c977d056",
       "triangles": 24846,
       "unit_cm": 100,
       "identity_model_transform": true,
@@ -28,7 +28,7 @@
     },
     {
       "file": "LOD_V6/SM_Shared_Willow_01_LOD1.fbx",
-      "sha256": "0a77a96ad47e775d3309defdc2a861e7cf79df86077ee37b97274d764d65fc70",
+      "sha256": "6e1e90d9f1047662b93f4b1c68bf2133b5cacb93449ac12cb1a9c6affedfef6a",
       "triangles": 14072,
       "unit_cm": 100,
       "identity_model_transform": true,
@@ -50,7 +50,7 @@
     },
     {
       "file": "LOD_V6/SM_Shared_Willow_01_LOD2.fbx",
-      "sha256": "70752fb121259e7e0bb28ebcb40c675079335fa5ff598c5dae01f16c4e4aa96e",
+      "sha256": "3411adc2646c4c780a01239779e905ef7d6414d01ba0a7a3d1021da5a55a29d5",
       "triangles": 7472,
       "unit_cm": 100,
       "identity_model_transform": true,

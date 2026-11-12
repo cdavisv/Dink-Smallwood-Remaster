@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "base": "4d3a660",
+  "branch": "art/fireplace-shared-source",
+  "prior_ledger_raw_bytes_preserved": 3879367,
+  "prior_rows": 4390,
+  "current_rows": 4476,
+  "prior_audio_rows": 2212,
+  "new_rows_hashes_exact": 86,
+  "old_shared_role_records_exact": true,
+  "new_roles": [
+    "LimeMortar2m",
+    "Soot2m",
+    "FieldstoneCoursed2m"
+  ],
+  "two_prior_index_archive_bytes_exact": true,
+  "shared_and_package_hash_manifests_exact": true,
+  "no_staged_runtime_Content_Config_Scripts_Engine": true,
+  "source_only_native_not_run": true
+}

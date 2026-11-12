@@ -1,0 +1,3250 @@
+{
+  "scope": "CPU explicit operations; native backend unimplemented/qualified",
+  "roles": {
+    "FieldstoneSeed2m": {
+      "role": "FieldstoneSeed2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e1",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e3",
+          "operation": "vertex_color",
+          "channels": "RGB"
+        },
+        {
+          "id": "e4",
+          "operation": "vertex_color",
+          "channels": "A"
+        },
+        {
+          "id": "e5",
+          "operation": "component",
+          "source": "e3",
+          "index": 0
+        },
+        {
+          "id": "e6",
+          "operation": "component",
+          "source": "e3",
+          "index": 1
+        },
+        {
+          "id": "e7",
+          "operation": "component",
+          "source": "e3",
+          "index": 2
+        },
+        {
+          "id": "e8",
+          "operation": "constant",
+          "value": 0.10000000149011612
+        },
+        {
+          "id": "e9",
+          "operation": "multiply",
+          "a": "e5",
+          "b": "e8"
+        },
+        {
+          "id": "e10",
+          "operation": "constant",
+          "value": 0.9399999976158142
+        },
+        {
+          "id": "e11",
+          "operation": "add",
+          "a": "e9",
+          "b": "e10"
+        },
+        {
+          "id": "e12",
+          "operation": "multiply",
+          "a": "e1",
+          "b": "e11"
+        },
+        {
+          "id": "e13",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e14",
+          "operation": "saturate",
+          "source": "e13"
+        },
+        {
+          "id": "e15",
+          "operation": "lerp",
+          "a": "e1",
+          "b": "e12",
+          "factor": "e14"
+        },
+        {
+          "id": "e16",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e17",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e18",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e19",
+          "operation": "multiply",
+          "a": "e16",
+          "b": "e18"
+        },
+        {
+          "id": "e20",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e21",
+          "operation": "add",
+          "a": "e19",
+          "b": "e20"
+        },
+        {
+          "id": "e22",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e24",
+          "operation": "lerp",
+          "a": "e22",
+          "b": "e21",
+          "factor": "e23"
+        },
+        {
+          "id": "e25",
+          "operation": "normalize",
+          "source": "e24",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e26",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e27",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e28",
+          "operation": "component",
+          "source": "e26",
+          "index": 0
+        },
+        {
+          "id": "e29",
+          "operation": "component",
+          "source": "e26",
+          "index": 1
+        },
+        {
+          "id": "e30",
+          "operation": "component",
+          "source": "e26",
+          "index": 2
+        },
+        {
+          "id": "e31",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e32",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e33",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e34",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e35",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e37",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e39",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e43",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e47",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e49",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e50",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e51",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e52",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e53",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e54",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e55",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e56",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e57",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e58",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e59",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e60",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e15",
+            "Metallic": "e30",
+            "Roughness": "e29",
+            "IOR": "e31",
+            "Alpha": "e32",
+            "Thin Wall": "e33",
+            "Normal": "e25",
+            "Weight": "e34",
+            "Diffuse Roughness": "e35",
+            "Subsurface Weight": "e36",
+            "Subsurface Radius": "e37",
+            "Subsurface Scale": "e38",
+            "Subsurface IOR": "e39",
+            "Subsurface Anisotropy": "e40",
+            "Specular IOR Level": "e41",
+            "Specular Tint": "e42",
+            "Anisotropic": "e43",
+            "Anisotropic Rotation": "e44",
+            "Tangent": "e45",
+            "Transmission Weight": "e46",
+            "Coat Weight": "e47",
+            "Coat Roughness": "e48",
+            "Coat IOR": "e49",
+            "Coat Tint": "e50",
+            "Coat Normal": "e51",
+            "Sheen Weight": "e52",
+            "Sheen Roughness": "e53",
+            "Sheen Tint": "e54",
+            "Emission Color": "e55",
+            "Emission Strength": "e56",
+            "Thin Film Thickness": "e57",
+            "Thin Film IOR": "e58"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e59"
+        }
+      ],
+      "surface": "e60",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "LimeMortarSoot2m": {
+      "role": "LimeMortarSoot2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 1
+        },
+        {
+          "id": "e1",
+          "operation": "component",
+          "source": "e0",
+          "index": 0
+        },
+        {
+          "id": "e2",
+          "operation": "component",
+          "source": "e0",
+          "index": 1
+        },
+        {
+          "id": "e3",
+          "operation": "component",
+          "source": "e0",
+          "index": 2
+        },
+        {
+          "id": "e4",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e5",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e6",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e7",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e8",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e9",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e10",
+          "operation": "greater_than",
+          "a": "e1",
+          "b": "e9"
+        },
+        {
+          "id": "e11",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e12",
+          "operation": "lerp",
+          "a": "e5",
+          "b": "e7",
+          "factor": "e11"
+        },
+        {
+          "id": "e13",
+          "operation": "component",
+          "source": "e12",
+          "index": 0
+        },
+        {
+          "id": "e14",
+          "operation": "component",
+          "source": "e12",
+          "index": 1
+        },
+        {
+          "id": "e15",
+          "operation": "component",
+          "source": "e12",
+          "index": 2
+        },
+        {
+          "id": "e16",
+          "operation": "add",
+          "a": "e14",
+          "b": "e2"
+        },
+        {
+          "id": "e17",
+          "operation": "saturate",
+          "source": "e16"
+        },
+        {
+          "id": "e18",
+          "operation": "vertex_color",
+          "channels": "RGB"
+        },
+        {
+          "id": "e19",
+          "operation": "vertex_color",
+          "channels": "A"
+        },
+        {
+          "id": "e20",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e21",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e22",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e24",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e25",
+          "operation": "lerp",
+          "a": "e20",
+          "b": "e22",
+          "factor": "e24"
+        },
+        {
+          "id": "e26",
+          "operation": "multiply",
+          "a": "e25",
+          "b": "e18"
+        },
+        {
+          "id": "e27",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e28",
+          "operation": "saturate",
+          "source": "e27"
+        },
+        {
+          "id": "e29",
+          "operation": "lerp",
+          "a": "e25",
+          "b": "e26",
+          "factor": "e28"
+        },
+        {
+          "id": "e30",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e31",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e32",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e4",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e33",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e34",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e35",
+          "operation": "lerp",
+          "a": "e30",
+          "b": "e32",
+          "factor": "e34"
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e37",
+          "operation": "multiply",
+          "a": "e35",
+          "b": "e36"
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e39",
+          "operation": "add",
+          "a": "e37",
+          "b": "e38"
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e42",
+          "operation": "lerp",
+          "a": "e40",
+          "b": "e39",
+          "factor": "e41"
+        },
+        {
+          "id": "e43",
+          "operation": "normalize",
+          "source": "e42",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e47",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e49",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e50",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e51",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e52",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e53",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e54",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e55",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e56",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e57",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e58",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e59",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e60",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e61",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e62",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e63",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e64",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e65",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e66",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e67",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e68",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e69",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e70",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e71",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e72",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e73",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e29",
+            "Metallic": "e15",
+            "Roughness": "e17",
+            "IOR": "e44",
+            "Alpha": "e45",
+            "Thin Wall": "e46",
+            "Normal": "e43",
+            "Weight": "e47",
+            "Diffuse Roughness": "e48",
+            "Subsurface Weight": "e49",
+            "Subsurface Radius": "e50",
+            "Subsurface Scale": "e51",
+            "Subsurface IOR": "e52",
+            "Subsurface Anisotropy": "e53",
+            "Specular IOR Level": "e54",
+            "Specular Tint": "e55",
+            "Anisotropic": "e56",
+            "Anisotropic Rotation": "e57",
+            "Tangent": "e58",
+            "Transmission Weight": "e59",
+            "Coat Weight": "e60",
+            "Coat Roughness": "e61",
+            "Coat IOR": "e62",
+            "Coat Tint": "e63",
+            "Coat Normal": "e64",
+            "Sheen Weight": "e65",
+            "Sheen Roughness": "e66",
+            "Sheen Tint": "e67",
+            "Emission Color": "e68",
+            "Emission Strength": "e69",
+            "Thin Film Thickness": "e70",
+            "Thin Film IOR": "e71"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e72"
+        }
+      ],
+      "surface": "e73",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "WeatheredTimber2m": {
+      "role": "WeatheredTimber2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e1",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e3",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e4",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e5",
+          "operation": "uv",
+          "channel": 1
+        },
+        {
+          "id": "e6",
+          "operation": "component",
+          "source": "e5",
+          "index": 0
+        },
+        {
+          "id": "e7",
+          "operation": "component",
+          "source": "e5",
+          "index": 1
+        },
+        {
+          "id": "e8",
+          "operation": "component",
+          "source": "e5",
+          "index": 2
+        },
+        {
+          "id": "e9",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e10",
+          "operation": "greater_than",
+          "a": "e6",
+          "b": "e9"
+        },
+        {
+          "id": "e11",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e12",
+          "operation": "lerp",
+          "a": "e1",
+          "b": "e3",
+          "factor": "e11"
+        },
+        {
+          "id": "e13",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e14",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e15",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e16",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e17",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e18",
+          "operation": "lerp",
+          "a": "e13",
+          "b": "e15",
+          "factor": "e17"
+        },
+        {
+          "id": "e19",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e20",
+          "operation": "multiply",
+          "a": "e18",
+          "b": "e19"
+        },
+        {
+          "id": "e21",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e22",
+          "operation": "add",
+          "a": "e20",
+          "b": "e21"
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e24",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e25",
+          "operation": "lerp",
+          "a": "e23",
+          "b": "e22",
+          "factor": "e24"
+        },
+        {
+          "id": "e26",
+          "operation": "normalize",
+          "source": "e25",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e27",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e28",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e29",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e30",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e31",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e32",
+          "operation": "lerp",
+          "a": "e27",
+          "b": "e29",
+          "factor": "e31"
+        },
+        {
+          "id": "e33",
+          "operation": "component",
+          "source": "e32",
+          "index": 0
+        },
+        {
+          "id": "e34",
+          "operation": "component",
+          "source": "e32",
+          "index": 1
+        },
+        {
+          "id": "e35",
+          "operation": "component",
+          "source": "e32",
+          "index": 2
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e37",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e39",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e43",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e47",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e49",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e50",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e51",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e52",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e53",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e54",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e55",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e56",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e57",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e58",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e59",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e60",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e61",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e62",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e63",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e64",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e65",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e12",
+            "Metallic": "e35",
+            "Roughness": "e34",
+            "IOR": "e36",
+            "Alpha": "e37",
+            "Thin Wall": "e38",
+            "Normal": "e26",
+            "Weight": "e39",
+            "Diffuse Roughness": "e40",
+            "Subsurface Weight": "e41",
+            "Subsurface Radius": "e42",
+            "Subsurface Scale": "e43",
+            "Subsurface IOR": "e44",
+            "Subsurface Anisotropy": "e45",
+            "Specular IOR Level": "e46",
+            "Specular Tint": "e47",
+            "Anisotropic": "e48",
+            "Anisotropic Rotation": "e49",
+            "Tangent": "e50",
+            "Transmission Weight": "e51",
+            "Coat Weight": "e52",
+            "Coat Roughness": "e53",
+            "Coat IOR": "e54",
+            "Coat Tint": "e55",
+            "Coat Normal": "e56",
+            "Sheen Weight": "e57",
+            "Sheen Roughness": "e58",
+            "Sheen Tint": "e59",
+            "Emission Color": "e60",
+            "Emission Strength": "e61",
+            "Thin Film Thickness": "e62",
+            "Thin Film IOR": "e63"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e64"
+        }
+      ],
+      "surface": "e65",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "IronLead2m": {
+      "role": "IronLead2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e1",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e3",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e4",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e5",
+          "operation": "uv",
+          "channel": 1
+        },
+        {
+          "id": "e6",
+          "operation": "component",
+          "source": "e5",
+          "index": 0
+        },
+        {
+          "id": "e7",
+          "operation": "component",
+          "source": "e5",
+          "index": 1
+        },
+        {
+          "id": "e8",
+          "operation": "component",
+          "source": "e5",
+          "index": 2
+        },
+        {
+          "id": "e9",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e10",
+          "operation": "greater_than",
+          "a": "e6",
+          "b": "e9"
+        },
+        {
+          "id": "e11",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e12",
+          "operation": "lerp",
+          "a": "e1",
+          "b": "e3",
+          "factor": "e11"
+        },
+        {
+          "id": "e13",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e14",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e15",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e16",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e17",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e18",
+          "operation": "lerp",
+          "a": "e13",
+          "b": "e15",
+          "factor": "e17"
+        },
+        {
+          "id": "e19",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e20",
+          "operation": "multiply",
+          "a": "e18",
+          "b": "e19"
+        },
+        {
+          "id": "e21",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e22",
+          "operation": "add",
+          "a": "e20",
+          "b": "e21"
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e24",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e25",
+          "operation": "lerp",
+          "a": "e23",
+          "b": "e22",
+          "factor": "e24"
+        },
+        {
+          "id": "e26",
+          "operation": "normalize",
+          "source": "e25",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e27",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e28",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e29",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e30",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e31",
+          "operation": "saturate",
+          "source": "e10"
+        },
+        {
+          "id": "e32",
+          "operation": "lerp",
+          "a": "e27",
+          "b": "e29",
+          "factor": "e31"
+        },
+        {
+          "id": "e33",
+          "operation": "component",
+          "source": "e32",
+          "index": 0
+        },
+        {
+          "id": "e34",
+          "operation": "component",
+          "source": "e32",
+          "index": 1
+        },
+        {
+          "id": "e35",
+          "operation": "component",
+          "source": "e32",
+          "index": 2
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e37",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e39",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e43",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e47",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e49",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e50",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e51",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e52",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e53",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e54",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e55",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e56",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e57",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e58",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e59",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e60",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e61",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e62",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e63",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e64",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e65",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e12",
+            "Metallic": "e35",
+            "Roughness": "e34",
+            "IOR": "e36",
+            "Alpha": "e37",
+            "Thin Wall": "e38",
+            "Normal": "e26",
+            "Weight": "e39",
+            "Diffuse Roughness": "e40",
+            "Subsurface Weight": "e41",
+            "Subsurface Radius": "e42",
+            "Subsurface Scale": "e43",
+            "Subsurface IOR": "e44",
+            "Subsurface Anisotropy": "e45",
+            "Specular IOR Level": "e46",
+            "Specular Tint": "e47",
+            "Anisotropic": "e48",
+            "Anisotropic Rotation": "e49",
+            "Tangent": "e50",
+            "Transmission Weight": "e51",
+            "Coat Weight": "e52",
+            "Coat Roughness": "e53",
+            "Coat IOR": "e54",
+            "Coat Tint": "e55",
+            "Coat Normal": "e56",
+            "Sheen Weight": "e57",
+            "Sheen Roughness": "e58",
+            "Sheen Tint": "e59",
+            "Emission Color": "e60",
+            "Emission Strength": "e61",
+            "Thin Film Thickness": "e62",
+            "Thin Film IOR": "e63"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e64"
+        }
+      ],
+      "surface": "e65",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "ThinWavyGlass2m": {
+      "role": "ThinWavyGlass2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e1",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e3",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e4",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e3",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e5",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e6",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e7",
+          "operation": "multiply",
+          "a": "e4",
+          "b": "e6"
+        },
+        {
+          "id": "e8",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e9",
+          "operation": "add",
+          "a": "e7",
+          "b": "e8"
+        },
+        {
+          "id": "e10",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e11",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e12",
+          "operation": "lerp",
+          "a": "e10",
+          "b": "e9",
+          "factor": "e11"
+        },
+        {
+          "id": "e13",
+          "operation": "normalize",
+          "source": "e12",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e14",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e15",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e14",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e16",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e17",
+          "operation": "component",
+          "source": "e15",
+          "index": 0
+        },
+        {
+          "id": "e18",
+          "operation": "component",
+          "source": "e15",
+          "index": 1
+        },
+        {
+          "id": "e19",
+          "operation": "component",
+          "source": "e15",
+          "index": 2
+        },
+        {
+          "id": "e20",
+          "operation": "constant",
+          "value": 1.4800000190734863
+        },
+        {
+          "id": "e21",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e22",
+          "operation": "constant",
+          "value": true
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e24",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e25",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e26",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e27",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e28",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e29",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e30",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e31",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e32",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e33",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e34",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e35",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e37",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e39",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e43",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e47",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e49",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e1",
+            "Metallic": "e19",
+            "Roughness": "e18",
+            "IOR": "e20",
+            "Alpha": "e21",
+            "Thin Wall": "e22",
+            "Normal": "e13",
+            "Weight": "e23",
+            "Diffuse Roughness": "e24",
+            "Subsurface Weight": "e25",
+            "Subsurface Radius": "e26",
+            "Subsurface Scale": "e27",
+            "Subsurface IOR": "e28",
+            "Subsurface Anisotropy": "e29",
+            "Specular IOR Level": "e30",
+            "Specular Tint": "e31",
+            "Anisotropic": "e32",
+            "Anisotropic Rotation": "e33",
+            "Tangent": "e34",
+            "Transmission Weight": "e35",
+            "Coat Weight": "e36",
+            "Coat Roughness": "e37",
+            "Coat IOR": "e38",
+            "Coat Tint": "e39",
+            "Coat Normal": "e40",
+            "Sheen Weight": "e41",
+            "Sheen Roughness": "e42",
+            "Sheen Tint": "e43",
+            "Emission Color": "e44",
+            "Emission Strength": "e45",
+            "Thin Film Thickness": "e46",
+            "Thin Film IOR": "e47"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e48"
+        }
+      ],
+      "surface": "e49",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "FieldstoneWall2m": {
+      "role": "FieldstoneWall2m",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e1",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+            "colorspace": "sRGB",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e3",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e4",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e5",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e6",
+          "operation": "multiply",
+          "a": "e3",
+          "b": "e5"
+        },
+        {
+          "id": "e7",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e8",
+          "operation": "add",
+          "a": "e6",
+          "b": "e7"
+        },
+        {
+          "id": "e9",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e10",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e11",
+          "operation": "lerp",
+          "a": "e9",
+          "b": "e8",
+          "factor": "e10"
+        },
+        {
+          "id": "e12",
+          "operation": "normalize",
+          "source": "e11",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e13",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+            "colorspace": "Non-Color",
+            "size": [
+              1024,
+              1024
+            ]
+          },
+          "uv": "e0",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e14",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e15",
+          "operation": "component",
+          "source": "e13",
+          "index": 0
+        },
+        {
+          "id": "e16",
+          "operation": "component",
+          "source": "e13",
+          "index": 1
+        },
+        {
+          "id": "e17",
+          "operation": "component",
+          "source": "e13",
+          "index": 2
+        },
+        {
+          "id": "e18",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e19",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e20",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e21",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e22",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e23",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e24",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e25",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e26",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e27",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e28",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e29",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e30",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e31",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e32",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e33",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e34",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e35",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e37",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e38",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e39",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e41",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e43",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e44",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e45",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e46",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e47",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e1",
+            "Metallic": "e17",
+            "Roughness": "e16",
+            "IOR": "e18",
+            "Alpha": "e19",
+            "Thin Wall": "e20",
+            "Normal": "e12",
+            "Weight": "e21",
+            "Diffuse Roughness": "e22",
+            "Subsurface Weight": "e23",
+            "Subsurface Radius": "e24",
+            "Subsurface Scale": "e25",
+            "Subsurface IOR": "e26",
+            "Subsurface Anisotropy": "e27",
+            "Specular IOR Level": "e28",
+            "Specular Tint": "e29",
+            "Anisotropic": "e30",
+            "Anisotropic Rotation": "e31",
+            "Tangent": "e32",
+            "Transmission Weight": "e33",
+            "Coat Weight": "e34",
+            "Coat Roughness": "e35",
+            "Coat IOR": "e36",
+            "Coat Tint": "e37",
+            "Coat Normal": "e38",
+            "Sheen Weight": "e39",
+            "Sheen Roughness": "e40",
+            "Sheen Tint": "e41",
+            "Emission Color": "e42",
+            "Emission Strength": "e43",
+            "Thin Film Thickness": "e44",
+            "Thin Film IOR": "e45"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e46"
+        }
+      ],
+      "surface": "e47",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    },
+    "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": {
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "operations": [
+        {
+          "id": "e0",
+          "operation": "vertex_color",
+          "channels": "RGB"
+        },
+        {
+          "id": "e1",
+          "operation": "vertex_color",
+          "channels": "A"
+        },
+        {
+          "id": "e2",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e3",
+          "operation": "constant",
+          "value": [
+            0.41999998688697815,
+            0.46000000834465027,
+            0.3100000023841858
+          ]
+        },
+        {
+          "id": "e4",
+          "operation": "saturate",
+          "source": "e1"
+        },
+        {
+          "id": "e5",
+          "operation": "lerp",
+          "a": "e2",
+          "b": "e3",
+          "factor": "e4"
+        },
+        {
+          "id": "e6",
+          "operation": "uv",
+          "channel": 0
+        },
+        {
+          "id": "e7",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "2ed02bd030999f813575b5c135668fed168428c7ea3496562d5ac8f64b4c2823",
+            "colorspace": "sRGB",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e8",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e9",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "67608541851a258f40525dc3cbfe7f1cfd3d0ac90fb3fdd063466b9995acffc7",
+            "colorspace": "sRGB",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e10",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e11",
+          "operation": "uv",
+          "channel": 1
+        },
+        {
+          "id": "e12",
+          "operation": "component",
+          "source": "e11",
+          "index": 0
+        },
+        {
+          "id": "e13",
+          "operation": "component",
+          "source": "e11",
+          "index": 1
+        },
+        {
+          "id": "e14",
+          "operation": "component",
+          "source": "e11",
+          "index": 2
+        },
+        {
+          "id": "e15",
+          "operation": "saturate",
+          "source": "e12"
+        },
+        {
+          "id": "e16",
+          "operation": "lerp",
+          "a": "e7",
+          "b": "e9",
+          "factor": "e15"
+        },
+        {
+          "id": "e17",
+          "operation": "multiply",
+          "a": "e16",
+          "b": "e5"
+        },
+        {
+          "id": "e18",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e19",
+          "operation": "saturate",
+          "source": "e18"
+        },
+        {
+          "id": "e20",
+          "operation": "lerp",
+          "a": "e16",
+          "b": "e17",
+          "factor": "e19"
+        },
+        {
+          "id": "e21",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "cce06a1f47031a0281823afa8f583556b851ca639784d828aa8a04c64195beb4",
+            "colorspace": "Non-Color",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e22",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e23",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "652913d86762481e995396a9fac81877c2d5ec6fe5d20f94e39a4e059451f877",
+            "colorspace": "Non-Color",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e24",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e25",
+          "operation": "saturate",
+          "source": "e12"
+        },
+        {
+          "id": "e26",
+          "operation": "lerp",
+          "a": "e21",
+          "b": "e23",
+          "factor": "e25"
+        },
+        {
+          "id": "e27",
+          "operation": "vertex_color",
+          "channels": "RGB"
+        },
+        {
+          "id": "e28",
+          "operation": "vertex_color",
+          "channels": "A"
+        },
+        {
+          "id": "e29",
+          "operation": "component",
+          "source": "e27",
+          "index": 0
+        },
+        {
+          "id": "e30",
+          "operation": "component",
+          "source": "e27",
+          "index": 1
+        },
+        {
+          "id": "e31",
+          "operation": "component",
+          "source": "e27",
+          "index": 2
+        },
+        {
+          "id": "e32",
+          "operation": "constant",
+          "value": 2
+        },
+        {
+          "id": "e33",
+          "operation": "multiply",
+          "a": "e26",
+          "b": "e32"
+        },
+        {
+          "id": "e34",
+          "operation": "constant",
+          "value": -1
+        },
+        {
+          "id": "e35",
+          "operation": "add",
+          "a": "e33",
+          "b": "e34"
+        },
+        {
+          "id": "e36",
+          "operation": "constant",
+          "value": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "e37",
+          "operation": "lerp",
+          "a": "e36",
+          "b": "e35",
+          "factor": "e29"
+        },
+        {
+          "id": "e38",
+          "operation": "normalize",
+          "source": "e37",
+          "frame": "source_tangent_OpenGL"
+        },
+        {
+          "id": "e39",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "ca992ab35fe3e370d61de418f48a5f50534580fa15d28cf52e64ec5f31950984",
+            "colorspace": "Non-Color",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e40",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e41",
+          "operation": "texture_rgb",
+          "image": {
+            "sha256": "d19a5172774dcc93ccec032efd50c8e3233d792e62ced782b5d7dea51c2e4259",
+            "colorspace": "Non-Color",
+            "size": [
+              2048,
+              2048
+            ]
+          },
+          "uv": "e6",
+          "filter": "linear",
+          "address": "repeat",
+          "retained_channels": "RGB"
+        },
+        {
+          "id": "e42",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e43",
+          "operation": "saturate",
+          "source": "e12"
+        },
+        {
+          "id": "e44",
+          "operation": "lerp",
+          "a": "e39",
+          "b": "e41",
+          "factor": "e43"
+        },
+        {
+          "id": "e45",
+          "operation": "component",
+          "source": "e44",
+          "index": 0
+        },
+        {
+          "id": "e46",
+          "operation": "component",
+          "source": "e44",
+          "index": 1
+        },
+        {
+          "id": "e47",
+          "operation": "component",
+          "source": "e44",
+          "index": 2
+        },
+        {
+          "id": "e48",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e49",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e50",
+          "operation": "constant",
+          "value": 1.0
+        },
+        {
+          "id": "e51",
+          "operation": "constant",
+          "value": false
+        },
+        {
+          "id": "e52",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e53",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e54",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e55",
+          "operation": "constant",
+          "value": [
+            1.0,
+            0.20000000298023224,
+            0.10000000149011612
+          ]
+        },
+        {
+          "id": "e56",
+          "operation": "constant",
+          "value": 0.004999999888241291
+        },
+        {
+          "id": "e57",
+          "operation": "constant",
+          "value": 1.399999976158142
+        },
+        {
+          "id": "e58",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e59",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e60",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e61",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e62",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e63",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e64",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e65",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e66",
+          "operation": "constant",
+          "value": 0.029999999329447746
+        },
+        {
+          "id": "e67",
+          "operation": "constant",
+          "value": 1.5
+        },
+        {
+          "id": "e68",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e69",
+          "operation": "constant",
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "id": "e70",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e71",
+          "operation": "constant",
+          "value": 0.5
+        },
+        {
+          "id": "e72",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e73",
+          "operation": "constant",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "id": "e74",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e75",
+          "operation": "constant",
+          "value": 0.0
+        },
+        {
+          "id": "e76",
+          "operation": "constant",
+          "value": 1.3300000429153442
+        },
+        {
+          "id": "e77",
+          "operation": "constant",
+          "value": 1
+        },
+        {
+          "id": "e78",
+          "operation": "source_principled",
+          "inputs": {
+            "Base Color": "e20",
+            "Metallic": "e48",
+            "Roughness": "e46",
+            "IOR": "e49",
+            "Alpha": "e50",
+            "Thin Wall": "e51",
+            "Normal": "e38",
+            "Weight": "e52",
+            "Diffuse Roughness": "e53",
+            "Subsurface Weight": "e54",
+            "Subsurface Radius": "e55",
+            "Subsurface Scale": "e56",
+            "Subsurface IOR": "e57",
+            "Subsurface Anisotropy": "e58",
+            "Specular IOR Level": "e59",
+            "Specular Tint": "e60",
+            "Anisotropic": "e61",
+            "Anisotropic Rotation": "e62",
+            "Tangent": "e63",
+            "Transmission Weight": "e64",
+            "Coat Weight": "e65",
+            "Coat Roughness": "e66",
+            "Coat IOR": "e67",
+            "Coat Tint": "e68",
+            "Coat Normal": "e69",
+            "Sheen Weight": "e70",
+            "Sheen Roughness": "e71",
+            "Sheen Tint": "e72",
+            "Emission Color": "e73",
+            "Emission Strength": "e74",
+            "Thin Film Thickness": "e75",
+            "Thin Film IOR": "e76"
+          },
+          "properties": {
+            "distribution": "MULTI_GGX",
+            "mute": false
+          },
+          "ambient_occlusion": "e77"
+        }
+      ],
+      "surface": "e78",
+      "scope": "Explicit CPU graph; native texture/TBN/BSDF mapping unqualified"
+    }
+  }
+}

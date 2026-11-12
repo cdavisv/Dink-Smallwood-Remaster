@@ -4,7 +4,7 @@ No Unreal import, asset writes, publication or storage-provider assumptions.
 import hashlib,json,math
 from pathlib import Path
 
-BUNDLE_SHA256='106864d36cd943852f0e68a9d2499b0c6eb76323074a069a347073185ca35611'
+BUNDLE_SHA256='6c952a483ac6a0f0e1e23aa36ae688fefccea1c8db9e6bc9a54d6529c6b69e2f'
 DEST='/Game/Dink/Kits/Stonebrook/InteriorVista'
 DEST_ROOTS=(DEST,'/Game/Dink/Props/Stonebrook/InteriorVista')
 

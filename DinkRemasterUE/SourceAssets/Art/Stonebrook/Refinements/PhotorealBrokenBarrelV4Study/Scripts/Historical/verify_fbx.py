@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys,json,hashlib,numpy as np
 from collections import Counter
-sys.path.insert(0,str(Path.home()/'Work/DinkPhotorealBrokenBarrelSourceDelivery/tools/blender'))
+sys.path.insert(0,'<HOME>/Work/DinkPhotorealBrokenBarrelSourceDelivery/tools/blender')
 from dinkasset import fbxparse
 Q=Path(__file__).resolve().parent;p=Q/'SM_Barrel_Broken_CurvedV4_LOD0.fbx';version,top=fbxparse.parse(str(p));nodes={x.name:x for x in top};objs=nodes['Objects'];geoms=objs.find('Geometry');models=objs.find('Model');assert len(geoms)==len(models)==1
 g=geoms[0];v=np.array(g.first('Vertices').props[0],np.float32).reshape(-1,3);idx=np.array(g.first('PolygonVertexIndex').props[0],np.int64).reshape(-1,3);assert np.all(idx[:,:2]>=0)and np.all(idx[:,2]<0);idx=np.where(idx<0,-idx-1,idx);P=v[idx]

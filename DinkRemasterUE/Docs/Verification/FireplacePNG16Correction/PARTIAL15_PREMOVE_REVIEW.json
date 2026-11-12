@@ -1,0 +1,131 @@
+{
+  "status": "READ_ONLY_PROPOSAL_NO_FILES_MOVED",
+  "run": "<HOME>/Work/DinkQA/FireplaceV4NativePreparation/Candidate1/Runs/cd226b0a2b3d4bc89127cfd08f6f800a",
+  "report_sha256": "f9ed548440035f9704923fa02042126f12c78e205cc55d2196a7d2787a0768d6",
+  "membership_exact": true,
+  "created_receipt_equals_core_packages": true,
+  "protected_Content_unchanged": true,
+  "proposed_archive": "<HOME>/Work/DinkQA/FireplaceV4NativePreparation/PNG16CorrectionProposal/Quarantine15",
+  "rows": [
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_BC.uasset",
+      "sha256": "99fe7b12e0792fc32b17b1e2b3b371561dca585a9cdda078bd6abb1b84f5ebca",
+      "device": 50,
+      "inode": 6898139,
+      "links": 1,
+      "bytes": 1461525
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_N_GL.uasset",
+      "sha256": "7be480bb5e526abcadd3daf5f204e956e769c4f30337cb6c7f35ad0b79de22a4",
+      "device": 50,
+      "inode": 6898142,
+      "links": 1,
+      "bytes": 2303936
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_ORM.uasset",
+      "sha256": "42a42d73e066c24b51ff972ab11e76c97445da42ba9829a68d73072720eb26de",
+      "device": 50,
+      "inode": 6898146,
+      "links": 1,
+      "bytes": 81649
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_BC.uasset",
+      "sha256": "24d297a7c669a10105775fdf6f1e1b0f965cfa58757a0714a713f1d94606a685",
+      "device": 50,
+      "inode": 6898161,
+      "links": 1,
+      "bytes": 1432541
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_N_GL.uasset",
+      "sha256": "ce223642917c35dac02251c5807cdd42a1d9b6797675c2373adea1a0cf63316f",
+      "device": 50,
+      "inode": 6898164,
+      "links": 1,
+      "bytes": 2461101
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_ORM.uasset",
+      "sha256": "6f80a6c0155bbbeb3ef418642d8f23375c719f4cccdf3b85037729f31c9c4345",
+      "device": 50,
+      "inode": 6898169,
+      "links": 1,
+      "bytes": 81804
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_BC.uasset",
+      "sha256": "a39185cbff94ddffc971515d839a78fea0eff53837f3eb8e347d677c7870cc0b",
+      "device": 50,
+      "inode": 6898172,
+      "links": 1,
+      "bytes": 609295
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_N_GL.uasset",
+      "sha256": "ef2b2c211c60247dde40ccbc68a4ec741d1c58f7f721ab53c8063800ce51ee88",
+      "device": 50,
+      "inode": 6898176,
+      "links": 1,
+      "bytes": 500266
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_ORM.uasset",
+      "sha256": "f7f8e6b803b41d9d99d6861732df66f9eed78d9a81ea77df34a006c9354a6aca",
+      "device": 50,
+      "inode": 6898185,
+      "links": 1,
+      "bytes": 198947
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC.uasset",
+      "sha256": "1d59c8aaa52834b272885794ac0054d6929fff9665bba2fc5de9084a03b00f0d",
+      "device": 50,
+      "inode": 6898190,
+      "links": 1,
+      "bytes": 261647
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL.uasset",
+      "sha256": "327859b0d1027a9f7cfdccf409aef6c4fe0cdfce327450cc83f34d0510bc2dbf",
+      "device": 50,
+      "inode": 6898213,
+      "links": 1,
+      "bytes": 498467
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM.uasset",
+      "sha256": "937767875a0a23211f0d63ff1e5a9018640929694c0b4ead3e32d2fe856eaebe",
+      "device": 50,
+      "inode": 6898235,
+      "links": 1,
+      "bytes": 196191
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_BC.uasset",
+      "sha256": "c423da484b596126964b80a9713fecdc31dfba5114a1bd48d158a64dad1fa5f9",
+      "device": 50,
+      "inode": 6898256,
+      "links": 1,
+      "bytes": 1418938
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_N_GL.uasset",
+      "sha256": "3c7aa07052dbe468aab4cf497f796ce0747b6931b3ee133c72ca8b1d0d07090b",
+      "device": 50,
+      "inode": 6898275,
+      "links": 1,
+      "bytes": 212315
+    },
+    {
+      "file": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_ORM.uasset",
+      "sha256": "1ce0758174ba3db7de1f4ffc7ba2c44de3a26af6c3477ecf39effdc3cfc62297",
+      "device": 50,
+      "inode": 6898292,
+      "links": 1,
+      "bytes": 268151
+    }
+  ]
+}

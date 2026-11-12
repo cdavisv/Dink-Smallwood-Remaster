@@ -1,6 +1,6 @@
 {
   "scope": "SOURCE geometry/rig only; FBX graphs stripped in disposable memory, source graphs untouched. No animations baked or native assets touched. GLB omits materials intentionally; no OSL/PBR equivalence.",
-  "source_sha256": "fefe21d37df2c2fe04dea6fb94301177dd59429651bd2ffccdf23fa9ce7886ea",
+  "source_sha256": "8793b2f5801ae02c6b00ad1ee41391fc41ab3864ab85f9627aba42ef8078383c",
   "source_to_FBX_material_alias": {
     "SourceDarkLeather_NEW_Dink_Bracer_L": "QA_BracerL_Leather",
     "SourceDarkLeather_NEW_Dink_Bracer_R": "QA_BracerR_Leather",
@@ -20,13 +20,13 @@
     {
       "role": "Trousers_Hi",
       "path": "SK_Dink_V33_Trousers_Hi.fbx",
-      "sha256": "cf10a8a4b9c8973a2ded314342b46dec5a76ec973b4e38c088ed6415cc1e4f1f",
+      "sha256": "a96feb508628d4a26aea095b43600d32acb9530a673528b8fadeafe70ccb1bd1",
       "bytes": 1218780,
       "mesh_names": [
         "NEW_Dink_Trousers_LOD0"
       ],
       "parameters": {
-        "filepath": "/home/artist/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_Hi.fbx",
+        "filepath": "<HOME>/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_Hi.fbx",
         "use_selection": true,
         "object_types": [
           "ARMATURE",
@@ -59,7 +59,7 @@
     {
       "role": "Context_Hi",
       "path": "SK_Dink_V33_Context_Hi.fbx",
-      "sha256": "861582a69fd7c17373eb65abcc730811a3cca678c642bcf169a26321180c7622",
+      "sha256": "0b8fcd4dcde45054b5ad4c841940b276fe602f5cd369c3733256607521fc3e67",
       "bytes": 3715372,
       "mesh_names": [
         "NEW_Dink_Bracer_L",
@@ -72,7 +72,7 @@
         "QA_Dink_VisibleLegacy_HeadHandsHairGear"
       ],
       "parameters": {
-        "filepath": "/home/artist/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Context_Hi.fbx",
+        "filepath": "<HOME>/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Context_Hi.fbx",
         "use_selection": true,
         "object_types": [
           "ARMATURE",
@@ -109,7 +109,7 @@
     "bytes": 909300,
     "qualification": "Geometry-only LOD0 skin preview, no materials/texture/procedural-shading fidelity, not native path",
     "parameters": {
-      "filepath": "/home/artist/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_GEOMETRY_ONLY.glb",
+      "filepath": "<HOME>/Work/DinkQA/HeroVisualRefinement/PortableTrouserSourceV33/Export/SK_Dink_V33_Trousers_GEOMETRY_ONLY.glb",
       "export_format": "GLB",
       "use_selection": true,
       "export_apply": false,

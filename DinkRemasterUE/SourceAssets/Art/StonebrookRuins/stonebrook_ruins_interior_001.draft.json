@@ -1,0 +1,4006 @@
+{
+  "schema": "dink-art/1",
+  "status": "DRAFT - not published to Content/Dink/Data/Art; needs vision gating support",
+  "screen": 1,
+  "assets": [
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.SM_Ceiling_Oak_BurntHole_2m_01",
+      "expected_size_cm": [
+        200.0,
+        200.0,
+        22.206448018550873
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "expected_size_cm": [
+        200.0,
+        200.0,
+        20.000000298023224
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.SM_Debris_AshPile_Small_01",
+      "expected_size_cm": [
+        119.09821033477783,
+        90.09920358657837,
+        28.157354332506657
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01.SM_Decal_Blood_Floor_01",
+      "expected_size_cm": [
+        200.0,
+        200.0,
+        0.4000000189989805
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.SM_Decal_Scorch_Floor_01",
+      "expected_size_cm": [
+        150.0,
+        150.0,
+        0.4000000189989805
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.SM_Decal_Scorch_Wall_01",
+      "expected_size_cm": [
+        150.0,
+        0.4000000189989805,
+        200.0
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01.SM_Doorway_Limewash_Burnt_4m_01",
+      "expected_size_cm": [
+        400.0,
+        31.480801105499268,
+        350.0
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "expected_size_cm": [
+        199.3999980390072,
+        199.20000433921814,
+        10.999999940395355
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "expected_size_cm": [
+        199.3999980390072,
+        199.20000433921814,
+        10.999999940395355
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "expected_size_cm": [
+        199.3999980390072,
+        199.20000433921814,
+        10.999999940395355
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "expected_size_cm": [
+        199.3999980390072,
+        199.20000433921814,
+        10.999999940395355
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01.SM_Mother_Remains_Fire_01",
+      "expected_size_cm": [
+        110.79223155975342,
+        180.53741455078125,
+        37.47389018535614
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD0.fbx",
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD1.fbx",
+        "Export/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "expected_size_cm": [
+        200.0,
+        35.58618873357773,
+        350.0
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "expected_size_cm": [
+        200.0,
+        40.83589464426041,
+        350.0
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01_LOD2.fbx"
+      ]
+    }
+  ],
+  "source": "SourceAssets/Art/StonebrookRuins/ruins_manifest.json",
+  "vision_rules": {
+    "1": "s1-h1-s:6 [(&story == 3)]",
+    "2": "s1-h1-s:30/41 [(&story > 3) && (&letter == 1)] ..."
+  },
+  "elements": [
+    {
+      "name": "Floor_0_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        392470.9799999999,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_0"
+    },
+    {
+      "name": "Ceiling_0_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        392470.9799999999,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_0"
+    },
+    {
+      "name": "Floor_1_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184379.2225,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_0"
+    },
+    {
+      "name": "Ceiling_1_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        392470.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_0"
+    },
+    {
+      "name": "Floor_2_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184193.28499999997,
+        392470.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_0"
+    },
+    {
+      "name": "Ceiling_2_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        392470.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_0"
+    },
+    {
+      "name": "Floor_3_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184007.34749999997,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_0"
+    },
+    {
+      "name": "Ceiling_3_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.34749999997,
+        392470.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_0"
+    },
+    {
+      "name": "Floor_4_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_0"
+    },
+    {
+      "name": "Ceiling_4_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        392470.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_0"
+    },
+    {
+      "name": "Floor_5_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183635.4725,
+        392470.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_0"
+    },
+    {
+      "name": "Ceiling_5_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        392470.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_0"
+    },
+    {
+      "name": "Floor_6_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183449.535,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_0"
+    },
+    {
+      "name": "Ceiling_6_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        392470.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_0"
+    },
+    {
+      "name": "Floor_7_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183263.5975,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_0"
+    },
+    {
+      "name": "Ceiling_7_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        392470.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_0"
+    },
+    {
+      "name": "Floor_0_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184565.15999999997,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_1"
+    },
+    {
+      "name": "Ceiling_0_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_1"
+    },
+    {
+      "name": "Floor_1_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184379.22249999997,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_1"
+    },
+    {
+      "name": "Ceiling_1_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.22249999997,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_1"
+    },
+    {
+      "name": "Floor_2_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184193.28499999997,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_1"
+    },
+    {
+      "name": "Ceiling_2_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_1"
+    },
+    {
+      "name": "Floor_3_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_1"
+    },
+    {
+      "name": "Ceiling_3_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_1"
+    },
+    {
+      "name": "Floor_4_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183821.40999999997,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_1"
+    },
+    {
+      "name": "Ceiling_4_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_1"
+    },
+    {
+      "name": "Floor_5_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183635.4725,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_1"
+    },
+    {
+      "name": "Ceiling_5_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_1"
+    },
+    {
+      "name": "Floor_6_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183449.535,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_1"
+    },
+    {
+      "name": "Ceiling_6_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_1"
+    },
+    {
+      "name": "Floor_7_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_1"
+    },
+    {
+      "name": "Ceiling_7_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        392658.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_1"
+    },
+    {
+      "name": "Floor_0_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184565.15999999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_2"
+    },
+    {
+      "name": "Ceiling_0_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_2"
+    },
+    {
+      "name": "Floor_1_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184379.22249999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_2"
+    },
+    {
+      "name": "Ceiling_1_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.22249999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_2"
+    },
+    {
+      "name": "Floor_2_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_2"
+    },
+    {
+      "name": "Ceiling_2_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_2"
+    },
+    {
+      "name": "Floor_3_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184007.34749999997,
+        392845.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_2"
+    },
+    {
+      "name": "Ceiling_3_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.SM_Ceiling_Oak_BurntHole_2m_01",
+      "world_cm": [
+        -184007.34749999997,
+        392845.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_2"
+    },
+    {
+      "name": "Floor_4_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183821.41,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_2"
+    },
+    {
+      "name": "Ceiling_4_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.41,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_2"
+    },
+    {
+      "name": "Floor_5_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183635.47249999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_2"
+    },
+    {
+      "name": "Ceiling_5_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.47249999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_2"
+    },
+    {
+      "name": "Floor_6_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.53499999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_2"
+    },
+    {
+      "name": "Ceiling_6_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.53499999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_2"
+    },
+    {
+      "name": "Floor_7_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183263.59749999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_2"
+    },
+    {
+      "name": "Ceiling_7_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.59749999997,
+        392845.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_2"
+    },
+    {
+      "name": "Floor_0_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184565.15999999997,
+        393033.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_3"
+    },
+    {
+      "name": "Ceiling_0_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393033.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_3"
+    },
+    {
+      "name": "Floor_1_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_3"
+    },
+    {
+      "name": "Ceiling_1_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        393033.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_3"
+    },
+    {
+      "name": "Floor_2_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184193.285,
+        393033.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_3"
+    },
+    {
+      "name": "Ceiling_2_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.285,
+        393033.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_3"
+    },
+    {
+      "name": "Floor_3_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184007.34749999997,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_3"
+    },
+    {
+      "name": "Ceiling_3_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.34749999997,
+        393033.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_3"
+    },
+    {
+      "name": "Floor_4_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183821.40999999997,
+        393033.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_3"
+    },
+    {
+      "name": "Ceiling_4_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        393033.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_3"
+    },
+    {
+      "name": "Floor_5_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        393033.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_3"
+    },
+    {
+      "name": "Ceiling_5_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        393033.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_3"
+    },
+    {
+      "name": "Floor_6_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183449.535,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_3"
+    },
+    {
+      "name": "Ceiling_6_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        393033.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_3"
+    },
+    {
+      "name": "Floor_7_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183263.5975,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_3"
+    },
+    {
+      "name": "Ceiling_7_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        393033.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_3"
+    },
+    {
+      "name": "Floor_0_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_4"
+    },
+    {
+      "name": "Ceiling_0_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_4"
+    },
+    {
+      "name": "Floor_1_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184379.2225,
+        393220.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_4"
+    },
+    {
+      "name": "Ceiling_1_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        393220.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_4"
+    },
+    {
+      "name": "Floor_2_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184193.28499999997,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_4"
+    },
+    {
+      "name": "Ceiling_2_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_4"
+    },
+    {
+      "name": "Floor_3_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184007.3475,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_4"
+    },
+    {
+      "name": "Ceiling_3_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_4"
+    },
+    {
+      "name": "Floor_4_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_4"
+    },
+    {
+      "name": "Ceiling_4_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_4"
+    },
+    {
+      "name": "Floor_5_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183635.4725,
+        393220.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_4"
+    },
+    {
+      "name": "Ceiling_5_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.SM_Ceiling_Oak_BurntHole_2m_01",
+      "world_cm": [
+        -183635.4725,
+        393220.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_4"
+    },
+    {
+      "name": "Floor_6_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183449.535,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_4"
+    },
+    {
+      "name": "Ceiling_6_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_4"
+    },
+    {
+      "name": "Floor_7_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183263.5975,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_4"
+    },
+    {
+      "name": "Ceiling_7_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        393220.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_4"
+    },
+    {
+      "name": "Floor_0_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184565.15999999997,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_5"
+    },
+    {
+      "name": "Ceiling_0_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393408.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_5"
+    },
+    {
+      "name": "Floor_1_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184379.22249999997,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_5"
+    },
+    {
+      "name": "Ceiling_1_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.22249999997,
+        393408.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_5"
+    },
+    {
+      "name": "Floor_2_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184193.285,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_5"
+    },
+    {
+      "name": "Ceiling_2_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.285,
+        393408.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_5"
+    },
+    {
+      "name": "Floor_3_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_5"
+    },
+    {
+      "name": "Ceiling_3_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        393408.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_5"
+    },
+    {
+      "name": "Floor_4_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183821.41,
+        393408.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_5"
+    },
+    {
+      "name": "Ceiling_4_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.41,
+        393408.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_5"
+    },
+    {
+      "name": "Floor_5_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183635.4725,
+        393408.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_5"
+    },
+    {
+      "name": "Ceiling_5_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        393408.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_5"
+    },
+    {
+      "name": "Floor_6_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183449.53499999997,
+        393408.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_5"
+    },
+    {
+      "name": "Ceiling_6_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.53499999997,
+        393408.48000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_5"
+    },
+    {
+      "name": "Floor_7_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_5"
+    },
+    {
+      "name": "Ceiling_7_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        393408.48,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_5"
+    },
+    {
+      "name": "Floor_0_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -184565.16,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_0_6"
+    },
+    {
+      "name": "Ceiling_0_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_0_6"
+    },
+    {
+      "name": "Floor_1_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -184379.2225,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_1_6"
+    },
+    {
+      "name": "Ceiling_1_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_1_6"
+    },
+    {
+      "name": "Floor_2_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_2_6"
+    },
+    {
+      "name": "Ceiling_2_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_2_6"
+    },
+    {
+      "name": "Floor_3_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -184007.3475,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_3_6"
+    },
+    {
+      "name": "Ceiling_3_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -184007.3475,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_3_6"
+    },
+    {
+      "name": "Floor_4_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.SM_Floor_Oak_Burnt_2m_03",
+      "world_cm": [
+        -183821.41,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_4_6"
+    },
+    {
+      "name": "Ceiling_4_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183821.41,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_4_6"
+    },
+    {
+      "name": "Floor_5_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.SM_Floor_Oak_Burnt_2m_02",
+      "world_cm": [
+        -183635.4725,
+        393595.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_5_6"
+    },
+    {
+      "name": "Ceiling_5_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        393595.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_5_6"
+    },
+    {
+      "name": "Floor_6_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.SM_Floor_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        393595.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_6_6"
+    },
+    {
+      "name": "Ceiling_6_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        393595.98000000004,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_6_6"
+    },
+    {
+      "name": "Floor_7_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.SM_Floor_Oak_Burnt_2m_04",
+      "world_cm": [
+        -183263.5975,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "Floor_7_6"
+    },
+    {
+      "name": "Ceiling_7_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.SM_Ceiling_Oak_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        393595.98,
+        350.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        0.9375,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "Ceiling_7_6"
+    },
+    {
+      "name": "NorthWall_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        392283.4799999999,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_0"
+    },
+    {
+      "name": "NorthWall_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184379.2225,
+        392283.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_1"
+    },
+    {
+      "name": "NorthWall_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184193.28499999997,
+        392283.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_2"
+    },
+    {
+      "name": "NorthWall_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184007.34749999997,
+        392283.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_3"
+    },
+    {
+      "name": "NorthWall_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183821.40999999997,
+        392283.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_4"
+    },
+    {
+      "name": "NorthWall_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183635.4725,
+        392283.48000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_5"
+    },
+    {
+      "name": "NorthWall_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183449.535,
+        392283.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_6"
+    },
+    {
+      "name": "NorthWall_7_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183263.5975,
+        392283.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9296875,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "NorthWall_7"
+    },
+    {
+      "name": "WestWall_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        392283.4799999999,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_0"
+    },
+    {
+      "name": "WestWall_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_1"
+    },
+    {
+      "name": "WestWall_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_2"
+    },
+    {
+      "name": "WestWall_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        392845.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_3"
+    },
+    {
+      "name": "WestWall_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_4"
+    },
+    {
+      "name": "WestWall_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_5"
+    },
+    {
+      "name": "WestWall_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.16,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "WestWall_6"
+    },
+    {
+      "name": "EastWall_0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.66,
+        392283.4799999999,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_0"
+    },
+    {
+      "name": "EastWall_1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.65999999997,
+        392470.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_1"
+    },
+    {
+      "name": "EastWall_2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.66,
+        392658.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_2"
+    },
+    {
+      "name": "EastWall_3_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.65999999997,
+        392845.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_3"
+    },
+    {
+      "name": "EastWall_4_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.SM_Window_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.65999999997,
+        393033.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_4"
+    },
+    {
+      "name": "EastWall_5_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.66,
+        393220.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_5"
+    },
+    {
+      "name": "EastWall_6_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183077.66,
+        393408.48,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.9375,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "EastWall_6"
+    },
+    {
+      "name": "SouthDoor_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01.SM_Doorway_Limewash_Burnt_4m_01",
+      "world_cm": [
+        -183999.53499999997,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthDoor"
+    },
+    {
+      "name": "SouthWall_Left0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184565.15999999997,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Left0"
+    },
+    {
+      "name": "SouthWall_Left1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184376.61833333332,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Left1"
+    },
+    {
+      "name": "SouthWall_Left2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -184188.07666666663,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.9427083333333331,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Left2"
+    },
+    {
+      "name": "SouthWall_Right0_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183599.53499999997,
+        393595.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Right0"
+    },
+    {
+      "name": "SouthWall_Right1_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183425.57666666666,
+        393595.98,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Right1"
+    },
+    {
+      "name": "SouthWall_Right2_Burnt",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.SM_Wall_Limewash_Burnt_2m_01",
+      "world_cm": [
+        -183251.61833333332,
+        393595.98000000004,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8697916666666665,
+        1,
+        1
+      ],
+      "collision": true,
+      "camera_occluder": true,
+      "vision": 2,
+      "replaces": "SouthWall_Right2"
+    },
+    {
+      "name": "Scorch_S001_P44",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.SM_Decal_Scorch_Floor_01",
+      "world_cm": [
+        -184265.4725,
+        392506.60500000004,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P44",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "Scorch_S001_P45",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.SM_Decal_Scorch_Wall_01",
+      "world_cm": [
+        -184547.65999999997,
+        392909.105,
+        15.200000000000003
+      ],
+      "rotation_deg": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P45",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "Scorch_S001_P46",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.SM_Decal_Scorch_Floor_01",
+      "world_cm": [
+        -183740.47250000003,
+        393202.23,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P46",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "Scorch_S001_P47",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.SM_Decal_Scorch_Floor_01",
+      "world_cm": [
+        -183323.285,
+        392839.73,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P47",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "Scorch_S001_P48",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.SM_Decal_Scorch_Floor_01",
+      "world_cm": [
+        -184351.41,
+        392931.605,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P48",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "Scorch_S001_P49",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.SM_Decal_Scorch_Wall_01",
+      "world_cm": [
+        -184293.285,
+        393578.4799999999,
+        58.5
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "collision": false,
+      "vision": 2,
+      "origin": "S001_P49",
+      "note": "replaces the original seq-158 burn-hole sprite; wall decals sit 3 mm in front of the inner wall face (verify offset against the wall thickness in editor)"
+    },
+    {
+      "name": "MotherBody",
+      "mesh": "/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01.SM_Mother_Remains_Fire_01",
+      "world_cm": [
+        -184372.65999999997,
+        392532.85499999986,
+        0.4
+      ],
+      "rotation_deg": [
+        0,
+        35,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "vision": 1,
+      "origin": "S001_P34",
+      "note": "Replaces the 1997 death sprite (seq 355 people/mom/death-): the mother lies dead face-down in the burning room. Static prop; the live mother actor S001_P26 is already deactivated by s1-h1-m when &story > 2."
+    },
+    {
+      "name": "MotherBlood",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01.SM_Decal_Blood_Floor_01",
+      "world_cm": [
+        -184511.93284806397,
+        392557.41256079363,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        35,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "vision": 1,
+      "origin": "S001_P34"
+    }
+  ],
+  "emitters": [
+    {
+      "origin": "S001_P21",
+      "source_pixel": [
+        467,
+        294
+      ],
+      "placement_pixel": [
+        436.0,
+        266.8
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -183226.40999999997,
+        393013.23000000004,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 427,
+      "original_frame": 1,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "effect": "flame_large",
+      "scale_hint": 1.0
+    },
+    {
+      "origin": "S001_P27",
+      "source_pixel": [
+        389,
+        88
+      ],
+      "placement_pixel": [
+        357.0,
+        104.0
+      ],
+      "surface": "wall_north",
+      "world_cm": [
+        -183572.035,
+        392300.98,
+        175.0
+      ],
+      "height_cm": 175.0,
+      "vision": 1,
+      "original_sequence": 427,
+      "original_frame": 3,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "effect": "flame_large",
+      "scale_hint": 0.97
+    },
+    {
+      "origin": "S001_P28",
+      "source_pixel": [
+        210,
+        250
+      ],
+      "placement_pixel": [
+        196.0,
+        233.5
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -184276.40999999997,
+        392867.5425,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 70,
+      "original_frame": 1,
+      "original_sequence_path": "effects/splode/explo-",
+      "effect": "burst_oneshot",
+      "scale_hint": 0.75
+    },
+    {
+      "origin": "S001_P29",
+      "source_pixel": [
+        286,
+        182
+      ],
+      "placement_pixel": [
+        272.0,
+        165.5
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -183943.90999999997,
+        392570.0425,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 70,
+      "original_frame": 1,
+      "original_sequence_path": "effects/splode/explo-",
+      "effect": "burst_oneshot",
+      "scale_hint": 0.75
+    },
+    {
+      "origin": "S001_P30",
+      "source_pixel": [
+        225,
+        81
+      ],
+      "placement_pixel": [
+        193.0,
+        104.0
+      ],
+      "surface": "wall_north",
+      "world_cm": [
+        -184289.535,
+        392300.98000000004,
+        196.9
+      ],
+      "height_cm": 196.9,
+      "vision": 1,
+      "original_sequence": 427,
+      "original_frame": 4,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "effect": "flame_large",
+      "scale_hint": 0.97
+    },
+    {
+      "origin": "S001_P31",
+      "source_pixel": [
+        143,
+        124
+      ],
+      "placement_pixel": [
+        134.0,
+        104.0
+      ],
+      "surface": "wall_north",
+      "world_cm": [
+        -184547.66,
+        392300.98,
+        41.7
+      ],
+      "height_cm": 41.7,
+      "vision": 1,
+      "original_sequence": 427,
+      "original_frame": 6,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "effect": "flame_large",
+      "scale_hint": 0.97
+    },
+    {
+      "origin": "S001_P32",
+      "source_pixel": [
+        241,
+        178
+      ],
+      "placement_pixel": [
+        209.0,
+        150.8
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -184219.535,
+        392505.73,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 427,
+      "original_frame": 4,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "effect": "flame_large",
+      "scale_hint": 0.97
+    },
+    {
+      "origin": "S001_P33",
+      "source_pixel": [
+        165,
+        206
+      ],
+      "placement_pixel": [
+        154.5,
+        212.7
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -184457.97249999997,
+        392776.5425,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 161,
+      "original_frame": 4,
+      "original_sequence_path": "effects/atomic/atomc-",
+      "effect": "fire_column",
+      "scale_hint": 1.16
+    },
+    {
+      "origin": "S001_P34",
+      "source_pixel": [
+        194,
+        141
+      ],
+      "placement_pixel": [
+        174.0,
+        157.0
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -184372.65999999997,
+        392532.85499999986,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 355,
+      "original_frame": 1,
+      "original_sequence_path": "people/mom/death-",
+      "effect": null,
+      "note": "mother's death sprite: reproduced as the SM_Mother_Remains_Fire_01 prop + blood decal (elements MotherBody/MotherBlood), not an emitter"
+    },
+    {
+      "origin": "S001_P35",
+      "source_pixel": [
+        164,
+        47
+      ],
+      "placement_pixel": [
+        160.5,
+        104.0
+      ],
+      "surface": "wall_north",
+      "world_cm": [
+        -184431.72249999997,
+        392300.98,
+        209.1
+      ],
+      "height_cm": 209.1,
+      "vision": 1,
+      "original_sequence": 155,
+      "original_frame": 1,
+      "original_sequence_path": "struct/details/damage/fire2-",
+      "effect": "flame_small",
+      "scale_hint": 0.29
+    },
+    {
+      "origin": "S001_P36",
+      "source_pixel": [
+        421,
+        34
+      ],
+      "placement_pixel": [
+        417.5,
+        104.0
+      ],
+      "surface": "wall_north",
+      "world_cm": [
+        -183307.3475,
+        392300.98,
+        256.9
+      ],
+      "height_cm": 256.9,
+      "vision": 1,
+      "original_sequence": 156,
+      "original_frame": 1,
+      "original_sequence_path": "struct/details/damage/fire3-",
+      "effect": "flame_small",
+      "scale_hint": 0.29
+    },
+    {
+      "origin": "S001_P38",
+      "source_pixel": [
+        431,
+        361
+      ],
+      "placement_pixel": [
+        424.0,
+        396.0
+      ],
+      "surface": "wall_south",
+      "world_cm": [
+        -183278.91,
+        393578.48,
+        109.2
+      ],
+      "height_cm": 109.2,
+      "vision": 1,
+      "original_sequence": 157,
+      "original_frame": 1,
+      "original_sequence_path": "struct/details/damage/fire4-",
+      "effect": "flame_medium",
+      "scale_hint": 0.53
+    },
+    {
+      "origin": "S001_P41",
+      "source_pixel": [
+        436,
+        200
+      ],
+      "placement_pixel": [
+        423.0,
+        205.8
+      ],
+      "surface": "floor",
+      "world_cm": [
+        -183283.28499999997,
+        392746.355,
+        0.0
+      ],
+      "height_cm": 0.0,
+      "vision": 1,
+      "original_sequence": 161,
+      "original_frame": 14,
+      "original_sequence_path": "effects/atomic/atomc-",
+      "effect": "fire_column",
+      "scale_hint": 1.1
+    }
+  ],
+  "lights": [
+    {
+      "origin": "S001_P21",
+      "world_cm": [
+        -183226.40999999997,
+        393013.23000000004,
+        90.0
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P27",
+      "world_cm": [
+        -183572.035,
+        392300.98,
+        265.0
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P30",
+      "world_cm": [
+        -184289.535,
+        392300.98000000004,
+        286.9
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P31",
+      "world_cm": [
+        -184547.66,
+        392300.98,
+        131.7
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P32",
+      "world_cm": [
+        -184219.535,
+        392505.73,
+        90.0
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P33",
+      "world_cm": [
+        -184457.97249999997,
+        392776.5425,
+        90.0
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "origin": "S001_P41",
+      "world_cm": [
+        -183283.28499999997,
+        392746.355,
+        90.0
+      ],
+      "lumens": 1500,
+      "kelvin": 1800,
+      "radius_cm": 650,
+      "vision": 1,
+      "flicker": true
+    }
+  ],
+  "notes": [
+    "Vision 2 swaps every kit module for its burnt twin at the identical transform (same pivots and hulls).",
+    "Vision 1 keeps the intact modules and adds the emitters (fire still spreading) plus the mother's body in her blood (S001_P34), reproduced faithfully per owner decision; furniture/props are owned by the interior props work and are not replaced here.",
+    "Interior positions use room source pixels (0.04375 m/px) and ImportData/screens.json corners."
+  ]
+}

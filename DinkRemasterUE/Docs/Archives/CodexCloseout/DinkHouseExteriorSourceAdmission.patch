@@ -1,0 +1,464 @@
+diff --git c/DinkRemasterUE/HANDOFF.md w/DinkRemasterUE/HANDOFF.md
+index 273d190..b6911ab 100644
+--- c/DinkRemasterUE/HANDOFF.md
++++ w/DinkRemasterUE/HANDOFF.md
+@@ -1088,3 +1088,459 @@ Fresh LINEAR_MATH_READBACK all4 passes: max absolute formula error1.49e-8, no ad
+ Device qualification: actual material/AO bakes and path tracing Cycles CPU2. Fresh readback finds separate compositor_device left at Blender GPU default for original approximation; actual hardware vs headless fallback unverified. Do not claim CPU-only compositor. Root notified. Future render_ambient_preview.py explicitly CPU for both scenes with separate output/cache; not rerun solely for device. COMPOSITOR_DEVICE_QUALIFICATION.json pins original builder hash/qualification. No UE/native/export/Data/DB/push.
+ 
+ All own handles terminal: BakeV2 23028/audit75329, AO47120, first preview96426 terminal1(API), resume70030 terminal0, normalized28191 terminal0, math22384 terminal0. MATERIAL/geometry/PNG/readback/provenance/VALIDATION_AND_REVIEW/SOURCE_REVIEW_HASHES persisted, both handoffs updated. CURRENT_STATE adds separate BakeV2/AO hold evidence only; V4 high/curvedProxyV2/majorV21/currentV77/held sources unchanged. Root received exact paths/actual results. Shared local Codex history already merged; accepted art/Git integration, playable rafters/underside, lowerLODs/fullassets/native remain pending. HANDOFF-only checkpoint.
++
++
++### Visible reed selection trial
++
++LayeredThatchVisibleFringeV1 retains 34 supported donor reeds at 1,088 fringe triangles. Tip-center rays cleared the backing in three review directions and all 204 rear vertices passed the scoped backing test. Saved geometry passed the existing UV scale, tangent and overlap checks. Actual eave and oblique renders show occasional protruding strands, while the continuous rolled edge still dominates. The initial script run missed an import in the reused unwrap helper and exited before saving. The corrected run completed. Keep this trial as evidence that backing clearance alone cannot establish a convincing fringe. The next geometry needs overlapping groups with enough projected width to break up the edge.
++
++
++### Wider reed bundle trial
++
++LayeredThatchBundleFringeV1 widens 34 supported tapered donors across the eave and offsets the exposed rings forward and down. The 1,088 fringe triangles and 204 rear backing probes pass the scoped checks. Saved body and fringe have zero UV scale, tangent and overlap failures. Reviewed both actual renders. The wider ends read as discrete pegs, and the continuous backing still dominates the silhouette. Keep this patch on art hold. The next geometry should integrate staggered course ends into the backing and cut face.
++
++
++### Integrated reed course study
++
++LayeredThatchIntegratedCoursesV1 modifies the closed coat directly to stagger course lips and carry them through the cut and under-return. Both reviewed views show broader silhouette breaks, but the course ridges read as corrugations and dark cap seams appear. Inherited diagnostic UVs fail scale on 403 of 540 triangles. The patch remains on art and UV hold. Continue with localized interruptions and cap continuity before authoring new physical UVs and baking.
++
++
++### Interrupted course study
++
++LayeredThatchInterruptedCoursesV1 confines the raised course geometry to staggered clusters and fades displacement to zero at the study caps. Both renders show the dark cap seams from the preceding study are gone. The eave has distinct low points, but the rounded cut still reads as one continuous piece. Inherited UVs fail scale on 101 of 540 triangles. Keep this study on art and UV hold. Next test should change the cut cross section itself to expose distinct overlapping layers, using these cap constraints.
++
++
++### Recessed cut study
++
++LayeredThatchRecessedCutV1 adds a modeled undercut behind localized upper reed butts. Both reviewed renders show distinct overlaps in the cut profile and retain clean study caps. The lower course still reads as a dark continuous strip, with no individually resolved fiber ends. The closed 540-triangle body passes edge manifold and tangent checks, but 140 triangles fail scale with the inherited diagnostic UVs. Retain the profile as a geometry study. Break up the lower course and author physical UVs before rebaking the cut.
++
++
++### Staggered lower cut study
++
++LayeredThatchStaggeredCutV1 offsets lower groups from the upper butt centers and retains fixed study caps. The eave and oblique renders show distinct lower projections and a more uneven edge, with dark continuous shadow still visible in the lower course. The rendered diagnostic uses inherited maps. A separate StaggeredCut_PhysicalUV.blend was authored using the six genuine surface domains. Saved audit shows 89 of 540 triangles outside the physical scale range (1.557 to 2.962 m per UV), with zero degenerate UVs, tangent failures or nonmanifold edges. Keep the shape and mapping study on hold. Locate distortion by physical domain and use the actual layer boundaries to guide charting and cut texture projection.
++
++
++### UV seams at modeled reed layers
++
++StaggeredCut_LayerUV.blend uses separate charts at the four actual profile strips of the cut and preserves the closed staggered geometry. A single conformal unwrap and whole-chart physical scaling cleared all 89 prior scale failures. All 540 triangles pass the 1.8–2.2 m per UV range, with measured extrema of 1.915 and 2.183. No degenerate UVs, short tangents or nonmanifold edges were detected. Complete overlap sweep found zero positive pairs above 1e-12 UV². Previous diagnostic images still use inherited maps. The new layout needs a cut bake and matched art review before any adoption.
++
++
++### Staggered cut material bake
++
++LayeredThatchStaggeredBakeV1 bakes four modeled cut strips at 2048 from the owned high-detail donor with existing CC0 photo inputs. Color uses diffuse color only. The normal maps use tangent +Y, and roughness occupies ORM.G with R1/B0. Diagonal rigid placement fits the cut strips. The attempted square coat placement reached 2.213 m per UV and was rejected before baking. The review uses the source photo material on the coat. All 540 body triangles pass 1.915–2.183 m per UV, with zero tangent, degeneracy, nonmanifold or overlap failures. Actual close and oblique renders show more pronounced reed texture but a sharp coat-to-cut transition and a dark lower band. At game distance the reduced mesh still lacks the small irregular clumps of the high reference. EaveComparison.html displays the same 120 × 70 crop at 1:1. Keep on art hold. Next priority is supported clumps projecting at the lower silhouette.
++
++
++### Supported lower silhouette clumps
++
++LayeredThatchSilhouetteClumpsV1 groups 32 slender donor reeds in eight areas of the staggered baked eave, with fixed embedded tails and staggered extensions. All 192 rear vertices pass the scoped backing probe. All 1,564 body and fringe triangles pass scale, tangent, closure and UV overlap checks. The close view shows occasional exposed ends. At game distance the changes remain sparse: only 35 pixels in the matched 120 × 70 crop change by five or more RGB levels against the bare baked patch. The reduced edge still lacks the irregular clump mass of the high reference. Review EaveComparison.html at 100% zoom. Art hold remains. This trial shows that slender tips contribute too little projected coverage to carry the silhouette on their own.
++
++
++### Widened lower reed ends
++
++LayeredThatchLowerBundlesV1 widens exposed rings of the 32 grouped reeds while keeping the supported roots fixed. All 1,564 triangles pass closure, physical UV scale, tangents and overlap checks. The matched game-distance crop changes 72 pixels by at least five RGB levels versus the bare baked patch, compared with 35 in the slender-reed study. The close render shows discrete flat tabs, and the game view still reads as a solid rounded edge. Keep this trial on art hold. Further widening is unlikely to help. The next geometry should derive broader supported clump envelopes from contiguous high-detail reed groups, with ends distributed across the cut and lower outline.
++
++
++### Tapered group volumes
++
++LayeredThatchGroupEnvelopeV1 builds eight tapered volumes from the widths of grouped donor reeds and retains 48 supported rear vertices. This reduces the fringe to 256 triangles, with 796 total body and fringe triangles passing the physical UV, tangent, closure and overlap checks. The same 120 × 70 game-distance crop changes 70 pixels by at least five RGB levels against the bare baked patch. Both renders were reviewed. Broad, flat end caps look like tabs up close and the game-distance shape remains too smooth. Keep on art hold. The measured savings leave geometry budget for shaping irregular butt cross sections with smaller staggered lobes rather than flat caps.
++
++
++### Staggered bundle-end geometry
++
++LayeredThatchScallopedBundlesV1 rounds the lower cross section and staggers six cut corners on each of eight tapered bundles. Saved mesh passes physical UV scale, closure, tangent and overlap checks on all 796 triangles. Both actual views reviewed. The cut corners soften the tips but the bundles still read as isolated tabs. The matched game-distance crop changes 58 pixels by at least five RGB levels against the bare baked patch. Retain on art hold. The series indicates the proxy shape between bundles is the dominant problem. Use the actual high-detail outer edge to derive a continuous reduced silhouette with localized overhangs before further texture or tip treatments.
++
++
++### Donor-measured eave outline
++
++LayeredThatchDonorOutlineV1 uses the 20th percentile of forward reach from nearby high-detail reed ends at 85 section and height samples. The resulting offsets range from about 98 mm outward to 52 mm inward. The modeled cut is still a smooth continuous strip in both reviewed views, which shows that section-level aggregation loses the donor clump variation. Separate layer UVs on DonorOutline_UV.blend pass physical scale on all 540 triangles (1.921–2.058 m per UV), closure, tangents and overlap. Diagnostic renders use the earlier maps. Art hold remains. The next shape study needs finer donor sampling along the silhouette and a way to keep individual projecting groups during reduction.
++
++
++### Finer donor silhouette sampling
++
++LayeredThatchFineDonorV1 uses 33 cross sections and 160 local lower-edge measurements from high-detail reed ends. The saved physical UV version passes scale (1.878–2.066 m per UV), closure, tangents and overlap on all 1,052 triangles. Both final source renders reviewed. The close edge now has several integrated irregular lobes. At game distance the reduced roof still lacks the diffuse fringe and apparent depth variation of the high reference. Source photo cut material creates a conspicuous texture transition. Keep on art hold. EaveComparison.html preserves the matched 1:1 comparison.
++
++
++### Fine donor coat and cut bake
++
++LayeredThatchFineDonorBakeV1 transfers 2048 base color, tangent normals and roughness to the donor-shaped coat and four cut layers. The original 2 percent canvas-fit guard rejected the coat; the final whole-chart fit is explicitly recorded at nominal 2.055 m and every actual triangle remains inside the required scale range. All 1,052 triangles pass scale (1.930–2.123 m per UV), closure, tangents and overlap. Close and oblique review shows a less obvious coat-to-cut texture boundary, with dark projection streaks remaining around the cut. Matched game-distance views retain a bulkier, smoother low edge than the high donor. Original home-01 was reviewed again. The roof still needs the original golden, directional straw character and finer irregular edges. Retain on art hold. EaveComparison.html shows the matched 1:1 crop.
++
++
++### Warmer straw reflectance trial
++
++LayeredThatchGoldenReviewV1 applies one range-preserving linear color curve to the five baked materials, using RGB odds factors 1.34, 1.23 and 0.97. The choice is an artistic test guided by home-01. Review uses the same geometry, baked textures, cameras, lights and exposure as the fine donor bake. All three rendered views were reviewed. The warmer straw is visible but subdued. The heavy, dark cut face and coarse eave outline still diverge from the original and high-detail reference. Keep on art hold. EaveComparison.html provides the matched 1:1 comparison.
++
++
++### Shallower eave cut
++
++LayeredThatchTrimmedEaveV1 raises the lower cut rings by up to 45 mm and draws the underside return inward by up to 18 mm, fading to fixed caps. All 1,052 triangles pass physical UV scale, closure, tangents and overlap. Both matched views reviewed. The underside is less bulky, but the close cut still reads as a continuous textured band. The 1:1 game crop uses a foreground mask based on an 8-level RGB difference from the corner background. Against the high reference, extra pixels fall from 50 to 22 while missing pixels rise from 4 to 19. Mask IoU rises from 0.9840 to 0.9878. This is a coarse silhouette check including the rafters. The smaller profile is closer overall but trims some actual fringe. Source photo material was used for the geometry review. Keep on art hold, with targeted fringe recovery at missing silhouette regions.
++
++
++### Targeted recovery of silhouette reeds
++
++LayeredThatchRecoveredFringeV1 selects 34 original donor reeds by proximity to the 19 missing reference pixels in the matched game-distance crop and checks that all 204 rear vertices sit inside the closed backing by the scoped ray test. Actual renders show exposed slender tips without widened tabs. The coarse crop mask has 6 missing and 22 extra pixels against the high reference, compared with 19 and 22 for the trimmed body alone. IoU 0.9917. All 2,140 triangles pass scale, closure, tangents and overlap. The close cut still reads as a textured band, and the roof remains on art hold. The 1:1 comparison is saved beside the source study.
++
++
++### Cut bake with recovered fringe
++
++LayeredThatchRecoveredBakeV1 transfers 2048 color-only BC, tangent +Y normals and source roughness to the four cut strips on the trimmed eave with its 34 recovered reeds. The coat uses the CC0-derived source photo material. All 2,140 triangles pass scale, closure, tangents and UV overlap. The cut seam is softer and the supported reed tips remain exposed in the close view, but irregular dark projection streaks remain. Matched high and low game views were reviewed. The thresholded 1:1 crop has 8 missing and 24 extra foreground pixels, IoU 0.9905. The roof still lacks the high donor’s surface depth and fringe density. Keep on art hold. EaveComparison.html holds the 1:1 review.
++
++
++### Cut-normal isolation
++
++LayeredThatchCutNormalReviewV1 disconnects only the four cut normal inputs in memory for a matched render. Color, roughness, geometry, camera and lighting use RecoveredBaked. Both resulting views were reviewed. Without the projected normals, sharp dark streaks are much weaker, but curved swirls remain and the lower edge loses reed relief. The matched game-distance change is subtle. Keep the baked asset on art hold. The next projection pass should address donor alignment across the tight returns and inspect color independently where swirls persist. This diagnostic is reproducible with render.py and the source blend remains saved with its original material.
++
++
++### Height-filtered cut normal projection
++
++LayeredThatchLayerNormalsV1 rebakes four 2048 tangent normal maps with complete donor stems selected by butt height relative to the modeled strip, plus the continuous donor backing. Selected reed counts are 441, 603, 504 and 645. The existing UVs, base color and roughness are reused. Both actual comparison views were reviewed. The sharp dark curls remain in the same regions and the game-distance effect is subtle. Height filtering alone does not resolve projection onto the curved cut. Keep on art hold. Further filtering iterations on this unchanged proxy are unlikely to address the geometric mismatch between continuous cut and exposed donor reeds.
++
++
++### Three-sided reed reduction
++
++LayeredThatchReducedReedsV1 retains 128 supported donor reeds with one closed tapered triangular span per reed, for 1,024 fringe triangles versus 1,088 for 34 earlier reeds. All 384 retained rear points pass the scoped support test. Saved body and fringe pass scale, closure, tangents and overlap across 2,076 triangles. Both final renders reviewed. The close eave gains a denser physical fringe, but regular selection reads like comb teeth and the baked cut streaks remain. The matched thresholded crop has 9 missing and 28 extra foreground pixels, IoU 0.9890. Keep on art hold. The reduced topology offers a way to retain more original reed ends at similar cost. Selection should follow irregular local donor coverage.
++
++
++### Coverage-selected reduced reeds
++
++LayeredThatchCoverageReedsV1 selects 90 supported triangular reeds using projected occupancy against close and game-distance donor masks. It gives the game view 12 times the per-pixel weight and penalizes extra coverage. The approximation uses four subpixel probes and is checked against actual renders. Fringe triangles fall from 1,024 to 720. All 1,772 body and fringe triangles pass UV scale, closure, tangents and overlap. Both actual views reviewed. The game mask records 9 missing and 95 extra pixels, IoU 0.9765. The close fringe has uneven gaps but many tips still follow the same slope and the baked cut remains streaked. Art hold remains.
++
++The preceding mask counts cover the full frame. The comparable 120 × 70 eave crop has 8 missing and 28 extra pixels, IoU 0.9893. The 128-reed crop had 9 missing and 28 extra, and the earlier baked 34-reed crop remains closer at 8 missing and 24 extra.
++
++
++### Photographic cut normals on the recovered silhouette
++
++LayeredThatchPhotoCutNormalsV1 uses the verified CC0-derived frayed reed normal map with the physical, unrotated TrimmedEave UV layout. The builder checks exact source positions and loop indices before copying this UV channel. The recovered 34-reed shape retains its baked color and roughness. Both matched renders reviewed. The close cut loses the sharp projected-normal streaks but has softer detail and residual swirls. Game-distance appearance remains similar. This is a source material trial with an additional UV channel. It remains on art hold and requires a production material layout before use.
++
++### Recovered eave with full photographic cut material
++
++LayeredThatchPhotoCutPBRV1 applies the CC0-derived V18 color, normal and roughness to the same recovered patch via physical UVs. Both matched CPU renders completed. The close cut loses the projection swirls and introduces a bright continuous band with a sharp coat seam. Art hold continues. The review, Blender source and map hashes are in DinkQA/PhotorealSessions/House439Facade/FullCottageRoofSuccessorV1/LayeredThatchPhotoCutPBRV1. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source. The interior ceiling and final Git integration remain pending.
++
++### Weathered tone on the photographic cut
++
++LayeredThatchTonedCutV1 in the QA roof studies saves TonedCut.blend and both matched CPU renders. The linear RGB tint (0.58, 0.53, 0.42) reduces close eave contrast while retaining cut-reed detail. The abrupt seam and continuous strip remain on art hold. Next material test is a spatial transition at the top of the cut. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Coat-to-cut transition trial
++
++LayeredThatchCutTransitionV1 saves CutTransition.blend and matched CPU renders. The 45 mm blend from raw coat color leaves a pale rim at close range. Retain LayeredThatchTonedCutV1 as the material comparison baseline. Both remain on art hold. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Weathered coat transition
++
++LayeredThatchWeatheredTransitionV1 removes the pale seam rim by carrying existing weathering and seam soiling through the 45 mm blend. Both CPU renders and source saved. The continuous strip remains on art hold. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Weathered patch viewed from below
++
++Matched underside renders and reproducible camera script are in LayeredThatchWeatheredTransitionV1. Both patch versions expose two rafters. The proxy underside reads as a flat plane with a bright cut lip under inspection fill. Whole interior review remains pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Cross-batten underside study
++
++LayeredThatchCrossBattenV1 adds five transverse timbers and seats the two rafters beneath them. CrossBattens.blend and the matched underside comparison are saved. The gaps add depth. Timber still uses the flat study material. Whole-room fit and native review remain pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Weathered timber on the exposed framing
++
++LayeredThatchTimberGrainV1 applies the shared longgrain and endgrain maps to both rafters and all five battens. TimberGrain.blend and matched CPU render saved. Grain visible on battens, with darker rafters and the bright thatch lip remaining. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source. Whole-room and native verification pending.
++
++### Full V18 roof viewed from inside
++
++WholeRoofInteriorReviewV1 contains the matched source inventory target and an isolated LOD0 CPU render from 1.65 m eye height. Rafters show but read nearly flush, with a bare ridge band and sparse hip framing. The render uses diagnostic fill. Room geometry, chimney fit, and native ceiling behavior remain pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Full-roof rafter depth trial
++
++WholeRoofDeeperRaftersV1 extends 100 lower LOD0 rafter vertices down 120 mm. DeeperRafters.blend and the matched interior CPU comparison are saved. Exposed side faces and shadows now read at room scale. Ridge and hip framing, inherited UV scale, room and chimney fit, and native verification remain pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Deeper rafter texture scale
++
++DeeperRaftersMetricUV.blend reprojects changed faces in their original grain orientation at 2 m per UV repeat. Reloaded audit found 200 of 300 triangles outside 1.8–2.2 m per repeat before reprojection and zero afterward. Matched CPU image roof_metric_uv.png saved. UV island overlap and room fit remain unverified. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Packed UVs for deeper rafters
++
++DeeperRaftersPackedUV.blend translates each timber face by whole UV repeats to clear the original 244 internal and 28 cross-roof intersections. Saved readback finds zero positive intersections involving the 300 rafter triangles against all 50,862 roof triangles. Texture scale remains 1.9999–2.0002 m per repeat. The packing uses repeat tiles outside the base tile. Native UV behavior and room fit remain pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Full-roof ridge timber
++
++WholeRoofRidgeTimberV1 adds a 10.56 m ridge timber to the deeper rafter source. The interior CPU render shows the rafter ends meeting the timber along both slopes. The square ends, pale underside, and sparse hip framing remain. Ridge UVs use a separate repeat-tile strip. Chimney, shell, wall clearances and native room fit still need verification. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Ridge timber source fit
++
++Saved LOD0 fit audit found ridge surface crossings with all 25 rafter members. The closest bounding-box distance to named chimney, flue and flashing meshes is 0.902 m. All 963 vertical samples hit the core shell above the ridge timber top, with 41 mm minimum sampled cover. This is a sampled source check with the existing shell intersection at the timber seating. It does not verify room geometry, native collision, or hip framing. Audit in WholeRoofRidgeTimberV1/FIT_AUDIT.json. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Full-roof hip timbers
++
++WholeRoofHipTimberV1 adds four diagonal weathered timber members to the LOD0 roof. All four intersect the ridge at the joint. The saved source audit found no surface crossings with named chimney, flue or flashing meshes and at least 123 mm sampled roof cover. The isolated CPU render shows the far hip pair meeting the ridge. Wall bearing, shorter hip rafters, and playable-room fit remain unverified. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Full-roof end-slope jack rafters
++
++WholeRoofJackRaftersV1 adds 20 end-slope jack rafters in JackRafters.blend. All meet their assigned hip timber in the saved LOD0 mesh. The audit found no triangle surface crossings with named chimney, flue, or flashing meshes. The isolated CPU render shows the smaller members at the far hip. Wall bearing and contact between the timber tops and the underside require separate verification. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### End-slope rafter bearing audit
++
++The saved jack-rafter bearing audit samples 19 top-center positions per member against the core underside. All 20 pass from shell overlap into a visible gap, with the largest sampled gap 157 mm. Eave end centers at |X| 8.87 m lie 15 mm and 45 mm before the corresponding end-wall bounding boxes on the east and west sides respectively, measured as distance before reaching the wall. This centerline comparison does not establish end-face contact. Fit the members to the underside and add or verify wall plates before production use. Evidence in WholeRoofJackRaftersV1/BEARING_AUDIT.json. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Jack-rafter shell fit
++
++JackRaftersFitted.blend raises the upper face of each jack rafter with a 30 mm sampled roof-cover target. On the same 195 samples per member, worst underside gap dropped from 225 mm to 24 mm. All 20 still meet the hip timbers and the audit found no chimney surface crossings. Roof cover is about 30 mm at its sampled minimum. The fitted CPU view is roof_fitted.png. UV scale and end-wall bearing need further work. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Fitted jack-rafter texture scale
++
++JackRaftersFittedUV.blend restores the original grain orientation at 2 m per UV repeat on the fitted rafter faces. Saved audit measures 1.9998–2.0004 m across 240 triangles, with zero overlaps involving those triangles among all 51,162 LOD0 roof triangles. The matched CPU render is roof_fitted_uv.png. Wall bearing and native room fit remain pending. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### End-wall timber plates
++
++WallPlates.blend adds two weathered timber end-wall plates. The source intersection check reports both plates crossing the top stonework and all 20 jack rafters meeting their plates. The CPU view includes the four stone walls, revealing the timber-to-stone junction. The long-side framing and wall corner joints still need review. In-game fit and lower LODs remain unverified. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Long-wall timber plates
++
++PerimeterPlates.blend adds two long-wall timber plates. Both intersect the stone wall tops and both end plates at the four corners. Saved readback found contact with all 25 main rafters. The CPU render shows the continuous timber perimeter at the stone junction. The main rafter ends and stone overlap are geometric seating checks. Corner joinery, lower LODs, and the playable room still need review. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Whole cottage interior views
++
++WholeCottageInteriorReviewV1 renders two 1.65 m eye-height views of the 353 selected LOD0 meshes from the perimeter plate source. Lower LODs are excluded to prevent coincident surfaces. The views show the exposed roof framing above the interior wall finish and windows. The chimney side exposes a short masonry section hanging below the roof with no visible continuation to the room floor. It needs reconciliation with the playable fireplace or chimney geometry. These CPU views use diagnostic lighting and establish source appearance only. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Exterior and Screen 1 chimney assemblies
++
++CHIMNEY_CONTEXT.json compares saved mesh bounds. The exterior stack starts at Z 4.425 m around X -5.44 m. The registered Screen 1 interior has a separate fireplace and chimney with overlapping XY and matching Z 2.80 m bounds. Room layout identifies its fireplace at S001_P19. Treat the apparent hanging stack as a limitation of the exterior-derived view. Verify the separate playable assembly through its own native path. The registered roof source has an open west-gable sliver issue documented in GEOMETRY_ISSUE.json. Coordinator notified. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Screen 1 native roof evidence reconciled
++
++The accepted metadata checkout at f97349e references all eight registered Screen 1 roof meshes. Existing native gameplay proof records all eight observed in-world and a held-input 1-to-439 round trip. Reviewed local C6 GPU captures roof-clear-0, roof-clear-270 and fireplace-actual-join show exposed rafters, board undersides and the fireplace chimney in the playable room. The source west-gable slivers remain open. These camera views do not resolve that close junction. The exterior-derived roof framing studies remain separate. Evidence checkout DinkQA/RoofAcceptedMasterMetadataCheckout. GPU run DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c. Comparison in WholeCottageInteriorReviewV1/Screen1NativeRoofViews.jpg.
++
++### West-gable sliver ray audit
++
++WEST_GABLE_RAYS.json traces 2,779 pixel-center rays over the two documented sliver rectangles with the recorded source camera and an assumed 36 mm horizontal sensor. Every ray hits one of the eight registered roof meshes. The first region resolves to west-north oak and plaster. The second also includes nine foreground east-north oak hits. This rules out a direct line of sight through all roof meshes at the sampled camera positions. It leaves local joint discontinuities, occlusion by foreground geometry, and alternate camera angles unverified. Interior geometry remains owned by the coordinating lane. Evidence in WholeCottageInteriorReviewV1. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Original-art replacement coverage snapshot
++
++Re-ran the existing origin coverage classifier from the accepted metadata checkout f97349e against Candidate4 importer coverage. The 6,607 rows classify as 1,468 with art bindings, 4,987 placeholders and 152 cuts. The classifier reports bindings rather than visual acceptance. Largest unbound class is beach_pebbles (281 placements), followed by pebbles (214), side plaster walls (188), plaster walls (174) and pillbugs (154). ART_COVERAGE.csv and ART_COVERAGE_SUMMARY.txt preserve the per-origin backlog and input receipt. This snapshot is scoped to the named checkout and importer fixture. Evidence in WholeCottageInteriorReviewV1. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble family source study
++
++Built seven editable Blender variants from the original sequence 92 frames 5–11. Component bounds guide the stone count, size and spacing. Original bitmap hashes and contact sheet are saved. The first CPU render shows all seven variants on sand. The largest merged silhouette reads as one broad stone, and placement scale and runtime pivots still need original-map verification. Geometry and surface shaders are authored procedurally. QA source in DinkQA/PhotorealSessions/BeachPebbleFamilyV1. Production worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble original placement audit
++
++Original map readback found 281 placements across frames 5–11. There are 280 at 100% and one frame-7 placement at 152% (screen 731, slot 7). All have raw hard=1, and nine are foreground type 1. Frame depth dots are offset from center. The importer uses local layout scale for rock sprites and the generic family runtime centers the mesh bounds over the card location. Frame-specific placement needs a compatible binding path before activation. Preview scale remains artist-selected. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble layout readback
++
++Reconciled all 281 raw placements with generated ImportData records, including screen-bar X offset, map Y, frame, size and sprite depth-dot card offsets. LAYOUT_READBACK.json retains each world anchor and placement scale. BeachPebblesLayout.blend uses the median 0.0820 x 0.0989 m per pixel and per-frame depth-dot collection pivots. The CPU preview shows that scaling merged bitmap regions directly makes the largest stone read as a slab. Preserve the cluster footprint and refine individual stones before native delivery. Source and proof in DinkQA/PhotorealSessions/BeachPebbleFamilyV1.
++
++### Beach pebble frame 11 refinement
++
++BeachPebblesRefined.blend replaces the merged frame-11 slab with five separate stones shaped from visible lobes of the original. The original frame pivot and other variants remain intact. The analytical pixel-center ellipse proxy improves footprint IoU from 0.570 to 0.891 and drops extra pixels from 91 to 4. This metric excludes mesh noise and camera projection. Both CPU renders saved. The close view shows distinct stones, with simple mottled materials and several near-touching edges. Native placement and game-scale review remain pending. Source and proof in DinkQA/PhotorealSessions/BeachPebbleFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble mineral materials
++
++BeachPebblesMinerals.blend layers fine procedural color, roughness and bump over the three existing pebble materials. Matched CPU close-up shows a modest texture improvement. The set still reads pale and uniform on the flat review sand. The Blender procedural maps need baking or an equivalent runtime material for delivery. Geometry and layout follow the refined source. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble baked atlas
++
++BeachPebblesBaked.blend shares a 512-square base color, tangent normal and roughness atlas across all 27 stones. The matched frame-11 CPU view closely tracks the procedural source. Saved UV readback covers 8,640 triangles and detects four small positive overlap pairs, up to 1.406e-6 UV square units. Repacking and native placement remain pending. The bake is a source trial. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebble atlas repack
++
++Repacked/BeachPebblesBaked.blend uses a tighter smart-projection angle and rebaked 512-square base color, tangent normal and roughness maps. Saved readback finds zero UV overlaps across 8,640 triangles, down from four. The matched frame-11 CPU close-up preserves the procedural look with modest loss of fine mottling. Texture filtering at distance and native placement remain unverified. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1/Repacked. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Beach pebbles at Screen 761 placement scale
++
++Screen761Layout.blend instances all 18 original Screen 761 beach pebble placements over diagnostic sand using generated anchors, yaw and per-axis scale. Saved readback confirms all frame identities and transforms. The CPU overview shows scattered clusters at this camera scale. Original terrain, other shore art, and Unreal texture filtering remain outside this source preview. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1.
++
++### Beach pebble frame meshes
++
++BeachPebblesFrameMeshes.blend consolidates the 27 stones into seven named meshes, one per source frame, with the frame depth-dot anchor at local zero. Reloaded audit verifies exact baked corner UVs and pivot-relative coordinates within one micrometre. Textures link to the Repacked atlas. Frame-specific native binding still needs an integration path that preserves placement scale and the off-center pivots. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1.
++
++### Beach pebble runtime binding review
++
++BINDING_FIXTURE.json records frame mesh, original world anchor, yaw and two-axis scale for all 281 pebble origins. ImportData uses 272 instances and nine actors. The generic family path selects one mesh for a class, fits uniformly and centers mesh bounds on the card. Direct actor replacements skip the instanced rows and set BlockAll. A frame-aware visual binding must preserve both representations and placement transforms with collision and navigation disabled. This fixture is offline evidence for integration. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1.
++
++### Beach pebble ORM source handoff
++
++BeachPebblesFrameMeshesORM.blend uses the packed 512-square ORM map. Readback confirms linear green-channel roughness on the shared material, byte-identical to the source roughness channel, with neutral AO and zero metal. All seven frame meshes are present. Coordinator received the source path, UV evidence, and full placement fixture. Native delivery remains pending. Evidence in DinkQA/PhotorealSessions/BeachPebbleFamilyV1.
++
++### Clam shell source study
++
++ClamShells.blend models original sequence 92 frames 2 and 3 as two closed concave valves with thickness, radial ribs and growth rings. Frame 2 uses cool blue-grey carbonate and frame 3 warmer cream. The matched pair CPU preview is pale and smooth compared with the original high-contrast pixels. Saved mesh readback reports 9,216 triangles per valve, positive volume and zero nonmanifold edges. Material detail, runtime geometry, and placement reconciliation remain pending for the 66 source occurrences. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Clam shell growth-band material
++
++ClamShellsGrowthBands.blend adds an authored carbonate color attribute with irregular growth bands, radial streaks and a darkened rim, plus fine procedural bump. The matched CPU view gives both valves more visible shell detail. Rings remain evenly spaced at this distance and the material still needs a texture bake. Geometry remains high resolution at 9,216 triangles per valve. Placement and game review are pending. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Clam shell mesh reduction
++
++ClamShellsReduced.blend reduces both valves from 9,216 to 1,382 triangles each. Saved readback shows zero nonmanifold edges and positive volumes within 0.2% of the original. Matched CPU renders show that the outlines hold while fine growth bands blur in the reduced vertex colors. Bake color and normal detail from the high meshes onto the reduced meshes before native review. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Clam shell high-to-low bake
++
++ClamShellsBaked.blend projects high-source carbonate color and tangent normals onto the two 1,382-triangle shells using separate 512-square maps. The matched CPU preview restores the growth bands lost in the mesh reduction. Saved per-shell UV audits find zero positive overlaps. Roughness is constant at 0.52 and the shader still uses a Blender coat layer. Runtime material matching and placement remain pending. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Clam shell layout audit
++
++Reconciled 66 original clam-shell placements with generated game records. They use 64 instances, two actors, and six distinct size percentages. ClamShellsLayout.blend fits both shell footprints to the median layout scale and places each original depth-dot at local zero. Saved readback verifies the fitted XY bounds and UV layer. The planar stretch may change the baked normal appearance, and original per-placement scale still needs runtime binding. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Clam shell ORM layout preview
++
++ClamShellsLayoutORM.blend binds a shared linear ORM map with neutral AO, roughness 133/255 and zero metal, and disables Blender coat. The layout-scale CPU render retains the shell growth bands and shows no obvious normal seams at this angle. Roughness is constant. Native texture sampling and shoreline placement remain pending. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1.
++
++### Combined clam shell and pebble preview
++
++Screen733ShorePreview.png shows the 16 pebble and three clam-shell placements together on the original ground raster, using generated anchors, rotations and per-axis scale. All 19 rows are recorded in SCREEN733_PREVIEW.json. The shells read as larger individual shapes, and the pebble clusters remain legible on the banks. The ground is a flat original-raster reference, with no new terrain shading or native runtime proof. Evidence in DinkQA/PhotorealSessions/ClamShellFamilyV1.
++
++### Starfish source study
++
++Starfish.blend reconstructs the five-arm silhouette of sequence 92 frame 1 using a smoothed radial profile measured from the original bitmap. The CPU render has ochre mottle and pore bump. It remains too pale and pinches visibly at the center. Individual arm relief, mesh reduction and placement audit remain pending. The original class inventory flags one bombable placement linked to s5-sec1, which needs separate gameplay verification before visual replacement. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Starfish central disk refinement
++
++StarfishRefined.blend blends the central disk into the five arm profiles and shifts the material toward darker rust. The matched CPU view softens the center pinch and improves the color, but radial shading remains near the center and the arms still read broad and flat. Saved readback shows 6,144 triangles, positive volume and zero nonmanifold edges. The source needs arm cross-section refinement and a lower-poly bake. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1.
++
++### Starfish arm shape refinement
++
++StarfishRoundedArms.blend uses distance to the original-derived outline to round the arm cross sections while preserving XY. The matched CPU preview reduces the central radial pinch and gives the arm edges more depth. The broad surface still needs finer granular detail. Saved readback finds 6,144 triangles, positive volume and zero nonmanifold edges. Runtime reduction, bake and original placement reconciliation remain pending. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1.
++
++### Starfish original placement audit
++
++Matched all 47 original starfish placements to generated game records. The dataset has 44 instances and three actors, with 45 at 100%, one at 52%, and one at 78%. The original frame pivot is (17,13) in a 25×17 bitmap. S481_P02 is the only scripted row and remains an actor with script s5-sec1. Treat its visual replacement as a gameplay regression case. Source has no runtime changes. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1. Worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Starfish reduced texture bake
++
++StarfishBaked.blend reduces the rounded source to 1,350 triangles and projects its color and tangent normals into 512-square maps. Saved mesh and UV audits show zero nonmanifold edges and zero positive UV overlaps. The matched CPU render retains the silhouette and mottling, with a slightly grainier rim. Layout fitting, ORM packing and Unreal placement remain pending. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1.
++
++### Starfish fitted source
++
++StarfishLayoutORM.blend fits the 1,350-triangle source to the median generated layout and puts the original (17,13) pivot at local zero. Reloaded bounds and UV layer checks pass. The packed ORM uses neutral AO, 176/255 roughness and zero metal. The CPU preview retains the arm shape and mottling, with some grain along the rim. Per-placement scaling and the scripted S481_P02 regression remain native work. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1.
++
++### Combined shoreline source review
++
++Screen732ShorePreview.png places 11 pebble origins, one clam shell and two starfish on the original ground raster at generated layout transforms. Both starfish read clearly at screen scale. SCREEN732_PREVIEW.json records the 14 placements. Coordinator received the clam and starfish source candidates and the S481_P02 gameplay exception. The original ground remains a flat visual reference. Unreal placement and game rendering remain pending. Evidence in DinkQA/PhotorealSessions/StarfishFamilyV1.
++
++### Conch shell source study
++
++ConchShell.blend is an editable tapered spiral study for sequence 92 frame 4. The source sprite and 29 matching generated placements are documented, including pivot (10,12) and one 69% placement. CPU render shows the lip and whorl form but the open apex, inflated turns and pale color still read as a coil. The edge audit alone does not establish self-intersection clearance. Refine the shell form before reduction and baking. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Conch taper and aperture study
++
++ConchShellTapered.blend replaces the open coil with a continuous tapered wall, closed tip and flared rim. Saved mesh readback reports positive volume and zero nonmanifold edges. In the matched render the opening spans too much of the base and the stripes read as regular flutes. Keep on art hold. Next geometry revision needs a fuller body whorl, tighter asymmetrical opening and more stable ground contact. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Conch body whorl revision
++
++ConchShellBodyWhorl.blend adds a fuller body whorl and narrows the aperture into an asymmetric oval. The CPU render shows the interior and a clearer body-to-spire transition. The shell still appears balanced on the lip, and the smooth bands need more natural surface variation. Saved mesh has positive volume and zero nonmanifold edges. Keep on art hold pending rest and surface revisions. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Conch resting pose
++
++ConchShellSeated.blend samples resting orientations and selects a body-supported pose. Within 9 mm of the lowest point, 109 body vertices span 161 mm, compared with zero in the lip-balanced pose. The lip clears the lowest point by 54 mm. The CPU render reads grounded and reveals the aperture, but its direct angle hides the spire and emphasizes the regular interior rings. This sampled contact measure is not a physics stability test. Art hold remains. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Seated conch surface revision
++
++ConchShellSeatedRefined.blend rotates the seated mesh 58 degrees about world vertical and softens the interior carbonate bands. The matched CPU render now shows the spire and aperture together while preserving the seating height. The surface still reads smooth and the aperture looks oversized at close range. The source remains a study before final silhouette and material approval. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Conch narrow lip and inner tip clearance
++
++ConchShellNarrowLipTipClearance.blend narrows the opening by 20% and 26% along its local axes, adds fine carbonate variation and offsets the inner tip by 3 mm. Saved BVH audit reduces nonadjacent crossings from 251 to zero and measures 1.5 mm minimum ground clearance. The render keeps the seated pose. Lower-poly mesh, bake and visual acceptance remain pending. Evidence in DinkQA/PhotorealSessions/ConchShellFamilyV1.
++
++### Whole-roof warm straw clumps
++
++House439_WarmClumps.blend builds on the layered V21 roof and adds warm anisotropic color and bump variation. The original home-01 sprite guided the gold palette and broken straw direction. Matched CPU broad and close views show clearer roof texture. Close mean RGB shifts from 135.6/115.4/83.1 to 146.4/113.5/69.0, with luma standard deviation 14.18 to 15.17. Door crop mean channel difference is 0.065 of 255. Saved positions, topology and transforms match all 949 meshes. The close straw is still mostly uniform in direction. Source-only material trial, coordinator notified. Evidence in WholeRoofWarmClumpsV1. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Whole-roof straw direction trial
++
++WholeRoofWarmClumpsV2 warps the broad clump coordinates, narrows the cross-straw scale and raises bump distance. The matched close-up changes by 7.42 RGB levels on average, but the coarse gradient direction concentration stays effectively flat at 0.967 to 0.969. The macro appearance still reads strongly parallel because the underlying photo grain dominates. V1 remains the preferred baseline. Geometry and transforms match across all 949 meshes. A distinct modeled or baked clump structure is a stronger next test. Evidence in WholeRoofWarmClumpsV2. Source worktree DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source.
++
++### Full-roof modeled clump relief
++
++House439_ModeledClumps.blend lifts 1,343 existing coat vertices by up to 78 mm, fading before the eaves, ridge and chimney. Core bounds, XY, indices and UV0 are unchanged. The matched CPU renders show only subtle additional depth. The saved UV metric now has 124 triangles outside the 1.8–2.2 m tolerance, from zero. Keep this geometry trial on hold and retain WarmClumpsV1 for comparison. Evidence in WholeRoofModeledClumpsV1.
++
++### Full-roof bundle material trial
++
++WholeRoofBundleMaterialV1 darkens and raises irregular elongated bundle boundaries using the existing roof UVs. The matched broad view reads more granular and the coat crop shows better-separated patches, while the fine reeds still run mostly parallel. The material is procedural and needs a reusable baked equivalent before production. Geometry is inherited from V21, with source baseline hash in RENDER_RECEIPT.json. Evidence in WholeRoofBundleMaterialV1.
++
++### Repeating roof bundle layer
++
++House439_BundleTile.blend uses a 512-square periodic texture for the irregular bundle-edge color multiplier and bump input. Opposite edge RGB jumps fell from 65.6 and 56.2 to zero after edge blending. The matched CPU renders retain the warm granular coat with slight changes in clump placement. Matching edge pixels do not verify normal derivatives or mip filtering. The warm clump layer remains procedural, so this is a partial material bake. Native verification remains pending. Evidence in WholeRoofBundleTileV1.
++
++### Texture-driven warm straw layers
++
++House439_WarmTiles.blend replaces the remaining warm-clump noise outputs with two periodic 512-square images for color and height. Opposite border pixels match exactly in both maps. Color uses half-range encoding and a 2× decode to preserve multipliers above one. Matched broad and close CPU views retain the warm granular read with changes in clump distribution. The graph still blends several texture samples and evaluates bump. Native material implementation and mip behavior remain unverified. Evidence in WholeRoofWarmTilesV1.
++
++### Consolidated full-roof coat maps
++
++House439_FlatCoat.blend uses a consolidated 2048-square base color and tangent normal pair on the top coat, with the original ORM and cut maps. The bake combines the warm and bundle layers with the photo coat. The matched broad view stays close, and the close crop retains the same clump pattern. Cut surfaces now receive their existing photo maps without the former global warm and bump layers, so the eave treatment needs a dedicated review. Native import and mip behavior remain unverified. Evidence in WholeRoofFlatCoatV1.
++
++### Flat-coat Unreal A/B source handoff
++
++Isolated A/B export uses one FBX for both material variants. Blender roundtrip passes 176,414 triangles, seven used slots, exact UV0/UV1 and Color0, and six exact collision hulls. The six source hulls also match the registered exterior source. Existing DinksCottage placement and flags are recorded from Data for reuse. The eight copied 2048 textures change only coat BC and N_GL between A and B. Preserve the shared cut blend on UV1.X because 973 core triangles mix coat and cut. ACTIVE_GRAPH_READBACK.json captures the material graph. Coordinator received the handoff. Native import, gameplay placement and collision remain unverified. Evidence in WholeRoofFlatCoatNativeABV1.
++
++### Flat-coat isolated native driver
++
++Prepared isolated native import and GPU A/B driver on a disposable copy of the merged fireplace and lighting stage. Offline preflight matches 7,885 baseline inputs and validates script syntax. The copied DinkImport binary lacks RAW/built geometry inspection. A separate bridge-capable binary was identified but needs compatible build review and refreshed pins. Six non-roof native material bindings remain to be chosen. RUNBOOK.md records commands and scope. The Blender eave comparison shows a stronger warm-to-gray transition and the same thin dark mark in both variants. The GPU driver includes a dedicated eave fixture after the original round trip. No Unreal process launched. Evidence in WholeRoofFlatCoatNativeABV1 and WholeRoofFlatCoatEaveReviewV1.
++
++### Merged-baseline geometry-reader build preparation
++
++DinkHouse439FlatCoatBridgeBuild stages the two reader files over exact merged fireplace and lighting commit 6fbefde. Coordinator received the build command. WholeRoofFlatCoatNativeABV1 resolves two context materials to identical fireplace lineage and prepares four fresh original-context materials from 18 pinned textures. The 33-package import and GPU eave fixture are prepared. Build, native import and captures have not run.
++
++### Eave mark geometry diagnosis
++
++The thin upper-right line persists in uniform clay and disappears when the front rolled-eave mesh is hidden. Orthographic rays show first hit switching from the core to the roll between rows 54 and 55 near x700. The two surfaces are about 6.8 mm apart along the row-54 view ray and both sampled faces carry UV1.X zero. The mark is therefore a core-to-roll geometry transition in this view. The warmer coat-to-gray cut band lower down is a separate material transition. The A/B mesh stays fixed and the native eave appearance still needs capture. Evidence in WholeRoofFlatCoatEaveReviewV1. Coordinator notified.
++
++### Compatible editor staged for roof A/B
++
++The coordinated 6fbefde bridge build succeeded with zero compile warnings. All 14 Editor outputs were copied together to WholeRoofFlatCoatNativeABV1/Trial. Seven ldd closures had no unresolved libraries, with 259 project and engine dependency hashes pinned. The staged reader symbol is present. The 7,885-input preflight passes with the reviewed editor delta. Import wrapper and config are ready and the exact invocation was sent to the coordinator. No import or GPU evidence yet.
++
++### Roof A/B commandlet retry
++
++First isolated import 9f7d1afb-cac6-4c23-b52b-3343906490e1 exited during the first roof material graph. Corrected texture input to UVs and Normalize input to VectorInput using the existing native translator. No packages were saved. The retry wrapper accepts the empty target and refuses partial files. Re-sealed INDEX 57df444fa30a628086562c682b1dc4b4a369d8ee6443e9f95b20f4d06aa4408b and import config 91151ad10a60990439dbae0d36ffcfb729f55365d61bdf8733b59dbcde8f65ca. Preflight passes 7,885 inputs. Coordinator has the exact retry command.
++
++### Roof A/B vertex-color graph retry
++
++Second import d4dbd1ec-f8dc-433c-aee6-30c4b2962752 passed the roof graph creation and failed in the non-roof graph translator. Unreal VertexColor has unnamed RGB output 0. The isolated translator and its readback now use that default, while the editor API resolves alpha through the singleton A mask. No packages saved. 7,885-input preflight passes, and coordinator received resealed retry INDEX ae5fe03ea7e8ff8c5035abe17d0738f0c8e3172b33f19c70983f7111b3508bf9.
++
++### Roof A/B native import passed
++
++Coordinated run 2edbabd8-8581-41d5-b9a5-eab6f1ecf49a saved 33 packages. WholeRoofFlatCoatNativeABV1/Trial/IMPORT_RECEIPT.json records a one-to-one source match for all 176,414 triangles in both RAW and built data, with UV1 maximum error 2.98e-8. Trial/GENERATED.json seals 7,918 inputs. GPU appearance and the cooked doorway route remain to be verified. Source checkout DinkHouseExteriorSourceAdmission, branch art/house439-shared-exterior-source at 420b27d.
++
++### Roof native doorway and material comparison
++
++Owned run 9af7a216-cc10-4ffe-9e26-1d72d4993504 passed the original held-W Screen 1 to 439 and back route with the trial mesh in Candidate05. Candidate06 captured matched eave and wider A/B views. Independent screenshot hash, numeric camera, player and binding checks are recorded in DinkQA/PhotorealSessions/House439Facade/FullCottageRoofSuccessorV1/WholeRoofFlatCoatEaveReviewV1/NATIVE_PAIR_VERIFICATION.json. B is warmer under direct sunlight. The shared front-roll highlight remains, and the left roof extent is clipped. No production asset changes admitted.
++
++### Roof eave source revision checkpoint
++
++QA source House439_RightCourseMapped.blend in DinkQA/PhotorealSessions/House439Facade/FullCottageRoofSuccessorV1/WholeRoofFlatCoatEaveReviewV1 now combines closed front/right joins and thickened straw courses. COMBINED_CANDIDATE_QUALITY.json pins its SHA and records clean per-mesh topology, self-overlap, UV and tangent results with six baseline hull hashes. The right tonal band and left/rear eave work still need refinement. No production import admitted. This source checkout remains art/house439-shared-exterior-source.
++
++### Current layer-free roof and hip repair checkpoint (10 November 2026)
++
++QA work now supersedes the earlier RightCourseMapped layered source study. House439_TaperedHipNormalDetail.blend in DinkQA/PhotorealSessions/House439Facade/FullCottageRoofSuccessorV1/WholeRoofFlatCoatEaveReviewV1 retains the accepted front transition but inherited hip shape remains unsuitable. Bounded LocalHipTerminal sibling changes only 76 side-roll vertices/169 faces, passes topology/UV/tangent/hull and 947-other-mesh/wholebounds preservation audits, but matched hip render exposes a residual fold and fasteners. This trial is rejected visually and remains QA-only. Full evidence and next continuous-corner repair scope are in House439Facade/HANDOFF.md. No production import or final art acceptance. Branch art/house439-shared-exterior-source and existing unrelated handoff entries preserved.
++
++### Continuous hip corner review candidate
++
++QA House439_ContinuousHipCornerRaised.blend replaces only front-left overlapping eave sheaves with one closed1392-triangle sector and seats52 side-roll vertices, retaining exact core/front transition. Matched hip/whole source views remove deep triangular fold; upper contact line remains under visual review. All946 other mesh signatures,1092 other corner faces, six hulls and wholebounds are unchanged. Local geometry/UV/TBN checks pass;5901 overlap pairs remain inherited in untouched corner sheaves elsewhere. Pale protrusions previously called fasteners are actually unchanged stone-relief faces1510/1504 on NaturalBeddedReliefWall.002. Evidence and SHA are in House439Facade/HANDOFF.md and CONTINUOUS_HIP_CORNER_RAISED_*.json. Source-only review candidate, no native import/promotion; broad asset objective remains incomplete.
++
++### Upper hip contact controls
++
++Coordinator accepted the Raised lower corner shape in its close-up, retaining upper/whole/native gates. Matched clay controls show a geometric upper-contact contribution. Two existing-patch material controls are held: nearest-triangle UV extrapolation stretches straw; physical affine projection preserves all geometry/normals,947othermeshes/1092othercornerfaces and passes local UV/TBN checks, but upper line remains visible. Raised remains preferred lower geometry; neither material trial promoted. Next bounded upper-profile repair is required before other-corner repeats. House439Facade/HANDOFF.md records source SHA and all matched whole/front/hip/control artifacts. No native changes.
++
++### Upper hip geometry controls held
++
++UpperHipProfile passes local mesh gates but matched clay shows unstable height wrinkles from tiny-triangle extrapolation. A local exact union changes70sidefaces and retains3004sidefaces/946othermeshes/bounds, but triangulated output fails2overlaps/5tinytriangles/5zerotangents and remains visually unsuitable. Both rejected; preferred Raised lower shape remains intact. Next bounded upper-profile fit must use robust main front/hip planes. Exact sources, census/audits and matched clay/textured views are in House439Facade/HANDOFF.md. No production/native changes.
++
++### Sector-center construction correction
++
++QA House439_CorrectedHipCenter.blend fixes one center vertex/32faces in preferred Raised: center had stayedz3.91 despite raised radial profile tendingz3.97. Matched clay confirms the60mm dimple is removed. Newlocal1392tri patch quality passes;947othermeshes,1092othercornerfaces, bounds and sixhulls remain exact. Whole/texturedhip/clayhip sent for source review; remaining side contact still visible. Robust front/hip plane trial re-exposes cap and is rejected. Exact SHA/census/receipts in House439Facade/HANDOFF.md. No native import/production/repeat approval.
++
++### Whole corner source repeat
++
++Coordinator accepted corrected center/corner source basis, freezing natural side contact. New QA WholeClosedHipCornersOutward repeats closed1392tri sector on allfour corners and seats remaining side terminals. Added signed-volume gate caught and corrected rear-right inward winding in a new sibling; originalrepeat is rejected orientation control. Correctedcorners5568tri have no selfoverlaps/manifold/UV/TBN errors, allfourpositivevolumes. AcceptedFL1392faces and945othermeshes/core/front/nonroof/bounds/6hulls exact. Eightviewrerender and whole source review pending; broad rear eave strip remains required nextrepair. SHA/census/audits/handles in House439Facade/HANDOFF.md. No native/export/production approval.
++
++### Rear direct bridge source checkpoint
++
++Allfour closed corners accepted SOURCEbasis and frozen. QA RearBottomFrontRestored removes rear broadstrip via ordered closedjoin and registered phase/weather/sharednormals. Matching lower-left loopstarts resolves2initial overlap pairs. Core24290tri and frozen corners/sides pass localfull meshgates;946othermeshes/bounds/6hulls exact. Front11676faces geometry/UV/color exact; decoded35028corner audit bounds normal/TBN change<=.00314°, explicitly not bitwise-normal exact. Matched rear2whole/front/eave views and sourceSHA/audits in House439Facade/HANDOFF.md. Hipendpoint phase/decoded differences remain disclosed for source review before two sidejoins. No native/export/production approval.
++
++### Left side direct bridge source checkpoint
++
++Rear sourcejoin accepted; front/rear/4corners frozen. QA LeftBridgeVerified removes leftbroadstrip with directclosedbridge atcorex-9.065/roll-9.105. Actual cutloopaudit preserves front/rearbridge extents. Two skinny underside cuttriangles with zeroMikk firstangle resolve by welding only.223/.325mm newcut edges. Core28106/right3074/corners5568 passfull local geometryUV/TBN gates,6hulls/bounds exact.945othermeshes and10148protected front/rear/rightcoat/bridgefaces exact geoUVcolorN. Actual30444protectedcornerdecoded audit max5.66e-6°. Matched2whole+leftclose/sourceSHA/census in House439Facade/HANDOFF.md; awaiting visual source review. Rightjoin remains next. No native/export/production changes.
++
++### Whole cottage roof source/export ready, native pending
++
++Coordinator accepted/froze WHOLE AllEavesFinalSurface source2f606055 after4whole+rightclose review. All4directclosedjoins removebroadstrips,4acceptedsectors preserved. Core31934/corners5568 geometryUV/TBN gatespass;944othermeshes and12452protectedpriorrooffaces exact. QA AllEavesSourcePacketV1 containsportableeditable233f6041,54exactimages,8currentrenders/originalguides/provenance/7roleinventory/current7fcnativebaseline. Independentrelocatedsource AND actual182626tri+6hullFBX readbackpass withEDGE smoothing. PreferredFBXSHAaa4e091a, exactpositions/UV0UV1/547878RGBA/7roles/hulls;Nmax.032972°/Mikk.032272°,0T/signchanges. FACE andexplicitcorner failures preserved, no gate relaxation.118manifestfiles/275948439bytes, AST/finiteJSON/allhashchecksPASS.
++
++Native baselineREADONLY DinkBarrelCombinedDelivery7fc61d3, preservePR59sixrect+2practicals andPR60chimney/firedclayfireplace plusallDatafields. Sourceactualsize differsoldnativeexpectedby1.416cmX/1.038cmY (>old1cmguard), disclosedfreshboundsexpectationreviewpending, nofrozengeometrypadding. Actualnative materialslots stillneedreadback. Narrowread-only157CPP+4headerinspectionpatchfrom92119ce gitapply--checkPASSonly,notapplied/built. Rootcreatesnewnativecheckoutafterbarrellease; noUE/foreignDLL/oldABoverlay. Full packetchecksums/paths/readiness in House439Facade/HANDOFF.md andpacketREADME. Native/Gameacceptance remainsunfinished; broaderallassetgoalactive.
++
++### Current native preparation moved to isolated7fc checkout
++
++Root subsequently authorized/created /Work/DinkHouse439ClosedEavesNative, branchart/house439-closed-eaves-native base7fc61d3. This420bsource checkout remainshistorical/provenance. Newcurrentcheckout contains exact120packetfiles,121candidateledgerappend preserving4503rawrows, sourcequalifiedboundsdescriptor andminimal157CPP+4declgeometryinspector.5metadatafixtures andmetadataauditPASS; LFSbinaryhydration/ownbuild/native/importUNRUN. FourcurrentDatafiles/sharedregistrybyteexact,PR59/60 preserved. Materialplanlists5missingreusableparents and2preservedexistingmatchedroles. ReadnewcheckoutDocs/Verification/House439ClosedEavesNative/README.md andHANDOFF. No oldABData/DLL/UE/commit/push. Coordinatorownslease anddependentbarrelbase rebase.

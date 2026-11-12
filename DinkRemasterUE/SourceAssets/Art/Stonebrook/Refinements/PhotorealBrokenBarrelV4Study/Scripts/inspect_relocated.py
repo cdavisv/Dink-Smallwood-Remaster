@@ -10,7 +10,7 @@ def geometry(o):
   for d in layer.data:h.update(struct.pack('<2f',*d.uv))
  for n in me.corner_normals:h.update(struct.pack('<3f',*n.vector))
  h.update('|'.join(m.name for m in me.materials).encode());return h.hexdigest()
-source=Q/'portable.source.blend';pin='de68432d3a74d3dd0193b535d9821558d173882f506153822d2d77af66e954f4'
+source=Q/'portable.source.blend';pin='ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5'
 assert hashlib.sha256(source.read_bytes()).hexdigest()==pin
 bpy.ops.wm.open_mainfile(filepath=str(source),load_ui=False,use_scripts=False)
 obs=list(bpy.data.collections['V4_AsymmetricRigidVariant_Editable'].objects);bpy.context.view_layer.update()

@@ -1,0 +1,17 @@
+import bpy,sys,os,json,hashlib
+from pathlib import Path
+from mathutils import Vector
+O=Path(__file__).resolve().parent;label=sys.argv[-1];src=O/'Fireplace_FiredClayV3.blend'if label=='candidate'else O.parent/'SuccessorV2/Fireplace_SharedContractV2.blend'
+bpy.ops.wm.open_mainfile(filepath=str(src));s=bpy.context.scene
+for o in list(s.objects):
+ if o.type in {'CAMERA','LIGHT'}:bpy.data.objects.remove(o,do_unlink=True)
+ elif o.type=='MESH':o.hide_render=not(o.name.startswith(('SM_Fireplace','SM_Chimney'))and not o.name.endswith(('LOD1','LOD2')))
+s.render.engine='CYCLES';s.cycles.device='CPU';s.cycles.samples=16;s.cycles.use_denoising=True;s.render.threads_mode='FIXED';s.render.threads=2;s.render.resolution_x=800;s.render.resolution_y=800;s.render.resolution_percentage=100;s.render.image_settings.file_format='PNG';s.view_settings.view_transform='AgX';s.view_settings.look='AgX - Medium High Contrast';s.view_settings.exposure=0
+s.world=bpy.data.worlds.new('NeutralReview');s.world.use_nodes=True;s.world.node_tree.nodes['Background'].inputs[0].default_value=(.22,.25,.30,1);s.world.node_tree.nodes['Background'].inputs[1].default_value=.5
+for name,loc,power,size in [('Key',(-3,1,6),1100,4),('Fill',(4,3,3),550,3),('Rim',(1,8,6),850,3)]:
+ d=bpy.data.lights.new(name,'AREA');d.energy=power;d.size=size;o=bpy.data.objects.new(name,d);s.collection.objects.link(o);o.location=loc;o.rotation_euler=(Vector((-.45,6,2))-o.location).to_track_quat('-Z','Y').to_euler()
+c=bpy.data.objects.new('ReviewCamera',bpy.data.cameras.new('ReviewCamera'));s.collection.objects.link(c);s.camera=c
+out=O/'Review'/label;out.mkdir(parents=True,exist_ok=True);records=[]
+for name,loc,target,scale in [('hearth',(-3,1.4,2.6),(-.45,5.97,1.4),3.7),('cavity',(-.5,3.5,.65),(-.45,6,1),1.9),('chimney',(2.5,2.8,6.5),(-.5,6,4.7),3.1)]:
+ c.location=loc;c.rotation_euler=(Vector(target)-c.location).to_track_quat('-Z','Y').to_euler();c.data.type='ORTHO';c.data.ortho_scale=scale;s.render.filepath=str(out/(name+'.png'));bpy.ops.render.render(write_still=True);records.append(dict(view=name,camera=loc,target=target,ortho_m=scale))
+json.dump(dict(source_sha256=hashlib.sha256(src.read_bytes()).hexdigest(),views=records,samples=16,CPU_threads=2),open(out/'receipt.json','w'),indent=2);os._exit(0)

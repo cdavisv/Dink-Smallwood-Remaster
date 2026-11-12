@@ -2,7 +2,7 @@ import bpy,json,os
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
-Q=Path(__file__).resolve().parent;P=Path(Path.home()/'Work/DinkQA/PhotorealBrokenBarrelCurvatureV4/PhotorealBrokenBarrelV4_CurvedSource.blend');bpy.ops.wm.open_mainfile(filepath=str(P),load_ui=False,use_scripts=False);bpy.context.view_layer.update();obs=list(bpy.data.collections['V4_CooperedFragments_Editable'].objects)
+Q=Path(__file__).resolve().parent;P=Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelCurvatureV4/PhotorealBrokenBarrelV4_CurvedSource.blend');bpy.ops.wm.open_mainfile(filepath=str(P),load_ui=False,use_scripts=False);bpy.context.view_layer.update();obs=list(bpy.data.collections['V4_CooperedFragments_Editable'].objects)
 def data(o):
  me=o.data;me.calc_loop_triangles();vs=[o.matrix_world@v.co for v in me.vertices];ts=[tuple(t.vertices)for t in me.loop_triangles];return vs,ts
 allData={o.name:data(o)for o in obs};trees={n:BVHTree.FromPolygons(*a,all_triangles=True)for n,a in allData.items()};rows=[]

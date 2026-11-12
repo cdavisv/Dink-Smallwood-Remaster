@@ -1,0 +1,1465 @@
+{
+  "schema": "dink-art/1",
+  "status": "DRAFT - not published to Content/Dink/Data/Art; needs vision gating support",
+  "screen": 439,
+  "assets": [
+    {
+      "mesh": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01.SM_Cottage_Stonebrook_Burning_01",
+      "expected_size_cm": [
+        1882.9999923706055,
+        1054.67209815979,
+        793.0000305175781
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD0.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD1.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01.SM_Cottage_Stonebrook_Burnt_01",
+      "expected_size_cm": [
+        1887.9999160766602,
+        1059.7512245178223,
+        793.0000305175781
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD0.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD1.fbx",
+        "Export/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01.SM_Door_Cottage_Fallen_01",
+      "expected_size_cm": [
+        133.22734832763672,
+        222.07530736923218,
+        9.879715176066384
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01.SM_Debris_AshPile_Large_01",
+      "expected_size_cm": [
+        262.36040592193604,
+        211.17770671844482,
+        60.10932857170701
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.SM_Debris_AshPile_Small_01",
+      "expected_size_cm": [
+        119.09821033477783,
+        90.09920358657837,
+        28.157354332506657
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.SM_Decal_Scorch_Ground_3m_01",
+      "expected_size_cm": [
+        300.0,
+        300.0,
+        2.292127348482609
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.SM_Decal_Scorch_Ground_2m_01",
+      "expected_size_cm": [
+        200.0,
+        200.0,
+        2.2714974358677864
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.SM_Decal_Scorch_Ground_2m_02",
+      "expected_size_cm": [
+        200.0,
+        200.0,
+        2.3199792951345444
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02_LOD2.fbx"
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.SM_Decal_Scorch_Ground_1m5_01",
+      "expected_size_cm": [
+        150.0,
+        150.0,
+        2.530570514500141
+      ],
+      "expected_lods": 3,
+      "bounds_tolerance_cm": 1.0,
+      "lod_fbx": [
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD0.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD1.fbx",
+        "Export/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01_LOD2.fbx"
+      ]
+    }
+  ],
+  "source": "SourceAssets/Art/StonebrookRuins/ruins_manifest.json",
+  "vision_rules": {
+    "1": "s1-h1-o:29 [(&story == 4)], s1-h1-o:84 [(&story == 3)]",
+    "2": "s1-h1-o:77 [(&story > 4)]"
+  },
+  "hide_origins_by_vision": {
+    "1": [
+      "S439_P05",
+      "S439_P09",
+      "S439_P11",
+      "S439_P21",
+      "S439_P29",
+      "S439_P31",
+      "S439_P32",
+      "S439_P33",
+      "S439_P46"
+    ],
+    "2": [
+      "S439_P23",
+      "S439_P24",
+      "S439_P25",
+      "S439_P26",
+      "S439_P27",
+      "S439_P28",
+      "S439_P30",
+      "S439_P34",
+      "S439_P36",
+      "S439_P37",
+      "S439_P38"
+    ]
+  },
+  "elements": [
+    {
+      "name": "DinksCottage_V1",
+      "mesh": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01.SM_Cottage_Stonebrook_Burning_01",
+      "world_cm": [
+        97131.61092968748,
+        36920.324198125,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "vision": 1,
+      "replaces": "DinksCottage"
+    },
+    {
+      "name": "DinksCottage_V2",
+      "mesh": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01.SM_Cottage_Stonebrook_Burnt_01",
+      "world_cm": [
+        97131.61092968748,
+        36920.324198125,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": true,
+      "vision": 2,
+      "replaces": "DinksCottage"
+    },
+    {
+      "name": "FallenDoor",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01.SM_Door_Cottage_Fallen_01",
+      "world_cm": [
+        97850.11102890686,
+        37540.324198125,
+        0.5
+      ],
+      "rotation_deg": [
+        0,
+        -64,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "vision": 2
+    },
+    {
+      "name": "AshPileWest",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01.SM_Debris_AshPile_Large_01",
+      "world_cm": [
+        96530.11102890686,
+        37480.324198125,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        -17,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "vision": 2
+    },
+    {
+      "name": "AshPileDoor",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.SM_Debris_AshPile_Small_01",
+      "world_cm": [
+        97230.11102890686,
+        37450.324198125,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        -63,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "collision": false,
+      "vision": 2
+    },
+    {
+      "name": "AshPileEast",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.SM_Debris_AshPile_Small_01",
+      "world_cm": [
+        98120.11102890686,
+        36770.324198125,
+        0.3
+      ],
+      "rotation_deg": [
+        0,
+        -137,
+        0
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "collision": false,
+      "vision": 2
+    },
+    {
+      "name": "ScorchGround00",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.SM_Decal_Scorch_Ground_3m_01",
+      "world_cm": [
+        97570.46015728783,
+        37722.58111274174,
+        0.5
+      ],
+      "rotation_deg": [
+        0,
+        -20,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        97660.11102890686,
+        37530.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround01",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.SM_Decal_Scorch_Ground_2m_01",
+      "world_cm": [
+        97400.82170702552,
+        37602.79868526416,
+        0.55
+      ],
+      "rotation_deg": [
+        0,
+        -75,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        97330.11102890686,
+        37480.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround02",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.SM_Decal_Scorch_Ground_2m_02",
+      "world_cm": [
+        96975.08255471547,
+        37456.765946447435,
+        0.6
+      ],
+      "rotation_deg": [
+        0,
+        -140,
+        0
+      ],
+      "scale": [
+        1.1,
+        1.1,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        96820.11102890686,
+        37470.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround03",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.SM_Decal_Scorch_Ground_1m5_01",
+      "world_cm": [
+        96329.27406075597,
+        37537.20839292594,
+        0.65
+      ],
+      "rotation_deg": [
+        0,
+        -10,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        96390.11102890686,
+        37450.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround04",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.SM_Decal_Scorch_Ground_1m5_01",
+      "world_cm": [
+        97836.32050593544,
+        37344.97004935496,
+        0.7
+      ],
+      "rotation_deg": [
+        0,
+        -250,
+        0
+      ],
+      "scale": [
+        1.2,
+        1.2,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        97890.11102890686,
+        37460.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround05",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.SM_Decal_Scorch_Ground_2m_01",
+      "world_cm": [
+        95973.50848852842,
+        37033.72165774656,
+        0.75
+      ],
+      "rotation_deg": [
+        0,
+        -300,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        96110.11102890686,
+        37070.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround06",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.SM_Decal_Scorch_Ground_3m_01",
+      "world_cm": [
+        97151.78496520866,
+        36146.55580852313,
+        0.8
+      ],
+      "rotation_deg": [
+        0,
+        -190,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        97030.11102890686,
+        36320.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround07",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.SM_Decal_Scorch_Ground_2m_02",
+      "world_cm": [
+        98118.00922419244,
+        36845.6697613826,
+        0.8500000000000001
+      ],
+      "rotation_deg": [
+        0,
+        -35,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        98140.11102890686,
+        36720.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround08",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.SM_Decal_Scorch_Ground_1m5_01",
+      "world_cm": [
+        97622.56293419069,
+        36377.77610340883,
+        0.9
+      ],
+      "rotation_deg": [
+        0,
+        -120,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 2,
+      "centre_world_cm": [
+        97520.11102890686,
+        36350.324198125
+      ]
+    },
+    {
+      "name": "ScorchGround09",
+      "mesh": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.SM_Decal_Scorch_Ground_2m_01",
+      "world_cm": [
+        97643.50848852842,
+        37716.92673850345,
+        0.95
+      ],
+      "rotation_deg": [
+        0,
+        -30,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ],
+      "collision": false,
+      "vision": 1,
+      "centre_world_cm": [
+        97680.11102890686,
+        37580.324198125
+      ]
+    }
+  ],
+  "emitters": [
+    {
+      "socket": "SOCKET_Fire_01",
+      "origin": "S439_P05",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 1,
+      "source_pixel": [
+        328,
+        127
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 1.0,
+      "local_ue_cm": [
+        600.03,
+        58.36,
+        703.73
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97731.64092968748,
+        36978.684198125,
+        703.73
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_02",
+      "origin": "S439_P09",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 4,
+      "source_pixel": [
+        427,
+        165
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.97,
+      "local_ue_cm": [
+        880.93,
+        359.78,
+        477.67
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        98012.54092968747,
+        37280.104198125,
+        477.67
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_03",
+      "origin": "S439_P11",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 2,
+      "source_pixel": [
+        203,
+        195
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.96,
+      "local_ue_cm": [
+        -901.5,
+        107.88,
+        666.59
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        96230.11092968748,
+        37028.204198125,
+        666.59
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_04",
+      "origin": "S439_P21",
+      "effect": "flame_large",
+      "original_sequence": 427,
+      "original_sequence_path": "graphics/effects/fire/fire1-",
+      "original_frame": 5,
+      "source_pixel": [
+        254,
+        222
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.95,
+      "local_ue_cm": [
+        -500.36,
+        271.84,
+        543.62
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        96631.25092968748,
+        37192.164198125,
+        543.62
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_05",
+      "origin": "S439_P29",
+      "effect": "smoulder_damage",
+      "original_sequence": 154,
+      "original_sequence_path": "struct/details/damage/damag-",
+      "original_frame": 1,
+      "source_pixel": [
+        306,
+        193
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 1.12,
+      "local_ue_cm": [
+        76.42,
+        325.13,
+        503.65
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97208.03092968748,
+        37245.454198125,
+        503.65
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_06",
+      "origin": "S439_P31",
+      "effect": "flame_small",
+      "original_sequence": 155,
+      "original_sequence_path": "struct/details/damage/fire2-",
+      "original_frame": 1,
+      "source_pixel": [
+        284,
+        106
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_ue_cm": [
+        358.59,
+        68.47,
+        696.15
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97490.20092968747,
+        36988.794198125004,
+        696.15
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_07",
+      "origin": "S439_P32",
+      "effect": "flame_small",
+      "original_sequence": 156,
+      "original_sequence_path": "struct/details/damage/fire3-",
+      "original_frame": 1,
+      "source_pixel": [
+        198,
+        188
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_ue_cm": [
+        -744.71,
+        219.19,
+        583.11
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        96386.90092968747,
+        37139.514198125005,
+        583.11
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_08",
+      "origin": "S439_P33",
+      "effect": "flame_medium",
+      "original_sequence": 157,
+      "original_sequence_path": "struct/details/damage/fire4-",
+      "original_frame": 1,
+      "source_pixel": [
+        371,
+        147
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.53,
+      "local_ue_cm": [
+        617.24,
+        367.59,
+        471.81
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97748.85092968748,
+        37287.914198125,
+        471.81
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Smoke_01",
+      "origin": "S439_P46",
+      "effect": "smoke_vent",
+      "original_sequence": 158,
+      "original_sequence_path": "struct/details/damage/hole-",
+      "original_frame": 1,
+      "source_pixel": [
+        238,
+        182
+      ],
+      "surface": "roof_front",
+      "normal": [
+        0.0,
+        -0.6000000238418579,
+        0.800000011920929
+      ],
+      "scale_hint": 0.29,
+      "local_ue_cm": [
+        -357.56,
+        233.11,
+        572.67
+      ],
+      "normal_ue": [
+        0.0,
+        0.6,
+        0.8
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        96774.05092968748,
+        37153.434198125,
+        572.67
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Smoke_Chimney",
+      "origin": null,
+      "effect": "smoke_column",
+      "original_sequence": null,
+      "surface": "chimney",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 1.0,
+      "remaster_addition": true,
+      "local_ue_cm": [
+        -541.5,
+        -190.0,
+        800.0
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        96590.11092968748,
+        36730.324198125,
+        800.0
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_Door_01",
+      "origin": null,
+      "effect": "flame_medium",
+      "original_sequence": null,
+      "surface": "doorway_interior",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "scale_hint": 0.8,
+      "remaster_addition": true,
+      "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+      "local_ue_cm": [
+        483.5,
+        390.0,
+        120.0
+      ],
+      "normal_ue": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97615.11092968748,
+        37310.324198125,
+        120.0
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Fire_Door_02",
+      "origin": null,
+      "effect": "flame_medium",
+      "original_sequence": null,
+      "surface": "doorway_interior",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "scale_hint": 0.8,
+      "remaster_addition": true,
+      "why": "fire visible through the open doorway; interior is burning (SCR_001 vision 1)",
+      "local_ue_cm": [
+        568.5,
+        390.0,
+        190.0
+      ],
+      "normal_ue": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "attach_to": "DinksCottage_V1",
+      "world_cm": [
+        97700.11092968748,
+        37310.324198125,
+        190.0
+      ],
+      "vision": 1
+    },
+    {
+      "socket": "SOCKET_Smoulder_01",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        76.42,
+        314.33,
+        71.75
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97208.03092968748,
+        37234.654198125005,
+        71.75
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_02",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        -357.56,
+        222.31,
+        63.5
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        96774.05092968748,
+        37142.634198125,
+        63.5
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_03",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        732.52,
+        41.05,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97864.13092968748,
+        36961.374198125006,
+        59.1
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_04",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        -614.93,
+        63.2,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        96516.68092968749,
+        36983.524198125,
+        59.1
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_05",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        277.14,
+        330.0,
+        70.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97408.75092968748,
+        37250.324198125,
+        70.1
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_06",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        287.15,
+        220.73,
+        70.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97418.76092968747,
+        37141.054198125006,
+        70.1
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_07",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        -739.14,
+        123.54,
+        59.1
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        96392.47092968748,
+        37043.864198125004,
+        59.1
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_08",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        686.49,
+        286.73,
+        89.9
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97818.10092968748,
+        37207.054198125006,
+        89.9
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_09",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        -72.37,
+        300.59,
+        89.9
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97059.24092968748,
+        37220.914198125,
+        89.9
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_10",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        -261.5,
+        -240.0,
+        76.7
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        96870.11092968748,
+        36680.324198125,
+        76.7
+      ],
+      "vision": 2
+    },
+    {
+      "socket": "SOCKET_Smoulder_11",
+      "origin": null,
+      "effect": "smoulder_wisp",
+      "original_sequence": null,
+      "surface": "debris",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "scale_hint": 0.5,
+      "optional": true,
+      "default_enabled": false,
+      "why": "vision 2 shows no fire in 1997; enable only for an immediately-after variant",
+      "local_ue_cm": [
+        418.5,
+        -160.0,
+        66.8
+      ],
+      "normal_ue": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "attach_to": "DinksCottage_V2",
+      "world_cm": [
+        97550.11092968748,
+        36760.324198125,
+        66.8
+      ],
+      "vision": 2
+    }
+  ],
+  "lights": [
+    {
+      "socket": "SOCKET_Fire_01",
+      "world_cm": [
+        97731.64092968748,
+        36978.684198125,
+        783.73
+      ],
+      "lumens": 3000,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_02",
+      "world_cm": [
+        98012.54092968747,
+        37280.104198125,
+        557.6700000000001
+      ],
+      "lumens": 3000,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_03",
+      "world_cm": [
+        96230.11092968748,
+        37028.204198125,
+        746.59
+      ],
+      "lumens": 3000,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_04",
+      "world_cm": [
+        96631.25092968748,
+        37192.164198125,
+        623.62
+      ],
+      "lumens": 3000,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_06",
+      "world_cm": [
+        97490.20092968747,
+        36988.794198125004,
+        776.15
+      ],
+      "lumens": 1200,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_07",
+      "world_cm": [
+        96386.90092968747,
+        37139.514198125005,
+        663.11
+      ],
+      "lumens": 1200,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_08",
+      "world_cm": [
+        97748.85092968748,
+        37287.914198125,
+        551.81
+      ],
+      "lumens": 1200,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_Door_01",
+      "world_cm": [
+        97615.11092968748,
+        37310.324198125,
+        200.0
+      ],
+      "lumens": 1200,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    },
+    {
+      "socket": "SOCKET_Fire_Door_02",
+      "world_cm": [
+        97700.11092968748,
+        37310.324198125,
+        270.0
+      ],
+      "lumens": 1200,
+      "kelvin": 1800,
+      "radius_cm": 900,
+      "vision": 1,
+      "flicker": true
+    }
+  ],
+  "authored_collision_screens": [
+    439
+  ],
+  "notes": [
+    "DinksCottage_V1/V2 replace element DinksCottage at the identical transform when &vision matches.",
+    "Collision of both variants is the intact cottage's six hulls (unchanged footprint; original v1/v2 hardness == v0).",
+    "Debris, decals and the fallen door are visual only (collision false) and keep the door walk-in corridor clear.",
+    "world_cm values derive from stonebrook_exterior.json DinksCottage and ruin_common cottage-frame positions."
+  ]
+}
