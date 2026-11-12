@@ -2369,7 +2369,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     },
     {
       "name": "Daylight_NorthWall_6",
@@ -2388,7 +2388,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     },
     {
       "name": "Daylight_WestWall_2",
@@ -2407,7 +2407,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     },
     {
       "name": "Daylight_WestWall_4",
@@ -2426,7 +2426,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     },
     {
       "name": "Daylight_EastWall_2",
@@ -2445,7 +2445,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     },
     {
       "name": "Daylight_EastWall_4",
@@ -2464,7 +2464,7 @@
       "kelvin": 5000,
       "radius_cm": 1000,
       "source_width_cm": 80,
-      "source_height_cm": 130
+      "source_height_cm": 80
     }
   ],
   "warp_overrides": [
