@@ -1,0 +1,109 @@
+{
+ "name": "SM_Cave_Hole_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/cave_hole_warp/Cave_Hole/SM_Cave_Hole_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/cave_hole_warp/Cave_Hole/SM_Cave_Hole_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Cave_Hole final",
+ "dimensions_m": [
+  2.02,
+  1.62,
+  1.49
+ ],
+ "bounds_min_m": [
+  -1.01,
+  -0.81,
+  -1.36
+ ],
+ "bounds_max_m": [
+  1.01,
+  0.81,
+  0.13
+ ],
+ "lod0_triangles": 324,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/cave_hole_warp/Cave_Hole/T_Cave_Hole_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/cave_hole_warp/Cave_Hole/T_Cave_Hole_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/cave_hole_warp/Cave_Hole/T_Cave_Hole_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Cave_Hole_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0115,
+   0.9885
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 57.1,
+   "p99": 112.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.418,
+   "p95": 0.95
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.334
+ },
+ "pivot": "ground level at the centre of the opening (z = 0); the shaft is below it",
+ "families": [
+  "cave_hole_warp",
+  "89 lands/details/crack- frame 10"
+ ],
+ "origin_ids": {
+  "cave_hole_warp": [
+   "S085_P01",
+   "S112_P02",
+   "S144_P04",
+   "S182_P01",
+   "S209_P01",
+   "S248_P01",
+   "S254_P04",
+   "S483_P11",
+   "S625_P05",
+   "S671_P01"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "timber-shored hole into a cave, 1.7 x 1.3 m: log kerb at ground level, plank lining going down 1.3 m, two planks left as a ramp, dark earth at the bottom",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The shaft goes 1.3 m below z = 0, so it only shows where the terrain has a matching hole cut (or as a raised kerb if it has not): that is level work, not done here. Planks are bevelled blocks without nails or bark. The floor is a dark slab, not a cave. The convex hull covers the opening, so the warp trigger must stay the gameplay collision."
+}

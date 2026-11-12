@@ -1,0 +1,100 @@
+{
+ "name": "SM_Snake_Carving_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_carving/Snake_Carving/SM_Snake_Carving_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_carving/Snake_Carving/SM_Snake_Carving_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Snake_Carving final",
+ "dimensions_m": [
+  0.4281,
+  0.1695,
+  0.0746
+ ],
+ "bounds_min_m": [
+  -0.214,
+  -0.0848,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.214,
+  0.0848,
+  0.0746
+ ],
+ "lod0_triangles": 700,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_carving/Snake_Carving/T_Snake_Carving_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_carving/Snake_Carving/T_Snake_Carving_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_carving/Snake_Carving/T_Snake_Carving_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Snake_Carving_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.002,
+   0.998
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 62.5,
+   "p99": 134.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.446,
+   "p95": 0.75
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.51
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "snake_carving",
+  "81 inside/stnwalls/snake/snakb- frame 1"
+ ],
+ "origin_ids": {
+  "snake_carving": [
+   "S625_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "small green soapstone snake carving, 45 cm, one S-curve with a wedge head",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A 15-pixel frame: built as a small S-curved soapstone snake. Scales are a Voronoi pattern in the normal map; no eyes or mouth."
+}

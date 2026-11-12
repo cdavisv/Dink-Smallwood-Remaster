@@ -6,17 +6,17 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 
 | | families | placements |
 |---|---:|---:|
-| delivered | 29 | 202 |
-| partial | 17 | 190 |
+| delivered | 56 | 273 |
+| partial | 22 | 208 |
 | built elsewhere | 2 | 72 |
-| not started | 63 | 137 |
+| not started | 31 | 48 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
 **partial**: something the task asks for is missing or the last review round still faulted the look; the line says what. 
 **built elsewhere**: another stream built the family; what this folder holds for it is an alternate, not the chosen asset.
 
-Contact sheet of every final render: `contact_sheet.png` (60 assets).
+Contact sheet of every final render: `contact_sheet.png` (93 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
@@ -35,8 +35,8 @@ Contact sheet of every final render: `contact_sheet.png` (60 assets).
 | 77 | `stone_giant` | Stone giant | 14 | partial | `SK_Stone_Giant_PR` | rigged creature (18-bone bespoke skeleton, 3 LODs, automatic weights, pose-tested) of bedded sandstone. Partial: skinned stone smears at the joints, eyes and mouth are pits, no animation clips |
 | 79 | `dragon_statue` | Dragon statue on orb | 13 | delivered | `SM_Dragon_Statue_PR` | 1 mesh with UCX hull: stone dragon on an orb, 3 m, made from the dragon source re-posed and fused; flat slab wings |
 | 81 | `bonca_brown` | Bonca | 12 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
-| 90 | `cave_hole_warp` | Hole into a cave | 10 | not started | - | not reached yet |
-| 93 | `save_machine` | Save machine | 10 | not started | - | not reached yet |
+| 90 | `cave_hole_warp` | Hole into a cave | 10 | delivered | `SM_Cave_Hole_PR` | 1 mesh: timber-shored shaft, 1.3 m deep below the pivot plane; it shows only where the terrain has a matching hole cut |
+| 93 | `save_machine` | Save machine | 10 | delivered | `SM_Save_Machine_PR` | 1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation |
 | 95 | `bonca_purple` | Bonca | 9 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 96 | `bookcase` | Bookcase | 9 | delivered | `SM_Bookcase_PR` | 1 mesh with UCX hull: oak bookcase with about a hundred books |
 | 98 | `log_cabin_window` | Log cabin window | 9 | delivered | `SM_Cabin_Window_PR` | 1 mesh: leaded cabin window; the glass is an opaque dark panel |
@@ -46,60 +46,60 @@ Contact sheet of every final render: `contact_sheet.png` (60 assets).
 | 108 | `ground_crack` | Crack in the ground | 8 | partial | `Decal_Crack_Diagonal_01`, `Decal_Crack_Long_01`, `Decal_Crack_Short_01`, `Decal_Crack_Wide_01` | 4 decal sets, one per original frame. Partial: the last review still faults them, they read as flat dark shapes from the gameplay camera; a crack needs parallax or a trench mesh |
 | 111 | `shop_sign` | Hanging sign | 8 | delivered | `SM_Sign_Healer_PR` | 1 mesh: healer's hanging sign with a red cross, on its own post and bracket |
 | 112 | `small_heart` | Small heart | 8 | delivered | `SM_Heart_Red_PR` | same mesh as heart_pickup (SM_Heart_Red_PR) at half scale, set at placement |
-| 117 | `snake_pillar` | Pillar with coiled snake | 7 | not started | - | not reached yet |
-| 118 | `wall_stripe_red` | Red wall stripe / banner | 7 | not started | - | not reached yet |
-| 123 | `goblin_soldier` | Goblin soldier | 6 | not started | - | not reached yet |
+| 117 | `snake_pillar` | Pillar with coiled snake | 7 | delivered | `SM_Snake_Pillar_PR` | 1 mesh with UCX hull: fluted column with a coiled snake (still frame; the scripted pillar animates) |
+| 118 | `wall_stripe_red` | Red wall stripe / banner | 7 | delivered | `SM_Banner_Red_PR` | 1 mesh: the red bar with a gold edge interpreted as a red wall hanging with a gold braid border |
+| 123 | `goblin_soldier` | Goblin soldier | 6 | partial | `SK_Goblin_Soldier_PR` | rigged goblin (project humanoid bone names, 4 LODs, pose-tested) with scale coat, helmet, shield and bill. Partial: fused blob body with painted-on clothing, gear skinned by nearest bone, no animation clips |
 | 124 | `golden_heart` | Golden heart | 6 | delivered | `SM_Heart_Gold_PR` | 1 mesh: cast-gold heart, 12 cm |
 | 125 | `pitchfork` | Pitchfork | 6 | delivered | `SM_Pitchfork_PR` | 1 mesh: three-tine hay fork, lying flat |
 | 127 | `ground_hole_dark` | Dark hole in the ground | 5 | partial | `Decal_Hole_Dark_01` | 1 decal set for the rim and radial cracks. Partial: a decal cannot be the pit the player drops into; a pit mesh or stencil is still needed |
-| 129 | `idol_statue_small` | Small demon idol | 5 | not started | - | not reached yet |
+| 129 | `idol_statue_small` | Small demon idol | 5 | partial | `SM_Idol_Demon_PR` | 1 mesh with UCX hull. Partial: a fused blob figure with pressed-in features; reads as a worn idol at gameplay distance only |
 | 130 | `island_spear_pole` | Spear pole | 5 | delivered | `SM_Spear_Island_PR` | 1 mesh: spear planted upright with a red cloth strip |
 | 135 | `npc_knight_silver` | Knight | 4 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
 | 136 | `boulder_flat` | Flat boulder | 4 | delivered | `SM_Boulder_Flat_PR` | 1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges |
 | 140 | `fish_flopping` | Fish flopping on land | 4 | partial | `SK_Fish_PR` | same mesh as fish (SK_Fish_PR) laid on its side; the flop itself is a clip and none is delivered |
-| 141 | `goblin_hammer` | Goblin | 4 | not started | - | not reached yet |
+| 141 | `goblin_hammer` | Goblin | 4 | partial | `SK_Goblin_Hammer_PR` | rigged goblin (same body as the soldier) with tunic, skullcap and war hammer. Partial for the same reasons as the soldier |
 | 143 | `npc_girl` | Girl | 4 | not started | - | not reached yet |
 | 144 | `npc_knight_red` | Knight | 4 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
-| 145 | `poster_hark` | "Hark!" notice | 4 | not started | - | not reached yet |
-| 146 | `teleport_shrine` | Shrine with stained glass | 3 | not started | - | not reached yet |
+| 145 | `poster_hark` | "Hark!" notice | 4 | delivered | `SM_Notice_Hark_PR` | 1 mesh: vellum notice with a red title; body text is a generated stroke pattern |
+| 146 | `teleport_shrine` | Shrine with stained glass | 3 | delivered | `SM_Shrine_Glass_PR` | 1 mesh with UCX hull: sandstone alcove with an opaque stained-glass light; static, no glow |
 | 147 | `bomb_item` | Bomb | 3 | delivered | `SM_Bomb_PR` | 1 mesh: cast-iron bomb with a rope fuse |
 | 148 | `church` | Stone church | 3 | not started | - | not reached yet |
-| 149 | `church_stained_glass` | Stained-glass window | 3 | not started | - | not reached yet |
+| 149 | `church_stained_glass` | Stained-glass window | 3 | delivered | `SM_Window_Stained_Lancet_PR`, `SM_Window_Stained_Twin_PR` | 2 meshes: a two-light window and a lancet (one lancet stands for frames 5 and 6); figures are abstract, glass is opaque |
 | 150 | `dragon_corpse` | Dead dragon | 3 | not started | - | not reached yet |
 | 154 | `rake` | Rake | 3 | delivered | `SM_Rake_PR` | 1 mesh: wooden hay rake, lying on its teeth |
-| 155 | `teleport_machine` | Teleport machine | 2 | not started | - | not reached yet |
+| 155 | `teleport_machine` | Teleport machine | 2 | delivered | `SM_Teleport_Machine_PR` | 1 mesh with UCX hull: armillary sphere on a brick drum; static, no flash |
 | 156 | `boulder_large` | Large dark boulder | 2 | delivered | `SM_Boulder_Large_PR` | 1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges |
 | 157 | `boulder_red` | Reddish boulder | 2 | delivered | `SM_Boulder_Red_PR` | 1 mesh with UCX hull: cracked reddish boulder (the bombable rock); scanned rock surface on an authored form, soft edges |
 | 158 | `boulder_white_pair` | Pair of white boulders | 2 | delivered | `SM_Boulder_White_Pair_PR` | 1 mesh with UCX hull: pair of pale boulders; scanned rock surface on an authored form, soft edges |
-| 159 | `burnt_floor_hole` | Burnt hole in floor/roof | 2 | not started | - | not reached yet |
-| 161 | `cellar_hatch` | Cellar hatch / ladder | 2 | not started | - | not reached yet |
-| 164 | `church_window_small` | Church small window | 2 | not started | - | not reached yet |
+| 159 | `burnt_floor_hole` | Burnt hole in floor/roof | 2 | partial | `Decal_Burn_Floor_Hole_01` | 1 decal set: burnt-through opening with joists painted across. Partial: a flat decal has no depth; a real hole needs the floor mesh cut |
+| 161 | `cellar_hatch` | Cellar hatch / ladder | 2 | delivered | `SM_Cellar_Hatch_PR` | 1 mesh with UCX hull: closed plank hatch with a barred light; it does not open |
+| 164 | `church_window_small` | Church small window | 2 | delivered | `SM_Window_Church_Small_PR` | 1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass |
 | 165 | `corpse_merchant` | Dead merchant | 2 | not started | - | not reached yet |
 | 168 | `explosion_fx` | Explosion | 2 | not started | - | not reached yet |
 | 169 | `fire_burst_fx` | Fire burst | 2 | not started | - | not reached yet |
 | 170 | `fireball_fx` | Fireball | 2 | not started | - | not reached yet |
 | 171 | `food_drumstick` | Meat drumstick | 2 | delivered | `SM_Ham_Leg_PR` | 1 mesh: cured ham leg with a cut face and shank bone (the frame the audit calls a drumstick) |
 | 173 | `fountain_spray_fx` | Fountain water spray | 2 | not started | - | not reached yet |
-| 174 | `fountain_stone` | Stone fountain | 2 | not started | - | not reached yet |
+| 174 | `fountain_stone` | Stone fountain | 2 | delivered | `SM_Fountain_Stone_PR` | 1 mesh with UCX hull: basin, pedestal and still opaque water; the spray is a separate effect family |
 | 175 | `hearth_fire` | Fireplace fire | 2 | not started | - | not reached yet |
-| 176 | `log_cabin` | Log cabin | 2 | not started | - | not reached yet |
-| 177 | `log_cabin_door` | Log cabin door | 2 | not started | - | not reached yet |
+| 176 | `log_cabin` | Log cabin | 2 | delivered | `SM_Log_Cabin_PR` | 1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets |
+| 177 | `log_cabin_door` | Log cabin door | 2 | delivered | `SM_Door_Cabin_PR` | 1 door-class leaf (hinge pivot) |
 | 178 | `npc_knight_red_attacking` | Knight | 2 | partial | `SK_Knight_PR` | same mesh as the red knight (SK_Knight_PR with the red base-colour set); the attack itself is an animation clip and no clip is delivered |
 | 179 | `npc_merchant_blue` | Merchant | 2 | not started | - | not reached yet |
 | 180 | `npc_merchant_green` | Merchant | 2 | not started | - | not reached yet |
 | 181 | `npc_peasant` | Peasant | 2 | not started | - | not reached yet |
 | 182 | `scythe` | Scythe / hook | 2 | delivered | `SM_Scythe_PR` | 1 mesh: scythe, lying flat; the frame is closer to a long-handled hook |
 | 183 | `sparkle_fx` | Sparkle | 2 | not started | - | not reached yet |
-| 184 | `spinning_wheel` | Spinning wheel | 2 | not started | - | not reached yet |
-| 188 | `axe_item` | Throwing axe | 1 | not started | - | not reached yet |
-| 189 | `ballista` | Ballista | 1 | not started | - | not reached yet |
-| 190 | `barrel_broken` | Smashed barrel | 1 | not started | - | not reached yet |
+| 184 | `spinning_wheel` | Spinning wheel | 2 | delivered | `SM_Spinning_Wheel_PR` | 1 mesh with UCX hull: twelve-spoke wheel, bench, flyer and treadle; no drive band or wool |
+| 188 | `axe_item` | Throwing axe | 1 | delivered | `SM_Axe_Throwing_PR` | 1 mesh with UCX hull: double-bitted throwing axe, lying flat |
+| 189 | `ballista` | Ballista | 1 | delivered | `SM_Ballista_PR` | 1 mesh with UCX hull: ballista with a loaded bolt; static |
+| 190 | `barrel_broken` | Smashed barrel | 1 | delivered | `SM_Barrel_Smashed_PR` | 1 mesh with UCX hull: staves, split head and hoop pieces of a burst barrel (end state only) |
 | 191 | `boulder_grey_tall` | Tall grey boulder | 1 | delivered | `SM_Boulder_Grey_Tall_PR` | 1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges |
-| 192 | `burn_damage_decal` | Burn damage / scorch with fire | 1 | not started | - | not reached yet |
-| 194 | `castle_door` | Castle door | 1 | not started | - | not reached yet |
+| 192 | `burn_damage_decal` | Burn damage / scorch with fire | 1 | delivered | `Decal_Burn_Damage_Embers_01` | 1 decal set with an emissive ember map; the glow is static (no flicker or flames) |
+| 194 | `castle_door` | Castle door | 1 | delivered | `SM_Door_Castle_PR` | 1 door-class leaf (hinge pivot), round-headed, 3.45 m |
 | 195 | `castle_drawbridge` | Drawbridge with chains | 1 | not started | - | not reached yet |
-| 197 | `catapult` | Catapult | 1 | not started | - | not reached yet |
-| 198 | `church_door` | Church door | 1 | not started | - | not reached yet |
+| 197 | `catapult` | Catapult | 1 | delivered | `SM_Catapult_PR` | 1 mesh with UCX hull: counterweight catapult of separate timbers; static, nothing fires |
+| 198 | `church_door` | Church door | 1 | delivered | `SM_Door_Church_PR` | 1 door-class leaf (hinge pivot), round-headed |
 | 199 | `corpse_girl` | Dead girl | 1 | not started | - | not reached yet |
 | 200 | `corpse_knight` | Dead knight | 1 | not started | - | not reached yet |
 | 201 | `corpse_maiden` | Dead woman | 1 | not started | - | not reached yet |
@@ -107,14 +107,14 @@ Contact sheet of every final render: `contact_sheet.png` (60 assets).
 | 203 | `corpse_peasant` | Dead peasant | 1 | not started | - | not reached yet |
 | 204 | `corpse_soldier` | Dead soldier | 1 | not started | - | not reached yet |
 | 205 | `dink_dead` | Dink lying dead | 1 | not started | - | not reached yet |
-| 206 | `dink_monument_rock` | "Dink Smallwood" carved rock | 1 | not started | - | not reached yet |
-| 207 | `dungeon_arch_freestanding` | Freestanding stone archway | 1 | not started | - | not reached yet |
+| 206 | `dink_monument_rock` | "Dink Smallwood" carved rock | 1 | delivered | `SM_Monument_Dink_PR` | 1 mesh with UCX hull: boulder with DINK / SMALLWOOD cut in; plain sans lettering, not the gothic of the original |
+| 207 | `dungeon_arch_freestanding` | Freestanding stone archway | 1 | delivered | `SM_Arch_Stone_PR` | 1 mesh: ashlar archway of separate blocks; one convex hull that blocks the opening (needs split hulls to walk through) |
 | 208 | `food_bread` | Bread loaf | 1 | delivered | `SM_Bread_Braided_PR` | 1 mesh: braided loaf |
 | 209 | `food_cheese` | Cheese | 1 | delivered | `SM_Cheese_Wheel_PR` | 1 mesh: small cheese wheel with a wedge cut out |
 | 210 | `food_grapes` | Grapes | 1 | delivered | `SM_Grapes_PR` | 1 mesh: bunch of dark grapes with a leaf, one skin over the bunch |
 | 211 | `food_ham` | Ham / steak | 1 | delivered | `SM_Steak_TBone_PR` | 1 mesh: raw T-bone steak (the frame the audit calls ham / steak) |
 | 212 | `gold_coins_small` | Few coins | 1 | delivered | `SM_Gold_Coins_Few_PR` | 1 mesh: eleven spilled coins |
-| 213 | `golden_duck_statue` | Golden duck statue | 1 | not started | - | not reached yet |
+| 213 | `golden_duck_statue` | Golden duck statue | 1 | partial | `SM_Duck_Statue_Gold_PR` | 1 mesh with UCX hull. Partial: the duck is a fused form with a wing relief, a cast lump in the shape of a duck at 1 m |
 | 214 | `heart_pickup` | Heart | 1 | delivered | `SM_Heart_Red_PR` | 1 mesh: ruby-red glass heart, 12 cm (opaque in the game material) |
 | 215 | `king_on_throne` | King Daniel on throne | 1 | not started | - | not reached yet |
 | 216 | `npc_gnome_purple` | Gnome / wizard | 1 | not started | - | not reached yet |
@@ -124,21 +124,24 @@ Contact sheet of every final render: `contact_sheet.png` (60 assets).
 | 220 | `npc_old_man` | Old man | 1 | not started | - | not reached yet |
 | 221 | `npc_soldier` | Soldier | 1 | not started | - | not reached yet |
 | 222 | `ore_rock_blue` | Blue crystal rock | 1 | partial | `SM_Ore_Rock_Blue_PR` | 1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal |
-| 223 | `poster_wanted` | "Wanted" poster | 1 | not started | - | not reached yet |
-| 224 | `scroll_note` | Note / paper on floor | 1 | not started | - | not reached yet |
-| 225 | `snake_carving` | Small stone snake carving | 1 | not started | - | not reached yet |
-| 226 | `snow_house_door` | House door | 1 | not started | - | not reached yet |
+| 223 | `poster_wanted` | "Wanted" poster | 1 | delivered | `SM_Notice_Wanted_PR` | 1 mesh: vellum poster with a silhouette woodcut block and title |
+| 224 | `scroll_note` | Note / paper on floor | 1 | delivered | `SM_Note_Floor_PR` | 1 mesh: note with rolled ends |
+| 225 | `snake_carving` | Small stone snake carving | 1 | delivered | `SM_Snake_Carving_PR` | 1 mesh: small soapstone snake |
+| 226 | `snow_house_door` | House door | 1 | delivered | `SM_Door_Snow_House_PR` | 1 mesh: two leaves in their timber frame as one prop; it cannot swing until the leaves are split off |
 | 227 | `snow_house_lower` | House lower walls | 1 | not started | - | not reached yet |
 | 228 | `snow_house_roof` | House pyramid roof | 1 | not started | - | not reached yet |
 | 229 | `snow_house_timber` | House timbered upper walls | 1 | not started | - | not reached yet |
 
 ## Validator (`tools/blender/dinkasset/validate.py`)
 
-Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no mesh). 37 of 44 pass with no error; warnings are not failures. Full output: `validation_summary.json`.
+Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no mesh). 65 of 75 pass with no error; warnings are not failures. Full output: `validation_summary.json`.
 
 | asset | class | result | errors | warnings | note |
 |---|---|---|---|---|---|
 | `SM_Arrow_PR` | prop | pass | - | TEXEL_DENSITY |  |
+| `SM_Axe_Throwing_PR` | prop | pass | - | TEXEL_DENSITY |  |
+| `SM_Ballista_PR` | prop | pass | - | - |  |
+| `SM_Barrel_Smashed_PR` | prop | pass | - | - |  |
 | `SM_Bomb_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SK_Bonca_PR` | creature | pass | - | SKIN_INFLUENCES |  |
 | `SM_Bookcase_PR` | prop | pass | - | DUPLICATE_VERTS, TEXEL_DENSITY |  |
@@ -147,8 +150,18 @@ Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no me
 | `SM_Boulder_Large_PR` | prop | pass | - | - |  |
 | `SM_Boulder_Red_PR` | prop | pass | - | - |  |
 | `SM_Boulder_White_Pair_PR` | prop | pass | - | - |  |
+| `SM_Door_Castle_PR` | door | pass | - | - |  |
+| `SM_Catapult_PR` | prop_large | pass | - | - |  |
+| `SM_Cave_Hole_PR` | prop | FAIL | PIVOT | DUPLICATE_VERTS, TEXEL_DENSITY | intended: the pivot is ground level at the opening; the shaft is 1.3 m below it |
+| `SM_Cellar_Hatch_PR` | prop | pass | - | DUPLICATE_VERTS |  |
+| `SM_Door_Church_PR` | door | pass | - | - |  |
+| `SM_Window_Stained_Lancet_PR` | prop | pass | - | TEXEL_DENSITY |  |
+| `SM_Window_Stained_Twin_PR` | prop | pass | - | - |  |
+| `SM_Window_Church_Small_PR` | prop | pass | - | - |  |
+| `SM_Monument_Dink_PR` | prop | pass | - | - |  |
 | `SK_Dragon_PR` | creature | FAIL | PIVOT | SKIN_INFLUENCES, TEXEL_DENSITY | intended: the origin is between the feet as the rule says; the checker measures the bounding-box centre, which the tail and wings move |
 | `SM_Dragon_Statue_PR` | prop | pass | - | TRIS_OVER_TARGET |  |
+| `SM_Arch_Stone_PR` | prop_large | pass | - | - |  |
 | `SK_Fish_PR` | creature | FAIL | PIVOT | TEXEL_DENSITY | origin under the body; the tail fin moves the bounding-box centre 3 cm and the pelvic fins dip 1 cm below it |
 | `SM_Bread_Braided_PR` | prop_small | FAIL | UV_OVERLAP | - | 0.7 % of the UV area overlaps where the smart projection folds between strands |
 | `SM_Cheese_Wheel_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
@@ -161,24 +174,42 @@ Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no me
 | `SM_Tomato_PR` | prop_small | pass | - | TEXEL_DENSITY, TRIS_OVER_TARGET |  |
 | `SM_Grapes_PR` | prop_small | pass | - | TEXEL_DENSITY, TRIS_OVER_TARGET |  |
 | `SM_Steak_TBone_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
+| `SM_Fountain_Stone_PR` | prop | pass | - | - |  |
+| `SK_Goblin_Hammer_PR` | character_humanoid | pass | - | SKIN_INFLUENCES |  |
+| `SK_Goblin_Soldier_PR` | character_humanoid | FAIL | PIVOT | SKIN_INFLUENCES | intended: origin between the feet; the shield and the polearm shift the bounding-box centre |
 | `SM_Gold_Coin_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Gold_Coins_Few_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Gold_Pile_PR` | prop_small | pass | - | TRIS_OVER_TARGET |  |
+| `SM_Duck_Statue_Gold_PR` | prop | pass | - | - |  |
 | `SM_Heart_Gold_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Axe_Felling_PR` | prop | pass | - | TEXEL_DENSITY |  |
 | `SM_Hammer_Smith_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Tongs_Smith_PR` | prop_small | pass | - | - |  |
 | `SM_Heart_Red_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
+| `SM_Idol_Demon_PR` | prop | pass | - | - |  |
 | `SM_Spear_Island_PR` | prop | FAIL | PIVOT | - | intended: the pivot is ground level, the pole runs 12 cm below it for planting |
+| `SM_Log_Cabin_PR` | building | pass | - | DUPLICATE_VERTS |  |
+| `SM_Door_Cabin_PR` | door | pass | - | - |  |
 | `SM_Cabin_Window_PR` | prop | pass | - | - |  |
 | `SK_Knight_PR` | character_humanoid | pass | - | - |  |
 | `SM_Ore_Rock_Blue_PR` | prop | pass | - | - |  |
 | `SM_Pitchfork_PR` | prop | pass | - | - |  |
+| `SM_Notice_Hark_PR` | prop | pass | - | TEXEL_DENSITY |  |
+| `SM_Notice_Wanted_PR` | prop | pass | - | TEXEL_DENSITY |  |
 | `SM_Rake_PR` | prop | pass | - | - |  |
+| `SM_Save_Machine_PR` | prop | pass | - | TRIS_OVER_TARGET |  |
+| `SM_Note_Floor_PR` | prop_small | pass | - | - |  |
 | `SM_Scythe_PR` | prop | pass | - | - |  |
 | `SM_Seashell_Conch_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Sign_Healer_PR` | prop | pass | - | - |  |
 | `SK_Slayer_PR` | creature | FAIL | PIVOT | SKIN_INFLUENCES | intended: origin between the feet; the 2.3 m tail moves the bounding-box centre |
+| `SM_Snake_Carving_PR` | prop_small | pass | - | - |  |
+| `SM_Snake_Pillar_PR` | prop | FAIL | UV_OVERLAP | TEXEL_DENSITY | 0.2 % of the UV area overlaps where the smart projection folds on the coiled snake |
+| `SM_Door_Snow_House_PR` | prop | pass | - | TEXEL_DENSITY |  |
+| `SM_Spinning_Wheel_PR` | prop | pass | - | - |  |
 | `SM_Stairs_Wood_PR` | prop_large | pass | - | - |  |
 | `SK_Stone_Giant_PR` | creature | FAIL | PIVOT | SKIN_INFLUENCES, TEXEL_DENSITY | intended: origin between the feet; the knuckle-walking arms move the bounding-box centre forward |
+| `SM_Teleport_Machine_PR` | prop | pass | - | - |  |
+| `SM_Shrine_Glass_PR` | prop_large | pass | - | - |  |
 | `SM_Acorn_Hanging_PR` | prop_small | FAIL | PIVOT | TEXEL_DENSITY | intended: the pivot is the top of the stalk, so it hangs from a twig |
+| `SM_Banner_Red_PR` | prop | pass | - | - |  |

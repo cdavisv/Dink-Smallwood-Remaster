@@ -10,7 +10,7 @@ REPO = os.path.abspath(os.path.join(UNC, '..', '..', '..', '..', '..'))
 BACKLOG = os.path.join(REPO, 'doc', 'remaster', 'ALPHA_GATE2_BACKLOG.md')
 
 
-FULL = {'SM_Bookcase_PR', 'SM_Cabin_Window_PR', 'SM_Stairs_Wood_PR', 'SM_Sign_Healer_PR', 'SM_Spear_Island_PR', 'SM_Pitchfork_PR', 'SM_Rake_PR', 'SM_Scythe_PR'}      # framed tight already: show the whole render
+FULL = {'SM_Log_Cabin_PR', 'SM_Catapult_PR', 'SM_Ballista_PR', 'SM_Arch_Stone_PR', 'SM_Shrine_Glass_PR', 'SM_Banner_Red_PR', 'SM_Notice_Hark_PR', 'SM_Notice_Wanted_PR', 'SM_Door_Church_PR', 'SM_Door_Castle_PR', 'SM_Door_Cabin_PR', 'SM_Door_Snow_House_PR', 'SM_Window_Church_Small_PR', 'SM_Window_Stained_Twin_PR', 'SM_Window_Stained_Lancet_PR', 'SM_Snake_Pillar_PR', 'SM_Teleport_Machine_PR', 'SM_Duck_Statue_Gold_PR', 'SM_Monument_Dink_PR', 'SM_Spinning_Wheel_PR', 'SM_Cave_Hole_PR', 'SM_Cellar_Hatch_PR', 'SM_Bookcase_PR', 'SM_Cabin_Window_PR', 'SM_Stairs_Wood_PR', 'SM_Sign_Healer_PR', 'SM_Spear_Island_PR', 'SM_Pitchfork_PR', 'SM_Rake_PR', 'SM_Scythe_PR'}      # framed tight already: show the whole render
 
 
 def unclaimed():

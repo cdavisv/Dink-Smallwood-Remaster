@@ -169,6 +169,110 @@
   "SK_Fish_PR": "origin under the body; the tail fin moves the bounding-box centre 3 cm and the pelvic fins dip 1 cm below it",
   "SM_Acorn_Hanging_PR": "intended: the pivot is the top of the stalk, so it hangs from a twig",
   "SM_Spear_Island_PR": "intended: the pivot is ground level, the pole runs 12 cm below it for planting",
-  "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands"
+  "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands",
+  "SM_Cave_Hole_PR": "intended: the pivot is ground level at the opening; the shaft is 1.3 m below it",
+  "SK_Goblin_Soldier_PR": "intended: origin between the feet; the shield and the polearm shift the bounding-box centre",
+  "SM_Snake_Pillar_PR": "0.2 % of the UV area overlaps where the smart projection folds on the coiled snake"
+ },
+ "save_machine": {
+  "why": "1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation"
+ },
+ "cave_hole_warp": {
+  "why": "1 mesh: timber-shored shaft, 1.3 m deep below the pivot plane; it shows only where the terrain has a matching hole cut"
+ },
+ "snake_pillar": {
+  "why": "1 mesh with UCX hull: fluted column with a coiled snake (still frame; the scripted pillar animates)"
+ },
+ "snake_carving": {
+  "why": "1 mesh: small soapstone snake"
+ },
+ "wall_stripe_red": {
+  "why": "1 mesh: the red bar with a gold edge interpreted as a red wall hanging with a gold braid border"
+ },
+ "idol_statue_small": {
+  "status": "partial",
+  "why": "1 mesh with UCX hull. Partial: a fused blob figure with pressed-in features; reads as a worn idol at gameplay distance only"
+ },
+ "golden_duck_statue": {
+  "status": "partial",
+  "why": "1 mesh with UCX hull. Partial: the duck is a fused form with a wing relief, a cast lump in the shape of a duck at 1 m"
+ },
+ "dungeon_arch_freestanding": {
+  "why": "1 mesh: ashlar archway of separate blocks; one convex hull that blocks the opening (needs split hulls to walk through)"
+ },
+ "fountain_stone": {
+  "why": "1 mesh with UCX hull: basin, pedestal and still opaque water; the spray is a separate effect family"
+ },
+ "teleport_machine": {
+  "why": "1 mesh with UCX hull: armillary sphere on a brick drum; static, no flash"
+ },
+ "teleport_shrine": {
+  "why": "1 mesh with UCX hull: sandstone alcove with an opaque stained-glass light; static, no glow"
+ },
+ "poster_hark": {
+  "why": "1 mesh: vellum notice with a red title; body text is a generated stroke pattern"
+ },
+ "poster_wanted": {
+  "why": "1 mesh: vellum poster with a silhouette woodcut block and title"
+ },
+ "scroll_note": {
+  "why": "1 mesh: note with rolled ends"
+ },
+ "axe_item": {
+  "why": "1 mesh with UCX hull: double-bitted throwing axe, lying flat"
+ },
+ "cellar_hatch": {
+  "why": "1 mesh with UCX hull: closed plank hatch with a barred light; it does not open"
+ },
+ "spinning_wheel": {
+  "why": "1 mesh with UCX hull: twelve-spoke wheel, bench, flyer and treadle; no drive band or wool"
+ },
+ "barrel_broken": {
+  "why": "1 mesh with UCX hull: staves, split head and hoop pieces of a burst barrel (end state only)"
+ },
+ "dink_monument_rock": {
+  "why": "1 mesh with UCX hull: boulder with DINK / SMALLWOOD cut in; plain sans lettering, not the gothic of the original"
+ },
+ "church_door": {
+  "why": "1 door-class leaf (hinge pivot), round-headed"
+ },
+ "castle_door": {
+  "why": "1 door-class leaf (hinge pivot), round-headed, 3.45 m"
+ },
+ "log_cabin_door": {
+  "why": "1 door-class leaf (hinge pivot)"
+ },
+ "snow_house_door": {
+  "why": "1 mesh: two leaves in their timber frame as one prop; it cannot swing until the leaves are split off"
+ },
+ "church_window_small": {
+  "why": "1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass"
+ },
+ "church_stained_glass": {
+  "why": "2 meshes: a two-light window and a lancet (one lancet stands for frames 5 and 6); figures are abstract, glass is opaque"
+ },
+ "catapult": {
+  "why": "1 mesh with UCX hull: counterweight catapult of separate timbers; static, nothing fires"
+ },
+ "ballista": {
+  "why": "1 mesh with UCX hull: ballista with a loaded bolt; static"
+ },
+ "goblin_soldier": {
+  "status": "partial",
+  "why": "rigged goblin (project humanoid bone names, 4 LODs, pose-tested) with scale coat, helmet, shield and bill. Partial: fused blob body with painted-on clothing, gear skinned by nearest bone, no animation clips"
+ },
+ "goblin_hammer": {
+  "status": "partial",
+  "why": "rigged goblin (same body as the soldier) with tunic, skullcap and war hammer. Partial for the same reasons as the soldier"
+ },
+ "burnt_floor_hole": {
+  "status": "partial",
+  "why": "1 decal set: burnt-through opening with joists painted across. Partial: a flat decal has no depth; a real hole needs the floor mesh cut"
+ },
+ "burn_damage_decal": {
+  "why": "1 decal set with an emissive ember map; the glow is static (no flicker or flames)"
+ },
+ "log_cabin": {
+  "why": "1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets"
  }
 }

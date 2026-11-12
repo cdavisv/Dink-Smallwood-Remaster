@@ -194,7 +194,7 @@ def burn(spec, seed):
         Rth = R * (1 + tongues + 0.6 * (n_lo - 0.5)); rr_all = np.minimum(rr_all, r / Rth)
     rr = rr_all + (n_mid - 0.5) * 0.30 + (grain - 0.5) * 0.22 + (n_fine - 0.5) * 0.05
     char = 1 - smoothstep(0.97, 1.0, rr)                                   # crisp char edge
-    hole = (1 - smoothstep(0.30, 0.33, rr + (grain - 0.5) * 0.25)) * spec.get('hole', 1.0)          # burnt through in the middle, splintered along the grain
+    hr_ = spec.get('hole_r', 0.30); hole = (1 - smoothstep(hr_, hr_ + 0.03, rr + (grain - 0.5) * 0.25)) * spec.get('hole', 1.0)          # burnt through in the middle, splintered along the grain
     singe = np.clip(1 - smoothstep(1.0, 1.32, rr + (n_mid - 0.5) * 0.25), 0, 1) * (1 - char)       # brown scorched band outside the char
     soot = np.exp(-(np.clip(rr_all, 0, 9) / 1.5) ** 3.0) * (0.45 + 0.9 * n_mid) * (1 - char)        # thin soot veil beyond that
     pit = 1 - smoothstep(0.25, 1.0, rr)
@@ -220,10 +220,28 @@ def burn(spec, seed):
     Hm = char * (block * (0.5 + 0.5 * cv) * 0.0022 + micro * 0.0003 - pit ** 1.3 * spec.get('depth', 0.008)) - hole * 0.012 + ash_m * (n_fine - 0.3) * 0.0014 - singe * 0.0003
     N = normal_map(blur(Hm, 0.7), S / W, strength=1.0)
     ao = 1 - 0.75 * crack * char * (1 - ash_m) - 0.3 * char * smoothstep(0.3, 0.95, pit); ao = lerp(ao, 0.15, hole)
+    emis = None
+    if spec.get('joists'):                           # a burnt-through floor: charred joists crossing the dark below, their upper arrises grey with ash
+        sp_, wd_ = spec['joists']; jy = np.abs(((Y + 0.03 * (n_lo - 0.5)) / sp_) % 1.0 - 0.5) * sp_; jm = (1 - smoothstep(wd_ / 2 - 0.006, wd_ / 2, jy)) * hole; top = (1 - smoothstep(0.0, wd_ / 2, jy))
+        jc = lerp((0.012, 0.011, 0.011), (0.05, 0.047, 0.045), cv)[..., None] * np.ones(3, np.float32) if False else lerp(0.014, 0.05, cv)[..., None] * np.array([1.0, 0.97, 0.94], np.float32)
+        jc = lerp(jc, (0.20, 0.195, 0.185), (top ** 3 * n_mid)[..., None] if False else top ** 3 * n_mid); col = lerp(col, jc, jm); rough = lerp(rough, 0.7, jm)
+        Hm2 = -hole * 0.012 + jm * (0.006 + 0.004 * top) * 1.0; N = normal_map(blur(Hm + jm * (0.004 + 0.006 * top) - hole * (1 - jm) * 0.02, 0.8), S / W, strength=1.0); ao = lerp(ao, 0.45, jm)
+    if spec.get('glow'):                             # still burning: embers alive in the cracks and under the ash
+        g_ = smoothstep(0.62, 0.85, spectral(rng, beta=1.6, lo=10, hi=160)) * char * (1 - hole) * (0.15 + 0.85 * crack) * smoothstep(0.95, 0.3, rr) * spec['glow']
+        emis = lerp((0.0, 0.0, 0.0), (1.0, 0.28, 0.04), np.clip(g_, 0, 1)); col = lerp(col, (0.25, 0.06, 0.015), np.clip(g_ * 0.8, 0, 1))
     bc = np.dstack([L.lin2srgb(col), alpha]); orm = np.dstack([np.clip(ao, 0, 1), np.clip(rough, 0.04, 1), np.zeros_like(ao)])
-    return down(bc), down(N), down(orm), {'opaque_fraction': float((down(alpha) > 0.5).mean())}
+    st = {'opaque_fraction': float((down(alpha) > 0.5).mean())}
+    if emis is not None:
+        st['E'] = down(L.lin2srgb(emis))
+    return down(bc), down(N), down(orm), st
 
 
+BURN2 = {
+    'Burn_Floor_Hole_01': dict(fam='burnt_floor_hole', frame='158/4', size=3.0, seed=36, centres=[(0.0, 0.0, 0.78)], tongues=16, ash=0.5, depth=0.012, joists=(0.42, 0.11), hole_r=0.66,
+                               dresses='large burnt-through hole in a floor or roof, about 2 m across: a ragged char edge, three charred joists crossing the dark opening, a scorched band round it'),
+    'Burn_Damage_Embers_01': dict(fam='burn_damage_decal', frame='154/1', size=3.0, seed=37, centres=[(0.0, 0.0, 0.72)], tongues=15, ash=0.7, rust=0.8, hole=0.0, glow=1.0, depth=0.01,
+                                  dresses='burn damage still alight, about 1.9 m across: alligatored char and ash with embers glowing in the cracks (emissive map included)'),
+}
 BURN = {
     'Burn_Scorch_01': dict(frame='158/1', size=0.9, seed=31, centres=[(0.0, 0.0, 0.19)], tongues=14, dresses='scorch mark about 55 cm across: alligatored char, a sunken middle with grey ash, soot tongues licking outwards'),
     'Burn_Scorch_02': dict(frame='158/2', size=0.9, seed=32, centres=[(0.02, -0.01, 0.2)], tongues=11, ash=0.4, rust=1.0, depth=0.01, hole=0.0,
@@ -304,6 +322,7 @@ WEAK_HOLE = ('A flat decal cannot be a hole: the pit is opaque black with a shad
 WEAK = {
     'blood': 'A flat decal: pooled blood has no real meniscus or parallax, only a normal map, so at a grazing 1 m view the thick pools read thinner than they are. Opacity is authored for a mid-toned ground; on very dark ground the soaked halo disappears, on pale stone it reads strong. The sets are static: no drying over time, no interaction with the ground relief (blood does not run into cracks or round pebbles). Unreal decal material (DBuffer, opacity from BC alpha) is not built here.',
     'crack': WEAK_CRACK, 'hole': WEAK_HOLE,
+    'burn2': 'A flat decal: the burnt-through opening is black with joists painted across it and a normal-map lip, with no real depth or parallax, so it reads as painted from a low camera; a real hole needs the floor mesh cut. The ember glow is a static emissive map (no flicker, no light cast, no flames: those are effects). Soot opacity assumes a mid-toned floor. Unreal decal material is not built here.',
     'burn': 'A flat decal: the burnt-through middle is a black patch with a normal-map lip, not a hole, so it cannot show the joists or the depth below that the original frame hints at. The char blocks follow one grain direction (decal X); rotate the decal to the planks it sits on. Soot halo opacity assumes a mid-toned floor. Unreal decal material is not built here.',
 }
 
@@ -311,7 +330,7 @@ WEAK = {
 def write_set(name, spec, kind, fam, seq, gen):
     outdir = os.path.join(L.UNC, fam, name); os.makedirs(outdir, exist_ok=True); bc, N, orm, st = gen(spec, spec['seed']); files = {}
     # outside the opaque part keep the colour (no black fringe when the alpha is filtered)
-    for key, arr in (('BC', bc), ('N', N), ('ORM', orm)):
+    for key, arr in (('BC', bc), ('N', N), ('ORM', orm)) + ((('E', st['E']),) if 'E' in st else ()):
         p = os.path.join(outdir, 'T_Decal_%s_%s.png' % (name, key)); L.save_png(arr, p); files[key] = p
     lum = (bc[..., :3] @ np.array([0.2126, 0.7152, 0.0722]))[bc[..., 3] > 0.5] * 255
     ids = L.origin_ids([fam])[fam]
@@ -319,7 +338,8 @@ def write_set(name, spec, kind, fam, seq, gen):
            'dimensions_m': [spec['size'], spec['size'], 0.0],
            'textures': [{'file': L.rel(files['BC']), 'size_px': [W // 2, W // 2], 'channels': 'base colour sRGB + opacity in alpha'},
                         {'file': L.rel(files['N']), 'size_px': [W // 2, W // 2], 'channels': 'tangent normal, OpenGL (green up; flip green on import)'},
-                        {'file': L.rel(files['ORM']), 'size_px': [W // 2, W // 2], 'channels': 'R occlusion, G roughness, B metallic (0)'}],
+                        {'file': L.rel(files['ORM']), 'size_px': [W // 2, W // 2], 'channels': 'R occlusion, G roughness, B metallic (0)'}]
+                       + ([{'file': L.rel(files['E']), 'size_px': [W // 2, W // 2], 'channels': 'emissive sRGB (embers)'}] if 'E' in files else []),
            'materials': ['MI_Decal_' + name], 'material_exception': 'decal set private to this decal; a deferred decal cannot use the tiling library sets of ART_STANDARD.md section 2',
            'build': 'Unclaimed/tools/bl.sh %s %s final' % (SCRIPT, name), 'source_blend': L.rel(os.path.join(outdir, 'Decal_%s.blend' % name)),
            'source_note': 'the source is the height field generated by the build script (seeded, deterministic); the .blend holds the review scene with the decal blended over the ground',
@@ -333,15 +353,17 @@ def write_set(name, spec, kind, fam, seq, gen):
 
 
 def render(name, spec, kind, outdir, files, man):
-    L.reset(); S = spec['size']; ground = 'weathered_brown_planks' if kind == 'burn' else 'park_dirt'
+    L.reset(); S = spec['size']; ground = 'weathered_brown_planks' if kind in ('burn', 'burn2') else 'park_dirt'
     R = L.review_setup(ground=None, exposure=-5.0)
     g = L.new_obj('ground', [(-15, -15, 0), (15, -15, 0), (15, 15, 0), (-15, 15, 0)], [(0, 1, 2, 3)], smooth=False)
-    t = NT('ground_with_decal'); sset = t.scan(ground, scale=1.1 if kind == 'burn' else 0.6, proj='FLAT')
+    t = NT('ground_with_decal'); sset = t.scan(ground, scale=1.1 if kind in ('burn', 'burn2') else 0.6, proj='FLAT')
     gb = t.bsdf; t.set(base=sset['diff'], rough=sset['rough'], normal=t.normalmap(sset['nor_gl'], 1.0))
     uv = t.mapping(t.obj, scale=(1 / S, 1 / S, 1), loc=(0.5, 0.5, 0))
     bc = t.image(files['BC'], 'sRGB', uv, ext='CLIP'); nm = t.image(files['N'], 'Non-Color', uv, ext='CLIP'); orm = t.image(files['ORM'], 'Non-Color', uv, ext='CLIP')
     db = t.node('ShaderNodeBsdfPrincipled'); sp = t.node('ShaderNodeSeparateColor'); t.L.new(orm.outputs[0], sp.inputs[0])
     t.L.new(bc.outputs[0], db.inputs['Base Color']); t.L.new(sp.outputs[1], db.inputs['Roughness']); t.L.new(t.normalmap(nm.outputs[0], 1.0), db.inputs['Normal'])
+    if 'E' in files:
+        em = t.image(files['E'], 'sRGB', uv, ext='CLIP'); t.L.new(em.outputs[0], db.inputs['Emission Color']); db.inputs['Emission Strength'].default_value = 2500.0       # embers just hold against full sun at this exposure
     mx = t.node('ShaderNodeMixShader'); t.L.new(bc.outputs[1], mx.inputs[0]); t.L.new(gb.outputs[0], mx.inputs[1]); t.L.new(db.outputs[0], mx.inputs[2]); t.L.new(mx.outputs[0], t.out.inputs['Surface'])
     L.assign(g, t.mat); man['third_party'] = [ground]
     L.shot(R, os.path.join(outdir, 'render_beauty.png'), center=(0, 0, 0), radius=S * 0.62, az=20, el=42, fill=0.8, lens=50, spp=192)
@@ -355,6 +377,7 @@ if __name__ == '__main__':
     todo = [(n, s, 'blood', 'blood_splat', '%s effects/spurt' % {'187': '187', '188': '188', '189': '189'}[s['frame'][:3]], blood) for n, s in BLOOD.items()] + \
            [(n, s, 'burn', 'burn_hole_decal', '158 struct/details/damage/hole-', burn) for n, s in BURN.items()] + \
            [(n, s, 'crack', 'ground_crack', '89 lands/details/crack-', fissure) for n, s in CRACK.items()] + \
+           [(n, s, 'burn2', s['fam'], '158 struct/details/damage/hole-' if 'Hole' in n else '154 struct/details/damage/damag-', burn) for n, s in BURN2.items()] + \
            [(n, s, 'hole', 'ground_hole_dark', '89 lands/details/crack-', fissure) for n, s in HOLE.items()]
     for n, s, kind, fam, seq, gen in todo:
         if sel == 'all' or kind in sel.split(',') or n in sel.split(','):

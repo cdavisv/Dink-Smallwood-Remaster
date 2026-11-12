@@ -286,7 +286,7 @@ SPECS = {
 
 def build(name, mode):
     sp = SPECS[name]; L.reset(); asset = 'SM_%s_PR' % name; fams = sp.get('fams', [sp['fam']]); outdir = os.path.join(L.UNC, sp['fam'], name); hi = sp['fn'](True, L.coll('Source_Hi'))
-    planks = 'planks' in sp['ground']; R = L.review_setup(ground=sp['ground'], ground_scale=1.6 if planks else 0.7, exposure=-5.0)
+    planks = 'planks' in sp['ground']; R = L.review_setup(ground=sp['ground'], ground_scale=1.6 if planks else 0.7, exposure=-5.0, hole=sp.get('ground_hole'))
 
     def shots(obs, tag, d):
         sh = sp.get('shot', {})
@@ -304,8 +304,10 @@ def build(name, mode):
     elif sp.get('lo') == 'remesh':
         lo = L.remesh_lo(hi, sp['voxel'], sp['tris'], asset, lc, margin=0.006)
     else:
-        lo = L.make_lo(hi, sp['tris'], asset, lc, angle=66, margin=0.008)
+        lo = L.make_lo(hi, sp['tris'], asset, lc, angle=sp.get('uv_angle', 66), margin=0.008)
     size = float(np.linalg.norm(np.array(lo.dimensions))); P0 = L.co(lo); cen = (P0.min(0) + P0.max(0)) / 2; cen[2] = P0[:, 2].min() if not sp.get('keep_z', 'Boulder' in name or 'Ore' in name) else 0.0
+    if sp.get('pivot_rule') == 'hinge':            # doors: hinge edge at x = 0, centred through the thickness, floor at z = 0; the leaf extends along +X
+        cen = np.array([P0[:, 0].min(), (P0[:, 1].min() + P0[:, 1].max()) / 2, P0[:, 2].min()])
     for o in [lo] + hi:
         o.location = tuple(-cen); L.apply_xf(o)
     ids = L.origin_ids(fams)

@@ -1,0 +1,104 @@
+{
+ "name": "SM_Shrine_Glass_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/SM_Shrine_Glass_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/SM_Shrine_Glass_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Shrine_Glass final",
+ "dimensions_m": [
+  2.948,
+  1.0581,
+  2.4
+ ],
+ "bounds_min_m": [
+  -1.474,
+  -0.5291,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.474,
+  0.5291,
+  2.4
+ ],
+ "lod0_triangles": 660,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Shrine_Glass_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0146,
+   0.9854
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 40.1,
+   "p99": 115.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.382,
+   "p95": 0.899
+  },
+  "metallic_mean": 0.002,
+  "ao_mean": 0.221
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "teleport_shrine",
+  "159 struct/stone/mdink/monum- frame 7"
+ ],
+ "origin_ids": {
+  "teleport_shrine": [
+   "S153_P02",
+   "S154_P23",
+   "S253_P06"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "stained-glass shrine (teleporter): a three-sided sandstone alcove 2.9 m wide and 2.4 m tall on a plinth, six courses under a cornice, a leaded light of red, blue, amber and green quarries in the back wall",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Blocks are bevelled boxes of 12 triangles with open joints; the stained glass is an opaque coloured lattice (no transmission, no emissive glow, and the original glows when it teleports). The cornice is three plain slabs. One convex hull covers the alcove. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work."
+}

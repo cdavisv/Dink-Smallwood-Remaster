@@ -1,0 +1,112 @@
+{
+ "name": "SM_Save_Machine_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/save_machine/Save_Machine/SM_Save_Machine_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/save_machine/Save_Machine/SM_Save_Machine_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Save_Machine final",
+ "dimensions_m": [
+  2.9604,
+  2.9604,
+  0.9913
+ ],
+ "bounds_min_m": [
+  -1.4802,
+  -1.4802,
+  -0.0
+ ],
+ "bounds_max_m": [
+  1.4802,
+  1.4802,
+  0.9913
+ ],
+ "lod0_triangles": 6998,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/save_machine/Save_Machine/T_Save_Machine_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/save_machine/Save_Machine/T_Save_Machine_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/save_machine/Save_Machine/T_Save_Machine_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Save_Machine_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0056,
+   0.9944
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 54.1,
+   "p99": 98.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.543,
+   "p95": 0.9
+  },
+  "metallic_mean": 0.078,
+  "ao_mean": 0.523
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "save_machine",
+  "449 inter/save/save- frame 1"
+ ],
+ "origin_ids": {
+  "save_machine": [
+   "S037_P19",
+   "S213_P01",
+   "S252_P01",
+   "S254_P05",
+   "S344_P01",
+   "S349_P01",
+   "S408_P25",
+   "S569_P02",
+   "S588_P05",
+   "S768_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "save machine: round stone hearth 2.3 m across (3.1 m over the spokes), sunk bowl with a boss, four horn scrolls over the rim, eight oak spokes, iron grating round the foot",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Read from a 120-pixel frame: a stepped stone ring with a bowl, four horn scrolls, eight timber spokes and an iron grating. The original has more ornament (interlaced arcs) than is built, and nothing here moves or glows; in game the machine is animated and lit when used. Spokes share one wood material whose grain follows world X, not each spoke. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work.",
+ "triangle_note": "7,000 triangles: above the 6,000 soft target of class prop, spent on the ring and scrolls"
+}

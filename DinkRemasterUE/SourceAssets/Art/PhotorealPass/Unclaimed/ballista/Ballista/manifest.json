@@ -1,0 +1,102 @@
+{
+ "name": "SM_Ballista_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/ballista/Ballista/SM_Ballista_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/ballista/Ballista/SM_Ballista_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_siege.py Ballista final",
+ "dimensions_m": [
+  2.5921,
+  3.1813,
+  1.5318
+ ],
+ "bounds_min_m": [
+  -1.2961,
+  -1.5907,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.2961,
+  1.5907,
+  1.5318
+ ],
+ "lod0_triangles": 964,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/ballista/Ballista/T_Ballista_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/ballista/Ballista/T_Ballista_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/ballista/Ballista/T_Ballista_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Ballista_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0112,
+   0.9888
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 56.3,
+   "p99": 118.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.396,
+   "p95": 0.85
+  },
+  "metallic_mean": 0.014,
+  "ao_mean": 0.454
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "ballista",
+  "429 struct/cataplt/arms- frame 4"
+ ],
+ "origin_ids": {
+  "ballista": [
+   "S196_P30"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "ballista, 2.9 m long with a 2.6 m bow: two trestles, a tilted stock with an iron-shod slide, bow limbs in a head frame, the cord drawn to the trigger, a windlass and a loaded iron-headed bolt",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The limbs are plain tapered staves set in a simple frame: no torsion skeins, washers or ratchet. The cord is a 14 mm rope sweep without servings. Timbers are bevelled blocks pushed through each other: no mortises, pegs, iron bands or bolts, and nothing turns or fires (no rig, no animation). Grain is procedural streaking along each member. One convex hull is exported for the whole engine."
+}

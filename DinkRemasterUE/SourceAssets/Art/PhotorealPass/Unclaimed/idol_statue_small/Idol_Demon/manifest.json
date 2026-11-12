@@ -1,0 +1,106 @@
+{
+ "name": "SM_Idol_Demon_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/idol_statue_small/Idol_Demon/SM_Idol_Demon_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/idol_statue_small/Idol_Demon/SM_Idol_Demon_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Idol_Demon final",
+ "dimensions_m": [
+  1.0341,
+  0.7744,
+  1.1289
+ ],
+ "bounds_min_m": [
+  -0.5171,
+  -0.3872,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.5171,
+  0.3872,
+  1.1289
+ ],
+ "lod0_triangles": 3500,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/idol_statue_small/Idol_Demon/T_Idol_Demon_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/idol_statue_small/Idol_Demon/T_Idol_Demon_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/idol_statue_small/Idol_Demon/T_Idol_Demon_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Idol_Demon_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0051,
+   0.9949
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 84.5,
+   "p99": 111.2
+  },
+  "roughness": {
+   "p5": 0.756,
+   "mean": 0.805,
+   "p95": 0.9
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.781
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "idol_statue_small",
+  "80 inside/stnwalls/stonw- frame 24"
+ ],
+ "origin_ids": {
+  "idol_statue_small": [
+   "S074_P16",
+   "S137_P11",
+   "S164_P01",
+   "S164_P20",
+   "S579_P22"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "squat horned demon idol in brown stone, 1.1 m: hunched shoulders, arms folded on the belly, five horns, sunk eyes and a wide mouth",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A fused blob figure with pressed-in eyes and mouth: it reads as a worn idol at gameplay distance, but there is no cut detail (fingers, teeth, ornament) and the horns are plain cones. The game pushes this idol along the floor; no base slab is modelled. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work."
+}

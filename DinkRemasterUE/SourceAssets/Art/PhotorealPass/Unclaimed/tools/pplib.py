@@ -68,8 +68,10 @@ def link(ob, c=None):
 
 
 def activate(ob, others=()):
-    for o in bpy.context.view_layer.objects:
-        o.select_set(False)
+    bpy.context.view_layer.update()
+    for o in list(bpy.context.view_layer.objects):
+        if o is not None:
+            o.select_set(False)
     for o in others:
         o.select_set(True)
     ob.select_set(True); bpy.context.view_layer.objects.active = ob
@@ -258,8 +260,7 @@ def make_lods(lo, ratios):
     return out
 
 
-def _hull(points):
-    """closed convex hull mesh (bmesh) of a point set"""
+def _hull_raw(points):
     bm = bmesh.new()
     for p in points:
         bm.verts.new(tuple(p))
@@ -267,8 +268,14 @@ def _hull(points):
     junk = [e for e in r.get('geom_interior', []) + r.get('geom_unused', []) if isinstance(e, bmesh.types.BMVert)]
     if junk:
         bmesh.ops.delete(bm, geom=list(set(junk)), context='VERTS')
-    bmesh.ops.dissolve_limit(bm, angle_limit=math.radians(0.6), verts=bm.verts, edges=bm.edges)          # coplanar triangles become one planar face
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces); return bm
+    return bm
+
+
+def _hull(points):
+    """closed, triangulated convex hull (bmesh) on the true corner points only: points lying inside a flat face or along a straight edge are
+    dropped first, because they make sliver triangles whose planes fail a convexity test"""
+    bm = _hull_raw(points); bmesh.ops.dissolve_limit(bm, angle_limit=math.radians(1.0), verts=bm.verts, edges=bm.edges); corners = [v.co[:] for v in bm.verts]; bm.free()
+    bm = _hull_raw(corners); bmesh.ops.recalc_face_normals(bm, faces=bm.faces); return bm
 
 
 def make_ucx(lo, maxv=26):
@@ -360,12 +367,12 @@ def curve_fn(pts):
 def sweep(name, rows, nu=12, nv=24, c=None, up=(0, 0, 1), cap=0.55):
     """swept solid: rows = [(x, y, z, a, b, n)] centre, half-width a (across), half-height b (along `up`), superellipse exponent n (2 round, 6 boxy).
     Smoothly interpolated along the path; both ends are closed with a slightly domed cap."""
-    R = np.array(rows, float); f = curve_fn(R); upv = np.array(up, float)
+    R = np.array(rows, float); f = curve_fn(R); upv = np.array(up, float); nv = max(int(nv), 5)          # two cap rings and a body ring at least
     d0 = R[1, :3] - R[0, :3]; d1 = R[-1, :3] - R[-2, :3]
 
     def fn(U, V):
         # v 0..1 runs: cap in (0..e), body (e..1-e), cap out
-        e = 1.5 / nv; t = np.clip((V - e) / (1 - 2 * e), 0, 1); q = f(t); P = q[:, :3]; a = q[:, 3]; b = q[:, 4]; n = np.maximum(q[:, 5], 1.2)
+        e = min(1.5 / nv, 0.3); t = np.clip((V - e) / (1 - 2 * e), 0, 1); q = f(t); P = q[:, :3]; a = q[:, 3]; b = q[:, 4]; n = np.maximum(q[:, 5], 1.2)
         k = np.where(V < e, V / e, np.where(V > 1 - e, (1 - V) / e, 1.0)); kk = np.sqrt(np.clip(1 - (1 - k) ** 2, 0, 1))          # quarter-round shrink into the cap
         T = f(np.clip(t + 1e-3, 0, 1))[:, :3] - f(np.clip(t - 1e-3, 0, 1))[:, :3]
         T /= np.linalg.norm(T, axis=1)[:, None] + 1e-12
@@ -450,6 +457,61 @@ def clean_mesh(ob, dist=6e-5):
     if loose:
         bmesh.ops.delete(bm, geom=loose, context='VERTS')
     bm.to_mesh(ob.data); bm.free(); ob.data.update(); return ob
+
+
+def ring(name, R, r, c=None, seg=48, sides=10, squash=1.0, z=0.0):
+    """torus in the XY plane: major radius R, tube radius r (squash flattens the tube in Z)"""
+    V = []; F = []
+    for i in range(seg):
+        a = 2 * math.pi * i / seg
+        for k in range(sides):
+            b = 2 * math.pi * k / sides; rr = R + r * math.cos(b); V.append((rr * math.cos(a), rr * math.sin(a), z + r * squash * math.sin(b)))
+    for i in range(seg):
+        i1 = (i + 1) % seg
+        for k in range(sides):
+            k1 = (k + 1) % sides; F.append((i * sides + k, i1 * sides + k, i1 * sides + k1, i * sides + k1))
+    ob = new_obj(name, V, F, c); fix_normals(ob); return ob
+
+
+def xform(ob, M):
+    """apply a 4x4 matrix (mathutils or nested list) to the mesh"""
+    ob.matrix_world = Matrix(M) if not isinstance(M, Matrix) else M; apply_xf(ob); return ob
+
+
+def text_mesh(name, body, size=0.1, depth=0.01, c=None, align='CENTER', bevel=0.0, spacing=1.0):
+    """Blender's built-in font as a closed mesh lying in the XY plane (baseline along +X), extruded +-depth/2 in Z"""
+    cu = bpy.data.curves.new(name, 'FONT'); cu.body = body; cu.size = size; cu.extrude = depth / 2; cu.align_x = align; cu.bevel_depth = bevel; cu.space_character = spacing
+    tmp = bpy.data.objects.new(name + '_cu', cu); link(tmp, c); dg = bpy.context.evaluated_depsgraph_get(); dg.update()
+    me = bpy.data.meshes.new_from_object(tmp.evaluated_get(dg)); ob = bpy.data.objects.new(name, me); link(ob, c); bpy.data.objects.remove(tmp); bpy.data.curves.remove(cu); bpy.context.view_layer.update()
+    clean_mesh(ob, dist=1e-6); fix_normals(ob); return ob
+
+
+
+def arch_outline(w, spring, kind='round', n=14, rise=None):
+    """door / window outline in XZ, anticlockwise from the bottom left: a rectangle w wide up to `spring`, then a round or pointed arch"""
+    pts = [(-w / 2, 0.0), (w / 2, 0.0)]
+    if kind == 'flat':
+        return pts + [(w / 2, spring), (-w / 2, spring)]
+    if kind == 'round':
+        r = w / 2; pts += [(r * math.cos(a), spring + r * math.sin(a)) for a in np.linspace(0, math.pi, n)]
+    else:                                        # pointed: two arcs struck from the opposite springing points (equilateral unless rise is given)
+        R = w if rise is None else (rise * rise + (w / 2) ** 2) / w; a1 = math.acos((R - w / 2) / R)
+        pts += [(-w / 2 + R * math.cos(a), spring + R * math.sin(a)) for a in np.linspace(0, a1, n // 2 + 1)]
+        pts += [(w / 2 - R * math.cos(a), spring + R * math.sin(a)) for a in np.linspace(a1, 0, n // 2 + 1)[1:]]
+    return pts
+
+
+def prism(name, outline, y0, y1, c=None, hi=False, bevel=0.004):
+    """slab with the given XZ outline between y0 and y1 (a door leaf, a pane of glass)"""
+    bm = bmesh.new(); vs = [bm.verts.new((x, y0, z)) for x, z in outline]; f = bm.faces.new(vs); r = bmesh.ops.extrude_face_region(bm, geom=[f])
+    bmesh.ops.translate(bm, verts=[e for e in r['geom'] if isinstance(e, bmesh.types.BMVert)], vec=(0, y1 - y0, 0)); bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    if hi:                                       # triangulate the two big faces into a grid-like fan so the shader bump has geometry to sit on (and the bake rays a clean target)
+        bmesh.ops.triangulate(bm, faces=bm.faces)
+    ob = bm_obj(name, bm, c, smooth=False)
+    if hi:
+        mod(ob, 'BEVEL', width=bevel, segments=2, limit_method='ANGLE', angle_limit=math.radians(40)); apply_mods(ob)
+    return ob
+
 
 
 def pack_uv(ob, margin=0.012, average=True, rotate=True):
@@ -777,7 +839,7 @@ def game_material(name, files, alpha=None, sss=None, emissive_strength=None, nor
 
 
 # ------------------------------------------------------------------ review renders
-def review_setup(ground='forrest_ground_01', ground_scale=0.8, exposure=-4.6, sun_rot=-150.0, sun_elev=40.0, ground_size=30.0, ground_tint=None):
+def review_setup(ground='forrest_ground_01', ground_scale=0.8, exposure=-4.6, sun_rot=-150.0, sun_elev=40.0, ground_size=30.0, ground_tint=None, hole=None):
     sc = bpy.context.scene; use_hip_gpu(sc)
     sc.cycles.use_denoising = True; sc.cycles.max_bounces = 6; sc.cycles.use_adaptive_sampling = True; sc.cycles.adaptive_threshold = 0.01
     try:
@@ -805,7 +867,12 @@ def review_setup(ground='forrest_ground_01', ground_scale=0.8, exposure=-4.6, su
     nt.links.new(sky.outputs[0], nt.nodes['Background'].inputs[0]); sc.view_settings.exposure = exposure
     rc = coll('Review'); gnd = None
     if ground:
-        S = ground_size; gnd = new_obj('review_ground', [(-S, -S, 0), (S, -S, 0), (S, S, 0), (-S, S, 0)], [(0, 1, 2, 3)], rc, smooth=False)
+        S = ground_size
+        if hole:                                     # ground with a rectangular opening (half sizes), for things that go below it
+            hx, hy = hole; gnd = new_obj('review_ground', [(-S, -S, 0), (S, -S, 0), (S, S, 0), (-S, S, 0), (-hx, -hy, 0), (hx, -hy, 0), (hx, hy, 0), (-hx, hy, 0)],
+                                         [(0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7)], rc, smooth=False)
+        else:
+            gnd = new_obj('review_ground', [(-S, -S, 0), (S, -S, 0), (S, S, 0), (-S, S, 0)], [(0, 1, 2, 3)], rc, smooth=False)
         t = NT('review_ground'); sset = t.scan(ground, scale=ground_scale, proj='FLAT')
         # break the tile repeat with a second, rotated, larger sample and a large-scale value drift
         s2 = t.scan(ground, scale=ground_scale * 0.37, proj='FLAT', rot=(0, 0, 1.1), loc=(3.3, 1.7, 0))

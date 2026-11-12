@@ -1,0 +1,103 @@
+{
+ "name": "SM_Door_Cabin_PR",
+ "class": "door",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_door/Door_Cabin/SM_Door_Cabin_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_door/Door_Cabin/SM_Door_Cabin_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_doors.py Door_Cabin final",
+ "dimensions_m": [
+  1.0343,
+  0.1238,
+  1.9456
+ ],
+ "bounds_min_m": [
+  0.0,
+  -0.0619,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.0343,
+  0.0619,
+  1.9456
+ ],
+ "lod0_triangles": 800,
+ "triangle_budget": {
+  "soft": 4000,
+  "hard": 12000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_door/Door_Cabin/T_Door_Cabin_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_door/Door_Cabin/T_Door_Cabin_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_door/Door_Cabin/T_Door_Cabin_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Door_Cabin_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0034,
+   0.9966
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 88.4,
+   "p99": 129.0
+  },
+  "roughness": {
+   "p5": 0.492,
+   "mean": 0.632,
+   "p95": 0.686
+  },
+  "metallic_mean": 0.076,
+  "ao_mean": 0.738
+ },
+ "pivot": "hinge edge at x = 0, centred through the thickness, floor at z = 0; the leaf extends along +X",
+ "families": [
+  "log_cabin_door",
+  "59 struct/cabin/cabin- frame 2"
+ ],
+ "origin_ids": {
+  "log_cabin_door": [
+   "S251_P07",
+   "S409_P13"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "log cabin door leaf, 1.0 x 1.95 m, five weathered planks ledged behind, two strap hinges, ring handle",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "One slab with the plank joints, grain and nails in the textures: the joints are not modelled gaps and the edge of the leaf shows no board ends. Iron straps are plain tapered bars without nail heads; there is no lock or latch. No frame or wall: the opening belongs to the building family."
+}

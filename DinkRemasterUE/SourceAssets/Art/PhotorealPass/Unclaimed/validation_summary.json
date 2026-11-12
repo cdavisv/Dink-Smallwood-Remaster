@@ -9,6 +9,32 @@
   ],
   "error_messages": []
  },
+ "axe_item/Axe_Throwing/SM_Axe_Throwing_PR.blend": {
+  "asset": "SM_Axe_Throwing_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "ballista/Ballista/SM_Ballista_PR.blend": {
+  "asset": "SM_Ballista_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "barrel_broken/Barrel_Smashed/SM_Barrel_Smashed_PR.blend": {
+  "asset": "SM_Barrel_Smashed_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
  "bomb_item/Bomb/SM_Bomb_PR.blend": {
   "asset": "SM_Bomb_PR",
   "class": "prop_small",
@@ -80,6 +106,89 @@
   "warnings": [],
   "error_messages": []
  },
+ "castle_door/Door_Castle/SM_Door_Castle_PR.blend": {
+  "asset": "SM_Door_Castle_PR",
+  "class": "door",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "catapult/Catapult/SM_Catapult_PR.blend": {
+  "asset": "SM_Catapult_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "cave_hole_warp/Cave_Hole/SM_Cave_Hole_PR.blend": {
+  "asset": "SM_Cave_Hole_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "pivot is wrong for prop (rule base_center): origin is 136.0 cm off, should move by (0.0, 0.0, -136.0) cm. "
+  ]
+ },
+ "cellar_hatch/Cellar_Hatch/SM_Cellar_Hatch_PR.blend": {
+  "asset": "SM_Cellar_Hatch_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
+  ],
+  "error_messages": []
+ },
+ "church_door/Door_Church/SM_Door_Church_PR.blend": {
+  "asset": "SM_Door_Church_PR",
+  "class": "door",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "church_stained_glass/Window_Stained_Lancet/SM_Window_Stained_Lancet_PR.blend": {
+  "asset": "SM_Window_Stained_Lancet_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "church_stained_glass/Window_Stained_Twin/SM_Window_Stained_Twin_PR.blend": {
+  "asset": "SM_Window_Stained_Twin_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "church_window_small/Window_Church_Small/SM_Window_Church_Small_PR.blend": {
+  "asset": "SM_Window_Church_Small_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "dink_monument_rock/Monument_Dink/SM_Monument_Dink_PR.blend": {
+  "asset": "SM_Monument_Dink_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
  "dragon/Dragon/SK_Dragon_PR.blend": {
   "asset": "SK_Dragon_PR",
   "class": "creature",
@@ -103,6 +212,14 @@
   "warnings": [
    "TRIS_OVER_TARGET"
   ],
+  "error_messages": []
+ },
+ "dungeon_arch_freestanding/Arch_Stone/SM_Arch_Stone_PR.blend": {
+  "asset": "SM_Arch_Stone_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
   "error_messages": []
  },
  "fish/Fish/SK_Fish_PR.blend": {
@@ -236,6 +353,38 @@
   ],
   "error_messages": []
  },
+ "fountain_stone/Fountain_Stone/SM_Fountain_Stone_PR.blend": {
+  "asset": "SM_Fountain_Stone_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "goblin_hammer/Goblin_Hammer/SK_Goblin_Hammer_PR.blend": {
+  "asset": "SK_Goblin_Hammer_PR",
+  "class": "character_humanoid",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "SKIN_INFLUENCES"
+  ],
+  "error_messages": []
+ },
+ "goblin_soldier/Goblin_Soldier/SK_Goblin_Soldier_PR.blend": {
+  "asset": "SK_Goblin_Soldier_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "SKIN_INFLUENCES"
+  ],
+  "error_messages": [
+   "pivot is wrong for character_humanoid (rule feet): origin is 20.1 cm off, should move by (-3.9, -19.8, -0.0) cm. "
+  ]
+ },
  "gold_coin/Gold_Coin/SM_Gold_Coin_PR.blend": {
   "asset": "SM_Gold_Coin_PR",
   "class": "prop_small",
@@ -264,6 +413,14 @@
   "warnings": [
    "TRIS_OVER_TARGET"
   ],
+  "error_messages": []
+ },
+ "golden_duck_statue/Duck_Statue_Gold/SM_Duck_Statue_Gold_PR.blend": {
+  "asset": "SM_Duck_Statue_Gold_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
   "error_messages": []
  },
  "golden_heart/Heart_Gold/SM_Heart_Gold_PR.blend": {
@@ -314,6 +471,14 @@
   ],
   "error_messages": []
  },
+ "idol_statue_small/Idol_Demon/SM_Idol_Demon_PR.blend": {
+  "asset": "SM_Idol_Demon_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
  "island_spear_pole/Spear_Island/SM_Spear_Island_PR.blend": {
   "asset": "SM_Spear_Island_PR",
   "class": "prop",
@@ -325,6 +490,24 @@
   "error_messages": [
    "pivot is wrong for prop (rule base_center): origin is 12.4 cm off, should move by (0.0, 0.0, -12.4) cm. "
   ]
+ },
+ "log_cabin/Log_Cabin/SM_Log_Cabin_PR.blend": {
+  "asset": "SM_Log_Cabin_PR",
+  "class": "building",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS"
+  ],
+  "error_messages": []
+ },
+ "log_cabin_door/Door_Cabin/SM_Door_Cabin_PR.blend": {
+  "asset": "SM_Door_Cabin_PR",
+  "class": "door",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
  },
  "log_cabin_window/Cabin_Window/SM_Cabin_Window_PR.blend": {
   "asset": "SM_Cabin_Window_PR",
@@ -358,9 +541,47 @@
   "warnings": [],
   "error_messages": []
  },
+ "poster_hark/Notice_Hark/SM_Notice_Hark_PR.blend": {
+  "asset": "SM_Notice_Hark_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "poster_wanted/Notice_Wanted/SM_Notice_Wanted_PR.blend": {
+  "asset": "SM_Notice_Wanted_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
  "rake/Rake/SM_Rake_PR.blend": {
   "asset": "SM_Rake_PR",
   "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "save_machine/Save_Machine/SM_Save_Machine_PR.blend": {
+  "asset": "SM_Save_Machine_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "scroll_note/Note_Floor/SM_Note_Floor_PR.blend": {
+  "asset": "SM_Note_Floor_PR",
+  "class": "prop_small",
   "passed": true,
   "errors": [],
   "warnings": [],
@@ -406,6 +627,46 @@
    "pivot is wrong for creature (rule feet): origin is 54.5 cm off, should move by (-0.1, 54.5, 0.5) cm. "
   ]
  },
+ "snake_carving/Snake_Carving/SM_Snake_Carving_PR.blend": {
+  "asset": "SM_Snake_Carving_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "snake_pillar/Snake_Pillar/SM_Snake_Pillar_PR.blend": {
+  "asset": "SM_Snake_Pillar_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (0.2 % of UV area, 28 triangles); class prop needs unique UVs"
+  ]
+ },
+ "snow_house_door/Door_Snow_House/SM_Door_Snow_House_PR.blend": {
+  "asset": "SM_Door_Snow_House_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "spinning_wheel/Spinning_Wheel/SM_Spinning_Wheel_PR.blend": {
+  "asset": "SM_Spinning_Wheel_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
  "stairs_wood/Stairs_Wood/SM_Stairs_Wood_PR.blend": {
   "asset": "SM_Stairs_Wood_PR",
   "class": "prop_large",
@@ -429,6 +690,22 @@
    "pivot is wrong for creature (rule feet): origin is 27.6 cm off, should move by (0.1, -27.6, -1.4) cm. "
   ]
  },
+ "teleport_machine/Teleport_Machine/SM_Teleport_Machine_PR.blend": {
+  "asset": "SM_Teleport_Machine_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "teleport_shrine/Shrine_Glass/SM_Shrine_Glass_PR.blend": {
+  "asset": "SM_Shrine_Glass_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
  "tree_fruit/Acorn_Hanging/SM_Acorn_Hanging_PR.blend": {
   "asset": "SM_Acorn_Hanging_PR",
   "class": "prop_small",
@@ -442,5 +719,13 @@
   "error_messages": [
    "pivot is wrong for prop_small (rule base_center): origin is 7.1 cm off, should move by (0.0, 0.0, -7.1) cm. "
   ]
+ },
+ "wall_stripe_red/Banner_Red/SM_Banner_Red_PR.blend": {
+  "asset": "SM_Banner_Red_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
  }
 }

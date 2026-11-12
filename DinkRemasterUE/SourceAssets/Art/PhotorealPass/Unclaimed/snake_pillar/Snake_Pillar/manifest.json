@@ -1,0 +1,108 @@
+{
+ "name": "SM_Snake_Pillar_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_pillar/Snake_Pillar/SM_Snake_Pillar_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_pillar/Snake_Pillar/SM_Snake_Pillar_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Snake_Pillar final",
+ "dimensions_m": [
+  0.6057,
+  0.6456,
+  2.4999
+ ],
+ "bounds_min_m": [
+  -0.3029,
+  -0.3228,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.3029,
+  0.3228,
+  2.4999
+ ],
+ "lod0_triangles": 3000,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_pillar/Snake_Pillar/T_Snake_Pillar_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_pillar/Snake_Pillar/T_Snake_Pillar_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snake_pillar/Snake_Pillar/T_Snake_Pillar_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Snake_Pillar_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0073,
+   0.9928
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 99.1,
+   "p99": 135.0
+  },
+  "roughness": {
+   "p5": 0.275,
+   "mean": 0.578,
+   "p95": 0.877
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.649
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "snake_pillar",
+  "82 inside/stnwalls/snake/snakc- frame 1"
+ ],
+ "origin_ids": {
+  "snake_pillar": [
+   "S238_P07",
+   "S238_P08",
+   "S238_P09",
+   "S238_P10",
+   "S238_P11",
+   "S625_P02",
+   "S625_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "sandstone column, 2.5 m, fluted drums on a moulded base, a green snake wound four times round the shaft with its head lifted",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The snake is a smooth tapering sweep with a wedge head: no eyes, mouth or belly scutes, and it floats a few millimetres off the shaft in places instead of pressing into it. Scripted pillars in the game animate the snake; this is the still frame. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work."
+}

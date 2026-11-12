@@ -1,0 +1,106 @@
+{
+ "name": "SM_Banner_Red_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/SM_Banner_Red_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/SM_Banner_Red_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Banner_Red final",
+ "dimensions_m": [
+  1.368,
+  0.0658,
+  0.8789
+ ],
+ "bounds_min_m": [
+  -0.684,
+  -0.0329,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.684,
+  0.0329,
+  0.8789
+ ],
+ "lod0_triangles": 1204,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Banner_Red_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0033,
+   0.9967
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 50.7,
+   "p99": 185.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.486,
+   "p95": 0.85
+  },
+  "metallic_mean": 0.035,
+  "ao_mean": 0.6
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "wall_stripe_red",
+  "450 inter/health/hm-br- frames 1, 2"
+ ],
+ "origin_ids": {
+  "wall_stripe_red": [
+   "S097_P35",
+   "S097_P36",
+   "S097_P37",
+   "S097_P38",
+   "S097_P39",
+   "S097_P40",
+   "S097_P41"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "red wool wall hanging, 1.2 x 0.85 m, gold braid border, hung from a turned wooden rod, soft folds",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The original is a flat red bar with a gold edge taken from the health-bar art; it is interpreted here as a red wall hanging with a gold braid border on a rod. Folds are a fixed sine pattern, not simulated cloth, and the back is the same cloth. No fringe or device."
+}
