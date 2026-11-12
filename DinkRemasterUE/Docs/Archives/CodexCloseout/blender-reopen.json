@@ -1,0 +1,974 @@
+[
+  {
+    "file": "DinkRemasterUE/Docs/Verification/House439SharedExteriorSource/GlassPhysicalReference/ActualCottagePane_OpticalReference.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/House439SharedExteriorSource/GlassPhysicalReference/ActualCottagePane_ReflectionControl.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Animations/Unarmed/Dink_Fist.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/DefectFixes_11Nov2026/HandBindingV2/SK_Dink_Hands.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/DefectFixes_11Nov2026/SK_Dink.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/DefectFixes_9Nov2026/History/bd9cc7f98a087c2cfe1dbc82f196243381700d5bb1b87044a571c07577f7ea97/SK_Dink_Hands.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/DefectFixes_9Nov2026/History/da58584f5cb0e313be2c575d6a28fec7eede1100d1dca9e17d24e8bd57558006/SK_Dink.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/Dink_Working.blend",
+    "opened": true,
+    "objects": 30,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3/SK_Dink_OutfitV3.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33/Source/Helpers/MetricWeave_Tile_Source.blend",
+    "opened": true,
+    "objects": 1,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33/Source/Helpers/Trousers_CoarseProcedural.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33/Source/SK_Dink_Trousers_FitV19_Context.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/Refinements/PhotorealTrousersV33/Source/SK_Dink_Trousers_MetricArtV32_Context.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/SK_Dink.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Milder/SK_Milder.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Mother/ClothingRealismV1/SK_Mother_ClothingRealismV1.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Mother/ClothingRealismV1/SK_Mother_ClothingRealismV1_Baked.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Mother_Working.blend",
+    "opened": true,
+    "objects": 19,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/SK_Mother.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Coastal/BeachPebblesV1/BeachPebbles_V6_ExplicitTriangles.blend",
+    "opened": true,
+    "objects": 25,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Creatures/Duck/SK_Duck.blend",
+    "opened": true,
+    "objects": 11,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Creatures/Pig/SK_Pig.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Creatures/Pillbug/SK_Pillbug.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Creatures/Pillbug/Working/Pillbug_Baked.blend",
+    "opened": true,
+    "objects": 7,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Creatures/Pillbug/Working/Pillbug_Procedural.blend",
+    "opened": true,
+    "objects": 7,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Characters/Dink/SK_Dink_Photoreal.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Characters/Milder/SK_Milder_Photoreal.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Characters/Mother/SK_Mother_Photoreal.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
+    "opened": true,
+    "objects": 11,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pillbug/SK_Pillbug.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pillbug/SM_Pillbug_Corpse.blend",
+    "opened": true,
+    "objects": 7,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Slime/SK_Slime.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+    "opened": true,
+    "objects": 160,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Barrel_Oak_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Bed_Oak_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Bench_Oak_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Chair_Oak_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Chest_Small_PR.blend",
+    "opened": true,
+    "objects": 7,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Crate_Large_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Crate_Small_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_FeedSack_Jute_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Bowl_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Jug_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Storage_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Vase_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Brazier_Standing_01.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Candle_Holder_01.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Lantern_Hanging_01.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Torch_Wall_01.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Sack_Grain_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Stool_Oak_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Table_Oak_Long_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Table_Oak_Round_PR.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/Castle.blend",
+    "opened": true,
+    "objects": 27,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/Misc.blend",
+    "opened": true,
+    "objects": 83,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/Misc_part_Bridge_Door_SignPost_Chimney.blend",
+    "opened": true,
+    "objects": 46,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Boulders.blend",
+    "opened": true,
+    "objects": 12,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Stonebrook.blend",
+    "opened": true,
+    "objects": 58,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/Scatter/Scatter_BeachPebbles.blend",
+    "opened": true,
+    "objects": 32,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/Scatter/Scatter_Clam.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/Scatter/Scatter_Pebbles.blend",
+    "opened": true,
+    "objects": 32,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/Scatter/Scatter_Starfish.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/TownExteriors/TownExteriors.blend",
+    "opened": true,
+    "objects": 67,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_broadleaf.blend",
+    "opened": true,
+    "objects": 33,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_deadwood.blend",
+    "opened": true,
+    "objects": 15,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_ground.blend",
+    "opened": true,
+    "objects": 45,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_meadow.blend",
+    "opened": true,
+    "objects": 18,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_pine.blend",
+    "opened": true,
+    "objects": 21,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Vegetation/Blend/VEG_under.blend",
+    "opened": true,
+    "objects": 21,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/WallKits/WallKits.blend",
+    "opened": true,
+    "objects": 55,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/PigPen/KIT_PigPen.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend",
+    "opened": true,
+    "objects": 20,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ClosedEavesSurfaceCandidatesV1/ClosedEavesSurfaces_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ClosedEavesSurfaceCandidatesV1/IndependentReuse_2m4m.blend",
+    "opened": true,
+    "objects": 24,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/FiredClay2mV1/GenericReuse_2m4m.blend",
+    "opened": true,
+    "objects": 10,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/FiredClay2mV1/SharedFiredClayLibrary_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/SharedMineralMasonry_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/OakLime2mV1/GenericReuse_2m4m.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_ProceduralSources.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/GenericReuse_2m4m.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinGlassBakedReuse_2m4m.blend",
+    "opened": true,
+    "objects": 5,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_BakedSource.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_PeriodicProcedural.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/GenericReuse.blend",
+    "opened": true,
+    "objects": 11,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_LibraryCandidate.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_ProceduralSource.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/InteriorVistaV3/Stonebrook_InteriorVista_Candidate_V3.blend",
+    "opened": true,
+    "objects": 519,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/InteriorVistaV3/Stonebrook_InteriorVista_PreviewV3.blend",
+    "opened": true,
+    "objects": 523,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/InteriorVistaV3/Stonebrook_VistaAssets.blend",
+    "opened": true,
+    "objects": 519,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/InteriorVistaV4/Stonebrook_HorizonV4.blend",
+    "opened": true,
+    "objects": 564,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/KIT_Stonebrook.blend",
+    "opened": true,
+    "objects": 40,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV3/Fireplace_FiredClayV3.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/Fireplace_FiredClayV4.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Fireplace_SharedContractV2.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/SharedContract_LibraryReuse2m4m.blend",
+    "opened": true,
+    "objects": 16,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceV2/SM_Fireplace_Stonebrook_V2.blend",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FloorOakV1/WornOakFloorV5_BakedPreview.blend",
+    "opened": true,
+    "objects": 160,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FloorOakV1/WornOakFloorV5_Source.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/House439_SharedExterior_Source.blend",
+    "opened": true,
+    "objects": 322,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedGeometry_Source.blend",
+    "opened": true,
+    "objects": 322,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorGableRecessV1/InteriorRoof_GableRecess20mmCandidate.blend",
+    "opened": true,
+    "objects": 332,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PerimeterSkirtV1/PerimeterSkirtV1.blend",
+    "opened": true,
+    "objects": 1,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Inputs/PhotorealPropsV1_Input.blend",
+    "opened": true,
+    "objects": 208,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/PhotorealBarrelV1_Export.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/PhotorealBarrelV1_Source.blend",
+    "opened": true,
+    "objects": 216,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/Inputs/KIT_Stonebrook_Input.blend",
+    "opened": true,
+    "objects": 40,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/Inputs/V4_Source.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Export.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBasketV1/PhotorealBasketV1_Source.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/PhotorealBrokenBarrelV2_Source.blend",
+    "opened": true,
+    "objects": 33,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV3Study/portable.source.blend",
+    "opened": true,
+    "objects": 218,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV4Study/portable.source.blend",
+    "opened": true,
+    "objects": 269,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/V3_ExportIteration/PhotorealCandleV1_Export.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/V3_ExportIteration/PhotorealCandleV1_Source.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/V3_Finish/Inputs/KIT_Stonebrook_Input.blend",
+    "opened": true,
+    "objects": 40,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/V3_Finish/PhotorealCandleV1_LODs.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealCandleV1/V3_Finish/PhotorealCandleV1_Source.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/ExportIteration/PhotorealFeedSackV1_Export.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/ExportIteration/PhotorealFeedSackV1_Source.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/SourceCheckpoint/Inputs/KIT_Stonebrook_Input.blend",
+    "opened": true,
+    "objects": 40,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/SourceCheckpoint/Inputs/V2_Source.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealFeedSackV1/SourceCheckpoint/PhotorealFeedSackV1_Source.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Export.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Source.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
+    "opened": true,
+    "objects": 40,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/V3_Source.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Inputs/V4_Export.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/PhotorealPieV1_Export.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1/Inputs/Original_OakFurnitureV1.blend",
+    "opened": true,
+    "objects": 158,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1/PhotorealPropsV1.blend",
+    "opened": true,
+    "objects": 208,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1/PhotorealPropsV1_Export.blend",
+    "opened": true,
+    "objects": 50,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/ExportV12d_Run01/Source/RoofChimney_ArtistRepair_v12d.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/SavedCandidateV12d/RoofChimney_ArtistRepair_v12d.blend",
+    "opened": true,
+    "objects": 331,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealHouse440V1/SharedHouse440_GameV6.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealHouse440V1/SourceReference/FieldstoneNormalSourceV6.blend",
+    "opened": true,
+    "objects": 4,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealHouse440V1/SourceReference/HouseHighV11_Extract.blend",
+    "opened": true,
+    "objects": 123,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealWillowV1/WillowGameV6.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/SharedGroundV1/SharedGroundDonorV11.blend",
+    "opened": true,
+    "objects": 1,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/SharedGroundV1/SharedGroundGameV2.blend",
+    "opened": true,
+    "objects": 170,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/SharedGroundV1/SharedGroundMaterials.blend",
+    "opened": true,
+    "objects": 0,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/ThornBramble_SharedSourceV1.blend",
+    "opened": true,
+    "objects": 6,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/UnderfloorV1/UnderfloorV1.blend",
+    "opened": true,
+    "objects": 1,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Stonebrook440/KIT_Stonebrook440.blend",
+    "opened": true,
+    "objects": 63,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookExterior/KIT_StonebrookExterior.blend",
+    "opened": true,
+    "objects": 25,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookExterior/Refinements/House439ClosedEavesV1/Packet/Source/House439_ClosedEaves.blend",
+    "opened": true,
+    "objects": 948,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookFields/KIT_StonebrookFields.blend",
+    "opened": true,
+    "objects": 891,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookFields/PineRefinementV3/PineRefinementV3.blend",
+    "opened": true,
+    "objects": 8,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookFields/PineRefinementV3/Working/NeedleSprig_High.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookFields/PineRefinementV3/Working/Sapling_Source.blend",
+    "opened": true,
+    "objects": 2,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookRuins/KIT_StonebrookRuins.blend",
+    "opened": true,
+    "objects": 127,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookRuins/Working/MotherRemains_posed.blend",
+    "opened": true,
+    "objects": 3,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3/Tools/Checkpoints/IntegratedTrial.blend.snapshot",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3/Tools/Checkpoints/PreIntegrated.blend.snapshot",
+    "opened": true,
+    "objects": 9,
+    "packed_png_crc_errors": []
+  },
+  {
+    "file": "DinkRemasterUE/SourceAssets/Art/StonebrookFields/KIT_StonebrookFields.blend1",
+    "opened": true,
+    "objects": 891,
+    "packed_png_crc_errors": []
+  }
+]

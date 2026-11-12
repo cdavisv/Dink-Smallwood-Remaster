@@ -1,0 +1,9 @@
+# Exact shared material candidates
+
+These five additive parent definitions are proposals; the active registry and game Data are unchanged. The material-only packed library contains the seven exact frozen cottage shader graphs for comparison. Existing FieldstoneSeed2m and IronLead2m remain preservation targets. The five current opaque library graphs, including the three missing opaque registrations, match the frozen cottage graphs exactly, including all input/output defaults, links, selected node settings, packed image hashes and color spaces.
+
+REGISTRATION_PROPOSAL.json gives the five requested definitions and prior qualified descriptors where available. The photo coat/cut2048 profile is explicitly proposed at1024texels/m and requires source-policy/native-profile review. No downsampling, new noise or frozen source edits were performed.
+
+IndependentReuse_2m4m.blend and its rendered PNG exercise22independentpanels at2m and4m widths, including mortar/soot, wood, metal and roof coat/cut selectors. These are reusable shader fixtures, not game or glass-optics acceptance. EXTRACTION.json records each fixture and exact graph fingerprint. The material-only source has no cottage geometry. All36retained image records are packed and copied with relative paths; inactive historical graph inputs remain preserved. Nine additional canonical filename copies for the proposed glass/photo texture descriptors give45physicaltexturefiles with unchanged pixels.
+
+Tools/extract_exact_materials.py is the project-local extraction/provenance recipe and needs the frozen source packet plus the existing architectural library hydrated from Git LFS. That temporary existing-library hydration was read-only and is restored to its exact original pointer after comparison. Consumers can load the new material-only source and reuse scene directly. No native import/build or active registry edit is performed by this proposal.

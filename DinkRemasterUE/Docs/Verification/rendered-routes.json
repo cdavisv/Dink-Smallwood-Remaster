@@ -14,7 +14,7 @@
       "response": "[2026.11.08-00.41.38:002][742]dink.ScreenInfo = \"0\"\n"
     },
     {
-      "command": "py QA_NATIVE_CAMERA_OUTPUT='NativeCameraV3'; exec(open('/home/davisc/Work/DinkQA/read_native_camera.py').read())",
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='NativeCameraV3'; exec(open('<HOME>/Work/DinkQA/read_native_camera.py').read())",
       "response": "[2026.11.08-00.41.41:021][899]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
     },
     {

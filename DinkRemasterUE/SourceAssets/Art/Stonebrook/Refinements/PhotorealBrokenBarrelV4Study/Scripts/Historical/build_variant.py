@@ -3,7 +3,7 @@ import bpy,math,json,hashlib,struct,os,sys,traceback
 from pathlib import Path
 from mathutils import Vector,Matrix
 from mathutils.bvhtree import BVHTree
-Q=Path(__file__).resolve().parent;BASE=Path('/home/davisc/Work/DinkQA/PhotorealBrokenBarrelCurvatureV4');SRC=BASE/'PhotorealBrokenBarrelV4_CurvedSource.blend';PIN='b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26'
+Q=Path(__file__).resolve().parent;BASE=Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelCurvatureV4');SRC=BASE/'PhotorealBrokenBarrelV4_CurvedSource.blend';PIN='b2aaaab79a101534b1f440aafa4463b76fce3f954e399d732e46417199fd5a26'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def geometry(o):
  me=o.data;h=hashlib.sha256()

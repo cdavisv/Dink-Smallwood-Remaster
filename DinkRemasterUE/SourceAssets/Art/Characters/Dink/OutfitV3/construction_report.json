@@ -1,7 +1,7 @@
 {
   "stage": "SOURCE REVIEW ONLY; nofinalexport/import/manifest/ledger untilrootvisualgate",
-  "source": "/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend",
-  "source_sha256": "bd9cc7f98a087c2cfe1dbc82f196243381700d5bb1b87044a571c07577f7ea97",
+  "source": "<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/HandBindingV2/SK_Dink_Hands.blend",
+  "source_sha256": "8ac6ee43b15b0f2a96e74a0072b24556562ea6e0a9a76a5948fa7d1be01b9cf2",
   "rest_bones": 89,
   "protected_material_refs": [
     "MI_Dink_Skin",

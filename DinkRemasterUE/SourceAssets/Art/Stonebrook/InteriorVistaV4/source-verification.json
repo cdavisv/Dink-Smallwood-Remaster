@@ -1,9 +1,9 @@
 {
   "schema": "dink-vista-source-verification/2",
   "passed": true,
-  "base_scene_sha256": "19ac165b8bd7b0e0bd02db4543f9c288ce47ea1c4380759f01a5edf41d940f5c",
-  "composition_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
-  "composition_additions_sha256": "90b4fb33a648fdd8dc7deba8ea2a2e970c58f9853ff983bcffaaa689eaa0f5cb",
+  "base_scene_sha256": "536767a1cb571e7a45e0431083ed35eda39169bbe9ff20ee4d8a668149582889",
+  "composition_scene_sha256": "b97a7f6a6c7c4aa9e26be699d0c4f805f0cc5096318a1a45d98af5bd05a84109",
+  "composition_additions_sha256": "947d5851ec4727bf4be2276f5d24f5901180f64ca2946ee86e45dd2421ecd3a3",
   "existing_mesh_objects": 519,
   "existing_mesh_transform_geometry_uv_material_changes": [],
   "new_instances": [

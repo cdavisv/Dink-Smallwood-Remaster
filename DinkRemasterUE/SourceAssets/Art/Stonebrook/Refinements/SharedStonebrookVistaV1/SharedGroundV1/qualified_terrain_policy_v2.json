@@ -1,7 +1,7 @@
 {
   "status": "Only explicitlyauthorized terrain-class policyexceptions remain; NOT rawzeroerror guidepass",
-  "source_sha256": "9ea680849a3125a33ef9868bb72533a889a69dcace7cd4957724dd60298ebbcc",
-  "raw_guide_sha256": "e20ed284c04801af6b0ea272208817f1ea06e9f4cbc5e475e4d889e46ba5b2b8",
+  "source_sha256": "b1114b28f3490b7d5baa8b6eaedbbdae4fbf65fc064ecd70f137b6b8dc625259",
+  "raw_guide_sha256": "2b8f29cbe50de9e15b4f1125691cd63a6c1de7b7b9fff9378876a019c952b2d5",
   "raw_summary": {
     "assets": 142,
     "assets_passed": 14,
@@ -10,7 +10,7 @@
   },
   "expected_policy_error_count": 130,
   "unexpected_errors": 0,
-  "geometry_audit_sha256": "af765bc7640b2c940bbdb94d1b2903abdbe96bb9100169fb32b90c99d6e14b75",
+  "geometry_audit_sha256": "b21c580d07a065d1cb11a9e1a163686beb1290c33aa47cf5ee85d5a1e2c76ce4",
   "all_ground_solids_closed_positive_volume": true,
   "all_actual_top_normals_up": true,
   "exceptions": [

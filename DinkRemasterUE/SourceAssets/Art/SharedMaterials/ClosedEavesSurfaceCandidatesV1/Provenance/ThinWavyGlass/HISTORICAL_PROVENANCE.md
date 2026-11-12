@@ -1,0 +1,9 @@
+# Authored thin wavy glass
+
+Procedural material authored for this project. No third-party image or scan is used. The near-clear colour is an artistic tint, not measured optical transmittance. IOR 1.48; transmission weight 1; thin-wall surface. UV0 measures metres divided by two. Roughness is 0.06 + 0.055 times periodic noise at scale 65/metre; normal is baked from periodic noise at scale 12/metre, bump strength 0.6 and distance 0.0003 m.
+
+Four offset noise samples with smoothstep UV blends make the procedural boundary continuous. Source and baked graphs are distinct: the source cottage used world-position noise and volumetric absorption. This reusable thin-wall derivative replaces both explicitly; it is not an exact optical reproduction. Original pane geometry remains closed and approximately 12 mm deep. Applying a thin-surface game profile to that geometry requires a reviewed front/back policy and actual runtime verification before acceptance.
+
+Normal bake uses an equivalent opaque surface to avoid transmission reversing the baked normals. BC output uses Standard colour conversion; decoded linear tint is checked. BC is sRGB, normal/ORM are data. All maps are RGB16 PNG at 1024 pixels. Normal is OpenGL +Y, strength 1; game import must flip green. ORM contains AO=1, roughness, metallic=0. Source files are packed. Independent 2m/4m reuse render was inspected; it proves visible pattern transmission and broad reflected areas only. Fine waviness, mip seams, native optics and cottage appearance remain pending.
+
+Tools/bake_periodic.py reproduces the study bake from the historical authored graph; its diagnostic outputs use candidate names in PeriodicMaps. Tools/build_registered.py performs source registration from the packed study assets. Neither tool imports into Unreal or modifies the cottage.

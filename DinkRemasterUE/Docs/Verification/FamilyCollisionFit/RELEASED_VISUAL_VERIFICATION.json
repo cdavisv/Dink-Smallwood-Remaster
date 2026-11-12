@@ -1,0 +1,82 @@
+{
+  "scope": "Default-off source feature; synthetic native lifecycle acceptance only",
+  "public_base": "0b5b236",
+  "tested_owner_head": "575f43dda9b75923859f770fa6cdafbc9923d24e",
+  "code_sha256": {
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtFamilySubsystem.cpp": "cd17fa6680cb7a49499c5726f5159b21efa39285972362300c0c08f5100c2c21",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkFamilyCollisionFit.cpp": "fcde42f9571927701162a87407ea8141f27f16ef911624a23ebb89d390ac8d74",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtFamilySubsystem.h": "3aa32c14aba07bbef6ddc5be31f46730a4dba7331b356a0787da5b700061e2d5",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkPlaceholderActor.h": "938e11cd4cb9c782d219aadaab064cfefbe96f1f29ff13e2da3eb64da054ff41",
+    "DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkFamilyCollisionFit.h": "f88e28ea1711e50a53fa2f15fa6d424aad1c3bd7f07e46b0a28dcadbfc0a529f",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkGreyboxImporter.cpp": "62419cde66e05b21062b6adfb24189a9112ca691c33c22bfbc767adf18af9c48",
+    "DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/Tests/DinkRuntimeHardnessFitTest.inl": "847b5d9ce077f7b266dcb2a81abfbbc13af641fba45ae5a675a8356b2891dbe2"
+  },
+  "build_result": {
+    "local_path": "<HOME>/Work/DinkQA/ReleasedFamilyVisualOwnedBuild/Retry5/BUILD_RESULT.json",
+    "sha256": "ab32f05fc5a8ce9bd9919b6cde7007060b0b7737e3c7a243386afb2b99042d64",
+    "Editor": {
+      "exit_code": 0,
+      "seconds": 10.136123086005682,
+      "head": "575f43dda9b75923859f770fa6cdafbc9923d24e"
+    },
+    "Game": {
+      "exit_code": 0,
+      "seconds": 12.54889194399584,
+      "head": "575f43dda9b75923859f770fa6cdafbc9923d24e"
+    }
+  },
+  "focused_native": {
+    "owner_handle": 88706,
+    "native_exit": 0,
+    "exact_test": "Dink.Gameplay.Hardness.FittedLifecycle",
+    "state": "Success",
+    "report_sha256": "9815f655b750a9710399811a0aa315e8ddc17426f0a5c41b4beed5fc1255a9cb",
+    "report_local_path": "<HOME>/Work/DinkQA/ReleasedFamilyVisualFocusedPreparationV5/UserProof/Saved/Automation/released_visual_lifecycle/index.json",
+    "coordinate_receipt_sha256": "c8ceb38e81bbbb49dc86dde50fc267f316f581ca0d52ae11e51b5f442d5c62c4",
+    "coordinate_rows": 71,
+    "first_coordinate_divergence": -1,
+    "warning": "Intentional missing-mesh negative-control LoadObject warning /Game/DinkQA/ReleasedVisual_<GUID>/Missing.Missing"
+  },
+  "preserved_attempts": [
+    {
+      "attempt": "Editor23929",
+      "result": "fixture duplicate Package name compile error; renamed only owned fixture variable"
+    },
+    {
+      "attempt": "focused14903",
+      "result": "missing prehit body plus profile tamper restoration did not restore named profile"
+    },
+    {
+      "attempt": "focusedV2 16595",
+      "result": "profile epoch restored; only prehit body absent because direct active flag bypassed original slot reactivation"
+    },
+    {
+      "attempt": "focusedV3 87366",
+      "result": "registered sp_active restored slot; strict script-ground coordinate guard then exposed source-default seeding gap"
+    },
+    {
+      "attempt": "focusedV4 5456",
+      "result": "71 numeric rows measured missing explicit speed/default1/Dir2 drift; original source speed0 confirmed; no tolerance change"
+    },
+    {
+      "attempt": "focusedV5 88706",
+      "result": "actual InitPlacementSprite source defaults; exact1Success with intentional missing-mesh negative-control warning; 71 rows first divergence -1"
+    }
+  ],
+  "limits": [
+    "No active Data/asset/material registry changes; optional binding absent by default",
+    "No real broken-barrel mesh/LOD/TBN/material/native import validation",
+    "No rendered/RHI appearance or animation acceptance",
+    "No feature-enabled cook/package or full247/full85 successor proof",
+    "Prior baseline proofs remain their own source epochs; this focused run does not upgrade them"
+  ],
+  "preservation": "Public packaging/cooked-picture test/audio/Data remain byte-identical base0b5b236; no UE outputs/DLL/cache copied",
+  "delivery_source_checks": {
+    "portable_tests": 605,
+    "seconds": 9.578,
+    "passed": true,
+    "metadata_only_sources_passed": true,
+    "initial_skip_smudge_run": "605 tests; one FBX-pointer parse error; local tracked source fixture hydrated via git lfs checkout, then full rerun passed",
+    "seven_code_paths_byte_exact_tested_owner": true
+  }
+}

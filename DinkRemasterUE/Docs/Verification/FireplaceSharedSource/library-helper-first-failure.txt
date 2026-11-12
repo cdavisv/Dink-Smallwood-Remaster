@@ -1,0 +1,20 @@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+[ALSOFT] (EE) Failed to connect PipeWire event context (errno: 1)
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkFireplaceSharedSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Tools/build_library.py", line 19, in <module>
+    print(json.dumps(dict(output=str(a.out),materials=names,sha256=hashlib.sha256(a.out.read_bytes()).hexdigest())))
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 235, in dumps
+    return _default_encoder.encode(obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Material is not JSON serializable
+when serializing list item 0
+when serializing dict item 'materials'
+pa_write() failed while trying to wake up the mainloop: Operation not permitted

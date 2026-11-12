@@ -116,7 +116,7 @@
       "output": "[2026.11.08-08.27.00:001][399]LogPython: QA_VISUAL_READ skirt-north-pitch-35\n"
     },
     {
-      "command": "py exec(open('/home/davisc/Work/DinkQA/OwnerScreenExposure/read_skirt_geometry.py').read())",
+      "command": "py exec(open('<HOME>/Work/DinkQA/OwnerScreenExposure/read_skirt_geometry.py').read())",
       "output": "[2026.11.08-08.27.02:836][581]LogPython: QA_SKIRT_GEOMETRY_EXPORTED\n"
     }
   ]

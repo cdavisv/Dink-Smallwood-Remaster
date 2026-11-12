@@ -1,15 +1,15 @@
 {
-  "outer": "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+  "outer": "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
   "outer_sha256": "3914951878e9a7e91fa3483b4968824a796481512ec98f8ff93f8a5b1971b1be",
-  "inner": "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/inner.py",
+  "inner": "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/inner.py",
   "inner_sha256": "7c2caadca685b03fb3e77fa431d0df90967942a3e6b635e44c880a26fc5d0d04",
-  "script": "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
+  "script": "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
   "script_sha256": "d60ff6a9fe9f5ae6759fceba3cfd902e3cbaacad50d669d9b6903feafd95444f",
   "capability_command": [
-    "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
-    "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+    "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
     "-run=pythonscript",
-    "-script=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
+    "-script=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
     "-nullrhi",
     "-unattended",
     "-nosplash",
@@ -18,8 +18,8 @@
     "-NoCompile",
     "-stdout",
     "-FullStdOutLogOutput",
-    "-abslog=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_Unreal.log"
+    "-abslog=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_Unreal.log"
   ],
-  "HOME": "unchanged /home/davisc",
+  "HOME": "unchanged <HOME>",
   "scope": "Saved-only environment epoch; no source/modules/imports"
 }

@@ -2,11 +2,11 @@
 """Real-input feed chore in an existing private game; never calls story procedures or sets facts."""
 import argparse,json,re,sys,time,subprocess
 from pathlib import Path
-sys.path.insert(0,'/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
+sys.path.insert(0,'<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
 import playtest_desktop as d
 import playtest_interactions as q
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,required=True);args=p.parse_args();args.out.mkdir(parents=True,exist_ok=True)
-d.use_private_display(':189','/tmp/dink-qa-tools/xauthority');d.focus(d.window());log=Path('/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/FeedSackReviewed/Render/game.log')
+d.use_private_display(':189','/tmp/dink-qa-tools/xauthority');d.focus(d.window());log=Path('<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/FeedSackReviewed/Render/game.log')
 assert int(d.window()['pid'])==282208
 player=d.player(log);assert player['screen']==407 and 250<player['map'][0]<350 and 220<player['map'][1]<280,player
 inventory=q.command_output('dink.Inventory',log);assert re.search(r'item-pig \(armed\)',inventory),inventory
@@ -14,7 +14,7 @@ fact=q.command_output('dink.Fact pig_story',log);assert re.search(r'pig_story = 
 before=q.story(log);offset=log.stat().st_size
 burst=args.out/'feeding-burst'
 if (burst/'ready.json').exists():(burst/'ready.json').unlink()
-process=subprocess.Popen([sys.executable,str(Path('/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/Playtest/capture_private_burst.py')),'--out',str(burst)])
+process=subprocess.Popen([sys.executable,str(Path('<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/Playtest/capture_private_burst.py')),'--out',str(burst)])
 for _ in range(100):
  if (burst/'ready.json').exists():break
  if process.poll() is not None:raise SystemExit('Private burst reader exited before F')

@@ -1,0 +1,20 @@
+{
+  "scope": "read-only inspection preparation; patch NOT applied, no build/editor/native run",
+  "target_baseline_head": "7fc61d34fda84c02f2b7f73fe825e204a7cda198",
+  "source_commit": "92119ce860b0d3863cf64fded5988d5d50a19e19",
+  "files": [
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h"
+  ],
+  "header_added_lines": 4,
+  "cpp_added_lines": 157,
+  "current_header_sha256": "1bb92bcc7118859ca53b98641028bbd46cd2b34cd7949f498a79a4d7a95e23ad",
+  "patch_sha256": "76216d59eb1f8197a86ff6b446b942d929d1cfe289b1d6ccccf3118036b992a9",
+  "cpp_sha256": "4e3fb1f0d21829719609573d16e21cc81350ea1a22ac622c92c2d155b42a71aa",
+  "git_apply_check_pass": true,
+  "required_capability": "inspect_static_mesh_geometry",
+  "schema": "dink-static-mesh-geometry/1",
+  "required_null_and_scratch_unit_test": "Dink.Art.StaticMeshGeometryInspection",
+  "compile_and_load_gate_pending": true,
+  "do_not_copy_foreign_DLL_or_entire_old_header": true
+}

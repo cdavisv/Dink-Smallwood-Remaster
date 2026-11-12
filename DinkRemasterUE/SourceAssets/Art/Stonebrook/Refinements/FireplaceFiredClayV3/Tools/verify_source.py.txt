@@ -1,0 +1,51 @@
+import bpy,json,hashlib,os,math
+from pathlib import Path
+from mathutils import Vector
+from mathutils.bvhtree import BVHTree
+D=Path(__file__).resolve().parent;SRC=D.parent/'SuccessorV2/Fireplace_SharedContractV2.blend';P=D/'Fireplace_FiredClayV3.blend'
+def snap(path):
+ bpy.ops.wm.open_mainfile(filepath=str(path));r={}
+ for o in bpy.data.objects:
+  if o.type!='MESH':continue
+  m=o.data;r[o.name]=dict(p=[tuple(v.co)for v in m.vertices],edges=[tuple(e.vertices)for e in m.edges],faces=[tuple(p.vertices)for p in m.polygons],normals=[tuple(n.vector)for n in m.corner_normals],smooth=[p.use_smooth for p in m.polygons],matrix=[tuple(x)for x in o.matrix_world],uv=[[tuple(q.uv)for q in u.data]for u in m.uv_layers],materials=[x.name if x else None for x in m.materials],min=[min(v.co[i]for v in m.vertices)for i in range(3)],max=[max(v.co[i]for v in m.vertices)for i in range(3)])
+  if o.name.startswith('SM_Fireplace'):
+   r[o.name]['oak_iron_faces']=[tuple(tuple(m.vertices[i].co)for i in p.vertices)for p in m.polygons if p.material_index in [3,4]]
+ return r
+old=snap(SRC);new=snap(P);assert set(old)==set(new);checks={}
+for name,a in old.items():
+ b=new[name]
+ if name.startswith('SM_Fireplace'):checks[name]=dict(TRS_exact=a['matrix']==b['matrix'],oak_iron_face_positions_winding_exact=a['oak_iron_faces']==b['oak_iron_faces'])
+ elif name.startswith('SM_Chimney'):checks[name]={k:a[k]==b[k]for k in a if k!='materials'}
+ else:checks[name]={k:a[k]==b[k]for k in a}
+assert all(all(c.values())for c in checks.values())
+name='SM_Fireplace_Stonebrook_V3Contact_LOD0';bb=max(abs(new[name][k][i]-old[name][k][i])for k in ['min','max']for i in range(3));assert bb<1e-6,bb
+m=bpy.data.objects[name].data;m.calc_loop_triangles();v=[v.co for v in m.vertices];polys=[tuple(p.vertices)for p in m.polygons if p.material_index in [0,1]];tree=BVHTree.FromPolygons(v,polys,all_triangles=True)
+# Aperture plane checks exclude retained grate/logs; solid brick opening remains clear.
+hits=[]
+for x in [-.585,-.4,0,.4,.585]:
+ for z in [.183,.4,.8,1.1,1.235]:
+  hit=tree.ray_cast(Vector((x,-.60,z)),Vector((0,1,0)),.285)
+  if hit[0]is not None:hits.append(dict(x=x,z=z,hit=list(hit[0])))
+assert not hits,hits
+# Flue interior, upward rays through original source's throat/collar region.
+flue=[]
+for x in [-.25,0,.25]:
+ for y in [.02,.115,.22]:
+  hit=tree.ray_cast(Vector((x,y,1.50)),Vector((0,0,1)),1.29)
+  if hit[0]is not None:flue.append(dict(x=x,y=y,hit=list(hit[0])))
+assert not flue,flue
+uvrows=[];packed={}
+for o in bpy.data.objects:
+ if o.type!='MESH'or not o.name.startswith(('SM_Fireplace','SM_Chimney')):continue
+ me=o.data;me.calc_loop_triangles();me.calc_tangents(uvmap='UV0');u=me.uv_layers['UV0'].data;zero=0
+ for t in me.loop_triangles:
+  a,b,c=[u[i].uv for i in t.loops]
+  if abs((b-a).cross(c-a))<1e-12:zero+=1
+ uvrows.append(dict(name=o.name,triangles=len(me.loop_triangles),UV_zero_area_triangles=zero,zero_T_corners=sum(l.tangent.length<1e-8 for l in me.loops),finite=all(math.isfinite(x)for l in me.loops for x in l.tangent)));assert zero==0
+ for mat in me.materials:
+  for n in mat.node_tree.nodes:
+   if n.type=='TEX_IMAGE':assert n.image and n.image.packed_file;packed[n.image.name]=dict(size=list(n.image.size),colorspace=n.image.colorspace_settings.name)
+metrics=json.load(open(D/'SOURCE_GEOMETRY_METRICS.json'));cells=metrics['actual_brick_cells'];nominal=sum(all(abs(a-b)<1e-6 for a,b in zip(c['size'],[.220,.105,.065]))for c in cells);tags={}
+for c in cells:tags[c['tag']]=tags.get(c['tag'],0)+1
+report=dict(status='PASS_SOURCE_REBUILT_BRICK_WITH_KNOWN_CHIMNEY_FRAME_QUALIFICATION',checks=checks,objects=len(new),protected_UCX=312,roof8=8,LOD0_outer_bbox_max_delta_m=bb,opening_plane_clear_25_samples=True,original_flue_clear_9_upward_samples=True,UV_frames=uvrows,active_packed_images=packed,brick_geometry=dict(nominal_m=[.220,.105,.065],mortar_m=.008,course_m=.073,cells=len(cells),exact_unrotated_nominal_cells=nominal,cell_tags=tags,cut_and_rotated_cells='Perimeter closures, pavers, thinlining, soldierlintel/returns recorded individually inSOURCE_GEOMETRY_METRICS.json',bevel_m=[.0016,.0036]),source_sha256=hashlib.sha256(P.read_bytes()).hexdigest(),baseline_sha256=hashlib.sha256(SRC.read_bytes()).hexdigest())
+json.dump(report,open(D/'SOURCE_PRESERVATION_AND_OPENINGS.json','w'),indent=2);print('SOURCE_AND_OPENINGS_PASS',bb,flush=True);os._exit(0)

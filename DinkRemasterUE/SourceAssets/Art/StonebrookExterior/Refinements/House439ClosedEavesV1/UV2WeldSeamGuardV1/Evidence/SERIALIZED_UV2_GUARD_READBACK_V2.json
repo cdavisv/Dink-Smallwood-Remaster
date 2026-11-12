@@ -1,0 +1,52 @@
+{
+  "scope": "Independent serialized3UV QA proof; no project/native admission",
+  "profile": "house439_uv2_weld_seam_guard_v1",
+  "predecessor_fbx_sha256": "4d8c8f1eda4e37beed0dc1586bc3a72e1937660d990330d4473f8ec389c854e3",
+  "prototype_fbx_sha256": "e2560be3e346428bdebaa41fc29a58aeee6d37b8cd3620cfe43eacda7f1d892d",
+  "original_geometry_reference_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "corners": 547878,
+  "unique_uv_tuples": 137348,
+  "guard_uv2_name": "UV2_WeldSeamGuard",
+  "guard_grid_integer_exact": true,
+  "same_tuple_same_guard_and_distinct_tuple_distinct_guard": true,
+  "minimum_distinct_guard_separation": 1.0,
+  "native_weld_uv_epsilon": 0.0009765625,
+  "all_original_geometry_UV01_N_RGBA_material_smoothing_winding_and_six_UCX_arrays_exact": true,
+  "base_T_B_bitidentical": false,
+  "base_T_B_reevaluation": [
+    {
+      "array": "Binormals",
+      "components_differ": 19,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 5.2110210415488964e-11
+    },
+    {
+      "array": "Tangents",
+      "components_differ": 32,
+      "max_scalar_difference": 5.960464477539063e-08,
+      "max_angle_vs22a2_degrees": 2.4148604983127436e-06
+    }
+  ],
+  "max_normal_vs_frozen_degrees": 0.032971584922621484,
+  "max_tangent_vs_frozen_degrees": 0.032271629017634314,
+  "max_binormal_vs_frozen_degrees": 0.027681424194480407,
+  "bitangent_sign_changes": 0,
+  "base_zero_vector_counts": {
+    "N": 0,
+    "T": 0,
+    "B": 0
+  },
+  "original_point05_normal_tangent_gate_unchanged": true,
+  "all_model_transforms_and_axis_units_exact": true,
+  "base_layer0_bindings": {
+    "LayerElementNormal": 0,
+    "LayerElementBinormal": 0,
+    "LayerElementTangent": 0,
+    "LayerElementSmoothing": 0,
+    "LayerElementColor": 0,
+    "LayerElementUV": 0,
+    "LayerElementMaterial": 0
+  },
+  "legacy_two_uv_project_validator_unchanged": true,
+  "native_acceptance": false
+}

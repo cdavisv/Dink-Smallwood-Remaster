@@ -3,7 +3,7 @@ CHCP 437 >NUL
 setlocal enabledelayedexpansion
 
 set GLADOS_HOST=glados@glados
-set GLADOS_REPO=/home/glados/RTDink
+set GLADOS_REPO=<HOME>/RTDink
 set FLATPAK_ID=com.rtsoft.DinkSmallwoodHD
 set SCRIPT_DIR=%~dp0
 

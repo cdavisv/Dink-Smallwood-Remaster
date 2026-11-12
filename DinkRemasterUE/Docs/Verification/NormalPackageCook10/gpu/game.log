@@ -15,7 +15,7 @@ LogCsvProfiler: Display: Metadata set : ltoenabled="0"
 LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : mergedmodules="0"
 LogCsvProfiler: Display: Metadata set : compacttset="0"
-LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -sdlvideodriver=x11 -windowed -ResX=1280 -ResY=720 -nosplash -unattended -nosound -norhithread -forcerhibypass -ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0 -ExecCmds="t.MaxFPS 45" -DinkQARunId=4442a72b-9176-4309-a287-00c5f31d730a -nowrite -notraceserver -UserDir=/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User -abslog=/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log""
+LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -sdlvideodriver=x11 -windowed -ResX=1280 -ResY=720 -nosplash -unattended -nosound -norhithread -forcerhibypass -ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0 -ExecCmds="t.MaxFPS 45" -DinkQARunId=4442a72b-9176-4309-a287-00c5f31d730a -nowrite -notraceserver -UserDir=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User -abslog=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log""
 LogCsvProfiler: Display: Metadata set : loginid="b8b91a92d10e4078b778d30ea0314c5c-000003e8"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogPakFile: Initializing PakPlatformFile
@@ -38,7 +38,7 @@ LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -8:00, Platform
 LogInit: Session CrashGUID >====================================================
          Session CrashGUID >   UECC-Linux-01A1C5680FF17CE69DDD941102107E7C
          Session CrashGUID >====================================================
-LogConfig: No local boot hotfix file found at: [/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
+LogConfig: No local boot hotfix file found at: [<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User/Saved/PersistentDownloadDir/HotfixForNextBoot.txt]
 LogInit: Running DelayedAutoRegister Phase IniSystemReady
 LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
 LogPluginManager: Mounting Engine plugin Paper2D
@@ -272,8 +272,8 @@ LogInit: Architecture: x64
 LogInit: Compiled with Clang: 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE5+Release-5.8
-LogInit: Command Line:  /Game/Dink/_Generated/Maps/L_Greybox_World -sdlvideodriver=x11 -windowed -ResX=1280 -ResY=720 -nosplash -unattended -nosound -norhithread -forcerhibypass -ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0 -ExecCmds="t.MaxFPS 45" -DinkQARunId=4442a72b-9176-4309-a287-00c5f31d730a -nowrite -notraceserver -UserDir=/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User -abslog=/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log
-LogInit: Base Directory: /home/davisc/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Stage/Linux/DinkRemaster/Binaries/Linux/
+LogInit: Command Line:  /Game/Dink/_Generated/Maps/L_Greybox_World -sdlvideodriver=x11 -windowed -ResX=1280 -ResY=720 -nosplash -unattended -nosound -norhithread -forcerhibypass -ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0 -ExecCmds="t.MaxFPS 45" -DinkQARunId=4442a72b-9176-4309-a287-00c5f31d730a -nowrite -notraceserver -UserDir=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User -abslog=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log
+LogInit: Base Directory: <HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Stage/Linux/DinkRemaster/Binaries/Linux/
 LogInit: Allocator: Binned2
 LogInit: Installed Engine Build: 0
 LogInit: This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
@@ -629,7 +629,7 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2026.11.10-12.21.33:959][  0]LogInit:  - this process' id (pid) is 2, parent process' id (ppid) is 1
 [2026.11.10-12.21.33:959][  0]LogInit:  - we are not running under debugger
 [2026.11.10-12.21.33:959][  0]LogInit:  - machine network name is 'omarchy'
-[2026.11.10-12.21.33:959][  0]LogInit:  - user name is 'davisc' (davisc)
+[2026.11.10-12.21.33:959][  0]LogInit:  - user name is '<USER>' (<USER>)
 [2026.11.10-12.21.33:959][  0]LogInit:  - we're logged in locally
 [2026.11.10-12.21.33:959][  0]LogInit:  - we're running with rendering
 [2026.11.10-12.21.33:959][  0]LogInit:  - CPU: AuthenticAMD 'AMD Ryzen 5 7600X 6-Core Processor' (signature: 0xA60F12)
@@ -1112,7 +1112,7 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2026.11.10-12.21.34:044][  0]LogRHI: Display: Bindless will use VK_EXT_descriptor_buffer extension.
 [2026.11.10-12.21.34:044][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.
 [2026.11.10-12.21.34:044][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.
-[2026.11.10-12.21.34:069][  0]LogVulkanRHI: Display: FVulkanPipelineStateCacheManager: Binary pipeline cache '/home/davisc/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User/Saved/VulkanPSO.cache.1002.73bf' not found.
+[2026.11.10-12.21.34:069][  0]LogVulkanRHI: Display: FVulkanPipelineStateCacheManager: Binary pipeline cache '<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User/Saved/VulkanPSO.cache.1002.73bf' not found.
 [2026.11.10-12.21.34:069][  0]LogVulkanRHI: Display: Vulkan Async Compute has been ENABLED.
 [2026.11.10-12.21.34:069][  0]LogVulkanRHI: Display: Wave Operations have been ENABLED (wave size: min=32 max=64).
 [2026.11.10-12.21.34:069][  0]LogVulkanRHI: Integrated GPU (iGPU): false

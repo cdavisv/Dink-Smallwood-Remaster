@@ -1,0 +1,15 @@
+{
+  "status": "SOURCE_GRAPH_PORT_PREPARED_NATIVE_UNEXECUTED",
+  "graphs": 6,
+  "source_graphs": "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/OPAQUE_GRAPH_SOURCE.json",
+  "adapter": "Scripts/RoofNative/house439_opaque_material.py",
+  "actual_graph_validation": "PASS all six",
+  "combined_offline_tests": 15,
+  "normal_qualification": "Native typed normal samples are decoded before variant interpolation and normalization; actual compression/graph/shader/native GPU correspondence remains unproven.",
+  "ambient_occlusion": "Source shaders do not connect ORM.R; port leaves native AO at default1 to preserve source contract.",
+  "remaining": [
+    "Actual API/saved graph readback",
+    "Native source texture/compression checks",
+    "Matched cottage views and actual game approval"
+  ]
+}

@@ -53,7 +53,7 @@
   ],
   "focused_native_reports_read": {
     "posture_ownership_v4": {
-      "report": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/posture_ownership_v4/index.json",
+      "report": "<HOME>/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/posture_ownership_v4/index.json",
       "sha256": "47da7deee69c988365441c14bf9276dbf6cf780d6c3cf819c84261b444c93889",
       "actual_states": {
         "Success": 2
@@ -62,7 +62,7 @@
       "warning_tests": 0
     },
     "solid_posture_lifecycle_v4": {
-      "report": "/home/davisc/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/solid_posture_lifecycle_v4/index.json",
+      "report": "<HOME>/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/solid_posture_lifecycle_v4/index.json",
       "sha256": "3d3fc35c6410256ccd241ce937985203c10e0f7e05f25da106d5e4ef2479f361",
       "actual_states": {
         "Success": 1

@@ -1,9 +1,9 @@
 Setting up bundled DotNet SDK
-Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll DinkRemasterEditor Linux Development -Project=/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject -WaitMutex -NoHotReloadFromIDE
-Log file: /home/davisc/.config/Epic/UnrealBuildTool/Log.txt
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll DinkRemasterEditor Linux Development -Project=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject -WaitMutex -NoHotReloadFromIDE
+Log file: <HOME>/.config/Epic/UnrealBuildTool/Log.txt
 Determining max actions to execute in parallel (6 physical cores, 12 logical cores)
   Executing up to 6 processes, one per physical core
-Using 'git status' to determine working set for adaptive non-unity build (/home/davisc/Work/DinkPhotorealArtIntegration).
+Using 'git status' to determine working set for adaptive non-unity build (<HOME>/Work/DinkPhotorealArtIntegration).
 UbaStorageServer - FileMapping backing: memfd
 UbaServer - Listening on 0.0.0.0:1345
 Invalidating makefile for DinkRemasterEditor (source file added)
@@ -11,13 +11,13 @@ UHT compiled-in object format Default
 UHT processed DinkRemasterEditor in 5.1658921 seconds (6 generated files written)
 Building DinkRemasterEditor...
 ===== Toolchain Information =====
-Using ISPC compiler (/home/davisc/UnrealEngine/UE_5.8.4/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
+Using ISPC compiler (<HOME>/UnrealEngine/UE_5.8.4/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
   Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20240919, LLVM 18.1.6)
-Using Clang compiler 20.1.8 (/home/davisc/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
-  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: /home/davisc/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
-Using Clang archiver (/home/davisc/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
+Using Clang compiler 20.1.8 (<HOME>/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
+  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: <HOME>/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
+Using Clang archiver (<HOME>/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
   LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
-Using toolchain located at '/home/davisc/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
+Using toolchain located at '<HOME>/UnrealEngine/UE_5.8.4/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
 Using bundled libc++ standard C++ library.
 Compressing debug files
 ===== End Toolchain Information =====
@@ -45,8 +45,8 @@ Using Unreal Build Accelerator local executor to run 18 action(s)
 [18/18] Link libUnrealEditor-DinkParity.so
 
 Total time in Unreal Build Accelerator local executor: 17.29 seconds
-Output binary: /home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor
+Output binary: <HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor
 
 Result: Succeeded
 Total execution time: 24.52 seconds
-Trace written to file /home/davisc/.config/Epic/UnrealBuildTool/Trace.uba with size 8.5kb
+Trace written to file <HOME>/.config/Epic/UnrealBuildTool/Trace.uba with size 8.5kb

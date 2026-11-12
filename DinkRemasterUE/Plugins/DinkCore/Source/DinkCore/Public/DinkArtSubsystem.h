@@ -23,6 +23,10 @@ class DINKCORE_API UDinkArtSubsystem : public UWorldSubsystem
 {
 	GENERATED_BODY()
 public:
+    /** Hardness migration waits for the actual art application and excludes
+     * screens whose legacy collision this subsystem replaced. Read-only state. */
+    bool HasCompletedInitialApplication() const { return bInitialApplicationComplete; }
+    bool UsesAuthoredCollision(int32 Screen) const { return AuthoredCollisionScreens.Contains(Screen); }
 	/** Applies an optional authored player mesh after the pawn has loaded its animation rig. */
 	bool ApplyPlayer(class USkeletalMeshComponent& Component);
     /** Cosmetic only: original script sequence and175ms damage scheduling remain authoritative. */
@@ -36,6 +40,8 @@ protected:
 	virtual bool DoesSupportWorldType(EWorldType::Type WorldType) const override;
 private:
 	friend struct FDinkArtNavigationTestAccess;
+    bool bInitialApplicationComplete = false;
+    TSet<int32> AuthoredCollisionScreens;
     friend struct FDinkArtLightTestAccess;
     friend struct FDinkExteriorPortalTestAccess;
     void LoadExteriorCameraRules();

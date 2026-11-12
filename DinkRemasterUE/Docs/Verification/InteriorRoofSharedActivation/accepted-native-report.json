@@ -5,7 +5,7 @@
   "scope": "Trial23 only; no production bindings/Data/camera aliases/world/GPU/cook admission",
   "stored_tangent_Y_handedness": "NOT_PROVEN",
   "module_proof": {
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": [
       {
         "inode": 3965142,
         "stat_device": 50,
@@ -43,7 +43,7 @@
         "sha256": "7f582e2f23ed81044606a77d5dfb6cad349dcdbb5b44a7eb1c26f83bca31ea7c"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": [
       {
         "inode": 4570825,
         "stat_device": 50,
@@ -81,7 +81,7 @@
         "sha256": "4c34976338e3b628e766e4f8b5be2f21b83ce18171a64ea151f1d29bb6781df5"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": [
       {
         "inode": 4570845,
         "stat_device": 50,
@@ -119,7 +119,7 @@
         "sha256": "b334b9efe1acec6725a38aa8c41a6bb8316d258ecca6158b5bfa81662b7d1180"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": [
       {
         "inode": 4514928,
         "stat_device": 50,
@@ -157,7 +157,7 @@
         "sha256": "b267bf90501868c5f90b3768a6134447a194cea6a8be776f9f4208703f06ba1b"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": [
       {
         "inode": 4570831,
         "stat_device": 50,
@@ -195,7 +195,7 @@
         "sha256": "d525d1ed1ec380f181995b5c4d2f6d3219747c9631b9b2c3aa10b8f978585092"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": [
       {
         "inode": 4570837,
         "stat_device": 50,
@@ -233,7 +233,7 @@
         "sha256": "fafd3cc71626885e52e814e536b8f010cfeecf9889d6e4e51fbb21f31b0f025c"
       }
     ],
-    "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": [
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": [
       {
         "inode": 3965105,
         "stat_device": 50,
@@ -271,7 +271,7 @@
         "sha256": "6365ba6a23742e4daca10eaf59c8348e56aadd1fa34d9a12848f5cada7fb6181"
       }
     ],
-    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Linux/libUnrealEditor-ProceduralMeshComponent.so": [
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Linux/libUnrealEditor-ProceduralMeshComponent.so": [
       {
         "inode": 494841,
         "stat_device": 50,
@@ -315,15 +315,15 @@
     "phase": "fresh23_saved_readback",
     "contract_digest": "4af0f0727d8f9a9f5a60e350aa6318bd557c1c7accb09b6a56a941739b9bda52",
     "packages": {
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_BC.uasset": "084d57bc6030e4686edd9e6acdb4a249046a9aede878cc5618b9299f31f46aaf",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_N_GL.uasset": "1601591736fc259d0e1419fec69566b6c74ee78e02b72bae20cfb36fe5f6b480",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_ORM.uasset": "441278952ccd6770ba24803599f995d3fe7baa9ab05f7161fa48dd7eb5e0ac29",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_BC.uasset": "34c0dab03a8ce11b099f2e501139cd634e9dfa26eb60276184fb64ea6ae2219e",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_N_GL.uasset": "fe703122a3a49d3af2651a36cf4b66e06ce127b1516e3e84938dbbd3c8c897de",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_ORM.uasset": "f715cfb768b54573b4387c683abd98e7f2c0fd1db232621c2448c785446e8275",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_BC.uasset": "8fd888b93d01cefd5e232d8a4bfd7f8c5fb609dae2c7a6ec0e3d8931484c3602",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_N_GL.uasset": "af24cb9a65b0bb08eb01796b0915c78c7ba01dcafc0dc6ea16d5bd5ef09d0470",
-      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_ORM.uasset": "e01db4e30069694955afa0ec218730be916521f8d06b71abf090f2a2b391c6df",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_BC.uasset": "fe18563d53c2390cdaeb31ce4826f59e8f8e67556964b6f2ec2a4acacea34873",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_N_GL.uasset": "9e56ff9c774ee13d26ac5be1f67f3fd1111ddd4dca854f7d819d9442ec92601d",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_ORM.uasset": "d26b6f0ad0184aec000f75ef71768d68477ac94f680e2bd3aa90ccdf76264582",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_BC.uasset": "a5ce325b49697b44cb3b33018fc9d1adae22a18679f1c589ad6e76dc62d6c630",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_N_GL.uasset": "530684d6a906199e15a62f595f30d01e9db1798bb27f69ac60ba1514411bf85a",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_ORM.uasset": "c1e496586d3a5e29faddbc83cf6c78b252bff8d38cc799f14e3fb2f03dcea662",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_BC.uasset": "787cb2dfe75770958c97db4c8f86164ff23918b3dd60b072a736f3a7ad890faf",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_N_GL.uasset": "fc206a07f98a05ae4697c5eb8b331aeb2e3eac939d0b16cf7633b6d6bee931cc",
+      "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_ORM.uasset": "02f228b9636f528e8250b540bf28f7b8042efd90fe5c4771310c84ab6e48cc0e",
       "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.uasset": "641e84ee13527605f4405ce89c69ca48953a120241c4482ee0549a7251741f6d",
       "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m_CameraMasked.uasset": "58cc09ab9dd734aa816df91675795253e273441c2b7905bb0c4dc2aba8660742",
       "Content/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.uasset": "360e3381e0aac0bd549cb4b2db4a73a96c7544ef3c7afde12a98301296641511",
@@ -4576,7 +4576,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx"
               }
             ],
             "LODs": [
@@ -4584,15 +4584,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx",
-              "sha256": "8823d9b55719d670be3d70b5209c333e58fc35652d1af18011cfb705cd044d4e"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_EN_01.fbx",
+              "sha256": "2024af4638f3de297e68866d7f3bcb49745721dd747971279cfb66c29d525868"
             }
           ],
           "settings": {
@@ -8431,7 +8431,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx"
               }
             ],
             "LODs": [
@@ -8439,15 +8439,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx",
-              "sha256": "0b35b102a4dcf51a5f28188337e9cd12a1bbcae0d373256530ae6ffcc35123a0"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_ES_01.fbx",
+              "sha256": "ac3a237f77103c74770a13cd88ec52cf20374836b8667bca8420d01b767d307f"
             }
           ],
           "settings": {
@@ -8736,7 +8736,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx"
               }
             ],
             "LODs": [
@@ -8744,15 +8744,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
-              "sha256": "93468600b8ac9a0e0b9a8ad7a9184634b2919c34f98af6dfc5674e3174562641"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+              "sha256": "90c188b64dfbc50787d908e9402146b1cb286c7ccceaea7fea36909feebc8571"
             }
           ],
           "settings": {
@@ -9041,7 +9041,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx"
               }
             ],
             "LODs": [
@@ -9049,15 +9049,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
-              "sha256": "76892690915fc36da76e4cd942163e38cc45a82652d97456cf6115854a6460c1"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+              "sha256": "c1590395bf7cb12c778dbfcd80937b7059e9d6c7eac438d070b51eae43be09c0"
             }
           ],
           "settings": {
@@ -9346,7 +9346,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx"
               }
             ],
             "LODs": [
@@ -9354,15 +9354,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
-              "sha256": "a18c185fcd6c9c4d9592fd1732aa2f617bbd3f6266edc220753f9f983bf8333b"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+              "sha256": "bb0ebac521bcc298a307f8fa45a0c9f0b495d1f0d50c624c8157de41a0458d91"
             }
           ],
           "settings": {
@@ -9651,7 +9651,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx"
               }
             ],
             "LODs": [
@@ -9659,15 +9659,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
-              "sha256": "ad5700626e11ae1f264bbded919b7e0efc578ad498b4120be6f9477f2069f356"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+              "sha256": "5881aa3dcd01f1bad792ee8afe086ba36eeec6b6faf83d732eb420f782987438"
             }
           ],
           "settings": {
@@ -17330,7 +17330,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx"
               }
             ],
             "LODs": [
@@ -17338,15 +17338,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx",
-              "sha256": "9991ce10083f14b1a5f84cea6806d14206792becb3b803584962a0434ef2c61a"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WN_01.fbx",
+              "sha256": "9f0549f07a8d56fdeb77444318a992bab6a79ec3ea93fa76551002f26035ac34"
             }
           ],
           "settings": {
@@ -20933,7 +20933,7 @@
               {
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx"
               }
             ],
             "LODs": [
@@ -20941,15 +20941,15 @@
                 "LOD": 0,
                 "stored": "../../../../../SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx",
                 "relative": true,
-                "resolved": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx"
+                "resolved": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx"
               }
             ]
           },
           "LODs": [
             {
               "LOD": 0,
-              "source_file": "/home/davisc/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx",
-              "sha256": "fedea101d1dbef12c3bc32f5c7f6977ad05f750e56c230eb21566e71a03a1f8c"
+              "source_file": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/FBX/SM_IndoorRoof_WS_01.fbx",
+              "sha256": "12a8a1c249d7ae97f4f3578e6fad0363ac2fc0e1e53a5e104572577b83eca89a"
             }
           ],
           "settings": {

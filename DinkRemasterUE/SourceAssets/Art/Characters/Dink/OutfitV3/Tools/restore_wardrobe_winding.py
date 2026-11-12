@@ -1,7 +1,7 @@
 import bpy,bmesh,json
 from pathlib import Path
 from mathutils import Vector
-ART=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 def facekey(mesh,p):
  uv=mesh.uv_layers[0]
  return tuple(sorted(tuple(round(x,6) for x in mesh.vertices[mesh.loops[i].vertex_index].co)+tuple(round(x,8) for x in uv.data[i].uv) for i in p.loop_indices))

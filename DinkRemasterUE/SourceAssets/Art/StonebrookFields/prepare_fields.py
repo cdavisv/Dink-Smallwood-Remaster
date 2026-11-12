@@ -12,7 +12,7 @@ from shapely.geometry import box,Polygon,Point
 from shapely.ops import unary_union,transform
 from PIL import Image,ImageDraw
 ART=Path(__file__).resolve().parent
-ROOT=ART.parents[2] if (ART.parents[2]/'ImportData').exists() else Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE')
+ROOT=ART.parents[2] if (ART.parents[2]/'ImportData').exists() else Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE')
 screens=json.loads((ROOT/'ImportData/screens.json').read_text())['screens']
 placements=json.loads((ROOT/'ImportData/placements.json').read_text())['placements']
 coll=json.loads((ROOT/'ImportData/collision.json').read_text())['screens']

@@ -1,0 +1,1682 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-09T06:18:28Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_House_Stonebrook_TwoStorey_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/Stonebrook440/SM_House_Stonebrook_TwoStorey_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/Stonebrook440/SM_House_Stonebrook_TwoStorey_01.fbx",
+        "glb": "Game/Dink/Buildings/Stonebrook440/SM_House_Stonebrook_TwoStorey_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_House_Stonebrook_TwoStorey_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images"
+      },
+      "tris": {
+        "LOD0": 143396,
+        "LOD1": 71697,
+        "LOD2": 35847
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -663.304,
+          -538.846,
+          0.0
+        ],
+        "blender_max_cm": [
+          663.304,
+          538.846,
+          1161.0
+        ],
+        "size_cm": [
+          1326.608,
+          1077.692,
+          1161.0
+        ],
+        "unreal_min_cm": [
+          -663.304,
+          -538.846,
+          0.0
+        ],
+        "unreal_max_cm": [
+          663.304,
+          538.846,
+          1161.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_House_Stonebrook_TwoStorey_01_LOD0_01",
+        "UCX_SM_House_Stonebrook_TwoStorey_01_LOD0_02",
+        "UCX_SM_House_Stonebrook_TwoStorey_01_LOD0_03",
+        "UCX_SM_House_Stonebrook_TwoStorey_01_LOD0_04",
+        "UCX_SM_House_Stonebrook_TwoStorey_01_LOD0_05"
+      ],
+      "material_slots": [
+        "MI_S440_Rubble",
+        "MI_Stonebrook_Limewash",
+        "MI_S440_WeatheredOak",
+        "MI_Stonebrook_WroughtIron",
+        "MI_S440_LeadedGlass",
+        "MI_S440_Thatch"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Rubble_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Rubble_BC.png.png",
+          "role": "BC",
+          "size": [
+            2048,
+            4096
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Rubble_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Rubble_N.png.png",
+          "role": "N",
+          "size": [
+            2048,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Rubble_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Rubble_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Limewash_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_Limewash_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_Limewash_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_Limewash_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_Limewash_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_Limewash_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_WeatheredOak_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_WeatheredOak_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_WeatheredOak_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_WeatheredOak_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_WeatheredOak_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_WeatheredOak_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_WroughtIron_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_WroughtIron_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Stonebrook_WroughtIron_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_Stonebrook_WroughtIron_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_LeadedGlass_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_LeadedGlass_BC.png.png",
+          "role": "BC",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_LeadedGlass_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_LeadedGlass_N.png.png",
+          "role": "N",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_LeadedGlass_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_LeadedGlass_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Thatch_BC.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Thatch_BC.png.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Thatch_N.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Thatch_N.png.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Thatch_ORM.png",
+          "file": "Game/Dink/Buildings/Stonebrook440/Textures/T_S440_Thatch_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 22,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Axe_Felling_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Axe_Felling_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Axe_Felling_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Axe_Felling_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Axe_Felling_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; felling axe lying on its cheek"
+      },
+      "tris": {
+        "LOD0": 1248,
+        "LOD1": 624,
+        "LOD2": 312
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -43.747,
+          -11.963,
+          0.0
+        ],
+        "blender_max_cm": [
+          43.747,
+          11.963,
+          3.51
+        ],
+        "size_cm": [
+          87.494,
+          23.926,
+          3.51
+        ],
+        "unreal_min_cm": [
+          -43.747,
+          -11.963,
+          0.0
+        ],
+        "unreal_max_cm": [
+          43.747,
+          11.963,
+          3.51
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Axe_Felling_01_LOD0_01",
+        "UCX_SM_Axe_Felling_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_S440_Axe_Felling_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Axe_Felling_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Axe_Felling_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Axe_Felling_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Axe_Felling_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Axe_Felling_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Axe_Felling_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_ChoppingBlock_Axe_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_ChoppingBlock_Axe_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_ChoppingBlock_Axe_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_ChoppingBlock_Axe_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_ChoppingBlock_Axe_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; elm chopping round with an axe bitten into it"
+      },
+      "tris": {
+        "LOD0": 1364,
+        "LOD1": 682,
+        "LOD2": 340
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -45.898,
+          -28.96,
+          0.0
+        ],
+        "blender_max_cm": [
+          45.898,
+          28.96,
+          84.593
+        ],
+        "size_cm": [
+          91.796,
+          57.92,
+          84.593
+        ],
+        "unreal_min_cm": [
+          -45.898,
+          -28.96,
+          0.0
+        ],
+        "unreal_max_cm": [
+          45.898,
+          28.96,
+          84.593
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_ChoppingBlock_Axe_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_ChoppingBlock_Axe_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_ChoppingBlock_Axe_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_ChoppingBlock_Axe_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_ChoppingBlock_Axe_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_ChoppingBlock_Axe_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_ChoppingBlock_Axe_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_ChoppingBlock_Axe_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Hatchet_01",
+      "class": "prop_small",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Hatchet_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Hatchet_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Hatchet_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Hatchet_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; hatchet lying on its cheek"
+      },
+      "tris": {
+        "LOD0": 1248,
+        "LOD1": 624,
+        "LOD2": 312
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -20.35,
+          -8.463,
+          0.0
+        ],
+        "blender_max_cm": [
+          20.35,
+          8.463,
+          3.51
+        ],
+        "size_cm": [
+          40.7,
+          16.926,
+          3.51
+        ],
+        "unreal_min_cm": [
+          -20.35,
+          -8.463,
+          0.0
+        ],
+        "unreal_max_cm": [
+          20.35,
+          8.463,
+          3.51
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Hatchet_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_Hatchet_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Hatchet_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hatchet_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Hatchet_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hatchet_01_N.png.png",
+          "role": "N",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Hatchet_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hatchet_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_HayBale_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_HayBale_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_HayBale_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_HayBale_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_HayBale_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; twine-tied small square straw bale"
+      },
+      "tris": {
+        "LOD0": 12912,
+        "LOD1": 7996,
+        "LOD2": 3998
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -55.926,
+          -34.646,
+          0.0
+        ],
+        "blender_max_cm": [
+          55.926,
+          34.646,
+          46.069
+        ],
+        "size_cm": [
+          111.851,
+          69.292,
+          46.069
+        ],
+        "unreal_min_cm": [
+          -55.926,
+          -34.646,
+          0.0
+        ],
+        "unreal_max_cm": [
+          55.926,
+          34.646,
+          46.069
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_HayBale_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_HayBale_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_HayBale_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_HayBale_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_HayBale_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_HayBale_01_N.png.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_HayBale_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_HayBale_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Hoe_Ash_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Hoe_Ash_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Hoe_Ash_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Hoe_Ash_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Hoe_Ash_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; swan-neck draw hoe"
+      },
+      "tris": {
+        "LOD0": 1316,
+        "LOD1": 658,
+        "LOD2": 328
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -8.25,
+          -9.126,
+          0.0
+        ],
+        "blender_max_cm": [
+          8.25,
+          9.126,
+          143.5
+        ],
+        "size_cm": [
+          16.5,
+          18.253,
+          143.5
+        ],
+        "unreal_min_cm": [
+          -8.25,
+          -9.126,
+          0.0
+        ],
+        "unreal_max_cm": [
+          8.25,
+          9.126,
+          143.5
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Hoe_Ash_01_LOD0_01",
+        "UCX_SM_Hoe_Ash_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_S440_Hoe_Ash_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Hoe_Ash_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hoe_Ash_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Hoe_Ash_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hoe_Ash_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Hoe_Ash_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Hoe_Ash_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Pitchfork_Ash_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Pitchfork_Ash_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Pitchfork_Ash_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Pitchfork_Ash_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Pitchfork_Ash_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; two-tine hay fork, forged iron, polished ash shaft"
+      },
+      "tris": {
+        "LOD0": 1316,
+        "LOD1": 658,
+        "LOD2": 328
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -9.433,
+          -3.802,
+          0.0
+        ],
+        "blender_max_cm": [
+          9.433,
+          3.802,
+          165.561
+        ],
+        "size_cm": [
+          18.866,
+          7.603,
+          165.561
+        ],
+        "unreal_min_cm": [
+          -9.433,
+          -3.802,
+          0.0
+        ],
+        "unreal_max_cm": [
+          9.433,
+          3.802,
+          165.561
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Pitchfork_Ash_01_LOD0_01",
+        "UCX_SM_Pitchfork_Ash_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_S440_Pitchfork_Ash_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Pitchfork_Ash_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Pitchfork_Ash_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Pitchfork_Ash_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Pitchfork_Ash_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Pitchfork_Ash_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Pitchfork_Ash_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Scythe_Ash_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Scythe_Ash_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Scythe_Ash_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Scythe_Ash_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Scythe_Ash_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; scythe: curved ash snath, two nibs, forged blade"
+      },
+      "tris": {
+        "LOD0": 2776,
+        "LOD1": 1388,
+        "LOD2": 694
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -40.352,
+          -12.124,
+          0.0
+        ],
+        "blender_max_cm": [
+          40.352,
+          12.124,
+          155.688
+        ],
+        "size_cm": [
+          80.704,
+          24.248,
+          155.688
+        ],
+        "unreal_min_cm": [
+          -40.352,
+          -12.124,
+          0.0
+        ],
+        "unreal_max_cm": [
+          40.352,
+          12.124,
+          155.688
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Scythe_Ash_01_LOD0_01",
+        "UCX_SM_Scythe_Ash_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_S440_Scythe_Ash_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Scythe_Ash_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Scythe_Ash_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Scythe_Ash_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Scythe_Ash_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Scythe_Ash_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Scythe_Ash_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Shovel_Ash_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Shovel_Ash_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Shovel_Ash_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Shovel_Ash_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Shovel_Ash_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; D-handle shovel with rolled tread"
+      },
+      "tris": {
+        "LOD0": 2036,
+        "LOD1": 1018,
+        "LOD2": 508
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -13.869,
+          -3.238,
+          0.0
+        ],
+        "blender_max_cm": [
+          13.869,
+          3.238,
+          107.533
+        ],
+        "size_cm": [
+          27.738,
+          6.475,
+          107.533
+        ],
+        "unreal_min_cm": [
+          -13.869,
+          -3.238,
+          0.0
+        ],
+        "unreal_max_cm": [
+          13.869,
+          3.238,
+          107.533
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Shovel_Ash_01_LOD0_01",
+        "UCX_SM_Shovel_Ash_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_S440_Shovel_Ash_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Shovel_Ash_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Shovel_Ash_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Shovel_Ash_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Shovel_Ash_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Shovel_Ash_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Shovel_Ash_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Tongs_Iron_01",
+      "class": "prop_small",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Tongs_Iron_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Tongs_Iron_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Tongs_Iron_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Tongs_Iron_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; riveted hearth/smithing tongs"
+      },
+      "tris": {
+        "LOD0": 488,
+        "LOD1": 244,
+        "LOD2": 122
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -22.351,
+          -3.419,
+          0.0
+        ],
+        "blender_max_cm": [
+          22.351,
+          3.419,
+          2.2
+        ],
+        "size_cm": [
+          44.701,
+          6.838,
+          2.2
+        ],
+        "unreal_min_cm": [
+          -22.351,
+          -3.419,
+          0.0
+        ],
+        "unreal_max_cm": [
+          22.351,
+          3.419,
+          2.2
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Tongs_Iron_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_Tongs_Iron_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Tongs_Iron_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Tongs_Iron_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Tongs_Iron_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Tongs_Iron_01_N.png.png",
+          "role": "N",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Tongs_Iron_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Tongs_Iron_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            512,
+            512
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_WaterTrough_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_WaterTrough_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_WaterTrough_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_WaterTrough_Oak_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_WaterTrough_Oak_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; iron-banded oak plank trough with water"
+      },
+      "tris": {
+        "LOD0": 2752,
+        "LOD1": 1376,
+        "LOD2": 688
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -75.0,
+          -33.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          75.0,
+          33.0,
+          50.5
+        ],
+        "size_cm": [
+          150.0,
+          66.0,
+          50.5
+        ],
+        "unreal_min_cm": [
+          -75.0,
+          -33.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          75.0,
+          33.0,
+          50.5
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_WaterTrough_Oak_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_WaterTrough_Oak_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_WaterTrough_Oak_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_WaterTrough_Oak_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_WaterTrough_Oak_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_WaterTrough_Oak_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_WaterTrough_Oak_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_WaterTrough_Oak_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Wheelbarrow_Oak_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Wheelbarrow_Oak_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Wheelbarrow_Oak_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Wheelbarrow_Oak_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Wheelbarrow_Oak_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; wooden wheelbarrow, iron-tyred spoked wheel"
+      },
+      "tris": {
+        "LOD0": 4172,
+        "LOD1": 2086,
+        "LOD2": 1042
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -32.654,
+          -84.663,
+          0.0
+        ],
+        "blender_max_cm": [
+          32.654,
+          84.663,
+          76.983
+        ],
+        "size_cm": [
+          65.308,
+          169.327,
+          76.983
+        ],
+        "unreal_min_cm": [
+          -32.654,
+          -84.663,
+          0.0
+        ],
+        "unreal_max_cm": [
+          32.654,
+          84.663,
+          76.983
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Wheelbarrow_Oak_01_LOD0_01",
+        "UCX_SM_Wheelbarrow_Oak_01_LOD0_02",
+        "UCX_SM_Wheelbarrow_Oak_01_LOD0_03"
+      ],
+      "material_slots": [
+        "MI_S440_Wheelbarrow_Oak_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Wheelbarrow_Oak_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Wheelbarrow_Oak_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Wheelbarrow_Oak_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Wheelbarrow_Oak_01_N.png.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Wheelbarrow_Oak_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Wheelbarrow_Oak_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Woodpile_Split_01",
+      "class": "prop",
+      "kind": "static",
+      "content_path": "/Game/Dink/Props/Stonebrook440/SM_Woodpile_Split_01",
+      "files": {
+        "fbx": "Game/Dink/Props/Stonebrook440/SM_Woodpile_Split_01.fbx",
+        "glb": "Game/Dink/Props/Stonebrook440/SM_Woodpile_Split_01.glb"
+      },
+      "source": {
+        "blend": "Stonebrook440/KIT_Stonebrook440.blend",
+        "sha256": "25682aa1897333179ac77e65180dddf86fec47e60ad1ec3e2c82adbdc7a8c36f",
+        "collection": "SM_Woodpile_Split_01",
+        "note": "Original deterministic Blender geometry; build_440.py seed 440; procedural numpy/Cycles-baked textures; no third-party meshes or images; stacked split firewood on bearers between stakes"
+      },
+      "tris": {
+        "LOD0": 4008,
+        "LOD1": 2004,
+        "LOD2": 1002
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -110.2,
+          -23.75,
+          0.0
+        ],
+        "blender_max_cm": [
+          110.2,
+          23.75,
+          112.0
+        ],
+        "size_cm": [
+          220.4,
+          47.5,
+          112.0
+        ],
+        "unreal_min_cm": [
+          -110.2,
+          -23.75,
+          0.0
+        ],
+        "unreal_max_cm": [
+          110.2,
+          23.75,
+          112.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Woodpile_Split_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_S440_Woodpile_Split_01"
+      ],
+      "textures": [
+        {
+          "name": "T_S440_Woodpile_Split_01_BC.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Woodpile_Split_01_BC.png.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_S440_Woodpile_Split_01_N.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Woodpile_Split_01_N.png.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_S440_Woodpile_Split_01_ORM.png",
+          "file": "Game/Dink/Props/Stonebrook440/Textures/T_S440_Woodpile_Split_01_ORM.png.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 3,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

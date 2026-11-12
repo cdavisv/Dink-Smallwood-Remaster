@@ -1,3 +1,4 @@
+#include "Misc/ScopeExit.h"
 // Dink.Gameplay.Probe.Stonebrook: a scripted playthrough of Stonebrook in PIE on the generated greybox,
 // from a new game, using only what a player can do: walk (teleport stands in for walking), talk (the E
 // key's TryTalk), attack (the F key's PlayerAttack), touch (standing on a sprite), arm an item (the
@@ -48,6 +49,12 @@
 #include "Tests/AutomationEditorCommon.h"
 #endif
 #include "DinkProbeHold.h"
+#include "DinkProbeLoadOracle.h"
+#include "DinkProbeContactRoute.h"
+#include "DinkArtFamilySubsystem.h"
+#include "DinkProbeLoadTransformDiagnostic.h"
+#include "Kismet/GameplayStatics.h"
+#include "Misc/Parse.h"
 
 // The probe is its own module (DinkProbe) so it can be compiled into a Development game target and run in a packaged
 // build (Plugins/DinkParity/Docs/packaged_probe.md). Same flags as DinkTestHelpers.h's, which stays in DinkParity (editor-only).
@@ -131,6 +138,10 @@ namespace DinkProbeTest
 	/** What the player keeps between frames (the probe's own memory, not game state). */
 	struct FProbeState
 	{
+		// Test-only bounded pre-death route evidence; never enters the gameplay event queue.
+		TArray<FString> Ch6RouteRows;
+		int32 Ch6RouteNext = 0;
+		bool bCh6RouteFrozen = false;
 		/** One punch per swing (game ms). */
 		double NextPunchMs = 0.0;
 		/** Game time of Dink's last walking step, and the end of the cast animation (sp_nocontrol). */
@@ -194,6 +205,8 @@ namespace DinkProbeTest
 		double PaceMarginSec = 0.0;
 		/** With no safe cell at all he walks to the reachable cell farthest from the threats instead of standing (cornered, he was touched to death). */
 		bool bFlee = false;
+		/** Ch6 only: static walkability plus exact current script-touch exclusion. */
+		bool bContactSafeFlee = false;
 		/** Dink keeps inside this rectangle of engine pixels (cells outside it are walls for him), and prefers (OpenWeight) and strikes only from cells with room to run. */
 		bool bArena = false;
 		FIntRect Arena = FIntRect(0, 0, 640, 400);
@@ -1058,8 +1071,23 @@ namespace DinkProbeTest
 			const double Now = S->GetNowMs();
 			const double Dt = P->LastWalkMs < 0.0 ? 17.0 : FMath::Clamp(Now - P->LastWalkMs, 0.0, 100.0);
 			P->LastWalkMs = Now;
+			FString Route = TEXT("entry");
+			FString RouteDetail;
+			const bool bRecordRoute = Screen == 680 && Opt.Pull != 0 && !P->bCh6RouteFrozen;
+			ON_SCOPE_EXIT
+			{
+				if (bRecordRoute)
+				{
+					const FDinkSprite& Actual = D->GetDink();
+					const FString Row = FString::Printf(TEXT("ms=%.17g dt=%.17g route=%s life=%d pull=%d actual=%.17g,%.17g charge=%d nocontrol=%d hold=%.17g casts=%d weapon=%s magic=%s %s"), Now, Dt, *Route, Fact(TEXT("life")), Opt.Pull, Actual.X, Actual.Y, Fact(TEXT("magic_level")), Actual.GetProp(TEXT("nocontrol")), P->HoldUntilMs, P->Casts, *D->GetInventory()->GetArmedItem().ToString(), *D->GetInventory()->GetArmedMagic().ToString(), *RouteDetail);
+					if (P->Ch6RouteRows.Num() < 4096) { P->Ch6RouteRows.Add(Row); }
+					else { P->Ch6RouteRows[P->Ch6RouteNext] = Row; P->Ch6RouteNext = (P->Ch6RouteNext + 1) % 4096; }
+					P->bCh6RouteFrozen = Fact(TEXT("life")) <= 0;
+				}
+			};
 			if (Now < P->HoldUntilMs)
 			{
+				Route = TEXT("hold");
 				return;
 			}
 			BuildGrid(Screen);
@@ -1345,6 +1373,7 @@ namespace DinkProbeTest
 				if (Goal == INDEX_NONE || DistDink[I] < Best)
 				{
 					Goal = I;
+					Route = TEXT("strike");
 					Best = DistDink[I];
 					StrikeDir = Dir;
 					bFist = bByFist;
@@ -1371,6 +1400,7 @@ namespace DinkProbeTest
 			}
 			if (Goal == INDEX_NONE)
 			{
+				Route = TEXT("safe-search");
 				// Keep away: the safe spot the farthest from every chaser (and not far to walk to).
 				Best = -1e9;
 				for (int32 I = 0; I < Cols * Rows; ++I)
@@ -1396,15 +1426,48 @@ namespace DinkProbeTest
 					}
 				}
 			}
+			std::vector<DinkProbeContactRoute::Rect> ContactBoxes;
+			bool bContactFallback = false;
+			const DinkProbeContactRoute::Grid ContactGrid{Cols,Rows,Cell,20,0};
 			if (Goal == INDEX_NONE && Opt.bFlee)
 			{
+				Route = TEXT("flee-search");
 				// Nothing is safe by the clock: the reachable cell with the most room round it (the walk graph without the threats' zones).
 				TArray<double> DistAll;
-				WalkDistances(DinkCell, 0.0, DistAll, &Parent);
+				if (Opt.bContactSafeFlee)
+				{
+					bContactFallback = true;Route += TEXT("/contact-safe");
+					const auto* ContactFamilies = G->GetWorld() ? G->GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>() : nullptr;
+					if (!ContactFamilies || ContactFamilies->HasCollisionFitPolicyError()) { Route += TEXT("/unsupported-policy");return; }
+					const int32 Margin = 2 + FMath::CeilToInt32(CapsulePx(Screen,Dk.X,Dk.Y));
+					for (const auto& Pair : D->GetSprites())
+					{
+						const FDinkSprite& Other = Pair.Value;
+						// Same positive-damage LiveSprites population: no HP/nohit/script/aggro filter.
+						if (!DinkProbeContactRoute::DamageContact(Pair.Key,UDinkDirector::HandleNoSprite,Other.bActive,Other.bText,Other.Screen,Screen,Other.GetProp(TEXT("touch_damage")))) continue;
+						const AActor* OtherActor = Other.Actor.Get();
+						const auto* OriginComponent = OtherActor ? OtherActor->FindComponentByClass<UDinkOriginComponent>() : nullptr;
+						// UsesAuthoredGeometry also selects fitted candidates. Public requested-policy
+						// checks conservatively refuse even an unregistered requested fit; no physics queries.
+						if ((OtherActor && OtherActor->ActorHasTag(TEXT("DinkAuthoredArt"))) || ContactFamilies->IsCollisionFitRequested(Other.Origin) ||
+							(OriginComponent && ContactFamilies->IsCollisionFitRequested(OriginComponent->OriginId)))
+						{ Route += TEXT("/unsupported-authored-touch");RouteDetail=FString::Printf(TEXT("handle=%d"),Pair.Key);return; }
+						int32 L,Tp,R,B;
+						if (!G->GetHardbox(Other,L,Tp,R,B)) continue; // production legacy touch skips it too
+						if (L>R || Tp>B) { Route += TEXT("/invalid-touch-box");return; }
+						ContactBoxes.push_back(DinkProbeContactRoute::TouchRect(L,Tp,R,B,Margin));
+					}
+					std::vector<unsigned char> StaticFree(P->Free.GetData(),P->Free.GetData()+P->Free.Num());
+					std::vector<double> ContactDist;std::vector<int> ContactParent;
+					DinkProbeContactRoute::Distances(ContactGrid,StaticFree,DinkCell,{Dk.X,Dk.Y},ContactBoxes,ContactDist,ContactParent);
+					DistAll.Append(ContactDist.data(),static_cast<int32>(ContactDist.size()));
+					Parent.Reset();Parent.Append(ContactParent.data(),static_cast<int32>(ContactParent.size()));
+				}
+				else WalkDistances(DinkCell, 0.0, DistAll, &Parent);
 				Best = -1e9;
 				for (int32 I = 0; I < Cols * Rows; ++I)
 				{
-					if (DistAll[I] < 0.0)
+					if (DistAll[I] < 0.0 || (bContactFallback && !DinkProbeContactRoute::PointClear(ContactGrid.Centre(I),ContactBoxes)))
 					{
 						continue;
 					}
@@ -1424,6 +1487,7 @@ namespace DinkProbeTest
 			}
 			if (Goal == INDEX_NONE)
 			{
+				Route += TEXT("/no-goal");
 				return; // cornered: stand
 			}
 			TArray<int32> Path;
@@ -1438,6 +1502,11 @@ namespace DinkProbeTest
 			if (Path.Num() == 0)
 			{
 				Path.Add(Goal);
+			}
+			if (bContactFallback)
+			{
+				const std::vector<int> ContactPath(Path.GetData(),Path.GetData()+Path.Num());
+				if (!DinkProbeContactRoute::RouteSafe(ContactGrid,{Dk.X,Dk.Y},ContactPath,ContactBoxes)) { Route += TEXT("/unsafe-parent");return; }
 			}
 			double Budget = WalkPxPerMs * Dt;
 			double X = Dk.X, Y = Dk.Y;
@@ -1459,10 +1528,19 @@ namespace DinkProbeTest
 					break;
 				}
 			}
+			if (bContactFallback && !DinkProbeContactRoute::EdgeSafe({Dk.X,Dk.Y},{X,Y},ContactBoxes)) { Route += TEXT("/unsafe-paced-step");return; }
+			if (bRecordRoute) { RouteDetail += FString::Printf(TEXT("target=%d hostile_count=%d threat_count=%d budget=%.17g "), Tg.Handle, NumChasers, Th.Num(), WalkPxPerMs * Dt); }
+			if (bRecordRoute) RouteDetail += FString::Printf(TEXT("selected_goal=%d selected_path_count=%d selected_next=%d selected_strike=%d contact_boxes=%d "),Goal,Path.Num(),Path[0],StrikeDir,static_cast<int32>(ContactBoxes.size()));
 			if (FMath::Abs(X - Dk.X) > 0.01 || FMath::Abs(Y - Dk.Y) > 0.01)
 			{
-				GB->GotoScreen(Screen, X - 20.0, Y);
+				const double BeforeX = D->GetDink().X, BeforeY = D->GetDink().Y;
+				const bool bGotoResult = GB->GotoScreen(Screen, X - 20.0, Y);
 				G->SyncDinkFromActor();
+				if (bRecordRoute)
+				{
+					RouteDetail += FString::Printf(TEXT("before=%.17g,%.17g logical_requested=%.17g,%.17g api_requested_map=%.17g,%.17g goto=%d after=%.17g,%.17g goal=%d path_count=%d next=%d strike=%d fist=%d mismatch=%d threats="), BeforeX, BeforeY, X, Y, X-20.0, Y, bGotoResult, D->GetDink().X, D->GetDink().Y, Goal, Path.Num(), Path[0], StrikeDir, bFist, FMath::Abs(D->GetDink().X-X)>3.0 || FMath::Abs(D->GetDink().Y-Y)>3.0);
+					for (const FThreat& T : Th) { const FDinkSprite* V = D->FindSprite(T.Handle); RouteDetail += FString::Printf(TEXT("[%d xy=%.17g,%.17g box=%d,%d,%d,%d neutral=%d future=%d brain=%d target=%d hp=%d]"), T.Handle,T.X,T.Y,T.L,T.T,T.R,T.B,T.bNeutral,T.bFuture,V?V->GetProp(TEXT("brain")):0,V?V->GetProp(TEXT("target")):0,V?V->GetProp(TEXT("hitpoints")):0); }
+				}
 				if (FMath::Abs(D->GetDink().X - X) > 3.0 || FMath::Abs(D->GetDink().Y - Y) > 3.0)
 				{
 					P->Free[CellAt(X, Y)] = 0; // the capsule did not fit: not walkable
@@ -1480,6 +1558,7 @@ namespace DinkProbeTest
 			}
 			if (StrikeDir == 0 || FMath::Abs(Dk2.X - GoalC.X) > 4.0 || FMath::Abs(Dk2.Y - GoalC.Y) > 4.0)
 			{
+				Route += TEXT("/not-at-strike");
 				return;
 			}
 			Face(Screen, Dk2.X, Dk2.Y, StrikeDir);
@@ -1487,6 +1566,7 @@ namespace DinkProbeTest
 			{
 				if (Now >= P->NextPunchMs && ArmFists())
 				{
+					Route += TEXT("/punch-called");
 					G->PlayerAttack();
 					P->NextPunchMs = Now + 450.0;
 					P->HoldUntilMs = Now + 175.0;
@@ -1494,9 +1574,11 @@ namespace DinkProbeTest
 			}
 			else if (G->PlayerCastMagic())
 			{
+				Route += TEXT("/cast-true");
 				++P->Casts;
 				P->HoldUntilMs = Now + 150.0; // the cast animation holds him (item-fb.c sp_nocontrol)
 			}
+			else { Route += TEXT("/cast-false"); }
 		}
 		// ---- The melee duel (the goblins of SCR_680, Mog, the knights): one hostile monster, fists, a dance of reach boxes ----
 
@@ -3176,6 +3258,147 @@ namespace DinkProbeTest
 		return C;
 	}
 
+
+    // The original load restarts scripts synchronously; never compare their old
+    // handles/states as persistent playerInfo. Unknown restart effects fail closed.
+    bool CheckOriginalLoad(FAutomationTestBase& Test,UDinkSaveGame& Saved,UDinkSaveSubsystem& Saves,
+        APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubsystem& Greybox,int32 EventStart,const DinkProbeLoadDiagnostic::FBoundary& BeforeLoad)
+    {
+        auto* G=Story.GetGameplay();auto* D=Story.GetDirector();
+        const auto AfterLoad=DinkProbeLoadDiagnostic::Capture(Pawn,Story,Greybox);
+        UDinkSaveGame* Actual=Saves.CaptureSnapshot(&Pawn,D->GetDink().Screen);
+        if(!Test.TestNotNull(TEXT("actual post-load save capture"),Actual))return false;
+        const auto Expected=DinkProbeLoadOracle::Narrative(Saved);
+        if(!Test.TestTrue(TEXT("actual saved narrative JSON exists"),Expected.IsValid()))return false;
+        if(!Test.TestTrue(TEXT("load projection boundary has no advancing frame/world tick"),
+            BeforeLoad.Frame==AfterLoad.Frame&&BeforeLoad.WorldSeconds==AfterLoad.WorldSeconds))return false;
+        if(!Test.TestTrue(TEXT("load preserves qualified root class/attachment/socket/absolute/registration"),
+            BeforeLoad.PawnClass==AfterLoad.PawnClass&&BeforeLoad.RootClass==AfterLoad.RootClass&&
+            BeforeLoad.Parent==AfterLoad.Parent&&BeforeLoad.Socket==AfterLoad.Socket&&BeforeLoad.Registered==AfterLoad.Registered&&
+            BeforeLoad.AbsoluteLocation==AfterLoad.AbsoluteLocation&&BeforeLoad.AbsoluteRotation==AfterLoad.AbsoluteRotation&&
+            BeforeLoad.AbsoluteScale==AfterLoad.AbsoluteScale))return false;
+        TArray<uint8> SavedBytesBefore,SavedBytesAfter;
+        if(!Test.TestTrue(TEXT("serialize untouched loaded save before reference"),UGameplayStatics::SaveGameToMemory(&Saved,SavedBytesBefore)))return false;
+        FTransform Applied;FString ProjectionReason;
+        if(!Test.TestTrue(TEXT("exact same-class/root stock transform reference qualified"),
+            DinkProbeLoadDiagnostic::StockProjection(Pawn,BeforeLoad,Saved.PlayerTransform,Applied,ProjectionReason)))
+        {Test.AddError(ProjectionReason);return false;}
+        Test.AddInfo(TEXT("load transform reference qualified: exact preload seed, registered same-class root, no controller/BeginPlay, stock setter success"));
+        auto* AppliedExpected=DuplicateObject<UDinkSaveGame>(&Saved,GetTransientPackage());
+        AppliedExpected->PlayerTransform=Applied;
+        const FString ProjectionPath=DinkProbeLoadDiagnostic::RecordQualifiedProjection(BeforeLoad,Saved.PlayerTransform,Applied,Actual->PlayerTransform);
+        if(!Test.TestFalse(TEXT("qualified projection receipt saved"),ProjectionPath.IsEmpty()))return false;
+        Test.AddInfo(TEXT("qualified load projection evidence: ")+ProjectionPath);
+        const auto Differences=DinkProbeLoadOracle::PersistentDifferences(*AppliedExpected,*Actual);
+        if(!Test.TestTrue(TEXT("serialize loaded save after detached reference"),UGameplayStatics::SaveGameToMemory(&Saved,SavedBytesAfter))||
+           !Test.TestTrue(TEXT("saved bytes unchanged by reference projection"),SavedBytesBefore==SavedBytesAfter))return false;
+        for(const auto& Difference:Differences)Test.AddError(Difference);
+        if(!Differences.IsEmpty())
+        {
+            const FString Path=DinkProbeLoadDiagnostic::Write(Saved,*Actual,Pawn,Story,Greybox,BeforeLoad,AfterLoad,EventStart);
+            if(Path.IsEmpty())Test.AddError(TEXT("cannot save exact load transform diagnostic"));else Test.AddInfo(TEXT("exact load transform evidence: ")+Path);
+            return false;
+        }
+        const auto* Physical=Greybox.FindScreenAt(Pawn.GetActorLocation());
+        if(!Test.TestTrue(TEXT("loaded physical/cache/director/player_map agree with saved screen"),
+            Physical&&Greybox.GetCurrentScreen()==Physical&&Physical->ScreenNumber==Saved.CurrentScreen&&
+            D->GetDink().Screen==Saved.CurrentScreen&&Story.GetFacts()->GetFact(TEXT("player_map"))==Saved.CurrentScreen&&
+            !G->IsHardnessLoading()))return false;
+        const int32 SavedNext=Expected->GetIntegerField(TEXT("nextInstanceId"));
+        TSet<int32> OldIds;
+        for(const auto& Value:Expected->GetArrayField(TEXT("instances")))OldIds.Add(Value->AsObject()->GetIntegerField(TEXT("id")));
+        TArray<DinkProbeLoadOracle::FProcedureStart> Starts;
+        TArray<DinkProbeLoadOracle::FProcedureCall> Calls;
+        if(!Test.TestTrue(TEXT("restart events available without truncation"),Story.bRecordEvents&&EventStart<=Story.Events.Num()&&Story.Events.Num()<Story.MaxEvents))return false;
+        for(int32 Index=EventStart;Index<Story.Events.Num();++Index)
+        {
+            const auto& Event=Story.Events[Index];
+            if(Event.Kind==TEXT("cmd"))
+            {const auto Line=FDinkStoryLine::Parse(Event.Text,{TEXT("cmd")});Calls.Add({Event.InstanceId,Index,Line.Command,Line.Args});}
+            if(Event.Kind!=TEXT("start"))continue;
+            int32 Id=0,Sprite=0;
+            if(FParse::Value(*Event.Detail,TEXT("instance="),Id)&&FParse::Value(*Event.Detail,TEXT("sprite="),Sprite))Starts.Add({Id,Sprite,Index,Event.Text});
+        }
+        TSet<int32> Qualified;
+        auto RequireStart=[&](FName Script,FName Procedure,int32 Sprite)
+        {
+            if(Script.IsNone()||!Story.HasProcedure(Script,Procedure))return true;
+            const FString Path=DinkNarrative::EntryPath(Script.ToString(),Procedure.ToString());
+            bool Found=false;
+            for(const auto& Start:Starts)if(Start.Id>=SavedNext&&Start.Sprite==Sprite&&Start.Path==Path){Qualified.Add(Start.Id);Found=true;}
+            return Test.TestTrue(TEXT("source-qualified fresh procedure ")+Path,Found);
+        };
+        const auto* Volume=Greybox.FindScreen(Saved.CurrentScreen);
+        const FName Base=G->GetData().GetBaseScript(Saved.CurrentScreen);
+        if(!Test.TestTrue(TEXT("imported screen base script matches independent gameplay source"),Volume&&Volume->BaseScript==Base))return false;
+        if(!RequireStart(Base,TEXT("main"),0))return false;
+        // Reconstruct persisted update_play_changes independently of the live
+        // runtime cache. Every nonzero saved override clears the source script.
+        auto ExpectedBirth=[&](const FDinkPlacementInfo& Source)
+        {
+            int32 Override=0,SavedSeq=0,SavedFrame=0;
+            for(const auto& Entry:Saved.Overrides)if(Entry.Origin==Source.Origin)Override=static_cast<int32>(Entry.Type);
+            const auto& Pictures=Expected->GetObjectField(TEXT("gameplay"))->GetArrayField(TEXT("hardnessEditorPicturesV1"));
+            for(const auto& Value:Pictures)
+            {
+                const auto Picture=Value->AsObject();
+                if(Picture->GetStringField(TEXT("origin"))==Source.Origin.ToString())
+                {SavedSeq=Picture->GetIntegerField(TEXT("seq"));SavedFrame=Picture->GetIntegerField(TEXT("frame"));}
+            }
+            return DinkProbeLoadOracle::BirthExpectation(Source.Type,Source.Hard,Source.Seq,Source.Frame,Source.Script,Override,SavedSeq,SavedFrame);
+        };
+        TSet<int32> ClearedRawStarts;
+        // Immutable actor provenance must remain source-bound. Current sprite
+        // picture/script may already differ through a legitimate source command.
+        for(const auto& Pair:D->GetSprites())
+        {
+            const auto& Sprite=Pair.Value;
+            if(!Sprite.bActive||!Sprite.Origin.IsValid()||Sprite.Screen!=Saved.CurrentScreen)continue;
+            const auto* Source=G->GetData().FindPlacement(Sprite.Origin);
+            if(!Test.TestNotNull(TEXT("fresh placement retains source origin"),Source))return false;
+            const auto Birth=ExpectedBirth(*Source);
+            const auto* Actor=Sprite.Actor.Get();
+            const auto* Origin=Actor?UDinkOriginComponent::FindOnActor(Actor):nullptr;
+            if(!Test.TestTrue(TEXT("fresh live placement is source-bound and obeys saved effective birth fields"),
+                !Birth.Removed&&Birth.Type==1&&Actor&&Origin&&Origin->OriginId==Source->Origin&&
+                Origin->ScriptName==Source->Script&&Origin->PlacementType==Source->Type&&Origin->Sequence==Source->Seq&&Origin->Frame==Source->Frame))return false;
+            if(!RequireStart(Birth.Script,TEXT("main"),Pair.Key))return false;
+            if(Birth.Script.IsNone()&&!Source->Script.IsNone())
+            {
+                const FString RawMain=DinkNarrative::EntryPath(Source->Script.ToString(),TEXT("main"));
+                for(const auto& Start:Starts)if(Start.Sprite==Pair.Key&&Start.Path==RawMain)ClearedRawStarts.Add(Start.Id);
+            }
+        }
+        auto Armed=[&](int32 Id,int32 Slot,const TArray<FName>& Items)
+        {
+            const FName Script=Items.IsValidIndex(Slot)?Items[Slot]:NAME_None;
+            if(Script.IsNone())return Test.TestEqual(TEXT("empty armed slot has no runtime instance"),Id,0);
+            const auto* Instance=Story.FindInstance(Id);
+            if(!Test.TestTrue(TEXT("armed script freshly detached from saved inventory"),Instance&&Instance->IsAlive()&&
+                Instance->Id>=SavedNext&&Instance->Script==Script&&Instance->Sprite==UDinkDirector::HandleNoSprite&&Instance->AttachedTo==UDinkDirector::HandleNoSprite))return false;
+            if(Story.HasProcedure(Script,TEXT("arm"))&&!Test.TestTrue(TEXT("armed source arm procedure actually invoked on that fresh instance"),
+                DinkProbeLoadOracle::HasExactStart(Starts,Id,UDinkDirector::HandleNoSprite,DinkNarrative::EntryPath(Script.ToString(),TEXT("arm")))))return false;
+            if(!Test.TestTrue(TEXT("saved armed script has a usable source procedure"),Story.HasProcedure(Script,TEXT("use"))))return false;
+            Qualified.Add(Id);return true;
+        };
+        if(!Armed(G->GetWeaponInstance(),Saved.Inventory.ArmedItemSlot,Saved.Inventory.Items)||
+           !Armed(G->GetMagicInstance(),Saved.Inventory.ArmedMagicSlot,Saved.Inventory.Magic))return false;
+        // Trace literal external/spawn/sp_script calls from already qualified
+        // fresh procedures. Dynamic unresolvable targets fail rather than being
+        // accepted as arbitrary globals. The source parser preserves arguments.
+        Qualified=DinkProbeLoadOracle::QualifySourceCalls(MoveTemp(Qualified),Starts,Calls,SavedNext,UDinkDirector::HandleNoSprite);
+        for(int32 Id:ClearedRawStarts)
+            if(!Test.TestTrue(TEXT("override-cleared raw main only runs through an explicit source call"),Qualified.Contains(Id)))return false;
+        TArray<DinkProbeLoadOracle::FFreshIdentity> Fresh;
+        for(const auto& Instance:Story.GetInstances())if(Instance->IsAlive())
+            Fresh.Add({Instance->Id,Instance->Screen,Qualified.Contains(Instance->Id)});
+        FString Error;
+        const bool Valid=DinkProbeLoadOracle::FreshIdentities(OldIds,SavedNext,Saved.CurrentScreen,Fresh,Error);
+        if(!Test.TestTrue(TEXT("saved runtime instances replaced by source-qualified fresh identities: ")+Error,Valid))return false;
+        Test.AddInfo(FString::Printf(TEXT("original-load oracle: persistent domains exact; %d old IDs gone, %d fresh alive instances, source entry/armed/global provenance verified"),OldIds.Num(),Fresh.Num()));
+        return true;
+    }
+
 	class FProbeCommand : public IAutomationLatentCommand
 	{
 	public:
@@ -3243,6 +3466,17 @@ namespace DinkProbeTest
 				{
 					if (Wall - Began > 60.0)
 					{
+						// Failure evidence only; capture before RestoreTimeStep changes the measured state.
+						const bool Pending = C.S->bNewGamePending;const auto* StartupScreen = C.GB->GetCurrentScreen();
+						const int32 StoryFact = C.Fact(TEXT("story"));const double StoryNow = C.S->GetNowMs();
+						const FString StartupFacts = FString::Printf(TEXT("chapter=%d pending=%d missing_screen=%d current_screen=%d story=%d story_below1=%d story_ms=%.17g clock_above10000=%d wall_elapsed=%.17g world=%s screen_actor=%s world_seconds=%.17g fixed_step=%d fixed_delta=%.17g app_delta=%.17g world_delta=%.17g"),
+							Spec.Number,Pending,StartupScreen==nullptr,StartupScreen?StartupScreen->ScreenNumber:0,StoryFact,StoryFact<1,StoryNow,StoryNow>10000.0,Wall-Began,
+							*GetPathNameSafe(C.World),*GetPathNameSafe(StartupScreen),static_cast<double>(C.World->GetTimeSeconds()),FApp::UseFixedTimeStep(),FApp::GetFixedDeltaTime(),FApp::GetDeltaTime(),static_cast<double>(C.World->GetDeltaSeconds()));
+						const FString StartupDir = FPaths::ProjectSavedDir()/TEXT("Automation/Ch6StartupReadiness");
+						const FString StartupFile = StartupDir/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".txt"));
+						IFileManager::Get().MakeDirectory(*StartupDir,true);
+						const bool StartupWritten = FFileHelper::SaveStringToFile(StartupFacts+TEXT("\n"),*StartupFile,FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM,&IFileManager::Get(),FILEWRITE_NoReplaceExisting);
+						Test->AddInfo(StartupFacts+FString::Printf(TEXT(" diagnostic_written=%d diagnostic=%s"),StartupWritten,*StartupFile));
 						RestoreTimeStep();
 						Test->AddError(TEXT("the new game did not start"));
 						return true;
@@ -3250,6 +3484,8 @@ namespace DinkProbeTest
 					return false;
 				}
 				UDinkSaveSubsystem* Saves = C.World->GetGameInstance()->GetSubsystem<UDinkSaveSubsystem>();
+				const int32 LoadEventStart = C.S->Events.Num();
+                const auto LoadBoundary = DinkProbeLoadDiagnostic::Capture(*C.Pawn,*C.S,*C.GB);
 				UDinkSaveGame* Loaded = Saves ? Saves->LoadFromSlot(Spec.LoadSlot, C.Pawn) : nullptr;
 				if (!Loaded)
 				{
@@ -3259,12 +3495,21 @@ namespace DinkProbeTest
 				}
 				bLoaded = true;
 				LoadedScreen = Loaded->CurrentScreen;
-				// What was loaded must be what was saved: the same state dump, taken before a frame runs.
+				const auto SavedNarrative = DinkProbeLoadOracle::Narrative(*Loaded);
+                const bool RequiredLoad = C.G->RequiresOriginalHardnessScreen(SavedNarrative.IsValid()?SavedNarrative->GetIntegerField(TEXT("lastScreen")):Loaded->CurrentScreen);
+                const bool OriginalLoad = SavedNarrative.IsValid()?DinkProbeLoadOracle::OriginalMode(*SavedNarrative,RequiredLoad):RequiredLoad;
+                if (OriginalLoad && !CheckOriginalLoad(*Test,*Loaded,*Saves,*C.Pawn,*C.S,*C.GB,LoadEventStart,LoadBoundary))
+                { RestoreTimeStep();return true; }
+                // Legacy saves retain their exact live-runtime snapshot comparison.
+                if (!OriginalLoad)
+                {
+                // What was loaded must be what was saved: the same state dump, taken before a frame runs.
 				const FString Before = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/probe_ch%d_state.txt"), Spec.Number - 1);
 				FString Expected;
 				if (FFileHelper::LoadFileToString(Expected, *Before))
 				{
 					const FString RestoredDump = C.StateDump();
+                    Test->TestTrue(TEXT("legacy exact saved runtime lines"),DinkProbeLoadOracle::LegacyLinesEqual(Expected,RestoredDump));
 					TArray<FString> A, B;
 					Expected.ParseIntoArrayLines(A, false);
 					RestoredDump.ParseIntoArrayLines(B, false);
@@ -3284,6 +3529,7 @@ namespace DinkProbeTest
 				{
 					Test->AddWarning(FString::Printf(TEXT("no %s: the loaded game was not compared with the saved one"), *Before));
 				}
+                } // legacy exact snapshot
 				Test->TestEqual(TEXT("the greybox is on the saved screen right after the load"), C.GB->GetCurrentScreen() ? C.GB->GetCurrentScreen()->ScreenNumber : 0, LoadedScreen);
 				// The trace of a loaded chapter starts at the load: what the new game played in the frames before it (the mother's scene, a
 				// number of frames that depends on how long PIE took to start) is not part of this chapter's game.
@@ -3367,6 +3613,16 @@ namespace DinkProbeTest
 	private:
 		bool Finish(FCtx& C, const FString& Why)
 		{
+			if (Spec.Number == 6 && C.P->Ch6RouteRows.Num() > 0)
+			{
+				TArray<FString> Ordered;
+				for (int32 I = 0; I < C.P->Ch6RouteRows.Num(); ++I) { Ordered.Add(C.P->Ch6RouteRows[(C.P->Ch6RouteNext + I) % C.P->Ch6RouteRows.Num()]); }
+				const FString RouteDir = FPaths::ProjectSavedDir() / TEXT("Automation/Ch6RouteTelemetry");
+				IFileManager::Get().MakeDirectory(*RouteDir, true);
+				const FString RouteFile = RouteDir / (FGuid::NewGuid().ToString() + TEXT(".txt"));
+				if (FFileHelper::SaveStringArrayToFile(Ordered, *RouteFile)) { Test->AddInfo(TEXT("Ch6 route telemetry: ") + RouteFile); }
+				else { Test->AddWarning(TEXT("Could not write Ch6 route diagnostic")); }
+			}
 			RestoreTimeStep();
 			C.Dilate(1.0f);
 			if (C.G)
@@ -3673,7 +3929,7 @@ namespace DinkProbeTest
 		void AddFeud(const TCHAR* Name, int32 Screen, double X, double Y, int32 Expected, bool bPen, int32 GoldTarget, const TArray<FString>& LevelUps, int32 ExpTarget = 0)
 		{
 			Add(Name,
-				[Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
+				[this, Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
 					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
 					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
@@ -3692,15 +3948,34 @@ namespace DinkProbeTest
 					if (const int32 Drop = Drops(C))
 					{
 						C.P->bSawDrop = true;
-						if (C.P->LootSinceMs < 0.0) { C.P->LootSinceMs = C.S->GetNowMs(); }
-						O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0; // 10 s of waiting for the survivor to wander off is enough
-						const FDinkSprite* Loot = C.D->FindSprite(Drop);
-						O.bGoto = Loot != nullptr;
-						if (Loot)
-						{
-							O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
-							if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; } // the last steps
-						}
+                        if (C.P->LootSinceMs < 0.0)
+                        {
+                            C.P->LootSinceMs = C.S->GetNowMs();
+                            if (bPen && Alive>0)
+                            {
+                                FString HostileFacts;
+                                for(const auto& Pair:C.D->GetSprites())
+                                {
+                                    const auto& Enemy=Pair.Value;
+                                    if(!Enemy.bActive||Enemy.Screen!=Screen||!(Enemy.Script.ToString().StartsWith(TEXT("en-"))||Enemy.GetProp(TEXT("brain"))==9))continue;
+                                    HostileFacts+=FString::Printf(TEXT(" [id=%d script=%s xy=%.9g,%.9g hp=%d brain=%d nohit=%d target=%d]"),Pair.Key,*Enemy.Script.ToString(),double(Enemy.X),double(Enemy.Y),Enemy.GetProp(TEXT("hitpoints")),Enemy.GetProp(TEXT("brain")),Enemy.GetProp(TEXT("nohit")),Enemy.GetProp(TEXT("target")));
+                                }
+                                Test->AddInfo(FString::Printf(TEXT("FENCED_LOOT_DEFER screen=%d alive=%d life=%d hero=%.9g,%.9g pawn=%s drop=%d hostile%s"),Screen,Alive,C.Fact(TEXT("life")),double(C.D->GetDink().X),double(C.D->GetDink().Y),*C.Pawn->GetActorLocation().ToString(),Drop,*HostileFacts));
+                            }
+                        }
+                        // A fenced survivor cannot wander outside the pen. Finish
+                        // the existing real ranged fight before entering for loot.
+                        if (!bPen || Alive==0)
+                        {
+                            O.bForceGoto = C.S->GetNowMs() - C.P->LootSinceMs > 10000.0;
+                            const FDinkSprite* Loot = C.D->FindSprite(Drop);
+                            O.bGoto = Loot != nullptr;
+                            if (Loot)
+                            {
+                                O.GotoAt = FIntPoint(FMath::RoundToInt32(Loot->X), FMath::RoundToInt32(Loot->Y));
+                                if (FVector2D::Distance(FVector2D(Loot->X, Loot->Y), FVector2D(C.D->GetDink().X, C.D->GetDink().Y)) < 30.0) { C.StandBy(Drop, 0, true); return; }
+                            }
+                        }
 					}
 					if (Alive == 0)
 					{
@@ -3825,6 +4100,7 @@ namespace DinkProbeTest
 						O.MinEdge = 20.0;
 						O.PaceMarginSec = 0.5;
 						O.bFlee = true;
+						O.bContactSafeFlee = true;
 						C.KiteFight(NAME_None, 70, O);
 						},
 						[Index](FCtx& C) { return C.OnScreen(680) && C.Placement(680, Index) == 0 && C.Idle() && !C.Busy(); }, 150.0, LevelUps, 0.001, true);

@@ -2,8 +2,8 @@
   "scope": "Original raw source verified against historical281origin inventory; not current runtime binding approval",
   "coverage_source_sha256": "30c62e8f56d87572bd2380070777207c522c7d7a0e5e22f8d7250caca855dde8",
   "raw_sources": {
-    "/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/dink.dat": "7ce0106fab423b52f06c26858a89679a94ede52153d9b4378b3fd31bcc9dba40",
-    "/home/davisc/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/map.dat": "39438580a6d92b962254fa3c41e24f39fbb4856543f255781ba0c50af15af9d3"
+    "<HOME>/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/dink.dat": "7ce0106fab423b52f06c26858a89679a94ede52153d9b4378b3fd31bcc9dba40",
+    "<HOME>/Work/DinkBarrelOwnedCopyDiagnostic/bin/dink/map.dat": "39438580a6d92b962254fa3c41e24f39fbb4856543f255781ba0c50af15af9d3"
   },
   "mapped": 281,
   "unresolved": 0,

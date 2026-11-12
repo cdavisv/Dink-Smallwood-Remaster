@@ -1,0 +1,44 @@
+{
+  "origin": "S001_P26",
+  "placement_sequence": 351,
+  "placement_frame": 1,
+  "script": "s1-h1-m",
+  "source_archive": "bin/dink/graphics/people/mom/dir.ff",
+  "archive_sha256": "49b9690f6afdc1098a77acb1afaf205ad943a9f76d9e7ff2c4afc738569249c7",
+  "ini_lines": "433-438: sequences351,353,357,359",
+  "frames": [
+    {
+      "archive_entry": "c08w1-01.bmp",
+      "bitmap_sha256": "caaa2ee12cf04763eca1b5f7c54e0ea0d75f35450b31c5f9397cdb196a44b74f",
+      "size": [
+        59,
+        88
+      ]
+    },
+    {
+      "archive_entry": "c08w3-01.bmp",
+      "bitmap_sha256": "b764abf1c84f54021faf33cc436752640348dc4a47964042da8808668b6887b7",
+      "size": [
+        57,
+        88
+      ]
+    },
+    {
+      "archive_entry": "c08w7-01.bmp",
+      "bitmap_sha256": "f91d2bb375e7ef3ad9de8cb2f27127c27039a7aaeeff9a4a1e5cc831824bb537",
+      "size": [
+        54,
+        91
+      ]
+    },
+    {
+      "archive_entry": "c08w9-01.bmp",
+      "bitmap_sha256": "db00e43f3c271a22a215bd6bbd60d6a625c0c7d01e45bf504ff315ae30c53564",
+      "size": [
+        48,
+        92
+      ]
+    }
+  ],
+  "licence": "Existing Dink project original sprite reference only; original source retained in repository, not new third-party art."
+}

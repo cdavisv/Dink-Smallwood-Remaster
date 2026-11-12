@@ -2,9 +2,9 @@ import bpy,json,hashlib,struct,ast,os,sys,math
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
-Q=Path(__file__).resolve().parent;BASE=Path('/home/davisc/Work/DinkQA/PhotorealBrokenBarrelCurvatureV4');SRC=BASE/'PhotorealBrokenBarrelV4_CurvedSource.blend';OUT=Q/'PhotorealBrokenBarrelV4_AsymmetricComposition.blend'
+Q=Path(__file__).resolve().parent;BASE=Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelCurvatureV4');SRC=BASE/'PhotorealBrokenBarrelV4_CurvedSource.blend';OUT=Q/'PhotorealBrokenBarrelV4_AsymmetricComposition.blend'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-for script,funcs in [(Q/'build_variant.py',['geometry','data','tree','samples']), (Path('/home/davisc/Work/DinkQA/PhotorealBrokenBarrelRefinementV3/refine.py'),['material_signature'])]:
+for script,funcs in [(Q/'build_variant.py',['geometry','data','tree','samples']), (Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelRefinementV3/refine.py'),['material_signature'])]:
  t=ast.parse(script.read_text());nodes=[n for n in t.body if isinstance(n,ast.FunctionDef)and n.name in funcs];exec(compile(ast.Module(body=nodes,type_ignores=[]),'<purehelpers>','exec'),globals())
 bpy.ops.wm.open_mainfile(filepath=str(SRC),load_ui=False,use_scripts=False);obs=list(bpy.data.collections['V4_CooperedFragments_Editable'].objects);bpy.context.view_layer.update();geo={o.name:geometry(o)for o in obs};poses={o.name:[list(x)for x in o.matrix_world]for o in obs};scales={o.name:list(o.scale)for o in obs}
 names=['MI_Shared_OakLonggrain2m','MI_Shared_OakEndgrain2m','MI_Stonebrook_WroughtIron'];graphs={n:material_signature(bpy.data.materials[n])for n in names};ims={n.image.name for m in names for n in bpy.data.materials[m].node_tree.nodes if n.type=='TEX_IMAGE'};imfacts={n:(hashlib.sha256(bytes(bpy.data.images[n].packed_file.data)).hexdigest(),bpy.data.images[n].colorspace_settings.name,list(bpy.data.images[n].size))for n in ims}

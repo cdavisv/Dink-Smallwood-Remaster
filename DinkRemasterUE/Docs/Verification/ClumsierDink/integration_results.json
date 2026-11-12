@@ -31,13 +31,13 @@
       "exit_code": 0,
       "elapsed_seconds": 38.99042863700015,
       "loaded_custom_modules": [
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
       ],
       "tests": 7,
       "failed": 0,
@@ -57,13 +57,13 @@
       "exit_code": 0,
       "elapsed_seconds": 25.64686812799482,
       "loaded_custom_modules": [
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-        "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+        "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
       ],
       "tests": 2,
       "failed": 0,
@@ -80,13 +80,13 @@
     }
   },
   "editor_modules_preserved_by_game_build": {
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "ea9b3ef2ed542320c5d02b205b562914728245418ee12f580a441affb4883d44",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "88d60f5f725fe7ac0f8955d44565909522253565ea7a4b474738eb1a1c99725e",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "4289be536032c9a727265b78f08a321afeb3bde1aaf63ae0c30ac9f51bbb9b84",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "4560925fd8b48f08af39cc7f35e0e6b1cf228605fb137d4707920f8f742053b6",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "405377b371619e16fee69952237870b4a0e2e15601b668e4a3621ae0fc36dc36",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "d733fb2c773e3d32a8dd92b7132c59d50b2df76713d77b432f734c1fb2d65b60",
-    "/home/davisc/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6447c86da78b8dc9b54606ac36f5576d2e6f3dfb5243d3a3a5f59ff57abef501"
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "ea9b3ef2ed542320c5d02b205b562914728245418ee12f580a441affb4883d44",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "88d60f5f725fe7ac0f8955d44565909522253565ea7a4b474738eb1a1c99725e",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "4289be536032c9a727265b78f08a321afeb3bde1aaf63ae0c30ac9f51bbb9b84",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "4560925fd8b48f08af39cc7f35e0e6b1cf228605fb137d4707920f8f742053b6",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "405377b371619e16fee69952237870b4a0e2e15601b668e4a3621ae0fc36dc36",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "d733fb2c773e3d32a8dd92b7132c59d50b2df76713d77b432f734c1fb2d65b60",
+    "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6447c86da78b8dc9b54606ac36f5576d2e6f3dfb5243d3a3a5f59ff57abef501"
   },
   "scope": "Combined Editor/Game builds and 7 movement + 2 inspector checks after editor-only PR28. Prior full164/render evidence remains pre-reconciliation. No combined full166 or repeat GPU run is claimed.",
   "source_audit": {

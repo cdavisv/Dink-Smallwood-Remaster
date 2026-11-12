@@ -1,8 +1,8 @@
 {
   "status": "PASS_SOURCE_RGB_CLAMP_ONLY",
-  "source": "/home/davisc/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/FiredClayV3/Fireplace_FiredClayV3.blend",
-  "source_sha256": "28a5c007c16a7647510bf7fcd34c429ceae3471cdf44422c6504cf21d698fed7",
-  "successor_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12",
+  "source": "<HOME>/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/FiredClayV3/Fireplace_FiredClayV3.blend",
+  "source_sha256": "7a63e18fd9bb619b1c3276ea1a203bfc291db9ccc7f5f85de17be86886ffc71a",
+  "successor_sha256": "f0fc970809106613126d8b148116c80c8b9f5e7db26b61e496386dab17bf7e45",
   "all_objects": 331,
   "mesh_objects": 328,
   "UCX": 312,

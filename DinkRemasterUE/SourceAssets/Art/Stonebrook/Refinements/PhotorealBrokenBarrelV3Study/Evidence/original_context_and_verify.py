@@ -2,9 +2,9 @@ import bpy,bmesh,math,json,hashlib,os,sys
 from pathlib import Path
 from mathutils import Vector
 Q=Path(__file__).resolve().parent;OUT=Q/'PhotorealBrokenBarrelV3_Refinement.blend'
-PARENT=Path('/home/davisc/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/PhotorealBarrelV1_Source.blend')
+PARENT=Path('<HOME>/Work/DinkPhotorealBrokenBarrelSourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/PhotorealBarrelV1_Source.blend')
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-assert sha(PARENT)=='0fcb284a168aaa0d4508d3cfbc1be682b79c54c7b85ef1c499bde1778f2371c6'
+assert sha(PARENT)=='2cab573f8f40a99a2b513a454b8d0e006e73353171e3a25bc94254580cf9c0f7'
 bpy.ops.wm.open_mainfile(filepath=str(OUT),load_ui=False,use_scripts=False);bpy.context.preferences.filepaths.save_version=0
 c=bpy.data.collections['V3_Editable_SplitStaves_SharedPBR'];parts=list(c.objects)
 def bounds(obs):

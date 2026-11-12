@@ -1,0 +1,158 @@
+{
+  "schema": "dink-creature-variants/1",
+  "base_manifest": "duck_manifest.json",
+  "skeleton_from": "SK_Duck",
+  "variants": {
+    "SK_Duck_Headless": {
+      "fbx": "Export/SK_Duck_Headless_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SK_Duck_Headless_LOD0.fbx",
+        "Export/SK_Duck_Headless_LOD1.fbx",
+        "Export/SK_Duck_Headless_LOD2.fbx"
+      ],
+      "dimensions_m": [
+        0.40900301933288574,
+        0.21071961522102356,
+        0.3366988003253937
+      ],
+      "lod_union_dimensions_m": [
+        0.40909045934677124,
+        0.21071961522102356,
+        0.3368038535118103
+      ],
+      "bounds_min_m": [
+        -0.2667721211910248,
+        -0.10615146160125732,
+        0.0
+      ],
+      "bounds_max_m": [
+        0.14223089814186096,
+        0.10456814616918564,
+        0.3366988003253937
+      ],
+      "materials": [
+        "MI_Duck_Feather",
+        "MI_Duck_Feet"
+      ],
+      "root_bone": "root",
+      "bones": [
+        "root",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "neck_01",
+        "neck_02",
+        "neck_03",
+        "head",
+        "jaw",
+        "wing_l",
+        "wingtip_l",
+        "wing_r",
+        "wingtip_r",
+        "tail_01",
+        "tail_02",
+        "thigh_l",
+        "calf_l",
+        "foot_l",
+        "toes_l",
+        "thigh_r",
+        "calf_r",
+        "foot_r",
+        "toes_r"
+      ],
+      "head_bone": "head",
+      "pelvis_bone": "pelvis",
+      "class": "creature",
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "forward": "+X",
+      "source_blend": "SK_Duck.blend",
+      "body_boxes": [
+        {
+          "offset_cm": [
+            -3.502063512802124,
+            0.07916577160358429,
+            18.000057220458984
+          ],
+          "extent_cm": [
+            17.497390747070312,
+            11.535979270935059,
+            11.996854782104492
+          ]
+        }
+      ],
+      "body_boxes_note": "Trunk AABB only (no head); 1 cm padding, actor-forward UE cm.",
+      "import_against_skeleton_of": "SK_Duck",
+      "notes": "Same 23-bone hierarchy and bind pose as SK_Duck (one source armature). Import with the SK_Duck Skeleton so every Duck clip plays on it. Wound cap and blood runs use MI_Duck_Feather (opacity mask)."
+    }
+  },
+  "props": {
+    "SM_Duck_Head": {
+      "fbx": "Export/SM_Duck_Head_LOD0.fbx",
+      "lod_fbx": [
+        "Export/SM_Duck_Head_LOD0.fbx",
+        "Export/SM_Duck_Head_LOD1.fbx",
+        "Export/SM_Duck_Head_LOD2.fbx"
+      ],
+      "class": "prop_small",
+      "collision": "UCX_SM_Duck_Head_LOD0_01 (single convex hull, in the LOD0 FBX)",
+      "dimensions_m": [
+        0.17981190979480743,
+        0.07036088407039642,
+        0.14017629623413086
+      ],
+      "materials": [
+        "MI_Duck_Feather",
+        "MI_Duck_Bill"
+      ],
+      "material_note": "Eye faces use MI_Duck_Feather on the prop (2-slot prop_small budget); gloss comes from the ORM roughness.",
+      "pivot": "base centre of the head-with-stub at rest",
+      "rest_offset_from_duck_root_m": [
+        0.15146949887275696,
+        -7.203780114650726e-05,
+        0.32584378123283386
+      ],
+      "spawn_from_bone": "neck_03",
+      "physics": "Simulate physics on the UCX hull; suggested mass 0.12 kg, linear damping 0.6, angular damping 0.4."
+    }
+  },
+  "decals": {
+    "blood_pool": {
+      "BC": "Textures/T_Duck_BloodPool_BC.png",
+      "N": "Textures/T_Duck_BloodPool_N.png",
+      "ORM": "Textures/T_Duck_BloodPool_ORM.png",
+      "size_cm": 30,
+      "notes": "Deferred decal, BC alpha = opacity; wet roughness in ORM.G."
+    },
+    "blood_spatter": {
+      "BC": "Textures/T_Duck_BloodSpatter_BC.png",
+      "N": "Textures/T_Duck_BloodSpatter_N.png",
+      "ORM": "Textures/T_Duck_BloodSpatter_ORM.png",
+      "size_cm": 25,
+      "notes": "Random drip decal for the headless run (original random_blood seq 187-189)."
+    }
+  },
+  "original_behaviour": {
+    "source": "source/dink/dink.cpp duck_brain (D:12723) and one_time_brain (D:15741); dink.ini seq 111-129",
+    "first_hit": [
+      "draw_damage, add_exp, kill script (die/die5 sets editor_type 6 so the duck stays dead)",
+      "spawn the head: brain 5 one-shot, seq 121-129 (4 frames x 125 ms = 0.5 s), moving in the duck direction at speed 1-3, then frozen into the background as a head in a pool of blood",
+      "body switches to base_walk 110 (bloody headless walk, 4 frames x 75 ms loop = 0.3 s), speed 1, keeps wandering like a live duck",
+      "while headless: 1 % chance per think to drop a random blood splat (seq 187-189)"
+    ],
+    "second_hit": [
+      "magic flash effect seq 164 at the body, add_exp, check_for_duck_script (duckdie), the body is removed at once"
+    ],
+    "remaster_wiring": [
+      "On first hit: swap the component mesh SK_Duck -> SK_Duck_Headless (same skeleton), play HeadlessRun at the brain speed.",
+      "Spawn SM_Duck_Head at the neck_03 bone transform with a small impulse along the duck heading (original speed 1-3) plus spin; when it settles, place the blood_pool decal under it.",
+      "While headless, 1 % per think: blood_spatter decal at the body.",
+      "On second hit: either the faithful instant removal with the seq-164 flash, or play HeadlessDeath (1.6 s, hold last frame) and then remove; keep the original exp/script timing either way.",
+      "Non-gory alternatives remain available: Hit and Death on the intact SK_Duck."
+    ]
+  },
+  "tone": "Darkly comic, not horror: the body keeps strutting and flapping as if nothing happened; blood is bright and wet, not lingered on."
+}

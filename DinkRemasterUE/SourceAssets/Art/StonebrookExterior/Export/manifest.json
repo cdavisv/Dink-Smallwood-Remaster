@@ -503,7 +503,7 @@
       },
       "source": {
         "blend": "StonebrookExterior/KIT_StonebrookExterior.blend",
-        "sha256": "bacd67375df36fff62152f8108e8b82dfde7a3b28a15fd1c979ee8844bfd9111",
+        "sha256": "703d6b0b60d3bf2c9120d1f839ef1eb8846db4f8a7a1423b47b3951267bea783",
         "collection": "SM_Oak_Stonebrook_01",
         "note": "Original deterministic Blender geometry and procedural textures; build_stonebrook.py seed 1997; no third-party images or meshes"
       },

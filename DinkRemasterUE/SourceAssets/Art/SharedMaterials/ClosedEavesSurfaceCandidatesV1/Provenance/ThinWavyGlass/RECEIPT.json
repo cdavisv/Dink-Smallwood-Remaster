@@ -1,0 +1,20 @@
+{
+  "scope": "Historical project-authored creation records; no invented license or optical acceptance",
+  "files": [
+    {
+      "original": "<HOME>/Work/DinkHouseExteriorSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/PROVENANCE.md",
+      "archived": "HISTORICAL_PROVENANCE.md",
+      "sha256": "912334537116cba847dd786304ce0101f6ee9bebe7b13f9b41fbd0a5e3de5b1d"
+    },
+    {
+      "original": "<HOME>/Work/DinkHouseExteriorSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/bake_periodic.py",
+      "archived": "bake_periodic_ARCHIVE.py",
+      "sha256": "000090be8e3f8816ba8ac9517668bdf55ba355342e8a7ac7445a0b76e026c81d"
+    },
+    {
+      "original": "<HOME>/Work/DinkHouseExteriorSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/build_registered.py",
+      "archived": "build_registered_ARCHIVE.py",
+      "sha256": "4b02c748213c0fac92fb10368fd6d2c558c0a8f3513bc52c2ce4ccda9e589557"
+    }
+  ]
+}

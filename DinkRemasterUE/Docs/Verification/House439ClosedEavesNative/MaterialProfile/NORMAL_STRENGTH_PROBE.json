@@ -1,0 +1,86 @@
+{
+  "encoded_input": [
+    0.75,
+    0.3,
+    0.85
+  ],
+  "rows": [
+    {
+      "strength": 0.0,
+      "actual_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "expected_lerp_flat_to_normalized_decoded": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angle_error_deg": 0.0,
+      "length": 1.0
+    },
+    {
+      "strength": 0.25,
+      "actual_normal": [
+        0.1331559419631958,
+        -0.10652470588684082,
+        0.9853537082672119
+      ],
+      "expected_lerp_flat_to_normalized_decoded": [
+        0.13875795900821686,
+        -0.11100636422634125,
+        0.9840853214263916
+      ],
+      "angle_error_deg": 0.4174220844248083,
+      "length": 0.9999999753199514
+    },
+    {
+      "strength": 0.5,
+      "actual_normal": [
+        0.2752408981323242,
+        -0.22019273042678833,
+        0.935819149017334
+      ],
+      "expected_lerp_flat_to_normalized_decoded": [
+        0.28269997239112854,
+        -0.2261599600315094,
+        0.9321653842926025
+      ],
+      "angle_error_deg": 0.585978043730774,
+      "length": 0.9999999254941913
+    },
+    {
+      "strength": 0.75,
+      "actual_normal": [
+        0.41130638122558594,
+        -0.32904505729675293,
+        0.8500332832336426
+      ],
+      "expected_lerp_flat_to_normalized_decoded": [
+        0.41627389192581177,
+        -0.33301907777786255,
+        0.846058189868927
+      ],
+      "angle_error_deg": 0.4297967289558496,
+      "length": 1.000000093132253
+    },
+    {
+      "strength": 1.0,
+      "actual_normal": [
+        0.5270463228225708,
+        -0.42163705825805664,
+        0.7378648519515991
+      ],
+      "expected_lerp_flat_to_normalized_decoded": [
+        0.527046263217926,
+        -0.42163699865341187,
+        0.7378647923469543
+      ],
+      "angle_error_deg": 1.9090957681777032e-06,
+      "length": 1.000000096857543
+    }
+  ],
+  "source_art_modified": false,
+  "scope": "actual CPU Cycles Normal Map output through emission/OpenEXR; no native material proof"
+}

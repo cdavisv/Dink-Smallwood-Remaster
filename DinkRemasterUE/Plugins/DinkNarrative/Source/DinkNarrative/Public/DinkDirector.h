@@ -38,6 +38,13 @@ struct DINKNARRATIVE_API FDinkSprite
 	TWeakObjectPtr<AActor> Actor;
 	/** Placement the sprite came from (invalid for spawned and text sprites). */
 	FDinkOriginId Origin;
+    // Transient original sp_index domain. Origin remains persistent source
+    // identity; this index addresses the CURRENT screen's smallMap instead.
+    int32 HardnessEditorIndex=0;
+    bool bRetainedOriginalEditor=false;
+    // Immutable original actor remains the provenance authority after a clone
+    // deliberately loses its placement binding on a different/current screen.
+    TWeakObjectPtr<AActor> HardnessSourceActor;
 	/** Screen whose pixel space X/Y are in. */
 	int32 Screen = 0;
 	/** Script attached (sp_script / the placement's script); None after kill_this_task. */
@@ -203,6 +210,7 @@ public:
 	void DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool bEndScripts = true);
 	/** Frees handles of sprites that belong to another screen (screen change). Dink, 1000-attached and spawned sprites of live instances stay. */
 	void ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& KeepHandles);
+    bool CarryOriginalLiveSprites(int32 Screen,FString& Error);
 	const TMap<int32, FDinkSprite>& GetSprites() const { return Sprites; }
 	void ResetSprites();
 

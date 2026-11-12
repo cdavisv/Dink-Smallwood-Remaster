@@ -30,6 +30,7 @@ Stdlib + numpy + Pillow (both on the dev machine).
 from __future__ import annotations
 
 from remaster_paths import default_data_repo
+from sync_gameplay_data import release_picture_keys
 
 import argparse
 import csv
@@ -374,6 +375,7 @@ def git_head(repo: Path) -> str:
                               text=True, check=True).stdout.strip()
     except Exception:
         return "unknown"
+
 
 
 def main(argv=None) -> int:
@@ -721,6 +723,13 @@ def main(argv=None) -> int:
 
     by_id = {p["id"]: p for p in placements_out}
     screen_by_num = {s["screen"]: s for s in screens_out}
+
+    # Fitted replacements can release into any authored frame of their source sequence.
+    # Include these images through the SAME ordinary texture generation path, never a private QA asset pack.
+    family_policy = json.loads((here / "Content/Dink/Data/Art/families.json").read_text())
+    canonical_sequences = json.loads((dinkex / "sequences.json").read_text())["sequences"]
+    for key, image in release_picture_keys(family_policy, placements_out, canonical_sequences).items():
+        pic_keys.setdefault(key, image)
 
     # --- sprites
     sprites_out = {}

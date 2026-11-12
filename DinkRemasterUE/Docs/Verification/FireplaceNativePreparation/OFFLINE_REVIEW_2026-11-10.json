@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-10",
+  "base": "f66673f",
+  "source_commit": "f96d0b9",
+  "native_executed": false,
+  "source_mutated": false,
+  "fresh_scope": {
+    "meshes": 4,
+    "materials": 7,
+    "textures": 24,
+    "total": 35
+  },
+  "contract_digest": "4b17690f71e5f681282347a9268326e5bc4fc4737cc3f4634be16b6688481961",
+  "findings": [
+    {
+      "issue": "Saved reimport metadata drift could pass unchanged actual buffers",
+      "correction": "Read-only assertion of15settings plus translation and3rotation components",
+      "tests": "15field mutations,3rotation components,translation,read-only pass"
+    },
+    {
+      "issue": "Mutable caller recipe could retain a previously approved digest field",
+      "correction": "Compare complete regenerated contract at preflight and phase end",
+      "tests": "Changed material F0 with unchanged digest refuses before engine use"
+    },
+    {
+      "issue": "Fresh target could be below an aliased parent directory",
+      "correction": "Reject symlinked package ancestors at preflight, per-save and readback",
+      "tests": "Parent symlink and dangling leaf refuse, ordinary bounded path accepted"
+    }
+  ],
+  "engine_source_review": {
+    "render_and_UCX": "Both use ComputeTotalMatrix then ConvertPos",
+    "UV": "All channels use1-sourceV",
+    "Color0": "Legacy FBX clamps/truncates255 toFColor then FLinearColor; alpha linear",
+    "unused_materials": "Importer precreates polygon groups for all FBX materials",
+    "pivot": "Proposed absolute transform/translation compensation remains actual-native-proof gated"
+  },
+  "unproven": [
+    "Actual native FBXSDK axis/transform output",
+    "Native signedTBN/source Mikk direction",
+    "Cooked/world collision",
+    "Game lighting/window/final appearance"
+  ],
+  "reviewed_nine_dependencies_exact": true,
+  "changes_status": "ROOT_REVIEWED_LOCAL_COMMIT_AUTHORIZED"
+}

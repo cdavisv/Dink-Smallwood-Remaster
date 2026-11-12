@@ -1,0 +1,23 @@
+{
+  "status": "PASS_SOURCE_ONLY_SUCCESSOR_CLOSURE",
+  "base": "e801345",
+  "branch": "art/fireplace-fired-clay-source",
+  "prior_ledger_rows": 4476,
+  "current_ledger_rows": 4543,
+  "prior_raw_bytes_preserved": 3943510,
+  "prior_audio_rows": 2212,
+  "new_rows_hashes_exact": 67,
+  "frozen_copied_payloads_exact": 51,
+  "old_shared_role_records_exact": true,
+  "two_prior_index_archives_exact": true,
+  "new_registered_roles": [
+    "FiredClay2m",
+    "FiredClayMasonry2m"
+  ],
+  "shared_and_package_manifests_exact": true,
+  "e801_commit_and_checkout_frozen_clean": true,
+  "e801_ordinary_source_packages_unchanged": true,
+  "no_runtime_Content_Config_Scripts_Engine_changes": true,
+  "native_run": false,
+  "push": false
+}

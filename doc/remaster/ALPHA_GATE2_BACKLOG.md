@@ -95,9 +95,9 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 56 | [`dungeon_pillar`](#f56-dungeon-pillar) | Stone pillar (dungeon_stone_kit, 40x97 px) · sheet_inside.png | 80 inside/stnwalls/stonw- (17) | 17 | 17 | Props |
 | 57 | [`fence_rail_ns`](#f57-fence-rail-ns) | Rail fence (north-south) (fence_rail, 26x136 px) · sheet_lands.png | 93 lands/fence/fence- (17) | 17 | 17 | Structures |
 | 58 | [`town_roof_slope`](#f58-town-roof-slope) | Shingle roof slope (town_house_kit, 100x150 px) · sheet_struct.png | 33 struct/outinn/oinn- (17) | 17 | 17 | TownExteriors |
-| 59 | [`cottage_door`](#f59-cottage-door) | Cottage door (cottage_thatched, 55x89 px) · sheet_struct.png | 63 struct/home/home- (16) | 16 | 16 | Structures |
-| 60 | [`cottage_thatched_large`](#f60-cottage-thatched-large) | Thatched stone cottage (cottage_thatched, 334x259 px) · sheet_struct.png | 63 struct/home/home- (16) | 16 | 16 | Structures |
-| 61 | [`cottage_thatched_small`](#f61-cottage-thatched-small) | Thatched stone cottage (cottage_thatched, 257x225 px) · sheet_struct.png | 63 struct/home/home- (16) | 16 | 16 | Structures |
+| 59 | [`cottage_door`](#f59-cottage-door) | Cottage door (cottage_thatched, 55x89 px) · sheet_struct.png | 63 struct<HOME> (16) | 16 | 16 | Structures |
+| 60 | [`cottage_thatched_large`](#f60-cottage-thatched-large) | Thatched stone cottage (cottage_thatched, 334x259 px) · sheet_struct.png | 63 struct<HOME> (16) | 16 | 16 | Structures |
+| 61 | [`cottage_thatched_small`](#f61-cottage-thatched-small) | Thatched stone cottage (cottage_thatched, 257x225 px) · sheet_struct.png | 63 struct<HOME> (16) | 16 | 16 | Structures |
 | 62 | [`dragon`](#f62-dragon) | Dragon (dragon, 164x188 px) · sheet_foes.png | 202 foes/dragon/f2-w2- (8), 206 foes/dragon/f2-w6- (4), 204 foes/dragon/f2-w4- (3), 208 foes/dragon/f2-w8- (1) | 16 | 16 | - |
 | 63 | [`mushroom`](#f63-mushroom) | Mushroom (garden, 30x39 px) · sheet_lands.png | 66 lands/garden/gardn- (16) | 16 | 16 | Vegetation |
 | 64 | [`town_roof_dormer`](#f64-town-roof-dormer) | Roof section with dormer window (town_house_kit, 100x200 px) · sheet_struct.png | 33 struct/outinn/oinn- (16) | 16 | 16 | TownExteriors |
@@ -151,12 +151,12 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 112 | [`small_heart`](#f112-small-heart) | Small heart (hearts, 17x17 px) · sheet_items.png | 54 bonuses/heart/smhrt (8) | 8 | 8 | - |
 | 113 | [`bridge_wood_rail_plank`](#f113-bridge-wood-rail-plank) | Bridge side rail with planking (bridge_wood, 101x84 px) · sheet_struct.png | 58 struct/bridge/brdge- (7) | 7 | 7 | Structures |
 | 114 | [`bridge_wood_rail_rope`](#f114-bridge-wood-rail-rope) | Bridge rope rail (bridge_wood, 101x93 px) · sheet_struct.png | 58 struct/bridge/brdge- (7) | 7 | 7 | Structures |
-| 115 | [`cottage_thatched_two_storey`](#f115-cottage-thatched-two-storey) | Two-storey thatched cottage (cottage_thatched, 257x311 px) · sheet_struct.png | 63 struct/home/home- (7) | 7 | 7 | Structures |
+| 115 | [`cottage_thatched_two_storey`](#f115-cottage-thatched-two-storey) | Two-storey thatched cottage (cottage_thatched, 257x311 px) · sheet_struct.png | 63 struct<HOME> (7) | 7 | 7 | Structures |
 | 116 | [`flower_bed_row`](#f116-flower-bed-row) | Planted bed / hedge row (dark) (garden, 217x120 px) · sheet_lands.png | 66 lands/garden/gardn- (7) | 7 | 7 | Vegetation |
 | 117 | [`snake_pillar`](#f117-snake-pillar) | Pillar with coiled snake (snake_pillar, 20x72 px) · sheet_inside.png | 82 inside/stnwalls/snake/snakc- (7) | 7 | 7 | - |
 | 118 | [`wall_stripe_red`](#f118-wall-stripe-red) | Red wall stripe / banner (built from the health-bar UI art) (signs, 24x17 px) · sheet_inter.png | 450 inter/health/hm-br- (7) | 7 | 7 | - |
 | 119 | [`bench_long`](#f119-bench-long) | Long bench (house_interior, 94x24 px) · sheet_inside.png | 87 inside/details/table- (6) | 6 | 6 | Props |
-| 120 | [`cottage_thatched_l_shape`](#f120-cottage-thatched-l-shape) | L-shaped thatched cottage (cottage_thatched, 305x324 px) · sheet_struct.png | 63 struct/home/home- (6) | 6 | 6 | Structures |
+| 120 | [`cottage_thatched_l_shape`](#f120-cottage-thatched-l-shape) | L-shaped thatched cottage (cottage_thatched, 305x324 px) · sheet_struct.png | 63 struct<HOME> (6) | 6 | 6 | Structures |
 | 121 | [`dungeon_wall_stone_cracked`](#f121-dungeon-wall-stone-cracked) | Cracked / broken dungeon wall (dungeon_stone_kit, 100x103 px) · sheet_inside.png | 80 inside/stnwalls/stonw- (6) | 6 | 6 | WallKits |
 | 122 | [`fence_rail_diag_ne`](#f122-fence-rail-diag-ne) | Rail fence diagonal (fence_rail, 69x90 px) · sheet_lands.png | 93 lands/fence/fence- (6) | 6 | 6 | Structures |
 | 123 | [`goblin_soldier`](#f123-goblin-soldier) | Goblin soldier (goblin, 107x130 px) · sheet_foes.png | 809 foes/goblin/soldier/walk/f01w9- (3), 801 foes/goblin/soldier/walk/f01w1- (2), 803 foes/goblin/soldier/walk/f01w3- (1) | 6 | 6 | - |
@@ -164,7 +164,7 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 125 | [`pitchfork`](#f125-pitchfork) | Pitchfork (leaning) (tools, 28x108 px) · sheet_items.png | 447 items/tools/tool- (6) | 6 | 6 | - |
 | 126 | [`small_fire_fx`](#f126-small-fire-fx) | Small fire on floor (fire, 23x20 px) · sheet_struct.png | 155 struct/details/damage/fire2- (2), 156 struct/details/damage/fire3- (2), 157 struct/details/damage/fire4- (2) | 6 | 6 | Props |
 | 127 | [`ground_hole_dark`](#f127-ground-hole-dark) | Dark hole in the ground (ground_holes, 55x73 px) · sheet_lands.png | 89 lands/details/crack- (5) | 10 | 5 | - |
-| 128 | [`chimney_stone`](#f128-chimney-stone) | Stone chimney (cottage_thatched, 55x58 px) · sheet_struct.png | 63 struct/home/home- (5) | 5 | 5 | Structures |
+| 128 | [`chimney_stone`](#f128-chimney-stone) | Stone chimney (cottage_thatched, 55x58 px) · sheet_struct.png | 63 struct<HOME> (5) | 5 | 5 | Structures |
 | 129 | [`idol_statue_small`](#f129-idol-statue-small) | Small demon idol (dungeon_stone_kit, 44x50 px) · sheet_inside.png | 80 inside/stnwalls/stonw- (5) | 5 | 5 | - |
 | 130 | [`island_spear_pole`](#f130-island-spear-pole) | Spear pole (island_village, 26x98 px) · sheet_struct.png | 424 struct/island/isle- (5) | 5 | 5 | - |
 | 131 | [`thorn_branch`](#f131-thorn-branch) | Thorn branch (graveyard, 28x25 px) · sheet_lands.png | 90 lands/details/grave- (5) | 5 | 5 | Vegetation |
@@ -175,7 +175,7 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 136 | [`boulder_flat`](#f136-boulder-flat) | Flat boulder (boulders, 72x63 px) · sheet_lands.png | 95 lands/rocks/rock- (4) | 4 | 4 | - |
 | 137 | [`bridge_stone`](#f137-bridge-stone) | Stone arch bridge (bridge_stone, 288x212 px) · sheet_struct.png | 186 struct/landmark/landm- (4) | 4 | 4 | Structures |
 | 138 | [`cabbage`](#f138-cabbage) | Cabbage (garden crop) (food, 54x46 px) · sheet_items.png | 421 items/food/food- (4) | 4 | 4 | Vegetation |
-| 139 | [`cottage_thatched_long`](#f139-cottage-thatched-long) | Thatched stone cottage (cottage_thatched, 332x260 px) · sheet_struct.png | 63 struct/home/home- (4) | 4 | 4 | Structures |
+| 139 | [`cottage_thatched_long`](#f139-cottage-thatched-long) | Thatched stone cottage (cottage_thatched, 332x260 px) · sheet_struct.png | 63 struct<HOME> (4) | 4 | 4 | Structures |
 | 140 | [`fish_flopping`](#f140-fish-flopping) | Fish flopping on land (fish, 33x34 px) · sheet_foes.png | 439 animals/fish/flop/fishx- (3), 441 animals/fish/flop/flop2- (1) | 4 | 4 | - |
 | 141 | [`goblin_hammer`](#f141-goblin-hammer) | Goblin (hammer) (goblin, 56x109 px) · sheet_foes.png | 763 foes/goblin/hammer/walk/f01w3- (2), 761 foes/goblin/hammer/walk/f01w1- (1), 769 foes/goblin/hammer/walk/f01w9- (1) | 4 | 4 | - |
 | 142 | [`island_hut_two_storey`](#f142-island-hut-two-storey) | Two-tier round hut (island_village, 238x265 px) · sheet_struct.png | 424 struct/island/isle- (4) | 4 | 4 | Structures |

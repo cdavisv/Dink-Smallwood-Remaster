@@ -43,8 +43,8 @@
       }
     ],
     "container_files": [
-      "/home/davisc/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/global.utoc",
-      "/home/davisc/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/DinkRemaster-Linux.utoc"
+      "<HOME>/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/global.utoc",
+      "<HOME>/Work/DinkQA/VistaFinal/PackageStage/Linux/DinkRemaster/Content/Paks/DinkRemaster-Linux.utoc"
     ],
     "source": "Actual staged IoStore directory index; no inference from cook arguments"
   },

@@ -6,6 +6,6 @@ public class DinkNarrative : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "DinkCore", "InkPlusPlus" });
-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "Slate", "SlateCore", "InputCore" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "Slate", "SlateCore", "InputCore", "PhysicsCore", "Chaos" });
 	}
 }

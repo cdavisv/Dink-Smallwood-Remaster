@@ -1,0 +1,54 @@
+{
+  "seed": 440,
+  "Rubble": {
+    "size_px": [
+      2048,
+      4096
+    ],
+    "tile_m": [
+      2.4,
+      4.8
+    ],
+    "height_range_m": [
+      -0.02,
+      0.06
+    ],
+    "ground_grime": "damp/algae <0.55 m, joint moss <0.32 m, splash-back <0.75 m in the lower copy (v<0.5)",
+    "stones": 74
+  },
+  "Thatch": {
+    "size_px": 2048,
+    "tile_m": 2.0,
+    "mean_base_color_linear": [
+      0.3050347756917971,
+      0.23493546502135831,
+      0.12619621245057933
+    ],
+    "mean_roughness": 0.8632734283379302,
+    "height_range_m": [
+      -0.04,
+      0.08
+    ],
+    "course_m": 0.25
+  },
+  "WeatheredOak": {
+    "size_px": 1024,
+    "tile_m": 1.0,
+    "mean_base_color_linear": [
+      0.2341313366539116,
+      0.20391217627695168,
+      0.169700046546561
+    ],
+    "mean_roughness": 0.7926408383939364
+  },
+  "LeadedGlass": {
+    "size_px": 512,
+    "tile_m": 0.48,
+    "mean_base_color_linear": [
+      0.03922711520612656,
+      0.04810664565329903,
+      0.04392540728114558
+    ],
+    "mean_roughness": 0.15082665616746854
+  }
+}

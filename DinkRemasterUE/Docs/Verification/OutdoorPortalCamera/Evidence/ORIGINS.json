@@ -1,32 +1,32 @@
 {
   "Build/C1_editor_failure.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/editor/HOST_TERMINAL.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/editor/HOST_TERMINAL.json",
     "sha256": "91fed653d06d77f2c4e9649804c28187dced1e8f0d6e77c1ea0406211df18534",
     "bytes": 128
   },
   "Build/C2_sequence.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate2/Runs/b74a504ffb4a4dc084d34bc1714be17f/SEQUENCE_RESULT.json",
-    "sha256": "006a4c5600320ff3f9ead1c2346852523a8e7176435645ee990411d80deecc8c",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate2/Runs/b74a504ffb4a4dc084d34bc1714be17f/SEQUENCE_RESULT.json",
+    "sha256": "e3062aadeba78c6307d735681990c49bfd4b55f802c8ce09857c220826b5ba78",
     "bytes": 1988
   },
   "Build/C1_error_excerpt.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/ProjectSaved/Logs/build.log",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraBuildPreparation/Candidate1/Runs/d5acfcca21164d56aa6ba86b01566cf3/ProjectSaved/Logs/build.log",
         "sha256": "16929173b549663244c7789fe4db29b6a0db6101caec7e344b5807a0d44dd12d"
       }
     ],
-    "sha256": "fe5b07019d123cdfd612698af85bb7aa8c7bae6d7d5cf940b9e48c053fb7be20",
+    "sha256": "911c6d56a2c79e8f90e5424969b3a46dd2190243308794fad9964352614709a2",
     "bytes": 966
   },
   "Native/Cold9.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/Report/index.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/Report/index.json",
         "sha256": "5dd2693ceee3bc6fb00188371c6ca39603a69d11d196a7ad81c91a7250aafb03"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/HOST_TERMINAL.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/Runs/34b483fe0af24db7bdb92f02936ddb5e/HOST_TERMINAL.json",
         "sha256": "25b7d5842e6be03b7f5f3f978c9031aa135f6b51bf0e00c75fa43761e95cc46e"
       }
     ],
@@ -36,11 +36,11 @@
   "Native/Warm9.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/Report/index.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/Report/index.json",
         "sha256": "8006e9031935804b19c8c484476284b9e1178c439e44c6c65750fa8bcbfd089d"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/HOST_TERMINAL.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate3/Runs/d65e56b413fa45dc97189f844e653625/HOST_TERMINAL.json",
         "sha256": "e5678be2893e991a36e15282fe91d2c32ba94b19be43c40f26914aa0231328ed"
       }
     ],
@@ -48,154 +48,154 @@
     "bytes": 27516
   },
   "GPU/result.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/result.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/result.json",
     "sha256": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
     "bytes": 197
   },
   "GPU/DISPLAY_CLOSED.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DISPLAY_CLOSED.json",
-    "sha256": "4398e018344920793f7f10029f106278972bb84bcd92e8cc8e16ecf5cf6488ac",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DISPLAY_CLOSED.json",
+    "sha256": "3387b3b80a984a2dc48a25f4fca91e68ddb0d3f78ef8cb00416c046c6fc71b63",
     "bytes": 553
   },
   "GPU/DRIVER_REVIEW_FINAL.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DRIVER_REVIEW_FINAL.json",
-    "sha256": "0f5da5f06523dab8f14657ca1f593baad55aed860262c983b6f51ffd8e18df70",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/DRIVER_REVIEW_FINAL.json",
+    "sha256": "c177eed5b96681b86529383da2542c1b1321a2a59d08c99b2a7f9894bf3026fa",
     "bytes": 10615
   },
   "GPU/OUTER_TOOL_QUALIFICATION.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/OUTER_TOOL_QUALIFICATION.json",
-    "sha256": "ea6304bb1d24ab2cbba4dc38f4d2720e4ce87a72ea37bbaac600ed73d329e6f7",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/OUTER_TOOL_QUALIFICATION.json",
+    "sha256": "e018e599f8282ece090240fa6265fa0f076f15e329530320507eb2a787ebeea5",
     "bytes": 1855
   },
   "GPU/FRESH_STARTUP_PLAYER.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/FRESH_STARTUP_PLAYER.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/FRESH_STARTUP_PLAYER.json",
     "sha256": "5d676e416f844d6d31363c2d69cca523ffa39d72c49e932e40465a7c53fe546e",
     "bytes": 396
   },
   "GPU/ENGINE_OUTER_IDENTITY.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY.json",
-    "sha256": "6ffe250c4f939a7f5cf7ac3efc0e49312d704d341e7d3a31f31eab7529086e90",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY.json",
+    "sha256": "d5d7a659b84bca6ea2ae2f6dbdaa573d934883551727ca7b0ee6f1d668d6222b",
     "bytes": 2483
   },
   "GPU/ENGINE_OUTER_IDENTITY_V2.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY_V2.json",
-    "sha256": "112bbf892b05e5d291986999b815a870a72b702e7aa87208af1b32a54ac72408",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/ENGINE_OUTER_IDENTITY_V2.json",
+    "sha256": "94d1798ab034eca839558a0feb07b4128a8cbdcf75f3d55a45f430a387bc4384",
     "bytes": 1843
   },
   "GPU/CORRECTED_CONTROLS_CALLER.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/CORRECTED_CONTROLS_CALLER.json",
-    "sha256": "7bf56d5dd7ed86a981f519b098b2c6867aaf4b978cf940b12c064059cbc65d4b",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/CORRECTED_CONTROLS_CALLER.json",
+    "sha256": "7ef1bbb485c850076bd9ed84c9cb4247eb006b018ab45c360670d9fe2a3f5a43",
     "bytes": 460
   },
   "GPU/state-portal-recorded.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded.json",
     "sha256": "56e225bdcf45d26909e9b88387502287e960ddd4d2040b944d984b13fe5c248a",
     "bytes": 731352
   },
   "GPU/state-portal-recorded-corrected.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
     "sha256": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d",
     "bytes": 732043
   },
   "GPU/state-portal-free-corrected.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-free-corrected.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-free-corrected.json",
     "sha256": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
     "bytes": 731848
   },
   "GPU/state-portal-indoor-restored-corrected.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-indoor-restored-corrected.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-indoor-restored-corrected.json",
     "sha256": "529ce7b0b1e640857c1ac28c7934fa31b9f4bd8ee611e571ae6d656b6dc4ff8d",
     "bytes": 731791
   },
   "Screenshots/spawn-initial.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-initial.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-initial.png",
     "sha256": "6297345fed84faaea8f74344bd2060c01e3b718a25d454aa8917ff07ebc98a6d",
     "bytes": 954019
   },
   "Screenshots/spawn-corridor-east.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-corridor-east.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-corridor-east.png",
     "sha256": "c1da0258f03266019d9a15bad084e40ab043b1f195bd75f1ece34bf27b6f6db9",
     "bytes": 1026588
   },
   "Screenshots/spawn-door-exit.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-exit.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-exit.png",
     "sha256": "8b4f79a9ac688903b63318c79817027bf5c3650ea55b8cdef6ac55cfb1f79bf6",
     "bytes": 1189293
   },
   "Screenshots/spawn-door-return.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-return.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/spawn-door-return.png",
     "sha256": "0898cc518078e308c77a66e51a668648c897080a418adc9a7a5ba0b05bffd4c7",
     "bytes": 1016061
   },
   "Screenshots/portal-recorded-corrected.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-recorded-corrected.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-recorded-corrected.png",
     "sha256": "9ba579fe4eb4ad09d0d0486ef4f5a591256099a2ee2e00abb6a8b67416a53874",
     "bytes": 1180852
   },
   "Screenshots/portal-free-corrected.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-free-corrected.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-free-corrected.png",
     "sha256": "4ea37cc06efe9f12c332c575d75217c6f5eb52c35877e7b2b0063327454d9c1d",
     "bytes": 1056085
   },
   "Screenshots/portal-indoor-restored-corrected.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-indoor-restored-corrected.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/portal-indoor-restored-corrected.png",
     "sha256": "4ac280b08927af3e43ed90ee1913715150279d6ea6e6a60a21020294384b0ca8",
     "bytes": 1114107
   },
   "Routes/walk-west.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-west.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-west.json",
     "sha256": "65927c62ab220474d638e57778316b78ebb80fd272acd09841ec4fe52d57f7fb",
     "bytes": 7970
   },
   "Routes/walk-corridor-west.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-west.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-west.json",
     "sha256": "9decdfbffe0f5e6f3808bba84652a4d12af608b7dc8e16a3f98ae59b66dcea7e",
     "bytes": 14925
   },
   "Routes/walk-corridor-east.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-east.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-corridor-east.json",
     "sha256": "672be89aee0984d52762d28946b952fe3ee34decdc2412b9a7a879c34d010876",
     "bytes": 6552
   },
   "Routes/walk-south-bypass.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-south-bypass.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-south-bypass.json",
     "sha256": "7acbd4c8509ce513453e5c2a708e45f5e1d002730c0e8fecc72f7ae23949a85a",
     "bytes": 8772
   },
   "Routes/walk-door-approach.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-door-approach.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/walk-door-approach.json",
     "sha256": "8518fb9577ed5965132bc1ce1c2f66459533665589ab2cd77efece6abd785fe9",
     "bytes": 5770
   },
   "Routes/route-spawn-door-exit.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-exit.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-exit.json",
     "sha256": "9803527befe496bb9506d64e87db04f02f36c9e5964fea05d939ecfa8b87aec7",
     "bytes": 2549
   },
   "Routes/route-spawn-door-return.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-return.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/route-spawn-door-return.json",
     "sha256": "aceb4ad6b23312c7f1f0b7e3fb40d6440999c8fde8be4e176444d096fad81dcb",
     "bytes": 973
   },
   "ObserverCorrection/CORRECTION_ONLY.diff": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraObserverCorrection/CORRECTION_ONLY.diff",
-    "sha256": "55ddb79720dd35f2d5a2ce7e47eb0e224269f392f4109c54fef1a6757489f17f",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraObserverCorrection/CORRECTION_ONLY.diff",
+    "sha256": "f618b0fe1ee0810e4525fcfa8a3ab2534e37dec624db5f7b39508887d8990f27",
     "bytes": 1689
   },
   "ObserverCorrection/PROVENANCE.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraObserverCorrection/PROVENANCE.json",
-    "sha256": "c3d015f5f3a13029dd9a6ad3493d0c3c7a895144508d6e813e0da2c7905802d6",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraObserverCorrection/PROVENANCE.json",
+    "sha256": "b21e3999dcdf0a36b95397e8adf419bbb2b334a34da93bb220ca9668ce1e9c19",
     "bytes": 819
   },
   "ObserverCorrection/INDEX.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraObserverCorrection/INDEX.json",
-    "sha256": "23a11dc76eacad173c27e6e5d0ae35c9c23c926d13823d02bb03b3bb221eea37",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraObserverCorrection/INDEX.json",
+    "sha256": "c4d8c0e2b1de8aa821ab638b6d54eb3f95cf94c920c0c490a12b507a96361a97",
     "bytes": 858
   },
   "GPU/PoseQualification.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/state-portal-recorded-corrected.json",
         "sha256": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d"
       }
     ],
@@ -205,11 +205,11 @@
   "Native/FullCurrent201.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
-        "sha256": "6f92699bb81e719ba83c06e82b73f396fff7ff38c18b6751636b0a3871b3a52c"
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
+        "sha256": "f9b91bb471ac6229c2bd50b9fd9c26af11399a9f323bda49c9e5a61fec7544d8"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Report/index.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/Report/index.json",
         "sha256": "b0f8ac6ecb430288d3deae1ac9c9c29eb690e5b75763d4d8365006a2145a3b6b"
       }
     ],
@@ -217,457 +217,457 @@
     "bytes": 37006
   },
   "Native/FullCurrent_HOST_TERMINAL.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
-    "sha256": "6f92699bb81e719ba83c06e82b73f396fff7ff38c18b6751636b0a3871b3a52c",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate4/Runs/5b0f6b4c5d54458bb269a63563afbc4d/HOST_TERMINAL.json",
+    "sha256": "f9b91bb471ac6229c2bd50b9fd9c26af11399a9f323bda49c9e5a61fec7544d8",
     "bytes": 14230
   },
   "Package/CookSummary.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_TERMINAL.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_TERMINAL.json",
         "sha256": "836c8c9af44867f6c45f04a1ac23a8b1b93e8226781797263725a72c840d639a"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/ProjectSaved/Logs/package.log",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/ProjectSaved/Logs/package.log",
         "sha256": "772b092ba6c63b283c2eabf0c60b1505b547353afcbda77a91e8231d6f8d45d5"
       }
     ],
-    "sha256": "284f62784f54439fdbe5e88b00b5f6954c64f5625ab6e13ab8eb6ec5a7950461",
+    "sha256": "96dae4fe50a39ec17ce5d5b9cb3b063559833d8403e102f93b4ccabeddc22d8e",
     "bytes": 2293
   },
   "Package/GENERATED_DELTA.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/GENERATED_DELTA.json",
-    "sha256": "6222ae208ee4dc630f7ac5d2884c2da3d3c2c89fd4c12b8e985add3763a7438d",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/GENERATED_DELTA.json",
+    "sha256": "26b6a8f8257ba019d4da823f83433bb9342f76aaa7e1975d5bcb0f02ee3e954d",
     "bytes": 1164
   },
   "Package/HOST_ENGINE_STAGE_BEFORE.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_ENGINE_STAGE_BEFORE.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_ENGINE_STAGE_BEFORE.json",
+    "sha256": "4bfedf8b4256d77837059ae2eefcf208a7e5d4df1c0c44750f178e4795247885",
     "bytes": 321
   },
   "Package/HOST_ENGINE_STAGE_AFTER.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_ENGINE_STAGE_AFTER.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_ENGINE_STAGE_AFTER.json",
+    "sha256": "4bfedf8b4256d77837059ae2eefcf208a7e5d4df1c0c44750f178e4795247885",
     "bytes": 321
   },
   "Package/HOST_SHADERPRINT_BEFORE.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_SHADERPRINT_BEFORE.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_SHADERPRINT_BEFORE.json",
+    "sha256": "6ef16a2f6c11842780809201be8b4dd2bdf213bb1e4fc259468902558cd9c3f7",
     "bytes": 272
   },
   "Package/HOST_SHADERPRINT_AFTER.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_SHADERPRINT_AFTER.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagingPreparation/Candidate1/Runs/5a578ae4141e4a4c8a0c8644756917e1/HOST_SHADERPRINT_AFTER.json",
+    "sha256": "6ef16a2f6c11842780809201be8b4dd2bdf213bb1e4fc259468902558cd9c3f7",
     "bytes": 272
   },
   "Package/Shader4Validation.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraFourShaderValidation/REPORT.json",
-    "sha256": "2ba348d2563742b7636968d7354a157deb64b4cc85518358b26ffdfe338aac6e",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraFourShaderValidation/REPORT.json",
+    "sha256": "ad3b2e2a464427152361d55fda52df49848c314f9847b5bf2c400503fce4f04f",
     "bytes": 1659
   },
   "Package/ActualContainerUFSReview.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraCookInventory/ACTUAL_CONTAINER_REVIEW.json",
-    "sha256": "aae60a4506b05ad9e6134248689c78a2bc679ba222bbffea3f0e17d7986b67b5",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraCookInventory/ACTUAL_CONTAINER_REVIEW.json",
+    "sha256": "12aee2c3a72cd4160f4cc42c4a5b85babdb46aa72fb9d28f12a940347544406d",
     "bytes": 3986
   },
   "Package/CH1_RESULT.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedCH1Preparation/Runs/3bb5445d27994c1dba04645f840ca22f/RESULT.json",
-    "sha256": "26aa8ee9aafe20e226661927d342018af62eeba6feac4b2509390e2d00c74aa8",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedCH1Preparation/Runs/3bb5445d27994c1dba04645f840ca22f/RESULT.json",
+    "sha256": "3a7dfcd6e16541f80040c25ab7a1411fc73155ef47ef56ea88b1c1ac3039d445",
     "bytes": 845
   },
   "Package/CH1_HOST_CLOSURE.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedCH1Preparation/Runs/3bb5445d27994c1dba04645f840ca22f/HOST_CLOSURE.json",
-    "sha256": "bea750a578a46ece9c9c7f6e2a7f3d6258a34c4ea24617ccd75c9acb453f2d79",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedCH1Preparation/Runs/3bb5445d27994c1dba04645f840ca22f/HOST_CLOSURE.json",
+    "sha256": "71e2c2bb1f5b2ab0209e5c6e3736c85b15141939816616b49066b7523819d563",
     "bytes": 611
   },
   "PackagedGPU/result.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/result.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/result.json",
     "sha256": "512c4b9b5c5c61133a2069ef314f1bc2876c575c1e1143f269f44537657622df",
     "bytes": 197
   },
   "PackagedGPU/DISPLAY_CLOSED.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/DISPLAY_CLOSED.json",
-    "sha256": "56218ef6073bb08c6e536e5ae734d2ae68470328897c8b2f984750ec315dd71d",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/DISPLAY_CLOSED.json",
+    "sha256": "2cc767f708b79bae821b3d557af09ef7fb55348e1664065661bebfb6a09d6282",
     "bytes": 561
   },
   "PackagedGPU/OUTER_TOOL_QUALIFICATION.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/OUTER_TOOL_QUALIFICATION.json",
-    "sha256": "49ff9db6cdecf591a9e21a5723b494394fc330e18109b53539980e8bfc8ce020",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/OUTER_TOOL_QUALIFICATION.json",
+    "sha256": "f46790a43007872b1638837246039832fa5eee96f307690241662a293c50c6b4",
     "bytes": 1846
   },
   "PackagedGPU/FRESH_STARTUP_PLAYER.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/FRESH_STARTUP_PLAYER.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/FRESH_STARTUP_PLAYER.json",
     "sha256": "f1f2c60fa3efc8311649b1f14bbef6b8aa5253bc2618da531ca12d968615272d",
     "bytes": 263
   },
   "PackagedGPU/DRIVER_REVIEW_FINAL.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/DRIVER_REVIEW_FINAL.json",
-    "sha256": "b795e0d0865c6acb4caeda4c25c4f91a0ff549a0b3e469be6e2b3a3e2e8d9512",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/DRIVER_REVIEW_FINAL.json",
+    "sha256": "5599b99d05d1d7ab7937f63c901ba75ca02f86da219869279b8043ee950c6b8e",
     "bytes": 8398
   },
   "PackagedScreenshots/spawn-initial.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-initial.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-initial.png",
     "sha256": "68c6187e0b89fe2b6823b7c6d5c5715f9bcf3acd744716b105aaac382abae121",
     "bytes": 960328
   },
   "PackagedGPU/camera-spawn-initial.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-initial.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-initial.json",
     "sha256": "309fade074eaa7831f6fd4ed9a0e4ae06cd18312847823cbc57ea1a38e8aa464",
     "bytes": 535
   },
   "PackagedGPU/player-spawn-initial.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-initial.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-initial.json",
     "sha256": "73b1c37057e0bc755c7059d50ad19fdc0e820feebebe7cb992ce9f83aa064315",
     "bytes": 433
   },
   "PackagedScreenshots/spawn-door-exit.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-door-exit.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-door-exit.png",
     "sha256": "dd0fee74363ca2823bcf26dab1834a0265b8dd1badd242072a8f4f2b7fbcc308",
     "bytes": 1183534
   },
   "PackagedGPU/camera-spawn-door-exit.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-door-exit.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-door-exit.json",
     "sha256": "342e24aa387d6dee66767adf022d31605a22d970368061e756a66a857c6f59de",
     "bytes": 654
   },
   "PackagedGPU/player-spawn-door-exit.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-door-exit.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-door-exit.json",
     "sha256": "8cd36b897113d1eb66dd6b6236bedd7c34419ff1d912c202700fe2d2aa7cb3aa",
     "bytes": 436
   },
   "PackagedScreenshots/spawn-door-return.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-door-return.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/spawn-door-return.png",
     "sha256": "3e6d3c2553efd36c77901ec760dc64c00b98830bc09ed9924fdf73555b731b37",
     "bytes": 1014417
   },
   "PackagedGPU/camera-spawn-door-return.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-door-return.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-spawn-door-return.json",
     "sha256": "309fade074eaa7831f6fd4ed9a0e4ae06cd18312847823cbc57ea1a38e8aa464",
     "bytes": 535
   },
   "PackagedGPU/player-spawn-door-return.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-door-return.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-spawn-door-return.json",
     "sha256": "92cc1429cf3741444d29894768873bbc7d8864367368217b6795464bff54b561",
     "bytes": 441
   },
   "PackagedScreenshots/portal-derived.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-derived.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-derived.png",
     "sha256": "8d30511150a59382994891b506b006b15e5cef743864274749fe9ae281501ca8",
     "bytes": 1186513
   },
   "PackagedGPU/camera-portal-derived.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-derived.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-derived.json",
     "sha256": "5597619dfa8af6f216235b32d1b5ebd02ed42b5c1ff6120cdf234b0997ebb467",
     "bytes": 654
   },
   "PackagedGPU/player-portal-derived.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-derived.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-derived.json",
     "sha256": "20080fea6be49b3239eff2046896c1e2a696e3f4ae720f9c786d96ab0bcbebf8",
     "bytes": 439
   },
   "PackagedScreenshots/portal-free.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-free.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-free.png",
     "sha256": "1f40d9e2e57a2396978a245f50c2871af4cc8015b65cbda31f1e18bd9f54d931",
     "bytes": 1059077
   },
   "PackagedGPU/camera-portal-free.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-free.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-free.json",
     "sha256": "d220c8448c045e428b237e93aefb5c48aae95d8c45d615c962d5561ab8c87401",
     "bytes": 535
   },
   "PackagedGPU/player-portal-free.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-free.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-free.json",
     "sha256": "27889b203e71cb7e176c1e6127783bbaab90337594128e6401f9565920813ed6",
     "bytes": 435
   },
   "PackagedScreenshots/portal-indoor.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-indoor.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/portal-indoor.png",
     "sha256": "09c8b04c51bedd12d56d47df4abfa38649bbdd5554b3fcb0ea8e0eed288621bb",
     "bytes": 1115376
   },
   "PackagedGPU/camera-portal-indoor.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-indoor.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-portal-indoor.json",
     "sha256": "309fade074eaa7831f6fd4ed9a0e4ae06cd18312847823cbc57ea1a38e8aa464",
     "bytes": 535
   },
   "PackagedGPU/player-portal-indoor.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-indoor.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-indoor.json",
     "sha256": "91fb83f6e01a8f52525ea4392c07f2c0baac33e9cd88ec5672f513300249dd06",
     "bytes": 434
   },
   "PackagedScreenshots/final.png": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/final.png",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/final.png",
     "sha256": "07fb537e7818b9f617165a57e552dfbfb308b46e2a4196c1cd7ad00ad3f0b873",
     "bytes": 1110354
   },
   "PackagedGPU/camera-final.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-final.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/camera-final.json",
     "sha256": "309fade074eaa7831f6fd4ed9a0e4ae06cd18312847823cbc57ea1a38e8aa464",
     "bytes": 535
   },
   "PackagedGPU/player-final.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-final.json",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-final.json",
     "sha256": "bf5b4511189c460f3a3cdf06fa7ef571d5873eb809697030b4cd7e5a5278c86c",
     "bytes": 434
   },
   "PackagedGPU/GETALL56Summary.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-hero.json",
         "sha256": "3db561086b4e30213a13b61762ceb3004e79c9a6727e4d1051532b6e2069cb46"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalArmCap.json",
         "sha256": "f080f80fccc89b57f8c3ff0c85410915ef5035a7b65a56a138e321e81317e770"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorHeadroomLift.json",
         "sha256": "1b0aa275e4af246073221c9e03ea531c4e09ec9ba1672cf23b51b888dbb0b340"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalOwner.json",
         "sha256": "cca6a98e79f0c67dadd6b52fd1155eab698fed5fba6de0ca82d4ef17ccce4078"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-OutdoorPortalMeshSHA.json",
         "sha256": "fe9eacb00eaa87c84a1d3c9b45f60679cabf4ab410cf15575e2baa60aaa0c8de"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-bOutdoorPortalFramingFeasible.json",
         "sha256": "eeba0e0d8f5375a20b2716b8e9fcb5b398ea47a305ab54891f100dda3327fb80"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-TargetArmLength.json",
         "sha256": "f34b7e2d248af12eae60804105f5e021d0b6e4ad890828569743a5fccca01840"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-initial-near.json",
         "sha256": "a63c2b0cdb99c930f8abfe5682a1cf92c0b6c059597c20cde675c9ec02cc91e6"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-hero.json",
         "sha256": "8be5906288d6f72e125985920eb4ded1b55cd541d760b8c865044a65e03a72d6"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalArmCap.json",
         "sha256": "8b78b73ce55dda779ddb819ffe29492fd11903dd8712ef010cbfe6b8eee76033"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorHeadroomLift.json",
         "sha256": "fd72490bf787a0f9e1f2a1058709a7d362baacf71bd8f92cee133984f4a65c15"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalOwner.json",
         "sha256": "f713b52bdf4b3d74b2a2997310073ee1922d92fdbd187ad8ff487ad57ad196b9"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-OutdoorPortalMeshSHA.json",
         "sha256": "9f010d725092bf242d3037623da6d8addb080b147f8c1b18b31620d37524deaf"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-bOutdoorPortalFramingFeasible.json",
         "sha256": "427c20f4910bbe134d9e818b1be81eb245d54e84632cda6dfff400663c6787e3"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-TargetArmLength.json",
         "sha256": "0eed2ff69c58e110aaf6b5295ca09f4275dea92248d71c163c1c0233001fe75f"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-exit-near.json",
         "sha256": "36d90660807cfdad087bb9848cb8032aeab88c7e97e77c148434941e26112b18"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-hero.json",
         "sha256": "c3ed0eed87cb7201505e56708a273604dcaf6f241ba4b7ff54af92a318c6f03e"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalArmCap.json",
         "sha256": "d3e65666063d8bd615a12751debc614062d7c38fce20cc0b42f0a35f50a1a199"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorHeadroomLift.json",
         "sha256": "cbfff546391679d42417749625e614aac9c7aa80a81b4dec1013f519404dcb8c"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalOwner.json",
         "sha256": "c72219f6d51264a2d52a56711a2139d30c3d1e96a6690b51f4d53892b791adf0"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-OutdoorPortalMeshSHA.json",
         "sha256": "5f4d936e740d122a52a6b4a00e39adf4a24986681721f0679ac7dfcc21305131"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-bOutdoorPortalFramingFeasible.json",
         "sha256": "9e3837e0fbe8b67e734ee265c34eb1f12141a9e8e9caa8c45b1b48810f362425"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-TargetArmLength.json",
         "sha256": "84b567d6b6575429975ffed9c312dbf9751595709b60720e4647dd311b82ce7b"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-spawn-door-return-near.json",
         "sha256": "9f02276236c5a234981e48d678e6f4f2a5450bb4349ea965e31e2d4cadb7a222"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-hero.json",
         "sha256": "6bbe8c77ab45213e9dac8647410f644c319d01e9bf88e53b4c5b00ad1c8f7617"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalArmCap.json",
         "sha256": "58cb91f2a8d0d10a0ba0d59293f53ec30dd1d518c8964b51bf86d4459d6793f9"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorHeadroomLift.json",
         "sha256": "23d3b005ea7395c2b85954108beede15428980e907985a663028b9af4fcfa8b5"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalOwner.json",
         "sha256": "c9992148e3fb2e2a8699c06dae5e62c8ca1d7a57ab85ddb334011d909cef0ed6"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-OutdoorPortalMeshSHA.json",
         "sha256": "0ff02aae118c92d30d5068e29a01e4a01a54555c8250455b71bae64cd123277c"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-bOutdoorPortalFramingFeasible.json",
         "sha256": "bb6d0854aa3b7164b206c0fe61b39504b25bad83dd6824ddbf9e8ce18b995e35"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-TargetArmLength.json",
         "sha256": "25f910d1d9bb7a1157f77bb2eba27964e47fbd08ec1fc46d54d119e1631b1f94"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-derived-near.json",
         "sha256": "23cf88b431b0a4b7805f6c465c42bb52bc84f5c0a9f459bdcd463c5fc8b163ce"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-hero.json",
         "sha256": "acf5c9865bb1cffa394e506fcd474b53c710a583ce8c9893783642d20cb9cbb1"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalArmCap.json",
         "sha256": "8bd4acdbafbb3f43f45ffb924f3138c335be30bab787690695b761c675437263"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorHeadroomLift.json",
         "sha256": "0571469c6dfddfac45b72108c950e069c5924d7ba2dfbda92b668efe9dbf276f"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalOwner.json",
         "sha256": "fdda3849f4d6d8a1ce161afefba5f6757bbe97594126c5ae4bea8186f51075ba"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-OutdoorPortalMeshSHA.json",
         "sha256": "a93c81087674dd61eba6fbd8db94b9ba5149d6afe0e37fdc9ce18a42d820e934"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-bOutdoorPortalFramingFeasible.json",
         "sha256": "44bdd44bc24b5c9d95a0abe9b1d2489deff6da07a46b26f4b98ca366732ff1b3"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-TargetArmLength.json",
         "sha256": "2de432649018da54adbeaa90dcaf7bbf0f785974cb00b45dc09aea71f1636747"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-free-near.json",
         "sha256": "e99a4a42ddaf11e49ee13ac8034384bb133a70d69a4e3eab4ab7231098aa868d"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-hero.json",
         "sha256": "87b64e468802c5bc27ed3c9142f280d701ab8c7f177dd55c89c93724e2075728"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalArmCap.json",
         "sha256": "2fad13918215a24c7a5542a696748f2724d39bfc9290101ae2e3b39e83f46f66"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorHeadroomLift.json",
         "sha256": "e7be4e1b64fa34c73eaf66b71b737b7aeb1149e787a63e251f8a8d3bf458c11c"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalOwner.json",
         "sha256": "0f6ea65612f2127d66e81823defc06221f0ac69fcf128aca7c9bac08b5ef1f42"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-OutdoorPortalMeshSHA.json",
         "sha256": "cebc779bd5ea6051e183edf3a4c1b21ef2701fc71dcac6e02380408ba017c3b6"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-bOutdoorPortalFramingFeasible.json",
         "sha256": "461460f5d9fed0935d280952d7a1c5a3d0be5966cd399d77eb80fbfd01d16b3c"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-TargetArmLength.json",
         "sha256": "59ee799ff73bd408a342000a7e8703517e398264930feae9ecced3c54306eecc"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-portal-indoor-near.json",
         "sha256": "08b368e6570e14528b99825cf3f40707255e5736af2a82a082ee36581f2612c9"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-hero.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-hero.json",
         "sha256": "48a150249d059a4d119a48112322b81697af6f17ffc5f180c5eec2681190ce48"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalArmCap.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalArmCap.json",
         "sha256": "268d0c922acfac7f7209bd7389040731621fdfa78c59a859762549600d53f099"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorHeadroomLift.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorHeadroomLift.json",
         "sha256": "33546084bccd19eb577735c0898c23830f5f3406c767e9ef9ec7fb2bc4e1eaba"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalOwner.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalOwner.json",
         "sha256": "3d7ef654a68c7e5212c0d080b68fc5cd8eb6c73599d322724757acf0d4a6befe"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalMeshSHA.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-OutdoorPortalMeshSHA.json",
         "sha256": "5eef0adc7f0ebe8706e9558992353653292332171b35f538ddefaa0367ed87bb"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-bOutdoorPortalFramingFeasible.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-bOutdoorPortalFramingFeasible.json",
         "sha256": "432f151f3ae2f92ab4963c03c9e9bc1b92fc3a0a565e8d50cefe902832e19efe"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-TargetArmLength.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-TargetArmLength.json",
         "sha256": "a61508926fd83045ca01edeaead8862512d8c7370ee4ac3d2fd13434de502d55"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-near.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/getall-final-near.json",
         "sha256": "56d36d6dd6af9fc479ff6a9335778d4e9dc03f9567088669bbe6b8586c2e29d9"
       }
     ],
-    "sha256": "122e203d0c263ceb4c52a74f962dfaba453a7eaec84fdeda96d86326cf9556c2",
+    "sha256": "62e4a8eee56bdf1e5d92640c2943cb9a58e3d9c98552b8a7aab512332ff55415",
     "bytes": 34129
   },
   "PackagedGPU/FreshSpawnRoutesSummary.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-west.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-west.json",
         "sha256": "fabea96331dcd2b6fc4498ec0124c02aeedc4eb0c44aef9a6aecb8098362611a"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-west.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-west.json",
         "sha256": "18e75388aa9ce9194cf89c4685098ba908fdd53f778acdd222570b5fc94fbd88"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-east.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-east.json",
         "sha256": "6df5def59065a23d0bd2876a69e0971bf4ce63f3d8ea5445290c96d3fa34d29f"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-south-bypass.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-south-bypass.json",
         "sha256": "ee3c05d3bd063f6e56e902a2d1bc8c6dc7b09e4bd3b59e9aae18ef32cb0c2e05"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-door-approach.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-door-approach.json",
         "sha256": "366f0973ecb58c4d1ecbd25eea3cd1fcef2892f8a6e85eacfdfabcb7097ccb23"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
         "sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3"
       },
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
         "sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061"
       }
     ],
@@ -677,7 +677,7 @@
   "PackagedGPU/PoseQualification.json": {
     "derived_from": [
       {
-        "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-derived.json",
+        "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/player-portal-derived.json",
         "sha256": "20080fea6be49b3239eff2046896c1e2a696e3f4ae720f9c786d96ab0bcbebf8"
       }
     ],
@@ -685,13 +685,13 @@
     "bytes": 392
   },
   "PackagedGPU/GETALL_PRIMARY_SOURCE.md": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/GETALL_PRIMARY_SOURCE.md",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/GETALL_PRIMARY_SOURCE.md",
     "sha256": "f958403d3beacbb7986183825b9a80d168b8694b18189768a92290a65c620811",
     "bytes": 2166
   },
   "PackagedGPU/GETALL_PRIMARY_SOURCE.json": {
-    "origin": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/GETALL_PRIMARY_SOURCE.json",
-    "sha256": "a37a10d027166a5b0996d8c33f5cc66c9e08740e4a55eba886ad5ffa551c4f3f",
+    "origin": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/GETALL_PRIMARY_SOURCE.json",
+    "sha256": "237fd6dc9fb8de04ec3c2cfebd6c807fa7005777423c233b669ececb7ce51c7b",
     "bytes": 1216
   }
 }

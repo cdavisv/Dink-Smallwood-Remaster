@@ -1,0 +1,82 @@
+{
+  "status": "PASS_pixel_ranges_and_packing",
+  "maps": {
+    "T_Candidate_ThinGlass2m_BC.png": {
+      "ranges_linear": [
+        [
+          0.9599937796592712,
+          0.9599937796592712
+        ],
+        [
+          0.9850069284439087,
+          0.9850069284439087
+        ],
+        [
+          0.9699947237968445,
+          0.9699947237968445
+        ]
+      ],
+      "adjacent_repeat_edge_max": [
+        0.0,
+        0.0
+      ],
+      "packed": true,
+      "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4"
+    },
+    "T_Candidate_ThinGlass2m_N_GL.png": {
+      "ranges_linear": [
+        [
+          0.49869534373283386,
+          0.5013351440429688
+        ],
+        [
+          0.49883267283439636,
+          0.5012435913085938
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "adjacent_repeat_edge_max": [
+        0.0001220703125,
+        0.0001373291015625
+      ],
+      "packed": true,
+      "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399"
+    },
+    "T_Candidate_ThinGlass2m_ORM.png": {
+      "ranges_linear": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.07249560952186584,
+          0.10237278044223785
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "adjacent_repeat_edge_max": [
+        0.005508504807949066,
+        0.00643930584192276
+      ],
+      "packed": true,
+      "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607"
+    }
+  },
+  "edge_qualification": "Adjacent texel-centre differences reported; continuous procedural boundary analytically matched by smoothstep blend. Numerical derivative/sampler seam render still required.",
+  "render_review": "Actual baked2m/4m reuse render inspected: backdrop transmits and broad reflected areas remain; no obvious panel-spanning seam visible at this scale. Fine waviness/close seam review remains pending; not native appearance acceptance.",
+  "procedural_study_vs_baked_image_difference": {
+    "mean_absolute_8bit": 0.008907,
+    "max_absolute_8bit": 9.0,
+    "qualification": "Different periodic noise correlation; similarity is supporting evidence only, not pixel equivalence."
+  },
+  "corrected_bake_issues": [
+    "Initial NORMAL bake through transmission returned inward normals; baked equivalent opaque surface normal instead, restored thin-glass consumer.",
+    "Initial BC save included display transform; Standard output now decodes within0.000007 of source linear tint."
+  ]
+}

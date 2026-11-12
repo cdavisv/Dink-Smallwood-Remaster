@@ -724,19 +724,19 @@ def misc_modules(rows):
                 fit={'pivot': 'foot of the post, boards face -Y', 'text': 'the boards carry no lettering (the game shows the sign text in a dialogue box)'})
     if want('Chimney'):
         m = mk('SM_Chimney_Stone_Short_PR', 1.0, 1.5, 'prop', ('fieldstone', 'oak', 'boulder'), 'chimney'); chimney_stack(m)
-        rec(m, ['63 struct/home/home- frames 11, 12', 'chimney_stone'], 'none', 'fieldstone chimney top to stand on a thatched roof: 0.95 x 0.8 m stack of individually set blocks, 1.43 m, oversailing cap course, sooted flue',
+        rec(m, ['63 struct<HOME> frames 11, 12', 'chimney_stone'], 'none', 'fieldstone chimney top to stand on a thatched roof: 0.95 x 0.8 m stack of individually set blocks, 1.43 m, oversailing cap course, sooted flue',
             fit={'pivot': 'centre of the base: sink it 0.3-0.5 m into the thatch at the ridge'})
         m = mk('SM_Chimney_Stone_Tall_PR', 1.3, 4.8, 'prop_large', ('fieldstone', 'oak', 'boulder'), 'chimney'); m.floor0 = True; chimney_stack(m, tall=True)
-        rec(m, ['63 struct/home/home- frame 13', 'chimney_stone'], 'none', 'gable-end chimney from the ground: 1.3 m breast, two weathered offsets, 0.82 m flue, 4.73 m (sprite 187 px = 4.7 m)',
+        rec(m, ['63 struct<HOME> frame 13', 'chimney_stone'], 'none', 'gable-end chimney from the ground: 1.3 m breast, two weathered offsets, 0.82 m flue, 4.73 m (sprite 187 px = 4.7 m)',
             fit={'pivot': 'centre of the base at ground level; stand it against an end wall'})
     COT = ('fieldstone', 'oak', 'thatch', 'door', 'earth')
     if want('Cottage'):
         m = mk('SM_Cottage_Thatched_TwoStorey_PR', 7.6, 9.2, 'building', COT, 'cottage', sb=True); m.paint = [pre_paint(m)]; two_storey(m)
-        rec(m, ['63 struct/home/home- frames 4, 5', 'cottage_thatched_two_storey'], 'none (not built in round 1)',
+        rec(m, ['63 struct<HOME> frames 4, 5', 'cottage_thatched_two_storey'], 'none (not built in round 1)',
             'two-storey fieldstone cottage as sprite 63 frames 4-5: 6.6 x 6.0 m lower storey with quoins, footing stones and two shuttered windows under a thatched pentice roof on all four sides; a 4.9 x 4.3 m upper storey rises through it under its own hipped thatch with block ridge and chimney',
             fit={'pivot': 'ground centre of the lower wall rectangle; front -Y', 'footprint': 'lower walls 6.6 x 6.0 m, eaves 7.6 x 7.0 m; ridge 8.3 m, chimney top 9.2 m', 'door': 'no doorway is cut: stand SM_Cottage_Door_PR where the door sprite is, as for the other family-63 cottages'})
         m = mk('SM_Cottage_Thatched_LShape_PR', 9.5, 9.2, 'building', COT, 'cottage', sb=True); m.paint = [pre_paint(m)]; l_shape(m)
-        rec(m, ['63 struct/home/home- frame 10', 'cottage_thatched_l_shape'], 'none (not built in round 1)',
+        rec(m, ['63 struct<HOME> frame 10', 'cottage_thatched_l_shape'], 'none (not built in round 1)',
             'L-shaped cottage as sprite 63 frame 10: the two-storey block with a single-storey hipped wing (4.4 x 5.6 m) thrown forward from its right half',
             fit={'pivot': 'ground; the two-storey block is centred at (-1.2, +1.4), the wing at (+2.3, -2.6), front -Y', 'footprint': 'about 9.3 x 11.2 m over the eaves'})
     HUT = ('daub_blue', 'oak', 'palm', 'daub_olive', 'daub_red', 'bone', 'fieldstone', 'rope', 'earth')

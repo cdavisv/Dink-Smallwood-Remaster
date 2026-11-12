@@ -117,7 +117,7 @@ A family is one original sprite sequence (`dink.ini` sequence number and path). 
 | 10 | 121 animals/duck/death/dkh1x- | creature | 91 | 0 | duck_head 90, duck_corpse 1 |
 | 11 | 133 foes/pill/f1-w3- | creature | 89 | 1 | pillbug 89 |
 | 12 | 67 struct/castle/castl- | building kit | 81 | 0 | castle_wall_diag 46, castle_tower_round 20, castle_wall_corner 12 |
-| 13 | 63 struct/home/home- | building kit | 70 | 4 | cottage_thatched_small 16, cottage_door 16, cottage_thatched_large 16 |
+| 13 | 63 struct<HOME> | building kit | 70 | 4 | cottage_thatched_small 16, cottage_door 16, cottage_thatched_large 16 |
 | 14 | 448 items/cup/cup- | prop | 69 | 0 | jar_vase 52, bowl 17 |
 | 15 | 651 foes/puddle/blue/walk/f06w1- | creature | 67 | 0 | slime_blue 67 |
 | 16 | 131 foes/pill/f1-w1- | creature | 65 | 5 | pillbug 65 |

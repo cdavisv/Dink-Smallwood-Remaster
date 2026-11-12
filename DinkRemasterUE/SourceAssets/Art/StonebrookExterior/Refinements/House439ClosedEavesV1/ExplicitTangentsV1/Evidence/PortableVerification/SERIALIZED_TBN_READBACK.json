@@ -1,0 +1,27 @@
+{
+  "scope": "Independent serialized FBX UV0 T/B readback vs frozen geometry; not native admission",
+  "old_fbx_sha256": "aa4e091a48f3337f7b9bda4b1f044786c46149c163df511978bebb86bc210f27",
+  "successor_fbx_sha256": "6bd5b70a36aca350de3ec93c168178be53302795acd358661262ef6511e84e12",
+  "frozen_geometry_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "source_core_geometry_arrays_exact": true,
+  "all7_model_transforms_exact": true,
+  "positions_UVs_normals_colors_roles_smoothing_collision_arrays_exact": true,
+  "collision_hulls": 6,
+  "base_layer_bindings": {
+    "LayerElementNormal": 0,
+    "LayerElementBinormal": 0,
+    "LayerElementTangent": 0,
+    "LayerElementSmoothing": 0,
+    "LayerElementColor": 0,
+    "LayerElementUV": 0,
+    "LayerElementMaterial": 0
+  },
+  "tangent_layer_name": "UV0",
+  "corners": 547878,
+  "zero_serialized_tangents": 0,
+  "max_normal_degrees": 0.032971584942173386,
+  "max_tangent_degrees": 0.032271629016232546,
+  "bitangent_sign_changes": 0,
+  "source_reference_unchanged": true,
+  "pass_serialized_tbn": true
+}

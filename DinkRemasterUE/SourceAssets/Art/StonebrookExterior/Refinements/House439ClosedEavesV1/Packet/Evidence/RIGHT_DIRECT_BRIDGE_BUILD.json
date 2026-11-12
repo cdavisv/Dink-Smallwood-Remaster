@@ -1,0 +1,11 @@
+{
+  "RoofFamily_CoreShell": {
+    "boundary_edges": 669
+  },
+  "RoofFamily_ContinuousRolledEave_0_1": {
+    "boundary_edges": 326
+  },
+  "combined_boundary_edges": 995,
+  "bridge_faces": 995,
+  "remaining_nonmanifold": 0
+}

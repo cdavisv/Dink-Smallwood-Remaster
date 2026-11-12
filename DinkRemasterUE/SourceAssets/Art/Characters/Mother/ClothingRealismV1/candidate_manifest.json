@@ -1,0 +1,42 @@
+{
+  "schema": "dink-mother-clothing-review/1",
+  "status": "SOURCE_CANDIDATE_NOT_IMPORTED",
+  "base_commit": "868911993692e2930ee5bde6c55d07e21e310f5e",
+  "origin": "S001_P26",
+  "reference_guide": "Reference/original_guide.json",
+  "baseline_files": {
+    "SourceAssets/Art/Characters/SK_Mother.blend": "09e64ca591b105db697a116a810457a1d0ace0f70e35b9261d8204f47081ca49",
+    "SourceAssets/Art/Characters/Export/SK_Mother_LOD0.fbx": "b5169b03bdf393af9c4dc79e2a3e6d162adfca4a0af06aac95ca21934b948ee0",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_BC.png": "05604e88f76069809bca41f4dd97b0c7cb9a3f60b49a9a7f32d5b2d3b19de6c4",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_N.png": "c7c0fca8e01271ef8b35393b1c052ce73e722cc1b3524062a463932f9c34e2d2",
+    "SourceAssets/Art/Characters/Textures/T_Mother_Atlas_ORM.png": "d603a4ae3923f2c73f5ac9d0d8b1ebbf93821105904650a615f077a7d0cfada3",
+    "SourceAssets/Art/Characters/character_manifest.json": "2414139eccfdde0ab2e27ac9cd6d4afe9168c0dbabac635079a7d0cbab820c87"
+  },
+  "source": "SK_Mother_ClothingRealismV1.blend",
+  "baked_source": "SK_Mother_ClothingRealismV1_Baked.blend",
+  "fbx": [
+    "Export/SK_Mother_ClothingV1_LOD0.fbx",
+    "Export/SK_Mother_ClothingV1_LOD1.fbx",
+    "Export/SK_Mother_ClothingV1_LOD2.fbx",
+    "Export/SK_Mother_ClothingV1_LOD3.fbx"
+  ],
+  "runtime_textures": {
+    "BC": "Textures/T_Mother_ClothingV1_BC.png",
+    "N": "Textures/T_Mother_ClothingV1_N.png",
+    "ORM": "Textures/T_Mother_ClothingV1_ORM.png"
+  },
+  "normal_convention": "Blender/OpenGL tangent normal; existing UE bridge normal_flip_green=true required, to verify during isolated native import.",
+  "material_slots": 5,
+  "new_wardrobe_slot": "MI_Mother_ClothingRealismV1",
+  "credits": "Original project textile nodes/clothing-only easing on existing MakeHuman CC0 anatomy/textures. Original89-bone Epic compatibility rig retains separate Epic terms. No new external art source.",
+  "activation_gates": [
+    "Native89bone reference comparison and4actualLODs",
+    "Idle/walk/talk/elbow/waist extreme deformation, clothing penetration andLOD pops",
+    "Independently establish normal-bake/export/native tangent basis consistency across142 changed LOD0 wardrobe triangle-index records and lowerLOD reuse; source UV equality alone is insufficient",
+    "Native imported textile colour/normal orientation under actual starting-house/daylight lighting",
+    "GPU texture residency/mips/compression/draw calls: separate3x4K maps add memory; consolidate shared atlas before memory approval",
+    "Original actor/source/script/save/capsule/animation bindings preserved"
+  ],
+  "unchanged_runtime": "No production Content, native assets, runtime manifests, gameplay inputs or imports are changed.",
+  "export_topology_qualification": "Editable polygon arrays unchanged; independent inspection found142 changed LOD0 wardrobe FBX triangle-index records, LOD1\u20133 raw triangle indices exact. No binary full-triangle identity claim."
+}

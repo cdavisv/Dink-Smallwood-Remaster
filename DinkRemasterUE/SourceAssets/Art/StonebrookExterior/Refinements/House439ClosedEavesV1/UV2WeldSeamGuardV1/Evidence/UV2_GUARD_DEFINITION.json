@@ -1,0 +1,13 @@
+{
+  "profile": "house439_uv2_weld_seam_guard_v1",
+  "canonical_key": "Exact IEEE754 float32 UV0/UV1 bits; signed zero retained",
+  "encoding": "(denseID %1024,denseID //1024)",
+  "corners": 547878,
+  "unique_uv_tuples": 137348,
+  "maximum_id": 137347,
+  "guard_coordinates_integer": true,
+  "original_uv_bits_match_frozen_reference": true,
+  "original_geometry_reference_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "source_only": true,
+  "no_native_admission": true
+}

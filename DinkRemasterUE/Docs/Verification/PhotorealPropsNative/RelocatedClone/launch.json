@@ -6,10 +6,10 @@
     "taskset",
     "-c",
     "10,11",
-    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
-    "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/DinkRemaster.uproject",
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/DinkRemaster.uproject",
     "-run=pythonscript",
-    "-script=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Scripts/import_photoreal_props.py",
+    "-script=<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Scripts/import_photoreal_props.py",
     "-nullrhi",
     "-notraceserver",
     "-unattended",
@@ -19,15 +19,15 @@
     "-stdout",
     "-FullStdOutLogOutput",
     "-ddc=InstalledNoZenLocalFallback",
-    "-LocalDataCachePath=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/DDC",
-    "-UserDir=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/User",
-    "-abslog=/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/unreal.log"
+    "-LocalDataCachePath=<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/DDC",
+    "-UserDir=<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/User",
+    "-abslog=<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/unreal.log"
   ],
   "env_overrides": {
     "DINK_PROPS_MODE": "verify",
-    "DINK_PROPS_SOURCE": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1",
-    "DINK_PROPS_REPORT": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/receipt.json",
-    "DINK_PROPS_IMPORT_RECEIPT": "/home/davisc/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/NONEXISTENT_AUTHOR_IMPORT_RECEIPT.json"
+    "DINK_PROPS_SOURCE": "<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPropsV1",
+    "DINK_PROPS_REPORT": "<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/receipt.json",
+    "DINK_PROPS_IMPORT_RECEIPT": "<HOME>/Work/DinkQA/RelocatedPropsClone/DinkRemasterUE/Saved/RelocatedProps/NONEXISTENT_AUTHOR_IMPORT_RECEIPT.json"
   },
   "ImportData_present": false
 }

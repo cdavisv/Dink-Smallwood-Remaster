@@ -215,16 +215,25 @@ namespace
 				Greybox->RefreshCurrentScreen();
 			};
 
+            // Marked screens need their normal Story entry, even for a prop-only test.
+            if ((Stage==1||Stage==5) && Now>=At && Game->RequiresOriginalHardnessScreen(DinkPropTest::Screen) &&
+                (Director->GetDink().Screen!=DinkPropTest::Screen || !Game->UsesOriginalHardnessProjection(DinkPropTest::Screen) || Game->IsHardnessLoading()))
+            {
+                if(FPlatformTime::Seconds()<AdmissionDeadline)return false;
+                Test->AddError(FString::Printf(TEXT("SCR419 prop entry refused/timed out: director=%d projected=%d loading=%d screenScripts=%d"),Director->GetDink().Screen,int32(Game->UsesOriginalHardnessProjection(DinkPropTest::Screen)),int32(Game->IsHardnessLoading()),int32(Story->bRunScreenScripts)));
+                return true;
+            }
+
 			switch (Stage)
 			{
 			case 0:
-				// The opening scene is skipped the ordinary way; screen scripts off so Joppa's scripts (&story 0) leave Dink alone.
+				// Skip dialogue normally; keep Story entry enabled so marked physical/logical admission completes.
 				Story->SkipDialogue();
 				if (Story->GetActiveMenu() || Director->GetDink().bFrozen || PC->IsMoveInputIgnored() || Now < 2.0)
 				{
 					return false;
 				}
-				Story->bRunScreenScripts = false;
+				if(!Test->TestTrue(TEXT("normal screen entry remains enabled"),Story->bRunScreenScripts))return true;
 				for (TObjectIterator<UDinkWarpComponent> It; It; ++It)
 				{
 					if (It->GetWorld() == World && It->WarpId == TEXT("S419_P02")) { Door = *It; }
@@ -238,6 +247,7 @@ namespace
 				// Where the house's exit puts Dink: on SCR_419 in front of the door.
 				Arrival = Back->DestLocation;
 				Place(Arrival);
+                AdmissionDeadline=FPlatformTime::Seconds()+5;
 				At = Now + 1.0;
 				Stage = 1;
 				return false;
@@ -295,6 +305,7 @@ namespace
 				if (Now < At) { return false; }
 				// Back on SCR_419, the door switched off for this visit, then a screen load.
 				Place(Arrival);
+                AdmissionDeadline=FPlatformTime::Seconds()+5;
 				At = Now + 1.0;
 				Stage = 5;
 				return false;
@@ -326,6 +337,7 @@ namespace
 		FAutomationTestBase* Test;
 		double Began;
 		double At = 0.0;
+        double AdmissionDeadline = 0.0;
 		int32 Stage = 0;
 		bool bTouched = false;
 		UDinkWarpComponent* Door = nullptr;

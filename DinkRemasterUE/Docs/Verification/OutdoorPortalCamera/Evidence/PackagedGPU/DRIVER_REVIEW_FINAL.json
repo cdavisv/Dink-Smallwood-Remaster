@@ -24,9 +24,9 @@
     "identity": {
       "pid": 854699,
       "start_ticks": 9120647,
-      "exe": "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "exe": "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
       "argv": [
-        "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+        "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
         ":209",
         "-screen",
         "0",
@@ -34,7 +34,7 @@
         "-nolisten",
         "tcp",
         "-auth",
-        "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
+        "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/authority",
         "-noreset"
       ]
     },

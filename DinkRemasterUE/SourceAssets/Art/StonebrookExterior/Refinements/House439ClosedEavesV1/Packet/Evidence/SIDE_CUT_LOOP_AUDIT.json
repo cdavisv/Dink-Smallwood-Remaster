@@ -1,0 +1,142 @@
+{
+  "-1:9.061": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.742089748382568,
+        "max_y": 4.799086570739746
+      }
+    ],
+    "degree_not2": 0
+  },
+  "-1:9.062": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.739834308624268,
+        "max_y": 4.796760082244873
+      }
+    ],
+    "degree_not2": 0
+  },
+  "-1:9.065": {
+    "boundary_components": [
+      {
+        "vertices": 663,
+        "min_y": -4.722973346710205,
+        "max_y": 4.789785385131836
+      }
+    ],
+    "degree_not2": 0
+  },
+  "-1:9.07": {
+    "boundary_components": [
+      {
+        "vertices": 663,
+        "min_y": -4.700143337249756,
+        "max_y": 4.778158187866211
+      }
+    ],
+    "degree_not2": 0
+  },
+  "-1:9.075": {
+    "boundary_components": [
+      {
+        "vertices": 663,
+        "min_y": -4.677312850952148,
+        "max_y": 4.766530513763428
+      }
+    ],
+    "degree_not2": 0
+  },
+  "-1:9.08": {
+    "boundary_components": [
+      {
+        "vertices": 663,
+        "min_y": -4.654482841491699,
+        "max_y": 4.754903316497803
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.061": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.795698642730713,
+        "max_y": 4.764763832092285
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.062": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.793457984924316,
+        "max_y": 4.762064456939697
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.065": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.786740303039551,
+        "max_y": 4.753970623016357
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.07": {
+    "boundary_components": [
+      {
+        "vertices": 669,
+        "min_y": -4.77554178237915,
+        "max_y": 4.740478038787842
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.075": {
+    "boundary_components": [
+      {
+        "vertices": 472,
+        "min_y": -4.764342784881592,
+        "max_y": 2.026817560195923
+      },
+      {
+        "vertices": 165,
+        "min_y": 2.3673925399780273,
+        "max_y": 4.696827411651611
+      }
+    ],
+    "degree_not2": 0
+  },
+  "1:9.08": {
+    "boundary_components": [
+      {
+        "vertices": 44,
+        "min_y": -1.3621578216552734,
+        "max_y": -0.720632791519165
+      },
+      {
+        "vertices": 214,
+        "min_y": -4.753144264221191,
+        "max_y": -1.7677500247955322
+      },
+      {
+        "vertices": 151,
+        "min_y": -0.4110000431537628,
+        "max_y": 1.7925232648849487
+      },
+      {
+        "vertices": 156,
+        "min_y": 2.5635974407196045,
+        "max_y": 4.665044784545898
+      }
+    ],
+    "degree_not2": 0
+  }
+}

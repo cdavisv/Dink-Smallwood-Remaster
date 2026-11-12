@@ -4,11 +4,11 @@
     "nice",
     "-n",
     "10",
-    "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Build/BatchFiles/Linux/Build.sh",
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Build/BatchFiles/Linux/Build.sh",
     "DinkRemaster",
     "Linux",
     "Development",
-    "-Project=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+    "-Project=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
     "-WaitMutex",
     "-NoHotReloadFromIDE",
     "-MaxParallelActions=2",
@@ -16,7 +16,7 @@
     "-DisableAdaptiveUnity",
     "-NoUBA",
     "-NoUBALocal",
-    "-UBARootDir=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/UBA"
+    "-UBARootDir=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/UBA"
   ],
   "exit_code": 0,
   "seconds": 66.63336531100504,

@@ -6,15 +6,15 @@
   "fatal_excerpt": [
     {
       "line": 47,
-      "text": "Failed to create Intermediate/ShaderAutogen/ directory '/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
+      "text": "Failed to create Intermediate/ShaderAutogen/ directory '<HOME>/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
     },
     {
       "line": 49,
-      "text": "Failed to create Intermediate/ShaderAutogen/ directory '/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
+      "text": "Failed to create Intermediate/ShaderAutogen/ directory '<HOME>/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
     },
     {
       "line": 68,
-      "text": "Failed to create Intermediate/ShaderAutogen/ directory '/home/davisc/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
+      "text": "Failed to create Intermediate/ShaderAutogen/ directory '<HOME>/Work/DinkGeneratedBlockerVisuals/DinkRemasterUE/Intermediate/ShaderAutogen'. Make sure Intermediate exists."
     }
   ],
   "diagnosis": "Ordinary CLI lacks UserDir; Engine ProjectIntermediate path is RO. C3 supplies emptyprivate wholeIntermediate overlay; no Engine/source edits."

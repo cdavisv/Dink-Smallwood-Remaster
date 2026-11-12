@@ -1,0 +1,55 @@
+{
+  "status": "FULL_SIZE_CONSTRUCTED_CONTROL_PASS",
+  "triangles": 194192,
+  "corners": 582576,
+  "actual_fbx_sha256": "926a3586c00d958994706c0fc1e4b3ddf3655251da087f9596fa92eed911d028",
+  "actual_source_reference_sha256": "4d805669810de8a76debb2a02978a9e578b80cd0d23bcd6cd0f755775b8b42c9",
+  "construction_seconds": 6.070765167998616,
+  "comparison_seconds": 22.699984352002502,
+  "illustrative_control_tolerances_not_native_approval": {
+    "position_cm": 0.0001,
+    "normal_component": 0.001,
+    "UV": 2e-06,
+    "raw_color": 1e-06,
+    "built_color": 0.00392156862745098,
+    "frame_unit": 0.0001,
+    "frame_dot": 0.0001
+  },
+  "result": {
+    "passed": true,
+    "source_correspondence_passed": true,
+    "raw_Color0_import_passed": true,
+    "geometry": {
+      "raw": {
+        "triangles": 194192,
+        "UV_independent_bijection": true,
+        "errors": {
+          "position_cm": 0.0,
+          "normal_component": 0.0,
+          "UV0": 0.0,
+          "UV1": 0.0,
+          "color": 0.0
+        },
+        "color_reference": "FColor-truncated then sRGB-decoded RAW RGB, linearAlpha"
+      },
+      "built": {
+        "triangles": 194192,
+        "UV_independent_bijection": true,
+        "errors": {
+          "position_cm": 3.0517578125e-05,
+          "normal_component": 0.0005257637239992619,
+          "UV0": 9.5367431640625e-07,
+          "UV1": 0.0,
+          "color": 0.003921340844210475
+        },
+        "color_reference": "original FBX semantic Color0 versus normalized builtRGBA8"
+      }
+    },
+    "stored_signed_TBN_valid": true,
+    "source_Mikk_tangent_direction": "NOT_INDEPENDENTLY_COMPARED",
+    "scope": "Full-size constructed control only; not actual native RAW/built snapshot."
+  },
+  "qualification": "Snapshot assembled from actualFBX andindependentBlenderMikkreference, notnativeAPI/buffers. Exerciseswhole194192tri algorithmandfullRAW/builtattributes only. DoesNOTestablishUnrealimport/sourceMikkagreement/nativeoptics/worldcollision orfinalartapproval.",
+  "native_execution": false,
+  "constructed_control": true
+}

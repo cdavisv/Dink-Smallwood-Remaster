@@ -12,7 +12,7 @@
   "Misc": "Misc/manifest.json (17 assets, part 2: plank bridge deck and two rails, stone bridge, two plank doors, three sign posts, two chimney stacks, two-storey and L-shaped cottages, round and two-storey island huts, cane lattice fence, torch pole); built by tools/misc_build.py"
  },
  "families": {
-  "63 struct/home/home-": "Stonebrook: cottage_thatched_small, _large, _long, cottage_door. Misc: cottage_thatched_two_storey -> SM_Cottage_Thatched_TwoStorey_PR, cottage_thatched_l_shape -> SM_Cottage_Thatched_LShape_PR, chimney_stone -> SM_Chimney_Stone_Short_PR (frames 11, 12) and SM_Chimney_Stone_Tall_PR (frame 13)",
+  "63 struct<HOME>": "Stonebrook: cottage_thatched_small, _large, _long, cottage_door. Misc: cottage_thatched_two_storey -> SM_Cottage_Thatched_TwoStorey_PR, cottage_thatched_l_shape -> SM_Cottage_Thatched_LShape_PR, chimney_stone -> SM_Chimney_Stone_Short_PR (frames 11, 12) and SM_Chimney_Stone_Tall_PR (frame 13)",
   "67 struct/castle/castl-": "Castle: castle_wall_diag, castle_wall_end, castle_tower_round, castle_gatehouse; castle_wall_corner has no own module",
   "93 lands/fence/fence-": "Stonebrook/SM_Fence_SplitRail_4m_PR for all four fence classes (yaw)",
   "186 struct/landmark/landm-": "well_stone -> Stonebrook/SM_Well_Stone_PR; sign_post -> Misc/SM_SignPost_Single_PR, _Double_PR, _Triple_PR (frames 7, 8, 9-10); bridge_stone -> Misc/SM_Bridge_Stone_PR",
@@ -1094,7 +1094,7 @@
      "open_edges": 0,
      "collision_hulls": 5,
      "families": [
-      "63 struct/home/home-",
+      "63 struct<HOME>",
       "cottage_thatched_long",
       "cottage_thatched_large"
      ],
@@ -1143,7 +1143,7 @@
      "open_edges": 0,
      "collision_hulls": 4,
      "families": [
-      "screen 439 burnt state (vision 2) of 63 struct/home/home-"
+      "screen 439 burnt state (vision 2) of 63 struct<HOME>"
      ],
      "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01 (Codex candidate, same 18 x 9 m walls and collision envelope)",
      "dresses": "the Stonebrook cottage after the fire, same walls, pivot, doorway and collision as SM_Cottage_Stonebrook_PR: stone smoke-blackened above every opening and under the lost roof, window glass gone, lintels, frames and shutters charred; the west third of the thatch still hangs on, scorched and burnt back in a ragged line; beyond it charred rafter couples (some snapped), a broken ridge pole, a few laths, fallen timbers, heaps of burnt thatch and ash inside and spilled outside, the door burnt and fallen flat in front of the doorway, scorched earth at the wall foot",
@@ -1192,7 +1192,7 @@
      ],
      "supersedes": "none (family 63 had no final art away from screen 439)",
      "dresses": "fieldstone cottage under a hipped thatch, 7.0 x 5.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
-     "sprite_family": "63 struct/home/home-",
+     "sprite_family": "63 struct<HOME>",
      "sprite_frames": "frames 7, 8 (257x225 px)",
      "fit": {
       "pivot": "ground centre of the wall rectangle; front -Y",
@@ -1240,7 +1240,7 @@
      ],
      "supersedes": "none (family 63 had no final art away from screen 439)",
      "dresses": "fieldstone cottage under a hipped thatch, 10.0 x 6.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
-     "sprite_family": "63 struct/home/home-",
+     "sprite_family": "63 struct<HOME>",
      "sprite_frames": "frames 6 (334x259 px) and 1 (332x260 px)",
      "fit": {
       "pivot": "ground centre of the wall rectangle; front -Y",
@@ -1281,7 +1281,7 @@
      "collision_hulls": 1,
      "families": [
       "cottage_door",
-      "63 struct/home/home- frames 2, 3"
+      "63 struct<HOME> frames 2, 3"
      ],
      "supersedes": "none (the old cottage had an empty doorway)",
      "dresses": "ledged oak plank door for the cottage doorway, 1.44 x 2.46 m, strap hinges, studs, ring pull. Hinge pivot: hang at x = +4.58 m on the front wall, 0.2 m behind its face; the sprite shows it standing open",
@@ -3737,7 +3737,7 @@
      "open_edges": 0,
      "collision_hulls": 1,
      "families": [
-      "63 struct/home/home- frames 11, 12",
+      "63 struct<HOME> frames 11, 12",
       "chimney_stone"
      ],
      "supersedes": "none",
@@ -3780,7 +3780,7 @@
      "open_edges": 0,
      "collision_hulls": 1,
      "families": [
-      "63 struct/home/home- frame 13",
+      "63 struct<HOME> frame 13",
       "chimney_stone"
      ],
      "supersedes": "none",
@@ -3824,7 +3824,7 @@
      "open_edges": 0,
      "collision_hulls": 5,
      "families": [
-      "63 struct/home/home- frames 4, 5",
+      "63 struct<HOME> frames 4, 5",
       "cottage_thatched_two_storey"
      ],
      "supersedes": "none (not built in round 1)",
@@ -3870,7 +3870,7 @@
      "open_edges": 0,
      "collision_hulls": 8,
      "families": [
-      "63 struct/home/home- frame 10",
+      "63 struct<HOME> frame 10",
       "cottage_thatched_l_shape"
      ],
      "supersedes": "none (not built in round 1)",

@@ -13,7 +13,7 @@
       "refined_mean_abs_RGB_255": 0.3038020133972168,
       "refined_p95_abs_RGB_255": 2.0,
       "mean_error_change_percent": -43.88593673706055,
-      "refined_image_sha256": "e002f113d432bccc264bfce922ac6ce6f552a93a0feec23bd4db1ff1e2275ae4"
+      "refined_image_sha256": "77848541e876de67cfefbdbf07b02d1997bad5f35f2e39b6f095a705b7e0b40f"
     },
     "weave": {
       "ROI_xyxy": [
@@ -26,7 +26,7 @@
       "refined_mean_abs_RGB_255": 0.6630915403366089,
       "refined_p95_abs_RGB_255": 2.0,
       "mean_error_change_percent": -26.320056915283203,
-      "refined_image_sha256": "472c8945d516786be1e8c996a08cef5aeff6c2097b049cc99e0eecdda5fcf25d"
+      "refined_image_sha256": "e5ea806d164b684d2b6850f472e31fd32a785183be461485cf550f03faf34dd2"
     },
     "game-distance": {
       "ROI_xyxy": [
@@ -39,7 +39,7 @@
       "refined_mean_abs_RGB_255": 0.4075407385826111,
       "refined_p95_abs_RGB_255": 2.0,
       "mean_error_change_percent": -7.384124279022217,
-      "refined_image_sha256": "d458222e023e588b4278a5e2185af98f4e387e3f4fde53dcc33397cda9a87c7c"
+      "refined_image_sha256": "f377294d66c795b42b2d832810a0563228806c914ff2b9daf2e6eba143a1e710"
     }
   },
   "limits": "Measurements are not universal visual thresholds; native filtering/light/gameplay acceptance pending."

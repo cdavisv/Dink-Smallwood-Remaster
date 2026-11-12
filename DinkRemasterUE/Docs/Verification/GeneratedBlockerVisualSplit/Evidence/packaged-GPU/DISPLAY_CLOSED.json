@@ -2,9 +2,9 @@
   "identity": {
     "pid": 795811,
     "start_ticks": 8381957,
-    "exe": "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+    "exe": "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
     "argv": [
-      "/home/davisc/Work/DinkQA/Tools/usr/bin/Xvfb",
+      "<HOME>/Work/DinkQA/Tools/usr/bin/Xvfb",
       ":202",
       "-screen",
       "0",
@@ -12,7 +12,7 @@
       "-nolisten",
       "tcp",
       "-auth",
-      "/home/davisc/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/authority",
+      "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/authority",
       "-noreset"
     ]
   },

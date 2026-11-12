@@ -1,0 +1,58 @@
+{
+  "status": "GENERIC_SOURCE_PROPOSAL_BEFORE_MESH_USE",
+  "roles": [
+    "FiredClay2m",
+    "FiredClayMasonry2m"
+  ],
+  "source": "https://polyhaven.com/a/red_brick",
+  "author": "Rob Tuytel",
+  "license": "CC0-1.0",
+  "published_width_m": 1.4,
+  "source_image_size": [
+    2048,
+    2048
+  ],
+  "joint_free_crop_px": [
+    1050,
+    345,
+    1220,
+    375
+  ],
+  "crop_size_m": [
+    0.11621093749999999,
+    0.0205078125
+  ],
+  "normalized_periodic_patch_repeats": [
+    17,
+    98
+  ],
+  "normalized_patch_size_m": [
+    0.11764705882352941,
+    0.02040816326530612
+  ],
+  "normal": "OpenGL, sourceXYattenuation.7 then90micrometre authored periodicporosity; normalnode1",
+  "BC": "sourceRGB\u2192linear*.40,.46,.52\u2192sRGB; artistagedbrownfinish, smallperiodiccoordinatewarpbreaksstriprepetition",
+  "roughness": "artist roughcoat .61+.35scannedR clamped.72..98; notmeasuredfiredclayBRDF",
+  "repeat_m": 2,
+  "resolution": 1024,
+  "masonry_dimensions": {
+    "bond": "halfstagger",
+    "brick_length_m": 0.2142222222222222,
+    "brick_height_m": 0.06342857142857142,
+    "mortar_m": 0.008
+  },
+  "files": {
+    "T_Shared_FiredClay2m_BC.png": "e5cbb13c9fcb0031c17ad2b216afea746508ae0129d7655c3c656f4ba439622d",
+    "T_Shared_FiredClay2m_N_GL.png": "ec06f6e3e64ae8259673b1bda2d2915b7acb1308677ed23b0539b08f49984ac3",
+    "T_Shared_FiredClay2m_ORM.png": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+    "T_Shared_LimeMortar2m_BC.png": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+    "T_Shared_LimeMortar2m_N_GL.png": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+    "T_Shared_LimeMortar2m_ORM.png": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+    "T_Shared_Soot2m_BC.png": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+    "T_Shared_Soot2m_N_GL.png": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+    "T_Shared_Soot2m_ORM.png": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+    "T_Shared_FiredClayMasonry2m_BC.png": "1ad8700f05582506c22b081bbcbb41e753a36799c9c83fd31e17ae1cc83c9fa9",
+    "T_Shared_FiredClayMasonry2m_N_GL.png": "a8edca91ca3532920567795cdca4cb23b171be17047aa62b0927d6961f010aba",
+    "T_Shared_FiredClayMasonry2m_ORM.png": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f"
+  }
+}
